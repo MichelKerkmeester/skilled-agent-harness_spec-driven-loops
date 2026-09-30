@@ -6,7 +6,7 @@ import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { computeCorpusStatsCached } from '../../lib/corpus/df-idf.js';
+import { computeCorpusStatsCached } from '../../lib/df-idf.js';
 
 const tempDirs: string[] = [];
 

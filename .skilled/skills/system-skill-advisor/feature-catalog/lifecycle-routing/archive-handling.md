@@ -24,7 +24,7 @@ Preserve historical and staged skills for inspection (audits, history, pre-activ
 `lib/lifecycle/archive-handling.ts` classifies skills under `z_archive/` and `z-future/` as indexed-but-not-routed. They appear in inspection surfaces (graph status, catalog, playbook cross-references) but are excluded from:
 
 1. `advisor_recommend` recommendations.
-2. DF/IDF corpus statistics (see `lib/corpus/df-idf.ts`).
+2. DF/IDF corpus statistics (see `lib/df-idf.ts`).
 3. 5-lane fusion scoring inputs.
 
 ---
@@ -36,7 +36,7 @@ Preserve historical and staged skills for inspection (audits, history, pre-activ
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/system-skill-advisor/runtime/lib/lifecycle/archive-handling.ts` | Library | Source reference |
-| `.skilled/skills/system-skill-advisor/runtime/lib/corpus/df-idf.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts` | Library | Source reference |
 
 ### Validation And Tests
 

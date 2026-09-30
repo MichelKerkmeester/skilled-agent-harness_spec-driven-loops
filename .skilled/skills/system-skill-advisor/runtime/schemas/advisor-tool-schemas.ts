@@ -2,6 +2,10 @@
 // MODULE: Advisor Tool Schemas
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { z } from 'zod';
 import { existsSync, realpathSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
@@ -9,8 +13,16 @@ import { tmpdir } from 'node:os';
 import { ADVISOR_RUNTIME_VALUES } from '../lib/advisor-runtime-values.js';
 import { SCORER_LANE_IDS } from '../lib/scorer/lane-registry.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const AdvisorFreshnessSchema = z.enum(['live', 'stale', 'absent', 'unavailable']);
 export const AdvisorLaneSchema = z.enum(SCORER_LANE_IDS);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 // Bound caller-supplied workspaceRoot inputs to a small
 // allowlist (repo root + os.tmpdir()) so handlers cannot be coerced into
@@ -148,6 +160,10 @@ export function isAllowedWorkspaceRoot(input: string): boolean {
     (prefix) => canonical === prefix || canonical.startsWith(`${prefix}/`),
   );
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. SCHEMA DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 const BoundedWorkspaceRootSchema = z
   .string()
@@ -492,6 +508,10 @@ export const AdvisorValidateOutputSchema = z.object({
   }).strict().describe('Prompt-safe telemetry diagnostics and recorded outcome summaries exposed for operator validation.'),
   generatedAt: z.string().datetime(),
 }).strict();
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export type AdvisorFreshness = z.infer<typeof AdvisorFreshnessSchema>;
 export type AdvisorRecommendInput = z.infer<typeof AdvisorRecommendInputSchema>;

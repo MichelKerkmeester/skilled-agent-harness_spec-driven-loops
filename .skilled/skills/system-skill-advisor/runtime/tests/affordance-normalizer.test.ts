@@ -31,7 +31,7 @@ interface SharedAffordanceFixture {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SHARED_FIXTURE: SharedAffordanceFixture = JSON.parse(
   readFileSync(
-    resolve(__dirname, '__shared__/affordance-injection-fixtures.json'),
+    resolve(__dirname, 'fixtures/affordance-injection-fixtures.json'),
     'utf-8',
   ),
 );

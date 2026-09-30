@@ -16,7 +16,7 @@ import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { readJsonObject } from '../utils/json-guard.js';
+import { readJsonObject } from './utils/json-guard.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
@@ -37,13 +37,12 @@ const LOCAL_OVERRIDE_FILE = 'route-exclusions.local.json';
 
 // The committed config/ dir lives at the runtime root and is NOT copied into
 // dist. This module resolves to it from both the TypeScript source layout
-// (runtime/lib/routing) and the compiled dist layout
-// (runtime/dist/runtime/lib/routing) — dist nests inside runtime, so a
-// deeper relative walk reaches the same real config/. The first existing
-// candidate wins.
+// (runtime/lib) and the compiled dist layout (runtime/dist/runtime/lib) —
+// dist nests inside runtime, so a deeper relative walk reaches the same real
+// config/. The first existing candidate wins.
 const CONFIG_DIR_CANDIDATES: readonly string[] = [
-  join(HERE, '..', '..', 'config'),             // source: lib/routing -> runtime/config
-  join(HERE, '..', '..', '..', '..', 'config'), // dist: dist/runtime/lib/routing -> runtime/config
+  join(HERE, '..', 'config'),             // source: lib -> runtime/config
+  join(HERE, '..', '..', '..', 'config'), // dist: dist/runtime/lib -> runtime/config
 ];
 
 function resolveDefaultConfigDir(): string {

@@ -20,7 +20,7 @@ import { tmpdir } from 'node:os';
 
 import { afterAll, describe, expect, it } from 'vitest';
 
-import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
+import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 
 const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
 const tmpRoots: string[] = [];

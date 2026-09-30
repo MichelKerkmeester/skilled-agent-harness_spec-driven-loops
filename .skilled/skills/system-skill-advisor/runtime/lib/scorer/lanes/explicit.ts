@@ -2,9 +2,15 @@
 // MODULE: Explicit Author Lane
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import type { AdvisorProjection, LaneMatch } from '../types.js';
 import { matchesPhraseBoundary, phraseSpecificity, skillNameVariants, tokenize } from '../text.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 interface ExplicitLaneOptions {
   readonly includeProducerIdentity?: boolean;
 }
@@ -15,6 +21,9 @@ interface ExplicitScoreEntry {
   readonly producerSkillIds: Set<string>;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   audit: [['sk-code', 0.75]],
   branch: [['sk-git', 0.45]],
@@ -233,6 +242,9 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
 const WRITE_VERBS = /\b(add|build|change|configure|create|edit|fix|generate|implement|modify|patch|refactor|rename|replace|run|update|write)\b/;
 const MEMORY_PRESERVATION_SESSION_INTENT = /\b(preserve|remember|capture|keep|store)\b.*\b(next|future|later)\s+session\b|\b(next|future|later)\s+session\b.*\b(lose|lost|preserve|remember|capture|keep|store)\b/;
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function push(
   scores: Map<string, ExplicitScoreEntry>,
   skillId: string,
@@ -249,6 +261,9 @@ function push(
   scores.set(skillId, current);
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 export function scoreExplicitLane(
   prompt: string,
   projection: AdvisorProjection,

@@ -2,6 +2,10 @@
 // MODULE: Advisor Feedback Calibration Reducer
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -18,6 +22,10 @@ import {
   type ScorerCalibrationThresholds,
 } from './weights-config.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const TRUE_VALUES = new Set(['true', '1', 'yes', 'on', 'enabled']);
 const DEFAULT_MIN_SAMPLES = 8;
 const DEFAULT_MAX_SKILL_SHARE = 0.6;
@@ -25,6 +33,10 @@ const MAX_WEIGHT_DELTA = 0.03;
 const MAX_THRESHOLD_DELTA = 0.05;
 const MAX_RECORDS = 50;
 const RECORD_ROOT = join(tmpdir(), 'speckit-skill-advisor-calibration');
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type AdvisorFeedbackCalibrationLaneStatus = 'candidate' | 'excluded';
 
@@ -95,6 +107,10 @@ export interface AdvisorFeedbackCalibrationOptions {
   readonly thresholdRaiseGain?: number;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function round4(value: number): number {
   return Number(value.toFixed(4));
 }
@@ -154,6 +170,10 @@ function laneRecords(
 ): AdvisorHookOutcomeRecord[] {
   return records.filter((record) => laneAttributionBySkill[record.skillLabel] === lane);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export function isAdvisorFeedbackCalibrationEnabled(
   env: Record<string, string | undefined> = process.env,

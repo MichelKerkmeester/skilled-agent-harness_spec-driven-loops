@@ -11,6 +11,9 @@
 // IMPORTANT: This refactor MUST be byte-equivalent to the prior inline
 // numerics. Tweaking any value here is a behavior change, not a refactor.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 /**
  * Confidence-assembly knobs used by `confidenceFor` in `fusion.ts`.
  */
@@ -166,6 +169,9 @@ export interface ScoringCalibration {
   readonly routing: RoutingCalibration;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
   confidence: Object.freeze({
     readOnlyExplainerFloor: 0.25,
@@ -231,6 +237,9 @@ export const SCORING_CALIBRATION: ScoringCalibration = Object.freeze({
   }),
 });
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 export interface RoutingCalibrationOverride {
   memorySaveBonus?: number;
   createAgentBonus?: number;

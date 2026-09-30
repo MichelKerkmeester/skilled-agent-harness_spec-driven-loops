@@ -54,7 +54,7 @@ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root /absolute/pa
 
 - `advisor_status.skillCount` includes archived and future skills for visibility purposes or is documented to exclude them if `skillCount` is defined as active-only.
 - Archived and future skill slugs do not appear in `recommendations[]` under `advisor_recommend`.
-- IDF computed by `lib/corpus/df-idf.ts` uses the active corpus only (see AI-004).
+- IDF computed by `lib/df-idf.ts` uses the active corpus only (see AI-004).
 - Lifecycle metadata on archived entries is available via inspection tools.
 
 ### Failure Modes

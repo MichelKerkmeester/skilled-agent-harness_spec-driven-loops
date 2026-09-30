@@ -2,6 +2,10 @@
 // MODULE: Advisor Freshness Generation
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { randomBytes } from 'node:crypto';
 import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
@@ -10,10 +14,18 @@ import { findAdvisorWorkspaceRoot } from '../utils/workspace-root.js';
 import { invalidateSkillGraphCaches, type CacheInvalidationEvent } from './cache-invalidation.js';
 import type { SkillGraphTrustState } from './trust-state.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const GENERATION_FILE_NAME = 'skill-graph-generation.json';
 const GENERATION_RELATIVE_PATH = join('.skilled', 'skills', '.state', 'advisor', GENERATION_FILE_NAME);
 const GENERATION_LOCK_STALE_MS = 30_000;
 const GENERATION_LOCK_WAIT_MS = 250;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export interface PublishGenerationOptions {
   readonly workspaceRoot: string;
@@ -27,6 +39,10 @@ export interface PublishGenerationResult {
   readonly metadata: GenerationMetadata;
   readonly invalidation: CacheInvalidationEvent;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 export function getSkillGraphGenerationPath(workspaceRoot: string): string {
   // A daemon pointed at its own database directory keeps its generation
@@ -163,6 +179,10 @@ function acquireGenerationLock(filePath: string): () => void {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 export function readSkillGraphGeneration(workspaceRoot: string): GenerationMetadata {
   const filePath = getSkillGraphGenerationPath(workspaceRoot);
   if (!existsSync(filePath)) {
@@ -214,6 +234,10 @@ export async function publishAfterCommit<T>(
     publication: publishSkillGraphGeneration(options),
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 // Test-only surface: stress + unit tests need to drive the lock primitive
 // Directly to verify the token-ownership semantics. Production

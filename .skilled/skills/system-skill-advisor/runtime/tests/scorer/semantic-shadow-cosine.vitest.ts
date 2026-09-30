@@ -44,17 +44,17 @@ import {
   indexSkillMetadata,
   initDb,
   refreshSkillEmbeddings,
-} from '../../../../../lib/skill-graph/skill-graph-db.js';
+} from '../../lib/skill-graph/skill-graph-db.js';
 import {
   _semanticShadowTest,
   clearSemanticShadowPromptEmbedding,
   scoreSemanticShadowLane,
   setSemanticShadowPromptEmbedding,
-} from '../semantic-shadow.js';
-import { scoreAdvisorPrompt } from '../../fusion.js';
-import { createFixtureProjection } from '../../projection.js';
-import type { AdvisorProjection, SkillProjection } from '../../types.js';
-import { writeGraphMetadata } from '../../../../../tests/fixtures/skill-graph-db.js';
+} from '../../lib/scorer/lanes/semantic-shadow.js';
+import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
+import { createFixtureProjection } from '../../lib/scorer/projection.js';
+import type { AdvisorProjection, SkillProjection } from '../../lib/scorer/types.js';
+import { writeGraphMetadata } from '../fixtures/skill-graph-db.js';
 
 function buffer(values: readonly number[]): Buffer {
   const vector = Float32Array.from(values);

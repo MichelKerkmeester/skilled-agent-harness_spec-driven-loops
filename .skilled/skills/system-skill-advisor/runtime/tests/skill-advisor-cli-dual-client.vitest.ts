@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Dual Client CLI Concurrency
+// ───────────────────────────────────────────────────────────────────
 // Concurrent CLI shim calls against one resident daemon over the advisor's own
 // wire dialect. Both clients must complete independently and the daemon must see
 // one tool call per client.

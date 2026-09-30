@@ -5,7 +5,7 @@
 // optionally applies missing inbound enhances edges across skills.
 
 import { resolve } from 'node:path';
-import type { CallerContext } from '../../lib/context/caller-context.js';
+import type { CallerContext } from '../../lib/caller-context.js';
 import { requireTrustedCaller } from '../../lib/auth/trusted-caller.js';
 import { errorResponse, okResponse, redactDiagnosticText } from './response-envelope.js';
 import { propagateInboundEnhances } from '../../lib/cross-skill-edges/index.js';

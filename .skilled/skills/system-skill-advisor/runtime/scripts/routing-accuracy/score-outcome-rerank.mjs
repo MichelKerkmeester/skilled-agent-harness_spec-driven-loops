@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // COMPONENT: OUTCOME-WEIGHTED RERANK ROUTING-ACCURACY EVAL DRIVER
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 //
 // Measures whether the outcome-weighted re-rank improves routing accuracy over
 // the similarity-only baseline, reported as MRR (mean reciprocal rank of the
@@ -22,10 +22,16 @@
 // READ-ONLY: scores against the live skill-graph.sqlite via a read path; never
 // mutates any database.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 // routing-accuracy -> scripts -> mcp_server
 const MCP_SERVER = join(SCRIPT_DIR, '..', '..');
@@ -37,6 +43,9 @@ const { scoreAdvisorPrompt } = await import(join(DIST_SCORER, 'fusion.js'));
 const { loadAdvisorProjection } = await import(join(DIST_SCORER, 'projection.js'));
 const { outcomeWeightedRerank } = await import(join(DIST_SCORER, 'outcome-weighted-rerank.js'));
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function loadCorpus(path) {
   const rows = [];
   for (const line of readFileSync(path, 'utf8').split('\n')) {
@@ -111,6 +120,9 @@ function scoreOrdering(rows, orderFor) {
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 function main() {
   const projection = loadAdvisorProjection(REPO_ROOT);
   const all = loadCorpus(CORPUS);
@@ -156,4 +168,7 @@ function main() {
   return 0;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 process.exit(main());

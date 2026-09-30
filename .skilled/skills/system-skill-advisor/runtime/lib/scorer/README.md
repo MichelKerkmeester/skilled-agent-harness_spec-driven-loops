@@ -117,4 +117,3 @@ Expected result: exit code `0`.
 
 - [`../README.md`](../README.md)
 - [`../../tests/scorer/README.md`](../../tests/scorer/README.md)
-- [`../corpus/README.md`](../corpus/README.md)

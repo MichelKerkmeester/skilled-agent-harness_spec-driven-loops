@@ -14,7 +14,7 @@ import {
 } from '../schemas/advisor-tool-schemas.js';
 import { readAdvisorStatus } from './advisor-status.js';
 
-import type { CallerContext } from '../lib/context/caller-context.js';
+import type { CallerContext } from '../lib/caller-context.js';
 import type { SkillGraphIndexResult } from '../lib/skill-graph/skill-graph-db.js';
 import type {
   AdvisorFreshness,

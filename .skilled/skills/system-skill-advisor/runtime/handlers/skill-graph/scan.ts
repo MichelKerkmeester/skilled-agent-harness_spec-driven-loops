@@ -5,7 +5,7 @@
 
 import { resolve } from 'node:path';
 import { indexSkillMetadata, refreshSkillEmbeddings } from '../../lib/skill-graph/skill-graph-db.js';
-import type { CallerContext } from '../../lib/context/caller-context.js';
+import type { CallerContext } from '../../lib/caller-context.js';
 import { requireTrustedCaller } from '../../lib/auth/trusted-caller.js';
 import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
 import { publishSkillGraphGeneration } from '../../lib/freshness/generation.js';

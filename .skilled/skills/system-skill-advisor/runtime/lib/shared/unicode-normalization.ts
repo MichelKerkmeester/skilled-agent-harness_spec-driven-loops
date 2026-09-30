@@ -1,11 +1,15 @@
-// ---------------------------------------------------------------
-// MODULE: Unicode Normalization (local duplicate)
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
+// MODULE: UNICODE NORMALIZATION (LOCAL DUPLICATE)
+// ───────────────────────────────────────────────────────────────────
 // Duplicated from system-spec-kit/shared/unicode-normalization.ts for full skill isolation.
 // Drift is watched by .github/workflows/isolation-check.yml's
 // reverse-direction audit (any new cross-skill import fails CI).
 //
 // Do NOT add new imports from system-spec-kit here. Duplicate locally instead.
+
+// ───────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const CANONICAL_FOLD_VERSION = 'nfkc-hidden-mark-confusable-v1';
 
@@ -43,12 +47,20 @@ const CONFUSABLE_REPLACEMENTS = Object.freeze([
   [/\u0443|\u03C5/g, 'y'],
 ] as const);
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export interface UnicodeRuntimeFingerprint {
   readonly normalizer: typeof CANONICAL_FOLD_VERSION;
   readonly node: string;
   readonly icu: string;
   readonly unicode: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function getUnicodeRuntimeFingerprint(): UnicodeRuntimeFingerprint {
   return {

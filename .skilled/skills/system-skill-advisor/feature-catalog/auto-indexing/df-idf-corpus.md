@@ -21,7 +21,7 @@ Feed the lexical lane with corpus-aware statistics so common tokens are discount
 
 ## 2. HOW IT WORKS
 
-`lib/corpus/df-idf.ts` computes DF/IDF over the active corpus only (excluding `z_archive/` and `z-future/`). Recomputation is debounced: multiple reindex events within the debounce window collapse into one recompute. The resulting statistics are consumed by the lexical lane in `lib/scorer/lanes/lexical.ts`.
+`lib/df-idf.ts` computes DF/IDF over the active corpus only (excluding `z_archive/` and `z-future/`). Recomputation is debounced: multiple reindex events within the debounce window collapse into one recompute. The resulting statistics are consumed by the lexical lane in `lib/scorer/lanes/lexical.ts`.
 
 ---
 
@@ -31,7 +31,7 @@ Feed the lexical lane with corpus-aware statistics so common tokens are discount
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/system-skill-advisor/runtime/lib/corpus/df-idf.ts` | Library | Source reference |
+| `.skilled/skills/system-skill-advisor/runtime/lib/df-idf.ts` | Library | Source reference |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts` | Library | Source reference |
 
 ### Validation And Tests

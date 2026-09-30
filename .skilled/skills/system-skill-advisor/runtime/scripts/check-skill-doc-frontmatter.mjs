@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-// ====================================================================
-// check-skill-doc-frontmatter.mjs — canonical frontmatter contract
-//                                    checker for skill reference/asset docs
-// ====================================================================
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Skill Doc Frontmatter Checker
+// ───────────────────────────────────────────────────────────────────
 // Dependency-free on purpose: CI and per-phase authoring runs invoke it
 // at the repo root without an npm install. Parsing mirrors the harvest
 // semantics in lib/skill-graph/doc-frontmatter.ts (leading fence only,
@@ -23,8 +22,16 @@
 // Output: one "FAIL <path>: <reason>" line per violation, then a summary.
 // Exit: 0 when no violations, 1 otherwise.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { readdirSync, readFileSync } from 'node:fs';
 import { join, relative, basename } from 'node:path';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const IMPORTANCE_TIERS = new Set([
   'constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated',
@@ -32,6 +39,10 @@ const IMPORTANCE_TIERS = new Set([
 const CONTEXT_TYPES = new Set(['planning', 'research', 'implementation', 'general']);
 const DETAILED_FIELDS = ['trigger_phrases', 'importance_tier', 'contextType'];
 const DOC_SUBDIRS = ['references', 'assets'];
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function parseArgs(argv) {
   const opts = { root: '.', mode: 'shape', skill: null };
@@ -142,6 +153,10 @@ function listMarkdownFiles(dir) {
   }
   return files;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 const { root, mode, skill } = parseArgs(process.argv.slice(2));
 const skillsRoot = join(root, '.skilled', 'skills');

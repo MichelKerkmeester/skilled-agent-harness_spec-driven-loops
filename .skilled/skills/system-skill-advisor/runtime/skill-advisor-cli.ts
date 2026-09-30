@@ -1,8 +1,11 @@
 #!/usr/bin/env node
-// ---------------------------------------------------------------
-// MODULE: Skill Advisor CLI
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
+// MODULE: SKILL ADVISOR CLI
+// ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import { spawn, type ChildProcess } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, statSync } from 'node:fs';
 import net from 'node:net';
@@ -19,6 +22,9 @@ import {
 import { SKILL_ADVISOR_COMPAT_CONTRACT } from './lib/compat/contract.js';
 import { runAdvisorSubprocess, type AdvisorRecommendation } from './lib/subprocess.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const ADVISOR_PROTOCOL_VERSION = '1';
 const DEFAULT_TIMEOUT_MS = 30_000;
 const DEFAULT_SOCKET_DIR = '/tmp/system-skill-advisor';
@@ -48,6 +54,9 @@ const EXIT_USAGE = 64;
 const EXIT_PROTOCOL = 69;
 const EXIT_RETRYABLE = 75;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 type OutputFormat = 'json' | 'text' | 'jsonl';
 type ToolListMode = 'full' | 'compact' | 'names-only';
 type CompletionShell = 'bash' | 'zsh';
@@ -162,6 +171,9 @@ class JsonRpcError extends Error {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 // Awaits drain when the kernel pipe buffer is full: a fire-and-forget
 // write followed by process.exit() truncates large payloads at the pipe
 // buffer boundary (observed as exactly 64KB on darwin). Streams without
@@ -1092,6 +1104,9 @@ function advisorValidateRetryDelayMs(attempt: number): number {
   return ADVISOR_VALIDATE_RETRY_BASE_DELAY_MS * attempt;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 function spawnLauncher(paths: RepoPaths): ChildProcess {
   const child = spawn(process.execPath, [paths.launcherPath], {
     cwd: paths.repoRoot,
@@ -1484,6 +1499,9 @@ async function invokeAdvisorRecommendPayload(
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 export async function runSkillAdvisorCli(argv: string[], io: CliIo = { stdout: process.stdout, stderr: process.stderr }): Promise<number> {
   try {
     const parsed = parseCliArgs(argv);

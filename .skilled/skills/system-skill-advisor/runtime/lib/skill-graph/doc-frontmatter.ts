@@ -6,10 +6,18 @@
 // so per-doc trigger phrases can feed advisor routing as doc-level
 // signal. The advisor is these files' only runtime consumer.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { parseFrontmatter as parseFrontmatterBlock } from '@spec-kit/shared/frontmatter/parse-frontmatter.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export interface ParsedDocFrontmatter {
   readonly title: string;
@@ -18,6 +26,10 @@ export interface ParsedDocFrontmatter {
   readonly importanceTier: string;
   readonly contextType: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CONFIGURATION
+// ───────────────────────────────────────────────────────────────────
 
 /** Opt-in gate for the whole doc-harvest path. Default off. */
 export function isDocTriggerHarvestEnabled(env: NodeJS.ProcessEnv = process.env): boolean {
@@ -48,6 +60,10 @@ const KEY_LINE = /^([A-Za-z0-9_-]+):\s*(.*)$/;
 const LIST_ITEM = /^\s+-\s+(.*)$/;
 const MAX_PHRASES_PER_DOC = 12;
 const MAX_FIELD_LENGTH = 300;
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function cleanScalar(raw: string): string {
   return raw.trim().replace(SURROUNDING_QUOTES, '').trim().slice(0, MAX_FIELD_LENGTH);
@@ -84,6 +100,10 @@ function splitInlineList(inner: string): string[] {
   if (current.trim()) entries.push(current);
   return entries;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Parse the YAML-ish frontmatter block of a skill reference/asset doc.
@@ -143,6 +163,10 @@ export function parseDocFrontmatter(raw: string): ParsedDocFrontmatter | null {
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. HARVEST WALK
+// ───────────────────────────────────────────────────────────────────
+
 const HARVEST_SUBDIRS = ['references', 'assets'] as const;
 const MAX_WALK_DEPTH = 6;
 const MAX_DOCS_PER_SKILL = 200;
@@ -171,6 +195,10 @@ function walkDocsDir(dir: string, depth: number, collected: string[]): void {
     collected.push(fullPath);
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 7. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * List harvestable doc files (references/assets markdown, READMEs

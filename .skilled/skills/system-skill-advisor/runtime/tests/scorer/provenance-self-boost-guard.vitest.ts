@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Advisor Provenance Self-Boost Guard
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it } from 'vitest';
 import { scoreAdvisorPrompt } from '../../lib/scorer/fusion.js';
 import { scoreExplicitLane } from '../../lib/scorer/lanes/explicit.js';

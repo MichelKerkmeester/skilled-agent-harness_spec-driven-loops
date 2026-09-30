@@ -2,6 +2,10 @@
 // MODULE: Advisor 5-Lane Fusion
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { fuseResultsMulti } from '@spec-kit/shared/algorithms/rrf-fusion.js';
 
 import { applyAmbiguity, isAmbiguousTopTwo } from './ambiguity.js';
@@ -28,7 +32,7 @@ import {
   liveWeightTotal,
 } from './weights-config.js';
 import { isLiveScorerLane } from './lane-registry.js';
-import { isRouteExcludedSkillId } from '../routing/route-exclusions.js';
+import { isRouteExcludedSkillId } from '../route-exclusions.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from '../compat/contract.js';
 import type {
   AdvisorProjection,
@@ -44,6 +48,10 @@ import type {
 } from './types.js';
 import type { NormalizedAffordance } from '../affordance-normalizer.js';
 import type { RankedList, RrfItem } from '@spec-kit/shared/algorithms/rrf-fusion.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const DEFAULT_CONFIDENCE_THRESHOLD = resolvedConfidenceThreshold();
 const DEFAULT_UNCERTAINTY_THRESHOLD = resolvedUncertaintyThreshold();
@@ -70,6 +78,10 @@ const TRUE_FLAG_VALUES = new Set(['1', 'true', 'yes', 'on', 'enabled']);
 const NO_RRF_RANK = Number.MAX_SAFE_INTEGER;
 const ADVISOR_SELF_RECOMMENDATION_SKILL_IDS = new Set(['system-skill-advisor', 'skill-advisor']);
 
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 type MutableLaneScores = {
   -readonly [K in keyof LaneScores]: LaneMatch[];
 };
@@ -93,6 +105,10 @@ interface ExactSemanticRerankEntry {
 }
 
 type ExactSemanticRerankIndex = ReadonlyMap<string, ExactSemanticRerankEntry>;
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function emptyLaneScores(): MutableLaneScores {
   return Object.fromEntries(SCORER_LANES.map((lane) => [lane, []])) as unknown as MutableLaneScores;
@@ -618,6 +634,10 @@ function primaryIntentBonus(
   }
   return 0;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
   const projection = projectionWithUsableSkillIds(

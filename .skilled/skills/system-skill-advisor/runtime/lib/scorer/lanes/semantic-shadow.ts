@@ -2,16 +2,25 @@
 // MODULE: Semantic Shadow Lane
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import { getAdapter } from '../../embedders/registry.js';
 import { getActiveEmbedder } from '../../embedders/schema.js';
 import { getDbReadOnly, loadSkillEmbeddings } from '../../skill-graph/skill-graph-db.js';
 import { scoreTokenOverlap, tokenize } from '../text.js';
 import type { AdvisorProjection, LaneMatch } from '../types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const COSINE_THRESHOLD = 0.2;
 
 let activePromptEmbedding: { prompt: string; vector: Float32Array } | null = null;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 export interface SemanticShadowRuntimeHealth {
   readonly checkedAt: string;
   readonly activeEmbedder: { readonly name: string; readonly dim: number; readonly adapterDim: number | null } | null;
@@ -20,6 +29,9 @@ export interface SemanticShadowRuntimeHealth {
   readonly lastPromptEmbeddingAt: string | null;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. RUNTIME HEALTH
+// ───────────────────────────────────────────────────────────────────
 let runtimeHealth: SemanticShadowRuntimeHealth = {
   checkedAt: new Date(0).toISOString(),
   activeEmbedder: null,
@@ -40,6 +52,9 @@ export function getSemanticShadowRuntimeHealth(): SemanticShadowRuntimeHealth {
   return runtimeHealth;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function toFloat32Array(vector: Float32Array | readonly number[]): Float32Array {
   return vector instanceof Float32Array ? vector : Float32Array.from(vector);
 }
@@ -81,6 +96,9 @@ function fixtureVector(text: string): Float32Array {
   return vector;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. PROMPT EMBEDDING
+// ───────────────────────────────────────────────────────────────────
 export function setSemanticShadowPromptEmbedding(prompt: string, vector: Float32Array | readonly number[] | null | undefined): void {
   activePromptEmbedding = vector ? { prompt, vector: toFloat32Array(vector) } : null;
 }
@@ -149,11 +167,17 @@ export async function withSemanticShadowPromptEmbedding<T>(prompt: string, run: 
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 7. TEST HOOKS
+// ───────────────────────────────────────────────────────────────────
 export const _semanticShadowTest = {
   cosineSimilarity,
   fixtureVector,
 };
 
+// ───────────────────────────────────────────────────────────────────
+// 8. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 export function scoreSemanticShadowExactSubset(
   prompt: string,
   projection: AdvisorProjection,

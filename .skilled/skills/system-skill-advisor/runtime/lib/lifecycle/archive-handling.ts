@@ -2,7 +2,7 @@
 // MODULE: Archive And Future Handling
 // ───────────────────────────────────────────────────────────────
 
-import { isRouteExcludedSkillId } from '../routing/route-exclusions.js';
+import { isRouteExcludedSkillId } from '../route-exclusions.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPES
