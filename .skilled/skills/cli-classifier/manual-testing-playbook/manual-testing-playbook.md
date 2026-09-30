@@ -132,6 +132,14 @@ Prompt: `Run the injection screen scorer with fake jev and cli-deem on my PATH a
 
 > **Feature File:** [CC-004](measurements/injection-screen-measurement.md)
 
+### CC-005 | The Pi transport scorer runs with zero model calls
+
+Verify the offline Pi transport scorer prints its transport census without a model call and that a live arm without `--out` refuses with exit 2.
+
+Prompt: `Run the Pi transport scorer with a fake jev on my PATH and show me its census runs without a model call`
+
+> **Feature File:** [CC-005](measurements/pi-transport-comparison.md)
+
 ---
 
 ## 8. AUTOMATED TEST CROSS-REFERENCE
@@ -144,6 +152,7 @@ Prompt: `Run the injection screen scorer with fake jev and cli-deem on my PATH a
 | Jev transport behavior | [cli-usage playbook](../cli-usage/manual-testing-playbook/manual-testing-playbook.md) | none, covered by the `JEV-` scenarios |
 | Deem client behavior | [cli-deem tests](../cli-deem/scripts/tests/cli-deem.test.mjs) | none, covered by `node --test` |
 | Injection screen scorer | [score-injection-screen tests](../benchmark/injection-screen/tests/score-injection-screen.test.mjs) | `CC-004` |
+| Pi transport scorer | [score-pi-transport tests](../benchmark/pi-transport/tests/score-pi-transport.test.mjs) | `CC-005` |
 
 ---
 
@@ -157,3 +166,4 @@ Prompt: `Run the injection screen scorer with fake jev and cli-deem on my PATH a
 | CJ-001 | A Jev judgment request resolves mode cli-jev | Hub Routing | [CJ-001](hub-routing/judgment-request-routes-to-transport.md) |
 | CJ-002 | The cli-jev name resolves the Jev transport | Hub Routing | [CJ-002](hub-routing/alias-still-resolves.md) |
 | CC-004 | The injection screen scorer runs with zero model calls | Measurements | [CC-004](measurements/injection-screen-measurement.md) |
+| CC-005 | The Pi transport scorer runs with zero model calls | Measurements | [CC-005](measurements/pi-transport-comparison.md) |

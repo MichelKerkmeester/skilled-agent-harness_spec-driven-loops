@@ -37,3 +37,17 @@ Tests offline whether a Jev or Deem noul spots text that tries to instruct an AI
 #### Source Files
 
 See [`measurements/injection-screen-measurement.md`](measurements/injection-screen-measurement.md) for full implementation and test file listings.
+
+### Pi transport comparison
+
+#### Description
+
+Compares Pi's classifier runtime against the jev CLI on the advisor's recorded choice calls, with a zero-call default and live arms behind an explicit switch.
+
+#### Current Reality
+
+`score-pi-transport.mjs` prints a zero-call census of Pi, jev, llama.cpp and the recorded calls file, then stops without writing anything. `--pi` and `--cli` each need `--out <dir>` and the operator's yes. No live run has happened, so the script has printed no verdict and no comparison numbers.
+
+#### Source Files
+
+See [`measurements/pi-transport-comparison.md`](measurements/pi-transport-comparison.md) for full implementation and test file listings.
