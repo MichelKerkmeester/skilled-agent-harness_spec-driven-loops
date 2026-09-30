@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,9 +47,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "scratch/context/context.md",
       ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
-      ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
       ".skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs",
       ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
       ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
@@ -57,10 +56,11 @@
       "feature-catalog/feature-catalog.md",
       ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-integration.md",
       "manual-testing-playbook/manual-testing-playbook.md",
-      "runtime/cli/evals/score-alignment-suggestion.ts",
-      "runtime/cli/retrieval/score-track-narrowing.mjs",
-      "runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
-      "runtime/scripts/debug-next-check/score-debug-next-check.mjs"
+      ".skilled/skills/cli-classifier/SKILL.md",
+      "scratch/verify/h.txt",
+      "scratch/verify/g.txt",
+      "scratch/w4-build/design.md",
+      "scratch/verify/review-swe2-r1.txt"
     ],
     "entities": [
       {
@@ -100,21 +100,15 @@
         "source": "derived"
       },
       {
-        "name": "context.md",
-        "kind": "doc",
-        "path": "scratch/context/context.md",
-        "source": "derived"
-      },
-      {
         "name": "jev-transport.mjs",
         "kind": "file",
         "path": ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
         "source": "derived"
       },
       {
-        "name": "score-pi-transport.mjs",
+        "name": "leaf-route-replay.cjs",
         "kind": "file",
-        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
         "source": "derived"
       },
       {
@@ -148,27 +142,27 @@
         "source": "derived"
       },
       {
-        "name": "score-alignment-suggestion.ts",
-        "kind": "code",
-        "path": "runtime/cli/evals/score-alignment-suggestion.ts",
+        "name": "h.txt",
+        "kind": "file",
+        "path": "scratch/verify/h.txt",
         "source": "derived"
       },
       {
-        "name": "score-track-narrowing.mjs",
+        "name": "g.txt",
         "kind": "file",
-        "path": "runtime/cli/retrieval/score-track-narrowing.mjs",
+        "path": "scratch/verify/g.txt",
         "source": "derived"
       },
       {
-        "name": "score-completion-claims.mjs",
-        "kind": "file",
-        "path": "runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
+        "name": "design.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/design.md",
         "source": "derived"
       },
       {
-        "name": "score-debug-next-check.mjs",
+        "name": "review-swe2-r1.txt",
         "kind": "file",
-        "path": "runtime/scripts/debug-next-check/score-debug-next-check.mjs",
+        "path": "scratch/verify/review-swe2-r1.txt",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 037 measured Pi's native classifier runtime as good enough for the packet's Jev `choice` questions",
     "created_at": "2026-09-30T16:01:03Z",
-    "last_save_at": "2026-09-30T19:27:46.711Z",
+    "last_save_at": "2026-09-30T19:53:31.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c81f35ae921b3f184c6ee616a86768977876d09c4cd43f4ee564f02c8dae6e5",
+    "source_fingerprint": "sha256:b8dadfcfbf493187ded9547fff91f2667f5e1b6a579035b405571ffae17fbf1a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f996d46b2f83e738739b3f7853147b273f9d491f706e1e49eaea2c77093eb31b",
+      "spec.md": "eeefc846957e3330a12c636236342923a2cb4de99038d061b569fd33016c6250",
       "plan.md": "28d65c208f0a90c4a0e17dc52038df10f6d15e9a952e56a49ca5ce111e8eb748",
-      "tasks.md": "d90d9506de6a1942dea2bfb5622d060e3c60bf50d78ae092c360774938d93437",
-      "implementation-summary.md": "81c74282b0ab80aff53cfd8dbd847ecbb4e85dd33b4ae0b354fa39dbce045b4f"
+      "tasks.md": "cc6fc1e49a250280a190c08bcca77e15906c8702a7a5ef6a0a248975d79b6cdb",
+      "implementation-summary.md": "4b6e4b26c1d7e5ea268dfe84ebe8fad281f7e05f4854a33d42de5e09b370f582"
     },
     "last_active_at": null
   }

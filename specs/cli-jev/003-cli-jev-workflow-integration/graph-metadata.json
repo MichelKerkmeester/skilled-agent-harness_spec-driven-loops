@@ -212,17 +212,17 @@
     ],
     "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-09-30T19:27:48.002Z",
+    "last_save_at": "2026-09-30T19:50:49.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:a03564c707fa4043e3143446e66fe85b7a35d462e1505116318490c56ae501e4",
+    "source_fingerprint": "sha256:30c547b0a976b7dd116a670cb06b6b1b1556ade8867f3ed3773f429c27172f35",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2b36786d5bc5688650496762638520fb39e6d757ab07b8b4d258b0aac9958860"
+      "spec.md": "1279214eb61d23fbec2a3ce4ff13fbffca9ef4ccf0021be5beb8433ac3e30340"
     },
     "last_active_child_id": "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
     "last_active_at": "2026-09-27T09:37:40.643Z"

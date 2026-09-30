@@ -109,7 +109,7 @@ Decisions outrank each child goal.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 040 are Complete
+- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 040 are Complete
 - [x] 019 to 035 are Complete: each prints its verdict line or stops at its label gate
 - [x] `validate_document.py` exits 0 on every skill doc a build changed
 - [x] No open P0 or P1 finding, and no changed runtime's suite fails beyond its baseline
@@ -176,6 +176,7 @@ and findings belong here.
 | 037 pi native classifier transport | Done | Build `b34b9d1907` on worktree 071: `score-pi-transport.mjs`, its 41-case test file and the cli-classifier docs. The approved live run (Pi side only, 333 calls over 111 rows, 1 min 29 s, exit 0) printed `verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022`. MiMo review FAIL on two P1s, then PASS after the fix; no integration change |
 | 039 hub cleanup | Done | Build `03a6f5f285` on worktree 071, docs `a829c9a870`, index `54b1707ec5`: the cli-classifier Jev packet folder is renamed to `cli-jev` with `cli-usage` kept as a routing alias, every version field in the hub continues under `0.x` with seven changelogs renamed and their history kept, and `cli-deem` gains a ten-scenario testing playbook. MiMo review PASS with three P2s recorded |
 | 040 hard rules sidecar | Done | The working tree at start HEAD `b3964f2a3f` on worktree 071: 50 rules across nine `hard-rules.json` sidecars beside their SKILL.md files, every reader and test moved in the same change, the before-and-after verdict comparison byte-equal for all nine skills, and the five suites at 135 of 135 with 0 failed. MiMo review PASS with two P2s fixed; the orchestrator commits the build path-scoped |
+| 038 pi classifier transport integration | Done | The working tree at HEAD `c5c72d31ec` on worktree 071: one opt-in Pi transport module for Jev `choice` questions beside the jev CLI, two approved callers wired with one call site each behind byte-identical switch-off recordings (59 and 202 lines), a module suite at 22 of 22 with 0 failed and one row per gate, and 9 changed docs VALID. SWE 2 max review PASS with no open P0 or P1 and four P2s recorded; the orchestrator commits the build path-scoped |
 
 ### Deviations and findings
 
