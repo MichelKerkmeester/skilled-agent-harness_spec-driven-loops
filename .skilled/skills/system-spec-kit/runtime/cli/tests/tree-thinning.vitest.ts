@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Tree Thinning Tests
+// ───────────────────────────────────────────────────────────────────
+
 // TEST: Tree Thinning — Spec Folder Consolidation
 // PageIndex — pre-pipeline token reduction
 //

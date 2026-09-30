@@ -2,6 +2,10 @@
 // MODULE: Resume Ladder
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -22,6 +26,10 @@ import { isGeneratorHardeningEnabled } from '../config/capability-flags.js';
 import { resolveLastActiveChildFromStore } from '../graph/access-telemetry.js';
 import { listPhaseChildren } from '../spec/is-phase-parent.js';
 import { buildContinuityFingerprint } from '../validation/spec-doc-structure.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Which authored surface a resume ladder ultimately drew its context from. */
 export type ResumeLadderSource = 'handover' | 'continuity' | 'spec-docs' | 'none';
@@ -134,6 +142,10 @@ interface ResumeSignal {
   packetPointer?: string | null;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const FRONTMATTER_RE = /^(?:\uFEFF)?---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/u;
 const SPEC_DOC_PRIORITY = [
   'implementation-summary.md',
@@ -150,6 +162,10 @@ const RESTORE_PANEL_MAX_ITEMS = 8;
 const RESTORE_PANEL_MAX_CHARS = 1200;
 const PHASE_PARENT_REDIRECT_MAX_DEPTH = 5;
 const PHASE_CHILD_NAME_RE = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/u;
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Follow a phase parent's `derived.last_active_child_id` pointer down to the
@@ -1020,6 +1036,10 @@ function resolveSpecFolder(options: ResumeLadderOptions, workspacePath: string):
     folderPath: null,
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Resolve the canonical three-step resume ladder for a spec folder.

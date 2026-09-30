@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Inline Gate Renderer Fallback
+// MODULE: Inline Gate Renderer Fallback
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';

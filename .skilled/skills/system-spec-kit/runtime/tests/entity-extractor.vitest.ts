@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Entity Extractor Tests
+// ───────────────────────────────────────────────────────────────────
 // TEST: ENTITY EXTRACTOR (R10)
 // Covers: extractEntities, filterEntities, normalizeEntityName,
 // Entity-denylist

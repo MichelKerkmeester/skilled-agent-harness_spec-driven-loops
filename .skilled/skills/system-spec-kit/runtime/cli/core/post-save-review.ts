@@ -2,11 +2,12 @@
 // MODULE: Post-Save Quality Review
 // ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────────
-// 1. POST-SAVE QUALITY REVIEW
-// ───────────────────────────────────────────────────────────────────
 // After writing a memory file, read it back and compare the rendered
 // markdown against the original JSON payload to detect silent drift.
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 
 import * as fs from 'node:fs';
 
@@ -26,9 +27,9 @@ import { resolveSaveMode, SaveMode, type SaveModeInput } from '../types/save-mod
 import { structuredLog } from '../utils/logger.js';
 import { detectContinuationPattern } from './find-predecessor-memory.js';
 
-/* ───────────────────────────────────────────────────────────────
-   1. TYPES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type IssueSeverity = 'HIGH' | 'MEDIUM' | 'LOW';
 export type ReviewStatus = 'PASSED' | 'ISSUES_FOUND' | 'SKIPPED' | 'REJECTED' | 'REVIEWER_ERROR';
@@ -124,9 +125,9 @@ type GuardrailTelemetryContext = {
   anchorViolationCount: number;
 };
 
-/* ───────────────────────────────────────────────────────────────
-   2. CONSTANTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const GENERIC_TITLES = new Set([
   'next steps',
@@ -141,9 +142,9 @@ const GENERIC_TITLES = new Set([
 
 const DECISION_PLACEHOLDER_PATTERN = /\b(?:observation|user)\s+decision\s+\d+\b/i;
 
-/* ───────────────────────────────────────────────────────────────
-   3. PARSING HELPERS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function normalizeInputMode(inputMode: string | undefined, saveMode: SaveMode): string {
   if (typeof inputMode === 'string' && inputMode.trim().length > 0) {
@@ -569,9 +570,9 @@ function emitGuardrailTelemetry(
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. REVIEW LOGIC
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function reviewPostSaveQuality(input: PostSaveReviewInput): PostSaveReviewResult {
   const { savedFilePath, content, collectedData, inputMode } = input;
@@ -1067,9 +1068,9 @@ export function reviewPostSaveQuality(input: PostSaveReviewInput): PostSaveRevie
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
-   5. SCORE FEEDBACK FROM REVIEW FINDINGS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. SCORE FEEDBACK
+// ───────────────────────────────────────────────────────────────────
 
 const REVIEW_SEVERITY_PENALTIES: Record<IssueSeverity, number> = {
   HIGH: -0.10,
@@ -1086,9 +1087,9 @@ export function computeReviewScorePenalty(issues: ReviewIssue[]): number {
   return Math.max(penalty, -0.30);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   6. OUTPUT FORMATTING
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 7. OUTPUT FORMATTING
+// ───────────────────────────────────────────────────────────────────
 
 export function printPostSaveReview(result: PostSaveReviewResult): void {
   const scorePenalty = result.issues.length > 0 ? computeReviewScorePenalty(result.issues) : 0;

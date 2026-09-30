@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Devin Spec Gate Tests
+// ───────────────────────────────────────────────────────────────────
+
 import assert from 'node:assert/strict';
 import {
   existsSync,

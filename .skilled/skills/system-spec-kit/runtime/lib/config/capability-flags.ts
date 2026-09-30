@@ -5,8 +5,16 @@
 // orchestrator. Each one defaults to the shipped behavior and is overridden
 // only by an explicit opt-in or opt-out value.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const TRUTHY_OPT_IN = new Set(['true', '1', 'yes', 'on', 'enabled']);
 const FALSY_OPT_OUT = new Set(['false', '0', 'no', 'off', 'disabled']);
+
+// ───────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Returns true when envVarName is set to an opt-in value (true, 1, yes, on,
@@ -30,6 +38,10 @@ function parseFlagTristate(envVarName: string, defaultValue: boolean): boolean {
   }
   return defaultValue;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * SPECKIT_IDENTITY_MERGE_SAFETY: Shared identity resolver and lineage-merge guard.
@@ -200,6 +212,10 @@ const STATUS_COMPLETION_CONSISTENCY_GATE_ENV = 'SPECKIT_STATUS_COMPLETION_CONSIS
 function isStatusCompletionConsistencyGateEnabled(): boolean {
   return parseFlagTristate(STATUS_COMPLETION_CONSISTENCY_GATE_ENV, false);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   /** Documented generated-metadata drift-gate env var name */

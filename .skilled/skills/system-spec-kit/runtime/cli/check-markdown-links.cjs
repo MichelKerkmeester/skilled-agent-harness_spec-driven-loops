@@ -17,9 +17,15 @@
 // on NEW breakage — it deliberately does NOT skip whole template directories.
 //
 // Exit: 0 = clean ("0 broken"); 1 = one or more real broken links (listed).
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 const fs = require('fs');
 const path = require('path');
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const ROOTS = [
   '.skilled/skills', '.skilled/commands', '.skilled/agents',
   '.claude/agents', '.claude/commands',
@@ -70,6 +76,9 @@ const ALLOWLIST = new Set([
   '.skilled/skills/.state/completion-sentinel/README.md::../../logs/completion-sentinel-advisories.log',
 ]);
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function excluded(p) { return EXCLUDE_SEGMENTS.some((seg) => p.includes(seg)); }
 
 function walk(dir, out) {
@@ -182,6 +191,9 @@ function runSelfTest() {
   process.exit(failed ? 1 : 0);
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 if (process.argv.includes('--self-test')) runSelfTest();
 
 const files = [];

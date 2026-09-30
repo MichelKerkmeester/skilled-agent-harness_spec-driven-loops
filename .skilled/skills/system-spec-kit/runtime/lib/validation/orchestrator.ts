@@ -2,6 +2,10 @@
 // MODULE: Validation Orchestrator
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -26,6 +30,10 @@ import {
   isStatusCompletionConsistencyGateEnabled,
 } from '../config/capability-flags.js';
 import { isMainModule } from '../esm-entry.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Options controlling a {@link validateFolder} run. */
 export interface ValidateOpts {
@@ -59,6 +67,10 @@ export interface ValidationReport {
   passed: boolean;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 function findSkillRoot(startDir: string): string {
   let current = startDir;
@@ -90,6 +102,10 @@ const CHECKLIST_H1_PREFIX = '# Verification Checklist:';
 const OPTIONAL_TEMPLATE_HEADER_RE = /^(?:L(?:2|3\+?)|FIX ADDENDUM)\s*:/iu;
 const OPTIONAL_TEMPLATE_ANCHORS = new Set(['affected-surfaces', 'nfr', 'edge-cases', 'complexity', 'phase-deps', 'effort', 'enhanced-rollback']);
 
+// ───────────────────────────────────────────────────────────────────
+// 4. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 /** Severity a validator-registry rule is declared at (`skip` disables it entirely). */
 export type RegistrySeverity = 'error' | 'warn' | 'info' | 'skip';
 
@@ -114,6 +130,10 @@ interface ShellRuleOutput {
   // changing that mapped status.
   code?: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const REGISTRY_SHELL_RULE_WRAPPER = String.raw`set -euo pipefail
 folder="$1"
@@ -157,6 +177,10 @@ if [[ -n "${'${'}RULE_DETAILS[*]-}" ]]; then
   done
 fi
 `;
+
+// ───────────────────────────────────────────────────────────────────
+// 6. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function normalizeLevel(raw: string): SpecKitLevel {
   if (raw === '3+') return '3+';
@@ -988,6 +1012,10 @@ function applyRecordedFindings(folder: string, entries: ValidationEntry[]): void
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 7. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 /**
  * Validate one spec folder against its level contract, structural rules, generated-metadata
  * integrity, and the registered shell/JS validator rules.
@@ -1065,6 +1093,10 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 8. EXPORTS
+// ───────────────────────────────────────────────────────────────────
+
 /** Internal helpers exported for targeted unit testing only; not part of the validation API. */
 export const __testables = {
   mapShellRuleStatus,
@@ -1076,6 +1108,10 @@ export const __testables = {
   applyRecordedFindings,
   stripLineNumbers,
 };
+
+// ───────────────────────────────────────────────────────────────────
+// 9. CLI HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function parseCliArgs(argv: string[]): { folder: string; opts: ValidateOpts } {
   let folder = '';
@@ -1166,6 +1202,10 @@ function writeRepairHint(report: ValidationReport): void {
   );
   process.stdout.write('  apply    add --apply\n');
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 10. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 // Compare resolved filesystem paths, not the raw URL string: a repo path with
 // spaces or "|" makes import.meta.url percent-encode while argv stays literal,

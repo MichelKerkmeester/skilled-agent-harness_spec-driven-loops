@@ -2,6 +2,10 @@
 // MODULE: Authored Continuity Snapshot
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -15,6 +19,10 @@ import {
   type ContinuityFacets,
   type ThinContinuityRecord,
 } from './thin-continuity-record.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Inputs for refreshing the authored continuity snapshot embedded in packet-local markdown. */
 export interface AuthoredContinuitySnapshotOptions {
@@ -38,8 +46,16 @@ export interface AuthoredContinuitySnapshotResult {
   recoveryContext?: string;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const SNAPSHOT_START = '<!-- SPECKIT_CONTINUITY_SNAPSHOT_START -->';
 const SNAPSHOT_END = '<!-- SPECKIT_CONTINUITY_SNAPSHOT_END -->';
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function formatIsoSeconds(date: Date): string {
   return date.toISOString().replace(/\.\d{3}Z$/u, 'Z');
@@ -131,6 +147,10 @@ function buildContinuityRecord(params: {
     answered_questions: currentRecord?.answered_questions ?? [],
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Refresh the recovery-context snapshot embedded in a spec folder's

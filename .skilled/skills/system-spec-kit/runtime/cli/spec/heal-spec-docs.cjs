@@ -20,10 +20,18 @@
 // nothing. The dry run doubles as the census.
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 'use strict';
 
 const fs = require('node:fs');
 const path = require('node:path');
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 // Mirrors SPEC_FOLDER_RE in backfill-graph-metadata.ts and PACKET_NAME_RE in
 // repair-derived.cjs. A fourth copy is a cost; disagreeing with the writer
@@ -58,6 +66,10 @@ const TEMPLATE_SIGNATURES = [
 
 const HEADER_RE = /<!--\s*SPECKIT_TEMPLATE_SOURCE:/;
 const FRONTMATTER_RE = /^---\r?\n([\s\S]*?)\r?\n---/;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function anchorsOf(text) {
   const found = new Set();
@@ -98,6 +110,10 @@ function fieldIsEmpty(fm, field) {
   return !next || !/^\s+-\s/.test(next);
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 function healDoc(file) {
   const name = path.basename(file);
   const text = fs.readFileSync(file, 'utf8');
@@ -107,7 +123,9 @@ function healDoc(file) {
 
   const fm = frontmatterOf(out);
 
-  // ── restore a literal template default for an empty required field ──
+  // ───────────────────────────────────────────────────────────────────
+  // RESTORE A LITERAL TEMPLATE DEFAULT FOR AN EMPTY REQUIRED FIELD
+  // ───────────────────────────────────────────────────────────────────
   const defaults = TEMPLATE_DEFAULTS[name];
   if (defaults && fm !== null) {
     for (const [field, values] of Object.entries(defaults)) {
@@ -120,7 +138,9 @@ function healDoc(file) {
     refusals.push(`${name}: no frontmatter block at all, so there is nothing to restore into`);
   }
 
-  // ── name the template only when the anchors prove it ──
+  // ───────────────────────────────────────────────────────────────────
+  // NAME THE TEMPLATE ONLY WHEN THE ANCHORS PROVE IT
+  // ───────────────────────────────────────────────────────────────────
   if (!HEADER_RE.test(out)) {
     const sig = TEMPLATE_SIGNATURES.find((s) => s.doc === name);
     if (!sig) {
@@ -209,5 +229,9 @@ function main() {
     console.log('To apply: add --apply');
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 main();

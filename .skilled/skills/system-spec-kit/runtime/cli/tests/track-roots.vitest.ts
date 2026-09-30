@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Track Root Sweep and Refresh
+// MODULE: Track Root Sweep and Refresh
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';

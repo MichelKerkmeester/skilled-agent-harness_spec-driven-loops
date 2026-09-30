@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST SUITE: evidence-marker-audit
+// MODULE: Evidence Marker Audit
 // ───────────────────────────────────────────────────────────────────
 // Bracket-depth parser for `[EVIDENCE:...]` markers. Tests cover:
 //   - Simple OK markers

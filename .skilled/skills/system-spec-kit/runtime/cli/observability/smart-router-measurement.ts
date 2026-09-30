@@ -6,6 +6,10 @@
 // advisor top-1 accuracy and predicted resource routes. It does not observe
 // live AI file reads.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -17,6 +21,10 @@ import {
   type ComplianceRecord,
 } from './smart-router-telemetry.js';
 import { isMainModule } from '../lib/esm-entry.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 interface AdvisorRecommendation {
   readonly skill: string;
@@ -131,6 +139,10 @@ interface RouterModel {
   readonly unknown: boolean;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const DEFAULT_CORPUS_PATH = '.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-runtime-executor-hardening/003-system-hardening/001-initial-research/005-routing-accuracy/research/019-system-hardening-pt-03/corpus/labeled-prompts.jsonl';
 const DEFAULT_REPORT_PATH = '.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-report.md';
 const DEFAULT_JSONL_PATH = '.skilled/skills/system-spec-kit/runtime/cli/observability/smart-router-measurement-results.jsonl';
@@ -138,6 +150,10 @@ const DEFAULT_STATIC_COMPLIANCE_PATH = '.skilled/reports/smart-router-static/com
 const DEFAULT_LIVE_COMPLIANCE_PATH = '.skilled/skills/.state/smart-router-telemetry/compliance.jsonl';
 const UNKNOWN_RESOURCE = '__unknown_unparsed__';
 const IS_CLI_ENTRY = isMainModule(import.meta.url);
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -549,6 +565,10 @@ function onDemandMatched(model: RouterModel, prompt: string): boolean {
   return model.onDemandKeywords.some((keyword) => lowerPrompt.includes(keyword.toLowerCase()));
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 export function predictSmartRouterRoute(args: {
   readonly workspaceRoot: string;
   readonly skill: string;
@@ -841,6 +861,10 @@ export function writeMeasurementOutputs(summary: MeasurementSummary, options: Me
   ];
   fs.writeFileSync(jsonlPath, `${jsonlLines.join('\n')}\n`, 'utf8');
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 function argValue(args: readonly string[], name: string): string | undefined {
   const index = args.indexOf(name);

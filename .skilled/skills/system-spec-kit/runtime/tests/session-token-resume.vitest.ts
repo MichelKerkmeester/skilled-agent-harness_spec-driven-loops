@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Hook-State Session Resume
+// MODULE: Hook-State Session Resume
 // ───────────────────────────────────────────────────────────────────
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { ensureStateDir, updateState, loadState, getStatePath, type PersistedHookState } from '../hooks/claude/hook-state.js';

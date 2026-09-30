@@ -727,7 +727,7 @@ export function resetGate3DeliveryShadow() {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 3. HELPERS -- session-scoped state (atomic file persistence)
+// 3. HELPERS -- SESSION-SCOPED STATE (ATOMIC FILE PERSISTENCE)
 // ───────────────────────────────────────────────────────────────────
 
 /**
@@ -868,7 +868,7 @@ export function evictGateState(stateDir, sessionID) {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 4. HELPERS -- warning log + retention (adapter-invoked only)
+// 4. HELPERS -- WARNING LOG + RETENTION (ADAPTER-INVOKED ONLY)
 // ───────────────────────────────────────────────────────────────────
 
 function positiveIntFromEnv(env, name, fallback) {
@@ -1099,7 +1099,7 @@ export function sweepStaleGateStates(stateDir, runtimeState) {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 5. HELPERS -- answer parsing
+// 5. HELPERS -- ANSWER PARSING
 // ───────────────────────────────────────────────────────────────────
 
 // Bare "skip" / "skip it", optionally followed by a short aside that is
@@ -1259,7 +1259,9 @@ export function extractSpecFolderCandidate(promptText) {
   return null;
 }
 
-// ── Local mirrors of gate-3-classifier's post-trio checks ──────────────────
+// ───────────────────────────────────────────────────────────────────
+// 6. LOCAL MIRRORS OF GATE-3-CLASSIFIER'S POST-TRIO CHECKS
+// ───────────────────────────────────────────────────────────────────
 //
 // validateSpecFolderCandidate() in the shared (frozen, out-of-scope) shared
 // classifier checks MANDATORY_SPEC_METADATA_FILES BEFORE it ever checks
@@ -1486,7 +1488,7 @@ function acceptPriorAnswerBinding(candidatePath, workspaceRoot) {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 6. HELPERS -- path-class exemptions
+// 7. HELPERS -- PATH-CLASS EXEMPTIONS
 // ───────────────────────────────────────────────────────────────────
 
 function isPathWithin(parentAbsolute, candidateAbsolute) {
@@ -1569,7 +1571,7 @@ export function isExemptTargetPath(filePath, projectDir) {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 7. RUNTIME-NEUTRAL ENTRYPOINTS
+// 8. RUNTIME-NEUTRAL ENTRYPOINTS
 // ───────────────────────────────────────────────────────────────────
 
 /**
@@ -1796,7 +1798,7 @@ export function evaluateMutation(request) {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// ADAPTER ORCHESTRATION
+// 9. ADAPTER ORCHESTRATION
 // ───────────────────────────────────────────────────────────────────
 // Every runtime adapter used to copy the same two sequences: classify, then
 // build the delivery-observation arguments; evaluate, then append the warning

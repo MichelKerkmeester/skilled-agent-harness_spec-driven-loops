@@ -2,7 +2,15 @@
 // MODULE: Graph Metadata Schema
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { z } from 'zod';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Schema version stamped onto every graph-metadata.json file for forward compatibility checks. */
 export const GRAPH_METADATA_SCHEMA_VERSION = 1 as const;
@@ -38,12 +46,20 @@ export const GRAPH_METADATA_TRIGGER_PHRASE_LIMIT = 12;
 export const GRAPH_METADATA_KEY_TOPIC_LIMIT = 12;
 export const GRAPH_METADATA_KEY_FILE_LIMIT = 20;
 export const GRAPH_METADATA_ENTITY_LIMIT = 24;
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 /** Source of a migrated graph-metadata file; currently only the legacy text-fallback importer. */
 export type GraphMetadataMigrationSource = 'legacy';
 /** Which generator pass produced the current save. */
 export type SaveLineage = typeof SAVE_LINEAGE_VALUES[number];
 /** A packet's lifecycle status, drawn from {@link GRAPH_METADATA_STATUS_VALUES}. */
 export type GraphMetadataStatus = typeof GRAPH_METADATA_STATUS_VALUES[number];
+
+// ───────────────────────────────────────────────────────────────────
+// 4. SCHEMA DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** A structured reference from one packet to another (depends_on, supersedes, related_to). */
 export const packetReferenceSchema = z.object({
@@ -180,6 +196,10 @@ export const graphMetadataLoadSchema = graphMetadataSchema.extend({
   }),
 });
 
+// ───────────────────────────────────────────────────────────────────
+// 5. INFERRED TYPES
+// ───────────────────────────────────────────────────────────────────
+
 /** A packet-to-packet reference, inferred from {@link packetReferenceSchema}. */
 export type PacketReference = z.infer<typeof packetReferenceSchema>;
 /** A named entity reference, inferred from {@link graphEntityReferenceSchema}. */
@@ -190,6 +210,10 @@ export type GraphMetadataManual = z.infer<typeof graphMetadataManualSchema>;
 export type GraphMetadataDerived = z.infer<typeof graphMetadataDerivedSchema>;
 /** The full graph-metadata.json contract, inferred from {@link graphMetadataSchema}. */
 export type GraphMetadata = z.infer<typeof graphMetadataSchema>;
+
+// ───────────────────────────────────────────────────────────────────
+// 6. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Create an empty manual-relationship section for new graph metadata files.

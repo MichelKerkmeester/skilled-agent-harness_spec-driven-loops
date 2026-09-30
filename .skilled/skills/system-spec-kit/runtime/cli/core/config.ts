@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
-// 1. CONFIG
+// 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 // Central configuration loader — reads JSONC config, resolves paths, exports CONFIG object
 import * as path from 'path';
@@ -14,9 +14,9 @@ import { dirnameFromImportMeta } from '../lib/esm-entry.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Represents workflow config. */
 export interface WorkflowConfig {
@@ -68,9 +68,9 @@ export interface SpecKitConfig {
   LEARNING_WEIGHTS: WorkflowConfig['learningWeights'];
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. PATH CONSTANTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. PATH CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 // Stable root detection — walk up from moduleDir looking for package.json.
 // Instead of relying on fragile relative moduleDir offset
@@ -90,9 +90,9 @@ function findScriptsRoot(startDir: string): string {
 
 const SCRIPTS_DIR: string = findScriptsRoot(moduleDir);
 
-/* ───────────────────────────────────────────────────────────────
-   3. CONFIG VALIDATION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. CONFIG VALIDATION
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Validates merged config values and falls back to defaults for invalid entries.
@@ -219,9 +219,9 @@ function validateConfig(merged: WorkflowConfig, defaults: WorkflowConfig): Workf
   return validated;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. CONFIG LOADER
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. CONFIG LOADER
+// ───────────────────────────────────────────────────────────────────
 
 function loadConfig(): WorkflowConfig {
   const defaultConfig: WorkflowConfig = {
@@ -277,9 +277,9 @@ function loadConfig(): WorkflowConfig {
   return defaultConfig;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   5. CONFIG OBJECT
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. CONFIG OBJECT
+// ───────────────────────────────────────────────────────────────────
 
 const userConfig: WorkflowConfig = loadConfig();
 
@@ -314,9 +314,9 @@ const CONFIG: SpecKitConfig = {
   SPEC_FOLDER_ARG: null,
 };
 
-/* ───────────────────────────────────────────────────────────────
-   6. SPECS DIRECTORY UTILITIES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 7. SPECS DIRECTORY UTILITIES
+// ───────────────────────────────────────────────────────────────────
 
 function getSpecsDirectories(): string[] {
   return [
@@ -360,9 +360,9 @@ function getAllExistingSpecsDirs(): string[] {
   return deduped;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   7. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 8. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   CONFIG,

@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Memory drift full-tree discovery determinism
+// MODULE: Memory Drift Full Tree Discovery
 // ───────────────────────────────────────────────────────────────────
 import fs from 'node:fs';
 import os from 'node:os';

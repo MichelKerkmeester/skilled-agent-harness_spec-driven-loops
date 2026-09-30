@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Repair Derived Test
+// ───────────────────────────────────────────────────────────────────
+
 // Proves the repair tool settles derived facts and leaves authored ones alone.
 //
 // The refusal cases matter more than the repair cases. A tool that quietly

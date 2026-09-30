@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: RRF Fusion Tests
+// ───────────────────────────────────────────────────────────────────
+
 // TEST: RRF FUSION
 // Converted from: rrf-fusion.test.ts (custom runner)
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';

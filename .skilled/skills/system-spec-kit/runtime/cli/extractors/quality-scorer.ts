@@ -2,10 +2,11 @@
 // MODULE: Quality Scorer
 // ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────────
-// 1. QUALITY SCORER
-// ───────────────────────────────────────────────────────────────────
 // Computes deterministic quality score and flags for rendered memories
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 
 import type {
   QualityDimensionScore,
@@ -15,9 +16,9 @@ import type {
 import type { ContaminationSeverity } from './contamination-filter.js';
 import { VALIDATION_RULE_METADATA, type QualityRuleId, type ValidationRuleSeverity } from '../lib/validate-memory-quality.js';
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES & CONSTANTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 interface ValidationSignal {
   ruleId: QualityRuleId;
@@ -36,6 +37,10 @@ interface QualityInputs {
   insufficientContext?: boolean;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const QUALITY_RULE_IDS: QualityRuleId[] = ['V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11', 'V12', 'V13', 'V14'];
 
 // Weight penalties by V-rule severity instead of a flat rate
@@ -48,9 +53,9 @@ const PENALTY_BY_SEVERITY: Record<ValidationRuleSeverity, number> = {
   low: 0.01,
 };
 
-/* ───────────────────────────────────────────────────────────────
-   2. QUALITY SCORING
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function clamp01(value: number): number {
   return Math.max(0, Math.min(1, value));
@@ -69,6 +74,10 @@ function buildRuleDimensions(validatorSignals: ValidationSignal[]): QualityDimen
     };
   });
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function scoreMemoryQuality(inputs: QualityInputs): QualityScoreResult {
   const {
@@ -232,9 +241,9 @@ function buildInputCompletenessScoreFields(result: Pick<QualityScoreResult, 'sco
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   scoreMemoryQuality,

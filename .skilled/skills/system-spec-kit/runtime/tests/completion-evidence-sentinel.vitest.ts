@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Completion Evidence Sentinel
+// ───────────────────────────────────────────────────────────────────
+
 // TEST: Completion Evidence Sentinel (runtime-neutral core)
 // Covers:
 // - Claim gate: no-claim / no-spec-folder short-circuits to 'ok', never spawns check-completion.sh

@@ -3,6 +3,10 @@
 // MODULE: Continuity Freshness Validator
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,6 +16,10 @@ import {
   buildContinuityFingerprint,
   ZERO_CONTINUITY_FINGERPRINT,
 } from '@spec-kit/runtime/api';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const CONTINUITY_STALENESS_THRESHOLD_MS = 10 * 60 * 1000;
 const FRONTMATTER_RE = /^(?:\uFEFF)?(?:\s*<!--[\s\S]*?-->\s*)*---\s*\r?\n([\s\S]*?)\r?\n---(?:\s*\r?\n|$)/;
@@ -23,6 +31,10 @@ const COMPLETION_DOCS = [
   'implementation-summary.md',
   'handover.md',
 ] as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 type ResultStatus = 'pass' | 'warn' | 'fail';
 
@@ -102,6 +114,10 @@ interface CompletionCandidate {
   hasCompletionClaim: boolean;
   recomputedFingerprint: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function toErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
@@ -325,6 +341,10 @@ function listPacketDirtyPaths(specFolderPath: string): string[] {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 function evaluateCompletionFreshness(specFolderPath: string): ContinuityFreshnessResult | null {
   const candidates = collectCompletionCandidates(specFolderPath);
   const completionClaims = candidates.filter((candidate) => candidate.hasCompletionClaim);
@@ -539,6 +559,10 @@ export function validateContinuityFreshness(
     },
   );
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 function parseArgs(argv: string[]): CliOptions {
   let folder = '';

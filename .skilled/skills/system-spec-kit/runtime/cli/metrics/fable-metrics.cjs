@@ -13,10 +13,15 @@
 // across Claude, OpenCode, and OpenCode runs. It NEVER writes unless --baseline is
 // given, and even then only to the named snapshot file — a /doctor run is read-only.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 const fs = require('node:fs');
 const path = require('node:path');
 
-// ───── text heuristics (drift detectors, not moral scores) ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. TEXT HEURISTICS (DRIFT DETECTORS, NOT MORAL SCORES)
+// ───────────────────────────────────────────────────────────────────
 const OPENER_RE = /^\s*(?:#+\s*)?(?:I'?ll\b|I will\b|Let me\b|Let's\b|I'?m going to\b|I am going to\b|I'?m now\b|Now I\b|First,?\s+I\b|I need to\b|I'?ll now\b)/i;
 const CAVEAT_RE = /\b(?:however|that said|it'?s worth noting|worth noting|keep in mind|bear in mind|note that|one thing to note|on the other hand|to be fair|caveat(?:s)?)\b/i;
 const COMPLETION_RE = /\b(?:done|completed?|finished|verified|passes|passing|works|working|confirmed|shipped|all green)\b/i;
@@ -26,6 +31,9 @@ const EVIDENCE_RE = /(?:\[SOURCE:|`[^`]+`|\b[\w./-]+\.(?:ts|tsx|js|cjs|mjs|py|sh
 
 const MIN_MESSAGES = 8; // below this a per-metric result is INSUFFICIENT (cf. leak_test's 30-prose-msg guard)
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function median(nums) {
   if (!nums.length) return null;
   const s = [...nums].sort((a, b) => a - b);
@@ -35,6 +43,9 @@ function median(nums) {
 function wordCount(t) { return (t.trim().match(/\S+/g) || []).length; }
 function pct(n, d) { return d ? Math.round((n / d) * 1000) / 10 : null; }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 // Pull assistant text messages + tool-action count from an opencode JSON event stream.
 function parseStream(file) {
   const texts = [];
@@ -148,6 +159,9 @@ function aggregate(lineages) {
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 function main(argv) {
   const args = argv.slice(2);
   const jsonOnly = args.includes('--json');
@@ -185,5 +199,8 @@ function main(argv) {
   console.log('');
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 if (require.main === module) main(process.argv);
 module.exports = { measureLineage, proseMetrics, parseStream, median, aggregate, discoverLineages };

@@ -7,10 +7,16 @@
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const STALE_EXIT_CODE = 69;
 const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx', '.mts', '.cts', '.json']);
 const MANIFEST_BASENAMES = new Set(['package.json', 'tsconfig.json', 'tsconfig.build.json']);
@@ -18,9 +24,15 @@ const DEFAULT_EXCLUDED_SEGMENTS = new Set(['node_modules', 'dist']);
 const CACHE_VERSION = 2;
 const CACHE_TEMP_MAX_AGE_MS = 24 * 60 * 60 * 1000;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. WORKSPACE ROOT
+// ───────────────────────────────────────────────────────────────────
 const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
 const WORKSPACE_ROOT = findRepoRoot(__dirname);
 
+// ───────────────────────────────────────────────────────────────────
+// 4. PACKAGE REGISTRY
+// ───────────────────────────────────────────────────────────────────
 const DIST_PACKAGES = Object.freeze([
   {
     id: 'system-spec-kit/shared',
@@ -143,6 +155,9 @@ const DIST_PACKAGES = Object.freeze([
   },
 ]);
 
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function workspaceRootFromOptions(options = {}) {
   return path.resolve(options.workspaceRoot || WORKSPACE_ROOT);
 }
@@ -342,6 +357,9 @@ function rebuildMessage(pkg, state, detail = null) {
   return `${pkg.name} dist is ${state}${suffix}. Rebuild with: ${pkg.rebuildCommand}`;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 function writePackageSourceHashCache(packageId, options = {}) {
   const workspaceRoot = workspaceRootFromOptions(options);
   const pkg = packageById(packageId);
@@ -880,6 +898,9 @@ function summarizeFreshness(results) {
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 7. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 function parseArgs(argv) {
   const parsed = { positional: [], json: false, workspaceRoot: null, packageId: null, entry: null, filePath: null };
   for (let index = 0; index < argv.length; index += 1) {
@@ -952,6 +973,9 @@ function runCli() {
 
 if (require.main === module) runCli();
 
+// ───────────────────────────────────────────────────────────────────
+// 8. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 module.exports = {
   DIST_PACKAGES,
   STALE_EXIT_CODE,

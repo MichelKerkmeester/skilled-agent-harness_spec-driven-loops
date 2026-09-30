@@ -9,7 +9,7 @@ description: "Real-subprocess test harnesses for the embedder vitest suite in te
 
 ## 1. OVERVIEW
 
-`tests/embedders/__fixtures__/` holds subprocess harnesses used by `../` vitest specs that need a genuine OS process, not an in-process mock. The harness reuses the production embedder module's own exported functions and swaps in a fake, delay-controllable model loader so the test stays deterministic and network-independent.
+`tests/embedders/fixtures/` holds subprocess harnesses used by `../` vitest specs that need a genuine OS process, not an in-process mock. The harness reuses the production embedder module's own exported functions and swaps in a fake, delay-controllable model loader so the test stays deterministic and network-independent.
 
 ---
 

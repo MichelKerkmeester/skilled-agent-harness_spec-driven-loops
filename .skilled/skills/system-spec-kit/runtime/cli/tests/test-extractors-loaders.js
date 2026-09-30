@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// 1. TEST: EXTRACTORS AND LOADERS COMPREHENSIVE VERIFICATION
+// MODULE: Extractors And Loaders Verification
 // ───────────────────────────────────────────────────────────────────
 //
 // Covers:

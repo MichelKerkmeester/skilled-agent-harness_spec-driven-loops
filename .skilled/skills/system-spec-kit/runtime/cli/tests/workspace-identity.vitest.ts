@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Workspace Identity Tests
+// ───────────────────────────────────────────────────────────────────
 // TEST: Workspace Identity
 // Covers canonical source-root identity matching across repo-root variants, under
 // a real .opencode tree, a real .skilled tree and an .opencode link to .skilled

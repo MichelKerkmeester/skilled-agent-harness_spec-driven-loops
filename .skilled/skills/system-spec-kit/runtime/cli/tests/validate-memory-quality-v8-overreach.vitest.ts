@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: V8 Overreach Quality Tests
+// ───────────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';

@@ -30,6 +30,10 @@
 // folder. A --dry-run reports what each folder would do without writing.
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -55,6 +59,10 @@ import {
 import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
 import { findRepoRoot } from '@spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
 // Derive the scoped backfill's return shape so changes cannot drift between the
@@ -78,6 +86,10 @@ const MIGRATION_FLAGS = {
   SPECKIT_GENERATED_METADATA_DRIFT_GATE: '1',
   SPECKIT_GENERATOR_HARDENING: '1',
 } as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** What happened to one generated file during a folder migration. */
 export type SideAction =
@@ -138,6 +150,10 @@ export interface MigrationDeps {
   regenGraph: (folderAbs: string, specsRoot: string, dryRun: boolean, options?: Pick<MigrateOptions, 'prune' | 'pruneReport'>) => BackfillSummary;
   regenDescription: (folderAbs: string, specsRoot: string, dryRun: boolean) => SideOutcome;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Resolve the repo root by walking up to the nearest `specs` anchor.
@@ -446,6 +462,10 @@ function collectMigrationPruneCandidates(
   return candidates;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 /**
  * Migrate the generated JSON across the enumerated spec folders.
  *
@@ -572,6 +592,10 @@ export function migrateAllJson(options: MigrateOptions): MigrationSummary {
     restoreFlags();
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 /** Parse argv into migration options, or an error string. */
 export function parseArgs(argv: string[]): { ok: true; options: MigrateOptions } | { ok: false; error: string } {

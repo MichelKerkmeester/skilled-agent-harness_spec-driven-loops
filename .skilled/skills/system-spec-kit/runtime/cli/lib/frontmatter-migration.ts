@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
-// 1. FRONTMATTER MIGRATION
+// 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 // Shared helpers for safe markdown frontmatter normalization.
 //
@@ -15,9 +15,9 @@ import * as path from 'path';
 import { CANONICAL_CONTEXT_TYPES, LEGACY_CONTEXT_TYPE_ALIASES } from '@spec-kit/shared/context-types';
 import { resolveImportanceTier } from '../extractors/session-extractor.js';
 
-/* ───────────────────────────────────────────────────────────────
-   1. TYPES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPES
+// ───────────────────────────────────────────────────────────────────
 
 /** Defines frontmatter value. */
 export type FrontmatterValue = string | string[];
@@ -81,9 +81,9 @@ export interface BuildFrontmatterResult {
   malformedReason: string | null;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. CONSTANTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const GENERIC_TITLES = new Set([
   'session summary',
@@ -151,9 +151,9 @@ const DOC_DEFAULT_CONTEXT: Record<string, string> = {
 
 const TITLE_MAX_LENGTH = 120;
 
-/* ───────────────────────────────────────────────────────────────
-   3. BASIC HELPERS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. BASIC HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function normalizePath(filePath: string): string {
   return filePath.replace(/\\/g, '/');
@@ -290,9 +290,9 @@ function dedupeStrings(values: string[]): string[] {
   return out;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. FRONTMATTER DETECTION + PARSING
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. FRONTMATTER DETECTION + PARSING
+// ───────────────────────────────────────────────────────────────────
 
 function skipLeadingCommentsAndWhitespace(content: string): number {
   let index = 0;
@@ -668,9 +668,9 @@ function sectionToLines(key: string, value: FrontmatterValue): string[] {
   return [`${key}: ${quoteYamlScalar(value)}`];
 }
 
-/* ───────────────────────────────────────────────────────────────
-   5. CLASSIFICATION + INFERENCE
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. CLASSIFICATION + INFERENCE
+// ───────────────────────────────────────────────────────────────────
 
 function mapSpecDocType(fileName: string): string {
   switch (fileName) {
@@ -1322,9 +1322,9 @@ export function buildManagedFrontmatter(
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   6. MERGE + SERIALIZE
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 7. MERGE + SERIALIZE
+// ───────────────────────────────────────────────────────────────────
 
 const MANAGED_KEYS = new Set([
   'title',
@@ -1436,9 +1436,9 @@ export function buildFrontmatterContent(
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   7. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 8. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   TITLE_MAX_LENGTH,

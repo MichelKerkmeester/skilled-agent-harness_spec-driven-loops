@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Trigger Phrase Judge
+// ───────────────────────────────────────────────────────────────────
+
 // The phrase judge: the one place that says which trigger phrases the
 // convention rejects. It depends on nothing but the normalizer, so the index
 // generator can count phrase quality without importing the retrofit and

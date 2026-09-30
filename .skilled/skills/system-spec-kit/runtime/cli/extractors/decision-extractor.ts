@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
-// 1. DECISION EXTRACTOR
+// 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 // Extracts decision records with options, rationale, confidence, and decision trees
 
@@ -26,9 +26,9 @@ import type {
 // Re-export canonical types for backward compatibility
 export type { DecisionOption, DecisionRecord, DecisionData };
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 // Word boundaries prevent partial matches (e.g., "undecided" matching "decided").
 const DECISION_CUE_REGEX = /\b(decided|chose|will use|approach is|going with|rejected|we'll|selected|prefer|adopt)\b/i;
@@ -38,6 +38,9 @@ const PLACEHOLDER_CHOICE_REGEX = /^(?:chosen approach|n\/a|option [a-z0-9]+|alte
 const TRADEOFF_SIGNAL_REGEX = /\b(?:pro|con|advantage|disadvantage|trade-?off|caveat|warning|limitation)\b/i;
 const MAX_AUTHORED_DECISION_TEXT_LENGTH = 2000;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function normalizeConfidence(value: number): number {
   const normalized = value > 1 ? value / 100 : value;
   return Math.min(1, Math.max(0, normalized));
@@ -217,9 +220,9 @@ function buildLexicalDecisionObservations(collectedData: CollectedDataSubset<'_m
   return candidates;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. DECISION EXTRACTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 async function extractDecisions(
   collectedData: CollectedDataSubset<'_manualDecisions' | 'SPEC_FOLDER' | 'userPrompts' | 'observations' | 'keyDecisions'> | null
@@ -670,9 +673,9 @@ async function extractDecisions(
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   extractDecisions

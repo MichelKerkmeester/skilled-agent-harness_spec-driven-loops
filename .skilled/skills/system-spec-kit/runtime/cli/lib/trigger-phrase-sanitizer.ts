@@ -4,7 +4,15 @@
 // Keep the blocklist and allowlist narrow, shape-based, and aligned to the
 // empirical corpus guidance the module's design was validated against.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { canonicalFold } from './unicode-normalization.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type TriggerPhraseSanitizeReason =
   | 'empty'
@@ -28,6 +36,10 @@ export interface TriggerPhraseSanitizeResult {
 export interface TriggerPhraseSanitizeOptions {
   source?: TriggerPhraseSource;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const PATH_FRAGMENT_PATTERN = /[\\/]/;
 const PATH_LIKE_SLUG_PATTERN = /^\d{3}-[a-z0-9_-]+$/i;
@@ -108,6 +120,10 @@ const SYNTHETIC_BIGRAM_BLOCKLIST = new Set([
   'with timeout',
 ]);
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function normalizeUnicodeForm(phrase: string): string {
   return canonicalFold(phrase);
 }
@@ -119,6 +135,10 @@ function normalizePhrase(phrase: string): string {
 function normalizeComparisonKey(phrase: string): string {
   return normalizePhrase(phrase).replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** Check whether a phrase, once normalized, is on the short-product-name allowlist. */
 export function isAllowlistedShortProductName(phrase: string): boolean {

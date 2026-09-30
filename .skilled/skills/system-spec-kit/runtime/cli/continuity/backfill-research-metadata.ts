@@ -5,6 +5,9 @@
 // Missing-only backfill for research/*/iterations folders so
 // description.json + graph-metadata.json exist for iteration packs.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -20,10 +23,16 @@ import {
 } from '@spec-kit/runtime/api';
 import { isMainModule } from '../lib/esm-entry.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const ITERATION_PARENT_RE = /^\d{3}(?:[-_].+)?$/;
 const DESCRIPTION_FILENAME = 'description.json';
 const GRAPH_METADATA_FILENAME = 'graph-metadata.json';
 
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 /** Options for backfilling research iteration-directory metadata under a spec folder. */
 export interface ResearchMetadataBackfillOptions {
   readonly specFolderPath: string;
@@ -54,6 +63,9 @@ interface CliOptions {
   dryRun: boolean;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function toErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
@@ -117,6 +129,9 @@ function writeGraphMetadataFile(filePath: string, content: string): void {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 /** Find research iteration directories beneath a spec folder. */
 export function collectResearchIterationDirectories(
   specFolderPath: string,
@@ -223,6 +238,9 @@ export function runBackfillResearchMetadata(
   return summary;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 function parseArgs(argv: string[]): CliOptions {
   let specFolderPath = '';
   let dryRun = true;

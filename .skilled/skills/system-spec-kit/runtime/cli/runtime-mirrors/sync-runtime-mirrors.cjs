@@ -1,6 +1,6 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Sync Runtime Mirrors                                                     ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Sync Runtime Mirrors
+// ───────────────────────────────────────────────────────────────────
 //
 // Claude, Cursor, and Devin discover agents and commands by file convention,
 // each at its own path and in its own shape. Rather than fork the content, every

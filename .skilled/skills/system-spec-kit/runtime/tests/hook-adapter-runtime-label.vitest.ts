@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Hook Adapter Runtime Label Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { runClaudeHookAdapter as runCodexHookAdapter } from '../hooks/codex/shared.js';
 import { runClaudeHookAdapter as runCursorHookAdapter } from '../hooks/cursor/shared.js';

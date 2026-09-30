@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
-// 1. FOLDER DETECTOR
+// 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 // Detects, lists, and resolves spec folders with interactive selection and alignment scoring
 
@@ -28,9 +28,9 @@ import {
 import type { AlignmentCollectedData } from './alignment-validator.js';
 import { buildSessionActivitySignal } from '../lib/session-activity-signal.js';
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 interface FolderQualityAssessment {
   score: number;
@@ -100,9 +100,9 @@ function getSpecFolderFromCollectedData(collectedData: AlignmentCollectedData | 
     : null;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. HELPER FUNCTIONS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 const TEST_FIXTURE_MARKERS: string[] = ['test', 'tests', 'fixture', 'fixtures'];
 const SCRATCH_MARKERS: string[] = ['scratch', 'tmp', 'temp'];
@@ -988,9 +988,9 @@ function printNoSpecFolderError(commandName: string = 'memory'): void {
   console.error(`Then re-run ${commandName}.\n`);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. FOLDER DETECTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 async function detectSpecFolder(
   collectedData: AlignmentCollectedData | null = null,
@@ -1434,9 +1434,9 @@ async function detectSpecFolder(
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   ALIGNMENT_CONFIG,
