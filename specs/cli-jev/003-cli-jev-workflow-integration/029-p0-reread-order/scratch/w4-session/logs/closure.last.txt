@@ -1,0 +1,45 @@
+STATUS: DONE
+
+FILES CHANGED:
+- specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/spec.md (+13/-13)
+- specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/plan.md (+2/-2)
+- specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/tasks.md (+25/-25)
+- specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/goal.md (+37/-15)
+- specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/implementation-summary.md (+106/-19)
+- specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/graph-metadata.json (+68/-58, re-derived through repair-derived.cjs)
+
+EDITS:
+- spec.md:3 rewrote the frontmatter description to the Complete form with the 2239858286 build
+- spec.md:26 Status Planned to Complete
+- spec.md:33 handoff row records the final-state gate stop and the open live-run branch
+- spec.md:53-56 deliverables and spec.md:106-116 Files to Change rows record the built 1,817-line script, the 1,048-line 33-case test, c8f/f1, the v1.8.0.0 changelog and the 95-row sheet
+- spec.md:140 REQ-008 citation `convergence.md:398-400` corrected to `:399-401` (398 is the table separator)
+- plan.md:84 roster now states parent D5 as amended and the real executor record (Devin design, DeepSeek V4.1 Flash on Cline code, Pi MiMo docs)
+- plan.md:93 step 6 records the 2026-09-29 gate stop and the 95-row sheet
+- tasks.md:31 notation carries the closure record: commit 2239858286, 16 files, no build-evidence.md so SE/notes are the record
+- tasks.md:39-79 ticked T001-T016 and T019-T021 with command evidence; T017 and T018 left `[B]` with reasons
+- tasks.md:81-83 completion rows amended to carve out T017 beside T018 (logged in goal.md, source parent D4)
+- goal.md:14-28 continuity updated (completion 100, operator open questions)
+- goal.md:62-67 all six completion criteria ticked
+- goal.md:87-96 progress rows added: build, baseline 126 files/2,456 tests, session verification, 33 tests, gate stop, docs/packages, review, commit, closure pass, operator items
+- goal.md:104-114 deviation rows added with sources: seam correction, census drift, executor substitution, c2f, c5f, c8f, docs P1, six P2 findings, completion amendment, no build-evidence.md, premise corrections
+- implementation-summary.md:1-190 full rewrite to the Complete form (default-run stdout, tests, docs, file table, delivery, decisions, verification, limitations)
+
+CHECKS:
+- `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder <phase> --apply` -> `inspected=1 repaired=1 failed=0` (exit 0)
+- `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <phase> --strict` -> `RESULT: PASSED`, `Summary: Errors: 0  Warnings: 0`, 0 `RESULT: FAILED` (exit 0)
+- `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <phase>` -> `[check-goal] RESULT: PASSED (5/5 checks)` (exit 0)
+- `node .skilled/hooks/goal/bin/goal.cjs packet <phase> --workspace "$PWD"` -> `packet_durable_chars=3718`, `packet_budget=unknown` (exit 0)
+- `git show --name-only --format='' 2239858286` -> 16 files, confirming the commit the docs cite
+- `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization' <script>` -> no match (exit 1), and `git status --porcelain` scoped to the phase lists only the six files above plus the untracked scratch directories
+
+Status set: `Complete` in `spec.md` and `implementation-summary.md`. Why: the final-state default run printed `stop: fewer than 20 labeled P0 negatives`, which parent D4 and parent criterion 2 accept as this phase's close; the 33 tests pass against the 22 floor, the eight docs validate, and every remaining open row is an operator item.
+
+Rows left open:
+- `tasks.md` T017 `[B]`: the operator names a label-sheet path outside the repository; the session proved the write with a 95-row empty sheet but no operator-named path exists, so the handover waits.
+- `tasks.md` T018 `[B]`: the operator's 20 labeled P0 negatives, then the gated `--deem --out` run and a `--jev --out` run on the operator's yes; no arm ran and no `calls.jsonl` or verdict line exists.
+- `tasks.md` completion rows 1 and 2 were amended to carve out T017 beside T018, logged in `goal.md` with parent D4 as the source.
+- `acceptance-criteria.md` does not exist in this Level 1 phase, so no rows there; all six `goal.md` criteria are ticked, criterion 4 on its label-gate branch.
+- Six P2 findings are recorded, not chased (parent D5), listed in `goal.md` and `implementation-summary.md`.
+
+BLOCKED REASON: none

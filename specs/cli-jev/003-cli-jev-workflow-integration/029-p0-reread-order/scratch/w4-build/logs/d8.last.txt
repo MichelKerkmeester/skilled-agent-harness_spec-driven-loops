@@ -1,0 +1,9 @@
+The row sits exactly before `score-stop-hint.cjs`, the file diff is one insertion and nothing else, and the validator passed. Other dirty files in the worktree belong to concurrent workers, I touched only the named file.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/runtime/scripts/README.md` (+1/-0)
+EDITS: `.skilled/skills/system-deep-loop/runtime/scripts/README.md`:52 added one `score-severity-replay.cjs` row before the `score-stop-hint.cjs` row, naming the measure and its no-model-call default and no severity change, then `--write-label-sheet <path>`/`--labels <file>`, `--jev`/`--deem` behind the label gate and `--out <dir>`
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/scripts/README.md` -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/scripts/README.md` `Total issues: 0` (exit 0)
+CHECKS: `git diff --stat -- .skilled/skills/system-deep-loop/runtime/scripts/README.md` -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

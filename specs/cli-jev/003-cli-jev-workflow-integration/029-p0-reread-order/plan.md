@@ -81,7 +81,7 @@ Registries become a census and a P0 row list. The operator's labels turn the lis
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-**Who builds (parent D5).** A fresh Opus 5.5 xhigh build orchestrator writes one single-change brief per step and runs the CLI executors by Bash only: Devin `deepseek-v4-1-flash-max` and Pi `llmgateway/mimo-v2.6-pro` at thinking `high`. The orchestrator session verifies each step, gets a cross-family review of the code, fixes P0 and P1 findings, records P2 findings and commits path-scoped. Code follows sk-code's OpenCode route, and the docs go through sk-doc (parent D6).
+**Who builds (parent D5).** The session orchestrates, verifies and commits. Only Pi writes, by Bash: DeepSeek V4.1 Flash on Cline at `--thinking xhigh`, then OpenCode Go, then LLM Gateway at `--thinking max`, and `llmgateway/mimo-v2.6-pro` at `high`. No Claude leaves. The session writes one single-change brief per step, runs the CLI executors by Bash only, verifies each step against its check, gets a cross-family review (a file goes to the family that did not write it), fixes P0 and P1 findings, records P2 findings and commits path-scoped. Code follows sk-code's OpenCode route, and the docs go through sk-doc (parent D6). The design ran on Devin (`deepseek-v4-1-flash-max`) before its daily quota ran out; code steps c1 to c7 and every code fix ran on DeepSeek V4.1 Flash through Cline at `--thinking xhigh`, each checked by the test file, and the docs d8 to d15 ran on Pi MiMo at `high`, written from `scratch/w4-session/docs/facts.txt`.
 
 Each step's observable check:
 
@@ -90,7 +90,7 @@ Each step's observable check:
 3. **Label sheet and gate.** Check: the sheet writes outside the repository and refuses inside, and the gate stops at 19 negatives and passes at 20 on fixtures.
 4. **Model arms.** Jev first, then Deem. Check: the stub cases pass, one `--provider` appears on every logged `jev` call and no logged call carries a finding id.
 5. **Verdict and report-only lines.** Check: the `keep`, `kill` and `stop (coverage)` cases pass, and the order and funnel lines print without moving the verdict.
-6. **Runs.** One census run on the real tree and one label sheet for the operator. Model runs only after the operator's labels pass the gate. Check: the stop or verdict lines go in `goal.md`'s log.
+6. **Runs.** One census run on the real tree and one label sheet for the operator. Model runs only after the operator's labels pass the gate. The 2026-09-29 final run printed `stop: fewer than 20 labeled P0 negatives`, wrote a 95-row sheet with empty labels outside the repository and started no arm, so the stop line is the phase's result and no verdict line exists. Check: the stop line is in `goal.md`'s log.
 7. **Skill docs.** Check: `validate_document.py` exits 0 on each changed doc.
 8. **Review and commit.** Check: no open P0 or P1, and the runtime suite fails nothing beyond step 1's baseline.
 <!-- /ANCHOR:phases -->

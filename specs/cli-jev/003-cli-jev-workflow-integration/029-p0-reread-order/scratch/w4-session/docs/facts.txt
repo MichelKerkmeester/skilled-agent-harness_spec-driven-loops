@@ -1,0 +1,50 @@
+# FACTS for the 029 doc steps (read from the code and the session's own runs, 2026-09-29)
+
+Script: `.skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs` (CommonJS, run with `node` from the repository root).
+Test: `.skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts`, 33 tests, all pass (`npx vitest run tests/unit/score-severity-replay.vitest.ts` from `runtime`).
+Usage line (constant `USAGE`; nothing prints it): `usage: score-severity-replay.cjs [--write-label-sheet <path>] [--labels <file>] [--jev] [--deem] [--out <dir>]`.
+Versions and IDs, read at doc time after 028's commit (orchestrator ruling 2): the newest runtime changelog is `v1.7.0.0.md` (028's), so this phase writes `changelog/v1.8.0.0.md`, and new entries carry `version: 1.8.0.0`. The highest catalog ID is F057 and the highest playbook ID is DLR-057 (both 028's), so this phase takes F058 and DLR-058. Any other version or ID in the design is stale. The hub `SKILL.md` `version:` (3.0.1.0) and the hub changelog stay unchanged, since the release note lives in `runtime/changelog/`.
+
+What it does: it reads every tracked deep-review findings registry and measures offline whether a Jev or Deem severity choice would separate real P0 findings from false ones better than the recorded severity. It changes no severity, no registry and no review gate. The default run makes no model call and writes no file, and the script holds and reads no credential.
+Labels: `--write-label-sheet <path>` writes one JSONL row per P0 finding (`registry`, `finding_id`, `title`, `dimension`, `evidence_refs`, `label`), every `label` empty, for the operator to fill with `real`, `P1`, `P2` or `not_a_finding`. `--labels <file>` reads the filled sheet back. A negative is any label but `real`.
+
+Exit 2, each before any census line:
+- `--jev` without `--out` prints `--jev needs --out <dir> so every call is recorded`; `--deem` without `--out` prints `--deem needs --out <dir> so every call is recorded`.
+- A label-sheet path inside the repository prints `refusing to write the label sheet inside the repository` and writes no file.
+- A bad labels row prints its row and fault, for example `labels row 3: label must be "", real, P1, P2 or not_a_finding, got "x"` or `labels row 3: duplicate row <key>`.
+Zero model calls by default: logging stubs for `cli-deem` and `jev` first on PATH were never called.
+
+Default run on the real tree, exit 0 in about 2 s, full stdout (session run, 2026-09-29):
+    registries: 413
+    findings: 2771 (P0 96, P1 1298, P2 1377, other 0)
+    transitions: P1 -> P0 2
+    transitions: P1 -> P1 19
+    transitions: P1 -> P2 6
+    transitions: P1 -> resolved 11
+    transitions: P2 -> P1 2
+    transitions: P2 -> P2 6
+    transitions: P2 -> resolved 5
+    transitions: none -> P0 45
+    transitions: none -> P1 879
+    transitions: none -> P2 938
+    p0 rows: 95 in 37 registries (one 21, two or more 16)
+    phrases: 3270 review iteration files; "downgraded from P0" 0; "from P0 to P1" 1; "from P0 to P2" 1; "retracted from P0" 1; "P0 was retracted" 1
+    labels needed: 20 P0 negatives among 95 P0 rows
+    labels: none
+    labeled: 0 (real 0, P1 0, P2 0, not_a_finding 0)
+    labels dropped: 0
+    baseline: right 0 of 0
+    question: Which severity does this review finding deserve?
+    margin: 0.10
+    keep rule: coverage 10*M >= 9*K, kill p_loss < 0.05, margin 10*(A-B) >= M, sign test p_win < 0.05, flips 10*F <= C
+    power: a keep needs at least 5 wins with no loss, since 0.5^5 is 0.031
+    stop: fewer than 20 labeled P0 negatives
+The counts read the live tree, so a later run may differ. One of the 95 P0 rows comes from a test fixture registry under `deep-review/scripts/tests/fixtures/`.
+
+Session runs, 2026-09-29, with the stubs first on PATH:
+- `--jev --deem --out <dir>` prints the same census, then `jev arm skipped: label gate` and `deem arm skipped: label gate`, exit 0, and writes only `report.json` in `<dir>`. Stubs uncalled.
+- `--write-label-sheet <path outside the repository>` exits 0 and writes 95 rows, every `label` empty.
+- `git status` outside `specs/` was equal before and after.
+
+Arms, each behind its own switch, `--out <dir>` and gate. With both switches the Jev gate and arm run first, then the Deem gate and arm, each regardless of the other's outcome (orchestrator ruling 3). Below the label gate each switch prints `jev arm skipped: label gate` or `deem arm skipped: label gate`; with no headroom it prints `... arm skipped: no headroom`. Past both, the Jev gate can skip with `jev arm skipped: jev not on PATH`, `jev arm skipped: version` or `jev arm skipped: no credential`, and the Deem gate with `deem arm skipped: <reason>`, such as `stub backend`.
+No run has printed a `verdict` line. Docs must not claim one was printed.

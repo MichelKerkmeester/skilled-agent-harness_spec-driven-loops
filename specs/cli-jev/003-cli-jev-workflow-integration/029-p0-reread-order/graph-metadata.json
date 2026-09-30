@@ -39,18 +39,28 @@
       "phase"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts",
       ".skilled/skills/system-deep-loop/SKILL.md",
-      ".skilled/skills/system-deep-loop/runtime/README.md",
       "runtime/README.md",
-      "runtime/scripts/README.md"
+      "runtime/scripts/README.md",
+      ".hermes/skills/system-deep-loop/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/README.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+      ".skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/severity-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json"
     ],
     "entities": [
       {
@@ -84,9 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+        "name": "score-severity-replay.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-severity-replay.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts",
         "source": "derived"
       },
       {
@@ -96,7 +112,55 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.8.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "severity-replay.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council.contract.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -126,12 +190,6 @@
         "source": "derived"
       },
       {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -144,63 +202,15 @@
         "source": "derived"
       },
       {
-        "name": "Keep Rule",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "The Keep Rule",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "exit",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "per-row",
-        "kind": "key_phrase",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A deep-review P0 blocks release",
     "created_at": "2026-09-29T12:42:41Z",
-    "last_save_at": "2026-09-29T13:53:46.110Z",
+    "last_save_at": "2026-09-30T06:07:09.439Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b44e172ce8451900d719f858ccee7a9a22049b4730a6f3a2229e6a9c403583e1",
+    "source_fingerprint": "sha256:d9cacfa95215a90780816d2f2e96490cddadd31d210d6ffd3179a259472718f5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bdcfbc1eb83c39a1cd901da284f7a19e6118e1dbe109e5ae522fc1c95333a72d",
-      "plan.md": "82819c6022338327d8513da4bbfc5e43135a38e14a6398691c6ca26ef49c66c2",
-      "tasks.md": "fb95be83816cee0132ee5680b34f56681d8723703c374251766f45946f203984",
-      "implementation-summary.md": "71be514977189e04c8e5b2cfc0dfd5903e08d03ef4fd12cfb44e8f1ca099411d"
+      "spec.md": "39f8e3009ebb1ac7a80d3ffabcac1af82107cd4dcfaa1546b359e70b196dc279",
+      "plan.md": "d9cc898ca2cb5f22b84311683cd401b55622dada691c234f18173076392bc396",
+      "tasks.md": "5812bf7eb56ab86161e810cb3fb11897ca911e1cb3f48ed5b233e7d346ef4623",
+      "implementation-summary.md": "d74817a9ceca89b0df8b4a2363110b53e3db25d8b7f44d2a12c2908e62fa02aa"
     },
     "last_active_at": null
   }

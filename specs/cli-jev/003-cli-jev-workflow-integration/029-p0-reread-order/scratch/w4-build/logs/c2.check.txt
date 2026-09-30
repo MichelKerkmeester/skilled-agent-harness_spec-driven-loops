@@ -1,0 +1,30 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/runtime
+
+ ❯ tests/unit/score-severity-replay.vitest.ts (12 tests | 1 failed) 16ms
+     × no headroom prints above 90 percent 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/score-severity-replay.vitest.ts > score-severity-replay labels and gate > no headroom prints above 90 percent
+AssertionError: expected 'label' to be 'headroom' // Object.is equality
+
+Expected: "headroom"
+Received: "label"
+
+ ❯ tests/unit/score-severity-replay.vitest.ts:236:24
+    234|     const gate = replay.gateLine(30, 2, 28);
+    235|
+    236|     expect(gate.state).toBe('headroom');
+       |                        ^
+    237|     expect(gate.line).toBe('no headroom');
+    238|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 11 passed (12)
+   Start at  19:34:34
+   Duration  150ms (transform 14ms, setup 0ms, import 23ms, tests 16ms, environment 0ms)
+

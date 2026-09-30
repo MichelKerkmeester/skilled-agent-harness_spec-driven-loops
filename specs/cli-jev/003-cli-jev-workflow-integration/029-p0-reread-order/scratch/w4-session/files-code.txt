@@ -1,0 +1,2 @@
+.skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs
+.skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts

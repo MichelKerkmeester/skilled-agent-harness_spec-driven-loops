@@ -1,0 +1,10 @@
+.skilled/skills/system-deep-loop/SKILL.md
+.skilled/skills/system-deep-loop/runtime/README.md
+.skilled/skills/system-deep-loop/runtime/scripts/README.md
+.skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md
+.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md
+.skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md
+.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/severity-replay.md
+.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md
+.skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs
+.skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts
