@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport",
+  "description": "Phase 37: pi-native-classifier-transport",
+  "keywords": [
+    "phase",
+    "pi-native-classifier-transport"
+  ],
+  "lastUpdated": "2026-09-30T13:18:47.677Z",
+  "specId": "037",
+  "folderSlug": "pi-native-classifier-transport",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
