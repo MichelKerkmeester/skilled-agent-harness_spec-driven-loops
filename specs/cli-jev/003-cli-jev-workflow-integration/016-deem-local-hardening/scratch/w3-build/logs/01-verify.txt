@@ -1,0 +1,55 @@
+Mon Sep 28 13:24:36 CEST 2026
+## stderr tail
+## git status
+ M specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/goal.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/plan.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/spec.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/tasks.md
+?? specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/scratch/w3-build/
+exit 0
+## backup unchanged
+f4a6228aef3469d061bc92d5d1985c9e2aa532eaf0240b30eb83f0dcaf0c3a19  /Users/michelkerkmeester/.local/share/deem/bin/deem-ctl.bak-2026-09-28
+## ls bin
+total 48
+drwxr-xr-x@  4 michelkerkmeester  staff    128 Sep 28 13:23 .
+drwxr-xr-x@ 13 michelkerkmeester  staff    416 Sep 28 13:19 ..
+-rwxr-xr-x@  1 michelkerkmeester  staff  11359 Sep 28 13:23 deem-ctl
+-rwxr-xr-x@  1 michelkerkmeester  staff  11182 Sep 27 09:38 deem-ctl.bak-2026-09-28
+## diff -u backup live
+--- /Users/michelkerkmeester/.local/share/deem/bin/deem-ctl.bak-2026-09-28	2026-09-27 09:38:30
++++ /Users/michelkerkmeester/.local/share/deem/bin/deem-ctl	2026-09-28 13:23:13
+@@ -115,9 +115,12 @@
+     checkpoint="$(cd "${MODELS_DIR}/current" && pwd -P)"
+     (
+         cd "$SRC_DIR"
++        # The server writes an access line per request only when DEEM_ACCESS_LOG
++        # is set. Appending keeps those lines across restarts.
+         DEEM_CHECKPOINT="$checkpoint" DEEM_DEVICE=mps DEEM_HOST=127.0.0.1 \
+             DEEM_PORT="$PORT" DEEM_MODEL_ID="$MODEL_ID" HF_HOME="${DEEM_HOME}/hf-home" \
+-            HF_HUB_OFFLINE=1 nohup "$PYTHON" serve/deem_server.py >"$SERVER_LOG" 2>&1 &
++            HF_HUB_OFFLINE=1 DEEM_ACCESS_LOG=1 \
++            nohup "$PYTHON" serve/deem_server.py >>"$SERVER_LOG" 2>&1 &
+         echo "$!" >"$PID_FILE"
+     )
+     wait_healthy || return 4
+exit 1
+## bash -n
+exit 0
+## shellcheck
+exit 0
+## counts
+1
+1
+0
+last exit 1
+## wc sha
+     253 /Users/michelkerkmeester/.local/share/deem/bin/deem-ctl
+5ed8e538a64ce64640ebdd977ff36263041812e923b2e069a6807441481299a7  /Users/michelkerkmeester/.local/share/deem/bin/deem-ctl
+## src status
+exit 0
+## update.log tail
+2026-09-28T06:15:58Z current: model 8cbabbb, source 7cf293f
+## server still up
+{"status": "ok", "model": "deem-0.8-v1", "backend": "torch"}
+model 8cbabbb, source 7cf293f
+exit 0

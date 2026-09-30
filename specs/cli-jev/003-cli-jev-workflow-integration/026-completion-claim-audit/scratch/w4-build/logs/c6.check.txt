@@ -1,0 +1,124 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ❯ runtime/tests/completion-claim-audit.vitest.ts (16 tests | 5 failed) 1173ms
+     ✓ census happy: rows, fires and per-word counts match the fixture 33ms
+     ✓ census edge: a claim word 500 characters before the end does not fire 36ms
+     ✓ default run: no switch calls no stub and prints no fixture row text 40ms
+     ✓ labels happy: 30 labels yield the sha line, the class counts and the planned gate 36ms
+     ✓ labels edge (unknown id): a label for an id absent from the rows file refuses the run 32ms
+     ✓ labels edge (bad value): a claim other than yes or no refuses the run 34ms
+     ✓ class gate edge: 30 labels with 4 no stop at the class floor without a call 34ms
+     ✓ headroom edge: a regex right on 28 of 30 rows leaves no headroom for an arm 35ms
+     ✓ out missing: --deem without --out refuses before any call 31ms
+     ✓ out inside repo: a report directory under the repository is refused 33ms
+     × deem gate happy: a healthy backend and the planned gate open the arm path 249ms
+     ✓ deem gate edge: a stub backend skips the arm and leaves the census byte-identical 144ms
+     × verdict keep: 30 matching calls against 25 regex hits keep the column 108ms
+     × verdict kill: five losses with no win kill the column 107ms
+     × verdict stop (margin): two net correct calls sit under the ten-point margin 112ms
+     × verdict stop (coverage): 26 measured rows stop the arm at the coverage floor 107ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  runtime/tests/completion-claim-audit.vitest.ts > score-completion-claims > deem gate happy: a healthy backend and the planned gate open the arm path
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ runtime/tests/completion-claim-audit.vitest.ts:278:22
+    276|     );
+    277|
+    278|     expect(run.code).toBe(0);
+       |                      ^
+    279|     expect(baseline.lines.at(-1)).toBe('planned calls: deem=30 jev=91'…
+    280|     expect(run.lines.slice(0, baseline.lines.length)).toEqual(baseline…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  runtime/tests/completion-claim-audit.vitest.ts > score-completion-claims > verdict keep: 30 matching calls against 25 regex hits keep the column
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ runtime/tests/completion-claim-audit.vitest.ts:316:22
+    314|     );
+    315|
+    316|     expect(run.code).toBe(0);
+       |                      ^
+    317|     expect(run.lines).toContain(
+    318|       'deem: nothing leaves the machine; planned calls: 30; estimated …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  runtime/tests/completion-claim-audit.vitest.ts > score-completion-claims > verdict kill: five losses with no win kill the column
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ runtime/tests/completion-claim-audit.vitest.ts:366:22
+    364|     );
+    365|
+    366|     expect(run.code).toBe(0);
+       |                      ^
+    367|     const sha = createHash('sha256').update(readFileSync(labelsPath, '…
+    368|     expect(run.lines.at(-1)).toBe(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  runtime/tests/completion-claim-audit.vitest.ts > score-completion-claims > verdict stop (margin): two net correct calls sit under the ten-point margin
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ runtime/tests/completion-claim-audit.vitest.ts:386:22
+    384|     );
+    385|
+    386|     expect(run.code).toBe(0);
+       |                      ^
+    387|     const sha = createHash('sha256').update(readFileSync(labelsPath, '…
+    388|     expect(run.lines.at(-1)).toBe(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  runtime/tests/completion-claim-audit.vitest.ts > score-completion-claims > verdict stop (coverage): 26 measured rows stop the arm at the coverage floor
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ runtime/tests/completion-claim-audit.vitest.ts:406:22
+    404|     );
+    405|
+    406|     expect(run.code).toBe(0);
+       |                      ^
+    407|     const sha = createHash('sha256').update(readFileSync(labelsPath, '…
+    408|     expect(run.lines.at(-1)).toBe(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 11 passed (16)
+   Start at  19:23:43
+   Duration  1.34s (transform 36ms, setup 20ms, import 38ms, tests 1.17s, environment 0ms)
+

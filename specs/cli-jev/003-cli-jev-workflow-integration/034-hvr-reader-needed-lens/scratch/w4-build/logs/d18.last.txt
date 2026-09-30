@@ -1,0 +1,20 @@
+All edits landed, only the named file changed, validator exits 0. Summary of what was written, per the design's step 18 and FACTS:
+
+- **`### HVT-004` block** after the HVT-003 block, modeled on that block's shape (Description, Scenario Contract with prompt and outcome, Test Execution links). Every printed line and behavior it names comes from FACTS and the script (`stop: fewer than 150 labeled rows`, the zero-call default, the stub skip line, no `verdict` line printed by any run). The prompt text matches the step 17 feature file exactly, so prompt sync holds.
+- **Section 7 heading range** re-read at doc time: `HVT-001..HVT-003` → `HVT-001..HVT-004`.
+- **Section 10 cross-reference row** for `scripts/tests/test_hvr_reader_lens.py`, coverage derived from the test file's own 41 checks (count from FACTS, left untyped in the row to match the table's style).
+- **Hand-typed count** (the scenario census on line 42) re-derived: HVT-004 runs the lens over the tree at the recorded commit with no fixture, so it is carved out and "the other eight" fixture scenarios stays true.
+- **`version:` kept at `1.1.0.4`** per FACTS (the design's proposed `1.1.0.5` is not applied).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md` (+21/-2)
+EDITS:
+- `.skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md:42` re-derived the hand-typed scenario census: named `HVT-004` as the no-fixture case and scoped the fixture map to "each of those", keeping "the other eight" accurate
+- `.skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md:207` section 7 heading ID range `HVT-001..HVT-003` to `HVT-001..HVT-004`
+- `.skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md:263` inserted `### HVT-004 | The reader-needed lens measurement` block after the HVT-003 block (Description, Scenario Contract, Test Execution linking `tell-detection/reader-needed-lens-measurement.md`)
+- `.skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md:399` added section 10 cross-reference row for `scripts/tests/test_hvr_reader_lens.py`
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md --type playbook` -> `✅ VALID: .skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md` / `Total issues: 0` (exit 0)
+- `git diff --stat -- .skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md` -> `1 file changed, 21 insertions(+), 2 deletions(-)` (exit 0)
+BLOCKED REASON: none

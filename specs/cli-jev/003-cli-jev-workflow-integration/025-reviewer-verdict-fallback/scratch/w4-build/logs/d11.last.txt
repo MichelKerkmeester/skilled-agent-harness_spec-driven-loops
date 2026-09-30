@@ -1,0 +1,10 @@
+Both checks pass and the diff holds exactly the two named edits. One note for the orchestrator: the `Imports` boundary row still says `sweep-reporter.cjs` is "the one intra-lib edge", while the new script also requires `./reviewer-scorer.cjs`. Step 11 names only the KEY FILES row and the `Exports` clause, so I left that row untouched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/README.md (+2/-1)
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/README.md:37 added one KEY FILES row for `score-verdict-fallback.cjs` after the `reviewer-scorer.cjs` row (census, baselines, label gate of 12, `--jev`/`--deem` arms, `--out` `report.json`/`calls.jsonl`, bare run makes no model call and writes no file)
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/README.md:51 amended the Boundaries `Exports` clause from "No module has a CLI `main()`" to name `score-verdict-fallback.cjs` as the single entrypoint, run with `node`
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/README.md -> "✅ VALID: .../lib/README.md, Document type: readme, Total issues: 0" (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/README.md -> ".../lib/README.md | 3 ++-, 1 file changed, 2 insertions(+), 1 deletion(-)" (exit 0)
+BLOCKED REASON: none

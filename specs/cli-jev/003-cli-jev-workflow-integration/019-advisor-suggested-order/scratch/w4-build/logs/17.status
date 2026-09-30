@@ -1,0 +1,1 @@
+executor=devin model=deepseek-v4-1-flash-max brief=specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/briefs/17-leaf-manifest.md exit=0 seconds=15

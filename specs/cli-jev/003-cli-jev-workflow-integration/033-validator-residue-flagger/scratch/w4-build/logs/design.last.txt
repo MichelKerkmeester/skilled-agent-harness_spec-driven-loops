@@ -1,0 +1,133 @@
+I'll start by reading the phase docs and the sibling pattern files, then write the design.
+
+
+
+Now the phase's spec, plan, and tasks:
+
+
+
+
+
+
+
+Now let me check the sibling pattern files and the deep-review packet structure:
+
+
+
+Now let me read the sibling pattern script. It's 1566 lines, so I'll read it in chunks:
+
+
+
+
+
+
+
+Now the injection-screen sibling (the `--draw`/labels pattern) — labels file first, then the script:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now the deep-review packet files. Let me read the READMEs and check sizes:
+
+
+
+
+
+Now let me verify the spec's cited premises against today's tree. Batch 1 — existence and research citations:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The predecessor phase 032 has a design.md — let me read it as the format model:
+
+
+
+Let me check the remaining premises — 017's exit table, sibling call shapes, README structure, playbook IDs, and target existence:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me run the final checks — review-corpus count on the real tree, and the frontmatter-version CLI:
+
+I have everything I need. Now let me write the design:
+
+
+
+File written. Now the verification commands:
+
+The grep tool matched `^##` without the trailing space (11 = 6 H2 + 5 H3). Let me confirm the exact `^## ` (with space) lines:
+
+Let me spot-check the written file:
+
+
+
+The design is complete. Final confirmation that only the named file was created:
+
+
+
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch/w4-build/design.md (+295/-0)
+EDITS: specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch/w4-build/design.md:1 created the build design with sections 1 Premises (all spec `file:line` citations checked, all `ok`), 2 Interface (switches, exit codes, stdout formats, written files, 38 exported functions, constants), 3 Test cases (32 cases), 4 Build steps (11), 5 Proof plan (6 goal criteria), 6 Open questions (14, each `(proposed)`)
+CHECKS: `wc -l specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch/w4-build/design.md` -> `295 specs/.../design.md` (exit 0); `grep -c '^## ' ...` -> `6` (exit 0; run as `awk '/^## /{n++} END{print n}'` since repo rules bar `grep` as a shell command — the grep tool's `^##` pattern also matches the 5 `###` sub-headings, and the exact lines are `## 1. Premises` :5, `## 2. Interface` :31, `## 3. Test cases` :201, `## 4. Build steps` :240, `## 5. Proof plan` :265, `## 6. Open questions` :278); `ls .../scratch/w4-build/` -> `briefs design.md logs` (exit 0; only `design.md` added, `git status` scoped to the phase shows just the untracked `w4-build/` directory; the `.skilled/` modifications shown repo-wide are other workers')
+BLOCKED REASON: none

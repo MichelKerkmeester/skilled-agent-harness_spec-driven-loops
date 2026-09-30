@@ -1,0 +1,1 @@
+executor=devin model=deepseek-v4-1-flash-max brief=specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/fix/briefs/03-containment.md exit=0 seconds=94

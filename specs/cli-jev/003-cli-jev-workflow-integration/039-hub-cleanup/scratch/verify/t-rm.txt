@@ -1,0 +1,4 @@
+MANIFEST derived=834 frozen=834 baseline=501 gaps=27 exclusions=2 reproduced=True
+DISCOVERY readmes=803 pi_extensions=True github_workflows=True
+EXCLUSIONS classes=21 fixture_readmes_scored=False
+SUMMARY: discovery=pass exclusions=21/21 manifest=reproducible

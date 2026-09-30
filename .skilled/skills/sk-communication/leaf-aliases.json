@@ -21,6 +21,11 @@
   },
   {
     "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/evaluation-and-observability/offline-judge-agreement.md",
+    "diskPath": "feature-catalog/evaluation-and-observability/offline-judge-agreement.md"
+  },
+  {
+    "workflowMode": "sk-communication",
     "leafResourceId": "feature-catalog/fidelity-and-render/capability-aware-presentation.md",
     "diskPath": "feature-catalog/fidelity-and-render/capability-aware-presentation.md"
   },
@@ -103,6 +108,11 @@
     "workflowMode": "sk-communication",
     "leafResourceId": "manual-testing-playbook/release-gating/human-certified-bundle-gates-release.md",
     "diskPath": "manual-testing-playbook/release-gating/human-certified-bundle-gates-release.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md",
+    "diskPath": "manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md"
   },
   {
     "workflowMode": "sk-communication",

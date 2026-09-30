@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi classifier transport integration",
+      "jev transport pi switch",
+      "cli-classifier pi transport",
+      "choice question pi backend",
+      "pi worker classifier docs",
+      "pi classifier transport plan",
+      "jev transport switch design",
+      "opt-in pi backend",
+      "choice transport fallback",
+      "classifier transport testing strategy",
+      "pi classifier transport tasks",
+      "jev transport switch tasks"
+    ],
+    "key_topics": [
+      "classifier",
+      "transport",
+      "integration",
+      "jev",
+      "switch",
+      "cli-classifier",
+      "choice",
+      "question",
+      "backend",
+      "worker",
+      "docs",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+      ".skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs",
+      ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+      "feature-catalog/feature-catalog.md",
+      ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-integration.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/cli-classifier/SKILL.md",
+      "scratch/verify/h.txt",
+      "scratch/verify/g.txt",
+      "scratch/w4-build/design.md",
+      "scratch/verify/review-swe2-r1.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "jev-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "jev-transport.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-transport-integration.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "h.txt",
+        "kind": "file",
+        "path": "scratch/verify/h.txt",
+        "source": "derived"
+      },
+      {
+        "name": "g.txt",
+        "kind": "file",
+        "path": "scratch/verify/g.txt",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-swe2-r1.txt",
+        "kind": "file",
+        "path": "scratch/verify/review-swe2-r1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 037 measured Pi's native classifier runtime as good enough for the packet's Jev `choice` questions",
+    "created_at": "2026-09-30T16:01:03Z",
+    "last_save_at": "2026-09-30T19:53:31.140Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b8dadfcfbf493187ded9547fff91f2667f5e1b6a579035b405571ffae17fbf1a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "eeefc846957e3330a12c636236342923a2cb4de99038d061b569fd33016c6250",
+      "plan.md": "28d65c208f0a90c4a0e17dc52038df10f6d15e9a952e56a49ca5ce111e8eb748",
+      "tasks.md": "cc6fc1e49a250280a190c08bcca77e15906c8702a7a5ef6a0a248975d79b6cdb",
+      "implementation-summary.md": "4b6e4b26c1d7e5ea268dfe84ebe8fad281f7e05f4854a33d42de5e09b370f582"
+    },
+    "last_active_at": null
+  }
+}

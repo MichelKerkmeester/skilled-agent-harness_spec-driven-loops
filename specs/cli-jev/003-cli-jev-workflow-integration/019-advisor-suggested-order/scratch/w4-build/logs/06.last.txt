@@ -1,0 +1,60 @@
+
+
+Now let me read the referenced sections of `score-jev-tiebreak.mjs`.
+
+Now let me check the helper functions I'll rely on (`alwaysSecondOrder`, `confidenceOrder`, `classifyRow`, `reciprocalRank`) and the test tooling configuration.
+
+
+
+
+
+
+
+I have everything I need. Let me make the changes to the script first.
+
+
+
+Script updated. Now the test file — import, helpers, and the new test block.
+
+One refinement to the stub — the health write should flush before exiting, matching the file's existing stub pattern:
+
+Now the test block itself:
+
+Now let me run the brief's verification checks, plus a syntax check on the test file.
+
+Both listed checks pass. Node 26 can parse TypeScript directly, so let me syntax-check the test file too:
+
+Both files parse. Now, before handing back, let me smoke-test `runArm` end-to-end with the exact stub, in a plain-node harness outside the repo (no vitest, no network) — this de-risks the orchestrator's suite run:
+
+
+
+
+
+
+
+Smoke passed all four scenarios. Let me verify the final state of both edited regions, confirm the diff scope, and clean up the temp harness:
+
+The diff scope is right: my two files are the only ones I touched (both untracked/new in this worktree — the orchestrator commits; the other entries belong to concurrent workers). Cleaning up the temp harness and re-running the listed checks from the final state:
+
+All checks pass from the final state. Handing back.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs (+103/-1)
+- .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts (+137/-1)
+EDITS:
+- score-suggested-order.mjs:18 added readDeemHealth and writeCall to the score-jev-tiebreak import in alphabetical position
+- score-suggested-order.mjs:29 added `const DEEM_CHOICE_P50_MS = 241;`
+- score-suggested-order.mjs:385-485 added the exported `runArm(backend, census, gate, ctx)` with JSDoc: eligible/DEEM_MAX_KEYS row filter, planned-calls line, per-row three rotated orders in timed children, per-call writeCall records, timeout/exit-2/3/130 stops, exit-4 health re-check with one retry, identity + column + verdict lines
+- score-suggested-order.vitest.ts:31 added runArm to the import
+- score-suggested-order.vitest.ts:61-66 added `nodeBin(name, js)` (temp dir with `${name}.cjs` plus a 0o755 shell wrapper)
+- score-suggested-order.vitest.ts:68-90 added the `DEEM_STUB` CommonJS stub (cli-deem.log append, health JSON, refuse mode, `-o` key probabilities with none deleted on `partial` prompts)
+- score-suggested-order.vitest.ts:73 health stub write flushes via callback before exiting
+- score-suggested-order.vitest.ts:504-607 added deemRow/readCalls/deemRun helpers and the `score-suggested-order deem arm` describe with the four tests (18-call measured run, partial row unmeasured, slow rows timed out at 2500 with latency stop, backend-refused stop)
+CHECKS:
+- `node --check .skilled/.../score-suggested-order.mjs` -> no output (exit 0)
+- `grep -c "export async function runArm" .skilled/.../score-suggested-order.mjs` -> 1 (exit 0)
+- `node --check .skilled/.../score-suggested-order.vitest.ts` -> no output (exit 0)
+- `node /tmp/arm-smoke/smoke.mjs` (temp plain-node end-to-end harness reusing the exact DEEM_STUB, removed after) -> SMOKE PASS: all 4 scenarios (exit 0)
+- `git status --short` -> only the two named files touched; other entries belong to concurrent workers (exit 0)
+BLOCKED REASON: none

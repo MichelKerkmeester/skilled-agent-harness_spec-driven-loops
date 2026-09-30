@@ -1,0 +1,117 @@
+I'll start by reading the phase docs and the parent goal, then the pattern file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now let me verify every premise the spec cites in today's tree.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+All premises verified. Now I'll write the design.
+
+
+
+
+
+
+
+One gap to close: REQ-011 requires the `-q` instruction printed verbatim with its SHA-256 before any call. Let me add that line.
+
+
+
+
+
+Now the final verification checks.
+
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/scratch/w4-build/design.md (+267/-0)
+EDITS: design.md:1-267 wrote the full design (premises, interface, tests, build steps, proof plan, open questions); design.md:65 added the `instruction:` stdout line (REQ-011); design.md:197 added the `instruction printed` test case; design.md:224 step 4 now names `INSTRUCTION` and that case
+CHECKS: wc -l specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/scratch/w4-build/design.md -> 267 specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/scratch/w4-build/design.md (exit 0)
+CHECKS: grep -c '^## ' specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/scratch/w4-build/design.md -> 6 (exit 0)
+CHECKS: git status --porcelain -- specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/ -> ?? specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/scratch/w4-build/ (exit 0; the only file added is design.md inside the pre-existing untracked scratch dir)
+BLOCKED REASON: none

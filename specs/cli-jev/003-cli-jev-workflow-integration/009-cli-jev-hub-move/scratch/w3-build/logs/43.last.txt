@@ -1,0 +1,14 @@
+All steps completed. The grep check output `0` (the expected count of `skills/cli-jev/` occurrences); `grep -c` exits 1 by convention when the match count is zero, which is the expected result here, not a failure.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/graph-metadata.json (+59/-6); .skilled/skills/cli-jev/graph-metadata.json (+0/-105)
+EDITS:
+  .skilled/skills/cli-classifier/graph-metadata.json:whole-file replaced byte-for-byte with scratch/w3-build/attach/graph-metadata.json (Jev node merged: intent signals, trigger phrases, key files, entities, sibling edge)
+  .skilled/skills/cli-jev/graph-metadata.json:deleted from working tree (plain rm, merged source)
+CHECKS:
+  cmp scratch/w3-build/attach/graph-metadata.json .skilled/skills/cli-classifier/graph-metadata.json -> no output (exit 0)
+  test ! -e .skilled/skills/cli-jev/graph-metadata.json -> no output (exit 0)
+  python3 -m json.tool .skilled/skills/cli-classifier/graph-metadata.json > /dev/null -> no output (exit 0)
+  grep -c 'skills/cli-jev/' .skilled/skills/cli-classifier/graph-metadata.json -> 0 (exit 1; grep exits 1 on zero matches — count is 0 as expected)
+BLOCKED REASON: none

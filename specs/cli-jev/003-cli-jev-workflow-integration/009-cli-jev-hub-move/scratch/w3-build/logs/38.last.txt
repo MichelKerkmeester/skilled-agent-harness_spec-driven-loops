@@ -1,0 +1,9 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/bin/lib/compiled-routing/serving-closure.manifest.json (+8/-8)
+EDITS: .skilled/bin/lib/compiled-routing/serving-closure.manifest.json:whole file replaced byte-for-byte from the prepared copy (hubs list now names the cli-classifier hub, five rollout-child source paths updated, activation manifest path moved to its sorted place, fence-state path updated; fileCount unchanged at 62)
+CHECKS:
+- cmp specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/attach/serving-closure.manifest.json .skilled/bin/lib/compiled-routing/serving-closure.manifest.json -> no output (exit 0)
+- python3 -m json.tool .skilled/bin/lib/compiled-routing/serving-closure.manifest.json > /dev/null -> no output (exit 0)
+- grep -c cli-jev .skilled/bin/lib/compiled-routing/serving-closure.manifest.json -> 0 (exit 1, grep's standard no-match exit — count is 0 as expected)
+BLOCKED REASON: none

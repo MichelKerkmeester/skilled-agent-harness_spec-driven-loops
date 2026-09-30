@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/runtime
+
+ ❯ tests/unit/score-severity-replay.vitest.ts (27 tests | 1 failed) 4656ms
+     × the Jev gate skips on no credential, a missing binary and a wrong version 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/score-severity-replay.vitest.ts > score-severity-replay jev gate and arm > the Jev gate skips on no credential, a missing binary and a wrong version
+ReferenceError: stubs is not defined
+ ❯ tests/unit/score-severity-replay.vitest.ts:704:81
+    702|         body: 'case "$1" in --version) echo \'0.2.3\'; exit 0;; esac',
+    703|         pathLine: (stubs) => `jev: path=${path.join(stubs, 'jev')} pro…
+    704|         tail: ['jev arm skipped: version', `jev: found="0.2.3" path=${…
+       |                                                                                 ^
+    705|       },
+    706|       {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 26 passed (27)
+   Start at  19:53:39
+   Duration  4.80s (transform 23ms, setup 0ms, import 36ms, tests 4.66s, environment 0ms)
+

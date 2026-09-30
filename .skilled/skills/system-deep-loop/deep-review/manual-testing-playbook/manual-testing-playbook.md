@@ -28,7 +28,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 55 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (39 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (4 scenarios under DRV-064..067). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 56 deterministic scenarios across 10 categories validating the current `deep-review` skill surface. The first 7 categories cover dimension/lifecycle and intra-routing review (40 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (4 scenarios under DRV-064..067). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -166,6 +166,19 @@ Expected signals: Default values of 7 and 0.10 appear consistently across all so
 
 #### Test Execution
 > **Feature File:** [DRV-003](../manual-testing-playbook/entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md)
+
+### DRV-069 | Residue flagger measurement
+
+#### Description
+Verify that `.skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs` holds its zero-call default and skips a stub backend behind `--deem`.
+
+#### Scenario Contract
+Prompt: `Run the residue flagger measurement with the logging stubs first on PATH and report whether the default pass makes zero calls and the stub Deem backend is skipped cleanly.`
+
+Expected signals: The default run prints the census and the fixed `margin:`, `keep rule:` and `instruction` lines before `stop: fewer than 100 labeled rows`, makes zero backend calls and writes no file, `--jev` and `--deem` each require `--out <dir>` or exit 2 before any call, and the `--deem` run adds `deem arm skipped: stub backend` and exits 0.
+
+#### Test Execution
+> **Feature File:** [DRV-069](../manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md)
 
 ---
 
@@ -641,6 +654,7 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 - DRV-001: [Auto-mode deep-review kickoff](../manual-testing-playbook/entry-points-and-modes/auto-mode-deep-review-kickoff.md)
 - DRV-002: [Confirm-mode checkpointed review](../manual-testing-playbook/entry-points-and-modes/confirm-mode-checkpointed-review.md)
 - DRV-003: [Parameterized invocation: max iterations + convergence](../manual-testing-playbook/entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md)
+- DRV-069: [Residue flagger measurement](../manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md)
 
 ### INITIALIZATION AND STATE SETUP
 

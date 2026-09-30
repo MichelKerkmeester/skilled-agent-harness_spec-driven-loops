@@ -1,0 +1,18 @@
+Review complete. Everything ran from the worktree root; no files were modified (the live re-evaluation used a throwaway dir in `os.tmpdir()`).
+
+**Findings**
+
+- P2 `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs:262` — `evaluate`'s JSDoc still says "Evaluate a skill's hard_rules against a command string", naming the deleted frontmatter field while the rewritten file header names the sidecar — `rg -n 'hard_rules' .skilled` shows it is the only live-code remnant (the other hit is a dated benchmark raw report)
+- P2 `specs/cli-jev/.../scratch/verify/record-verdicts.mjs:44` — `SCRATCHPAD_TMP` hardcodes the author's session scratchpad absolute path (`/private/tmp/claude-501/.../scratchpad/w10/tmp`) although the header promises runs "reproducible on any host" — a rerun elsewhere must recreate that tree or fails where `/private/tmp` is unwritable; `os.tmpdir()` would be portable
+
+**Goal criteria**
+
+- met — all nine sidecars hold exactly the HEAD frontmatter rules: I re-ran HEAD's own `parseHardRules` over `git show HEAD:<SKILL.md>` and compared all nine field-by-field (id, check, message, severity, plus extra-key checks) — 50 rules byte-equal, em dashes/ellipses/apostrophes intact; `grep -rn '^hard_rules:' --include=SKILL.md` finds nothing (exit 1)
+- met — engine reads the sidecar, `parseHardRules` is deleted everywhere, and all 12 readers (4 preflight adapters, 2 OpenCode plugins, sk-git advisory + Pi twin, noise audit, devin permission policy) pass `…/SKILL.md` paths so the sibling read resolves; the five baseline suites pass at baseline counts 20/75/26/7/7 = 135
+- met — `record-verdicts.mjs --compare` exits 0 with all nine skills equal (rules and verdicts byte-equal); corpus rows pin exact id lists (incl. the 3-id hermes stdin row) and I reproduced all 47 rows' pinned ids live against the current engine; a real bad `opencode run "task"` through `claude/dispatch-preflight-lint.mjs` returns `permissionDecision: deny` citing both sidecar rules
+- met — sk-create-frontmatter's contract, frontmatter-templates and the skill template all name `hard-rules.json`; `validate_document.py` reports 0 issues on all 37 changed docs
+- met — `sync-skills-hermes.cjs --check` prints `PASS: 72 Hermes skill copies in sync` (exit 0; `.hermes` shows only modified files, count unchanged) and `validate.sh --strict` prints `RESULT: PASSED` (0 errors, 0 warnings)
+
+Fail-open is exhaustive: missing/empty/`null`/object/malformed/directory-named-sidecar/folder-argument/non-string all return `[]` without throwing (verified live and in the suite's fixture tests). Comment hygiene is clean across the diff — no spec paths, phase numbers or task ids in code comments.
+
+VERDICT: PASS

@@ -1,0 +1,13 @@
+{
+  "type": "iteration",
+  "iteration": 9,
+  "status": "complete",
+  "focus": "mimo-09: Measurement-first order and operator labor",
+  "findingsCount": 4,
+  "newInfoRatio": 0.8,
+  "noveltyJustification": "Labor and savings per phase from round-3 counts: the zero-minute-survives rule, the 80-minute first judged feature, and six measurements-before-builds rules.",
+  "keyQuestions": ["H"],
+  "answeredQuestions": ["H-part-order", "H-part-labor"],
+  "timestamp": "2026-09-27T10:30:00Z",
+  "sessionId": "fanout-mimo-1790490452777-942a1f"
+}

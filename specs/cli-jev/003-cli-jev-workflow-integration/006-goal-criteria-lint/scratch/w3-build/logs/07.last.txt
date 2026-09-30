@@ -1,0 +1,29 @@
+Gate 1 lookup: clean no-hit. Now reading the style models and the routing skill.The route resolves to the OPENCODE surface, JavaScript slice (`.cjs`), IMPLEMENTATION intent. Loading that slice's resources.Route resolved: OPENCODE surface / JavaScript slice (`.cjs`), IMPLEMENTATION intent — checklists loaded. Now verifying the prescribed Wilson math and header geometry before writing.Math and geometry confirmed. Gate 5 check before the first write:All gates pass: Gate 3 pre-resolved, Gate 1 no-hit, Gate 2 routed (sk-code → OPENCODE/JavaScript), Gate 5 loaded (prevent-overengineering, evidence-and-proof, communication, communication-handoff — the four that fire for adding files, reporting results, writing a reply, and closing a turn).
+
+Pre-write pass (prevent-overengineering §2): the two files are the frozen brief; the scorer cannot extend `lint-goal-criteria.cjs` in place because that module's contract is the advisory lint report with no notion of label rows, and the new module must stay a pure library with no side effects. No existing caller is touched.
+
+Writing the scorer core:Now the test file:Both files written. Running the two listed verification checks:Both listed checks pass. Final-state inspection — reading back both files as they exist on disk:Read-back confirms both files on disk at the exact paths with the box headers, sections 2–5 (scorer) and 1–3 (test), and no residue. One last final-state proof: header geometry (box alignment is a P0 checklist item) and scoped git status:All acceptance conditions verified from the final state.
+
+```
+STATUS: DONE
+FILES CHANGED:
+  .skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs (+212/-0)
+  .skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs (+122/-0)
+EDITS:
+  score-goal-lint.cjs:1-15 box header, 'use strict', constants TAG/STOP_RATE/WILSON_Z/STOP_LINE with the sub-5% threshold why
+  score-goal-lint.cjs:21-27 helpers isLabeled and formatNumber
+  score-goal-lint.cjs:33-51 wilsonInterval with JSDoc
+  score-goal-lint.cjs:53-82 ruleMetrics with JSDoc (null rates on zero denominators, f1 rules)
+  score-goal-lint.cjs:84-150 scoreLabels with JSDoc (first-record byHash, rubric mismatch short-circuit, stale/notScored walk with the edited-goal why, joined metrics, Wilson interval, stop flag)
+  score-goal-lint.cjs:152-200 formatScore with JSDoc (counts, per-rule lines, rate line, STOP_LINE last)
+  score-goal-lint.cjs:206-212 exports: STOP_LINE, wilsonInterval, ruleMetrics, scoreLabels, formatScore
+  score-goal-lint.test.cjs:1-18 box header, imports (assert/strict, test, module under test)
+  score-goal-lint.test.cjs:27-49 fixtures rec/lab/RECORDS/LABELS/L
+  score-goal-lint.test.cjs:55-122 the six specified tests
+CHECKS:
+  node --check .skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs -> no output (clean parse; node --check is silent on success) (exit 0)
+  node -e "const m=require('./.skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs');console.log(m.wilsonInterval(3,4).map((x)=>x.toFixed(4)).join(','))" -> 0.3006,0.9544 (exit 0)
+  node -e header geometry inspection (not a listed check; disclosed) -> both files 79/79/79 aligned box header (exit 0)
+  git status --porcelain (scoped to the two paths, read-only) -> both files '??' new, nothing else in scope (exit 0)
+BLOCKED REASON: none
+```

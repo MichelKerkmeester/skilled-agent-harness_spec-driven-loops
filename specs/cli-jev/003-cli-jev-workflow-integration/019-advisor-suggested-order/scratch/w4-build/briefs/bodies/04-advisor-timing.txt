@@ -1,0 +1,16 @@
+TASK: add the zero-call advisor-only timing, its print line and the headroom rule, with tests.
+R = .skilled/skills/system-skill-advisor/runtime. Files: S = R/scripts/routing-accuracy/score-suggested-order.mjs and T = R/tests/parity/score-suggested-order.vitest.ts. Read both first.
+
+In S, after childEnv add, each with a JSDoc block:
+ a. `export async function timeAdvisor(prompts, opts = {})`: for each prompt in order, `await runTimedChild({ prompt }, opts)` one at a time (never in parallel, so children do not compete for the machine); collect wallMs into walls and count timedOut as killed. Return { n: walls.length, p50: nearestRank(walls, 0.5), p95: nearestRank(walls, 0.95), max: walls.length === 0 ? null : Math.max(...walls), over2200: the count of walls above ADVISOR_BUDGET_MS, killed, walls }.
+ b. `export function advisorLine(t)` returns `advisor child: p50=<p50> p95=<p95> max=<max> over_2200=${t.over2200} children=${t.n} killed=${t.killed}`, where each of p50, p95 and max prints as Math.round(value), or 'none' when null.
+ c. `export function headroomLine(movable, advisorP95)` returns 'no headroom (movable)' when movable < MIN_MOVABLE; else 'no headroom (latency)' when advisorP95 is null or above ADVISOR_BUDGET_MS; else null. Say in the JSDoc that either line stops both model arms before any call.
+
+In T: add timeAdvisor, advisorLine and headroomLine to the import, then describe('score-suggested-order advisor timing and headroom') with its:
+ 1. timeAdvisor(['late a', 'late b'], { childFile: stubChild() }) (the stub child sleeps 2300 ms for prompts starting with 'late'): n 2, killed 0, over2200 2, p95 at least 2300, and headroomLine(23, t.p95) is 'no headroom (latency)'. Give this it a 30_000 ms timeout argument.
+ 2. advisorLine({ n: 241, p50: 812.4, p95: 1103, max: 2281, over2200: 1, killed: 0, walls: [] }) is 'advisor child: p50=812 p95=1103 max=2281 over_2200=1 children=241 killed=0'; advisorLine({ n: 0, p50: null, p95: null, max: null, over2200: 0, killed: 0, walls: [] }) is 'advisor child: p50=none p95=none max=none over_2200=0 children=0 killed=0'.
+ 3. headroomLine(4, 800) is 'no headroom (movable)'; headroomLine(5, 2200) is null; headroomLine(23, 2201) is 'no headroom (latency)'; headroomLine(23, null) is 'no headroom (latency)'.
+
+VERIFY (repo root): node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs
+  node -e "import('./.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs').then((m) => console.log(m.headroomLine(4, 800), '|', m.headroomLine(23, 2201), '|', m.headroomLine(5, 2200)))"
+Accept when: the same 2 files changed and nothing else; node --check exits 0; the node -e line prints `no headroom (movable) | no headroom (latency) | null`.

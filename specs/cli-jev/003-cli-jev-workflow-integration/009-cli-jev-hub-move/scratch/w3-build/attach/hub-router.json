@@ -1,0 +1,85 @@
+{
+  "skill": "cli-classifier",
+  "version": "1.1.0.0",
+  "routerPolicy": {
+    "defaultMode": null,
+    "ambiguityDelta": 1,
+    "tieBreak": ["cli-jev", "cli-deem"],
+    "outcomes": {
+      "single": "one dominant judgment intent routes to its transport: a Jev request to cli-jev over the cli-usage packet, a Deem request to cli-deem",
+      "orderedBundle": "a request that names both backends by their aliases, such as a jev judgment checked against a deem judgment, routes to both transports in tieBreak order, cli-jev first",
+      "defer": "unclear or contradictory intent asks for disambiguation"
+    },
+    "defaultResource": ["ROUTER.md", "mode-registry.json"],
+    "bundleRules": []
+  },
+  "routerSignals": {
+    "cli-jev": {
+      "weight": 4,
+      "classes": ["cli-usage-aliases", "jev-dispatch"],
+      "resources": ["cli-usage/SKILL.md"]
+    },
+    "cli-deem": {
+      "weight": 4,
+      "classes": ["cli-deem-aliases", "deem-dispatch"],
+      "resources": ["cli-deem/SKILL.md"]
+    }
+  },
+  "vocabularyClasses": {
+    "cli-usage-aliases": {
+      "keywords": [
+        "jev cli",
+        "jev judgment",
+        "typesafe jev",
+        "type-safe jev",
+        "cli-jev",
+        "cli jev",
+        "cli-usage",
+        "jev probability judgment",
+        "typed judgment cli"
+      ]
+    },
+    "jev-dispatch": {
+      "keywords": [
+        "jev dispatch",
+        "jev noul",
+        "jev choice",
+        "jev score",
+        "jev run",
+        "jev mcp",
+        "jev judgment call",
+        "run jev",
+        "ask jev",
+        "use jev",
+        "with jev",
+        "through jev"
+      ]
+    },
+    "cli-deem-aliases": {
+      "keywords": [
+        "cli-deem",
+        "cli deem",
+        "deem cli",
+        "deem client",
+        "deem judgment",
+        "local deem",
+        "deem health"
+      ]
+    },
+    "deem-dispatch": {
+      "keywords": [
+        "deem noul",
+        "deem choice",
+        "deem score",
+        "deem run",
+        "ask deem",
+        "use deem",
+        "with deem",
+        "through deem",
+        "deem model",
+        "deem server",
+        "deem classifier"
+      ]
+    }
+  }
+}

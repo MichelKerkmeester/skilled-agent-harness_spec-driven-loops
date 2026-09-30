@@ -66,6 +66,7 @@ REPOSITORY_METADATA_ROOT_NAMES = frozenset({".git"})
 TOOL_MANDATED_NAMES = frozenset(
     {
         ".utcp_config.json",
+        "ARCHITECTURE.md",
         "README.md",
         "SKILL.md",
         "action.yaml",

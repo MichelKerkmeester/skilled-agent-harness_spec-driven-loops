@@ -1,0 +1,29 @@
+TASK: add the Jev arm (one auth test, then three `jev noul` reruns per labeled output) and wire it into main, with three tests. 2 files.
+S = .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs
+T = .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts
+Read first: S (its `runDeemArm` is the local pattern to mirror), T, section 10 of specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-build/design.md (the Jev parts only), and `runJevArm` in .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1565-1760 (read only; the model to port).
+
+STEP 1. In S, after `runDeemArm`, add `async function runJevArm(plan, gate, ctx)` with JSDoc; gate = the passing jevGate result `{ path, provider, untracked }`, ctx `{ out, env, timeoutMs, backoffMs, callLog, stored }`. Port runJevArm with these differences:
+- First print `jev: payload: <gate.untracked === 0 ? 'committed' : 'untracked'> benchmark outputs and fixture task text; planned calls: <JEV_RERUNS * K + 1>; estimated input tokens: <Math.ceil(JEV_RERUNS * sum over rows of (row.state.length + QUESTION.length) / 4)>`. No cost or currency figure anywhere.
+- `jev auth test --provider P` as ported (model from its JSON `model`, else 'unknown'; exit 3 -> `jev arm stopped: key rejected`, 130 -> `jev arm stopped: interrupted`, other non-zero -> `jev arm stopped: auth test failed`; then print `jev: auth test provider=<P> model=<model>`).
+- Per row, JEV_RERUNS calls with args `['noul', '--provider', P, '-q', QUESTION]` and stdin `row.state`; the exit table, the exit-4 backoff and single retry and the stop lines stay as ported; measured / failed statuses exactly as in runDeemArm; answers map `file -> [noul or null, x3]`.
+- Every calls.jsonl record: `{ backend: 'jev', output, rerun, attempt, wallMs, exitCode, noul, status, jevVersion: '0.6.2', provider, model }`; the auth-test record has output null and rerun null.
+- After the loop: `summarizeColumn('jev', plan.rows, answers, plan.baselineCalls, plan.labelsSha, \`jev_version=0.6.2 provider=${P} model=${model}\`)`, print `column jev: K=<K> measured=<M> unmeasured=<K-M> latency_p50_ms=<n or none> latency_p95_ms=<n or none>`, then `requalify: model changed` when `ctx.stored?.columns?.jev` exists with a different provider or model, then the verdict line. Return `{ column: { ...column, latency, jevVersion: '0.6.2', provider, model }, requalify }` or `{ stopped, partialRows }` with the `jev: partial rows=<n>` line.
+- Export `runJevArm`.
+
+STEP 2. In `main` replace `      // The Jev arm runs here after a passing gate.` with `      jevResult = await runJevArm(plan, jevCheck, { out, env, timeoutMs, backoffMs, callLog, stored });`.
+
+STEP 3. In T add `//   Jev arm (runJevArm)` to the MODULE header list and append `describe('score-d4-agreement jev arm', ...)` with a const `JEV` holding exactly this shell text:
+```
+case "$1" in --version) echo 'jev 0.6.2'; exit 0;; auth) if [ "$2" = test ]; then echo '{"ok":true,"valid":true,"model":"stub-model"}'; fi; exit 0;; esac
+p=$(cat); n=$(cat "$D/calls" 2>/dev/null || echo 0); n=$((n+1)); echo $n > "$D/calls"
+case "$p" in *FLIP*) if [ $((n % 3)) -eq 0 ]; then v=0.1; else v=0.9; fi;; *HALLUCINATED*) v=0.9;; *) v=0.1;; esac
+echo "{\"answers\":{\"answer\":{\"noul\":$v}}}"
+```
+Each run: `labeledSet(0, 10, 20)`, stubs `stubDir({ jev: <body> })`, env PATH stubs first with `delete env.JEV_PROVIDER`, argv `['--outputs', outputs, '--fixtures', fixtures, '--labels', labels, '--jev', '--accept-payload', '--out', tempDir('d4-out-')]`, sha = sha256 hex of the labels file bytes. Three it():
+1. 'runs one auth test and three reruns per output under one provider and prints keep': code 0; lines contain a line starting 'jev: payload: untracked benchmark outputs and fixture task text; planned calls: 91; estimated input tokens: ', 'jev: auth test provider=official model=stub-model' and `verdict jev: keep K=30 M=30 A=30 B=20 W=10 L=0 F=0 p_win=0.0009766 p_loss=1.000 labels_sha256=${sha} jev_version=0.6.2 provider=official model=stub-model`; `jev.log` has 93 lines: '--version', 'auth status --provider official', 'auth test --provider official', then 90 lines each equal to `noul --provider official -q ${d4.QUESTION}`; calls.jsonl has 91 lines, each with provider 'official', model 'stub-model', jevVersion '0.6.2'.
+2. 'stops on flips when the reruns disagree': append `FLIP\n` to `fx-b.run1.md` ... `fx-b.run10.md` before the run -> lines contain `verdict jev: stop (flips) K=30 M=30 A=30 B=20 W=10 L=0 F=10 ` as a prefix of the verdict line.
+3. 'stops with key rejected when the auth test exits 3': body `case "$1" in --version) echo 'jev 0.6.2'; exit 0;; auth) [ "$2" = test ] && exit 3; exit 0;; esac` -> lines contain 'jev arm stopped: key rejected' and 'jev: partial rows=0', no line starts with 'verdict jev:', and `jev.log` has no line starting with 'noul'.
+
+VERIFY (repo root): node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs ; grep -ciE "API_KEY|TYPESAFE|Bearer|Authorization|USD|dollar" on the same file (expect 0)
+Accept when: 2 files changed (S and T) and nothing else; node --check exits 0; the grep prints 0.

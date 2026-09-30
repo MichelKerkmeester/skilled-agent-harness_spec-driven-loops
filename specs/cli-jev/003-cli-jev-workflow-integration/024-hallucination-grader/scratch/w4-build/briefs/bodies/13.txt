@@ -1,0 +1,11 @@
+TASK: in the D4 agreement script, stop `jevGate` from shadowing the `path` module with a local of the same name. One file, a rename only, no behavior change.
+S = .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs
+Read first: S, function `jevGate` (starts at line 546, ends at its closing `}` about 44 lines later).
+
+STEP 1. Inside `jevGate` only, rename the local `const path = which('jev', ctx.env);` to `const jevPath = which('jev', ctx.env);` and update every use of that local inside `jevGate` (the identity line template, the `=== null` test, the two `spawnSync(path, ...)` calls, the `found=` details template). In each returned object replace the shorthand `path,` with `path: jevPath,` so the returned shape keeps its `path` key (callers read `gate.path`). Change nothing outside `jevGate`, and no printed text changes.
+
+VERIFY (repo root; paste each command, its result line and exit code):
+  node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs
+  awk '/^function jevGate/,/^}/' .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs | grep -cE "const path =|spawnSync\(path"   (expect 0)
+  awk '/^function jevGate/,/^}/' .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs | grep -c "path: jevPath"   (expect 6)
+Accept when: 1 file changed (S) and nothing else; each check prints what it expects.

@@ -1,0 +1,7 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/README.md (+2/-2)
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/README.md:50 Imports row: replaced the single-intra-lib-edge sentence with the two-module sibling-requires sentence
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/README.md:51 Exports row: replaced the two sentences after "(see KEY FILES)." with the two-CLI-modules sentences
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/README.md -> "✅ VALID: ... Total issues: 0" (exit 0)
+BLOCKED REASON: none

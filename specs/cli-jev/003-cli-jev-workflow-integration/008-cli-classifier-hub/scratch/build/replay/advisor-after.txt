@@ -1,0 +1,26 @@
+PROMPT: ask deem for a probability that this incident is urgent
+   [('cli-classifier', 0.89)]
+PROMPT: use deem choice to pick a queue
+   [('cli-classifier', 0.917), ('cli-jev', 0.82)]
+PROMPT: score these three levels with deem
+   [('cli-classifier', 0.853), ('cli-jev', 0.82)]
+PROMPT: run a batch of typed questions through deem
+   [('cli-classifier', 0.82), ('cli-jev', 0.82), ('mcp-code-mode', 0.82)]
+PROMPT: is the local deem server healthy
+   [('cli-classifier', 0.95)]
+PROMPT: cli-deem health
+   [('cli-classifier', 0.95)]
+PROMPT: ask jev for a probability that this plan ships on time
+   [('cli-jev', 0.848)]
+PROMPT: use jev choice to pick a queue
+   [('cli-jev', 0.915)]
+PROMPT: score these three levels with jev
+   [('cli-jev', 0.919)]
+PROMPT: run a batch of typed questions through jev
+   [('cli-jev', 0.82), ('mcp-code-mode', 0.82), ('cli-external-orchestration', 0.82)]
+PROMPT: summarize the release notes for the last sprint
+   []
+PROMPT: the result was deemed acceptable
+   []
+PROMPT: score this pull request for risk
+   [('sk-git', 0.873), ('cli-jev', 0.82)]

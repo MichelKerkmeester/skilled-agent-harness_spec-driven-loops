@@ -1,0 +1,23 @@
+I'll start by reading the phase documents and the parent goal to understand the scope.
+
+Let me read the rest of spec.md and the sibling pattern files.
+
+Let me read the rest of the sibling scorer and its test file.
+
+
+
+Now the sibling's test file:
+
+
+
+Now let me verify the seams in `fanout-merge.cjs`:
+
+Let me check the merge function signatures:
+
+
+
+
+
+
+
+

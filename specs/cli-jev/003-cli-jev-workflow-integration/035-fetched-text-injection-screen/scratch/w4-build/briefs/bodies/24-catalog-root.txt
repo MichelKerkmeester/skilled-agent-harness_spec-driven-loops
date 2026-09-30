@@ -1,0 +1,11 @@
+TASK: create the hub's root feature catalog from prepared text.
+New file F = .skilled/skills/cli-classifier/feature-catalog/feature-catalog.md
+Source C = specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/content/feature-catalog-root.md (read only)
+
+STEP 1. Create F with exactly the bytes of C: create the parent folder if it is missing, run `cp` from C to F, then compare.
+Do not retype, reflow or edit the text. F must not exist before this step; if it does, stop and report BLOCKED. Edit no other file.
+
+VERIFY (repo root), paste each result line:
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/content/feature-catalog-root.md .skilled/skills/cli-classifier/feature-catalog/feature-catalog.md && echo same   (expect "same")
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/feature-catalog/feature-catalog.md --type feature_catalog  (expect exit 0; report its last two lines)
+Accept when: 1 file created (F), byte-identical to C; the validator exits 0.

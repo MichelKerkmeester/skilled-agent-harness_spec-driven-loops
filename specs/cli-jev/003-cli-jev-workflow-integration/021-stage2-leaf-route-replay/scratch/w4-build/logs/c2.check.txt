@@ -1,0 +1,19 @@
+✔ parseRouter reads an active block (2.323583ms)
+✔ parseRouter reports a stage1-only block (0.194417ms)
+✔ keywordHits guards the four keywords (0.129459ms)
+✔ scoreIntents weights and sorts (0.106459ms)
+✔ selectIntents keeps one point apart (0.074125ms)
+✔ selectIntents returns UNKNOWN (0.136834ms)
+✔ toPairs resolves packet-qualified and alias paths (0.284875ms)
+✔ toPairs counts an unresolvable path (0.063541ms)
+✔ scoreRow partial set (0.103583ms)
+✔ scoreRow empty prediction (0.090042ms)
+✔ scoreRow exact match (0.05925ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 67.340208

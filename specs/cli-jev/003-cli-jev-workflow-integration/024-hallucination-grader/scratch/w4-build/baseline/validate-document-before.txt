@@ -1,0 +1,40 @@
+== .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/README.md exit 0
+✅ VALID: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/README.md
+Document type: readme
+Total issues: 0
+== .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md exit 0
+✅ VALID: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md
+Document type: readme
+Total issues: 0
+== .skilled/skills/system-deep-loop/deep-improvement/SKILL.md exit 0
+✅ VALID: .skilled/skills/system-deep-loop/deep-improvement/SKILL.md
+Document type: skill
+Total issues: 0
+== .skilled/skills/system-deep-loop/deep-improvement/README.md exit 0
+✅ VALID: .skilled/skills/system-deep-loop/deep-improvement/README.md
+Document type: readme
+Total issues: 0
+== .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md exit 0
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md, so README rules were applied. Pass --type to choose the rule set.
+== .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/opt-in-5dim-scorer.md exit 0
+✅ VALID: .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/opt-in-5dim-scorer.md
+Document type: feature_catalog
+Total issues: 0
+== .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md exit 0
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md, so README rules were applied. Pass --type to choose the rule set.
+== .skilled/skills/system-deep-loop/deep-improvement/changelog/v1.17.2.0.md exit 0
+✅ VALID: .skilled/skills/system-deep-loop/deep-improvement/changelog/v1.17.2.0.md
+Document type: changelog
+Total issues: 0
+== .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/dimensional-progress.md exit 0
+✅ VALID: .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/dimensional-progress.md
+Document type: feature_catalog
+Total issues: 0
+== .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/five-d-scorer/missing-candidate.md exit 0
+✅ VALID: .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/five-d-scorer/missing-candidate.md
+Document type: playbook_feature
+Total issues: 0

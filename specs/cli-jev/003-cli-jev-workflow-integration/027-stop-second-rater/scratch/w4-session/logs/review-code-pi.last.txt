@@ -1,0 +1,28 @@
+Review complete. Evidence: both files opened in full and matched the appendix (1938/1082 lines); `npx vitest run tests/unit/score-stop-rater.vitest.ts` → 34 passed, 0 failed, exit 0; secret grep exit 1; sign test hand-checked (`binomialTail(5,5)` = 1/32 = 0.03125, `20*num < den` is exactly p<0.05; kill/keep/flips spot-checked via node).
+
+**Findings**
+
+P1 score-stop-rater.cjs:1761 - "no headroom" never closes an arm: arms gate only on `labelPassed` (1761, 1800); `headroomLine` is only printed (1740) and stored (1860), so REQ-003's "no arm calls" and design's `<backend> arm skipped: no headroom` are unimplemented - a saturated fixture with an agreeing `--gold-reads` runs the stubs and writes calls.jsonl after line 1740 printed `no headroom`; test:416-455 proves nothing (no `--gold-reads`, so the label gate stops first).
+
+P1 score-stop-rater.cjs:1702 - sample order is lexicographic path, not D2's "SHA-256 of the lineage path" (`node:crypto` required at :19, never used) - with >25 movable lineages (115 in the corpus) the sampled 25 differ from the frozen rule, changing K and every verdict.
+
+P2 score-stop-rater.cjs:1418 - C counts only calls behind a full median; a Jev iteration answered 0,0,unparseable adds 0 to C and F though calls.jsonl holds two `measured` rows - the Keep Rule's C is "the column's measured calls".
+
+P2 score-stop-rater.cjs:1688 - planned-calls counts every iteration record while arms score only non-`thought` iterations (1783) - one lineage with `thought` rows makes `planned calls: deem <n> jev <3n+1>` disagree with the arm's own notice.
+
+**Requirements**
+
+REQ-001 met - no switch spawns a backend; `--out` writes only report.json (1550); tested.
+REQ-002 not met - keep/gold rules match, but the sample order is not D2's SHA-256 (P1).
+REQ-003 not met - methods, right-window and `no headroom` line correct; the "no arm calls" half is unenforced (P1).
+REQ-004 met - order coverage/kill/margin/sign/flips/keep (1372-1380), exact BigInt tails, one verdict line (1464); arithmetic hand-checked.
+REQ-005 met - identity line, then `--version` == `jev 0.6.2` (615) and `auth status --provider P` exit 0 (622); `cli-deem health` bounded 2000 ms (1089); skip lines byte-match the spec.
+REQ-006 met - both stop lines verbatim (546, 549), no arm runs, exit 0; the script never writes a gold row.
+REQ-007 met - grep clean; Jev payload is fixed `-q`/`-l` plus published delta text; one missing file withholds the whole lineage (661-688).
+REQ-008 met - call shape, 24,000 bound, 3-rerun median / 1 Deem call, arm stop = legacy vote on level ratios (955-1031, 1239-1312).
+REQ-009 met - exit table as specified, `--out` refusal exits 2 before any call (1600), cost lines precede first call.
+REQ-010 met - requalify lines before the verdict from stored report.json (1039-1045, 1321-1327).
+REQ-011 met (code) / not checked (docs) - 34 tests, all named cases present, stubbed backends; docs reviewed separately.
+D1-D7 met except D2 - dormancy holds (default run spawns only `git`), Jev first, no secret, no writes; D2's sample order missing.
+
+VERDICT: FAIL

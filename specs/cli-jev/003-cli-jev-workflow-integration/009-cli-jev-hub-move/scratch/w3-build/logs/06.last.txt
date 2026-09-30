@@ -1,0 +1,16 @@
+
+
+Both files read. Making the exact substring replacement on line 8:
+
+Edit applied. Now running the three checks the brief lists:
+
+All three checks pass. Verifying the diff is exactly one line changed in this one file:
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-external-orchestration/mode-registry.json (+1/-1)
+EDITS: .skilled/skills/cli-external-orchestration/mode-registry.json:8 "which is now the cli-usage mode of its own hub at .skilled/skills/cli-jev/, and no surface-axis" → "which is now mode cli-jev of the cli-classifier hub at .skilled/skills/cli-classifier/, over its cli-usage packet, and no surface-axis"
+CHECKS: node -e "JSON.parse(require('fs').readFileSync('.skilled/skills/cli-external-orchestration/mode-registry.json','utf8'))" -> no output, parse OK (exit 0)
+CHECKS: grep -c 'skills/cli-jev/' .skilled/skills/cli-external-orchestration/mode-registry.json -> 0 (exit 1, grep's normal no-match status for count 0)
+CHECKS: grep -c 'mode cli-jev of the cli-classifier hub at .skilled/skills/cli-classifier/, over its cli-usage packet' .skilled/skills/cli-external-orchestration/mode-registry.json -> 1 (exit 0)
+CHECKS: git diff --numstat -- .skilled/skills/cli-external-orchestration/mode-registry.json -> 1 1, single file, exactly 1 line changed (exit 0)
+BLOCKED REASON: none

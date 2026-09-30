@@ -1,0 +1,27 @@
+All phase docs now record the finished build, and the four gates pass from the final state.
+
+STATUS: DONE
+FILES CHANGED:
+- specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/goal.md (+42/-14)
+- specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/graph-metadata.json (+64/-57, re-derived)
+- specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/implementation-summary.md (+94/-23)
+- specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/plan.md (+14/-14)
+- specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/spec.md (+18/-18)
+- specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/tasks.md (+23/-23)
+EDITS:
+- tasks.md:31,39-81 ticked T001-T014 and T017-T019 with their commands and results, left T015/T016 `[B]` for the operator, and amended the three completion criteria for the label-gate stop (parent D4); T014's wording now records that no labels file is committed.
+- goal.md:14-28,64-70,88-118 updated continuity to 100%, ticked all six criteria and amended criteria 4 and 5, added 11 progress rows (build, baseline, session verification, gate stop, tests, docs/packages, review, commit, closure, operator items) and 17 deviation/finding rows, including the refused-vs-`unresolved` ruling.
+- spec.md:3,26,33,41,50,53-57,112-121,136 set Status Complete and commit, rewrote the handoff criteria and deliverables, named the built script (1,707 lines), test (989 lines, 32 cases), changelog `v2.2.3.0`, catalog leaf and SD-021 playbook leaf, and added the REQ-003 `unresolved` sentence.
+- plan.md:33,42-53,96,106,132,136 ticked the ready/done gates with evidence, corrected the executor roster to amended parent D5 (no Claude leaves), and recorded that the draw is not committed.
+- implementation-summary.md:1-167 rewrote it as Complete at its label gate: what was built, the 18-file `c5d3ced36f` commit, delivery and deviations, decisions, verification with the four closure-gate results, and eight limitations.
+- description.json and graph-metadata.json re-derived by `repair-derived.cjs --apply`; `derived.status` now reads `complete`.
+CHECKS:
+- `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan --apply` -> `inspected=1 repaired=1 failed=0` (exit 0)
+- `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan --strict` -> `RESULT: PASSED`, 0 `RESULT: FAILED`, `Errors: 0  Warnings: 0` (exit 0)
+- `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan` -> `RESULT: PASSED (5/5 checks)` (exit 0)
+- `node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan --workspace "$PWD"` -> `packet_durable_chars=3907`, `packet_budget=unknown` (exit 0)
+- `git show --stat c5d3ced36f` -> 18 files, 2,949 insertions, 10 deletions (exit 0)
+- `git status --porcelain -- specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan` -> only the six phase docs plus the two derived files modified; no file outside the phase folder touched (exit 0)
+BLOCKED REASON: none
+STATUS SET: `Complete` in `spec.md` and `implementation-summary.md`. The phase printed its label-gate stop from the final state (`stop: fewer than 40 labeled rows`, exit 0, session-evidence section 2), which parent D4 and parent criterion 2 accept as the end state, and every remaining open row is an operator item.
+ROWS LEFT OPEN: tasks.md T015 `[B]` (the operator labels the 20 live rows; no model writes a label, parent D4) and T016 `[B]` (post-label zero-call, Jev and Deem runs; waits on T015 and the operator's yes). Also recorded, not closed: the six review P2 findings, a reader for a drift report once a keep exists, the playbook index's three pre-existing `missing_required_section` errors, and the known-limitations items (no labels file, no verdict line, no serving).

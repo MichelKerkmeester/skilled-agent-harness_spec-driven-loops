@@ -1,0 +1,10 @@
+All checks pass. The edit added exactly the four requested lines after F:116; frontmatter (`version: 1.1.0.0`) untouched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/SKILL.md (+4/-0)
+EDITS: .skilled/skills/cli-classifier/SKILL.md:117 blank line, "### Offline Measurement" heading, blank line, paragraph inserted directly after the `transport-axis` Extensions bullet (old F:116)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/SKILL.md -> "✅ VALID ... Total issues: 0" (exit 0)
+CHECKS: grep -c "^### Offline Measurement$" .skilled/skills/cli-classifier/SKILL.md -> 1 (exit 0)
+CHECKS: git diff --numstat -- .skilled/skills/cli-classifier/SKILL.md -> "4	0	.skilled/skills/cli-classifier/SKILL.md" (exit 0)
+BLOCKED REASON: none

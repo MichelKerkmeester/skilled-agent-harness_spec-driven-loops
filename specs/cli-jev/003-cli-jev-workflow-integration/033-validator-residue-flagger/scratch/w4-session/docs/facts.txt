@@ -1,0 +1,41 @@
+# FACTS for the 033 doc steps (read from the code and the session's own runs, 2026-09-29)
+
+Script: `.skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs` (CommonJS, run with `node`).
+Test: `.skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs`, 35 tests, all pass (`node --test`). `node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/` prints `tests 36`, `pass 36` (the folder held 1 test before this phase).
+Labels file: `.skilled/skills/system-deep-loop/deep-review/scripts/residue-flagger-labels.jsonl` by default (`--labels <file>` names another). It does not exist on the real tree: no draw could be made (below).
+
+Usage line (constant `USAGE`; nothing prints it): `usage: score-residue-flagger.cjs [--labels <file>] [--draw --seed <n> | --jev | --deem] [--out <dir>]`.
+Switches: `--labels <file>`, `--draw` with `--seed <n>`, `--jev`, `--deem`, `--out <dir>`. A switch that needs a value and gets none prints `<switch> needs a value` and exits 2.
+`--jev` or `--deem` without `--out` prints `--jev and --deem need --out <dir> so every call is recorded` on stderr and exits 2 before any call.
+Zero model calls by default: a run with logging stubs for `cli-deem` and `jev` first on PATH left both stub logs unwritten. The default run on the real tree took 1 min 48 s and wrote nothing.
+
+Default run on the real tree, exit 0, stdout without the 525 `census skipped: <file>:<line>` lines (one per finding table the parser cannot read):
+    census: commit=89597dee0946 files=5862 tables=115 rows=796 skipped=525
+    severity P0=8 P1=394 P2=394
+    dimension correctness=271 security=51 traceability=258 maintainability=212
+    header "Severity|Dimension|Evidence": tables=57 rows=266
+    header "Severity|Dimension|File": tables=5 rows=19
+    header "Severity|Dimension|File:Line": tables=36 rows=346
+    header "Sev|Dimension|Evidence": tables=12 rows=112
+    header "Sev|Dimension|File": tables=2 rows=28
+    header "Sev|Dimension|File:Line": tables=3 rows=25
+    resolvable: correctness=0 traceability=7 refused=125 dropped=664
+    margin: 0.10
+    keep rule: coverage 10*M >= 9*K, precision 5*TP >= 4*(TP+FP), margin 10*(A-B) >= M, sign test p < 0.05, flips 10*F <= 3*M (jev only)
+    instruction correctness sha256=3da5d21ad7b02a59f03a9ed398497da4e401844f6b30ff55f738fffe58150ba8: Does this passage claim behavior that its own text shows to be wrong or inconsistent?
+    instruction traceability sha256=00d7d74e8be9e0c51c6f688d58faa133f07fc0e9ef95bca3296c4cebae91d454: Does this passage name a spec item or requirement that the text it describes does not match or does not contain?
+    stop: fewer than 100 labeled rows
+
+What the census counts: it walks the tracked markdown files under `specs/` that sit in a `review/` or `ai-council/` folder (never a `context/` or `scratch/` folder), reads each finding table whose header it recognizes (the six `header` lines), and resolves each row's cited location at the commit the review read. `resolvable:` counts the rows whose location resolves per category (correctness, traceability), `refused` the rows whose cited path has a basename starting `.env` or is outside the tracked file list (refused before any file opens), and `dropped` the rows with no cited line, a line past the file's end at the reviewed commit, a file absent at that commit, no path in the cell, or a review file with no reviewed commit.
+A table without a recognized header counts as skipped only when one of its data rows holds a cell that is exactly `P0`, `P1` or `P2`.
+
+Skips (each exit 0, every other line byte-identical to the default run):
+- `--deem --out <dir>` with a Deem health reporting backend `stub` adds one line: `deem arm skipped: stub backend`. `<dir>` is not created.
+- `--jev --out <dir>` with `jev auth status --provider official` exiting 3 adds two lines: `jev: path=<path to jev> provider=official` then `jev arm skipped: no credential`. `<dir>` is not created.
+Label gate: with fewer than 100 labeled rows the run prints `stop: fewer than 100 labeled rows` and no arm runs.
+Draw: `--draw --seed 20260929` on the real tree exits 2 with `draw needs 25 resolvable rows in correctness, found 0` and writes no file, because no correctness finding's location resolves (`resolvable: correctness=0`). The draw waits on a corpus with resolvable correctness rows.
+Jev runs first, then Deem, each behind its own gate. A failed gate prints its skip line and never runs the other backend in its place.
+
+No verdict line has been printed by any run. Do not claim one.
+
+Versions and IDs, read at doc time (after phase 027's commit): the newest deep-review changelog is `v1.11.0.36.md` and `SKILL.md` carries `version: 1.11.0.36`, so this phase writes `changelog/v1.11.0.37.md`. The session then syncs `SKILL.md`'s `version:` with `frontmatter-version.mjs apply --skill deep-review`; the doc steps do not edit `version:` by hand. The playbook's highest ID is DRV-068, so the scenario takes DRV-069.

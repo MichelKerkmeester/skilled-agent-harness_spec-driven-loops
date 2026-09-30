@@ -1,0 +1,12 @@
+TASK: reword one phrase in the track-narrowing feature-catalog entry so it no longer uses the bare word the workflow-invariance test bans on public surfaces. One literal replacement in one file.
+F = .skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md. Read F first. Change nothing else in it.
+
+1. F:32, the paragraph under `### Default Run`. Replace only this phrase, once:
+Old: It prints the index manifest hash, the test-set counts
+New: It prints the index's `manifestHash`, the test-set counts
+The rest of the line stays as it is.
+
+VERIFY (repo root):
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/briefs/content/feature-catalog-entry-v2.md .skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md   (expect no output, exit 0)
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md   (expect exit 0)
+Accept when: 1 file changed and nothing else; cmp exits 0; the validator exits 0.

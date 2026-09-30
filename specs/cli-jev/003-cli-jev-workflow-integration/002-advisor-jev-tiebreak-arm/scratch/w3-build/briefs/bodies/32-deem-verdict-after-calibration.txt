@@ -1,0 +1,53 @@
+TASK: a stopped arm prints no verdict line. runDeemArm prints the Deem column and verdict before its noul calibration pass, so a stop in that pass leaves a printed verdict beside `deem arm stopped: ...`. Print the column lines and the verdict only after the calibration pass completes. Tests pin it.
+R = .skilled/skills/system-skill-advisor/runtime. Files: R/scripts/routing-accuracy/score-jev-tiebreak.mjs and R/tests/parity/score-jev-tiebreak.vitest.ts. Read runDeemArm to its end first.
+
+In the script, inside runDeemArm only:
+1. Old (end of the `if (headroom === 'ok')` block):
+    column = summarizeColumn('deem', rows, records, census);
+    for (const line of columnLines(column)) out(line);
+    column.line = verdictLine(column, `model=${gate.model} model_commit=${gate.modelCommit} source_commit=${gate.sourceCommit}`);
+    out(column.line);
+  }
+   New:
+    column = summarizeColumn('deem', rows, records, census);
+  }
+2. After the noul loop (after its closing `}` and before `const m = calibrationMetrics(pairs);`), add:
+  // A stop anywhere in the arm returns above, so a verdict prints only for a finished arm.
+  if (column) {
+    for (const line of columnLines(column)) out(line);
+    column.line = verdictLine(column, `model=${gate.model} model_commit=${gate.modelCommit} source_commit=${gate.sourceCommit}`);
+    out(column.line);
+  }
+3. Update runDeemArm's JSDoc sentence about stops if it says otherwise. Nothing else changes.
+
+In the vitest file, in describe('score-jev-tiebreak deem calibration'), add at its end:
+  it('prints no verdict when the noul pass stops', async () => {
+    const stub = makeStub('cli-deem', [
+      `if [ "$1" = health ]; then echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}'; exit 0; fi`,
+      `cat > /dev/null; if [ "$1" = noul ]; then exit 3; fi`,
+      `echo '{"model":"deem-0.8-v1","answers":{"answer":{"choice":"b","probabilities":{"b":0.8,"none":0.05}}}}'`,
+    ].join('\n'));
+    const dir = mkdtempSync(join(tmpdir(), 'jev-tiebreak-deem-stop-'));
+    const lines: string[] = [];
+    try {
+      await main(['--deem', '--out', dir], {
+        census: { ...synthCensus(), rows: movableRows(), labels },
+        out: (line: string) => lines.push(line),
+        env: { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}` },
+        timeoutMs: 5000,
+      });
+      const report = JSON.parse(readFileSync(join(dir, 'report.json'), 'utf8'));
+      expect(lines).toContain('deem arm stopped: backend refused');
+      expect(lines.some((line) => line.startsWith('verdict: '))).toBe(false);
+      expect(lines.some((line) => line.startsWith('column: '))).toBe(false);
+      expect(report.columns).toEqual({});
+      expect(report.stopped.deem).toBe('deem arm stopped: backend refused');
+    } finally {
+      rmSync(stub, { recursive: true, force: true });
+      rmSync(dir, { recursive: true, force: true });
+    }
+  }, 60_000);
+
+VERIFY (repo root): node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs
+Accept when: 2 files changed and nothing else; node --check exits 0.
+

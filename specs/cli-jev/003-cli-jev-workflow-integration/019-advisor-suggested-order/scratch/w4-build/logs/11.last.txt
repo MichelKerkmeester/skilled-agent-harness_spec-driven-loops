@@ -1,0 +1,13 @@
+Verification passed: grep prints 3 (exit 0), and my file shows +3/-2. The other dirty files belong to concurrent workers; I touched only the named file.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md (+3/-2)
+EDITS:
+.skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:22 "44 features across 7 groups" -> "45 features across 7 groups"
+.skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:31 scorer-fusion row count 7 -> 8, scope appended ", offline suggested-order eval"
+.skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md:102 inserted new row "Offline suggested-order eval | scorer-fusion/suggested-order-eval.md" after line 101
+CHECKS:
+grep -c "45 features across 7 groups\|| 8 | 5-lane fusion\|scorer-fusion/suggested-order-eval.md" .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md -> 3 (exit 0)
+git diff --numstat .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md -> 3 2 (only F changed by this worker; other dirty files are concurrent workers')
+BLOCKED REASON: none

@@ -1,0 +1,1 @@
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts && npx vitest run model-benchmark/tests/verdict-fallback.vitest.ts

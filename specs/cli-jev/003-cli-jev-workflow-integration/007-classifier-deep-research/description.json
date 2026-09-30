@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
+  "description": "Rounds 1 and 2 asked where Jev, a hosted and keyed typed-judgment model, earns a place here",
+  "keywords": [
+    "rounds",
+    "asked",
+    "jev",
+    "hosted",
+    "keyed",
+    "typed-judgment",
+    "model",
+    "earns",
+    "place"
+  ],
+  "lastUpdated": "2026-09-27T09:37:40.603Z",
+  "specId": "007",
+  "folderSlug": "classifier-deep-research",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-09-26_10-37__round-3-closed-deem-0-8b-served-and-measured-with.md"
+  ]
+}

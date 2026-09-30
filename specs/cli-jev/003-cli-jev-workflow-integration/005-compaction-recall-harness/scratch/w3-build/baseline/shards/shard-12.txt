@@ -1,0 +1,80 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts (25 tests) 19529ms
+     ✓ authorizes and appends every event stem with replay-addressable metadata  13688ms
+     ✓ authorizes closed convergence signals with numeric and digest evidence  323ms
+     ✓ authorizes and reads back legitimate tokens and explanatory reasons  4936ms
+ ✓ ../system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts (29 tests) 4165ms
+     ✓ admits only one holder across two independent operating-system processes  631ms
+     ✓ admits one expected-head commit and rejects the competing append atomically  748ms
+     ✓ writes only through the gateway, reads verified events, and reduces deterministically  406ms
+ ✓ ../system-deep-loop/runtime/tests/unit/semantic-communities.vitest.ts (16 tests) 44ms
+ ✓ ../system-deep-loop/runtime/tests/unit/write-set-conflict-graph.vitest.ts (59 tests) 100ms
+ ✓ ../system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts (20 tests) 5907ms
+     ✓ emits score delta from the latest prior snapshot and gates improvement effect output  483ms
+     ✓ accepts divergent mode while preserving existing convergence decisions  484ms
+     ✓ keeps divergent CONTINUE and STOP_BLOCKED decisions identical to existing modes  910ms
+     ✓ blocks research STOP under an explicit observation threshold until the leading finding is confirmed enough times  406ms
+     ✓ blocks research STOP when low reported novelty disagrees with graph novelty  489ms
+     ✓ allows research STOP when low reported novelty matches a flat graph delta  303ms
+     ✓ allows research STOP when the only post-snapshot graph change is insight metadata  406ms
+     ✓ replays a recorded research convergence cassette against the pinned envelope  604ms
+     ✓ pins coverage graph threshold traces for research, review, and context loops  592ms
+ ✓ runtime/tests/spec-doc-structure.vitest.ts (30 tests) 6794ms
+     ✓ reports strict validation failures on the legacy Level 3 filled template fixture  2054ms
+     ✓ fails semantic-empty authored frontmatter fields  2467ms
+     ✓ fails duplicate opening anchor IDs during packet validation  2083ms
+ ✓ ../system-deep-loop/runtime/tests/unit/continuity-identities.vitest.ts (20 tests) 22489ms
+     ✓ returns one recorded logical identity on exact retries  418ms
+     ✓ recovers the same ID after authorization succeeds but domain commit is interrupted  693ms
+     ✓ collapses concurrent exact mint requests to one accepted entity  423ms
+     ✓ accepts one concurrent provenance and rejects token reuse with another  414ms
+     ✓ mints a linked child for a true fork without mutating the parent  1190ms
+     ✓ records retry and resume attempts under one logical mode session  1138ms
+     ✓ restores the same typed frontier, cursor, and replay fingerprint  1838ms
+     ✓ rejects tampered, missing, and wrong-kind frontier references  1854ms
+     ✓ rejects a stale cursor before dispatch after the ledger advances  2090ms
+     ✓ derives byte-identical state and replay identity from the same authorized prefix  1707ms
+     ✓ fails explicitly when stored ledger bytes are tampered  1791ms
+     ✓ preserves one source claim across every registered mode boundary  3578ms
+     ✓ records dark aliases through the existing adapter and never changes legacy results  4074ms
+     ✓ validates downstream typed subjects without cloning or mode-local rewriting  1032ms
+ ✓ ../system-deep-loop/runtime/tests/unit/jsonl-repair.vitest.ts (12 tests) 603ms
+[test-launcher] bridging to lease holder pid=123 socket=tcp://127.0.0.1:65535
+[test-launcher] bridging to lease holder pid=123 socket=tcp://127.0.0.1:65535
+[test-launcher] bridging to lease holder pid=123 socket=tcp://127.0.0.1:65535
+[test-launcher] lease holder pid=123 socket=tcp://127.0.0.1:65535 failed 1 consecutive liveness probes: timeout
+[test-launcher] bridging to lease holder pid=123 socket=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/lease-owner-sock-hsY8y1/daemon-ipc.sock
+LEASE_HELD_BY:123 startedAt=2026-05-28T00:00:00.000Z (no-bridge-socket)
+[test-launcher] bridging to lease holder pid=123 socket=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/lease-legacy-sock-sz4HSJ/daemon-ipc.sock
+LEASE_HELD_BY:123 startedAt=2026-05-28T00:00:00.000Z (no-bridge-socket)
+ ✓ runtime/tests/launcher-ipc-bridge-probe.vitest.ts (20 tests) 22ms
+ ✓ ../system-deep-loop/runtime/tests/unit/post-dispatch-receipt-validator.vitest.ts (10 tests) 26ms
+{"type":"step_start","part":{"type":"step-start","modelID":"deepseek-v4-pro"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"deepseek-v4-pro"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"  DeepSeek-V4-Pro  "}}
+{"type":"step_start","part":{"type":"step-start","modelID":"some-other-model"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"gpt-9-substituted"}}
+{"type":"step_start","part":{"type":"step-start","modelID":"deepseek-v4-pro"}}
+ ✓ ../system-deep-loop/runtime/tests/unit/executor-provenance-mismatch.vitest.ts (10 tests) 155ms
+ ✓ runtime/tests/embedders/launcher-model-server-idle-eviction.vitest.ts (3 tests) 21ms
+ ✓ ../system-deep-loop/runtime/tests/unit/workflow-session-id-parity.vitest.ts (2 tests) 25ms
+ ✓ ../system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts (11 tests) 9ms
+INFO [speckit-hook:state] Skipped clearing compact payload for session r33001-session because the cached payload changed
+ ✓ runtime/tests/adversarial/compact-prime-identity-race.vitest.ts (2 tests) 11ms
+ ✓ ../system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts (9 tests) 794ms
+ ✓ runtime/tests/user-prompt-submit-shim.vitest.ts (8 tests) 5306ms
+     ✓ lets a slow child finish within the shim timeout  2282ms
+     ✓ clamps an operator budget to the kill deadline  2349ms
+ ✓ ../system-deep-loop/runtime/tests/unit/coverage-graph-db.vitest.ts (3 tests) 17ms
+ ↓ runtime/tests/copilot-compact-cycle.vitest.ts (2 tests | 2 skipped)
+ ✓ ../system-deep-loop/runtime/tests/unit/lifecycle-taxonomy.vitest.ts (8 tests) 2ms
+ ✓ runtime/tests/chunking-semantic.vitest.ts (5 tests) 2ms
+ ✓ runtime/tests/folder-discovery-threshold.vitest.ts (4 tests) 2ms
+
+ Test Files  21 passed | 1 skipped (22)
+      Tests  306 passed | 2 skipped (308)
+   Start at  22:28:08
+   Duration  68.34s (transform 507ms, setup 65ms, import 950ms, tests 66.02s, environment 1ms)
+

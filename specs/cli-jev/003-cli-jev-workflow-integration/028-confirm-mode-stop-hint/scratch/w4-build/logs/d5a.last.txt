@@ -1,0 +1,9 @@
+No em dashes or semicolons in the file (grep exit 1, no matches). All facts in the doc trace to `score-stop-hint.cjs` (usage constant, switch handling, printed-line constants, `verdictLine`/`raterSuffix`/`hintLine` output) and `facts.txt`. No verdict line is claimed as printed by any run.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md` (+68/-0)
+EDITS: `.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md`:1 created the F057 leaf `Stop-hint replay`, frontmatter `version: 1.7.0.0`, MODEL shape from `scoring/stop-rater-replay.md`, sections OVERVIEW / HOW IT WORKS (Hints and Columns, Label Gate and Keep Rule, Stored Report and the Hint Line) / SOURCE FILES / SOURCE METADATA. Index block untouched (separate step).
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md` -> `✅ VALID: ...stop-hint-replay.md` / `Document type: feature_catalog` / `Total issues: 0` (exit 0)
+CHECKS: `git diff --stat -- .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md` -> empty output (exit 0), expected since the file is new and untracked; `git status --porcelain` on its directory shows only `?? .../scoring/stop-hint-replay.md`
+BLOCKED REASON: none

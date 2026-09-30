@@ -1,0 +1,73 @@
+I'll start by reading the reference docs and both target files.
+
+Now let me read the rest of R (section 13) and both target files.
+
+
+
+Now let me read T (the test file) and N (the older scorer whose main structure S follows) to match the house idiom.
+
+Now let me look at N's main to match the house structure for steps 3–4.
+
+
+
+Let me check the briefs directory to see if the follow-up brief (steps 5–7) indicates the expected variable shape.
+
+
+
+
+
+
+
+
+
+Let me check whether a similar implemented scorer exists elsewhere in the repo (to match the expected main shape), and look at the reports dir.
+
+Before writing, I need to follow the repo's routing rules: read sk-code's skill (required by the persona) and check the repo rules gate.
+
+
+
+Gate 5 fired (REPO RULES.md exists) and Gate 2's artifact trigger routes code writes through sk-code. The compiled router deferred, so let me resolve the surface packet for this Node/JS system code.
+
+
+
+Now I'll load the surface packet and the repo rule files that my action (code edit + result reporting) triggers.
+
+
+
+Now the JavaScript surface references for the language standard, per the packet's route.
+
+I have everything I need. Now I'll make the S edit — replacing the `return 0` that follows step 2 with R section 13 steps 3–4.
+
+S is edited. Now the T helpers — inserting after `labeledFixture`.
+
+Now appending the two tests at the end of T.
+
+Both edits are in. Now the three mandated verification checks.
+
+All three checks pass (21 tests, both files parse). Let me confirm the diff scope and do a byte-level review of the stub templates against Q.
+
+The numstat came back empty, which is unexpected — let me check the worktree state.
+
+
+
+One refinement to a new comment for accuracy, then I'll re-run the full check set from the final state.
+
+
+
+Final review of the edited S main in one piece before closing out.
+
+STATUS: DONE
+FILES CHANGED:
+.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs (+33/-0)
+.skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+113/-0)
+EDITS:
+score-injection-screen.mjs:806-839 steps 3 and 4 inserted after the step-2 `--out` check: function-scoped `ready/commit/gate/rows/summary` (so steps 5-7 can consume them), one try over tracked files, HEAD commit, fetch census, corpus, both JSONL reads, label gate, and buildRows/summarizeBaseline when complete; then fetch census lines, corpus census lines, rule lines, and either gate lines or baseline lines + headroom line with `ready` set; then `return 0`.
+score-injection-screen.test.mjs:113-189 `makeStubs()` and `stubLog(bin, name)` plus the `JEV_STUB` and `DEEM_STUB` String.raw constants added after labeledFixture, byte-identical to Q, written 0o755.
+score-injection-screen.test.mjs:417-450 the two named tests appended (default zero-call run; labeled baseline + headroom run).
+CHECKS:
+node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs -> no output (exit 0)
+node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> no output (exit 0)
+grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> 21 (exit 0)
+node -e "<extract both String.raw templates from T, byte-compare to ref/stubs.md fenced blocks>" -> jev match=true deem match=true (exit 0)
+node -e "<vm.Script parse of both written-stub texts>" -> jev stub parses ok, cli-deem stub parses ok (exit 0)
+BLOCKED REASON: none

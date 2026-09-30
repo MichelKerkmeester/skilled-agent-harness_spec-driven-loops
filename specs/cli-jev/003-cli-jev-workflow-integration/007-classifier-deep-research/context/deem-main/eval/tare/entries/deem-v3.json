@@ -1,0 +1,23 @@
+{
+  "model": "deem-v3",
+  "backbone": "Qwen3-1.7B-Base",
+  "date": "2026-09-21",
+  "notes": [
+    "Order-randomized retrain: flip-rate catastrophe fixed, but negation blindness exposed (consistency error 0.895).",
+    "Exact-laws environments were not trained or evaluated at this checkpoint."
+  ],
+  "adapters": {
+    "eval": {
+      "artifact": "scripts/sft/results_v3.json",
+      "key": "v3"
+    },
+    "temperature": {
+      "artifact": "scripts/sft/temperature_v4.json",
+      "key": "v3"
+    },
+    "consistency": {
+      "artifact": "scripts/sft/consistency_v3.json",
+      "key": "v3"
+    }
+  }
+}

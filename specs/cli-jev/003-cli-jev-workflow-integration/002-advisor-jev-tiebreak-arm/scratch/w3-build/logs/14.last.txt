@@ -1,0 +1,42 @@
+I'll start by reading the two target files and the sk-code skill as the persona directs.
+
+I have the first sections. Now let me read the rest of the script to find `runJevArm`, and the rest of the test file to find the jev arm describe block.
+
+I have both files' key regions. Now let me read the remainder of the script (lines 950–1356) to see `runDeemArm` and `main`, so my edits stay scoped to `runJevArm` only and don't collide with similar patterns elsewhere.
+
+I now have the complete picture of both files. Before writing, I need to check the repo root for the rules files (Gate 5 / always-on AGENTS rule) and confirm my edit anchors. Let me do a quick directory listing and read the root AGENTS.md.
+
+The repo root holds `REPO RULES.md`, so Gate 5 fires before my first write. Let me read it and match my action (editing a script and a vitest file) against its trigger table.
+
+The trigger table routes my close-out and the contract change I'm making. Loading the rule files that fire for this action — reporting a result and ending a turn (evidence-and-proof, communication-handoff), plus the shared-contract clause (blast-radius) — and the sk-code route packet for this surface (opencode: system code).
+
+All context is loaded. Stakes read: low blast, trivially reversible — working-tree edits to two tracked files; the consumers (the vitest suite) are updated in the same change; rollback is `git checkout -- <the two files>`. Comment hygiene: no comments added. Proceeding with the four script edits and the two test-file edits.
+
+Script edits applied. Now the two test-file edits — the two added assertions in the existing jev-arm tests and the new `it` at the end of that describe.
+
+All six edits applied. Now re-reading the edited regions (final state), running the required verification, and inspecting the scoped diff.
+
+Both edited regions re-read in final state, and `node --check` exited 0 with no output. Per the loaded evidence rule, exit-0-no-output is a suspicious pass — I need a negative control proving that check can actually fail on broken syntax, plus line-count confirmation of the delta.
+
+Both edits are in, the syntax check is green with a validated negative control, and the tree shows only the two named files touched by this work. Close-out below.
+
+Work state: the two files are edited but uncommitted (they are untracked in this worktree, so no `git diff` numstat was available — the +/- counts are derived from the edit receipts and confirmed by the line-count delta). Per the brief I ran only the listed check; vitest, drift guards, and commits are the orchestrator's. Nothing is blocked.
+
+REPO RULES: .skilled/repo-rules/evidence-and-proof.md, .skilled/repo-rules/communication-handoff.md, .skilled/repo-rules/blast-radius.md
+SKILL ROUTING: User directed → sk-code (hub read; route resolved to sk-code-opencode surface for `.skilled/` system code)
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+6/-4)
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+26/-0)
+EDITS: score-jev-tiebreak.mjs:827 auth-test model now `?? 'unknown'` when the body omits it
+EDITS: score-jev-tiebreak.mjs:863 added `let stopLine = null;` in the choice loop
+EDITS: score-jev-tiebreak.mjs:888-893 exit 2/3/130 set `stopLine` instead of returning before the call is recorded
+EDITS: score-jev-tiebreak.mjs:908 `if (stopLine !== null) return stop(stopLine, finished);` after `record(...)`, before `records[row.id].push`
+EDITS: score-jev-tiebreak.vitest.ts:668-669 rejected-key test pins last call = r2/pass 1/exit 3, answer null, unmeasured
+EDITS: score-jev-tiebreak.vitest.ts:676-678 usage-error test pins exactly one choice call (r0, exit 2, unmeasured)
+EDITS: score-jev-tiebreak.vitest.ts:681-700 new `it('names the model unknown when auth test omits it')` with its own stub, 60_000 timeout
+CHECKS: `node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs` -> no output, exit 0
+CHECKS: `printf 'const x = ;\n' | node --check /dev/stdin` -> `SyntaxError: Unexpected token ';'` (exit 1) — negative control, checker fails on broken syntax
+CHECKS: `wc -l` both files -> 1358 / 892 (script +2, test +26 vs pre-edit reads)
+CHECKS: `git status --porcelain` -> only the two named files changed by this work; no unrelated tracked file modified
+BLOCKED REASON: none

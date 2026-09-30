@@ -1,0 +1,11 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py (+3/-3, file is git-untracked in this worktree; edited in place only)
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py:1171 comment now reads "node runs it, since the client is a Node script."
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py:1172 REPO_CLI_DEEM SCRIPT_DIR.parents[3] -> SCRIPT_DIR.parents[2]
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py:1190 return [sys.executable, str(REPO_CLI_DEEM)] -> return ["node", str(REPO_CLI_DEEM)]
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py -> no output (exit 0)
+CHECKS: python3 -c "import sys; sys.path.insert(0, '.skilled/skills/sk-doc/sk-create-with-human-voice/scripts'); import hvr_reader_lens as S; print(S.REPO_CLI_DEEM.is_file())" -> True (exit 0)
+CHECKS: grep -n 'parents[3]|interpreter running this script|sys.executable, str(REPO_CLI_DEEM)' <S> -> no hits for any old form (exit 1, expected clean); file also imports cleanly as shown above
+BLOCKED REASON: none
+
+Notes: target `cli-deem.mjs` exists at `.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs`; the old `.skilled/cli-classifier` path does not exist. Route: sk-code hub -> compiled route resolved `sk-code-opencode`; Python slice (style-guide, quality-standards, quick-reference) loaded before the edit. No other files touched; no test suites run (orchestrator's scope).

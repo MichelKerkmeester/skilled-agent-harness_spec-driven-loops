@@ -1,0 +1,4 @@
+{"type":"iteration","iteration":10,"angle":"grok-10","newInfoRatio":0.34,"findingsCount":2,"ruledOutCount":1}
+{"type":"finding","id":"f-grok-10-first-slice","title":"The first slice is an offline Python jev-cli choice arm that does not write the ranking","seam":"specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/repo-rules-digest.md:54","verdict":"next","confidence":"inferred","metric":"held-out MRR and right-skill-at-3; Jev delta unmeasured"}
+{"type":"finding","id":"f-grok-10-loss-kills-choice","title":"A routing loss kills other closed-set choice ideas for the quarter and does not kill noul questions","seam":".skilled/hooks/goal/lib/goal-core.cjs:603","verdict":"later","confidence":"inferred","metric":"the same held-out comparison"}
+{"type":"ruled_out","id":"r-grok-10-goal-first","title":"Shipping the goal verifier before the routing arm","reason":"No labeled transcript set, and met can overturn the blocking-language gate"}

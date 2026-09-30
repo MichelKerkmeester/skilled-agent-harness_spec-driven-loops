@@ -1,0 +1,191 @@
+---
+name: cli-deem
+description: "Local Deem classifier transport: noul probabilities, choice keys, score positions and batched runs from the served Deem model, gated by a health check."
+allowed-tools: [Read, Bash, Grep, Glob]
+version: 0.1.0.0
+---
+
+<!-- Keywords: cli-deem, deem, deem cli, local deem, deem model, deem classifier, deem health, deem noul, deem choice, deem score, deem run, deem-0.8-v1, commit pair, local typed judgment -->
+
+# Deem Local Classifier Transport - Typed Judgments Without a Key
+
+> **Transport, not executor.** `cli-deem` is the `cli-classifier` hub's `packetKind: "transport"` mode. It is one Node file that sends a question to the Deem server on this machine and prints one typed answer. It has no file tools and no loop, so it never changes this workspace and never finishes a task on its own. Pair it with a workflow mode whenever the answer feeds an edit.
+
+`cli-deem` asks the locally served Deem model for four judgment types: a yes/no probability (`noul`), one option key (`choice`), a position on an ordered scale (`score`) and a batch of keyed answers (`run`). It posts Deem's own request shape to a loopback address (`127.0.0.1:8300` unless `CLI_DEEM_URL` names another) and prints the answer in the field names a `jev` reader already parses, so a caller written for `jev` output reads Deem output without a second parser. It needs no key. No data leaves the machine.
+
+**Core principle**: check availability with `health` first, send only the state the judgment needs, read the exit code before the payload and keep every consequence behind the caller's own switch.
+
+---
+
+## 1. WHEN TO USE
+
+### Activation Triggers
+
+- **A local typed judgment**: a script, hook or offline arm needs a probability, a category or an ordered level from Deem rather than generated text.
+- **The Deem availability check**: a feature must learn whether Deem is usable before it acts. That check is `cli-deem health`.
+- **A batch over one state**: several unrelated questions apply to one state and fit one request.
+- **Transport discovery**: a request names `cli-deem`, Deem, the local Deem model or `deem-0.8-v1`.
+
+### When NOT to Use
+
+- **The server is not running.** Every subcommand then exits 4 and changes nothing. Starting the server is the operator's step with `deem-ctl`, never this client's.
+- **The question is a fact this repository can answer.** A grep, a test run or a read settles it. A model opinion about it is a guess.
+- **The request needs an edit, a build or a test.** This packet has no file or process tools. Dispatch a workflow mode and use `cli-deem` only for the judgment that steers it.
+- **A hosted judgment is wanted.** Jev with a stored key is this hub's `cli-jev` mode, over the `cli-jev` packet. The two backends never fail over to each other silently.
+- **A prose answer is the deliverable.** Deem returns no explanation.
+
+---
+
+## 2. SMART ROUTING
+
+### Availability Check
+
+Run this before the first judgment of a session and in every feature that must stay dormant without Deem:
+
+```bash
+node .skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs health
+```
+
+Exit 0 prints one JSON line with the backend, the model id and the commit pair, such as `{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"8cbabbb2...","source_commit":"7cf293f..."}`. Any other exit means Deem is unavailable for this run. The caller then keeps today's behavior. `health` passes only when every row holds:
+
+| Check | Passes when | Fails with |
+|---|---|---|
+| Reachable | `GET /health` answers HTTP 200 within 2,000 ms (500 ms with `--hook`) | exit 4 on a refused connection, a timeout or a 5xx |
+| Shape | the body is a JSON object with `status` `ok` | exit 1 |
+| Backend | `backend` is `torch` or starts with `ensemble:` and contains no `stub` | exit 3 |
+| Model pin | `model` is `deem-0.8-v1` | exit 3 |
+| Commit pair | `~/.local/share/deem/models/current` resolves and `~/.local/share/deem/src` is a git checkout | exit 2, naming the missing path |
+
+The backend row exists because Deem's stub backend also answers `status` `ok`, with uniform logits and a `noul` of 0.5 for every question. A caller that trusted `status` alone would read that 0.5 as a judgment.
+
+### Resource Loading Levels
+
+| Level | When | Loads |
+|---|---|---|
+| First slice | Any judgment request | `references/wire-contract.md` |
+| On demand | Starting, stopping, updating or rolling back the server | `references/deem-ctl-lifecycle.md` |
+| On demand | Recording provenance or deciding whether a measured result still holds | `references/model-pin.md` |
+| On demand | One subcommand's contract and anchors | `feature-catalog/feature-catalog.md` |
+
+### Smart Router
+
+| Request shape | Loads |
+|---|---|
+| "is deem up" / "check deem health" | `references/wire-contract.md` |
+| "ask deem whether this is urgent" / "have deem pick a queue" | `references/wire-contract.md` |
+| "which commit is deem serving" / "does my keep still hold" | `references/model-pin.md` |
+| "deem is down" / "update deem" / "roll deem back" | `references/deem-ctl-lifecycle.md` |
+
+---
+
+## 3. HOW IT WORKS
+
+### Execution Ownership
+
+The caller owns the question, the state, its own on/off switch and the consequence. `cli-deem` owns one thing: sending the question in Deem's shape and returning the answer in the `jev` reader's shape. It never starts, stops, updates or rolls back the server. `deem-ctl` owns that lifecycle.
+
+### The Dispatch Shape
+
+```bash
+C=.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs
+node $C noul -q 'Does this message ask for a reply today?' -s 'Please restore service today.' --value
+node $C choice -q 'Which team owns this?' -s @state.txt -o billing='Payment or refund problem' -o support='Product or account problem'
+node $C score -q 'How severe is this incident?' -s @state.txt -l 'no user impact' -l 'degraded' -l 'outage' --value
+node $C run request.json
+```
+
+`-q` is the question and `-s` the state: text, `@file` or `-` for stdin. With no `-s` the state is read from stdin. An inherited terminal is refused with exit 2 instead of hanging. `choice` takes `-o KEY=DESCRIPTION` pairs and `score` takes `-l DESCRIPTION` levels from lowest to highest. `run` takes a request file (or `-` for stdin) written in Deem's own shape. `--value` prints only the primary answer. `--hook` shortens the timeout to 500 ms for a caller that a user is waiting on.
+
+### What Changes on the Wire
+
+| Subcommand | Sent to Deem | Returned to the caller |
+|---|---|---|
+| `noul` | `instructions` only | `value` renamed to `noul` |
+| `choice` | the descriptions as an `options` list | the chosen description mapped back to its key, with `probabilities` rekeyed by key |
+| `score` | the levels as a `levels` list | `level` replaced by `score`, its zero-based position, with `probabilities` rekeyed by position |
+| `run` | the request file unchanged | each answer translated by its type. A `choice` keeps Deem's option text, because a Deem-shaped request lists options without keys |
+
+Deem's `confidence`, `temperature` and the score's `expected` pass through unchanged. The envelope keeps Deem's `id`, `model` and `usage`.
+
+### Output Contract
+
+Default output is one JSON line on stdout. Errors print `{"ok":false,"error":"<message>"}` on stderr with an empty stdout, so the exit code carries the class.
+
+| Exit | Meaning | Caller's move |
+|---|---|---|
+| 0 | A judgment or a passing health check | Read the payload. It is a judgment, not a fact |
+| 1 | HTTP 400 or an unexpected response body | Do not retry blindly. Read the error |
+| 2 | Usage or config: a bad flag, more than 26 options, more than 64 questions, a duplicate option description or key, a `CLI_DEEM_URL` off loopback or a missing commit-pair path | Fix the command. Nothing was sent |
+| 3 | Refused backend: the stub or a model id other than `deem-0.8-v1` in the health body or an answer | Treat Deem as unavailable. Another server holds the port |
+| 4 | Unreachable, a timeout or a 5xx | Treat Deem as unavailable for this run |
+| 130 | Interrupted | The operator stopped it |
+
+### Dispatch-Critical Gotchas
+
+1. **One request at a time.** The server holds one lock around inference, so a call waits behind an offline batch. Pass `--hook` when a user is waiting. Treat exit 4 as "skip", never as an answer.
+2. **The model id is a label, not the weights.** `deem-0.8-v1` survives every update. Record the commit pair `health` prints next to any measured result. Read `references/model-pin.md` before reusing a result after an update.
+3. **A cold server is refused, not awaited.** The server binds its port only after the weights load, about 10 s after a start. Until then every subcommand exits 4.
+4. **No option-order averaging.** The served instance reads each `choice` in one option order. A caller that wants averaging sends its own permuted requests.
+5. **Not a library.** Callers spawn the binary and parse stdout. Each caller keeps its own switch. The hub has none.
+
+---
+
+## 4. RULES
+
+### ALWAYS
+
+- Run `health` before the first judgment and record the commit pair it prints with every result you keep.
+- Choose the narrowest question type: `noul` for a probability, `choice` for one key, `score` for an ordered level and `run` only for several questions over one state.
+- Give `choice` descriptions that are distinct and mutually exclusive. Give `score` levels from lowest to highest.
+- Read the exit code before the payload. Exit 3 and exit 4 both mean Deem is unavailable, never that the answer is no.
+- Close or feed stdin whenever the state comes from stdin.
+
+### NEVER
+
+- Never start, stop, update or roll back the server from a feature or a hook. `deem-ctl` is the operator's tool.
+- Never send a key or a bearer. The server takes none. This client sends none.
+- Never point `CLI_DEEM_URL` off this machine. The client accepts only `127.0.0.1`, `localhost` or `[::1]` and exits 2 on anything else.
+- Never fail over silently between Deem and Jev. Each caller names its backend.
+- Never reuse a kept result across a changed commit pair without requalifying it.
+
+### ESCALATE IF
+
+- `health` exits 3: a server other than the pinned Deem holds the port. The operator decides what runs there.
+- `health` exits 2: the checkpoint link or the source tree is missing, so the install is broken. The operator repairs it with `deem-ctl`.
+- A judgment would drive an irreversible action. The operator owns that call, not the model.
+
+---
+
+## 5. SUCCESS CRITERIA
+
+A judgment is complete when it exits 0, the payload parses, the answer fits its type and the caller has recorded the commit pair `health` printed. Fitting the type means `noul` is a number in `[0, 1]`, `choice` is one of the submitted keys and `score` is a position in the submitted list.
+
+The packet is complete when a reader can decide whether Deem is available, compose each subcommand, recognize every exit class and find the lifecycle commands without opening another packet.
+
+---
+
+## 6. INTEGRATION POINTS
+
+### Hub Integration
+
+`cli-deem` is the first mode of the `cli-classifier` hub and its only transport. `mode-registry.json` declares it `packetKind: "transport"` under the `transport-axis` extension, with `mutatesWorkspace: false` and a forbidden tool set of `Write`, `Edit` and `Task`. It routes by hub membership (`routingClass: "metadata"`), so the advisor scores the hub and `hub-router.json` picks this mode.
+
+### Callers
+
+A feature that can use Deem spawns `cli-deem health`, stays dormant on any non-zero exit and only then spawns the judgment it needs. It reads stdout as it would read `jev` output. The feature owns its switch, its threshold and what it does with the answer.
+
+### Tool Roles
+
+- **Bash**: runs `node .skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs`, the only surface this packet uses.
+- **Read / Glob / Grep**: read a state file, a request file and this packet's references.
+- **Write / Edit / Task**: forbidden. A transport that edits is a workflow wearing the wrong `packetKind`.
+
+---
+
+## 7. REFERENCES
+
+- `references/wire-contract.md`: request and answer fields, the caps, the timeouts, the one-request lock and the no-key rule.
+- `references/deem-ctl-lifecycle.md`: install, start, stop, status, update and rollback, all owned by `deem-ctl`.
+- `references/model-pin.md`: what `deem-0.8-v1` names, what the commit pair names and when a result must be requalified.
+- `feature-catalog/feature-catalog.md`: one entry per subcommand with source anchors.
+- `scripts/cli-deem.mjs` is the client. `scripts/tests/cli-deem.test.mjs` holds its fake-server tests, run with `node --test`.

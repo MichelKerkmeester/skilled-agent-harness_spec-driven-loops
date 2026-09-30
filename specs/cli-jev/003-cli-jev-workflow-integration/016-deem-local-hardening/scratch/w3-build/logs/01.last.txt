@@ -1,0 +1,18 @@
+I'll start by reading the target file region and the skill routing contract the brief names.Step 1 check: lines 118-120 match the required text exactly (8-space and 12-space indents included). Now running the routing lookups the repo rules require (read-only), before any write.Compiled router deferred (no dominant workflow mode — expected for a bare implement request); the hub's rule then defers to a pure surface bundle. This file is a shell script → OPENCODE surface, so I'll load that surface packet as the brief instructs, then do the work.Surface packet loaded — shell scripts route to the shell standards with shellcheck as the named gate, which matches this brief. Now executing the edit per the brief: copy first, never edit in place.Copy created with mode preserved. Reading the copy's region before editing it (READ FIRST applies to the file I edit).Now the edit on the copy: three lines out, six lines in, exact bytes from the brief.Edit applied with the exact six lines and indents. Running the syntax gates before promoting the copy.Both gates pass (bash -n: 0, shellcheck: 0, no output). Promoting the verified copy into place.Promoted; mode preserved (`-rwxr-xr-x`). Running the full step-3 verification suite from the target directory.All counts match. Final check: the diff against the untouched backup (expecting exactly one hunk: 3 out, 6 in), plus a last `ls -la` for modes.Verification complete. One last read of the edited region in the live file for the record.All checks pass. The two diff hunks (`117a118,119` + `120c122,123`) are the minimal-diff rendering of the specified block replacement — the two unchanged continuation lines in the old block align with their moved position in the new block, giving exactly 3 lines out / 6 lines in, with no other change anywhere in the file.
+
+STATUS: DONE
+FILES CHANGED: /Users/michelkerkmeester/.local/share/deem/bin/deem-ctl (+6/-3)
+EDITS: deem-ctl:118-123 replaced the 3-line env/nohup block with the 6-line version: two why-comments, `DEEM_ACCESS_LOG=1` added to the env, redirect changed `>"$SERVER_LOG"` → `>>"$SERVER_LOG"` (8/12-space indents kept); edited via `deem-ctl.new`, then `mv -f` after gates passed
+CHECKS:
+- /usr/bin/grep -c 'DEEM_ACCESS_LOG=1' deem-ctl -> 1 (exit 0)
+- /usr/bin/grep -c '>>"$SERVER_LOG"' deem-ctl -> 1 (exit 0)
+- /usr/bin/grep -c DEEM_N_ORDERS deem-ctl -> 0 (exit 1, expected: no matches)
+- bash -n deem-ctl -> no output (exit 0)
+- /opt/homebrew/bin/shellcheck deem-ctl -> no output (exit 0)
+- diff deem-ctl.bak-2026-09-28 deem-ctl -> `117a118,119` + `120c122,123` = exactly 3 lines out / 6 lines in, no other change (exit 1, expected)
+- ls -a -> `.  ..  deem-ctl  deem-ctl.bak-2026-09-28` only; no deem-ctl.new left
+- wc -l deem-ctl -> 253 (exit 0)
+- mode after mv: `-rwxr-xr-x`; backup untouched: 11182 bytes, mtime Sep 27 09:38
+BLOCKED REASON: none
+
+Note for the orchestrator: I ran no write commands inside the repository — 0 repo files changed by this worker (only read-only routing lookups and reads). deem-ctl itself was never executed.

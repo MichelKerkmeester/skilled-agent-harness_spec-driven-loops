@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/ambiguity.md
+Document type: playbook_feature
+Total issues: 0

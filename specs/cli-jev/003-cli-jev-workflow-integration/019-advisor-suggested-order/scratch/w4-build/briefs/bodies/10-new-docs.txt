@@ -1,0 +1,14 @@
+TASK: create three new skill docs by copying staged text byte for byte. Do not change a character.
+K = .skilled/skills/system-skill-advisor. C = specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/content. None of the three targets exists yet; if one does, stop and report BLOCKED.
+
+1. cp C/catalog-suggested-order-eval.md K/feature-catalog/scorer-fusion/suggested-order-eval.md
+2. cp C/playbook-suggested-order-eval.md K/manual-testing-playbook/scorer-fusion/suggested-order-eval.md
+3. cp C/changelog-v0.14.0.0.md K/changelog/v0.14.0.0.md
+
+Use the full paths (expand K and C). Do not edit the copies and do not touch any other file, including the index pages beside them.
+
+VERIFY (repo root), one line each:
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/content/catalog-suggested-order-eval.md .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md && echo same1
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/content/playbook-suggested-order-eval.md .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/suggested-order-eval.md && echo same2
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/content/changelog-v0.14.0.0.md .skilled/skills/system-skill-advisor/changelog/v0.14.0.0.md && echo same3
+Accept when: exactly these 3 new files exist and nothing else changed; the checks print same1, same2 and same3.

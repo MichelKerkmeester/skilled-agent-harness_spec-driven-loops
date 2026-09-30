@@ -1,0 +1,9 @@
+== .skilled/skills/system-skill-advisor/SKILL.md exit=0 Document type: skill Total issues: 0 
+== .skilled/skills/system-skill-advisor/README.md exit=0 Document type: readme Total issues: 0 
+== .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md exit=0 Document type: readme Total issues: 1 
+== .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md exit=0 Document type: readme Total issues: 1 
+== .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md exit=0 Document type: readme Total issues: 0 
+== .skilled/skills/system-skill-advisor/runtime/tests/parity/README.md exit=0 Document type: readme Total issues: 0 
+== .skilled/skills/system-skill-advisor/changelog/v0.14.0.0.md exit=0 Document type: changelog Total issues: 0 
+== .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md exit=0 Document type: feature_catalog Total issues: 0 
+== .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/suggested-order-eval.md exit=0 Document type: playbook_feature Total issues: 0 

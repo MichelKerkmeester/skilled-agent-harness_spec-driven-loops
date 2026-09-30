@@ -1,0 +1,3 @@
+  FAIL ../../../../../../../../var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/fmv-c0LXkN/skills/fixt-skill/references/ref-conflict.md -> mismatch:9.9.9.9!=2.3.0.0 (expected 2.3.0.0)
+
+PASS — 23 passed, 0 failed

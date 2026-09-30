@@ -1,0 +1,2 @@
+as run   : verdict: kill backend=deem decided=38 wins=8 losses=30 p_win=0.9999 p_loss=0.0002 flip=0.3123 unstable 17
+aliases 1: verdict: kill backend=deem decided=37 wins=8 losses=29 p_win=0.9999 p_loss=0.0004 flip=0.2643 unstable 13

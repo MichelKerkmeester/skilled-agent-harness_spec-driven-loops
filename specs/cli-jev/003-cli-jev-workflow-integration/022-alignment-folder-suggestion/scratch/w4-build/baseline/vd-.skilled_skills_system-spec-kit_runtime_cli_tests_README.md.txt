@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/system-spec-kit/runtime/cli/tests/README.md
+Document type: readme
+Total issues: 0

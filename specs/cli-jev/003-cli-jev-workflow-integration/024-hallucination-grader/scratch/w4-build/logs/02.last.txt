@@ -1,0 +1,23 @@
+I'll read both target files first, then make the two edits.
+
+Both files read. Now applying the three edits.
+
+Both edits applied. Running the four verification commands from the repo root.
+
+All four checks pass. Let me confirm the scoped diff with a read-only git check.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs (+6/-0)
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts (+3/-0)
+EDITS:
+- score-model-variant.cjs:206 added `@throws {Error} When graderKind is not 'llm', 'mock' or 'noop'` to the buildGraderFn JSDoc
+- score-model-variant.cjs:212-216 added unknown-kind guard between the noop branch and `const mode` (throws instead of falling through to the mock stub); defaults at score() and the CLI untouched
+- scorer.vitest.ts:160-162 added the throw test inside `describe('buildGraderFn factory')` after the mock-grader test
+CHECKS:
+- `node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs` -> no output, syntax OK (exit 0)
+- `node -e "...buildGraderFn('jev')..."` -> `buildGraderFn: unknown grader kind 'jev' (expected noop, mock or llm)` (exit 0)
+- `node -e "...for (const k of ['noop','mock','llm'])..."` -> `noop function` / `mock function` / `llm function` (exit 0)
+- `grep -c "throws for a grader kind outside" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts` -> `1` (exit 0)
+- `git diff --numstat` (read-only) -> only the two named files modified: cjs 6/0, vitest.ts 3/0
+BLOCKED REASON: none

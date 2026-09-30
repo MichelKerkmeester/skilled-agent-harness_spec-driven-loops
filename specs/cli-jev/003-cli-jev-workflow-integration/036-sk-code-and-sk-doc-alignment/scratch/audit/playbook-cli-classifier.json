@@ -1,0 +1,43 @@
+{
+  "contract": "operator-scenario",
+  "routingGoldContract": "routing-gold",
+  "manifest": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json",
+  "strict": true,
+  "warnPackages": [],
+  "packages": [
+    {
+      "package": "cli-classifier",
+      "contract": "operator-scenario",
+      "playbookRoot": ".skilled/skills/cli-classifier/manual-testing-playbook",
+      "status": "FAIL",
+      "tier": "FAIL_CLOSED",
+      "derivedCensus": {
+        "scenarioFiles": 6,
+        "categoryDirs": 2,
+        "operatorScenarioFiles": 6,
+        "routingGoldFilesExcluded": 0
+      },
+      "indexedFiles": 6,
+      "featureIds": 6,
+      "violations": [
+        {
+          "code": "BAKED_RUN_TRANSCRIPT",
+          "severity": "error",
+          "file": "hub-routing/alias-still-resolves.md",
+          "line": 71,
+          "message": "dated run evidence appears in scenario truth"
+        },
+        {
+          "code": "BAKED_RUN_TRANSCRIPT",
+          "severity": "error",
+          "file": "hub-routing/judgment-request-routes-to-transport.md",
+          "line": 74,
+          "message": "dated run evidence appears in scenario truth"
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "exitCode": 1,
+  "warnedViolationCount": 0
+}

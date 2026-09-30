@@ -1,0 +1,8 @@
+Verification complete. The final section 8 structure is byte-consistent with the file-wide convention: session-recovery entry → blank → `---` → blank → track-narrowing entry → blank → `---` → blank → `## 9. CONTEXT PRESERVATION`. Net diff is exactly +16/−0 lines in one file; the untracked `retrieval/track-narrowing-measurement.md` predates my work and was not touched by me.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md (+16/-0)
+EDITS: feature-catalog.md:738 inserted the 16-line `### Track narrowing measurement` block (blank, `---` separator, heading, Description, Current Reality, Source Files, See-line) after the session-recovery See-line; section 8 now holds both entries `---`-separated and the existing blank + `---` + `## 9. CONTEXT PRESERVATION` follow unchanged
+CHECKS: `grep -c "^### Track narrowing measurement$" .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md` -> `1` (exit 0)
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md` -> `✅ VALID: ...` (exit 0; only the same pre-existing `document_type_fallback` warning as the pre-edit baseline)
+BLOCKED REASON: none

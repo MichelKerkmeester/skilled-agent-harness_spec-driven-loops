@@ -1,0 +1,4 @@
+generate-leaf-manifest: leaf-manifest.json is stale under .skilled/skills/cli-classifier
+  committed: f0597be827d2c6d2bb5978c86f66ce7a647e6c61034e85e91895e96e1cc95c59
+  fresh:     f5f53d9a9d793e856c23f69dbaa58358bd44c40dc69269381262c6112cfc50ad
+Re-run with --write to regenerate.

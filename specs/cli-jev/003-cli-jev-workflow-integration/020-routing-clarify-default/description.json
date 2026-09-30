@@ -1,0 +1,23 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default",
+  "description": "Test research R12 offline: whether a Jev or Deem choice picks the right default among a compiled hub router's clarify alternatives more often than the first alternative the router lists.",
+  "keywords": [
+    "r12",
+    "jev",
+    "deem",
+    "offline",
+    "routing",
+    "clarify",
+    "default"
+  ],
+  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "specId": "020",
+  "folderSlug": "routing-clarify-default",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

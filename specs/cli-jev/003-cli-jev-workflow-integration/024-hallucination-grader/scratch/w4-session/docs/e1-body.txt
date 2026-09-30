@@ -1,0 +1,10 @@
+TASK: name the unknown-grader startup check and the offline D4 measurement in the packet's SKILL.md, and bump its version.
+FILE (edit): `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md`. Read it first. Two literal edits, nothing else.
+EDIT 1: line 5, replace `version: 1.17.2.0` with `version: 1.18.0.0`.
+EDIT 2: line 222 is the bullet that starts `- **Scoring**:`. Keep its whole text and append, after its final period, one space and these two sentences:
+Any other `--grader` value exits 2 at startup and names the value. `scripts/model-benchmark/scorer/score-d4-agreement.cjs --outputs <dir>` measures offline, with no model call by default, whether a Jev or Deem hallucination judgment agrees with operator labels more often than the deterministic check, and `--jev` or `--deem` adds a verdict column behind that backend's own check once 30 outputs carry labels.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/SKILL.md
+  grep -c "score-d4-agreement" .skilled/skills/system-deep-loop/deep-improvement/SKILL.md
+  git diff --stat -- .skilled/skills/system-deep-loop/deep-improvement/SKILL.md
+Accept when: 1 file changed and nothing else; the validator exits 0; the grep prints 1; the diff is 2 insertions and 2 deletions.

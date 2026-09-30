@@ -1,0 +1,11 @@
+The insert landed exactly as specified (lines 478–518: blank separator + the new `it` block), ending at the describe close, and the verify grep printed `1`.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts (+41/-0)
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts:479 added `it('no headroom closes both arms after the label gate passes', ...)` in the `score-stop-rater baseline and gate` describe, directly after the saturated-fixture block: 10 saturated lineages, gold-reads rows derived via `rater.deriveGold`, run with `--jev --deem --gold-reads`, asserting no `stop:` line, `no headroom` before `jev arm skipped: no headroom` before `deem arm skipped: no headroom`, and the stub log absent
+CHECKS: grep -c "no headroom closes both arms after the label gate passes" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts -> 1 (exit 0)
+BLOCKED REASON: none
+
+Notes for the orchestrator:
+- Read-only cross-check of S (`score-stop-rater.cjs`): `out('no headroom')` at 1749, `jev arm skipped: no headroom` at 1775, `deem arm skipped: no headroom` at 1817, and an empty `values.out` call log only materializes on the first spawn — matches every assertion in the new test. S untouched.
+- `git status` shows many other modified/untracked paths from concurrent workers; my sole write was T (itself untracked in this worktree, so no diff line is available from git for it). Vitest left for you as instructed.

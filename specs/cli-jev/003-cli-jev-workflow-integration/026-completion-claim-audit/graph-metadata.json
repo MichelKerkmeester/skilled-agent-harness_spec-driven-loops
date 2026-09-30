@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "completion claim audit",
+      "completion claim regex false fire",
+      "score-completion-claims",
+      "completion sentinel claim audit",
+      "research R4 completion claim",
+      "completion claim audit plan",
+      "score-completion-claims plan",
+      "completion claim census plan",
+      "completion claim keep rule",
+      "completion claim audit tasks",
+      "score-completion-claims tasks",
+      "completion claim census tasks"
+    ],
+    "key_topics": [
+      "completion",
+      "claim",
+      "audit",
+      "regex",
+      "false",
+      "fire",
+      "score-completion-claims",
+      "sentinel",
+      "research",
+      "plan",
+      "census",
+      "keep"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
+      "runtime/tests/completion-claim-audit.vitest.ts",
+      "runtime/scripts/README.md",
+      "changelog/v4.5.0.0.md",
+      "feature-catalog/tooling-and-scripts/completion-claim-audit.md",
+      "manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md",
+      ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/skills/system-spec-kit/changelog/v4.5.0.0.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-claim-audit.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-completion-claims.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "completion-claim-audit.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/completion-claim-audit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.5.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v4.5.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "completion-claim-audit.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/completion-claim-audit.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The completion-evidence sentinel decides that a turn claimed completion when one of ten words, `completed`, `resolved`, `fixed`, `finished`, `shipped`, `released`, `deployed`, `implemented`, `occurred` or `happened`, appears in the last 400 characters of the turn (`.skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs:64`, `:70`, `:113-119`)",
+    "created_at": "2026-09-29T12:42:38Z",
+    "last_save_at": "2026-09-29T19:12:27.740Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:532a3961f3167df630405b1c73eb81a14f5992491278e38860d9680f4431ff33",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "495b3eeae7badf626a65546a319b128d5ee07e30407cd6b13d04c4412b80da16",
+      "plan.md": "3de1e68d3026c4807722241334f2639aec51aaf6260aeef992cf1519b80dab0d",
+      "tasks.md": "376f5c8fe4fa8db1b6aa0c66073903b59d78fc7151305ba3a588c648664f15c8",
+      "implementation-summary.md": "af58fea22473371baf5d8e2a296e0f021ee834f262b60d08670eaaabfdb7c0a8"
+    },
+    "last_active_at": null
+  }
+}

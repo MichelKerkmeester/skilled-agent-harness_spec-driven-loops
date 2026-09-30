@@ -1,0 +1,10 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-communication/SKILL.md (+2/-1)
+EDITS:
+- .skilled/skills/sk-communication/SKILL.md:5 `version: 1.3.0.0` → `version: 1.4.0.0`
+- .skilled/skills/sk-communication/SKILL.md:227 inserted new Core bullet (judge-agreement.mjs offline measurement) directly below the cli-communication-projection/docs/ bullet
+CHECKS:
+- `git diff --stat -- .skilled/skills/sk-communication/SKILL.md` -> `1 file changed, 2 insertions(+), 1 deletion(-)` (exit 0)
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-communication/SKILL.md` -> `✅ VALID: .skilled/skills/sk-communication/SKILL.md` / `Total issues: 0` (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,19 @@
+The census summary now prints the confidence, always-second, and rerank comparators after the scorer line. Syntax check passed.
+
+SKILL ROUTING: sk-code → sk-code-opencode
+REPO RULES: prevent-overengineering.md
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+73/-0)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+23/-0)
+EDITS: score-jev-tiebreak.mjs:263 confidenceOrder stably sorts the cluster by confidence and rewrites those slots
+score-jev-tiebreak.mjs:273 alwaysSecondOrder moves cluster[1] to the first cluster slot
+score-jev-tiebreak.mjs:282 buildFold counts leading matches and misses by goldKey
+score-jev-tiebreak.mjs:299 rerankOrder sorts by fused score times the Beta(1, 1) train-half reliability
+score-jev-tiebreak.mjs:391 summarizeCensus prints confidence, always_second, and rerank after the scorer line
+score-jev-tiebreak.vitest.ts:17 imports the four functions
+score-jev-tiebreak.vitest.ts:124 expected confidence, always_second, and rerank summary lines
+score-jev-tiebreak.vitest.ts:142 fold, rerank, confidence, and always-second assertions
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> no output (exit 0)
+BLOCKED REASON: none

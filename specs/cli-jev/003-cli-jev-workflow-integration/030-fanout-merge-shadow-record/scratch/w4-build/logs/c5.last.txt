@@ -1,0 +1,15 @@
+All checks pass and the scope is clean: only T was edited by this step; S parsed clean and untouched.
+
+**STATUS: DONE**
+
+**FILES CHANGED:** `.skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts` (+65/-1; now 412 lines, 17 tests; S untouched)
+
+**EDITS:** `.skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts:350-412` — added `describe('score-fanout-pairs parity')` with `parity: body key agrees with the merge` (4 fixture pairs: equal keys + overlap 0.20 → `near-line`/`same`; equal keys + disjoint titles → `null`/`different`; unequal keys + no title signal → `null`/`different`; unequal keys + text overlap 0.5 → `cross-body`/`different`, each also checked with `(kind === 'near-line') === (decision === 'same')`) and `parity: a title-only pair stays out of near-line` (equal body keys, title overlap 0.0, merge splits, selection rejects).
+
+**CHECKS:**
+- `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs` -> no output (exit 0)
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts` -> 17 (exit 0)
+- Pre-write fixture probe (`node -e`, no test runner): all five fixture outcomes matched the written assertions — f1 `near-line`/`same`, f2 `null`/`different`, f3 `null`/`different`, f4 `cross-body`/`different`, title-only `null`/`different` (exit 0)
+- `git status --porcelain -- <S> <T>` -> both still `??` (untracked from earlier steps); no other path touched (exit 0)
+
+**BLOCKED REASON:** none

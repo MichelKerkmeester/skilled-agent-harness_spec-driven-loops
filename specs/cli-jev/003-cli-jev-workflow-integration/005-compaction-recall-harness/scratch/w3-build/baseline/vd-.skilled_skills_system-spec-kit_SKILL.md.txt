@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/system-spec-kit/SKILL.md
+Document type: skill
+Total issues: 0

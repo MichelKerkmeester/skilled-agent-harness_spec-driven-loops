@@ -190,6 +190,121 @@ d="$TMP/manual"; mkpacket "$d"; ac "$d" "$AC_HEAD
 | AC-002 | REQ-002 | Given x, When y, Then z | Manual-infeasible | Met | - |"
 expect "a Manual-infeasible row with a rationale counts, a bare one does not" "1/2" "$d"
 
+expect_analysis() {
+    local name="$1" want="$2" file="$3"
+    local got want_display got_display
+    got="$( set +e
+        source "$RULE_DIR/check-ac-coverage.sh"
+        _ac_analyze_canonical "$file" )"
+    if [[ "$got" == "$want" ]]; then
+        got_display="${got//$'\t'/|}"
+        PASS=$((PASS+1)); printf '  ok    %-54s %s\n' "$name" "$got_display"
+    else
+        want_display="${want//$'\t'/|}"
+        got_display="${got//$'\t'/|}"
+        FAIL=$((FAIL+1)); printf '  FAIL  %-54s want=%s got=%s\n' "$name" "$want_display" "$got_display"
+    fi
+}
+
+d="$TMP/analysis-cites"; mkpacket "$d"; ac "$d" "$AC_HEAD
+| AC-001 | REQ-001 | Given x, When y, Then z | \`a.sh:1\` and \`gone.sh:2\` | Met | - |
+| AC-002 | REQ-002 | Given x, When y, Then z | checked by hand | Met | - |"
+expect_analysis "the parser lists every citation of a counted row" $'2\t1\t1\tAC-002\tAC-001 (a.sh:1), AC-001 (gone.sh:2)' "$d/acceptance-criteria.md"
+
+d="$TMP/analysis-empty"; mkpacket "$d"; ac "$d" "$AC_HEAD
+| AC-001 | REQ-001 | Given x, When y, Then z | - | Superseded | ADR-007 |"
+expect_analysis "empty id and citation lists are written as -" $'1\t1\t0\t-\t-' "$d/acceptance-criteria.md"
+
+expect_unresolved() {
+    local name="$1" want="$2" folder="$3" root="$4" list="$5"
+    local got
+    got="$( set +e
+        source "$RULE_DIR/check-ac-coverage.sh"
+        _ac_unresolved_citations "$folder" "$root" "$list" )"
+    if [[ -z "$got" ]]; then got="none"; fi
+    if [[ "$got" == "$want" ]]; then PASS=$((PASS+1)); printf '  ok    %-54s %s\n' "$name" "$got"
+    else FAIL=$((FAIL+1)); printf '  FAIL  %-54s want=%s got=%s\n' "$name" "$want" "$got"; fi
+}
+
+d="$TMP/resolve"; mkdir -p "$d/sub" "$TMP/rootdir/tools"; printf 'one\ntwo\nthree' > "$d/sub/a.sh"; printf 'one\n' > "$TMP/rootdir/tools/r.sh"
+expect_unresolved "a citation inside the file resolves" "none" "$d" "" "AC-001 (sub/a.sh:3), AC-002 ($d/sub/a.sh:1)"
+expect_unresolved "a missing file and line 0 or past the end do not" "AC-001 (nope.sh:1), AC-002 (sub/a.sh:0), AC-003 (sub/a.sh:4)" "$d" "" "AC-001 (nope.sh:1), AC-002 (sub/a.sh:0), AC-003 (sub/a.sh:4)"
+expect_unresolved "a directory and an ellipsis path do not resolve" "AC-001 (./sub:1), AC-002 (.../a.sh:1)" "$d" "" "AC-001 (./sub:1), AC-002 (.../a.sh:1)"
+expect_unresolved "the root is tried after the packet folder" "none" "$d" "$TMP/rootdir" "AC-001 (tools/r.sh:1)"
+expect_unresolved "an empty list reports nothing" "none" "$d" "" ""
+
+expect_detail() {
+    local name="$1" want="$2" dir="$3"
+    local got
+    got="$( set +e
+        RULE_STATUS=""; RULE_MESSAGE=""; RULE_DETAILS=(); RULE_NAME=""; RULE_REMEDIATION=""
+        source "$RULE_DIR/check-ac-coverage.sh"
+        run_check "$dir" 2 >/dev/null 2>&1
+        hit=""
+        for detail in "${RULE_DETAILS[@]+"${RULE_DETAILS[@]}"}"; do
+            if [[ "$detail" == "Unresolved evidence citation(s):"* ]]; then
+                hit="$detail"
+                break
+            fi
+        done
+        if [[ -n "$hit" ]]; then printf '%s' "$hit"; else printf 'none'; fi )"
+    if [[ "$got" == "$want" ]]; then PASS=$((PASS+1)); printf '  ok    %-54s %s\n' "$name" "$got"
+    else FAIL=$((FAIL+1)); printf '  FAIL  %-54s want=%s got=%s\n' "$name" "$want" "$got"; fi
+}
+
+d="$TMP/detail"; mkpacket "$d"; printf 'one\ntwo\n' > "$d/a.sh"; ac "$d" "$AC_HEAD
+| AC-001 | REQ-001 | Given x, When y, Then z | \`a.sh:2\` | Met | - |
+| AC-002 | REQ-002 | Given x, When y, Then z | \`a.sh:1\` and \`missing-cite.sh:4\` | Met | - |
+| AC-003 | REQ-003 | Given x, When y, Then z | \`a.sh:9\` | Met | - |"
+expect_detail "unresolved citations are named with their AC id" "Unresolved evidence citation(s): AC-002 (missing-cite.sh:4), AC-003 (a.sh:9)" "$d"
+expect "an unresolved citation still counts as coverage" "3/3" "$d"
+
+d="$TMP/detail-clean"; mkpacket "$d"; printf 'one\n' > "$d/a.sh"; ac "$d" "$AC_HEAD
+| AC-001 | REQ-001 | Given x, When y, Then z | \`a.sh:1\` | Met | - |"
+expect_detail "resolving citations add no detail" "none" "$d"
+
+d="$TMP/later"; mkpacket "$d"; ac "$d" "$AC_HEAD
+| AC-001 | REQ-001 | Given x, When y, Then z | \`later.sh:1\` | Met | - |
+| AC-002 | REQ-002 | Given x, When y, Then z | checked by hand | Met | - |"
+expect "the ratio before the cited file exists" "1/2" "$d"
+printf 'one\n' > "$d/later.sh"
+expect "the ratio after the cited file exists is the same" "1/2" "$d"
+
+d="$TMP/repo/specs/p"; mkpacket "$d"; mkdir -p "$TMP/repo/tools"; printf 'one\ntwo\n' > "$TMP/repo/tools/r.sh"
+git -C "$TMP/repo" init -q
+ac "$d" "$AC_HEAD
+| AC-001 | REQ-001 | Given x, When y, Then z | \`tools/r.sh:2\` | Met | - |
+| AC-002 | REQ-002 | Given x, When y, Then z | \`tools/r.sh:3\` | Met | - |"
+expect_detail "a path from the repository root resolves" "Unresolved evidence citation(s): AC-002 (tools/r.sh:3)" "$d"
+
+d="$TMP/legacy"; mkpacket "$d"; printf 'one\ntwo\n' > "$d/a.sh"
+printf '%s\n' '# Tasks' '<!-- ANCHOR:protocol -->' '| AC-ID | Class | Evidence |' '|-------|-------|----------|' \
+    '| AC-001 | tested | a.sh:2 |' '| AC-002 | tested | missing-cite.sh:3 |' '<!-- /ANCHOR:summary -->' > "$d/tasks.md"
+expect_detail "the legacy table names an unresolved citation" "Unresolved evidence citation(s): AC-002 (missing-cite.sh:3)" "$d"
+expect "the legacy ratio is unchanged" "2/2" "$d"
+
+d="$TMP/legacy-clean"; mkpacket "$d"; printf 'one\ntwo\n' > "$d/a.sh"
+printf '%s\n' '# Tasks' '<!-- ANCHOR:protocol -->' '| AC-ID | Class | Evidence |' '|-------|-------|----------|' \
+    '| AC-001 | tested | a.sh:2 |' '<!-- /ANCHOR:summary -->' > "$d/tasks.md"
+expect_detail "a resolving legacy citation adds no detail" "none" "$d"
+
+d="$TMP/joined"; mkpacket "$d"; printf 'one\n' > "$d/a.sh"; printf 'one\n' > "$d/b.sh"
+ac "$d" "$AC_HEAD
+| AC-001 | REQ-001 | Given x, When y, Then z | \`a.sh:1,b.sh:1\` | Met | - |
+| AC-002 | REQ-002 | Given x, When y, Then z | \`a.sh:1;missing.sh:1\` | Met | - |"
+expect_detail "citations joined by a comma or semicolon split cleanly" "Unresolved evidence citation(s): AC-002 (missing.sh:1)" "$d"
+
+d="$TMP/longline"; mkdir -p "$d"; printf 'one\n' > "$d/a.sh"
+expect_unresolved "a line number too long to be real does not resolve" "AC-001 (a.sh:18446744073709551617)" "$d" "" "AC-001 (a.sh:18446744073709551617)"
+
+d="$TMP/climb"; mkdir -p "$d"; printf 'one\n' > "$TMP/outside.sh"
+expect_unresolved "a citation that climbs out of the folder resolves only to a real file" "AC-002 (../missing-outside.sh:1)" "$d" "" "AC-001 (../outside.sh:1), AC-002 (../missing-outside.sh:1)"
+
+d="$TMP/legacy-ids"; mkpacket "$d"; printf 'one\n' > "$d/a.sh"
+printf '%s\n' '# Tasks' '<!-- ANCHOR:protocol -->' '| AC-ID | Class | Evidence |' '|-------|-------|----------|' \
+    '| AC-001, AC-002 | tested | a.sh:1 |' '| AC-003 | tested | gone.sh:4 |' '<!-- /ANCHOR:summary -->' > "$d/tasks.md"
+expect_detail "a legacy row naming two ids reports only real misses" "Unresolved evidence citation(s): AC-003 (gone.sh:4)" "$d"
+
 echo
 printf '  %d passed, %d failed\n' "$PASS" "$FAIL"
 [[ "$FAIL" -eq 0 ]]

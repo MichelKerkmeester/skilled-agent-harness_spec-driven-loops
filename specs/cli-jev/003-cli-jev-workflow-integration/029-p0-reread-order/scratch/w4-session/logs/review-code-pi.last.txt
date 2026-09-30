@@ -1,0 +1,28 @@
+All verification done. Report:
+
+---
+
+**Findings**
+
+- `P2 score-severity-replay.cjs:70` - the comment says the usage line prints "whenever the run cannot start", but nothing prints `USAGE` (only defined :71, exported :1769) - input: `--oops` exits 2 with no usage line
+- `P2 score-severity-replay.cjs:1297,1302-1305` - a timed-out or exit-1/4 `jev auth test` stops `jev arm stopped: usage error` and logs `unmeasured`, where REQ-009 gives `unmeasured_timeout` past 90 s - input: a stub `jev` whose `auth test` sleeps past the timeout
+- `P2 score-severity-replay.cjs:633-639` - `recorded` ranks only rows carrying a P0 probability, not the registry's own order (REQ-010) - input: registry [A with no probability, B real] prints `recorded=1` where the registry order gives 2
+- `P2 score-severity-replay.cjs:376` - the label-sheet refusal is lexical, not realpath - input: symlink `/tmp/x -> <repo>/tmp` with `--write-label-sheet /tmp/x/labels.jsonl` writes a sheet inside the tree
+- `P2 score-severity-replay.vitest.ts:119-122` - "an unreadable registry exits 2" asserts only the `loadRegistries` throw; `main`'s catch-to-exit-2 path (script :1653-1659) is never exercised
+- `P2 score-severity-replay.cjs:321` - comment carries an example finding id `P2-001`; say "an id starting with a severity token"
+
+**Requirements**
+
+- `REQ-001 met` - live default run prints census and gate only, spawns git alone, `git status --porcelain` unchanged; test asserts empty stub logs
+- `REQ-002 met` - live run matches the spec corpus: 413 registries, severity counts, transitions by from/to, `p0 rows: 95 in 37 (one 21, two or more 16)`, `phrases: 3270 ... 0;1;1;1;1`, ends `labels needed: 20 P0 negatives among 95 P0 rows`
+- `REQ-003 met` - baseline is `label === 'real'` (:1686); `10*R > 9*K` prints `no headroom` before any arm (test at K 201)
+- `REQ-004 met` - coverage/kill/margin/sign/flips in fixed order; BigInt tails hand-checked (tail(3,3)=1/8 -> `0.1250` stop (sign test); tail(8,8)=1/256 kill; W+L=0 -> p=1); one verdict line per column and in report.json
+- `REQ-005 met` - sheet fields and inside-repo refusal exit 2; unknown label names the row and exits 2; 19 negatives prints the stop line and runs no arm; no model writes a label
+- `REQ-006 met` - Jev: identity line, `jev 0.6.2`, `auth status --provider P` exit 0, one `auth test`, same P everywhere; Deem: `health` under 2,000 ms, `deem-0.8-v1`, torch|ensemble, four skips; skips exit 0 byte-identically (test)
+- `REQ-007 met` - key grep exit 1; state is title/dimension/evidence/recommendation (test); calls.jsonl holds a 16-hex digest, no id (test); Jev rows behind `git cat-file -e origin/main:` (test); Deem runs every row
+- `REQ-008 met` - one `choice` per row, verbatim `convergence.md:399-401` options, three left rotations, no cache; modal pick 2-of-3, three keys unstable (test)
+- `REQ-009 met` - cost lines first, no dollar figure, calls.jsonl shape and statuses, stops print no verdict, `--jev`/`--deem` without `--out` exit 2 before calls (test); auth-test edge is a P2 above
+- `REQ-010 met` - order/funnel/exact lines print and never decide (test); recorded-rank edge is a P2 above
+- `REQ-011 not checked` - tests 33/33 passed (>=22) covering every named case; docs not written yet and out of this review
+
+VERDICT: PASS

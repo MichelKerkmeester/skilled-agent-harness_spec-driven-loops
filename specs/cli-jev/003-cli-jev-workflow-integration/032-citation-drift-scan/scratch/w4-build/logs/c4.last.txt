@@ -1,0 +1,10 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs (+165/-0 lines this step; 773 total, untracked new)
+FILES CHANGED: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs (+182/-0 lines this step; 575 total, untracked new)
+EDITS: cite-drift-scan.mjs:68 added LABEL_GATE=40, MARGIN_LINE, KEEP_RULE_LINE, INSTRUCTION constants
+EDITS: cite-drift-scan.mjs:521 added section 4 (identifierTokens, flagByIdentifierOverlap, private buildWindows, scoreComparators, summaryLines with stop/no headroom/underpowered/planned gates and the instruction line)
+EDITS: cite-drift-scan.mjs:664 updated main JSDoc; :747 reads the labels file (absent = zero rows, malformed = exit 2); :764 builds windows at each row's recorded commit and prints the summary lines after the census
+EDITS: test-cite-drift-scan.mjs:15 extended the import; :395 appended the gate fixture, row builders, runGate, and the 8 named cases: comparator flags, comparator no token, comparator token present, label gate 39, instruction printed, no headroom, underpowered, default zero calls
+CHECKS: node --check .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs -> <no output, syntax ok> (exit 0)
+CHECKS: node --check .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs -> <no output, syntax ok> (exit 0)
+BLOCKED REASON: none

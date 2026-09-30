@@ -1,0 +1,7 @@
+TASK: add a happy-path test for `readProse`. One change in T. Change nothing in S.
+S = `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` (read only). T = `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs`. Read both first.
+WHY: a cross-family review found that no test runs `readProse` (S near line 609) on a real file: the prose tests pass a ready-made `{ byId }` map, so the parser is untested.
+EDIT: add one test `readProse parses pairs and counts unparsed lines` after the last `--prose` test. It writes a temp file (use the file's own temp-dir pattern and clean up in `finally`) with these lines: `S-1 modeA:leafA modeB:leafB`, `S-2 modeA:leafC`, a blank line, `S-3 notapair`, `lonely`. It calls `S.readProse(file)` and asserts: `byId.size` is 2; `byId.get('S-1')` holds exactly the two keys `compositeKey({ workflowMode: 'modeA', leafResourceId: 'leafA' })` and `compositeKey({ workflowMode: 'modeB', leafResourceId: 'leafB' })` from `require('../lib/leaf-resource-contract.cjs')`; `byId.get('S-2')` holds one key; `unparsed` is 2.
+VERIFY (repo root), paste each result line:
+  node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs
+Accept when: only T changed; `fail 0`, and `pass` is one more than before your edit. If another worker's edit to T is present, keep it.

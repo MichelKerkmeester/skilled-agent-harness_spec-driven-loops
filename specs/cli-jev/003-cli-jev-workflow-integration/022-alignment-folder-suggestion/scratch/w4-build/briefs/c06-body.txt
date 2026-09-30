@@ -1,0 +1,28 @@
+TASK: add R section 8 (keep rule) to S as pure functions, and pin it with seven cases in T. main does not change.
+R = specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch/w4-build/briefs/ref/design.md (read only).
+S and T are named at the top of R. Read R sections 7 and 8, then S and T. Open no other file; R fixes every choice.
+
+1. S section 8 (after section 7): export binomTail, modalPick, the VerdictCounts interface, countVerdict, decideVerdict and
+   verdictLine exactly as R section 8 says. binomTail sums C(n,i) * 0.5^n for i = k..n with C computed by the multiplicative
+   product in floating point. modalPick returns { pick: null, flips: 0 } when any pick is null. Change nothing in main.
+2. T: add describe('keep rule') with seven cases (import the new names):
+ a. 'binomTail gives exact tails': binomTail(10, 10) toBeCloseTo(1 / 1024, 12); binomTail(5, 0) toBe(1); binomTail(3, 4) toBe(0);
+    binomTail(3, 2) toBeCloseTo(0.5, 12).
+ b. 'modalPick finds the mode, an unstable row and a missing answer': ['a','a','b'] gives { pick: 'a', flips: 1 }; ['a','a','a']
+    gives { pick: 'a', flips: 0 }; ['a','b','c'] gives { pick: 'unstable', flips: 2 }; ['a', null, 'a'] gives { pick: null, flips: 0 }.
+ c. 'counts a column over measured rows only': three rows (use parseRows on JSON lines, target '001-a', alternatives ['002-b', '003-c'],
+    state 's'): r1 label '001-a', r2 label '002-b', r3 label '001-a'; picks { r1: ['001-a','001-a','002-b'], r2: ['002-b','002-b','002-b'],
+    r3: ['001-a', null, '001-a'] }; countVerdict(rows, picks, 'target') equals { K: 3, M: 2, A: 2, B: 1, W: 1, L: 0, F: 1 }.
+ d. 'keeps a column that beats the baseline': c = { K: 30, M: 30, A: 30, B: 20, W: 10, L: 0, F: 0 }; decideVerdict(c).verdict is 'keep'
+    and .p toBeCloseTo(1 / 1024, 12); verdictLine('deem', c, decideVerdict(c), 'target', 'model=deem-0.8-v1 model_commit=m1 source_commit=s1')
+    equals 'verdict deem: keep K=30 M=30 A=30 B=20 W=10 L=0 F=0 p=0.0010 baseline=target model=deem-0.8-v1 model_commit=m1 source_commit=s1'.
+ e. 'kills a column the baseline beats': c = { K: 30, M: 30, A: 5, B: 27, W: 0, L: 22, F: 0 }; verdict 'kill', p toBeCloseTo(2 ** -22, 15),
+    and verdictLine('jev', c, v, 'target', 'jev_version=jev 0.6.2 provider=official model=m') starts with 'verdict jev: kill K=30' and
+    contains ' p=0.0000 baseline=target jev_version=jev 0.6.2'.
+ f. 'stops on margin and on coverage': { K: 30, M: 30, A: 27, B: 27, W: 0, L: 0, F: 0 } gives { verdict: 'stop (margin)', p: 1 };
+    { K: 30, M: 26, A: 26, B: 20, W: 6, L: 0, F: 0 } gives { verdict: 'stop (coverage)', p: 1 }.
+ g. 'stops on the sign test and on flips': { K: 30, M: 30, A: 30, B: 27, W: 3, L: 0, F: 0 } gives verdict 'stop (sign test)' with
+    p toBeCloseTo(0.125, 12); { K: 30, M: 30, A: 30, B: 20, W: 10, L: 0, F: 10 } gives verdict 'stop (flips)'.
+
+VERIFY (repo root): node --check <S>; node --check <T>; grep -c "it('" <T>
+Accept when: 2 files changed (S and T) and nothing else; both node --check exit 0; the grep prints 28.

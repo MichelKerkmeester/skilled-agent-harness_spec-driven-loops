@@ -1,0 +1,10 @@
+Both edits are in place exactly as specified, and nothing else in the file changed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md (+3/-2)
+EDITS: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md:3 description gained "the zero-call clarify census," inserted before the shared-validator clause
+EDITS: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md:11 added trigger phrase "clarify default measurement"; line 12 last_updated bumped 2026-09-28 -> 2026-09-29
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md` -> `Total issues: 1` (exit 0, ✅ VALID — sole item is the pre-existing `document_type_fallback` warning, byte-identical output verified against the untouched HEAD baseline of this file, so no issue attributable to these edits; it does not print "Total issues: 0" as the brief expects)
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md --type feature_catalog` -> `Total issues: 0` (exit 0, ✅ VALID)
+BLOCKED REASON: none

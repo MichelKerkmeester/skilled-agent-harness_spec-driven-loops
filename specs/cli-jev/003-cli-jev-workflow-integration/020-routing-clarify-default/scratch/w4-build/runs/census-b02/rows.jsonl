@@ -1,0 +1,2 @@
+{"id":"semantic-tie-clarify","hub":"cli-external-orchestration","source":"canary","prompt":"extended thinking with a codex diff review","alternatives":["cli-claude-code","cli-codex"],"gold":null,"label":""}
+{"id":"one-turn-clarify","hub":"sk-doc","source":"canary","prompt":"create command and benchmark package","alternatives":["sk-create-command","sk-create-benchmark"],"gold":null,"label":""}

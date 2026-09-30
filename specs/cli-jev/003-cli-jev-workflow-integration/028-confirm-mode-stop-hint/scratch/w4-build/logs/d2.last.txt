@@ -1,0 +1,11 @@
+The sentence is inserted as its own line after 027's sentence, with every element grounded: the script path and the four switches from the script's own `USAGE` and `parseArgs` block, the input/output/column roles from FACTS, "makes no model call" from the script header and FACTS, and "leaves the gate unchanged" from FACTS ("It changes no gate and no live loop") and R `d2`. No number or printed line is claimed. Outside the one inserted line the file is byte-identical (diff shows 1 insertion, 0 deletions).
+
+Status: the file is edited on disk and uncommitted. The orchestrator owns the commit.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/runtime/README.md` (+1/-0)
+EDITS: `.skilled/skills/system-deep-loop/runtime/README.md`:50 inserted the `score-stop-hint.cjs` sentence after 027's stop-rater sentence on line 49
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/README.md` -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/README.md` (exit 0)
+CHECKS: `git diff --stat -- .skilled/skills/system-deep-loop/runtime/README.md` -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

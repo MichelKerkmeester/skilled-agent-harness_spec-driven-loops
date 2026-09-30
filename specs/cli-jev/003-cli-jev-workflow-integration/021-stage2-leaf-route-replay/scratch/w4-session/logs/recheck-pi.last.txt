@@ -1,0 +1,21 @@
+Both fixes verified against the implementation and the suite passes.
+
+**Fix 1 — Deem skip lines (P1: untested skip branches):** `closed`. The three tests drive `deemGate` through `readDeemHealth` exactly as the stubs produce it: `down` → `exit 4` → reason `not reachable` with no `found=` line (test's `deepEqual` on the full sink matches `deemGate`'s single-line output); `model` → exit 0 with `deem-9b-v1` vs `DEEM_MODEL = 'deem-0.8-v1'` → reason `model`, `deem: found="deem-9b-v1"` asserted by prefix + content; `bad` → non-JSON stdout → reason `bad health response` with `deem: found=` asserted. Each pins `result.passed === false` and exactly one `cli-deem health` call via the stub log.
+
+**Fix 2 — `readProse` (P1: untested parser):** `closed`. The test covers both unparsed branches in `readProse`: `S-3 notapair` (pair token without `:` → `ok = false`) and `lonely` (single token) → `unparsed === 2`; the two good lines land in `byId` keyed via `leafContract.compositeKey`, the same function the implementation uses; blank lines skipped. `byId.size === 2` matches.
+
+No new P0 or P1 in the test file. (Nit, below threshold: the model test uses `includes` on the sink rather than exact output, so an extra unexpected line would go unnoticed — the call-log assertion and `found=` content pin the load-bearing behavior, so this is not a P1.)
+
+`closed - the three deemGate tests assert skip lines, found= detail and single stub invocation per readDeemHealth reasons`
+`closed - readProse test exercises both unparsed branches, composite-key pairing and blank-line skip`
+`node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> 37 tests, 37 pass, 0 fail (exit 0)`
+`VERDICT: PASS`
+
+```
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck)
+EDITS: none
+CHECKS: node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> ℹ tests 37 / pass 37 / fail 0 (exit 0); source cross-check of deemGate, readDeemHealth, readProse -> assertions match implementation (no command, read-only)
+BLOCKED REASON: none
+```

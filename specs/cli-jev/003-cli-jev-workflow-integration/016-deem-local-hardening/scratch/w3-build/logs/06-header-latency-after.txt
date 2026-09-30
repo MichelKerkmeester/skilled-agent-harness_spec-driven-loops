@@ -1,0 +1,25 @@
+Mon Sep 28 13:26:34 CEST 2026
+## header
+HTTP/1.1 200 OK
+Server: deem-serve/0.1 Python/3.12.11
+Date: Mon, 28 Sep 2026 11:26:34 GMT
+Content-Type: application/json
+Content-Length: 60
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST, OPTIONS
+Access-Control-Allow-Headers: Content-Type, Authorization
+
+exit 0
+## src status
+exit 0
+## latency after (access log on)
+n=50 p50=75.7 p95=94.0 min=59.5 max=99.2
+answer={"id": "deem-d5a8dc91226e4f6c9530eef6", "object": "systemone.completion", "created": 1790594799, "model": "deem-0.8-v1", "answers": {"q": {"type": "choice", "choice": "hold", "probabilities": {"ship":
+exit 0
+n=50 p50=72.9 p95=90.0 min=59.2 max=97.6
+answer={"id": "deem-a183a26098a54039a4443a46", "object": "systemone.completion", "created": 1790594803, "model": "deem-0.8-v1", "answers": {"q": {"type": "choice", "choice": "hold", "probabilities": {"ship":
+exit 0
+## access lines added by the latency runs
+120
+## log size
+   11053

@@ -1,0 +1,941 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: score-verdict-fallback
+//   Fixture census (resolveProfile, loadFixtureCases, censusFixtures)
+//   Outputs parser (parseOutputs, censusOutputs)
+//   Reports reader (censusReports)
+//   Baselines (loosePick, chooseBaseline)
+//   Keep rule (binomialTail, decideVerdict, formatP, modalPick, summarizeColumn)
+//   Zero-call run (main)
+//   Deem gate (which, deemCommand, readDeemHealth, deemGate)
+//   Deem arm (nearestRank, spawnCall, createCallLog, runDeemArm)
+// ───────────────────────────────────────────────────────────────────
+
+import path from 'node:path';
+import fs from 'node:fs';
+import os from 'node:os';
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
+import { afterEach, describe, expect, it } from 'vitest';
+
+const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
+const require = createRequire(import.meta.url);
+const vf = require(path.join(TEST_DIR, '../lib/score-verdict-fallback.cjs')) as Record<string, any>;
+
+const tempDirs: string[] = [];
+
+function tempDir(prefix: string): string {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
+  tempDirs.push(dir);
+  return dir;
+}
+
+afterEach(() => {
+  for (const dir of tempDirs.splice(0)) fs.rmSync(dir, { recursive: true, force: true });
+});
+
+function writeFixtures(): { profile: string; fixtures: string } {
+  const fixtures = tempDir('vf-fixtures-');
+  fs.writeFileSync(
+    path.join(fixtures, 'fx-a.json'),
+    JSON.stringify({
+      id: 'fx-a',
+      tests: [
+        { name: 'visible clean', reviewer_output: 'VERDICT: PASS\nlooks good' },
+        { name: 'visible informal', reviewer_output: 'Looks fine to ship.' },
+      ],
+      hidden_tests: [{ name: 'hidden failure', reviewer_output: 'VERDICT: FAIL\nstale evidence' }],
+    }),
+    'utf8',
+  );
+  fs.writeFileSync(
+    path.join(fixtures, 'fx-b.json'),
+    JSON.stringify({
+      id: 'fx-b',
+      tests: [{ name: 'fx-b', reviewer_output: 'VERDICT: BLOCK\ncannot judge' }],
+      hidden_tests: [{ name: 'hidden silent' }],
+    }),
+    'utf8',
+  );
+  const profile = path.join(tempDir('vf-profile-'), 'profile.json');
+  fs.writeFileSync(
+    profile,
+    JSON.stringify({ profileId: 'vf-temp', fixtureDir: fixtures, fixtures: ['fx-a', 'fx-b'] }),
+    'utf8',
+  );
+  return { profile, fixtures };
+}
+
+function writeOutputs(rows: Array<{ id: string; output: string; label: string }>): string {
+  const file = path.join(tempDir('vf-outputs-'), 'outputs.jsonl');
+  fs.writeFileSync(file, `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`, 'utf8');
+  return file;
+}
+
+function stubDir(bodies: Record<string, string>): string {
+  const dir = tempDir('vf-stubs-');
+  for (const [name, body] of Object.entries(bodies)) {
+    const file = path.join(dir, name);
+    fs.writeFileSync(file, `#!/bin/sh\nD=$(dirname "$0")\necho "$*" >> "$D/${name}.log"\n${body}\n`, 'utf8');
+    fs.chmodSync(file, 0o755);
+  }
+  return dir;
+}
+
+async function runMain(
+  argv: string[],
+  env: NodeJS.ProcessEnv = process.env,
+): Promise<{ code: number; lines: string[]; errs: string[] }> {
+  const lines: string[] = [];
+  const errs: string[] = [];
+  const code = await vf.main(argv, {
+    out: (line: string) => lines.push(line),
+    err: (line: string) => errs.push(line),
+    env,
+    timeoutMs: 5000,
+    backoffMs: 1,
+  });
+  return { code, lines, errs };
+}
+
+describe('score-verdict-fallback fixtures', () => {
+  it('merges visible and hidden cases', () => {
+    const { profile } = writeFixtures();
+
+    const cases = vf.loadFixtureCases(profile);
+
+    expect(cases).toEqual([
+      { fixtureId: 'fx-a', name: 'visible clean', output: 'VERDICT: PASS\nlooks good' },
+      { fixtureId: 'fx-a', name: 'visible informal', output: 'Looks fine to ship.' },
+      { fixtureId: 'fx-a', name: 'hidden failure', output: 'VERDICT: FAIL\nstale evidence' },
+      { fixtureId: 'fx-b', name: 'fx-b', output: 'VERDICT: BLOCK\ncannot judge' },
+      { fixtureId: 'fx-b', name: 'hidden silent', output: null },
+    ]);
+    const census = vf.censusFixtures(cases);
+    expect(census).toEqual({ total: 5, hits: 3, misses: 1, noOutput: 1 });
+  });
+
+  it('a case with no reviewer_output', () => {
+    const { profile } = writeFixtures();
+    const stubs = stubDir({ 'cli-deem': 'exit 0', jev: 'exit 0' });
+
+    const census = vf.censusFixtures(vf.loadFixtureCases(profile));
+
+    expect(census.noOutput).toBe(1);
+    expect(fs.readdirSync(stubs).filter((name) => name.endsWith('.log'))).toEqual([]);
+  });
+});
+
+describe('score-verdict-fallback outputs', () => {
+  it('parses one labeled row per line', () => {
+    const rows: string[] = [];
+    for (let i = 1; i <= 12; i += 1) {
+      rows.push(
+        JSON.stringify({
+          id: `row-${i}`,
+          output: i === 1 ? 'VERDICT: PASS\nlooks good' : `Reviewer note ${i}.`,
+          label: i % 3 === 0 ? 'block' : i % 2 === 0 ? 'fail' : 'pass',
+          expectedVerdict: 'fail',
+        }),
+      );
+    }
+
+    const parsed = vf.parseOutputs(`${rows.join('\n')}\n`);
+
+    expect(parsed).toHaveLength(12);
+    expect(parsed[0]).toEqual({ id: 'row-1', output: 'VERDICT: PASS\nlooks good', label: 'pass', expectedVerdict: 'fail' });
+    expect(parsed[11]).toEqual({ id: 'row-12', output: 'Reviewer note 12.', label: 'block', expectedVerdict: 'fail' });
+    expect(parsed.map((row: any) => row.expectedVerdict)).toEqual(Array(12).fill('fail'));
+    expect(vf.censusOutputs(parsed)).toEqual({ total: 12, hits: 1, misses: 11, kept: parsed.slice(1) });
+  });
+
+  it('a bad label exits 2 naming the row', () => {
+    const rows = [
+      JSON.stringify({ id: 'row-1', output: 'Reviewer note 1.', label: 'pass' }),
+      JSON.stringify({ id: 'row-2', output: 'Reviewer note 2.', label: 'maybe' }),
+    ];
+
+    expect(() => vf.parseOutputs(`${rows.join('\n')}\n`)).toThrow(
+      'outputs row 2: label must be pass, fail or block, got "maybe"',
+    );
+  });
+});
+
+describe('score-verdict-fallback reports', () => {
+  it('counts per_test verdictMethod', () => {
+    const reports = tempDir('vf-reports-');
+    const rows = [
+      {
+        per_test: [
+          { name: 'pattern case', verdictMethod: 'pattern' },
+          { name: 'grader case', verdictMethod: 'llm-grader' },
+          { name: 'silent case', verdictMethod: 'none' },
+        ],
+      },
+    ];
+    fs.writeFileSync(
+      path.join(reports, 'reviewer-report.json'),
+      JSON.stringify({ rows, fixtures: rows }),
+      'utf8',
+    );
+
+    const census = vf.censusReports([reports]);
+
+    expect(census).toEqual([
+      { path: path.join(reports, 'reviewer-report.json'), pattern: 1, llmGrader: 1, none: 1 },
+    ]);
+  });
+});
+
+describe('score-verdict-fallback baselines', () => {
+  it('takes the last whole word, case-insensitive', () => {
+    expect(vf.loosePick('please fail this.')).toBe('fail');
+    expect(vf.loosePick('BLOCK the release')).toBe('block');
+    expect(vf.loosePick('Looks fine to ship.')).toBe(null);
+    expect(vf.loosePick('I would pass the style, but the evidence is stale, so fail')).toBe('fail');
+  });
+
+  it('the better method wins, loose on a tie', () => {
+    const rows = [
+      { id: 'row-1', output: 'The evidence holds, pass', label: 'pass' },
+      { id: 'row-2', output: 'please fail this.', label: 'fail' },
+      { id: 'row-3', output: 'BLOCK the release', label: 'block' },
+      { id: 'row-4', output: 'Looks fine to ship.', label: 'pass' },
+      { id: 'row-5', output: 'The diff is clean; pass.', label: 'pass' },
+      { id: 'row-6', output: 'Stale evidence: fail.', label: 'fail' },
+      { id: 'row-7', output: 'Cannot judge.', label: 'block' },
+      { id: 'row-8', output: 'Ready to pass.', label: 'pass' },
+      { id: 'row-9', output: 'I would block this.', label: 'block' },
+      { id: 'row-10', output: 'Needs work: fail.', label: 'fail' },
+      { id: 'row-11', output: 'Ship it.', label: 'pass' },
+      { id: 'row-12', output: 'One more pass and it is done.', label: 'pass' },
+    ];
+
+    const baseline = vf.chooseBaseline(rows);
+
+    expect(baseline.majorityClass).toBe('pass');
+    expect(baseline.majorityRight).toBe(6);
+    expect(baseline.looseRight).toBe(9);
+    expect(baseline.method).toBe('loose');
+    expect(baseline.right).toBe(9);
+    expect([...baseline.calls.values()]).toEqual([
+      'pass', 'fail', 'block', null, 'pass', 'fail', null, 'pass', 'block', 'fail', null, 'pass',
+    ]);
+
+    const tie = vf.chooseBaseline([
+      { id: 'tie-1', output: 'The reviewer says pass.', label: 'pass' },
+      { id: 'tie-2', output: 'The reviewer says fail.', label: 'fail' },
+      { id: 'tie-3', output: 'No verdict word here.', label: 'pass' },
+      { id: 'tie-4', output: 'Still nothing.', label: 'fail' },
+    ]);
+
+    expect(tie.majorityClass).toBe('pass');
+    expect(tie.majorityRight).toBe(2);
+    expect(tie.looseRight).toBe(2);
+    expect(tie.method).toBe('loose');
+    expect(tie.right).toBe(2);
+  });
+});
+
+describe('score-verdict-fallback keep rule', () => {
+  const LABELS_SHA = 'a1b2c3d4e5f60718';
+  const ROWS = [
+    { id: 'r1', label: 'pass' },
+    { id: 'r2', label: 'pass' },
+    { id: 'r3', label: 'pass' },
+    { id: 'r4', label: 'pass' },
+    { id: 'r5', label: 'pass' },
+    { id: 'r6', label: 'fail' },
+    { id: 'r7', label: 'fail' },
+    { id: 'r8', label: 'fail' },
+    { id: 'r9', label: 'fail' },
+    { id: 'r10', label: 'block' },
+    { id: 'r11', label: 'block' },
+    { id: 'r12', label: 'block' },
+  ];
+
+  it('verdict: keep', () => {
+    const answers = new Map<string, Array<string | null>>([
+      ['r1', ['pass', 'pass', 'pass']],
+      ['r2', ['pass', 'pass', 'pass']],
+      ['r3', ['pass', 'pass', 'pass']],
+      ['r4', ['pass', 'pass', 'pass']],
+      ['r5', ['pass', 'pass', 'pass']],
+      ['r6', ['fail', 'fail', 'fail']],
+      ['r7', ['fail', 'fail', 'fail']],
+      ['r8', ['fail', 'fail', 'fail']],
+      ['r9', ['fail', 'fail', 'block']],
+      ['r10', ['pass', 'pass', 'pass']],
+      ['r11', ['fail', 'fail', 'fail']],
+      ['r12', ['fail', 'fail', 'fail']],
+    ]);
+    const baselineCalls = new Map<string, string>([
+      ['r1', 'fail'],
+      ['r2', 'fail'],
+      ['r3', 'fail'],
+      ['r4', 'fail'],
+      ['r5', 'fail'],
+      ['r6', 'block'],
+      ['r7', 'block'],
+      ['r8', 'block'],
+      ['r9', 'block'],
+      ['r10', 'block'],
+      ['r11', 'fail'],
+      ['r12', 'fail'],
+    ]);
+
+    const column = vf.summarizeColumn(
+      'deem',
+      ROWS,
+      answers,
+      baselineCalls,
+      LABELS_SHA,
+      'model=deem-0.8-v1 model_commit=m1 source_commit=s1',
+    );
+
+    expect(column.K).toBe(12);
+    expect(column.M).toBe(12);
+    expect(column.unmeasured).toBe(0);
+    expect(column.A).toBe(9);
+    expect(column.B).toBe(1);
+    expect(column.W).toBe(9);
+    expect(column.L).toBe(1);
+    expect(column.F).toBe(1);
+    expect(column.outcome).toBe('keep');
+    expect(column.reason).toBe(null);
+    expect(column.line).toBe(
+      `verdict deem: keep K=12 M=12 A=9 B=1 W=9 L=1 F=1 p_win=0.01074 p_loss=0.9990 labels_sha256=${LABELS_SHA} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
+    );
+    expect(vf.binomialTail(5, 5).num).toBe(1n);
+    expect(vf.binomialTail(5, 5).den).toBe(32n);
+    expect(vf.formatP(vf.binomialTail(5, 5).p)).toBe('0.03125');
+
+    const bare = vf.summarizeColumn('deem', ROWS, answers, baselineCalls, LABELS_SHA, '');
+    expect(bare.line.endsWith(`labels_sha256=${LABELS_SHA}`)).toBe(true);
+  });
+
+  it('verdict: kill', () => {
+    const answers = new Map<string, Array<string | null>>([
+      ['r1', ['fail', 'fail', 'fail']],
+      ['r2', ['fail', 'fail', 'fail']],
+      ['r3', ['fail', 'fail', 'fail']],
+      ['r4', ['fail', 'fail', 'fail']],
+      ['r5', ['fail', 'fail', 'fail']],
+      ['r6', ['pass', 'pass', 'pass']],
+      ['r7', ['pass', 'pass', 'pass']],
+      ['r8', ['pass', 'pass', 'pass']],
+      ['r9', ['pass', 'pass', 'pass']],
+      ['r10', ['pass', 'pass', 'pass']],
+      ['r11', ['pass', 'pass', 'pass']],
+      ['r12', ['pass', 'pass', 'pass']],
+    ]);
+    const baselineCalls = new Map<string, string>([
+      ['r1', 'pass'],
+      ['r2', 'pass'],
+      ['r3', 'pass'],
+      ['r4', 'pass'],
+      ['r5', 'pass'],
+      ['r6', 'block'],
+      ['r7', 'block'],
+      ['r8', 'block'],
+      ['r9', 'block'],
+      ['r10', 'pass'],
+      ['r11', 'pass'],
+      ['r12', 'pass'],
+    ]);
+
+    const column = vf.summarizeColumn('deem', ROWS, answers, baselineCalls, LABELS_SHA, '');
+
+    expect(column.A).toBe(0);
+    expect(column.B).toBe(5);
+    expect(column.W).toBe(0);
+    expect(column.L).toBe(5);
+    expect(column.outcome).toBe('kill');
+    expect(column.reason).toBe(null);
+    expect(column.line).toBe(
+      `verdict deem: kill K=12 M=12 A=0 B=5 W=0 L=5 F=0 p_win=1.000 p_loss=0.03125 labels_sha256=${LABELS_SHA}`,
+    );
+  });
+
+  it('verdict: stop (margin)', () => {
+    const answers = new Map<string, Array<string | null>>(
+      ROWS.map((row) => [row.id, ['pass', 'pass', 'pass']] as [string, Array<string | null>]),
+    );
+    const baselineCalls = new Map<string, string>([
+      ['r1', 'pass'],
+      ['r2', 'pass'],
+      ['r3', 'pass'],
+      ['r4', 'pass'],
+      ['r5', 'fail'],
+      ['r6', 'block'],
+      ['r7', 'block'],
+      ['r8', 'block'],
+      ['r9', 'block'],
+      ['r10', 'pass'],
+      ['r11', 'pass'],
+      ['r12', 'pass'],
+    ]);
+
+    const column = vf.summarizeColumn('deem', ROWS, answers, baselineCalls, LABELS_SHA, '');
+
+    expect(column.A).toBe(5);
+    expect(column.B).toBe(4);
+    expect(column.W).toBe(1);
+    expect(column.L).toBe(0);
+    expect(column.outcome).toBe('stop');
+    expect(column.reason).toBe('margin');
+    expect(column.line).toBe(
+      `verdict deem: stop (margin) K=12 M=12 A=5 B=4 W=1 L=0 F=0 p_win=0.5000 p_loss=1.000 labels_sha256=${LABELS_SHA}`,
+    );
+  });
+
+  it('verdict: stop (coverage)', () => {
+    const answers = new Map<string, Array<string | null>>(
+      ROWS.map((row) => [row.id, ['pass', 'pass', 'pass']] as [string, Array<string | null>]),
+    );
+    answers.set('r11', ['pass', 'fail']);
+    answers.delete('r12');
+    const baselineCalls = new Map<string, string>([
+      ['r1', 'fail'],
+      ['r2', 'fail'],
+      ['r3', 'fail'],
+      ['r4', 'fail'],
+      ['r5', 'fail'],
+      ['r6', 'block'],
+      ['r7', 'block'],
+      ['r8', 'block'],
+      ['r9', 'block'],
+      ['r10', 'pass'],
+      ['r11', 'fail'],
+      ['r12', 'fail'],
+    ]);
+
+    const column = vf.summarizeColumn('deem', ROWS, answers, baselineCalls, LABELS_SHA, '');
+
+    expect(column.K).toBe(12);
+    expect(column.M).toBe(10);
+    expect(column.unmeasured).toBe(2);
+    expect(column.A).toBe(5);
+    expect(column.W).toBe(5);
+    expect(column.outcome).toBe('stop');
+    expect(column.reason).toBe('coverage');
+    expect(column.line).toBe(
+      `verdict deem: stop (coverage) K=12 M=10 A=5 B=0 W=5 L=0 F=0 p_win=0.03125 p_loss=1.000 labels_sha256=${LABELS_SHA}`,
+    );
+  });
+
+  it('verdict: stop (flips)', () => {
+    const answers = new Map<string, Array<string | null>>([
+      ['r1', ['pass', 'pass', 'fail']],
+      ['r2', ['pass', 'pass', 'fail']],
+      ['r3', ['pass', 'pass', 'fail']],
+      ['r4', ['pass', 'pass', 'fail']],
+      ['r5', ['pass', 'pass', 'fail']],
+      ['r6', ['fail', 'fail', 'block']],
+      ['r7', ['fail', 'fail', 'block']],
+      ['r8', ['fail', 'fail', 'block']],
+      ['r9', ['fail', 'fail', 'block']],
+      ['r10', ['block', 'block', 'pass']],
+      ['r11', ['block', 'block', 'pass']],
+      ['r12', ['block', 'block', 'pass']],
+    ]);
+    const baselineCalls = new Map<string, string>([
+      ['r1', 'fail'],
+      ['r2', 'fail'],
+      ['r3', 'fail'],
+      ['r4', 'fail'],
+      ['r5', 'fail'],
+      ['r6', 'block'],
+      ['r7', 'block'],
+      ['r8', 'block'],
+      ['r9', 'block'],
+      ['r10', 'pass'],
+      ['r11', 'pass'],
+      ['r12', 'pass'],
+    ]);
+
+    expect(vf.modalPick(['pass', 'pass', 'fail'])).toEqual({ pick: 'pass', top: 2 });
+    expect(vf.modalPick(['pass', 'fail', 'block'])).toEqual({ pick: null, top: 1 });
+    expect(vf.modalPick(['block', 'block', 'block'])).toEqual({ pick: 'block', top: 3 });
+
+    const deem = vf.summarizeColumn('deem', ROWS, answers, baselineCalls, LABELS_SHA, '');
+    expect(deem.A).toBe(12);
+    expect(deem.W).toBe(12);
+    expect(deem.F).toBe(12);
+    expect(deem.outcome).toBe('stop');
+    expect(deem.reason).toBe('flips');
+    expect(deem.line).toBe(
+      `verdict deem: stop (flips) K=12 M=12 A=12 B=0 W=12 L=0 F=12 p_win=0.0002441 p_loss=1.000 labels_sha256=${LABELS_SHA}`,
+    );
+
+    const jev = vf.summarizeColumn(
+      'jev',
+      ROWS,
+      answers,
+      baselineCalls,
+      LABELS_SHA,
+      'jev_version=0.6.2 provider=official model=stub-model',
+    );
+    expect(jev.line).toBe(
+      `verdict jev: stop (flips) K=12 M=12 A=12 B=0 W=12 L=0 F=12 p_win=0.0002441 p_loss=1.000 labels_sha256=${LABELS_SHA} jev_version=0.6.2 provider=official model=stub-model`,
+    );
+  });
+});
+
+describe('score-verdict-fallback zero-call run', () => {
+  it('gate: 11 labeled misses prints the stop line', async () => {
+    const rows: Array<{ id: string; output: string; label: string }> = [];
+    for (let i = 1; i <= 11; i += 1) {
+      rows.push({
+        id: `row-${i}`,
+        output: `Reviewer note ${i}.`,
+        label: i % 3 === 0 ? 'block' : i % 2 === 0 ? 'fail' : 'pass',
+      });
+    }
+
+    const { code, lines } = await runMain(['--outputs', writeOutputs(rows)]);
+
+    expect(code).toBe(0);
+    expect(lines[lines.length - 1]).toBe('stop: fewer than 12 labeled regex-miss outputs');
+  });
+
+  it('gate: a missing block label prints its stop line', async () => {
+    const rows: Array<{ id: string; output: string; label: string }> = [];
+    for (let i = 1; i <= 12; i += 1) {
+      rows.push({
+        id: `row-${i}`,
+        output: `Reviewer note ${i}.`,
+        label: i % 2 === 0 ? 'fail' : 'pass',
+      });
+    }
+
+    const { code, lines } = await runMain(['--outputs', writeOutputs(rows)]);
+
+    expect(code).toBe(0);
+    expect(lines[lines.length - 1]).toBe('stop: no labeled block output');
+  });
+
+  it('headroom: a saturated baseline', async () => {
+    const texts: Record<string, string> = {
+      pass: 'The evidence holds, pass',
+      fail: 'please fail this.',
+      block: 'BLOCK the release',
+    };
+    const rows: Array<{ id: string; output: string; label: string }> = [];
+    for (let i = 1; i <= 12; i += 1) {
+      const label = i % 3 === 0 ? 'block' : i % 2 === 0 ? 'fail' : 'pass';
+      rows.push({ id: `row-${i}`, output: texts[label], label });
+    }
+    const stubs = stubDir({ 'cli-deem': 'exit 0', jev: 'exit 0' });
+    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+
+    const { code, lines } = await runMain(['--outputs', writeOutputs(rows)], env);
+
+    expect(code).toBe(0);
+    expect(lines[lines.length - 1]).toBe('no headroom');
+    expect(fs.readdirSync(stubs).filter((name) => name.endsWith('.log'))).toEqual([]);
+  });
+
+  it('default run: calls no stub and writes no file', async () => {
+    const stubs = stubDir({ 'cli-deem': 'exit 0', jev: 'exit 0' });
+    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    const before = fs.readdirSync(process.cwd()).sort();
+
+    const { code, lines } = await runMain([], env);
+
+    expect(code).toBe(0);
+    expect(lines[0]).toMatch(/^fixture cases: \d+ hits: \d+ misses: \d+$/);
+    expect(lines).toContain('labeled: 0 (pass 0, fail 0, block 0)');
+    expect(lines[lines.length - 1]).toBe('stop: fewer than 12 labeled regex-miss outputs');
+    expect(fs.readdirSync(stubs).filter((name) => name.endsWith('.log'))).toEqual([]);
+    expect(fs.readdirSync(process.cwd()).sort()).toEqual(before);
+  });
+});
+
+describe('score-verdict-fallback deem gate', () => {
+  const HEALTHY = 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi';
+
+  it('a fake health passes', async () => {
+    const stubs = stubDir({ 'cli-deem': HEALTHY });
+    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    const base = await runMain([], env);
+
+    const { code, lines } = await runMain(['--deem', '--out', tempDir('vf-out-')], env);
+
+    expect(code).toBe(0);
+    expect(lines).toEqual([
+      ...base.lines,
+      'deem: health backend=torch model=deem-0.8-v1 model_commit=m1 source_commit=s1',
+      'deem arm skipped: label gate',
+    ]);
+    expect(fs.readFileSync(path.join(stubs, 'cli-deem.log'), 'utf8').trim().split('\n')).toEqual(['health']);
+  });
+
+  it('a stub backend skips byte-identically', async () => {
+    const stubs = stubDir({
+      'cli-deem': 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi',
+    });
+    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    const base = await runMain([], env);
+    const out = tempDir('vf-out-');
+
+    const { code, lines } = await runMain(['--deem', '--out', out], env);
+
+    expect(code).toBe(0);
+    expect(lines).toContain('deem arm skipped: stub backend');
+    expect(lines.filter((line) => line !== 'deem arm skipped: stub backend')).toEqual(base.lines);
+
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    expect(report.skipped.deem).toBe('deem arm skipped: stub backend');
+  });
+});
+
+describe('score-verdict-fallback jev gate', () => {
+  const PASSING_JEV = `case "$1" in
+  --version) echo 'jev 0.6.2'; exit 0 ;;
+  auth) if [ "$2" = test ]; then echo '{"model":"stub-model"}'; fi; exit 0 ;;
+esac
+echo '{"answers":{"answer":{"choice":"pass"}}}'`;
+  const LABELS = ['pass', 'pass', 'pass', 'pass', 'pass', 'fail', 'fail', 'fail', 'fail', 'block', 'block', 'block'];
+
+  function missRows(): Array<{ id: string; output: string; label: string }> {
+    return LABELS.map((label, index) => ({ id: `row-${index + 1}`, output: `Reviewer note ${index + 1}.`, label }));
+  }
+
+  function jevEnv(stubs: string): NodeJS.ProcessEnv {
+    const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    delete env.JEV_PROVIDER;
+    return env;
+  }
+
+  it('exit 0 passes', async () => {
+    const stubs = stubDir({ jev: PASSING_JEV });
+    const env = jevEnv(stubs);
+
+    const { code, lines } = await runMain(
+      ['--outputs', writeOutputs(missRows()), '--jev', '--accept-payload', '--out', tempDir('vf-out-')],
+      env,
+    );
+
+    expect(code).toBe(0);
+    expect(lines).toContain(`jev: path=${path.join(stubs, 'jev')} provider=official`);
+    expect(lines.some((line) => /^jev: payload: untracked reviewer outputs; planned calls: 37; estimated input tokens: \d+$/.test(line))).toBe(true);
+    expect(lines).toContain('jev: auth test provider=official model=stub-model');
+    expect(lines.some((line) => /^column jev: K=12 measured=12 unmeasured=0 latency_p50_ms=\d+ latency_p95_ms=\d+$/.test(line))).toBe(true);
+    expect(lines.some((line) => line.startsWith('verdict jev: '))).toBe(true);
+
+    const log = fs.readFileSync(path.join(stubs, 'jev.log'), 'utf8').trim().split('\n');
+    expect(log.slice(0, 3)).toEqual(['--version', 'auth status --provider official', 'auth test --provider official']);
+    expect(log).toHaveLength(39);
+  });
+
+  it('exit 3 prints no credential', async () => {
+    const stubs = stubDir({ jev: 'case "$1" in --version) echo \'jev 0.6.2\'; exit 0;; auth) if [ "$2" = status ]; then exit 3; fi; exit 0;; esac' });
+    const env = jevEnv(stubs);
+
+    const { code, lines } = await runMain(
+      ['--outputs', writeOutputs(missRows()), '--jev', '--out', tempDir('vf-out-')],
+      env,
+    );
+
+    expect(code).toBe(0);
+    expect(lines).toContain(`jev: path=${path.join(stubs, 'jev')} provider=official`);
+    expect(lines).toContain('jev arm skipped: no credential');
+
+    const log = fs.readFileSync(path.join(stubs, 'jev.log'), 'utf8').trim().split('\n');
+    expect(log).toEqual(['--version', 'auth status --provider official']);
+  });
+
+  it('an untracked outputs file without --accept-payload', async () => {
+    const stubs = stubDir({ jev: PASSING_JEV });
+    const env = jevEnv(stubs);
+
+    const { code, lines } = await runMain(
+      ['--outputs', writeOutputs(missRows()), '--jev', '--out', tempDir('vf-out-')],
+      env,
+    );
+
+    expect(code).toBe(0);
+    expect(lines).toContain('jev arm skipped: payload not accepted');
+
+    const log = fs.readFileSync(path.join(stubs, 'jev.log'), 'utf8').trim().split('\n');
+    expect(log).toEqual(['--version', 'auth status --provider official']);
+  });
+});
+
+describe('score-verdict-fallback arms', () => {
+  it('--deem without --out exits 2 before any call', async () => {
+    const stubs = stubDir({ 'cli-deem': 'exit 0', jev: 'exit 0' });
+    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+
+    const { code, errs } = await runMain(['--deem'], env);
+
+    expect(code).toBe(2);
+    expect(errs).toEqual(['--deem needs --out <dir> so every call is recorded']);
+    expect(fs.readdirSync(stubs).filter((name) => name.endsWith('.log'))).toEqual([]);
+  });
+
+  it('a skipped arm is recorded, no calls.jsonl', async () => {
+    const stubs = stubDir({
+      'cli-deem': 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi',
+    });
+    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    const out = tempDir('vf-out-');
+
+    const { code, lines } = await runMain(['--deem', '--out', out], env);
+
+    expect(code).toBe(0);
+    expect(lines).toContain('deem arm skipped: stub backend');
+    expect(fs.existsSync(path.join(out, 'calls.jsonl'))).toBe(false);
+
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    expect(report.skipped.deem).toBe('deem arm skipped: stub backend');
+  });
+});
+
+describe('score-verdict-fallback deem arm', () => {
+  const HEALTHY = 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi';
+  const ANSWER = `p=$(cat)
+plan=$(printf '%s' "$p" | sed -n 's/.*ORDER:\\([0-9][0-9][0-9]\\).*/\\1/p')
+case "$5" in
+  pass=*) idx=1 ;;
+  fail=*) idx=2 ;;
+  block=*) idx=3 ;;
+  *) idx=1 ;;
+esac
+digit=$(printf '%s' "$plan" | cut -c"$idx")
+case "$digit" in
+  1) pick=pass ;;
+  2) pick=fail ;;
+  3) pick=block ;;
+  *) pick=unknown ;;
+esac
+echo '{"answers":{"answer":{"choice":"'$pick'","probabilities":{"'$pick'":0.9}}}}'`;
+  const LABELS = ['pass', 'pass', 'pass', 'pass', 'pass', 'fail', 'fail', 'fail', 'fail', 'block', 'block', 'block'];
+
+  function armRows(digits: string[]): Array<{ id: string; output: string; label: string }> {
+    return digits.map((digit, index) => ({
+      id: `row-${index + 1}`,
+      output: `Reviewer note ${index + 1}. ORDER:${digit}`,
+      label: LABELS[index],
+    }));
+  }
+
+  function readCalls(out: string): any[] {
+    return fs
+      .readFileSync(path.join(out, 'calls.jsonl'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line));
+  }
+
+  async function runArm(digits: string[]): Promise<{ code: number; lines: string[]; out: string; stubs: string; sha: string }> {
+    const outputs = writeOutputs(armRows(digits));
+    const stubs = stubDir({ 'cli-deem': `${HEALTHY}\n${ANSWER}` });
+    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    const out = tempDir('vf-out-');
+    const sha = vf.sha256Hex(fs.readFileSync(outputs));
+
+    const { code, lines } = await runMain(['--outputs', outputs, '--deem', '--out', out], env);
+
+    return { code, lines, out, stubs, sha };
+  }
+
+  it('verdict: keep', async () => {
+    const run = await runArm(['111', '111', '111', '111', '111', '222', '222', '222', '222', '333', '333', '333']);
+
+    expect(run.code).toBe(0);
+    expect(run.lines).toContain('deem: nothing leaves the machine; planned calls: 36; estimated wall time: 2.4 s at 65.6 ms per call, the choice p50 from deem-local.md');
+    expect(run.lines.some((line) => /^column deem: K=12 measured=12 unmeasured=0 latency_p50_ms=\d+ latency_p95_ms=\d+$/.test(line))).toBe(true);
+    expect(run.lines).toContain(
+      `verdict deem: keep K=12 M=12 A=12 B=5 W=7 L=0 F=0 p_win=0.007813 p_loss=1.000 labels_sha256=${run.sha} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
+    );
+
+    const calls = readCalls(run.out);
+    expect(calls).toHaveLength(36);
+    for (const call of calls) {
+      expect(call.backend).toBe('deem');
+      expect(call.attempt).toBe(1);
+      expect(call.status).toBe('measured');
+      expect(call.exitCode).toBe(0);
+      expect(typeof call.wallMs).toBe('number');
+      expect(call.modelId).toBe('deem-0.8-v1');
+      expect(call.modelCommit).toBe('m1');
+      expect(call.sourceCommit).toBe('s1');
+    }
+    expect(calls.slice(0, 3)).toEqual([
+      { backend: 'deem', output: 'row-1', order: 1, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: 0.9, status: 'measured', modelId: 'deem-0.8-v1', modelCommit: 'm1', sourceCommit: 's1' },
+      { backend: 'deem', output: 'row-1', order: 2, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: 0.9, status: 'measured', modelId: 'deem-0.8-v1', modelCommit: 'm1', sourceCommit: 's1' },
+      { backend: 'deem', output: 'row-1', order: 3, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: 0.9, status: 'measured', modelId: 'deem-0.8-v1', modelCommit: 'm1', sourceCommit: 's1' },
+    ]);
+
+    const log = fs.readFileSync(path.join(run.stubs, 'cli-deem.log'), 'utf8').trim().split('\n');
+    expect(log).toHaveLength(37);
+    expect(log[0]).toBe('health');
+    const firstKeys = log.slice(1).map((line) => /-o ([a-z]+)=/.exec(line)![1]);
+    for (let i = 0; i < firstKeys.length; i += 3) {
+      expect(firstKeys.slice(i, i + 3)).toEqual(['pass', 'fail', 'block']);
+    }
+
+    const report = JSON.parse(fs.readFileSync(path.join(run.out, 'report.json'), 'utf8'));
+    expect(report.columns.deem.verdict).toBe('keep');
+    expect(report.columns.deem.line).toBe(
+      `verdict deem: keep K=12 M=12 A=12 B=5 W=7 L=0 F=0 p_win=0.007813 p_loss=1.000 labels_sha256=${run.sha} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
+    );
+    expect(report.columns.deem.modelCommit).toBe('m1');
+  });
+
+  it('verdict: kill', async () => {
+    const run = await runArm(['222', '222', '222', '222', '222', '111', '111', '111', '111', '111', '111', '111']);
+
+    expect(run.code).toBe(0);
+    expect(run.lines).toContain(
+      `verdict deem: kill K=12 M=12 A=0 B=5 W=0 L=5 F=0 p_win=1.000 p_loss=0.03125 labels_sha256=${run.sha} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
+    );
+    expect(readCalls(run.out)).toHaveLength(36);
+  });
+
+  it('verdict: stop (margin)', async () => {
+    const run = await runArm(['111', '111', '111', '111', '111', '222', '111', '111', '111', '111', '111', '111']);
+
+    expect(run.code).toBe(0);
+    expect(run.lines).toContain(
+      `verdict deem: stop (margin) K=12 M=12 A=6 B=5 W=1 L=0 F=0 p_win=0.5000 p_loss=1.000 labels_sha256=${run.sha} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
+    );
+  });
+
+  it('verdict: stop (coverage)', async () => {
+    const run = await runArm(['111', '111', '111', '111', '111', '222', '222', '222', '222', '333', '110', '110']);
+
+    expect(run.code).toBe(0);
+    expect(run.lines).toContain(
+      `verdict deem: stop (coverage) K=12 M=10 A=10 B=5 W=5 L=0 F=0 p_win=0.03125 p_loss=1.000 labels_sha256=${run.sha} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
+    );
+    expect(readCalls(run.out)).toHaveLength(36);
+  });
+
+  it('verdict: stop (flips)', async () => {
+    const run = await runArm(['112', '112', '112', '112', '112', '221', '221', '221', '221', '331', '331', '331']);
+
+    expect(run.code).toBe(0);
+    expect(run.lines).toContain(
+      `verdict deem: stop (flips) K=12 M=12 A=12 B=5 W=7 L=0 F=12 p_win=0.007813 p_loss=1.000 labels_sha256=${run.sha} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
+    );
+  });
+
+  it('report: requalify prints before the verdict', async () => {
+    const outputs = writeOutputs(armRows(['111', '111', '111', '111', '111', '222', '222', '222', '222', '333', '333', '333']));
+    const stubs = stubDir({ 'cli-deem': `${HEALTHY}\n${ANSWER}` });
+    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    const out = tempDir('vf-out-');
+    fs.writeFileSync(
+      path.join(out, 'report.json'),
+      JSON.stringify({ columns: { deem: { modelCommit: 'old', sourceCommit: 's1' } } }),
+      'utf8',
+    );
+
+    const { code, lines } = await runMain(['--outputs', outputs, '--deem', '--out', out], env);
+
+    expect(code).toBe(0);
+    const requalifyIndex = lines.indexOf('requalify: model commit changed');
+    expect(requalifyIndex).toBeGreaterThanOrEqual(0);
+    expect(lines[requalifyIndex + 1].startsWith('verdict deem: keep ')).toBe(true);
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    expect(report.requalify.deem).toBe('requalify: model commit changed');
+  });
+});
+
+describe('score-verdict-fallback jev arm', () => {
+  const JEV = `case "$1" in
+  --version) echo 'jev 0.6.2'; exit 0 ;;
+  auth) if [ "$2" = test ]; then echo '{"model":"stub-model"}'; fi; exit 0 ;;
+esac
+p=$(cat)
+plan=$(printf '%s' "$p" | sed -n 's/.*ORDER:\\([0-9][0-9][0-9]\\).*/\\1/p')
+case "$7" in
+  pass=*) idx=1 ;;
+  fail=*) idx=2 ;;
+  block=*) idx=3 ;;
+  *) idx=1 ;;
+esac
+digit=$(printf '%s' "$plan" | cut -c"$idx")
+case "$digit" in
+  1) pick=pass ;;
+  2) pick=fail ;;
+  3) pick=block ;;
+  *) pick=unknown ;;
+esac
+echo '{"answers":{"answer":{"choice":"'$pick'"}}}'`;
+  const LABELS = ['pass', 'pass', 'pass', 'pass', 'pass', 'fail', 'fail', 'fail', 'fail', 'block', 'block', 'block'];
+
+  function armRows(digits: string[]): Array<{ id: string; output: string; label: string }> {
+    return digits.map((digit, index) => ({
+      id: `row-${index + 1}`,
+      output: `Reviewer note ${index + 1}. ORDER:${digit}`,
+      label: LABELS[index],
+    }));
+  }
+
+  function readCalls(out: string): any[] {
+    return fs
+      .readFileSync(path.join(out, 'calls.jsonl'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line));
+  }
+
+  async function runArm(digits: string[]): Promise<{ code: number; lines: string[]; out: string; stubs: string; sha: string }> {
+    const outputs = writeOutputs(armRows(digits));
+    const stubs = stubDir({ jev: JEV });
+    const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    delete env.JEV_PROVIDER;
+    const out = tempDir('vf-out-');
+    const sha = vf.sha256Hex(fs.readFileSync(outputs));
+
+    const { code, lines } = await runMain(['--outputs', outputs, '--jev', '--accept-payload', '--out', out], env);
+
+    return { code, lines, out, stubs, sha };
+  }
+
+  it('verdict: keep', async () => {
+    const run = await runArm(['111', '111', '111', '111', '111', '222', '222', '222', '222', '333', '333', '333']);
+
+    expect(run.code).toBe(0);
+    expect(run.lines.some((line) => /^jev: payload: untracked reviewer outputs; planned calls: 37; estimated input tokens: \d+$/.test(line))).toBe(true);
+    expect(run.lines).toContain('jev: auth test provider=official model=stub-model');
+    expect(run.lines.some((line) => /^column jev: K=12 measured=12 unmeasured=0 latency_p50_ms=\d+ latency_p95_ms=\d+$/.test(line))).toBe(true);
+    expect(run.lines).toContain(
+      `verdict jev: keep K=12 M=12 A=12 B=5 W=7 L=0 F=0 p_win=0.007813 p_loss=1.000 labels_sha256=${run.sha} jev_version=0.6.2 provider=official model=stub-model`,
+    );
+
+    const calls = readCalls(run.out);
+    expect(calls).toHaveLength(37);
+    expect(calls[0]).toEqual({
+      backend: 'jev',
+      output: null,
+      order: null,
+      attempt: 1,
+      wallMs: expect.any(Number),
+      exitCode: 0,
+      pick: null,
+      pickProb: null,
+      status: 'measured',
+      jevVersion: '0.6.2',
+      provider: 'official',
+      model: 'stub-model',
+    });
+    expect(calls.slice(1, 4)).toEqual([
+      { backend: 'jev', output: 'row-1', order: 1, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model' },
+      { backend: 'jev', output: 'row-1', order: 2, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model' },
+      { backend: 'jev', output: 'row-1', order: 3, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model' },
+    ]);
+  });
+
+  it('verdict: stop (flips)', async () => {
+    const run = await runArm(['112', '112', '112', '112', '112', '221', '221', '221', '221', '331', '331', '331']);
+
+    expect(run.code).toBe(0);
+    expect(run.lines).toContain(
+      `verdict jev: stop (flips) K=12 M=12 A=12 B=5 W=7 L=0 F=12 p_win=0.007813 p_loss=1.000 labels_sha256=${run.sha} jev_version=0.6.2 provider=official model=stub-model`,
+    );
+  });
+});

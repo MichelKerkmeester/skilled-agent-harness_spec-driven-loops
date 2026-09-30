@@ -1,0 +1,1 @@
+Architecture boundary check passed: shared/ neutrality OK, runtime/scripts/ wrappers OK.

@@ -1,0 +1,1 @@
+rows=100 bad_schema=0 stale_hash=0 id_moved=0 max_row_chars=262 distinct_hashes=100

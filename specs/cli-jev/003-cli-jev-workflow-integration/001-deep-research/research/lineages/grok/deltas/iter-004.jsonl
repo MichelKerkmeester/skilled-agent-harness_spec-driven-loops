@@ -1,0 +1,4 @@
+{"type":"iteration","iteration":4,"angle":"grok-04","newInfoRatio":0.64,"findingsCount":2,"ruledOutCount":1}
+{"type":"finding","id":"f-grok-04-shadow-noul","title":"Shadow noul beside frozen legacy-convergence authority","seam":".skilled/skills/system-deep-loop/runtime/lib/stopping-clocks/stopping-clock-shadow.ts:11","verdict":"later","confidence":"inferred","metric":"correlation with human repeat labels; baseline UNKNOWN"}
+{"type":"finding","id":"f-grok-04-agreement-wants-findings","title":"Cross-executor agreement wants findings, and Jev does not write them","seam":".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:481","verdict":"drop","confidence":"confirmed","metric":"none"}
+{"type":"ruled_out","id":"r-grok-04-stop-authority","title":"Jev field that can move STOP_ALLOWED","reason":"Averages a non-counting model into a counting decision and fakes the second-lens guard"}

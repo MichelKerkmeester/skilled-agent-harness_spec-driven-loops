@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reply harness blinded judge",
+      "reply harness judge agreement",
+      "judge-agreement script",
+      "masked reply grading",
+      "research R6 blinded judge",
+      "reply harness judge plan",
+      "judge-agreement plan",
+      "blinded judge keep rule",
+      "masked reply baseline plan",
+      "reply harness judge tasks",
+      "judge-agreement tasks",
+      "blinded judge verification"
+    ],
+    "key_topics": [
+      "reply",
+      "harness",
+      "blinded",
+      "judge",
+      "agreement",
+      "judge-agreement",
+      "script",
+      "masked",
+      "grading",
+      "research",
+      "plan",
+      "keep"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs",
+      ".skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".hermes/skills/sk-communication/SKILL.md",
+      "scratch/w4-build/build-evidence.md",
+      "scratch/w4-session/session-evidence.md",
+      "runtime/data/trigger-index.json",
+      ".skilled/skills/sk-communication/benchmark/reply-harness/README.md",
+      ".skilled/skills/sk-communication/SKILL.md",
+      ".skilled/skills/sk-communication/README.md",
+      "scratch/w4-build/briefs/01-task.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "judge-agreement.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "judge-agreement.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-communication/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": "runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-communication/benchmark/reply-harness/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "01-task.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/briefs/01-task.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The reply harness masks two conditions' replies so that \"a judge, human or model,\" can read them blind (`.skilled/skills/sk-communication/benchmark/reply-harness/README.md:11`)",
+    "created_at": "2026-09-29T12:42:35Z",
+    "last_save_at": "2026-09-30T07:34:25.860Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5a8b01ee5a219807096583212e9706752498634b6ada142e17937e06132eee5f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c0478ac59fb32d46d209750fecb69b155bb6fc9eb0256396d1da4d142dbaf0a8",
+      "plan.md": "0c64afe3b4114bcf0aab60c26889edecda0e0466f2dc6ec0efa3dec53699a29d",
+      "tasks.md": "3a8ca67987a8f5447b90ca67df637c209b942035bec3014d2d482694ace44e58",
+      "implementation-summary.md": "4ea3df9b4092c96c12e5a68350ed74f557c8f6b657edfa3475718e8d71ce77e3"
+    },
+    "last_active_at": null
+  }
+}

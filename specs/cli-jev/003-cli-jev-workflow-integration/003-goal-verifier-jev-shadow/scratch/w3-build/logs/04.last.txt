@@ -1,0 +1,16 @@
+Reference layout confirmed. Let me generate exactly padded box lines (the second file's PURPOSE lines overflowed the 74-char inner width, so I'll re-wrap and verify).Now I'll write the implementation file.Both files written. Now re-reading the created files and running the three listed checks.All three checks pass (exit 0; grep count 1). Re-reading the test file and self-reviewing for em dashes and stray spec references.Both files verified. Final self-review against the brief:
+
+- Layout matches: box headers with COMPONENT/PURPOSE, numbered dividers 1. IMPORTS through 5. EXPORTS, JSDoc on all four exports.
+- No em dash, no spec paths or packet/REQ/task ids in either file.
+- Traced all five tests against the implementation by hand: label folding, verdict throw path, the six reason strings, accepted-row accounting (`total`, `labeled`, `unlabeled`, `sources`), and the exact error ordering in test 5 all line up.
+- No `main`, no CLI, no plugin import; only the two named files were touched.
+
+STATUS: DONE
+FILES CHANGED: .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs (+177/-0)
+FILES CHANGED: .skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs (+90/-0)
+EDITS: .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs:1-177 created the scorer: box header, sections 1-5, normalizeLabel, normalizeVerdict, reasonCategory, loadRows, module.exports
+EDITS: .skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs:1-90 created the node:test suite with the row() helper and the five specified tests
+CHECKS: node --check .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs -> no output (exit 0)
+CHECKS: node --check .skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs -> no output (exit 0)
+CHECKS: grep -c "unknown verdict" .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs -> 1 (exit 0)
+BLOCKED REASON: none

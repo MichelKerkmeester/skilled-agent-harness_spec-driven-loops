@@ -1,0 +1,113 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+stderr | runtime/tests/folder-discovery-integration.vitest.ts > F12: mixed-mode aggregation with corrupt/missing/stale combinations > includes all folders and falls back to spec.md for stale/corrupt/missing description.json
+Warning: description.json parse error, writing minimal replacement (Expected property name or '}' in JSON at position 1 (line 1 column 2))
+
+stderr | runtime/tests/folder-discovery-integration.vitest.ts > F12: mixed-mode aggregation with corrupt/missing/stale combinations > repairs stale and corrupt description.json files during discovery when the file already exists
+Warning: description.json parse error, writing minimal replacement (Expected property name or '}' in JSON at position 1 (line 1 column 2))
+
+ ✓ runtime/tests/folder-discovery-integration.vitest.ts (43 tests) 776ms
+     ✓ T046-27: generateFolderDescriptions scan completes in <2s for 500 folders  411ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-improvement-common-ledger-schema.vitest.ts (12 tests) 14866ms
+     ✓ authorizes and appends every common event stem with replay metadata  14213ms
+     ✓ denies unauthorized transitions before the append boundary  305ms
+     ✓ preserves immutable raw observation bytes after caller mutation  335ms
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-skipped
+INFO [speckit-hook:session-stop] Session autosave-skipped stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-failed
+INFO [speckit-hook:session-stop] Session summary extracted (20 chars)
+WARN [speckit-hook:session-stop] Context auto-save failed: autosave failed
+INFO [speckit-hook:session-stop] Session autosave-failed stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session retarget-different-packet
+INFO [speckit-hook:session-stop] Retargeted autosave spec folder from specs/system-spec-kit/024-compact-code-graph/029-review-remediation to specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity
+INFO [speckit-hook:session-stop] Session retarget-different-packet stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session ambiguous-retarget
+WARN [speckit-hook:session-stop] Spec folder detection was ambiguous; preserving existing autosave target.
+INFO [speckit-hook:session-stop] Session ambiguous-retarget stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session io-failed-retarget
+WARN [speckit-hook:session-stop] Transcript parsing failed: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-stop-hook-autosave-yBWpfV/missing-transcript.jsonl'
+WARN [speckit-hook:session-stop] Spec folder detection skipped: transcript I/O failed; preserving existing autosave target.
+INFO [speckit-hook:session-stop] Session io-failed-retarget stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session offset-sentinel-session
+INFO [speckit-hook:session-stop] Token snapshot: 165 total (claude-sonnet), est. $0.001
+INFO [speckit-hook:session-stop] Parsed 1 messages: 120 prompt + 45 completion = 165 total tokens
+INFO [speckit-hook:session-stop] Session offset-sentinel-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-write-session
+INFO [speckit-hook:session-stop] Token snapshot: 75 total (claude-sonnet-4-6), est. $0.0005
+INFO [speckit-hook:session-stop] Parsed 1 messages: 50 prompt + 25 completion = 75 total tokens
+INFO [speckit-hook:session-stop] Retargeted autosave spec folder from specs/system-spec-kit/024-compact-code-graph/029-review-remediation to specs/system-spec-kit/026-graph-and-context-optimization/016-foundational-runtime/001-initial-research
+INFO [speckit-hook:session-stop] Session summary extracted (34 chars)
+INFO [speckit-hook:session-stop] Session atomic-write-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session preparse-stat-session
+INFO [speckit-hook:session-stop] Token snapshot: 15 total (claude-sonnet-4-6), est. $0.0001
+INFO [speckit-hook:session-stop] Parsed 1 messages: 10 prompt + 5 completion = 15 total tokens
+INFO [speckit-hook:session-stop] Session preparse-stat-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session retarget-refresh-session
+INFO [speckit-hook:session-stop] Token snapshot: 8 total (claude-sonnet-4-6), est. $0.0001
+INFO [speckit-hook:session-stop] Parsed 1 messages: 5 prompt + 3 completion = 8 total tokens
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/024-compact-code-graph/021-cross-runtime-instruction-parity
+INFO [speckit-hook:session-stop] Session retarget-refresh-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session persist-fail-session
+INFO [speckit-hook:session-stop] Token snapshot: 50 total (claude-sonnet-4-6), est. $0.0004
+INFO [speckit-hook:session-stop] Parsed 1 messages: 30 prompt + 20 completion = 50 total tokens
+INFO [speckit-hook:session-stop] Session summary extracted (34 chars)
+ERROR [speckit-hook:state] Failed to save state: Simulated atomic state write failure
+WARN [speckit-hook:state] State update was not persisted for session persist-fail-session
+INFO [speckit-hook:session-stop] Session persist-fail-session stop processing complete
+ ✓ runtime/tests/hook-session-stop.vitest.ts (16 tests) 69ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-improvement-common-reducers.vitest.ts (10 tests) 134ms
+ ✓ runtime/tests/embedders/hf-model-server.vitest.ts (18 tests) 102ms
+ ✓ ../system-deep-loop/runtime/tests/unit/coverage-graph-signals.vitest.ts (26 tests) 653ms
+     ✓ convergence telemetry records both novelty ratios only in sliding-window mode  509ms
+ ✓ runtime/tests/generated-metadata-integrity.vitest.ts (19 tests) 2276ms
+     ✓ enforces the gate at the orchestrator entrypoint (validateFolder) when explicitly enabled  1217ms
+     ✓ leaves the orchestrator entrypoint in report mode by default (flag unset)  1010ms
+ ✓ runtime/tests/calibrated-overlap-bonus.vitest.ts (24 tests) 7ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-deltas-contract.vitest.ts (2 tests) 11ms
+ ✓ ../system-deep-loop/runtime/tests/unit/trustworthy-state-records.vitest.ts (12 tests) 349ms
+ ✓ ../system-deep-loop/runtime/tests/unit/legacy-projection-surface-fold.vitest.ts (2 tests) 2ms
+ ✓ runtime/tests/smart-router-measurement.vitest.ts (4 tests) 25ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-strategy-heading.vitest.ts (9 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/continuity-thread.vitest.ts (6 tests) 6ms
+ ❯ runtime/tests/completion-evidence-pi-extension.vitest.ts (0 test)
+ ✓ runtime/tests/local-llm-features/prefix-system.vitest.ts (6 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/lifecycle/db-open-close.vitest.ts (2 tests) 962ms
+     ✓ opens and closes the SQLite DB cleanly across sequential script invocations  359ms
+     ✓ returns a DB error when overlapping writers contend for the graph lock  602ms
+ ✓ runtime/tests/memory-drift-full-tree-discovery.vitest.ts (1 test) 7ms
+ ✓ ../system-deep-loop/runtime/tests/council/session-state-hierarchy.vitest.ts (3 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/fanout-lineage-stderr.test.ts (2 tests) 47ms
+ ✓ runtime/tests/multi-ai-council-permission-scope.vitest.ts (2 tests) 6ms
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-claude-code.vitest.ts (18 tests | 1 skipped) 14398ms
+     ✓ completes a hermetic lineage through the shipped builder and fan-out runtime  2027ms
+     ✓ retains cli-claude-code authentication diagnostics in bounded lineage output  849ms
+     ✓ retains cli-claude-code model-or-balance diagnostics in bounded lineage output  844ms
+     ✓ retains cli-claude-code rate-limit diagnostics without retry delay  921ms
+     ✓ times out and terminates the captured cli-claude-code process  2844ms
+     ✓ closes stdin for the headless cli-claude-code process  891ms
+     ✓ passes child gate variables through the full cli-claude-code runtime  841ms
+     ✓ reports a signal-killed cli-claude-code lineage as failed  882ms
+     ✓ terminates the captured detached cli-claude-code process group after timeout  2833ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  runtime/tests/completion-evidence-pi-extension.vitest.ts [ runtime/tests/completion-evidence-pi-extension.vitest.ts ]
+Error: Cannot find module '../../.skilled/hooks/shared/hook-flags.mjs' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit/runtime/hooks/pi/completion-evidence.ts
+ ❯ runtime/hooks/pi/completion-evidence.ts:12:1
+     10| import { tmpdir } from "node:os";
+     11| import { join } from "node:path";
+     12| import { isHookEnabled } from "../../.skilled/hooks/shared/hook-flags.…
+       | ^
+     13|
+     14| type SentinelCore = typeof import("../../lib/hooks/completion-evidence…
+ ❯ runtime/tests/completion-evidence-pi-extension.vitest.ts:16:41
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 21 passed (22)
+      Tests  236 passed | 1 skipped (237)
+   Start at  22:19:04
+   Duration  37.48s (transform 713ms, setup 63ms, import 1.43s, tests 34.70s, environment 1ms)
+

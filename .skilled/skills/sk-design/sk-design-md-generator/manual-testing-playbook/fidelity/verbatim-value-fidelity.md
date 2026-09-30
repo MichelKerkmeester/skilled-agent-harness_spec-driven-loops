@@ -88,7 +88,7 @@ PRE: Waves 1 (SETUP-001 PASS) and 2 (EXTRACT-001 PASS) must be complete. A faith
 
 ### Optional Supplemental Checks
 
-Run the full `validate.ts` against the Style Reference and confirm it passes (values 100, claims >= 80, zero failures) as an additional fidelity gate, including a clean `checkQuickStartFidelity` (no `quickstart-phantom-color`, no `quickstart-maxwidth`). Check the extraction report at `<--output>/report.json` and confirm the token counts and stability-class distribution match what appears in the Style Reference. Run `cd backend && npx vitest run` to confirm the clustering and validation unit tests pass.
+Run the full `validate.ts` against the Style Reference and confirm it passes (values 100, claims 100, zero failures) as an additional fidelity gate, including a clean `checkQuickStartFidelity` (no `quickstart-phantom-color`, no `quickstart-maxwidth`). Check the extraction report at `<--output>/report.json` and confirm the token counts and stability-class distribution match what appears in the Style Reference. Run `cd backend && npx vitest run` to confirm the clustering and validation unit tests pass.
 
 ---
 

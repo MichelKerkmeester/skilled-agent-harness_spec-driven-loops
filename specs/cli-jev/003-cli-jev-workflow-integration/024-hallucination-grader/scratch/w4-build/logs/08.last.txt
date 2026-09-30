@@ -1,0 +1,59 @@
+I'll start by reading the required files.
+
+Now let me read the rest of S and the design doc sections.
+
+
+
+I have the full picture. Let me check for any sibling test files or briefs that pin the header ordering convention.
+
+Let me read the full brief to confirm details beyond the injected version.
+
+The brief matches. Let me check sibling briefs for header-order conventions (read-only) before editing.
+
+
+
+Let me check how the sibling score-track-narrowing tests structure their headers, for the ordering convention.
+
+
+
+Let me check the source JSDoc style for the keep-rule functions that were previously ported, to see how they were adapted.
+
+
+
+One quick style check — how `main` was ported earlier (dash vs no-dash JSDoc).
+
+
+
+Before editing, let me confirm the exact divider character run used in S so new section dividers match byte-for-byte.
+
+I have everything I need. Now making the edits — first, section 7 in S (inserting before MAIN and renumbering).
+
+Section 7 landed. Now the exports, CLI entrypoint renumber, and the main wiring.
+
+
+
+
+
+S is complete. Now the T header and the new describe block.
+
+
+
+Both files are edited. Now running the three verification checks from the brief.
+
+All three checks pass. Now a read-only self-review of the scoped diff.
+
+S and T are untracked (created by earlier briefs; the orchestrator commits). Let me check the baseline dir and current line counts for accurate change stats.
+
+
+
+
+
+Let me do a final structural review of S's section headers and the exports line.
+
+All edits verified: section order 7 DEEM GATE → 8 MAIN → 9 EXPORTS → 10 CLI ENTRYPOINT, all six new names exported, and the main wiring block in place. S and T are untracked in this worktree (created by earlier briefs), so the +/- counts below are computed against the pre-brief file state (S 522 lines, T 352 lines); no other file was touched.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs (+156/-6; 522→672 lines); .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts (+71/-5; 352→418 lines)
+EDITS: S:365 inserted `// 7. DEEM GATE` (DEEM_MODEL, DEEM_P50_MS, HEALTH_TIMEOUT_MS, REPO_CLI_DEEM, which, deemCommand, readDeemHealth, deemGate, ported verbatim) and renumbered MAIN to 8; S:641 replaced the arms marker with the `deemResult` gate wiring block; S:659 renumbered EXPORTS to 9 and added DEEM_MODEL, DEEM_P50_MS, which, deemCommand, readDeemHealth, deemGate; S:665 renumbered CLI ENTRYPOINT to 10; T:9 added `//   Deem gate (deemGate)` to the MODULE header (module-section order, before Zero-call run); T:355 appended `describe('score-d4-agreement deem gate')` with the three it()
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs -> clean parse, no output (exit 0); node -e "…deemCommand({ PATH: '' })…" -> /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs (exit 0); test -f .skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs && echo present -> present (exit 0)
+BLOCKED REASON: none

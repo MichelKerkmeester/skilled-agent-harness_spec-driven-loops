@@ -1,0 +1,12 @@
+✔ readMaskedReply returns the body under the marker and null without one (0.355958ms)
+✔ buildCensus counts every masked file and matches every distinct reply (29.912459ms)
+✔ buildCensus reports the masked reply whose source changed after masking (26.130916ms)
+✔ listMarkdown refuses a path that is not a directory (0.643167ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105.716958

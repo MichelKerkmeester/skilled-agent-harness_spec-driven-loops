@@ -77,7 +77,7 @@ Operators run the exact prompt and command sequence for `PI-022` and confirm the
 | `../../../../../skills/sk-git/scripts/lib/git-rule-checks.mjs` | Shared `GIT_SHAPE`, `GIT_CHECKS` the extension dynamic-imports |
 | `../../../../../skills/sk-git/scripts/lib/git-context.mjs` | Shared `createGitContext` the extension dynamic-imports |
 | `../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared `readHardRules` + `evaluate` the extension dynamic-imports |
-| `../../../../../skills/sk-git/SKILL.md` | The `hard_rules:` frontmatter used by the shared checks |
+| `../../../../../skills/sk-git/SKILL.md` | The `hard-rules.json` sidecar used by the shared checks |
 | `../../../../../skills/sk-git/scripts/hooks/README.md` | Runtime matrix, suppression tiers, fail-open guarantees |
 
 ---

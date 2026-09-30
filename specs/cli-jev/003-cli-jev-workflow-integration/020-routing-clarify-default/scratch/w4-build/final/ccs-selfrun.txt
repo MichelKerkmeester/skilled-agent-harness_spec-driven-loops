@@ -1,0 +1,12 @@
+advisor-index-handoff-contract.test.cjs 0
+ci-leaf-manifest-freshness.test.cjs 0
+compiled-routing-lockstep-parity.test.cjs 0
+create-journey-proof.test.cjs 0
+generate-leaf-manifest-scopes.test.cjs 0
+leaf-resource-contract.test.cjs 0
+root-router-contract.test.cjs 0
+score-clarify-default.test.cjs 0
+skill-derived-regenerator.test.cjs 0
+skill-root-metadata-contract.test.cjs 1
+validate-compiled-routing-scenarios.test.cjs 0
+validate-playbook-topology.test.cjs 0

@@ -1,0 +1,69 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+=== BEGIN AGENT PERSONA (resolved runtime path: .claude/agents/code.md; focused summary for a one-change brief) ===
+You are @code, a leaf implementer dispatched by an orchestrator (Depth: 1). Never dispatch another agent.
+Scope: edit only the files this brief names. Read each file before editing it and re-read the edited region after.
+Standards: read .skilled/skills/sk-code/SKILL.md and follow the route it resolves for this file type.
+Comment hygiene is a hard block: no spec paths, packet or phase numbers, or REQ/task ids in code comments. Keep the durable why.
+Verification: run only the checks this brief lists. Fail closed: no retry loop, no workaround. Report exact commands, result lines and exit codes.
+Output: end with the HANDBACK block, STATUS DONE or BLOCKED.
+=== END AGENT PERSONA (resolved persona: code) ===
+
+TASK: add the `--score <rows file>` command to score-clarify-default.cjs: label validation, the 30-row label gate, the first-alternative baseline, the headroom check and the fixed rule lines. Zero calls. Plus four tests.
+
+FILE 1 (edit): .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs
+a. New section `6. SCORER` between TRANSCRIPTS and CLI. Renumber CLI to 7 and EXPORTS to 8.
+b. CONSTANTS, append, with one comment saying these fix the call shape and the keep rule before any model call, so a change is an amendment: `LABEL_GATE = 30`, `CHOICE_INSTRUCTION = 'Which workflow mode should handle this request?'`, `NONE_DESCRIPTION = 'None of these modes'`, `ORDERS = 3`, `MARGIN_LINE = 'margin: 0.10'`, `KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, kill P(X >= L) <= 0.05, margin 10*(A-B) >= M, sign test p < 0.05, flips 10*F <= 3*M'`.
+c. SCORER, each with JSDoc:
+- `readRows(file)`: split utf8 on `\n`, skip blank lines, `JSON.parse` each; a parse failure throws `new Error('line ' + n + ' is not JSON')` (1-based over all lines).
+- `labelRows(rows)` returns `{ labeled, foreign }`. For each row: `value` is `row.label.trim()` when `row.label` is a non-empty string after trim, else `row.gold` when it is a non-empty string, else null; `valueSource` is `'label'` or `'gold'`. When `value` is set and is not in `[...row.alternatives, NONE_KEY]`, push `{ id: row.id, value }` to `foreign`. Otherwise, when `value` is set, push `{ ...row, value, valueSource }` to `labeled`.
+- `describeModes(repoRoot, hub, keys)` returns a Map key -> option text. For a key other than NONE_KEY: `readRegistry(repoRoot, hub).packets.get(key)` names the packet; read the `description:` line inside the leading `---` frontmatter of `<repoRoot>/.skilled/skills/<hub>/<packet>/SKILL.md` and strip one pair of surrounding double or single quotes. A missing packet, file or description throws `new Error('no description for mode ' + hub + '/' + key)`. NONE_KEY maps to NONE_DESCRIPTION. When two keys in one call share a text, each of them gets `' [' + key + ']'` appended, because the local classifier refuses two options with one description.
+- `optionsDigest(labeled, repoRoot)` returns `{ count, sha256 }`: collect the distinct strings `hub + '/' + key + '=' + text` over every labeled row's `describeModes(repoRoot, row.hub, [...row.alternatives, NONE_KEY])`, sort them, `count` is how many, `sha256` the hex sha256 of their `\n` join (`require('crypto')`, added to IMPORTS).
+d. CLI. `parseArgs` gains `score: null` and the value flag `--score <file>`. After the loop: `--score` together with `--report`, `--rows-out` or `--transcripts` sets `error = '--score runs alone'`. USAGE gains ` | --score <rows file>` at its end. In `main`, when `args.score` is set, return `runScoreCommand(args, { out, err, repoRoot })` instead of the census. `runScoreCommand`: `readRows` (a missing file or a thrown error: `err('error: ' + message)`, return 2); `labelRows`; for each foreign entry `err('error: row ' + id + ' label "' + value + '" is not one of its alternatives or ' + NONE_KEY)`, and return 2 when any exist, before any stdout. Print `rows: <all> labeled=<K> operator=<valueSource label> committed_gold=<valueSource gold>`. When `K < LABEL_GATE` print `stop: fewer than 30 labeled rows (<K> labeled)` and return 0. Else `B` = labeled rows whose `alternatives[0] === value`; print in order `baseline: first alternative right on <B>/<K>`, MARGIN_LINE, KEEP_RULE_LINE, `instruction: -q "<CHOICE_INSTRUCTION>"`, `options: <count> sha256=<sha256> none="<NONE_DESCRIPTION>"`, `orders: 3, router order with none_of_these last, then rotated left by 1 and by 2`. When `10 * B > 9 * K` print `no headroom: the first alternative is right on <B>/<K>, above 0.90` and return 0. Else print `headroom: a 10-point gain fits above <B>/<K>` and return 0.
+e. EXPORTS gains `readRows, labelRows, describeModes, optionsDigest`.
+
+FILE 2 (edit): the test file. Add helper `writeRowsFile(dir, labels)`: `labels` is an array of `'second'`, `'first'` or `''`; row i is `{ id: 'r' + i, hub: 'cli-external-orchestration', source: 'canary', prompt: 'row ' + i + ' pick=' + <label or cli-codex> + ' first=cli-claude-code', alternatives: ['cli-claude-code', 'cli-codex'], gold: null, label: <'second' -> 'cli-codex', 'first' -> 'cli-claude-code', '' -> ''> }`; write JSON lines to `dir/rows.jsonl` and return that path. Helper `runScript(args)` = `spawnSync(process.execPath, [SCRIPT, ...args], { encoding: 'utf8' })`. Append four tests:
+9. `the gate stops at 29 labeled rows`: 29 `'second'` plus 3 `''`. Expect status 0, stdout includes `rows: 32 labeled=29 operator=29 committed_gold=0` and `stop: fewer than 30 labeled rows (29 labeled)`, and no `margin:`.
+10. `30 labeled rows pass the gate and print the fixed rule lines`: 30 `'second'`. Expect status 0, no `stop: fewer`, and lines `baseline: first alternative right on 0/30`, `margin: 0.10`, the KEEP_RULE_LINE, `headroom: a 10-point gain fits above 0/30`, and a line matching `/^options: 3 sha256=[0-9a-f]{64} none="None of these modes"$/m`.
+11. `a label outside the row's alternatives exits 2 and names the row`: 30 `'second'`, then set row r4's label to `'cli-bogus'`. Expect status 2, stdout `''`, stderr includes `row r4 label "cli-bogus"`.
+12. `a baseline above nine tenths prints no headroom`: 28 `'first'` plus 2 `'second'`. Expect `no headroom: the first alternative is right on 28/30, above 0.90`, status 0.
+
+Accept when: 2 files changed, `node --check` passes on both, and `grep -c "^test(" <test file>` prints 12.
+
+RUN CONTEXT
+- Repo root, a git worktree. Run every command from here:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration
+- Spec folder (pre-approved, Gate 3 answered): specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default
+- Other workers edit other files in this tree at the same time. Touch only the files this brief names.
+- The orchestrator runs the test suites, spec validation and every git commit after you return.
+- Your sandbox may block test runners that open local sockets (tsx, vitest). Run only the checks listed here; the orchestrator runs the rest.
+
+DON'T
+- Edit, create or delete any file this brief does not name.
+- Run a git command that writes (add, commit, stash, checkout, restore, reset, merge, rebase, push).
+- Install anything (npm/pnpm/pip/brew install, npm ci) or touch node_modules.
+- Open any .env file, print environment variables, or write a key or token into any file.
+- Call jev, the local Deem server (127.0.0.1:8300) or any network service.
+- Put spec paths, packet or phase numbers, or REQ/task ids in code comments.
+- Reformat, reorder or "improve" anything outside the named edit.
+- Ask a question. If a step cannot be done exactly as written, stop and report BLOCKED with the reason.
+
+Checks to run: `node --check` on both files, and `grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs`.
+
+HANDBACK (print exactly this block, filled in, as your last output)
+STATUS: DONE | BLOCKED
+FILES CHANGED: one line per file: <path> (+<added>/-<removed>)
+EDITS: one line per step: <file>:<line> <what changed>
+CHECKS: one line per check: <command> -> <result line> (exit <n>)
+BLOCKED REASON: <one line, or none>

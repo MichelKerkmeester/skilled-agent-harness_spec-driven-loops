@@ -1,0 +1,36 @@
+✔ census counts a mode clarify and keeps only gold among its alternatives (0.769459ms)
+✔ census counts a missing prompt, an engine throw and an unknown hub as unparsed (0.086167ms)
+✔ census keeps checklist alternatives apart and writes no row for them (0.053625ms)
+✔ rowLines writes every label empty (0.105417ms)
+✔ parseArgs reads both census flags and refuses an unknown flag or a missing value (0.076625ms)
+✔ hubForSkill maps a hub id and a mode packet and nothing else (0.062ms)
+✔ countTranscripts counts each front-door line once, escaped or plain (1.867917ms)
+✔ the transcript count prints counts and no transcript text (527.792959ms)
+✔ the gate stops at 29 labeled rows (33.634209ms)
+✔ 30 labeled rows pass the gate and print the fixed rule lines (38.304834ms)
+✔ a label outside the row's alternatives exits 2 and names the row (33.141791ms)
+✔ a baseline above nine tenths prints no headroom (37.607333ms)
+✔ tailP is exact (0.122417ms)
+✔ decideVerdict checks coverage, kill, margin, sign test and flips in order (0.098875ms)
+✔ scoreColumn counts measured, unstable and flips (0.132125ms)
+✔ --deem without --out exits 2 before any output (31.926208ms)
+✔ a stub or unreachable deem backend skips the arm and leaves the rest byte-identical (279.975416ms)
+✔ a jev without a credential prints its identity and one skip line (229.079208ms)
+✔ jev off PATH and a wrong jev version each skip (117.913125ms)
+✔ a deem stub that answers the label keeps (963.663666ms)
+✔ a deem stub that answers the first alternative stops on margin (932.339583ms)
+✔ a deem stub that loses to the baseline kills (972.440708ms)
+✔ four failing deem calls in thirty rows stop on coverage (936.682334ms)
+✔ the label gate blocks the deem arm before any call (34.567958ms)
+✔ a jev stub that answers the label keeps (1021.556584ms)
+✔ with both switches the jev verdict prints before the deem verdict (1842.861542ms)
+✔ a rejected key stops the jev arm with no verdict (211.62425ms)
+✔ a deem stub with another model or an unreadable health answer skips with a details line (174.17475ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8473.606958

@@ -1,0 +1,9 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .claude/agents/prompt-improver.md (+1/-1)
+EDITS: .claude/agents/prompt-improver.md:56 replaced substring "the only mode of the `cli-jev` hub" → "mode `cli-jev` of the `cli-classifier` hub" (rest of line byte-identical)
+CHECKS:
+- grep -c "the \`cli-jev\` hub" .claude/agents/prompt-improver.md -> 0 (exit 1, no match as expected)
+- grep -c "cli-classifier" .claude/agents/prompt-improver.md -> 1 (exit 0)
+- git diff --stat (scoped) -> .claude/agents/prompt-improver.md | 2 +- (1 file changed by me, +1/-1); `.skilled/agents/prompt-improver.md` also differs from HEAD but held the new text before my first tool call (pre-edit grep showed 0 old-text matches there) — pre-existing concurrent-worker change, untouched by me (exit 0)
+BLOCKED REASON: none

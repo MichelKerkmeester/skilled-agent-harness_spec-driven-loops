@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration",
+  "parent_id": null,
+  "children_ids": [
+    "cli-jev/003-cli-jev-workflow-integration/001-deep-research",
+    "cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm",
+    "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow",
+    "cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion",
+    "cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness",
+    "cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint",
+    "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
+    "cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub",
+    "cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move",
+    "cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes",
+    "cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes",
+    "cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes",
+    "cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs",
+    "cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check",
+    "cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes",
+    "cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening",
+    "cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm",
+    "cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link",
+    "cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order",
+    "cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default",
+    "cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay",
+    "cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion",
+    "cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge",
+    "cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader",
+    "cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback",
+    "cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit",
+    "cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater",
+    "cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint",
+    "cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order",
+    "cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record",
+    "cli-jev/003-cli-jev-workflow-integration/031-debug-next-check",
+    "cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan",
+    "cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger",
+    "cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens",
+    "cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen",
+    "cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment",
+    "cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport",
+    "cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration",
+    "cli-jev/003-cli-jev-workflow-integration/039-hub-cleanup",
+    "cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-jev workflow integration",
+      "jev typed judgment integration",
+      "jev skills and workflows research",
+      "jev opt-in integration",
+      "jev integration build phases",
+      "cli-jev workflow integration goal",
+      "jev research packet goal",
+      "jev integration completion criteria",
+      "jev goal binding"
+    ],
+    "key_topics": [
+      "cli-jev",
+      "workflow",
+      "integration",
+      "jev",
+      "typed",
+      "judgment",
+      "skills",
+      "workflows",
+      "research",
+      "opt-in",
+      "phases",
+      "goal"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/spec.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/goal.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/spec.md",
+      "007-classifier-deep-research/research/research.md",
+      "007-classifier-deep-research/context/deem-local.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      "008-cli-classifier-hub/spec.md",
+      "001-deep-research/goal.md",
+      "002-advisor-jev-tiebreak-arm/goal.md",
+      "003-goal-verifier-jev-shadow/goal.md",
+      "004-deep-research-expansion/goal.md",
+      "005-compaction-recall-harness/goal.md",
+      "006-goal-criteria-lint/goal.md",
+      "007-classifier-deep-research/goal.md",
+      "008-cli-classifier-hub/goal.md",
+      "009-cli-jev-hub-move/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/cli-jev/003-cli-jev-workflow-integration/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "specs/cli-jev/003-cli-jev-workflow-integration/goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "deem-local.md",
+        "kind": "doc",
+        "path": "007-classifier-deep-research/context/deem-local.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Find",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Opus",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deciding Deem",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Deem",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Child Status",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Planned",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
+    "created_at": "2026-09-26T15:37:28Z",
+    "last_save_at": "2026-09-30T19:50:49.568Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:30c547b0a976b7dd116a670cb06b6b1b1556ade8867f3ed3773f429c27172f35",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1279214eb61d23fbec2a3ce4ff13fbffca9ef4ccf0021be5beb8433ac3e30340"
+    },
+    "last_active_child_id": "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
+    "last_active_at": "2026-09-27T09:37:40.643Z"
+  }
+}

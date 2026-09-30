@@ -1,0 +1,21 @@
+✔ corpus walk (413.98375ms)
+✔ parser three shapes (165.550625ms)
+✔ parser skipped shape (154.556041ms)
+✔ dimension mapping (351.375ms)
+✔ commit resolution (192.405792ms)
+✔ untracked review file (336.366792ms)
+✔ location resolves (329.014ms)
+✔ location dropped (355.508709ms)
+✔ refused .env (377.990166ms)
+✔ draw reproducible (5202.030708ms)
+✔ draw spacing (2684.263208ms)
+✔ draw refuses labels (2436.340542ms)
+✔ draw shortfall (336.569583ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13387.837292

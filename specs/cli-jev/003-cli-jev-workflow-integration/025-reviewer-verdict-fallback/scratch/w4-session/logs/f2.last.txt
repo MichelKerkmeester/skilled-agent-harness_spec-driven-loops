@@ -1,0 +1,12 @@
+Both edits match the brief exactly and the validator passes. Reporting.
+
+HANDBACK
+
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md` (+2/-2 by this worker, file totals +16/-3 vs HEAD because a concurrent worker's MB-052 hunks were already in the tree before this dispatch)
+EDITS:
+- `manual-testing-playbook.md`:715 section 15 lead paragraph list ending replaced with "the criteria-exec hardening gate, score-delta benchmark gates, and the reviewer verdict fallback census."
+- `manual-testing-playbook.md`:965 feature catalog cross-reference `Model-Benchmark Mode` row, appended ", `reviewer-verdict-fallback.md`" after `score-delta-benchmark-gates.md` inside the cell
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md --type playbook` -> `✅ VALID: .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md` / `Document type: playbook` / `Total issues: 0` (exit 0)
+BLOCKED REASON: none

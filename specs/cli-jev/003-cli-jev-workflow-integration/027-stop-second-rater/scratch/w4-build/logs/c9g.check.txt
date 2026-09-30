@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/runtime
+
+ ❯ tests/unit/score-stop-rater.vitest.ts (34 tests | 1 failed) 9732ms
+     × oversize state is withheld 141ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/score-stop-rater.vitest.ts > score-stop-rater deem arm > oversize state is withheld
+Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/stop-rater-out-EZ8FH0/calls.jsonl'
+ ❯ tests/unit/score-stop-rater.vitest.ts:936:8
+    934|     expect(errs).toEqual([]);
+    935|     const records = fs
+    936|       .readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8')
+       |        ^
+    937|       .trim()
+    938|       .split('\n')
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 33 passed (34)
+   Start at  20:48:37
+   Duration  9.88s (transform 24ms, setup 0ms, import 39ms, tests 9.73s, environment 0ms)
+

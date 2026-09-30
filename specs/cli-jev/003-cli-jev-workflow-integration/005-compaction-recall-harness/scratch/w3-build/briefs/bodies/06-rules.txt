@@ -1,0 +1,29 @@
+TASK: add the five must-survive rules and the recall columns to S, and pin them with two cases in T.
+R = specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/ref/design.md (read only).
+S, T and F are named at the top of R. Read S, T and R section 8 first. Never edit F.
+
+In S:
+1. Section 5 (MUST-SURVIVE RULES): export identifiers(text) and stringLeaves(value) exactly per R section 8 bullet 1, plus
+   pure helpers for rules 2, 3 and 4 item extraction and a keptCount(items, keeperText, mode) helper.
+2. parseTranscript: at each boundary capture, from the segment Messages, the pre-segment identifier Set, the rule 2 basenames,
+   the rule 3 item and the rule 4 items (from the last user instruction, tracked across the whole file and not reset at a
+   boundary). After a boundary, add identifiers of later `assistant` records (text blocks and tool_use input string leaves)
+   to that boundary's post Set until the next boundary or the end of the file. Collect every record `uuid` in the file.
+3. At the end of the file, for each boundary, score rules 1 to 4 against the summary text and the brief text kept by the
+   previous step, and rule 5 against the collected uuids; add the row fields of R section 8 bullet 7 in that order, then drop
+   every text and Set. Only counts, 'uncheckable', 'ok', 'fail', 'absent', numbers and null reach the row.
+4. Row line: append ` r1=.. r2=.. r3=.. r4=.. r5=<r5> summary_recall=.. brief_recall=.. violations=<n>` per R section 8 after
+   brief_chars. Totals: add summary_recall_avg, brief_recall_avg (numbers rounded to 2 places in report.totals, null when none),
+   uncheckable and violations after markers.
+
+In T, add two cases after the current ones:
+ a. 'a missing written file gives 1 violation': runCensus(['--transcripts', fixture('missing-written-file')]): code 0; one row
+    with r2Found 1, r2Summary 0, r2Brief 0, r1Found 1, r1Summary 1, r3Found 1, r3Summary 1, r4Found 1, r4Summary 1,
+    uncheckable 0, r5 'ok', violations 1; its row line contains ' r2=1/0/0 ' and ' violations=1'.
+ b. 'a clean session with a raw U+2028 in a text field gives 0 violations': readFileSync(fixture('clean'), 'utf8') includes
+    '\u2028'; runCensus(['--transcripts', fixture('clean')]): code 0; report.totals.sessions_stopped 0; one row with r1 1/1/1,
+    r2 1/1/1, r3 1/1/1 (Found/Summary/Brief), r4Found 2, r4Summary 2, r4Brief 2, uncheckable 0, r5 'ok', summaryRecall 1,
+    briefRecall 1, violations 0.
+
+VERIFY (repo root): node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs
+Accept when: 2 files changed (S and T) and nothing else; node --check exits 0; T holds exactly 9 `it(` cases.

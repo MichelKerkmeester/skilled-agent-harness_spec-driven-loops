@@ -1,0 +1,13 @@
+All three checks pass. The two files are untracked in this worktree (the orchestrator commits them), so no staged/unstaged diff exists — my writes touched only those two paths, confirmed by their content re-reads.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs (+2/-1)
+               .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs (+10/-0)
+EDITS: .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs:72-73 added a comment and `maxBuffer: 268435456` to the `spawnSync` options in `git(repoRoot, args)`; all else byte-identical
+       .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs:279-287 added test `git output above 1 MB` after `commit resolution`: temp repo via `tempDir`/`runGit`/`writeFiles`, one committed 2,000,000-char file, asserts `S.readAtCommit(root, commit, 'docs/big.md').length === 2000000`
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs -> (no output) (exit 0)
+        node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> ℹ pass 34, ℹ fail 0 (exit 0)
+        node .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs > /dev/null -> exit=0 (exit 0)
+BLOCKED REASON: none
+```

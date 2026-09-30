@@ -62,7 +62,7 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 
 #### GATE 1: UNDERSTANDING + CONTEXT SURFACING [SOFT] BLOCK
 Trigger: EACH new user message (re-evaluate even in ongoing conversations)
-1. Run the trigger index lookup: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` → Surface relevant context. It reads the committed index and needs no daemon
+1. Run the trigger index lookup: `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "<prompt>"` → Surface relevant context. It reads the committed index and needs no daemon, and exit 1 with no rows is a clean no-hit
 2. Classify intent: Research or Implementation
 3. Parse the request and judge confidence against the Confidence Thresholds below — that table is the single scale; do not carry a second one.
 4. Below the proceed bar → INVESTIGATE (max 3 iterations) → ESCALATE per §7.

@@ -1,0 +1,3 @@
+{"type":"iteration","iteration":6,"status":"complete","focus":"grok-06: Design routing and review","findingsCount":3,"newInfoRatio":0.75,"noveltyJustification":"Five design intents are already keyword-scored. No hub routing run is archived. Review findings require a file and a line.","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"deep-research","timestamp":"2026-09-27T08:20:00Z"}
+{"type":"finding","id":"N-grok-06-1","label":"Do not replace the keyword intent scorer with a choice","verdict":"drop","question":"F"}
+{"type":"finding","id":"N-grok-06-2","label":"Do not put a classifier on the design checklists or validate.ts","verdict":"drop","question":"F"}

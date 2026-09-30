@@ -1,0 +1,23 @@
+{
+ "file": ".skilled/skills/cli-classifier/cli-deem/README.md",
+ "context": [
+  "the `cli-jev` hub is gone; the hosted Jev transport is now mode `cli-jev` of this same",
+  "`cli-classifier` hub, over the packet folder `cli-usage`."
+ ],
+ "edits": [
+  [
+   107,
+   "use the `cli-jev` hub instead.",
+   "use this hub's `cli-jev` mode instead."
+  ],
+  [
+   113,
+   "| `cli-jev` | The hosted Jev transport.",
+   "| `cli-jev` | The hosted Jev transport, a mode of the same hub over the `cli-usage` packet."
+  ]
+ ],
+ "checks": [
+  "grep -c \"cli-jev\\` hub\" .skilled/skills/cli-classifier/cli-deem/README.md   (expect 0)"
+ ],
+ "out": "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/35.body.md"
+}

@@ -1,0 +1,10 @@
+All checks pass. My single edit restored the dropped first sentence on line 21 while keeping the newer `reply-harness` clause; the other hunks in this file's working-tree diff (the `last_updated` bump and the "Offline judge agreement" section) pre-existed this dispatch and were not touched by me.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-communication/feature-catalog/feature-catalog.md (+1/-1)
+EDITS: .skilled/skills/sk-communication/feature-catalog/feature-catalog.md:21 restored dropped first sentence ("Use this catalog as the canonical inventory for the shipped communication-projection surface. ") in front of the existing feature-summary sentence
+CHECKS: grep -c "^Use this catalog as the canonical inventory" .skilled/skills/sk-communication/feature-catalog/feature-catalog.md -> 1 (exit 0)
+CHECKS: grep -c "^### " .skilled/skills/sk-communication/feature-catalog/feature-catalog.md -> 13 (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-communication/feature-catalog/feature-catalog.md -> ✅ VALID ... Total issues: 1 (exit 0; the one issue is a document_type_fallback warning, not a failure)
+BLOCKED REASON: none

@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md
+Document type: playbook_feature
+Total issues: 0

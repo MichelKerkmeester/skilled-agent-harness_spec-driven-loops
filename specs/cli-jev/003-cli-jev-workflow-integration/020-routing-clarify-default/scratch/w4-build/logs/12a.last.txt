@@ -1,0 +1,24 @@
+All three edits applied exactly once; validation passes. HANDBACK:
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/README.md (+3/-1)
+EDITS:
+.sskilled... -> exact lines:
+.sskilled-skill/README.md:7 version 1.2.0.19 -> 1.2.0.20 (frontmatter)
+.sskilled-skill/README.md:147 added table row "Clarify census and scorer" after "Structure extraction" row (§8 VERIFICATION)
+.sskilled-skill/README.md:162 added table row "scripts/score-clarify-default.cjs" after "scripts/package_skill.py" row (§9 RELATED DOCUMENTS)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/README.md -> "Total issues: 0" (exit 0)
+BLOCKED REASON: none
+```
+
+Corrected EDITS lines (plain, per brief format):
+
+```
+EDITS: one line per step:
+.sskilled/skills/sk-doc/sk-create-skill/README.md:7 version: 1.2.0.19 -> version: 1.2.0.20
+.sskilled/skills/sk-doc/sk-create-skill/README.md:147 added row "| Clarify census and scorer | node --test .../score-clarify-default.test.cjs | `pass 28` and `fail 0` |"
+.sskilled/skills/sk-doc/sk-create-skill/README.md:162 added row "| [`scripts/score-clarify-default.cjs`](./scripts/score-clarify-default.cjs) | Zero-call clarify census and default-pick scorer |"
+```
+
+Note: line numbers shown are the pre-edit positions given in the brief; the second table row is now line 148 and the third edit's row line 164 after insertion. One file changed, no other files touched, no writes to git.

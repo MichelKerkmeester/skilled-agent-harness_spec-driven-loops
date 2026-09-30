@@ -1,0 +1,11 @@
+Edits complete and verified. Only T received write calls; S was read-only. Both briefed greps pass. T ends the walker `describe` with the new sample-order test, matching `main`'s inert-first then SHA-256(path) ordering and `SAMPLE_MAX` slice in S.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts (+25/-3, per edit-tool replacement accounting; net +22 lines, 1087 → 1109)
+EDITS: T:18 added `import crypto from 'node:crypto';` after `import fs from 'node:fs';`
+EDITS: T:232-251 added `it('sample keeps the first 25 lineages by SHA-256 of the path', ...)` as the last test of `describe('score-stop-rater walker', ...)`
+CHECKS: `grep -c "sample keeps the first 25 lineages by SHA-256 of the path" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` -> `1` (exit 0)
+CHECKS: `grep -c "^import crypto from 'node:crypto';" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` -> `1` (exit 0)
+BLOCKED REASON: none
+
+Note for the orchestrator: both T and S show as untracked (`??`) in this worktree, so no git diff baseline exists; the two greps are the acceptance evidence as specified. Vitest is yours to run.

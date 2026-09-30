@@ -1,0 +1,8 @@
+The row is in place, one line added after the model row, all claims traced to the test cases (`corpus walk`, `parser three shapes`, `parser skipped shape`, `draw reproducible`, `deem stub backend`, `jev no credential`) and the script's own switches and printed lines from design section 2 and FACTS. No verdict or run outcome is claimed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/scripts/tests/README.md (+1/-0)
+EDITS: .skilled/skills/system-deep-loop/deep-review/scripts/tests/README.md:21 added one row in the section 2 table after the `reduce-state-summary-fallback.test.cjs` row, modelled on that row, for `score-residue-flagger.test.cjs`
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/scripts/tests/README.md --type readme -> `✅ VALID: .skilled/skills/system-deep-loop/deep-review/scripts/tests/README.md` (exit 0) | git diff --stat -- .skilled/skills/system-deep-loop/deep-review/scripts/tests/README.md -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

@@ -577,9 +577,20 @@ async function main() {
   const graderKind = args.grader || 'noop';
   const samples = Math.max(1, parseInt(args.samples, 10) || 1);
   const allowSameFamily = args['allow-same-family'] === true || args['allow-same-family'] === 'true';
+  const usage = 'Usage: node run-benchmark.cjs --profile <path-or-id> --outputs-dir <path> [--output <path>] [--state-log <path>] [--label <string>] [--profiles-dir <path>] [--integration-report <path>] [--scorer pattern|5dim] [--grader noop|mock|llm] [--samples <n>] [--allow-same-family]\n';
 
   if (!profileArg || !outputsDir || !outputPath) {
-    process.stderr.write('Usage: node run-benchmark.cjs --profile <path-or-id> --outputs-dir <path> [--output <path>] [--state-log <path>] [--label <string>] [--profiles-dir <path>] [--integration-report <path>] [--scorer pattern|5dim] [--grader noop|mock|llm] [--samples <n>] [--allow-same-family]\n');
+    process.stderr.write(usage);
+    process.exit(2);
+  }
+
+  // The scorer turns any grader kind it does not know into the mock stub, so an
+  // unknown value would score with fake D4 numbers and print nothing. Refuse it
+  // here, before any profile loads.
+  const VALID_GRADERS = new Set(['noop', 'mock', 'llm']);
+  if (!VALID_GRADERS.has(graderKind)) {
+    process.stderr.write(`run-benchmark: unknown --grader '${graderKind}' (expected noop, mock or llm)\n`);
+    process.stderr.write(usage);
     process.exit(2);
   }
 

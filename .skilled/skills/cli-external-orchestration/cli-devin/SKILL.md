@@ -3,15 +3,6 @@ name: cli-devin
 description: "Devin CLI executor for Cognition-backed coding, cloud handoff, subagent delegation, and cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.4.5.0
-hard_rules:
-  - id: stdin-redirect-required
-    check: stdin-redirect-required
-    message: "Any non-interactive `devin -p` MUST close/redirect stdin (`</dev/null`) — not only inside a read loop. Omitting it can hang with zero output, which is indistinguishable from a slow model."
-    severity: error
-  - id: devin-availability-required
-    check: command-v-devin-required
-    message: "Run `command -v devin` before every dispatch; if it fails, refuse the route without constructing or launching a command."
-    severity: error
 ---
 
 <!-- Keywords: devin, devin-cli, cognition, cross-ai, cloud-handoff, subagent-delegation, code-generation, code-review, second-opinion, multi-model, session-management, handoff, swe -->

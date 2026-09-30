@@ -1,0 +1,18 @@
+Both edits applied. Verification results below. Note: `.skilled/agents/orchestrate.md` carries two additional hunks (lines 472 and 850) that I did not write — another worker's concurrent rename of the same concept. My edit is the single table-row change at line 838; I left the other worker's hunks untouched.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/agents/orchestrate.md (+1/-1 by me; file currently +3/-3 vs HEAD, see note)
+               .claude/agents/orchestrate.md (+1/-1)
+EDITS: .skilled/agents/orchestrate.md:838 substring "(the `cli-jev` hub's transport)" -> "(mode `cli-jev` of the `cli-classifier` hub)" inside the table row
+       .claude/agents/orchestrate.md:826 same substring replacement in the same table row
+CHECKS: grep -c "cli-jev` hub's transport" .skilled/agents/orchestrate.md .claude/agents/orchestrate.md -> .skilled/agents/orchestrate.md:0 / .claude/agents/orchestrate.md:0 (exit 1 — expected, grep exits 1 on zero matches)
+        grep -c "(mode `cli-jev` of the `cli-classifier` hub)" .skilled/agents/orchestrate.md .claude/agents/orchestrate.md -> .skilled/agents/orchestrate.md:1 / .claude/agents/orchestrate.md:1 (exit 0)
+BLOCKED REASON: none
+```
+
+Honest note on the acceptance line "2 files changed, +1/-1 lines in each against its last state":
+- `.claude/agents/orchestrate.md` is exactly `1  1` in `git diff --numstat`.
+- `.skilled/agents/orchestrate.md` reads `3  3` against HEAD because two other hunks in that same file (the `cli-jev` hub → `cli-classifier` hub rename at line 472 and at line 850) were already present in the working tree when I edited, written by another concurrent worker. My `edit` call replaced exactly 1 block in that file. Those two hunks are outside my brief, so I did not revert or touch them — reverting would destroy another worker's in-scope change.
+
+Only the two named files differ; `.codex/`, `.pi/` and `.hermes/` were not opened.

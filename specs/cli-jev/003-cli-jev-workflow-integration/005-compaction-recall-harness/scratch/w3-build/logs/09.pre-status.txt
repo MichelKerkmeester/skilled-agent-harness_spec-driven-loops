@@ -1,0 +1,4 @@
+?? .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/
+?? .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/
+?? .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts
+?? specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/

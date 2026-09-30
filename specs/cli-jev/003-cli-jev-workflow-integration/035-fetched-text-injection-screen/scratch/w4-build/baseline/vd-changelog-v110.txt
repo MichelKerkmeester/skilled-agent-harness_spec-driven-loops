@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/cli-classifier/changelog/v1.1.0.0.md
+Document type: changelog
+Total issues: 0

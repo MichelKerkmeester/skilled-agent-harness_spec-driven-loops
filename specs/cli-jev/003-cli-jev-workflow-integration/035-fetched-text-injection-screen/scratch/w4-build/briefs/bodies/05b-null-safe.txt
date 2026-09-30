@@ -1,0 +1,24 @@
+TASK: make holdsOperatorContent in S accept a missing file, which readJsonl reports as null, and add one assertion to T.
+S = .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs
+T = .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs. Read both first.
+Why: main passes readJsonl(...) straight in, and readJsonl returns null when the file does not exist, so a first draw
+into an empty folder would throw `Cannot read properties of null`.
+
+STEP 1. S:555 and S:556 currently read exactly:
+  return labels.some((row) => row.kind === 'natural' && row.label !== null)
+    || planted.some((row) => typeof row.sentence === 'string' && row.sentence.trim() !== '');
+Replace those two lines with exactly:
+  return (labels ?? []).some((row) => row.kind === 'natural' && row.label !== null && row.label !== undefined)
+    || (planted ?? []).some((row) => typeof row.sentence === 'string' && row.sentence.trim() !== '');
+In the JSDoc just above the function, change `@param {object[]} labels` to `@param {object[]|null} labels` and
+`@param {{ id: string, sentence: string|null }[]} planted` to `@param {{ id: string, sentence: string|null }[]|null} planted`.
+STEP 2. In T, inside the test 'drawRows is reproducible, caps each source and holds no text', directly after the line
+`assert.equal(S.holdsOperatorContent([], [{ id: 'p01', sentence: 'x' }]), true);` add this line with the same indentation:
+  assert.equal(S.holdsOperatorContent(null, null), false);
+Change nothing else in S or T. Edit no other file.
+
+VERIFY (repo root), paste each result line:
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs
+  grep -c "holdsOperatorContent(null, null)" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs   (expect 1)
+Accept when: 2 files changed (S: 2 code lines and 2 JSDoc lines replaced; T: 1 line added); both node --check exit 0; the grep prints 1.

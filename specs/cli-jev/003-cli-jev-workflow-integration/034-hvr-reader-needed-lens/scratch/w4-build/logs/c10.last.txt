@@ -1,0 +1,22 @@
+The step is implemented and compiles clean. I did not run the test suite or spec validation — per the brief, the orchestrator runs those; I ran exactly the two listed compile checks.
+
+**What changed**
+
+- **S** (`hvr_reader_lens.py`): added `import math`; new section 10 VERDICT with `QUESTIONS`, `MARGIN`, `MARGIN_LINE`, `KEEP_RULE_LINE`, `question_lines`, `sign_test_p`, `_category_condition`, `decide_verdict`, `verdict_text`, `summarize_column`, `build_report` (RUN banner renumbered to 11); `main` now consumes `deps["env"]`/`timeout_ms`/`backoff_ms` and runs: census preamble → question/margin/keep-rule lines → label gate or baselines+headroom+categories stop → Jev then Deem, each behind its own gate and regardless of the other's outcome (orchestrator ruling 1) → `report.json` when a column ran/stopped or the categories stop fired.
+- **T** (`test_hvr_reader_lens.py`): seven new cases — the four verdict tests, the exact sign test, both switches printing Jev first, and the zero-call default run — with all earlier functions and tests untouched.
+
+Both files were re-read after editing; a static pass caught and fixed a `KeyError` risk in the baseline-headroom lookup before final verification.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py (net +509; 1770 -> 2279)
+               .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py (net +138; 1208 -> 1346)
+EDITS: hvr_reader_lens.py:31-34 added `import math`
+       hvr_reader_lens.py:1668-2029 new section 10 VERDICT (QUESTIONS/MARGIN/KEEP_RULE_LINE, question_lines, sign_test_p, _category_condition, decide_verdict, verdict_text, summarize_column, build_report); RUN banner renumbered 11
+       hvr_reader_lens.py:2076-2078 main now reads deps env/timeout_ms/backoff_ms
+       hvr_reader_lens.py:2161-2279 main's run order: preamble, label gate/baselines/headroom/categories stop, Jev-first gates+arms with identity, report.json write
+       test_hvr_reader_lens.py:1203-1339 added the seven step cases (verdict keep/kill/stop coverage/stop categories, exact sign test, both switches Jev first, default run zero-call)
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py -> no output (exit 0)
+        python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> no output (exit 0)
+BLOCKED REASON: none
+```

@@ -1,0 +1,46 @@
+FAIL  agent-improvement/tests/candidate-lineage.vitest.ts [ agent-improvement/tests/candidate-lineage.vitest.ts ]
+FAIL  agent-improvement/tests/score-candidate-cache.vitest.ts > score-candidate cache reproducibility > never shares a cache hit between two different candidates
+FAIL  agent-improvement/tests/score-candidate-cache.vitest.ts > score-candidate cache reproducibility > returns the same hash and score for identical inputs across two runs
+FAIL  agent-improvement/tests/score-candidate-security.vitest.ts > score-candidate cache read-integrity > rejects a cache entry whose status is not scored
+FAIL  agent-improvement/tests/score-candidate-security.vitest.ts > score-candidate cache read-integrity > rejects a tampered cache entry and recomputes the score
+FAIL  agent-improvement/tests/score-candidate-security.vitest.ts > score-candidate evaluator authority > fails closed when no evaluator authority manifest is supplied
+FAIL  agent-improvement/tests/score-candidate-security.vitest.ts > score-candidate evaluator authority > ignores candidate frontmatter when selecting evaluator identity and rubric source
+FAIL  agent-improvement/tests/score-candidate-security.vitest.ts > scoreDimSystemFitness resource-ref sanitization > does not credit a traversal skill ref that would resolve to a real SKILL.md
+FAIL  shared/tests/mirror-sync-verify.vitest.ts [ shared/tests/mirror-sync-verify.vitest.ts ]
+FAIL  shared/tests/promote-candidate-approval-binding.vitest.ts [ shared/tests/promote-candidate-approval-binding.vitest.ts ]
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > refuses rollback under the same unauthorized-root condition
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > refuses to promote when the canonical target resolves outside the allowed roots, even though manifest/config agree
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > rejects a scored candidate whose identity fields are absent even when numeric gates pass
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > rejects an uncontained acceptance file before creating output
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > rejects an uncontained archive directory before creating output
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > rejects an uncontained candidate before creating output
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > rejects an uncontained event log before creating output
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > rejects an uncontained state file before creating output
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > accepts a candidate without mutating the canonical target
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > blocks rollback before ship and from unexpected target drift
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > blocks ship after canonical drift, restores the pre-acceptance target, and records a preserved-branch event
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > promotes from a benchmark-complete + benchmark-pass report with NO --score (Lane B)
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > refuses a benchmark report with a negative outcomeScoreDelta
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > refuses a missing benchmark baseline unless explicitly overridden
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > refuses a non-passing benchmark report (recommendation=benchmark-fail) and leaves target untouched
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > refuses when the aggregate score is below the benchmark aggregate gate
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects a forged acceptance JSON that has no authenticated receipt
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects a stale approval receipt after the candidate bytes change
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-finite agent delta value "Infinity"
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-finite agent delta value "NaN"
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-finite agent delta value undefined
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-finite agent score value "Infinity"
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-finite agent score value "NaN"
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-finite agent score value undefined
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-numeric benchmark aggregate "92"
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-numeric benchmark aggregate null
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-numeric benchmark aggregate undefined
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an approval receipt issued for a different candidate
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an approval receipt issued for a different target
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an infinite benchmark aggregate
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > requires --allow-hurt-fixtures for positive aggregate deltas with hurt fixtures
+FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > ships an accepted snapshot and rolls back to the pre-acceptance target
+FAIL  shared/tests/promote-candidate-mirror-sync.vitest.ts > promote-candidate 2-runtime mirror-sync gate > blocks promotion when a runtime mirror has drifted from the current canonical
+FAIL  shared/tests/promote-candidate-mirror-sync.vitest.ts > promote-candidate 2-runtime mirror-sync gate > promotes a candidate when every runtime mirror is in sync with the current canonical
+FAIL  shared/tests/rollback-candidate-hash-guard.vitest.ts > shared/rollback-candidate.cjs acceptance-file authenticity > refuses an acceptance file that drifted from its issued receipt
+FAIL  shared/tests/rollback-candidate-hash-guard.vitest.ts > shared/rollback-candidate.cjs acceptance-file authenticity > refuses rollback before the accepted candidate is shipped

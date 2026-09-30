@@ -1,0 +1,27 @@
+Implementation complete. Two design deviations worth the orchestrator's eye before the block:
+
+- Step 6 of section 4 names `spawnCall`/`runDeemArm` but the four verdict cases it also names cannot produce a `verdict deem:` line without the column summary and keep-rule decision, so section 2's `binomialTail`, `formatP`, `summarizeColumn`, `decideVerdict`, `verdictLine` and `nearestRank` are implemented now, exported, and reusable by step 7/8. Raising the amendment rather than absorbing it: step 8 should find them present.
+- The `verdict kill` case's `A=25, B=30` cannot pass the label gate at `K=30` (100% regex accuracy is `no headroom`), so it runs on a 34-row fixture where `B=30` has headroom while `A=25, B=30, W=0, L=5` stay exactly as section 3 specifies.
+- The vitest suite was not run (brief restricts runners; orchestrator owns it).
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs (+337/-0)
+- .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts (+140/-0)
+- .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/verdict-keep-labels.jsonl (+30/-0)
+- .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/verdict-kill-rows.jsonl (+34/-0)
+- .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/verdict-kill-labels.jsonl (+34/-0)
+EDITS:
+- score-completion-claims.mjs:53-81 added YES_THRESHOLD, JEV_RERUNS, QUESTION, DEEM_P50_MS, CALL_TIMEOUT_MS (design constants step 6 needs; JEV_RERUNS backs the modal-call rerun count)
+- score-completion-claims.mjs:431-560 section 9 VERDICT: binomialTail, modalCall (private), decideVerdict, formatP, summarizeColumn, verdictLine, nearestRank — required for the named verdict tests (deviation noted above)
+- score-completion-claims.mjs:692-873 section 11 DEEM ARM: spawnCall (J's shape, stdin written then closed, timeout kills and resolves once) and runDeemArm (nothing-leaves-the-machine line, one `noul -q QUESTION` per labeled row over detectTail, 0.5 threshold, code-4 health recheck + one retry, code 1/2/3/130 exit table with `deem: partial rows=<n>`, calls.jsonl records with the commit pair, column line, flips n/a, requalify check, verdict line with model suffix)
+- score-completion-claims.mjs:882,890 main: deps JSDoc and `timeoutMs = deps.timeoutMs ?? CALL_TIMEOUT_MS`
+- score-completion-claims.mjs:993-1008 main Deem block: health gate, label-gate skip line, else runDeemArm with plan `{ labeled, rowsById, labelsSha }` and ctx `{ out, env, timeoutMs, callLog, stored }`
+- completion-claim-audit.vitest.ts:15 static import of QUESTION and detectTail from S
+- completion-claim-audit.vitest.ts:113-143 readJsonl, stubKey, writeAnswers helpers (stub-compatible answer tables)
+- completion-claim-audit.vitest.ts:307-411 verdict keep, verdict kill, verdict stop (margin), verdict stop (coverage) cases with section 3's inputs and expected values
+CHECKS:
+- `node --check .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` -> (no output) exit 0
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts` -> 16 (exit 0)
+- `git status --porcelain | grep completion-claim` -> only the three untracked completion-claim paths (S dir, fixtures dir, T); no other path written by this step (exit 0)
+BLOCKED REASON: none

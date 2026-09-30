@@ -1,0 +1,15 @@
+All checks pass. HANDBACK:
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/README.md (+3/-3)
+EDITS:
+.sksilled/... — corrected: .skilled/skills/cli-classifier/cli-usage/README.md:3 description: "The cli-jev hub's first transport mode -" -> "The packet of the cli-classifier hub's cli-jev transport mode -"
+.sksilled/... — corrected: .skilled/skills/cli-classifier/cli-usage/README.md:20 blockquote: "> The first mode of the `cli-jev` hub, and its only `packetKind: "transport"`. Jev reads" -> "> The packet of mode `cli-jev` in the `cli-classifier` hub, a `packetKind: "transport"`. Jev reads"
+.sksilled/... — corrected: .skilled/skills/cli-classifier/cli-usage/README.md:28 "`cli-jev` is the hub's transport for typed judgments," -> "Mode `cli-jev` is the hub's hosted transport for typed judgments,"
+CHECKS:
+grep -c "cli-jev` hub" .skilled/skills/cli-classifier/cli-usage/README.md -> 0 (exit 1; grep exit 1 = no matches, count output 0 as expected)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/README.md -> "✅ VALID: .skilled/skills/cli-classifier/cli-usage/README.md / Total issues: 0" (exit 0)
+(git diff --numstat for the named file -> 3 3, confirming +3/-3)
+BLOCKED REASON: none
+```

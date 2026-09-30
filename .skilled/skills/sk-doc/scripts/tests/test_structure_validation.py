@@ -155,3 +155,35 @@ Content.
         "general_no_toc",
         "general_no_anchor",
     }
+
+
+def test_untyped_document_reports_readme_fallback(tmp_path: Path) -> None:
+    path = tmp_path / "notes.md"
+    path.write_text("# Notes\n\nPlain notes that no document type rule claims.\n", encoding="utf-8")
+
+    result = validate_document(str(path), doc_type=None, rules=load_rules(), skip_exclusions=True)
+    explicit = validate_document(str(path), doc_type="readme", rules=load_rules(), skip_exclusions=True)
+    fallback_warnings = [
+        item for item in result["warnings"] if item["type"] == "document_type_fallback"
+    ]
+
+    assert result["document_type"] == "readme"
+    assert len(fallback_warnings) == 1
+    assert "--type" in fallback_warnings[0]["fix_hint"]
+    assert (result["valid"], result["exit_code"]) == (explicit["valid"], explicit["exit_code"])
+
+
+def test_typed_or_named_readme_gets_no_fallback(tmp_path: Path) -> None:
+    body = "# Notes\n\nPlain notes that no document type rule claims.\n"
+    notes = tmp_path / "notes.md"
+    notes.write_text(body, encoding="utf-8")
+    readme = tmp_path / "README.md"
+    readme.write_text(body, encoding="utf-8")
+
+    typed = validate_document(str(notes), doc_type="readme", rules=load_rules(), skip_exclusions=True)
+    named = validate_document(str(readme), doc_type=None, rules=load_rules(), skip_exclusions=True)
+
+    assert typed["document_type"] == "readme"
+    assert named["document_type"] == "readme"
+    assert not any(item["type"] == "document_type_fallback" for item in typed["warnings"])
+    assert not any(item["type"] == "document_type_fallback" for item in named["warnings"])

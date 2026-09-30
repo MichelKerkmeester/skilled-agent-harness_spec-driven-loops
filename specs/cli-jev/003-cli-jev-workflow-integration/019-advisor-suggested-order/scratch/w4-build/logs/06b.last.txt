@@ -1,0 +1,11 @@
+I'll read the target file region first, then make the exact edit.
+
+Lines confirmed at 365-367. Making the exact replacement now.
+
+Edit applied. Now running the two verification greps from the repo root.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts (+2/-3)
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts:365 replaced `expect(t.killed).toBe(0); expect(t.over2200).toBe(2); expect(t.p95).toBeGreaterThanOrEqual(2300);` with `expect(t.over2200).toBe(2); expect(t.p95).toBeGreaterThan(2200);`
+CHECKS: grep -c "expect(t.killed).toBe(0)" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts -> 0 (exit 1) | grep -c "expect(t.p95).toBeGreaterThan(2200)" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts -> 1 (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,11 @@
+.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs
+.skilled/skills/sk-doc/feature-catalog/feature-catalog.md
+.skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md
+.skilled/skills/sk-doc/sk-create-skill/README.md
+.skilled/skills/sk-doc/sk-create-skill/SKILL.md
+.skilled/skills/sk-doc/sk-create-skill/changelog/v1.4.0.0.md
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md
+.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/count-clarify-and-stop-at-the-label-gate.md
+.skilled/skills/sk-doc/sk-create-skill/scripts/README.md
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md

@@ -1,0 +1,13 @@
+{
+  "type": "iteration",
+  "iteration": 10,
+  "status": "complete",
+  "focus": "mimo-10: Kill criteria as printed numbers",
+  "findingsCount": 4,
+  "newInfoRatio": 0.8,
+  "noveltyJustification": "Printed kill lines for Deem and every survivor with thresholds; two thresholds marked proposed; half the lines shown evaluable at zero calls.",
+  "keyQuestions": ["H"],
+  "answeredQuestions": ["H-part-kill-criteria"],
+  "timestamp": "2026-09-27T11:00:00Z",
+  "sessionId": "fanout-mimo-1790490452777-942a1f"
+}

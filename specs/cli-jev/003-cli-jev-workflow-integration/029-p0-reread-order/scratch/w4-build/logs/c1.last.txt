@@ -1,0 +1,17 @@
+Step 1 complete. Two notes for the orchestrator before the handback:
+
+- `buildRowState` is implemented in this step because the named case "the finding id never enters the row state" requires it and no later step lists it.
+- The named case "an unreadable registry exits 2" asserts `loadRegistries`'s refusal (`cannot read registry <path>`) at this step; `main`'s exit-2 mapping arrives with step 6. A `node` smoke over the five fixtures passes, so the vitest suite can stay green at this step.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs (+365/-0)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts (+147/-0)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs:1 created the constants block and census core (`runGit`, `repoRoot`, `listTrackedFiles`, `loadRegistries`, `rowKey`, `p0RowsOf`, `censusFindings`, `countPhrases`, `censusLines`, `buildRowState`, exports)
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts:1 added the five named cases: census counts, phrase counter, unreadable registry, duplicate row, id never in the row state
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs -> (no output) (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts -> 5 (exit 0)
+CHECKS: node stdin smoke replicating all five cases on temp fixtures -> SMOKE: all 5 cases passed (exit 0)
+CHECKS: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh on both files -> (no output) (exit 0 each)
+CHECKS: grep -nE 'specs/|REQ-|CHK-|ADR-|T[0-9]{3}|029-p0|packet' on both files -> no match (exit 1)
+CHECKS: git status --porcelain -- <S> <T> -> both `??` (new, nothing else touched) (exit 0)
+BLOCKED REASON: none

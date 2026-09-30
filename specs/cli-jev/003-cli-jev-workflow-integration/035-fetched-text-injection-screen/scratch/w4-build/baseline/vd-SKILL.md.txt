@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/cli-classifier/SKILL.md
+Document type: skill
+Total issues: 0

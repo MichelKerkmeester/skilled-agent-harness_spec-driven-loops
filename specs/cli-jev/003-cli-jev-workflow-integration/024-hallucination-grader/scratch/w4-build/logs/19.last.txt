@@ -1,0 +1,13 @@
+All three edits were already present in the working tree on arrival (verified byte-exact against the brief's new text and the content file, `diff` clean); the old strings no longer exist, so no further edit was possible or needed. The file's working-tree diff contains exactly the three requested changes and nothing else.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md (+15/-2) — state verified byte-exact; edits were already applied in the working tree on arrival (git diff = exactly the 3 briefed changes)
+EDITS:
+  manual-testing-playbook.md:116 subtotal 45→46, added `5D-051` to scenario list (verified present)
+  manual-testing-playbook.md:252 "covers 3 scenario summaries"→"covers 4 scenario summaries" (verified present)
+  manual-testing-playbook.md:291 block from scratch/w4-build/content/playbook-index-block.md inserted after 5D-011 feature line, byte-identical (verified via diff), followed by original blank + `---`
+CHECKS:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md -> `✅ VALID ... Total issues: 1` (1 pre-existing document_type_fallback warning, not a failure) (exit 0)
+  grep -c "5D-051\|covers 4 scenario summaries" .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md -> `6` (exit 0)
+BLOCKED REASON: none

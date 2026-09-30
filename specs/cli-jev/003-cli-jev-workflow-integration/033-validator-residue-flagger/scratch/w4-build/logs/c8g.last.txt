@@ -1,0 +1,8 @@
+All checks pass. Verified: T is 997 lines (was 976, +21/-0, one contiguous block at T:312–332); S was read-only.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs (+21/-0)
+EDITS: .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs:312 added test `staged review file` directly after `untracked review file` — makes a fixture, writes the one-row finding table to `specs/demo/review/staged.md`, stages it without committing, asserts `S.trackedFiles(root)` excludes it, asserts `runMain([], { root })` exits 0 with joined `errs` as message, and pins the `census: ` line to `files=2` and `rows=6`
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> (no output) (exit 0) | node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> `ℹ tests 36 / ℹ pass 36 / ℹ fail 0` (exit 0), `✔ staged review file` present in the run
+BLOCKED REASON: none

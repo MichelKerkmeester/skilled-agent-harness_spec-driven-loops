@@ -84,6 +84,8 @@ SKILL.md architecture follows progressive disclosure:
 | `allowed-tools` | ✅ | Array: `[Tool1, Tool2]` | `[Read, Write, Edit, Bash]` |
 | `version` | ✅ | 4-part X.Y.Z.W | `1.0.0.0` |
 
+> **Hard rules**: not a frontmatter key. They live in `hard-rules.json` beside the skill's `SKILL.md`, a JSON array of `{id, check, message, severity}` objects that the dispatch preflight reads.
+
 > **Description budget & trim style**: see [`frontmatter-templates.md` § Description Budget & Trim Style](../../../sk-create-frontmatter/assets/frontmatter-templates.md). Total project descriptions must stay under ~5,600 chars or Claude Code will silently drop the longest from auto-discovery. Authoring rules: drop product/stack enumerations, drop marketing prose, and keep skill name, primary verb, domain noun, and mode suffixes (`:auto`/`:confirm`).
 
 ### Template
@@ -102,6 +104,7 @@ version: 1.0.0.0
 - **name**: Must match folder name exactly, hyphen-case only
 - **description**: Third-person voice, single line, no `<>` brackets
 - **allowed-tools**: Use brackets `[...]`, not comma-separated string
+- **hard rules**: Not a frontmatter key. They live in `hard-rules.json` beside `SKILL.md`, a JSON array of `{id, check, message, severity}` objects the dispatch preflight reads.
 
 > **Complete Reference**: For validation rules, edge cases, array formats, and all document type frontmatter, see [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md)
 

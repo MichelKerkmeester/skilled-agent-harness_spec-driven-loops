@@ -1,0 +1,23 @@
+C9 is implemented and verified. Four short notes on choices within the step before the handback:
+
+- `main` omits the design's `deps.healthTimeoutMs`: the frozen Deem health reader takes no timeout (fixed at 2,000 ms), so accepting it would be dead wiring; no behavior is lost.
+- The census prints title-rule and body-field counts for both loops (4 lines) rather than the design's two example lines, because the risk row asks "per kind" and the goal's corpus preview reports both metrics for both loops.
+- `baseline=<method>` reaches the frozen 5-arg `summarizeColumn` by riding on the baseline-calls Map (`baselineCalls.method`), since the arms built in earlier steps pass that map straight through and must stay unchanged.
+- S:488 (a pre-existing comment from an earlier step, not C9 code) was reworded to clear the repo's comment-hygiene checker, which flags the phrase "review finding" as an ephemeral artifact reference. Comment only, no behavior change.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs (+462/-1)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts (+127/-0)
+EDITS: scripts/score-fanout-pairs.cjs:20 added `{ parseArgs } = require('node:util')`
+EDITS: scripts/score-fanout-pairs.cjs:1324-1763 added §9 KEEP RULE, REPORT AND MAIN: `SAME_AT`, `USAGE`, JSDoc'd `binomialTail`, `decideVerdict` (six-step order, exact `20n*num < den`, `p` = deciding tail), `formatP`, `summarizeColumn` (modal call, unstable-wrong + one flip, `C` = measured calls, line ending `… baseline=<method> reader=none named` + suffix), `buildReport` (question/census/labeled/baseline/gate/columns/stopped/skipped/requalify), `main` (strict parseArgs, `--out` refusal before census, census lines + merge decisions + title/body counts, sheet write, label read, gate, Jev then Deem arms on their own gates, `report.json`)
+EDITS: scripts/score-fanout-pairs.cjs:1766-1807 renumbered EXPORTS to §10 and exported `binomialTail`, `decideVerdict`, `formatP`, `summarizeColumn`, `buildReport`, `main`
+EDITS: scripts/score-fanout-pairs.cjs:1809-1820 added §11 CLI entrypoint, exit 1 on an unexpected throw
+EDITS: scripts/score-fanout-pairs.cjs:488 reworded one pre-existing comment line flagged by the repo hygiene checker (comment only, no behavior change)
+EDITS: tests/unit/score-fanout-pairs.vitest.ts:731-766 added `openGateFixture` (40 pairs, labels leave the merge at 24/40 right so the gate opens)
+EDITS: tests/unit/score-fanout-pairs.vitest.ts:768-856 added `score-fanout-pairs keep rule and report` with `verdict prints keep`, `verdict prints kill`, `verdict prints stop (coverage)`, `verdict stops on flips`, `default run makes no call`, `refuses a model arm without --out`, `report and calls.jsonl written once` (test count 32 → 39)
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts -> 39 (exit 0)
+CHECKS: python3 check-comment-hygiene.sh on S and T -> no violations (exit 0 each)
+CHECKS: sandbox-safe node probe (temp fixtures, stub `cli-deem` first on PATH, no sockets) -> default exit 0 with the five census prefixes and no stub logs; no-`--out` refusal exit 2 with zero lines; 40-label `--deem --out` run exit 0 with report verdict `verdict deem: stop (margin) K=40 M=40 A=16 B=24 W=16 L=24 F=0 p=0.9231 baseline=dedup-off reader=none named model=deem-0.8-v1 model_commit=abc123 source_commit=def456` and 80 `calls.jsonl` lines; keep/kill/coverage/flips column lines exact (exit 0)
+CHECKS: git status --porcelain on S and T -> both `??`, no other path touched by this step (exit 0)
+BLOCKED REASON: none

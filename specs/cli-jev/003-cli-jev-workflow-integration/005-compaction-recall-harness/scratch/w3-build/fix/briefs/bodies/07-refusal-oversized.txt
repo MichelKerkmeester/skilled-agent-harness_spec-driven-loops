@@ -1,0 +1,29 @@
+TASK: add two cases to T for two command-line surfaces that have no case yet: a run with no --transcripts, and
+--max-file-bytes below the size of the only file. Test-only: the script already behaves this way.
+Never read ~/.claude, ~/.pi or any transcript or session file. Edit only this file (read all of it first):
+T = .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts
+Add these two cases as the last cases, just before the final `});` of T, each after one blank line:
+  it('a run with no --transcripts is refused and writes no report', () => {
+    const out = join(tempDir('compaction-recall-out-'), 'r.json');
+    const run = runScript(SCRIPT, ['--out', out]);
+
+    expect(run.code).toBe(2);
+    expect(run.stdout).toBe('');
+    expect(run.stderr).toBe('no transcripts named\n');
+    expect(existsSync(out)).toBe(false);
+  });
+
+  it('--max-file-bytes 1 skips the only file as oversized and prints one stop line', () => {
+    const dir = transcriptDir();
+    const out = join(tempDir('compaction-recall-out-'), 'r.json');
+    const run = runScript(SCRIPT, ['--transcripts', dir, '--out', out, '--max-file-bytes', '1']);
+    const report = JSON.parse(readFileSync(out, 'utf8'));
+
+    expect(run.code).toBe(0);
+    expect(report.totals.sessions_skipped_oversized).toBe(1);
+    expect(report.totals.sessions_read).toBe(0);
+    expect(report.skippedOversized[0].file).toBe('clean.jsonl');
+    expect(run.stdout.split('\n').filter((line) => line.startsWith('stop:'))).toEqual(['stop: no boundaries']);
+  });
+VERIFY (repo root): grep -cE '^  it[(.]' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (expect 21)
+Accept when: 1 file changed (T), nothing else; T holds 21 cases.

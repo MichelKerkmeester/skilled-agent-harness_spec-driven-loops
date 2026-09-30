@@ -1,0 +1,4 @@
+29b pi markdown jev018-row .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md
+53b pi markdown alias-v2 .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md
+52b pi markdown cj001-v2 .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md
+36c pi markdown shared-readme-v3 .skilled/skills/cli-classifier/shared/README.md

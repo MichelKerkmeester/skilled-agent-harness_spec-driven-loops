@@ -1,0 +1,33 @@
+TASK: record this phase's finished build in its own phase docs, then run the four gates.
+
+## Pre-resolved gates
+
+- Gate 3 is answered: the phase folder above. The operator released this phase on 2026-09-29 (parent `goal.md` D3, "Bind and release"). CLI executors built it from the briefs in `{PHASE}/scratch/w4-build/briefs/`, and the orchestrator session verified the result, had it reviewed by a second model family and committed the build as `fb3f9c0599`. Parent D5 now says only Devin and Pi write, with no Claude leaves (operator, 2026-09-29), so you are that writer.
+- Write authority, frozen: the phase folder's own docs only (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` if present, `implementation-summary.md`, `goal.md`, and the derived `description.json` and `graph-metadata.json` through `repair-derived.cjs`). No other file. No git writes. Never open a `.env` file.
+- Evidence is the orchestrator's, not yours to invent. Use only what the evidence files below record, plus read-only commands you run yourself to confirm a fact. Do not re-run a test suite. Where a row has no evidence, leave it open and say so.
+- The phase-doc conventions are system-spec-kit's: keep each doc's template markers, anchors and frontmatter, and write prose the way the existing docs do. No em dashes.
+
+## What "Complete" means for this phase
+
+Parent D4 and parent criterion 2: phases 019 to 035 stop at their label gate, with no model labels, and each is Complete when it prints its verdict line or stops at its label gate. So a scorer that prints `stop: fewer than N labeled rows` from the final state closes the phase. A task or criterion that needs operator labels, a model run after labels exist, or a live Jev run (which waits on the operator's yes) is not closed by this build: record it as open for the operator, not as a failure, and if a criterion's wording demands it, amend that wording with a logged reason citing parent D4.
+
+## Evidence
+
+Read in full: `{PHASE}/scratch/w4-build/build-evidence.md` (the build orchestrator's record) and `specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-session/session-evidence.md` (the orchestrator session's verification, review verdicts and commits). Where the two disagree, the session's file wins, because it reran the gates from the final state.
+
+## What to do
+
+1. Read the phase's docs and `{PHASE}/scratch/w4-build/briefs/`.
+2. `tasks.md`: tick each task the evidence closes, with its command and result. Leave any other task open with the reason.
+3. `acceptance-criteria.md` (if present): mark each row the evidence meets as `Met` with its evidence. Leave any other row open with the reason.
+4. `goal.md`: tick each completion criterion the evidence meets. In the log, add the build's progress rows and one row per deviation the evidence names, each with its source. Keep the durable slice at or under 4,000 characters.
+5. `implementation-summary.md`: what changed and why, the files and commits, the verification with commands and results, the review verdicts, the deviations, and what is open for the operator (labels, a live Jev run, serving).
+6. Correct any stale premise the evidence lists where a phase doc states it as current fact.
+7. Set Status to `Complete` in `spec.md` and `implementation-summary.md` when the phase printed its verdict line or its label-gate stop from the final state and every remaining open row is an operator item under parent D4. Otherwise leave it `In Progress` and say what is open.
+8. Run `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder {PHASE} --apply`, then `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh {PHASE} --strict` (must print `RESULT: PASSED`; count `RESULT: FAILED` over the whole output), then `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs {PHASE}`, then `node .skilled/hooks/goal/bin/goal.cjs packet {PHASE} --workspace "$PWD"` (a phase child prints `packet_budget=unknown` by design; check `packet_durable_chars` is at or under 4000). Zsh has no `PIPESTATUS`: redirect to a file and read `$?`. Fix what fails in the phase docs and rerun.
+
+Accept when: only files inside `{PHASE}` changed (outside `scratch/`); `validate.sh` prints `RESULT: PASSED` and no `RESULT: FAILED`; `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)`; `packet_durable_chars` is at or under 4000. In the HANDBACK, also give the Status you set and why, and each row left open with its reason.
+
+## Phase-specific note
+
+The build orchestrator left no `build-evidence.md` for this phase. Read `{PHASE}/scratch/w4-build/design.md`, the baseline files in `{PHASE}/scratch/w4-build/baseline/` and the session evidence instead; the session evidence is the build record.

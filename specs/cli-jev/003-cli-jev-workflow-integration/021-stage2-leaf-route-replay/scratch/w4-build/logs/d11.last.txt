@@ -1,0 +1,9 @@
+Both checks pass. The file is created as the only file I touched, the validator reports `VALID` with exit 0, and `git diff --stat` returns cleanly (new untracked file, nothing tracked to diff). The 29 porcelain entries are other workers' files in this shared tree, none of them mine.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/replay-stage-two-leaf-routes.md (+100/-0)
+EDITS: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/replay-stage-two-leaf-routes.md:1 created the SKL-008 scenario doc in the MODEL's shape: frontmatter `title`/`description`/`version: 1.5.0.0`, then OVERVIEW, SCENARIO CONTRACT (exact prompt `Replay the Stage-Two leaf routes and tell me whether the keyword arm is worth keeping.`, stub setup, expected signals `hub=sk-code gold=1 unscored=1 surface slice not replayed`, `hub=cli-classifier stage1-only`, `router reads: not measured`, stop line `replay verdict: stop (prose arm covers 0 of 55 rows) N=55 P=0 keyword_f1=n/a prose_f1=n/a` quoted from the session run, no stub call logged), TEST EXECUTION (5-command sequence: logging `jev`/`cli-deem` stubs first on `PATH`, `node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --report /tmp/replay-report`, report and stub-log checks, cleanup), SOURCE FILES, SOURCE METADATA
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/replay-stage-two-leaf-routes.md -> `✅ VALID: ... Document type: playbook_feature, Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/replay-stage-two-leaf-routes.md -> no output, new untracked file (exit 0)
+BLOCKED REASON: none

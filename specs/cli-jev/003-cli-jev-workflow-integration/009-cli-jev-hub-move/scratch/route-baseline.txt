@@ -1,0 +1,51 @@
+PROMPT 01: use jev choice to pick a queue
+{"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 01: 0
+PROMPT 02: cli-jev noul for this question
+{"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 02: 0
+PROMPT 03: use jev judgment to decide whether this incident is urgent
+{"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 03: 0
+PROMPT 04: jev score these three severity levels
+{"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 04: 0
+PROMPT 05: summarize the open questions in this spec packet
+{"hubId":"cli-jev","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 05: 0
+PROMPT 06: describe the json value in this file
+{"hubId":"cli-jev","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 06: 0
+PROMPT 07: forbidden judgment operation
+{"hubId":"cli-jev","action":"reject","selectionKind":null,"targets":[],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 07: 0
+PROMPT 08: Use jev judgment to decide whether this incident is urgent, and give me the probability.
+{"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 08: 0
+PROMPT 09: ask jev for a probability that this plan ships on time
+{"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 09: 0
+PROMPT 10: score these three levels with jev
+{"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 10: 0
+PROMPT 11: run a batch of typed questions through jev
+{"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 11: 0
+PROMPT 12: pick one option with jev
+{"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 12: 0
+PROMPT 13: order levels with jev
+{"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 13: 0
+PROMPT 14: batch typed questions through jev
+{"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 14: 0
+PROMPT 15: cli-jev noul for this question.
+{"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 15: 0
+PROMPT 16: Summarize the open questions in this spec packet.
+{"hubId":"cli-jev","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 16: 0
+PROMPT 17: score this flavor of ice cream
+{"hubId":"cli-jev","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"033a20d98f5b005222165f3109613a2bcd22c6e81bf423c9b30fa4608d5aa9a2","generation":1}
+EXIT 17: 0

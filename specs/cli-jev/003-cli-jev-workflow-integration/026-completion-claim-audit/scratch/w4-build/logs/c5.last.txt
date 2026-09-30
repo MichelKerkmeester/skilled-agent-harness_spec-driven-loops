@@ -1,0 +1,22 @@
+Step 5 (Deem gate) implemented and verified. Summary:
+
+- **S** gained `DEEM_MODEL`/`HEALTH_TIMEOUT_MS`, a new `9. DEEM GATE` section with exported `which`, `deemCommand`, `readDeemHealth`, `deemGate` (ported from the design's sibling, repo-copy fallback via `REPO_ROOT`), and the `--deem` block in `main` (health first, then the label-gate arm-skip), with `MAIN` renumbered to `10` and `deps.env` added.
+- **T** gained `deem gate happy` and `deem gate edge` (reusing `labels-happy`/`labels-happy-rows` fixtures and the existing stubs; the happy case asserts the health line and no arm-skip so it stays green when the arm lands in the next step).
+- Earlier functions and all 10 earlier tests are untouched; `git status` shows only S, T and the fixtures dir.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs (+149/-0)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts (+37/-0)
+EDITS: S:12-28 imports extended: accessSync/constants/statSync (node:fs), delimiter (node:path), spawnSync (node:child_process)
+EDITS: S:61-66 DEEM_MODEL and HEALTH_TIMEOUT_MS constants added after the keep-rule constants
+EDITS: S:416-548 new section 9 DEEM GATE: which, deemCommand, readDeemHealth, deemGate with JSDoc; MAIN renumbered to 10
+EDITS: S:553 main deps JSDoc documents the env seam
+EDITS: S:560 main defaults `env` from deps
+EDITS: S:659-671 gate result captured; `--deem` block runs the health gate first, then prints `deem arm skipped: label gate|no headroom`
+EDITS: T:236-253 `deem gate happy`: health line present, census prefix identical, no arm-skip line, health is the first stub call
+EDITS: T:255-271 `deem gate edge`: `deem arm skipped: stub backend`, census byte-identical, exactly one health call, exit 0
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs -> (no output) (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts -> 12 (exit 0)
+CHECKS: git status --porcelain -- <S> <T> <fixtures dir> -> `??` for exactly those three paths, nothing else (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,8 @@
+TASK: build one step of this phase's design: section 4, code step 2 (**No-text guarantee**). Nothing beyond that step.
+R = `specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/scratch/w4-build/design.md` and `specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/scratch/w4-build/rulings.md` (read only; rulings override R where they differ).
+S = `.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` and T = `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts`. Create them if this is the first step, else read both first.
+Read R section 2 (interface: constants, functions, switches, printed lines) and section 3 (test cases), then implement exactly what the step names: each function with JSDoc and exported, each named test case added to T with the inputs and expected values section 3 gives. Keep every earlier function and test unchanged. Follow the sibling the design names for shape.
+VERIFY (repo root), paste each result line:
+  node --check .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs
+  grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts
+Accept when: only S, T and files under `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/` changed or were created and nothing else; `node --check` exits 0.

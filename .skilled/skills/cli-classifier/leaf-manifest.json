@@ -1,0 +1,25 @@
+{
+  "modes": [
+    {
+      "leaves": [
+        "references/deem-ctl-lifecycle.md",
+        "references/model-pin.md",
+        "references/wire-contract.md"
+      ],
+      "packet": "cli-deem",
+      "workflowMode": "cli-deem"
+    },
+    {
+      "leaves": [
+        "assets/question-shaping-card.md",
+        "references/cli-reference.md",
+        "references/integration-patterns.md",
+        "references/mcp-server.md",
+        "references/providers-and-models.md"
+      ],
+      "packet": "cli-jev",
+      "workflowMode": "cli-jev"
+    }
+  ],
+  "resourceContractVersion": 1
+}

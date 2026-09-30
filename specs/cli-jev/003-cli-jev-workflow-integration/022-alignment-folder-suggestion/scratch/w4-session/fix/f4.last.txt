@@ -1,0 +1,8 @@
+The line landed at 42, directly after `import-policy-allowlist.json`, with its `#` in the same comment column as the sibling entries. The validator passes and only the named file shows in the scoped diff. One thing to note for the orchestrator: `git diff --stat` reports 2 insertions because the KEY FILES table row for `score-alignment-suggestion.ts` was already an uncommitted change in this file before my edit (my pre-edit `rg` found it at line 72). My edit added exactly 1 line; I left the pre-existing row untouched.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/evals/README.md (+1/-0)
+EDITS: .skilled/skills/system-spec-kit/runtime/cli/evals/README.md:42 inserted `+-- score-alignment-suggestion.ts             # Offline alignment folder suggestion measurement` after the `import-policy-allowlist.json` tree line
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/evals/README.md -> `✅ VALID: ... README.md` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-spec-kit/runtime/cli/evals/README.md -> `1 file changed, 2 insertions(+)` (exit 0; 1 insertion mine, 1 pre-existing uncommitted KEY FILES row)
+BLOCKED REASON: none

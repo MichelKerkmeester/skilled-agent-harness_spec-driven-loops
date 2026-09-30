@@ -1,0 +1,20 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs (+174/-0)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts (+136/-0)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/census-happy.jsonl (+12/-0)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/census-edge.jsonl (+1/-0)
+EDITS: S:1 module header, step-1 imports, sentinel load via createRequire, TAIL_CHARS / CLAIM_WORDS (parsed from the sentinel pattern) / USAGE
+EDITS: S:52 parseRows — JSONL to { id, raw_text }, `rows row <n>: ...` errors, blank lines skipped
+EDITS: S:82 detectTail — `rawText.trim().slice(-TAIL_CHARS)`, the one slice census and arms read
+EDITS: S:96 runCensus — { rows, fires, words, firedIds }, word counted from the first pattern alternative in the tail
+EDITS: S:119 main — --rows parseArgs (strict, no positionals), exit 2 for usage/parse/unreadable/missing, prints `rows:`/`words:` only
+EDITS: S:164 isEntryPoint + entry block (`process.exitCode = await main(...)`)
+EDITS: T:1 test harness — self-contained stubbed cli-deem/jev double (STUB_ANSWERS/STUB_HEALTH/STUB_JEV_VERSION/STUB_AUTH_STATUS_EXIT, one log line per call), makeStubs, runScript with stub dir first on PATH
+EDITS: T:117 `census happy` — X rows with claims inside and outside the tail, one per pattern word
+EDITS: T:127 `census edge` — a row with "fixed" 500 characters before its end
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs -> (no output) (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts -> 2 (exit 0)
+CHECKS: manual: node ...score-completion-claims.mjs --rows ...census-happy.jsonl -> `rows: 12 fires: 10` + `words: completed=1 resolved=1 fixed=1 finished=1 shipped=1 released=1 deployed=1 implemented=1 occurred=1 happened=1` (exit 0)
+CHECKS: manual: node ...score-completion-claims.mjs --rows ...census-edge.jsonl -> `rows: 1 fires: 0` + all ten `words` zeros (exit 0)
+CHECKS: manual: node ...score-completion-claims.mjs (no --rows) -> stderr `no rows named` (exit 2)
+BLOCKED REASON: none

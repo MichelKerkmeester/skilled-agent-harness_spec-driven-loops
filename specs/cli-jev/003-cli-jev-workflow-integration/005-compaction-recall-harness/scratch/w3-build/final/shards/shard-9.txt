@@ -1,0 +1,88 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/fanout.vitest.ts (20 tests | 1 skipped) 23500ms
+     ✓ preserves an out-of-scope write on disk, reports it, and completes the lineage  1433ms
+     ✓ retains fan-out authentication diagnostics in the failed lineage log  1028ms
+     ✓ retains fan-out model-or-balance diagnostics in the failed lineage log  931ms
+     ✓ rejects a rate-limited fan-out lineage without a retry spawn  913ms
+     ✓ times out and reaps the captured fan-out lineage process  2829ms
+     ✓ closes stdin for the headless fan-out lineage process  901ms
+     ✓ propagates the non-interactive spec-gate environment through fan-out  982ms
+     ✓ expands flat-pool lineages while bounding concurrency and queuing overflow  2023ms
+     ✓ fails before fan-out execution when the executor transport is unavailable  1119ms
+     ✓ rejects lineage and aggregate budgets before provider process spawn  500ms
+     ✓ reports one externally killed lineage without erasing surviving artifacts  2065ms
+     ✓ reaps the captured fan-out orphan process group without a blanket sweep  2887ms
+     ✓ preserves exclusive ownership when concurrent worktrees collide  1438ms
+     ✓ preserves independent node_modules realpaths while fan-out is active  1390ms
+     ✓ binds convergence, maximum iterations, completion marker, artifacts, and summary status  1894ms
+     ✓ rejects a zero-exit lineage whose required artifact is absent  907ms
+ ✓ ../system-deep-loop/runtime/tests/unit/run-now-yaml-control.vitest.ts (12 tests) 16964ms
+     ✓ consumes a run-now sentinel and emits requested plus accepted events before dispatch  1805ms
+     ✓ rejects a run-now sentinel while paused and leaves the sentinel in place  1765ms
+     ✓ records a restored sentinel when it reappears after an accepted dispatch starts  926ms
+     ✓ logs synthesis_incomplete instead of synthesis_complete when required artifacts are missing  1981ms
+     ✓ logs synthesis_complete for legitimate zero-finding runs when empty artifacts exist  1909ms
+     ✓ logs synthesis_complete for fan-out research when lineage artifacts exist without a root dashboard  942ms
+     ✓ keeps the root dashboard required for research without lineage logs  922ms
+     ✓ logs synthesis_complete for fan-out review when lineage artifacts exist without a root dashboard  986ms
+     ✓ keeps the root dashboard required for review without lineage logs  1018ms
+     ✓ logs synthesis_incomplete when structured state findings are only partially present in the registry  1840ms
+     ✓ logs synthesis_incomplete when registry count matches but a structured state finding is missing  1916ms
+     ✓ folds review lineage logs so a lineage finding missing from the registry is caught  949ms
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+ ✓ ../system-deep-loop/runtime/tests/stress/cli-adapter/cli-opencode.vitest.ts (19 tests | 1 skipped) 15495ms
+     ✓ completes a hermetic lineage through the shipped builder and fan-out runtime  926ms
+     ✓ retains cli-opencode authentication diagnostics in bounded lineage output  939ms
+     ✓ retains cli-opencode model-or-balance diagnostics in bounded lineage output  973ms
+     ✓ retains cli-opencode rate-limit diagnostics without retry delay  923ms
+     ✓ times out and terminates the captured cli-opencode process  2820ms
+     ✓ closes stdin for the headless cli-opencode process  854ms
+     ✓ passes child gate variables through the full cli-opencode runtime  885ms
+     ✓ reports a signal-killed cli-opencode lineage as failed  855ms
+     ✓ terminates the captured detached cli-opencode process group after timeout  2829ms
+     ✓ bounds three detached opencode replicas at concurrency two and queues the third  1994ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts (13 tests) 13605ms
+     ✓ authorizes and appends every event stem through the real ledger  12851ms
+     ✓ denies unauthorized transitions before append  320ms
+     ✓ keeps candidates non-verdict-bearing until typed adjudication  371ms
+ ✓ ../system-deep-loop/runtime/tests/unit/voc-allocation.vitest.ts (14 tests) 9650ms
+     ✓ records budget denial without partial reservation or convergence  1717ms
+     ✓ populates only the frozen rank extension and leaves a finalized decision immutable  1585ms
+     ✓ replays one durable trigger to identical eligibility, ordering, quanta, and digest  2015ms
+     ✓ serializes competing decisions so the final typed remainder is admitted once  1967ms
+     ✓ ledgers a complete additive-dark decision with uniform/static authority retained  2320ms
+ ✓ runtime/tests/embedders/hf-model-server-shutdown.vitest.ts (3 tests) 5202ms
+     ✓ 009-REQ-001/002/003: SIGTERM mid-embed does not SIGKILL before the fake embed drains, and exits cleanly  3070ms
+     ✓ 009-REQ-002: repeated signals during shutdown do not re-arm a second failsafe timer  2069ms
+ ✓ ../system-deep-loop/runtime/tests/unit/cycle-detection.vitest.ts (28 tests) 921ms
+     ✓ authorizes and appends confirmed evidence once, then accepts an exact retry  465ms
+ ✓ ../system-deep-loop/runtime/tests/unit/event-envelope.vitest.ts (57 tests) 827ms
+     ✓ keeps the registry digest stable across a hostile-collation child process  812ms
+ ✓ ../system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts (20 tests) 798ms
+ ✓ ../system-deep-loop/runtime/tests/unit/check-direct-append-cli.vitest.ts (7 tests) 645ms
+ ✓ ../system-deep-loop/runtime/tests/unit/check-protocol-append-sites.vitest.ts (18 tests) 440ms
+ ✓ runtime/tests/phase-parent-health.vitest.ts (9 tests) 79ms
+ ✓ runtime/tests/identity-resolver-merge-safety.vitest.ts (15 tests) 49ms
+ ✓ runtime/tests/dist-freshness.vitest.ts (4 tests) 26ms
+ ✓ runtime/tests/slug-utils-boundary.vitest.ts (10 tests) 14ms
+ ✓ runtime/tests/hook-session-start.vitest.ts (8 tests) 8ms
+ ✓ runtime/tests/launcher-session-proxy.vitest.ts (23 tests) 10ms
+ ✓ runtime/tests/gate-d-regression-quality-gates.vitest.ts (1 test) 11ms
+ ✓ ../system-deep-loop/runtime/tests/unit/runtime-capabilities.vitest.ts (11 tests) 7ms
+ ✓ runtime/tests/entity-extractor.vitest.ts (34 tests) 4ms
+ ✓ runtime/tests/local-llm-features/health-reporting.vitest.ts (3 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/unit/lifecycle-taxonomy-yaml-parity.vitest.ts (3 tests) 1ms
+
+ Test Files  22 passed (22)
+      Tests  330 passed | 2 skipped (332)
+   Start at  00:05:19
+   Duration  91.03s (transform 731ms, setup 62ms, import 1.42s, tests 88.26s, environment 1ms)
+

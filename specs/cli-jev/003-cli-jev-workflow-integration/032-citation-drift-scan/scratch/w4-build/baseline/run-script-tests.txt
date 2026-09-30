@@ -1,0 +1,64 @@
+PASS test_authored_name_kebab.py
+PASS test_category_classification_denumbered.py
+PASS test_changelog_validator.py
+PASS test_code_folder_readme.py
+PASS test_create_benchmark_family_registry.py
+PASS test_create_skill_contract.py
+PASS test_extract_structure_regressions.py
+PASS test_feature_catalog_validation.py
+PASS test_instruction_file_exclusion.py
+PASS test_is_uppercase_section.py
+PASS test_naming_root_resolver.py
+PASS test_no_new_snake_case_guard.py
+PASS test_package_skill_regressions.py
+PASS test_quick_validate_086.py
+PASS test_readme_manifest.py
+PASS test_readme_verdict_parity.py
+PASS test_reference_checker.py
+PASS test_reference_rewrite_executor.py
+FAIL test_rename_tooling_fixture_harness.py (exit 1)
+test_boundary_and_flag_guards_fail_before_fixture_mutation (__main__.RenameToolingFixtureHarnessTests)
+Protected roots, outside roots, and rollback-only requests should be rejected. ... ok
+test_corpus_declares_a_non_zero_explicit_scenario_matrix (__main__.RenameToolingFixtureHarnessTests)
+The corpus validator should accept the complete explicit coverage contract. ... ok
+test_default_cli_is_dry_run_deterministic_and_non_mutating (__main__.RenameToolingFixtureHarnessTests)
+The default CLI should execute no rename apply or rollback operation. ... FAIL
+test_explicit_apply_and_rollback_remain_inside_disposable_repositories (__main__.RenameToolingFixtureHarnessTests)
+Opt-in mutation should prove apply, idempotency, rollback, and stale-plan aborts. ... ERROR
+
+======================================================================
+ERROR: test_explicit_apply_and_rollback_remain_inside_disposable_repositories (__main__.RenameToolingFixtureHarnessTests)
+Opt-in mutation should prove apply, idempotency, rollback, and stale-plan aborts.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py", line 95, in test_explicit_apply_and_rollback_remain_inside_disposable_repositories
+    report = run_harness(
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py", line 1241, in run_harness
+    _require(
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py", line 108, in _require
+    raise HarnessError(message)
+rename_tooling_fixture_core.HarnessError: fixture harness changed the protected worktree; paths that moved during the run:  M .hermes/skills/sk-create-skill/SKILL.md;  M .skilled/skills/sk-doc/feature-catalog/feature-catalog.md;  M .skilled/skills/sk-doc/sk-create-skill/README.md;  M .skilled/skills/sk-doc/sk-create-skill/SKILL.md;  M .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md;  M .skilled/skills/sk-doc/sk-create-skill/scripts/README.md;  M .skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md;  M .skilled/skills/system-spec-kit/README.md; ?? .skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md; ?? .skilled/skills/sk-doc/sk-create-skill/changelog/v1.5.0.0.md; ?? .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/replay-stage-two-leaf-routes.md; ?? .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs (+36 more)
+
+======================================================================
+FAIL: test_default_cli_is_dry_run_deterministic_and_non_mutating (__main__.RenameToolingFixtureHarnessTests)
+The default CLI should execute no rename apply or rollback operation.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py", line 74, in test_default_cli_is_dry_run_deterministic_and_non_mutating
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 2 != 0 : ERROR: fixture harness changed the protected worktree; paths that moved during the run:  M .skilled/skills/system-deep-loop/runtime/README.md; ?? specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/logs/fix-f1.check.txt; ?? specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/logs/fix-f1.post.txt; ?? specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/logs/fix-f1.status; ?? specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/logs/fix-f2.check.txt; ?? specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/logs/fix-f2.last.txt; ?? specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/logs/fix-f2.post.txt; ?? specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/logs/fix-f2.pre.txt; ?? specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/logs/fix-f2.status; ?? specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/logs/fix-f3.post.txt; ?? specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/logs/fix-f3.status; ?? specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch/w4-build/logs/d3.post.txt (+23 more)
+
+
+----------------------------------------------------------------------
+Ran 4 tests in 637.260s
+
+FAILED (failures=1, errors=1)
+PASS test_root_name_consumer_matrix.py
+PASS test_semantic_rename_engine.py
+PASS test_skill_contract.py
+PASS test_structure_validation.py
+PASS test_surface_packet_sections.py
+PASS test_validate_catalog_package.py
+PASS test_validation_switch.py
+PASS test_validator.py
+1 failing: test_rename_tooling_fixture_harness.py

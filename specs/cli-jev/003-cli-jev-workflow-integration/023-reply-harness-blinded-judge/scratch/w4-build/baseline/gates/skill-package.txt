@@ -1,0 +1,12 @@
+Skill: .skilled/skills/sk-communication
+Detected kind: standalone
+- package_skill.py --check --strict: FAIL (exit 1)
+  Output tail:
+    🔍 Validating skill: sk-communication
+    (strict mode)
+    ==================================================
+    
+    ❌ Strict mode: 5 contract requirement(s) unmet — Doc 'changelog/v1.0.0.0.md' missing 'version' in frontmatter (4-part X.Y.Z.W per frontmatter_versioning.md); Doc 'changelog/v1.1.0.0.md' missing 'version' in frontmatter (4-part X.Y.Z.W per frontmatter_versioning.md); Doc 'changelog/v1.2.0.0.md' missing 'version' in frontmatter (4-part X.Y.Z.W per frontmatter_versioning.md); Doc 'changelog/v1.3.0.0.md' missing 'version' in frontmatter (4-part X.Y.Z.W per frontmatter_versioning.md); SMART ROUTING section missing smart-router marker(s): discover_markdown_resources, _guard_in_skill (see skill_smart_router.md pseudocode)
+    
+    ==================================================
+    Result: FAIL

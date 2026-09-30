@@ -1,0 +1,62 @@
+I'll start by reading the required files.
+
+Now let me read the rest of the source file, focusing on sections 7-9, main, and buildReport.
+
+
+
+Now the test file:
+
+
+
+
+
+Now let me check the ripgrep lane helper (used by the baselines) to confirm how it resolves its environment:
+
+The ripgrep lane resolves its own binary from the ambient env, so test PATH overrides won't affect the baselines. Let me confirm no `jevGate`/`JEV_VERSION` already exists, then make the edits:
+
+No existing implementations. Now the source edits — first, the new section 8:
+
+Now the `main` wiring, after the Deem block:
+
+Now the three vitest cases, appended to the test file:
+
+Now the verification check and a read-only confirmation of the changed-file set:
+
+
+
+Both files are the ones this brief names (they are untracked in this worktree — new files the orchestrator will commit). Let me re-read the edited regions to confirm the final state:
+
+Let me check the repo's test-runner/typecheck setup and whether this delete-on-env pattern already appears in the test suite:
+
+A sibling test already uses this exact pattern — let me check it for consistency:
+
+The sibling committed test uses `NodeJS.ProcessEnv` annotations with the same `delete env.JEV_PROVIDER` pattern. Let me align my env declarations with that established style, and check the vitest config:
+
+
+
+
+
+
+
+
+
+All edits are in. Final-state verification — re-run the required check and confirm the changed set:
+
+
+
+All edits verified in place. Handback:
+
+```
+STATUS: DONE
+FILES CHANGED:
+  .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (+72/-0)
+  .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts (+82/-0)
+EDITS:
+  S:1454-1510 added section `8. JEV ARM` between sections 7 and 9: exported JEV_VERSION = 'jev 0.6.2' and jevGate(ctx) ported from R's jevGate, reusing the module's which(); prints `jev: path=<path|none> provider=<P>`, then 'jev arm skipped: jev not on PATH', or 'jev arm skipped: version' + `jev: found=<JSON.stringify(found)> path=<path>`, or 'jev arm skipped: no credential'; returns { passed, path, provider } plus reason (the skip line) on failure
+  S:1736-1749 added the jev block in main after the Deem block: no-headroom skip, jevGate({ out, env, timeoutMs }), `--jev needs --out <dir> so every call is recorded` refusal (return 2) after a passing gate, skip reason kept in jevResult for buildReport's skipped.jev, with `// The Jev arm runs here after a passing gate.` where a passing gate continues
+  T:1055-1135 added `describe('score-track-narrowing jev gate')` with the three cases (identity line + no credential with report.json skipped.jev; missing-on-PATH and wrong-version skips with jev.log assertions; passing gate without --out refused at code 2), each using smallCorpus, a default base run for the same deps, PATH-prefixed stubs with JEV_PROVIDER deleted unless named, and the jev log split on '\n' with empty lines dropped
+CHECKS:
+  node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs -> no output (exit 0)
+  git status --porcelain -> only the two named files (both untracked in this worktree) plus the pre-existing scratch/w3-build dir; nothing else touched (exit 0)
+BLOCKED REASON: none
+```

@@ -1,0 +1,15 @@
+TASK: one literal sentence replacement in one feature catalog entry, so the doc matches the code: a model arm whose gate passes now refuses to call without `--out`.
+File: .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/tie-break-eval.md. Read it first.
+
+Line 28 is one long paragraph. Inside it, replace exactly this sentence:
+With `--out <dir>` the run writes `calls.jsonl` and `report.json` there.
+with exactly:
+Once an arm's gate passes and it will call, the run needs `--out <dir>`, where it writes `calls.jsonl` and `report.json`. Without it the script exits 2 before any call.
+
+Keep every other character of line 28 and of the file unchanged, including the sentences before and after it.
+
+VERIFY (repo root):
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/tie-break-eval.md
+  grep -c "Without it the script exits 2 before any call." .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/tie-break-eval.md
+Accept when: 1 file changed and nothing else; validate_document exits 0; the grep prints 1.
+

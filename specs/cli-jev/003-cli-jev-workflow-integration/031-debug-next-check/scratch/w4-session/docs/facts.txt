@@ -1,0 +1,41 @@
+# FACTS for the 031 doc steps (read from the code and the session's own runs, 2026-09-29)
+
+Script: `.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` (Node ESM). Run it from the repository root with `node .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs`. It finds the repository from its own path, so the working directory does not change what it reads.
+Test: `.skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts`, 30 tests, all pass (`npx vitest run tests/debug-next-check.vitest.ts` from `.skilled/skills/system-spec-kit/runtime`). The file takes about 207 s, since each test spawns the script and each run searches the real repository.
+Switches (strict, no positional arguments): `--fixture <file>`, `--jev`, `--deem`, `--out <dir>`. The script prints no usage line.
+Versions and IDs, read at doc time (orchestrator ruling 2): the newest changelog is `v4.5.0.0.md` and `SKILL.md` carries `version: 4.5.0.0`, so this phase writes `changelog/v4.6.0.0.md` and bumps `SKILL.md` to `4.6.0.0`. The playbook's newest scenario is 462 (Completion claim audit), so this phase takes scenario 463, with its index row right after row 462. The design's "scenario 462" and "`v4.5.0.0.md`" are stale: phase 026 used both.
+Placement: the `SKILL.md` Quick Reference row goes directly after the `Completion claim audit` row. The `README.md` paragraph goes after the completion-claim audit paragraph. The catalog index block goes after the completion-claim audit block in `feature-catalog.md` section 2.
+
+What it does:
+- Seam search: `git grep -l next_check` over tracked files outside `specs/`, leaving out two things: `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/` (orchestrator ruling 1: that generated folder mirrors spec trigger phrases, so searching it would find this phase's own spec), and every path whose name holds `debug-next-check`, since the census's own script, test and docs carry the pattern and are not callers. Each hit prints `seam: <path>`; no hit prints `seam: none`.
+- Mined corpus: counts tracked `*debug-delegation.md` files outside any `templates/` folder, then one `git grep -cE '^### Hypothesis [0-9]' -- 'specs/*.md'`. The number of files with a heading is `hypothesis_files` and the number of headings is `mined rows`.
+- Fixture: an operator JSONL file outside the repository, one row per line with exactly the fields `id`, `symptom`, `claim`, `evidence`, `label`, `jev_ok`. `label` is one of `read_code`, `run_test`, `reproduce`, `instrument`. `jev_ok` is a boolean the operator sets for each row that may leave the machine.
+
+Exit 2, each before any census line:
+- `--jev` or `--deem` without `--out` prints `--jev or --deem need --out <dir> so every call is recorded`.
+- A `--fixture` path inside the repository prints `refused: fixture path inside the repository`.
+- A bad fixture row prints its row and fault, for example `fixture row 3: label x is not one of read_code, run_test, reproduce, instrument`, `fixture row 3: missing field jev_ok` or `fixture row 3: duplicate id`.
+- An unknown switch prints `usage error: ` followed by node's own parser message.
+Zero model calls by default: logging stubs for `cli-deem` and `jev` first on PATH were never called.
+
+Default run on the real tree, exit 0 in about 5 s, full stdout:
+    seam: none
+    mined: debug_delegation=1 hypothesis_files=0
+    mined rows: 0
+
+With `--fixture <file>` the run adds, in order: `fixture: rows=<n> sha256=<hex>`, `labels: read_code=<n> run_test=<n> reproduce=<n> instrument=<n>`, one `constant <label>: <right>/<n>` line per label, and `baseline: <label> <right>/<n>` (the constant right most often). Then:
+- `no headroom` when the baseline is right on more than nine tenths of the rows (`10*right > 9*n`). No backend is called.
+- `stop: fewer than 30 labeled rows` when the fixture holds fewer than 30 rows. No backend is called.
+- Otherwise the keep rule line: `keep rule: coverage 10*M>=9*K, kill P(X>=L)<0.05, margin 10*(A-B)>=M, sign P(X>=W)<0.05, flips 10*F<=3*M`.
+Session run, a 29-row fixture with `--jev --deem --out <dir>`: exit 0, the census lines, then `stop: fewer than 30 labeled rows`. Stubs uncalled.
+
+Arms, each only past the label gate and the headroom check, behind its own switch and gate. With both switches the Jev gate and arm run first, then the Deem gate and arm, each regardless of the other's outcome (orchestrator ruling 3). A failed gate prints its skip line and never runs the other backend in its place.
+- Jev payload gate: only rows with `jev_ok: true` may leave the machine. Each withheld row leaves three `unmeasured_withheld` records in `calls.jsonl` and is never sent. With no row accepted the run prints `jev arm skipped: payload not accepted`.
+- Jev gate: prints `jev: path=<path> provider=<provider>`, then skips with `jev arm skipped: jev not on PATH`, `jev arm skipped: version` (anything but `jev 0.6.2`) or `jev arm skipped: no credential`. A passing arm first prints `jev: payload: operator debug notes marked jev_ok; planned calls: <3K+1>; estimated input tokens: <n>`, where K is the number of accepted rows.
+- Deem gate: prints `deem: health backend=<b> model=<m> model_commit=<c> source_commit=<s>`, or skips with `deem arm skipped: <reason>`, such as `stub backend`. A passing arm first prints `deem: nothing leaves the machine; planned calls: <n>; estimated wall time: <s> s at 65.6 ms per call, the 2-option p50 in deem-local.md`.
+- Each arm asks one fixed question in three option orders per row and takes the modal pick. Deem plans 3 calls per row.
+Session runs on a synthetic 30-row fixture (one invented row repeated, labels cycled, kept in the session scratchpad): with every `jev_ok` false and `--jev --out <dir>` the run printed `jev arm skipped: payload not accepted` with no stub call; with `--deem --out <dir>` and a stub backend it printed `deem arm skipped: stub backend` after one `cli-deem health` call.
+
+Verdict line format (only a completed arm prints it): `verdict <jev|deem>: <keep|kill|stop (coverage)|stop (margin)|stop (sign test)|stop (flips)> K=<n> M=<n> A=<n> B=<n> W=<n> L=<n> F=<n> p=<p> baseline=<label>`, followed by the backend identity. A `requalify: model changed` or `requalify: model commit changed` line prints before it when the stored report's identity differs.
+Files: with `--out <dir>` every run writes `report.json` there, even a stopped one. `calls.jsonl` holds one record per call and one per withheld row and order. It appears in `--out` with the first record, so a run that reaches no arm has none. The script writes nothing else, and its fixture must sit outside the repository.
+No run on real rows has printed a `verdict` line. Docs must not claim one was printed.

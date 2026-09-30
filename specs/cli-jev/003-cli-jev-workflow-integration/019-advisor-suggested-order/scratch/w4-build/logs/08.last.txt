@@ -1,0 +1,20 @@
+Reading the rest of both files, plus the referenced sections of score-jev-tiebreak.mjs.Now let me check how the reference implementation (`score-jev-tiebreak.mjs`) wires these gates in its `main`, plus the helpers `deemCommand`, `readDeemHealth`, `which`, and `classifyRow`.Let me verify the `which` helper and the middle of `readDeemHealth` so the tests' expected lines are right.Both helper behaviors match the test expectations. Let me quickly check the spec folder's plan for the intended wiring semantics of the comment line, so I match intent exactly.The spec confirms the wiring: Jev first, then Deem; each arm runs only behind its own switch and gate (no failover). The structure in the brief matches the reference implementation. Now making the S edits.S is wired. Now appending the helpers and the new describe block to T.Both edits are in. Now running the two verification checks from the repo root.Both checks pass. Let me confirm the changed-file set and gather diff stats for the handback.Both files are untracked (new files from earlier steps), so I'll compute the sizes directly.Both verification checks pass. Final self-review of the edited regions confirms the wiring matches the brief and the reference implementation exactly.
+
+HANDBACK
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs (+26/-1)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts (+87/-0)
+EDITS:
+- score-suggested-order.mjs:18 import line: added deemGate, jevGate in alphabetical position
+- score-suggested-order.mjs:32 added `const GATE_TIMEOUT_MS = 10000;` after AUTH_TIMEOUT_MS
+- score-suggested-order.mjs:553-554 main JSDoc deps: added timeoutMs and backoffMs
+- score-suggested-order.mjs:613-635 main tail: jevResult/deemResult, armCtx built only when headroom is null, jevGate then jev arm, deemGate then deem arm, one comment line, return 0
+- score-suggested-order.vitest.ts:719-729 added linesOf(args, deps) helper and noProvider()
+- score-suggested-order.vitest.ts:731-804 added describe('score-suggested-order gates and arms in main') with the 4 specified tests (deem stub-backend skip, jev no-credential skip, no-headroom no-gate, both-gates-pass ordering with 120s timeout)
+
+CHECKS:
+- node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs -> no output (exit 0)
+- grep -c "jevGate({ out, env, timeoutMs: GATE_TIMEOUT_MS })\|deemGate({ out, env })" .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs -> 2 (exit 0)
+
+BLOCKED REASON: none

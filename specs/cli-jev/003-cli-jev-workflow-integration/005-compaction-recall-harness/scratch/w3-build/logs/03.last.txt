@@ -1,0 +1,118 @@
+
+
+
+
+
+
+
+
+
+
+I have the full picture of the design doc and both vendored sources. Now let me read the fixtures and check for other consumers of this script.
+
+
+
+Only T consumes S. Now, per the persona, let me load the sk-code routing contract before editing.
+
+
+
+
+
+The route resolves to `sk-code-opencode` (JavaScript slice for S, TypeScript slice for T). Let me load the two most relevant JS references quickly to follow its contract.
+
+Now let me check for lint configs that might cover these files (an unused constant could trip a gate), then make the edits.
+
+
+
+
+
+I have everything I need. Plan: port the vendored fit into S (sections 2–4), wire it into `parseTranscript`/`formatRow`/totals, add the T case, then run the two listed checks plus a synthetic smoke run.
+
+
+
+
+
+Section 3 ported. Now section 4 with `blockText` and `toMessage`:
+
+
+
+
+
+
+
+
+
+
+
+S is wired. Now the T case:
+
+Both files edited. Now let me re-read the ported region to verify transcription fidelity against the vendored source, then run the checks.
+
+Transcription verified against the vendored source. Now the listed checks:
+
+Both listed checks pass. Now the git-scope check and a synthetic smoke run that mirrors the new test case exactly:
+
+Smoke run passes every expectation. Let me also preempt the pre-commit comment-hygiene gate by running its shared checker on the two files.
+
+
+
+
+
+
+
+It's a Python script despite the `.sh` name. Running it with python3:
+
+Both files pass comment hygiene. Final integrity review of S — section order and all fit touch points:
+
+The wiring is complete. Let me check whether the vendored repo has a built JS copy I can cross-check the port against:
+
+No compiled vendored build exists, so I'll run a stronger differential check instead: mechanically strip the TypeScript from the vendored block and compare it token-for-token against my ported block, plus compare all string literals and template statics exactly.
+
+All strips applied cleanly; the temp dir just didn't exist. Rerunning with a mkdtemp path:
+
+Two artifacts in my stripper (missed `!` assertions and trailing-comma normalization) — the literal and template comparisons already pass. Fixing the normalizer and re-running:
+
+The strip is now valid JS; only whitespace-in-signature artifacts remain. Let me do a rigorous token-stream comparison (strings and templates as whole tokens):
+
+The only diff is trailing commas in the vendored multi-line signatures (pure formatting). Filtering commas before closers and re-comparing:
+
+The state.ts port is token-identical. Now the same rigorous check for the `blockText`/`toMessage` port (the third vendored file it draws from):
+
+The remaining diff is the dropped TS cast (`const r = record as {...}`) — a type-only construct. Dropping it from V too and re-comparing:
+
+Both ported blocks are token-identical to the vendored TypeScript — the port is verified. Let me see if a pre-edit snapshot of S exists in the build logs so I can compute exact line deltas for the handback:
+
+
+
+
+
+Exact deltas captured. Let me confirm the diff hunks are only where intended:
+
+T diff is a pure append; all S hunks are at the intended locations. Let me clean up the temp artifacts I created and finalize:
+
+
+
+Port complete and verified. Summary: section 3/4 of S now carry the vendored fit (token-identical to the vendored TypeScript after dropping only types), `parseTranscript` computes `fitStage`/`fitTokens` per boundary and never stops on a throw, the row line and totals carry the fit columns, and T pins it with the sixth case. A synthetic smoke run reproduced every assertion the new test makes.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs (+392/-3)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+56/-0)
+EDITS: score-compaction-recall.mjs:69 added MAX_STATE_TOKENS 25000, PRESERVE_RECENT_MESSAGES 6, TRUNCATE_HEAD_CHARS 300 to section 2
+EDITS: score-compaction-recall.mjs:77-78 added the two-line "Ported from npm jevctl 0.2.3" comment at the top of section 3
+EDITS: score-compaction-recall.mjs:80-380 ported STATE_CONTEXT, INPUT_CHARS, TEXT_HEAD, TEXT_TAIL, TOKEN_PIECES, estimateTokens, truncate, abridge, isPinned, collectToolCalls, inputText, resultNote, compactCall, mergeCallRuns, callsByMessage, historyEntries, goalFromMessages, fitState, truncatedResultText; exports estimateTokens, collectToolCalls, fitState, truncatedResultText, isPinned
+EDITS: score-compaction-recall.mjs:386-440 added blockText + exported toMessage(record) to section 4
+EDITS: score-compaction-recall.mjs:524 parseTranscript keeps a segmentMessages accumulator since the last boundary or file start
+EDITS: score-compaction-recall.mjs:546-552 user/assistant records convert via toMessage and append to the segment (nulls dropped)
+EDITS: score-compaction-recall.mjs:561-576 each boundary row gets fitStage/fitTokens from fitState(messages, collectToolCalls(messages, 6), { maxStateTokens: 25000, preserveRecentMessages: 6, goal: '' }); a throw records fit_throw/null and the census continues; a new segment starts after
+EDITS: score-compaction-recall.mjs:807 formatRow appends fit=<stage, spaces as _> fit_tokens=<n or n/a>
+EDITS: score-compaction-recall.mjs:920 totals.fit_throws after partial_tails; :941 totals line prints fit_throws
+EDITS: compaction-recall.vitest.ts:120-174 new case 'an oversized state records fit_throw and continues' (big.jsonl with 1500 tool uses + clean fixture)
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs -> no output (exit 0)
+CHECKS: grep -c 'Ported from npm jevctl 0.2.3' .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs -> 1 (exit 0)
+CHECKS: grep -c '  it(' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts -> 6 (exit 0)
+CHECKS: synthetic smoke, spawnSync node S --transcripts big.jsonl --transcripts clean.jsonl -> code 0; rows 2; big fit_throw/null; clean full/348; totals.fit_throws 1; row big.jsonl line contains ' fit=fit_throw ' (exit 0)
+CHECKS: differential port proof, type-stripped vendored state.ts:14-307 + compact.ts:138-144 token stream vs S section 3 -> token streams identical (1857/1857 tokens) (exit 0)
+CHECKS: differential port proof, transcript.ts:26-80 vs S blockText+toMessage -> token streams identical (472/472 tokens) (exit 0)
+CHECKS: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh on S and T -> clean (exit 0 each)
+CHECKS: diff vs w3-build logs/03.pre snapshots -> S +392/-3, T +56/-0, hunks only at the intended locations
+BLOCKED REASON: none

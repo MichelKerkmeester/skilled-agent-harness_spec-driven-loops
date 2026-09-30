@@ -1,0 +1,27 @@
+Step 7 is implemented and verified: `jevGate`, `runJevArm`, the `--jev` handling in `main` (Jev gate and arm before the Deem block, per ruling 3), the report-write condition widened to either arm, and the section renumber; T gained the config-driven jev stub and the four named cases. The full suite is green at 33/33.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs (+214/-0)
+- .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs (+152/-0)
+EDITS:
+- score-residue-flagger.cjs:1170 section 10 JEV ARM — `jevGate` (identity line, pinned `--version`, `found` line on mismatch, `auth status --provider` credential check) and `runJevArm` (payload line, auth-test record, 3 `noul` reruns per row with one exit-4 retry behind `backoffMs`, stop lines `key rejected|usage error|interrupted|auth test failed`, `brier jev:`, `requalify: model changed`, verdict column with `jev_version=... provider=... model=...` suffix)
+- score-residue-flagger.cjs:1357 sections renumbered: 11 REPORT, 12 ARGUMENTS, 13 MAIN, 14 EXPORTS
+- score-residue-flagger.cjs:1466 main — `backoffMs` taken from deps for the arm's exit-4 retry
+- score-residue-flagger.cjs:1531 main — `--jev` block (gate, then label-gate/headroom skips, then the arm) placed before the `--deem` block
+- score-residue-flagger.cjs:1578 report.json now written when either arm has a column or a stop
+- score-residue-flagger.cjs:1622,1627 exports — `jevGate` after `deemGate`, `runJevArm` after `runDeemArm`
+- score-residue-flagger.test.cjs:803 added config-driven `writeJevStub` (version, status by call index, model identity, `noul` keyed by window hash, one log line per call)
+- score-residue-flagger.test.cjs:857 `jev gate pass` — identity line, payload/auth/brier/verdict lines, 31 calls.jsonl records, plus a stored-report run asserting `requalify: model changed` directly before the verdict
+- score-residue-flagger.test.cjs:893 `jev no credential` — through main with 99 labeled rows: identity line, `jev arm skipped: no credential`, no verdict, no out directory, stub log `--version` then `auth status --provider official`
+- score-residue-flagger.test.cjs:910 `jev one provider` — one row, 3 reruns, every logged non-version call carries exactly one `--provider official`
+- score-residue-flagger.test.cjs:935 `jev exit 3 after gate` — `jev arm stopped: key rejected` then `jev: partial rows=0`, no verdict
+CHECKS:
+- node --check .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs -> no output (exit 0)
+- node --check .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> no output (exit 0)
+- node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> ℹ tests 33 / ℹ pass 33 / ℹ fail 0 (exit 0)
+- python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <S> -> no output (exit 0)
+- python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <T> -> no output (exit 0)
+- grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization' <S> -> no match (exit 1)
+- git status --porcelain vs dispatch baseline -> only other workers' files appeared; S and T remain the only paths this step wrote
+BLOCKED REASON: none

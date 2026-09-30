@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal verifier jev shadow",
+      "goal verifier labeled set",
+      "opencode goal verifier accuracy",
+      "jev shadow verifier mode",
+      "verifier keep threshold",
+      "pi goal verify nudge census",
+      "verifier tail-window arm",
+      "goal verifier deem shadow",
+      "goal verifier jev plan",
+      "labeled set scorer plan",
+      "jev shadow mode plan",
+      "verifier key gate plan"
+    ],
+    "key_topics": [
+      "goal",
+      "verifier",
+      "jev",
+      "shadow",
+      "labeled",
+      "set",
+      "opencode",
+      "accuracy",
+      "mode",
+      "keep",
+      "threshold",
+      "verify"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/goal/lib/verifier-labeled-set.jsonl",
+      ".skilled/hooks/goal/lib/count-pi-goal-nudges.mjs",
+      ".skilled/hooks/goal/lib/count-pi-goal-nudges.test.mjs",
+      ".skilled/hooks/goal/lib/build-verifier-fixture.cjs",
+      ".skilled/hooks/goal/lib/build-verifier-fixture.test.cjs",
+      ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
+      ".skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs",
+      ".skilled/hooks/goal/README.md",
+      ".skilled/hooks/README.md",
+      ".opencode/plugins/opencode-goal.js",
+      "scratch/w3-build/build-evidence.md",
+      ".opencode/plugins/tests/opencode-goal-supervisor.test.cjs",
+      ".skilled/hooks/goal/goal-plugin.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "verifier-labeled-set.jsonl",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/verifier-labeled-set.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "count-pi-goal-nudges.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/count-pi-goal-nudges.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "count-pi-goal-nudges.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/count-pi-goal-nudges.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-verifier-fixture.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/build-verifier-fixture.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-verifier-fixture.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/build-verifier-fixture.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-verifier-labeled-set.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-verifier-labeled-set.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w3-build/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-supervisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-supervisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode-plugin.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Verifier Pi Census",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Call Arms",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Jev Shadow Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two runtimes judge \"is this goal done\" with a heuristic",
+    "created_at": "2026-09-26T18:26:44Z",
+    "last_save_at": "2026-09-29T06:14:59.257Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b7b7a4e1a616c3dacc01fab312a8e9390f3e32e4b3d4c189b7036e076dd19893",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8f715c200ded745cb2bd44372b748c9be3ab6bb0622c9cc8a6c304230cf80342",
+      "plan.md": "01000aeea9b65e2bcc4f0688f183487166e9f63cba5be8304f59c1e0b57ddb2f",
+      "tasks.md": "7fc166b4064bda0ebf8677759aaa89c8d2c28147f07f20cc21f7bc1ef88f22d9",
+      "implementation-summary.md": "d2987feb9c5571075f718a2f16f0b1dc91cc59c8257e9def060328b314ecfe3f"
+    },
+    "last_active_at": null
+  }
+}

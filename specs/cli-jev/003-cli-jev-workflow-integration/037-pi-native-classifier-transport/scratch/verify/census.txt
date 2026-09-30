@@ -1,0 +1,12 @@
+pi: path=/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent version=0.99.1
+pi classifier cloudflare-workers-ai: known=1 available=0
+pi classifier opencode: known=2 available=0
+pi classifier openrouter: known=7 available=7
+pi classifier typesafe: known=1 available=0
+pi classifier vercel-ai-gateway: known=1 available=0
+pi classifier total: known=12 available=7
+jev: path=/Users/michelkerkmeester/.local/bin/jev version=0.6.2 provider=official
+jev identity: provider=official auth=ok
+llama.cpp: server=none cli=none
+baseline: path=specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl rows=111 choice=333 rows_with_3_full_maps=111
+replay: rows=111 calls=333 key_source=recorded

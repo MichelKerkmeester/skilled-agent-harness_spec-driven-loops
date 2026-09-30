@@ -1,0 +1,2 @@
+{"type":"iteration","iteration":10,"status":"complete","focus":"grok-10: If only one classifier phase ships","findingsCount":2,"newInfoRatio":0.6,"noveltyJustification":"No new classifier phase. D2 shape tension named. swe-01 build-now timing not adopted.","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"deep-research","timestamp":"2026-09-27T09:35:00Z"}
+{"type":"finding","id":"N-grok-10-1","label":"Ship no new classifier phase; census first; no threshold","verdict":"drop","question":"H"}

@@ -71,7 +71,7 @@ CARDINAL RULES (non-negotiable):
 
 After writing, validate:
   npx ts-node scripts/validate.ts <DESIGN_MD_PATH> <TOKENS_JSON_PATH>
-isPass requires score >= 80 AND claimsScore >= 80. checkQuickStartFidelity verifies every
+It passes only with zero hard failures (target, schema, provenance). checkQuickStartFidelity verifies every
 Quick Start hex traces to a token and --page-max-width matches tokens.maxContentWidth.
 Resolve every failure before reporting completion.
 ```

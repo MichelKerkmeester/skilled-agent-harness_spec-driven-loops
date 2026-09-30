@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stop second-rater replay",
+      "score-stop-rater",
+      "deep-research stop gold",
+      "novelty second rater",
+      "research r8 test phase",
+      "stop rater replay plan",
+      "score-stop-rater build",
+      "stop gold derivation",
+      "novelty score arm plan",
+      "stop rater tasks",
+      "score-stop-rater tasks",
+      "stop gold label gate tasks"
+    ],
+    "key_topics": [
+      "stop",
+      "second-rater",
+      "replay",
+      "score-stop-rater",
+      "deep-research",
+      "gold",
+      "novelty",
+      "second",
+      "rater",
+      "research",
+      "test",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
+      "runtime/scripts/README.md",
+      "runtime/README.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/README.md",
+      ".skilled/skills/system-deep-loop/runtime/changelog/v1.6.0.0.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-rater-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+      ".hermes/skills/system-deep-loop/SKILL.md",
+      "scratch/w4-session/session-evidence.md",
+      "scratch/w4-session/docs/facts.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-stop-rater.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-stop-rater.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.6.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.6.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "stop-rater-replay.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "facts.txt",
+        "kind": "file",
+        "path": "scratch/w4-session/docs/facts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A deep-research loop decides when to stop from the model's own `newInfoRatio`, the self-reported share of new information in each iteration",
+    "created_at": "2026-09-29T12:42:39Z",
+    "last_save_at": "2026-09-29T19:53:46.054Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5d44d3277a168228603b59a784adf1878386436fd7cd5247299f002295ee38ba",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b1bcf4e11c8b482f0ece4fa168f68af92abfc4b20e3a9d5f2d7be5650ca371e4",
+      "plan.md": "d97847ebd58b1d8f85ffa106ac7e6df28aa22a5ef82366dbda494e3932f74a6a",
+      "tasks.md": "430f96e67841c702d98df7050c2ad9edad920174798b9f969c023224f6a6e71f",
+      "implementation-summary.md": "d75263a88208b772ab9154a481b73e6534d5a05ffe574e92fecf2d86df07b670"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,20 @@
+All checks pass. F is the only file I touched (other `M` entries are concurrent workers), 18 insertions / 4 deletions = 14 lines added + 4 replaced, 145 → 159 lines.
+
+SKILL ROUTING: dispatched as @markdown leaf editor; brief already carries the sk-doc routing and applies the new text exactly as given.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md (+18/-4)
+EDITS:
+- manual-testing-playbook.md:145 inserted `| CC-004 | ... | Measurements | ... |` feature-catalog row after the CJ-002 row
+- manual-testing-playbook.md:137 heading `## 8. FEATURE CATALOG...` → `## 9. FEATURE CATALOG...`
+- manual-testing-playbook.md:133 inserted `| Injection screen scorer | ... | CC-004 |` test row after the Deem client row
+- manual-testing-playbook.md:125 heading `## 7. AUTOMATED TEST...` → `## 8. AUTOMATED TEST...`
+- manual-testing-playbook.md:123 inserted the 12 lines of B (`## 7. MEASUREMENTS` … trailing `---`) after the `---` following the CJ-002 feature-file line
+- manual-testing-playbook.md:32 replaced package-boundaries bullet (hub-routing scenarios / CC-004 on stub binaries)
+- manual-testing-playbook.md:18 replaced first sentence of the overview paragraph only
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md --type playbook` -> `✅ VALID: ... Total issues: 0` (exit 0)
+- `grep -c "CC-004" .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md` -> `5` (exit 0)
+- `grep -c "^## [0-9]" .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md` -> `9` (exit 0)
+BLOCKED REASON: none

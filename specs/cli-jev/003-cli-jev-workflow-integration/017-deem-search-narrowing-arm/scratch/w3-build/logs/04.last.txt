@@ -1,0 +1,17 @@
+The packet goal is set. The option set and the zero-call baseline summary are in the track-narrowing script, with the two vitest cases.
+
+SKILL ROUTING: User directed → @code. ARTIFACT: sk-code → sk-code-opencode JavaScript and TypeScript implement route.
+REPO RULES: prevent-overengineering, evidence-and-proof, communication, communication-prose, communication-handoff.
+
+`node --check` on the script printed nothing and exited 0. The two named files are edited and uncommitted. The orchestrator runs the vitest file.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (+131/-0)
+.skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts (+100/-0)
+EDITS: score-track-narrowing.mjs:42 exported the fixed instruction, none option, order count, margin line and keep rule
+score-track-narrowing.mjs:563 added buildOptions, rotateOptions, summarizeBaselines, baselineLines, ruleLines and headroomLines
+score-track-narrowing.vitest.ts:19 imported the new names
+score-track-narrowing.vitest.ts:276 added the option-set case and the baseline summary case
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs -> (no output) (exit 0)
+BLOCKED REASON: none

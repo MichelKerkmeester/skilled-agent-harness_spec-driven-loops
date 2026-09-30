@@ -1,0 +1,8 @@
+Both named checks pass. The row's scenario name `Debug next check` comes from the existing scenario file heading `# 463 -- Debug next check`, its link target `tooling-and-scripts/debug-next-check.md` exists on disk and the catalog link matches the entry path design D6 and D5 name. No script behavior, switch, number or printed line is claimed in the row.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md (+1/-0)
+EDITS: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md:205 added index row `| 463 | Debug next check | [463](tooling-and-scripts/debug-next-check.md) | [debug-next-check](../feature-catalog/tooling-and-scripts/debug-next-check.md) |` directly after the `| 462 |` row
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md --type playbook -> `✅ VALID: .../manual-testing-playbook.md`, `Document type: playbook`, `Total issues: 0` (exit 0) | git diff --stat -- .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

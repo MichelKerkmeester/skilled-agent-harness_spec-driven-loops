@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/sk-doc/sk-create-skill/SKILL.md
+Document type: skill
+Total issues: 0

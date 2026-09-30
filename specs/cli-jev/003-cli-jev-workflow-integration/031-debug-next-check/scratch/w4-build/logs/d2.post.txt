@@ -1,0 +1,36 @@
+ M .skilled/skills/system-deep-loop/deep-review/SKILL.md
+ M .skilled/skills/system-deep-loop/deep-review/scripts/README.md
+ M .skilled/skills/system-deep-loop/deep-review/scripts/tests/README.md
+ M .skilled/skills/system-spec-kit/README.md
+ M .skilled/skills/system-spec-kit/SKILL.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/scratch/w4-session/orchestration-log.md
+?? .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs
+?? .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs
+?? .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py
+?? .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py
+?? .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs
+?? .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs
+?? .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs
+?? .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs
+?? .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs
+?? .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts
+?? .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts
+?? .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts
+?? .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/
+?? .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts
+?? specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch/w4-session/

@@ -1,0 +1,17 @@
+The `--jev` path now prints one identity line, then skips on a missing binary, a version other than `jev 0.6.2`, or a failed credential check. The census text stays as it was and the process still exits 0.
+
+Goal acknowledged: advisor jev tie-break arm.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+72/-3)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+87/-1)
+EDITS: score-jev-tiebreak.mjs:10 added spawnSync, accessSync, constants, statSync, and delimiter
+score-jev-tiebreak.mjs:19 added JEV_VERSION
+score-jev-tiebreak.mjs:423 added which(name, env)
+score-jev-tiebreak.mjs:445 added jevGate(ctx)
+score-jev-tiebreak.mjs:505 main keeps parseArgs values, env, and timeoutMs, and calls jevGate when --jev is set
+score-jev-tiebreak.vitest.ts:34 added runScript, makeStub, and defaultStdout
+score-jev-tiebreak.vitest.ts:232 added the jev gate cases for credential, version, and missing PATH
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> (empty) (exit 0)
+grep -cE 'API_KEY|TYPESAFE' .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> 0 (exit 1)
+BLOCKED REASON: none

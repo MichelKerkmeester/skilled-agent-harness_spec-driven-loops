@@ -1,0 +1,18 @@
+01 | MATCH | use jev choice to pick a queue | route single cli-jev/cli-usage exit 0
+02 | MATCH | cli-jev noul for this question | route single cli-jev/cli-usage exit 0
+03 | MATCH | use jev judgment to decide whether this incident is urgent | route single cli-jev/cli-usage exit 0
+04 | MATCH | jev score these three severity levels | route single cli-jev/cli-usage exit 0
+05 | MATCH | summarize the open questions in this spec packet | defer - - exit 0
+06 | MATCH | describe the json value in this file | defer - - exit 0
+07 | MATCH | forbidden judgment operation | reject - - exit 0
+08 | MATCH | Use jev judgment to decide whether this incident is urgent, and give me the probability. | route single cli-jev/cli-usage exit 0
+09 | MATCH | ask jev for a probability that this plan ships on time | route single cli-jev/cli-usage exit 0
+10 | MATCH | score these three levels with jev | route single cli-jev/cli-usage exit 0
+11 | MATCH | run a batch of typed questions through jev | route single cli-jev/cli-usage exit 0
+12 | MATCH | pick one option with jev | route single cli-jev/cli-usage exit 0
+13 | MATCH | order levels with jev | route single cli-jev/cli-usage exit 0
+14 | MATCH | batch typed questions through jev | route single cli-jev/cli-usage exit 0
+15 | MATCH | cli-jev noul for this question. | route single cli-jev/cli-usage exit 0
+16 | MATCH | Summarize the open questions in this spec packet. | defer - - exit 0
+17 | MATCH | score this flavor of ice cream | defer - - exit 0
+TOTAL 17 rows, 17 match, 0 mismatch

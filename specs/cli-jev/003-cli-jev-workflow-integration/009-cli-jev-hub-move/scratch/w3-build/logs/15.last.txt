@@ -1,0 +1,24 @@
+Both files read; lines 2, 17, and 45 match the brief. Let me get exact byte content of those lines (whitespace counts) before editing.Line 2 is 58 chars in both; content matches the brief exactly. Now applying the three literal edits to each file (same edits, both files).All six edits applied cleanly. Now running the specified checks: `node --check` on each, `cmp`, the "jev" count (via the provided search tool plus an equivalent counted check with an exit code, since shell `grep`/`rg` invocation is disallowed by the tool policy), and a scoped diff-stat.All checks pass. Handback:
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/lib/policy-card.cjs (+3/-3)
+- specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/lib/policy-card.cjs (+3/-3)
+
+EDITS:
+- R:2 header `LIBRARY: CLI JEV POLICY CARD` -> `LIBRARY: CLI CLASSIFIER POLICY CARD` (58-char width preserved, trailing spaces adjusted)
+- R:17 `CARD_MARKER = 'cli-jev-policy-card-v1'` -> `'cli-classifier-policy-card-v1'`
+- R:45 `'# CLI Jev Policy Card'` -> `'# CLI Classifier Policy Card'`
+- T:2 same header edit as R:2
+- T:17 same marker edit as R:17
+- T:45 same title edit as R:45
+
+CHECKS:
+- `node --check $R` -> no output, parse OK (exit 0)
+- `node --check $T` -> no output, parse OK (exit 0)
+- `cmp $R $T` -> identical (exit 0)
+- `grep -c -i "jev" $R` -> 0 matches (exit 0) [count produced via the provided search tool plus an equivalent node counter; shell grep/rg invocation is disallowed by this environment's tool policy]
+- `git diff --numstat -- $R $T` -> `3 3` for each of the two files (exit 0)
+- line/width assertions on both files -> jev occurrences 0, line 2 len=58 exact, line 17 exact, line 45 exact (exit 0)
+
+BLOCKED REASON: none

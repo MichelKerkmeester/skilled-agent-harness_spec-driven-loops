@@ -1,0 +1,18 @@
+[
+ [
+  "version: 1.2.0.19\n",
+  "version: 1.2.0.20\n"
+ ],
+ [
+  "Either way, a ready manifest stays inert onboarding evidence: it never activates compiled serving or changes the repository default on its own.\n",
+  "Either way, a ready manifest stays inert onboarding evidence: it never activates compiled serving or changes the repository default on its own.\n\n### Measuring Clarify Defaults\n\nWhen a compiled hub cannot choose between near-tied modes, it answers `clarify` with a short list of alternatives and suggests no default. [`scripts/score-clarify-default.cjs`](./scripts/score-clarify-default.cjs) measures whether a classifier could suggest one. With no switch it makes no model call. It replays the committed canary cases, hub playbook scenarios and routing-corpus prompts through each hub's compiled engine and counts `clarify` against the other outcomes per hub and source. `--rows-out <file>` writes each clarify row whose alternatives are modes, with an empty `label` for you to fill. `--transcripts <dir>` counts real front-door answers in a folder you name without printing any text.\n\n```bash\nnode .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs --report <dir> --rows-out <file>\nnode .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs --score <file>\n```\n\n`--score` refuses to judge below 30 labeled rows and prints `stop: fewer than 30 labeled rows`. Past that gate, `--jev` or `--deem` with `--out <dir>` asks the classifier three times per row in rotated option order and prints one verdict per backend against the router's first alternative. A `keep` serves nothing, because the front door still prints no default.\n"
+ ],
+ [
+  "| Structure extraction | `python3 ../shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |\n",
+  "| Structure extraction | `python3 ../shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |\n| Clarify census and scorer | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | `pass 28` and `fail 0` |\n"
+ ],
+ [
+  "| [`scripts/package_skill.py`](./scripts/package_skill.py) | Validation and packaging helper |",
+  "| [`scripts/package_skill.py`](./scripts/package_skill.py) | Validation and packaging helper |\n| [`scripts/score-clarify-default.cjs`](./scripts/score-clarify-default.cjs) | Zero-call clarify census and default-pick scorer |"
+ ]
+]

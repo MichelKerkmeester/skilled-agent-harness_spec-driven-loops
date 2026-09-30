@@ -1,0 +1,19 @@
+TASK: add the trigger-index lookup baseline to the track-narrowing script, with two vitest cases.
+S = .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs. T = .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts. Read both first, and read retrieval/lookup-trigger-index.mjs lines 99-212 (lookup and its result order).
+
+In S:
+1. Add `import { lookup } from './lookup-trigger-index.mjs';` after the normalize import.
+2. After section 2 add section `3. BASELINES` with three exported functions and JSDoc:
+ a. trackOf(repoPath): the second '/'-segment when repoPath starts with 'specs/' and has at least three segments ('specs/x/a.md' gives 'x'); otherwise null ('specs/readme.md' and '.skilled/skills/a.md' give null).
+ b. isInsideFolder(repoPath, folder): true when repoPath === folder or repoPath starts with `${folder}/`.
+ c. lookupPick(loaded, question, ownFolder): answer = lookup(loaded, question, { limit: 0 }); walk answer.results in their own order and return trackOf(result.path) for the first result whose score > 0, whose trackOf is not null, and which is not inside ownFolder (skip that test when ownFolder is null). Return null when none qualifies: an abstention. The lookup and its index are read only.
+
+In T:
+1. Add imports: generate from '../retrieval/generate-trigger-index.mjs', loadIndex from '../retrieval/lookup-trigger-index.mjs', and trackOf, isInsideFolder, lookupPick from the script.
+2. Helpers next to the others: doc(root, rel, phrases) writes rel with ['---', 'title: "Doc"', 'trigger_phrases:', ...phrases.map((p) => `  - "${p}"`), '---', '', '# Doc', ''].join('\n'); indexFor(root) runs generate({ repoRoot: root, roots: ['specs'], ignoredPaths: [], indexPath: path.join(root, 'out', 'idx.json') }), expects report.published to be true and returns loadIndex(that indexPath, { hashIndex: false }).
+3. New describe('score-track-narrowing lookup baseline') with two cases. Fixture for both: tracks 'alpha-track' and 'beta' (any description), doc(root, 'specs/alpha-track/001-a/spec.md', ['quartz lantern calibration']), doc(root, 'specs/beta/002-c/spec.md', ['quartz lantern']), doc(root, 'specs/beta/003-d/spec.md', ['ember harbor sweep']); loaded = indexFor(root).
+ a. 'picks the track of the first scoring specs row': lookupPick(loaded, 'run the quartz lantern calibration now please', null) is 'alpha-track'; lookupPick(loaded, 'please run the ember harbor sweep today', null) is 'beta'; lookupPick(loaded, 'nothing here matches any phrase at all', null) is null; trackOf('specs/x/a.md') is 'x', trackOf('specs/readme.md') and trackOf('.skilled/skills/a.md') are null.
+ b. 'ignores every row inside the question's own folder': lookupPick(loaded, 'run the quartz lantern calibration now please', 'specs/alpha-track/001-a') is 'beta'; isInsideFolder('specs/a/b/c.md', 'specs/a/b') is true and isInsideFolder('specs/a/bc/d.md', 'specs/a/b') is false.
+
+VERIFY (repo root): node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs
+Accept when: 2 files changed and nothing else; node --check exits 0.

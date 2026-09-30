@@ -1,0 +1,23 @@
+C6 is implemented and verified. Summary:
+
+**S** — added `LABEL_GATE`/`CROSS_BODY_LABEL_GATE`/`SHEET_PER_CLASS`/`HEADROOM` to §2, a new `6. PAIR SHEET, LABELS AND GATE` section (`writePairSheet`, `parseLabels`, `gateState`, each JSDoc'd), renumbered exports to §7 and exported the three functions.
+
+**T** — added `sheetPair`/`sheetIndex`/`sheetLines`/`sheetBaseline` fixtures and the `score-fanout-pairs sheet, labels and gate` describe with the seven named C6 cases. Test count went 17 → 24.
+
+**One recorded deviation:** design §2 sketches `parseLabels(text, root)`; I implemented the second argument as the pair index (Map keyed by pair key). The documented drop rule ("a key outside the sheet is dropped") needs the sheet's keys, and a bare `root` cannot supply them without re-running the git-dependent census, which would make the label reader untestable in temp fixtures. All seven tests, C9's wiring, and the printed `labels dropped: <rows - kept>` count work against this signature; no behavior in the design is lost.
+
+Extra evidence (no test runner, no network): a `node` probe over the three functions confirmed 60/60 rows with hash-first ordering, the in-repo throw + absent file, both stop lines, `no headroom` at 37/40, the open line `planned calls: jev 121, deem 80`, the unknown-key drop (size 40, ghost absent), and `labels row 3:` on `"maybe"` — all matched.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs (+149/-0; now 671 lines)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts (+123/-0; now 535 lines)
+EDITS: S:57-69 added the label-floor, sheet-cap and headroom constants with WHY comments
+EDITS: S:520-646 added §6 `writePairSheet` (537-568), `parseLabels` (583-612), `gateState` (628-646), each JSDoc'd; §6 EXPORTS renumbered to §7
+EDITS: S:668-670 exported `writePairSheet`, `parseLabels`, `gateState`
+EDITS: T:414-453 added `sheetPair`, `sheetIndex`, `sheetLines`, `sheetBaseline` fixture helpers
+EDITS: T:455-536 added `score-fanout-pairs sheet, labels and gate` with the seven named tests
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts -> 24 (exit 0)
+CHECKS: git status --porcelain -- <S> <T> -> both `??`, nothing else touched by this step (exit 0)
+CHECKS: node function probe of writePairSheet/parseLabels/gateState -> all seven test expectations matched (exit 0)
+BLOCKED REASON: none

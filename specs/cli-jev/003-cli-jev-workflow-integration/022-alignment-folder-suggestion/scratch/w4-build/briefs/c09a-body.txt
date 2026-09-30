@@ -1,0 +1,10 @@
+TASK: rename the first parameter of replayPath in S from `path` to `savePath`, because it shadows the `node:path` import.
+S is named at the top of
+specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch/w4-build/briefs/ref/design.md.
+Open only S. This is a pure rename: behavior, other names and every other line stay as they are.
+
+1. In the signature of `export async function replayPath(` (section 5), old line `  path: SavePath,` new line `  savePath: SavePath,`.
+2. In its body, old `if (path === 'cli')` new `if (savePath === 'cli')`. No other use of the parameter exists in that function.
+
+VERIFY (repo root): node --check <S>; grep -c "savePath: SavePath," <S>; grep -c "if (savePath === 'cli')" <S>; grep -c "if (path === 'cli')" <S>
+Accept when: 1 file changed (S, +2/-2) and nothing else; node --check exits 0; the greps print 1, 1 and 0.

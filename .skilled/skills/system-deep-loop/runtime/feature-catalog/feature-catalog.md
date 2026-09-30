@@ -16,7 +16,7 @@ This document combines the current feature inventory for the `runtime/` skill in
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 54 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
+Use this catalog as the canonical inventory for the live `runtime/` feature surface. The 58 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
@@ -24,11 +24,11 @@ Use this catalog as the canonical inventory for the live `runtime/` feature surf
 | [prompt-rendering](../feature-catalog/prompt-rendering) | 1 features | `lib/deep-loop/prompt-pack.ts` |
 | [validation](validation/) | 3 features | `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/plugins/system-deep-loop-guard.js` |
 | [state-safety](../feature-catalog/state-safety) | 13 features | `lib/deep-loop/atomic-state.ts`, `lib/deep-loop/jsonl-repair.ts`, `lib/deep-loop/loop-lock.ts`, `lib/deep-loop/permissions-gate.ts` |
-| [scoring](scoring/) | 2 features | `lib/deep-loop/bayesian-scorer.ts` |
+| [scoring](scoring/) | 5 features | `lib/deep-loop/bayesian-scorer.ts`, `scripts/score-stop-rater.cjs` |
 | [coverage-graph](../feature-catalog/coverage-graph) | 6 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
 | [script-entry-points](../feature-catalog/script-entry-points) | 5 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
 | [council](council/) | 5 features | `lib/council/multi-seat-dispatch.cjs`, `lib/council/round-state-jsonl.cjs`, `lib/council/adjudicator-verdict-scoring.cjs`, `lib/council/cost-guards.cjs`, `lib/council/session-state-hierarchy.cjs` |
-| [fanout](fanout/) | 8 features | `scripts/fanout-pool.cjs`, `scripts/fanout-run.cjs`, `scripts/fanout-salvage.cjs`, `scripts/fanout-merge.cjs`, config schema in `lib/deep-loop/executor-config.ts` |
+| [fanout](fanout/) | 9 features | `scripts/fanout-pool.cjs`, `scripts/fanout-run.cjs`, `scripts/fanout-salvage.cjs`, `scripts/fanout-merge.cjs`, config schema in `lib/deep-loop/executor-config.ts` |
 | [lifecycle](lifecycle/) | 2 features | `lib/deep-loop/sleep.ts`, `lib/deep-loop/lifecycle-taxonomy.cjs` |
 | [observability](observability/) | 3 features | `lib/deep-loop/observability-events.cjs`, `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/commands/deep/assets/deep-research-auto.yaml` |
 | [testing](testing/) | 2 features | `tests/helpers/spawn-cjs.ts`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/fanout-run.vitest.ts` |
@@ -425,6 +425,54 @@ See [`scoring/convergence-score-delta.md`](../feature-catalog/scoring/convergenc
 
 ---
 
+### Stop-rater replay
+
+#### Description
+
+Replays recorded deep-research lineage states offline and rates each stop decision against gold derived from the delta files.
+
+#### How It Works
+
+`score-stop-rater.cjs` walks the tracked lineage states and prints the census with zero model calls by default, derives each lineage's gold from first-appearance sources in its delta files, and opens the `--jev` or `--deem` arm only after five confirmed reads.
+
+#### Source Files
+
+See [`scoring/stop-rater-replay.md`](../feature-catalog/scoring/stop-rater-replay.md) for full implementation and validation file listings.
+
+---
+
+### Stop-hint replay
+
+#### Description
+
+Replays one stop-rater report offline and scores whether each recorded stop would have made a good confirm-mode hint.
+
+#### How It Works
+
+`score-stop-hint.cjs` reads the report under `--rater-report <dir>` and prints a hint count and one Keep-Rule verdict per column, with the keep rule line first so every verdict can be rechecked by hand. The default run scores `legacy` and `sources` and writes no file, `--jev` and `--deem` add the rater's recorded `jev` and `deem` columns, `--out <dir>` writes `<dir>/report.json`, and no run calls a model.
+
+#### Source Files
+
+See [`scoring/stop-hint-replay.md`](../feature-catalog/scoring/stop-hint-replay.md) for full implementation and validation file listings.
+
+---
+
+### Severity replay
+
+#### Description
+
+Measures offline whether a Jev or Deem severity choice separates real P0 findings from false ones better than the recorded severity.
+
+#### How It Works
+
+`score-severity-replay.cjs` reads every tracked deep-review findings registry and prints the census and the label gate state with zero model calls by default. `--write-label-sheet <path>` writes one JSON line per P0 row for the operator to fill with `real`, `P1`, `P2` or `not_a_finding`, `--labels <file>` reads the filled sheet back, and the gate opens the `--jev` and `--deem` arms only past 20 labeled negatives, printing `stop: fewer than 20 labeled P0 negatives` or `no headroom` when it stays closed. Each arm needs `--out <dir>`, and no run changes a severity.
+
+#### Source Files
+
+See [`scoring/severity-replay.md`](../feature-catalog/scoring/severity-replay.md) for full implementation and validation file listings.
+
+---
+
 ## 7. COVERAGE GRAPH
 
 These entries cover the session-scoped SQLite graph store, graph read models, convergence signals, snapshots, and momentum.
@@ -792,6 +840,22 @@ Persists a pre-dispatch wait checkpoint and resumes waiting state before dispatc
 #### Source Files
 
 See [`fanout/persisted-wait-crash-resume.md`](../feature-catalog/fanout/persisted-wait-crash-resume.md) for full implementation and validation file listings.
+
+---
+
+### Fan-out pair replay
+
+#### Description
+
+Replays the fan-out merge's own near-line and cross-body pair decisions with dedup on and off and scores a `--jev` or `--deem` backend against the operator's labels through the Keep Rule.
+
+#### How It Works
+
+`score-fanout-pairs.cjs` walks the tracked `{research,review}/lineages/` registries of every deep-research and deep-review run that holds at least two lineages, then prints the pair census and the merge's own decision on each pair with near-duplicate deduplication on and off. `--write-pair-sheet <path>` writes at most 60 pairs per class ordered by the SHA-256 of the pair key for the operator to label `same` or `different`, and `--labels <file>` reads the filled sheet back. The label gate then prints one line: `stop: fewer than 40 labeled pairs`, `stop: fewer than 10 labeled cross-body pairs`, `no headroom` or `planned calls: jev <3K+1>, deem <2K>`. Behind `--jev` or `--deem` one arm scores that backend on the labeled pairs, and the Keep Rule then decides in order: coverage `10*M >= 9*K` else `stop (coverage)`, kill when the exact `P(X>=L)` is below 0.05, margin `10*(A-B) >= M` else `stop (margin)`, the sign test `P(X>=W)` below 0.05 with `p = 1` at `W+L = 0` else `stop (sign test)`, flips `10*F <= C` else `stop (flips)`, else `keep`. Every verdict line it builds carries `reader=none named`.
+
+#### Source Files
+
+See [`fanout/fanout-pair-replay.md`](../feature-catalog/fanout/fanout-pair-replay.md) for full implementation and validation file listings.
 
 ---
 

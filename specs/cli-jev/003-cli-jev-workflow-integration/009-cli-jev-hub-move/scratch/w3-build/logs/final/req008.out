@@ -1,0 +1,4 @@
+.skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json
+.skilled/skills/system-spec-kit/runtime/data/trigger-index.json

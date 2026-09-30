@@ -1,0 +1,7 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-spec-kit/runtime/scripts/README.md` (+3/-0)
+EDITS: `.skilled/skills/system-spec-kit/runtime/scripts/README.md`:36-37 added the `debug-next-check/` tree entry with its `score-debug-next-check.mjs` line, modeled on the `compaction-recall/` tree lines. `.skilled/skills/system-spec-kit/runtime/scripts/README.md`:52 added one File Inventory row for `debug-next-check/score-debug-next-check.mjs`, modeled on the `compaction-recall/` row: fixture outside the repository, no model call by default, `--jev`/`--deem` add a verdict column behind their own gates, writes only under `--out`.
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/scripts/README.md` -> `✅ VALID: .skilled/skills/system-spec-kit/runtime/scripts/README.md` (`Document type: readme`, `Total issues: 0`) (exit 0)
+CHECKS: `git diff --stat -- .skilled/skills/system-spec-kit/runtime/scripts/README.md` -> `.skilled/skills/system-spec-kit/runtime/scripts/README.md | 3 +++` (`1 file changed, 3 insertions(+)`) (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,27 @@
+ M .skilled/skills/sk-doc/sk-create-with-human-voice/README.md
+ M .skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md
+ M .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/README.md
+ M .skilled/skills/system-deep-loop/SKILL.md
+ M .skilled/skills/system-deep-loop/runtime/README.md
+ M .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md
+ M .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/system-deep-loop/runtime/scripts/README.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/scratch/w4-session/orchestration-log.md
+?? .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py
+?? .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py
+?? .skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md
+?? .skilled/skills/system-deep-loop/runtime/changelog/v1.9.0.0.md
+?? .skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-pair-replay.md
+?? .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md
+?? .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pair-replay.md
+?? .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/severity-replay.md
+?? .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs
+?? .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs
+?? .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts
+?? .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts
+?? specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch/w4-session/

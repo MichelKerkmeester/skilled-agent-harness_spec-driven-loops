@@ -1,0 +1,32 @@
+$ node .skilled/bin/compiled-route-sync.cjs --check
+  013-live-activation/activation/sk-design/manifest.json
+  013-live-activation/activation/sk-doc/manifest.json
+  013-live-activation/activation/system-deep-loop/manifest.json
+  014-runtime-engine/lib/compiled-route.cjs
+  014-runtime-engine/lib/resolve.cjs
+all 7 hubs resolve
+exit=0
+
+$ node .skilled/bin/compiled-route-sync.cjs --verify
+move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs
+exit=0
+
+$ node .skilled/bin/compiled-route-guard.cjs
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+exit=0
+
+$ node .skilled/bin/compiled-route-admission.cjs --hub cli-classifier
+  cli-classifier              pass                    5 pass, 0 drift, 0 stale, 0 n/a
+
+Every hub passes the admission check.
+exit=0
+
+$ node .skilled/bin/compiled-route-manifest.cjs freshness --hub cli-classifier --skill-root .skilled/skills/cli-classifier
+{"hubId":"cli-classifier","manifestPath":".skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-classifier/manifest.json","manifestValid":true,"fresh":true,"causeCode":"fresh","selectedPolicy":{"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1},"currentPolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","manifestFingerprint":"aa840b21735c7de220e5054f84a4faac84a8641862673dd952ef87f4294ddc7a"}
+exit=0
+

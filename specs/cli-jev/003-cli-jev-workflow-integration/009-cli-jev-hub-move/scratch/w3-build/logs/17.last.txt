@@ -1,0 +1,37 @@
+I'll start by reading both files to verify the exact content before editing.
+
+Both files read. Let me verify the remaining sections and locate every `cli-jev` occurrence to confirm the edit set is complete.
+
+Verified: exactly 3 `cli-jev` occurrences in the mjs (lines 46, 234, 237) and the test file's 8 lines match the brief (lines 123, 125-126, 128, 159-162). The other file (`dispatch-rule-checks.test.mjs`) is not mine to touch. Making the edits now.
+
+One edit failed (my old_string included `'cli-hermes',` which is actually mid-line, not at line start), and the replace_all snippet looks partial. Let me re-read the current state of the test file to see exactly what remains.
+
+Lines 126-128 and 159-162 are done; only line 123 remains. Fixing it now.
+
+All edits applied. Now re-verifying the edited regions in the mjs and running the required checks.
+
+All four checks pass. Now verifying the diff stats against the acceptance criteria (+3/-3 and +8/-8, nothing else changed).
+
+All seven edits are applied and verified. One bookkeeping note before the handback: the brief's acceptance says `dispatch-audit.test.mjs` +8/-8, but its own edit list changes 7 lines — the comment replacement touches only the first comment line (the second line, "the preflight reads a path that is not there…", is byte-identical in old and new), so the actual, faithful diff is +7/-7. Confirmed by `git diff --numstat`: no other file differs from my changes, and the mjs is exactly +3/-3.
+
+Both edited regions re-read and confirmed: mjs lines 46, 234, 237 now say `cli-classifier`; test lines 123, 126, 128, 159-162 match the brief's new text exactly.
+
+STATUS: DONE
+FILES CHANGED:
+  .skilled/hooks/dispatch/lib/dispatch-audit.mjs (+3/-3)
+  .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs (+7/-7; brief said +8/-8 — its comment edit spans 2 lines of which only 1 differs, so 7 is the exact result of the listed edits)
+EDITS:
+  dispatch-audit.mjs:46 DISPATCH_SHAPES Jev row: skill 'cli-jev' -> 'cli-classifier', packetPath 'cli-jev/cli-usage' -> 'cli-classifier/cli-usage'
+  dispatch-audit.mjs:234 jev-mcp branch returns 'cli-classifier'
+  dispatch-audit.mjs:237 judgment-subcommand branch returns 'cli-classifier'
+  dispatch-audit.test.mjs:123 expected skill list 'cli-jev' -> 'cli-classifier'
+  dispatch-audit.test.mjs:126 comment now: "The Jev transport is a mode of the classifier hub; its row has to name that packet, or"
+  dispatch-audit.test.mjs:128 find(skill === 'cli-classifier').packetPath toBe('cli-classifier/cli-usage')
+  dispatch-audit.test.mjs:159-162 four skillFor(...) assertions toBe('cli-jev') -> toBe('cli-classifier')
+CHECKS:
+  node --check .skilled/hooks/dispatch/lib/dispatch-audit.mjs -> no output (exit 0)
+  node --check .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs -> no output (exit 0)
+  grep -c "cli-jev" .skilled/hooks/dispatch/lib/dispatch-audit.mjs -> 0 (grep exit 1 = zero matches; expected count 0)
+  grep -c "cli-jev" .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs -> 0 (grep exit 1 = zero matches; expected count 0)
+  git diff --numstat -- both files -> "3 3 .skilled/hooks/dispatch/lib/dispatch-audit.mjs" / "7 7 .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs" (exit 0; no other file touched)
+BLOCKED REASON: none

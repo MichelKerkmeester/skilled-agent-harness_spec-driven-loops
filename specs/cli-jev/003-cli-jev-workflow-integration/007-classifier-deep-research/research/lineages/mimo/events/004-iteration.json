@@ -1,0 +1,14 @@
+{
+  "type": "iteration",
+  "iteration": 4,
+  "status": "complete",
+  "focus": "mimo-04: Savings arithmetic per reduction seam",
+  "findingsCount": 6,
+  "newInfoRatio": 0.85,
+  "noveltyJustification": "Net-savings table with both error directions and the re-read split built on new counts; the savings unit is adopted from glm-03's contest, marked as theirs.",
+  "keyQuestions": ["C", "H"],
+  "answeredQuestions": ["C-part-seam-pricing", "H-part-rank"],
+  "ruledOut": ["re-read classifier (loses to zero-call ledger at every precision)", "raw-token cost as the savings unit (cache structure)"],
+  "timestamp": "2026-09-27T08:05:00Z",
+  "sessionId": "fanout-mimo-1790490452777-942a1f"
+}

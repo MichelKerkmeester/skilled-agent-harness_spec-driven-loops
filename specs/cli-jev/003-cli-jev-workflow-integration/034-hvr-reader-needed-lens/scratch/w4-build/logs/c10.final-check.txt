@@ -1,0 +1,40 @@
+PASS tracked files and read at commit
+PASS frame walker keeps skill markdown and refuses .env and changelog
+PASS split sections at ATX headings
+PASS a heading inside a fence does not split
+PASS census counts files, sections, flagged and in-band
+PASS a skipped scanner stops the run
+PASS a scanner exit 2 stops the run
+PASS significance comparator flags a listed phrase
+PASS false-range comparator flags a construction and a genuine range
+PASS a thin standard stops the comparator parse
+PASS draw is reproducible and carries no text
+PASS draw caps rows per skill per category
+PASS draw refuses to overwrite a labeled file
+PASS --draw needs a valid non-negative seed
+PASS label gate stops at 149 labeled rows
+PASS baseline picks the comparator only when it beats flag-nothing
+PASS headroom, power and the categories stop
+PASS an untracked or .env row is refused
+PASS a spawn past the timeout is killed and marked unmeasured_timeout
+PASS a missing answer is recorded unmeasured, never 0
+PASS deem gate passes a torch health
+PASS deem gate skips a stub backend
+PASS deem exit 4 with a changed commit pair stops the arm
+PASS --out is required for both switches
+PASS deem arm prints a verdict and records every call
+PASS a stored commit pair that differs prints requalify
+PASS jev gate passes jev 0.6.2 with a credential
+PASS jev gate skips no credential
+PASS jev gate skips a wrong version
+FAIL jev arm sends one --provider on every call
+PASS jev exit 3 after the gate stops the arm
+PASS verdict keep when every check passes
+PASS verdict kill (precision)
+PASS verdict stop (coverage)
+PASS verdict stop (categories)
+PASS sign test is exact and returns p 1 at no disagreements
+PASS both switches print Jev first
+PASS default run calls no stub and writes no file
+
+1 FAILED

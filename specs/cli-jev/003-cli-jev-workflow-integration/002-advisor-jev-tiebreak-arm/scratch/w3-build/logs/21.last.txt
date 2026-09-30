@@ -1,0 +1,5 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/README.md (+2/-0)
+EDITS: README.md:32 inserted tree entry `+-- score-jev-tiebreak.vitest.ts ...` into the ```text block; README.md:42 inserted the `score-jev-tiebreak.vitest.ts` row into the KEY FILES table
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/runtime/tests/parity/README.md -> ✅ VALID ... Total issues: 0 (exit 0); grep -c "score-jev-tiebreak.vitest.ts" .skilled/skills/system-skill-advisor/runtime/tests/parity/README.md -> 2 (exit 0); git diff --stat (read-only, same file) -> 1 file changed, 2 insertions(+)
+BLOCKED REASON: none

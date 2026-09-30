@@ -1,0 +1,14 @@
+Both appended sentences are byte-exact at the ends of the intended lines, exactly one occurrence each. My edit delta is 1 line replaced per file; the `git diff --stat` totals include pre-existing uncommitted packet work in this worktree (the COMM-011 section itself predates my edit) and the scenario file is untracked (`??`), so git cannot isolate my delta — that is a worktree-state artifact, not an extra edit. I made no git writes and touched no other file.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md (+1/-1)
+FILES CHANGED: .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md (+1/-1)
+EDITS: offline-judge-census-stops-at-label-gate.md:16 appended one space + "`--jev` adds a Jev column only after the identity line, `jev --version` printing `jev 0.6.2` and `jev auth status --provider <p>` exiting 0, and a stub whose `auth status` exits 3 prints `jev arm skipped: no credential` with every census line unchanged."
+EDITS: manual-testing-playbook.md:228 appended one space + "The `--jev` switch is gated the same way, and a Jev without a credential prints its identity line and one skip line."
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md -> "✅ VALID: ...offline-judge-census-stops-at-label-gate.md / Total issues: 0" (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md --type playbook -> "✅ VALID: ...manual-testing-playbook.md / Total issues: 0" (exit 0)
+CHECKS: grep -c -- "--jev" .../release-gating/offline-judge-census-stops-at-label-gate.md -> "1" (exit 0)
+CHECKS: grep -c -- "--jev" .../manual-testing-playbook.md -> "1" (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/sk-communication/manual-testing-playbook -> "manual-testing-playbook.md | 19 +++++++++++++++---- / 1 file changed, 15 insertions(+), 4 deletions(-)" (exit 0) — NOTE: totals include pre-existing uncommitted packet work (COMM-011 section block predates this edit) and the scenario file is untracked (??), so git cannot show this edit's 1+/1-; my delta is exactly one appended sentence per file, verified by single-block edit success and one grep hit per appended sentence
+BLOCKED REASON: none

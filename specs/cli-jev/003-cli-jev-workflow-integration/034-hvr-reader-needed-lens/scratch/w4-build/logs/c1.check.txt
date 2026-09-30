@@ -1,0 +1,4 @@
+PASS tracked files and read at commit
+PASS frame walker keeps skill markdown and refuses .env and changelog
+
+ALL PASS

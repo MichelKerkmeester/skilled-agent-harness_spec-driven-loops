@@ -1,0 +1,32 @@
+
+
+
+
+I have the design contract and both files. Now let me load the required skill contract, repo rules, and check the older scorer's main for house idiom.
+
+
+
+The compiled router deferred, so I follow the hub's legacy routing: this is system-code (Node .mjs) → OpenCode surface. Loading that surface packet plus the repo rule files the trigger table names for my action (adding options/tests, reporting results, ending a turn).
+
+No lint config covers this path; the JS slice adds no checks beyond the brief. Loading the four repo rule files my action triggers (adding options/tests; reporting results; ending a turn).
+
+Rules loaded. Quick pre-write check: confirm the only consumer of S is its test file, then make the edits.
+
+Only the test file consumes S — contract is contained. Making the three edits now: S main, T's `runMain` helper, T's three tests.
+
+Edits applied. Running the brief's verification checks from the repo root.
+
+All three checks pass. Final-state check: inspect the scoped diff (read-only git) to confirm only the two named files changed and get the line deltas.
+
+The whole benchmark directory is untracked (earlier briefs' work, committed later by the orchestrator), so git numstat is empty by design. Getting exact line counts for the handback.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs (+87/-10)
+FILES CHANGED: .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+61/-0)
+EDITS: score-injection-screen.mjs:587-673 replaced the placeholder main with the real signature, full deps JSDoc and defaults, strict parseArgs (jev, deem, draw, out, seed, labels, planted), labelsPath/plantedPath, R13 step 1 (--draw: guard, seed regex, operator-content refusal, corpus, drawRows, writeJsonl, summary/source/wrote lines) and step 2 (--jev/--deem without non-empty --out), then return 0; both entry lines kept last, nothing else touched.
+EDITS: score-injection-screen.test.mjs:80-98 added the private runMain helper after corpusFiles (lines/errs collection, cleanEnv PATH with optional bin, timeoutMs 20000, backoffMs 1).
+EDITS: score-injection-screen.test.mjs:233-272 appended the three tests: byte-identical draw for seed 7, draw refusal over a labeled file, and --jev without --out.
+CHECKS: node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs -> no output, exit=0 (exit 0)
+CHECKS: node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> no output, exit=0 (exit 0)
+CHECKS: grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> 15 (expect 15), counted via the built-in search tool per repo tool policy, not shell grep (exit n/a)
+BLOCKED REASON: none

@@ -1,0 +1,9 @@
+The edit is exactly one inserted line after the severity-replay sentence in §3, everything else byte-identical. Every stated fact is grounded: the script path and switches from `score-fanout-pairs.cjs` (`USAGE` at line 1339, `LABEL_GATE = 40` and `CROSS_BODY_LABEL_GATE = 10` at lines 60-61, stop lines from `gateState` at lines 672-677, arms behind `--jev`/`--deem`), the zero-call default from FACTS and the script's zero-call census. No numbers beyond those, no verdict claim.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/README.md (+1/-0)
+EDITS: .skilled/skills/system-deep-loop/runtime/README.md:52 added one sentence after the severity-replay sentence in §3 PUBLIC SURFACE naming `scripts/score-fanout-pairs.cjs`, its zero-call default, the label gate below 40 labeled pairs or 10 labeled cross-body pairs, and the `--jev` and `--deem` switches
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/README.md -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/README.md` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/runtime/README.md -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

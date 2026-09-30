@@ -1,0 +1,21 @@
+✔ readMaskedReply returns the body under the marker and null without one (0.429167ms)
+✔ buildCensus counts every masked file and matches every distinct reply (29.222667ms)
+✔ buildCensus reports the masked reply whose source changed after masking (30.895416ms)
+✔ listMarkdown refuses a path that is not a directory (0.605083ms)
+✔ levelOfScore reads 0 as absent, 1 as fully met and a value between as partly met (0.37875ms)
+✔ levelOfScore returns null outside the scale or without a number (0.051541ms)
+✔ runBaseline maps every reply file to its dimension scores and leaves no temp dir (1505.155958ms)
+✔ runBaseline throws when score.mjs fails on a replies dir (62.727458ms)
+✔ parseLabels numbers a row by its 1-based line and skips the empty ones (0.381834ms)
+✔ parseLabels names the first missing dimension (0.208417ms)
+✔ parseLabels rejects a grade outside the three levels (0.155083ms)
+✔ joinLabels keys one entry per reply SHA and reports a grade conflict (30.374083ms)
+✔ joinLabels skips a graded reply edited after masking and refuses a path outside the census (27.809167ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1741.878667

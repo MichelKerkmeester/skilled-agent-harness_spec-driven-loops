@@ -1,0 +1,14 @@
+Section 4 step 2 is on disk and verified: both files created, `node --check` exits 0 on each, and the nine named cases pass with 0 failures. Only the two named files were added.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs (+324/-0)
+FILES CHANGED: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs (+268/-0)
+EDITS: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1-324 created sections 1-2: constants, sha256Hex, headCommit, listTrackedFiles, extractCitations, resolveCitation, buildCensus, and the main() census skeleton (per-skill lines, totals line, `cite dead:` lines, exit 0)
+EDITS: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs:72-268 created the fixture builder (temp git repo with `core.hooksPath=/dev/null`, two skills, stub bins) and the nine named cases: extract prose, extract fenced skip, resolve order, resolve ambiguous basename, resolve unresolved, dead missing target, dead past end, refused .env, refused untracked
+CHECKS: node --check .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs -> no output, parsed clean (exit 0)
+CHECKS: node --check .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs -> no output, parsed clean (exit 0)
+CHECKS: node --test .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs -> `ℹ tests 9`, `ℹ pass 9`, `ℹ fail 0` (exit 0)
+CHECKS: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <both files> -> no violations (exit 0 each)
+CHECKS: node .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs (default run, real tree) -> `citations=357 in_range=208 past_end=2 ambiguous=44 unresolved=103 refused=0 dead=2 commit=fcacc26bf33c` (exit 0)
+BLOCKED REASON: none

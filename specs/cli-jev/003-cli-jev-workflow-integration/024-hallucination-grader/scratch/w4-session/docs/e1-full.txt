@@ -1,0 +1,19 @@
+TASK: name the unknown-grader startup check and the offline D4 measurement in the packet's SKILL.md, and bump its version.
+FILE (edit): `.skilled/skills/system-deep-loop/deep-improvement/SKILL.md`. Read it first. Two literal edits, nothing else.
+EDIT 1: line 5, replace `version: 1.17.2.0` with `version: 1.18.0.0`.
+EDIT 2: line 222 is the bullet that starts `- **Scoring**:`. Keep its whole text and append, after its final period, one space and these two sentences:
+Any other `--grader` value exits 2 at startup and names the value. `scripts/model-benchmark/scorer/score-d4-agreement.cjs --outputs <dir>` measures offline, with no model call by default, whether a Jev or Deem hallucination judgment agrees with operator labels more often than the deterministic check, and `--jev` or `--deem` adds a verdict column behind that backend's own check once 30 outputs carry labels.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/SKILL.md
+  grep -c "score-d4-agreement" .skilled/skills/system-deep-loop/deep-improvement/SKILL.md
+  git diff --stat -- .skilled/skills/system-deep-loop/deep-improvement/SKILL.md
+Accept when: 1 file changed and nothing else; the validator exits 0; the grep prints 1; the diff is 2 insertions and 2 deletions.
+FACTS (the only claims you may make; each is read from the code)
+- Script S: `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs`. Usage: `score-d4-agreement.cjs --outputs <dir> [--fixtures <dir>] [--labels <file>] [--jev] [--deem] [--out <dir>] [--accept-payload]`.
+- Tests T: `scripts/model-benchmark/tests/d4-agreement.vitest.ts`. The model-benchmark suite, run as `cd .skilled/skills/system-deep-loop/deep-improvement/scripts && npx vitest run model-benchmark/tests/`, is green at 205 tests across 14 files.
+- Purpose: measure offline whether a Jev or Deem judgment that flags an invented command-line flag, file or function agrees with the operator's labels more often than the deterministic check `deterministic/hallucination-flag.cjs`.
+- The default run makes no model call and writes no file. It matches benchmark outputs to their fixtures, counts the operator's labels and prints the deterministic baseline, `margin: 0.10` and the keep rule `keep rule: coverage 10*M >= 9*K, kill p_loss < 0.05, margin 10*(A-B) >= M, sign test p_win < 0.05, flips 10*F <= 3*M (jev only)`.
+- Label gate: with fewer than 30 labeled outputs it prints `stop: fewer than 30 labeled outputs`, and with fewer than 5 in a class `stop: fewer than 5 labeled yes outputs` or `... no outputs`. Only the operator writes labels.
+- `--deem` asks the local Deem server and `--jev` asks Jev, each only after its own checks pass (Jev: `jev --version` prints `jev 0.6.2`, `jev auth status --provider <p>` exits 0, and `--accept-payload`; Deem: its health check). A failed check prints one `jev arm skipped: ...` or `deem arm skipped: ...` line and changes nothing else. Each switch needs `--out <dir>`, records every call and prints one `verdict <jev|deem>: ...` line.
+- `run-benchmark.cjs` now exits 2 at startup, before any profile loads, when `--grader` is not `noop`, `mock` or `llm`, and names the value. `buildGraderFn` throws for the same values instead of returning the mock stub.
+- S holds no credential and reads none. Nothing is served: wiring a grader live needs a later change, a `keep` and the operator's call.

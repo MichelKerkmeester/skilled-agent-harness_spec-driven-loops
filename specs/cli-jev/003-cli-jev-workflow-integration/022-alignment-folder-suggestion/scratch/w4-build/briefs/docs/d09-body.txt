@@ -1,0 +1,7 @@
+TASK: create the skill's changelog entry v4.4.0.0 for the alignment suggestion measurement.
+FILE (create): `.skilled/skills/system-spec-kit/changelog/v4.4.0.0.md`
+MODEL: `.skilled/skills/system-spec-kit/changelog/v4.3.0.0.md`. Read it in full first, and read `.skilled/skills/sk-doc/sk-create-changelog/SKILL.md` for the rules. Same frontmatter keys, sections and voice. Say each fact once.
+WRITE: the release adds S and T and their docs. Files it lists: S, T, `SKILL.md` (version 4.4.0.0 and one quick-reference row), `README.md`, `runtime/cli/evals/README.md`, `runtime/cli/tests/README.md`, `feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md`, `feature-catalog/feature-catalog.md`, `manual-testing-playbook/tooling-and-scripts/alignment-suggestion-measurement.md` (scenario 461) and `manual-testing-playbook/manual-testing-playbook.md`. Upgrade note: nothing to migrate; no existing behavior changes, and no save reads S.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/changelog/v4.4.0.0.md
+Accept when: 1 file created and nothing else changed; the validator exits 0.

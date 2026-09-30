@@ -1,0 +1,11 @@
+.skilled/skills/cli-jev/README.md
+.skilled/skills/cli-jev/ROUTER.md
+.skilled/skills/cli-jev/SKILL.md
+.skilled/skills/cli-jev/benchmark/README.md
+.skilled/skills/cli-jev/description.json
+.skilled/skills/cli-jev/graph-metadata.json
+.skilled/skills/cli-jev/hub-router.json
+.skilled/skills/cli-jev/leaf-manifest.json
+.skilled/skills/cli-jev/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md
+.skilled/skills/cli-jev/manual-testing-playbook/manual-testing-playbook.md
+.skilled/skills/cli-jev/mode-registry.json

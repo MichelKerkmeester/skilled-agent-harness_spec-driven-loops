@@ -1,0 +1,16 @@
+HANDBACK
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs (+112 net; 894 lines now, 782 before)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts (+40 net; 521 lines now, 481 before)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:660 added the `--out`-with-switch refusal (deem form by default, jev form when only `--jev`; exit 2, stderr, before any walk or call)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:552-626 added section 8 REPORT with exported `buildReport(parts)` (question, generated, census, lineages with recorded/legacy/sources/deem/jev stops, baseline, gate, and sibling-shaped columns/stopped/skipped/requalify bucketing) and `writeReport(outDir, report)` (whole-file `report.json`, null when no directory)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:624-626,842-844,886-888 renumbered MAIN 9, EXPORTS 10, CLI ENTRYPOINT 11
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:629-635 main JSDoc now names the report write and the refusal exit
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:798-840 main tail: headroom line captured once, label-gate result recorded, report built and written on both the gate-stop and pass paths (still exits 0)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:880-881 exports `buildReport`, `writeReport`
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts:8 module header lists the Report area
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts:484-521 added `out missing refuses a model arm` (exit 2, empty stdout, exact stderr line, stub log absent) and `default run with --out writes only report.json` (exit 0, report.json parses with question/census/lineages, no calls.jsonl)
+CHECKS: `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` -> no output, exit 0
+CHECKS: `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` -> 18 (16 prior + 2 new), exit 0
+BLOCKED REASON: none

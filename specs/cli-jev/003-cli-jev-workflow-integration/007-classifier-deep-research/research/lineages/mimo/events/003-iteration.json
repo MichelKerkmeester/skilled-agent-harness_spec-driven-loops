@@ -1,0 +1,13 @@
+{
+  "type": "iteration",
+  "iteration": 3,
+  "status": "complete",
+  "focus": "mimo-03: Deem against Jev on the same judgments: the comparison design",
+  "findingsCount": 6,
+  "newInfoRatio": 1.0,
+  "noveltyJustification": "First pre-registered two-backend comparison with row counts, exact-binomial power and a calibration step; no baseline compares two backends.",
+  "keyQuestions": ["A", "H"],
+  "answeredQuestions": ["A-part-comparison-design", "H-part-kill-input"],
+  "timestamp": "2026-09-27T07:30:00Z",
+  "sessionId": "fanout-mimo-1790490452777-942a1f"
+}

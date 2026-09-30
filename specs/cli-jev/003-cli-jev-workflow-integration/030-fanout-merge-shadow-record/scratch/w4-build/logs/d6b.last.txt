@@ -1,0 +1,15 @@
+All facts in the new block come from `facts.txt` and `score-fanout-pairs.cjs` (usage line at `:1339`, label-gate lines at `:673`/`:676`, stub-backend skip via `deem arm skipped: ${health.reason}` at `:1163` with `reason = 'stub backend'` at `:1122`, census lines at `:1588-1641`), and the test count (42, confirmed as 42 `it(` cases in `score-fanout-pairs.vitest.ts` and stated in FACTS). No `verdict` line is claimed anywhere, per FACTS and ruling 6. One note: the §5 release line ("all 55 scenarios") was already two behind the walked tree before this change (the DLR-057 step incremented only the overview, as recorded in `029-p0-reread-order/scratch/w4-build/logs/d15.last.txt`, which left it "to fold in or leave"). Since the brief names "any count the new scenario changes" and a scenario count must state the true number, I folded it to 58.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md` (+17/-3)
+EDITS:
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:39` overview count read at doc time, 57 to 58 deterministic scenarios
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:106` release-count line, stale 55 folded in to the true 58 scenarios
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:678` FAN-OUT category count read at doc time, 10 to 11 scenarios
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:812` new `### DLR-059 | Fan-out pair replay: census, label gate and stub-backend skip` block after the DLR-047 block (Description, Scenario Contract, Test Execution)
+- `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:1014` new §19 cross-reference row after the DLR-058 row
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md --type playbook` -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md` / `Total issues: 0` (exit 0)
+- `git diff --stat -- .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md` -> `1 file changed, 17 insertions(+), 3 deletions(-)` (exit 0)
+BLOCKED REASON: none

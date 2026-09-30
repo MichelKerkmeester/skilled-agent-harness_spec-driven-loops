@@ -1,0 +1,35 @@
+$ python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+
+❌ INVALID: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+Document type: readme
+Total issues: 2
+
+🚫 Blocking errors (1):
+  - [missing_required_section] Missing required section: overview
+    Fix: Add section with name containing "overview"
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md, so README rules were applied. Pass --type to choose the rule set.
+exit=1
+$ python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md --type playbook
+
+❌ INVALID: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+Document type: playbook
+Total issues: 4
+
+🚫 Blocking errors (4):
+  - [missing_required_section] Missing required section: overview
+    Fix: Add section with name containing "overview"
+  - [missing_required_section] Missing required section: global_preconditions
+    Fix: Add section with name containing "global_preconditions"
+  - [missing_required_section] Missing required section: global_evidence_requirements
+    Fix: Add section with name containing "global_evidence_requirements"
+  - [missing_required_section] Missing required section: deterministic_command_notation
+    Fix: Add section with name containing "deterministic_command_notation"
+exit=1
+$ sibling (cli-deem) default
+Error: File not found: .skilled/skills/cli-classifier/cli-deem/manual-testing-playbook/manual-testing-playbook.md
+exit=2
+$ sibling (cli-deem) --type playbook
+Error: File not found: .skilled/skills/cli-classifier/cli-deem/manual-testing-playbook/manual-testing-playbook.md
+exit=2

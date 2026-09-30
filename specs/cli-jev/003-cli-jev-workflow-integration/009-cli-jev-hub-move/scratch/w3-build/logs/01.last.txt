@@ -1,0 +1,32 @@
+I'll execute this brief exactly. First, reading the files involved (read-before-write), including checking for a repo rules file.
+
+Files read. All three exist as expected. `REPO RULES.md` exists at the repo root, and I'm about to make my first write — so Gate 5 requires loading it first.
+
+`REPO RULES.md` loaded. Matching the actions I'm about to take (overwrite a hub registry, delete a file, report results, end a turn) against its trigger table fires: blast-radius, skill-hub-routing, evidence-and-proof, and the communication rules. Loading them now.
+
+Rule files loaded: `blast-radius.md`, `skill-hub-routing.md`, `evidence-and-proof.md`, `communication.md`, `communication-prose.md`, `communication-handoff.md`.
+
+Stakes read before the writes: both files are tracked repo files I have just read, so overwrite and delete are working-tree edits, trivially reversible (`git restore -- <path>`). Before deleting, I confirm both paths are tracked so the rollback sentence is concrete.
+
+Both files are tracked, so the rollback is `git restore` of either path. Proceeding with step 1: copy the prepared registry over the classifier hub's registry.
+
+Copy succeeded. Step 2: remove the merged source registry (working-tree `rm`, not `git rm`).
+
+Both writes returned exit 0. Now running the four acceptance checks, plus a scoped `git status` to confirm the footprint is exactly the two named paths.
+
+All four checks pass. Grabbing exact line-change counts for the handback.
+
+STATUS: DONE
+FILES CHANGED:
+- `.skilled/skills/cli-classifier/mode-registry.json` (+32/-3)
+- `.skilled/skills/cli-jev/mode-registry.json` (+0/-60)
+EDITS:
+- `.skilled/skills/cli-classifier/mode-registry.json:1-88` replaced in full by byte-copy of the prepared registry (now holds both cli-deem and cli-jev modes)
+- `.skilled/skills/cli-jev/mode-registry.json:1-60` deleted from the working tree with plain `rm`
+CHECKS:
+- `cmp specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/attach/mode-registry.json .skilled/skills/cli-classifier/mode-registry.json` -> no output (exit 0)
+- `node -e "JSON.parse(require('fs').readFileSync('.skilled/skills/cli-classifier/mode-registry.json','utf8'))"` -> no output (exit 0)
+- `test ! -e .skilled/skills/cli-jev/mode-registry.json` -> no output (exit 0)
+- `grep -c '"workflowMode": "cli-jev"' .skilled/skills/cli-classifier/mode-registry.json` -> 1 (exit 0)
+- `git status --porcelain -- <the two named paths>` -> ` M .skilled/skills/cli-classifier/mode-registry.json` and ` D .skilled/skills/cli-jev/mode-registry.json`, no other path (exit 0)
+BLOCKED REASON: none

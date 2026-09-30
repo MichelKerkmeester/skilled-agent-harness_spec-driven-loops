@@ -1,0 +1,25 @@
+census: zero model calls, 359 prompts replayed through each hub's compiled engine
+hub=sk-code source=canary prompts=9 unparsed=0 route=7 clarify=0 defer=1 reject=1 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=sk-code source=playbook prompts=32 unparsed=7 route=17 clarify=0 defer=8 reject=0 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=sk-code source=corpus prompts=52 unparsed=0 route=31 clarify=0 defer=21 reject=0 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=system-deep-loop source=canary prompts=9 unparsed=0 route=5 clarify=1 defer=2 reject=1 clarify_mode=0 clarify_checklist=1 gold_in_alternatives=0
+hub=system-deep-loop source=playbook prompts=20 unparsed=0 route=17 clarify=0 defer=3 reject=0 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=system-deep-loop source=corpus prompts=59 unparsed=0 route=36 clarify=0 defer=23 reject=0 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=mcp-tooling source=canary prompts=14 unparsed=0 route=12 clarify=0 defer=1 reject=1 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=mcp-tooling source=playbook prompts=16 unparsed=0 route=15 clarify=0 defer=1 reject=0 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=mcp-tooling source=corpus prompts=14 unparsed=0 route=11 clarify=0 defer=3 reject=0 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=cli-external-orchestration source=canary prompts=15 unparsed=0 route=10 clarify=1 defer=3 reject=1 clarify_mode=1 clarify_checklist=0 gold_in_alternatives=0
+hub=cli-external-orchestration source=playbook prompts=24 unparsed=17 route=5 clarify=0 defer=2 reject=0 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=cli-external-orchestration source=corpus prompts=9 unparsed=0 route=9 clarify=0 defer=0 reject=0 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=cli-classifier source=canary prompts=9 unparsed=0 route=5 clarify=0 defer=3 reject=1 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=cli-classifier source=playbook prompts=5 unparsed=0 route=4 clarify=0 defer=1 reject=0 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=sk-doc source=canary prompts=22 unparsed=0 route=17 clarify=1 defer=3 reject=1 clarify_mode=1 clarify_checklist=0 gold_in_alternatives=0
+hub=sk-doc source=playbook prompts=26 unparsed=0 route=21 clarify=0 defer=5 reject=0 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=sk-doc source=corpus prompts=12 unparsed=0 route=6 clarify=0 defer=6 reject=0 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=sk-design source=canary prompts=8 unparsed=0 route=7 clarify=0 defer=0 reject=1 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+hub=sk-design source=playbook prompts=4 unparsed=0 route=4 clarify=0 defer=0 reject=0 clarify_mode=0 clarify_checklist=0 gold_in_alternatives=0
+total prompts=359 unparsed=24 route=239 clarify=3 defer=86 reject=7 clarify_mode=2 clarify_checklist=1 gold_in_alternatives=0
+corpus: rows=265 none=24 skill_firing=241 mapped=146 no_compiled_hub=95 unparsed_lines=0
+real clarify rate: not measured
+rows written: 2 with_gold=0 file=specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/scratch/w4-build/runs/census-b02/rows.jsonl
+report written: specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/scratch/w4-build/runs/census-b02/report.json

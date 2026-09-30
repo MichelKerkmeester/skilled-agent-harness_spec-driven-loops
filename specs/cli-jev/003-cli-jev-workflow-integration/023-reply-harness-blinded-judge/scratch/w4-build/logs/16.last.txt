@@ -1,0 +1,9 @@
+File created and both checks pass. The changelog folder shows only the new file; `v1.0.0.0.md`–`v1.3.0.0.md` are untouched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-communication/changelog/v1.4.0.0.md (+32/-0)
+EDITS: .skilled/skills/sk-communication/changelog/v1.4.0.0.md:1 new file written with the brief's exact text (frontmatter + 32 lines, one trailing newline)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-communication/changelog/v1.4.0.0.md -> `✅ VALID: ...` / `Total issues: 0` (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/sk-communication/changelog/v1.4.0.0.md -> `hard blockers:          0` (exit 0)
+BLOCKED REASON: none

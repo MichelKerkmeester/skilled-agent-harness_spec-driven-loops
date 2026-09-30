@@ -1,0 +1,36 @@
+{
+  "lineage": "grok",
+  "sessionId": "fanout-grok-1790490452777-942a1f",
+  "stopReason": "maxIterationsReached",
+  "totalIterations": 10,
+  "keyFindings": [
+    "No new classifier phase ships. D3 already covers the 0.8B server.",
+    "Deem transport is its own client (route c), later, and does not threshold.",
+    "Do not threshold raw temperature 1.0. Health does not show the calibration file. deem-ctl has no pin.",
+    "MCP is the wrong shape for a context cut. Compaction fail-opens a missing answer.",
+    "Tare's conditioned permutation flip must not replace R1's 0.10 rerun flip.",
+    "Vendor card accuracy and JevBench 9B numbers are not this machine's quality. LOCAL p50 is speed on short inputs.",
+    "Framework-registry savings are unproven: the runtime reader found is the benchmark sweeper.",
+    "select_intents and classify_intents have no runtime definition in the .skilled code search.",
+    "Order: zero-call census, then a client only if D3 is amended, then one-question flip on a pinned commit, then no judgment arm until flip is at most 0.10."
+  ],
+  "ideas": [
+    {"id": "N-grok-01-1", "verdict": "drop"},
+    {"id": "N-grok-01-2", "verdict": "later"},
+    {"id": "N-grok-02-1", "verdict": "withdrawn-home"},
+    {"id": "N-grok-02-2", "verdict": "drop"},
+    {"id": "N-grok-03-1", "verdict": "drop"},
+    {"id": "N-grok-03-2", "verdict": "later"},
+    {"id": "N-grok-04-1", "verdict": "drop"},
+    {"id": "N-grok-04-2", "verdict": "later"},
+    {"id": "N-grok-05-1", "verdict": "later"},
+    {"id": "N-grok-05-2", "verdict": "drop"},
+    {"id": "N-grok-06-1", "verdict": "drop"},
+    {"id": "N-grok-06-2", "verdict": "drop"},
+    {"id": "N-grok-07-1", "verdict": "later"},
+    {"id": "N-grok-08-1", "verdict": "drop"},
+    {"id": "N-grok-08-2", "verdict": "later"},
+    {"id": "N-grok-09-1", "verdict": "drop"},
+    {"id": "N-grok-10-1", "verdict": "drop"}
+  ]
+}

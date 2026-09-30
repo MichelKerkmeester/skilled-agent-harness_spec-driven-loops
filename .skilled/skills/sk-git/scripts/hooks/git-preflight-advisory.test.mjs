@@ -30,6 +30,7 @@ import { execFileSync } from 'node:child_process';
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const HOOK = path.join(HERE, 'git-preflight-advisory.mjs');
 const REAL_SKILL_MD = path.resolve(HERE, '../../SKILL.md');
+const REAL_HARD_RULES = path.join(path.dirname(REAL_SKILL_MD), 'hard-rules.json');
 
 // git resolves its repository and config from these variables IN PREFERENCE to the working
 // directory. Left set by a parent launched inside a worktree, a bare temp `cwd` would no longer
@@ -64,7 +65,8 @@ function git(repo, ...args) {
 /**
  * A throwaway repository whose `src/` scope holds a modified tracked file next to an untracked one.
  * `git commit --only src -m x` there is the canonical silent-drop case, so the advisory must fire.
- * The real sk-git SKILL.md is copied under the repo so the hook loads the same hard_rules it ships.
+ * The real sk-git SKILL.md and its `hard-rules.json` sidecar are copied under the repo so the hook
+ * loads the same rule set it ships.
  */
 function makeViolatingRepo() {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'git-advisory-hook-'));
@@ -83,6 +85,7 @@ function makeViolatingRepo() {
   const skillDir = path.join(dir, '.skilled', 'skills', 'sk-git');
   fs.mkdirSync(skillDir, { recursive: true });
   fs.copyFileSync(REAL_SKILL_MD, path.join(skillDir, 'SKILL.md'));
+  fs.copyFileSync(REAL_HARD_RULES, path.join(skillDir, 'hard-rules.json'));
   return dir;
 }
 

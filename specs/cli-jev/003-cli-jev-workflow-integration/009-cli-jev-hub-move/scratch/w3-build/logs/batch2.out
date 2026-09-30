@@ -1,0 +1,196 @@
+===== brief 28 (pi) .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/28-jev017.md: 85 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/28-jev017.md exit=0 seconds=145
+--- handback 28
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md (+8/-8)
+EDITS:
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:2 "resolves to cli-jev from the command" -> "resolves to cli-classifier from the command"
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:3 "to the cli-jev packet, for" -> "to the cli-classifier hub's cli-usage packet, for"
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:7 "resolves to cli-jev from the command" -> "resolves to cli-classifier from the command"
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:15 "must resolve to \`cli-jev\`, which is what" -> "must resolve to \`cli-classifier\` with packet path \`cli-classifier/cli-usage\`, which is what"
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:27 "to the \`cli-jev\` packet." -> "to the \`cli-classifier\` hub's \`cli-usage\` packet."
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:28 "a dispatch to the cli-jev packet." -> "a dispatch to the cli-usage packet."
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:31 "and the server binary to \`cli-jev\`," -> "and the server binary to \`cli-classifier\`,"
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:56 "and the server binary to \`cli-jev\` |" -> "and the server binary to \`cli-classifier\` |"
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:56 "and \`jev-mcp\` to \`cli-jev\`;" -> "and \`jev-mcp\` to \`cli-classifier\`;"
+CHECKS:
+grep -c "cli-jev" .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md -> 0 (exit 1, grep's no-match status; expected count 0)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md -> "✅ VALID: ... Total issues: 0" (exit 0)
+BLOCKED REASON: none
+--- tree delta
+69c69
+< R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md
+---
+> RM .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md
+numstat: 8	8	.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md
+===== brief 29 (pi) .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/29-jev018.md: 59 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/29-jev018.md exit=0 seconds=426
+--- handback 29
+STATUS: BLOCKED
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md (+1/-1)
+EDITS: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md:34 `a quoted or logged string resolves to \`cli-jev\`;` -> `a quoted or logged string resolves to \`cli-classifier\`;`
+CHECKS: grep -c "resolves to \`cli-jev\`" .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md -> 1 (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md -> ✅ VALID: ...prose-mention-is-not-a-dispatch.md, Total issues: 0 (exit 0)
+BLOCKED REASON: grep expects 0 but line 56 (table row JEV-018) contains the same OLD substring outside the single authorized edit; the brief's +1/-1 scope and its grep expect-0 contradict — authorize a line-56 edit or accept the residual.
+--- tree delta
+70c70
+< R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md
+---
+> RM .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md
+numstat: 1	1	.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md
+===== brief 30 (pi) .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/30-usage-playbook-root.md: 59 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/30-usage-playbook-root.md exit=0 seconds=85
+--- handback 30
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md (+1/-1)
+EDITS: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md:102 replaced `to \`cli-jev\` | dispatch-guards | \`resolveDispatchPacket().skill === 'cli-jev'\` |` with `to \`cli-classifier\` | dispatch-guards | \`resolveDispatchPacket().skill === 'cli-classifier'\` |`
+CHECKS: grep -c "skill === 'cli-jev'" .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md -> 0 (exit 1, grep exit 1 = no matches, expected) (exit 1)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md -> "🚫 Blocking errors (1): [missing_required_section] Missing required section: overview" (exit 1) — pre-existing: identical result on the pre-edit staged version (git show :file), caused by document_type_fallback to README rules, not by this edit
+BLOCKED REASON: none
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md -> "🚫 Blocking errors (1): [missing_required_section] Missing required section: overview" (exit 1) — pre-existing: identical result on the pre-edit staged version (git show :file), caused by document_type_fallback to README rules, not by this edit
+--- tree delta
+82c82
+< R  .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/manual-testing-playbook.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+---
+> RM .skilled/skills/cli-jev/cli-usage/manual-testing-playbook/manual-testing-playbook.md -> .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+numstat: 1	1	.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md
+===== brief 31 (pi) .skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/31-dispatch-guards-catalog.md: 62 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/31-dispatch-guards-catalog.md exit=0 seconds=42
+--- handback 31
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md (+2/-2)
+EDITS:
+.sskilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md:16 `cli-jev` dispatch, → Jev dispatch of the `cli-classifier` hub,
+.sskilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md:28 `directExecutor()` returns `cli-jev` for → `directExecutor()` returns `cli-classifier` for
+CHECKS:
+grep -c "cli-jev" .skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md -> 0 (exit 1 — grep exit 1 means no match, count 0 as expected)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md -> ✅ VALID ... Total issues: 0 (exit 0)
+BLOCKED REASON: none
+--- tree delta
+59c59
+< R  .skilled/skills/cli-jev/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md -> .skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md
+---
+> RM .skilled/skills/cli-jev/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md -> .skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md
+numstat: 2	2	.skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md
+===== brief 32 (pi) .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/32-usage-feature-catalog.md: 62 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/32-usage-feature-catalog.md exit=0 seconds=36
+--- handback 32
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md (+2/-2)
+EDITS:
+- .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md:16 ``cli-usage` is the first mode of the` → ``cli-usage` is the packet of mode `cli-jev` in the`
+- .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md:17 ``cli-jev` hub and its only `packetKind: "transport"`: the hub resolves the mode` → ``cli-classifier` hub, one of its two `packetKind: "transport"` modes: the hub resolves the mode`
+CHECKS:
+- grep -c "cli-jev\` hub" .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md -> `0` (exit 1 — grep's no-match exit, count 0 as expected)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md -> `✅ VALID: .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md` (exit 0)
+BLOCKED REASON: none
+--- tree delta
+60c60
+< R  .skilled/skills/cli-jev/cli-usage/feature-catalog/feature-catalog.md -> .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md
+---
+> RM .skilled/skills/cli-jev/cli-usage/feature-catalog/feature-catalog.md -> .skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md
+numstat: 2	2	.skilled/skills/cli-classifier/cli-usage/feature-catalog/feature-catalog.md
+===== brief 33 (pi) .skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/33-transport-classification.md: 77 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/33-transport-classification.md exit=0 seconds=60
+--- handback 33
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md (+6/-6)
+EDITS:
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md:47 hub path `cli-jev` → `cli-classifier`, "one registered mode" → "two registered modes"
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md:49 "reports the moved-mode failure class `3c` as absent, because this hub's single mode resolves" → "passes the moved-mode check `3c`, because both of this hub's modes resolve"
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md:50 "to an existing packet folder." → "to existing packet folders."
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md:88 "`cli-usage`. The routing vocabulary adds the mode's own name, `cli-usage`," → "`cli-jev`, over the packet folder `cli-usage`. The routing vocabulary adds the packet's name, `cli-usage`,"
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md:90 "names the mode explicitly" → "names the packet explicitly"
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md:95 "corpus (`CJ-001` … `CJ-003`)" → "corpus (`CJ-001`, `CJ-002` and `CC-003`)"
+CHECKS:
+grep -c "skills/cli-jev" .skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md -> 0 (exit 1; grep exit 1 = no matches, count 0 as expected)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md -> ✅ VALID: .../transport-classification.md — Total issues: 0 (exit 0)
+BLOCKED REASON: none
+--- tree delta
+63c63
+< R  .skilled/skills/cli-jev/cli-usage/feature-catalog/transport-classification/transport-classification.md -> .skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md
+---
+> RM .skilled/skills/cli-jev/cli-usage/feature-catalog/transport-classification/transport-classification.md -> .skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md
+numstat: 6	6	.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md
+===== brief 34 (pi) .skilled/skills/cli-classifier/cli-usage/README.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/34-usage-readme.md: 65 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/34-usage-readme.md exit=0 seconds=63
+--- handback 34
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/README.md (+3/-3)
+EDITS:
+.sksilled/... — corrected: .skilled/skills/cli-classifier/cli-usage/README.md:3 description: "The cli-jev hub's first transport mode -" -> "The packet of the cli-classifier hub's cli-jev transport mode -"
+.sksilled/... — corrected: .skilled/skills/cli-classifier/cli-usage/README.md:20 blockquote: "> The first mode of the `cli-jev` hub, and its only `packetKind: "transport"`. Jev reads" -> "> The packet of mode `cli-jev` in the `cli-classifier` hub, a `packetKind: "transport"`. Jev reads"
+.sksilled/... — corrected: .skilled/skills/cli-classifier/cli-usage/README.md:28 "`cli-jev` is the hub's transport for typed judgments," -> "Mode `cli-jev` is the hub's hosted transport for typed judgments,"
+CHECKS:
+grep -c "cli-jev` hub" .skilled/skills/cli-classifier/cli-usage/README.md -> 0 (exit 1; grep exit 1 = no matches, count output 0 as expected)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/README.md -> "✅ VALID: .skilled/skills/cli-classifier/cli-usage/README.md / Total issues: 0" (exit 0)
+(git diff --numstat for the named file -> 3 3, confirming +3/-3)
+BLOCKED REASON: none
+```
+--- tree delta
+32c32
+< R  .skilled/skills/cli-jev/cli-usage/README.md -> .skilled/skills/cli-classifier/cli-usage/README.md
+---
+> RM .skilled/skills/cli-jev/cli-usage/README.md -> .skilled/skills/cli-classifier/cli-usage/README.md
+numstat: 3	3	.skilled/skills/cli-classifier/cli-usage/README.md
+===== brief 35 (pi) .skilled/skills/cli-classifier/cli-deem/README.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/35-deem-readme.md: 62 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/35-deem-readme.md exit=0 seconds=35
+--- handback 35
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-deem/README.md (+2/-2)
+EDITS:
+  .skilled/skills/cli-classifier/cli-deem/README.md:107 `use the \`cli-jev\` hub instead.` → `use this hub's \`cli-jev\` mode instead.`
+  .skilled/skills/cli-classifier/cli-deem/README.md:113 `| \`cli-jev\` | The hosted Jev transport.` → `| \`cli-jev\` | The hosted Jev transport, a mode of the same hub over the \`cli-usage\` packet.`
+CHECKS:
+  grep -c "cli-jev\` hub" .skilled/skills/cli-classifier/cli-deem/README.md -> `0` (exit 1 — grep's no-match exit; count 0 as expected)
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-deem/README.md -> `✅ VALID: .skilled/skills/cli-classifier/cli-deem/README.md ... Total issues: 0` (exit 0)
+BLOCKED REASON: none
+
+Note: `git status` shows many other modified/renamed files in the tree — those belong to concurrent workers; `git diff --numstat` confirms my only change is the named README (+2/-2).
+--- tree delta
+30a31
+>  M .skilled/skills/cli-classifier/cli-deem/README.md
+numstat: 2	2	.skilled/skills/cli-classifier/cli-deem/README.md
+===== brief 19 (pi) .skilled/agents/orchestrate.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/19-agent-orchestrate.md: 70 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/19-agent-orchestrate.md exit=0 seconds=52
+--- handback 19
+STATUS: DONE
+FILES CHANGED:
+.s\killed/agents/orchestrate.md (+2/-2)
+EDITS:
+.s\killed/agents/orchestrate.md:475 replaced "now lives in its own hub: `cli-usage`, the only mode of `.skilled/skills/cli-jev/`." with "lives in the classifier hub: mode `cli-jev` of `.skilled/skills/cli-classifier/`, over the packet `cli-usage`."
+.s\killed/agents/orchestrate.md:853 replaced "- `.skilled/skills/cli-jev/SKILL.md`" with "- `.skilled/skills/cli-classifier/SKILL.md`" and "the hub that carries the `cli-usage` transport, the judgment-only mode that runs nothing" with "the hub whose `cli-jev` mode carries the `cli-usage` transport, the judgment-only mode that runs nothing"
+CHECKS:
+grep -c "skills/cli-jev/" .skilled/agents/orchestrate.md -> 0 (exit 1)
+grep -c "skills/cli-classifier/" .skilled/agents/orchestrate.md -> 2 (exit 0)
+BLOCKED REASON: none
+--- tree delta
+0a1
+>  M .skilled/agents/orchestrate.md
+numstat: 2	2	.skilled/agents/orchestrate.md
+===== brief 20 (pi) .skilled/agents/prompt-improver.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/20-agent-prompt-improver.md: 60 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/20-agent-prompt-improver.md exit=0 seconds=43
+--- handback 20
+STATUS: DONE
+FILES CHANGED: .skilled/agents/prompt-improver.md (+1/-1)
+EDITS: .skilled/agents/prompt-improver.md:70 replaced "the only mode of the `cli-jev` hub" with "mode `cli-jev` of the `cli-classifier` hub"
+CHECKS:
+  grep -c "the \`cli-jev\` hub" .skilled/agents/prompt-improver.md -> 0 (exit 1 — grep exits 1 on zero matches, result line 0 as expected)
+  grep -c "cli-classifier" .skilled/agents/prompt-improver.md -> 1 (exit 0)
+BLOCKED REASON: none
+
+Note: `git diff` also shows changes in `specs/sk-doc/019-skill-routing-refactor/...` files made by concurrent workers in this shared worktree; none of them were written by me. Mirrored copies under `.claude/`, `.codex/`, `.pi/`, `.hermes/` untouched, per brief.
+--- tree delta
+1a2
+>  M .skilled/agents/prompt-improver.md
+numstat: 1	1	.skilled/agents/prompt-improver.md

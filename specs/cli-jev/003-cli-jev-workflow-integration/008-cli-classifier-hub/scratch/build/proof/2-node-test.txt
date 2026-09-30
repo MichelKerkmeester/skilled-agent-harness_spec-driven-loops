@@ -1,0 +1,42 @@
+✔ health prints the pinned model and the commit pair (185.913542ms)
+✔ health refuses a stub backend (45.406166ms)
+✔ health refuses an ensemble that contains stub (44.867875ms)
+✔ health refuses a model other than the pin (45.621209ms)
+✔ health exits 4 when nothing is listening (46.461208ms)
+✔ health exits 4 when health returns 500 (45.179042ms)
+✔ health exits 2 when the checkpoint link is missing (46.775291ms)
+✔ an unknown subcommand exits 2 without a request (45.003ms)
+✔ health rejects a question flag (40.17225ms)
+✔ choice translates descriptions back to the submitted keys (43.4475ms)
+✔ score translates a level to its zero-based position (43.975625ms)
+✔ noul reads the state from stdin and renames value (44.232291ms)
+✔ choice --value prints only the submitted key (43.426541ms)
+✔ a 400 from systemone exits 1 (46.923791ms)
+✔ a 500 from systemone exits 4 (47.632209ms)
+✔ systemone refuses a model other than the pin (45.687291ms)
+✔ a choice option without an equals sign exits 2 before any request (41.25575ms)
+✔ choice with 26 options is sent (49.52925ms)
+✔ choice with 27 options exits 2 before any request (42.795584ms)
+✔ choice with a duplicate description exits 2 before any request (43.16575ms)
+✔ choice with a duplicate key exits 2 before any request (42.897125ms)
+✔ noul rejects an option flag before any request (42.513041ms)
+✔ score without a level exits 2 before any request (43.56675ms)
+✔ choice without an option exits 2 before any request (41.698167ms)
+✔ run sends a file of 64 noul questions (44.203833ms)
+✔ run rejects 65 questions before any request (43.812166ms)
+✔ run translates a stdin batch of noul and score (50.396292ms)
+✔ run rejects --value before any request (41.053792ms)
+✔ every subcommand exits 4 when nothing is listening (216.749917ms)
+✔ health --hook exits 4 inside the hook budget (542.845959ms)
+✔ health exits 4 after the health timeout (2050.183958ms)
+✔ health refuses a URL that is not loopback (50.6185ms)
+✔ health refuses a malformed URL (49.708417ms)
+✔ health --hook dials an IPv6 loopback without a name lookup (54.908625ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4419.146333

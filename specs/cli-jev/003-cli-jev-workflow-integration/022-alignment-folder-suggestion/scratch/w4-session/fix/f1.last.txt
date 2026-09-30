@@ -1,0 +1,14 @@
+All four strings are corrected. Reporting.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md (+3/-3)
+EDITS:
+  .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:9 `version: 4.3.0.0` → `version: 4.4.0.0`
+  .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:20 `S measures offline whether` → `The script measures offline whether`; `S holds no credential and reads none` → `It holds no credential and reads none` (both on line 20, one replacement)
+  .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:30 `writes one row per event with an empty` → `writes one row per low or infrastructure event that lists alternatives, with an empty`
+CHECKS:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md -> `✅ VALID: .../alignment-suggestion-measurement.md ... Total issues: 0` (exit 0)
+  grep -cE 'S measures|S holds|one row per event' .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md -> `0` (exit 1 — grep exits 1 when the count is 0, which is the accepted result)
+  git diff --stat -- .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md -> `<empty>` (exit 0) — the file is untracked in this worktree (`??` in `git status --porcelain`, `git ls-files --error-unmatch` fails), so no tracked diff exists yet; the 3 replaced lines are evidenced by the edit tool result (`3 lines replaced`) and the grep of the final content. I did not run `git add` (brief forbids git write commands).
+BLOCKED REASON: none

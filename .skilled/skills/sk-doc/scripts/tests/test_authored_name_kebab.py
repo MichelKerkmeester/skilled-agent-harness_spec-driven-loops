@@ -48,6 +48,7 @@ class AuthoredNameKebabTests(unittest.TestCase):
         for artifact in (
             "helper_name.py",
             "README.md",
+            "ARCHITECTURE.md",
             "changelog/old_release_name.md",
         ):
             with self.subTest(artifact=artifact):

@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "$*" >> "$(dirname "$0")/cli-deem.log"
+exit 1

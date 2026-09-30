@@ -1,0 +1,12 @@
+Built step `c1` only: `S` created with the constant block, `sha256`, `readRaterReport` (all four named errors), `gateStopLine`, and `main` (strict `parseArgs`, missing-switch refusal, `--out`-overwrites-input refusal, gate stop, `USAGE` stub), plus the CLI entrypoint and exports; `T` created with exactly tests 1–5 from design §3. No earlier function or test existed to preserve — both files are new, confirmed untracked-created by `git status`.
+
+Not run here, per brief: `npx vitest run tests/unit/score-stop-hint.vitest.ts` (sandbox blocks vitest; orchestrator owns it). The design's c1 acceptance (`5 passed`) is therefore unverified by me — my only claims rest on the two listed checks below.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs (+225/-0)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts (+119/-0)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:1 created the module: header/imports/constant block, section 3 reader (`sha256`, `readRaterReport`, `gateStopLine`), section 4 `main` with parseArgs, the missing-switch and `--out` collision refusals and the gate stop, section 5 exports, section 6 CLI entrypoint, `USAGE` defined as a stub (as the sibling does)
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts:1 created tests 1–5 named exactly as design §3: "reader accepts a gated report", "reader refuses a missing report", "reader refuses an unparseable report", "gate stop prints the stop line and exits 0", "an unarmed report stops too", over `os.tmpdir()` fixtures and the injected `main(argv, deps)` seam
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts -> 5 (exit 0)
+BLOCKED REASON: none

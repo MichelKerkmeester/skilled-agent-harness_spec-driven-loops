@@ -1,0 +1,11 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json (+1/-1)
+EDITS: specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json:1 content replaced by byte-for-byte copy of SRC (single-line JSON, no trailing newline, preserved)
+CHECKS:
+- cmp .skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json -> no output (exit 0)
+- shasum -a 256 specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json -> 439843b28986ee6ac81089c4fe30f6edf9630b2d8b58e41e28ce29af1bd77b70 (exit 0) — matches expected
+- shasum -a 256 SRC (post-copy) -> 439843b28986ee6ac81089c4fe30f6edf9630b2d8b58e41e28ce29af1bd77b70 (exit 0) — SRC unchanged by this task (identical before and after the copy)
+BLOCKED REASON: none
+
+Note (informational, not touched): `git status` shows other pending changes in these activation folders (cli-jev → cli-classifier renames and SRC's own re-mint), all pre-existing/other workers' work; only DST was modified by this task.

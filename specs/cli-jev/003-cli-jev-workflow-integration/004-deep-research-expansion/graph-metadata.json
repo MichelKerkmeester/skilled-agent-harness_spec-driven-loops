@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "jev research round 2",
+      "jev council re-synthesis",
+      "four lineage jev research",
+      "swe-2 max jev lineage",
+      "jev compaction recall research",
+      "jev research round 2 plan",
+      "four lineage fan-out plan",
+      "jev re-synthesis plan",
+      "swe-2 max cursor pi fan-out",
+      "jev research round 2 tasks",
+      "jev re-synthesis tasks",
+      "four lineage fan-out tasks"
+    ],
+    "key_topics": [
+      "jev",
+      "research",
+      "round",
+      "council",
+      "re-synthesis",
+      "four",
+      "lineage",
+      "swe-2",
+      "max",
+      "compaction",
+      "recall",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "context/research-angles.md",
+      "scratch/research-topic.txt",
+      "scratch/synthesis-brief.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "research/observability-events.jsonl",
+      "research/deep-research-config.json",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+      ".skilled/commands/create/goal.md",
+      ".opencode/plugins/opencode-goal.js",
+      ".skilled/hooks/goal/goal-plugin.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+      ".skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts",
+      ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+      ".claude/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-angles.md",
+        "kind": "doc",
+        "path": "context/research-angles.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-topic.txt",
+        "kind": "file",
+        "path": "scratch/research-topic.txt",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-brief.md",
+        "kind": "doc",
+        "path": "scratch/synthesis-brief.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "observability-events.jsonl",
+        "kind": "file",
+        "path": "research/observability-events.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-goal.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "secret-scrubber.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/shared/parsing/secret-scrubber.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-set-string-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Research Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Revised Jev Recommendations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The AI Council found that round 1 dropped the right ideas but measured too loosely and built in the wrong places",
+    "created_at": "2026-09-26T20:24:40Z",
+    "last_save_at": "2026-09-27T09:35:27.311Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:4923bd0250089579675bdebba962ae725717aceb142c28f117bfe2da84dd750f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "25c3a78ca82aa305e15feb24741a861f6df7917b1e8c39d14c8e9945bae080df",
+      "plan.md": "c1a5787204db3167751c429153c55b06fa3133dc230f0696046ec81cf08c142b",
+      "tasks.md": "d74f184382f125bfd9ea6f767a4650e0d82afd30ba436cc5977149cd1aefd626",
+      "implementation-summary.md": "05c578da299653106601cf1d06f5714206e30c2d81faa87648d6732fed015f3f",
+      "research/research.md": "f2e2360c570db560e993b4fdaf91a62ff09ae21607f6d019013a4492bba97129"
+    },
+    "last_active_at": null
+  }
+}

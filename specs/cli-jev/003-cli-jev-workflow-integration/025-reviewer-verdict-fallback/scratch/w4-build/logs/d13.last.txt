@@ -1,0 +1,12 @@
+Both checks pass and the diff shows only the two named edits. Every stated fact is grounded: the script path, `LABEL_GATE = 12` with its printed line at `score-verdict-fallback.cjs:1320`, the zero-call default (FACTS run with logging stubs left both logs unwritten), the `--jev`/`--deem` arm switches, and the baseline comparison in `summarizeColumn` (`A` vs `B`) over `chooseBaseline`'s "stronger of the two zero-call baselines". No `verdict` line is claimed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/SKILL.md (+2/-2)
+EDITS:
+- .skilled/skills/system-deep-loop/deep-improvement/SKILL.md:6 frontmatter `version: 1.18.0.0` -> `1.19.0.0`
+- .skilled/skills/system-deep-loop/deep-improvement/SKILL.md:222 one sentence appended to the Scoring bullet after 024's sentence, naming `scripts/model-benchmark/lib/score-verdict-fallback.cjs`, its no-model-call default, the 12-label gate with its printed line `stop: fewer than 12 labeled regex-miss outputs`, and the `--jev`/`--deem` switches
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/SKILL.md` -> `✅ VALID: .skilled/skills/system-deep-loop/deep-improvement/SKILL.md` / `Document type: skill` / `Total issues: 0` (exit 0)
+- `git diff --stat -- .skilled/skills/system-deep-loop/deep-improvement/SKILL.md` -> `1 file changed, 2 insertions(+), 2 deletions(-)` (exit 0)
+BLOCKED REASON: none

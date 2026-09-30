@@ -1,0 +1,14 @@
+C3 (selection) is complete. Implemented in S: `bodyKey`, `titleTokens`, `overlap`, `findingText`, `titleOrTextOverlap`, `classifyPair`, `pairKey`, `sha256Hex`, `selectCandidates` (all JSDoc'd and exported), plus the band constants and the merge's stopword list copied in; internal helpers `stableValue`/`stableStringify`/`normalizeSortText`/`contentIdentityKey`/`durableBodyText`/`contentTokens` keep the body key a verbatim merge copy. Added the 7 section-3 selection cases to T under a new `score-fanout-pairs selection` describe; all C1/C2 helpers and walker tests are untouched.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs (+281/-0)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts (+50/-0)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:19 added the `node:crypto` import used by `sha256Hex`
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:41-58 added `NEAR_LINE_MIN_OVERLAP`, `NEAR_LINE_MAX_OVERLAP`, `CROSS_BODY_MIN_OVERLAP`, `TITLE_STOPWORDS` with WHY comments
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:174-425 added section 4 SELECTION: copied merge helpers plus `bodyKey`, `titleTokens`, `overlap`, `findingText`, `titleOrTextOverlap`, `classifyPair`, `pairKey`, `sha256Hex`, `selectCandidates`
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:427-445 renumbered the exports header to 5 and added the nine new exports
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts:193-242 added `tokensOf` and `describe('score-fanout-pairs selection')` with the seven named near-line/cross-body cases
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts -> 10 (exit 0)
+CHECKS: git status --porcelain -- <S> <T> -> "?? <S>" and "?? <T>" only (exit 0); no other file touched by this step
+BLOCKED REASON: none

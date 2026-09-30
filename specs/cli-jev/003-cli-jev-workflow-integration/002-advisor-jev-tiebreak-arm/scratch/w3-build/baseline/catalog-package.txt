@@ -1,0 +1,10 @@
+PACKAGE system-skill-advisor: WARN tier=warn violations=8
+WARN: 8 violation(s) (0 fail, 8 warn):
+  - [warn] [phantom_root_row] system-skill-advisor/feature-catalog.md:127: root table names hooks-and-plugin/opencode-hook.md as plain text instead of a markdown link
+  - [warn] [missing_source_path] system-skill-advisor/advisor-rebuild.md: SOURCE FILES path does not exist on disk: .skilled/skills/system-spec-kit/runtime/tools/index.ts:56-72
+  - [warn] [missing_source_path] system-skill-advisor/advisor-rebuild.md: SOURCE FILES path does not exist on disk: .skilled/skills/system-spec-kit/runtime/tool-schemas.ts:954-962
+  - [warn] [missing_source_path] system-skill-advisor/advisor-rebuild.md: SOURCE FILES path does not exist on disk: .skilled/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts
+  - [warn] [missing_source_path] system-skill-advisor/advisor-rebuild.md: SOURCE FILES path does not exist on disk: .skilled/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts
+  - [warn] [missing_source_path] system-skill-advisor/advisor-rebuild.md: SOURCE FILES path does not exist on disk: .skilled/skills/system-spec-kit/runtime/tests/advisor-rebuild.vitest.ts
+  - [warn] [missing_source_path] system-skill-advisor/advisor-rebuild.md: SOURCE FILES path does not exist on disk: .skilled/skills/system-spec-kit/runtime/tests/tool-input-schema.vitest.ts
+  - [warn] [missing_source_path] system-skill-advisor/projection.md: SOURCE FILES path does not exist on disk: .skilled/commands/create/assets/create_parent_skill_auto.yaml

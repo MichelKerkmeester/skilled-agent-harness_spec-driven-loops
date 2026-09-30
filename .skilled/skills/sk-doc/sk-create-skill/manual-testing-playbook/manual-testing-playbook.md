@@ -1,14 +1,14 @@
 ---
 title: "sk-create-skill: Manual Testing Playbook"
 description: "Operator-facing scenarios for scaffolding standalone skills, building parent hubs, validating root metadata and preserving routing boundaries."
-version: 1.2.0.3
+version: 1.2.0.5
 ---
 
 # sk-create-skill: Manual Testing Playbook
 
 This playbook defines the operator contract for `sk-create-skill`. It covers standalone skill creation, root metadata classes, parent-hub routing files, compiled-routing readiness and packet identity boundaries.
 
-The root file owns shared skill-authoring policy. Category files own scenario execution truth. This package has no feature catalog. Each scenario says so in its source table.
+The root file owns shared skill-authoring policy. Category files own scenario execution truth. This package has no feature catalog of its own. SKL-001 to SKL-006 say so in their source tables. SKL-007 and SKL-008 each link the sk-doc hub catalog entry for their script.
 
 Canonical package artifacts:
 
@@ -25,7 +25,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 This package tests the two authoring paths owned by `sk-create-skill`. It checks the standalone scaffold and its metadata, the handoff to quality control, parent-hub registry and router parity, the `ready` boundary and the single-advisor-identity rule.
 
-Coverage is split into six scenarios across two categories. Three scenarios cover standalone skills. Three cover parent hubs.
+Coverage is split into eight scenarios across two categories. Three scenarios cover standalone skills. Five cover parent hubs, one of them the compiled-routing clarify census.
 
 ### Realistic Test Model
 
@@ -36,7 +36,7 @@ Coverage is split into six scenarios across two categories. Three scenarios cove
 
 ### Coverage Boundary
 
-The mode must create skill artifacts from the selected standalone or parent path. It must leave existing-document quality audits to `sk-create-quality-control`. It must keep one advisor identity at a parent hub and must not claim compiled serving from a fresh `ready` manifest.
+The mode must create skill artifacts from the selected standalone or parent path. It must leave existing-document quality audits to `sk-create-quality-control`. It must keep one advisor identity at a parent hub and must not claim compiled serving from a fresh `ready` manifest. Its clarify census must call no model. Its scorer must stop below 30 labeled rows. Its leaf-route replay must call no model and its replay verdict must stop when the prose arm covers too few gold rows.
 
 ---
 
@@ -201,7 +201,7 @@ Desired user-visible outcome: an existing-document report from the quality workf
 
 ---
 
-## 8. PARENT HUB (`SKL-004..SKL-006`)
+## 8. PARENT HUB (`SKL-004..SKL-008`)
 
 ### SKL-004 | Author a two-axis parent hub
 
@@ -266,6 +266,48 @@ Desired user-visible outcome: one advisor identity with nested packets routed th
 
 ---
 
+### SKL-007 | Count clarify answers and stop at the label gate
+
+#### Description
+
+Verify that the clarify census counts `clarify` answers per hub and source with zero model calls and that its scorer stops below 30 labeled rows.
+
+#### Scenario Contract
+
+Prompt: `Count how often the compiled hubs answer clarify, then tell me whether a suggested default can be scored yet.`
+
+The operator runs `score-clarify-default.cjs` with stub `jev` and `cli-deem` binaries first on `PATH`, reads the per-hub counts and the rows file, then runs `--score` on that file with and without `--deem`. Every row label stays empty. The scorer prints `stop: fewer than 30 labeled rows` both times.
+
+Desired user-visible outcome: the clarify counts and a plain statement that no default can be scored until 30 rows carry a label.
+
+#### Test Execution
+
+> **Feature File:** [SKL-007](parent-hub/count-clarify-and-stop-at-the-label-gate.md)
+> **Catalog:** [clarify-default-measurement](../../feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md) in the sk-doc hub catalog.
+
+---
+
+### SKL-008 | Replay Stage-Two leaf routes
+
+#### Description
+
+Verify that the Stage-Two leaf-route replay calls no model and that its verdict stops when the prose arm covers too few gold rows.
+
+#### Scenario Contract
+
+Prompt: `Replay the Stage-Two leaf routes and tell me whether the keyword arm is worth keeping.`
+
+The operator runs `leaf-route-replay.cjs` with stub `jev` and `cli-deem` binaries first on `PATH` and `--report` set, reads the per-hub replay lines and the report, then checks the stub log. The replay prints `hub=sk-code gold=1 unscored=1 surface slice not replayed`, `hub=cli-classifier stage1-only`, `router reads: not measured` and `replay verdict: stop (prose arm covers 0 of 55 rows) N=55 P=0 keyword_f1=n/a prose_f1=n/a`. No stub call is logged.
+
+Desired user-visible outcome: the per-hub replay counts and a plain statement that the keyword arm is not kept or dropped until the prose arm covers enough rows.
+
+#### Test Execution
+
+> **Feature File:** [SKL-008](parent-hub/replay-stage-two-leaf-routes.md)
+> **Catalog:** [leaf-route-replay](../../feature-catalog/packet-authored-registry-routing/leaf-route-replay.md) in the sk-doc hub catalog.
+
+---
+
 ## 9. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
@@ -274,6 +316,8 @@ Desired user-visible outcome: one advisor identity with nested packets routed th
 | `package_skill.py` | Strict skill package structure and frontmatter checks | SKL-001 |
 | `ci-skill-root-metadata.cjs` | Root class, authored and generated metadata, forbidden files and freshness | SKL-002 and SKL-006 |
 | `parent-skill-check.cjs` | Parent registry, router, packet and root-router conformance | SKL-004 |
+| `score-clarify-default.test.cjs` | Census counts, the checklist split, the label gate, the keep rule and both backend gates on stub binaries | SKL-007 |
+| `leaf-route-replay.test.cjs` | Router parsing, keyword scoring, gold loading and row scoring, the read recount, the replay verdict and both backend gates on stub binaries | SKL-008 |
 
 The gates prove file and schema state. They do not by themselves prove that a new mode is reachable from every routing surface or that a ready manifest serves compiled traffic.
 
@@ -281,7 +325,7 @@ The gates prove file and schema state. They do not by themselves prove that a ne
 
 ## 10. FEATURE CATALOG CROSS-REFERENCE INDEX
 
-This package has no feature catalog. The root index below is the source of scenario membership.
+This package has no feature catalog of its own. The root index below is the source of scenario membership.
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -291,3 +335,5 @@ This package has no feature catalog. The root index below is the source of scena
 | SKL-004 | Author a two-axis parent hub | PARENT HUB | [SKL-004](parent-hub/author-a-two-axis-parent-hub.md) |
 | SKL-005 | Keep ready separate from compiled serving | PARENT HUB | [SKL-005](parent-hub/keep-ready-separate-from-compiled-serving.md) |
 | SKL-006 | Keep one parent identity | PARENT HUB | [SKL-006](parent-hub/keep-one-parent-identity.md) |
+| SKL-007 | Count clarify answers and stop at the label gate | PARENT HUB | [SKL-007](parent-hub/count-clarify-and-stop-at-the-label-gate.md) |
+| SKL-008 | Replay Stage-Two leaf routes | PARENT HUB | [SKL-008](parent-hub/replay-stage-two-leaf-routes.md) |

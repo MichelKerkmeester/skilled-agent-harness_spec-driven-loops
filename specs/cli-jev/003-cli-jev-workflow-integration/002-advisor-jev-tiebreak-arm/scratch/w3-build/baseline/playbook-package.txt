@@ -1,0 +1,6 @@
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+SKIP package=system-skill-advisor tier=FAIL_CLOSED scenarios=47 categories=9 operator=0 routing_gold_excluded=47 violations=0 warnings=1
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+exit=0

@@ -1,0 +1,10 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime
+
+Unknown option '--bogus'
+
+ Test Files  1 passed (1)
+      Tests  43 passed (43)
+   Start at  15:38:27
+   Duration  31.38s (transform 356ms, setup 23ms, import 55ms, tests 31.17s, environment 0ms)
+

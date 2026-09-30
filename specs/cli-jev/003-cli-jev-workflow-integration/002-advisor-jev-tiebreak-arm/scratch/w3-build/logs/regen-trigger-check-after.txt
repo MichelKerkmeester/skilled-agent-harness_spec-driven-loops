@@ -1,0 +1,8 @@
+trigger index matches the corpus
+  index             : /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+  documents scanned : 23316
+  stale documents   : 0 (0 missing from the index)
+  obsolete paths    : 0
+  untrusted docs    : 0
+  duration ms       : 17828.5
+  note: manifest hash differs (index fdebd12ad1be6133cd344556b5bcdc81ce8736127474d99919f70150342ca67f, corpus d3202b318bdcc32c2f1102ef37717132c6357ccb923da40fda4e4d6664bb70f3); no lookup answer depends on it

@@ -1,0 +1,24 @@
+Step 4 is implemented and verified. Two notes for the orchestrator before the handback:
+
+- `REPO_CLI_DEEM` was added (not in design 2.6's constant list) so `deemCommand` falls back to `.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs` under node: `cli-deem` is not on this machine's PATH, and without the fallback every real Deem run would skip `not reachable`. The shipped sibling uses the same fallback.
+- The named `report.json` case is covered to the step-4 boundary: `readStoredReport` reads a stored `report.json` and the arm prints `requalify: model commit changed` immediately before the verdict. The full `--deem --out` write of `report.json` (census, labels, baseline, gate, `columns.deem.verdict`) needs `buildReport`/`main`, which step 6 owns; the "byte-identical to the no-arm run" half of the stub-backend case lands there too.
+
+```
+STATUS: DONE
+FILES CHANGED:
+  .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs (+470/-0)
+  .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts (+199/-0)
+EDITS:
+  S:704-1163 inserted section 6 "DEEM GATE AND ARM": which, deemCommand, readDeemHealth, deemGate, spawnCall, createCallLog, readStoredReport, rowDigest, rotateOptions, runDeemArm (JSDoc'd); plus REPO_CLI_DEEM
+  S:18-20 imports gained node:crypto and spawn (spawnSync unchanged)
+  S:1165-1167 renumbered EXPORTS 6 -> 7
+  S:1209-1216 added which, deemCommand, readDeemHealth, deemGate, spawnCall, createCallLog, readStoredReport, runDeemArm to module.exports
+  T:8-9 banner extended with "Deem gate and arm (...)"
+  T:371-566 added describe 'score-severity-replay deem gate and arm' with five tests: fake health, stub-backend skip, exit 4 changed pair, funnel counts, report.json read-back/requalify; all 18 earlier tests unchanged
+CHECKS:
+  node --check .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs -> (no output) (exit 0)
+  grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts -> 23 (exit 0)
+  node stdin smoke replicating all five new cases against the real module with temp-dir stub cli-deem -> SMOKE: all checks passed (exit 0)
+  git status --porcelain on S and T -> both `??` (new, nothing else touched) (exit 0)
+BLOCKED REASON: none
+```

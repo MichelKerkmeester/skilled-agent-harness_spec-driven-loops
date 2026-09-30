@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen",
+  "description": "Test offline, over a fixed corpus of public vendored text with operator-planted instructions, whether a Jev or Deem noul spots text that tries to instruct the agent better than flag-nothing and a lexical screen.",
+  "keywords": [
+    "r16",
+    "jev",
+    "deem",
+    "offline",
+    "fetched",
+    "text",
+    "injection",
+    "screen"
+  ],
+  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "specId": "035",
+  "folderSlug": "fetched-text-injection-screen",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

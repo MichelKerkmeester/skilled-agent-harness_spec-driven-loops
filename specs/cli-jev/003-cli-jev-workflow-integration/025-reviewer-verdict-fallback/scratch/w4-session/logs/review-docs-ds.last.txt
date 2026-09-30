@@ -1,0 +1,25 @@
+All verification runs are complete. Final-state evidence: bare census matches the documented block exactly; playbook steps 3/4 and the optional `--jev` check reproduce line-for-line; 31/31 phase tests and 236/236 across 15 suite files pass; `validate_document.py` reports 0 issues on all nine docs; secret and comment-hygiene greps are clean; sign test hand-checked (W9/L1 → 11/1024 = 0.01074; W0/L5 → 1/32 = 0.03125).
+
+**Findings**
+
+- P1 `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/README.md:51` — the amended Exports row says `score-verdict-fallback.cjs` is "the folder's single entrypoint" and every other lib module has no CLI `main()`, but `reviewer-scorer.cjs` has both a `main()` and a `require.main === module` entrypoint (`lib/reviewer-scorer.cjs:324-331`); the playbook's own MB-R01 contract (`manual-testing-playbook.md:790`) runs `reviewer-scorer.cjs --profile ... --outputs-dir ...` as a CLI.
+- P1 `lib/README.md:50` — the unchanged Imports row calls `sweep-reporter.cjs` "the one intra-lib edge"; `score-verdict-fallback.cjs:25` adds a second (`require('./reviewer-scorer.cjs')`), so the row no longer describes the folder.
+- P2 `manual-testing-playbook.md:715,965` — section 15's lead list and the Model-Benchmark Mode catalog cross-reference (5 files) both omit the new entry although the category now has six (`feature-catalog.md:32,380`).
+- P2 `deep-improvement/README.md:10` — frontmatter version stays 1.17.0.38 (playbook root :4 stays 1.17.0.44) while every 1.19.0.0 sibling/changelog/catalog/scenario reads 1.19.0.0; pre-existing, but the two changed docs disagree with their siblings.
+
+**Requirements**
+
+- REQ-001 met — bare run exits 0 with the documented lines; the playbook stub run left `calls.log` absent.
+- REQ-002 met — `extractVerdict` imported (:25); live run printed `fixture cases: 8 hits: 8 misses: 0`; noOutput/`--outputs`/`--reports` counted.
+- REQ-003 met — bad label exits 2 naming the row (test 4); both stop lines exact; `labels_sha256` in line/report; no label write path.
+- REQ-004 met — fixed constants + `decideVerdict`; exact BigInt tails (`20*num < den`) hand-checked on two cases.
+- REQ-005 met — `--deem` only; stub backend prints only `deem arm skipped: stub backend`, exit 0; 10 s process cap matches the sibling, cli-deem holds its own 2 s timeout.
+- REQ-006 met — identity line, exact `jev 0.6.2`, provider check; the documented `--jev` skip reproduced.
+- REQ-007 met — secret grep exit 1; no key read/passed; untracked outputs need `--accept-payload`.
+- REQ-008 met — `choice` question/options/three orders, modal pick, unstable a miss.
+- REQ-009 met — cost lines before the first call; missing `--out` exits 2 before any read/call; call records complete.
+- REQ-010 met — report columns carry the commit pair/version; requalify prints before the verdict (test 29).
+- REQ-011 met — 31/31 phase tests, 236/236 across 15 files; both arms stubbed.
+- REQ-012 met — zero validator issues on all nine docs; switches and gate named as the code spells; no run-printed verdict claimed (the P1 rows above are the doc-vs-code failures).
+
+VERDICT: FAIL

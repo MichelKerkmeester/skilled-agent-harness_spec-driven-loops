@@ -1,0 +1,10 @@
+PROMPT: ask deem for a probability that this incident is urgent
+[]
+PROMPT: ask jev for a probability that this plan ships on time
+[('cli-jev', 0.83)]
+PROMPT: summarize the release notes for the last sprint
+[]
+PROMPT: use deem choice to pick a queue
+[('cli-jev', 0.82)]
+PROMPT: is the local deem server healthy
+[]

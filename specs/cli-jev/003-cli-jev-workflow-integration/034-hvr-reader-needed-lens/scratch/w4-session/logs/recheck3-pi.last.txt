@@ -1,0 +1,18 @@
+Review of the two fixes (read-only; nothing written).
+
+**Finding (P1, REQ-002): closed** — `tracked_files` (hvr_reader_lens.py:87-103) now returns exactly HEAD's tree via `git ls-tree -r -z --name-only HEAD`, which is precisely the path set `git show HEAD:<path>` can always open, so the staged-but-uncommitted traceback is gone at source; the new check "census leaves out a staged, uncommitted doc" (test_hvr_reader_lens.py:489-503) proves both halves (path absent from `tracked_files`, census lines byte-identical) and the suite prints `ALL PASS` (42 checks) with exit 0.
+
+**Caller weighing (spec REQ-002 / REQ-003)**
+- Census and draw (`build_census` at :350, callers :2114 and :2140-2142): now cover committed files only — this is REQ-002's own heading ("sections from committed files") and REQ-004's draw pool. No disallowed change.
+- Row reader's refusal set (`read_section` :799, `build_rows` :830): refused now means "outside HEAD's tree". One corner diverges from the literal acceptance text: a path that is in HEAD's tree but absent from the index (staged for deletion, `git rm --cached`) is opened at its recorded commit instead of being counted `refused`, while REQ-003 says "A path outside `git ls-files` … is never opened and is counted as `refused`". This is a wording mismatch, not a behavior defect: every read still goes through `git show` at a recorded commit, so REQ-003's operative clause ("Nothing private is read", "read at its recorded commit with `git show`") holds, and REQ-002's literal `git ls-files` is unimplementable alongside its own `git show HEAD:<path>` read — that contradiction was the P1 itself. The spec's acceptance criteria need a one-line doc amendment (`git ls-files` → "paths in HEAD's tree") in REQ-002 and REQ-003; I edit nothing, so it is flagged here for the orchestrator. Neither file contains a stale `git ls-files` claim (grep: no match, exit 1).
+
+**New P0 or P1 in the two files: none.**
+
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none
+EDITS: none
+CHECKS: `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py` -> `ALL PASS` (42 checks) (exit 0)
+BLOCKED REASON: none

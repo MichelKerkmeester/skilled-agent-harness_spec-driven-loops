@@ -1,0 +1,6 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md (+1/-0)
+EDITS: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md:31 inserted `score-clarify-default.test.cjs` table row after the `root-router-contract.test.cjs` row
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md` -> `Total issues: 0` (exit 0)
+BLOCKED REASON: none

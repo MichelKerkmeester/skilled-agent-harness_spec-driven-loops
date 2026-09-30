@@ -1,0 +1,13 @@
+Ran the required check and verified the edit verbatim against the brief. Notes:
+
+- Artifact route (Gate 2 / persona): `ARTIFACT: sk-code → sk-code-opencode` via `compiled-route.cjs` (`evidence-base`, `sk-code-opencode`); hub and packet loaded. The inserted block carries no comments, so comment hygiene is satisfied trivially.
+- Both T and S are untracked in this worktree (`??`), so `git diff --numstat` has no baseline to display for either; "only T changed" rests on exactly one write being performed — a single `edit` call on T — and on S's mtime (20:35:26) predating T's (20:39:00, my edit). Other modified files in `git status` belong to concurrent workers, not this task.
+- Vitest was not run: the brief assigns suites to the orchestrator and warns sandboxes may block runners.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts (+25/-0; untracked in this worktree, so git shows no baseline delta)
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts:776 inserted it('deem arm requalifies only when the stored commit pair differs') after the 'deem arm marks a disagreeing pair unstable' block, exactly as written, nothing else
+CHECKS: grep -c "deem arm requalifies only when the stored commit pair differs" .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts -> 1 (exit 0)
+BLOCKED REASON: none
+```

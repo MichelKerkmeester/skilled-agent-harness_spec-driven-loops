@@ -1,0 +1,26 @@
+Findings:
+
+P1 `.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:26` - says a citation to a path outside the tracked files is "refused"; the code returns `unresolved` when no tracked candidate and no on-disk path matches (cite-drift-scan.mjs:223-228) - the session's real run shows `refused=0 unresolved=103` (facts.txt:20) for exactly those inputs.
+P2 `.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:9` - version 2.2.3.0; the repo's child-doc rule derives 2.2.0.0 (frontmatter-versioning.md §4; `frontmatter-version.mjs compute` gives realEditCount 0), sibling leaf goal-criteria-lint.md:9 and the phase's own playbook leaf are 2.2.0.0, and the version `gate` is format-only.
+P2 `.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:41` - SOURCE FILES lists `shared/scripts/cite-drift-labels.jsonl`, which exists only after an operator's `--draw`; `validate_catalog_package.py --package sk-doc` now reports violations=7 (HEAD 6), the new one `missing_source_path` for it.
+P2 `.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:26,28` - "Every run prints" the census lines is false for `--draw`, which prints only the draw line (test-cite-drift-scan.mjs:357), and "already carries operator labels" understates a refusal that any non-null `labeler` triggers (cite-drift-scan.mjs:1566), so a construction-only fresh draw blocks a second `--draw`.
+P2 `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:262` - `doc.split('/')[2]` makes every folder under `.skilled/skills/` a "skill", so a real run prints an all-zero `skill .state: ...` line.
+
+Requirements:
+
+REQ-001 met - default run makes no model call; both stubs stay silent, nothing written (test "default zero calls").
+REQ-002 met - pattern, fence skip, resolution order, `git ls-files` only; per-skill, totals, commit print.
+REQ-003 not met (count clause) - dead never asked and `.env` never opened, but outside-tracked targets that exist nowhere count `unresolved`, not `refused`; doc:26 repeats the claim.
+REQ-004 met - 40 rows, 13 fields, no text, recorded commit; redraw refusal is stricter than the doc states.
+REQ-005 met - identical rows, ±10 window, backtick tokens, tie to flag-nothing (tests).
+REQ-006 met - five checks in order; sign test checked by hand: W=5,L=0 → 1/32=0.03125<0.05; W=4,L=0 → 0.0625.
+REQ-007 met - one health call, four skip reasons, exit 0, earlier lines unchanged (tests).
+REQ-008 met - identity line, 0.6.2 pin, auth status exit 0, one `--provider` per call (tests).
+REQ-009 met - key grep empty; payload is tracked committed text only.
+REQ-010 met - writes only under `--out`; no validator or cited file touched.
+REQ-011 met - `-q`+sha printed first, stdin JSON, flag <0.5, Brier printed but never deciding, 3 Jev reruns/1 Deem.
+REQ-012 met - cost line first, calls.jsonl fields/statuses, exit table, partial+no verdict, `--out` required (tests).
+REQ-013 met - per-column identity suffix; requalify notice tested.
+REQ-014 met - `node --test` 32/32 (≥18), named cases covered, docs name script/default/switches and claim no verdict, `validate_document.py` exits 0 per changed doc.
+
+VERDICT: FAIL

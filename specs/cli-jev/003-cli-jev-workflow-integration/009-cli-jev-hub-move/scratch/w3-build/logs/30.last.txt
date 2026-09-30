@@ -1,0 +1,9 @@
+The edit is applied exactly as specified. One note on verification: the `validate_document.py` check exits 1, but this failure **pre-exists my edit** — I ran the same validator against the pre-edit staged version of the file and it fails identically (the validator has no rule set for this document type, falls back to README rules, and demands an "overview" section). Fixing that would require content changes outside the named edit, which this brief forbids. The grep check passes and the diff is exactly +1/-1 in one file.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md (+1/-1)
+EDITS: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md:102 replaced `to \`cli-jev\` | dispatch-guards | \`resolveDispatchPacket().skill === 'cli-jev'\` |` with `to \`cli-classifier\` | dispatch-guards | \`resolveDispatchPacket().skill === 'cli-classifier'\` |`
+CHECKS: grep -c "skill === 'cli-jev'" .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md -> 0 (exit 1, grep exit 1 = no matches, expected) (exit 1)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md -> "🚫 Blocking errors (1): [missing_required_section] Missing required section: overview" (exit 1) — pre-existing: identical result on the pre-edit staged version (git show :file), caused by document_type_fallback to README rules, not by this edit
+BLOCKED REASON: none

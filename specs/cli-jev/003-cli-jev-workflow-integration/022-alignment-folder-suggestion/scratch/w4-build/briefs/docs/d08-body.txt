@@ -1,0 +1,8 @@
+TASK: add T to the tests folder's README.
+FILE (edit): `.skilled/skills/system-spec-kit/runtime/cli/tests/README.md`. Read it first and find where it lists or groups the test files (for example the `| Group | Coverage |` table near line 45, or a file list).
+WRITE: name `score-alignment-suggestion.vitest.ts` once, in the form the README already uses for a single vitest file. If the README only lists groups and never names single files, extend the Vitest group's Coverage cell with the words `alignment suggestion measurement` instead. If the file states a count of test files, raise it by one. Change nothing else.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/tests/README.md
+  grep -ci "alignment suggestion\|score-alignment-suggestion" .skilled/skills/system-spec-kit/runtime/cli/tests/README.md
+  git diff --stat -- .skilled/skills/system-spec-kit/runtime/cli/tests/README.md
+Accept when: 1 file changed and nothing else; the validator exits 0; the grep prints at least 1.

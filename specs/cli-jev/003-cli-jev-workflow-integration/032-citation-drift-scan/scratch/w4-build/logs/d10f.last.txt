@@ -1,0 +1,9 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md (+14/-0)
+EDITS: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md:122 added the `### Citation Drift Scan` H3 block (Description, Current Reality, Source Files) at the end of section 4, after the `Goal Criteria Lint` block, modelled on that block; nothing outside the block changed
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md --type feature_catalog` -> `✅ VALID: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md`, `Total issues: 0` (exit 0)
+- `git diff --stat -- .skilled/skills/sk-doc/feature-catalog/feature-catalog.md` -> `1 file changed, 14 insertions(+)` (exit 0)
+- parity check (inline python): H3 title equals leaf `title` (True), `#### Description` byte-equals leaf `description` (True), no `verdict` word in the block (True)
+BLOCKED REASON: none

@@ -1,0 +1,1 @@
+executor=pi brief=specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/briefs/21-parity-readme.md exit=0 seconds=23

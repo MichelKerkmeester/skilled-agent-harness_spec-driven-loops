@@ -1,0 +1,5 @@
+start 2026-09-30T09:53:49Z
+end 2026-09-30T10:03:07Z
+exit 0
+seconds 558
+command node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs --jev --out <dir>

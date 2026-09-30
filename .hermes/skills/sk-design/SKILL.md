@@ -204,5 +204,7 @@ their owning mode.
 4. This hub authors nothing itself. If you are editing here rather than in a mode, something is wrong.
 5. Vocabulary that must move the advisor goes in `graph-metadata.json` `intent_signals`. Keywords in
    `description.json` are documentation; they are not what gets scored.
-6. Never quote a compiled routing decision for this hub. It is not in the compiled closure, and the
-   call returns a legacy sentinel rather than a route.
+6. Take the mode from the compiled front door,
+   `node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"`, as the section 2
+   callout says. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing in
+   section 2 instead.

@@ -1,0 +1,10 @@
+## node --check S
+exit=0
+## drift compaction-recall
+[alignment-drift] PASS
+Scanned files: 0
+Findings: 0
+Errors: 0
+Warnings: 0
+Violations: 0
+exit=0

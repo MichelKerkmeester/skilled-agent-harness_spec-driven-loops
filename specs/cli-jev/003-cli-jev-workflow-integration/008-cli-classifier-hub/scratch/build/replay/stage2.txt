@@ -1,0 +1,9 @@
+{"prompt":"ask deem for a probability that this incident is urgent","action":"route","selectionKind":"single","modes":["cli-deem"],"matchedCount":4}
+{"prompt":"use deem choice to pick a queue","action":"route","selectionKind":"single","modes":["cli-deem"],"matchedCount":8}
+{"prompt":"score these three levels with deem","action":"route","selectionKind":"single","modes":["cli-deem"],"matchedCount":4}
+{"prompt":"run a batch of typed questions through deem","action":"route","selectionKind":"single","modes":["cli-deem"],"matchedCount":4}
+{"prompt":"is the local deem server healthy","action":"route","selectionKind":"single","modes":["cli-deem"],"matchedCount":12}
+{"prompt":"cli-deem health","action":"route","selectionKind":"single","modes":["cli-deem"],"matchedCount":8}
+{"prompt":"ask jev for a probability that this plan ships on time","action":"defer","selectionKind":null,"modes":[],"matchedCount":0}
+{"prompt":"summarize the release notes for the last sprint","action":"defer","selectionKind":null,"modes":[],"matchedCount":0}
+{"prompt":"the result was deemed acceptable","action":"defer","selectionKind":null,"modes":[],"matchedCount":0}

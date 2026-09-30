@@ -1,0 +1,21 @@
+The change is in place, verified, and the full suite is green.
+
+**What changed** in `minedCorpus`:
+- JSDoc gained the one required sentence: "The headings are counted in markdown under `specs/` in one pass."
+- The two `git grep` calls (`-lE` and `-hE` over all of `specs/`) became one `runGitLines(root, ['grep', '-cE', HYPOTHESIS_PATTERN, '--', 'specs/*.md'])`; each line is `<path>:<count>`.
+- `hypothesisFiles` is now the number of output lines; `rows` is the sum of the integer after the last `:` on each line (reduce). Return shape, `delegation` search, and all other bytes are unchanged.
+
+Verification (run from `.skilled/skills/system-spec-kit/runtime`):
+- `node --check scripts/debug-next-check/score-debug-next-check.mjs` → no output, exit 0
+- `npx vitest run tests/debug-next-check.vitest.ts` → `Tests  11 passed (11)`, exit 0 (whole file 40.6 s; `gate at 29` 11.3 s, `gate at 30` 10.6 s, well under the 30 s limit)
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs (+16/-6)
+EDITS: scripts/debug-next-check/score-debug-next-check.mjs:109 added "The headings are counted in markdown under `specs/` in one pass." to the JSDoc
+EDITS: scripts/debug-next-check/score-debug-next-check.mjs:121 replaced the two git grep calls with one `git grep -cE HYPOTHESIS_PATTERN -- 'specs/*.md'`
+EDITS: scripts/debug-next-check/score-debug-next-check.mjs:134 hypothesisFiles = output-line count; rows = reduce sum of the integer after the last `:` on each line
+CHECKS: node --check scripts/debug-next-check/score-debug-next-check.mjs -> (no output) (exit 0)
+CHECKS: npx vitest run tests/debug-next-check.vitest.ts -> Tests  11 passed (11) (exit 0)
+BLOCKED REASON: none
+```

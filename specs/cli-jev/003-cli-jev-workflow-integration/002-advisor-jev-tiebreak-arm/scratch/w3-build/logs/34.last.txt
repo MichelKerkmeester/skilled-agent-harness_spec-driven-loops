@@ -1,0 +1,17 @@
+`--jev` without a non-empty `--out` now returns 2 before any Jev call, and the tests that still run the gate pass `--out`.
+
+SKILL ROUTING: sk-code, JavaScript implement. ARTIFACT: sk-code → exact edit in the named script and vitest file.
+REPO RULES: scope-discipline, evidence-and-proof (action matched; edit stayed on the two named files).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+6/-0)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+40/-14)
+EDITS: score-jev-tiebreak.mjs:1510 JSDoc states --jev with a missing or empty --out returns 2 before any call
+score-jev-tiebreak.mjs:1541 main returns 2 before any call when --jev is set and --out is missing or empty
+score-jev-tiebreak.vitest.ts:259 jev gate tests pass --out and remove the temp dir
+score-jev-tiebreak.vitest.ts:818 auth-omit test passes --out and removes the temp dir
+score-jev-tiebreak.vitest.ts:240 entry-point test expects exit 2 and no jev.log when --out is omitted
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> (empty) (exit 0)
+grep -c "\['--jev'\]" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts -> 1 (exit 0)
+BLOCKED REASON: none

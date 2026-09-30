@@ -1,0 +1,6 @@
+[
+ [
+  "| `regenerate-skill-derived.cjs` | Regenerates derived skill data. |\n",
+  "| `regenerate-skill-derived.cjs` | Regenerates derived skill data. |\n| `score-clarify-default.cjs` | Counts compiled-routing clarify answers with zero model calls and scores labeled clarify rows behind a 30-row gate. |\n"
+ ]
+]

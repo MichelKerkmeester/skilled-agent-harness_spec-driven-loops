@@ -1,0 +1,15 @@
+All three edits are in place exactly as specified; arm bodies and closing braces are unchanged, and `headroomLine` (line 1748) is in scope before the new line 1763.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs (+13/-3)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:1761 added `armsOpen`/`headroomSkip` with the seven-in-ten-headroom comment, right after the label gate block
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:1774 Jev arm now takes the `headroomSkip` branch first (prints `jev arm skipped: no headroom`, sets `{ skipped: 'no headroom' }`) with `armsOpen` as the `else if`; body untouched
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs:1816 Deem arm now takes the `headroomSkip` branch first (prints `deem arm skipped: no headroom`, sets `{ skipped: 'no headroom' }`) with `armsOpen` as the `else if`; body untouched
+CHECKS: `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` -> no output, syntax OK (exit 0)
+CHECKS: `grep -c "arm skipped: no headroom" .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` -> 2 (exit 0)
+BLOCKED REASON: none
+
+Notes for handback, not blockers:
+- S is untracked in this tree (`git status` = `??`), so `git diff`/`numstat` are empty by design; net line count moved 1947 → 1957 (+10), matching the three edits. I ran no writing git command.
+- No other file was written by me. Other workers' concurrent edits may show in the tree but are outside my scope.
+- The added comment carries only the durable WHY (no spec path, packet/phase number or id), per comment hygiene.

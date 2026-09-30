@@ -1,0 +1,9 @@
+Both checks passed and only the named file changed on my side.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/benchmark/reports/README.md (+4/-0)
+EDITS: .skilled/skills/cli-classifier/benchmark/reports/README.md:27-30 replaced whole file with prepared copy — run index gains two rows (2026-09-26, 2026-09-20, newest first) plus the note that both runs predate this hub's Jev mode
+CHECKS: cmp specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/attach/benchmark/reports/README.md .skilled/skills/cli-classifier/benchmark/reports/README.md -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/benchmark/reports/README.md --type readme -> ✅ VALID: .skilled/skills/cli-classifier/benchmark/reports/README.md / Total issues: 0 (exit 0)
+BLOCKED REASON: none

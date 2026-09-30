@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "p0 reread order",
+      "severity replay",
+      "score-severity-replay",
+      "validity funnel log",
+      "research r10 test phase",
+      "severity replay plan",
+      "score-severity-replay build",
+      "p0 label gate plan",
+      "validity funnel plan",
+      "severity replay tasks",
+      "score-severity-replay tasks",
+      "p0 label gate tasks"
+    ],
+    "key_topics": [
+      "reread",
+      "order",
+      "severity",
+      "replay",
+      "score-severity-replay",
+      "validity",
+      "funnel",
+      "log",
+      "research",
+      "r10",
+      "test",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts",
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      "runtime/README.md",
+      "runtime/scripts/README.md",
+      ".hermes/skills/system-deep-loop/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/README.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+      ".skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/severity-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-severity-replay.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-severity-replay.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.8.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "severity-replay.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council.contract.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Not To Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A deep-review P0 blocks release",
+    "created_at": "2026-09-29T12:42:41Z",
+    "last_save_at": "2026-09-30T06:07:09.439Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d9cacfa95215a90780816d2f2e96490cddadd31d210d6ffd3179a259472718f5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "39f8e3009ebb1ac7a80d3ffabcac1af82107cd4dcfaa1546b359e70b196dc279",
+      "plan.md": "d9cc898ca2cb5f22b84311683cd401b55622dada691c234f18173076392bc396",
+      "tasks.md": "5812bf7eb56ab86161e810cb3fb11897ca911e1cb3f48ed5b233e7d346ef4623",
+      "implementation-summary.md": "d74817a9ceca89b0df8b4a2363110b53e3db25d8b7f44d2a12c2908e62fa02aa"
+    },
+    "last_active_at": null
+  }
+}

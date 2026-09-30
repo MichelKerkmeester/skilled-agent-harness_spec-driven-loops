@@ -1,0 +1,4 @@
+promoted 62 closure files -> .skilled/bin/lib/compiled-routing
+rollback retained at .skilled/bin/lib/compiled-routing.rollback-66300-1790788155668
+run status/parity/kill-switch/scorer gates, then: --finalize /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/071-cli-jev-sk-alignment/.skilled/bin/lib/compiled-routing.rollback-66300-1790788155668
+on a failed gate:              --revert /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/071-cli-jev-sk-alignment/.skilled/bin/lib/compiled-routing.rollback-66300-1790788155668

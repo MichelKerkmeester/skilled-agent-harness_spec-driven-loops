@@ -1,0 +1,21 @@
+Both checks pass. Summary of the work:
+
+- **S** gained the `--deem`/`--jev`/`--out` switches, the missing-`--out` refusal (`--deem needs --out <dir> so every call is recorded`, `--jev` form when only `--jev`), the realpath-based inside-repository refusal (`refused: report directory inside the repository`, via `canonicalizeExistingPrefix` + `isPathInsideRoot`, both run before any input read or call), plus `createCallLog` and `readStoredReport` in a new `8. OUTPUT DIRECTORY` section (`MAIN` renumbered to 9). Three new tests were not needed — the step named two.
+- **T** gained `out missing` and `out inside repo`, mirroring the existing refusal-test shape; all 8 earlier tests untouched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs (+105/-0)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts (+21/-0)
+EDITS: S:12-25 extended node:fs/node:path imports for the call log, stored report and path canonicalization
+EDITS: S:31-34 SCRIPT_DIR + REPO_ROOT (six levels up), the realpath refusal's reference root
+EDITS: S:332-405 new section 8 OUTPUT DIRECTORY: canonicalizeExistingPrefix, isPathInsideRoot, createCallLog, readStoredReport; MAIN renumbered 9
+EDITS: S:413-420 main documents and defaults `deps.repoRoot`
+EDITS: S:427-431 parseArgs accepts `deem`, `jev`, `out`
+EDITS: S:445-457 the two --out refusals (switch needs --out; out inside the repository), both before any read or call
+EDITS: T:215-223 `out missing` test
+EDITS: T:225-234 `out inside repo` test
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs -> (no output) (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts -> 10 (exit 0)
+CHECKS: git status --porcelain -- <S> <T> <fixtures dir> -> `??` for exactly those three paths, nothing else (exit 0)
+BLOCKED REASON: none

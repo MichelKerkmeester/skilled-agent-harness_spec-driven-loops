@@ -1,0 +1,10 @@
+All checks pass and the diff is exactly the two additions with everything else byte-identical. Every claim in the new block traces to the script's code (`USAGE`, `main`, the `--out` guard at the `--jev and --deem need --out <dir>` check, the `deem arm skipped:` skip line) or FACTS' real-tree runs (the census, `margin:`, `keep rule:`, `instruction` lines, `stop: fewer than 100 labeled rows`, the stub-backend skip, zero calls and no writes). No verdict line is claimed, matching FACTS.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md (+14/-0)
+EDITS: .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md:170 DRV-069 summary block (Description, Scenario Contract, Test Execution) added after DRV-003 in section 7, modelled on DRV-001's block
+EDITS: .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md:657 DRV-069 index line added after the DRV-003 line in section 14 ENTRY POINTS AND MODES, modelled on DRV-001's index line
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md --type playbook -> `✅ VALID: .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md` / `Document type: playbook` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md -> `.../manual-testing-playbook/manual-testing-playbook.md | 14 ++++++++++++++` / `1 file changed, 14 insertions(+)` (exit 0)
+BLOCKED REASON: none

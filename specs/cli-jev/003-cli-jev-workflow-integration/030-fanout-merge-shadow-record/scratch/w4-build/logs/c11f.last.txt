@@ -1,0 +1,13 @@
+Verification complete. The prescribed edit is in place exactly as written and `node --check` passes, but the brief's acceptance grep cannot print 2 under the brief's own prescribed text — the second per-side guard uses `lb`, so the literal pattern matches one line (the pattern `countOf(\[{ label: l` matches both guard lines and prints 2). Per fail-closed, I did not alter code to satisfy the broken pattern.
+
+```
+STATUS: BLOCKED
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs (+20/-15)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:505-520 replaced the merge-decision body with shared options/countOf plus per-side drop guards and the both-side count, exactly as briefed
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:488-491 re-wrapped the JSDoc sentence to "...and a side the merge drops even on its own (...) leaves the pair undecidable...", lines under 90 chars
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs -> (no output) (exit 0)
+CHECKS: grep -c "countOf(\[{ label: la" .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs -> 1 (exit 0) [brief expects 2]
+CHECKS: diagnostic: grep -c "countOf(\[{ label: l" <same file> -> 2 (exit 0); grep -F -c "countOf(\[{ label: la" <same file> -> 0 (exit 1, BSD grep 2.6.0)
+CHECKS: git status --porcelain -- <file> -> "?? .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs" (pre-existing untracked in this worktree); my edit list contains only this file, and the 16 tracked modifications in the tree belong to other workers
+BLOCKED REASON: brief-internal inconsistency — the supplied replacement text contains only one line matching "countOf(\[{ label: la" (the second guard is "countOf(\[{ label: lb"), so the stated acceptance "grep prints 2" is unreachable without deviating from the mandated exact text; the code change itself is applied verbatim, both guard lines are present at :512 and :513, and node --check exits 0.
+```

@@ -1,0 +1,111 @@
+{
+  "schema_version": 2,
+  "skill_id": "cli-classifier",
+  "family": "cli",
+  "category": "cli-orchestrator",
+  "deprecated": false,
+  "edges": {
+    "depends_on": [],
+    "enhances": [
+      {
+        "target": "system-spec-kit",
+        "weight": 0.3,
+        "context": "Supplies local typed judgments to the spec-kit goal verifier and compaction arms, each dormant until cli-deem health passes"
+      }
+    ],
+    "siblings": [],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "domains": [
+    "classifier",
+    "deem",
+    "local inference"
+  ],
+  "intent_signals": [
+    "cli-deem",
+    "deem judgment",
+    "local deem",
+    "local classifier",
+    "ask deem for a probability",
+    "use deem choice",
+    "score levels with deem",
+    "deem health check",
+    "is deem up",
+    "deem run"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "cli-classifier",
+      "cli-deem",
+      "deem judgment",
+      "local deem",
+      "local classifier",
+      "deem health",
+      "deem choice",
+      "deem score"
+    ],
+    "key_topics": [
+      "deem",
+      "local classifier",
+      "deem judgment",
+      "deem health",
+      "commit pair",
+      "typed answer"
+    ],
+    "intent_signals": [
+      "ask deem for a probability",
+      "pick one option with deem",
+      "order levels with deem",
+      "batch typed questions through deem",
+      "check whether deem is up"
+    ],
+    "source_docs": [
+      "SKILL.md",
+      "README.md",
+      "mode-registry.json",
+      "hub-router.json",
+      "cli-deem/SKILL.md",
+      "cli-deem/README.md"
+    ],
+    "key_files": [
+      ".skilled/skills/cli-classifier/SKILL.md",
+      ".skilled/skills/cli-classifier/README.md",
+      ".skilled/skills/cli-classifier/mode-registry.json",
+      ".skilled/skills/cli-classifier/hub-router.json",
+      ".skilled/skills/cli-classifier/graph-metadata.json",
+      ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
+      ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
+      ".skilled/skills/cli-classifier/cli-deem/references/wire-contract.md"
+    ],
+    "entities": [
+      {
+        "name": "cli-classifier",
+        "kind": "skill",
+        "path": ".skilled/skills/cli-classifier/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-deem",
+        "kind": "skill",
+        "path": ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-deem-client",
+        "kind": "script",
+        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "deem-wire-contract",
+        "kind": "reference",
+        "path": ".skilled/skills/cli-classifier/cli-deem/references/wire-contract.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "cli-classifier is the single public skill identity for classifier models served on this machine, a hub with one transport packet. The hub routes a judgment request to cli-deem through mode-registry.json and hub-router.json. The transport is one Node file that checks the local Deem server with health and asks it for a probability, one option key, an ordered level position or a batch of keyed answers, printed in the field names the existing typed-judgment readers parse. Write, Edit and Task are forbidden and mutatesWorkspace is false, so the transport selects while a workflow acts. The advisor sees one hub and resolves the transport by hub membership, because every transport is routingClass metadata.",
+    "created_at": "2026-09-28T12:00:00Z",
+    "last_updated_at": "2026-09-28T12:00:00Z"
+  }
+}

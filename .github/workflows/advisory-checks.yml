@@ -50,3 +50,19 @@ jobs:
             exit 1
           fi
           node "$VALIDATOR" || echo "doc-model drift reported above; fix by citing canonical model names from registry.ts"
+
+      - name: Trigger index freshness (report-only)
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          GENERATOR=".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+          # Fail closed: a missing script is a moved or deleted file, not an empty
+          # report. The step keeps continue-on-error, so the job stays green by design
+          # while this step shows the error.
+          if [ ! -f "$GENERATOR" ]; then
+            echo "::error::Trigger index generator not found at $GENERATOR, failing closed."
+            exit 1
+          fi
+          # The checkout is committed content, so this compares the committed index with
+          # the corpus it should describe. The lookup cannot afford this walk per call.
+          node "$GENERATOR" --check || echo "trigger index drift reported above; regenerate with node $GENERATOR from committed content"

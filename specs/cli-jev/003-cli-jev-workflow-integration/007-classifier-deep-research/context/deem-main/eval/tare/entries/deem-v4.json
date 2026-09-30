@@ -1,0 +1,27 @@
+{
+  "model": "deem-v4",
+  "backbone": "Qwen3-1.7B-Base",
+  "date": "2026-09-21",
+  "notes": [
+    "Negation-pair retrain: negation blindness fixed at zero accuracy cost.",
+    "Exact-laws macro Brier 0.328 is the pre-v5 baseline (v4 never trained on the domain)."
+  ],
+  "adapters": {
+    "eval": {
+      "artifact": "scripts/sft/results_v4.json",
+      "key": "v4"
+    },
+    "temperature": {
+      "artifact": "scripts/sft/temperature_v4.json",
+      "key": "v4"
+    },
+    "consistency": {
+      "artifact": "scripts/sft/consistency_v4.json",
+      "key": "v4"
+    },
+    "exact_laws": {
+      "artifact": "scripts/sft/exact_eval_v5.json",
+      "key": "v4"
+    }
+  }
+}

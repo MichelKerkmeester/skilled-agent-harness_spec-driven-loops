@@ -1,0 +1,65 @@
+I'll start by reading the design docs and checking the state of the target files.
+
+Now let me read the rest of the design and the existing target files.
+
+Step 1 is already built (skeleton + fixture census). My step is §3 `parseOutputs` + `censusOutputs`, tests 3 and 4. Let me check the orchestrator's briefs and the sibling files for shape.
+
+Let me read the step-2 brief (likely `c2.md`) and the sibling files for shape.
+
+I'm worker c2 (the log confirms it). Now let me study the sibling test for how parse-error tests are shaped.
+
+The sibling pattern is clear: parse-level tests use `toThrow(...)`. Let me check what the c1 rework (c1b) changed, to understand the orchestrator's expectations.
+
+The c1b rework confirms each step's suite must pass after the step. Let me look at the sibling test's helpers (`writeOutputs`, `runMain`) to follow shape.
+
+Let me check the c1 brief to see how the step-1 worker interpreted "expected values" versus what was built.
+
+The orchestrator runs the suite after each step (c1's check log shows a failing run that triggered the c1b fix). Let me calibrate by reading later step briefs (c3, c5, c6) to see how main-dependent expectations are handled per step.
+
+The briefs are uniform templates — tests get adapted to the current step's surface (step 5's tests 18-22 are main-level in the design yet step 5 has no main). Let me verify the `extractVerdict` contract in the sibling scorer before writing code.
+
+
+
+Now let me handle the gates: check for REPO RULES.md and read the sk-code router the persona names.
+
+
+
+REPO RULES.md triggers on my action (adding functions/tests, reporting a result, possible deviation). Let me load those rule files and resolve the sk-code route.
+
+GATE 2 resolved: sk-code → `sk-code-opencode` surface. Let me load that packet and run the Gate 1 trigger lookup.
+
+The packet routes JavaScript refs for `.cjs` and TypeScript refs for `.ts`. Let me check their sizes and load the quick references.
+
+
+
+All context is loaded. Here is my plan before the first edit:
+
+- **Files:** S = `lib/score-verdict-fallback.cjs` (insert `parseOutputs`, `censusOutputs` at the end of section 3, extend exports), T = `tests/verdict-fallback.vitest.ts` (module-map line + an `outputs` describe with tests 3 and 4, data/assertions following the design's section 3 and the c1 branch-covering precedent).
+- **Tools:** `edit` for both files; checks = the brief's two commands plus a read-only `node -e` smoke of the two new functions (no vitest — sandbox blocks it; the orchestrator runs the suite).
+- **Verification:** `node --check` exit 0, `grep -cE` shows 4 tests, smoke check prints the expected census/throw.
+
+Applying the S edits now.
+
+Now the exports:
+
+Now the test file — module map line and the outputs describe block:
+
+
+
+Both files edited. Now re-reading the edited regions and running the brief's checks plus a read-only smoke of the new functions.
+
+Required checks pass (`node --check` exit 0; 4 tests). Now the read-only smoke check of the new functions against the exact test data:
+
+Smoke check confirms every asserted behavior and all five design messages. Now the final-state scope check (read-only git):
+
+Let me do the final full-file read of S, plus the design's no-key grep and exact line counts:
+
+All checks pass. Final state verified: S is 225 lines (+62), T is 133 lines (+36), both untracked new files only I touched; the no-key grep is clean (exit 1); earlier functions and tests 1–2 are byte-unchanged. The vitest suite itself I did not run (sandbox blocks it; the orchestrator runs it) — the node smoke check above confirms every asserted value, including the exact row-2 message.
+
+One adaptation to note: test 4's design expected says "exit 2" — `main` lands in step 6, so test 4 currently asserts the `parseOutputs` throw that `main` will turn into exit 2, naming row 2 exactly as the design specifies.
+
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` (+62/-0); `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts` (+36/-0)
+EDITS: `lib/score-verdict-fallback.cjs:155` parseOutputs added (JSDoc + function, section 3); `lib/score-verdict-fallback.cjs:198` censusOutputs added (JSDoc + function); `lib/score-verdict-fallback.cjs:224` module.exports extended with parseOutputs, censusOutputs; `tests/verdict-fallback.vitest.ts:4` module map gains "Outputs parser (parseOutputs, censusOutputs)"; `tests/verdict-fallback.vitest.ts:100` outputs describe added — test 3 (12-row JSONL, expectedVerdict kept, census 12/1/11), test 4 (row 2 bad label, exact message; exit-2 wrapper is main's step 6)
+CHECKS: `node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` -> no output (exit 0); `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts` -> 4 (exit 0); `node -e` smoke of parseOutputs/censusOutputs on the test data -> rows: 12; census: 12 1 11 kept-eq-slice: true; bad-label: outputs row 2: label must be pass, fail or block, got "maybe"; all four other row errors match design (exit 0); `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization' <S>` -> no match (exit 1)
+BLOCKED REASON: none

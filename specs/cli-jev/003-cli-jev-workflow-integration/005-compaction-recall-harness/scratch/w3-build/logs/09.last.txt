@@ -1,0 +1,13 @@
+The diff matches the brief exactly: three new lines inserted byte-for-byte and one sentence changed, nothing else. The untracked paths in `git status` belong to other workers; I touched only the README.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/README.md (+4/-1 git count; brief accounting +3 new lines / −1 line replaced)
+EDITS:
+- .skilled/skills/system-spec-kit/runtime/scripts/README.md:19 sentence "plus one maintenance tool." → "plus one census an operator runs by hand."
+- .skilled/skills/system-spec-kit/runtime/scripts/README.md:32-33 inserted `+-- compaction-recall/` and `|   `-- score-compaction-recall.mjs  # Zero-call census of what host compactions keep` after `scripts/`
+- .skilled/skills/system-spec-kit/runtime/scripts/README.md:46 inserted `compaction-recall/score-compaction-recall.mjs` File Inventory row directly after the separator row
+CHECKS:
+- grep -c 'compaction-recall' .skilled/skills/system-spec-kit/runtime/scripts/README.md -> 3 (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/scripts/README.md -> "✅ VALID: ... Total issues: 0" (exit 0)
+BLOCKED REASON: none

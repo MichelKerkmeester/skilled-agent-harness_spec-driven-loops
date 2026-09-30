@@ -1,0 +1,26 @@
+Implemented design section 4, step 6 (Deem gate and arm).
+
+- **S** gained section 6 (`which`, `deemCommand`, `readDeemHealth`, `deemGate`, `spawnCall`, `createCallLog`, `parseNoul`, `runDeemArm`, `readStoredReport`, `buildReport`), the arm constants, and `--deem`/`--out` handling in `main`: health gate always runs when `--deem` is set, the arm runs at the `planned` gate, `calls.jsonl`/`report.json` written per 2.3.
+- **T**'s stub double now answers the Deem health/noul shapes, plus the four named cases: `deem gate pass`, `deem stub backend`, `deem exit 4 changed pair`, `--out required`.
+
+No other file was touched; no banned words or spec references in comments.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs (+524/-0)
+               .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs (+186/-0)
+EDITS: cite-drift-scan.mjs:16 imported spawn beside spawnSync for spawnCall
+       cite-drift-scan.mjs:73-76 added FLAG_THRESHOLD and CALL_TIMEOUT_MS constants
+       cite-drift-scan.mjs:779-1230 added section 6: DEEM_MODEL, DEEM_P50_MS, HEALTH_TIMEOUT_MS, which, deemCommand, readDeemHealth, deemGate, spawnCall, createCallLog, parseNoul, runDeemArm, readStoredReport, buildReport (2 dead `attempt` statements dropped to blank lines)
+       cite-drift-scan.mjs:1240-1255 main accepts deps.env and deps.timeoutMs
+       cite-drift-scan.mjs:1279-1282 --jev/--deem without --out exits 2 before any call
+       cite-drift-scan.mjs:1330 labels text captured for the labels SHA
+       cite-drift-scan.mjs:1348-1415 main runs the Deem gate/arm and writes report.json after a planned gate
+       test-cite-drift-scan.mjs:53-82 stub answers Deem health (stub backend via STUB_DEEM_HEALTH, changed pair on recheck) and noul
+       test-cite-drift-scan.mjs:647-674 added addStubBin, deemEnv, readStubLog, runWithEnv helpers
+       test-cite-drift-scan.mjs:676-809 added tests: deem gate pass, deem stub backend, deem exit 4 changed pair, --out required
+CHECKS: node --check .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs -> no output, exit 0
+        node --check .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs -> no output, exit 0
+        node --test .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs -> NOT RUN (brief reserves the suite for the orchestrator)
+BLOCKED REASON: none
+```

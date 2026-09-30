@@ -1,0 +1,11 @@
+Both required checks pass. The step is complete: section 5 (VERDICT) is in the script, the five named cases are in the test file, and no other file was touched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs (+119/-0 lines this step; 892 total, untracked new)
+FILES CHANGED: .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs (+49/-0 lines this step; 624 total, untracked new)
+EDITS: cite-drift-scan.mjs:660 added section 5 — `binomialTail`, `decideVerdict` (coverage, precision, margin, sign test, jev flips), private `requalifyNotice`, `verdictLine` (sibling line shape plus TP/FP/F/p; a stored report's requalify notice prints ahead of the verdict), `brierScore`, `nearestRank`; all exported with JSDoc
+EDITS: test-cite-drift-scan.mjs:15 extended the import with `decideVerdict` and `verdictLine`; :577 appended the five named cases — verdict keep, verdict kill precision, verdict stop coverage, verdict stop margin, verdict requalify (stored Deem pair differs, plus the Jev provider path)
+CHECKS: node --check .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs -> <no output, syntax ok> (exit 0)
+CHECKS: node --check .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs -> <no output, syntax ok> (exit 0)
+BLOCKED REASON: none

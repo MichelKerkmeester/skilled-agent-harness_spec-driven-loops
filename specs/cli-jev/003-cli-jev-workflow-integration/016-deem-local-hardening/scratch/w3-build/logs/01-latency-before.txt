@@ -1,0 +1,7 @@
+Mon Sep 28 13:19:03 CEST 2026
+n=50 p50=72.9 p95=89.8 min=62.2 max=91.1
+answer={"id": "deem-ef89982f015c408199193971", "object": "systemone.completion", "created": 1790594348, "model": "deem-0.8-v1", "answers": {"q": {"type": "choice", "choice": "hold", "probabilities": {"ship":
+exit 0
+n=50 p50=74.8 p95=85.6 min=65.6 max=93.1
+answer={"id": "deem-bc6ccb88c3d441a5a6c6721b", "object": "systemone.completion", "created": 1790594353, "model": "deem-0.8-v1", "answers": {"q": {"type": "choice", "choice": "hold", "probabilities": {"ship":
+exit 0

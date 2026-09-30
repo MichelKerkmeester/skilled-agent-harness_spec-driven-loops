@@ -1,0 +1,8 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/runtime/scripts/README.md` (+1/-0)
+EDITS: `.skilled/skills/system-deep-loop/runtime/scripts/README.md`:52 added the `score-fanout-pairs.cjs` row in §3 FILES directly before the `score-severity-replay.cjs` row (line 53), shaped like the other `score-*` rows: registry read, near-line and cross-body census, the merge's own decision per pair, the `--jev`/`--deem` scoring against the operator's labels, the merge unchanged with zero calls by default, and the `--write-pair-sheet <path>`/`--labels <file>`/`--out <dir>` switches. Every switch and behavior claim comes from `score-fanout-pairs.cjs` itself (USAGE at line 1339, `parseArgs` options at 1542-1549, printed lines at 1588-1611) and the design's section 2. No printed line or number is stated, per ruling 6 and FACTS ("No run has printed a `verdict` line").
+CHECKS:
+`python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/scripts/README.md` -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/scripts/README.md` / `Document type: readme` / `Total issues: 0` (exit 0)
+`git diff --stat -- .skilled/skills/system-deep-loop/runtime/scripts/README.md` -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

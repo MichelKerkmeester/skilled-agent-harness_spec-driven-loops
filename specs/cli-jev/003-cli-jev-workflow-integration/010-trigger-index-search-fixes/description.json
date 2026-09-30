@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes",
+  "description": "Phase 10: trigger-index-search-fixes",
+  "keywords": [
+    "phase",
+    "trigger-index-search-fixes"
+  ],
+  "lastUpdated": "2026-09-27T11:50:17.047Z",
+  "specId": "010",
+  "folderSlug": "trigger-index-search-fixes",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

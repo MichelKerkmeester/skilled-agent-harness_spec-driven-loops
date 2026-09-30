@@ -1,0 +1,9 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/compaction-recall-census.md (+5252/-0)
+EDITS: none (byte-for-byte copy of the prepared SRC; DST not edited after copy)
+CHECKS:
+- cp "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/content/catalog-entry.md" ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/compaction-recall-census.md" -> cp exit: 0 (exit 0)
+- cmp "<SRC>" "<DST>" && echo same -> same (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/compaction-recall-census.md" -> ✅ VALID ... Total issues: 0 (exit 0)
+BLOCKED REASON: none

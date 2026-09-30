@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-design rule 6 stale",
+      "sk-design compiled routing rule",
+      "md-generator 80-point gate",
+      "md-generator isPass docs",
+      "sk-design routing accuracy",
+      "sk-design playbook routing replay",
+      "sk-design rule 6 rewrite plan",
+      "md-generator gate option plan",
+      "sk-design routing replay plan",
+      "compiled-route-admission sk-design",
+      "task breakdown",
+      "implementation tasks"
+    ],
+    "key_topics": [
+      "sk-design",
+      "rule",
+      "stale",
+      "compiled",
+      "routing",
+      "md-generator",
+      "80-point",
+      "gate",
+      "ispass",
+      "docs",
+      "accuracy",
+      "playbook"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-design/SKILL.md",
+      "feature-catalog/feature-catalog.md",
+      ".skilled/skills/sk-design/benchmark/reports/2026-09-27--manual-testing-playbook--hub-routing-replay/raw/mode-routing-run.sh",
+      ".skilled/skills/sk-design/benchmark/README.md",
+      ".skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+      ".hermes/skills/sk-design/SKILL.md",
+      ".hermes/skills/sk-design-md-generator/SKILL.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-design/manifest.json",
+      ".skilled/skills/sk-design/sk-design-md-generator/SKILL.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/references/quality-checklist.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/assets/design-md-prompt-template.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/assets/cardinal-rules-card.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/validate/validate.md",
+      ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/feature-catalog.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-routing-run.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-design/benchmark/reports/2026-09-27--manual-testing-playbook--hub-routing-replay/raw/mode-routing-run.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ambiguous-multi-intent.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-design/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "quality-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/references/quality-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-md-prompt-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/assets/design-md-prompt-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "cardinal-rules-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/assets/cardinal-rules-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/validate/validate.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Rule",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Rule 6 at `.skilled/skills/sk-design/SKILL.md:202-203` says \"Never quote a compiled routing decision for this hub",
+    "created_at": "2026-09-27T11:50:20Z",
+    "last_save_at": "2026-09-27T17:44:47.321Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b6a6a7389adb56277c13d5cebea0dcf20729545b1e7a06e74df31c7b936b6ebe",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9028c366db54950d34b2f18912718cfda23dcaf6baa52e0dac80c932c2dde592",
+      "plan.md": "1f554a668ffe810352719887d88e7e7062247a58731c449728efafe416b61c34",
+      "tasks.md": "f770551ac7fb95d09b6f97cd7fa07d0fee0ea78a148aa768b84835410d2e7ee3",
+      "implementation-summary.md": "a53147221cf626e51adefe8138c3b6fb395948f4a1081f5d4680b8311fb463f7"
+    },
+    "last_active_at": null
+  }
+}

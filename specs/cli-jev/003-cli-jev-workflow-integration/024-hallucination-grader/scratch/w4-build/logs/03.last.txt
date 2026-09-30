@@ -1,0 +1,51 @@
+I'll start by reading the contract (design.md) and the sibling scorer for house layout.
+
+
+
+
+
+
+
+
+
+
+
+Now I have everything I need. Writing S first:
+
+Now the test file:
+
+Now the three VERIFY checks:
+
+All three checks pass. Now re-reading the edited regions and confirming the box/divider widths and that only my two files are new:
+
+
+
+
+
+Both files are created, read back, and all three listed checks ran with the expected results. No other file was touched (`git status` shows only the two new untracked paths under `model-benchmark/`). The vitest run was left to the orchestrator per the brief's sandbox note.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs (+129/-0)
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts (+88/-0)
+
+EDITS:
+- S:1-12 shebang, 79-col box header `score-d4-agreement — offline D4 hallucination-judgment agreement`, `'use strict';`, 4-line module JSDoc
+- S:14-23 section 1 IMPORTS (node:fs/os/path/crypto, node:child_process spawn+spawnSync, node:util parseArgs)
+- S:25-48 section 2 CONSTANTS: all 10 design section 1 constants verbatim, one-line comment each
+- S:50-72 section 3 `listOutputs` (regular `.md` files, `/^(.+)\.run([1-9]\d*)\.md$/` tested first, sorted by file name)
+- S:74-104 section 3 `loadFixtures` (sorted `*.json`, id-or-filename key, own-allowlist count, `cannot read fixture <name>: <msg>` / `duplicate fixture id: <key>` throws)
+- S:106-123 section 3 `matchOutputs` (matched/unmatched in outputs order)
+- S:125-129 section 4 `module.exports` with the exact 13-key line; no main function, no CLI entry
+- T:1-6 `// MODULE: score-d4-agreement` 70-col divider header
+- T:8-17 imports (path/fs/os, createRequire, fileURLToPath, vitest), TEST_DIR, `require`, `d4`
+- T:19-29 tempDirs array, `tempDir(prefix)`, afterEach rmSync recursive force
+- T:31-56 `writeFixtures()` (fx-a allowlist, fx-b no allowlist, fx-c-file.json with id fx-c) and `writeOutputs(names)`
+- T:58-88 describe('score-d4-agreement census') with the three required it()s (run-suffix/dir.md listing; fixture census + match split; duplicate-id throw)
+
+CHECKS:
+- `node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs` -> no output (syntax OK) (exit 0)
+- `node -e "const m = require('./.skilled/.../scorer/score-d4-agreement.cjs'); const f = m.loadFixtures(m.DEFAULT_FIXTURES_DIR); console.log(f.total, f.withAllowlist, f.byId.has('t1-echo'))"` -> `21 0 true` (exit 0)
+- `grep -cE "API_KEY|TYPESAFE|Bearer|Authorization" .skilled/.../scorer/score-d4-agreement.cjs` -> `0` (exit 1 = grep "no matches", count 0 as expected)
+
+BLOCKED REASON: none

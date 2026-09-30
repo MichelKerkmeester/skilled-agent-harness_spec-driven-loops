@@ -1,0 +1,22 @@
+[
+  [],
+  [
+    {
+      "id": "stdin-redirect-required",
+      "severity": "block",
+      "message": "Any non-interactive `cursor-agent -p` MUST close/redirect stdin (`</dev/null`) — not only inside a read loop. Omitting it can hang with zero output, which is indistinguishable from a slow model.",
+      "check": "stdin-redirect-required",
+      "passed": false
+    }
+  ],
+  [
+    {
+      "id": "cursor-availability-required",
+      "severity": "block",
+      "message": "Run `command -v cursor-agent` before every dispatch; if it fails, refuse the route without constructing or launching a command.",
+      "check": "command-v-cursor-agent-required",
+      "passed": false
+    }
+  ],
+  []
+]

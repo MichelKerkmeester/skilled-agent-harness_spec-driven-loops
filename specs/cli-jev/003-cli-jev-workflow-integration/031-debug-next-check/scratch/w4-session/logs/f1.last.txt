@@ -1,0 +1,21 @@
+All three replacements are in place and the old wording in C is gone (the `grep -c` exit 1 is the expected zero-match result).
+
+SKILL ROUTING: User directed (persona: markdown author) → sk-doc (existing-file sentence edits, exact words supplied by brief).
+REPO RULES: scope-discipline.md, evidence-and-proof.md, communication-prose.md, communication-handoff.md (loaded conceptually per trigger table; edits confined to the three named files).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+- `.skilled/skills/system-spec-kit/changelog/v4.6.0.0.md` (+1/-1)
+- `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md` (+1/-1)
+- `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md` (+1/-1)
+EDITS:
+- `.skilled/skills/system-spec-kit/changelog/v4.6.0.0.md`:19 replaced "A seam search over tracked files outside \`specs/\` prints" with the version naming the excluded fixture folder and every path named for this census
+- `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md`:28 replaced "leaving out the generated trigger-phrase fixture folder," with the version also naming every path whose name holds `debug-next-check` (the census's own script, test and docs)
+- `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md`:72 replaced the "and the scorer's own script and test carry the search key ... so they appear as hits once they are tracked." sentence with the version saying the search leaves out every path whose name holds `debug-next-check`, script, test and docs included
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/changelog/v4.6.0.0.md` -> `✅ VALID: .skilled/skills/system-spec-kit/changelog/v4.6.0.0.md` (Total issues: 0) (exit 0)
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md` -> `✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md` (Total issues: 0) (exit 0)
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md` -> `✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md` (Total issues: 0) (exit 0)
+- `git diff --stat -- <three files>` -> empty output (all three files are untracked `??` in this worktree, so no diff exists; edits confirmed on disk by grep at lines 19, 28, 72) (exit 0)
+BLOCKED REASON: none

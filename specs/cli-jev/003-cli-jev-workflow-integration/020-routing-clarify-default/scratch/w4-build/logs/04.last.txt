@@ -1,0 +1,61 @@
+I'll start by reading the target files to understand the current state.
+
+
+
+
+
+
+
+Now let me check the exact divider characters used in the file so my inserted section matches byte-for-byte.
+
+The divider is 80 chars. Now I'll make the edits to the scorer script.
+
+
+
+Now I'll insert the SCORER section between TRANSCRIPTS and CLI, and renumber the CLI header.
+
+
+
+
+
+
+
+
+
+FILE 1 edits are in. Let me verify syntax and divider consistency before moving to the test file.
+
+FILE 1 is clean. Now the test file: helpers plus four tests.
+
+
+
+Both files edited. Now running the brief's checks plus a bounded run of the four new tests.
+
+The three acceptance checks pass. Let me also run the four new tests (bounded, no full suite) to confirm the behavior before handing back.
+
+All four new tests pass. Final state check — scoped diff stats and re-reading the edited regions.
+
+
+
+
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs (+269/-67)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs (+85/-0)
+EDITS: score-clarify-default.cjs:17 added `crypto` to IMPORTS
+EDITS: score-clarify-default.cjs:35 USAGE gained ` | --score <rows file>`
+EDITS: score-clarify-default.cjs:40-46 appended LABEL_GATE, CHOICE_INSTRUCTION, NONE_DESCRIPTION, ORDERS, MARGIN_LINE, KEEP_RULE_LINE with the amendment comment
+EDITS: score-clarify-default.cjs:426-555 new section 6. SCORER (readRows, labelRows, describeModes, optionsDigest) with JSDoc; CLI renumbered to 7
+EDITS: score-clarify-default.cjs:560-586 parseArgs gained `score` and the `--score` value flag, plus the `--score runs alone` combination check after the loop
+EDITS: score-clarify-default.cjs:630-683 runScoreCommand: readRows error path, foreign-label validation before stdout, rows line, 30-row gate, baseline, fixed rule lines, headroom check
+EDITS: score-clarify-default.cjs:703-704 main computes repoRoot and dispatches `--score` before the census
+EDITS: score-clarify-default.cjs:715 removed the now-duplicate repoRoot declaration
+EDITS: score-clarify-default.cjs:766-791 EXPORTS renumbered to 8, gained readRows, labelRows, describeModes, optionsDigest
+EDITS: score-clarify-default.test.cjs:38-57 added SCRIPT const, writeRowsFile(dir, labels) and runScript(args) helpers
+EDITS: score-clarify-default.test.cjs:199-261 appended four tests (gate at 29, pass at 30 with fixed rule lines, foreign label exits 2, no headroom above 0.90)
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs -> no output, exit 0
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs -> no output, exit 0
+CHECKS: grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs -> 12 (exit 0)
+CHECKS: node --test --test-name-pattern="the gate stops at 29 labeled rows|30 labeled rows pass the gate|a label outside|a baseline above nine tenths" <test file> -> "tests 4 / pass 4 / fail 0" (exit 0)
+BLOCKED REASON: none
+
+Note: both files are untracked in this worktree, so `git diff --numstat` reports nothing; the +added/-removed counts above are reconciled against the pre-edit line counts (595 -> 797 lines, 176 -> 261 lines) by hunk anchor.

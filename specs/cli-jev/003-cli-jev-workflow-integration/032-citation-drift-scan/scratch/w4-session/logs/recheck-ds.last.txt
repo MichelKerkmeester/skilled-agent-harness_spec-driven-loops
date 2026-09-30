@@ -1,0 +1,33 @@
+Recheck complete. All five fixes verified read-only against the script, the three docs, the pre-fix snapshot in the session's review appendix, and the two validators.
+
+**Findings**
+
+1. `closed` (P1) - Entry `citation-drift-scan.md:26` now reads "A citation to a `.env` file, or to a file that exists on disk but is not tracked, is refused and never opened. A citation that matches no tracked path and no file on disk is unresolved." `resolveCitation` refuses a `.env` basename (`cite-drift-scan.mjs:205`) and an on-disk but untracked candidate (`:223-226`), and returns `unresolved` at `:228`; tests pin both (`test-cite-drift-scan.mjs:295-321` refused `.env`/untracked with `census.refused=1`; `:240-253` unresolved).
+2. `closed` (P2) - `citation-drift-scan.md:26` now says "Every run except `--draw` prints one `skill ...` line". `main`'s `--draw` branch prints only `draw: path=... seed=... rows=...` (`cite-drift-scan.mjs:1591`) then returns at `:1592`, before the per-skill loop at `:1607`; `:28` adds "a draw prints only its one `draw:` line."
+3. `closed` (P2) - `citation-drift-scan.md:28` now says `--draw` exits 2 without writing when any existing row has a `labeler`, construction rows included. `main:1558-1570` refuses on `row.labeler !== null && row.labeler !== undefined` and returns 2 before the write at `:1585`; `drawRow` sets `labeler: 'construction'` on constructed rows (`:418`).
+4. `closed` (P2) - `citation-drift-scan.md:9` is `version: 2.2.0.0`. Per `sk-create-frontmatter/references/frontmatter-versioning.md` §3-§4 a child doc is anchor major.minor (max of SKILL.md `2.2.3.0` and changelog `v2.2.3.0` = 2.2) + `.0` + W=0 for a new file, matching the playbook leaf (`:4`) and the sibling leaves in `feature-catalog/document-validation/`.
+5. `closed` (P2) - The Implementation table (`citation-drift-scan.md:36-40`) now holds only the `cite-drift-scan.mjs` row. `git ls-files | grep -i cite-drift` shows no tracked labels file and it is absent from `.skilled/skills/sk-doc/shared/scripts/`; rerunning `validate_catalog_package.py --package sk-doc` prints `violations=6`, none originating in `citation-drift-scan.md`, so the removed row's `missing_source_path` is gone.
+
+**Leftover sentences on the same points**
+
+- Playbook `manual-testing-playbook/document-validation/citation-drift-scan.md`: expected signals (default-run census, totals with `refused=`, dead lines, label-gate stop) match the code; it makes no draw-printing, draw-refusal, version, or labels-row claim. Nothing false.
+- Changelog `v2.2.3.0.md`: default-run and `--draw` write claims match; it says nothing about draw's printed lines, the draw refusal, the leaf version, or the labels Implementation row. Nothing false.
+- Pre-fix vs current entry diff (against the review appendix snapshot) shows exactly the four hunks: line 9, line 26, line 28, and the deleted row. No other byte moved.
+
+**New P0/P1:** none.
+
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck; nothing created, edited or deleted)
+EDITS: none (read-only)
+CHECKS:
+- `diff <pre-fix entry from review-docs-ds.md appendix> <current entry>` -> 4 hunks only: :9 version, :26 refusal+census, :28 draw refusal, deleted labels row (exit 1, expected)
+- `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package sk-doc` -> `PACKAGE sk-doc: WARN tier=warn violations=6`, none from citation-drift-scan.md (exit 0)
+- `git ls-files | grep -i cite-drift` -> no tracked cite-drift-labels.jsonl (exit 1)
+- `ls .skilled/skills/sk-doc/shared/scripts/` -> cite-drift-labels.jsonl absent from disk (exit 0)
+- `grep -n "refused|unresolved" .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` -> :205 refused `.env`, :223-226 refused untracked-on-disk, :228 unresolved (exit 0)
+- `grep -n "refused|unresolved" .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs` -> :240 unresolved test, :311-321 refused-untracked test with census.refused=1 (exit 0)
+- `grep -n "Every run except|exits 2 without writing|version:" .skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md` -> :9 `2.2.0.0`, :26 `Every run except --draw`, :28 exits-2 sentence (exit 0)
+BLOCKED REASON: none

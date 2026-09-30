@@ -204,6 +204,7 @@ answer often while the gap itself stays small.
 4. Left-pad or shift segments when normalizing a 3-part version. Append one zero, once.
 5. Change what a validator checks by editing the validator. The contract changes here first.
 6. Enumerate stacks or products in a `description` to fill it out. The budget is shared and every character costs another document its discovery.
+7. Declare hard rules as a frontmatter key. They live in a `hard-rules.json` sidecar beside the skill's `SKILL.md`, a JSON array of `{id, check, message, severity}` objects the dispatch preflight reads.
 
 ### ⚠️ ESCALATE IF
 

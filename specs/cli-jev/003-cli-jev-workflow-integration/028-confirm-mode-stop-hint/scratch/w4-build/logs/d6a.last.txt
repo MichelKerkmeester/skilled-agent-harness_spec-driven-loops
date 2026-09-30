@@ -1,0 +1,8 @@
+HANDBACK
+
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-hint-replay.md` (+138/-0)
+EDITS: `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-hint-replay.md`:1 created the DLR-057 scenario on the DLR-056 MODEL shape, fixture run and stub no-call from cases 1-5, 13, 27, no verdict line claimed
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-hint-replay.md` -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-hint-replay.md` / `Total issues: 0` (exit 0)
+CHECKS: `git diff --stat -- .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-hint-replay.md` -> no output, file is new and untracked; `git status --porcelain -- .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/` -> `?? .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-hint-replay.md` (exit 0)
+BLOCKED REASON: none

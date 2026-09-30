@@ -1,0 +1,54 @@
+
+
+
+
+Now let me check the compiled router decision and the tail of the reference file:
+
+The compiled router deferred with no targets, so I fall back to the legacy route: `sk-code-quality` (implementation) on the OpenCode surface. The brief is an exact edit spec; before editing, let me verify a few assumptions about the surrounding code (no existing `main`/`USAGE`, what score.mjs writes, lint config):
+
+
+
+Both checks confirm: no existing `main`/`USAGE`, score.mjs writes only to its temp/out paths, and no lint config covers this tree. The route resolved is `sk-code-quality` (implement on the OpenCode surface). Now applying STEP 0 to S:
+
+STEP 0 done. Now STEP 1: appending section 9 `ENTRY POINT` at the end of S:
+
+S complete. Now STEP 2 in T — imports and the `run` helper:
+
+Now appending the five integration tests to T:
+
+Both files edited. Running the three checks the brief lists:
+
+All three checks pass. Let me verify the scoped diff is exactly the intended changes and nothing else in those files moved:
+
+Empty diff — the files may be untracked or the path may be ignored. Checking status directly:
+
+Files are untracked (created by earlier workers, committed later by the orchestrator), which explains the empty `git diff`. Final evidence pass on the exact strings in S:
+
+All exact strings verified. Getting final line counts for the handback:
+
+All edits are complete and verified. Final handback:
+
+```
+STATUS: DONE
+
+FILES CHANGED:
+- .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs (+120/-2)
+- .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs (+133/-0)
+
+EDITS:
+- judge-agreement.mjs:304 replaced the MARGIN_LINE JSDoc with "The 10-point gain over the baseline that the keep rule requires."
+- judge-agreement.mjs:307 replaced the KEEP_RULE_LINE JSDoc with "Every keep-rule check in its order, restated for the report reader."
+- judge-agreement.mjs:389-505 appended section 9 ENTRY POINT: exported USAGE, exported async main(argv, deps) with the six defaults, parseArgs on masked/replies/labels/deem/jev/out/accept-payload (throw -> err, 2), USAGE check, --out check before any file read, one try block (loadRubric, buildCensus, runBaseline, labels read, parseLabels, joinLabels; throw -> err(error.message), 2), conflict stop, baseline Map over unique census shas with missing-score refusal, summaryLines printed via out, return 0; plus the realpath entry guard as the file's last lines.
+- judge-agreement.test.mjs:7,9 added the node:url fileURLToPath import and main to the judge-agreement import list.
+- judge-agreement.test.mjs:109-114 added the run(argv, env) helper collecting lines/errors.
+- judge-agreement.test.mjs:349-472 added five tests: default run (code 0, census head lines, labels: none, labeled: 0, label-gate stop, empty stub log, fixture entries unchanged), --deem without --out (code 2, no lines, exact message, empty stub log), labels row missing tone (code 2, no lines, /labels row 1: missing dimension tone/), label conflict on m1/C1-B.md + m2/C1-A.md (code 2, lines ['stop: label conflict']), and spawned script without --replies (status 2, stderr matches /usage:/).
+
+CHECKS:
+- node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs -> "S: syntax OK" (exit 0)
+- node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs -> "T: syntax OK" (exit 0)
+- grep -c "^export async function main" .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs -> 1 (exit 0)
+- git status --porcelain on both paths -> both files untracked (??) and the only two files this worker edited; no other file touched
+- node --test NOT run per brief (orchestrator runs it)
+
+BLOCKED REASON: none
+```

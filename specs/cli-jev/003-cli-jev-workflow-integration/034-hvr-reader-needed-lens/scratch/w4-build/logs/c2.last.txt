@@ -1,0 +1,16 @@
+All checks pass; no stray artifacts (no `__pycache__` written). Nothing else touched — the other untracked files in `git status` belong to concurrent workers.
+
+**SKILL ROUTING:** advisor outage (fail_open) → sk-code compiled router resolved `sk-code-opencode` (evidence-base); loaded its packet SKILL.md and the Python slice (`references/python/{style-guide,quality-standards,quick-reference}.md`, `assets/checklists/python-checklist.md`).
+**REPO RULES:** none in this repository.
+
+Step 2 implemented exactly: `split_sections` (ATX `^#{1,6}\s` outside fences, closing run same char and ≥ opener, preamble as one section, 1-based inclusive spans; sibling shape from `score-injection-screen.mjs`), `section_text`, `in_band` with `MIN_SECTION_LINES=5`/`MAX_SECTION_LINES=80`; both named test cases added; every earlier function and test unchanged. Files are untracked in git (step 1 created them, orchestrator commits), so the deltas below are this step's additions.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py (+89/-0)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py (+17/-0)
+EDITS: hvr_reader_lens.py:33 added `import re` (alphabetical stdlib group)
+EDITS: hvr_reader_lens.py:171-256 added section banner "2. SECTIONS"; `MIN_SECTION_LINES`, `MAX_SECTION_LINES`, `FENCE`, `HEADING`; `split_sections`, `section_text`, `in_band`, each with a Google docstring
+EDITS: test_hvr_reader_lens.py:340-355 added checks "split sections at ATX headings" (preamble {1,1}, {2,5}, {6,11}; in-band mapping; `section_text`) and "a heading inside a fence does not split" ({1,1}, {2,8}, {9,10}; `section_text`)
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py -> no output, exit=0 (exit 0)
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> no output, exit=0 (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,31 @@
+TASK: refuse `--deem` or `--jev` without `--out` right after argument parsing, before the census, any baseline and any spawn, and move the two vitest refusal cases to match. Two files.
+S = .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs. T = .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts. Read main in S and the two refusal cases in T first.
+
+In S:
+1. In main, directly after `const { values } = parsed;` and before `const stored = ...`, add:
+   if ((values.deem === true || values.jev === true) && (typeof values.out !== 'string' || values.out === '')) {
+     err(values.deem === true
+       ? '--deem needs --out <dir> so every call is recorded'
+       : '--jev needs --out <dir> so every call is recorded');
+     return 2;
+   }
+2. Remove the two late checks: the `if (deemCheck.passed && (typeof values.out ...)) { err('--deem needs ...'); return 2; }` block after `deemGate(...)`, and the matching `--jev` block after `jevGate(...)`. Nothing else in the Deem or Jev blocks changes.
+3. Header comment, lines 13 to 15. Old:
+// Exit codes: 0 = report printed, a skipped or stopped arm included; 2 = bad
+// invocation or unreadable input, or a model switch whose gate passed without
+// --out.
+New:
+// Exit codes: 0 = report printed, a skipped or stopped arm included; 2 = bad
+// invocation or unreadable input, or --deem or --jev without --out, refused
+// before any output or call.
+4. main's JSDoc @returns line. Old: `0 = report printed, 2 = bad invocation or unreadable input.` New: `0 = report printed, 2 = bad invocation, unreadable input, or a model switch without --out.`
+
+In T:
+5. Deem gate case 'refuses a passing gate without --out before any call': rename it 'refuses --deem without --out before any output or call'. Keep its setup (HEALTHY stub first on PATH). Replace its run and expectations with: for each argv of ['--deem'] and ['--deem', '--out', ''], run = await runMain(argv, deps) gives code 2, run.errs equal to ['--deem needs --out <dir> so every call is recorded'], run.lines equal to [], and fs.existsSync(path.join(stubs, 'cli-deem.log')) false.
+6. Jev gate case 'refuses a passing jev gate without --out before any call': rename it 'refuses --jev without --out before any output or call'. Keep its stub and env (JEV_PROVIDER 'openrouter'); drop its `base` run. For argv ['--jev']: code 2, run.errs equal to ['--jev needs --out <dir> so every call is recorded'], run.lines equal to [], and fs.existsSync(path.join(stubs, 'jev.log')) false.
+Every other case that passes --deem or --jev already passes --out in a temp dir; leave them as they are.
+
+VERIFY (repo root):
+  node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs
+  grep -c "needs --out <dir> so every call is recorded" .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs   (expect 2, both inside the new early check)
+Accept when: 2 files changed and nothing else; node --check exits 0; the grep prints 2.

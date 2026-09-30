@@ -77,7 +77,7 @@ PRE: Waves 1 (SETUP-001 PASS) and 2 (EXTRACT-001 PASS) must be complete. A faith
 
 ### Optional Supplemental Checks
 
-Cross-read the completed doubtful-values table against `references/authoring-boundary.md` Section 3 to confirm each origin was routed to the right place. Run `validate.ts` and confirm `claimsScore >= 80` and zero phantom-color findings, the automated backstops for inference provenance and measured-value provenance that the card enforces by hand. When the request supplies a brief but no live URL, confirm the card's last stop-check box fails and the scenario routes the request out of scope rather than producing a Style Reference.
+Cross-read the completed doubtful-values table against `references/authoring-boundary.md` Section 3 to confirm each origin was routed to the right place. Run `validate.ts` and confirm zero hard failures, so `claimsScore` is 100 and no phantom-color finding appears, the automated backstops for inference provenance and measured-value provenance that the card enforces by hand. When the request supplies a brief but no live URL, confirm the card's last stop-check box fails and the scenario routes the request out of scope rather than producing a Style Reference.
 
 ---
 

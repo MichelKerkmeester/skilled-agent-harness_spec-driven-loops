@@ -1,0 +1,11 @@
+All checks pass. The diff versus HEAD shows two hunks (lines 34 and 56): line 34 was the earlier pass's already-present change (file was at +1/-1 when I started), so my delta against the file's last state is exactly +1/-1 on line 56 only.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md (+1/-1)
+EDITS: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md:56 `FAIL when a quoted or logged string resolves to \`cli-jev\`;` → `FAIL when a quoted or logged string resolves to \`cli-classifier\`;`
+CHECKS:
+- grep -c "resolves to \`cli-jev\`" .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md -> 0 (exit 1)
+- grep -c "resolves to \`cli-classifier\`" .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md -> 2 (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md -> ✅ VALID ... Total issues: 0 (exit 0)
+BLOCKED REASON: none

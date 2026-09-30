@@ -1,0 +1,24 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens",
+  "description": "Test offline whether a Jev or Deem noul flags three reader-needed voice tells, synonym cycling, significance inflation and false ranges, better than the HVR scanner's floor, which flags none of them.",
+  "keywords": [
+    "r22",
+    "jev",
+    "deem",
+    "offline",
+    "hvr",
+    "reader",
+    "needed",
+    "lens"
+  ],
+  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "specId": "034",
+  "folderSlug": "hvr-reader-needed-lens",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

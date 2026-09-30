@@ -1,0 +1,17 @@
+TASK: rewrite three comment spots that carry the em dash character (U+2014) in two files. Change nothing else.
+G = .skilled/skills/sk-doc/sk-create-goal/scripts. Read each line before editing it.
+
+EDIT 1, G/lint-goal-criteria.cjs:2 (the box title line). Replace the whole line with exactly this (the box keeps its width):
+// ║ lint-goal-criteria: advisory lint for goal criteria rules 4 and 5       ║
+
+EDIT 2, G/lint-goal-criteria.cjs:573-574, the first two lines of main's JSDoc (they start ` * Run one lint pass and print it` and ` * then every read error to stderr.`). Replace those two lines with exactly:
+ * Run one lint pass and print it, as JSON with --json or as text lines
+ * otherwise, then every read error to stderr. The lint is advisory, so this always
+
+EDIT 3, G/tests/lint-goal-criteria.test.cjs:2 (the box title line). Replace the whole line with exactly:
+// ║ lint-goal-criteria tests: lexical rule and parser controls              ║
+
+VERIFY (repo root):
+  node --check .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs
+  node -e "for (const f of process.argv.slice(1)) console.log(f, (require('fs').readFileSync(f, 'utf8').match(/\u2014/g) || []).length)" .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs .skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs
+Accept when: 2 files changed and nothing else; the lint file differs only at lines 2, 573 and 574 and the test file only at line 2; node --check exits 0; the node -e line prints 0 for both files.

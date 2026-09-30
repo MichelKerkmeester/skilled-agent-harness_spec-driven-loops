@@ -1,0 +1,1686 @@
+
+ RUN  v5.0.1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts
+
+loop-host: unknown mode 'foobar', defaulting to 'agent-improvement'
+loop-host: unknown mode 'whoops', defaulting to 'agent-improvement'
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs:30:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+ ❯ agent-improvement/tests/candidate-lineage.vitest.ts (0 test)
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs:30:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs:30:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+ ❯ shared/tests/rollback-candidate-hash-guard.vitest.ts (3 tests | 2 failed) 203ms
+   ❯ shared/rollback-candidate.cjs acceptance-file authenticity (3)
+     × refuses rollback before the accepted candidate is shipped 77ms
+     × refuses an acceptance file that drifted from its issued receipt 60ms
+ ❯ shared/tests/mirror-sync-verify.vitest.ts (0 test)
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs:30:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+ ❯ agent-improvement/tests/score-candidate-security.vitest.ts (5 tests | 5 failed) 269ms
+   ❯ score-candidate cache read-integrity (2)
+     × rejects a tampered cache entry and recomputes the score 60ms
+     × rejects a cache entry whose status is not scored 54ms
+   ❯ scoreDimSystemFitness resource-ref sanitization (1)
+     × does not credit a traversal skill ref that would resolve to a real SKILL.md 55ms
+   ❯ score-candidate evaluator authority (2)
+     × ignores candidate frontmatter when selecting evaluator identity and rubric source 53ms
+     × fails closed when no evaluator authority manifest is supplied 46ms
+ ❯ shared/tests/promote-candidate-mirror-sync.vitest.ts (2 tests | 2 failed) 145ms
+   ❯ promote-candidate 2-runtime mirror-sync gate (2)
+     × promotes a candidate when every runtime mirror is in sync with the current canonical 76ms
+     × blocks promotion when a runtime mirror has drifted from the current canonical 69ms
+ ❯ shared/tests/promote-candidate-approval-binding.vitest.ts (0 test)
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs:30:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs:30:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+ ❯ agent-improvement/tests/score-candidate-cache.vitest.ts (2 tests | 2 failed) 103ms
+   ❯ score-candidate cache reproducibility (2)
+     × returns the same hash and score for identical inputs across two runs 58ms
+     × never shares a cache hit between two different candidates 45ms
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts (32 tests | 32 failed) 1530ms
+   ❯ promote-candidate benchmark mode (24)
+     × promotes from a benchmark-complete + benchmark-pass report with NO --score (Lane B) 85ms
+     × rejects a stale approval receipt after the candidate bytes change 81ms
+     × rejects an approval receipt issued for a different candidate 70ms
+     × rejects an approval receipt issued for a different target 72ms
+     × refuses a non-passing benchmark report (recommendation=benchmark-fail) and leaves target untouched 63ms
+     × refuses when the aggregate score is below the benchmark aggregate gate 60ms
+     × rejects an absent or non-numeric benchmark aggregate undefined 52ms
+     × rejects an absent or non-numeric benchmark aggregate null 45ms
+     × rejects an absent or non-numeric benchmark aggregate "92" 42ms
+     × rejects an infinite benchmark aggregate 41ms
+     × rejects an absent or non-finite agent score value undefined 43ms
+     × rejects an absent or non-finite agent score value "NaN" 47ms
+     × rejects an absent or non-finite agent score value "Infinity" 47ms
+     × rejects an absent or non-finite agent delta value undefined 47ms
+     × rejects an absent or non-finite agent delta value "NaN" 43ms
+     × rejects an absent or non-finite agent delta value "Infinity" 40ms
+     × refuses a benchmark report with a negative outcomeScoreDelta 42ms
+     × refuses a missing benchmark baseline unless explicitly overridden 40ms
+     × requires --allow-hurt-fixtures for positive aggregate deltas with hurt fixtures 43ms
+     × accepts a candidate without mutating the canonical target 40ms
+     × ships an accepted snapshot and rolls back to the pre-acceptance target 41ms
+     × rejects a forged acceptance JSON that has no authenticated receipt 42ms
+     × blocks rollback before ship and from unexpected target drift 39ms
+     × blocks ship after canonical drift, restores the pre-acceptance target, and records a preserved-branch event 40ms
+   ❯ promote-candidate / rollback-candidate write-boundary containment (8)
+     × refuses to promote when the canonical target resolves outside the allowed roots, even though manifest/config agree 38ms
+     × refuses rollback under the same unauthorized-root condition 42ms
+     × rejects an uncontained candidate before creating output 42ms
+     × rejects an uncontained archive directory before creating output 40ms
+     × rejects an uncontained acceptance file before creating output 39ms
+     × rejects an uncontained event log before creating output 38ms
+     × rejects an uncontained state file before creating output 42ms
+     × rejects a scored candidate whose identity fields are absent even when numeric gates pass 42ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  agent-improvement/tests/candidate-lineage.vitest.ts [ agent-improvement/tests/candidate-lineage.vitest.ts ]
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/candidate-lineage.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/tests/candidate-lineage.vitest.ts
+ ❯ Object.<anonymous> agent-improvement/candidate-lineage.cjs:12:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/46]⎯
+
+ FAIL  shared/tests/mirror-sync-verify.vitest.ts [ shared/tests/mirror-sync-verify.vitest.ts ]
+Error: Cannot find package '@spec-kit/shared/frontmatter/parse-frontmatter.js' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/mirror-sync-verify.vitest.ts
+ ❯ shared/tests/mirror-sync-verify.vitest.ts:7:1
+      5| import { fileURLToPath } from 'node:url';
+      6| import { describe, expect, it, beforeEach, afterEach } from 'vitest';
+      7| import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-f…
+       | ^
+      8|
+      9| const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/46]⎯
+
+ FAIL  shared/tests/promote-candidate-approval-binding.vitest.ts [ shared/tests/promote-candidate-approval-binding.vitest.ts ]
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/tests/promote-candidate-approval-binding.vitest.ts
+ ❯ Object.<anonymous> lib/mirror-sync-verify.cjs:12:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/46]⎯
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 43 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  agent-improvement/tests/score-candidate-cache.vitest.ts > score-candidate cache reproducibility > returns the same hash and score for identical inputs across two runs
+Error: Command failed: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-cache-test-cpXG76/candidate.md --target=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-cache-test-cpXG76/candidate.md.authority.md --manifest=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-cache-test-cpXG76/candidate.md.manifest.jsonc --cache-dir=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-cache-test-cpXG76/cache
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs:30:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+
+ ❯ Object.<anonymous> agent-improvement/score-candidate.cjs:30:30
+ ❯ runScore agent-improvement/tests/score-candidate-cache.vitest.ts:78:18
+     76|     }],
+     77|   }), 'utf8');
+     78|   const output = execFileSync('node', [
+       |                  ^
+     79|     SCORE_SCRIPT,
+     80|     `--candidate=${candidatePath}`,
+ ❯ agent-improvement/tests/score-candidate-cache.vitest.ts:105:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/46]⎯
+
+ FAIL  agent-improvement/tests/score-candidate-cache.vitest.ts > score-candidate cache reproducibility > never shares a cache hit between two different candidates
+Error: Command failed: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-cache-test-JJ5zVl/candidate-a.md --target=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-cache-test-JJ5zVl/candidate-a.md.authority.md --manifest=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-cache-test-JJ5zVl/candidate-a.md.manifest.jsonc --cache-dir=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-cache-test-JJ5zVl/shared-cache
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs:30:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+
+ ❯ Object.<anonymous> agent-improvement/score-candidate.cjs:30:30
+ ❯ runScore agent-improvement/tests/score-candidate-cache.vitest.ts:78:18
+     76|     }],
+     77|   }), 'utf8');
+     78|   const output = execFileSync('node', [
+       |                  ^
+     79|     SCORE_SCRIPT,
+     80|     `--candidate=${candidatePath}`,
+ ❯ agent-improvement/tests/score-candidate-cache.vitest.ts:122:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/46]⎯
+
+ FAIL  agent-improvement/tests/score-candidate-security.vitest.ts > score-candidate cache read-integrity > rejects a tampered cache entry and recomputes the score
+Error: Command failed: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-Y6MnPB/candidate.md --target=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-Y6MnPB/candidate.md.authority.md --manifest=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-Y6MnPB/candidate.md.manifest.jsonc --cache-dir=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-Y6MnPB/cache
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs:30:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+
+ ❯ Object.<anonymous> agent-improvement/score-candidate.cjs:30:30
+ ❯ runScore agent-improvement/tests/score-candidate-security.vitest.ts:136:18
+    134|     }],
+    135|   }), 'utf8');
+    136|   const output = execFileSync('node', [
+       |                  ^
+    137|     SCORE_SCRIPT,
+    138|     `--candidate=${candidatePath}`,
+ ❯ agent-improvement/tests/score-candidate-security.vitest.ts:166:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/46]⎯
+
+ FAIL  agent-improvement/tests/score-candidate-security.vitest.ts > score-candidate cache read-integrity > rejects a cache entry whose status is not scored
+Error: Command failed: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-JR2e4L/candidate-status.md --target=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-JR2e4L/candidate-status.md.authority.md --manifest=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-JR2e4L/candidate-status.md.manifest.jsonc --cache-dir=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-JR2e4L/cache-status
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs:30:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+
+ ❯ Object.<anonymous> agent-improvement/score-candidate.cjs:30:30
+ ❯ runScore agent-improvement/tests/score-candidate-security.vitest.ts:136:18
+    134|     }],
+    135|   }), 'utf8');
+    136|   const output = execFileSync('node', [
+       |                  ^
+    137|     SCORE_SCRIPT,
+    138|     `--candidate=${candidatePath}`,
+ ❯ agent-improvement/tests/score-candidate-security.vitest.ts:192:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/46]⎯
+
+ FAIL  agent-improvement/tests/score-candidate-security.vitest.ts > scoreDimSystemFitness resource-ref sanitization > does not credit a traversal skill ref that would resolve to a real SKILL.md
+Error: Command failed: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-dro1pU/hostile.md --target=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-dro1pU/hostile.md.authority.md --manifest=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-dro1pU/hostile.md.manifest.jsonc --no-cache
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs:30:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+
+ ❯ Object.<anonymous> agent-improvement/score-candidate.cjs:30:30
+ ❯ runScore agent-improvement/tests/score-candidate-security.vitest.ts:136:18
+    134|     }],
+    135|   }), 'utf8');
+    136|   const output = execFileSync('node', [
+       |                  ^
+    137|     SCORE_SCRIPT,
+    138|     `--candidate=${candidatePath}`,
+ ❯ agent-improvement/tests/score-candidate-security.vitest.ts:223:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/46]⎯
+
+ FAIL  agent-improvement/tests/score-candidate-security.vitest.ts > score-candidate evaluator authority > ignores candidate frontmatter when selecting evaluator identity and rubric source
+Error: Command failed: node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-4TBdsu/candidate-controlled.md --target=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-4TBdsu/candidate-controlled.md.authority.md --manifest=/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/score-security-test-4TBdsu/candidate-controlled.md.manifest.jsonc --no-cache
+node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs:30:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+
+ ❯ Object.<anonymous> agent-improvement/score-candidate.cjs:30:30
+ ❯ runScore agent-improvement/tests/score-candidate-security.vitest.ts:136:18
+    134|     }],
+    135|   }), 'utf8');
+    136|   const output = execFileSync('node', [
+       |                  ^
+    137|     SCORE_SCRIPT,
+    138|     `--candidate=${candidatePath}`,
+ ❯ agent-improvement/tests/score-candidate-security.vitest.ts:244:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/46]⎯
+
+ FAIL  agent-improvement/tests/score-candidate-security.vitest.ts > score-candidate evaluator authority > fails closed when no evaluator authority manifest is supplied
+SyntaxError: Unexpected end of JSON input
+ ❯ agent-improvement/tests/score-candidate-security.vitest.ts:264:17
+    262|
+    263|     expect(result.status).toBe(1);
+    264|     expect(JSON.parse(result.stdout)).toMatchObject({
+       |                 ^
+    265|       status: 'infra_failure',
+    266|       failureModes: ['evaluator-authority-failure'],
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > promotes from a benchmark-complete + benchmark-pass report with NO --score (Lane B)
+AssertionError: node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ Object.<anonymous> lib/mirror-sync-verify.cjs:12:30
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:194:42
+    192|     const result = runPromote(p);
+    193|
+    194|     expect(result.status, result.stderr).toBe(0);
+       |                                          ^
+    195|     const out = JSON.parse(result.stdout);
+    196|     expect(out.status).toBe('promoted');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects a stale approval receipt after the candidate bytes change
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /approval receipt candidate binding/
+
+- Expected:
+/approval receipt candidate binding/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:215:27
+    213|
+    214|     expect(result.status).toBe(1);
+    215|     expect(result.stderr).toMatch(/approval receipt candidate binding/…
+       |                           ^
+    216|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    217|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an approval receipt issued for a different candidate
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /approval receipt candidate binding/
+
+- Expected:
+/approval receipt candidate binding/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:228:27
+    226|
+    227|     expect(result.status).toBe(1);
+    228|     expect(result.stderr).toMatch(/approval receipt candidate binding/…
+       |                           ^
+    229|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    230|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an approval receipt issued for a different target
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /approval receipt target binding/
+
+- Expected:
+/approval receipt target binding/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:241:27
+    239|
+    240|     expect(result.status).toBe(1);
+    241|     expect(result.stderr).toMatch(/approval receipt target binding/);
+       |                           ^
+    242|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    243|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > refuses a non-passing benchmark report (recommendation=benchmark-fail) and leaves target untouched
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /benchmark recommendation is benchmark…/
+
+- Expected:
+/benchmark recommendation is benchmark-fail/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:250:27
+    248|
+    249|     expect(result.status, result.stderr).toBe(1);
+    250|     expect(result.stderr).toMatch(/benchmark recommendation is benchma…
+       |                           ^
+    251|     // Target unchanged.
+    252|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > refuses when the aggregate score is below the benchmark aggregate gate
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /benchmark aggregate 50 below gate/
+
+- Expected:
+/benchmark aggregate 50 below gate/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:260:27
+    258|
+    259|     expect(result.status).toBe(1);
+    260|     expect(result.stderr).toMatch(/benchmark aggregate 50 below gate/);
+       |                           ^
+    261|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    262|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-numeric benchmark aggregate undefined
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-numeric benchmark aggregate null
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-numeric benchmark aggregate "92"
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /aggregate is not a finite number/
+
+- Expected:
+/aggregate is not a finite number/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:272:27
+    270|
+    271|     expect(result.status).toBe(1);
+    272|     expect(result.stderr).toMatch(/aggregate is not a finite number/);
+       |                           ^
+    273|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    274|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an infinite benchmark aggregate
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /aggregate is not a finite number/
+
+- Expected:
+/aggregate is not a finite number/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:285:27
+    283|
+    284|     expect(result.status).toBe(1);
+    285|     expect(result.stderr).toMatch(/aggregate is not a finite number/);
+       |                           ^
+    286|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    287|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-finite agent score value undefined
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-finite agent score value "NaN"
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-finite agent score value "Infinity"
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /score is not a finite number/
+
+- Expected:
+/score is not a finite number/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:343:27
+    341|
+    342|     expect(result.status).toBe(1);
+    343|     expect(result.stderr).toMatch(new RegExp(`${field} is not a finite…
+       |                           ^
+    344|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    345|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-finite agent delta value undefined
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-finite agent delta value "NaN"
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects an absent or non-finite agent delta value "Infinity"
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /delta is not a finite number/
+
+- Expected:
+/delta is not a finite number/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:343:27
+    341|
+    342|     expect(result.status).toBe(1);
+    343|     expect(result.stderr).toMatch(new RegExp(`${field} is not a finite…
+       |                           ^
+    344|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    345|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > refuses a benchmark report with a negative outcomeScoreDelta
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /regression: outcomeScoreDelta < 0/
+
+- Expected:
+/regression: outcomeScoreDelta < 0/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:361:27
+    359|
+    360|     expect(result.status).toBe(1);
+    361|     expect(result.stderr).toMatch(/regression: outcomeScoreDelta < 0/);
+       |                           ^
+    362|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    363|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > refuses a missing benchmark baseline unless explicitly overridden
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /outcomeScoreDelta is undefined/
+
+- Expected:
+/outcomeScoreDelta is undefined/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:379:27
+    377|
+    378|     expect(result.status).toBe(1);
+    379|     expect(result.stderr).toMatch(/outcomeScoreDelta is undefined/);
+       |                           ^
+    380|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    381|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > requires --allow-hurt-fixtures for positive aggregate deltas with hurt fixtures
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /hurt fixtures detected \(hurt\)/
+
+- Expected:
+/hurt fixtures detected \(hurt\)/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:399:28
+    397|     const blocked = runPromote(p);
+    398|     expect(blocked.status).toBe(1);
+    399|     expect(blocked.stderr).toMatch(/hurt fixtures detected \(hurt\)/);
+       |                            ^
+    400|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    401|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > accepts a candidate without mutating the canonical target
+AssertionError: node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ Object.<anonymous> lib/mirror-sync-verify.cjs:12:30
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:419:42
+    417|     ]);
+    418|
+    419|     expect(result.status, result.stderr).toBe(0);
+       |                                          ^
+    420|     const out = JSON.parse(result.stdout);
+    421|     expect(out.status).toBe('accepted');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > ships an accepted snapshot and rolls back to the pre-acceptance target
+AssertionError: node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ Object.<anonymous> lib/mirror-sync-verify.cjs:12:30
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:440:46
+    438|       '--preserved-branch=preserved/test',
+    439|     ]);
+    440|     expect(accepted.status, accepted.stderr).toBe(0);
+       |                                              ^
+    441|
+    442|     fs.writeFileSync(p.candidate, 'CANDIDATE MUTATED AFTER ACCEPT\n', …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > rejects a forged acceptance JSON that has no authenticated receipt
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /acceptance receipt is not authentic/
+
+- Expected:
+/acceptance receipt is not authentic/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:482:27
+    480|
+    481|     expect(result.status, result.stderr).toBe(1);
+    482|     expect(result.stderr).toMatch(/acceptance receipt is not authentic…
+       |                           ^
+    483|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    484|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > blocks rollback before ship and from unexpected target drift
+AssertionError: node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ Object.<anonymous> lib/mirror-sync-verify.cjs:12:30
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:494:46
+    492|       '--preserved-branch=preserved/test',
+    493|     ]);
+    494|     expect(accepted.status, accepted.stderr).toBe(0);
+       |                                              ^
+    495|
+    496|     const preShipRollback = runRollback(acceptanceFile);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate benchmark mode > blocks ship after canonical drift, restores the pre-acceptance target, and records a preserved-branch event
+AssertionError: node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ Object.<anonymous> lib/mirror-sync-verify.cjs:12:30
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:519:46
+    517|       '--preserved-branch=preserved/test',
+    518|     ]);
+    519|     expect(accepted.status, accepted.stderr).toBe(0);
+       |                                              ^
+    520|
+    521|     fs.writeFileSync(p.target, 'DRIFTED TARGET BODY\n', 'utf8');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > refuses to promote when the canonical target resolves outside the allowed roots, even though manifest/config agree
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /resolves outside the allowed target r…/
+
+- Expected:
+/resolves outside the allowed target roots/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:560:27
+    558|
+    559|     expect(result.status).toBe(1);
+    560|     expect(result.stderr).toMatch(/resolves outside the allowed target…
+       |                           ^
+    561|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    562|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > refuses rollback under the same unauthorized-root condition
+AssertionError: node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ Object.<anonymous> lib/mirror-sync-verify.cjs:12:30
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:571:46
+    569|       `--acceptance-file=${acceptanceFile}`,
+    570|     ]);
+    571|     expect(accepted.status, accepted.stderr).toBe(0);
+       |                                              ^
+    572|
+    573|     // Strip the allowlist after acceptance so the ensuing rollback se…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > rejects an uncontained candidate before creating output
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > rejects an uncontained archive directory before creating output
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > rejects an uncontained acceptance file before creating output
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > rejects an uncontained event log before creating output
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > rejects an uncontained state file before creating output
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /outside allowed roots/
+
+- Expected:
+/outside allowed roots/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:600:29
+    598|
+    599|       expect(result.status).toBe(1);
+    600|       expect(result.stderr).toMatch(/outside allowed roots/);
+       |                             ^
+    601|       expect(fs.readdirSync(outside)).toEqual(label === 'candidate' ? …
+    602|       expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/46]⎯
+
+ FAIL  shared/tests/promote-candidate-benchmark.vitest.ts > promote-candidate / rollback-candidate write-boundary containment > rejects a scored candidate whose identity fields are absent even when numeric gates pass
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /score\.candidate \(undefined\)/
+
+- Expected:
+/score\.candidate \(undefined\)/
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-benchmark.vitest.ts:652:27
+    650|
+    651|     expect(result.status).toBe(1);
+    652|     expect(result.stderr).toMatch(/score\.candidate \(undefined\)/);
+       |                           ^
+    653|     expect(fs.readFileSync(p.target, 'utf8')).toBe('ORIGINAL TARGET BO…
+    654|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/46]⎯
+
+ FAIL  shared/tests/promote-candidate-mirror-sync.vitest.ts > promote-candidate 2-runtime mirror-sync gate > promotes a candidate when every runtime mirror is in sync with the current canonical
+AssertionError: node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ Object.<anonymous> lib/mirror-sync-verify.cjs:12:30
+ ❯ shared/tests/promote-candidate-mirror-sync.vitest.ts:172:42
+    170|     const result = runPromote(p);
+    171|
+    172|     expect(result.status, result.stderr).toBe(0);
+       |                                          ^
+    173|     const out = JSON.parse(result.stdout);
+    174|     expect(out.status).toBe('promoted');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/46]⎯
+
+ FAIL  shared/tests/promote-candidate-mirror-sync.vitest.ts > promote-candidate 2-runtime mirror-sync gate > blocks promotion when a runtime mirror has drifted from the current canonical
+AssertionError: expected 'node:internal/modules/cjs/loader:1573…' to match /mirror sync verification failed|MIRR…/i
+
+- Expected:
+/mirror sync verification failed|MIRROR_SYNC_GATE_FAILED/i
+
++ Received:
+"node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+"
+
+ ❯ shared/tests/promote-candidate-mirror-sync.vitest.ts:186:27
+    184|
+    185|     expect(result.status).toBe(1);
+    186|     expect(result.stderr).toMatch(/mirror sync verification failed|MIR…
+       |                           ^
+    187|     // Canonical target is untouched — the drift gate fired before any…
+    188|     expect(fs.readFileSync(p.target, 'utf8')).toBe(canonicalMd(CURRENT…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/46]⎯
+
+ FAIL  shared/tests/rollback-candidate-hash-guard.vitest.ts > shared/rollback-candidate.cjs acceptance-file authenticity > refuses rollback before the accepted candidate is shipped
+AssertionError: node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ Object.<anonymous> lib/mirror-sync-verify.cjs:12:30
+ ❯ shared/tests/rollback-candidate-hash-guard.vitest.ts:154:42
+    152|       `--approve=${receiptPath}`,
+    153|     ], { encoding: 'utf8', cwd: WORKSPACE_ROOT });
+    154|     expect(accept.status, accept.stderr).toBe(0);
+       |                                          ^
+    155|
+    156|     const accepted = readJson(acceptanceFile);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/46]⎯
+
+ FAIL  shared/tests/rollback-candidate-hash-guard.vitest.ts > shared/rollback-candidate.cjs acceptance-file authenticity > refuses an acceptance file that drifted from its issued receipt
+AssertionError: node:internal/modules/cjs/loader:1573
+  throw err;
+  ^
+
+Error: Cannot find module '@spec-kit/shared/frontmatter/parse-frontmatter.js'
+Require stack:
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs
+- /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1569:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1123:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1147:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1174:12)
+    at Module._load (node:internal/modules/cjs/loader:1346:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1679:12)
+    at require (node:internal/modules/helpers:196:16)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs:12:30)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/mirror-sync-verify.cjs',
+    '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs'
+  ]
+}
+
+Node.js v26.8.2
+: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ Object.<anonymous> lib/mirror-sync-verify.cjs:12:30
+ ❯ shared/tests/rollback-candidate-hash-guard.vitest.ts:236:42
+    234|       `--approve=${receiptPath}`,
+    235|     ], { encoding: 'utf8', cwd: WORKSPACE_ROOT });
+    236|     expect(accept.status, accept.stderr).toBe(0);
+       |                                          ^
+    237|     expect(fs.existsSync(`${acceptanceFile}.receipt.json`)).toBe(true);
+    238|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[36/46]⎯
+
+
+ Test Files  8 failed | 26 passed (34)
+      Tests  43 failed | 330 passed (373)
+   Start at  16:04:35
+   Duration  14.21s (tests 94%, transform 3%, import 2%)
+

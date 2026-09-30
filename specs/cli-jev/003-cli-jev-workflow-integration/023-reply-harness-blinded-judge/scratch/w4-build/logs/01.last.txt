@@ -1,0 +1,58 @@
+I'll start by reading the required reference files before writing anything.
+
+
+
+Reference files read. Now checking repo rules and the sk-code router before writing (persona requires it; Gate 5 binds on first write).
+
+
+
+
+
+
+
+
+
+Route resolved (sk-code → sk-code-opencode surface, JavaScript slice). Before writing, measuring the exact divider character count to copy the header shape faithfully.
+
+All references read. Writing the two files now.
+
+
+
+Both files written. Running the three briefed checks plus a read-only status check for the "no other file changed" clause.
+
+
+
+
+
+Before closing out, Gate 5 requires loading the rule files REPO RULES.md routes to for my actions (add a file, report a result, end a turn).
+
+
+
+
+
+Re-running the briefed checks from the repo root, plus a negative control to confirm `node --check` actually parses (silence-on-success is a weak signal).
+
+Both files are on disk and pass every briefed check. One recorded deviation: the sk-code persona route resolved to the sk-code-opencode surface packet (loaded, along with the hub), but I did not load its four `references/javascript/*.md` files — the brief's read list was explicit ("Read first, nothing more") and the style was pinned to `score-track-narrowing.mjs`. `node --test` was deliberately not run, per the brief.
+
+REPO RULES: prevent-overengineering.md, evidence-and-proof.md, communication.md, communication-handoff.md
+SKILL ROUTING: sk-code → sk-code-opencode (surface, JavaScript slice not loaded; see deviation above)
+
+STATUS: DONE
+FILES CHANGED:
+  .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs (+128/-0)
+  .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs (+85/-0)
+EDITS:
+  judge-agreement.mjs:1-15 shebang, MODULE header with the given body/usage/exit-code text, 67-dash dividers
+  judge-agreement.mjs:17-24 the eight node: imports (child_process, crypto, fs, os, path, process, url, util)
+  judge-agreement.mjs:26-45 section 1 CONSTANTS: unexported SCRIPT_DIR, exported REPO_ROOT, SCORE_SCRIPT, RUBRIC_PATH, LEVELS, LABEL_GATE, JSDoc on each export
+  judge-agreement.mjs:47-128 section 2 CENSUS: sha256Hex, readMaskedReply, listMarkdown, buildCensus, JSDoc on each
+  judge-agreement.test.mjs:1-6 node:test / node:assert/strict imports and the four imports from ./judge-agreement.mjs
+  judge-agreement.test.mjs:8-46 makeFixture (r1-r3 replies, m1/m2 masked, editOneAfterMasking overwrite)
+  judge-agreement.test.mjs:48-85 the four required tests, each with finally rmSync
+CHECKS:
+  node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs -> no output (exit 0)
+  node --check .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs -> no output (exit 0)
+  grep -c "^export function" .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs -> 4 (exit 0)
+  node --check <(printf 'const broken = ;\n') -> SyntaxError: Unexpected token ';' (exit 1, negative control proving the checker parses)
+  git status --porcelain .skilled/skills/sk-communication/benchmark/reply-harness -> only the two new untracked files (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,29 @@
+Step 6 complete. Design section 4 step 6 (`main` + report) is implemented in S with the four named tests in T; no earlier function or test was altered.
+
+**What was added to S** (`.skilled/.../runtime/scripts/score-severity-replay.cjs`)
+- `require('node:util').parseArgs` import; new section 8 "MAIN AND REPORT" (exports renumbered 9, CLI entrypoint added as 10)
+- `buildReport(parts)` — census, labels `{sha256,K,real,negatives,dropped}`, baseline `{right,of}`, gate line, and per-arm buckets `columns` (verdict/reason/line/K/M/A/B/W/L/F/p/pLoss/unmeasured/latency/identity), `stopped` `{line,partialRows}`, `skipped`, `requalify`
+- `main(argv, deps)` — strict `parseArgs` (no positionals) → `--out` refusal (`--jev needs --out <dir> so every call is recorded`) → `repoRoot` via injected `deps.git` (`not a git repository` → 2) → label-sheet path refusal before the census → census/sheet/labels/baseline → `question:`/`margin:`/`keep rule:`/`power:` → gate line → Jev then Deem (closed gate prints `<backend> arm skipped: label gate|no headroom` with zero spawns; each open arm runs its own gate first) → `report.json` only when an arm switch is set → 0
+- Both functions JSDoc'd and exported; `stored` wired into both arms for requalify
+
+**What was added to T**
+- `describe('score-severity-replay main')` with an injected-git runner, shell stubs, fixture root and label-sheet helpers, and the four named tests: default run zero calls, 19 negatives spawn neither backend, `--jev` without `--out`, and the 20-negative pass asserting `report.json` census/labels/baseline/gate/`columns.deem.verdict`. Header comment updated.
+
+Vitest was not run (the brief restricts me to the listed checks and the sandbox may block test runners).
+
+```
+STATUS: DONE
+FILES CHANGED:
+.skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs (+270/-5)
+.skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts (+186/-4)
+EDITS:
+S:22 added const { parseArgs } = require('node:util')
+S:1497-1751 added section 8 MAIN AND REPORT (buildReport, main); EXPORTS banner renumbered 8 -> 9
+S:1804-1816 exported buildReport and main; appended section 10 CLI ENTRYPOINT
+T:12 added header line "Main and report (buildReport, main)"
+T:814-994 appended describe('score-severity-replay main') with the four step-6 test cases
+CHECKS:
+node --check .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs -> (no output) (exit 0)
+grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts -> 31 (exit 0)
+BLOCKED REASON: none
+```

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/031-debug-next-check",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/031-debug-next-check",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "debug next_check choice",
+      "score-debug-next-check",
+      "cheapest next check",
+      "debug hypothesis check choice",
+      "research r18 test phase",
+      "debug next check plan",
+      "score-debug-next-check build",
+      "next check label gate plan",
+      "constant answer baseline",
+      "debug next check tasks",
+      "score-debug-next-check tasks",
+      "next check payload gate tests"
+    ],
+    "key_topics": [
+      "debug",
+      "choice",
+      "score-debug-next-check",
+      "cheapest",
+      "next",
+      "check",
+      "hypothesis",
+      "research",
+      "r18",
+      "test",
+      "phase",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts",
+      "runtime/scripts/README.md",
+      "changelog/v4.6.0.0.md",
+      "feature-catalog/tooling-and-scripts/debug-next-check.md",
+      "manual-testing-playbook/tooling-and-scripts/debug-next-check.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+      ".skilled/skills/system-spec-kit/changelog/v4.6.0.0.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".hermes/skills/system-spec-kit/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-debug-next-check.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "debug-next-check.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.6.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v4.6.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug-next-check.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/debug-next-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Python",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The vendored claude-jev integration asks one `choice` per debug hypothesis: which of `readcode`, `runtest`, `reproduce` or `instrument` is the cheapest way to confirm or rule it out (`../context/external repo's/claude-jev-main/src/domain/catalog/hypotheses.ts:10-15`, `:41-45`)",
+    "created_at": "2026-09-29T12:42:43Z",
+    "last_save_at": "2026-09-29T21:18:16.964Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7b2ba9880d6b485277a7ecffa974f14062b64d209fc07e87432f04444cb2c394",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b6b3497b418011520b1a27aadc837672e23013da0c996e7a6dfa1a281195a3a2",
+      "plan.md": "0aff324f5ccd65d480c4bce31f6db531ce5d889f7900982734fb3dca5ba0e9db",
+      "tasks.md": "875e8aeb6253d5b6c2b16f02a309a29abd378ed80bc3bd6aac12e2c85cce2556",
+      "implementation-summary.md": "c2236d9cc93ba759452d6583bb97350feeb6bad7d16f3755e6e327e85d1f8b57"
+    },
+    "last_active_at": null
+  }
+}

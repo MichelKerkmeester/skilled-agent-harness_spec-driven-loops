@@ -1,0 +1,13 @@
+The fake-server `--deem` test is in the parity file. The packet goal is unchanged. Grep found the new describe title once. The orchestrator runs vitest.
+
+SKILL ROUTING: sk-code → sk-code-opencode
+REPO RULES: prevent-overengineering.md
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+117/-2)
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts:6 import spawn beside spawnSync
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts:7 import mkdirSync and symlinkSync
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts:1049 describe('score-jev-tiebreak fake deem server') with the scripted HTTP server, fake home, real cli-deem stub, and column assertions
+CHECKS: grep -c "fake deem server" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts -> 1 (exit 0)
+BLOCKED REASON: none

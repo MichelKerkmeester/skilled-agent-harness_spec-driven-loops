@@ -1,0 +1,19 @@
+TASK: bump the system-spec-kit skill version and name the compaction recall census in its Quick Reference Commands table.
+FILE = .skilled/skills/system-spec-kit/SKILL.md (the only file you may edit). Read it first.
+
+Edit 1, line 5. Replace exactly:
+version: 4.2.0.0
+with:
+version: 4.3.0.0
+
+Edit 2, the Quick Reference Commands table. Directly after the row that starts `| Free-text retrieval |` (line 570) insert
+this one row, byte for byte:
+| Compaction recall census | `node .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs --transcripts <dir> --newest-compacted 15 --out <file outside the repo>` makes no model call, prints counts and one `stop:` line and changes no transcript |
+
+Do not touch any other line. Do not edit any generated copy of this file elsewhere in the repository.
+
+VERIFY (repo root), report each result and exit code:
+grep -c 'score-compaction-recall.mjs' .skilled/skills/system-spec-kit/SKILL.md   (expect 1)
+grep -c '^version: 4.3.0.0$' .skilled/skills/system-spec-kit/SKILL.md   (expect 1)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/SKILL.md   (expect VALID, exit 0)
+Accept when: 1 file changed (+2/-1) and nothing else; both greps print 1; validate_document exits 0.

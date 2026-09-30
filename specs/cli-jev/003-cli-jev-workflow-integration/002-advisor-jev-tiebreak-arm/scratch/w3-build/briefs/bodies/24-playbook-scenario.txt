@@ -1,0 +1,13 @@
+TASK: create one new manual testing playbook scenario whose full literal text the orchestrator already wrote to sk-doc's playbook snippet template.
+Source (read only, do not edit): specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/content/playbook-tie-break-eval.md
+Target (create): .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/tie-break-eval.md
+
+Step: make the target byte-identical to the source, for example with
+  cp specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/content/playbook-tie-break-eval.md .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/tie-break-eval.md
+Do not reword, reflow or reformat anything. Do not run any command the scenario lists. Change no other file.
+
+VERIFY (repo root):
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/content/playbook-tie-break-eval.md .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/tie-break-eval.md
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/tie-break-eval.md
+Accept when: 1 file created and nothing else changed; cmp prints nothing and exits 0; validate_document exits 0.
+

@@ -1,0 +1,25 @@
+All checks pass, and the smoke runs (out-of-repo, same stub mechanism the suite uses) confirmed the exact verdict line, call counts and skip paths. Final state verified: only S and T edited.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs (+259/-21)
+- .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts (+90/-0)
+
+EDITS:
+- score-completion-claims.mjs:74-90 added exported `JEV_VERSION = 'jev 0.6.2'`, private `JEV_VERSION_VALUE` (version without the binary name, for records/verdict), and exported `BACKOFF_MS = 2000`
+- score-completion-claims.mjs:884-1086 sections 12 JEV GATE (`jevGate`, J:983-1016 shape) and 13 JEV ARM (`parseJevNoul`, exported `runJevArm`); MAIN renumbered to 14
+- score-completion-claims.mjs:1095-1117 `main`: `backoffMs` dep (BACKOFF_MS default) and `'accept-payload'` parseArgs boolean
+- score-completion-claims.mjs:1208-1246 `main`: shared `callLog`/`stored` for both arms (prevents the Deem arm truncating the Jev arm's calls.jsonl); Jev gate → payload gate → label gate → `runJevArm` block placed before Deem (ruling 4); Deem ctx reuses the shared log
+- runJevArm prints, in order: payload/token line, `jev: auth test provider=<P> model=<m>`, `column jev:` (deem column shape), `flips: <F>` (design §2 "the flip count"), requalify `requalify: model changed` when the stored column's provider/model differ, and the verdict with `jev_version=0.6.2 provider=<P> model=<model>`; records hold `{backend,rowId,pass,attempt,wallMs,exitCode,noul,status,jevVersion,provider,model}`; exit table: 1/unparseable → unmeasured row, 2/3/130 stop, 4 → one backoff retry then unmeasured, timeout → unmeasured_timeout, stop prints `jev: partial rows=<n>`
+- completion-claim-audit.vitest.ts:413-501 four cases added with §3 inputs/expected values: `jev gate happy`, `jev gate edge`, `payload gate edge`, `verdict Jev stop (flips)`; all earlier functions/tests untouched
+
+CHECKS:
+- `node --check .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` -> (no output) (exit 0)
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts` -> 20 (exit 0)
+- `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization' .../score-completion-claims.mjs` -> no match (exit 1)
+- out-of-repo smoke with the suite's stub mechanism (`--jev --accept-payload`, 2-1 flip answers) -> `verdict jev: stop (flips) K=30 M=30 A=30 B=25 W=5 L=0 F=30 p_win=0.03125 p_loss=1.000 labels_sha256=<sha> jev_version=0.6.2 provider=official model=stub-model`, byte-identical to the test's expected line; calls.jsonl 91 records (pass 0,1,2), 90 noul calls (exit 0)
+- smoke `jev gate edge` (auth status 3) -> `jev arm skipped: no credential`, 2 jev calls, 0 cli-deem calls (exit 0)
+- smoke `payload gate edge` (`--jev --deem`, no `--accept-payload`) -> `jev arm skipped: payload not accepted`, then deem arm runs 30 noul calls, calls.jsonl 30 deem records (exit 0)
+- `git status --porcelain` scoped to the three completion-claim paths -> only the pre-existing untracked S dir, T file and fixtures dir; no fixture file created or changed by this step
+
+BLOCKED REASON: none

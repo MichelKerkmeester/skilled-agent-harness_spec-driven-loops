@@ -1,0 +1,7 @@
+
+✅ VALID: .skilled/skills/sk-communication/README.md
+Document type: readme
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [non_sequential_numbering] Non-sequential section number: expected 4, found 5

@@ -1,0 +1,12 @@
+✔ the ported parser counts criteria the way check-goal does (6.583792ms)
+✔ each criterion carries its file line and a 12-hex text hash (0.436708ms)
+✔ rule 4 fails a dangling definite description (0.27825ms)
+✔ rule 4 passes a line whose references resolve locally (0.081167ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 83.350875

@@ -1,0 +1,11 @@
+The edit is in place and verified. One note: the file is untracked in git, so the mandated `git diff --stat` prints nothing even though the change is on disk. I confirmed the change and its containment with a per-line hash audit against my pre-edit read.
+
+Code truth behind the new wording (all read in `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs`): `main` returns 2 for a parse failure (419-422), a missing `--rater-report` (425-428), the `--out` collision (433-436) and a failed report read (438-444), all before `gateStopLine` at 446, which prints `NO_GOLD_LINE` = `stop: rater report has no confirmed gold` and returns 0. So an ungated report with `--out` naming its own folder exits 2 on the collision line and never prints the stop line.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md (+1/-1)
+EDITS: .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md:39 replaced "A run on a report whose label gate did not pass prints" with the named sentence, rest of the line and all other lines byte-identical (per-line SHA-256 audit against the pre-edit read: 84 of 84 other lines unchanged, the one mismatch printed was a typo in my audit script, rechecked clean)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md -> "✅ VALID: ... Total issues: 0" (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md -> no output (exit 0); empty because the file is untracked, git status --porcelain shows "?? .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md"
+BLOCKED REASON: none

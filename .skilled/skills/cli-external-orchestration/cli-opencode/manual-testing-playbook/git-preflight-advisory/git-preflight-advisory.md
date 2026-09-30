@@ -14,7 +14,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 This scenario validates the sk-git preflight advisory delivery under OpenCode for `CO-038`. It focuses on the `tool.execute.before` plugin surfacing the `commit-scope-drops-untracked` advisory via the next `experimental.chat.system.transform` without printing to stdout/stderr and without blocking the command.
 
-The advisory is the shared sk-git preflight hook at `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs`. It reads the 17 `hard_rules:` from `.skilled/skills/sk-git/SKILL.md`, evaluates them against repository state, and emits `⚠ sk-git advisory`. It never blocks, fails open, and caps at three advisories per command. OpenCode plugins must never print (stdout/stderr overlays the TUI prompt line), so `.skilled/plugins/sk-git-preflight-advisory.js` evaluates through the shared cores, buffers at most 20 advisory events, and drains them once into the next `experimental.chat.system.transform` as `output.system` context. The command itself is never delayed or blocked.
+The advisory is the shared sk-git preflight hook at `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs`. It reads the 17 rules from `hard-rules.json` beside `.skilled/skills/sk-git/SKILL.md`, evaluates them against repository state, and emits `⚠ sk-git advisory`. It never blocks, fails open, and caps at three advisories per command. OpenCode plugins must never print (stdout/stderr overlays the TUI prompt line), so `.skilled/plugins/sk-git-preflight-advisory.js` evaluates through the shared cores, buffers at most 20 advisory events, and drains them once into the next `experimental.chat.system.transform` as `output.system` context. The command itself is never delayed or blocked.
 
 ### Why This Matters
 
@@ -113,7 +113,7 @@ Plugin source excerpt, captured `output.system` JSON from the unsuppressed run, 
 || `../../../../../skills/sk-git/scripts/lib/git-rule-checks.mjs` | Shared `GIT_SHAPE`, `GIT_CHECKS` the plugin imports |
 || `../../../../../skills/sk-git/scripts/lib/git-context.mjs` | Shared `createGitContext` the plugin imports |
 || `../../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared `readHardRules` + `evaluate` the plugin imports |
-|| `../../../../../skills/sk-git/SKILL.md` | The 17 `hard_rules:` frontmatter |
+|| `../../../../../skills/sk-git/SKILL.md` | The 17 rules in the `hard-rules.json` sidecar |
 || `../../../../../skills/sk-git/scripts/hooks/README.md` | Runtime matrix, suppression tiers, fail-open guarantees |
 
 ---

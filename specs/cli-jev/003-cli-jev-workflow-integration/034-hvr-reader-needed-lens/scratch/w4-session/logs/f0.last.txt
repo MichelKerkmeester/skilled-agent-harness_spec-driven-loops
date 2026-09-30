@@ -1,0 +1,8 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/tell-detection/reader-needed-lens-measurement.md` (+0/-0 lines, -239 bytes)
+EDITS: `.skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/tell-detection/reader-needed-lens-measurement.md`:95 deleted the sentence `The session's run on 2026-09-29 printed \`files=7910 sections=107052 flagged=50983 in_band_5_80=40912 refused=5\` with \`candidates=0\`, \`candidates=2\` and \`candidates=784\` for the three categories, and a later run may print different counts.` plus the one space before it, in the `### Expected` paragraph. Surrounding join now reads `stops the summary there. Step 5 finds`
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/tell-detection/reader-needed-lens-measurement.md` -> `✅ VALID: .skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/tell-detection/reader-needed-lens-measurement.md` (`Total issues: 0`) (exit 0)
+CHECKS: `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package sk-doc/sk-create-with-human-voice` -> `PASS package=sk-doc/sk-create-with-human-voice tier=FAIL_CLOSED scenarios=10 categories=3 operator=10 routing_gold_excluded=0 violations=0 warnings=0` (exit 0)
+CHECKS: byte delta check -> `deleted_len = 239`, `expected_new_size = 13501`, `actual_new_size = 13501`, and `grep -c "2026-09-29\|files=7910\|candidates=784"` printed `0` (exit 0)
+BLOCKED REASON: none

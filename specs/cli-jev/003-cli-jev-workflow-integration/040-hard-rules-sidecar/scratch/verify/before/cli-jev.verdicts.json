@@ -1,0 +1,58 @@
+[
+  [],
+  [
+    {
+      "id": "jev-availability-required",
+      "severity": "block",
+      "message": "Run `command -v jev` before every judgment; if it fails, refuse the route without constructing or launching a command. An absent binary never becomes routable, and the hub advertises the mode only when the CLI resolves on PATH.",
+      "check": "command-v-jev-required",
+      "passed": false
+    }
+  ],
+  [
+    {
+      "id": "jev-stdin-bounded",
+      "severity": "block",
+      "message": "A judgment whose state comes from stdin (`-s -`, an omitted state flag, or `run -`) MUST feed or close stdin with `</dev/null`, a pipe, or a heredoc. Jev reads stdin to EOF by default, so an inherited terminal stdin blocks until the operator types something that never arrives, and the hang reads as a slow model rather than a deadlock.",
+      "check": "jev-stdin-bounded",
+      "passed": false
+    }
+  ],
+  [
+    {
+      "id": "jev-choice-option-cardinality",
+      "severity": "block",
+      "message": "A `jev choice` dispatch MUST pass at least two `-o KEY=DESCRIPTION` options. The CLI accepts a single option, but one option is not a choice: the answer is a foregone conclusion, and the model bills for a decision nobody made. The MCP tool refuses the same input at two.",
+      "check": "jev-choice-option-cardinality",
+      "passed": false
+    }
+  ],
+  [
+    {
+      "id": "jev-score-level-cardinality",
+      "severity": "block",
+      "message": "A `jev score` dispatch MUST pass at least two `-l DESCRIPTION` levels. The CLI accepts a single level, but one level is not a scale, and the returned zero-based position carries no information. The MCP tool refuses the same input at two.",
+      "check": "jev-score-level-cardinality",
+      "passed": false
+    }
+  ],
+  [
+    {
+      "id": "jev-value-not-with-run",
+      "severity": "block",
+      "message": "Never combine `--value` with `run`. Batched requests answer several questions under caller-defined keys, so no single primary value exists; the CLI rejects the combination only after a successful billed call, which spends quota to learn a flag conflict.",
+      "check": "jev-value-not-with-run",
+      "passed": false
+    }
+  ],
+  [
+    {
+      "id": "jev-custom-endpoint-required",
+      "severity": "block",
+      "message": "A `--provider custom` judgment MUST pass `--endpoint <url>` or carry `JEV_ENDPOINT` in the command's environment. Without one the CLI exits 2 before any request, and the endpoint it does receive is sent the `JEV_API_KEY` bearer, so use a trusted HTTPS origin only.",
+      "check": "jev-custom-endpoint-required",
+      "passed": false
+    }
+  ],
+  []
+]

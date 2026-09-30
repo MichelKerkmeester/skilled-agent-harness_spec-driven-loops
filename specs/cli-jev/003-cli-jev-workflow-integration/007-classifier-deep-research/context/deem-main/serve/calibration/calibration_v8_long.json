@@ -1,0 +1,31 @@
+{
+  "protocol": "v8 long-state calibration: per-primitive scalar temperature fit on the dev half of the policy long hold-out, honest eval-half ECE",
+  "per_primitive": {
+    "choice": {
+      "kind": "scalar",
+      "temperature": 1.45
+    },
+    "noul": {
+      "kind": "scalar",
+      "temperature": 1.15
+    }
+  },
+  "report": {
+    "choice": {
+      "n_dev": 250,
+      "n_eval": 250,
+      "temperature": 1.45,
+      "eval_accuracy": 0.956,
+      "eval_ece_identity": 0.03117475510949281,
+      "eval_ece_scalar": 0.03924251886362992
+    },
+    "noul": {
+      "n_dev": 500,
+      "n_eval": 500,
+      "temperature": 1.15,
+      "eval_accuracy": 0.984,
+      "eval_ece_identity": 0.007268732603681674,
+      "eval_ece_scalar": 0.008327663736760865
+    }
+  }
+}

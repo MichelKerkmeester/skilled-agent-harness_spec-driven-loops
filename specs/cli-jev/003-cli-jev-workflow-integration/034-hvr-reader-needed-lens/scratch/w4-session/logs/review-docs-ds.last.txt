@@ -1,0 +1,22 @@
+**Findings**
+
+P1 `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py:371` (via `git()` :83, uncaught in `main` :2132) - a path that is in `git ls-files` but absent from HEAD makes `git show` raise RuntimeError, so the default and `--draw` runs die with a traceback and print no census or gate line - staged-only `.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md` at HEAD `85af2cd997`: `python3 .../hvr_reader_lens.py --labels /tmp/x` prints nothing and exits 1 (`git cat-file -e HEAD:<path>` exits 128); filtering index-only paths makes the identical command print the census plus `stop: fewer than 150 labeled rows` and exit 0.
+
+**Requirements**
+
+- REQ-001 met - zero stub calls, no file written (unit check; real run wrote nothing to the repo); census printing blocked only by the P1.
+- REQ-002 not met - the census crashes on an index-only tracked path before any output (P1); committed-text scanning itself verified by the unit check and a filtered real run.
+- REQ-003 met - `.env` basenames refused/counted, untracked/`.env` rows refused before any read, sections read at the recorded commit.
+- REQ-004 met - 150 rows, 50/category, null labels; gate prints `stop: fewer than 150 labeled rows`; no model writes a label.
+- REQ-005 met - comparator only on a strict win, tie to flag-nothing; both accuracies and `yes_share` printed (tested).
+- REQ-006 met - rule fixed in constants; hand check W=5,L=0 gives 1/32=0.03125 <0.05 and 20*1<32, W=4,L=0 gives 1/16 and fails; coverage/kill/margin/sign/flips in order.
+- REQ-007 met - Deem only behind `--deem` after `cli-deem health`; four skip reasons; no server start, no key.
+- REQ-008 met - identity line first, `jev 0.6.2`, `auth status --provider P` exit 0, `--provider` on every call; skips leave other output unchanged.
+- REQ-009 met - key grep exit 1; payload is one committed section plus a fixed question; no secret read or sent.
+- REQ-010 met - my runs left the repo unchanged; `hvr_scan.py` diff empty.
+- REQ-011 met - three questions verbatim with hashes, stdin closed, 0.5 flag, Brier reported, 3 Jev reruns and 1 Deem call.
+- REQ-012 met - `calls.jsonl` per call with wallMs/exitCode/status/identity; payload and planned-call lines; stops print partial rows and no verdict; missing `--out` exits 2.
+- REQ-013 met - per-column identity stored; both `requalify` lines covered.
+- REQ-014 met - 41 checks ALL PASS, `test_hvr_scan.py` ALL PASS, all eight docs VALID, docs name the script, zero-call default and both switches; versions/IDs consistent (SKILL 1.2.0.0, changelog v1.2.0.0, HVT-004 1.2.0.0, catalog entry 2.2.0.0).
+
+VERDICT: FAIL

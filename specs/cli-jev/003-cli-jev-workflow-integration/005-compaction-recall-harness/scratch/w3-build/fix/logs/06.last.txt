@@ -1,0 +1,37 @@
+I'll start by reading both target files as the brief requires.
+
+Both files read. The brief's persona says to route through sk-code before code writes — I'll read the SKILL.md (read-only) and then apply the edits.
+
+The hub resolves this as an implement request on system code — the OPENCODE surface, carrying the workflow-implement doctrine. Let me load those two packet files before editing.
+
+The doctrine confirms: read-before-edit done, low-blast additive change. Before editing, let me confirm the JSDoc line in step 1 is unique in S (the brief warns a similar line may exist on `parseCliArgs`).
+
+The JSDoc line is not unique (line 1163 on `parseCliArgs`), so I'll include the `@returns` line to disambiguate. Let me verify `parseCliArgs`' JSDoc differs enough around line 1155–1175.
+
+Uniqueness confirmed. Applying all six edits now (three to S, three to T).
+
+All six edits applied. Now running the brief's verification checks from the repo root.
+
+All checks pass. Let me get the exact diff stat for the handback (read-only git).
+
+Empty numstat — let me check whether these paths are tracked/staged or ignored (read-only status check).
+
+All checks pass. Summary: both files edited exactly as specified — S gained the optional `hooks` parameter with the `beforeGuard` call placed just above the free-text guard, and T gained the `vi` import, mock restore, and the new guard-wiring case (18 → 19 cases). Nothing else was touched; the two files are untracked in this worktree (created by a prior worker), which is why `git diff --numstat` is empty and the deltas below are from the edit regions.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs (+6/-1)
+- .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+19/-1)
+EDITS:
+- S:1461 inserted ` * @param {{ beforeGuard?: (report: object) => void }} [hooks] ...` after the argv @param in main's JSDoc
+- S:1464 replaced `export async function main(argv) {` with `export async function main(argv, hooks = {}) {`
+- S:1588 inserted the 4-line `hooks.beforeGuard` block (comment + if + call + brace) immediately above the free-text guard comment
+- T:12 replaced the vitest import with `import { afterEach, describe, expect, it, vi } from 'vitest';`
+- T:101 added `    vi.restoreAllMocks();` as the first statement of the afterEach callback
+- T:395 added the new case `main voids the census and writes no report when a planted string reaches the guard` before the final `});`, after one blank line
+CHECKS:
+- `node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs` -> no output, `node --check exit=0` (exit 0)
+- `grep -c 'hooks.beforeGuard' .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs` -> `2` (exit 0)
+- `grep -cE '^  it[(.]' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts` -> `19` (exit 0)
+BLOCKED REASON: none

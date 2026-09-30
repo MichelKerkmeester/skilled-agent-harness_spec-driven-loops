@@ -1,0 +1,2 @@
+.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-claim-audit.md
+.skilled/skills/system-spec-kit/runtime/scripts/README.md

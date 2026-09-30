@@ -1,0 +1,35 @@
+Everything is on disk and all four gates pass on the final state. The em-dash count is 0 across all five docs, `tasks.md` holds 25 ticks and exactly 2 `[B]` rows, `goal.md` 6 ticks.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md (+2/-2)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/plan.md (+9/-9)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/tasks.md (+28/-28)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/goal.md (+28/-13)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/implementation-summary.md (+103/-26)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/graph-metadata.json (+23/-21, via repair-derived.cjs)
+EDITS: spec.md:3 description now "Built and closed at its label gate on 2026-09-29, commit fb3f9c0599."
+EDITS: spec.md:26 Status Planned to Complete
+EDITS: plan.md:41-43 Definition of Ready ticked with evidence (release, keep rule unchanged, baselines)
+EDITS: plan.md:46-50 Definition of Done ticked with evidence (REQs, tests, census, review, docs)
+EDITS: plan.md:88 "Who builds" corrected: parent D5 as the operator amended it 2026-09-29, only Devin and Pi write, no Claude leaves; the pre-amendment roster named as history
+EDITS: tasks.md:31 closure note plus `SE`/briefs/baseline shorthand (no build-evidence.md exists)
+EDITS: tasks.md:39-41,49-61,69-76 T001-T019 and T022-T024 ticked with command and result; T020/T021 kept `[B]` as operator rows
+EDITS: tasks.md:84-86 completion criteria ticked
+EDITS: goal.md:14-17,25 continuity fields updated, completion_pct 100
+EDITS: goal.md:61-66 all six completion criteria ticked
+EDITS: goal.md:86-87 progress rows replaced with the build's rows (build, guard, census/label gate, tests, docs, review/commit, operator runs, phase docs)
+EDITS: goal.md:95 appended deviation rows: build leaf stopped mid-build, missing build-evidence.md, T008 negative control unrecorded, P2 1-4, each with its source
+EDITS: implementation-summary.md:1-168 rewritten as the Complete build record (files, commit `fb3f9c0599`, proofs 1-6, review verdicts, deviations, operator items) with the four closure-gate rows in Verification
+CHECKS: node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader --apply -> `inspected=1 repaired=1 failed=0` (exit 0)
+CHECKS: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader --strict -> `RESULT: PASSED`, `Summary: Errors: 0  Warnings: 1`, 0 lines `RESULT: FAILED` (exit 0)
+CHECKS: node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader -> `RESULT: PASSED (5/5 checks)` (exit 0)
+CHECKS: node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader --workspace "$PWD" -> `packet_durable_chars=3681`, `packet_budget=unknown` (exit 0)
+CHECKS: git show --stat --format= fb3f9c0599 -> 17 files, 2342 insertions (exit 0)
+CHECKS: git show fb3f9c0599^:...run-benchmark.cjs | grep -c VALID_GRADERS -> `0` (exit 1, no guard pre-fix); `buildGraderFn` fell through to `mode = graderKind === 'llm' ? 'real' : 'mock'`
+BLOCKED REASON: none
+STATUS SET: `Complete` in `spec.md` and `implementation-summary.md`, because the scorer printed `stop: fewer than 30 labeled outputs` from the final state (session evidence section 2, proof 2) and every remaining open row is an operator item under parent D4.
+OPEN ROWS: T020 `[B]` live `--deem --out <dir>` run, waiting on 30 operator-labeled outputs with 5 per class (parent D4, session evidence section 5).
+OPEN ROWS: T021 `[B]` live `--jev --out <dir>` run, waiting on the operator's flag and labels plus `jev` 0.6.2 and a credential the gate resolves (session evidence section 5).
+OPEN ROWS: goal.md log row "Label gate | Open (operator)", no output carries a label yet.
+DISCLOSED, NOT OPEN: T008's pre-fix negative-control run has no record (the build orchestrator left no `build-evidence.md`); the tick rests on briefs 01/02 and session proof 1 for the fix plus a read-only read of `fb3f9c0599^`'s code for the pre-fix behavior, disclosed in `tasks.md`, `goal.md`'s log and the summary's limitations. The 4 review P2 findings are recorded as deviations, not chased (parent D5). Other dirty paths in the tree (019, 035, parent `goal.md`, `sk-create-skill`) belong to concurrent workers and were not touched.

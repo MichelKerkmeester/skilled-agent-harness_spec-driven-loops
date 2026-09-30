@@ -317,6 +317,8 @@ The four primary review dimensions (configured in `assets/review-mode-contract.y
 | **Spec-Alignment / Traceability** | Spec vs. implementation fidelity | Code matches spec.md? Planned items present? |
 | **Completeness / Maintainability** | Coverage, dead code, documentation | TODOs resolved? Code self-documenting? |
 
+`scripts/score-residue-flagger.cjs` is the offline residue-flagger measurement: it counts finding tables and resolvable citations across committed review documents, its default run is a census that spawns no backend call and writes no file, `--jev` and `--deem` are the only switches that call a backend, and it adds no column to any review table.
+
 ### Lifecycle + Reducer Contract
 
 Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and `restart`. Required lineage fields include `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, and `releaseReadinessState`. The reducer consumes the latest JSONL delta, the new iteration file, and prior reduced state, then emits finding registry, dashboard metrics, and strategy updates.

@@ -1,0 +1,8 @@
+All checks pass. The 28 dirty paths in the tree include concurrent workers' files; the only file I changed is the target.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md (+19/-4)
+EDITS: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md:3 frontmatter description gains goal-criteria-lint clause | :10-11 trigger phrase "goal criteria lint" added, last_updated set to 2026-09-28 | :17 intro paragraph gains advisory-lint sentence | :79-93 new "### Goal Criteria Lint" block added and closing Note names the lint
+CHECKS: cmp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/catalog-root.new.md .skilled/skills/sk-doc/feature-catalog/feature-catalog.md -> no output (exit 0) | python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md -> "✅ VALID ... Total issues: 1" (1 benign document_type_fallback warning) (exit 0)
+BLOCKED REASON: none

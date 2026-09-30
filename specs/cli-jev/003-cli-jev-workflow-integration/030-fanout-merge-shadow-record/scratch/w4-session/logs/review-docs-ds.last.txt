@@ -1,0 +1,24 @@
+**Findings** (read full script, test file, all eight docs; ran the suite and both package validators)
+
+- P1 `.skilled/skills/system-deep-loop/SKILL.md:111` – the fan-out sentence names neither the label gate nor `--jev`/`--deem`; REQ-011 says SKILL.md itself must name script, gate and both switches – line 111 carries no gate or switch token (the unlisted `.hermes` mirror copies it).
+- P1 `.skilled/skills/system-deep-loop/runtime/scripts/README.md:52` – the row names both switches but no gate – it lists `--write-pair-sheet`/`--labels`/`--jev`/`--deem` and never the 40-pair/10-cross-body floors.
+- P2 `scripts/score-fanout-pairs.cjs:1448` – `C = expected * M` drops the measured calls of a partly measured pair (spec: C is the column's measured calls) – `--jev` with one order timing out after two returned excludes those calls from C, tightening `10*F <= C` only (prior P2 #1).
+- P2 `scripts/score-fanout-pairs.cjs:1710` – the Jev arm proves each registry exists at `origin/main` but sends `findingText` read from the working tree (spawned at :999) – a locally edited published registry sends unpublished text (prior P2 #4).
+- P2 `tests/unit/score-fanout-pairs.vitest.ts:722` – REQ-011's stub-backend skip is "byte-identically"; the case drives `deemGate` alone and asserts only its one line, so no test compares census bytes around a failing Deem gate.
+- P2 `scripts/score-fanout-pairs.cjs:908` – `registries.length > 0` would call on one proven registry; unreachable from `main`'s plan (both lookups resolve) but the guard is not "both".
+
+**Requirements**
+
+- REQ-001 met – default run spawns nothing and writes nothing; "default run makes no call" passes.
+- REQ-002 met – classes and bands :50-56/:383-389 follow the merge's own keys.
+- REQ-003 met – `mergeDecision` :501-521 both settings, tie to dedup-off :548, `no headroom` :678.
+- REQ-004 met – fixed order :1371-1380; one verdict line :1451, also in `report.json`.
+- REQ-005 met – sheet/refusal :573-604, labels :619-648, both stop lines :672-681; no model label path.
+- REQ-006 met – Jev identity line then version/auth :742-775; Deem health :1156-1169; server never started.
+- REQ-007 met – secret grep exit 1; withholding :905-924 (see P2).
+- REQ-008 met – AB/BA/AB and AB/BA, `-q` text, `SAME_AT` 0.5, split=unstable.
+- REQ-009 met – cost lines, calls.jsonl fields/statuses, exit map, `--out` refusal :1563-1568.
+- REQ-010 met – requalify lines, `reader=none named`, identity recorded per column.
+- REQ-011 not met – 42/42 tests and `validate_document.py` clean on all eight docs, but two docs omit the gate/both switches.
+
+**VERDICT: FAIL**

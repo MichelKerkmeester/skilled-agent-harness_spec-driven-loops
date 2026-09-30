@@ -1,0 +1,16 @@
+TASK: register one new scenario, SC-007, in the playbook index. Five literal edits in one file.
+F = .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md. Read it first.
+
+1. Line 33: replace `This playbook provides 48 deterministic scenario files` with `This playbook provides 49 deterministic scenario files`. Leave the rest of the line unchanged.
+2. Line 130: replace `all 48 scenario files are` with `all 49 scenario files are`. Leave the rest of the line unchanged.
+3. Line 158 (the Wave 8 bullet): change SC-001..SC-006 to SC-001..SC-007. Leave the rest of the line unchanged.
+4. Line 266 (the sentence that starts with This category validates scorer fusion scenarios): change SC-001..SC-006 to SC-001..SC-007. Leave the rest of the line unchanged.
+5. Directly after line 275, which reads
+| SC-006 | Offline Jev and Deem Tie-Break Eval | [tie-break-eval.md](scorer-fusion/tie-break-eval.md) |
+   insert this one new line
+| SC-007 | Offline Suggested-Order Eval | [suggested-order-eval.md](scorer-fusion/suggested-order-eval.md) |
+
+VERIFY (repo root):
+  grep -c "49 deterministic scenario files\|all 49 scenario files\|SC-001..SC-007\|^| SC-007 |" .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
+  grep -c "SC-001..SC-006\|48 scenario\|48 deterministic" .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
+Accept when: only F changed (+5/-4 lines); the first grep prints 5; the second prints 0.

@@ -1,0 +1,125 @@
+
+
+
+
+
+
+
+
+
+
+
+
+Now let me look at the hub directory structure to understand where `mode-registry.json`, `leaf-aliases.json`, and scenario files live.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now let me read the phase spec and the reference material in the spec folder to pin the exact expected shapes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me verify the gold-count semantics against the real tree with a read-only probe.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me check the sibling test conventions for numeric assertions, and the sibling's `loadPlaybookPrompts` / hub list usage.
+
+Let me inspect the shape of the non-gold scenario files to settle the `unscored` semantics.
+
+
+
+Now let me probe the real tree with the planned pipeline to validate the numbers and settle the count semantics.
+
+
+
+The unscored semantics need precise data. Let me categorize every scenario row per hub.
+
+
+
+Before writing, let me follow the code-route requirement and check sk-code's routing for this file type, plus re-check the exact insertion region in S.
+
+
+
+
+
+
+
+
+
+All context is gathered. Let me set up the task list and make the edits.
+
+
+
+
+
+
+
+
+
+Now the test file T: add the contract import and append design cases 7-11.
+
+
+
+Now the verification checks from the brief:
+
+Both syntax checks and the test count pass. Let me self-check that the appended cases actually pass (single-file `node --test`, local and read-only):
+
+All 11 pass. One final read-only check that the new replay surfaces print the exact line formats against the real tree:
+
+The output matches the design formats exactly. Final-state check on the scoped files:
+
+
+
+
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs (+279/-0)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs (+49/-0)
+EDITS: leaf-route-replay.cjs:189 inserted sections 5-7: `loadHubModes`, `loadAliasEntries`, `toPairs` (dual-read via `leafContract.dualReadLegacyResource`, dedupe on `compositeKey`, unresolvable kept); `loadGold` (walkScenarioFiles + parseScenario, `{id, prompt, pairs}`); `scoreRow` (precision/recall/f1/exact on composite-key sets, empty prediction scores 0); internal `replayHub` + `runReplay` (per-hub counts keyed by hub, stage1-only and surface-slice markers, totals, scored rows) and `hubLine`/`totalLine`; renumbered EXPORTS to section 8
+EDITS: leaf-route-replay.cjs:485 appended the eight new names to `module.exports`
+EDITS: leaf-route-replay.test.cjs:15 added the leaf-contract import for the composite-key assertions
+EDITS: leaf-route-replay.test.cjs:109 appended design cases 7-11 (`toPairs resolves packet-qualified and alias paths`, `toPairs counts an unresolvable path`, `scoreRow partial set`, `scoreRow empty prediction`, `scoreRow exact match`), synthetic data only
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs -> (no output) (exit 0)
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> (no output) (exit 0)
+CHECKS: grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> 11 (exit 0)
+CHECKS: node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> tests 11, pass 11, fail 0 (exit 0) [extra self-check: single-file, local, read-only; the brief's three checks above are all green]
+CHECKS: node -e read-only runReplay probe over the seven hubs -> "total gold=56 scored=55 tied=2 mean_f1=0.9209 exact=49", "hub=sk-code gold=1 unscored=1 surface slice not replayed", "hub=cli-classifier stage1-only" (exit 0) [extra self-check: proves the line formats and 56 gold rows on the real tree]
+BLOCKED REASON: none

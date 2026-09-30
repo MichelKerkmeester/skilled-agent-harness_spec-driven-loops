@@ -1,0 +1,27 @@
+REPO RULES: none in this repository (no `REPO RULES.md` at worktree root).
+
+All four edits are in place and re-read from disk. The file was untracked in this worktree before my edit (`??`), so no HEAD diff exists — that is the worker-setup expectation, not a surprise; the orchestrator stages and commits.
+
+- `node --check` exits 0 with no output.
+- Both greps print `2`.
+- Extra confirmation: `grep -c "actual: drifted ? 1 : 0"` prints `0` (exit 1) — no stale inversion form remains.
+- Only S was written; no other file touched.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs (+7/-6)
+EDITS:
+  cite-drift-scan.mjs:72 JSDoc above FLAG_THRESHOLD replaced with "A yes probability below this reads as a flagged, drifted window."
+  cite-drift-scan.mjs:1095 (Deem arm) flag = probability < FLAG_THRESHOLD (was >=)
+  cite-drift-scan.mjs:1399 (Jev arm) flag = probability < FLAG_THRESHOLD (was >=)
+  cite-drift-scan.mjs:1145 (Deem arm) scored.push actual = drifted ? 0 : 1 (was ? 1 : 0)
+  cite-drift-scan.mjs:1457 (Jev arm) scored.push actual = drifted ? 0 : 1 (was ? 1 : 0)
+  cite-drift-scan.mjs:755-756 brierScore JSDoc outcome phrase replaced with the yes-probability framing
+CHECKS:
+  node --check .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs -> (no output) (exit 0)
+  grep -c "flag = probability < FLAG_THRESHOLD" .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs -> 2 (exit 0)
+  grep -c "actual: drifted ? 0 : 1" .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs -> 2 (exit 0)
+  grep -c "actual: drifted ? 1 : 0" .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs -> 0 (exit 1, no stale form)
+  git status --porcelain -- .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs -> ?? (untracked; orchestrator commits)
+BLOCKED REASON: none
+```

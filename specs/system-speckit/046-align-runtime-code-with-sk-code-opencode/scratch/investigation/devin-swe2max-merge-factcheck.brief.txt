@@ -1,0 +1,22 @@
+READ-ONLY DISPATCH. Gate 3 does not apply: you write no files. AI_SESSION_CHILD=1 is set. Do not ask questions or print A/B/C/D options.
+Use only your read, grep and glob tools. Do not run shell commands.
+
+ROLE: You are a code reviewer checking another model's claims. Report only what you verified in files, with paths. Mark anything you could not verify UNVERIFIED.
+
+Repository root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+TASK: Fact-check these folder-merge claims for .skilled/skills/system-spec-kit/runtime.
+
+Claims:
+1. lib/hooks/ (1 file, completion-evidence-sentinel.cjs) should merge into hooks/lib/; both are runtime-neutral hook policy cores.
+2. cli/hermes/tests/ (1 test) should merge into cli/tests/.
+3. tests/deep-loop/ (1 test, review-depth-reducer.vitest.ts) should merge into tests/.
+4. tests/graph/ (1 test, graph-metadata-lineage.vitest.ts) should merge into tests/.
+Also check: vitest.config.ts include globs still match each test after the move.
+
+For EACH claim:
+1. grep the whole skill folder (not only runtime/) for every file that imports or requires the source folder or its files. Include scripts, tests, package.json, tsconfig and .md links.
+2. State whether the reason given is true.
+3. Give a verdict: CONFIRMED (safe to merge; list every importer path that must change), REJECTED (say why), or UNVERIFIED.
+
+OUTPUT: one markdown table | claim | importers found (paths) | reason true? | verdict |. Nothing else.

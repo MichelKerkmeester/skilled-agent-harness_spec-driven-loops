@@ -1,0 +1,20 @@
+Step 8 (Verdict, requalify and report) is implemented. `binomialTail`, `formatP`, `summarizeColumn`, `decideVerdict`, `verdictLine`, `nearestRank` and both requalify lines were already in place from the arm steps and were left byte-unchanged; this step added the missing `report.json` write (with arm-outcome capture needed for its `stopped`/`skipped`/`columns`/`requalify` blocks) and the three named test cases with two new fixtures. Per the brief, vitest itself was not run — the orchestrator runs the suite.
+
+STATUS: DONE
+FILES CHANGED: one line per file: <path> (+<added>/-<removed>)
+- `.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` (+83/-35)
+- `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts` (+57/-0)
+- `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/per-word-split-happy.jsonl` (+10/-0)
+- `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/per-word-split-edge.jsonl` (+1/-0)
+
+EDITS: one line per step: <file>:<line> <what changed>
+- `score-completion-claims.mjs:1213-1295` `main` now captures each arm's `skipped`/`stopped`/`column` result (stdout order and bytes unchanged) and, when a model switch ran with `--out`, writes `<out>/report.json` = `{ rowsSha256, labelsSha256, K, census, regex, gate, margin, keepRule, columns, stopped, skipped, requalify }`; requalify already reads `stored.columns.<backend>`, so the Deem/Jev requalify lines now have a stored report to compare against
+- `completion-claim-audit.vitest.ts:172-191` added `per-word split happy` (10 rows, one fired row per word, every count 1) and `per-word split edge` (tail "fixed" then "completed", counted under fixed only) with their fixtures
+- `completion-claim-audit.vitest.ts:523-558` added `stored-report requalify`: first `--deem --out` run asserts `report.json` fields (`K=30`, `gate=planned`, rows/fires, `regex.B=25`, commit pair), the commit pair is then changed on disk, and a second run prints `requalify: model commit changed` immediately before its `verdict deem: keep` line
+
+CHECKS: one line per check: <command> -> <result line> (exit <n>)
+- `node --check .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` -> (no output) (exit 0)
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts` -> `23` (exit 0)
+- `git status --porcelain -- <S dir> <T file> <fixtures dir>` -> only the three named paths, all `??` untracked exactly as before this step; no other path in scope changed (exit 0)
+
+BLOCKED REASON: none

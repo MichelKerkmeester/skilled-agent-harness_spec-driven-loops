@@ -1,0 +1,11 @@
+
+ RUN  v5.0.1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled
+
+promoted 62 closure files -> .skilled/bin/tests/.sandboxes/compiled-route-move-8faSUE/compiled-routing
+no prior closure to roll back
+
+ Test Files  1 passed (1)
+      Tests  37 passed (37)
+   Start at  11:05:05
+   Duration  887ms (tests 93%, transform 4%, import 2%, worker 1%)
+

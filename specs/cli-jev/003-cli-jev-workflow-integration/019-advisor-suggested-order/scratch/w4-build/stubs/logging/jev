@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "$*" >> "$(dirname "$0")/jev.log"
+exit 1

@@ -1,0 +1,3 @@
+PACKAGE sk-communication: FAIL tier=fail violations=1
+FAIL: 1 violation(s) (1 fail, 0 warn):
+  - [fail] [root_leaf_description_mismatch] sk-communication/external-cli-provider.md: normalized leaf description does not match root H3 'External CLI agent provider'

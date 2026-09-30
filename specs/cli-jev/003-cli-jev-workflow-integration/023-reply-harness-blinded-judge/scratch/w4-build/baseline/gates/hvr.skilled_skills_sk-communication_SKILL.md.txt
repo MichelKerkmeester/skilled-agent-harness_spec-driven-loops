@@ -1,0 +1,12 @@
+HVR SCAN: .skilled/skills/sk-communication/SKILL.md
+  x20   first@12    hard   punctuation            ;
+  x20   first@22    hard   punctuation            —
+  x2    first@12    soft1  soft-deduction         make
+  x1    first@25    soft1  soft-deduction         do
+  x30   first@12    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          40
+  mechanical deductions:  -203
+  mechanical ceiling:     0/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality

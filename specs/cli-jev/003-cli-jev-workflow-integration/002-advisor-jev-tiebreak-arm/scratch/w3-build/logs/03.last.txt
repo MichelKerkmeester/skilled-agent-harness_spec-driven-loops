@@ -1,0 +1,17 @@
+`summarizeCensus` is in the tie-break script, and the parity file covers the underpowered census and the voided baseline. Syntax check passed.
+
+SKILL ROUTING: sk-code → OpenCode implement (`workflow-implement.md`).
+REPO RULES: prevent-overengineering, evidence-and-proof, communication-handoff.
+Goal for this packet is set.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+76/-0)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+45/-0)
+EDITS: score-jev-tiebreak.mjs:271 exported summarizeCensus after loadCensus
+score-jev-tiebreak.vitest.ts:18 imported summarizeCensus
+score-jev-tiebreak.vitest.ts:23 added synthCensus
+score-jev-tiebreak.vitest.ts:106 added census summary cases
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> (no output) (exit 0)
+BLOCKED REASON: none
+```

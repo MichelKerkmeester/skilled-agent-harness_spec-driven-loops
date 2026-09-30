@@ -262,3 +262,15 @@ describe('P2 regex DoS guard', () => {
     expect(data.error).toMatch(/pattern exceeds 512 chars/);
   });
 });
+
+describe('unknown grader kind', () => {
+  it('exits 2 before loading the profile, naming the value and printing the usage line', () => {
+    const outDir = path.join(work, 'outputs');
+    const report = path.join(outDir, 'report.json');
+    const r = runBenchmark(path.join(work, 'no-such-profile.json'), outDir, report, ['--scorer', '5dim', '--grader', 'jev']);
+    expect(r.status).toBe(2);
+    expect(r.stderr).toContain("unknown --grader 'jev'");
+    expect(r.stderr).toContain('Usage: node run-benchmark.cjs --profile');
+    expect(fs.existsSync(report)).toBe(false);
+  });
+});

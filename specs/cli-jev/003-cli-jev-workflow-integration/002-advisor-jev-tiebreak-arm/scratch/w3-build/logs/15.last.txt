@@ -1,0 +1,15 @@
+The packet goal is set. When the census is underpowered and the Jev gate passes, the arm now asks one `noul` per labeled prompt over three passes and prints a calibration line. The orchestrator runs the vitest suite.
+
+SKILL ROUTING: User directed → sk-code; ARTIFACT: sk-code → sk-code-opencode
+REPO RULES: evidence-and-proof.md, communication-handoff.md
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+110/-14)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+62/-0)
+EDITS: score-jev-tiebreak.mjs:759 ctx.mode defaults to choice; calibration uses the corpus-prompt payload line
+score-jev-tiebreak.mjs:858 after auth_test, calibration mode records three noul passes per label and prints the calibration line
+score-jev-tiebreak.mjs:1439 an underpowered passing gate calls runJevArm with mode calibration
+score-jev-tiebreak.vitest.ts:894 jev calibration describe pins the underpowered noul arm
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> node_check_exit=0 (exit 0)
+BLOCKED REASON: none

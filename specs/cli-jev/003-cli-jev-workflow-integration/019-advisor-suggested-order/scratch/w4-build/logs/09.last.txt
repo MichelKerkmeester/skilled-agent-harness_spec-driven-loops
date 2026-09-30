@@ -1,0 +1,42 @@
+I'll start by reading both files to understand the current state.
+
+Let me read the rest of both files.
+
+Both files read. Now let me check the runtime's TS config to know whether the test file is typechecked (affects how I assign `s.line`/`s.identity`).
+
+
+
+Both files are read, and `tsconfig.tests.json` doesn't include this test file (tests aren't typechecked), so plain property assignment is fine. Now I'll make the edits to `score-suggested-order.mjs`.
+
+
+
+Now the two `main` changes in the same file.
+
+Script edits are in. Now the test file: imports first.
+
+Now append the new report describe block at the end of the test file.
+
+Now let me re-read the edited regions in the script to confirm correctness before verifying.
+
+Edits verified in place. Now running the two briefed verification checks.
+
+Both checks pass. Let me get diff stats for the handback and confirm scope (read-only git commands).
+
+Empty diff output is unexpected — let me check the git status for these paths.
+
+Files are untracked (created by earlier workers), so `git diff` has no baseline. Let me confirm the current line counts for the handback.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs (+69/-2)
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts (+53/-1)
+EDITS: score-suggested-order.mjs:12 node:fs import now mkdirSync, readFileSync, realpathSync, writeFileSync
+EDITS: score-suggested-order.mjs:13 node:path import now dirname, join, resolve
+EDITS: score-suggested-order.mjs:541-601 added JSDoc + export function buildReport(censusLines, timing, headroom, jevResult, deemResult) before main, filling advisor timing, headroom (null -> 'ok'), and per-arm entries: undefined skipped, {stopped} -> stopped[name], verdict object -> columns[name] with verdict fields and ...identity
+EDITS: score-suggested-order.mjs:658-663 main keeps the printed filtered summary lines in censusLines
+EDITS: score-suggested-order.mjs:698-701 main writes <out>/report.json via mkdirSync + writeFileSync just before the final return 0, only when values.jev or values.deem is true
+EDITS: score-suggested-order.vitest.ts:7 added readdirSync to the node:fs import
+EDITS: score-suggested-order.vitest.ts:30 added buildReport to the script import
+EDITS: score-suggested-order.vitest.ts:807-856 added describe('score-suggested-order report') with the buildReport unit test, the gate-skip report.json test, and the no-switch no-write test
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs -> no output (exit 0)
+CHECKS: grep -c "export function buildReport" .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs -> 1 (exit 0)
+BLOCKED REASON: none

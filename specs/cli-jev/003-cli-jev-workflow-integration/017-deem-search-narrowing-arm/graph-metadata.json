@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deem search narrowing arm",
+      "deem spec track narrowing",
+      "jev spec track narrowing",
+      "score-track-narrowing",
+      "track-level retrieval baseline",
+      "narrowing not reranking",
+      "track narrowing plan",
+      "score-track-narrowing plan",
+      "deem narrowing keep rule",
+      "track-level baseline plan",
+      "track narrowing tasks",
+      "score-track-narrowing tasks"
+    ],
+    "key_topics": [
+      "deem",
+      "search",
+      "narrowing",
+      "arm",
+      "spec",
+      "track",
+      "jev",
+      "score-track-narrowing",
+      "track-level",
+      "retrieval",
+      "baseline",
+      "reranking"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/skills/system-spec-kit/changelog/v4.2.0.0.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".hermes/skills/system-spec-kit/SKILL.md",
+      "tests/score-track-narrowing.vitest.ts",
+      "changelog/v4.2.0.0.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-track-narrowing.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-track-narrowing.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.2.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v4.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "track-narrowing-measurement.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "semantic-probes.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The committed trigger-index lookup finds exact wording and little else",
+    "created_at": "2026-09-27T11:50:23Z",
+    "last_save_at": "2026-09-29T06:28:37.572Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:53fbd9c7d82f17b25ab073ccaae3fa2b5634d68a185f8dca5632738265b935c5",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4de30a5b30f40a55576c30ce03bf901c6a9de9ccc036808d6800ac3be83ca86b",
+      "plan.md": "ccc4bfda4d6ecc428a1dfa6026b6f0e8b5e300ac88ef0963a719c23e8ad789cc",
+      "tasks.md": "00ea89fdb752c0c4d09385191985a8d8f8d56ac3626583ec8c8d280c7f903fd2",
+      "implementation-summary.md": "6c1aa39fab78e7fb8e4a3d74311791e1a2ff0fbbacb3f12ca3d48da489814776"
+    },
+    "last_active_at": null
+  }
+}

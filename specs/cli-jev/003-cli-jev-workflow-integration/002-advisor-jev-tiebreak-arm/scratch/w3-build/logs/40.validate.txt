@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/system-skill-advisor/changelog/v0.13.0.0.md
+Document type: changelog
+Total issues: 0

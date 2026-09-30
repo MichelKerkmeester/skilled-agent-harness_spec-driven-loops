@@ -23,12 +23,22 @@
 // exists to answer partial substrings: the lookup scans the phrase keys, which
 // is cheaper than shipping a posting list that reproduces them.
 //
+// A build aimed away from the committed index keeps every sidecar it was not
+// given beside that index, so a scratch build never rewrites a tracked fixture.
+//
 // Usage:
 //   node generate-trigger-index.mjs [--repo-root <path>] [--allow-malformed] [--json] [--quiet]
-//   node generate-trigger-index.mjs --out <path> --manifest <path> --diagnostics <path>
+//   node generate-trigger-index.mjs --out <path> [--manifest <path>] [--diagnostics <path>]
 //                                   [--variants <path>]
+//   node generate-trigger-index.mjs --check [--repo-root <path>] [--out <path>] [--json] [--quiet]
 //
-// Exit codes: 0 = published, 1 = malformed corpus (nothing published), 2 = bad invocation.
+// --out alone puts corpus-manifest.json, generation-diagnostics.json and
+// phrase-variants.json beside it. --check compares the index at --out, or the
+// committed one, with the corpus and writes nothing.
+//
+// Exit codes: 0 = published (--check: index matches the corpus), 1 = malformed corpus, nothing
+// published (--check: a document is stale, an index path left the corpus, or the corpus is
+// untrusted), 2 = bad invocation or, for --check, an unreadable index.
 // ───────────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';
@@ -40,8 +50,10 @@ import { fileURLToPath } from 'node:url';
 import { TRIGGER_INDEX_SCHEMA_VERSION, assertTriggerIndexShape, publishJson, sha256, stableStringify } from './lib/artifact.mjs';
 import { EXCLUSIONS, IGNORED_PATHS, corpusRootsFor, walkCorpus } from './lib/corpus.mjs';
 import { CATEGORY, MALFORMED_CATEGORIES, readTriggerPhrases } from './lib/frontmatter.mjs';
+import { compareDocumentPhrases, indexedPhrasesFor } from './lib/freshness.mjs';
 import { compareCodeUnits, NORMALIZATION } from './lib/normalize.mjs';
 import { judgeTriggerPhrase } from './lib/phrase-judge.mjs';
+import { loadIndex } from './lookup-trigger-index.mjs';
 import { findRepoRoot as resolveRepoRoot } from '../../hooks/lib/workspace/repo-root.mjs';
 import { isMainModule } from '../lib/esm-entry.mjs';
 
@@ -86,6 +98,9 @@ export function findRepoRoot(start = SCRIPT_DIR) {
 
 /** Repository root the corpus roots resolve against. */
 export const DEFAULT_REPO_ROOT = findRepoRoot();
+
+/** Most stale documents and obsolete paths a text check report names. */
+const CHECK_EXAMPLE_LIMIT = 20;
 
 /** Field separators folded into the corpus hash, per CORPUS_HASH_RECIPE. */
 const NUL = Buffer.from([0x00]);
@@ -319,6 +334,34 @@ export function buildIndex(options) {
 // ───────────────────────────────────────────────────────────────────
 
 /**
+ * Resolves the four output paths. When the index path names anything other
+ * than the committed index, each sidecar path not given explicitly defaults to
+ * a sibling of it, so a scratch build leaves the tracked fixtures alone. With
+ * no index path, or one that resolves to the committed index, the sidecars
+ * keep their tracked defaults, because that invocation is the routine rebuild.
+ *
+ * @param {{
+ *   indexPath?: string,
+ *   manifestPath?: string,
+ *   diagnosticsPath?: string,
+ *   variantsPath?: string
+ * }} [options] Output paths the caller named.
+ * @returns {{ diagnostics: string, index: string, manifest: string, variants: string }} Paths to write.
+ */
+export function resolveArtifactPaths(options = {}) {
+  const indexPath = options.indexPath ?? DEFAULT_INDEX_PATH;
+  const besideIndex = path.resolve(indexPath) !== DEFAULT_INDEX_PATH;
+  const sidecar = (explicit, trackedDefault) => explicit
+    ?? (besideIndex ? path.join(path.dirname(indexPath), path.basename(trackedDefault)) : trackedDefault);
+  return {
+    diagnostics: sidecar(options.diagnosticsPath, DEFAULT_DIAGNOSTICS_PATH),
+    index: indexPath,
+    manifest: sidecar(options.manifestPath, DEFAULT_MANIFEST_PATH),
+    variants: sidecar(options.variantsPath, DEFAULT_VARIANTS_PATH),
+  };
+}
+
+/**
  * Builds the artifact and publishes it unless the corpus contains a document
  * whose trigger declaration cannot be trusted. Diagnostics are written either
  * way, because a refusal is worthless without the rows that explain it.
@@ -350,16 +393,13 @@ export function buildIndex(options) {
 export function generate(options = {}) {
   const started = process.hrtime.bigint();
   const repoRoot = options.repoRoot ?? DEFAULT_REPO_ROOT;
-  const indexPath = options.indexPath ?? DEFAULT_INDEX_PATH;
-  const manifestPath = options.manifestPath ?? DEFAULT_MANIFEST_PATH;
-  const diagnosticsPath = options.diagnosticsPath ?? DEFAULT_DIAGNOSTICS_PATH;
-  const variantsPath = options.variantsPath ?? DEFAULT_VARIANTS_PATH;
-  const artifactPaths = {
+  const artifactPaths = resolveArtifactPaths(options);
+  const {
     diagnostics: diagnosticsPath,
     index: indexPath,
     manifest: manifestPath,
     variants: variantsPath,
-  };
+  } = artifactPaths;
 
   const built = buildIndex({
     ignoredPaths: options.ignoredPaths,
@@ -439,7 +479,81 @@ function elapsedMs(started) {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 4. CLI
+// 4. CHECK
+// ───────────────────────────────────────────────────────────────────
+
+/**
+ * Compares an index with the corpus it should describe and writes nothing.
+ * The corpus is walked and read exactly as a build reads it, and every
+ * document goes through the same per-document comparison the save path runs,
+ * so a check and a save can never disagree on what stale means. A manifest
+ * hash difference alone changes no lookup answer, so it is reported, not
+ * counted.
+ *
+ * @param {{
+ *   repoRoot?: string,
+ *   roots?: readonly string[],
+ *   ignoredPaths?: ReadonlyArray<{ path: string, reason: string }>,
+ *   indexPath?: string
+ * }} [options] Check inputs.
+ * @returns {{
+ *   corpusManifestHash: string,
+ *   documentsScanned: number,
+ *   durationMs: number,
+ *   fresh: boolean,
+ *   indexManifestHash: string,
+ *   indexPath: string,
+ *   missingDocuments: number,
+ *   obsoletePaths: string[],
+ *   staleDocuments: Array<{ added: string[], path: string, removed: string[] }>,
+ *   untrustedDocuments: Array<Record<string, unknown>>
+ * }} Check report.
+ * @throws {Error} When the index cannot be read or fails its shape check.
+ */
+export function checkIndex(options = {}) {
+  const started = process.hrtime.bigint();
+  const indexPath = options.indexPath ?? DEFAULT_INDEX_PATH;
+  const loaded = loadIndex(indexPath, { hashIndex: false });
+  const built = buildIndex({
+    ignoredPaths: options.ignoredPaths,
+    repoRoot: options.repoRoot ?? DEFAULT_REPO_ROOT,
+    roots: options.roots,
+  });
+
+  const corpusPaths = /** @type {string[]} */ (built.manifest.includedPaths);
+  const indexedPaths = new Set(loaded.index.paths);
+  /** @type {Array<{ added: string[], path: string, removed: string[] }>} */
+  const staleDocuments = [];
+  let missingDocuments = 0;
+  for (const documentPath of corpusPaths) {
+    const declared = indexedPhrasesFor(built.index, documentPath);
+    const { added, removed } = compareDocumentPhrases(loaded.index, documentPath, declared);
+    if (added.length === 0 && removed.length === 0) continue;
+    if (!indexedPaths.has(documentPath)) missingDocuments += 1;
+    staleDocuments.push({ added, path: documentPath, removed });
+  }
+
+  const corpusPathSet = new Set(corpusPaths);
+  const obsoletePaths = loaded.index.paths.filter((indexed) => !corpusPathSet.has(indexed));
+  const untrustedDocuments = /** @type {Array<Record<string, unknown>>} */ (built.diagnostics.rows)
+    .filter((row) => MALFORMED_CATEGORIES.has(String(row.category)) && !row.ignored);
+
+  return {
+    corpusManifestHash: String(built.manifest.manifestHash),
+    documentsScanned: corpusPaths.length,
+    durationMs: elapsedMs(started),
+    fresh: staleDocuments.length === 0 && obsoletePaths.length === 0 && untrustedDocuments.length === 0,
+    indexManifestHash: loaded.manifestHash,
+    indexPath,
+    missingDocuments,
+    obsoletePaths,
+    staleDocuments,
+    untrustedDocuments,
+  };
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CLI
 // ───────────────────────────────────────────────────────────────────
 
 /**
@@ -453,6 +567,7 @@ function parseArgs(argv) {
     const arg = argv[i];
     switch (arg) {
       case '--allow-malformed':
+      case '--check':
       case '--json':
       case '--quiet':
         flags[arg.slice(2)] = true;
@@ -489,6 +604,8 @@ function main() {
     return 2;
   }
 
+  if (flags.check) return runCheck(flags);
+
   const report = generate({
     allowMalformed: Boolean(flags['allow-malformed']),
     diagnosticsPath: typeof flags.diagnostics === 'string' ? flags.diagnostics : undefined,
@@ -505,6 +622,72 @@ function main() {
   }
 
   return report.published ? 0 : 1;
+}
+
+/**
+ * @param {Record<string, string | boolean>} flags Parsed flags, `check` among them.
+ * @returns {number} Process exit code.
+ */
+function runCheck(flags) {
+  // Check mode writes nothing, so an output or publication flag would be
+  // silently ignored; refusing it keeps a caller from believing it took effect.
+  const writeOnly = ['allow-malformed', 'diagnostics', 'manifest', 'variants'].filter((name) => name in flags);
+  if (writeOnly.length > 0) {
+    process.stderr.write(`--check writes nothing and does not take ${writeOnly.map((name) => `--${name}`).join(', ')}\n`);
+    return 2;
+  }
+
+  let report;
+  try {
+    report = checkIndex({
+      indexPath: typeof flags.out === 'string' ? flags.out : undefined,
+      repoRoot: typeof flags['repo-root'] === 'string' ? flags['repo-root'] : undefined,
+    });
+  } catch (error) {
+    process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
+    return 2;
+  }
+
+  if (flags.json) {
+    process.stdout.write(`${stableStringify(report)}\n`);
+  } else if (!flags.quiet) {
+    process.stdout.write(formatCheckReport(report));
+  }
+  return report.fresh ? 0 : 1;
+}
+
+/**
+ * @param {ReturnType<typeof checkIndex>} report Check report.
+ * @returns {string} Human-readable summary.
+ */
+function formatCheckReport(report) {
+  const lines = [
+    report.fresh ? 'trigger index matches the corpus' : 'trigger index is STALE or the corpus is untrusted',
+    `  index             : ${report.indexPath}`,
+    `  documents scanned : ${report.documentsScanned}`,
+    `  stale documents   : ${report.staleDocuments.length} (${report.missingDocuments} missing from the index)`,
+    `  obsolete paths    : ${report.obsoletePaths.length}`,
+    `  untrusted docs    : ${report.untrustedDocuments.length}`,
+    `  duration ms       : ${report.durationMs.toFixed(1)}`,
+  ];
+  const examples = [
+    ...report.untrustedDocuments.map((row) => `    untrusted ${row.path}:${row.line} ${row.category}`),
+    ...report.staleDocuments.map((entry) => `    stale     ${entry.path}`
+      + ` (added: ${entry.added.join(', ') || 'none'}; removed: ${entry.removed.join(', ') || 'none'})`),
+    ...report.obsoletePaths.map((obsolete) => `    obsolete  ${obsolete}`),
+  ];
+  if (examples.length > 0) {
+    lines.push(`  examples (${Math.min(examples.length, CHECK_EXAMPLE_LIMIT)} of ${examples.length}):`);
+    lines.push(...examples.slice(0, CHECK_EXAMPLE_LIMIT));
+  }
+  if (report.indexManifestHash !== report.corpusManifestHash) {
+    lines.push(`  note: manifest hash differs (index ${report.indexManifestHash}, corpus ${report.corpusManifestHash});`
+      + ' no lookup answer depends on it');
+  }
+  if (!report.fresh) {
+    lines.push('  regenerate: node generate-trigger-index.mjs');
+  }
+  return `${lines.join('\n')}\n`;
 }
 
 /**

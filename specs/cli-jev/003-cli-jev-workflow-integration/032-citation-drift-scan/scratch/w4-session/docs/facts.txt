@@ -1,0 +1,35 @@
+# FACTS for the 032 doc steps (read from the code and the session's own runs, 2026-09-29)
+
+Script: `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` (Node ESM, run with `node` from the repository root).
+Test: `.skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs`, 32 tests, all pass (`node --test .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs`).
+Labels file: `.skilled/skills/sk-doc/shared/scripts/cite-drift-labels.jsonl` by default (`--labels <file>` names another). It does not exist yet: the operator draws and labels it.
+Usage line (constant `USAGE`; nothing prints it): `usage: node cite-drift-scan.mjs [--draw --seed <n>] [--jev] [--deem] [--out <dir>] [--labels <file>]`.
+Versions and IDs, read at doc time (orchestrator rulings 2 and 3): the newest sk-doc changelog is `v2.2.2.0.md`, and `SKILL.md`, `ROUTER.md`, `description.json`, `hub-router.json` and `mode-registry.json` each carry 2.2.2.0. This phase writes `changelog/v2.2.3.0.md` and then sets 2.2.3.0 in all five. The hub playbook's highest ID is SD-020, so the scenario takes SD-021 in a new `document-validation/` category.
+
+What it does: it counts the `<path>.<ext>:<line>` citations in the prose of every tracked skill doc, read at HEAD (fenced code is skipped). It resolves each against the tracked files (the citing doc's folder, the repository root, the skill root, then a unique basename) and prints per-skill and total counts. A resolved target that is missing on disk, or cited past its last line, is dead and is printed as `cite dead: <doc>:<line> -> <target>:<line>`, with no call. It then measures offline whether a Jev or Deem `noul` flags a drifted citation better than two fixed comparators (flag nothing, and identifier overlap between the sentence and the window around the cited line). It changes no citation, no validator and no cited file.
+Labels: `--draw --seed <n>` writes 40 rows to the labels file: 20 live citations with `verdict` and `labeler` null, for the operator to label `supports`, `partial` or `contradicts`, and 20 constructed rows whose window was moved 60 lines down its own file, marked `verdict: contradicts` and `labeler: construction`. `supports` counts as clean, `partial` and `contradicts` as drifted. No model writes a label.
+
+Exit 2, each before any call:
+- `--jev` or `--deem` without `--out` prints `--deem and --jev need --out <dir> so every call is recorded` (the same line for either switch).
+- `--draw` without an integer seed prints `--draw needs an integer --seed <n>`.
+- `--draw` over a labels file that holds any labeler prints `draw: refusing to overwrite <path>, operator labels present`.
+- A bad labels row prints its row and fault, for example `labels row 3: not JSON`.
+Zero model calls by default: logging stubs for `cli-deem` and `jev` first on PATH were never called.
+
+Default run on the real tree, exit 0 in about 171 s (session run, 2026-09-29). It prints one `skill <name>: citations=<n> in_range=<n> past_end=<n> ambiguous=<n> unresolved=<n> dead=<n>` line per skill folder, then:
+    citations=357 in_range=208 past_end=2 ambiguous=44 unresolved=103 refused=0 dead=2 commit=709b1078ee5d
+    cite dead: .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md:102 -> .skilled/commands/deep/research.md:157
+    cite dead: .skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/iteration-citation-jsonl.md:107 -> .skilled/skills/system-deep-loop/deep-research/SKILL.md:450
+    margin: 0.10
+    keep rule: coverage 10*M >= 9*K, then precision 5*TP >= 4*(TP+FP) with TP+FP >= 1, then margin 10*(A-B) >= M, then sign test p < 0.05, then for jev flips 10*F <= 3*M
+    stop: fewer than 40 labeled rows
+The counts read the live tree, so a later run may differ.
+
+Gates, in order: `stop: fewer than 40 labeled rows`; then the comparator lines (`comparator flag-nothing: ...`, `comparator identifier-overlap: ...`, `baseline method: ...`) and `no headroom` when the baseline leaves no room for the 0.10 margin; then `underpowered: winnable=<n>` when fewer than 5 rows are winnable; then the fixed instruction with its SHA-256.
+Arms, each behind its own switch and `--out <dir>`. With both switches the Jev gate and arm run first, then the Deem gate and arm, each regardless of the other's outcome. Each backend check runs first: a failed check prints `jev arm skipped: jev not on PATH`, `jev arm skipped: version`, `jev arm skipped: no credential` or `deem arm skipped: <reason>` (such as `stub backend`). A passing check below a gate prints `<backend> arm skipped: label gate`, `... no headroom` or `... underpowered`. A backend check calls no model.
+Session runs from the final code (`$SP/w4v/032-proof`), stubs first on PATH:
+- `--deem --out <dir>` with a stub backend adds only `deem arm skipped: stub backend` after one `cli-deem health` call.
+- `--jev --out <dir>` with `jev auth status` exiting 3 adds `jev: path=<path> provider=official` and `jev arm skipped: no credential`.
+- Neither writes a file in `<dir>`.
+- `--draw --seed 20260929 --labels <file outside the repository>` exits 0 in about 381 s: `draw: path=<file> seed=20260929 commit=709b1078ee5d rows=40 live=20 constructed=20`.
+No run has printed a `verdict` line. Docs must not claim one was printed.

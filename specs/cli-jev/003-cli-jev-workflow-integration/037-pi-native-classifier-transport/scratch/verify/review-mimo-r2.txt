@@ -1,0 +1,11 @@
+All checks complete. Test run: **41 tests, 41 pass, 0 fail** (exit 0).
+
+**Findings:** none (no P0/P1/P2).
+
+**finding 1: fixed** — `buildReplayPlan` (score-pi-transport.mjs:575-601) iterates `baseline.byRow` once per row with two mutually exclusive exhaustive branches (`plan.set` or `excluded.push`+continue), so `plan.size + excluded.length === byRow.size === baseline.rows` (`readBaseline` returns `rows: byRow.size`) on every path; no row is neither planned nor excluded, none counted twice. `metricsFor` still counts `measured` only when both `piByRow` and `cliByRow` have the row, so agreement remains both-measured. The `main_excluded_rows_count_against_coverage` test pins it end-to-end: 10 baseline rows, 8 mismatched clusters → `K=10 M=2 coverage=20.0` → `stop (coverage)`, which the old `K: plan.size` (K=2 → coverage 100 → adopt) could never produce.
+
+**finding 2: fixed** — `mean_map_averages_each_key_over_the_orders` asserts computed means (0.5/0.25/0.25) and the partial-map NaN case; `column_line_pi_prints_cost_and_cli_prints_calls` pins both exact tails. `main_pi_run_prints_columns_metrics_verdict_and_writes_report` asserts strictly increasing order of `column pi:` → `column cli:` → `metrics:` → `verdict `, exact fixture strings (cli column `p50_ms=301 p95_ms=302`, metrics `coverage=100.0 agreement=100.0 median_abs_dp=0.0000`, `cost_per_100=0.0400`), `report.json` `verdict.line` equal to the printed line, and `metrics.K=2`. All four assert output contracts or arithmetic, not implementation steps; stubs + injected `loadCensus`, no network (no fetch/http in the test file).
+
+Comment hygiene: the new denominator comment ("A row the rebuild could not replay is still part of what the run set out to compare…") carries only the durable WHY — no spec path, phase, or task id.
+
+VERDICT: PASS

@@ -1,0 +1,8 @@
+== re-read split (main + subagent files combined)
+reread_total=1777
+reread_partial=1497
+reread_post_compaction=292
+reread_edit_preceding=1076
+reread_remainder=84
+== turn/system durations in ms
+durations_n=4575 p50=97798 p95=1758105 max=34235761

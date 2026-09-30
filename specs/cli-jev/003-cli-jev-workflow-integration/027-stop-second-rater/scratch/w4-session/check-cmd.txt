@@ -1,0 +1,1 @@
+cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/score-stop-rater.vitest.ts

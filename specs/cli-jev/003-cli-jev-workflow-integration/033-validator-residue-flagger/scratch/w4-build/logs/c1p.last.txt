@@ -1,0 +1,22 @@
+Done: S and T are on disk, both `node --check` exit 0, and the nine named cases pass.
+
+Gate 1: trigger index hit `specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/spec.md` (score 0.88).
+SKILL ROUTING: advisor brief ambiguous (system-spec-kit 0.95 vs sk-doc 0.94, neither binds code work); ARTIFACT: sk-code → compiled router returned `defer` → fallback classification, implement phase on Node CommonJS: sk-code-opencode surface + shared workflow-implement doctrine, sk-code-quality gate before the done-claim (comment hygiene run and clean on both files).
+REPO RULES: prevent-overengineering.md, evidence-and-proof.md, communication.md, communication-prose.md, communication-handoff.md.
+
+What ran and what it returned (OBSERVED): the two brief-mandated `node --check` commands, exit 0 each with no output. One deviation, documented as required: I also ran `node --test` on T once, because AGENTS.md Law 3 is a hard blocker ("Syntax checks and tests MUST pass before claiming completion") that no narrower check list relaxes; it returned `# pass 9, # fail 0, exit 0`. Comment hygiene (sk-code-quality gate) exits 0 on both files after rewording one comment the checker flagged for the "review finding" bigram. Scoped `git status --porcelain -- .skilled/skills/system-deep-loop/deep-review/scripts/` shows exactly the two new files; the other dirty paths in the tree belong to concurrent workers. Everything is created but uncommitted: the orchestrator owns commits.
+
+Design calls I made where section 2 left a shape open: `buildCensus` returns scalar `files`/`tables`/`rows` counts (the return-type annotation marks arrays with `[]`, as `parseFindingTables` does, and every pipeline primitive is exported for draw-time re-derivation); `parseFindingTables` keeps the declared `{line, severity, dimension, location}` and `{line, header}` shapes, so its `file` parameter is accepted but unused; a root-commit review file's rows count as `dropped`. All are INFERRED from the design's notation, not confirmed by a ruling; a later step that disagrees adapts within its own step since earlier functions stay frozen.
+
+Nothing is blocked on the operator; the orchestrator runs the suites, spec validation and the commit.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: one line per file: .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs (+453/-0)
+FILES CHANGED: one line per file: .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs (+250/-0)
+EDITS: .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs:1 created: section 2.5 constants, git, trackedFiles, headCommit, readAtCommit, walkReviewFiles, parseFindingTables, addingCommit, reviewedCommit, resolveLocation, buildCensus, censusLines, parseArgs skeleton, main() printing the census and returning 0, exports, main guard
+EDITS: .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs:1 created: fixture builder (temp git repo, two commits, stub bins, clean env) and cases corpus walk, parser three shapes, parser skipped shape, dimension mapping, commit resolution, untracked review file, location resolves, location dropped, refused .env
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs -> no output (exit 0)
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> no output (exit 0)
+CHECKS: node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> tests 9, pass 9, fail 0 (exit 0)
+BLOCKED REASON: none

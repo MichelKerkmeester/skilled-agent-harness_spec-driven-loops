@@ -1,0 +1,45 @@
+PROMPT: Use jev judgment to decide whether this incident is urgent, and give me the probability.
+{"hubId":"cli-classifier","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-jev"}],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: ask jev for a probability that this plan ships on time
+{"hubId":"cli-classifier","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-jev"}],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: score these three levels with jev
+{"hubId":"cli-classifier","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-jev"}],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: run a batch of typed questions through jev
+{"hubId":"cli-classifier","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-jev"}],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: pick one option with jev
+{"hubId":"cli-classifier","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-jev"}],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: order levels with jev
+{"hubId":"cli-classifier","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-jev"}],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: batch typed questions through jev
+{"hubId":"cli-classifier","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-jev"}],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: cli-jev noul for this question.
+{"hubId":"cli-classifier","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-jev"}],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: ask deem for a probability that this incident is urgent
+{"hubId":"cli-classifier","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-deem","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-deem"}],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: summarize the release notes for the last sprint
+{"hubId":"cli-classifier","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: Summarize the open questions in this spec packet.
+{"hubId":"cli-classifier","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: score this flavor of ice cream
+{"hubId":"cli-classifier","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: compare the jev judgment with the deem judgment
+{"hubId":"cli-classifier","action":"route","selectionKind":"orderedBundle","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-jev"},{"backendKind":"cli-dispatch","packetId":"cli-deem","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-deem"}],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: use cli-classifier to ask jev for a probability
+{"hubId":"cli-classifier","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-jev"}],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0
+PROMPT: what does the cli-classifier hub do
+{"hubId":"cli-classifier","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}
+EXIT: 0

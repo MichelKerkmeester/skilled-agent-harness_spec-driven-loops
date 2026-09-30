@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, execution flow, sour
 
 Verify the sk-git preflight advisory reaches a Devin `PreToolUse` `exec` event on a directory-scoped commit that would silently drop an untracked file, and that the advisory never blocks the command.
 
-The advisory is the shared sk-git preflight hook at `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs`. It reads the 17 `hard_rules:` from `.skilled/skills/sk-git/SKILL.md`, evaluates them against repository state, and emits `hookSpecificOutput.additionalContext` starting with `⚠ sk-git advisory`. It never blocks, fails open, and caps at three advisories per command. Devin registers it directly under `.devin/hooks.v1.json` `PreToolUse` matcher `^exec$`, in the same `DEVIN_PROJECT_DIR` shell envelope its sibling hooks use, with an approval-JSON fallback so a resolution failure still approves.
+The advisory is the shared sk-git preflight hook at `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs`. It reads the 17 rules from `hard-rules.json` beside `.skilled/skills/sk-git/SKILL.md`, evaluates them against repository state, and emits `hookSpecificOutput.additionalContext` starting with `⚠ sk-git advisory`. It never blocks, fails open, and caps at three advisories per command. Devin registers it directly under `.devin/hooks.v1.json` `PreToolUse` matcher `^exec$`, in the same `DEVIN_PROJECT_DIR` shell envelope its sibling hooks use, with an approval-JSON fallback so a resolution failure still approves.
 
 ### Why This Matters
 
@@ -98,7 +98,7 @@ confirmations from steps 4-5, and the fail-open approval JSON from step 6.
 || File | Role |
 ||---|---|
 || `../../../../../skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | The shared stdin hook the Devin `^exec$` matcher invokes |
-|| `../../../../../skills/sk-git/SKILL.md` | The 17 `hard_rules:` frontmatter the hook parses |
+|| `../../../../../skills/sk-git/SKILL.md` | The 17 rules in the `hard-rules.json` sidecar the hook reads |
 || `.devin/hooks.v1.json` | `PreToolUse` matcher `^exec$` registration with `DEVIN_PROJECT_DIR` envelope and approval fallback |
 || `../../../../../skills/sk-git/scripts/hooks/README.md` | Runtime matrix, suppression tiers, fail-open guarantees |
 

@@ -1,0 +1,11 @@
+I'll start by reading the target region of the file to confirm the exact line before editing.Line 59 confirmed. Applying the exact one-line edit with surrounding context to keep it unique:Edit applied. Now running the three specified checks, plus a read-only diff stat to confirm +1/-1 on the single file:All four checks pass. Let me quickly consult the sk-code routing packet per the persona instruction, then hand back.The route resolves to `sk-code-quality`; the edit is a literal string swap with no comment added, and the brief's checks all passed. Final handback:
+
+STATUS: DONE
+FILES CHANGED: .skilled/bin/compiled-route-sync.cjs (+1/-1)
+EDITS: .skilled/bin/compiled-route-sync.cjs:59 'cli-jev' → 'cli-classifier' (fifth entry of HUBS)
+CHECKS:
+- node --check .skilled/bin/compiled-route-sync.cjs -> no output, clean syntax (exit 0)
+- sed -n '54,62p' .skilled/bin/compiled-route-sync.cjs -> seven hubs, 'cli-classifier' fifth (exit 0)
+- grep -c "cli-jev" .skilled/bin/compiled-route-sync.cjs -> 0 (grep exit 1, expected for zero matches; wrapper echo exit 0)
+- git diff --numstat -- .skilled/bin/compiled-route-sync.cjs -> 1 1 (exit 0)
+BLOCKED REASON: none

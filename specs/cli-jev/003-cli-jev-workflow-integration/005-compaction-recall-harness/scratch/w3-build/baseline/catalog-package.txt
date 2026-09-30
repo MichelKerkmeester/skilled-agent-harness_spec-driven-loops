@@ -1,0 +1,87 @@
+PACKAGE system-spec-kit: WARN tier=warn violations=85
+WARN: 85 violation(s) (0 fail, 85 warn):
+  - [warn] [phantom_root_row] system-spec-kit/feature-catalog.md:31: root table names references/retrieval/retrieval-conventions.md as plain text instead of a markdown link
+  - [warn] [phantom_root_row] system-spec-kit/feature-catalog.md:33: root table names handover.md as plain text instead of a markdown link
+  - [warn] [missing_prose_path] system-spec-kit/doctor-router-and-manifest-dispatch.md:68: prose path does not exist on disk: .skilled/prompts
+  - [warn] [missing_prose_path] system-spec-kit/canonical-first-spec-root-resolution.md:19: prose path does not exist on disk: .opencode/specs
+  - [warn] [missing_prose_path] system-spec-kit/canonical-first-spec-root-resolution.md:29: prose path does not exist on disk: .opencode/specs/
+  - [warn] [missing_prose_path] system-spec-kit/canonical-first-spec-root-resolution.md:50: prose path does not exist on disk: .opencode/specs
+  - [warn] [missing_prose_path] system-spec-kit/canonical-first-spec-root-resolution.md:70: prose path does not exist on disk: .opencode/specs
+  - [warn] [missing_prose_path] system-spec-kit/canonical-first-spec-root-resolution.md:78: prose path does not exist on disk: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/research.md
+  - [warn] [missing_prose_path] system-spec-kit/canonical-first-spec-root-resolution.md:79: prose path does not exist on disk: .opencode/specs/system-speckit/000-migration-from-soa-and-cleanup/008-spec-root-resolution-hardening/research/research.md
+  - [warn] [missing_prose_path] system-spec-kit/cli-runtime-warm-only-fallbacks.md:38: prose path does not exist on disk: .opencode/settings.json
+  - [warn] [missing_prose_path] system-spec-kit/core-workflow-infrastructure.md:31: prose path does not exist on disk: .opencode/specs/
+  - [warn] [missing_prose_path] system-spec-kit/session-capturing-pipeline-quality.md:233: prose path does not exist on disk: .skilled/skills/sk-code/sk-code-quality/scripts/verify_alignment_drift.py
+  - [warn] [missing_prose_path] system-spec-kit/spec-folder-detection-and-description.md:30: prose path does not exist on disk: .opencode/specs/
+  - [warn] [missing_prose_path] system-spec-kit/spec-validation-rule-engine.md:31: prose path does not exist on disk: .skilled/hooks/hook-flags.env
+  - [warn] [missing_prose_path] system-spec-kit/template-compliance-contract-enforcement.md:45: prose path does not exist on disk: .claude/agents/speckit.md
+  - [warn] [missing_prose_path] system-spec-kit/template-compliance-contract-enforcement.md:45: prose path does not exist on disk: .skilled/agents/speckit.md
+  - [warn] [missing_prose_path] system-spec-kit/template-compliance-contract-enforcement.md:45: prose path does not exist on disk: .skilled/agents/speckit.toml
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/architecture-boundary-enforcement.md: normalized leaf description does not match root H3 'Architecture boundary enforcement'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/canonical-first-spec-root-resolution.md: normalized leaf description does not match root H3 'Canonical-first spec-root resolution'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/cli-runtime-warm-only-fallbacks.md: normalized leaf description does not match root H3 'CLI hook fallbacks and plugin bridges'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/code-standards-alignment.md: normalized leaf description does not match root H3 'Code standards alignment'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/completion-verification-workflow.md: leaf title 'Completion Verification Workflow' does not match root H3 'Completion verification workflow'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/completion-verification-workflow.md: normalized leaf description does not match root H3 'Completion verification workflow'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/core-workflow-infrastructure.md: leaf title 'Core Workflow Infrastructure' does not match root H3 'Core workflow infrastructure'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/core-workflow-infrastructure.md: normalized leaf description does not match root H3 'Core workflow infrastructure'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/debug-delegation-scaffold-generator.md: normalized leaf description does not match root H3 'Debug-delegation scaffold generator'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/dist-freshness-enforcement.md: normalized leaf description does not match root H3 'Dist-freshness enforcement'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/json-mode-hybrid-enrichment.md: normalized leaf description does not match root H3 'JSON mode structured summary hardening'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/json-primary-deprecation-posture.md: normalized leaf description does not match root H3 'JSON-primary deprecation posture'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/markdown-link-integrity-guard.md: normalized leaf description does not match root H3 'Markdown link integrity guard'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/orphan-mcp-sweeper-and-launchagent-template.md: leaf title 'Orphan MCP Sweeper and LaunchAgent Template' does not match root H3 'Orphan MCP sweeper and LaunchAgent template'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/orphan-mcp-sweeper-and-launchagent-template.md: normalized leaf description does not match root H3 'Orphan MCP sweeper and LaunchAgent template'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/orphan-sweep-stop-hook-activation.md: normalized leaf description does not match root H3 'Orphan sweep stop-hook activation'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/phase-system-knowledge-node.md: leaf title 'Phase-System Knowledge Node' does not match root H3 'Phase-system knowledge node'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/phase-system-knowledge-node.md: normalized leaf description does not match root H3 'Phase-system knowledge node'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/progressive-validation-for-spec-documents.md: normalized leaf description does not match root H3 'Progressive validation for spec documents'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/research-metadata-backfill.md: normalized leaf description does not match root H3 'Research metadata backfill'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/session-capturing-pipeline-quality.md: leaf title 'Session Capturing Pipeline Quality' does not match root H3 'Session capturing pipeline quality'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/session-capturing-pipeline-quality.md: normalized leaf description does not match root H3 'Session capturing pipeline quality'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/session-extraction-and-enrichment.md: leaf title 'Session Extraction and Enrichment' does not match root H3 'Session extraction and enrichment'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/session-extraction-and-enrichment.md: normalized leaf description does not match root H3 'Session extraction and enrichment'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/setup-native-module-health-and-mcp-installation.md: leaf title 'Setup, Native Module Health, and MCP Installation' does not match root H3 'Setup, native module health and prerequisite validation'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/sk-git-worktree-convention.md: leaf title 'sk-git numbered worktree convention (wt/{NNNN}-{name})' does not match root H3 'sk-git numbered worktree convention'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/sk-git-worktree-convention.md: normalized leaf description does not match root H3 'sk-git numbered worktree convention'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/source-dist-alignment-enforcement.md: normalized leaf description does not match root H3 'Source-dist alignment enforcement'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/spec-folder-detection-and-description.md: leaf title 'Spec-Folder Detection and Description Metadata' does not match root H3 'Spec-folder detection and description metadata'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/spec-folder-detection-and-description.md: normalized leaf description does not match root H3 'Spec-folder detection and description metadata'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/spec-folder-literal-naming-ai-derived-slugs.md: normalized leaf description does not match root H3 'Spec folder literal naming: AI-derived slugs'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/spec-folder-literal-naming-create-sh-fallback.md: normalized leaf description does not match root H3 'Spec folder literal naming: create.sh fallback'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/spec-lifecycle-automation.md: leaf title 'Spec Lifecycle Automation' does not match root H3 'Spec lifecycle automation'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/spec-lifecycle-automation.md: normalized leaf description does not match root H3 'Spec lifecycle automation'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/spec-validation-rule-engine.md: leaf title 'Spec Validation Rule Engine' does not match root H3 'Spec validation rule engine'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/strict-validation-addons-continuity-freshness-and-evidence-markers.md: normalized leaf description does not match root H3 'Strict validation add-ons: continuity freshness and evidence markers'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/template-compliance-contract-enforcement.md: leaf title 'Template Compliance Contract Enforcement' does not match root H3 'Template compliance contract enforcement'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/template-compliance-contract-enforcement.md: normalized leaf description does not match root H3 'Template compliance contract enforcement'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/template-composition-system.md: leaf title 'Template Composition System' does not match root H3 'Template composition system'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/template-composition-system.md: normalized leaf description does not match root H3 'Template composition system'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/track-root-children-lists.md: normalized leaf description does not match root H3 'Track-root children lists'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/tree-thinning-for-spec-folder-consolidation.md: normalized leaf description does not match root H3 'Tree thinning for spec folder consolidation'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/spec-doc-structure-validator.md: normalized leaf description does not match root H3 'Spec-doc structure validator'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/spec-folder-description-discovery.md: normalized leaf description does not match root H3 'Spec folder description discovery'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/post-save-quality-review.md: normalized leaf description does not match root H3 'Post-save quality review'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/feature-flag-governance.md: normalized leaf description does not match root H3 'Feature flag governance'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/category-overview.md: leaf title 'Doctor commands' does not match root H3 'Doctor commands overview'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/category-overview.md: normalized leaf description does not match root H3 'Doctor commands overview'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/doctor-router-and-manifest-dispatch.md: normalized leaf description does not match root H3 'Doctor router and manifest-driven dispatch'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/speckit-autopilot-lifecycle.md: normalized leaf description does not match root H3 'Speckit autopilot lifecycle'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/session-recovery-spec-kit-resume.md: normalized leaf description does not match root H3 'Session recovery via /speckit:resume'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/resource-map-template.md: normalized leaf description does not match root H3 'Resource map template'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/runtime-config-contract.md: leaf title 'Runtime Config Contract' does not match root H3 'Runtime config contract'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/runtime-config-contract.md: normalized leaf description does not match root H3 'Runtime config contract'
+  - [warn] [root_leaf_title_mismatch] system-spec-kit/filter-config-contract.md: leaf title 'Filter Config Contract' does not match root H3 'Filter config contract'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/filter-config-contract.md: normalized leaf description does not match root H3 'Filter config contract'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/directive-lifecycle-dedup.md: normalized leaf description does not match root H3 'Cross-runtime directive-lifecycle dedup'
+  - [warn] [root_leaf_description_mismatch] system-spec-kit/goal-opencode-plugin.md: normalized leaf description does not match root H3 'Goal OpenCode plugin'
+  - [warn] [missing_source_path] system-spec-kit/cli-runtime-warm-only-fallbacks.md: SOURCE FILES path does not exist on disk: .opencode/settings.json
+  - [warn] [missing_source_path] system-spec-kit/template-compliance-contract-enforcement.md: SOURCE FILES path does not exist on disk: .claude/agents/speckit.md
+  - [warn] [missing_source_path] system-spec-kit/template-compliance-contract-enforcement.md: SOURCE FILES path does not exist on disk: .skilled/agents/speckit.md
+  - [warn] [missing_source_path] system-spec-kit/template-compliance-contract-enforcement.md: SOURCE FILES path does not exist on disk: .skilled/agents/speckit.toml
+  - [warn] [off_taxonomy_validation_type] system-spec-kit/speckit-autopilot-lifecycle.md:60: Off-taxonomy validation Type 'Manual validation anchor' — template canon is Automated test | Benchmark | Fixture | Integration | MCP integration test | Manual playbook | Node test | Reference | Schema | Test harness | Unit | Vitest (advisory: taxonomy needs normalization).
+  - [warn] [off_taxonomy_validation_type] system-spec-kit/speckit-autopilot-lifecycle.md:61: Off-taxonomy validation Type 'Manual validation anchor' — template canon is Automated test | Benchmark | Fixture | Integration | MCP integration test | Manual playbook | Node test | Reference | Schema | Test harness | Unit | Vitest (advisory: taxonomy needs normalization).
+  - [warn] [off_taxonomy_validation_type] system-spec-kit/speckit-autopilot-lifecycle.md:62: Off-taxonomy validation Type 'Manual validation anchor' — template canon is Automated test | Benchmark | Fixture | Integration | MCP integration test | Manual playbook | Node test | Reference | Schema | Test harness | Unit | Vitest (advisory: taxonomy needs normalization).
+  - [warn] [off_taxonomy_validation_type] system-spec-kit/spec-folder-description-discovery.md:112: Off-taxonomy validation Type 'Numeric coercion and boundary cases for `Number(existing.memorySequence) \' — template canon is Automated test | Benchmark | Fixture | Integration | MCP integration test | Manual playbook | Node test | Reference | Schema | Test harness | Unit | Vitest (advisory: taxonomy needs normalization).
+  - [warn] [off_taxonomy_validation_type] system-spec-kit/session-recovery-spec-kit-resume.md:82: Off-taxonomy validation Type 'Automated check' — template canon is Automated test | Benchmark | Fixture | Integration | MCP integration test | Manual playbook | Node test | Reference | Schema | Test harness | Unit | Vitest (advisory: taxonomy needs normalization).
+  - [warn] [off_taxonomy_validation_type] system-spec-kit/skill-advisor-cli-daemon-backed-surface.md:50: Off-taxonomy validation Type 'Catalog' — template canon is Automated test | Benchmark | Fixture | Integration | MCP integration test | Manual playbook | Node test | Reference | Schema | Test harness | Unit | Vitest (advisory: taxonomy needs normalization).

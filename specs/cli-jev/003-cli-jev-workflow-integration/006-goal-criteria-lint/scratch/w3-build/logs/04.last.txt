@@ -1,0 +1,16 @@
+Now let me check the shared slice helper to confirm behavior for goals without a log anchor (test 1 depends on it):I have everything I need. Now applying EDIT 1 and EDIT 2 to the lint script:Now the exports, then the test file:Both files are edited. Now running the two listed verification checks:Both listed checks pass. As an extra confirmation (documented deviation — the brief defers suites to the orchestrator, but node's built-in runner is in-process and cheap), I'll syntax-check and run just this test file:All 10 tests pass. Final state check — confirming exactly two files changed and nothing else:The two target files are untracked (created by an earlier worker), so `git diff` shows nothing — the other untracked entries belong to other workers. Let me compute my line deltas:Both files verified. Final state: exactly the two named files were touched (the other untracked entries in `git status` — `count-pi-goal-nudges.*`, `scratch/w3-build/` — belong to other workers; I did not touch them). One documented deviation: beyond the two listed checks I also ran the single test file with node's built-in runner (in-process, no sockets) to pin the new tests; the orchestrator still owns the full suite.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs (+178/-0); .skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs (+86/-0)
+EDITS:
+- lint-goal-criteria.cjs:149-153 added `toPosixRelative` after `hasNamedArtifact`
+- lint-goal-criteria.cjs:320-486 added `walkGoalFiles`, `lintGoalFile`, `buildLintResult`, `lintWorkspace`, `lintPacket` after `lintCriterion`, each with JSDoc
+- lint-goal-criteria.cjs:501-504 exported `walkGoalFiles`, `lintGoalFile`, `lintWorkspace`, `lintPacket`
+- tests/lint-goal-criteria.test.cjs:19-27 imported `walkGoalFiles`, `lintWorkspace`
+- tests/lint-goal-criteria.test.cjs:51-82 added `createWalkRoot` helper and `GOOD` fixture
+- tests/lint-goal-criteria.test.cjs:207-256 added the no-input and scratch/z_archive walker tests
+CHECKS:
+- `node --check .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs` -> exit 0, no output
+- `node -e "const m=require('./.skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs');console.log(JSON.stringify(m.lintPacket('specs/no-such-packet',process.cwd()).errors))"` -> `[{"path":"specs/no-such-packet","message":"packet not found"}]` (exit 0)
+- `node --check .../tests/lint-goal-criteria.test.cjs && node --test .../tests/lint-goal-criteria.test.cjs` -> `tests 10 / pass 10 / fail 0` (exit 0) — extra, beyond the brief, run to confirm the two new tests
+BLOCKED REASON: none

@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/tie-break-eval.md
+Document type: feature_catalog
+Total issues: 0

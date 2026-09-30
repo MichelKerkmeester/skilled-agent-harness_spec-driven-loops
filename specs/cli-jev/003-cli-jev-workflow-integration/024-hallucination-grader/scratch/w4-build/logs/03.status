@@ -1,0 +1,1 @@
+executor=devin model=deepseek-v4-1-flash-max brief=specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-build/briefs/03-census.md exit=0 seconds=119

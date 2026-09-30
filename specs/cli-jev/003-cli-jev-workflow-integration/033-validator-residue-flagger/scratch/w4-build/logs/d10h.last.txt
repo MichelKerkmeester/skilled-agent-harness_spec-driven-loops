@@ -1,0 +1,12 @@
+The diff shows one hunk that is not mine: a paragraph about `scripts/score-residue-flagger.cjs` was added near line 315 by a concurrent worker in this shared tree. My edit touched only line 5. I will leave the foreign paragraph untouched, as the brief forbids editing anything outside my named edit.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/deep-review/SKILL.md` (+1/-1 mine; git diff shows +3/-1 total because a concurrent worker added 2 lines around line 315 in the same file)
+EDITS: `.skilled/skills/system-deep-loop/deep-review/SKILL.md`:5 `version: 1.11.0.36` -> `version: 1.11.0.37`
+CHECKS:
+  `ls .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md` -> `.skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md` (exit 0)
+  `grep -n "^version:" .skilled/skills/system-deep-loop/deep-review/SKILL.md` -> `5:version: 1.11.0.37` (exit 0)
+  `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/SKILL.md` -> `✅ VALID: ...Total issues: 0` (exit 0)
+  `git diff -- .skilled/skills/system-deep-loop/deep-review/SKILL.md` -> 2 hunks: line 5 version bump (mine) plus a concurrent paragraph at line 315 (not mine, left as-is)
+BLOCKED REASON: none

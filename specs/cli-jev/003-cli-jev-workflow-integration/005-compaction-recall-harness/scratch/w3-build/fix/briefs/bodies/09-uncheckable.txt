@@ -1,0 +1,29 @@
+TASK: add one case to T: a boundary whose last user instruction holds no identifier prints `uncheckable` for rule 4,
+and rule 4 then stays out of both recall averages. Test-only: the script already behaves this way. The transcript is
+built inline in a temp directory; add no fixture file. Never read ~/.claude, ~/.pi or any transcript or session file.
+Edit only this file (read all of it first): T = .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts
+Add this case as the last case, just before the final `});` of T, after one blank line:
+  it('an instruction with no identifier prints uncheckable and stays out of both recall averages', () => {
+    const dir = tempDir('compaction-recall-uncheckable-');
+    const uuid = (n: number): string => `00000000-0000-4000-8000-${String(n).padStart(12, '0')}`;
+    const records = [
+      { type: 'user', uuid: uuid(1), message: { role: 'user', content: 'CANARY- keep going' } },
+      { type: 'assistant', uuid: uuid(2), message: { role: 'assistant', content: [{ type: 'tool_use', id: 'toolu_1', name: 'Write', input: { file_path: '/tmp/CANARY-a/notes.md' } }] } },
+      { type: 'system', subtype: 'compact_boundary', uuid: uuid(3), compactMetadata: { trigger: 'auto', preTokens: 1000, postTokens: 100, durationMs: 10 } },
+      { type: 'user', uuid: uuid(4), isCompactSummary: true, message: { role: 'user', content: 'CANARY- notes.md' } },
+      { type: 'attachment', uuid: uuid(5), attachment: { type: 'hook_success', hookName: 'SessionStart:compact', command: 'session-prime', content: 'CANARY- notes.md' } },
+    ];
+    writeFileSync(join(dir, 'uncheckable.jsonl'), `${records.map((record) => JSON.stringify(record)).join('\n')}\n`);
+    const out = join(tempDir('compaction-recall-out-'), 'r.json');
+    const run = runScript(SCRIPT, ['--transcripts', dir, '--out', out]);
+    const report = JSON.parse(readFileSync(out, 'utf8'));
+
+    expect(run.code).toBe(0);
+    expect(run.stdout).toContain(' r4=uncheckable ');
+    expect(report.rows[0].r4Found).toBeNull();
+    expect(report.totals.uncheckable).toBe(1);
+    expect([report.rows[0].r2Found, report.rows[0].r2Summary, report.rows[0].r2Brief]).toEqual([1, 1, 1]);
+    expect([report.totals.summary_recall_avg, report.totals.brief_recall_avg]).toEqual([1, 1]);
+  });
+VERIFY (repo root): grep -cE '^  it[(.]' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (expect 24)
+Accept when: 1 file changed (T), nothing else; no file added under runtime/tests/compaction-recall-fixtures/; T holds 24 cases.

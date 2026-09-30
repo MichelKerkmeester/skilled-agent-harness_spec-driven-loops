@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/039-hub-cleanup",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/039-hub-cleanup",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli classifier hub cleanup",
+      "rename cli usage to cli jev",
+      "cli classifier pre-release versions",
+      "cli deem testing playbook",
+      "jev packet folder rename",
+      "cli classifier hub cleanup plan",
+      "cli usage to cli jev rename plan",
+      "pre-release version sweep plan",
+      "cli deem playbook plan",
+      "artifact regeneration plan",
+      "cli classifier cleanup tasks",
+      "rename and repoint tasks"
+    ],
+    "key_topics": [
+      "cli",
+      "classifier",
+      "hub",
+      "cleanup",
+      "rename",
+      "usage",
+      "jev",
+      "pre-release",
+      "versions",
+      "deem",
+      "testing",
+      "playbook"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/verify/c1-route.json",
+      "scratch/w4-build/design.md",
+      "scratch/verify/c4.txt",
+      ".skilled/skills/cli-classifier/mode-registry.json",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs",
+      ".skilled/skills/README.txt",
+      "scratch/verify/review-mimo-r1.txt",
+      "scratch/verify/session-evidence.md",
+      "scratch/verify/c2.txt",
+      "scratch/verify/c3.txt",
+      "scratch/verify/guard.txt",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "scratch/context/context.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "c1-route.json",
+        "kind": "config",
+        "path": "scratch/verify/c1-route.json",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "c4.txt",
+        "kind": "file",
+        "path": "scratch/verify/c4.txt",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-classifier/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-artifacts.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/skills/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review-mimo-r1.txt",
+        "kind": "file",
+        "path": "scratch/verify/review-mimo-r1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/verify/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "c2.txt",
+        "kind": "file",
+        "path": "scratch/verify/c2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "c3.txt",
+        "kind": "file",
+        "path": "scratch/verify/c3.txt",
+        "source": "derived"
+      },
+      {
+        "name": "guard.txt",
+        "kind": "file",
+        "path": "scratch/verify/guard.txt",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": "scratch/context/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hub says `cli-usage` where the mode is `cli-jev`",
+    "created_at": "2026-09-30T16:29:42Z",
+    "last_save_at": "2026-09-30T17:47:33.301Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e267d66b2c366b15ce96b1ce1724fa0a02baad991ee6f3b256d493c7cd812c47",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "669f4c8365984cddae0348a7a27ebd90488c614ae8a47eea2afd6d247820b07e",
+      "plan.md": "1f14c57f7d2eba8402ddb22e7b2807987da39d975061e57f893b4f82f25820c3",
+      "tasks.md": "f0a39708e44ef774cfeaa473226594c14dc14d244d1e446e86832a2c75beb978",
+      "implementation-summary.md": "f0ec6d5d271bf68ff9270ba36e37f37b59c7c0997598b4262d1c55158d0dec53"
+    },
+    "last_active_at": null
+  }
+}

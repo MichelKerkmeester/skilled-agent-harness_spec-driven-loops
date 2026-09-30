@@ -1,0 +1,25 @@
+Step 3 (Draw) is implemented and verified. Two judgment calls to disclose, both in the direction of the design's own step check: `readWindow` landed here because `drawRows` hashes each window and no later step names it; and I ran the focused `node --test` on this file beyond the brief's two `node --check` commands (the first run caught a bug in my own new assertion — `doc_line` instead of `target_line` — fixed, final run 11/11). The two files were untracked before and remain untracked; nothing else was touched.
+
+STATUS: DONE
+FILES CHANGED:
+- `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` (+308/-24)
+- `.skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs` (+130/-5)
+EDITS:
+- S:51 constants `LIVE_ROWS`, `CONSTRUCTED_ROWS`, `CONSTRUCT_OFFSET_LINES`, `CONSTRUCT_MIN_GAP_LINES`, `CONSTRUCT_MIN_FILE_LINES`, `WINDOW_RADIUS_LINES` added
+- S:284 "3. DRAW" section added: `readCommittedLines`, `readWindow` (exported), `mulberry32`, `inRangePools`, `drawRow`, `drawRows` (exported), `parseLabels` (exported), `labelCounts` (exported), each with JSDoc
+- S:514 main JSDoc notes that `--draw` writes the labels file instead of printing the census
+- S:529 main captures `values`, validates `--draw` needs an integer `--seed`, and refuses to overwrite a labels file whose rows carry a non-null `labeler` (`draw: refusing to overwrite <path>, operator labels present`, exit 2, before any census read)
+- S:582 draw branch: `drawRows`, JSONL write, `draw: path=... seed=... commit=... rows=40 live=20 constructed=20`, return 0
+- T:15 import extended with `headCommit`, `labelCounts`, `parseLabels`
+- T:122 `makeDrawFixture` added (two skills, 30 cited lines each, 200-line targets, second commit; earlier fixture and cases unchanged)
+- T:300 case `draw reproducible`: two `--draw --seed 1` runs to separate paths, byte-identical, 40 rows, exact 13-field key set (no text), counts `{labeled:20, live:20, constructed:20}`, recorded `commit` matches HEAD, live windows contain `target_line`, constructed windows exclude it
+- T:357 case `draw refuses labels`: `labeler: operator` row, exit 2, exact stderr line, file byte-unchanged, no stdout
+- T:343,347 window assertions corrected to `target_line` after the first run failed on my own assertion (implementation unchanged)
+CHECKS:
+- `node --check .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` -> no output (exit 0)
+- `node --check .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs` -> no output (exit 0)
+- `node --test .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs` -> `ℹ pass 11`, `ℹ fail 0` (exit 0; first run `pass 10 / fail 1` from the assertion bug, repaired and re-run)
+- `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization'` on S -> no match (exit 1)
+- `grep -nE 'specs/|REQ-[0-9]|CHK-|ADR-|w4-|c[0-9]\.md'` on S and T -> no match (exit 1)
+- `git status --porcelain` on the two named paths -> both `??` (untracked, as before this step; no other path touched by this worker)
+BLOCKED REASON: none

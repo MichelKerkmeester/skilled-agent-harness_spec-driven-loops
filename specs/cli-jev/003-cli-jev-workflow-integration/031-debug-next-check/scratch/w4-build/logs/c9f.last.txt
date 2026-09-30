@@ -1,0 +1,15 @@
+REPO RULES: evidence-and-proof.md, communication-handoff.md loaded (trigger: report a result / close out a turn). SKILL ROUTING: sk-code → quality mode; comment hygiene checked directly on the re-read (no spec paths, phase numbers or ids in the added comments). No further edits were made.
+
+Work state: edited, not committed — S is untracked in this worktree (`??`), T is also untracked and was never opened for write. Orchestrator owns tests, validation and the commit.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs (+11/-5)
+EDITS:
+- .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs:59-63 added `SEAM_SELF` after `SEAM_FIXTURES`, holding `':(exclude,glob)**/*debug-next-check*'` and `':(exclude,glob)**/*debug-next-check*/**'`, with a JSDoc explaining the census's own script, test and docs are not callers.
+- .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs:143 added "Paths named for this census are left out." to `seamSearch`'s JSDoc.
+- .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs:149 appended `...SEAM_SELF` to the `runGitLines` grep args, after `SEAM_FIXTURES`.
+CHECKS:
+- node --check .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs -> no output, `check exit=0` (exit 0)
+- node .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs -> first line `seam: none`, then `mined: debug_delegation=1 hypothesis_files=0`, `mined rows: 0`, `run exit=0` (exit 0)
+- git status --porcelain -- <S dir> <T> -> `?? .../debug-next-check/` and `?? .../debug-next-check.vitest.ts` only; `git diff --stat` on T empty, so T carries no modification (exit 0)
+BLOCKED REASON: none

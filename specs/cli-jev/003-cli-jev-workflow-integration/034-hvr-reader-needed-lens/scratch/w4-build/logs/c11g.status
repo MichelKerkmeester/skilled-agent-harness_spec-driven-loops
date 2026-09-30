@@ -1,0 +1,1 @@
+executor=ds model=cline-pass/cline-pass/deepseek-v4.1-flash brief=specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch/w4-build/briefs/c11g.md exit=0 seconds=147

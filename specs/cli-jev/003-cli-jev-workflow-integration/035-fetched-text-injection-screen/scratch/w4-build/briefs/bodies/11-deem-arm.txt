@@ -1,0 +1,38 @@
+TASK: add runDeemArm to S (second bullet of R section 10), an armPlan helper to T, and four tests.
+R = specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/ref/design.md (read only).
+N = .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (read only, never edit). S and T exist; read both
+first. Read R sections 8 and 10 only, and in N only `runDeemArm` (search `export async function runDeemArm`) as the pattern.
+
+STEP 1. In S section 10, after deemGate, add exported async runDeemArm(plan, gate, ctx) with JSDoc, exactly per R section 10:
+one `cli-deem noul` call per row, never three; N's exit handling; a missing or malformed answer is `unmeasured` with probability
+null, never 0. Change nothing else in S.
+STEP 2. In T, after stubEnv, add a private helper:
+ async function armPlan(root): f = await labeledFixture(root); rows = S.buildRows(root, S.readJsonl(f.labels), S.readJsonl(f.planted));
+   return { rows, baselineFlags: S.summarizeBaseline(rows).flags }.
+STEP 3. Append four tests to the end of T. In each: root = makeRepo(corpusFiles()); bin = makeStubs(); plan = await armPlan(root);
+lines = []; out = (line) => lines.push(line); outDir = tempDir('deem-out'); env = stubEnv(bin, <extra>); gate = S.deemGate({ out, env });
+ctx = { out, env, timeoutMs: 20000, callLog: S.createCallLog(outDir), stored: <stored or null> }; result = await S.runDeemArm(plan, gate, ctx);
+calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l)).
+ a. 'deem arm prints a keep verdict and records every call' (extra {}):
+    assert.equal(lines.at(-1), 'verdict deem: keep K=90 M=90 A=90 B=60 W=30 L=0 TP=30 FP=0 F=0 p=9.313e-10 model=deem-0.8-v1 model_commit=aaa source_commit=bbb');
+    assert.ok(lines.includes('flips: not applicable (deem noul)')); assert.equal(calls.length, 90);
+    for (const c of calls) { assert.equal(typeof c.wallMs, 'number'); assert.equal(c.exitCode, 0); assert.equal(c.modelCommit, 'aaa');
+      assert.equal(c.sourceCommit, 'bbb'); assert.equal(c.status, 'measured'); }
+    assert.equal(stubLog(bin, 'cli-deem').filter((a) => a[0] === 'noul').length, 90);
+ b. 'a missing answer is recorded unmeasured, never 0' (extra { STUB_NOUL_EMPTY: '1' }):
+    assert.ok(calls.every((c) => c.status === 'unmeasured' && c.probability === null));
+    assert.match(lines.at(-1), /^verdict deem: stop \(coverage\) K=90 M=0 /);
+ c. 'deem exit 4 with a changed commit pair stops the arm' (extra { STUB_NOUL_EXIT: '4', STUB_MODEL_COMMITS: 'aaa,ccc' }):
+    assert.deepEqual(result, { stopped: 'deem arm stopped: model commit changed mid-run', partialRows: 0 });
+    assert.deepEqual(lines.slice(-2), ['deem arm stopped: model commit changed mid-run', 'deem: partial rows=0']);
+    assert.equal(calls.length, 1); assert.equal(calls[0].status, 'unmeasured');
+ d. 'a stored commit pair that differs prints requalify before the verdict' (extra {}, stored
+    { columns: { deem: { modelCommit: 'old', sourceCommit: 'bbb' } } }):
+    assert.equal(result.requalify, 'requalify: model commit changed');
+    assert.equal(lines.indexOf('requalify: model commit changed'), lines.length - 2);
+
+VERIFY (repo root), paste each result line:
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs
+  grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs   (expect 32)
+Accept when: 2 files changed (S and T) and nothing else; both node --check exit 0; T holds 32 tests.

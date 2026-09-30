@@ -1,0 +1,22 @@
+All checks done. Both files read end-to-end (574 + 424 lines), fix sites verified against script and test, and the round trip replayed directly with `node` (no test runner, temp dirs only, repo untouched).
+
+closed - `score-stop-hint.cjs:483` compares the stored column's `rater` string (`typeof prior.rater === 'string' ? prior.rater : ''` vs `identity`) — the exact field `main` writes at line 503 (`record.rater = identity`) — and `raterSuffix` is called only on `loaded.report` (line 480; grep shows no call on the stored report). Direct three-run replay into one `--out` dir: run 1 no requalify (exit 0), unchanged rerun no requalify (exit 0) — the exact over-fire your scratch-copy differential reproduced — changed Deem identity prints `requalify: rater changed` (exit 0), and the written `report.json` round-trips the compared field (`columns.deem.rater` = `model=deem-1.0-v2 model_commit=newc source_commit=news`).
+
+closed - `score-stop-hint.vitest.ts:347-366` (`requalify prints only when the rater identity changed since the stored run`) runs the script three times into one `--out` folder and asserts: first run no requalify line (line 354), unchanged rerun no requalify line (line 357) — both through the real on-disk `report.json` round trip, not a mock — then a changed Deem identity prints `requalify: rater changed` (lines 362-363) immediately before `verdict deem:` (line 364 checks `changed.lines[requalifyIndex + 1]`), matching the script's print order (columnLine → REQUALIFY_LINE → verdictLine, lines 481-501). My direct replay reproduced all three behaviors including the adjacency; consistent with the orchestrator's `Tests 28 passed (28)`.
+
+No new P0 or P1 in either file. (Note, below P2: a stored column record that predates the `rater` field or was hand-edited makes `'' !== identity` fire one requalify line — conservative direction, treats unknown identity as changed; `main` always writes the field within the current format.)
+
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none
+EDITS: none
+CHECKS: `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs` -> no output, syntax OK (exit 0)
+CHECKS: `node --experimental-strip-types --check .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts` -> no output, syntax OK (exit 0)
+CHECKS: `node .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs --rater-report /tmp/stop-hint-recheck/in --deem --out /tmp/stop-hint-recheck/out` (run 1) -> no `requalify:` line in output (exit 0)
+CHECKS: same command (run 2, unchanged rerun into same --out) -> no `requalify:` line in output (exit 0)
+CHECKS: same command (run 3, fixture Deem identity rewritten to deem-1.0-v2/newc/news) -> `requalify: rater changed` printed directly before `verdict deem: keep ... model=deem-1.0-v2 model_commit=newc source_commit=news` (exit 0)
+CHECKS: `node -e` read of /tmp/stop-hint-recheck/out/report.json -> `stored rater: "model=deem-1.0-v2 model_commit=newc source_commit=news"`, `stored requalify: {"deem":"requalify: rater changed"}` (exit 0); temp dir removed
+CHECKS: `grep -n "REQ-\|ADR-\|CHK-\|task-\|specs/" <script> <test>` -> no matches (exit 1), comment hygiene clean
+BLOCKED REASON: none
