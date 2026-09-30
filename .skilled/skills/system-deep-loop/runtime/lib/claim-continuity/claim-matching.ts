@@ -2,6 +2,10 @@
 // MODULE: Deterministic Claim Matching
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   canonicalBytes,
   sha256Bytes,
@@ -28,6 +32,10 @@ import type {
   RecordClaimMatchInput,
 } from './claim-continuity-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export interface EvaluatedClaimMatch {
   readonly matchRecordId: string;
   readonly aliases: string[];
@@ -38,8 +46,16 @@ export interface EvaluatedClaimMatch {
   readonly policyDigest: string;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
 const NAMESPACE_PATTERN = /^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/;
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function compareCodeUnits(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
@@ -172,6 +188,10 @@ function exactMatches(
     foreign: [...foreign].sort(compareCodeUnits),
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** Evaluate exact and semantic evidence into one replay-stable closed decision. */
 export function evaluateClaimMatch(

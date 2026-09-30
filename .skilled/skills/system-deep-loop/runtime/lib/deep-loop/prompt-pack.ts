@@ -1,18 +1,28 @@
 // MODULE: Deep-Loop Prompt Pack Renderer
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { readFileSync } from 'node:fs';
 import { z } from 'zod';
 
-// ───── TYPE DEFINITIONS ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type PromptPackVariables = Record<string, string | number>;
 
-// ───── CONSTANTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const PROMPT_PACK_TOKEN_PATTERN = /\{([a-zA-Z_][a-zA-Z0-9_]*)\}/g;
 const promptPackVariableNameSchema = z.string().regex(/^[a-zA-Z_][a-zA-Z0-9_]*$/);
 
-// ───── DOMAIN ERRORS ─────
+// ───────────────────────────────────────────────────────────────────
+// 4. DOMAIN ERRORS
+// ───────────────────────────────────────────────────────────────────
 
 export class PromptPackError extends Error {
   missingVariables: string[];
@@ -24,7 +34,9 @@ export class PromptPackError extends Error {
   }
 }
 
-// ───── HELPERS ─────
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function extractTemplateTokens(template: string): string[] {
   const tokens = new Set<string>();
@@ -39,7 +51,9 @@ function extractTemplateTokens(template: string): string[] {
   return [...tokens];
 }
 
-// ───── EXPORTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Render a prompt pack template by substituting variables.

@@ -2,6 +2,10 @@
 // MODULE: Verified-Ledger Result Resume Reducer
 // ──────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   AppendOnlyLedger,
   GENESIS_RECORD_HASH,
@@ -38,10 +42,18 @@ import type {
   SalvageFragmentPayload,
 } from './types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export interface CompletionVerification {
   readonly complete: boolean;
   readonly reasonCode: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function compareCodeUnits(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
@@ -209,6 +221,10 @@ function effectiveSalvage(
 ): readonly SalvageFragmentPayload[] {
   return events.map((event) => asSalvageFragmentPayload(event.event.effective.envelope.payload));
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 async function reduceLeaf(
   leaf: FoldResumeInput['expectedLeaves'][number],

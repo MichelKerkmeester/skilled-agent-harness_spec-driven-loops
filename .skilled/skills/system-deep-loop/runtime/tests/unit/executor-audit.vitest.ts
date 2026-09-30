@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Executor Audit Tests
+// ───────────────────────────────────────────────────────────────────
 import { describe, expect, it } from 'vitest';
 
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';

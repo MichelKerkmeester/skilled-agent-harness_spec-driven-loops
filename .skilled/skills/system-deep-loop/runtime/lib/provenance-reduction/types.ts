@@ -2,15 +2,27 @@
 // MODULE: Provenance-Balanced Reduction Contracts
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import type { AdjudicationVerdict } from '../blinded-adjudication/index.js';
 import type { DecisionBoundReductionInput } from '../conditional-fanin/index.js';
 import type { JsonObject, JsonValue } from '../event-envelope/index.js';
 import type { PartialFailureReductionRequest } from '../partial-failure-policy/index.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const PROVENANCE_REDUCTION_VERSION = 1;
 export const PROVENANCE_IDENTITY_VERSION = 1;
 export const PROVENANCE_SCHEDULER_VERSION = 1;
 export const PROVENANCE_LEDGER_VERSION = 1;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type FleetBucketStatus =
   | 'admitted'

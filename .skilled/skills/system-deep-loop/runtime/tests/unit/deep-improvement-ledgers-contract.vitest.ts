@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Improvement Ledgers Contract
+// ───────────────────────────────────────────────────────────────────
+
 // Proves the deep-improvement-ledgers projection surface folds ledger
 // events into the TWO fixed improvement ledgers the real improvement
 // reducer (deep-improvement/scripts/shared/reduce-state.cjs) reads: the

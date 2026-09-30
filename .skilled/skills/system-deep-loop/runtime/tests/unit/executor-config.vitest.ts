@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Executor Config Unit Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, describe, it, expect, vi } from 'vitest';
 
 import {

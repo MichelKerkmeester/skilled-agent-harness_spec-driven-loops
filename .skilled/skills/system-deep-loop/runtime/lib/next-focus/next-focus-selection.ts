@@ -2,6 +2,10 @@
 // MODULE: Next Focus Selection
 // ──────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
 import {
   DEFAULT_CANDIDATE_SIMILARITY_THRESHOLD,
@@ -26,11 +30,19 @@ import type {
   ScoredNextFocusCandidate,
 } from './next-focus-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const NEXT_FOCUS_SCORING_POLICY_VERSION = 'next-focus-equal-components-bps-v1';
 export const NEXT_FOCUS_CANDIDATE_SIMILARITY_THRESHOLD =
   DEFAULT_CANDIDATE_SIMILARITY_THRESHOLD;
 
 const NOVELTY_COMPLEMENT_BPS = 10_000;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function compareCodeUnits(left: string, right: string): number {
   if (left === right) return 0;
@@ -191,6 +203,10 @@ function assertCandidateSnapshot(
     );
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Compare scored entries with the complete deterministic total order. */
 export function compareScoredNextFocusCandidates(

@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: CLI Branch Receipt Tests
+// ───────────────────────────────────────────────────────────────────
+
 // deep_*_auto.yaml CLI-branch routing through the
 // audited executor wrapper. One regression cell per CLI branch STYLE
 // (copilot positional/@path, claude-code -p, opencode run), asserting both

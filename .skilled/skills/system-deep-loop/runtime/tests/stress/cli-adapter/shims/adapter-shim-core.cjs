@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: CLI Adapter Shim Core
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 const { spawn } = require('node:child_process');

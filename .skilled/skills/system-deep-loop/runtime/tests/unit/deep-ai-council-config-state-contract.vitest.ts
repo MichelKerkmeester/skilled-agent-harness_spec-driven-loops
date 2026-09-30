@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep AI Council State Contract
+// ───────────────────────────────────────────────────────────────────
+
 // Proves the deep-ai-council-config-state projection surface folds ledger
 // events into the TWO ledger-derived .jsonl files the real council
 // orchestrator reads: ai-council-state.jsonl (graph replay + completion

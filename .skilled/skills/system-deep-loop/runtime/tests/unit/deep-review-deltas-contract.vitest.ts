@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Review Deltas Contract
+// ───────────────────────────────────────────────────────────────────
+
 // Proves the deep-review-deltas projection surface fans ledger events out
 // into one per-iteration delta file whose rows match the exact shape the real
 // deep-review reducer's loadDeltaPayloads + buildRegistry consume. The

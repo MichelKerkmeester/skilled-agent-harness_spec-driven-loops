@@ -2,6 +2,10 @@
 // MODULE: Conditional Fan-In Types
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import type {
   BudgetDecision,
   BudgetVector,
@@ -15,8 +19,16 @@ import type {
 } from '../branch-leases-waves/index.js';
 import type { JsonObject } from '../event-envelope/index.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const CONDITIONAL_FANIN_POLICY_VERSION = 1;
 export const CONDITIONAL_FANIN_DECISION_VERSION = 1;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type FanInPrimaryTrigger =
   | 'all-eligible-terminal'

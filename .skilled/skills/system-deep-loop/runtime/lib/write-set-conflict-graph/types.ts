@@ -2,6 +2,10 @@
 // MODULE: Write-Set Conflict Graph Types
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const WRITE_SET_GRAPH_SCHEMA_VERSION = 'write-set-conflict-graph/v1' as const;
 
 export const PHASE_013_WORKSTREAMS = [
@@ -13,6 +17,10 @@ export const PHASE_013_WORKSTREAMS = [
   '006-model-benchmark',
   '007-skill-benchmark',
 ] as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type Phase013Workstream = typeof PHASE_013_WORKSTREAMS[number];
 

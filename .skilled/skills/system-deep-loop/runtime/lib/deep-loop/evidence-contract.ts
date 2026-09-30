@@ -6,7 +6,9 @@
 // discipline alone. The contract is optional and advisory: a record that omits
 // the metadata is valid, and a malformed payload is a warning, never a failure.
 
-// ───── TYPE DEFINITIONS ─────
+// ───────────────────────────────────────────────────────────────────
+// 1. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export const EVIDENCE_CLAIM_CLASSES = ['confirmed', 'inferred', 'hypothesis', 'unknown'] as const;
 export type EvidenceClaimClass = typeof EVIDENCE_CLAIM_CLASSES[number];
@@ -45,7 +47,9 @@ export type EvidenceContractValidation =
   | { readonly status: 'present' }
   | { readonly status: 'malformed'; readonly issues: readonly EvidenceFieldIssue[] };
 
-// ───── HELPERS ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function isObjectRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && !Array.isArray(value) && typeof value === 'object';
@@ -89,7 +93,9 @@ function validateChildResultVerified(value: unknown): EvidenceFieldIssue | null 
   return null;
 }
 
-// ───── EXPORTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 3. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Validate an optional evidence-contract payload against the five-field schema.

@@ -13,7 +13,7 @@ import {
   CutoverBindingErrorCodes,
   resolveCutoverBinding,
   type CutoverBindingEnvironment,
-} from '../../lib/cutover-binding/index.js';
+} from '../../lib/mode-append-gateway/index.js';
 
 function environment(overrides: Partial<CutoverBindingEnvironment> = {}): CutoverBindingEnvironment {
   return Object.freeze({

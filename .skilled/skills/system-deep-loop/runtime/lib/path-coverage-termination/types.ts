@@ -2,6 +2,10 @@
 // MODULE: Path Coverage Termination Types
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import type {
   AuthorizationReference,
   LedgerHead,
@@ -14,9 +18,17 @@ import type {
   SemanticConceptNovelty,
 } from '../semantic-communities/index.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const PATH_COVERAGE_SCHEMA_VERSION = 'path-coverage-termination@1' as const;
 export const COVERAGE_UNIVERSE_SCHEMA_VERSION = 'coverage-universe@1' as const;
 export const PATH_COVERAGE_PROJECTION_VERSION = 'path-coverage-projection@1' as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type PathCoverageMode =
   | 'research'

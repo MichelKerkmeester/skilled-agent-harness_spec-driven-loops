@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Review State Contract Tests
+// ───────────────────────────────────────────────────────────────────
+
 // Proves the deep-review-state projection contract folds ledger events into the
 // exact legacy rows the real deep-review reducer consumes. The load-bearing
 // check is not that the fold is self-consistent but that the REAL consumer

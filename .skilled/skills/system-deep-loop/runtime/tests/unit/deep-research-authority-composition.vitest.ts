@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Research Authority Composition
+// ───────────────────────────────────────────────────────────────────
+
 // The load-bearing safety property for wiring this admission gate into the live deep-research
 // serving path: with no durable cutover on record, the gate must resolve to the legacy writer with
 // admission open, so interposing it changes nothing until an explicit, authorized flip lands.

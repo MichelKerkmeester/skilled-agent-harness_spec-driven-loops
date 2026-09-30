@@ -1,5 +1,9 @@
 // MODULE: Deep-Loop JSONL Repair
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   appendFileSync,
   closeSync,
@@ -16,12 +20,18 @@ import { createRequire } from 'node:module';
 import { dirname } from 'node:path';
 import { randomUUID } from 'node:crypto';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const require = createRequire(import.meta.url);
 const { acquireWriterLock } = require('../../scripts/lib/cli-guards.cjs') as {
   acquireWriterLock: (lockPath: string) => () => void;
 };
 
-// ───── TYPE DEFINITIONS ─────
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type JsonlRepairResult = {
   repaired: boolean;
@@ -30,7 +40,9 @@ export type JsonlRepairResult = {
 
 type JsonlRecord = Record<string, unknown>;
 
-// ───── HELPERS ─────
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function byteLength(value: string): number {
   return Buffer.byteLength(value, 'utf8');
@@ -205,7 +217,9 @@ function writeJsonlRecordsAtomic(path: string, records: JsonlRecord[]): void {
   writeRawContentAtomic(path, content);
 }
 
-// ───── EXPORTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Repair a JSONL file by quarantining malformed lines.

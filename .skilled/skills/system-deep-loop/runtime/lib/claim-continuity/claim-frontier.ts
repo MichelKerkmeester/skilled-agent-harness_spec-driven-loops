@@ -2,6 +2,10 @@
 // MODULE: Claim Continuity Resume Frontier
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   canonicalBytes,
   sha256Bytes,
@@ -37,10 +41,18 @@ import type {
   RestoredClaimContinuityFrontier,
 } from './claim-continuity-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export interface CreateClaimContinuityFrontierInput {
   readonly identityFrontier: RestoredContinuityFrontier;
   readonly fingerprint: DerivedReplayFingerprint<ClaimContinuityState>;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function compareCodeUnits(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
@@ -85,6 +97,10 @@ function assertNoDuplicateRefs(refs: readonly ContinuityIdentityRef[]): void {
     );
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** Create the compact extension only after base and claim frontiers agree. */
 export function createClaimContinuityFrontier(

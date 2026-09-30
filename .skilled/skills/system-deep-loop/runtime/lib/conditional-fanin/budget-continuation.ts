@@ -2,6 +2,10 @@
 // MODULE: Conditional Fan-In Budget Continuation
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   BudgetReasonCodes,
   addBudgetVectors,
@@ -25,6 +29,10 @@ import type {
   FanInEventCut,
   OutstandingBranchAtCut,
 } from './types.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function branchId(branch: OutstandingBranchAtCut): string {
   return branch.branch.registration.logical_branch_id;
@@ -56,6 +64,10 @@ function requirePositiveCompleteVector(vector: BudgetVector): void {
     throw new RangeError('Continuation reservation must cover every typed budget dimension');
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export async function captureFanInBudgetSnapshot(
   authority: HierarchicalBudgetAuthority,

@@ -1,10 +1,16 @@
 // MODULE: Deep-Loop Permissions Gate
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { existsSync, lstatSync, readlinkSync, realpathSync } from 'node:fs';
 import { homedir } from 'node:os';
 import path from 'node:path';
 
-// ───── TYPE DEFINITIONS ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type OperationClass = 'read' | 'write' | 'edit' | 'delete' | 'execute';
 export type PermissionScope = 'packet-local' | 'repo-wide' | 'external';
@@ -35,7 +41,9 @@ export type PreDispatchToolCall = {
   args: Record<string, unknown>;
 };
 
-// ───── CONSTANTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 type NormalizedTarget = {
   operation: OperationClass;
@@ -59,7 +67,9 @@ const MAX_SYMLINK_DEPTH = 10;
 const globCache = new Map<string, RegExp>();
 let repoRootCache: string | null | undefined;
 
-// ───── HELPERS ─────
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function isPermissionsMatrix(value: unknown): value is PermissionsMatrix {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) return false;
@@ -377,7 +387,9 @@ function evaluateNormalizedTarget(operation: OperationClass, targets: string[], 
   };
 }
 
-// ───── EXPORTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Evaluate whether a single tool call is allowed by the permissions matrix.

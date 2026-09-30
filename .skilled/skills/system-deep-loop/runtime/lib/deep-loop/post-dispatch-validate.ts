@@ -2,6 +2,10 @@
 // MODULE: Deep-Loop Post-Dispatch Validator
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { existsSync, readFileSync, renameSync, rmSync, statSync, truncateSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
@@ -11,7 +15,9 @@ import { deriveReceiptKeyForDispatch } from './executor-audit.js';
 import { canonicalReceiptJson, verifyReceipt } from './receipt-crypto.js';
 import type { ExecutorKind } from './executor-config.js';
 
-// ───── 1. TYPE DEFINITIONS ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type VerificationLanguage = 'python' | 'typescript' | 'javascript' | 'rust' | 'go';
 
@@ -222,7 +228,9 @@ export type PostDispatchValidateResult =
       warnings?: PostDispatchAdvisory[];
     };
 
-// ───── 2. DOMAIN ERRORS ─────
+// ───────────────────────────────────────────────────────────────────
+// 3. DOMAIN ERRORS
+// ───────────────────────────────────────────────────────────────────
 
 export class PostDispatchValidationError extends Error {
   result: PostDispatchValidateResult;
@@ -244,7 +252,9 @@ class JudgeTimeoutError extends Error {
   }
 }
 
-// ───── 3. CONSTANTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 4. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const CANONICAL_ITERATION_TYPE = 'iteration' as const;
 const DEFAULT_VERIFICATION_THRESHOLD = 0.5;
@@ -301,7 +311,9 @@ type JsonlLineRegion = {
   parsed: unknown;
 };
 
-// ───── 4. HELPERS ─────
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 type JudgeParseResult =
   | { ok: true; record: Record<string, unknown>; formatStripRetried: boolean }
@@ -745,7 +757,9 @@ function validateRouteProofRecord(
   return { failure: null, warnings };
 }
 
-// ───── DISPATCH RECEIPT VALIDATION ─────
+// ───────────────────────────────────────────────────────────────────
+// 6. DISPATCH RECEIPT VALIDATION
+// ───────────────────────────────────────────────────────────────────
 
 // Facts shared by the pre-dispatch INTENT and the post-dispatch COMPLETION:
 // both cover exactly what the engine intended, so they must agree. The
@@ -1247,7 +1261,9 @@ function validateV2IterationRecord(
   return failures;
 }
 
-// ───── 5. EXPORTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 7. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Build a neutral fallback card for an exhausted judge path.
