@@ -81,7 +81,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Scoring
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F056
 - Feature file path: `scoring/stop-rater-replay.md`
 - Primary sources: `scripts/score-stop-rater.cjs`, `tests/unit/score-stop-rater.vitest.ts`
 

@@ -1,5 +1,6 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ score-goal-lint: scores the goal-criteria lint against labels            ║
+// ║ COMPONENT: score-goal-lint                                               ║
+// ║ scores the goal-criteria lint against labels                             ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

@@ -1,0 +1,33 @@
+All checks complete. Report:
+
+**Findings**
+
+P2 `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs:3-4` - the C1 recipe shape was not used: findings prescribes the single-line `// ║ COMPONENT: <name> — <description> ║` where it fits, and this one fits exactly (72/72 chars in the 74-wide box); the edit instead splits name and description across two box lines - the same two-line variant used in the other six box files, where the single line overflows (score-goal-lint and score-clarify-default by 1 char) and findings' fallback says to move the description to a `// ` line right under the box, not into a second `║` line. No content lost; the verifier and box-width rules pass.
+
+**Findings.md ids**
+
+- C1 - met - all 9 files carry `COMPONENT:`/`MODULE:` in folder style, box lines uniformly 79 chars, `'use strict';` follows each `.cjs` header; `verify_alignment_drift.py --check-exact-headers --fail-on-warn` on staged copies: `Errors: 0, Warnings: 0`. Only the recipe shape is off (P2).
+- C2 - met - all 11 scripts' stderr writes carry `[<base-name>] ` matching the file name; injected `deps.err` untouched in all six default-writer scripts; only `includes`-style stderr assertions exist (score-verifier-labeled-set.test.cjs:210), and every suite is green.
+- D1 - met - both `### Recorded Result` blocks gone, expected-signal and pass/fail wording intact, no date/hash left in the scenarios; `validate-playbook-package.cjs` prints `PASS package=cli-classifier ... violations=0`, exit 0.
+- D2 - met - exactly the four `- Feature ID:` bullets deleted; `validate_catalog_package.py --json` reports 0 violations.
+- D3 - met - semicolons split in all five named spots, meaning preserved; all 7 prose "harness" occurrences in the report replaced (the 7th at old line 241, unnamed in findings but required by its proof); `hvr_scan.py` hard blockers fall to the recorded `reply-harness` false positives (lines 68-69 and the folder title); no new semicolon, em dash or banned word in the edited docs or the new README.
+- D4 - met - every switch, number and file name in `injection-screen/README.md` matches the script (`NATURAL_ROWS` 60, `PLANTED_ROWS` 30, `GATE_STOP_LINE`, `--jev/--deem/--out/--draw/--seed/--labels/--planted`, exit 0/2) and the label files (90 rows; p01-p30, `sentence: null`); reply-harness row accurate (test uses `os.tmpdir` fixtures and stub `jev`/`cli-deem` first on `PATH`); `validate_document.py` VALID on both READMEs.
+
+**Tests** (baseline: all rc=0; unchanged)
+```
+rc=0 goal-fixture | ℹ pass 5 | ℹ fail 0
+rc=0 goal-nudges | ℹ pass 3 | ℹ fail 0
+rc=0 goal-labeled | ℹ pass 12 | ℹ fail 0
+rc=0 injection | ℹ pass 40 | ℹ fail 0
+rc=0 cli-deem | ℹ pass 34 | ℹ fail 0
+rc=0 judge | ℹ pass 43 | ℹ fail 0
+rc=0 cite-drift | ℹ pass 32 | ℹ fail 0
+rc=0 goal-lint | ℹ pass 20 | ℹ fail 0
+rc=0 leaf-replay | ℹ pass 37 | ℹ fail 0
+rc=0 clarify | ℹ pass 28 | ℹ fail 0
+rc=0 hvr-lens | ALL PASS |
+rc=0 residue | ℹ pass 36 | ℹ fail 0
+rc=0 vitest | Tests 63 passed (63) |
+```
+
+VERDICT: PASS

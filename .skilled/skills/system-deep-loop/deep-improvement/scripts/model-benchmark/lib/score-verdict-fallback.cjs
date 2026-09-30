@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ score-verdict-fallback — offline reviewer verdict-fallback measurement   ║
+// ║ COMPONENT: score-verdict-fallback                                        ║
+// ║ offline reviewer verdict-fallback measurement                            ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -1236,7 +1237,7 @@ function buildReport(parts) {
  */
 async function main(argv, deps = {}) {
   const out = deps.out ?? ((line) => process.stdout.write(`${line}\n`));
-  const err = deps.err ?? ((line) => process.stderr.write(`${line}\n`));
+  const err = deps.err ?? ((line) => process.stderr.write(`[score-verdict-fallback] ${line}\n`));
   const env = deps.env ?? process.env;
   const timeoutMs = deps.timeoutMs ?? 90000;
   const backoffMs = deps.backoffMs ?? 2000;

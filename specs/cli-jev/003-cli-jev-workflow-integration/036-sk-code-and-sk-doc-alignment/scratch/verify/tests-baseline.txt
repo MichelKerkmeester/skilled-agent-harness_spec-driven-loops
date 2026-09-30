@@ -1,0 +1,13 @@
+cite-drift | ℹ pass 32 | ℹ fail 0
+clarify | ℹ pass 28 | ℹ fail 0
+cli-deem | ℹ pass 34 | ℹ fail 0
+goal-fixture | ℹ pass 5 | ℹ fail 0
+goal-labeled | ℹ pass 12 | ℹ fail 0
+goal-lint | ℹ pass 20 | ℹ fail 0
+goal-nudges | ℹ pass 3 | ℹ fail 0
+hvr-lens | ALL PASS | 
+injection | ℹ pass 40 | ℹ fail 0
+judge | ℹ pass 43 | ℹ fail 0
+leaf-replay | ℹ pass 37 | ℹ fail 0
+residue | ℹ pass 36 | ℹ fail 0
+vitest |       Tests  63 passed (63) | 

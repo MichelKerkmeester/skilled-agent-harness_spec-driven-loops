@@ -64,12 +64,6 @@ node .skilled/bin/compiled-route.cjs --hub cli-classifier --prompt "cli-jev noul
 |---|---|---|---|---|---|---|---|---|
 | CJ-002 | Hub Routing | Confirm the `cli-jev` name resolves mode `cli-jev` over the `cli-usage` transport | `cli-jev noul for this question.` | 1. `node .skilled/bin/compiled-route.cjs --hub cli-classifier --prompt "cli-jev noul for this question."` | `action: "route"`, `selectionKind: "single"`, one target with `skillId: "cli-classifier"`, `workflowMode: "cli-jev"` and `packetId: "cli-usage"`, resolved through the alias registration, not a defer | The exact command, its exit status, and the front door's full JSON | PASS when the alias prompt routes a single `cli-jev` target; FAIL when it defers or resolves anything else; SKIP only when the compiled front door cannot start, naming the failure as the blocker | A defer means the alias registration lost: check `mode-registry.json` `aliases[]` for the `cli-jev` entry and `hub-router.json` `vocabularyClasses` for its entry, then re-derive the compiled policy. If the front door cannot start, fix the launch rather than editing the scenario |
 
-### Recorded Result
-
-Observed during the 09-21 hub-routing remediation: the command exited 0 and the front door answered `{"hubId":"cli-jev","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-jev","workflowMode":"cli-usage"}],"effectivePolicyHash":"3240ebf5ec2848ba6b0a2c0fabf77f6b1b4c2b7475519154e1f7816fe3a670d2","generation":1}`. The prompt names only the retired mode name, so the alias registration carried the route. Verdict PASS.
-
-Observed on 2026-09-29, after the Jev transport became mode `cli-jev` of this hub: the command exited 0 and the front door answered `{"hubId":"cli-classifier","action":"route","selectionKind":"single","targets":[{"backendKind":"cli-dispatch","packetId":"cli-usage","packetKind":"transport","skillId":"cli-classifier","workflowMode":"cli-jev"}],"effectivePolicyHash":"63c0e7c4be3572f191a720546be69f9933206d52b2ffb8f6626486bce250b8ca","generation":1}`. The prompt names only `cli-jev`, so the alias registration carried the route. Verdict PASS.
-
 ---
 
 ## 4. SOURCE FILES

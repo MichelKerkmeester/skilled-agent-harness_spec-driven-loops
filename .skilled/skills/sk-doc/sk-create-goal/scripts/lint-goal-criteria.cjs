@@ -1,5 +1,6 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ lint-goal-criteria: advisory lint for goal criteria rules 4 and 5       ║
+// ║ COMPONENT: lint-goal-criteria                                            ║
+// ║ advisory lint for goal criteria rules 4 and 5                            ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

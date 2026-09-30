@@ -1515,7 +1515,7 @@ export async function runJevArm(plan, gate, ctx) {
 export async function main(argv, deps = {}) {
   const repoRoot = deps.repoRoot ?? REPO_ROOT;
   const out = deps.out ?? ((line) => process.stdout.write(`${line}\n`));
-  const err = deps.err ?? ((line) => process.stderr.write(`${line}\n`));
+  const err = deps.err ?? ((line) => process.stderr.write(`[cite-drift-scan] ${line}\n`));
   const env = deps.env ?? process.env;
   const timeoutMs = deps.timeoutMs ?? CALL_TIMEOUT_MS;
   const backoffMs = deps.backoffMs ?? BACKOFF_MS;

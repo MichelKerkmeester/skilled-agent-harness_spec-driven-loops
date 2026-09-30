@@ -140,7 +140,7 @@ Prompt: `Run the injection screen scorer with fake jev and cli-deem on my PATH a
 |---|---|---|
 | Hub routing contract | [cli-classifier SKILL.md](../SKILL.md) | `CC-001`, `CC-002`, `CC-003`, `CJ-001`, `CJ-002` |
 | Router vocabulary | [hub-router.json](../hub-router.json) | `CC-001`, `CC-002`, `CC-003`, `CJ-001`, `CJ-002` |
-| Compiled canary corpus | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json` | none, replayed by the rollout harness |
+| Compiled canary corpus | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json` | none, replayed by the rollout runner |
 | Jev transport behavior | [cli-usage playbook](../cli-usage/manual-testing-playbook/manual-testing-playbook.md) | none, covered by the `JEV-` scenarios |
 | Deem client behavior | [cli-deem tests](../cli-deem/scripts/tests/cli-deem.test.mjs) | none, covered by `node --test` |
 | Injection screen scorer | [score-injection-screen tests](../benchmark/injection-screen/tests/score-injection-screen.test.mjs) | `CC-004` |

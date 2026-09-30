@@ -74,7 +74,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 - Group: Scoring
 - Canonical catalog source: `feature-catalog.md`
-- Feature ID: F057
 - Feature file path: `scoring/stop-hint-replay.md`
 - Primary sources: `scripts/score-stop-hint.cjs`, `tests/unit/score-stop-hint.vitest.ts`
 

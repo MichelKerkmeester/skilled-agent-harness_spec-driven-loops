@@ -421,12 +421,12 @@ async function main(argv) {
       outDir = argv[index + 1];
       index += 1;
     } else {
-      process.stderr.write(`error: unknown flag ${flag}\n`);
+      process.stderr.write(`[score-verifier-labeled-set] error: unknown flag ${flag}\n`);
       return 2;
     }
   }
   if (!setFile) {
-    process.stderr.write('error: --set <file> is required\n');
+    process.stderr.write('[score-verifier-labeled-set] error: --set <file> is required\n');
     return 2;
   }
 
@@ -434,13 +434,13 @@ async function main(argv) {
   try {
     text = fs.readFileSync(setFile, 'utf8');
   } catch {
-    process.stderr.write(`error: cannot read ${setFile}\n`);
+    process.stderr.write(`[score-verifier-labeled-set] error: cannot read ${setFile}\n`);
     return 2;
   }
 
   const loaded = loadRows(text);
   if (loaded.errors.length > 0) {
-    for (const message of loaded.errors) process.stderr.write(`error: ${message}\n`);
+    for (const message of loaded.errors) process.stderr.write(`[score-verifier-labeled-set] error: ${message}\n`);
     return 1;
   }
 
@@ -453,7 +453,7 @@ async function main(argv) {
       lines.push(...reportLines(loaded.labeled, results));
       lines.push(...decisionLines(loaded.labeled, results));
     } catch (error) {
-      process.stderr.write(`error: ${error.message}\n`);
+      process.stderr.write(`[score-verifier-labeled-set] error: ${error.message}\n`);
       return error.code === 'PLUGIN_LOAD' ? 2 : 1;
     }
   }

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ leaf-route-replay — stage-two keyword replay and read recount            ║
+// ║ COMPONENT: leaf-route-replay                                             ║
+// ║ stage-two keyword replay and read recount                                ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -1526,7 +1527,7 @@ function parseArgs(argv) {
  */
 async function main(argv, deps = {}) {
   const out = deps.out || ((line) => process.stdout.write(line + '\n'));
-  const err = deps.err || ((line) => process.stderr.write(line + '\n'));
+  const err = deps.err || ((line) => process.stderr.write('[leaf-route-replay] ' + line + '\n'));
   const env = deps.env || process.env;
 
   const args = parseArgs(argv);

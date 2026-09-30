@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ score-d4-agreement — offline D4 hallucination-judgment agreement         ║
+// ║ COMPONENT: score-d4-agreement                                            ║
+// ║ offline D4 hallucination-judgment agreement                              ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -1140,7 +1141,7 @@ async function runJevArm(plan, gate, ctx) {
  */
 async function main(argv, deps = {}) {
   const out = deps.out ?? ((line) => process.stdout.write(`${line}\n`));
-  const err = deps.err ?? ((line) => process.stderr.write(`${line}\n`));
+  const err = deps.err ?? ((line) => process.stderr.write(`[score-d4-agreement] ${line}\n`));
   const env = deps.env ?? process.env;
   const timeoutMs = deps.timeoutMs ?? 90000;
   const backoffMs = deps.backoffMs ?? 2000;
