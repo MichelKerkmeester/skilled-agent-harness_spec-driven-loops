@@ -1,13 +1,22 @@
 {
   "counts": {
-    "duplicate-phrase": 54,
-    "missing-frontmatter": 7312,
-    "ok": 12242,
+    "duplicate-phrase": 57,
+    "missing-frontmatter": 7359,
+    "non-yaml-frontmatter": 2,
+    "ok": 12540,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23240,
-  "ignoredMalformedDocuments": 0,
+  "documentsScanned": 23590,
+  "ignoredMalformedDocuments": 2,
   "ignoredPaths": [
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_08B.md",
+      "reason": "verbatim upstream model card whose valid YAML frontmatter writes list items at column 0, which the reader rejects as non-YAML"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_9B.md",
+      "reason": "verbatim upstream model card whose valid YAML frontmatter writes list items at column 0, which the reader rejects as non-YAML"
+    },
     {
       "path": "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md",
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
@@ -17,7 +26,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "e5b476d0195e173cf8df71d07e2419ca15cc6772aec4e5a8bbb1e923936b38a3",
+  "manifestHash": "cedfad3b33bdb467e9573b1338f937350271d75b0f1e2b837643412d5aed7323",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -32,13 +41,211 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 31748,
+      "ok": 32651,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
     }
   },
   "rows": [
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/cli-invocation/binary-resolves-and-pins-version.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/cli-invocation/judgment-help-omits-hidden-endpoint-flag.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/cli-invocation/one-judgment-per-type-returns-typed-answer.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/cli-invocation/root-help-lists-six-subcommands.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/declared-hard-rules-refuse-violations.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/batch-request-with-no-key-exits-3.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/choice-single-option-not-refused.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/key-never-echoed-on-error-path.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/malformed-json-state-exits-2.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/missing-required-flag-is-argparse-failure.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/no-key-exits-3-with-structured-json.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/refused-connection-exits-4.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/request-without-questions-exits-2.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/score-single-level-not-refused.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/unknown-subcommand-is-argparse-failure.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/exit-codes/unreadable-state-file-exits-2.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/mcp-server/handshake-and-four-tools.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/providers/auth-status-reports-key-state.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/providers/custom-provider-requires-endpoint.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/providers/invalid-provider-env-exits-2.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/jev-request-stays-with-cli-jev.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/injection-screen-measurement.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-classifier/shared/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
     {
       "category": "missing-frontmatter",
       "line": 2,
@@ -7849,192 +8056,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-jev/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-jev/benchmark/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/binary-resolves-and-pins-version.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/judgment-help-omits-hidden-endpoint-flag.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/one-judgment-per-type-returns-typed-answer.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/cli-invocation/root-help-lists-six-subcommands.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/declared-hard-rules-refuse-violations.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/dispatch-guards/prose-mention-is-not-a-dispatch.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/batch-request-with-no-key-exits-3.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/choice-single-option-not-refused.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/key-never-echoed-on-error-path.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/malformed-json-state-exits-2.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/missing-required-flag-is-argparse-failure.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/no-key-exits-3-with-structured-json.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/refused-connection-exits-4.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/request-without-questions-exits-2.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/score-single-level-not-refused.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/unknown-subcommand-is-argparse-failure.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/exit-codes/unreadable-state-file-exits-2.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/mcp-server/handshake-and-four-tools.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/providers/auth-status-reports-key-state.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/providers/custom-provider-requires-endpoint.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/cli-usage/manual-testing-playbook/providers/invalid-provider-env-exits-2.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/alias-still-resolves.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/judgment-request-routes-to-transport.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/cli-jev/shared/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-orca/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
@@ -11777,6 +11798,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-communication/manual-testing-playbook/release-gating/human-certified-bundle-gates-release.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -28396,6 +28423,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/manual-testing-playbook/holdout/changelog-natural.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -29260,6 +29293,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/phase-parent-and-nested-child-goals.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -29549,6 +29588,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/count-clarify-and-stop-at-the-label-gate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-one-parent-identity.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -29556,6 +29601,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/keep-ready-separate-from-compiled-serving.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/replay-stage-two-leaf-routes.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -29634,6 +29685,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/tell-detection/judgment-pass-not-covered-by-the-scanner.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/tell-detection/reader-needed-lens-measurement.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -31331,6 +31388,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/five-d-scorer/unknown-grader-and-d4-census.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/integration-scanner/json-output-file.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -31446,6 +31509,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/unknown-fallback.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/verdict-fallback-census.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -32412,6 +32481,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-cli-lineages-review.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -32846,6 +32921,27 @@
       "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/convergence-score-delta.md",
       "rawKey": "trigger_phrases",
       "reason": "duplicate normalized phrase \"convergence score delta\""
+    },
+    {
+      "category": "duplicate-phrase",
+      "line": 6,
+      "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md",
+      "rawKey": "trigger_phrases",
+      "reason": "duplicate normalized phrase \"severity replay\""
+    },
+    {
+      "category": "duplicate-phrase",
+      "line": 6,
+      "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md",
+      "rawKey": "trigger_phrases",
+      "reason": "duplicate normalized phrase \"stop hint replay\""
+    },
+    {
+      "category": "duplicate-phrase",
+      "line": 6,
+      "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md",
+      "rawKey": "trigger_phrases",
+      "reason": "duplicate normalized phrase \"stop rater replay\""
     },
     {
       "category": "duplicate-phrase",
@@ -33360,6 +33456,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pair-replay.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pool-concurrency-cap.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -33445,6 +33547,24 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/convergence-score-delta.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/severity-replay.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-hint-replay.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-rater-replay.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -33690,6 +33810,18 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/native-cli-tools/skill-graph-validate.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/suggested-order-eval.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/tie-break-eval.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -34818,7 +34950,19 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/ac-coverage-single-source-ratio.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/alignment-suggestion-measurement.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -34866,6 +35010,18 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/compaction-recall-census.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-verification-workflow.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -34879,6 +35035,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-delegation-scaffold-generator.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -35475,6 +35637,170 @@
       "line": 1,
       "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/bundled_skills/jev-cli/references/cli.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/ai-council-strategy.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/council-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/deliberations/round-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/proposed-resynthesis.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/seats/round-001/seat-001-opus-max.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/seats/round-001/seat-002-opus-max.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/ai-council/seats/round-001/seat-003-opus-max.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/jev-material-digest.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/measurement-digest.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/repo-rules-digest.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/research-angles.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/context/seam-map.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/context/research-angles.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "non-yaml-frontmatter",
+      "ignored": true,
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_08B.md",
+      "reason": "frontmatter block is not YAML key/value content"
+    },
+    {
+      "category": "non-yaml-frontmatter",
+      "ignored": true,
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/docs/MODEL_CARD_9B.md",
+      "reason": "frontmatter block is not YAML key/value content"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/eval/tare/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/eval/tare/leaderboard.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/rust/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/serve/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/research-angles.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -42098,7 +42424,7 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-jev/compiled/PolicyCardV1.md",
+      "path": "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/compiled/PolicyCardV1.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -70340,6 +70666,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/description/fixtures",
       "reason": "excluded directory"
     },
@@ -70437,6 +70771,10 @@
     },
     {
       "path": "specs/agents/014-agent-emphasis-register/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/015-global-claude-md-agents-symlink/scratch",
       "reason": "excluded directory"
     },
     {
@@ -70544,6 +70882,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/078-layer-3-own-paths-baseline/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/z_archive",
       "reason": "excluded directory"
     },
@@ -70585,6 +70927,162 @@
     },
     {
       "path": "specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/027-stop-second-rater/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/031-debug-next-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/scratch",
       "reason": "excluded directory"
     },
     {
@@ -71792,6 +72290,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-git/031-fix-broad-staging-in-examples/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-git/z_archive",
       "reason": "excluded directory"
     },
@@ -72292,6 +72794,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/036-deep-loop-innovation/changelog.md",
       "reason": "duplicate of an already-indexed document"
     },
@@ -72509,6 +73015,10 @@
     },
     {
       "path": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/015-readme-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/031-align-runtime-code-with-sk-code-opencode/scratch",
       "reason": "excluded directory"
     },
     {
@@ -74601,6 +75111,30 @@
     },
     {
       "path": "specs/system-speckit/040-goal-parent-single-limit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/041-fix-write-recipe-backfill-flag/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/042-fix-write-recipe-commit-step/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-fix-write-recipe-workspace-bullet/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/044-fix-write-recipe-post-checks/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/045-fix-write-recipe-verification-gate/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode/scratch",
       "reason": "excluded directory"
     },
     {
