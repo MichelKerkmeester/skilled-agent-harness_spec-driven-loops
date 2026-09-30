@@ -175,7 +175,7 @@ for hook in "$HOOK_SOURCE_DIR"/*; do
 done
 
 echo ""
-echo "Hooks installed. Test: 'git commit --allow-empty -m \"chore(repo): test hook installation\"' should run silently unless a gate has something to report."
+echo "Hooks installed. Test: 'git commit --allow-empty -m \"chore(repo): test hook installation\" -m \"Check that the installed hooks run.\"' should run silently unless a gate has something to report."
 echo "Bypass commit-message validator: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ..."
 echo "Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..."
 echo "Bypass routing re-mint: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..."

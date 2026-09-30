@@ -21,7 +21,9 @@ interface SweepResult {
   // against, so nothing has actually regressed (see runValidate()).
   // 'known-failure': the folder was already failing in the baseline and still
   // is. Standing debt, not a change, so it is reported without failing the run.
-  status: 'pass' | 'regression' | 'new-failure' | 'first-run' | 'known-failure' | 'error';
+  // 'skipped': validation was switched off, so no rule ran and nothing is known
+  // about the folder. It neither passes nor fails the run.
+  status: 'pass' | 'regression' | 'new-failure' | 'first-run' | 'known-failure' | 'skipped' | 'error';
   exitCode: number | null;
   errors: number;
   warnings: number;
@@ -35,10 +37,13 @@ interface SweepResult {
 interface Baseline {
   isLoaded: boolean;
   passes: Set<string>;
-  // Every folder the baseline saw, whatever its status. Without this a folder
+  // Every folder the baseline checked, whatever its status. Without this a folder
   // that was already failing is indistinguishable from one seen for the first
   // time, so a static failure would be re-reported as new on every run.
   seen: Set<string>;
+  // Folders the baseline recorded while validation was switched off. They are
+  // not in `seen`, so a failure there is new, and this set only names why.
+  skipped: Set<string>;
 }
 
 // Trees the sweep will not descend into. Beyond the obvious build and VCS
@@ -194,15 +199,19 @@ function discoverSpecFolders(root: string): string[] {
 }
 
 function readBaseline(baselinePath: string | null): Baseline {
-  if (!baselinePath) return { isLoaded: false, passes: new Set(), seen: new Set() };
+  if (!baselinePath) return { isLoaded: false, passes: new Set(), seen: new Set(), skipped: new Set() };
   const resolved = resolveInsideRepo(baselinePath);
-  if (!fs.existsSync(resolved)) return { isLoaded: false, passes: new Set(), seen: new Set() };
+  if (!fs.existsSync(resolved)) return { isLoaded: false, passes: new Set(), seen: new Set(), skipped: new Set() };
   const parsed = JSON.parse(fs.readFileSync(resolved, 'utf8')) as { results?: SweepResult[] };
   const results = parsed.results ?? [];
+  // A skipped row says nothing about the folder, so it never makes a later
+  // failure look like one the baseline already knew.
+  const checked = results.filter((result) => result.status !== 'skipped');
   return {
     isLoaded: true,
-    passes: new Set(results.filter((result) => result.status === 'pass').map((result) => result.folder)),
-    seen: new Set(results.map((result) => result.folder)),
+    passes: new Set(checked.filter((result) => result.status === 'pass').map((result) => result.folder)),
+    seen: new Set(checked.map((result) => result.folder)),
+    skipped: new Set(results.filter((result) => result.status === 'skipped').map((result) => result.folder)),
   };
 }
 
@@ -219,6 +228,8 @@ interface ValidateRow {
 
 interface ValidateOutput {
   passed?: boolean;
+  // Present and true when the validator's off switch was on and no rule ran.
+  skipped?: boolean;
   summary?: { errors?: number; warnings?: number };
   results?: ValidateRow[];
   entries?: ValidateRow[];
@@ -252,6 +263,11 @@ function runValidate(folder: string, baseline: Baseline): SweepResult {
   const stdout = result.stdout ?? '';
   try {
     const parsed = JSON.parse(stdout) as ValidateOutput;
+    // A skipped report exits 0 and says passed, but no rule ran, so it is never
+    // counted as a pass or written into a baseline as one.
+    if (parsed.skipped === true) {
+      return { folder: relativeFolder, status: 'skipped', exitCode, errors: 0, warnings: 0, message: 'validation is switched off, so no rule ran' };
+    }
     const errors = Number(parsed.summary?.errors ?? 0);
     const warnings = Number(parsed.summary?.warnings ?? 0);
     const failed = exitCode !== 0 || parsed.passed === false;
@@ -267,7 +283,10 @@ function runValidate(folder: string, baseline: Baseline): SweepResult {
       return { folder: relativeFolder, status: 'known-failure', exitCode, errors, warnings, failedRules, message: 'strict validation still fails, exactly as it did in the baseline' };
     }
     if (failed) {
-      return { folder: relativeFolder, status: 'new-failure', exitCode, errors, warnings, failedRules, message: 'strict validation fails and the folder is absent from the baseline entirely' };
+      const message = baseline.skipped.has(relativeFolder)
+        ? 'strict validation fails and the baseline only recorded a skipped run for this folder'
+        : 'strict validation fails and the folder is absent from the baseline entirely';
+      return { folder: relativeFolder, status: 'new-failure', exitCode, errors, warnings, failedRules, message };
     }
     return { folder: relativeFolder, status: 'pass', exitCode, errors, warnings, message: 'strict validation passes' };
   } catch {
@@ -304,6 +323,7 @@ function main(): void {
   const errors = results.filter((result) => result.status === 'error');
   const firstRun = results.filter((result) => result.status === 'first-run');
   const knownFailures = results.filter((result) => result.status === 'known-failure');
+  const skipped = results.filter((result) => result.status === 'skipped');
   const payload = {
     roots: roots.map((root) => path.relative(repoRoot, root) || '.'),
     inspected: results.length,
@@ -311,6 +331,7 @@ function main(): void {
     newFailures: newFailures.length,
     firstRun: firstRun.length,
     knownFailures: knownFailures.length,
+    skipped: skipped.length,
     errors: errors.length,
     // How many packets each rule accounts for. One systemic rule and hundreds of
     // unrelated defects produce the same failure count, and only this tells them
@@ -319,7 +340,7 @@ function main(): void {
     results,
   };
   if (options.format === 'text') {
-    console.log(`strict-pass-freshness: inspected=${payload.inspected} regressions=${payload.regressions} newFailures=${payload.newFailures} firstRun=${payload.firstRun} knownFailures=${payload.knownFailures} errors=${payload.errors}`);
+    console.log(`strict-pass-freshness: inspected=${payload.inspected} regressions=${payload.regressions} newFailures=${payload.newFailures} firstRun=${payload.firstRun} knownFailures=${payload.knownFailures} skipped=${payload.skipped} errors=${payload.errors}`);
     for (const result of results.filter((entry) => entry.status !== 'pass')) {
       console.log(`${result.status}\t${result.folder}\t${result.message}\terrors=${result.errors}\twarnings=${result.warnings}`);
     }

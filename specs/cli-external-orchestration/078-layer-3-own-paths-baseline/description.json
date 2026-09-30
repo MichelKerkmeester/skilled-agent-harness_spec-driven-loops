@@ -1,0 +1,33 @@
+{
+  "specFolder": "cli-external-orchestration/078-layer-3-own-paths-baseline",
+  "description": "Reword the cli-opencode Layer 3 commit-before-dispatch safety net so it snapshots the dispatch target's own in-flight paths by explicit path instead o",
+  "keywords": [
+    "reword",
+    "cli-opencode",
+    "layer",
+    "commit-before-dispatch",
+    "safety",
+    "net",
+    "snapshots",
+    "dispatch",
+    "target",
+    "own",
+    "in-flight",
+    "paths",
+    "explicit",
+    "path",
+    "instead",
+    "requiring",
+    "clean",
+    "tree"
+  ],
+  "lastUpdated": "2026-09-29T07:29:10.290Z",
+  "specId": "078",
+  "folderSlug": "layer-3-own-paths-baseline",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

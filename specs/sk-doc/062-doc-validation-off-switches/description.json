@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/062-doc-validation-off-switches",
   "description": "Doc validation off switches",
   "keywords": [
@@ -6,13 +7,16 @@
     "validation",
     "switches"
   ],
-  "lastUpdated": "2026-09-28T07:19:12.832Z",
+  "lastUpdated": "2026-09-28T20:03:09.186Z",
   "specId": "062",
   "folderSlug": "doc-validation-off-switches",
   "parentChain": [
     "sk-doc"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 3,
+  "memoryNameHistory": [
+    "28-09-26_14-27__ran-a-two-model-deep-review-luna-through-cli.md",
+    "28-09-26_19-03__fixed-all-eight-deep-review-findings-progressive.md",
+    "28-09-26_21-03__reviewed-the-v4-0-0-2-release-entry-against-the.md"
+  ]
 }

@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure",
+  "description": "Phase 67: root-docs-and-git-hook-disclosure",
+  "keywords": [
+    "phase",
+    "root-docs-and-git-hook-disclosure"
+  ],
+  "lastUpdated": "2026-09-28T20:03:11.569Z",
+  "specId": "067",
+  "folderSlug": "root-docs-and-git-hook-disclosure",
+  "parentChain": [
+    "system-speckit",
+    "033-system-speckit-v4"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "28-09-26_17-46__root-docs-brought-up-to-date-contributing-names.md",
+    "28-09-26_21-03__this-phase-s-git-hooks-and-the-root-docs-section.md"
+  ]
+}

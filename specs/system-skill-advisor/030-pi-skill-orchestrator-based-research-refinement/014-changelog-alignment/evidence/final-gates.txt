@@ -1,0 +1,86 @@
+Final gates for the changelog alignment phase
+Written 2026-09-28T12:16:06Z against HEAD 5e164da683
+
+### SKILL.md version equals the newest changelog entry
+system-skill-advisor         SKILL.md 0.12.0.0   newest entry 0.12.0.0   ok
+system-spec-kit              SKILL.md 4.1.4.0    newest entry 4.1.4.0    ok
+deep-review                  SKILL.md 1.11.1.0   newest entry 1.11.1.0   ok
+deep-research                SKILL.md 1.15.1.0   newest entry 1.15.1.0   ok
+cli-codex                    SKILL.md 1.9.5.0    newest entry 1.9.5.0    ok
+cli-external-orchestration   SKILL.md 1.7.1.0    newest entry 1.7.1.0    ok
+sk-code-opencode             SKILL.md 1.0.1.0    newest entry 1.0.1.0    ok
+deep-loop-runtime            no SKILL.md      newest entry 1.5.1.0    n/a
+
+### Hub artifacts restate the cli-external-orchestration version
+ROUTER.md            1.7.1.0
+description.json     1.7.1.0
+hub-router.json      1.7.1.0
+mode-registry.json   1.7.1.0
+
+### Authored manifest copy matches the served manifest: yes
+
+### Compiled route guard
+$ node .skilled/bin/compiled-route-guard.cjs
+  cli-external-orchestration  fresh
+  cli-jev                     fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+exit=0
+
+### Hermes skill mirror
+$ node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check
+PASS: 71 Hermes skill copies in sync
+exit=0
+
+### Parent-skill check: cli-external-orchestration
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-external-orchestration
+PASS: 13b-version: SKILL.md version 1.7.1.0 matches the newest changelog entry
+
+─────────────────────────────────────────────────────────────────
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+exit=0
+
+### Parent-skill check: system-deep-loop
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop
+PASS: 13b-version: SKILL.md version 3.0.1.0 matches the newest changelog entry
+
+─────────────────────────────────────────────────────────────────
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+exit=0
+
+### Parent-skill check: sk-code
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code
+PASS: 13b-version: SKILL.md version 4.2.3.0 matches the newest changelog entry
+
+─────────────────────────────────────────────────────────────────
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+exit=0
+
+### Frontmatter version gate (whole fleet)
+$ bash .skilled/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh
+[gate] 2960 files | ok=2951  skip-no-frontmatter=9
+exit=0
+
+### Routing replays (stage 1 advisor, stage 2 cli-external-orchestration)
+use devin swe max to implement the fix in the launcher
+  stage 1: cli-external-orchestration 0.95, sk-code 0.82
+  stage 2: route single cli-devin
+dispatch this task to codex exec with gpt-6 luna max
+  stage 1: cli-external-orchestration 0.95
+  stage 2: route single cli-codex
+run the review with cli-codex
+  stage 1: cli-external-orchestration 0.95, sk-code 0.88
+  stage 2: route single cli-codex
+use codex to review the hook installer
+  stage 1: cli-external-orchestration 0.95, sk-code 0.88
+  stage 2: defer - 
+A defer on the last prompt predates this work if the routing inputs changed only their version:
+  hub input lines changed other than version: 0
+  re-minted manifest vs HEAD, ignoring effectivePolicyHash: same
+
+RESULT: 0 failing gate(s)

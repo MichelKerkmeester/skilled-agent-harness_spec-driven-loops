@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-09-28T14:11:01.281Z",
+  "nodeVersion": "v26.8.2",
+  "platform": "darwin-arm64",
+  "evidenceClass": "registered-path",
+  "hostVersions": {
+    "claude": "not-observed",
+    "codex": "not-observed",
+    "cursor": "dormant-unconfirmed",
+    "devin": "not-observed-current-run"
+  }
+}

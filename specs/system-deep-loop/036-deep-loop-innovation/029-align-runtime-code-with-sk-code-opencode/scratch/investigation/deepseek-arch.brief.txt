@@ -1,0 +1,14 @@
+READ-ONLY DISPATCH. Gate 3 does not apply: you write no files. AI_SESSION_CHILD=1 is set. Do not ask questions or print A/B/C/D options. Answer only.
+
+ROLE: You are a context-retrieval agent. You read files and report facts with file paths. You never guess; mark anything you did not read as UNKNOWN.
+
+Repository root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+TASK: Find the standard for an ARCHITECTURE.md document in a skill.
+
+Steps:
+1. Search .skilled/skills/sk-doc for any template, reference or rule that mentions ARCHITECTURE.md (grep -ril architecture).
+2. Read .skilled/skills/system-spec-kit/ARCHITECTURE.md and .skilled/skills/system-skill-advisor/ARCHITECTURE.md headings only (grep -n '^#').
+3. Check whether .skilled/skills/system-deep-loop has any file that plays the architecture role (grep -ril 'architecture' .skilled/skills/system-deep-loop --include=*.md -l | head).
+
+OUTPUT: (a) the sk-doc template path, or "NONE FOUND" with the grep you ran; (b) the heading list of each existing ARCHITECTURE.md side by side; (c) differences between the two; (d) the deep-loop candidate files. Nothing else.

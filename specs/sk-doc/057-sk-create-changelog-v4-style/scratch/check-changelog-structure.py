@@ -202,6 +202,44 @@ for ln in body:
     if re.search(r"\*\*(Problem|Fix):\*\*", ln):
         violations.append(f"S5 Problem/Fix label: {ln.strip()[:60]!r}")
 
+# O1: internal labels a reader cannot resolve. The spec-folder blockquote is the one allowed pointer.
+LABEL = re.compile(r"\b(?:T\d{3}|(?:REQ|SC|NFR|AC|CHG|FMC|ADR|WU)-\d{2,4}|(?:packet|phase) \d{3})\b")
+for n, ln in enumerate(body):
+    if ln.startswith(">"):
+        continue
+    for m in LABEL.finditer(re.sub(r"`[^`]*`", "", ln)):
+        violations.append(f"O1 internal label {m.group(0)!r} at body line {n + 1}")
+
+# O2: the same fact said twice. Sentences of 6+ words in different sections sharing most word 4-grams.
+def sentence_list(block_lines):
+    t = " ".join(block_lines)
+    t = re.sub(r"^- ", "", t)
+    t = re.sub(r"[*`]", "", t)
+    return [s for s in re.split(r"(?<=[.!?])\s+", t.strip()) if len(s.split()) >= 6]
+
+def grams(s):
+    w = re.findall(r"[a-z0-9']+", s.lower())
+    return {tuple(w[x:x + 4]) for x in range(len(w) - 3)}
+
+section = "opening"
+seen = []
+for b in blocks(body):
+    if b[0].startswith("## "):
+        section = b[0][3:].strip()
+        continue
+    if b[0].startswith(("#", ">", "|", "```", "&nbsp;", "---")):
+        continue
+    for ln in (b if b[0].startswith("- ") else [" ".join(b)]):
+        for s in sentence_list([ln]):
+            g = grams(s)
+            if not g:
+                continue
+            for other_section, other, og in seen:
+                if other_section != section and len(g & og) / len(g | og) >= 0.5:
+                    violations.append(f"O2 repeated in {section!r} from {other_section!r}: {s[:70]!r}")
+                    break
+            seen.append((section, s, g))
+
 for x in notes:
     print("NOTE", x)
 for v in violations:

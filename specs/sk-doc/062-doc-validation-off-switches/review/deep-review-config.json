@@ -1,0 +1,55 @@
+{
+ "topic": "Review: specs/sk-doc/062-doc-validation-off-switches",
+ "mode": "review",
+ "reviewTarget": "specs/sk-doc/062-doc-validation-off-switches",
+ "reviewTargetType": "spec-folder",
+ "reviewDimensions": [
+  "correctness",
+  "security",
+  "traceability",
+  "maintainability"
+ ],
+ "specFolder": "specs/sk-doc/062-doc-validation-off-switches",
+ "maxIterations": 5,
+ "convergenceThreshold": 0.1,
+ "antiConvergence": {
+  "minIterations": 2,
+  "convergenceMode": "default",
+  "divergent": {}
+ },
+ "stopPolicy": "max-iterations",
+ "createdAt": "2026-09-28T12:21:52Z",
+ "status": "complete",
+ "executionMode": "auto",
+ "lineageMode": "auto",
+ "resource_map": {
+  "emit": true
+ },
+ "lineage": {
+  "sessionId": "2026-09-28-062-fanout",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1
+ },
+ "fanout": {
+  "executors": [
+   {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "iterations": 5,
+    "label": "luna",
+    "count": 1
+   },
+   {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-1-flash-max",
+    "iterations": 5,
+    "label": "deepseek",
+    "count": 1
+   }
+  ],
+  "concurrency": 2
+ }
+}

@@ -15,14 +15,14 @@
       "skip spec validation",
       "skdoc skip validation",
       "disable sk-doc validators",
+      "hook flags trailing comment",
       "doc validation off switch plan",
       "validation switch resolver",
       "skipped validation report",
       "sk-doc validator guard",
       "doc validation off switch tasks",
       "validation switch verification",
-      "commit trap regression",
-      "sk-doc validator guard tasks"
+      "commit trap regression"
     ],
     "key_topics": [
       "doc",
@@ -34,9 +34,9 @@
       "disable",
       "sk-doc",
       "validators",
-      "plan",
-      "resolver",
-      "skipped"
+      "hook",
+      "flags",
+      "trailing"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -49,18 +49,18 @@
       ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
       ".skilled/skills/sk-doc/shared/scripts/validation_switch.py",
       ".skilled/skills/sk-doc/shared/scripts/validation-switch.cjs",
+      ".skilled/hooks/shared/hook-flags.cjs",
       ".skilled/hooks/hook-flags.env",
       ".skilled/hooks/shared/hook-flags.sh",
-      ".skilled/hooks/shared/hook-flags.cjs",
       ".skilled/hooks/shared/hook-flags.test.cjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/validate-skip-switch.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/repair-derived.vitest.ts",
       ".skilled/skills/sk-doc/scripts/tests/test_validation_switch.py",
-      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
-      ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md",
-      ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
-      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md",
-      ".skilled/skills/sk-doc/shared/references/core-standards.md"
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts",
+      ".skilled/hooks/README.md"
     ],
     "entities": [
       {
@@ -112,6 +112,12 @@
         "source": "derived"
       },
       {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
         "name": "hook-flags.env",
         "kind": "file",
         "path": ".skilled/hooks/hook-flags.env",
@@ -124,15 +130,15 @@
         "source": "derived"
       },
       {
-        "name": "hook-flags.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/shared/hook-flags.cjs",
-        "source": "derived"
-      },
-      {
         "name": "hook-flags.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/shared/hook-flags.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-dist-staleness.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh",
         "source": "derived"
       },
       {
@@ -154,33 +160,27 @@
         "source": "derived"
       },
       {
-        "name": "ENV-REFERENCE.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "name": "progressive-validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/progressive-validate.sh",
         "source": "derived"
       },
       {
-        "name": "path-scoped-rules.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md",
+        "name": "quality-audit.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/quality-audit.sh",
         "source": "derived"
       },
       {
-        "name": "validation-rules.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        "name": "strict-pass-freshness.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/sweep/strict-pass-freshness.ts",
         "source": "derived"
       },
       {
-        "name": "spec-validation-rule-engine.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md",
-        "source": "derived"
-      },
-      {
-        "name": "core-standards.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/shared/references/core-standards.md",
+        "path": ".skilled/hooks/README.md",
         "source": "derived"
       },
       {
@@ -210,8 +210,8 @@
     ],
     "causal_summary": "`SPECKITSKIPVALIDATION` exists but traps commits",
     "created_at": "2026-09-28T07:19:12Z",
-    "last_save_at": "2026-09-28T08:15:20.976Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-29T16:54:10.871Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d40785be330d8eda050155f0227bf4bc25898e64258a80be1bff34a4ff5f4d3b",
+    "source_fingerprint": "sha256:8a474dc43d5eb3076b02ec3e1f3c9d063b5f16675318a8e9ef27166ea7288ac8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1b1cdac338c8f9025acfcff97a4bff886333a0c3f105bb3308f57d6d671b02a9",
-      "plan.md": "c27c929df90583042ce6e29eb532c909837e963ba8abeadfe3202edd8c3acc99",
-      "tasks.md": "6677f2db65f873ea3cdac3357846b755a427dbcb4017ea3396c4872df934414f",
-      "implementation-summary.md": "3db6f1cb1124e211f7030cd0c94fc11076f7c9719fb8190796c914d64c1692d3"
+      "spec.md": "b5f6c881cab87462c46310d302572e516b681bf06e6ece1e6948ed2c6d9327e8",
+      "plan.md": "5618ff9311d4a8b5334533576d37bcef52a010624f07f884e5479005518be624",
+      "tasks.md": "2ff16a57bedcde12c48155e72a8f3979f65a63748973a4b7dee13f748892932a",
+      "implementation-summary.md": "f4a85d557f05418391797d9ab445181081170832efd4beba74521bc0b885bc62"
     },
     "last_active_at": null
   }

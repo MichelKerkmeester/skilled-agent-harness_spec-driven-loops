@@ -1,0 +1,95 @@
+# Final-state recheck of every README fix (2026-09-28T16:17:45Z, HEAD 1d7ec8f39d, working tree)
+PASS R01 36 command entry points (36) and README says 36 twice
+PASS R02 40 rules (40), no 38-rule claim left
+PASS R03 create command names exist, old names gone
+PASS R04 DQI 40/30/30 in extract_structure.py
+PASS R05 chart families 49, browser-backed 5
+PASS R06 mcp-tooling 9 modes, no mcp-orca-cli
+PASS R07 doctor targets match _routes.yaml
+PASS R08 skill-advisor doctor allows --dry-run
+PASS R09 create.sh --phase default three children
+PASS R10 AC_CLOSURE informs while in progress
+PASS R11 implementation-summary scaffolded, required after first task
+PASS R12 four post-execution rules in AGENTS.md
+PASS R13 save returns a plan by default
+PASS R14 save lock is packet-level and fails fast
+PASS R15 deep-loop runtime depends on spec-kit shared and tsc
+PASS R16 improvement lanes are host-driven
+PASS R17 legal_stop_evaluated absent from research/review assets
+PASS R18 runner allowlists for Cursor, Pi, Devin
+PASS R19 three benchmark scorers
+PASS R20 15 skills, sk-communication excluded from routing
+PASS R21 sk-code-obsidian is read-only Note Database evidence
+PASS R22 sk-git three phases and their references
+PASS R23 cli-pi is the self-dispatch exception
+PASS R24 orchestrate keeps write and edit
+PASS R25 prompt improve and its mirrors
+PASS R26 goal checker flags a child with no binding row
+PASS R27 plugins on hook-flags: 12 of 15
+PASS R28 complete, plan and implement mode hints
+PASS R29 create:skill registers nothing
+PASS R30 create:readme is folder READMEs only
+PASS R31 agent-router adopts the target identity
+PASS R32 root utilities are agent-router, goal-opencode, vision
+PASS R33 webflow is stdio with WEBFLOW_TOKEN
+PASS R34 SPECKIT_AUTOSYNC=0 is the publish leg
+PASS R35 no CLAUDE.md in the repo
+PASS R36 opencode.json keys
+PASS R37 scripts runbook lists session-cleanup
+PASS R38 daemon CLI reference is the advisor front door
+PASS R39 spec-kit workspace root holds shared and typescript
+PASS R40 advisor build uses spec-kit shared and tsc
+PASS R41 grep over seven Code Mode configs matches all seven
+PASS R42 research runs with :with-research or confidence below 60%
+PASS R43 in-page links use GitHub double-hyphen slugs
+PASS A01 trust state is unavailable when the daemon is down
+PASS A02 propagate apply is the gated write
+PASS A03 runtime data/ holds the prompt policy, scripts/ the Python scorer
+PASS A04 four editor shims live in spec-kit, Pi and handler in the advisor
+PASS A05 advisor README carries no semicolon hard blocker
+TOTAL pass=48 fail=0
+exit=0
+
+# Validator and HVR scan on the final files
+
+## README.md
+✅ VALID: README.md
+Document type: readme
+Total issues: 0
+validate exit=0
+HVR SCAN: README.md
+  x2    first@879   soft2  soft-deduction         craft
+  x5    first@989   soft1  soft-deduction         do
+  x1    first@29    soft1  soft-deduction         get
+  x61   first@37    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          0
+  mechanical deductions:  -10
+hvr exit=0
+
+## .skilled/skills/system-skill-advisor/README.md
+✅ VALID: .skilled/skills/system-skill-advisor/README.md
+Document type: readme
+Total issues: 0
+validate exit=0
+HVR SCAN: .skilled/skills/system-skill-advisor/README.md
+  x2    first@125   soft1  soft-deduction         do
+  x1    first@21    soft1  soft-deduction         get
+  x6    first@84    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          0
+  mechanical deductions:  -3
+  mechanical ceiling:     97/100
+hvr exit=0
+
+# HVR baseline for comparison
+## hvr-before-_skilled_skills_system-skill-advisor_README_md.txt
+  x5    first@84    review oxford-comma-candidate , and
+  hard blockers:          4
+  mechanical deductions:  -23
+## hvr-before-README_md.txt
+  x47   first@37    review oxford-comma-candidate , and
+  hard blockers:          1
+  mechanical deductions:  -15

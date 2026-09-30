@@ -370,6 +370,7 @@ echo "catalog regenerated" > "$TMP/.skilled/commands/README.txt"
 stage_new ".skilled/hooks/probe.sh" "hook"
 SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
 check "a dirty .skilled mirror blocks its source" 1 "$RC" "a generated mirror has changes that are not staged"
+check "a dirty mirror block names its bypass" 1 "$RC" "Bypass: SPECKIT_SKIP_MIRROR_PARITY=1"
 
 # ── 23. a missing kill switch warns where the toolchain ships, and gates stay on ──
 setup_gate_fixture toolchain
@@ -388,6 +389,7 @@ setup_gate_fixture toolchain
 stage_new ".opencode/agents/probe.md" "agent"
 run_hook; RC=$?
 check "a missing agent mirror checker blocks" 1 "$RC" "agent-mirror-sync]: checker is missing"
+check "a missing agent mirror checker names the chain's off switch" 1 "$RC" "SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit"
 
 # ── 26. a missing mirror parity script blocks where the toolchain ships ──
 setup_gate_fixture toolchain
@@ -543,6 +545,45 @@ setup_gate_fixture
 stage_new ".opencode/agents/probe.md" "agent"
 run_legacy; RC=$?
 check "the helper leaves a repository without the toolchain committable" 0 "$RC"
+
+# ══ block messages name their bypass ════════════════════════════════════════
+# A caller with no one at the keyboard can only escape a block the message
+# explains. The agent mirror gate has no switch of its own, so its message names
+# the one that turns off the whole pre-commit chain, and that switch must work.
+
+# Plant a comment checker that exits with the given status for every file.
+plant_failing_comment_checker() { # plant_failing_comment_checker <exit status>
+  mkdir -p "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts"
+  printf '#!/usr/bin/env bash\necho "stub finding in $1"\nexit %s\n' "$1" \
+    > "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+  chmod +x "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+}
+
+# ── 40. a comment hygiene finding names its bypass ──
+setup_gate_fixture
+plant_failing_comment_checker 1
+stage_new "notes.md" "note"
+SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
+check "a comment hygiene finding names its bypass" 1 "$RC" "Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1"
+
+# ── 41. a comment checker that fails outright names the same bypass ──
+setup_gate_fixture
+plant_failing_comment_checker 3
+stage_new "notes.md" "note"
+SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
+check "a comment checker failure names its bypass" 1 "$RC" "Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1"
+
+# ── 42. an agent mirror desync names the chain's off switch, and the switch passes ──
+setup_gate_fixture
+mkdir -p "$TMP/.opencode/skills/system-deep-loop/deep-improvement/scripts" "$TMP/.opencode/hooks/shared"
+echo 'process.exit(1);' > "$TMP/.opencode/skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs"
+cp "$REPO_ROOT/.opencode/hooks/shared/hook-flags.sh" "$TMP/.opencode/hooks/shared/hook-flags.sh"
+stage_new ".opencode/agents/probe.md" "agent"
+# A set value answers even at 0, so the caller's own switches cannot decide this case.
+SYSTEM_HOOKS_DISABLED=0 SYSTEM_GIT_COMMIT_HOOKS_DISABLED=0 run_hook; RC=$?
+check "an agent mirror desync names the chain's off switch" 1 "$RC" "SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit"
+SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 run_hook; RC=$?
+check "the chain's off switch lets that commit through" 0 "$RC"
 
 echo ""
 echo "pre-commit gates: $PASS passed, $FAIL failed"

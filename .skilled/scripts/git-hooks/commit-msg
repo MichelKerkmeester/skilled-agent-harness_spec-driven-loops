@@ -20,6 +20,7 @@ fi
 MESSAGE_FILE="${1:-}"
 if [[ -z "$MESSAGE_FILE" || ! -f "$MESSAGE_FILE" ]]; then
   printf 'BLOCKED: commit-msg hook received no readable message file.\n' >&2
+  printf 'Bypass: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...\n' >&2
   exit 1
 fi
 
@@ -32,6 +33,7 @@ CLEAN_MESSAGE="$(git stripspace --strip-comments < "$MESSAGE_FILE")"
 if [[ -z "$CLEAN_MESSAGE" ]]; then
   printf 'BLOCKED: commit message is empty.\n' >&2
   printf 'Expected: type(scope): imperative summary\n' >&2
+  printf 'Bypass: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...\n' >&2
   exit 1
 fi
 
@@ -229,18 +231,11 @@ if [[ "$BREAKING" == "!" && "$HAS_BREAKING_FOOTER" -eq 0 ]]; then
   ERRORS+=("A breaking '!' subject requires a 'BREAKING CHANGE: <description>' footer line.")
 fi
 
-STAGED_FILE_COUNT=0
-if ! STAGED_FILE_COUNT="$(
-  git -C "$REPO_ROOT" diff --cached --name-only 2>/dev/null \
-    | wc -l \
-    | tr -d '[:space:]'
-)"; then
-  STAGED_FILE_COUNT=0
-fi
-STAGED_FILE_COUNT="${STAGED_FILE_COUNT:-0}"
-
-if (( STAGED_FILE_COUNT >= 4 && HAS_EXPLANATORY_BODY == 0 )); then
-  ERRORS+=("${STAGED_FILE_COUNT} paths are staged; SKILL.md requires a body when four or more paths are staged.")
+# The body is what a later search reads to learn why a commit exists, so every
+# authored commit carries one, however few paths it stages. Trailers are machine
+# data and do not count. The Git-generated subjects exempted above never reach here.
+if (( HAS_EXPLANATORY_BODY == 0 )); then
+  ERRORS+=("SKILL.md requires a body on every authored commit: add at least one prose line above the trailers.")
 fi
 
 if (( ${#ERRORS[@]} > 0 )); then

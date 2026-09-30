@@ -299,8 +299,10 @@ changelog_template:
   #   - Plain English for a smart person who is not a developer
   #   - Lead with why the release matters, never technical stats
   #   - Every change: what was broken + what changed + why it matters
-  #   - Omission rules apply: no Files Changed tables, no test metrics, no schema
-  #     tables; a table appears only when the numbers themselves are the story
+  #   - Keep only what the reader would notice or act on, merge items with one
+  #     effect and say each fact once (template section 3)
+  #   - No Files Changed, test-metric or schema tables unless the numbers
+  #     themselves are the story
   #   - Benefit-led H4 headings, 2-7 words for most and 10 at most
   #   - At-a-glance bullets open with a bold lead-in sentence
   #   - No Oxford commas, em dashes, or semicolons
@@ -516,7 +518,14 @@ workflow:
       - "If changelog_mode = nested, read .skilled/skills/system-spec-kit/templates/changelog/root.md or phase.md instead"
       - "Set DATE to today's date in YYYY-MM-DD format"
       - |
-        SELECT FORMAT based on change count and release type:
+        SELECT CONTENT before writing (template section 3, Choose by Reader Impact):
+          List every change the source records
+          Keep a change only when the reader would notice it, act on it or decide differently because of it
+          Merge changes that have the same effect for the reader, and rank the rest by impact
+          Drop test and playbook changes, internal labels, process detail and follow-on housekeeping
+            (docs brought in line, regenerated copies, rebuilt indexes, refreshed metadata or versions)
+      - |
+        SELECT FORMAT based on the changes that survive SELECT CONTENT and the release type:
           IF change_count < 10 AND change_type != major AND no breaking change -> COMPACT format
           IF change_count >= 10 OR change_type == major OR any breaking change -> EXPANDED format
           See template file Section 5 (Format Selection Guide) for full rules
@@ -537,27 +546,33 @@ workflow:
             Use spec.md title + implementation-summary.md first paragraph
           IF source_type = component or git_history:
             Synthesize from commit messages and changed files
-          Compact: 1-3 sentences. Expanded: an opening narrative of 1-5 paragraphs.
+          Compact: 1-2 sentences, 3 at most. Expanded: an opening narrative of 1-3 paragraphs, 5 at most, told at the level of themes.
           Lead with WHY, not technical stats.
       - |
         Generate BODY using selected format:
 
           COMPACT FORMAT:
             ## What's New at a Glance
-            - **{The change, stated as a short sentence.}** {One or two plain sentences on what it means for the reader.}
+            - **{The change, stated as a short sentence.}** {One plain sentence that adds what the bold one does not say.}
 
           EXPANDED FORMAT:
             ## Why This Release
             ## What's New at a Glance
             ## {Topical Domain}
               #### {Benefit-led heading, usually 2-7 words}
-              {One to three narrative paragraphs, seven at most: what was broken, what changed, why it matters}
+              {One or two paragraphs, seven at most: what was broken, what changed, why it matters. Start where the glance bullet stopped}
               (inline **Breaking:** markers where a change breaks something)
 
         Omission rules apply to every format:
           - No Files Changed tables, no test metrics, no schema tables
+          - No internal labels (task, requirement, scenario or finding IDs, packet or phase numbers) outside the spec-folder line
           - Reverted mid-cycle work compresses to one story sentence
           - A table appears only when the numbers themselves are the story
+
+        Say each fact once (template section 3, Say Each Fact Once):
+          - Opening: themes. Why This Release: the gap or the gain. Glance: one payoff line per theme
+          - H4 items: the detail. Upgrade: only the actions
+          - Cut any sentence that restates one from another section
 
         Expanded-format heading rule:
           - Prefer 2-7 words, 10 at most, benefit-led
@@ -565,13 +580,14 @@ workflow:
           - Avoid packet IDs, numbering, and sentence-length headings unless truly required
 
         Pull content from:
-          spec_folder: tasks.md completed items, implementation-summary.md sections
-          component/git: commit messages grouped by type
+          spec_folder: implementation-summary.md, with tasks.md only to confirm what shipped (never transcribe the task list)
+          component/git: commit messages, merged by the effect each change has for the reader
           nested: generator payload from nested-changelog.js
       - |
         Generate UPGRADE section:
           IF breaking changes -> Upgrade Notes with Adopt/Repoint/Drop bold lead-ins
           IF no migration needed -> "No migration required."
+          List only the actions, one line each, never why the change was made
           Compact format uses "## Upgrade"; expanded format uses "## Upgrade Notes".
       - "Assemble full content per template format (compact or expanded), opening with the frontmatter block"
     outputs:
@@ -603,7 +619,9 @@ workflow:
           [ ] Compact summary within 3 sentences, expanded opening within 5 paragraphs
           [ ] Each at-a-glance bullet opens with a bold lead-in sentence
           [ ] H4 headings 10 words at most, H4 items 7 paragraphs at most
-          [ ] Omission rules applied (no file inventories, no test metrics)
+          [ ] Omission rules applied (no file inventories, test counts, process detail or housekeeping items)
+          [ ] No internal labels outside the spec-folder line
+          [ ] Each fact appears once: no sentence restates one from another section
       - |
         IF any check fails:
           Log failed check(s)
@@ -658,6 +676,7 @@ workflow:
           Continue to step_8_save_context
       - "Derive release_tag: \"v{next_version}\" -- the same version already written to {output_path}"
       - "Derive release_title: \"{release_tag} — {editorial_title}\", where editorial_title is the entry's H1 without its leading version and the comma after it. The H1 `# v4.0.0.1, The Foundation Hardened: Old Specs Forward and Quieter Sessions` gives `v4.0.0.1 — The Foundation Hardened: Old Specs Forward and Quieter Sessions`"
+      - "Derive tag_message: \"{release_tag}: {editorial_title}\" with the first colon in editorial_title, if it has one, turned into a comma. The H1 above gives `v4.0.0.1: The Foundation Hardened, Old Specs Forward and Quieter Sessions`. The title is used instead of the summary's first sentence, which often opens with the version and would repeat it"
       - "Check for tag collision: run `git tag --list {release_tag}`. IF the tag already exists -> PAUSE, report the conflict, do not overwrite it, set release_published = false, set release_published_display = \"No -- tag {release_tag} already exists\""
       - "Verify `gh` CLI is available and authenticated: run `gh auth status`. IF unavailable/unauthenticated -> PAUSE, report, set release_published = false, set release_published_display = \"No -- gh CLI unavailable or unauthenticated\""
       - "Check working tree state: run `git status --porcelain -- {output_path}`. IF uncommitted, log a warning that the tag was created on a HEAD that may not include the just-written changelog file (autonomous mode never auto-commits)"
@@ -667,11 +686,10 @@ workflow:
             Strip it through its closing "---" line, plus any blank lines after it
           IF the next line starts with "# " (the editorial title H1):
             Strip that line and any immediately following blank lines
-          IF anything was stripped:
-            Write the remainder to a temp notes file (e.g., /tmp/release-notes-{release_tag}.md)
-          ELSE:
-            Use {output_path} directly as the notes file
-      - "Run: git tag -a {release_tag} -m \"{release_tag}: {summary_first_sentence}\""
+          Append a blank line and then the footer line:
+            Full changelog: `.skilled/changelog/skilled/v{next_version}.md`
+          Write the result to a temp notes file (e.g., /tmp/release-notes-{release_tag}.md) and use it as {notes_file_path}
+      - "Run: git tag -a {release_tag} -m \"{tag_message}\""
       - "Run: git push origin {release_tag}"
       - "Run: gh release create {release_tag} --title \"{release_title}\" --notes-file {notes_file_path}"
       - "Capture the release URL returned by gh release create"

@@ -1,0 +1,171 @@
+{
+  "sessionId": "fanout-deepseek-1790598126829-x9gy4v",
+  "generation": 1,
+  "lineageMode": "new",
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P2",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Shell truthy check deletes internal whitespace, diverging from the Node and Python readers",
+      "file": ".skilled/hooks/shared/hook-flags.sh",
+      "line": 26,
+      "description": "tr -d '[:space:]' deletes internal whitespace before the truthy case; the Node and Python readers trim only the edges.",
+      "findingClass": "cross-consumer",
+      "scopeProof": "Read all three resolver implementations and the cross-reader test; no table row covers internal whitespace.",
+      "affectedSurfaceHints": [
+        "hooks/shared/hook-flags.sh",
+        "hooks/shared/hook-flags.cjs",
+        "sk-doc/shared/scripts/validation_switch.py"
+      ],
+      "contentHash": null,
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "dimensions": [
+        "correctness"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Central bypass-switch reference (.env.example) omits the two validation switches",
+      "file": ".env.example",
+      "line": 395,
+      "description": "The git-hook bypass family is documented there; the two validation switches are not mentioned anywhere in the file.",
+      "findingClass": "cross-consumer",
+      "scopeProof": "Repo-wide rg sweep for the switch names; the only production-path hits are the commented example file and tests.",
+      "affectedSurfaceHints": [
+        ".env.example",
+        "hooks/hook-flags.env.example"
+      ],
+      "contentHash": null,
+      "firstSeen": 2,
+      "lastSeen": 5,
+      "dimensions": [
+        "maintainability"
+      ],
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Upcoming release entry v4.0.0.2 does not mention the validation off switches",
+      "file": ".skilled/changelog/skilled/v4.0.0.2.md",
+      "line": 1,
+      "description": "The switch work landed before the entry's last update and the entry is untagged; no release entry mentions the switches.",
+      "findingClass": "cross-consumer",
+      "scopeProof": "Searched all release entries for the switch names and 'off switch'; git dates and the tag check settle the ordering.",
+      "affectedSurfaceHints": [
+        ".skilled/changelog/skilled/v4.0.0.2.md"
+      ],
+      "contentHash": null,
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "dimensions": [
+        "traceability"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "hooks/README.md states the comment rule without the tab case",
+      "file": ".skilled/hooks/README.md",
+      "line": 71,
+      "description": "The README says 'after a space'; the implementation and every other description say 'after a space or tab'.",
+      "findingClass": "instance-only",
+      "scopeProof": "Compared the sentence against the implementation and the other three descriptions of the rule. Citation corrected from :74 to :71 during iteration 5 re-verification (the finding is unchanged).",
+      "affectedSurfaceHints": [
+        "hooks/README.md"
+      ],
+      "contentHash": null,
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "dimensions": [
+        "maintainability"
+      ],
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 4
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.25,
+  "graphConvergenceScore": 0,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "traceabilityChecks": {
+    "summary": {
+      "required": 2,
+      "executed": 4,
+      "pass": 3,
+      "partial": 1,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    }
+  },
+  "terminalStop": "maxIterationsReached"
+}

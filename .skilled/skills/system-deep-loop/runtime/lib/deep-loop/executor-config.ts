@@ -223,9 +223,11 @@ export const PI_SUPPORTED_MODELS = [
   'minimax-m3',
   'gpt-6-luna',
   'gpt-6-sol',
-  // MiMo is reached through DevPass only. The gateway serves no ultraspeed tier, so the
-  // low-latency MiMo id has no route here.
+  // Both MiMo literals are DevPass-fronted. opencode-go and Cline front them too, but one
+  // literal maps to one provider, so those routes are direct-dispatch only. The gateway serves
+  // no ultraspeed tier, so the low-latency MiMo id has no route here.
   'mimo-v2.6-pro',
+  'mimo-v2.6-flash',
   'qwen3.8-max',
   // OpenRouter carries exactly two models here, each keeping its upstream provider path so
   // `${provider}/${model}` composes the full three-segment OpenRouter selector:

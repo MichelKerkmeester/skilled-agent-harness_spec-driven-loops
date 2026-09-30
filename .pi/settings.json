@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "0.99.1",
   "theme": "dark",
   "defaultProvider": "llmgateway",
   "defaultModel": "gpt-6-luna",
@@ -21,6 +21,11 @@
     "opencode-go/glm-5.3-flash",
     "cline-pass/z-ai/glm-5.3-flash",
     "llmgateway/mimo-v2.6-pro",
+    "llmgateway/mimo-v2.6-flash",
+    "opencode-go/mimo-v2.6-pro",
+    "opencode-go/mimo-v2.6-flash",
+    "cline-pass/cline-pass/mimo-v2.6-pro",
+    "cline-pass/cline-pass/mimo-v2.6-flash",
     "minimax/MiniMax-M3"
   ],
   "packages": [

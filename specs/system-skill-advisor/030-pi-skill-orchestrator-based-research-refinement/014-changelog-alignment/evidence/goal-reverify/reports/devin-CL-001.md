@@ -1,0 +1,18 @@
+<!-- dispatch: devin CL-001; ledger: 2026-09-28T12:57:10Z 2026-09-28T12:59:08Z 0 118 -->
+
+I'll start by recording the Advisor line from my context (STEP 0), then read the scenario file.
+
+STEP 0 — the Advisor line visible in my context is:
+`Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`
+
+Now reading the scenario file.Now let me check the environment: verify the hook scripts exist, `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset, and see where the diagnostics path resolves.Step 2 passed all expected signals. Now step 3 — run the inner advisor hook directly and capture its stderr.All steps passed. Cleaning up the temp directory, then printing the report.RESULT: PASS | scenario=CL-001 | runtime=devin-cli
+NATIVE: Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json
+STEPS:
+| # | Command (shortened) | Exit | Observed (key output) | Expected (from the scenario file) | Match |
+|---|---|---|---|---|---|
+| 1 | `npm --prefix .skilled/skills/system-spec-kit/runtime run build` | — | skipped | build current | skipped: prebuilt by orchestrator |
+| 2 | `printf '{"prompt":"help me commit my changes",...}' \| SKILL_ADVISOR_DEBUG=1 node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js` + DIAG line count / tail / grep | 0 | diagnostics 286 -> 287 (+1); stdout JSON `hookSpecificOutput.additionalContext` = `Advisor: live; use sk-git 0.95/0.12 pass.` + Directives block; `shim stderr bytes: 0`; newest diag record `{"runtime":"claude","status":"ok","freshness":"live","cacheHit":true,"skillLabel":"sk-git","emittedBytes":259,"directivesSuppressed":false}`; `grep -c 'help me commit my changes'` on JSONL = 0 | exit 0; stdout JSON with additionalContext starting `Advisor:` + freshness word (live/stale) or a status line; shim stderr empty; JSONL gains one line with `runtime:"claude"`, `emittedBytes`, `directivesSuppressed`; prompt literal absent | YES |
+| 3 | `printf '{"prompt":"help me commit my changes",...}' \| node .skilled/skills/system-skill-advisor/runtime/dist/hooks/claude/user-prompt-submit.js` (stderr captured) | 0 | inner stderr JSONL `{"runtime":"claude","status":"ok","freshness":"live","cacheHit":false,"skillLabel":"sk-git","emittedBytes":259,"directivesSuppressed":false}`; `grep -c` prompt literal = 0 (grep exits 1 on zero matches — expected) | inner hook's stderr carries same record shape; prompt literal absent | YES |
+| 4 | `printf '{"prompt":"thanks",...}' \| SKILL_ADVISOR_DEBUG=1 node .skilled/.../system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js` | 0 | first line of additionalContext = `Advisor: prompt skipped.`; shim stderr 0 bytes | `Advisor: prompt skipped.` | YES |
+DEVIATIONS: step 1 build skipped: prebuilt by orchestrator (dispatch instruction; `npm install`/builds also barred). Output files placed in `mktemp -d /tmp/skill-advisor-playbook.XXXXXX` instead of literal `/tmp/skill-advisor-playbook` and deleted afterward, per the temp-file hard rule; identical filenames used inside.
+NOTES: Preconditions verified before running: `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` unset, `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` unset, both hook scripts present, DIAG resolved to `/var/folders/.../T/speckit-skill-advisor-metrics/a9f078f65abeed95-diagnostics.jsonl` (outside repo — no repository writes occurred). The NATIVE Advisor line reported `outage (fail_open)` while the hook itself returned a `live` brief, so the injected line reflects the spawning runtime's advisor state, not this repo's daemon — no contradiction with the PASS. Temp dir and marker file removed; no repo files changed.

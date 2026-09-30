@@ -68,7 +68,7 @@ This table is the single source of truth for repo-authored hook kill-switch name
 Flags resolve from two places: the live environment, and an optional config file. The environment always wins, so a persisted default can still be overridden for one session.
 
 - **Environment**: set any flag inline (`SYSTEM_SKILL_ADVISOR_DISABLED=1 <command>`), for a session (`export SYSTEM_SPEC_GATE_DISABLED=1`), or in your shell profile.
-- **Config file**: copy `hook-flags.env.example` to `hook-flags.env` (in this directory) and uncomment the flags you want off. It uses the same `KEY=value` names, is gitignored (personal to you), and is read by every guard variant. Re-enable a file-disabled hook for one session with e.g. `SYSTEM_SKILL_ADVISOR_DISABLED=0`.
+- **Config file**: copy `hook-flags.env.example` to `hook-flags.env` (in this directory) and uncomment the flags you want off. It uses the same `KEY=value` names, is gitignored (personal to you), and is read by every guard variant. A comment can follow a value after a space or tab, so the example's lines work as soon as you uncomment them. Re-enable a file-disabled hook for one session with e.g. `SYSTEM_SKILL_ADVISOR_DISABLED=0`.
 
 ```bash
 cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
