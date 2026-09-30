@@ -159,6 +159,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 35 | 035-fetched-text-injection-screen/ | R16: whether a Jev or Deem `noul` spots text that tries to instruct the agent better than flag-nothing and a lexical screen, on public vendored text with operator-planted instructions, after a zero-call fetch and corpus census that stops at a 90-row label gate, with the fetch seam left open | Complete |
 | 36 | 036-sk-code-and-sk-doc-alignment/ | Align every file the packet created with sk-code-opencode and sk-doc: code header markers, bracketed stderr tags, playbook and catalog validator failures, voice-rule blockers and one missing README, proved by each skill's own validators | Complete |
 | 37 | 037-pi-native-classifier-transport/ | Measure Pi 0.99's native classifier runtime against the jev CLI on the same Jev 1.13 questions (agreement, latency, cost), after a zero-call census of reachable classifier models, with no integration change | Complete |
+| 38 | 038-pi-classifier-transport-integration/ | Make Pi a working, opt-in Jev transport for `choice` questions, and document it for Pi workers, with today's behavior unchanged when the switch is off | Planned |
 
 ### Phase Transition Rules
 
@@ -209,6 +210,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 009-cli-jev-hub-move | 035-fetched-text-injection-screen | 008 and 009 are Complete, and D3 of `goal.md` released 035 on 2026-09-29. Its model arms wait on 60 natural labels and 30 planted sentences, and the fetch seam stays an open question | With logging stubs first on `PATH`, `score-injection-screen.mjs` prints the fetch and corpus censuses and `stop: fewer than 90 labeled rows` while the stubs log no call, and `git diff --stat .claude/settings.json .skilled/hooks` is empty. `validate.sh --strict` passes on 035 |
 | 035-fetched-text-injection-screen | 036-sk-code-and-sk-doc-alignment | 019 to 035 are Complete, so the set of created files is fixed at `089693d899`. Code in the deep-loop, skill-advisor and spec-kit runtime trees is left to the session that owns those align packets | `verify_alignment_drift.py --check-exact-headers` prints `Errors: 0` on the staged scope, and the playbook, catalog, document and voice validators pass on the changed files |
 | 036-sk-code-and-sk-doc-alignment | 037-pi-native-classifier-transport | 036 is Complete. The live comparison waits on the operator's yes, and any llama.cpp column waits on an install yes | The default run prints the census with no model call, and the approved run ends in one `verdict pi-transport:` line |
+| 037-pi-native-classifier-transport | 038-pi-classifier-transport-integration | 037 is Complete with an `adopt` verdict for `choice`. Runtime-tree callers stay with their owners | With the switch off every changed caller prints the same bytes, and with it on the transport answers `choice` through Pi in stubbed tests |
 <!-- /ANCHOR:phase-map -->
 
 ---

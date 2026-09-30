@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration",
+  "description": "Phase 38: pi-classifier-transport-integration",
+  "keywords": [
+    "phase",
+    "pi-classifier-transport-integration"
+  ],
+  "lastUpdated": "2026-09-30T16:01:04.345Z",
+  "specId": "038",
+  "folderSlug": "pi-classifier-transport-integration",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

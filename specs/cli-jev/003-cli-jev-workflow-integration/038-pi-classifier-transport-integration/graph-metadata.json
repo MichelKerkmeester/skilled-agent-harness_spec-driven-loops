@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi classifier transport integration",
+      "jev transport pi switch",
+      "cli-classifier pi transport",
+      "choice question pi backend",
+      "pi worker classifier docs",
+      "pi classifier transport plan",
+      "jev transport switch design",
+      "opt-in pi backend",
+      "choice transport fallback",
+      "classifier transport testing strategy",
+      "pi classifier transport tasks",
+      "jev transport switch tasks"
+    ],
+    "key_topics": [
+      "classifier",
+      "transport",
+      "integration",
+      "jev",
+      "switch",
+      "cli-classifier",
+      "choice",
+      "question",
+      "backend",
+      "worker",
+      "docs",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/context/context.md",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+      ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "runtime/cli/evals/score-alignment-suggestion.ts",
+      "runtime/cli/retrieval/score-track-narrowing.mjs",
+      "runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
+      "runtime/scripts/debug-next-check/score-debug-next-check.mjs",
+      ".skilled/skills/cli-classifier/feature-catalog/feature-catalog.md",
+      ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": "scratch/context/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-pi-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-alignment-suggestion.ts",
+        "kind": "code",
+        "path": "runtime/cli/evals/score-alignment-suggestion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "score-track-narrowing.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/score-track-narrowing.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-completion-claims.mjs",
+        "kind": "file",
+        "path": "runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-debug-next-check.mjs",
+        "kind": "file",
+        "path": "runtime/scripts/debug-next-check/score-debug-next-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-clarify-default.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 037 measured Pi's native classifier runtime as good enough for the packet's Jev `choice` questions",
+    "created_at": "2026-09-30T16:01:03Z",
+    "last_save_at": "2026-09-30T16:09:23.469Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:222df97b43a9c1868b7dc0eebadc498e9079bc39b12d7247ceef203a8d6f293f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cecd47e314ee23ff40c1f7df7a3014f100dd522a3339ebbba4271cf271fd76de",
+      "plan.md": "e2d4cc829e055c2674a457a2734f04db01c730c6e6ba9ea1f476ed549b2aa212",
+      "tasks.md": "c1053f8da3b7b0a0512aef751d584802f6ca3b4c17448d4883ef74466f0caf61",
+      "implementation-summary.md": "f42a8a870199036bd57ea483e1bcfc16f2a4c34575c7ea8ce73b19f7c1885791"
+    },
+    "last_active_at": null
+  }
+}

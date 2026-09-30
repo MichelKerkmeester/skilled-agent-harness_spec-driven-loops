@@ -44,10 +44,10 @@ _memory:
 
 | ID | Decision |
 |----|----------|
-| D1 | Jev first, else Deem, dormant unless one passes its check (`jev auth status --provider <p>` or Deem's health check). With neither, behavior is today's. Jev gets no secret |
-| D2 | Hub `cli-classifier` holds `cli-jev` and `cli-deem`. Deem 0.8B bf16 stays served locally and current |
-| D3 | Built: 002, 003, 005, 006, 008, 009, 016, 017. Released 2026-09-29: 019 to 035 in order, one per research `later` item, then 036 and 037. Disjoint builds may run in parallel |
-| D4 | 003, 006 and 019 to 035 stop at their label gate, with no model labels. R17 is dropped |
+| D1 | Jev first, else Deem, dormant unless one passes its check (`jev auth status --provider <p>` or Deem's health check). Jev gets no secret |
+| D2 | Hub `cli-classifier` holds `cli-jev` and `cli-deem`. Deem 0.8B bf16 stays served locally |
+| D3 | Built: 002, 003, 005, 006, 008, 009, 016, 017. Released 2026-09-29: 019 to 035 in order, one per `later` item, then 036 to 038. Disjoint builds may run in parallel |
+| D4 | 003, 006 and 019 to 035 stop at their label gate. No model labels. R17 is dropped |
 | D5 | The session orchestrates, verifies and commits. Only Pi writes: DeepSeek V4.1 Flash on Cline (`xhigh`), then OpenCode Go, then LLM Gateway (`max`), and `llmgateway/mimo-v2.6-pro` at `high`. No Claude leaves. Cross-family review: fix P0 and P1, record P2 |
 | D6 | Skill docs change via sk-doc, code via sk-code's OpenCode route |
 | D7 | Stop only for an install yes or a missing credential. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
@@ -99,6 +99,7 @@ Decisions outrank each child goal.
 | 035 | `035-fetched-text-injection-screen/goal.md` |
 | 036 | `036-sk-code-and-sk-doc-alignment/goal.md` |
 | 037 | `037-pi-native-classifier-transport/goal.md` |
+| 038 | `038-pi-classifier-transport-integration/goal.md` |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -106,7 +107,7 @@ Decisions outrank each child goal.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] 002, 003, 005, 006, 008, 009, 016, 017, 036 and 037 are Complete
+- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 038 are Complete
 - [x] 019 to 035 are Complete: each prints its verdict line or stops at its label gate
 - [x] `validate_document.py` exits 0 on every skill doc a build changed
 - [x] No open P0 or P1 finding, and no changed runtime's suite fails beyond its baseline
@@ -241,4 +242,5 @@ and findings belong here.
 | Landing on main (2026-09-30) | Source: the operator, "Commit push merge to main", then "First push everything dirt, staged unstaged on main branch to remote. Afterwards merge but handpick and check if they have superseded things we did or that ours complements and could be added on top". This lifts D7's "no push or merge to main" for this landing. The main checkout's uncommitted work went out first as five commits, `a8f0abf18f..41c5b43131`. Merge `7d118aa574` then took main into this branch by hand. 27 files changed on both sides. Content overlaps (root, hooks and advisor READMEs, `fanout-run.cjs` and its test) touch different hunks, so both sides stay and nothing of ours was superseded. SKILL.md versions take the newest changelog entry (deep-review 1.11.1.0, advisor 0.14.0.0, spec-kit 4.6.0.0). Both sides wrote sk-doc v2.2.3.0, so main keeps it and the citation drift scan is v2.2.4.0. Generated files were regenerated from the merged tree |
 | Directive amendment: bind 036 (2026-09-30) | Source: the operator's "Make sure all skills and things we created aligns with sk code opencode and sk doc" and the answer "New phase in 003 (Recommended)". D3 releases 036 after 035. D7 drops "Worktree 069" and "no push or merge to main", which the operator lifted for the 2026-09-30 landing. Criterion 1 adds 036 and is open again until 036 is Complete. The objective and binding line were cut to keep the slice under 4,000 characters |
 | Directive amendment: bind 037 (2026-09-30) | Source: the operator's "Pi has native jev support this changes how we integrate it in cli pi" and the answer "Test it first (Recommended)". D3 releases 037 after 036. Criterion 1 adds 037 and is open until 037 is Complete. To stay under 4,000 characters the objective drops "with docs true to the code" (D6 carries it), D1 drops "exits 0", D5 drops "by Bash" and the binding line is shortened |
+| Directive amendment: bind 038 (2026-09-30) | Source: the operator's answer "Plan the integration" after 037 printed `adopt`, and "Merge to main (Recommended)", which landed 036 and 037 at `2748c84f14`. D3 releases 038 after 037. Criterion 1 adds 038 and is open until 038 is Complete. To stay under 4,000 characters D1 drops "With neither, behavior is today's." (dormant already says it), D2 drops "and current", D3 drops "research" and D4 splits its label sentence |
 <!-- /ANCHOR:log -->
