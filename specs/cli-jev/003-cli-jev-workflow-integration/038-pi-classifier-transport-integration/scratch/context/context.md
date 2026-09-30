@@ -19,7 +19,7 @@
 
 ## Jev today (read in this session)
 
-- `jev` question types: `noul` (a yes/no probability, which the `vercel` provider rewrites to `boolean`, `cli-usage/SKILL.md:190`), `choice` and `score` (`cli-usage/SKILL.md:163`). Pinned `jev 0.6.2` (`cli-usage/SKILL.md:97`). Prerequisite detection is `command -v jev` then `jev auth status` (`cli-usage/SKILL.md:92-101`).
+- `jev` question types: `noul` (a yes/no probability, which the `vercel` provider rewrites to `boolean`, `cli-jev/SKILL.md:190`), `choice` and `score` (`cli-jev/SKILL.md:163`). Pinned `jev 0.6.2` (`cli-jev/SKILL.md:97`). Prerequisite detection is `command -v jev` then `jev auth status` (`cli-jev/SKILL.md:92-101`).
 - 21 script files spawn `jev` directly (a grep for the `jev` binary name and `'choice', '--provider'`, excluding tests, dist and docs). By owner:
   - cli-classifier: `benchmark/injection-screen/score-injection-screen.mjs` (noul), `benchmark/pi-transport/score-pi-transport.mjs` (choice)
   - sk-communication: `benchmark/reply-harness/judge-agreement.mjs` (score)
@@ -29,13 +29,13 @@
   - system-spec-kit: `runtime/cli/evals/score-alignment-suggestion.ts` (choice), `runtime/cli/retrieval/score-track-narrowing.mjs` (choice), `runtime/scripts/completion-claim-audit/score-completion-claims.mjs` (noul), `runtime/scripts/debug-next-check/score-debug-next-check.mjs` (choice)
 - The system-deep-loop, system-skill-advisor and system-spec-kit runtime trees are owned by another session's align packets. This packet leaves them alone (the rule 036 followed).
 - `.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md` never mentions classifiers (a grep for `classif` finds nothing).
-- `.skilled/skills/cli-classifier/` holds `cli-usage/` (the jev packet), `cli-deem/`, `shared/` (a README only) and the benchmark, catalog and playbook folders.
+- `.skilled/skills/cli-classifier/` holds `cli-jev/` (the jev packet), `cli-deem/`, `shared/` (a README only) and the benchmark, catalog and playbook folders.
 
 ## Proposed frame (the spec may refine; mark anything not above as proposed)
 
 - One shared transport module in cli-classifier (proposed `cli-classifier/shared/scripts/`), answering `choice` through Pi's SDK with the same result shape the jev CLI's JSON gives callers. The jev CLI stays the default. Pi is chosen only by an explicit switch or environment value (name proposed), so with it unset behavior is today's.
 - Only `choice` is adopted, because 037 measured only `choice`. `bool` (for `noul`) and `score` stay on the CLI until each has its own measured run under the same keep rule. Whether the 037 scorer can be extended for them, and which recorded baselines exist, is UNKNOWN until the design reads the recorded runs.
 - Callers: only callers in skills this packet may edit (cli-classifier, sk-doc, sk-communication) are candidates to opt in, and only `choice` callers. The runtime-tree callers get a recorded follow-up, not an edit.
-- Docs through sk-doc: `cli-usage` gains the Pi route next to the CLI route. `cli-pi/SKILL.md` gains a short classifier section: how a Pi worker calls `models.classify()` from a codemode script or an extension, that credentials stay in Pi's store, and that a classifier answer is evidence, never permission (the Transport Guard in `cli-usage/SKILL.md`).
+- Docs through sk-doc: `cli-jev` gains the Pi route next to the CLI route. `cli-pi/SKILL.md` gains a short classifier section: how a Pi worker calls `models.classify()` from a codemode script or an extension, that credentials stay in Pi's store, and that a classifier answer is evidence, never permission (the Transport Guard in `cli-jev/SKILL.md`).
 - A fall-back rule: when Pi is chosen but its gate fails (no Pi, no classifier model, missing credential), the transport prints one skip line and falls back to the CLI or stops, as the spec decides. Never a silent switch.
 - Tests stub both backends. No live call is needed to build. One small live smoke call on the operator's yes is optional.

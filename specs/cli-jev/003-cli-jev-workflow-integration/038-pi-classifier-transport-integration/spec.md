@@ -30,7 +30,7 @@ contextType: "implementation"
 | **Phase** | 38 of 38 |
 | **Predecessor** | 037-pi-native-classifier-transport |
 | **Successor** | None |
-| **Handoff Criteria** | The five completion criteria in `goal.md` each run from the final state: with the switch off every changed caller prints what it printed before on a stub-backed run, the switch-on path answers a `choice` question through Pi and returns the CLI's result shape with both backends stubbed in tests, each gate failure prints one skip line and follows the gate rule fixed in `spec.md` section 4, `cli-usage` and `cli-pi/SKILL.md` document the Pi route with `validate_document.py` VALID on every changed doc, the runtime-tree callers are listed as a follow-up with file paths, and `validate.sh --strict` prints `RESULT: PASSED` for this phase. |
+| **Handoff Criteria** | The five completion criteria in `goal.md` each run from the final state: with the switch off every changed caller prints what it printed before on a stub-backed run, the switch-on path answers a `choice` question through Pi and returns the CLI's result shape with both backends stubbed in tests, each gate failure prints one skip line and follows the gate rule fixed in `spec.md` section 4, `cli-jev` and `cli-pi/SKILL.md` document the Pi route with `validate_document.py` VALID on every changed doc, the runtime-tree callers are listed as a follow-up with file paths, and `validate.sh --strict` prints `RESULT: PASSED` for this phase. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -47,14 +47,14 @@ Phase 037 measured Pi 0.99.1 on `openrouter` `typesafe/jev-1.13` against the jev
 **Dependencies**:
 - Phase 037 (`037-pi-native-classifier-transport`), Complete. Its `adopt` verdict is this phase's basis.
 - Installed Pi 0.99.1 at `~/.local/lib/node_modules/@earendil-works/pi-coding-agent`, with 7 classifier models available through `openrouter` per the 037 probe. Credentials stay in Pi's own store.
-- `jev 0.6.2` on `PATH`, pinned in `.skilled/skills/cli-classifier/cli-usage/SKILL.md:97`, for the default route and the fallback.
+- `jev 0.6.2` on `PATH`, pinned in `.skilled/skills/cli-classifier/cli-jev/SKILL.md:97`, for the default route and the fallback.
 - No install is needed (parent D7). The operator's yes gates only an optional live smoke call.
 - Build roles: parent D5 through this phase's D6. Skill docs: parent D6.
 
 **Deliverables**:
 - A transport module under `.skilled/skills/cli-classifier/shared/scripts/` (proposed, for example `jev-transport.mjs`) that answers `choice` through Pi's SDK and returns the shape callers read from the jev CLI today, dormant unless asked for by name.
 - Its `node --test` suite with both backends stubbed (proposed path `shared/scripts/tests/jev-transport.test.mjs`).
-- The doc updates of section 3: `cli-usage`, a `cli-pi/SKILL.md` classifier section, a cli-classifier feature catalog entry and a playbook scenario with their index rows, written through sk-doc.
+- The doc updates of section 3: `cli-jev`, a `cli-pi/SKILL.md` classifier section, a cli-classifier feature catalog entry and a playbook scenario with their index rows, written through sk-doc.
 - Opt-in wiring for the `choice` callers the design approves inside cli-classifier, sk-doc and sk-communication only, and only when the change is one call site.
 - The runtime-tree follow-up list of section 3, with file paths and question types.
 - Every gate result and the follow-up list recorded in `implementation-summary.md` and `goal.md`'s log.
@@ -90,7 +90,7 @@ Make Pi a working, opt-in Jev transport for `choice` questions, and document it 
 - The opt-in switch: an environment value plus a per-call function option (names proposed in section 10). Unset means today's behavior.
 - Its `node --test` suite with both backends stubbed, one happy path and one edge case per public surface.
 - Opt-in wiring for `choice` callers inside cli-classifier, sk-doc and sk-communication, only for callers the design approves under section 10's third question.
-- Docs through sk-doc: the Pi route in `cli-usage`, a short classifier section in `cli-pi/SKILL.md`, a cli-classifier feature catalog entry and a playbook scenario with their index rows.
+- Docs through sk-doc: the Pi route in `cli-jev`, a short classifier section in `cli-pi/SKILL.md`, a cli-classifier feature catalog entry and a playbook scenario with their index rows.
 - The gate-failure rule fixed in section 4, with a test per gate.
 - The runtime-tree follow-up list below, with file paths and question types.
 
@@ -129,7 +129,7 @@ The context's grep found 21 script files that spawn `jev` directly, and its owne
 |-----------|-------------|-------------|
 | `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs` | Create | The transport module. Proposed name |
 | `.skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs` | Create | Every public surface, both backends stubbed, `node --test`. Proposed name |
-| `.skilled/skills/cli-classifier/cli-usage/SKILL.md` | Modify | The Pi route, the switch and the gate rule next to the CLI route |
+| `.skilled/skills/cli-classifier/cli-jev/SKILL.md` | Modify | The Pi route, the switch and the gate rule next to the CLI route |
 | `.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md` | Modify | A short classifier section for Pi workers |
 | `.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md` | Create | One catalog entry through sk-doc. Proposed name |
 | `.skilled/skills/cli-classifier/feature-catalog/feature-catalog.md` | Modify | The index row for the entry above |
@@ -151,7 +151,7 @@ The context's grep found 21 script files that spawn `jev` directly, and its owne
 | REQ-001 | **The default is untouched.** With the switch unset, every changed caller prints what it printed before, byte for byte, on a stub-backed run. The transport spawns `jev` exactly as the caller did and adds no line, no delay and no file. Boundary: an empty switch value means unset |
 | REQ-002 | **Pi answers only when asked for by name.** A caller opts in through the function option or the environment switch (name proposed in section 10), resolved in one place. A set but unknown value prints one line and stays on the CLI. The transport never switches silently |
 | REQ-003 | **Only `choice` moves.** A `choice` request may reach Pi. `bool`, `score`, `noul` and every other type stays on the CLI and reaches no Pi call. Adopting another type needs its own measured run under 037's keep rule (D2) |
-| REQ-004 | **The caller's parse does not change.** The transport returns the shape callers read from the jev CLI's JSON today, so an opting-in caller changes one call, not its parsing (D3). The design records the exact shape from `cli-usage/SKILL.md`'s Output Contract and from each caller it wires |
+| REQ-004 | **The caller's parse does not change.** The transport returns the shape callers read from the jev CLI's JSON today, so an opting-in caller changes one call, not its parsing (D3). The design records the exact shape from `cli-jev/SKILL.md`'s Output Contract and from each caller it wires |
 | REQ-005 | **The gate-failure rule is fixed here and never silent.** When Pi is asked for but a gate fails, the transport prints exactly one skip line naming the failed gate, then falls back to the `jev` CLI (D4). When the CLI is also unavailable, it stops with the CLI's own error and exit status, exactly as today. The rule block below is fixed at spec approval |
 | REQ-006 | **The transport never handles a credential.** It calls `ModelRuntime.create()` and lets Pi resolve credentials from its own store. It never reads, prints, stores or passes a key, and never opens a `.env` file. `grep -nE 'API_KEY\|TYPESAFE\|Bearer\|Authorization'` on the module exits 1 |
 | REQ-007 | **Tests stub both backends.** Each public surface gets a happy path and one edge case. No test opens a network socket, calls a model or needs a credential |
@@ -161,7 +161,7 @@ The context's grep found 21 script files that spawn `jev` directly, and its owne
 
 | ID | Requirement |
 |----|-------------|
-| REQ-009 | **Docs through sk-doc.** `cli-usage`, the `cli-pi/SKILL.md` classifier section, the catalog entry with its index row and the playbook scenario with its index row each pass `validate_document.py` VALID, and no doc claims a measurement no run printed |
+| REQ-009 | **Docs through sk-doc.** `cli-jev`, the `cli-pi/SKILL.md` classifier section, the catalog entry with its index row and the playbook scenario with its index row each pass `validate_document.py` VALID, and no doc claims a measurement no run printed |
 | REQ-010 | **Executors and scope (parent D5 through D6).** DeepSeek V4.1 Flash writes, MiMo v2.6 Pro reviews, no Claude worker writes or reviews. P0 and P1 findings are fixed and rechecked, P2 findings are recorded. Only section 3's files change, and code comments carry no spec path, phase number or requirement id |
 | REQ-011 | **The invariance proof is byte-level.** The switch-off check runs each changed caller against a stub `jev` before and after the change and compares bytes with `diff`, not exit codes alone. The outputs sit under `scratch/verify/` |
 | REQ-012 | **The live smoke call is optional.** A small live `choice` call runs only on the operator's yes, and no build step depends on it |
@@ -195,7 +195,7 @@ The rule below is the context's proposed frame, fixed here at spec approval. Cha
 - **SC-001**: With the switch unset, every changed caller prints byte-identically to its pre-change run on a stub `jev`, proved by an empty `diff`.
 - **SC-002**: With the switch on, a `choice` question answers through Pi and returns the CLI's result shape, proved by tests with both backends stubbed.
 - **SC-003**: Each gate failure prints exactly one skip line and follows the section 4 rule, proved by a test per gate.
-- **SC-004**: `cli-usage` and `cli-pi/SKILL.md` document the Pi route, every changed doc is VALID under `validate_document.py`, and `validate.sh --strict` prints `RESULT: PASSED` for this phase.
+- **SC-004**: `cli-jev` and `cli-pi/SKILL.md` document the Pi route, every changed doc is VALID under `validate_document.py`, and `validate.sh --strict` prints `RESULT: PASSED` for this phase.
 - **SC-005**: The 13 runtime-tree callers stay unedited and are listed in section 3 with their paths and question types.
 
 ### Proof Plan
@@ -221,7 +221,7 @@ Written before the build. `M` is the proposed `.skilled/skills/cli-classifier/sh
 |------|------|--------|------------|
 | Dependency | Phase 037 Complete | The phase has no measured basis | Complete, recorded in the parent goal |
 | Dependency | Pi 0.99.1 with a credential in its own store | The Pi side cannot answer | 7 of 12 classifier models available through `openrouter` per the 037 probe |
-| Dependency | `jev 0.6.2` on `PATH` | The default route and the fallback disappear | Pinned in `cli-usage/SKILL.md:97`, and the gate rule stops cleanly when it is absent |
+| Dependency | `jev 0.6.2` on `PATH` | The default route and the fallback disappear | Pinned in `cli-jev/SKILL.md:97`, and the gate rule stops cleanly when it is absent |
 | Dependency | The design's caller approval | Wiring could stall | Docs and the module proceed without any caller change |
 | Risk | A caller's parse shape may differ from the transport's return shape | High | The design reads each candidate call site and the Output Contract before any wiring, and a mismatch keeps that caller on the CLI |
 | Risk | A changed caller's switch-off output could pick up a line or a delay | High | REQ-001's byte-for-byte `diff` gates every caller change before it lands |

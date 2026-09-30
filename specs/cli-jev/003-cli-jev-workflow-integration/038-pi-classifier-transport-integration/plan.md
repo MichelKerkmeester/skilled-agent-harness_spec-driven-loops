@@ -44,7 +44,7 @@ One shared module under `.skilled/skills/cli-classifier/shared/scripts/` (propos
 - [ ] `scratch/context/context.md` is present and read, with the 037 verdict, Pi's API cites, the 21-file call-site census and the proposed frame
 - [ ] Phase 037 is Complete, and its verdict line `verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022` is in `037-pi-native-classifier-transport/scratch/live-run.stdout.txt`
 - [ ] Pi 0.99.1 is installed, and `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs` holds the Pi helpers the design reads
-- [ ] `jev 0.6.2` is on `PATH`, and `cli-usage/SKILL.md` holds the Output Contract and the Transport Guard
+- [ ] `jev 0.6.2` is on `PATH`, and `cli-jev/SKILL.md` holds the Output Contract and the Transport Guard
 - [ ] The executors are available under D6: DeepSeek V4.1 Flash to write, MiMo v2.6 Pro to review
 
 ### Definition of Done
@@ -72,7 +72,7 @@ Small shared module with pure functions and two thin backend seams, one for Pi's
 - **Type gate**: admits `choice` only. A `bool`, `score` or `noul` request goes straight to the CLI and reaches no Pi code.
 - **Pi gate**: the three checks of `spec.md` section 4 (package, model, credential), each with one skip line and no Pi call on failure.
 - **Pi backend**: one `choice` question through the SDK's `classify(model, context, options?)` on `openrouter` `typesafe/jev-1.13`, reusing or copying the 037 helpers (`resolvePiPackage`, `ModelRuntime.create()`, `getModelOfType('classifier', 'openrouter', 'typesafe/jev-1.13')`, `toClassifierContext`, `probabilitiesFrom`).
-- **Result mapper**: maps Pi's answer to the shape the caller reads from the jev CLI's JSON today, per `cli-usage/SKILL.md`'s Output Contract, and treats a partial map as a gate-independent fallback rather than a judgment.
+- **Result mapper**: maps Pi's answer to the shape the caller reads from the jev CLI's JSON today, per `cli-jev/SKILL.md`'s Output Contract, and treats a partial map as a gate-independent fallback rather than a judgment.
 - **CLI backend**: the default and the fallback. The `jev` spawn keeps the caller's own flags, state, provider and model.
 - **Skip line**: one line per gate failure, naming the gate, printed before the CLI result.
 - **Callers**: only the `choice` call sites the design approves inside cli-classifier, sk-doc and sk-communication.
@@ -89,7 +89,7 @@ A caller asks the module for a `choice` judgment. With the switch unset, the mod
 | `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs` | Holds the working Pi helpers and the 41-case suite from 037 | Read only, or import the new module when the design proves the import is one line | The scorer's suite stays at 41 pass, 0 fail, and the file's diff is empty when the design chooses copy |
 | The `jev` CLI | Today's transport and the fallback | Unchanged. Still the default and still the route every unopted caller uses | The switch-off `diff` is empty and the stub log matches the caller's old calls |
 | `.skilled/skills/cli-classifier/shared/` | A README only | Adds the transport module and its tests | `node --test` passes and the key grep exits 1 |
-| `cli-usage/SKILL.md`, `cli-pi/SKILL.md`, the catalog and the playbook | The doc surfaces D6 requires | Update through sk-doc for the Pi route and the switch | `validate_document.py` VALID on each changed doc |
+| `cli-jev/SKILL.md`, `cli-pi/SKILL.md`, the catalog and the playbook | The doc surfaces D6 requires | Update through sk-doc for the Pi route and the switch | `validate_document.py` VALID on each changed doc |
 | The 13 runtime-tree callers of `spec.md` section 3 | Spawn `jev` directly and stay on the CLI | Not a consumer of this phase | `git diff --stat` on the three trees is empty |
 | `cli-classifier` and `cli-pi` mode registries | Route today's transports | Not a consumer of this phase | No registry file changes |
 <!-- /ANCHOR:architecture -->
@@ -119,10 +119,10 @@ Follow the ordered tasks in `tasks.md`. It owns the task checkboxes and state. T
 
 Each phase's observable check:
 
-1. **Design.** Read the 037 scorer's Pi helpers, the jev result shape callers parse in `cli-usage/SKILL.md`'s Output Contract and each candidate caller, then write the interface, the switch, the gate rule and the test matrix as a design note under `scratch/`. Check: the note names the exports, the exact switch names, the gate rule's per-gate lines, the bytes-invariance plan, the approved caller list and the test matrix, with every `UNKNOWN` item named.
+1. **Design.** Read the 037 scorer's Pi helpers, the jev result shape callers parse in `cli-jev/SKILL.md`'s Output Contract and each candidate caller, then write the interface, the switch, the gate rule and the test matrix as a design note under `scratch/`. Check: the note names the exports, the exact switch names, the gate rule's per-gate lines, the bytes-invariance plan, the approved caller list and the test matrix, with every `UNKNOWN` item named.
 2. **Transport module with stubbed tests.** The switch resolver, the type gate, the Pi gate, the Pi backend, the result mapper, the CLI backend and the skip line, plus their tests. Check: a stub-backed switch-off run returns the CLI's result with no added output, a switch-on run answers one `choice` question through the Pi stub, and `node --test` exits 0.
 3. **Caller opt-in.** Only the `choice` callers the design approves, one call site each. Check: each changed caller's switch-off output `diff`s empty against its pre-change recording, and its switch-on output answers through the Pi stub in a test.
-4. **Docs through sk-doc.** The `cli-usage` Pi route, the `cli-pi/SKILL.md` classifier section, the catalog entry and the playbook scenario with their index rows. Check: `validate_document.py` exits 0 on each changed doc, and no doc claims a measurement no run printed.
+4. **Docs through sk-doc.** The `cli-jev` Pi route, the `cli-pi/SKILL.md` classifier section, the catalog entry and the playbook scenario with their index rows. Check: `validate_document.py` exits 0 on each changed doc, and no doc claims a measurement no run printed.
 5. **Cross-family review.** MiMo reviews every DeepSeek diff and DeepSeek reviews any MiMo fix. Check: one review file with a verdict, no open P0 or P1 finding, each review's file hashes equal before and after, and P2 findings recorded.
 6. **Closure.** Record every gate result and the follow-up list, mark each acceptance criterion from its evidence, then run `repair-derived.cjs --apply`, `validate.sh --strict`, `check-goal.cjs` and `goal.cjs packet`. Check: `RESULT: PASSED`, `RESULT: PASSED (5/5 checks)`, and `packet_durable_chars` at or under 4000.
 <!-- /ANCHOR:phases -->
@@ -139,7 +139,7 @@ Commands run from the repository root. `M` is `.skilled/skills/cli-classifier/sh
 | Unit | The switch resolver, the type gate, the result mapper and the exact skip lines, all pure | `node --test` |
 | Stub integration | The switch-off path, the switch-on path, each of the three gate failures and the CLI-absent stop, with a logging `jev` fixture and a stubbed Pi backend | `node --test`, stub fixtures |
 | Byte invariance | Each changed caller against a stub `jev`, before and after, compared with `diff` | `diff`, stub logs, recordings under `scratch/verify/` |
-| Doc gates | `cli-usage`, the `cli-pi/SKILL.md` section, the catalog entry and the playbook scenario | `validate_document.py` |
+| Doc gates | `cli-jev`, the `cli-pi/SKILL.md` section, the catalog entry and the playbook scenario | `validate_document.py` |
 | Manual | The operator's optional one live smoke call on the real tree | Terminal, the recorded call under `scratch/` |
 <!-- /ANCHOR:testing -->
 
@@ -152,7 +152,7 @@ Commands run from the repository root. `M` is `.skilled/skills/cli-classifier/sh
 |------------|------|--------|-------------------|
 | Phase 037 | Internal | Complete | The phase has no measured basis for Pi |
 | Pi 0.99.1 with `ModelRuntime` and a credential in its own store | External, installed | Installed at `~/.local/lib/node_modules/@earendil-works/pi-coding-agent`, with 7 classifier models available through `openrouter` | The Pi route cannot be built or proven, and the transport reduces to the CLI fallback |
-| `jev 0.6.2` | External, installed | On `PATH`, pinned in `cli-usage/SKILL.md:97` | The default route and the fallback disappear |
+| `jev 0.6.2` | External, installed | On `PATH`, pinned in `cli-jev/SKILL.md:97` | The default route and the fallback disappear |
 | The 037 scorer and its 41-case suite | Internal | Committed at `b34b9d1907` | The design's move-versus-copy decision loses its check |
 | The design's caller approval | Internal | Not yet produced | Only the docs and the module land, with no caller change |
 | The operator's yes for a live smoke call | Operator | Not yet given | The smoke call never runs. The build is unaffected |
@@ -165,7 +165,7 @@ Commands run from the repository root. `M` is `.skilled/skills/cli-classifier/sh
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A switch-off `diff` is non-empty, the key grep matches, a stub-backed test opens a socket, or a file outside `spec.md` section 3 changes.
-- **Procedure**: Stop the phase. Revert its path-scoped commits: the shared module and its tests, the caller call sites, the `cli-usage` route, the `cli-pi` section and the catalog and playbook entries with their index rows. No runtime file changed, so nothing else reverts, and no mode registry or activation manifest needs a remint. Delete any recording under `scratch/` that a later run must not reuse.
+- **Procedure**: Stop the phase. Revert its path-scoped commits: the shared module and its tests, the caller call sites, the `cli-jev` route, the `cli-pi` section and the catalog and playbook entries with their index rows. No runtime file changed, so nothing else reverts, and no mode registry or activation manifest needs a remint. Delete any recording under `scratch/` that a later run must not reuse.
 <!-- /ANCHOR:rollback -->
 
 ---

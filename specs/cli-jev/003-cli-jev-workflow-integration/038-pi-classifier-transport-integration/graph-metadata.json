@@ -49,7 +49,7 @@
       "implementation-summary.md",
       "scratch/context/context.md",
       ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
-      ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+      ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
       ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
       "feature-catalog/feature-catalog.md",
       "manual-testing-playbook/manual-testing-playbook.md",
@@ -114,7 +114,7 @@
       {
         "name": "SKILL.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-classifier/cli-usage/SKILL.md",
+        "path": ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 037 measured Pi's native classifier runtime as good enough for the packet's Jev `choice` questions",
     "created_at": "2026-09-30T16:01:03Z",
-    "last_save_at": "2026-09-30T16:09:23.469Z",
+    "last_save_at": "2026-09-30T17:13:00.421Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:222df97b43a9c1868b7dc0eebadc498e9079bc39b12d7247ceef203a8d6f293f",
+    "source_fingerprint": "sha256:dd49fc455db6db9ba0c0b911e6eae0060c12faac27e2899fd03aab39ccb61e8b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cecd47e314ee23ff40c1f7df7a3014f100dd522a3339ebbba4271cf271fd76de",
-      "plan.md": "e2d4cc829e055c2674a457a2734f04db01c730c6e6ba9ea1f476ed549b2aa212",
-      "tasks.md": "c1053f8da3b7b0a0512aef751d584802f6ca3b4c17448d4883ef74466f0caf61",
-      "implementation-summary.md": "f42a8a870199036bd57ea483e1bcfc16f2a4c34575c7ea8ce73b19f7c1885791"
+      "spec.md": "706cc1619b2d285486fad5253de4427e2f8ce0768a08de9fb64c943028d35ac8",
+      "plan.md": "815006656f52007b3c397f6a02ee8448d6004d764aece1c657d0f05180b19eda",
+      "tasks.md": "a8da124b57dcc17957200c21df9113e65514fb68d3b43b738ccbcd2f692ffc6d",
+      "implementation-summary.md": "52dafe7bd584cc40f75d682913ad225254d72e791b3253fba7bacc75f438fb95"
     },
     "last_active_at": null
   }

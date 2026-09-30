@@ -64,7 +64,7 @@ The phase will add `.skilled/skills/cli-classifier/shared/scripts/jev-transport.
 |------|--------|---------|
 | `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs` | Planned create | The opt-in transport module. Proposed name |
 | `.skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs` | Planned create | Every public surface, both backends stubbed. Proposed name |
-| `.skilled/skills/cli-classifier/cli-usage/SKILL.md` | Planned modify | The Pi route, the switch and the gate rule |
+| `.skilled/skills/cli-classifier/cli-jev/SKILL.md` | Planned modify | The Pi route, the switch and the gate rule |
 | `.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md` | Planned modify | A short classifier section for Pi workers |
 | `.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md` and `feature-catalog/feature-catalog.md` | Planned create and modify | The catalog entry and its index row. Proposed name |
 | `.skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-integration.md` and `manual-testing-playbook/manual-testing-playbook.md` | Planned create and modify | The playbook scenario and its index row. Proposed name |

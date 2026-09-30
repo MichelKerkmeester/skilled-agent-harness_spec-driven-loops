@@ -1,0 +1,2 @@
+PARITY baseline_files=1109 post_files=1109 diff_entries=0
+PARITY PASS: verdict diff is empty
