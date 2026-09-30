@@ -959,6 +959,7 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
       'glm-5.3-flash',
       'gpt-6-luna',
       'gpt-6-sol',
+      'mimo-v2.6-flash',
       'mimo-v2.6-pro',
       'minimax-m3',
       'qwen3.8-max',
@@ -1044,6 +1045,8 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
     expect(isFlashMaxPinnedModel('qwen3.8-max')).toBe(false);
     expect(isFlashMaxPinnedModel('google/gemini-3.8-flash')).toBe(false);
     expect(isFlashMaxPinnedModel('openai/gpt-6-luna')).toBe(false);
+    // MiMo Flash tops out at high, so a Flash name alone must not pull it up to max.
+    expect(isFlashMaxPinnedModel('mimo-v2.6-flash')).toBe(false);
   });
 
   it('pins each Flash family to its own top tier and leaves other models unchanged', () => {

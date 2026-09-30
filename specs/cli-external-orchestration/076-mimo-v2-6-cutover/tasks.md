@@ -81,6 +81,19 @@ contextType: "general"
 
 ---
 
+<!-- ANCHOR:phase-5 -->
+## Phase 5: MiMo Flash and the OpenCode Go and Cline routes
+
+- [x] T022 Live-probe every new route before recording it: five Pi dispatches at `--thinking high` and five `opencode run` turns, each replying `PONG`. Cline's `xiaomi/` ids answered `402 insufficient_credits`, so the Pass-covered `cline-pass/` model type is used
+- [x] T023 Declare `llmgateway/mimo-v2.6-flash` and the two `cline-pass/mimo-v2.6-*` models in `.pi/models.json`, and add five `enabledModels` entries to `.pi/settings.json` without staging Pi's own `lastChangelogVersion` hunk
+- [x] T024 Add the MiMo rows to both roster references, `.pi/custom-providers.md`, the PI-017 count and the cli-opencode auth line, and replace the "llmgateway only" sentence in both SKILL.md files
+- [x] T025 Add `mimo-v2.6-flash` to `PI_SUPPORTED_MODELS`, its `.cjs` mirror and `PI_MODEL_PROVIDERS`, with the paired test expectations and a guard that the max pin never catches MiMo Flash
+- [x] T026 Bump cli-pi to 1.5.12.0 and cli-opencode to 1.4.13.0 with one changelog each, refresh the hub route manifest and its authored copy, and regenerate the Hermes skill copies
+- [x] T027 Run the 070 trio, the typecheck, the frontmatter gate, the manifest freshness check, the Hermes sync check and strict packet validation
+<!-- /ANCHOR:phase-5 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 

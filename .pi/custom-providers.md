@@ -30,21 +30,21 @@ The free Ox Alpha tune was retired from this block and replaced by GLM-5.3-Flash
 
 ### Where It Lives
 
-- Provider block: `.pi/models.json` under `providers["cline-pass"]`, with three models
-- Enabled in the picker: `.pi/settings.json` under `enabledModels`, entries `"cline-pass/cline-pass/deepseek-v4.1-flash"` and `"cline-pass/z-ai/glm-5.3-flash"`. **DeepSeek V4 Pro is declared in the provider block but is NOT in `enabledModels`**, so it is dispatchable by explicit `--model` and absent from the picker
+- Provider block: `.pi/models.json` under `providers["cline-pass"]`, with four models
+- Enabled in the picker: `.pi/settings.json` under `enabledModels`, entries `"cline-pass/cline-pass/deepseek-v4.1-flash"`, `"cline-pass/z-ai/glm-5.3-flash"`, `"cline-pass/cline-pass/mimo-v2.6-pro"` and `"cline-pass/cline-pass/mimo-v2.6-flash"`. **DeepSeek V4 Pro is declared in the provider block but is NOT in `enabledModels`**, so it is dispatchable by explicit `--model` and absent from the picker
 - Not a default: `.pi/settings.json` sets `defaultProvider` to `"llmgateway"` and `defaultModel` to `"gpt-6-luna"`; select this block with `--provider cline-pass`
 
-**Model ids**: the pi reference is three-segment — provider `cline-pass` plus the model `id`. The DeepSeek entry keeps a `cline-pass/` prefix (`cline-pass/cline-pass/deepseek-v4.1-flash`), matching opencode's form. **GLM-5.3-Flash is different**: its Cline `id` carries the vendor prefix `z-ai/glm-5.3-flash`, so its reference is `cline-pass/z-ai/glm-5.3-flash`, not `cline-pass/glm-5.3-flash`. Both forms still satisfy Cline's required `modelType/model` shape (see the model-id gotcha below).
+**Model ids**: the pi reference is three-segment — provider `cline-pass` plus the model `id`. The DeepSeek entry keeps a `cline-pass/` prefix (`cline-pass/cline-pass/deepseek-v4.1-flash`), matching opencode's form. **GLM-5.3-Flash is different**: its Cline `id` carries the vendor prefix `z-ai/glm-5.3-flash`, so its reference is `cline-pass/z-ai/glm-5.3-flash`, not `cline-pass/glm-5.3-flash`. Both forms still satisfy Cline's required `modelType/model` shape (see the model-id gotcha below). **MiMo uses the `cline-pass/` model type**, so its references are `cline-pass/cline-pass/mimo-v2.6-pro` and `cline-pass/cline-pass/mimo-v2.6-flash`. Cline's `xiaomi/mimo-v2.6-*` ids bill Cline Credits instead of the Pass and answered `402 insufficient_credits` on 2026-09-30, so they are not declared here.
 
 ### Dispatch
 
-Select flash with `--provider cline-pass --model cline-pass/cline-pass/deepseek-v4.1-flash`, or GLM-5.3-Flash with `--model cline-pass/z-ai/glm-5.3-flash`. The cli-pi skill roster documents both under its `### cline-pass` section, and records that the V4.1 Flash id has not yet completed a live turn — the older `cline-pass/cline-pass/deepseek-v4-flash` is the fallback until it does.
+Select flash with `--provider cline-pass --model cline-pass/cline-pass/deepseek-v4.1-flash`, or GLM-5.3-Flash with `--model cline-pass/z-ai/glm-5.3-flash`. MiMo takes `--model cline-pass/cline-pass/mimo-v2.6-pro` or `cline-pass/cline-pass/mimo-v2.6-flash` at `--thinking high`, and both replied `PONG` to a one-turn smoke on 2026-09-30. The cli-pi skill roster documents both under its `### cline-pass` section, and records that the V4.1 Flash id has not yet completed a live turn — the older `cline-pass/cline-pass/deepseek-v4-flash` is the fallback until it does.
 
 DeepSeek V4 Pro was retired from this block on 2026-09-04. Its object, its `enabledModels` entry and its rows in every CLI roster are gone, so `pi` and the skills now agree that it is not a dispatch target. Cline still offers it upstream; the exclusion is a curation decision, not an availability one.
 
 ### Thinking And Effort
 
-All three are reasoning models (`reasoning: true`) and inherit the global `defaultThinkingLevel: "xhigh"` from `.pi/settings.json`, so they run at Extra High by default. The Cline provider has no `max` tier for any of them, so `xhigh` is the top thinking level and the only one these entries use. The provider-level `compat.thinkingFormat: "deepseek"` hint applies to every model in the block, so thinking tokens parse correctly. (GLM-5.3-Flash's interactive picker offers the lower tiers too, but this config mirrors the DeepSeek entries' `xhigh` ceiling for a consistent cline-pass policy. That `xhigh` ceiling is a property of the **Cline route**, not of GLM-5.3-Flash: the same model tops out at `max` on OpenRouter and opencode-go, and carries both tiers on DevPass.)
+The DeepSeek and GLM entries are reasoning models (`reasoning: true`) and inherit the global `defaultThinkingLevel: "xhigh"` from `.pi/settings.json`, so they run at Extra High by default. The two MiMo entries stop at `high`, and their `thinkingLevelMap` sets `xhigh` and `max` to `null`, so pass `--thinking high` for them. The Cline provider has no `max` tier for any of them, so `xhigh` is the top thinking level and the only one these entries use. The provider-level `compat.thinkingFormat: "deepseek"` hint applies to every model in the block, so thinking tokens parse correctly. (GLM-5.3-Flash's interactive picker offers the lower tiers too, but this config mirrors the DeepSeek entries' `xhigh` ceiling for a consistent cline-pass policy. That `xhigh` ceiling is a property of the **Cline route**, not of GLM-5.3-Flash: the same model tops out at `max` on OpenRouter and opencode-go, and carries both tiers on DevPass.)
 
 Each model also carries a `thinkingLevelMap` (`{ "high": "high", "xhigh": "xhigh", … }`). Without it, pi's interactive picker cannot cycle past `high`: it derives a model's selectable thinking tiers from that map, and a bare `reasoning: true` custom model falls back to a `high` ceiling. The map exposes `high` and `xhigh` (Cline has no `max`); `--thinking xhigh` on the CLI works either way, but the picker needs the map to offer it. Mirrors the OpenRouter DeepSeek Flash map, which is how opencode's official cline-pass entry reaches `xhigh`.
 
@@ -62,8 +62,8 @@ Routes four models through the operator's **DevPass** subscription at LLM Gatewa
 
 ### Where It Lives
 
-- Provider block: `.pi/models.json` under `providers["llmgateway"]`, with four models. The gateway fronts many more; only these four are on the roster
-- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/deepseek-v4.1-flash"`, `"llmgateway/glm-5.3-flash"`, `"llmgateway/mimo-v2.6-pro"`, and `"llmgateway/gpt-6-luna"`
+- Provider block: `.pi/models.json` under `providers["llmgateway"]`, with five models. The gateway fronts many more, and only these five are on the roster
+- Enabled in the picker: `.pi/settings.json` `enabledModels`, entries `"llmgateway/deepseek-v4.1-flash"`, `"llmgateway/glm-5.3-flash"`, `"llmgateway/mimo-v2.6-pro"`, `"llmgateway/mimo-v2.6-flash"` and `"llmgateway/gpt-6-luna"`
 - Default: `.pi/settings.json` sets `defaultProvider` to `"llmgateway"` and `defaultModel` to `"gpt-6-luna"`, so a `pi` run with no `--model` uses this block's Luna route at the global `xhigh`
 
 **Model ids are BARE, and the pi reference is two-segment** — `llmgateway/<id>`, e.g. `llmgateway/deepseek-v4.1-flash`. This is the opposite of cline-pass above, and copying that block's slashed form is the easy mistake: see the gotcha below.
@@ -74,20 +74,21 @@ Routes four models through the operator's **DevPass** subscription at LLM Gatewa
 pi -p "…" --provider llmgateway --model llmgateway/deepseek-v4.1-flash --thinking max
 ```
 
-Swap the id for `glm-5.3-flash`, or use `mimo-v2.6-pro` for MiMo V2.6 Pro. This is also MiMo's deep-loop fan-out route: the bare `mimo-v2.6-pro` literal maps to `llmgateway`, because the `xiaomi` provider left the Pi roster on 2026-09-23. Use `gpt-6-luna` for GPT-6 Luna. It is direct-dispatch only too: the bare `gpt-6-luna` fan-out literal maps to the `openai-codex` subscription route.
+Swap the id for `glm-5.3-flash`, or use `mimo-v2.6-pro` or `mimo-v2.6-flash` for MiMo V2.6. This is also MiMo's deep-loop fan-out route: the bare `mimo-v2.6-pro` and `mimo-v2.6-flash` literals map to `llmgateway`, because the `xiaomi` provider left the Pi roster on 2026-09-23. Use `gpt-6-luna` for GPT-6 Luna. It is direct-dispatch only too: the bare `gpt-6-luna` fan-out literal maps to the `openai-codex` subscription route.
 
 ### Thinking And Effort
 
-All four are reasoning models, and their ladders differ, so each carries its own `thinkingLevelMap`:
+All five are reasoning models, and their ladders differ, so each carries its own `thinkingLevelMap`:
 
 | Model | Ceiling | Notes |
 |-------|---------|-------|
 | `deepseek-v4.1-flash` | `max` | **Image-capable.** $0.15 in and $0.60 out per million tokens, cached reads $0.003, which keeps it under the gateway's Premium threshold. Three efforts plus off: `low`, `high` and `max`. `minimal` folds into `low`, `medium` and `xhigh` fold into `high`, `none` disables thinking, and the default is `high`. `ultra` and the integer form are rejected here. The provider block leaves the folded aliases unmapped on purpose, so the picker offers only the levels that differ |
 | `glm-5.3-flash` | `max` | Full ladder. Note this route has BOTH `xhigh` and `max`, unlike GLM-5.3-Flash on OpenRouter or opencode-go, which top out at `max` with no `xhigh`, and unlike Cline, which tops out at `xhigh` with no `max` |
 | `mimo-v2.6-pro` | `high` | Active gateway catalog row with `none`/`low`/`medium`/`high`, 1M context, 131K output, text and image input, and the catalog cost shape carried in `.pi/models.json`. The deep-loop fan-out route for the bare `mimo-v2.6-pro` literal, dispatch-verified 2026-09-23 by a fan-out-built one-turn smoke that replied `OK` |
+| `mimo-v2.6-flash` | `high` | The cheaper MiMo tier with the same ladder and limits as Pro, at $0.14 in, $0.28 out and $0.0028 cached read per million tokens. The deep-loop fan-out route for the bare `mimo-v2.6-flash` literal, dispatch-verified 2026-09-30 by a one-turn smoke that replied `PONG` |
 | `gpt-6-luna` | `max` | Catalog-listed 2026-09-23 and dispatch-verified the same day: 1.05M context, 128K output, text and image input, efforts `none` through `max`, and $0.10 in, $0.50 out, $0.01 cached read per million tokens. `minimal` maps to `low`, because the model has no `minimal` tier. Direct-dispatch only |
 
-The global `defaultThinkingLevel` is `xhigh`. The four models do not share one ladder: GLM-5.3-Flash has a real `xhigh` above `high`, DeepSeek folds `xhigh` into `high`, MiMo v2.6 Pro exposes `none`, `low`, `medium`, and `high`, and GPT-6 Luna runs `low` through `max`. Pass `--thinking` explicitly rather than relying on a default that means different things per route.
+The global `defaultThinkingLevel` is `xhigh`. The five models do not share one ladder: GLM-5.3-Flash has a real `xhigh` above `high`, DeepSeek folds `xhigh` into `high`, MiMo v2.6 Pro and Flash expose `none` through `high`, and GPT-6 Luna runs `low` through `max`. Pass `--thinking` explicitly rather than relying on a default that means different things per route.
 
 No provider-level `compat.thinkingFormat` is set. The block spans two model families whose thinking formats differ, and a provider-wide hint would apply the wrong one to one of them; pi's default OpenAI-compatible parsing handles both, confirmed by real dispatches.
 
@@ -153,6 +154,6 @@ Expected: the list shows the `cline-pass  cline-pass/deepseek-v4.1-flash` and `�
 
 ## 6. REMOVE
 
-To drop llmgateway, delete the `providers["llmgateway"]` block from `.pi/models.json` and its four `"llmgateway/…"` lines from `.pi/settings.json` `enabledModels`. To drop only MiMo, remove its model object and the `llmgateway/mimo-v2.6-pro` picker entry, and take `mimo-v2.6-pro` out of the fan-out roster and provider map first, or MiMo lineages fail; to drop only GPT-6 Luna, remove its model object and the `llmgateway/gpt-6-luna` picker entry. Nothing else references GPT-6 Luna: the bare `gpt-6-luna` fan-out literal resolves to `openai-codex`.
+To drop llmgateway, delete the `providers["llmgateway"]` block from `.pi/models.json` and its five `"llmgateway/…"` lines from `.pi/settings.json` `enabledModels`. To drop only MiMo, remove its model objects and the `llmgateway/mimo-v2.6-pro` and `llmgateway/mimo-v2.6-flash` picker entries, and take both literals out of the fan-out roster and provider map first, or MiMo lineages fail; to drop only GPT-6 Luna, remove its model object and the `llmgateway/gpt-6-luna` picker entry. Nothing else references GPT-6 Luna: the bare `gpt-6-luna` fan-out literal resolves to `openai-codex`.
 
-Delete the `providers["cline-pass"]` block from `.pi/models.json` and the `"cline-pass/cline-pass/deepseek-v4.1-flash"` and `"cline-pass/z-ai/glm-5.3-flash"` lines from `.pi/settings.json` `enabledModels`. To drop a single model, remove its object from the provider block and its `enabledModels` line if it has one. If `defaultProvider` still points at `cline-pass`, reset it to another authenticated provider so an unqualified dispatch still resolves. No other cleanup is needed. There is no builtin and no stored state beyond an optional pi-login credential you can clear separately.
+Delete the `providers["cline-pass"]` block from `.pi/models.json` and its four `"cline-pass/…"` lines from `.pi/settings.json` `enabledModels`. To drop a single model, remove its object from the provider block and its `enabledModels` line if it has one. If `defaultProvider` still points at `cline-pass`, reset it to another authenticated provider so an unqualified dispatch still resolves. No other cleanup is needed. There is no builtin and no stored state beyond an optional pi-login credential you can clear separately.
