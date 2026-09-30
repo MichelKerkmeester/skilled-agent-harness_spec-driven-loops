@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Repo Root Retrieval Tests
+// ───────────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';

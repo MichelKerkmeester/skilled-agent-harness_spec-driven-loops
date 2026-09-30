@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Review Depth Reducer Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { createRequire } from 'node:module';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';

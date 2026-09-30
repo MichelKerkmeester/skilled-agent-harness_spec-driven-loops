@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Validate Help Rule Coverage
+// ───────────────────────────────────────────────────────────────────
+
 // The help printer once iterated a hardcoded pair of registry categories, so
 // the six structural rules never appeared in `validate.sh --help` even though
 // they ran on every strict pass. The printer now derives its categories from

@@ -15,9 +15,9 @@ import { parseFrontmatter as parseFrontmatterBlock } from '@spec-kit/shared/fron
 import { CONFIG } from '../config/index.js';
 import { toCanonicalRelativePath } from '../utils/file-helpers.js';
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. INTERFACES
+// ───────────────────────────────────────────────────────────────────
 
 const SYNTHETIC_TIMESTAMP = new Date(0).toISOString();
 const MAX_SPEC_OBSERVATIONS = 15;
@@ -45,9 +45,9 @@ export interface SpecFolderExtraction {
 type Frontmatter = Record<string, string | string[]>;
 type TaskStats = { checked: number; unchecked: number; percent: number } | null;
 
-/* ───────────────────────────────────────────────────────────────
-   2. UTILITY FUNCTIONS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. UTILITY FUNCTIONS
+// ───────────────────────────────────────────────────────────────────
 
 function readDoc(specFolderPath: string, fileName: string): string | null {
   try {
@@ -173,9 +173,9 @@ function dedupe<T>(items: T[]): T[] {
   return Array.from(new Set(items.filter(Boolean))) as T[];
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. DOCUMENT PARSERS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. DOCUMENT PARSERS
+// ───────────────────────────────────────────────────────────────────
 
 function parseSpecDoc(content: string | null) {
   const { data, body } = parseFrontmatter(content);
@@ -270,9 +270,9 @@ function parseDecisionDoc(content: string | null): SpecFolderExtraction['decisio
   }).filter((entry): entry is SpecFolderExtraction['decisions'][number] => Boolean(entry));
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. SESSION PHASE DETECTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. SESSION PHASE DETECTION
+// ───────────────────────────────────────────────────────────────────
 
 // A 'testing' phase used to sit between implementing and complete, distinguished
 // by verification items that existed but had not all passed. That signal came from
@@ -287,9 +287,9 @@ function determineSessionPhase(taskStats: TaskStats, planPhase: string, status: 
   return 'planning';
 }
 
-/* ───────────────────────────────────────────────────────────────
-   5. SPEC FOLDER EXTRACTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. SPEC FOLDER EXTRACTION
+// ───────────────────────────────────────────────────────────────────
 
 export async function extractSpecFolderContext(specFolderPath: string): Promise<SpecFolderExtraction> {
   const descriptionRaw = readDoc(specFolderPath, 'description.json');

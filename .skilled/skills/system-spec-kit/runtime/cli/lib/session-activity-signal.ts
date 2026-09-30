@@ -1,18 +1,18 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Session Activity Signal
 // ───────────────────────────────────────────────────────────────────
-
-// ───────────────────────────────────────────────────────────────────
-// 1. SESSION ACTIVITY SIGNAL
-// ───────────────────────────────────────────────────────────────────
 // Aggregates spec-relevant session activity that can help spec-folder
 // auto-detection prefer the folder that is actually being worked on.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import type { CollectedDataBase, FactValue, Observation } from '../types/session-types.js';
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES & CONSTANTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export interface SessionActivitySignal {
   toolCallPaths: string[];
@@ -20,6 +20,10 @@ export interface SessionActivitySignal {
   transcriptMentions: string[];
   confidenceBoost: number;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const TOOL_FACT_RE = /\btool:\s*([a-z_ -]+)/i;
 const TOOL_PATH_RE = /\b(?:file|path):\s*([^\s,;]+)/ig;
@@ -41,6 +45,10 @@ const ACTIVITY_STOPWORDS = new Set([
   'child',
   'parent',
 ]);
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function normalizePath(value: string): string {
   return value.replace(/\\/g, '/').replace(/^\.\//, '').trim();
@@ -117,9 +125,9 @@ function collectObservationPaths(observation: Observation): string[] {
   return [...paths];
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. PATH MATCHING
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. PATH MATCHING
+// ───────────────────────────────────────────────────────────────────
 
 function buildCandidateMatchers(candidateRelativePath: string): string[] {
   const normalized = normalizePath(candidateRelativePath).toLowerCase();
@@ -232,9 +240,9 @@ function roundBoost(value: number): number {
   return Number(value.toFixed(3));
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. SIGNAL BUILDING
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function buildSessionActivitySignal(
   collectedData: CollectedDataBase | null,
@@ -307,9 +315,9 @@ function buildSessionActivitySignal(
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 7. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   buildSessionActivitySignal,

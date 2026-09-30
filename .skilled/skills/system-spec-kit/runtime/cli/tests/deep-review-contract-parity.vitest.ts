@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Review Contract Parity Tests
+// ───────────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';

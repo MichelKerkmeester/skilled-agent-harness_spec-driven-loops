@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Exhaustiveness Helper
+// MODULE: Exhaustiveness Helper
 // ───────────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';

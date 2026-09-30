@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Tool Ownership Lint Runner
+// ───────────────────────────────────────────────────────────────────
+
 // The tool-ownership lint compared the MCP tool schema against a generated
 // ownership map. Both left with the memory server, so there is nothing to
 // lint. This entry point stays only because a pre-commit hook installed from

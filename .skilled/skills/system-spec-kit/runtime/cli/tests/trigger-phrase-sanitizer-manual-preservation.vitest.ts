@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Trigger Phrase Manual Preservation
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it } from 'vitest';
 
 import {

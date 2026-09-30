@@ -33,11 +33,15 @@
  * Exit codes: 0 = clean, 1 = violations found, 2 = bad invocation.
  */
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import fs from "node:fs";
 import path from "node:path";
 
 // ───────────────────────────────────────────────────────────────────
-// File selection
+// 2. FILE SELECTION
 // ───────────────────────────────────────────────────────────────────
 
 // Extensions whose comment syntax we understand.
@@ -61,7 +65,7 @@ const SHEBANG_NODE = /^#!.*\b(node|deno|bun)\b/;
 const SHEBANG_PY = /^#!.*\bpython[0-9.]*\b/;
 
 // ───────────────────────────────────────────────────────────────────
-// Forbidden ephemeral-id patterns (matched ONLY inside comment text)
+// 3. FORBIDDEN EPHEMERAL-ID PATTERNS (MATCHED ONLY INSIDE COMMENT TEXT)
 // ───────────────────────────────────────────────────────────────────
 //
 // Each entry documents WHAT it catches so the allow-list reasoning stays legible.
@@ -145,10 +149,11 @@ const FORBIDDEN = [
 // broad shape that produces a flood of false positives. See notes/wiring.
 
 // ───────────────────────────────────────────────────────────────────
-// Allowed exclusions — when ANY of these matches a comment, the listed
-// forbidden rule(s) are suppressed for that comment. These encode the
-// "durable / structural" carve-outs from the style guide §4.
+// 4. ALLOWED EXCLUSIONS
 // ───────────────────────────────────────────────────────────────────
+// When ANY of these matches a comment, the listed forbidden rule(s) are
+// suppressed for that comment. These encode the "durable / structural"
+// carve-outs from the style guide §4.
 const ALLOW = {
   // Format-illustration / example / JSDoc-shape context: suppress the spec-shaped
   // rules. These show input SHAPE, not a live traceability pointer.
@@ -209,7 +214,7 @@ const ALLOW_SUPPRESSES = {
 };
 
 // ───────────────────────────────────────────────────────────────────
-// Comment extraction
+// 5. COMMENT EXTRACTION
 // ───────────────────────────────────────────────────────────────────
 //
 // Returns an array of { line, text } for each comment region. Line numbers are
@@ -341,7 +346,7 @@ function stripBlockStar(text) {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// Rule application
+// 6. RULE APPLICATION
 // ───────────────────────────────────────────────────────────────────
 
 function activeSuppressions(commentText) {
@@ -366,7 +371,7 @@ function findInComment(commentText) {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// Filesystem walk
+// 7. FILESYSTEM WALK
 // ───────────────────────────────────────────────────────────────────
 
 function shouldScanFile(filePath) {
@@ -415,7 +420,7 @@ function* walk(target) {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// Main
+// 8. MAIN
 // ───────────────────────────────────────────────────────────────────
 
 function auditPaths(targets) {
@@ -470,5 +475,9 @@ function main(argv) {
   }
   return findings.length > 0 ? 1 : 0;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 9. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 process.exit(main(process.argv));

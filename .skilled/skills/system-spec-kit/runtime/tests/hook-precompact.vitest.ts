@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: PreCompact Hook
+// MODULE: PreCompact Hook
 // ───────────────────────────────────────────────────────────────────
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdtempSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';

@@ -1,8 +1,8 @@
 ---
 title: "system spec kit runtime tests helpers: Code README"
-description: "Code-facing README for .skilled/skills/system-spec-kit/runtime/tests/__helpers__."
+description: "Code-facing README for .skilled/skills/system-spec-kit/runtime/tests/helpers."
 trigger_phrases:
-  - "system-spec-kit runtime/tests/__helpers__"
+  - "system-spec-kit runtime/tests/helpers"
   - "code README"
 ---
 
@@ -16,7 +16,7 @@ Test code and validation helpers for this skill area.
 
 ### Purpose
 
-This README documents the code-bearing folder `.skilled/skills/system-spec-kit/runtime/tests/__helpers__` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+This README documents the code-bearing folder `.skilled/skills/system-spec-kit/runtime/tests/helpers` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
 
 ### Usage
 
@@ -41,7 +41,7 @@ Start with `.skilled/skills/system-spec-kit/SKILL.md` for runtime routing and wo
 **Step 2: Inspect the local code.**
 
 ```bash
-rg --files .skilled/skills/system-spec-kit/runtime/tests/__helpers__
+rg --files .skilled/skills/system-spec-kit/runtime/tests/helpers
 ```
 
 Expected result: the command lists the source files summarized below.
@@ -56,7 +56,7 @@ Run the owning package test command from the nearest package boundary.
 
 | Feature | What It Does |
 |---|---|
-| Folder boundary | Documents direct code files under `runtime/tests/__helpers__`. |
+| Folder boundary | Documents direct code files under `runtime/tests/helpers`. |
 | sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
 | Verification handoff | Records the expected owner and audit packet for follow-up work. |
 
@@ -84,7 +84,7 @@ Run the owning package test command from the nearest package boundary.
 **Audit this folder**
 
 ```text
-User request: Check .skilled/skills/system-spec-kit/runtime/tests/__helpers__ for sk-code and README coverage.
+User request: Check .skilled/skills/system-spec-kit/runtime/tests/helpers for sk-code and README coverage.
 Skill routing: sk-code plus sk-doc.
 Expected output: Findings recorded in the 026 audit report.
 ```

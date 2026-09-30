@@ -32,7 +32,7 @@ This README names directories rather than individual suites. The file set moves;
 tests/
 +-- *.vitest.ts    # Unit, integration and regression suites
 +-- _support/      # Vitest setup shared by both configs
-+-- __helpers__/   # Shared env helpers for flag-driven tests
++-- helpers/   # Shared env helpers for flag-driven tests
 +-- fixtures/      # Sample documents and data
 `-- README.md
 ```
@@ -58,7 +58,7 @@ tests ───▶ shared temp state without explicit setup and cleanup
 ```text
 tests/
 ├── _support/            # Vitest setup file loaded by both vitest configs
-├── __helpers__/         # setEnv / restoreEnv / withFeatureFlag for env-driven suites
+├── helpers/         # setEnv / restoreEnv / withFeatureFlag for env-driven suites
 ├── adversarial/         # Adversarial input handling
 ├── advisor-fixtures/    # Fixture inputs for advisor-facing suites
 ├── archive/             # Retained suites kept out of the active areas
@@ -98,7 +98,7 @@ Use `rg --files tests -g '*.vitest.ts'` for the full live inventory.
 |---|---|
 | Test ownership | `tests/` verifies package behavior. It does not own production code paths. |
 | Fixtures | Fixture data belongs in `fixtures/` or suite-local setup. |
-| Environment | A suite that changes paths, temp folders or feature flags isolates and restores that state. Use `__helpers__/test-env.ts` rather than mutating `process.env` directly. |
+| Environment | A suite that changes paths, temp folders or feature flags isolates and restores that state. Use `helpers/test-env.ts` rather than mutating `process.env` directly. |
 | Stress runs | Load and contention checks belong in `../stress-test/`. |
 
 Main flow:

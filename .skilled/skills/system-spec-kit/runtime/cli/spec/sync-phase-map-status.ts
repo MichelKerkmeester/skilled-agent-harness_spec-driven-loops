@@ -2,13 +2,25 @@
 // MODULE: Sync Phase Map Status
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
 import { isMainModule } from '../lib/esm-entry.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const PHASE_CHILD_RE = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
 const EXCLUDED_DESCENDANT_DIRS = new Set(['.git', 'node_modules', 'research']);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 type StatusSource = 'spec' | 'implementation-summary' | 'missing';
 
@@ -64,6 +76,10 @@ interface SplitContent {
   readonly newline: string;
   readonly trailingNewline: boolean;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function splitContent(content: string): SplitContent {
   const newline = content.includes('\r\n') ? '\r\n' : '\n';
@@ -341,6 +357,10 @@ function writeIfChanged(filePath: string, previous: string, next: string, dryRun
   fs.writeFileSync(filePath, next, 'utf8');
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 /** Synchronize one phase parent's map table and descendant continuity percentages. */
 export function runSyncPhaseMapStatus(options: SyncOptions): SyncSummary {
   const phaseParentPath = path.resolve(options.phaseParentPath);
@@ -454,6 +474,10 @@ function formatSummary(summary: SyncSummary): string {
   }
   return `${lines.join('\n')}\n`;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 function runCli(): void {
   const plan = planSyncPhaseMapStatus(process.argv.slice(2));

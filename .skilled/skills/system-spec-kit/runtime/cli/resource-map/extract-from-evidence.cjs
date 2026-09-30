@@ -1,6 +1,10 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Extract From Evidence                                                    ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Extract From Evidence
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 
@@ -10,6 +14,10 @@ const path = require('node:path');
 
 const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
 const REPO_ROOT = findRepoRoot(__dirname);
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const CATEGORY_ORDER = [
   {
@@ -76,6 +84,10 @@ const META_BASENAMES = new Set([
 ]);
 const SCRIPT_EXTENSIONS = new Set(['.sh', '.js', '.ts', '.mjs', '.cjs', '.py']);
 const CONFIG_EXTENSIONS = new Set(['.json', '.jsonc', '.yaml', '.yml', '.toml']);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function emitResourceMap({ shape, deltas, packet, scope, createdAt }) {
   const normalizedShape = normalizeShape(shape);
@@ -175,6 +187,10 @@ function emitResourceMap({ shape, deltas, packet, scope, createdAt }) {
 
   return `${lines.join('\n')}\n`;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function normalizeShape(shape) {
   if (shape === 'review' || shape === 'research') {
@@ -548,6 +564,10 @@ function normalizeText(value) {
   }
   return String(value).replace(/\s+/g, ' ').trim();
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 module.exports = {
   emitResourceMap,

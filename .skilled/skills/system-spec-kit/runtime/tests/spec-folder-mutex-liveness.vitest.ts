@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Spec Folder Mutex Liveness
+// ───────────────────────────────────────────────────────────────────
 // TEST: Spec Folder Save Mutex Liveness
 // Verifies the interprocess save mutex never reaps a lock whose owner process is
 // still alive, reaps only provably-dead owners (or unreadable owners past the

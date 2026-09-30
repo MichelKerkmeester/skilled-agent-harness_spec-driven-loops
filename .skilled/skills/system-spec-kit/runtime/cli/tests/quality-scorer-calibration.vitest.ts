@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Quality Scorer Calibration Tests
+// ───────────────────────────────────────────────────────────────────
 // TEST: Live Quality Scorer Calibration (extractors/quality-scorer.ts)
 // Ensures the scorer has discriminative power: clean sessions score high, penalised sessions score low.
 // Exercises the live scorer in extractors/; the retired core scorer had no production caller.

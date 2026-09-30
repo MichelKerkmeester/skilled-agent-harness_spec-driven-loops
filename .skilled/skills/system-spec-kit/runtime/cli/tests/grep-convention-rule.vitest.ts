@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Grep Convention Validator Rule
+// MODULE: Grep Convention Validator Rule
 // ───────────────────────────────────────────────────────────────────
 // Drives runtime/cli/rules/check-grep-convention.sh through the same wrapper
 // contract the validation orchestrator uses, so the shell relay is exercised

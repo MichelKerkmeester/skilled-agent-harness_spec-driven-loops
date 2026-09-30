@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
-// 1. IMPLEMENTATION GUIDE EXTRACTOR
+// 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 // Extracts implementation guidance and step-by-step instructions from session observations
 
@@ -22,9 +22,9 @@ import type {
 // Re-export so downstream consumers keep working
 export type { ImplementationStep, KeyFileWithRole, ExtensionGuide, CodePattern };
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Output payload for the implementation guide extractor. */
 export interface ImplementationGuideData {
@@ -47,9 +47,9 @@ export interface FileInput {
   description?: string;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. IMPLEMENTATION DETECTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. IMPLEMENTATION DETECTION
+// ───────────────────────────────────────────────────────────────────
 
 function hasImplementationWork(observations: ObservationInput[], files: FileInput[]): boolean {
   const implTypes = ['implementation', 'feature', 'bugfix', 'refactor'];
@@ -92,9 +92,9 @@ function extractMainTopic(observations: ObservationInput[], specFolder: string |
   return 'implementation';
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. FEATURE EXTRACTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. FEATURE EXTRACTION
+// ───────────────────────────────────────────────────────────────────
 
 function extractWhatBuilt(observations: ObservationInput[]): ImplementationStep[] {
   const implementations: ImplementationStep[] = [];
@@ -136,9 +136,9 @@ function extractWhatBuilt(observations: ObservationInput[]): ImplementationStep[
   return implementations.slice(0, 5);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. FILE ROLE DETECTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. FILE ROLE DETECTION
+// ───────────────────────────────────────────────────────────────────
 
 interface RolePattern {
   pattern: RegExp;
@@ -228,9 +228,9 @@ function extractKeyFilesWithRoles(files: FileInput[], observations: ObservationI
   return keyFiles.slice(0, 8);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   5. EXTENSION GUIDE GENERATION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. EXTENSION GUIDE GENERATION
+// ───────────────────────────────────────────────────────────────────
 
 function generateExtensionGuide(observations: ObservationInput[], files: FileInput[]): ExtensionGuide[] {
   const guides: ExtensionGuide[] = [];
@@ -285,9 +285,9 @@ function generateExtensionGuide(observations: ObservationInput[], files: FileInp
   return guides.slice(0, 4);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   6. PATTERN EXTRACTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 7. PATTERN EXTRACTION
+// ───────────────────────────────────────────────────────────────────
 
 interface PatternMatcher {
   keywords: string[];
@@ -339,9 +339,9 @@ function extractCodePatterns(observations: ObservationInput[], files: FileInput[
   return patterns.slice(0, 5);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   7. IMPLEMENTATION GUIDE BUILDER
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 8. IMPLEMENTATION GUIDE BUILDER
+// ───────────────────────────────────────────────────────────────────
 
 function buildImplementationGuideData(
   observations: ObservationInput[],
@@ -371,9 +371,9 @@ function buildImplementationGuideData(
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   8. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 9. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   hasImplementationWork,

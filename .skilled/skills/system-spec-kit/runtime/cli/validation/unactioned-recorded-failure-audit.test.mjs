@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Unactioned Recorded Failure Audit
+// ───────────────────────────────────────────────────────────────────
+
 import assert from 'node:assert/strict';
 
 import { findUnactionedFailures } from './unactioned-recorded-failure-audit.mjs';

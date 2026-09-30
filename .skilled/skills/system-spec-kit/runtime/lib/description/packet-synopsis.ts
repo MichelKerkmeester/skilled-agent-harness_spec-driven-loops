@@ -8,10 +8,22 @@
 // the same source doc and exposes a per-field length limit, so the two fields move together
 // and a reader can trust they describe the same thing.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { stripYamlFrontmatter } from '../parsing/content-normalizer.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** The two generated fields that derive from the shared synopsis precedence. */
 export type SynopsisField = 'description' | 'causal_summary';
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 // Field-specific length limits. The short description is a one-line label, the causal_summary
 // carries the longer overview a reader scans before opening the packet. Same precedence,
@@ -26,6 +38,10 @@ const OVERVIEW_SECTION_RE = /###\s+Overview\s*\n([\s\S]*?)(?:\n###|\n##|\n<!--|$
 const PROBLEM_HEADING_RE =
   /^#{1,4}\s+(problem\s+(statement|&\s*purpose|and\s+purpose)|purpose)/i;
 const FRONTMATTER_DESCRIPTION_RE = /^\s*description:\s*(.+?)\s*$/im;
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function stripInlineMarkers(line: string): string {
   return line.replace(/\*+/g, '').replace(/_+/g, '').replace(/^[-*>]\s+/, '').trim();
@@ -118,6 +134,10 @@ function extractFirstBodyLine(lines: string[]): string | null {
   }
   return null;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Clamp a generated synopsis to a length limit without cutting the final word when possible.

@@ -2,6 +2,10 @@
 // MODULE: Thin Continuity Record
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export const THIN_CONTINUITY_MAX_BYTES = 2048;
 
 export type ThinContinuityErrorCode =
@@ -105,6 +109,10 @@ type YamlScalar = string | number | boolean | null;
 type YamlValue = YamlScalar | YamlValue[] | { [key: string]: YamlValue };
 type UnknownRecord = Record<string, unknown>;
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 // Kept as a regex rather than the shared fence parser on purpose: continuity
 // records may start with a BOM or an HTML comment ahead of the fence, which
 // the strict shared parser treats as no frontmatter at all.
@@ -194,6 +202,10 @@ const NEXT_ACTION_VERBS = new Set([
   'verify',
   'wait',
 ]);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function isPlainObject(value: unknown): value is UnknownRecord {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -1030,6 +1042,10 @@ function mergeFrontmatterWithContinuity(
     },
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Validate and normalize a raw continuity payload against the thin-continuity

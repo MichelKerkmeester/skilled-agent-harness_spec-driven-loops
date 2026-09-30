@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Stop Hook Token Tracking
+// MODULE: Stop Hook Token Tracking
 // ───────────────────────────────────────────────────────────────────
 import { afterEach, describe, it, expect } from 'vitest';
 import { writeFileSync, mkdirSync, rmSync } from 'node:fs';

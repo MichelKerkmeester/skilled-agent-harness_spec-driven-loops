@@ -2,9 +2,15 @@
 // MODULE: Smart Router Telemetry
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 export type ComplianceClass =
   | 'always'
   | 'conditional_expected'
@@ -37,6 +43,9 @@ type ParsedResource = {
   required: boolean;
 };
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const UNKNOWN_MARKERS = new Set([
   'unknown_unparsed',
   '__unknown_unparsed__',
@@ -58,12 +67,18 @@ const TELEMETRY_MAX_BYTES_ENV = 'SPECKIT_SMART_ROUTER_TELEMETRY_MAX_BYTES';
 const TELEMETRY_BACKUP_SUFFIX = '.1';
 const DEFAULT_TELEMETRY_MAX_BYTES = 1024 * 1024; // 1 MiB
 
+// ───────────────────────────────────────────────────────────────────
+// 4. MODULE STATE
+// ───────────────────────────────────────────────────────────────────
 type ComplianceInput = Omit<ComplianceRecord, 'complianceClass' | 'timestamp' | 'evidenceSource'> & {
   evidenceSource?: TelemetryEvidenceSource;
 };
 
 const activePromptInputs = new Map<string, ComplianceInput>();
 
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function sanitizeValue(value: string): string {
   return value
     .replace(/[\r\n\t]/g, ' ')
@@ -184,6 +199,9 @@ function positiveIntFromEnv(envName: string, fallback: number): number {
   return Number.isFinite(raw) && raw > 0 ? Math.trunc(raw) : fallback;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 // Rotates the telemetry file to a single backup generation when appending
 // would push it past the size cap, so the file never grows unbounded while
 // still preserving the most recent prior generation (never deleted outright).
@@ -365,6 +383,9 @@ export function recordSmartRouterPromptObservation(input: ComplianceInput): void
   });
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 7. RECORD VALIDATION AND PARSING
+// ───────────────────────────────────────────────────────────────────
 function isTelemetryEvidenceSource(value: unknown): value is TelemetryEvidenceSource {
   return value === 'live_wrapper' || value === 'static_prediction';
 }
@@ -431,6 +452,9 @@ export function readSmartRouterComplianceJsonl(inputPath: string): ComplianceRec
   return records;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 8. PROMPT FINALIZATION
+// ───────────────────────────────────────────────────────────────────
 export function finalizeSmartRouterCompliancePrompt(
   promptId: string,
   options: { readonly outputPath?: string } = {},

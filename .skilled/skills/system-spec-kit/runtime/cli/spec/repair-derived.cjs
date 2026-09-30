@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ repair-derived — repair the packet facts that are derivable from disk    ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Repair Derived
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 // Validation failures split into two kinds. Some are facts the repository

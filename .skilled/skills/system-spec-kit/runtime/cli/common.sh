@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SPECKIT: COMMON UTILITIES
+# COMPONENT: COMMON UTILITIES
 # ───────────────────────────────────────────────────────────────
 # Repository detection, branch management, and path resolution.
 # NOTE: lib/common.sh provides LOW-LEVEL utilities (colors, logging).

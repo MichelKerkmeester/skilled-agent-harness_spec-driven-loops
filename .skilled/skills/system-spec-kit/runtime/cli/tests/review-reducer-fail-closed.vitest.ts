@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Review Reducer Fail-Closed
+// ───────────────────────────────────────────────────────────────────
+
 // TEST: deep-review reducer fail-closed behavior
 //
 // Covers:

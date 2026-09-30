@@ -2,6 +2,10 @@
 // MODULE: Graph Metadata Parser
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import * as crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -47,6 +51,10 @@ import {
   type SaveLineage,
 } from './graph-metadata-schema.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const GRAPH_METADATA_STATUS_SET: ReadonlySet<string> = new Set(GRAPH_METADATA_STATUS_VALUES);
 const PHASE_CHILD_DIRECTORY_RE = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
 
@@ -86,6 +94,10 @@ const BARE_RUNTIME_ENTITY_NAMES = new Set([
   'tsc',
 ]);
 let tempCounter = 0;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 interface ParsedSpecDoc {
   relativePath: string;
@@ -156,6 +168,10 @@ interface LegacyGraphMetadataParseResult {
   metadata: GraphMetadata;
   fabricatedFields: string[];
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function toIsoString(value?: Date | string | null): string {
   if (value instanceof Date) {
@@ -360,6 +376,10 @@ function formatValidationErrors(error: unknown): string[] {
 function prefixValidationErrors(prefix: string, errors: string[]): string[] {
   return errors.map((error) => `${prefix}: ${error}`);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Validate raw graph metadata content against the current schema.
@@ -1951,6 +1971,10 @@ export function packetReferencesToCausalLinks(manual: GraphMetadataManual): Reco
     related_to: manual.related_to.map((ref) => ref.packet_id),
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 // The drift gate re-derives one folder and compares the stored synopsis fields ignoring
 // volatile timestamps. It lives in its own module to avoid an import cycle and is surfaced

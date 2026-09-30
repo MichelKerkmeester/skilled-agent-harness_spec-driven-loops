@@ -1,6 +1,6 @@
 import { tmpdir } from 'node:os';
 // ───────────────────────────────────────────────────────────────────
-// TEST: HF model server
+// MODULE: HF Model Server
 // ───────────────────────────────────────────────────────────────────
 
 import { createRequire } from 'node:module';

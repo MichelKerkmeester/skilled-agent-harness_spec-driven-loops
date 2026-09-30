@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Content Normalizer Tests
+// ───────────────────────────────────────────────────────────────────
 // TEST: Content Normalizer
 // File: lib/parsing/content-normalizer.ts
 import { describe, it, expect } from 'vitest';

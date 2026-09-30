@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// 1. TEST — FOLDER DISCOVERY
+// MODULE: Folder Discovery Tests
 // ───────────────────────────────────────────────────────────────────
 // Tests: extractDescription, extractKeywords, findRelevantFolders,
 // GenerateFolderDescriptions, loadDescriptionCache,

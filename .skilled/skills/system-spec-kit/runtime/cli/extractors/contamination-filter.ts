@@ -2,18 +2,18 @@
 // MODULE: Contamination Filter
 // ───────────────────────────────────────────────────────────────────
 
-// ───────────────────────────────────────────────────────────────────
-// 1. CONTAMINATION FILTER
-// ───────────────────────────────────────────────────────────────────
 // Removes orchestration chatter before semantic extraction
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import { getSourceCapabilities, type SourceCapabilities } from '../utils/source-capabilities.js';
 
 import type { DataSource } from '../utils/input-normalizer.js';
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES & CONSTANTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 type ContaminationSeverity = 'low' | 'medium' | 'high';
 
@@ -25,9 +25,9 @@ interface DenylistEntry {
 
 type DenylistPattern = DenylistEntry | RegExp;
 
-/* ───────────────────────────────────────────────────────────────
-   2. DENYLIST PATTERNS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const DEFAULT_DENYLIST: readonly DenylistEntry[] = [
   // Orchestration chatter — medium severity
@@ -99,6 +99,9 @@ const DEFAULT_DENYLIST: readonly DenylistEntry[] = [
   { label: 'certainty redundant-assurance marker', pattern: /^(?:I am )?(?:absolutely |completely )?(?:certain|confident|sure) that /gim, severity: 'low' },
 ] as const;
 
+// ───────────────────────────────────────────────────────────────────
+// 4. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 interface FilterResult {
   cleanedText: string;
   removedPhrases: string[];
@@ -112,9 +115,9 @@ interface FilterOptions {
   sourceCapabilities?: SourceCapabilities;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. FILTER LOGIC
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function clonePattern(pattern: RegExp): RegExp {
   return new RegExp(pattern.source, pattern.flags);
@@ -159,6 +162,9 @@ function normalizeWhitespace(input: string): string {
     .trim();
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 function filterContamination(
   input: string,
   denylist: readonly DenylistPattern[] = DEFAULT_DENYLIST,
@@ -205,9 +211,9 @@ function filterContamination(
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 7. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   DEFAULT_DENYLIST,

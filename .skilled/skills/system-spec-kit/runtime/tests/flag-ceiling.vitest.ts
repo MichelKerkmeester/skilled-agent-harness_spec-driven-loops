@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// FEATURE FLAG CEILING TEST
+// MODULE: Feature Flag Ceiling Test
 // ───────────────────────────────────────────────────────────────────
 // TEST: Validates that every SPECKIT_* gate the package still registers can be
 // Activated at once without interaction, and that a newly registered flag

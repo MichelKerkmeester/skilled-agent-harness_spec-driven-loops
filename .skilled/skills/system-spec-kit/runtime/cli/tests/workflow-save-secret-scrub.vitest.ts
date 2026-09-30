@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Workflow Save Secret Scrub
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it } from 'vitest';
 
 import { scrubWorkflowSavePayloadTextFields } from '../core/workflow.js';

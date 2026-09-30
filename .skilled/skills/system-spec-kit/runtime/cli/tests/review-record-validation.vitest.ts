@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Review-Record Packet Validation
+// MODULE: Review-Record Packet Validation
 // ───────────────────────────────────────────────────────────────────
 // Verifies the additive, marker-gated review-record packet type: a lean folder
 // of spec.md plus review/review-report.md validates clean, and dropping the

@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
-// 1. ALIGNMENT VALIDATOR
+// 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 // Validates conversation-to-spec-folder alignment using topic and keyword matching
 
@@ -19,9 +19,9 @@ import type { CollectedDataSubset } from '../types/session-types.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Configuration for alignment validation checks. */
 export interface AlignmentConfig {
@@ -66,9 +66,9 @@ export interface TelemetrySchemaDocsValidationOptions {
   useCache?: boolean;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. CONFIGURATION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const ALIGNMENT_CONFIG: AlignmentConfig = {
   THRESHOLD: 70,
@@ -101,9 +101,9 @@ const telemetrySchemaDocsValidationCache = {
   checked: false,
 };
 
-/* ───────────────────────────────────────────────────────────────
-   2.5 ARCHIVE FILTERING
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. ARCHIVE FILTERING
+// ───────────────────────────────────────────────────────────────────
 
 /** Check whether a folder name matches any archive pattern from config. */
 function isArchiveFolder(name: string): boolean {
@@ -111,9 +111,9 @@ function isArchiveFolder(name: string): boolean {
   return ALIGNMENT_CONFIG.ARCHIVE_PATTERNS.some((pattern) => lowerName.includes(pattern));
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2.75 TELEMETRY SCHEMA/DOCS DRIFT VALIDATION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. TELEMETRY SCHEMA/DOCS DRIFT VALIDATION
+// ───────────────────────────────────────────────────────────────────
 
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -292,9 +292,9 @@ async function validateTelemetrySchemaDocsDrift(
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. TOPIC EXTRACTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. TOPIC EXTRACTION
+// ───────────────────────────────────────────────────────────────────
 
 function extractConversationTopics(collectedData: AlignmentCollectedData | null): string[] {
   const topics = new Set<string>();
@@ -350,9 +350,9 @@ function extractObservationKeywords(collectedData: AlignmentCollectedData | null
   );
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3.5 WORK DOMAIN DETECTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 7. WORK DOMAIN DETECTION
+// ───────────────────────────────────────────────────────────────────
 
 function detectWorkDomain(collectedData: AlignmentCollectedData | null): WorkDomainResult {
   const files: string[] = [];
@@ -434,9 +434,9 @@ function calculateAlignmentScoreWithDomain(
   return baseScore + infrastructureBonus;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. SCORE CALCULATION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 8. SCORE CALCULATION
+// ───────────────────────────────────────────────────────────────────
 
 function parseSpecFolderTopic(folderName: string): string[] {
   // Accept full relative paths (with / separators) and extract topics from ALL segments
@@ -470,9 +470,9 @@ function calculateAlignmentScore(conversationTopics: string[], specFolderName: s
   return Math.round((matches / specTopics.length) * 100);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   5. VALIDATION FUNCTIONS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 9. VALIDATION FUNCTIONS
+// ───────────────────────────────────────────────────────────────────
 
 async function validateContentAlignment(
   collectedData: AlignmentCollectedData,
@@ -693,9 +693,9 @@ async function validateFolderAlignment(
   return { proceed: true, useAlternative: false };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   6. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 10. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   ALIGNMENT_CONFIG,

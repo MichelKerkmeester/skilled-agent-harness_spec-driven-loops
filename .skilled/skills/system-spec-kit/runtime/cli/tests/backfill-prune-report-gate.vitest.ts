@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Backfill Prune Report Gate
+// ───────────────────────────────────────────────────────────────────
+
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';

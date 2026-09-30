@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Decision Confidence Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it } from 'vitest';
 
 import { extractDecisions } from '../extractors/decision-extractor';

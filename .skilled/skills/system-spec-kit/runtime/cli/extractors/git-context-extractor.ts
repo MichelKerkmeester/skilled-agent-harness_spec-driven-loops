@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
-// 1. GIT CONTEXT EXTRACTOR
+// 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 // Mines git history for file changes and observations for captured-session enrichment
 
@@ -13,9 +13,9 @@ import path from 'path';
 import { extractSpecFolderContext } from './spec-folder-extractor.js';
 import type { ModificationMagnitude } from '../types/session-types.js';
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES & CONSTANTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const GIT_TIMEOUT_MS = 5_000;
 const MAX_FILES = 50;
@@ -33,6 +33,10 @@ const COMMIT_TYPE_MAP: Record<string, string> = {
   chore: 'maintenance',
   test: 'testing',
 };
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 type ChangeAction = 'modify' | 'add' | 'delete' | 'rename';
 type CommitInfo = { hash: string; timestamp: string; subject: string; body: string; files: string[] };
@@ -71,6 +75,11 @@ export interface GitContextExtraction {
   repositoryState: GitRepositoryState;
   isDetachedHead: boolean;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function emptyResult(): GitContextExtraction {
   return {
     observations: [],
@@ -85,9 +94,9 @@ function emptyResult(): GitContextExtraction {
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. GIT COMMAND HELPERS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. GIT COMMAND HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function runGitCommand(projectRoot: string, args: string[]): string {
   return execFileSync('git', args, {
@@ -104,9 +113,9 @@ function tryRunGitCommand(projectRoot: string, args: string[]): string | null {
     return null;
   }
 }
-/* ───────────────────────────────────────────────────────────────
-   3. PATH PARSING & NORMALIZATION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. PATH PARSING & NORMALIZATION
+// ───────────────────────────────────────────────────────────────────
 
 function normalizeFilePath(projectRoot: string, rawPath: string): string {
   const cleanedPath = rawPath.replace(/^"+|"+$/g, '').trim();
@@ -147,9 +156,9 @@ function expandBraceWrappedRenamePaths(projectRoot: string, rawPath: string): st
     .map((segment) => normalizeFilePath(projectRoot, `${prefix}${segment.trim()}${suffix}`))
     .filter(Boolean);
 }
-/* ───────────────────────────────────────────────────────────────
-   4. DIFF & COMMIT PARSING
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 7. DIFF & COMMIT PARSING
+// ───────────────────────────────────────────────────────────────────
 
 function parseStatScores(projectRoot: string, diffStatOutput: string): Map<string, number> {
   const scores = new Map<string, number>();
@@ -187,9 +196,9 @@ function parseCommits(projectRoot: string, logOutput: string): CommitInfo[] {
     .filter((commit) => Boolean(commit.hash && commit.subject));
 }
 
-/* ───────────────────────────────────────────────────────────────
-   5. MODIFICATION MAGNITUDE
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 8. MODIFICATION MAGNITUDE
+// ───────────────────────────────────────────────────────────────────
 
 interface ModificationMagnitudeInput {
   changeScore?: number;
@@ -243,13 +252,13 @@ function detectCommitType(subject: string): string {
   const prefix = subject.match(/^([a-z]+)(?:\([^)]+\))?!?:/i)?.[1]?.toLowerCase();
   return prefix ? COMMIT_TYPE_MAP[prefix] || 'observation' : 'observation';
 }
-/* ───────────────────────────────────────────────────────────────
-   6. SPEC SCOPE RESOLUTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 9. SPEC SCOPE RESOLUTION
+// ───────────────────────────────────────────────────────────────────
 
 // Paths excluded from git context to avoid self-referential pollution.
 // Uses path-segment-boundary matching to avoid over-matching (e.g., 'in-memory-cache.ts'
-// Should NOT match, but 'specs/foo/memory/file.md' should).
+// should NOT match, but a file under a memory/ folder should).
 const EXCLUDED_PATH_PATTERNS = [
   /(?:^|\/)memory\//,              // directory named "memory/" (no \b — avoids matching "my-memory/")
   /(?:^|\/)metadata\.json$/,      // exact filename "metadata.json"
@@ -320,9 +329,9 @@ function matchesSpecFolder(filePath: string, specScope: SpecScope | null): boole
     || filePath.includes(`/${candidate}/`)
   ));
 }
-/* ───────────────────────────────────────────────────────────────
-   7. GIT CONTEXT EXTRACTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 10. GIT CONTEXT EXTRACTION
+// ───────────────────────────────────────────────────────────────────
 
 function getGitSnapshot(projectRoot: string, uncommittedCount: number): Pick<
   GitContextExtraction,

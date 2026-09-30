@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Memory Sufficiency Gate Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it } from 'vitest';
 
 import { evaluateMemorySufficiency } from '@spec-kit/shared/parsing/memory-sufficiency';

@@ -9,6 +9,10 @@
 // and the enforced run. It pairs with source_doc_hashes, a cheap freshness key so a strict run
 // can skip the re-derive on a folder whose source docs are unchanged.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -17,6 +21,10 @@ import {
   derivePacketSynopsis,
   type SynopsisField,
 } from '../description/packet-synopsis.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Validation rule id reported for the generated-metadata drift gate. */
 export const GENERATED_METADATA_DRIFT_RULE = 'GENERATED_METADATA_DRIFT' as const;
@@ -36,6 +44,10 @@ const SYNOPSIS_SOURCE_DOCS = [
   'handover.md',
   'resource-map.md',
 ] as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** One generated synopsis field whose stored value no longer matches a fresh re-derivation. */
 export interface DriftedSynopsisField {
@@ -64,6 +76,10 @@ export interface ResolvedDriftStatus {
   message: string;
   details: string[];
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Hash the source docs the synopsis derives from, keyed by their packet-relative path.
@@ -141,6 +157,10 @@ function hashMapsEqual(a: Record<string, string>, b: Record<string, string>): bo
   }
   return aKeys.every((key, index) => key === bKeys[index] && a[key] === b[key]);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Re-derive a spec folder and report whether its stored synopsis fields drifted from the docs.

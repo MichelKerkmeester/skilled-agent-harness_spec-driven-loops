@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: ESLint Configuration
+// ───────────────────────────────────────────────────────────────────
+
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 

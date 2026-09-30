@@ -1,14 +1,13 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ TEST HARNESS: hf-model-server shutdown-signal subprocess                   ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Spawned as a real child process by hf-model-server-shutdown.vitest.ts so   ║
-// ║ the busy-shutdown regression test can send a genuine OS signal and        ║
-// ║ observe genuine process exit behavior. Reuses the production module's own ║
-// ║ createHfModelServer()/installShutdownHandlers() — the only thing this     ║
-// ║ harness supplies is a fake, delay-controllable loadModel so the drill is  ║
-// ║ deterministic and network-independent (no real onnx model download).     ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Hf Model Server Shutdown Harness
+// ───────────────────────────────────────────────────────────────────
+// Spawned as a real child process by hf-model-server-shutdown.vitest.ts so
+// the busy-shutdown regression test can send a genuine OS signal and
+// observe genuine process exit behavior. Reuses the production module's own
+// createHfModelServer()/installShutdownHandlers() — the only thing this
+// harness supplies is a fake, delay-controllable loadModel so the drill is
+// deterministic and network-independent (no real onnx model download).
 
 'use strict';
 

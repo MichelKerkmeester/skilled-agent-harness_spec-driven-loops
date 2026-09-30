@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
-// 1. FILE EXTRACTOR
+// 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 // Extracts file references, descriptions, and observation types from session data
 
@@ -35,9 +35,9 @@ import type {
 
 export type { FileChange, ObservationDetailed };
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Raw observation input used during file extraction. */
 export type ObservationInput = Observation;
@@ -47,6 +47,10 @@ export interface SemanticFileInfo {
   description: string;
   action: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const ACTION_MAP: Record<string, string> = {
   created: 'Created',
@@ -68,6 +72,10 @@ const GENERIC_OBSERVATION_TITLES = new Set([
   'entry',
 ]);
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function normalizeFileAction(action: string): string {
   return ACTION_MAP[action.toLowerCase()] || 'Modified';
 }
@@ -87,9 +95,9 @@ function shouldRenderObservation(obs: ObservationInput, obsType: string): boolea
   return normalizedTitle.length > 0 && !GENERIC_OBSERVATION_TITLES.has(normalizedTitle);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. OBSERVATION TYPE DETECTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. OBSERVATION TYPE DETECTION
+// ───────────────────────────────────────────────────────────────────
 
 function detectObservationType(obs: ObservationInput): string {
   if (obs.type && obs.type !== 'observation') return obs.type;
@@ -111,9 +119,9 @@ function detectObservationType(obs: ObservationInput): string {
   return 'observation';
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. FILE EXTRACTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. FILE EXTRACTION
+// ───────────────────────────────────────────────────────────────────
 
 function extractFilesFromData(
   collectedData: CollectedDataSubset<'FILES' | 'filesModified'> | null,
@@ -313,9 +321,9 @@ function extractFilesFromData(
     }));
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. SEMANTIC DESCRIPTION ENHANCEMENT
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 7. SEMANTIC DESCRIPTION ENHANCEMENT
+// ───────────────────────────────────────────────────────────────────
 
 function enhanceFilesWithSemanticDescriptions(
   files: FileChange[],
@@ -369,9 +377,9 @@ function enhanceFilesWithSemanticDescriptions(
   });
 }
 
-/* ───────────────────────────────────────────────────────────────
-   5. OBSERVATION ANCHORING
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 8. OBSERVATION ANCHORING
+// ───────────────────────────────────────────────────────────────────
 
 function buildObservationsWithAnchors(
   observations: ObservationInput[] | null,
@@ -484,9 +492,9 @@ function deduplicateObservations(observations: ObservationInput[]): ObservationI
   return result;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   6. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 9. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   detectObservationType,

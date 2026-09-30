@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Level Contract Fallback
+// MODULE: Level Contract Fallback
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';

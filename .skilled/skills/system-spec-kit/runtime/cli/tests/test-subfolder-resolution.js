@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Subfolder Resolution Tests
+// ───────────────────────────────────────────────────────────────────
 // TEST: SUBFOLDER RESOLUTION
 // Focus: SPEC_FOLDER_PATTERN, SPEC_FOLDER_BASIC_PATTERN,
 //        FindChildFolderSync, findChildFolderAsync, core/index re-exports

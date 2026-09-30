@@ -7,6 +7,9 @@
 // ───────────────────────────────────────────────────────────────────
 // Bulk normalizes markdown frontmatter for templates, spec docs, and memories.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
@@ -21,9 +24,9 @@ import { findRepoRoot } from '@spec-kit/runtime/hooks/lib/workspace/repo-root.mj
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
-/* ───────────────────────────────────────────────────────────────
-   1. TYPES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 interface CliOptions {
   dryRun: boolean;
@@ -77,9 +80,9 @@ interface MigrationReport {
   skippedDirs: SkippedDirEntry[];
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. CONSTANTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 function resolveProjectRoot(): string {
   const candidates = [
@@ -144,9 +147,9 @@ Examples:
   node backfill-frontmatter.js --apply --roots .opencode/specs,specs --report /tmp/frontmatter-report.json
 `;
 
-/* ───────────────────────────────────────────────────────────────
-   3. ARG PARSING
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. ARG PARSING
+// ───────────────────────────────────────────────────────────────────
 
 function parseArgs(argv: string[]): CliOptions {
   let dryRun = true;
@@ -242,9 +245,9 @@ function parseArgs(argv: string[]): CliOptions {
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. DISCOVERY
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. DISCOVERY
+// ───────────────────────────────────────────────────────────────────
 
 function normalizePath(filePath: string): string {
   return filePath.replace(/\\/g, '/');
@@ -419,9 +422,9 @@ function collectSpecFiles(rootPath: string, includeArchive: boolean, skippedDirs
   return files.sort();
 }
 
-/* ───────────────────────────────────────────────────────────────
-   5. MIGRATION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. MIGRATION
+// ───────────────────────────────────────────────────────────────────
 
 function initializeReport(options: CliOptions): MigrationReport {
   return {
@@ -607,6 +610,9 @@ function run(): void {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 7. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 if (isMainModule(import.meta.url)) {
   try {
     run();
@@ -617,4 +623,7 @@ if (isMainModule(import.meta.url)) {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 8. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 export { run, parseArgs, discoverSpecsRoots, collectSpecFiles, collectTemplateFiles, classifyDocument };

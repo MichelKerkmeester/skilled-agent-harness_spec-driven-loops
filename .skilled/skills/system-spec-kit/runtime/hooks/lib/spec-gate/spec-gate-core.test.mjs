@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Spec Gate Core Tests
+// ───────────────────────────────────────────────────────────────────
 // Golden-loop + fail-open + answerParse() corpus test for the spec-gate core.
 // Run with: node --test spec-gate-core.test.mjs
 // A handful of tests (marked below) additionally exercise ESM module mocking

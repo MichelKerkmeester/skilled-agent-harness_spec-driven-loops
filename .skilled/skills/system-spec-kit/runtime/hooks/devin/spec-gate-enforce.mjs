@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Devin Spec Gate Enforce
+// ───────────────────────────────────────────────────────────────────
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { parseJsonFailOpen, readStdin } from '../lib/hook-adapter-shared.mjs';
 const DEVIN_TOOL_MAP = { exec: 'bash', edit: 'edit' };

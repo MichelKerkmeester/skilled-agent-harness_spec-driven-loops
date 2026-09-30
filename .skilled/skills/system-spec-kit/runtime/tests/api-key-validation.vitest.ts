@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: API Key Validation Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   VALIDATION_TIMEOUT_MS,

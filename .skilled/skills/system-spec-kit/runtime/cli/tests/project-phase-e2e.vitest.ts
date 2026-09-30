@@ -1,6 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: resolveProjectPhase — explicit override + inferred detection
-// ProjectPhase frontmatter propagation
+// MODULE: Project Phase Resolution Tests
 // ───────────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';

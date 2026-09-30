@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Multi-AI Council Validator Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, it, expect } from 'vitest';
 import { execSync } from 'node:child_process';
 import { copyFileSync, existsSync, mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
