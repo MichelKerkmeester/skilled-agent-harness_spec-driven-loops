@@ -1,12 +1,15 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
-// MODULE: Jev and Deem Tie-Break Eval
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// MODULE: JEV AND DEEM TIE-BREAK EVAL
+// ───────────────────────────────────────────────────────────────────
 //
 // Measures, offline, whether a Jev or local Deem choice inside the advisor's
 // near-tie cluster beats the scorer's own order. The default run is a census
 // that makes no model call. The script holds no credential and reads none.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import { spawn, spawnSync } from 'node:child_process';
 import { accessSync, appendFileSync, constants, mkdirSync, mkdtempSync, readFileSync, realpathSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -14,6 +17,9 @@ import { delimiter, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 export const ALPHA = 0.05;
 export const POWER = 0.8;
 const JEV_VERSION = 'jev 0.6.2';
@@ -33,6 +39,9 @@ const DIST = resolve(HERE, '../../dist/runtime');
 const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
 const CORPORA = { labeled: ['labeled-prompts.jsonl', 195], holdout: ['holdout-prompts.jsonl', 70], ambiguity: ['ambiguity-prompts.jsonl', 24] };
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 /**
  * Binomial coefficient C(n, i) by the multiplicative product, in floating point.
  * @param {number} n
@@ -768,6 +777,9 @@ export function buildReport(censusSummary, jevResult, deemResult, compare) {
   return report;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 /**
  * One bounded child process. Resolves exactly once with the exit code, the
  * collected output, the wall time, and whether the timeout fired.
@@ -1585,6 +1597,9 @@ export async function main(argv, deps = {}) {
   return 0;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 if (process.argv[1] && realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url))) {
   process.exitCode = await main(process.argv.slice(2));
 }
