@@ -1866,19 +1866,6 @@ export function enforceWriteContainment(input: EnforceInput): EnforceResult {
     preDispatchDirtyPaths: input.preDispatchDirtyPaths,
     baselineContentRoot: input.baselineContentRoot,
   });
-  // Partition by what the revert actually did. A path holding HEAD content -- restored or
-  // preserved -- is a recoverable breach and always fatal, and so is an escaping symlink:
-  // its name sits inside the artifact tree while its bytes leave it, which is this lane's
-  // own hole in containment rather than a neighbour's write. A preserved not-in-HEAD path
-  // is where the remedy decides. Under 'restore' the caller asked for containment to act,
-  // so the path's relation to the packet settles it: inside the packet's own directory tree
-  // -- an ancestor of (or equal to) this leaf's artifact dir, e.g. a spec doc some other
-  // process in the same packet wrote alongside this lineage -- it is a non-fatal advisory,
-  // while a path with no such relationship is a genuine out-of-scope breach that fails the
-  // iteration. Under 'preserve' -- the default -- nothing was rolled back and the bytes are
-  // already guaranteed to survive, so a halt would protect nothing and the only thing it
-  // adds is a false stop caused by another session's concurrent write; every preserved path
-  // is an advisory wherever it landed.
   const preservedPaths = new Set(
     revertResult.reverted.filter((a) => a.action === 'preserved_untracked').map((a) => a.path),
   );
