@@ -343,6 +343,7 @@ RESOURCE_MAP = {
         "sk-create-quality-control/references/validation-and-enforcement.md",
         "sk-create-quality-control/references/workflow-examples.md",
         "sk-create-quality-control/references/workflows.md",
+        "sk-create-readme/assets/architecture-template.md",
         "sk-create-readme/assets/readme-code-template.md",
         "sk-create-readme/assets/readme-template.md",
         "sk-create-readme/references/README.md",

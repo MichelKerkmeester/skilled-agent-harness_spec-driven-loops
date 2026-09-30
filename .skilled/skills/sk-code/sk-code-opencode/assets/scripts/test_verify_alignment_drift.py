@@ -274,6 +274,84 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             self.assertEqual(0, result.returncode)
             self.assertNotIn("ROUTER-DEAD-PATH", result.stdout)
 
+    def _long_ts(self, body_line: str = "export const value = 1;\n") -> str:
+        return "// MODULE: fixture\n" + body_line * 160
+
+    def test_check_sections_fails_long_file_without_numbered_sections(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(root / "lib" / "long.ts", self._long_ts())
+
+            result = self.run_cli(root, ["--check-sections"])
+            self.assertEqual(1, result.returncode)
+            self.assertIn("[SECTIONS-MISSING] [ERROR]", result.stdout)
+
+    def test_check_sections_passes_numbered_file_and_exempts_tests(self) -> None:
+        rule = "// " + "─" * 67 + "\n"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(root / "lib" / "ok.ts", rule + "// 1. CORE LOGIC\n" + rule + self._long_ts())
+            self.write_file(root / "lib" / "long.vitest.ts", self._long_ts())
+
+            result = self.run_cli(root, ["--check-sections"])
+            self.assertEqual(0, result.returncode, result.stdout)
+            self.assertNotIn("SECTIONS-", result.stdout)
+
+    def test_check_sections_accepts_header_rule_followed_by_divider(self) -> None:
+        rule = "// " + "─" * 67 + "\n"
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            content = rule + "// MODULE: fixture\n" + rule + "\n" + rule + "// 1. CORE LOGIC\n" + rule
+            self.write_file(root / "headed.ts", content + "// ── Titled Rule ──\n")
+
+            findings = self.module.check_file(str(root / "headed.ts"), check_section_dividers=True)
+            shape_lines = [item.line for item in findings if item.rule_id == "SECTIONS-DIVIDER-SHAPE"]
+            self.assertEqual([8], shape_lines)
+
+    def test_check_sections_flags_mixed_divider_formats(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            content = (
+                "// " + "─" * 67 + "\n// 1. IMPORTS\n// " + "─" * 67 + "\n"
+                "/* " + "─" * 63 + "\n   2. CORE LOGIC\n" + "─" * 64 + " */\n"
+            )
+            self.write_file(root / "mixed.ts", content)
+
+            findings = self.module.check_file(str(root / "mixed.ts"), check_section_dividers=True)
+            self.assertTrue(any(item.rule_id == "SECTIONS-MIXED-FORMAT" for item in findings))
+
+    def test_check_folders_flags_missing_readme_and_passes_documented_folder(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(root / "lib" / "undocumented" / "a.ts", "// MODULE: a\n")
+            self.write_file(root / "lib" / "documented" / "b.ts", "// MODULE: b\n")
+            self.write_file(root / "lib" / "documented" / "README.md", "# documented\n")
+
+            result = self.run_cli(root, ["--check-folders"])
+            readme_findings = [line for line in result.stdout.splitlines() if "[FOLDER-README-MISSING]" in line]
+            self.assertEqual(1, result.returncode)
+            self.assertEqual(1, len(readme_findings), result.stdout)
+            self.assertIn("undocumented", readme_findings[0])
+
+    def test_check_folders_dunder_name_stays_error_under_tests(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(root / "tests" / "__fixtures__" / "errors.ts", "// MODULE: e\n")
+            self.write_file(root / "tests" / "__fixtures__" / "README.md", "# fixtures\n")
+
+            result = self.run_cli(root, ["--check-folders"])
+            self.assertEqual(1, result.returncode)
+            self.assertIn("[FOLDER-DUNDER-NAME] [ERROR]", result.stdout)
+
+    def test_section_and_folder_checks_are_off_by_default(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(root / "__tests__" / "long.ts", self._long_ts())
+
+            result = self.run_cli(root)
+            self.assertNotIn("SECTIONS-", result.stdout)
+            self.assertNotIn("FOLDER-", result.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -190,8 +190,9 @@ adopts — each labeled honestly, because most of them are not shipped yet.
   `DatabaseView` (`extends FileView`) and `DatabaseFileDashboardView` (`extends DatabaseView`) against
   their `WorkspaceLeaf` view types, and reads `manifest.json`'s `minAppVersion`/`isDesktopOnly` contract
   (`isDesktopOnly: false` — nothing here may assume a desktop-only API).
-- **Tests are co-located** as `*.test.ts` (49 files, 386 passing assertions across them), not held in a
-  separate mirror tree, except for `src/__tests__/` and `src/data/__tests__/`.
+- **Tests are co-located today** as `*.test.ts` (49 files, 386 passing assertions across them), not held
+  in a separate mirror tree, except for `src/__tests__/` and `src/data/__tests__/`. Both the co-location
+  and the two `__tests__` folders break the universal folder rule; see the target conventions below.
 - **Naming today is PascalCase-dominant**: 232 PascalCase filenames against 16 kebab-case, with a
   `textLinkScheme` camelCase outlier and one `_shared` underscore folder. No scanner enforces either
   form yet.
@@ -211,8 +212,13 @@ adopts — each labeled honestly, because most of them are not shipped yet.
 - **Paired `README.md`/`CODE.md` folder documents** at the three-or-more-direct-source-files (or any
   child source folder) threshold. Measured
   against the current tree, these folders owe both documents: `src`, `src/data`, `src/views`,
-  `src/views/modals`, `tools`, `tools/screenshots`, `tools/screenshots/scenarios`. These owe a
-  `README.md` only, under the smaller-folder rule: `src/__tests__`, `src/data/__tests__`.
+  `src/views/modals`, `tools`, `tools/screenshots`, `tools/screenshots/scenarios`. The two `__tests__`
+  folders owe nothing, because the next rule removes them.
+- **A top-level `tests/` tree** mirroring `src/`, holding every test, fixture and helper, with no
+  double-underscore folder names. This is the universal rule in
+  [code-style-guide.md](../shared/references/universal/code-style-guide.md) §3 "Folders and tests".
+  Moving the 49 co-located test files and both `__tests__` folders is a migration in the plugin repo,
+  not yet done.
 - **Numbered box-drawing section grammar in `styles.css`**, replacing or supplementing the existing
   CJK cheat-sheet preamble, over all 18,931 lines — an operator decision on whether the file stays one
   section-annotated file or is split, since a split changes the load order the tests and the capture

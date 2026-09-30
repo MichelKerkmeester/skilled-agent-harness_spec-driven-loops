@@ -75,6 +75,8 @@ INTEGRITY_RULE_PREFIXES = (
     "EXACT-HEADER",
     "RUST-UNSAFE",
     "ROUTER-",
+    "SECTIONS-",
+    "FOLDER-",
 )
 
 # A router RESOURCE_MAP/DEFAULT_RESOURCE names its leaves as packet-root-relative
@@ -106,6 +108,24 @@ TS_TEST_SUFFIXES = (
     ".vitest.tsx",
 )
 TSCONFIG_JSON_RE = re.compile(r"^tsconfig(\..+)?\.json$")
+
+# Section dividers apply to JS/TS source only; Python and shell keep their own
+# conventions. Short files read fine without sections, so the rule starts where a
+# reader needs landmarks.
+SECTION_EXTENSIONS = {".ts", ".tsx", ".mts", ".js", ".mjs", ".cjs"}
+SECTION_REQUIRED_MIN_LINES = 150
+NUMBERED_SECTION_RE = re.compile(r"^\s*(?://|/\*)?\s*\d+\.\s+[A-Z][A-Z0-9 &/_()-]{2,}\s*$", re.M)
+LINE_DIVIDER_RE = re.compile(r"^//\s*─{20,}\s*$", re.M)
+BLOCK_DIVIDER_RE = re.compile(r"^/\*\s*─{20,}", re.M)
+# Horizontal whitespace only: with re.M a `\s` crosses the newline, so a header's
+# closing rule followed by a correct divider would read as one titled rule.
+NONSTANDARD_DIVIDER_RE = re.compile(
+    r"^[ \t]*//[ \t]*[-=*#]{5,}|^[ \t]*/\*[ \t]*[-=]{5,}|^//[ \t]*─+[ \t]+\S.*─+[ \t]*$|^[ \t]*//[ \t]*#?region\b",
+    re.M,
+)
+TEST_FILE_RE = re.compile(r"\.(?:test|spec|vitest)\.[cm]?[jt]sx?$")
+CODE_FOLDER_EXTENSIONS = {".ts", ".tsx", ".mts", ".js", ".mjs", ".cjs", ".py", ".sh", ".rs"}
+DUNDER_FOLDER_RE = re.compile(r"^__.+__$")
 KNOWN_MALFORMED_JSON_FIXTURE_SUFFIXES = (
     "/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/"
     "z_archive/044-speckit-test-suite/scratch/001-test-agent-08/malformed.json",
@@ -151,6 +171,23 @@ def parse_args() -> argparse.Namespace:
             "Additionally require a COMPONENT: or MODULE: marker in the first 40 lines. "
             "This opt-in check skips tests, scratch/research context, plugins, assets, "
             "examples, fixtures and archived material."
+        ),
+    )
+    parser.add_argument(
+        "--check-sections",
+        action="store_true",
+        help=(
+            "Additionally require numbered section dividers in non-test JS/TS files over "
+            f"{SECTION_REQUIRED_MIN_LINES} lines, and flag non-standard divider shapes or "
+            "both divider formats in one file."
+        ),
+    )
+    parser.add_argument(
+        "--check-folders",
+        action="store_true",
+        help=(
+            "Additionally flag code folders with no README.md and any folder named with "
+            "leading and trailing double underscores (for example __tests__)."
         ),
     )
     return parser.parse_args()
@@ -345,6 +382,111 @@ def check_exact_header(path: str, lines: List[str], extension: str) -> List[Find
             fix_hint="Add the standard component or module header within the first 40 lines.",
         )
     ]
+
+
+def is_section_exempt_path(path: str) -> bool:
+    """Test files carry the header but not numbered sections, by house rule."""
+    normalized = normalize_path(path)
+    if is_test_heavy_path(path) or TEST_FILE_RE.search(os.path.basename(normalized)):
+        return True
+    return is_path_segment_present(path, "stress-test")
+
+
+def check_sections(path: str, content: str, extension: str) -> List[Finding]:
+    if extension not in SECTION_EXTENSIONS or is_section_exempt_path(path):
+        return []
+
+    findings: List[Finding] = []
+    lines = content.splitlines()
+    if len(lines) > SECTION_REQUIRED_MIN_LINES and not NUMBERED_SECTION_RE.search(content):
+        findings.append(
+            Finding(
+                path=path,
+                line=1,
+                rule_id="SECTIONS-MISSING",
+                message=f"File exceeds {SECTION_REQUIRED_MIN_LINES} lines without numbered section dividers.",
+                fix_hint="Add numbered dividers (`// 1. IMPORTS` inside box-drawing rules) in the standard section order.",
+            )
+        )
+
+    shape_match = NONSTANDARD_DIVIDER_RE.search(content)
+    if shape_match:
+        findings.append(
+            Finding(
+                path=path,
+                line=content.count("\n", 0, shape_match.start()) + 1,
+                rule_id="SECTIONS-DIVIDER-SHAPE",
+                message="Non-standard section divider shape.",
+                fix_hint="Use the box-drawing Format A or Format B divider from the style guide.",
+            )
+        )
+
+    if LINE_DIVIDER_RE.search(content) and BLOCK_DIVIDER_RE.search(content):
+        findings.append(
+            Finding(
+                path=path,
+                line=1,
+                rule_id="SECTIONS-MIXED-FORMAT",
+                message="File mixes Format A line dividers and Format B block dividers.",
+                fix_hint="Pick one divider format and use it for every section in the file.",
+            )
+        )
+    return findings
+
+
+def check_folders(roots: Iterable[str]) -> List[Finding]:
+    """Flag code folders without a README and folders with double-underscore names.
+
+    A folder counts as a code folder when it directly holds a tracked source file.
+    The name rule has no context downgrade: these folders sit almost entirely under
+    tests/, where every other rule softens to a warning, and a softened rule here
+    would hide the whole class.
+    """
+    findings: List[Finding] = []
+    seen: Set[str] = set()
+    for root in roots:
+        abs_root = os.path.realpath(root)
+        tracked = tracked_paths(abs_root)
+        for current_root, dirs, files in os.walk(abs_root):
+            dirs[:] = [entry for entry in dirs if entry not in EXCLUDED_DIRS]
+            real_dir = os.path.realpath(current_root)
+            if real_dir in seen:
+                continue
+            seen.add(real_dir)
+
+            tracked_files = [
+                name
+                for name in files
+                if tracked is None or os.path.realpath(os.path.join(current_root, name)) in tracked
+            ]
+            if not tracked_files:
+                continue
+
+            if DUNDER_FOLDER_RE.match(os.path.basename(real_dir)):
+                findings.append(
+                    Finding(
+                        path=real_dir,
+                        line=1,
+                        rule_id="FOLDER-DUNDER-NAME",
+                        message="Folder name starts and ends with a double underscore.",
+                        fix_hint="Rename it without underscores; test code belongs under a tests/ tree.",
+                        severity="ERROR",
+                    )
+                )
+
+            holds_code = any(os.path.splitext(name)[1].lower() in CODE_FOLDER_EXTENSIONS for name in tracked_files)
+            if holds_code and "README.md" not in files:
+                findings.append(
+                    Finding(
+                        path=real_dir,
+                        line=1,
+                        rule_id="FOLDER-README-MISSING",
+                        message="Code folder has no README.md.",
+                        fix_hint="Add a code README from sk-create-readme's code template.",
+                        severity=classify_severity(real_dir + os.sep, "FOLDER-README-MISSING"),
+                    )
+                )
+    return findings
 
 
 def classify_severity(path: str, rule_id: str) -> str:
@@ -579,7 +721,7 @@ def check_common(path: str, content: str) -> List[Finding]:
     return findings
 
 
-def check_file(path: str, check_exact_headers: bool = False) -> List[Finding]:
+def check_file(path: str, check_exact_headers: bool = False, check_section_dividers: bool = False) -> List[Finding]:
     extension = os.path.splitext(path)[1].lower()
     raw_findings: List[Finding] = []
 
@@ -617,6 +759,9 @@ def check_file(path: str, check_exact_headers: bool = False) -> List[Finding]:
 
     if check_exact_headers:
         raw_findings.extend(check_exact_header(path, lines, extension))
+
+    if check_section_dividers:
+        raw_findings.extend(check_sections(path, content, extension))
 
     findings: List[Finding] = []
     for finding in raw_findings:
@@ -718,7 +863,11 @@ def main() -> int:
 
     for file_path in sorted(iter_code_files(roots)):
         scanned += 1
-        findings.extend(check_file(file_path, args.check_exact_headers))
+        findings.extend(check_file(file_path, args.check_exact_headers, args.check_sections))
+
+    if args.check_folders:
+        # Severity is set per finding inside check_folders; the name rule never softens.
+        findings.extend(check_folders(roots))
 
     if args.check_router:
         for finding in check_router_paths(roots):

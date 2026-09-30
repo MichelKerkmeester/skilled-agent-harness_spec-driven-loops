@@ -141,6 +141,7 @@
     },
     {
       "leaves": [
+        "assets/architecture-template.md",
         "assets/readme-code-template.md",
         "assets/readme-template.md",
         "references/README.md",
