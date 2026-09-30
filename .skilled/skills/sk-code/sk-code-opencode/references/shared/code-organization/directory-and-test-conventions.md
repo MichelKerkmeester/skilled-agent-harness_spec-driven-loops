@@ -126,7 +126,6 @@ mcp-server/
 │   ├── storage/                # Persistence layer
 │   │   └── transaction-manager.ts
 │   ├── templates/
-│   ├── test-helpers/
 │   ├── utils/                  # General utilities
 │   └── validation/             # Document and metadata validation
 ├── scripts/                    # Server-specific scripts
@@ -248,15 +247,14 @@ scripts/
 
 ### Test File Location
 
-Tests live in the package's top-level `tests/` tree, which mirrors the source layout:
+Tests live in the package's top-level `tests/` tree. Keep it flat while file names stay unique, and group by area only when a group holds several files:
 
 ```
 lib/
 ├── search/
 │   └── vector-index.ts
 tests/
-└── search/
-    └── vector-index.test.ts
+└── vector-index.test.ts
 ```
 
 A test never sits beside its source, and no folder is named with double underscores. Both rules are universal: see [code-style-guide.md](../../../../shared/references/universal/code-style-guide.md) §3 "Folders and tests".
