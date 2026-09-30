@@ -67,9 +67,9 @@ succeeding, a build finishing, or code "looking right" proves nothing on its own
 - [ ] Passing count is **at or above** the measured baseline of **386 passing across 49 files**; a
   drop below that floor means a test was broken or silently skipped, not that the suite shrank for
   a good reason
-- [ ] A new source file with test-worthy logic got a co-located `*.test.ts`, matching the existing
-  convention (tests live beside their source except under `src/__tests__/` and
-  `src/data/__tests__/`)
+- [ ] A new source file with test-worthy logic got a `*.test.ts` under the top-level `tests/` tree,
+  at the path mirroring its source, never beside the source and never in a `__tests__` folder
+  (universal rule: `shared/references/universal/code-style-guide.md` §3 "Folders and tests")
 
 ---
 

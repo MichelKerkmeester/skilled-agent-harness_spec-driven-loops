@@ -134,7 +134,7 @@ mcp-server/
 │   └── finalize-dist.mjs       # Build finalization
 ├── tests/                      # Test files (*.vitest.ts)
 │   ├── _support/               # Shared test support
-│   └── __helpers__/            # Test helpers
+│   └── helpers/                # Test helpers
 └── dist/                       # Compiled output (gitignored)
 ```
 
@@ -248,17 +248,9 @@ scripts/
 
 ### Test File Location
 
-Keep tests close to source:
+Tests live in the package's top-level `tests/` tree, which mirrors the source layout:
 
 ```
-Option A: Adjacent tests/
-lib/
-├── search/
-│   ├── vector-index.ts
-│   └── tests/
-│       └── vector-index.test.ts
-
-Option B: Top-level tests/
 lib/
 ├── search/
 │   └── vector-index.ts
@@ -267,7 +259,7 @@ tests/
     └── vector-index.test.ts
 ```
 
-OpenCode uses **Option B** (top-level tests/) for most projects.
+A test never sits beside its source, and no folder is named with double underscores. Both rules are universal: see [code-style-guide.md](../../../../shared/references/universal/code-style-guide.md) §3 "Folders and tests".
 
 ### Test File Structure
 
