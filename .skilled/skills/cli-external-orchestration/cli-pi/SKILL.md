@@ -2,7 +2,7 @@
 name: cli-pi
 description: "Pi CLI executor for guarded headless coding, JSON/RPC integration, native skills/extensions, and community-package delegation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.5.12.0
+version: 1.5.13.0
 ---
 
 <!-- Keywords: pi cli, pi agent, pi.dev cli, pi coding agent, delegate to pi, cross-ai, headless dispatch, json event stream, rpc mode, native skills, extensions, pi packages -->
@@ -75,6 +75,7 @@ INTENT_SIGNALS = {
     "RPC": {"weight": 4, "keywords": ["rpc", "stdin", "stdout", "jsonl", "persistent process"]},
     "AGENT_DELEGATION": {"weight": 4, "keywords": ["delegate", "built-in tools", "tool allowlist", "agent bridge"]},
     "NATIVE_RESOURCES": {"weight": 4, "keywords": ["skill", "prompt template", "extension", "pi-mcp-extension", "package"]},
+    "CLASSIFIER": {"weight": 4, "keywords": ["classify", "classifier", "typed judgment", "choice question"]},
     "PATTERNS": {"weight": 3, "keywords": ["pattern", "workflow", "session", "resume", "continue"]},
     "TEMPLATES": {"weight": 3, "keywords": ["template", "prompt", "how to ask", "pi prompt"]},
 }
@@ -161,6 +162,21 @@ Pi's native resource surfaces are documented separately because their discovery 
 - [mcp-and-third-party-packages.md](./references/mcp-and-third-party-packages.md) covers packages, MCP, and community bridges.
 - [agent-delegation.md](./references/agent-delegation.md) covers Pi's built-in tool surface and the delegation boundary.
 
+### Classifier Calls
+
+Pi carries classifier models that answer a typed question over JSON state instead of chatting. The
+classifier types are `choice`, `bool` and `score`, documented in the installed package's
+`docs/models.md`. A Pi worker reaches them three ways:
+
+- a codemode script calls `models.getModelOfType("classifier", provider, id)`, then
+  `models.classify(model, { state, questions })`, and needs `"defaultTools": ["+codemode"]` in settings
+- an extension calls `ctx.modelRegistry.classify()` and needs no codemode
+- the SDK's `ModelRuntime` exposes `create()`, `getModelOfType`, `getAvailableOfType` and `classify`
+
+Credentials stay in Pi's own store. Pi resolves them from its own configuration, so a classifier call
+passes no key, and an answer is evidence for the caller's decision, never permission. When the service
+reports token counts, `result.usage` carries them with their cost.
+
 ### Prompt Construction
 
 The caller remains responsible for task scope, files, acceptance criteria, and verification. Use the prompt templates as scaffolds, not as a substitute for reading the target mode's skill contract. Pass an established spec folder to a non-interactive child when the parent workflow requires it.
@@ -200,6 +216,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 10. Compose every dispatch as `{resolved agent persona + task prompt}`, never a bare task. Resolve the persona from the ACTIVE runtime's agent directory (AGENTS.md §9; never hardcode a runtime) and map each subtask to the right agent (code, review, design, deep-research, markdown). Core Pi has no native persona surface on `pi -p`, so INLINE the persona block into the payload — the child cannot resolve agent paths by reference. A persona-less leaf runs as a generic assistant, dropping its tool-scope, verification gates, and output contract. Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection".
 11. Set `AI_SESSION_CHILD=1` in the dispatched child's env AND state the exemption in the prompt. The variable makes the waiver true; it does not make it observable. The reader being waived is a model, and a model cannot see an environment variable, so a child given only the variable still stops to ask the documentation-scope question and writes nothing, at exit code zero. Copy the preamble from [`shared/references/child-dispatch-preamble.md`](../shared/references/child-dispatch-preamble.md) to the top of every non-interactive prompt.
 12. Give a build dispatch one change per brief: name the file, the edit, and the check that proves it. A brief that asks the child to read a subsystem before it edits spends its context first; a DeepSeek V4.1 Flash build brief carrying five changes across five runtime files read about 995,000 characters in 25 minutes and wrote nothing. Chain the changes as separate dispatches and check each diff before sending the next.
+13. Route a classifier question through Pi's own surfaces: `models.classify()` in a codemode script, `ctx.modelRegistry.classify()` in an extension, or the SDK's `ModelRuntime`, and leave the credential to Pi's own store.
 
 ### ⛔ NEVER
 
@@ -212,6 +229,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 7. Never treat community packages as Pi first-party features.
 8. Never use a bare single-token pi alias in routing metadata.
 9. Never pass secrets or provider keys in prompts.
+10. Never read a classifier answer as permission. It is evidence for the caller's decision, and the caller owns the consequence.
 
 ### ⚠️ ESCALATE IF
 

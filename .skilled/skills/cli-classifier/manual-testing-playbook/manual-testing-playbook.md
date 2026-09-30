@@ -140,6 +140,14 @@ Prompt: `Run the Pi transport scorer with a fake jev on my PATH and show me its 
 
 > **Feature File:** [CC-005](measurements/pi-transport-comparison.md)
 
+### CC-006 | The Pi classifier transport routes, answers and skips on stubs
+
+Verify the opt-in Pi transport keeps the `jev` CLI as the default, answers a `choice` question through an injected Pi runtime with the CLI-shaped payload, and prints one skip line per failed gate before the CLI runs.
+
+Prompt: `Run the Pi classifier transport with a stub jev first on PATH and show me the switch routes and the skip cases passing`
+
+> **Feature File:** [CC-006](measurements/pi-transport-integration.md)
+
 ---
 
 ## 8. AUTOMATED TEST CROSS-REFERENCE
@@ -153,6 +161,7 @@ Prompt: `Run the Pi transport scorer with a fake jev on my PATH and show me its 
 | Deem client behavior | [cli-deem tests](../cli-deem/scripts/tests/cli-deem.test.mjs) | none, covered by `node --test` |
 | Injection screen scorer | [score-injection-screen tests](../benchmark/injection-screen/tests/score-injection-screen.test.mjs) | `CC-004` |
 | Pi transport scorer | [score-pi-transport tests](../benchmark/pi-transport/tests/score-pi-transport.test.mjs) | `CC-005` |
+| Pi classifier transport | [jev-transport tests](../shared/scripts/tests/jev-transport.test.mjs) | `CC-006` |
 
 ---
 
@@ -167,3 +176,4 @@ Prompt: `Run the Pi transport scorer with a fake jev on my PATH and show me its 
 | CJ-002 | The cli-usage name resolves the Jev transport | Hub Routing | [CJ-002](hub-routing/alias-still-resolves.md) |
 | CC-004 | The injection screen scorer runs with zero model calls | Measurements | [CC-004](measurements/injection-screen-measurement.md) |
 | CC-005 | The Pi transport scorer runs with zero model calls | Measurements | [CC-005](measurements/pi-transport-comparison.md) |
+| CC-006 | The Pi classifier transport routes, answers and skips on stubs | Measurements | [CC-006](measurements/pi-transport-integration.md) |

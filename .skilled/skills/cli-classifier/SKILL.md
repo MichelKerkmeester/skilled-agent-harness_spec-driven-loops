@@ -117,7 +117,7 @@ cli-classifier/
 
 ### Offline Measurement
 
-`benchmark/injection-screen/score-injection-screen.mjs` measures offline whether a Jev or Deem `noul` spots text that tries to instruct an agent better than flag-nothing or a fixed lexical screen. Its default run makes zero model calls. `--jev` and `--deem` each run one backend only after that backend's own gate passes. No hook screens fetched content, so no verdict is wired to anything.
+`benchmark/injection-screen/score-injection-screen.mjs` measures offline whether a Jev or Deem `noul` spots text that tries to instruct an agent better than flag-nothing or a fixed lexical screen. Its default run makes zero model calls. `--jev` and `--deem` each run one backend only after that backend's own gate passes. No hook screens fetched content, so no verdict is wired to anything. `shared/scripts/jev-transport.mjs` carries the opt-in Pi route for `choice` questions, with the `jev` CLI as the default and the fallback, and `shared/scripts/tests/jev-transport.test.mjs` pins both backends with stubs and no socket.
 
 ---
 

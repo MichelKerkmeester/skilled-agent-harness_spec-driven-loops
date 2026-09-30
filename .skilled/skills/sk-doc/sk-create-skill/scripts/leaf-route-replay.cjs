@@ -23,6 +23,7 @@ const path = require('path');
 const rootRouter = require('./lib/root-router-contract.cjs');
 const leafContract = require('./lib/leaf-resource-contract.cjs');
 const scenarios = require('./validate-compiled-routing-scenarios.cjs');
+const { spawnClassifierCall } = require('../../../cli-classifier/shared/scripts/jev-transport.mjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -1339,7 +1340,7 @@ async function runJevArm(rows, baseline, gate, ctx) {
    * @returns {Promise<{ code: number|null, stdout: string, stderr: string, wallMs: number, timedOut: boolean }>} The final spawn's result.
    */
   async function call(args, text, fields) {
-    let result = await spawnCall(gate.path, args, text, env, timeoutMs);
+    let result = await spawnClassifierCall({ file: gate.path, args, stdin: text, env, timeoutMs, report: out });
     if (result.code === 4) {
       writeCall(outDir, {
         kind: fields.kind,

@@ -51,3 +51,17 @@ Compares Pi's classifier runtime against the jev CLI on the advisor's recorded c
 #### Source Files
 
 See [`measurements/pi-transport-comparison.md`](measurements/pi-transport-comparison.md) for full implementation and test file listings.
+
+### Pi classifier transport integration
+
+#### Description
+
+Carries an opt-in Pi route for Jev choice questions behind JEV_TRANSPORT, with the jev CLI as the default and the fallback.
+
+#### Current Reality
+
+`shared/scripts/jev-transport.mjs` resolves the switch per call, maps the declared `choice` arguments to Pi's classifier context and writes a Pi answer back in the CLI's shape. The CLI branch is the callers' own bounded spawn, so switch-off bytes do not move. `leaf-route-replay.cjs` and `score-clarify-default.cjs` are the two callers that opt in, and the predecessor phase's recorded run printed `verdict pi-transport: adopt` over `choice` rows only.
+
+#### Source Files
+
+See [`measurements/pi-transport-integration.md`](measurements/pi-transport-integration.md) for full implementation and test file listings.
