@@ -1,0 +1,12 @@
+TASK: name the `--deem` and `--jev` switches in playbook scenario 459's "Why This Matters" paragraph. One literal line replacement in one file.
+F = .skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md. Read F first. Change nothing else in it.
+
+1. F:19, under `### Why This Matters`. Old line:
+The default run is the one an operator can make at any time, so it has to print both baselines and the headroom line without calling a model or writing a file. A model arm pointed at a backend that is not the real model would measure nothing, so a stub backend has to skip the arm rather than answer.
+New line:
+The default run is the one an operator can make at any time, so it has to print both baselines and the headroom line without calling a model or writing a file. `--deem` and `--jev` add a model column only behind their backend's own check, and an arm pointed at a backend that is not the real model would measure nothing, so a stub backend has to skip the Deem arm rather than answer.
+
+VERIFY (repo root):
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/briefs/content/playbook-scenario-459-v2.md .skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md   (expect no output, exit 0)
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md   (expect exit 0)
+Accept when: 1 file changed and nothing else; cmp exits 0; the validator exits 0.

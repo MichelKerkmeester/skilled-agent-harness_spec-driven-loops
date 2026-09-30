@@ -1,0 +1,12 @@
+TASK: create one new changelog entry (compact format, Frontmatter Contract of sk-create-changelog) so it is byte-identical to literal text the orchestrator already wrote to sk-doc's rules for that doc type.
+Source (read only, do not edit): specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/changelog-v1.3.0.0.md
+Target (create): .skilled/skills/sk-doc/sk-create-goal/changelog/v1.3.0.0.md
+
+Step: make the target byte-identical to the source, for example with
+  cp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/changelog-v1.3.0.0.md .skilled/skills/sk-doc/sk-create-goal/changelog/v1.3.0.0.md
+Do not reword, reflow or reformat anything. Do not run any command the document lists. Change no other file.
+
+VERIFY (repo root):
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/changelog-v1.3.0.0.md .skilled/skills/sk-doc/sk-create-goal/changelog/v1.3.0.0.md
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-goal/changelog/v1.3.0.0.md
+Accept when: 1 file created and nothing else; cmp prints nothing and exits 0; validate_document exits 0.

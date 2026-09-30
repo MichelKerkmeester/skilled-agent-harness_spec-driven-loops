@@ -1,0 +1,8 @@
+The diff matches the brief's line character for character.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-communication/README.md (+1/-0)
+EDITS: .skilled/skills/sk-communication/README.md:75 inserted judge-agreement.mjs bullet below the docs/ bullet in `## 5. PACKAGE MAP AND DEEPER DOCS`
+CHECKS: `git diff --stat -- .skilled/skills/sk-communication/README.md` -> `1 file changed, 1 insertion(+)` (exit 0) | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-communication/README.md` -> `✅ VALID ... Total issues: 1` (one existing `[non_sequential_numbering]` warning, exit 0)
+BLOCKED REASON: none

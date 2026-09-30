@@ -36,7 +36,7 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │                                                                 │
 │  ┌──────────────────┐     ┌──────────────────────┐              │
 │  │   CLI Runtimes   │     │      AI Agents       │              │
-│  │ Claude / OpenCode   │────▶│  (Gate 1/2/3 flow)   │               │
+│  │ Claude / OpenCode   │────▶│  (Gate 1/2/3 flow)   │            │
 │  │ OpenCode         │     │                      │              │
 │  └────────┬─────────┘     └──────────────────────┘              │
 │           │                                                     │
@@ -53,7 +53,7 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │  └─────────────────────────┬─────────────────────────────────┘  │
 │                            │                                    │
 │  ┌────────────────┐     ┌──┴──────────────┐                     │
-│  │   runtime/cli/     │     │    shared/      │                     │
+│  │   runtime/cli/ │     │    shared/      │                     │
 │  │ create.sh      │────▶│ embeddings/     │                     │
 │  │ validate.sh    │     │ trigger-extract │                     │
 │  │ generate-      │     │ chunking.ts     │                     │
@@ -61,9 +61,9 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 │  │ evals/         │     │ scoring/        │                     │
 │  └────────────────┘     └─────────────────┘                     │
 │                                                                 │
-│  Dependency direction: runtime/cli/ ──▶ runtime/api/             │
-│                        runtime/ ──▶ shared/                  │
-│                        runtime/cli/ ──▶ shared/                     │
+│  Dependency direction: runtime/cli/ ──▶ runtime/api/            │
+│                        runtime/ ──▶ shared/                     │
+│                        runtime/cli/ ──▶ shared/                 │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```

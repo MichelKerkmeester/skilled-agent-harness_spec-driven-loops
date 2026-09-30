@@ -1,0 +1,14 @@
+[
+ [
+  "version: 1.2.0.0\n",
+  "version: 1.4.0.0\n"
+ ],
+ [
+  "| Validation | `scripts/package_skill.py`, `../shared/scripts/extract_structure.py` | Check completion, package distribution zips, and inspect structure. |\n",
+  "| Validation | `scripts/package_skill.py`, `../shared/scripts/extract_structure.py` | Check completion, package distribution zips, and inspect structure. |\n| Routing measurement | `scripts/score-clarify-default.cjs` | Count how often compiled hubs answer `clarify` with zero model calls and write unlabeled clarify rows. `--score` stops below 30 labeled rows. Past that gate `--jev` or `--deem` asks a classifier for a default pick. |\n"
+ ],
+ [
+  "- `scripts/package_skill.py` - validation and packaging helper.\n",
+  "- `scripts/package_skill.py` - validation and packaging helper.\n- `scripts/score-clarify-default.cjs` - zero-call clarify census and default-pick scorer. It stops below 30 labeled rows. `--jev` or `--deem` scores a pick only past that gate.\n"
+ ]
+]

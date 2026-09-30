@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/retrieval/track-narrowing-measurement.md
+Document type: feature_catalog
+Total issues: 0

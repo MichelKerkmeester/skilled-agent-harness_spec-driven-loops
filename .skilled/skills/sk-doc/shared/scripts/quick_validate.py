@@ -15,6 +15,7 @@ Validates:
 - Description: single line (no YAML block format)
 - Description length within budget (packet 086): soft warn at 130/110, hard fail at 1536
 - allowed-tools (if present): array format [Tool1, Tool2]
+- allowed-tools MCP tokens: fully qualified mcp__<server>__<tool>, for skills and commands alike
 - No angle brackets in description
 - No TODO placeholders in description
 
@@ -249,9 +250,7 @@ def validate_skill(
                 return False, f"allowed-tools must use array format [Tool1, Tool2], found: {tools_value}", warnings
         for token in iter_allowed_tools(tools_value):
             if is_non_fq_mcp_token(token):
-                if kind == 'command':
-                    return False, f"allowed-tools entry '{token}' is a non-fully-qualified MCP tool token — use mcp__<server>__<tool>", warnings
-                warnings.append(f"allowed-tools entry '{token}' is a non-fully-qualified MCP tool token — prefer mcp__<server>__<tool>")
+                return False, f"allowed-tools entry '{token}' is a non-fully-qualified MCP tool token — use mcp__<server>__<tool>", warnings
 
     # version is REQUIRED for skills (4-part X.Y.Z.W); commands keep it optional.
     # See sk-create-frontmatter/references/frontmatter-versioning.md.

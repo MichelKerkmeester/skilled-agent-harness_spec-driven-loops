@@ -1,0 +1,14 @@
+Verification complete.
+
+**CHECKS**
+- `wc -l …/scratch/w4-build/design.md` → `206 specs/…/scratch/w4-build/design.md` (exit 0) — under the 400-line cap
+- `grep -c '^## ' …/scratch/w4-build/design.md` → `6` (exit 0) — the six required sections in order
+- `git status --porcelain -- <phase folder>` → my one file only; the other dirty paths in the tree belong to concurrent workers and I touched none of them
+
+The design fixes: the 30-row test list against stub backends, the walker reading both research registry names (`findings-registry.json` ×192, `deep-research-findings-registry.json` ×38) and the review one, the parity strategy (the merge's seven selection helpers are not exported, so the copy is pinned by a collapse-agreement test), the `undecidable` third state for pairs the merge drops by its own filters, and the eight doc steps with their sk-doc modes and MODEL files — including the index counts (`8 features` → 9, `54 entries` → 55, `DLR-053`/`F053` free today).
+
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/scratch/w4-build/design.md (+206/-0)
+EDITS: specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/scratch/w4-build/design.md:1 created the build design: premises (24 cited sites checked, one `moved: 341/348-351 -> 392/399-402`), interface (switches, exits, stdout lines, files, 34 exported functions, 20 constants, keep rule, verdict line), 37 test cases, 9 code + 8 doc + 4 orchestrator steps, 6-row proof plan, 8 open questions
+CHECKS: wc -l design.md -> 206 (exit 0); grep -c '^## ' design.md -> 6 (exit 0); git status --porcelain <phase folder> -> only design.md (exit 0)
+BLOCKED REASON: none

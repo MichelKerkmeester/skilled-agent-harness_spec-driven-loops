@@ -1,0 +1,15 @@
+✔ a Cursor Shell payload with workspace_roots reaches the advisory (198.436916ms)
+✔ a whitespace-only Cursor workspace root falls through instead of resolving a bogus dir (213.882041ms)
+✔ a Claude Bash payload still reaches the advisory (223.485875ms)
+✔ a Codex exec payload still reaches the advisory (228.745291ms)
+✔ a Cursor Shell non-git command stays silent (144.401709ms)
+✔ an unrecognised tool_name stays silent (147.007334ms)
+✔ a Cursor Shell git command outside a repository stays silent (26.238708ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1264.498125

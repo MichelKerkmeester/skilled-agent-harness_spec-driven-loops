@@ -1,0 +1,14 @@
+The packet goal is already set. Skill routing resolved to `sk-code` and the OpenCode JavaScript surface. The entry point prints the census and returns without spawning a model binary.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+41/-1)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+52/-0)
+EDITS: score-jev-tiebreak.mjs:10 added realpathSync to the node:fs import and imported parseArgs from node:util
+score-jev-tiebreak.mjs:423 added export async function main(argv, deps) after summarizeCensus
+score-jev-tiebreak.mjs:448 added the direct-run guard that sets process.exitCode
+score-jev-tiebreak.vitest.ts:6 added node imports, main, and the SCRIPT path
+score-jev-tiebreak.vitest.ts:168 added the entry-point tests, including the default run that expects no jev or cli-deem log
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> CHECK_EXIT:0 (exit 0)
+node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs 2>/dev/null | grep -c '^comparator: ' -> 4 (exit 0)
+BLOCKED REASON: none

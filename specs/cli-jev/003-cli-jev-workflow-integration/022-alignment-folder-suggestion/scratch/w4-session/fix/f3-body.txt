@@ -1,0 +1,10 @@
+TASK: make one root catalog description match its entry's frontmatter. Nothing else changes.
+FILE (edit): `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md`. Read it first.
+EDIT: under `### Alignment suggestion measurement`, the `#### Description` paragraph (line 126) currently reads `Measures offline whether a classifier that picks one listed spec folder would beat the plain baseline when a save's alignment score is below 50, without ever wiring a pick into a save.` Replace that one line with exactly:
+Measures, with zero model calls on the default run, whether a classifier picking one listed spec folder would beat the plain baseline when a save's alignment score falls below 50, then prints one verdict per opt-in arm.
+WHY: `validate_catalog_package.py` requires the root description to equal the entry's frontmatter `description` in `feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md`, and warns `root_leaf_description_mismatch` until it does.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md --type feature_catalog
+  python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package system-spec-kit 2>&1 | grep -cE 'alignment-suggestion'
+  git diff --stat -- .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+Accept when: only that file changed, 1 line; the validator exits 0; the grep prints 0.

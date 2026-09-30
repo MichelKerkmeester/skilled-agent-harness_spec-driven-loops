@@ -1,0 +1,16 @@
+C2 implemented. Scope: only S changed; T's C1 fixtures and three walker tests left byte-identical (section 3's walker rows were already present, so no new test was added rather than duplicating them).
+
+SKILL ROUTING: User directed → sk-code (design names sk-code-opencode; loaded JavaScript style guide, JS quality standards, shared naming-and-commenting)
+ARTIFACT: sk-code → sk-code-opencode packet → JavaScript standards
+REPO RULES: scope-discipline.md, prevent-overengineering.md, evidence-and-proof.md loaded (action: add functions to a module; report results)
+
+Not run here: vitest (sandbox blocks test runners per brief; the orchestrator runs V1).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs (+153/-0)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:13-163 added imports, the registry-name map (copied from the runtime census, WHY comments) and findings-field map, and listTrackedFiles, walkRuns, findingsOf, findingId with JSDoc plus module.exports; no test file change
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs -> (no output) (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts -> 3 (exit 0)
+CHECKS: git status --porcelain -- <S> <T> -> "?? <S>" and "?? <T>", nothing else (exit 0)
+BLOCKED REASON: none

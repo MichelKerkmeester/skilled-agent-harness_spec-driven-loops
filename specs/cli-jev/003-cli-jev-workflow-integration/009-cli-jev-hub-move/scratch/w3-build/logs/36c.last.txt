@@ -1,0 +1,24 @@
+All checks pass and the rename is recorded again. Final state verified: `git diff HEAD -M` shows `R088 .skilled/skills/cli-jev/shared/README.md .skilled/skills/cli-classifier/shared/README.md` (the rewrap had reduced this to delete-plus-add), the file carries only the two described changes against the index (+3/-1), and my run wrote exactly one file.
+
+Done. `.skilled/skills/cli-classifier/shared/README.md` now holds the prepared copy byte for byte, both brief checks pass, and git records the hub move as a rename again.
+
+Stakes read: low blast, reversible, a working-tree edit to one tracked file, priced at `blast-radius.md`'s top tier ("Working-tree edit to a tracked file → Proceed"), so no stop for a yes. Rollback: the pre-copy 742-byte rewrap was the previous pass's uncommitted worktree state and is discarded as this brief directs; `HEAD:.skilled/skills/cli-jev/shared/README.md` and the staged 0/0 rename pair both survive in git.
+
+1. `cp` ran exactly as written (exit 0). The step replaced 11 lines with 3.
+2. `cmp` printed nothing and exited 0, so the copy is byte for byte.
+3. `validate_document.py` printed `✅ VALID`, `Document type: readme`, `Total issues: 0`, and exited 0.
+
+The prepared copy is the moved hub original plus exactly the two described changes (OBSERVED against `git show HEAD:.skilled/skills/cli-jev/shared/README.md`: body lines identical, title names cli-classifier, `## 1. OVERVIEW` heading added). The repo-wide search for `cli-classifier/shared` finds no consumer outside the packet scratch, and the pattern proved itself on the file's own pre-copy title. INFERRED: nothing. Only the orchestrator can verify the packet's remaining completion criteria (parent-skill-check, replay, `validate.sh --strict`). State: edited and dirty on worktree `069-cli-jev-workflow-integration`, not committed, not pushed. Nothing is blocked on the operator, the orchestrator's brief owns tests and commit.
+
+Goal acknowledged (packet 009-cli-jev-hub-move), unchanged this turn so no chat-slice resend.
+
+SKILL ROUTING: Advisor live (sk-code 0.95/0.16 vs system-spec-kit 0.95/0.16, ambiguous → pass); the brief freezes this two-step workflow. ARTIFACT: sk-doc → loaded `.pi/skills/sk-doc/SKILL.md` for the `.md` write.
+REPO RULES: blast-radius.md, evidence-and-proof.md, communication.md, communication-prose.md, communication-handoff.md.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/shared/README.md (+3/-11)
+EDITS: .skilled/skills/cli-classifier/shared/README.md:1 replaced with the prepared copy, title names cli-classifier and a numbered `## 1. OVERVIEW` heading sits above the moved hub body
+CHECKS: cmp specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/attach/shared-v3/README.md .skilled/skills/cli-classifier/shared/README.md -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/shared/README.md -> ✅ VALID: .skilled/skills/cli-classifier/shared/README.md, Document type: readme, Total issues: 0 (exit 0)
+BLOCKED REASON: none

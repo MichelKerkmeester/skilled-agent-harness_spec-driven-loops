@@ -1,0 +1,22 @@
+I'll read both target files and route through the sk-code skill before editing.
+
+Both files are read; line 35 matches the brief exactly, and "cli-jev" appears only there in each file. Now loading the sk-code routing contract it pointed to before the first write.
+
+The hub routes a bare implement edit on a `.cjs` system file to the OpenCode surface packet. Loading that resolved packet before the first write.
+
+Route resolved: sk-code hub → OpenCode surface (`sk-code-opencode`), JavaScript slice for `.cjs`. Loading the JavaScript evidence slice (bounded read) before the edit.
+
+JavaScript slice loaded — no conflicts with the frozen literal edit (no header, comment, or reformat changes are being made). Making the exact one-line replacement in both byte-identical twins.
+
+Both edits applied and confirmed at line 35 in each file. Now re-reading the edited regions and running the four prescribed checks.
+
+STATUS: DONE
+FILES CHANGED: .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs (+1/-1)
+FILES CHANGED: specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs (+1/-1)
+EDITS: .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:35 replaced `'cli-jev': '009-parent-hub-rollout/008-cli-jev',` with `'cli-classifier': '009-parent-hub-rollout/008-cli-classifier',` (indent and trailing comma preserved; hub map still 7 entries)
+EDITS: specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs:35 same one-line replacement, identical bytes
+CHECKS: node --check .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs -> no output, syntax OK (exit 0)
+CHECKS: node --check specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs -> no output, syntax OK (exit 0)
+CHECKS: cmp .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/014-runtime-engine/lib/compiled-route.cjs -> no output, files byte-identical (exit 0)
+CHECKS: grep -c "cli-jev" .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs -> 0 (exit 1 — grep -c returns status 1 when the count is zero, i.e. no matches; count is 0 as expected)
+BLOCKED REASON: none

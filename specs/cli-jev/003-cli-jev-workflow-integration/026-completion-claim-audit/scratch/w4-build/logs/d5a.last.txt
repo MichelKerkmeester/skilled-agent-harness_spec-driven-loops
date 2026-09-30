@@ -1,0 +1,8 @@
+The leaf doc is written and verified. Every behavior, switch, printed line and number in it comes from `score-completion-claims.mjs` itself or from `facts.txt`, with `rulings.md` overriding the design on the version (`4.5.0.0`). The design's `version: 4.4.0.0` was treated as stale per ruling 2. No verdict is claimed as printed by any run. The index block is untouched, as the brief names it a separate step.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-claim-audit.md (+70/-0)
+EDITS: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-claim-audit.md:1 created the leaf: frontmatter (`version: 4.5.0.0`, 4 trigger phrases), `## 1. OVERVIEW` through `## 4. SOURCE METADATA` matching `compaction-recall-census.md`
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-claim-audit.md -> `✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-claim-audit.md` `Document type: feature_catalog` `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-claim-audit.md -> no output (exit 0), file is new/untracked, `git status --porcelain -- .skilled/skills/system-spec-kit/feature-catalog/` shows only `?? .../completion-claim-audit.md`
+BLOCKED REASON: none

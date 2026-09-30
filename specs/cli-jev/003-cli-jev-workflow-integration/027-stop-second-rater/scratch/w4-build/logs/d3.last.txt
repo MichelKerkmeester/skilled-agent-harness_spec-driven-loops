@@ -1,0 +1,8 @@
+The one line extends the public-surface paragraph at `:48`, as the step names. Every claim traces to the script: the docstring at `score-stop-rater.cjs:8-11` states the zero-call default, the `USAGE` line at `:71` and the `parseArgs` options at `:1586-1591` name `--jev` and `--deem`, and `main` runs `runJevArm`/`runDeemArm` only when `values.jev`/`values.deem` is true (`:1761`, `:1800`).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: one line per file: `.skilled/skills/system-deep-loop/runtime/README.md` (+1/-0)
+EDITS: one line per step: `.skilled/skills/system-deep-loop/runtime/README.md:49` added one line naming `scripts/score-stop-rater.cjs`, its no-model-call default and its `--jev`/`--deem` switches, extending the public-surface paragraph at line 48
+CHECKS: one line per check: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/README.md` -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/README.md` / `Document type: readme` / `Total issues: 0` (exit 0); `git diff --stat -- .skilled/skills/system-deep-loop/runtime/README.md` -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

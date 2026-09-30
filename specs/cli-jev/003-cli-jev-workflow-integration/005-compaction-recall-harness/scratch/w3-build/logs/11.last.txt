@@ -1,0 +1,9 @@
+All checks pass. The diff is exactly +6/-0 on the one named file (empty line + five prose lines), the surrounding blank line and `---` untouched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/README.md (+6/-0)
+EDITS: .skilled/skills/system-spec-kit/README.md:313 inserted one empty line + five-line compaction-recall census paragraph after `index or recipe.` (now ends line 318)
+CHECKS: grep -c 'score-compaction-recall.mjs' .skilled/skills/system-spec-kit/README.md -> 1 (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/README.md -> ✅ VALID: .skilled/skills/system-spec-kit/README.md / Total issues: 0 (exit 0)
+BLOCKED REASON: none

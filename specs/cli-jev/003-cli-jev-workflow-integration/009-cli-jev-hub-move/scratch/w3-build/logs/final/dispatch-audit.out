@@ -1,0 +1,9 @@
+
+ RUN  v5.0.1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled
+
+
+ Test Files  1 passed (1)
+      Tests  75 passed (75)
+   Start at  11:05:07
+   Duration  153ms (tests 54%, transform 24%, import 19%, worker 2%)
+

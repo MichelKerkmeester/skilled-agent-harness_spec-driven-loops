@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/sk-communication/SKILL.md
+Document type: skill
+Total issues: 0

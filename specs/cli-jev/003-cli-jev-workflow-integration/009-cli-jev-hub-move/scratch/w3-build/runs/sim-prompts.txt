@@ -1,0 +1,24 @@
+use jev choice to pick a queue
+cli-jev noul for this question
+use jev judgment to decide whether this incident is urgent
+jev score these three severity levels
+summarize the open questions in this spec packet
+describe the json value in this file
+forbidden judgment operation
+Use jev judgment to decide whether this incident is urgent, and give me the probability.
+ask jev for a probability that this plan ships on time
+score these three levels with jev
+run a batch of typed questions through jev
+pick one option with jev
+order levels with jev
+batch typed questions through jev
+cli-jev noul for this question.
+Summarize the open questions in this spec packet.
+score this flavor of ice cream
+use deem choice to pick a queue
+deem this plan acceptable and ship it
+compare the jev judgment with the deem judgment
+use cli-classifier to ask jev for a probability
+what does the cli-classifier hub do
+ask deem for a probability that this incident is urgent
+summarize the release notes for the last sprint

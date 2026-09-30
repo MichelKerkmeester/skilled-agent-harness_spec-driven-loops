@@ -1,0 +1,7 @@
+
+✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
+Document type: readme
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [document_type_fallback] No document type rule matched .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md, so README rules were applied. Pass --type to choose the rule set.

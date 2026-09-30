@@ -2,7 +2,7 @@
 name: system-spec-kit
 description: "Unified spec-folder workflow + context preservation: Levels 1-3+, validation, trigger-index and ripgrep retrieval. Required for file modifications."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 4.1.5.0
+version: 4.6.0.0
 ---
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, trigger-index, retrieval-conventions, ripgrep-retrieval, continuity-writer, handover, opencode-goal, goal-plugin, active_goal, session-goal, importance-tiers -->
@@ -465,6 +465,8 @@ Recovery walks the continuity ladder rather than inferring a session: `handover.
 
 Regenerate the index with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` after spec-doc frontmatter changes. The artifact at `runtime/data/trigger-index.json` is committed, so a fresh clone answers Gate 1 before anything is built.
 
+`score-track-narrowing.mjs` in the same folder measures offline whether a classifier that names a packet's spec track would beat ripgrep and the lookup: its default run makes no model call and writes no file, `--deem` and `--jev` each add a model column behind that backend's own check, and it changes no lookup, index or recipe.
+
 **Declared loss.** Semantic paraphrase matching, vector and BM25 fusion, decay scoring, access tracking, session dedup and causal traversal are gone and have no file-based successor. A lookup that matches nothing returns nothing; callers must say so plainly rather than degrading to a guess. What `trigger_phrases` never declared, the index cannot find — see `references/retrieval/retrieval-conventions.md` §8 for what belongs in that field.
 
 ### Reranking
@@ -566,6 +568,10 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Gate 1 trigger lookup | `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` (exit `0` hit, `1` no-hit, `2` broken) |
 | Regenerate trigger index | `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` |
 | Free-text retrieval | The ripgrep recipes in `references/retrieval/retrieval-conventions.md` §2, scoped by the trailing positional path |
+| Compaction recall census | `node .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs --transcripts <dir> --newest-compacted 15 --out <file outside the repo>` makes no model call, prints counts and one `stop:` line and changes no transcript |
+| Alignment suggestion measurement | `cd .skilled/skills/system-spec-kit/runtime/cli && npx tsx evals/score-alignment-suggestion.ts` makes no model call and prints below-50 alignment counts per save path; `--score <rows>` prints `stop: fewer than 30 labeled rows` until the operator labels 30, and `--jev` or `--deem` with `--out <dir outside the repo>` add a verdict column behind that backend's own check |
+| Completion claim audit | `node .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs --rows <file>` runs the offline completion-claim audit and makes no model call by default, and `--deem` and `--jev` with `--out <dir outside the repo>` each run that backend's arm behind that backend's own check (`--accept-payload` is required for `--jev`) |
+| Debug next-check measurement | `node .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs --fixture <file outside the repo>` makes no model call by default and changes no debug step, and `--jev` or `--deem` with `--out <dir>` each run that backend's arm behind that backend's own check |
 | Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |
 | Upgrade level | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/007-feature/ --to 2` |
 | Completeness | `.skilled/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh specs/007-feature/` |

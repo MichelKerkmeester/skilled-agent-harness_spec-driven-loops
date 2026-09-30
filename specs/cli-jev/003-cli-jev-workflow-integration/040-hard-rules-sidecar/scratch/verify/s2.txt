@@ -1,0 +1,9 @@
+
+ RUN  v5.0.1 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/071-cli-jev-sk-alignment
+
+
+ Test Files  1 passed (1)
+      Tests  75 passed (75)
+   Start at  20:08:44
+   Duration  150ms (tests 56%, transform 21%, import 20%, worker 3%)
+

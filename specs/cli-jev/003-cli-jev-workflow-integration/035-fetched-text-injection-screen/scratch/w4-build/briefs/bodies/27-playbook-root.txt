@@ -1,0 +1,24 @@
+TASK: index the new CC-004 scenario in the hub playbook root.
+File F = .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md. Read F first.
+Block B = specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/content/playbook-root-section-7.txt (read only, 12 lines).
+Apply the steps bottom-up in this order so the line numbers below stay valid. Each quoted text is exact.
+
+STEP 1. After F:145 (the row starting `| CJ-002 | The cli-jev name resolves`) insert this line:
+| CC-004 | The injection screen scorer runs with zero model calls | Measurements | [CC-004](measurements/injection-screen-measurement.md) |
+STEP 2. F:137 `## 8. FEATURE CATALOG CROSS-REFERENCE INDEX` becomes `## 9. FEATURE CATALOG CROSS-REFERENCE INDEX`.
+STEP 3. After F:133 (the row starting `| Deem client behavior |`) insert this line:
+| Injection screen scorer | [score-injection-screen tests](../benchmark/injection-screen/tests/score-injection-screen.test.mjs) | `CC-004` |
+STEP 4. F:125 `## 7. AUTOMATED TEST CROSS-REFERENCE` becomes `## 8. AUTOMATED TEST CROSS-REFERENCE`.
+STEP 5. After F:123 (the `---` line that follows the CJ-002 feature-file line) insert the 12 lines of B exactly, in order.
+STEP 6. F:32 reads `- The scenarios validate routing only. They never start the Deem server and never send a judgment to either backend.`
+Replace it with:
+- The hub-routing scenarios validate routing only. `CC-004` runs the injection screen scorer on stub binaries. No scenario starts the Deem server or sends a judgment to either backend.
+STEP 7. On F:18 replace only its first sentence, `The walked tree holds the hub-routing scenarios for `cli-classifier`.`, with:
+The walked tree holds the hub-routing scenarios for `cli-classifier` and one measurement scenario for its offline injection screen scorer.
+Keep the rest of F:18 and everything else in F byte-identical. Edit no other file.
+
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md --type playbook   (expect "Total issues: 0")
+  grep -c "CC-004" .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md   (expect 5)
+  grep -c "^## [0-9]" .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md   (expect 9)
+Accept when: 1 file changed (F) with 14 lines added and 4 lines replaced; the validator exits 0; the greps print 5 and 9.

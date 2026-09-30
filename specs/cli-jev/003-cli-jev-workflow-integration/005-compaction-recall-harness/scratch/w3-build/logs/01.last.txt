@@ -1,0 +1,60 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Both target directories are clear (the `scripts/compaction-recall/` dir does not exist yet; no existing test file). I have the contract (R sections 1–5), the fixtures, and the repo conventions. Now I'll create S.
+
+S is written. Now let me verify the divider line lengths (67 for the header, 77 for the section dividers) and run `node --check`:
+
+All dividers are exactly 67/77 dashes. Now T:
+
+Now the verification pass — T header check, `node --check`, and the smoke run:
+
+`node --check` exits 0. Now the smoke run exactly as the brief specifies:
+
+Smoke run matches the acceptance exactly. Now I'll validate the three test-case behaviors directly against the fixtures (plain node, no vitest — the same invocation shape the test uses) so T's assertions are grounded in observed output:
+
+All 16 behavior checks pass. Final-state verification — re-run the listed checks and confirm the scoped diff is only my two files:
+
+Final hygiene scan and exact line anchors for the handback:
+
+Both files are on disk, verified from the final state, and the scoped diff is exactly the two new paths. One note before the handback: the new files are the mandated deliverable — "build nothing" fails because no census script or test exists in this tree, and no existing module owns this surface.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs (+473/-0)
+- .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+83/-0)
+
+EDITS:
+- S:1-21 shebang, 67-dash header, nine 77-dash section dividers (3/4/5 divider-only), node:fs/path/url/util imports
+- S:29-67 constants KNOWN_TYPES (21 types), METHOD, TRIGGERS, ENTRYPOINTS, DEFAULT_MAX_FILE_BYTES = 1073741824
+- S:84-193 splitLines (0x0A split, CR strip, terminated flag) and parseTranscript (not_json / missing_field / unknown_type, boundary rows, boundariesSeen, partialTail)
+- S:199-330 parseCliArgs checks 1-6 with exact messages and listTranscriptFiles (recursive *.jsonl, subagents segment, sorted)
+- S:334-386 formatRow (n/a for nulls) and stopLine (void, no boundaries, arm fields via toFixed(2))
+- S:396-471 main: failed CLI parse to stderr + exit 2; oversized unread; parse error to stderr + stoppedSessions; totals; stdout lines; JSON report; exit 1 on stopped/void
+- T:1-83 header, stub jev/cli-deem on PATH, runCensus harness, three cases
+
+CHECKS:
+- node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs -> no output (exit 0)
+- node S --transcripts .../clean.jsonl --out /tmp/crc-smoke/report.json -> "row clean.jsonl line=5 uuid=00000000-0000-4000-8000-000100000005 trigger=auto sidechain=false entrypoint=cli pre=1200 post=300 ms=4000" + totals line + "stop: arm may be specified (fit_throws=0.00, offline_reduction_upper_bound=n/a, kept_tokens_ratio=n/a)" (exit 0)
+- direct probe of the three test cases (plain node, no vitest) -> 16/16 PASS: unknown-type (exit 1, stderr "parse error: unknown-type.jsonl:3: unknown type brand-new-type", stoppedSessions [{file,line:3,code:unknown_type}], last line void) and malformed-line (exit 1, "not JSON", line 2, not_json, void) and empty dir (exit 0, method line, scope 0s, "totals: compactions=0 ...", "stop: no boundaries", rows 0) (exit 0)
+- divider audit -> S: header 67/67, all 18 section dividers 77; T: header 67/67 (exit 0)
+- git status scoped -> only scripts/compaction-recall/ and tests/compaction-recall.vitest.ts new; fixtures untouched
+
+BLOCKED REASON: none
+
+Not run (per brief, left to the orchestrator): the vitest suite itself; T's assertions were validated by direct invocation of S against the fixtures instead.

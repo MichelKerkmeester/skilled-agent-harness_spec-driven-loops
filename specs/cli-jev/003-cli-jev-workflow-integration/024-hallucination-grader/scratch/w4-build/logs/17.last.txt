@@ -1,0 +1,14 @@
+All four edits landed exactly as specified: 19 insertions / 3 deletions in the one named file (16-line block + 3 modified lines), grep hits 4, validator exits 0.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md (+19/-3)
+EDITS:
+.s​killed/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md:31 table row: 4 features → 5 features, added `scorer/score-d4-agreement.cjs`
+.s​killed/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md:212 appended sentence on the offline hallucination-grader check
+.s​killed/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md:324 appended sentence: unknown `--grader` exits 2 before a profile loads
+.s​killed/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md:275-276 inserted catalog-index-block.md byte-for-byte (853 bytes) between blank line and `---`
+CHECKS:
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md -> ✅ VALID ... Total issues: 1 (warning: document_type_fallback, pre-existing) (exit 0)
+grep -c "Hallucination grader agreement\|score-d4-agreement.cjs\|Any other .--grader. value" .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md -> 4 (exit 0)
+BLOCKED REASON: none

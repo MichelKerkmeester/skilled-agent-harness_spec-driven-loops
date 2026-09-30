@@ -152,6 +152,7 @@ After grouping, the parent has nine thematic group parents from the consolidatio
 | 26 | `026-codex-lineage-auth-isolation` | leaf | codex lineage 401 traced to an isolated CODEX_HOME, fix reverted | withdrawn |
 | 27 | `027-executor-availability-docs` | leaf | correct command contracts to state real executor sets | complete |
 | 28 | `028-cli-lineage-nesting-and-containment-guard` | leaf | stop nested codex exec, preserve containment recovery patch | complete |
+| 29 | `029-align-runtime-code-with-sk-code-opencode` | leaf | align runtime comments, READMEs and ARCHITECTURE.md with sk-code-opencode | draft |
 
 Three children arrived by merge and renumbering from separate top-level packets:
 - `026-codex-lineage-auth-isolation` was `system-deep-loop/038-codex-lineage-auth-isolation`. Its fix was reverted after a review returned FAIL, so the packet is kept as an investigation record and carries `deferred` in `graph-metadata.json`, the nearest value the status enum admits.
@@ -247,5 +248,6 @@ Direct children after grouping: nine thematic group parents from the consolidati
 | 26 | `026-codex-lineage-auth-isolation/` | withdrawn |
 | 27 | `027-executor-availability-docs/` | complete |
 | 28 | `028-cli-lineage-nesting-and-containment-guard/` | complete |
+| 29 | `029-align-runtime-code-with-sk-code-opencode/` | draft |
 
 <!-- /ANCHOR:phase-map -->

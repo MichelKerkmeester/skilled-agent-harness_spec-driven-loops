@@ -1,0 +1,30 @@
+STATUS: DONE
+FILES CHANGED: 
+- specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/spec.md (+10/-10)
+- specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/plan.md (+10/-10)
+- specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/tasks.md (+19/-19)
+- specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/goal.md (+41/-15)
+- specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/implementation-summary.md (+88/-19)
+- specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/graph-metadata.json (+66/-57, re-derived by `repair-derived.cjs --apply`; `description.json` unchanged, `scratch/` untouched)
+
+EDITS:
+- spec.md:3,26,33,103-104,108-111,113 Status Complete, description and handoff carry the build commit and the gate stop, Files table names the built sizes, `v1.7.0.0.md`, F057, DLR-057, the regenerated copies and the gate-stop report dir
+- plan.md:42-44,47-52,82 Ready and Done boxes ticked with evidence; builder roster states parent D5 as amended 2026-09-29
+- tasks.md:31,39-42,50-53,61-67,75-77 notation carries the closure record; T001-T011 and T013-T015 ticked with evidence, T012 left `[B]`; completion criteria ticked
+- goal.md:14-27,61-66,84,92 continuity updated; six criteria ticked; progress rows for build, baseline, final-state verification, tests, docs and packages, review, commit, closure and operator items; 15 deviation/finding rows added
+- implementation-summary.md:1-173 full closure rewrite (Status Complete, what was built, files, delivery, decisions, verification, limitations)
+
+CHECKS:
+- `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint --apply` -> `inspected=1 repaired=1 failed=0` (exit 0)
+- `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint --strict` -> `RESULT: PASSED`, `Summary: Errors: 0  Warnings: 0`, 0 lines matching `RESULT: FAILED` (exit 0)
+- `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint` -> `RESULT: PASSED (5/5 checks)` (exit 0)
+- `node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint --workspace "$PWD"` -> `packet_durable_chars=3422`, `packet_budget=unknown` (exit 0)
+- supporting: `git diff --stat .skilled/commands/deep/assets/` -> empty (exit 0); `git diff --numstat` on the phase folder -> 6 docs modified outside `scratch/`; `git diff --check` -> clean (exit 0)
+
+STATUS SET: `Complete` in `spec.md` and `implementation-summary.md`. The phase printed its label-gate stop `stop: rater report has no confirmed gold` from the final state (parent criterion 2 / D4), and `validate.sh` cross-doc status consistency passed with both docs Complete.
+
+OPEN ROWS: 
+- `tasks.md` T012 `[B]`: one run on a 027 report whose label gate passed, which waits on the operator's gold, not on this build (parent D4)
+- `goal.md` "Open for the operator": a gated-report rerun and 027's live Deem and Jev runs on the operator's yes, plus the three P2 findings recorded, not chased (parent D5)
+
+BLOCKED REASON: none

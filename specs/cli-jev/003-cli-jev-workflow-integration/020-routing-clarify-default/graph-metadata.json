@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "routing clarify default",
+      "clarify suggested default",
+      "score-clarify-default",
+      "compiled routing clarify census",
+      "r12 clarify gold",
+      "clarify default plan",
+      "score-clarify-default plan",
+      "clarify census plan",
+      "clarify label gate plan",
+      "clarify default tasks",
+      "score-clarify-default tasks",
+      "clarify census tasks"
+    ],
+    "key_topics": [
+      "routing",
+      "clarify",
+      "default",
+      "suggested",
+      "score-clarify-default",
+      "compiled",
+      "census",
+      "r12",
+      "gold",
+      "plan",
+      "label",
+      "gate"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/w4-build/runs/census/rows.jsonl",
+      "scripts/README.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs",
+      ".hermes/skills/sk-create-skill/SKILL.md",
+      "scratch/w4-build/build-evidence.md",
+      "scratch/w4-session/session-evidence.md",
+      ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs",
+      ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "rows.jsonl",
+        "kind": "file",
+        "path": "scratch/w4-build/runs/census/rows.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-clarify-default.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-clarify-default.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-compiled-routing-scenarios.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "clarify-default-measurement.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Not To Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When a compiled hub router finds near-tied modes it answers `clarify` with a short list of alternatives and suggests no default",
+    "created_at": "2026-09-29T12:42:33Z",
+    "last_save_at": "2026-09-29T15:44:04.763Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8cdae354aa25b24a5526e197f8f3f257c73e8332e8e9b89ac70231bb716a2c50",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0510df6c8de80da6e6647981fd7166805d09cb4c55bcbdce34508a6f5f37f93f",
+      "plan.md": "010994ab00451ee80f58a73e9c0459ec6a8fa8f6a033d76b65efdc3f1bae98fb",
+      "tasks.md": "24fc81ddc75d12e81e5cdf074cfe447e3d8ac963719add7197371207537e2ad2",
+      "implementation-summary.md": "f0491d8bfc0a37645bdb5cb4e1ea401e5443a992a969b71685f87d5bd5912d9d"
+    },
+    "last_active_at": null
+  }
+}

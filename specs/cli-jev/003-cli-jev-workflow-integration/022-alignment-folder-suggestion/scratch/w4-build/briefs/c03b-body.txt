@@ -1,0 +1,29 @@
+TASK: make each decision rule in S match the validator's whole printed line, and pin it with two new cases in T.
+S and T are named at the top of
+specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch/w4-build/briefs/ref/design.md.
+Open only S and T. Why: a real census run counted a document that quotes the validator's source, whose line reads
+`Warning: INFRASTRUCTURE MISMATCH (${Math.round(...)}% of files ...`, as a save. A printed line ends where the validator's
+text ends, or at a JSON string end (`"` then `,` `}` or `]`) when a log embeds it.
+
+1. In S, replace lines 79-82 and 84-87 with exactly these eight lines (keep the blank line between the two groups):
+const CLI_ALIGNED = /^\s*(?:Warning: )?Content aligns with target folder\s*(?:"[,}\]].*)?$/;
+const CLI_MODERATE = /^\s*(?:Warning: )?Moderate alignment \(\d+%\) - proceeding with caution\s*(?:"[,}\]].*)?$/;
+const CLI_LOW = /^\s*(?:Warning: )?ALIGNMENT WARNING: Content may not match target folder\s*(?:"[,}\]].*)?$/;
+const CLI_INFRASTRUCTURE = /^\s*(?:Warning: )?INFRASTRUCTURE ALIGNMENT WARNING\s*(?:"[,}\]].*)?$/;
+
+const DATA_ALIGNED = /^\s*(?:Warning: )?Good alignment with selected folder\s*(?:"[,}\]].*)?$/;
+const DATA_MODERATE = /^\s*(?:Warning: )?Moderate alignment - proceeding with caution\s*(?:"[,}\]].*)?$/;
+const DATA_LOW = /^\s*(?:Warning: )?LOW ALIGNMENT WARNING \(\d+% match\)\s*(?:"[,}\]].*)?$/;
+const DATA_INFRASTRUCTURE = /^\s*(?:Warning: )?INFRASTRUCTURE MISMATCH \(\d+% of files in \.(?:skilled|opencode)\/\)\s*(?:"[,}\]].*)?$/;
+   Change nothing else in S.
+2. In T, inside describe('line scan'), after the last case, add two cases:
+ a. 'ignores validator source quoted in a document': text = the two lines
+    '    Warning: INFRASTRUCTURE MISMATCH (${Math.round(workDomain.confidence * 100)}% of files in .opencode/)`);' and
+    "   Warning: ALIGNMENT WARNING: Content may not match target folder');" joined with '\n' (write the first with single
+    quotes so `${` stays literal). Expect scanText(text) toEqual [].
+ b. 'reads a decision line that ends a JSON string': text = JSON.stringify({ output: '   Phase 1B Alignment: 010-x (90% match)\n'
+    + '   Content aligns with target folder', exit: 0 }). Expect [{ path: 'cli', band: 'aligned', target: '010-x',
+    printedScore: 90, alternatives: [], hardBlock: false, pick: null }].
+
+VERIFY (repo root): node --check <S>; node --check <T>; grep -c "it('" <T>; grep -c '(?:"\[,}\\\]\].\*)?\$/;' <S>
+Accept when: 2 files changed (S +8/-8, T about +16) and nothing else; both node --check exit 0; the greps print 12 and 8.

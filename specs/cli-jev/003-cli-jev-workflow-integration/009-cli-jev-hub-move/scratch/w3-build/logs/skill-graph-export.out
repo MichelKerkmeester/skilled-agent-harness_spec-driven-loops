@@ -1,0 +1,10 @@
+WARNING: Output exceeds 4KB target (18420 bytes)
+Discovered 15 skill graph-metadata.json files
+Excluded 1 route-excluded skill graph-metadata.json file(s)
+VALIDATION PASSED: all metadata files are valid
+Compiled skill-graph.json: 18420 bytes (14 skills)
+  Families: 6
+  Adjacency entries: 14
+  Conflicts: 0
+  Hub skills: ['cli-external-orchestration', 'sk-code', 'sk-git', 'sk-prompt', 'system-deep-loop', 'system-spec-kit']
+  Output: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json

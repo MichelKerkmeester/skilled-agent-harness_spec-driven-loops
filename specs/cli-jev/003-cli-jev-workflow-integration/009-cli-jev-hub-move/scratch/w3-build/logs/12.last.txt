@@ -1,0 +1,47 @@
+I'll start by reading the required context files and both target files before editing.
+
+Both files are byte-identical (297 lines). Before the first write, I'll run the Gate 1 trigger lookup and check for the repo rules file (Gate 5).
+
+REPO RULES.md exists — loading it before the first write (Gate 5).
+
+The repo rules trigger table fires on "report a result / quote a number" and "end a turn" — loading those two, plus resolving the sk-code route for this file type via the compiled router.
+
+Compiled routing returned `defer` (no dominant workflow mode) — the hub defers to a pure surface bundle. For this Node `.cjs` system-code file that's the `sk-code-opencode` surface. Loading it plus the handoff rule that fires at turn end.
+
+Now I have the exact contract. Before editing, I'll verify the exact byte content of the target lines (particularly the header spacing) so the replacements match precisely.
+
+Exact bytes confirmed. Applying the eight edits to the runtime copy (R).
+
+All eight edits applied to R. Applying the identical set to the authored twin (T).
+
+Both files edited. Now running the brief's check suite plus a diff-stat and header-width verification.
+
+All four required checks pass, but `git numstat` reports +12/-11 per file, not the brief's stated +6/-5. Let me inspect the exact diff to confirm the change contains only the specified edits and nothing else, and check the index state.
+
+Diff confirms exactly the eight specified edits per file and nothing else. One last receipt — content hashes proving byte-identity:
+
+All checks pass from the final state. Here is the handback.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs (+12/-11)
+- specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs (+12/-11)
+EDITS (R = runtime copy, T = authored twin):
+- R:3 banner `CLI JEV` -> `CLI CLASSIFIER` (58-char width kept)
+- R:53 `'cli-jev',` -> `'cli-classifier',`
+- R:66-69 -> 5 source keys with cli-classifier prefix, `cli-classifier/cli-deem/SKILL.md` line added
+- R:80->81, 83->84, 91->92, 95->96, 111->112 `cli-jev` -> `cli-classifier` (112: `featureFile: 'cli-classifier-canary'`)
+- T:3 same banner change
+- T:53 same
+- T:66-69 same 5-key block
+- T:80->81, 83->84, 91->92, 95->96, 111->112 same five swaps
+CHECKS:
+- `node --check $R` -> no output (exit 0)
+- `node --check $T` -> no output (exit 0)
+- `cmp $R $T` -> no output (exit 0); sha256 `7ec1dad4dadf72c2fa4bec22e51a78e7b6cfa755ca89f287b3ec378ff772503e` on both
+- `grep -c "cli-jev" $R` -> 0 (exit 1; grep exits 1 on zero matches)
+- `grep -c "cli-classifier" $R` -> 11 (exit 0)
+- `grep -c "cli-jev" $T` -> 0 (exit 1); `grep -c "cli-classifier" $T` -> 11 (exit 0)
+- `git diff --numstat -- $R $T` -> 12/11 per file; scoped diff contains only the 8 specified edits, no other line or file touched
+- line-3 width -> 58 chars in both files (python3 check)
+BLOCKED REASON: none — flagged discrepancy: git numstat is +12/-11 per file, not the brief's "+6/-5"; that figure omits the six 1-for-1 `cli-jev`->`cli-classifier` line swaps (line 53 + five single-line edits), while the four required checks and byte-identity all pass as specified.

@@ -1,0 +1,36 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit/runtime/cli
+
+ ❯ |cli| tests/score-alignment-suggestion.vitest.ts (8 tests | 1 failed) 12085ms
+     × --report inside the repository is refused before any output 12078ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |cli| tests/score-alignment-suggestion.vitest.ts > census > --report inside the repository is refused before any output
+AssertionError: expected +0 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 0
+
+ ❯ tests/score-alignment-suggestion.vitest.ts:172:18
+    170|     });
+    171|
+    172|     expect(code).toBe(2);
+       |                  ^
+    173|     expect(out).toEqual([]);
+    174|     expect(err).toEqual(['refused: --report path is inside the reposit…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  16:34:53
+   Duration  12.25s (transform 34ms, setup 14ms, import 40ms, tests 12.09s, environment 0ms)
+

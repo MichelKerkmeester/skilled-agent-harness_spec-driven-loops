@@ -1,0 +1,22 @@
+I'll start by reading the source file, the test file, the design doc sections, and the model `jevGate` to port.Now let me read the rest of S, the design doc, and the model `jevGate`.Now the design doc sections 7 and 8.I have everything I need: the current sections, the model `jevGate`, and design sections 7–8. Now I'll make the four edits to S (insert the JEV GATE section + renumber MAIN, renumber EXPORTS and CLI ENTRYPOINT, wire `main`, extend exports).Section 8 is in. Now the remaining S edits: renumber EXPORTS/CLI ENTRYPOINT, wire `main`, and extend the export list.All four S edits applied. Let me re-read the wired `main` region and the exports to confirm the final state, then edit T.S is complete. Now the two T edits: the MODULE header list and the new describe block.Both files are edited. Now I'll run the two verification checks from the repo root.Both checks pass. Let me capture the diff stat for the handback (read-only).The diff is empty — the files may be untracked or staged. Let me check their status.Both files are untracked (new files from earlier briefs, not yet committed — hence no diff baseline). Let me do a final consistency check on the section numbering in S.Both checks pass and the section numbering is a clean 1–11 sequence. One note for the orchestrator: both files are currently untracked (`??` in git status), so they need `git add` before any diff/commit step.
+
+**Summary of what was implemented (2 files):**
+
+- **S** (`score-d4-agreement.cjs`): new `// 8. JEV GATE` section with `JEV_VERSION`, `trackedFiles(dir, names)` (git `ls-files -z`, empty set on failure), and `jevGate(ctx)` ported from `score-track-narrowing.mjs` — identity line, pinned version, `auth status --provider P`, then the payload rule (`untracked` count via one git call, skipped unless `--accept-payload`); MAIN/EXPORTS/CLI ENTRYPOINT renumbered to 9/10/11; the jev block wired into `main` before the Deem block; exports extended.
+- **T** (`d4-agreement.vitest.ts`): MODULE header entry plus a `score-d4-agreement jev gate` describe with the three tests (identity+auth pass, no-credential/wrong-version, untracked-payload refusal with the Deem gate still running).
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs (+110/-8, untracked)
+               .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts (+81/-2, untracked)
+EDITS: score-d4-agreement.cjs:502 inserted section 8 JEV GATE (JEV_VERSION, trackedFiles, jevGate); MAIN renumbered to 9 at :593
+       score-d4-agreement.cjs:761 EXPORTS renumbered to 10
+       score-d4-agreement.cjs:767 CLI ENTRYPOINT renumbered to 11
+       score-d4-agreement.cjs:731 replaced the placeholder comment with the jev block (jevGate -> skipped/no headroom/label gate/arm placeholder) before the Deem block
+       score-d4-agreement.cjs:764 module.exports extended with JEV_VERSION, trackedFiles, jevGate
+       d4-agreement.vitest.ts:10 MODULE header adds "Jev gate (jevGate, trackedFiles)"
+       d4-agreement.vitest.ts:421 appended describe 'score-d4-agreement jev gate' with three it() cases
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs -> no output, node --check exit=0 (exit 0)
+        node -e "const m = require('./.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs'); console.log([...m.trackedFiles('.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer', ['score-model-variant.cjs', 'no-such.md'])].join(','))" -> score-model-variant.cjs, trackedFiles exit=0 (exit 0)
+BLOCKED REASON: none
+```

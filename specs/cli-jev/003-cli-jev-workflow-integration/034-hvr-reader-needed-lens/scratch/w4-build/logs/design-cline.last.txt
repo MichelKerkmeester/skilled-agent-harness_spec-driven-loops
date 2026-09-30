@@ -1,0 +1,8 @@
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch/w4-build/design.md (+258/-0)
+EDITS: design.md:1 created the build design, six sections in the brief's order (premises, interface, test cases, build steps, proof plan, open questions)
+EDITS: design.md:5 three path-precision fixes after the write: the premises path-resolution sentence, the `validation_switch.py` and `score-track-narrowing.mjs` rows, and the three `deem-local.md` rows
+CHECKS: `wc -l specs/.../034-hvr-reader-needed-lens/scratch/w4-build/design.md` -> `258 specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch/w4-build/design.md` (exit 0)
+CHECKS: `grep -c '^## ' specs/.../034-hvr-reader-needed-lens/scratch/w4-build/design.md` -> `6` (exit 0)
+CHECKS: `git status --porcelain -- <phase folder> <voice packet> <sk-doc feature-catalog> <cli-classifier> <.hermes>` -> only `?? specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch/w4-build/` (exit 0)
+BLOCKED REASON: none

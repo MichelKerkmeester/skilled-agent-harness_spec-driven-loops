@@ -1,0 +1,27 @@
+TASK: add the track-narrowing entry's index block to the system-spec-kit feature catalog, under section 8 RETRIEVAL. One literal insert in one file.
+F = .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md. Read F first. Change nothing else in it.
+
+1. In F, section `## 8. RETRIEVAL` holds one block, `### Session recovery via /speckit:resume`, which ends with the line:
+See [`retrieval/session-recovery-spec-kit-resume.md`](retrieval/session-recovery-spec-kit-resume.md) for full implementation and test file listings.
+Directly after that line insert the 16 lines below (the first is blank), so the section's existing blank line, `---` and `## 9. CONTEXT PRESERVATION` follow the new block unchanged:
+
+---
+
+### Track narrowing measurement
+
+#### Description
+
+Measures offline whether one classifier choice that names a packet's spec track beats ripgrep and the trigger-index lookup, under a keep rule fixed before any model call.
+
+#### Current Reality
+
+`.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs` makes no model call by default. `--deem` and `--jev` each add a model column behind that backend's own check, and the script changes no lookup, index or recipe.
+
+#### Source Files
+
+See [`retrieval/track-narrowing-measurement.md`](retrieval/track-narrowing-measurement.md) for full implementation and test file listings.
+
+VERIFY (repo root):
+  grep -c "^### Track narrowing measurement$" .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md   (expect 1)
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md   (expect exit 0)
+Accept when: 1 file changed and nothing else; the grep prints 1; the validator exits 0.

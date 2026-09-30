@@ -1,0 +1,22 @@
+[
+  [],
+  [
+    {
+      "id": "commit-scope-drops-untracked",
+      "severity": "warn",
+      "message": "Untracked files inside this commit's scope are silently excluded (exit 0, no warning). Naming the file directly errors; naming its directory doesn't. Run `git status` or check `git show --name-only HEAD`.",
+      "check": "commit-scope-drops-untracked",
+      "passed": false
+    }
+  ],
+  [
+    {
+      "id": "reset-hard-discards-changes",
+      "severity": "warn",
+      "message": "The working tree has modifications, and `reset --hard` destroys them unrecoverably (the reflog protects commits, never uncommitted work). Stash first, or run `git status` to see what's at risk.",
+      "check": "reset-hard-discards-changes",
+      "passed": false
+    }
+  ],
+  []
+]

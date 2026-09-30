@@ -1,0 +1,16 @@
+All six edits match the brief exactly; line 87 and all other lines are unchanged.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md (+6/-6)
+EDITS:
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md:47 hub path `cli-jev` → `cli-classifier`, "one registered mode" → "two registered modes"
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md:49 "reports the moved-mode failure class `3c` as absent, because this hub's single mode resolves" → "passes the moved-mode check `3c`, because both of this hub's modes resolve"
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md:50 "to an existing packet folder." → "to existing packet folders."
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md:88 "`cli-usage`. The routing vocabulary adds the mode's own name, `cli-usage`," → "`cli-jev`, over the packet folder `cli-usage`. The routing vocabulary adds the packet's name, `cli-usage`,"
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md:90 "names the mode explicitly" → "names the packet explicitly"
+.skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md:95 "corpus (`CJ-001` … `CJ-003`)" → "corpus (`CJ-001`, `CJ-002` and `CC-003`)"
+CHECKS:
+grep -c "skills/cli-jev" .skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md -> 0 (exit 1; grep exit 1 = no matches, count 0 as expected)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/feature-catalog/transport-classification/transport-classification.md -> ✅ VALID: .../transport-classification.md — Total issues: 0 (exit 0)
+BLOCKED REASON: none

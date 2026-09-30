@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fan-out shadow pair record",
+      "fanout merge pair labels",
+      "score-fanout-pairs",
+      "near-duplicate title line",
+      "research r15 test phase",
+      "fanout pair replay plan",
+      "score-fanout-pairs build",
+      "pair label gate plan",
+      "merge baseline decision",
+      "fanout pair replay tasks",
+      "score-fanout-pairs tasks",
+      "pair label gate tasks"
+    ],
+    "key_topics": [
+      "fan-out",
+      "shadow",
+      "pair",
+      "record",
+      "fanout",
+      "merge",
+      "labels",
+      "score-fanout-pairs",
+      "near-duplicate",
+      "title",
+      "line",
+      "research"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts",
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      "runtime/README.md",
+      "runtime/scripts/README.md",
+      ".hermes/skills/system-deep-loop/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/README.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+      ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.0.0.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-pair-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pair-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.md",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-fanout-pairs.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-fanout-pairs.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.9.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pair-replay.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/fanout/fanout-pair-replay.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council.contract.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/assets/compiled/deep-ai-council.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Not To Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A fan-out run merges its lineages' findings in `fanout-merge.cjs`",
+    "created_at": "2026-09-29T12:42:42Z",
+    "last_save_at": "2026-09-30T07:29:11.255Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b2f4a0b85c1908b89bad30265d0d16c32b785ade87fae0f0c8e00025f792f7ab",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "37ecd15b7df7df8f363125676d3a379cc28574548485927b69d1d3af815cb0d3",
+      "plan.md": "b992a89ecc30f051861e302538915e55b53ea992aed278878abfba4a4ed0240d",
+      "tasks.md": "df14953f4ee464ba44b4bb9da55e10716dc6d5426e681a17fd163154f80c2801",
+      "implementation-summary.md": "b80c991ebdde36d0051808881682485f9d7a68ccfb6f69f552c61b588cb181b9"
+    },
+    "last_active_at": null
+  }
+}

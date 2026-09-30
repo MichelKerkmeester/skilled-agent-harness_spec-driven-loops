@@ -1,0 +1,12 @@
+TASK: create the compaction recall census changelog entry by copying a prepared file byte for byte.
+SRC = specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/content/changelog-v4.3.0.0.md (read only)
+DST = .skilled/skills/system-spec-kit/changelog/v4.3.0.0.md (the only file you may create; it does not exist yet)
+
+The orchestrator already wrote SRC to sk-doc's template for this document type. Do not retype, reflow or improve it.
+Run exactly: cp "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/content/changelog-v4.3.0.0.md" ".skilled/skills/system-spec-kit/changelog/v4.3.0.0.md"
+Do not edit DST after copying.
+
+VERIFY (repo root), report each result and exit code:
+cmp "specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/content/changelog-v4.3.0.0.md" ".skilled/skills/system-spec-kit/changelog/v4.3.0.0.md" && echo same
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py ".skilled/skills/system-spec-kit/changelog/v4.3.0.0.md"   (expect VALID, exit 0)
+Accept when: 1 file created and nothing else changed; cmp prints same; validate_document exits 0.

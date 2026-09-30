@@ -1,0 +1,29 @@
+Closure pass complete. I recorded phase 033's finished build in its own docs and ran the four gates from the final state.
+
+**Status set: `Complete`** in `spec.md` and `implementation-summary.md`. The phase printed its label-gate stop from the final state (`stop: fewer than 100 labeled rows`, after the draw exits 2 with `draw needs 25 resolvable rows in correctness, found 0`), and every remaining open row is an operator item under parent D4. `tasks.md` T015 to T017 and goal criterion 4's live branch are recorded as waiting on the operator, not as failures, and the criterion wording carries a logged parent-D4 amendment.
+
+**Rows left open:**
+- `tasks.md` T015 (draw on the real tree): blocked on a corpus with at least 25 resolvable correctness rows; 0 exist today, so no labels file can be drawn.
+- `tasks.md` T016 (100 operator labels): blocked on the operator; no model writes a label.
+- `tasks.md` T017 (zero-call re-run plus the live Jev and Deem arms): blocked on T016.
+- `acceptance-criteria.md`: not present (Level 1 folder), so no rows to mark.
+- Recorded, not chased (parent D5): the five P2 findings, the runtime suite's `fanout-run.vitest.ts` timing flake, and the draw shortfall as an operator item.
+
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/spec.md (+14/-14)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/plan.md (+14/-14)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/tasks.md (+24/-24)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/goal.md (+41/-16)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/implementation-summary.md (+103/-26)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/graph-metadata.json (+65/-58) (re-derived by repair-derived.cjs)
+EDITS: spec.md:3,26,33,53-57,110-122 description, Status Complete, handoff gate stop, built deliverables, built Files to Change rows
+EDITS: plan.md:42-52,96,106,130-136 DoR and DoD ticked with evidence, D5 roster, step 7 draw shortfall, dependency rows
+EDITS: tasks.md:31,39-72,80-82 notation closure record, T001-T014 and T018-T020 ticked with commands and results, T015-T017 `[B]`, completion rows amended
+EDITS: goal.md:14-30,65-70,85-97,103-119 continuity, six criteria ticked (criterion 4 with the parent-D4 label-gate amendment), progress rows, deviation rows
+EDITS: implementation-summary.md full rewrite: what was built, files and commit c13e968a58, verification, review verdicts, deviations, operator items
+EDITS: graph-metadata.json re-derived status `complete` by repair-derived.cjs
+CHECKS: node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger --apply -> inspected=1 repaired=1 failed=0 (exit 0)
+CHECKS: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger --strict -> RESULT: PASSED, 0 RESULT: FAILED, Summary: Errors: 0  Warnings: 0 (exit 0)
+CHECKS: node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger -> RESULT: PASSED (5/5 checks) (exit 0)
+CHECKS: node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger --workspace "$PWD" -> packet_durable_chars=3960, packet_budget=unknown (exit 0)
+BLOCKED REASON: none

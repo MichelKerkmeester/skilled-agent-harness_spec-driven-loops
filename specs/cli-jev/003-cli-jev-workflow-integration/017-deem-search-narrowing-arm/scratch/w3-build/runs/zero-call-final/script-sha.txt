@@ -1,0 +1,1 @@
+b9197509bacbc4db4cd1ca5c256c84405e73c5fe03696e38ef8a1bdeb29d9eb5  .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs

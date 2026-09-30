@@ -1,0 +1,9 @@
+TASK: add one paragraph on the alignment suggestion measurement to the skill's README.
+FILE (edit): `.skilled/skills/system-spec-kit/README.md`. Read it first.
+MODEL: the paragraph that starts with the path `runtime/scripts/compaction-recall/score-compaction-recall.mjs` and the words "measures what a host compaction" (about line 313). Match its length (about 6 lines), wrap width and voice.
+WRITE: one new paragraph directly after that paragraph (keep one blank line between), starting with the path `runtime/cli/evals/score-alignment-suggestion.ts` in backticks. It says what S measures, that its default run makes no model call and changes no save, the 30-row label gate, and that `--jev` and `--deem` each add a verdict column behind that backend's own check. Change nothing else.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/README.md
+  grep -c "score-alignment-suggestion" .skilled/skills/system-spec-kit/README.md
+  git diff --stat -- .skilled/skills/system-spec-kit/README.md
+Accept when: 1 file changed and nothing else; the validator exits 0; the grep prints 1; the diff has 0 deletions.

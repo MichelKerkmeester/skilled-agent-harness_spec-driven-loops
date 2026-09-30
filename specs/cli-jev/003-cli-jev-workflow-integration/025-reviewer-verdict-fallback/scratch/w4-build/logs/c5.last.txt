@@ -1,0 +1,62 @@
+I'll start by reading the design and rulings docs, then check whether S and T already exist.
+
+
+
+Both files exist — earlier steps have run. Reading them now.
+
+Steps 1-4 are in place. Let me check the scratch folder for any step briefs or notes that clarify how step 5's tests are expected to be shaped.
+
+
+
+
+
+Now let me look at the sibling the design names, `score-d4-agreement.cjs`, and its test, to follow its shape for the keep rule and column.
+
+
+
+
+
+The sibling has the exact §5 machinery. Let me read its test file for shape, plus the sibling's sections around `buildReport`/`main` for how columns are assembled.
+
+Let me check the orchestrator logs for any additional context on how step 5's tests are meant to be shaped.
+
+
+
+The step-4 precedent is clear: unit-level tests with disclosed judgment calls, plus a read-only `node -e` smoke. Let me read the phase spec for the keep-rule requirements before writing.
+
+Before writing, I'll load the repo rules and the sk-code route as the persona requires.
+
+Now loading the rule files whose triggers fire (adding functions/tests, plan-shape judgment, result reporting, turn handoff), and resolving the sk-code route for `.cjs`/`.ts` under this path.
+
+
+
+Route resolved to `sk-code-opencode` (surface). Loading the JavaScript and shared standards it names for `.cjs`, since that is the artifact I'm extending.
+
+All standards loaded. Now I'll write the §5 KEEP RULE section into S, following the sibling's exact shape.
+
+
+
+Now the test file: module-map line and the five named test cases.
+
+
+
+Two `.map` sites need an explicit tuple type so the file stays typecheck-clean. Let me fix those, then run the checks.
+
+Now the checks. First the two the brief names, then a read-only `node -e` smoke of every asserted value (same pattern step 4 used, since vitest is sandbox-blocked).
+
+
+
+Every asserted value reproduces exactly. Final read-only confirmations: no-key grep and scoped diff.
+
+Step 5 is built and the brief's checks pass. Two judgment calls are disclosed for the orchestrator:
+
+1. Tests 18–22 are end-to-end in section 3 (stub answers, a `verdict deem:` line from a full run), but the gates, arms and `main` land in steps 6–10, so the five cases were added as unit-level cases over the §5 machinery (`summarizeColumn` with `decideVerdict`, `modalPick`, `binomialTail`, `formatP`) using the inputs and expected verdict lines section 3 names. The `report.json` assertion of test 18 belongs to `buildReport`, which the design assigns to step 10 ("the `report.json` assertions of 13, 18, 24"). Test 22 asserts the flips line on both backends, matching the design's "(both backends)" clause.
+2. Test 21's input reads "one row short one order", but coverage fails only when `10*M < 9*K`: one missing order among 12 rows gives M=11 and 110 >= 108, which passes. To reach the expected `stop (coverage)` the case carries one row one order short plus one row with no answers, giving M=10 of K=12.
+
+Vitest was not run — the brief's sandbox note assigns suites to the orchestrator. Observed instead: the module loads under `node -e` and every asserted value reproduces exactly (verdict lines, counts, p values, `modalPick` triples, `binomialTail(5,5)`).
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs (+122/-0); .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts (+246/-0)
+EDITS: score-verdict-fallback.cjs:307-426 added §5 KEEP RULE — `binomialTail(successes, trials)` (exact BigInt tail, `{ num, den, p }`), `decideVerdict({ K, M, A, B, W, L, F })` (first failure wins: coverage, kill via `20n*loss.num < loss.den`, margin, sign test, flips `10*F <= 3*M` for both backends), `formatP(p)` -> `toPrecision(4)`, `modalPick(answers)` -> `{ pick, top }` (key named at least twice, unstable -> `{ pick: null, top: 1 }`), `summarizeColumn(backend, rows, answers, baselineCalls, labelsSha, suffix)` (measured = exactly ORDERS submitted keys, unstable is a miss, `F += ORDERS - top`, full verdict line plus suffix); score-verdict-fallback.cjs:438 exported the five functions; verdict-fallback.vitest.ts:7 added module-map line `Keep rule (binomialTail, decideVerdict, formatP, modalPick, summarizeColumn)`; verdict-fallback.vitest.ts:214-457 added the keep-rule describe — test 18 `verdict: keep` (K=M=12, A=9, B=1, W=9, L=1, F=1, keep line with deem suffix + bare-suffix call + binomialTail/formatP asserts), test 19 `verdict: kill` (A=0, B=5, W=0, L=5, p_loss=0.03125), test 20 `verdict: stop (margin)` (A=5, B=4, W=1, L=0), test 21 `verdict: stop (coverage)` (M=10, unmeasured=2), test 22 `verdict: stop (flips)` (A=W=12, F=12, deem and jev lines, modalPick triples)
+CHECKS: `node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` -> no output (exit 0); `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts` -> 12 (exit 0); `node -e` read-only smoke of `summarizeColumn` on the five test scenarios -> KEEP `verdict deem: keep K=12 M=12 A=9 B=1 W=9 L=1 F=1 p_win=0.01074 p_loss=0.9990 labels_sha256=a1b2c3d4e5f60718 model=deem-0.8-v1 model_commit=m1 source_commit=s1`, KILL `... kill ... p_win=1.000 p_loss=0.03125`, MARGIN `... stop (margin) ... p_win=0.5000 p_loss=1.000`, COVERAGE `... stop (coverage) K=12 M=10 ... unmeasured=2 ...`, FLIPS deem and jev `... stop (flips) ... F=12 p_win=0.0002441`; `modalPick` `{"pick":"pass","top":2}` `{"pick":null,"top":1}` `{"pick":"block","top":3}`; `binomialTail(5,5)` `1`/`32`/`0.03125` (exit 0); `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization' <S>` -> no match (grep exit 1); `git status --porcelain -- <S> <T>` -> both `??`, only these two files touched (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,18 @@
+TASK: add a short "Offline Measurement" subsection to the hub SKILL.md.
+File F = .skilled/skills/cli-classifier/SKILL.md. Read F first.
+
+STEP 1. F:114 reads exactly `### Extensions`, F:116 is its one bullet (it starts "- `transport-axis`: declares"), and F:120 reads
+exactly `## 4. RULES` with a `---` line before it. Insert the following four lines directly after F:116, so a blank line,
+then the new heading, a blank line and the paragraph sit between the Extensions bullet and the existing blank line and `---`:
+
+### Offline Measurement
+
+`benchmark/injection-screen/score-injection-screen.mjs` measures offline whether a Jev or Deem `noul` spots text that tries to instruct an agent better than flag-nothing or a fixed lexical screen. Its default run makes zero model calls. `--jev` and `--deem` each run one backend only after that backend's own gate passes. No hook screens fetched content, so no verdict is wired to anything.
+
+(Exactly: an empty line, the heading line, an empty line, the paragraph line. Four lines added after F:116, plus nothing else.)
+Keep the frontmatter, including `version: 1.1.0.0`, byte-identical. Change nothing else in F. Edit no other file.
+
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/SKILL.md   (expect "Total issues: 0" and exit 0)
+  grep -c "^### Offline Measurement$" .skilled/skills/cli-classifier/SKILL.md   (expect 1)
+Accept when: 1 file changed (F) with 4 lines added and none removed; the validator exits 0; the grep prints 1.

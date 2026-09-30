@@ -1,0 +1,3 @@
+{"type":"iteration","iteration":8,"angle":"grok-08","newInfoRatio":0.46,"findingsCount":1,"ruledOutCount":1}
+{"type":"finding","id":"f-grok-08-goal-stays-later","title":"OpenCode has a verifier mode switch, and met still cannot override blocking language","seam":".skilled/hooks/goal/lib/goal-core.cjs:603","verdict":"later","confidence":"confirmed","metric":"labeled transcript accuracy; baseline UNKNOWN"}
+{"type":"ruled_out","id":"r-grok-08-goal-next","title":"Promoting the goal choice to next to match DeepSeek iteration 3","reason":"The mode switch is real and the labeled set is not, and a met answer can overturn not-met"}

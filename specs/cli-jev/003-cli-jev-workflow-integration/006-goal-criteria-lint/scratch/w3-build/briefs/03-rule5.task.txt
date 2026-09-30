@@ -1,0 +1,36 @@
+TASK: add rule 5 (a check that needs another document), the line classes and one per-line entry point to the goal-criteria lint, and pin them with four tests.
+G = .skilled/skills/sk-doc/sk-create-goal/scripts. Edit only G/lint-goal-criteria.cjs and G/tests/lint-goal-criteria.test.cjs. Read both first; reuse maskNamedText, bareWord, isNamedToken and FUNCTION_WORDS already in the file.
+
+EDIT 1, G/lint-goal-criteria.cjs section 2 CONSTANTS, append after FUNCTION_WORDS, with this comment above them:
+// Wording whose check needs another document's content. The second list
+// counts only when the line names no artifact of its own.
+const RULE5_PATTERNS = [
+  /\bas (?:described|defined|listed|specified|documented|stated|shown|required) (?:in|by|under)\b/giu,
+  /\b(?:see|refer to|per) (?:the )?(?:spec|plan|tasks|checklist|section|table|appendix|research|synthesis|decision record|requirements?)\b/giu,
+  /\b(?:REQ|SC|CHK|NFR|AC)-\d+\b/gu,
+  /\bevery (?:kept|listed|named|required|relevant|affected|applicable)\b/giu,
+  /\bwhere (?:they|these|those)\b/giu
+];
+const RULE5_UNNAMED_PATTERNS = [
+  /\b(?:is|are) listed\b/giu,
+  /\bthe (?:rows|items|entries|cases|steps) (?:in|of|from|under)\b/giu
+];
+
+EDIT 2, section 3 HELPERS, after isNamedToken: `hasNamedArtifact(line)` returns maskNamedText(line).split(/\s+/u).filter(Boolean).some(isNamedToken).
+
+EDIT 3, section 4 CORE LOGIC, after rule4DanglingRefs, three functions, each with a JSDoc block:
+- `rule5ExternalFile(line)`: text = String(line); spans = []. For each pattern in RULE5_PATTERNS in order, push match[0] for every match of text.matchAll(pattern). Then, only when hasNamedArtifact(text) is false, do the same for RULE5_UNNAMED_PATTERNS. Return spans.
+- `classifyCriterion(text)`: trimmed = String(text).trim(). Return 'placeholder' when /^\[[^\]]*\]$/u matches trimmed. Return 'lexical_unscored' when no word of maskNamedText(trimmed).split(/\s+/u), mapped through bareWord and toLowerCase, is in FUNCTION_WORDS. Otherwise return 'scored'.
+- `lintCriterion(text)`: cls = classifyCriterion(text); return { class: cls, rule4: cls === 'scored' ? rule4DanglingRefs(text) : [], rule5: cls === 'scored' ? rule5ExternalFile(text) : [] }.
+Add rule5ExternalFile, classifyCriterion and lintCriterion to the exports.
+
+EDIT 4, G/tests/lint-goal-criteria.test.cjs: import the three new functions too and append four tests:
+  1. 'rule 5 fails a check that needs another document': rule5ExternalFile('Every check passes as described in the plan.') deepEquals ['as described in']; rule5ExternalFile('Every REQ-001 row holds') deepEquals ['REQ-001']; rule5ExternalFile('The rows in the report are listed') deepEquals ['are listed', 'The rows in'].
+  2. 'rule 5 passes a check on named commands and counts': '`npm test` exits 0 with 12 passing cases.' and 'the rows in `labels.jsonl` are listed' each give [].
+  3. 'a line can fail both rules': lintCriterion('The report covers every listed file as described in the spec.') deepEquals { class: 'scored', rule4: ['The report', 'every listed', 'the spec'], rule5: ['as described in', 'every listed'] }.
+  4. 'placeholder and unscored lines stay out of both rules': classifyCriterion('[Another]') is 'placeholder'; classifyCriterion('Repo trusted; verdict recorded') is 'lexical_unscored'; lintCriterion('[Another]') deepEquals { class: 'placeholder', rule4: [], rule5: [] }.
+
+VERIFY (repo root):
+  node --check .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs
+  node -e "const m=require('./.skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs');console.log(JSON.stringify(m.lintCriterion('Rows match per the spec where they apply')))"
+Accept when: 2 files changed and nothing else; node --check exits 0; the node -e line prints {"class":"scored","rule4":["the spec"],"rule5":["per the spec","where they"]}.

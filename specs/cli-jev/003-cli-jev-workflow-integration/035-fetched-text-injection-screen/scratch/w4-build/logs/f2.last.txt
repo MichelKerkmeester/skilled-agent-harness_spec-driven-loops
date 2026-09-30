@@ -1,0 +1,19 @@
+All four version fields now read 1.2.0.0 and every listed check passed: `json-ok` printed, parent-skill-check reports `OK: parent-skill-check — all hard invariants passed, 0 warnings` (including PASS 13a/13b confirming the 1.2.0.0 alignment across all routing artifacts), and the diff shows exactly the four named files with 1 insertion and 1 deletion each. No other file was touched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+.skilled/skills/cli-classifier/hub-router.json (+1/-1)
+.skilled/skills/cli-classifier/description.json (+1/-1)
+.skilled/skills/cli-classifier/mode-registry.json (+1/-1)
+.skilled/skills/cli-classifier/ROUTER.md (+1/-1)
+EDITS:
+.skilled/skills/cli-classifier/hub-router.json:3 "version": "1.1.0.0" -> "1.2.0.0"
+.skilled/skills/cli-classifier/description.json:4 "version": "1.1.0.0" -> "1.2.0.0"
+.skilled/skills/cli-classifier/mode-registry.json:4 "version": "1.1.0.0" -> "1.2.0.0"
+.skilled/skills/cli-classifier/ROUTER.md:12 version: 1.1.0.0 -> 1.2.0.0
+CHECKS:
+node -e "for (const f of ['hub-router.json','description.json','mode-registry.json']) JSON.parse(...)" && echo json-ok -> json-ok (exit 0)
+node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier -> OK: parent-skill-check — all hard invariants passed, 0 warnings (exit 0)
+git diff --stat -- <4 files> -> 4 files changed, 4 insertions(+), 4 deletions(-) (exit 0)
+BLOCKED REASON: none

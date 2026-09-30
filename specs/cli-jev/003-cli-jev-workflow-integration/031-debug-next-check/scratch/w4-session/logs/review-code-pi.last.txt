@@ -1,0 +1,27 @@
+All checks are in: secrets grep empty, the repo's own comment-hygiene checker exits 0 on both files, options verbatim against `hypotheses.ts:11-14`, `specs/*.md` pathspec verified to reach nested files, no callers exist, 30/30 tests pass.
+
+**Findings**
+
+P2 score-debug-next-check.mjs:1433-1443 - `unmeasured_withheld` Jev records carry no `jevVersion`/`provider`/`model`, the identity REQ-009 and design §2 put on Jev lines - 30 rows with one `jev_ok:false`, `--jev --out`: that row's 3 calls.jsonl records lack all three
+P2 score-debug-next-check.mjs:439 - comment "a skipped arm still writes no file" is false - same input with the gate failing (auth exit 3): calls.jsonl is created with the withheld records before the skip line prints
+P2 score-debug-next-check.mjs:84 - `HEALTH_TIMEOUT_MS` is 10000 while REQ-006 bounds `cli-deem health` at 2,000 ms - a health answering at 3-10 s passes this gate where the requirement says `deem arm skipped: not reachable`; real cli-deem self-bounds at 2 s (cli-deem.mjs:35), so only hang latency differs
+P2 score-debug-next-check.mjs:1051-1052 - `Number(1n<<BigInt(n))` overflows so `p=NaN` prints on the verdict line - a 1,200-row fixture with W+L>=1024; the verdict itself stays exact via BigInt
+P2 score-debug-next-check.mjs:1472,1475 - `jev_version=0.6.2`/`jevVersion:'0.6.2'` duplicated instead of `JEV_VERSION` - changing the pin at line 75 leaves the verdict line and report column claiming the old version
+P2 debug-next-check.vitest.ts:278,303 - `default run`/`mined corpus` pin live-repo counts (`debug_delegation=1`) - one new tracked `debug-delegation.md` breaks both
+P2 debug-next-check.vitest.ts:273-737 - no case for `jev arm skipped: jev not on PATH`, `unmeasured_timeout` or the Jev exit-4 retry, which REQ-006/REQ-009 name - stub-first PATH never reaches those branches
+
+**Requirements**
+
+REQ-001 met - default run spawns only git, stub logs asserted empty, writes only under `--out`
+REQ-002 met - fixed grep rule, fixtures folder excluded per ruling 1; `specs/*.md` verified to reach nested files; no transcript read
+REQ-003 met - four constant lines, best baseline ties to earliest key (read_code first), `no headroom` when 10*right>9*K
+REQ-004 met - rule fixed in a constant, printed before the first gate, order coverage/kill/margin/sign/flips per spec; sign test hand-checked: W=8,L=0 -> 1/256=0.00390625 -> `p=0.003906`; kill L=12 -> 1/4096 -> `p=0.0002441`, both matching test expectations
+REQ-005 met - `stop: fewer than 30 labeled rows`, exit 0, no arm; inside path and bad label exit 2 naming the row; labels never written by the script
+REQ-006 met - Jev behind `--jev` after identity line, pinned version, auth status 0; Deem behind `--deem` after health; skips print one line and the census is byte-identical (tested); the 2,000 ms bound is only approximated (finding)
+REQ-007 met - secrets grep empty, no `.env` read, Jev gets no credential; only `jev_ok` rows go out, withheld marked, `payload not accepted` skip; Deem runs every row
+REQ-008 met - question and four descriptions verbatim vs `hypotheses.ts:11-14`, three stdin lines, three left rotations no cache, modal pick >=2, three keys unstable
+REQ-009 met - cost lines first, calls.jsonl fields/statuses and the exit table match, stopped arm prints no verdict, `--jev/--deem` without `--out` exit 2; withheld-line identity gap (finding)
+REQ-010 met - commit pair/version+provider+model per column, `requalify:` before the verdict (tested)
+REQ-011 met (tests) - 30 pass covering every named case; docs not checked (separate review)
+
+VERDICT: PASS

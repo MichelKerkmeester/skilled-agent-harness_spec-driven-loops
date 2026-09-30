@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stage2 leaf route replay",
+      "leaf-route-replay",
+      "router.md leaf replay",
+      "leaf-set f1 replay",
+      "r25 leaf routing",
+      "leaf route replay plan",
+      "tie-break arm plan",
+      "stage2 replay plan",
+      "router.md replay build",
+      "leaf route replay tasks",
+      "tie-break arm tasks",
+      "stage2 replay tasks"
+    ],
+    "key_topics": [
+      "stage2",
+      "leaf",
+      "route",
+      "replay",
+      "leaf-route-replay",
+      "router",
+      "leaf-set",
+      "r25",
+      "routing",
+      "plan",
+      "tie-break",
+      "arm"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scripts/README.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
+      ".hermes/skills/sk-create-skill/SKILL.md",
+      "scratch/w4-session/session-evidence.md",
+      "scratch/w4-build/replay-run.txt",
+      "scratch/w4-build/baseline/node-test.txt",
+      ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md",
+      "scratch/w4-build/rulings.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "replay-run.txt",
+        "kind": "file",
+        "path": "scratch/w4-build/replay-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "node-test.txt",
+        "kind": "file",
+        "path": "scratch/w4-build/baseline/node-test.txt",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md",
+        "source": "derived"
+      },
+      {
+        "name": "rulings.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/rulings.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Not To Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Replay Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Routing has two stages",
+    "created_at": "2026-09-29T12:42:34Z",
+    "last_save_at": "2026-09-29T18:06:18.548Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:38d626d26e6fe91829570c46e3a5e84df070ffe0f63f9c6bc5ef3ffe1f00ddcf",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a2f187534578fd7f1d18cad2420dbac6f3acb5c6c7bb24a9e826e268395fe0c1",
+      "plan.md": "20f2fa46ce787eadfab67b54051b129cd84f4b19d82adc7cc673ad392690e645",
+      "tasks.md": "f3478b427c9a4c2246891fa08989ca5906f21053d9cf9129bcd14a88529a68d0",
+      "implementation-summary.md": "ca27f5469ed2f97beffbc714a11d9ae169576f5a12c8a67e116c69e88f6404e4"
+    },
+    "last_active_at": null
+  }
+}

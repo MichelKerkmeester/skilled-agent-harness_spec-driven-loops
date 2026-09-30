@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "citation drift scan",
+      "cite-drift-scan",
+      "skill doc citation drift",
+      "file:line citation check",
+      "citation drift keep rule",
+      "citation drift plan",
+      "cite-drift-scan plan",
+      "citation drift label gate",
+      "citation drift build order",
+      "citation drift tasks",
+      "cite-drift-scan tasks",
+      "citation drift verification"
+    ],
+    "key_topics": [
+      "citation",
+      "drift",
+      "scan",
+      "cite-drift-scan",
+      "skill",
+      "doc",
+      "file",
+      "line",
+      "check",
+      "keep",
+      "rule",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+      ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+      ".skilled/skills/sk-doc/shared/scripts/README.md",
+      ".skilled/skills/sk-doc/scripts/tests/README.md",
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".hermes/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/README.md",
+      ".skilled/skills/sk-doc/changelog/v2.2.3.0.md",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/sk-doc/description.json",
+      ".skilled/skills/sk-doc/hub-router.json",
+      ".skilled/skills/sk-doc/mode-registry.json",
+      ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md",
+      ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
+      ".skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/shared/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.2.3.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/changelog/v2.2.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "citation-drift-scan.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Jev",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skill docs cite code as `file:line`, and agents follow those citations to decide what the code does",
+    "created_at": "2026-09-29T12:42:43Z",
+    "last_save_at": "2026-09-29T21:28:12.469Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2328b64a64091a0c37d7bdcf510995d043a13128c9a4de37db11983b56b45414",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "979f9532b5711c005b14046c3b7099f72969cda4b7fdf31e714fa302676248f2",
+      "plan.md": "dc57f481c9eb373e44668036943f3019952726cbb217f749b1bc1b8641c5f759",
+      "tasks.md": "7a728cf939883c774e49ccac0678acc82e3cc3e18381a2f5f25ec1651af7ad2d",
+      "implementation-summary.md": "ee9cf4a0bf8e829704d6da5ebd7a9b6728848343db41ae506cd81bb501d5b6b2"
+    },
+    "last_active_at": null
+  }
+}

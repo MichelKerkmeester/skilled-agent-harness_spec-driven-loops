@@ -1,0 +1,23 @@
+## Review report
+
+**Findings**
+
+- `P1 .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-rater-replay.md:28,87` and `manual-testing-playbook/manual-testing-playbook.md:431` - the DLR-056 scenario states "34 passing tests" in three places; the suite prints 36 - running step 9's own command gives `Tests 36 passed (36)`, exit 0, and `scratch/w4-session/docs/facts.txt:4` records 36.
+- `P2 .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md:37` - "ties keeping `legacy`" is not the code's full tie rule; `pickBaseline` resolves ties `legacy` > `sources` > `recorded` - counts `{legacy:4, sources:5, recorded:5}` make `sources` the baseline, not `legacy`.
+- `P2 .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts:702-739` - the "unpublished lineage is withheld from jev" case asserts `existsAtOriginMain`/`withheldRecords` only and never runs `runJevArm`, so the arm's `withheldPaths` skip is unverified - a fixture mixing published and unpublished lineages through one `--jev` run would show the withheld lineage gets no `score` call.
+
+**Requirements**
+
+- REQ-001 met - default run exit 0, census printed, no spawn or file write without `--out` (ran it; stub-absence tests pass).
+- REQ-002 met - filter, gold rule, inert window and counts correct; census `486/37/235/92/122/106/16/4` reproduced exactly.
+- REQ-003 met - `recorded`/`legacy`/`sources` on identical lineages, `rightOf` window, baseline order, `no headroom`; method tests pass.
+- REQ-004 met - rule fixed in constants and `decideVerdict`; hand-check W=5,L=0 and W=0,L=5 both give 20·1 < 32, p=0.03125; one verdict line.
+- REQ-005 met - identity line, `jev 0.6.2`, auth exit 0, Deem health 2,000 ms; skip lines exact and exit 0.
+- REQ-006 met - both stop lines, exits 0, no arm; malformed row exits 2 before stdout; script never writes a reads row.
+- REQ-007 met - key grep exit 1; Jev text only at `origin/main`; `unmeasured_unpublished` recorded.
+- REQ-008 met - fixed question, five verbatim levels lowest-first, 24,000-char bound, 3 reruns with median, Deem once.
+- REQ-009 met - cost lines, `calls.jsonl` fields/statuses, exit handling, `--out` refusal before any call.
+- REQ-010 met - report records both identities; both requalify lines present (Deem pair tested).
+- REQ-011 not met - 36 tests pass with every named case and all `validate_document.py` runs exit 0, but the playbook states 34 passing tests (P1 above).
+
+VERDICT: FAIL

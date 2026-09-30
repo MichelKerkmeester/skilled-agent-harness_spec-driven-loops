@@ -1,0 +1,19 @@
+I'll start by reading File A in full and checking the session context.
+
+`SYSTEM_SPEC_GATE_ENFORCE=0` and `AI_SESSION_CHILD=1` are set — this is a non-interactive child worker already bound to its lineage directory, so the spec-folder gate is pre-resolved and I proceed directly with the two exact insertions.
+
+Both insertions are in place. Now copying File A over File B:
+
+Copy succeeded (exit 0). Running the step 5 checks:
+
+Step 5 output:
+
+```
+$ node --check <File A>
+(no output) — exit status 0
+
+$ cmp <File A> <File B>
+(no output) — exit status 0 (byte-identical)
+```
+
+DONE

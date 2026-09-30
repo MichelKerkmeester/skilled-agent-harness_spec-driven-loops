@@ -1,0 +1,40 @@
+I'll start by reading the brief's reference design (R) sections 1, 2 and 5, plus the two target files S and T.
+
+I have R sections 1, 2, 5 and both target files. Before writing, I'll load the required routing context: sk-code skill (persona standard), the repo rules, and the Gate 1 trigger lookup.
+
+Gate 1 index hit confirms this work belongs to the bound packet. Now Gate 5: the repo has a root `REPO RULES.md` — I must load it (and its triggered rule files) before the first write. Also running the sk-code compiled router per its contract.
+
+The compiled router returned `defer` — per the hub contract a bare implement request resolves to a surface bundle, and this is system code (Node ESM + node:test), so I'll load the OpenCode surface packet. Gate 5 also fires: I'm about to add module surface and tests, report results, and end a turn — those triggers pull specific rule files. Loading all of it plus the root AGENTS.md now.
+
+Gate 5 triggered rules loaded so far (prevent-overengineering, evidence-and-proof, scope-discipline). Reading the rest of AGENTS.md plus the turn-end/reply rules, and the OpenCode surface packet the hub route resolves to.
+
+Gates are satisfied. Per the OpenCode surface contract, a `.mjs` file routes to the JavaScript slice — checking those reference sizes before loading.
+
+1391 lines across the four — the resolved route for this file type. Loading them now, then I'll write the edits.
+
+
+
+All gates and routes are loaded. Plan before the first edit (scope-discipline §8): files are S and T only; tool is the Edit tool; the check is the three listed commands plus a scoped diff read. Pre-write pass (prevent-overengineering §2): build nothing fails because R §5 fixes these seven exports as the corpus stage the draw/census stages consume; the move is "add new functions beside the existing ones"; the only caller is the test file at `.skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs:14`, and no existing export or section changes.
+
+Making both edits now.
+
+Both edits applied. The divider match proves my inserted divider text is byte-identical to the file's existing dividers. Now the three listed checks, plus the read-only scoped diff inspection required by the final-state gate.
+
+All three checks pass. The directory is untracked in this worktree (the orchestrator commits later), so I'll confirm file totals for the handback's added-line counts.
+
+STATUS: DONE
+
+FILES CHANGED:
+.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs (+118/-0)
+.skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+40/-0)
+
+EDITS:
+.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:228-344 added the seven exported section 5 functions with JSDoc (sourceGroup, walkCorpus, toLines, splitSections, sectionText, inBand, lexicalHit) under the CORPUS divider; nothing else in S touched
+.skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs:97-135 appended the six tests (splitSections x2, walkCorpus x2, lexicalHit x2) after the existing three
+
+CHECKS:
+node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs -> no output; exit=0
+node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> no output; exit=0
+grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> 9; exit=0
+
+BLOCKED REASON: none

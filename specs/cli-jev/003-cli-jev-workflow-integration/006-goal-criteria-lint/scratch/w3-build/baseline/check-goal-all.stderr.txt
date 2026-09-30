@@ -1,0 +1,1 @@
+[check-goal] ERROR /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/review/lineages/deepseek-review-3/scratch/broken-fence/goal.md: goal frontmatter opener has no closing fence

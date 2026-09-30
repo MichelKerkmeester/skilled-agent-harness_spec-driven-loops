@@ -1,0 +1,38 @@
+[
+ [
+  "version: 1.2.0.3\n",
+  "version: 1.2.0.4\n"
+ ],
+ [
+  "The root file owns shared skill-authoring policy. Category files own scenario execution truth. This package has no feature catalog. Each scenario says so in its source table.",
+  "The root file owns shared skill-authoring policy. Category files own scenario execution truth. This package has no feature catalog of its own. SKL-001 to SKL-006 say so in their source tables. SKL-007 links the sk-doc hub catalog entry for its script."
+ ],
+ [
+  "Coverage is split into six scenarios across two categories. Three scenarios cover standalone skills. Three cover parent hubs.",
+  "Coverage is split into seven scenarios across two categories. Three scenarios cover standalone skills. Four cover parent hubs, one of them the compiled-routing clarify census."
+ ],
+ [
+  "It must keep one advisor identity at a parent hub and must not claim compiled serving from a fresh `ready` manifest.",
+  "It must keep one advisor identity at a parent hub and must not claim compiled serving from a fresh `ready` manifest. Its clarify census must call no model. Its scorer must stop below 30 labeled rows."
+ ],
+ [
+  "## 8. PARENT HUB (`SKL-004..SKL-006`)",
+  "## 8. PARENT HUB (`SKL-004..SKL-007`)"
+ ],
+ [
+  "> **Feature File:** [SKL-006](parent-hub/keep-one-parent-identity.md)\n> **Catalog:** no feature-catalog entry applies to this package.\n",
+  "> **Feature File:** [SKL-006](parent-hub/keep-one-parent-identity.md)\n> **Catalog:** no feature-catalog entry applies to this package.\n\n---\n\n### SKL-007 | Count clarify answers and stop at the label gate\n\n#### Description\n\nVerify that the clarify census counts `clarify` answers per hub and source with zero model calls and that its scorer stops below 30 labeled rows.\n\n#### Scenario Contract\n\nPrompt: `Count how often the compiled hubs answer clarify, then tell me whether a suggested default can be scored yet.`\n\nThe operator runs `score-clarify-default.cjs` with stub `jev` and `cli-deem` binaries first on `PATH`, reads the per-hub counts and the rows file, then runs `--score` on that file with and without `--deem`. Every row label stays empty. The scorer prints `stop: fewer than 30 labeled rows` both times.\n\nDesired user-visible outcome: the clarify counts and a plain statement that no default can be scored until 30 rows carry a label.\n\n#### Test Execution\n\n> **Feature File:** [SKL-007](parent-hub/count-clarify-and-stop-at-the-label-gate.md)\n> **Catalog:** [clarify-default-measurement](../../feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md) in the sk-doc hub catalog.\n"
+ ],
+ [
+  "| `parent-skill-check.cjs` | Parent registry, router, packet and root-router conformance | SKL-004 |\n",
+  "| `parent-skill-check.cjs` | Parent registry, router, packet and root-router conformance | SKL-004 |\n| `score-clarify-default.test.cjs` | Census counts, the checklist split, the label gate, the keep rule and both backend gates on stub binaries | SKL-007 |\n"
+ ],
+ [
+  "This package has no feature catalog. The root index below is the source of scenario membership.",
+  "This package has no feature catalog of its own. The root index below is the source of scenario membership."
+ ],
+ [
+  "| SKL-006 | Keep one parent identity | PARENT HUB | [SKL-006](parent-hub/keep-one-parent-identity.md) |",
+  "| SKL-006 | Keep one parent identity | PARENT HUB | [SKL-006](parent-hub/keep-one-parent-identity.md) |\n| SKL-007 | Count clarify answers and stop at the label gate | PARENT HUB | [SKL-007](parent-hub/count-clarify-and-stop-at-the-label-gate.md) |"
+ ]
+]

@@ -1,0 +1,75 @@
+I'll start by setting up a task list, running the Gate 1 trigger-index lookup, and reading the phase's canonical docs.
+
+Phase docs read; spec.md is truncated at line 221 of 259 — I'll read the rest, check the working-tree state (read-only git), and open the scorer implementation and its test file.
+
+Continuing the scorer and test file reads.
+
+Now the rest of the scorer, plus the validator it replays and the shared utilities it imports.
+
+Now the validator's exact output lines, the shared path-containment signature, and the two READMEs in scope.
+
+The validator read was truncated at line 581 of 712 — reading the rest, plus the shared path-containment signature.
+
+Validator output lines and the containment signature check out. Now the small doc files and a sibling catalog file for the version-field convention.
+
+The catalog sibling also carries `version: 4.3.0.0`, so that field follows the corpus convention. Let me check the version conventions across both directories, where `spec-folder-detection-and-description.md` sits, and read the SKILL.md in full.
+
+
+
+
+
+SKILL.md and README.md check out against the diff. Now the playbook root, the catalog's remaining regions, and a quick look at the generators' `--check` modes before I run them.
+
+
+
+Now running the phase's test suite and the default zero-call census, while finishing the remaining reads.
+
+The suite passes (42/42, exit 0). Waiting for the census to finish, and reading the catalog tail.
+
+Census verified end-to-end — output matches the docs and the build evidence. Fixing my grep flag and checking 002's exit handling for comparison, plus the trigger-index check internals.
+
+
+
+002's exit handling matches S's (`usage error`, `key rejected`, `interrupted`, code-4 retry, `auth test failed`). Now the generators' checks and doc validators — first locating them.
+
+Running the three generator/doc validators (all read-only in check mode).
+
+All doc validators pass; Hermes copies in sync. While the trigger-index check runs, let me confirm the working tree matches the appendix and read the build contract that governed the code details.
+
+The trigger-index check is a live finding: exit 1, with this phase's changelog and catalog file among 14 stale documents. Let me read the build contract and run the phase's strict validation gate.
+
+Strict validation passes (`RESULT: PASSED`). Finishing the build contract read and checking the version-field convention on siblings.
+
+Typecheck and the import/boundary checks are the remaining build gates (the design's strict-TS rule means vitest alone doesn't prove them). Running them now.
+
+All verification gates pass. Composing the final report.
+
+Cross-family review complete. All commands run were read-only; the phase's suite, scorer, and gates were executed from the final working tree.
+
+**Findings**
+
+P2 `specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md:146` - the trigger index was not regenerated, though the Files to Change row names it - `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check` exits 1; this phase's `changelog/v4.4.0.0.md` and `feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md` are 2 of 14 stale docs (12 belong to other uncommitted lanes; wave 3 rebuilt from committed HEAD, so the commit step may own this).
+
+P2 `.skilled/skills/system-spec-kit/changelog/v4.4.0.0.md:19` and `feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:30` - "writes one row per event" is not what the writer does - `score-alignment-suggestion.ts:1497` emits a row only for a low/infrastructure event with alternatives, so a transcript holding one aligned event writes 0 rows.
+
+P2 `feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:9` - `version: 4.3.0.0` is the previous release - this change ships 4.4.0.0 (same-change playbook file `:4` and changelog carry 4.4.0.0; siblings 460 and 459 carry the release version in both files).
+
+P2 `runtime/cli/evals/score-alignment-suggestion.ts:1130-1162` - the Jev auth-test call drops 002's handling - no code-4 retry, exit 130 prints `auth test failed` where 002 prints `interrupted`, and its `calls.jsonl` record uses `status: "auth"` outside REQ-007's three statuses; a SIGINT during `jev auth test` shows it.
+
+P2 `runtime/cli/evals/README.md:33-43` - the package-topology tree omits `score-alignment-suggestion.ts` though the KEY FILES row was added at `:72`.
+
+**Requirements**
+
+REQ-001 met - census ran exit 0, counts-only, no `jev`/`cli-deem` spawn; the suite asserts both stub logs stay empty.
+REQ-002 met - 29 labeled stops exit 0 with no arm even with `--deem`; 30 passes; a foreign label exits 2 by row id.
+REQ-003 met - both gates, every skip line and the byte-identical Deem output are stub-covered (T:708-744); health timeout 2000 ms.
+REQ-004 met - the secret grep exits 1; stdin carries only the row's state; output counts-only; repo paths refused.
+REQ-005 met - live run: `replay cli ... alternatives listed: 0`, `replay data ... alternatives listed: 2`; no prompt; TTY flags restored.
+REQ-006 met - options, description text, question printed before calls, three left rotations, modal/unstable all match.
+REQ-007 met - records and identity, 90 s timeout, `partial_rows` stop, `--out` exit 2; auth-call deltas are the P2 above.
+REQ-008 met - Jev payload class, 3K+1 planned calls, token estimate; Deem "nothing leaves the machine" + p50 wall; no dollar figure.
+REQ-009 met - 42/42 pass, exit 0; happy path plus an edge case per surface, all backends stubbed.
+REQ-010 met - `validate_document.py` exits 0 on all seven changed docs; switches and the stop line match the code verbatim.
+Keep rule (spec §4) met - order matches `decideVerdict`; hand-checked P(X>=3), n=3 = 0.125 -> stop (sign test) and P(X>=10) = 1/1024 -> keep p=0.0010, printed verbatim before any call.
+
+VERDICT: PASS

@@ -703,7 +703,11 @@ function main(argv) {
     return report.errors.length === 0 ? 0 : 2;
   }
 
-  const packetDir = path.resolve(workspaceRoot, options.packetArg);
+  let packetDir = path.resolve(workspaceRoot, options.packetArg);
+  // A goal.md path names the packet that holds it, so that folder is the one checked.
+  if (path.basename(packetDir) === GOAL_FILE && !(fs.existsSync(packetDir) && fs.statSync(packetDir).isDirectory())) {
+    packetDir = path.dirname(packetDir);
+  }
   const result = checkGoalPacket(packetDir, { workspaceRoot });
   console.log(TAG + ' packet=' + result.packetLabel);
   displayCheckResults(result);

@@ -1,0 +1,14 @@
+The packet goal is set. A three-way split now counts as three flips, so the flip rate can block a keep.
+
+SKILL ROUTING: sk-code compiled route → sk-code-opencode implement. REPO RULES: prevent-overengineering.md.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+2/-1)
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+19/-2)
+EDITS: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs:553 a row with no modal pick adds 3 flips
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts:516 added the three-way-split flip test after the keep case
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts:1175 flip=0.0952 replaced with flip=0.1429
+EDITS: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts:1176 flip=0.0952 replaced with flip=0.1429
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> (no stdout) (exit 0)
+CHECKS: grep -c "flip=0.0952" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts -> 0 (exit 1)
+BLOCKED REASON: none

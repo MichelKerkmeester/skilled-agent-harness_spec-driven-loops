@@ -1,0 +1,40 @@
+TASK: make S run main when node starts it through a symlink, and pin that with one case in T.
+Never read ~/.claude, ~/.pi or any transcript or session file. Edit only these two files (read both first):
+S = .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs
+T = .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts
+Why: node sets import.meta.url from the module's real path, but process.argv[1] keeps the path as typed, so through
+a symlinked folder the current comparison is false, main never runs and the script exits 0 with no output.
+
+1. S:1602-1604, replace these three lines:
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  process.exitCode = await main(process.argv.slice(2));
+}
+with exactly:
+// Node sets import.meta.url from the real path while argv keeps the typed path, so a
+// script started through a symlink matches only once both sides are resolved.
+function isEntryPoint() {
+  try {
+    return realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url));
+  } catch {
+    return false;
+  }
+}
+
+if (isEntryPoint()) {
+  process.exitCode = await main(process.argv.slice(2));
+}
+2. T:7, replace the node:fs import line with exactly:
+import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, utimesSync, writeFileSync } from 'node:fs';
+3. T, add this case as the last case, just before the final `});` of the file, with one blank line before it:
+  it('runs main when node starts the script through a symlink', () => {
+    const link = join(tempDir('compaction-recall-link-'), 'census.mjs');
+    symlinkSync(SCRIPT, link);
+    const run = runScript(link, []);
+
+    expect(run.code).toBe(2);
+    expect(run.stdout).toBe('');
+    expect(run.stderr).toBe('no transcripts named\n');
+  });
+VERIFY (repo root): node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs
+and: grep -cE '^  it[(.]' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (expect 13)
+Accept when: 2 files changed (S and T), nothing else; node --check exits 0; T holds 13 cases.

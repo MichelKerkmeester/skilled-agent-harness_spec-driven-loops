@@ -1,0 +1,11 @@
+TASK: update the tests folder's README for the new test file and the suite's counts.
+FILE (edit): `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md`. Read it first. Two edits, nothing else.
+EDIT 1: the line `- The suite is green at **158 tests across 12 files**.` becomes `- The suite is green at **205 tests across 14 files**.`
+EDIT 2: directly after the bullet that starts `- Lane B tests (scorer, opt-in 5-dim scorer`, insert this one line:
+- `d4-agreement.vitest.ts` covers the offline D4 agreement measurement: the zero-call census, the label gate, the keep rule and both arms on stub backends.
+If the file also has a table or list naming each test file, add `d4-agreement.vitest.ts` there in the same form.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md
+  grep -c "205 tests across 14 files" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md
+  grep -c "d4-agreement.vitest.ts" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md
+Accept when: 1 file changed and nothing else; the validator exits 0; the first grep prints 1; the second prints at least 1.

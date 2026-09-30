@@ -1,0 +1,53 @@
+I'll start by reading the files this brief names.
+
+Now let me read the third range of the tiebreak file and find the definitions of `confidenceOrder` and `alwaysSecondOrder`.
+
+
+
+I have the full picture of the two files I'll edit. Let me check the test directory conventions and tsconfig strictness so the TypeScript test compiles cleanly.
+
+
+
+Let me check the runtime's base tsconfig for strictness settings, since the test file is TypeScript.
+
+
+
+
+
+I have everything I need. Now I'll make the three edits to `score-suggested-order.mjs`: the import extension, the JSDoc summary line, and the three new functions after `orderFromMaps`.
+
+S is done. Now the test file: extend the import and append the keep-rule helpers and describe block.
+
+
+
+Both files are edited. Now I'll run the two checks the brief requires.
+
+Both required checks pass. Now I'll run one extra behavioral check — a direct pure-function execution of the new `judgeColumn` against all 8 scenarios from the brief (no test runner, no sockets, no files created), since vitest itself is off-limits for me.
+
+All 8 scenarios pass against the real module. Let me also try a syntax check on the TypeScript test file (if this Node version strips types for `--check`) and gather the diff stats for the handback.
+
+Both files are syntactically valid (`node --check` on the `.ts` also exits 0 under Node 26's type stripping). Note both files are untracked in this worktree, so `git diff` has no baseline — let me get line counts and do a final read of both files to confirm the end state.
+
+The S file is coherent end to end. Let me check whether anything else imports this module (to confirm my additive changes can't break other consumers), and do a final read of the test file's end state.
+
+All checks pass and only the two named files were touched (nothing else in the repo imports this module, so the additive changes are safe). Here is the handback:
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs (+107/-2)
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts (+131/-0)
+EDITS:
+- score-suggested-order.mjs:11 import extended to alwaysSecondOrder, binomTail, confidenceOrder, reciprocalRank, reorderSlots
+- score-suggested-order.mjs:60 readProbabilities JSDoc summary reworded to "Probability map from a classifier answer on stdout..."
+- score-suggested-order.mjs:117-220 added judgeColumn (measured-row filter, abstentions, flips, baseline argmax over scorer/confidence/always_second with earlier-name tie-break, rc/rb wins-losses, binomial p/pLoss, nearestRank t/p50, ordered verdict chain) plus verdictLineFor and columnLine, each with JSDoc
+- score-suggested-order.vitest.ts:15-17 added judgeColumn, verdictLineFor, columnLine to the import
+- score-suggested-order.vitest.ts:105-231 added strict/rowOf/favor helpers, Row alias, and describe('score-suggested-order keep rule') with its 8 tests (keep, kill, stop coverage/margin/sign test/flips/latency, baseline always_second)
+
+CHECKS:
+- node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs -> no output (exit 0)
+- grep -c "export function judgeColumn\|export function verdictLineFor\|export function columnLine" .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs -> 3 (exit 0)
+- node --input-type=module -e "<8-scenario harness importing the edited module and asserting every expected verdict/baseline/count/line>" -> ALL 8 SCENARIOS PASS (exit 0)
+- node --check .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts -> no output (exit 0, Node v26.8.2 type stripping)
+
+BLOCKED REASON: none
+
+Notes for the orchestrator: both files are untracked in this worktree (`git status` shows `??`), so the +added/-removed counts are against their pre-edit contents; `git diff --numstat` has no baseline for them. I did not run vitest (off-limits per brief); the extra scenario harness was a pure-function run of the edited module with no sockets or files created.

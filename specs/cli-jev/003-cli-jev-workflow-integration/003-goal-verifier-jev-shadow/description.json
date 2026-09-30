@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow",
+  "description": "Two runtimes judge \"is this goal done\" with a heuristic",
+  "keywords": [
+    "two",
+    "runtimes",
+    "judge",
+    "goal",
+    "done",
+    "heuristic"
+  ],
+  "lastUpdated": "2026-09-27T04:48:24.068Z",
+  "specId": "003",
+  "folderSlug": "goal-verifier-jev-shadow",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

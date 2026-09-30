@@ -1,0 +1,17 @@
+`loadCensus()` scores the three corpora once under the baseline capture environment, and the census check printed `53 241 195`.
+
+SKILL ROUTING: sk-code → sk-code-opencode (JavaScript module and TypeScript test). User directed → @code.
+REPO RULES: evidence-and-proof.md
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+107/-0)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+20/-0)
+EDITS: score-jev-tiebreak.mjs:10 added fs, os, path, and url imports
+score-jev-tiebreak.mjs:18 added HERE, DIST, SENTINEL, and CORPORA
+score-jev-tiebreak.mjs:170 added exported loadCensus()
+score-jev-tiebreak.vitest.ts:17 imported loadCensus
+score-jev-tiebreak.vitest.ts:71 added the census-loader test with a 120000 ms timeout
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> (empty stdout) (exit 0)
+node -e "import('./.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs').then(async (m) => { const c = await m.loadCensus(); console.log(c.holdoutTop1.correct, c.rows.length, c.labels.length); })" -> 53 241 195 (exit 0)
+BLOCKED REASON: none

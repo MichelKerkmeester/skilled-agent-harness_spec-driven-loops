@@ -1,0 +1,20 @@
+All four edits landed in the two named files only; both listed checks pass and the two pinned tests hold (12/12 in the file). The lint now has its command line: text report, `--json`, `--all`, one packet, `--root`, always exit 0.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs (+130/-1) — both files were untracked new files before this step
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs (+52/-0)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs:155 added getDefaultWorkspaceRoot() in HELPERS (EDIT 1)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs:501 added formatLintReport() with JSDoc after lintPacket (EDIT 2)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs:538 added parseLintArguments() with JSDoc, four specified errors (EDIT 2)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs:580 added main() with JSDoc, advisory exit 0 (EDIT 2)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs:618 exports extended with formatLintReport, parseLintArguments, main (EDIT 2)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs:627 direct-run guard with advisory comment (EDIT 3)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs:11 spawnSync import added (EDIT 4)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs:35 LINT path constant added (EDIT 4)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs:260 test 'the command line exits 0 and names a missing packet or a bad option' appended (EDIT 4)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs:277 test 'the report prints per-rule counts and each flagged line' appended (EDIT 4)
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs -> no output (exit 0)
+CHECKS: node .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs specs/no-such-packet -> goals_scanned=0 ... [lint-goal-criteria] ERROR specs/no-such-packet: packet not found (exit 0)
+CHECKS: node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs -> tests 12, pass 12, fail 0 (exit 0) — extra evidence run for the two pinned tests, not a listed check
+BLOCKED REASON: none

@@ -1,0 +1,33 @@
+I'll start by reading the four files named in the brief.
+
+The check script wasn't at the path I guessed. Let me locate it.
+
+The check lives at `scorer/deterministic/hallucination-flag.cjs`, matching the `HALLUCINATION_CHECK` constant. Let me read it to confirm its CLI contract.
+
+All four files read. Now I understand the contract: section 4 of the design specifies `buildState`, `deterministicCall` (spawning the allowlist check with a temp fixture JSON), and `chooseBaseline`; the check script emits `{score, ...}` JSON on stdout.
+
+Let me make the three edits: section 5+6 in S, and the two regions in T.
+
+All three edits applied and the edited regions re-read (shown above). Now the three verification checks, run from the repo root:
+
+All three checks pass. Let me inspect the scoped diff to confirm only the two named files changed and capture the line deltas for the handback:
+
+The two files are untracked in this worktree (they're new artifacts awaiting the orchestrator's commit), so `git diff --numstat` is empty. Let me capture exact line counts for the handback:
+
+Both files verified at their final state. Work complete — the two named files carry the new section 5 (baseline builders), the renumbered exports, and the three-test block; no other file was touched and no git write or test-runner command was executed.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs (+84/-0)
+- .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts (+42/-0)
+EDITS:
+- S:175-257 inserted `// 5. BASELINE` section: `buildState` (187-194, task/visibleSpec/own-allowlist sections joined by blank line, always `Output:`), `deterministicCall` (208-230, temp fixture JSON via mkdtemp, spawnSync of the unchanged check, throws on error/non-zero exit/unparseable score, temp dir removed in `finally`, durable-why comment at 196-197), `chooseBaseline` (239-257, majorityClass/check-vs-majority method/right/calls Map), each with JSDoc
+- S:260 renumbered divider `// 5. EXPORTS` → `// 6. EXPORTS`
+- S:263 appended `buildState, deterministicCall, chooseBaseline` to `module.exports`
+- T:7 added `//   Deterministic baseline (buildState, deterministicCall, chooseBaseline)` to MODULE header
+- T:106-145 appended `describe('score-d4-agreement baseline', ...)` with three its: unlisted flag yes / allowlisted flag no (107-114), check kept on tie and majority class on loss (116-136), buildState section joins (138-144)
+CHECKS:
+- `node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs` -> no output (syntax OK) (exit 0)
+- `grep -c "// 6. EXPORTS" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs` -> 1 (exit 0)
+- `grep -c "describe('score-d4-agreement baseline'" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts` -> 1 (exit 0)
+BLOCKED REASON: none

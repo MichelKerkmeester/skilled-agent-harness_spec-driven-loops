@@ -1,0 +1,19 @@
+All nine edits applied to the one named file; the two required checks ran with output and exit status read. The grep zero is backed by a negative control (`grep -c "cli-classifier"` → 7, exit 0), so the search genuinely read the file. My scoped diff is exactly one file at +8/-8; the other worktree changes in `git status` are the concurrent workers' files, untouched by me.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md (+8/-8)
+EDITS:
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:2 "resolves to cli-jev from the command" -> "resolves to cli-classifier from the command"
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:3 "to the cli-jev packet, for" -> "to the cli-classifier hub's cli-usage packet, for"
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:7 "resolves to cli-jev from the command" -> "resolves to cli-classifier from the command"
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:15 "must resolve to \`cli-jev\`, which is what" -> "must resolve to \`cli-classifier\` with packet path \`cli-classifier/cli-usage\`, which is what"
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:27 "to the \`cli-jev\` packet." -> "to the \`cli-classifier\` hub's \`cli-usage\` packet."
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:28 "a dispatch to the cli-jev packet." -> "a dispatch to the cli-usage packet."
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:31 "and the server binary to \`cli-jev\`," -> "and the server binary to \`cli-classifier\`,"
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:56 "and the server binary to \`cli-jev\` |" -> "and the server binary to \`cli-classifier\` |"
+.skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md:56 "and \`jev-mcp\` to \`cli-jev\`;" -> "and \`jev-mcp\` to \`cli-classifier\`;"
+CHECKS:
+grep -c "cli-jev" .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md -> 0 (exit 1, grep's no-match status; expected count 0)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/dispatch-guards/dispatch-resolves-from-command.md -> "✅ VALID: ... Total issues: 0" (exit 0)
+BLOCKED REASON: none

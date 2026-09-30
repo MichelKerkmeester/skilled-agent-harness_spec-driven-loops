@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion",
+  "description": "The AI Council found that round 1 dropped the right ideas but measured too loosely and built in the wrong places",
+  "keywords": [
+    "council",
+    "found",
+    "round",
+    "dropped",
+    "right",
+    "ideas",
+    "measured",
+    "too",
+    "loosely",
+    "wrong",
+    "places"
+  ],
+  "lastUpdated": "2026-09-27T04:51:56.859Z",
+  "specId": "004",
+  "folderSlug": "deep-research-expansion",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-09-26_05-51__closed-round-2-of-the-jev-research-re-synthesis.md"
+  ]
+}

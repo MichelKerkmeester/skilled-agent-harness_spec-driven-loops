@@ -1,0 +1,7 @@
+The fallback check is added and the suite passes with `ALL PASS`; source file `S` was only read, never written.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py (+8/-0)
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py:858 inserted the `fallback_cmd`/`check(...)` block immediately after the `deem gate passes a torch health` check
+CHECKS: python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> ALL PASS (exit 0); new line `PASS deem command falls back to the classifier checkout under node`
+BLOCKED REASON: none

@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes",
+  "description": "Phase 11: spec-validator-fixes",
+  "keywords": [
+    "phase",
+    "spec-validator-fixes"
+  ],
+  "lastUpdated": "2026-09-27T11:50:18.141Z",
+  "specId": "011",
+  "folderSlug": "spec-validator-fixes",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

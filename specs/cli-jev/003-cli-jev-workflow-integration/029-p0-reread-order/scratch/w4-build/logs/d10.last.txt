@@ -1,0 +1,9 @@
+Both required checks pass. The sentence cites only what the script's own code and FACTS show: the `USAGE` line at `score-severity-replay.cjs:71`, the label gate floor `LABEL_GATE = 20` with its `stop: fewer than 20 labeled P0 negatives` line (438-439) and each arm running only behind its own `--jev`/`--deem` switch (1706-1723). The model shape comes from the stop-rater and stop-hint sentences at lines 49 and 50. Everything outside the one inserted line is byte-identical. The tree shows other files dirty from concurrent workers, which I did not touch. The work is edited, not committed (the orchestrator commits).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/runtime/README.md` (+1/-0)
+EDITS: `.skilled/skills/system-deep-loop/runtime/README.md`:51 added one sentence after the stop-rater and stop-hint sentences in section 3: the severity replay script, its zero-call default, the label gate of 20 labeled P0 negatives and the `--jev` and `--deem` switches
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/README.md` -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/README.md` / `Total issues: 0` (exit 0)
+CHECKS: `git diff --stat -- .skilled/skills/system-deep-loop/runtime/README.md` -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

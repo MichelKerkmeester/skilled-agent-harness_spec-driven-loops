@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deem Playground</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0B0714;
+  --bg-raise: #140E21;
+  --bg-raise-2: #1A1330;
+  --line: rgba(139, 123, 245, 0.16);
+  --line-strong: rgba(139, 123, 245, 0.34);
+  --text: #F4F1FA;
+  --text-2: #B7AEE0;
+  --text-3: #877BAF;
+  --violet: #644DF9;
+  --violet-soft: #8B7BF5;
+  --pink: #FCCBFF;
+  --danger: #FF7A9A;
+  --ok: #7CEFC2;
+  --grad: linear-gradient(135deg, #644DF9 0%, #FCCBFF 100%);
+  --radius: 12px;
+  --shadow: 0 12px 32px -8px rgba(5, 2, 12, 0.8), 0 2px 6px rgba(5, 2, 12, 0.5);
+  --font-ui: 'Satoshi', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+::selection { background: rgba(100, 77, 249, 0.45); color: var(--text); }
+
+html { scrollbar-color: #2A2044 transparent; }
+
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(1200px 600px at 85% -10%, rgba(100, 77, 249, 0.14), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(252, 203, 255, 0.05), transparent 55%);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+textarea, input {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  caret-color: var(--pink);
+}
+
+button { font-family: var(--font-ui); cursor: pointer; }
+
+:focus-visible {
+  outline: 2px solid var(--violet-soft);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- top bar ---------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px clamp(20px, 4vw, 48px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand { display: flex; align-items: baseline; gap: 12px; }
+
+.brand .mark {
+  font-family: var(--font-ui);
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+}
+
+.brand .scope {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--text-2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.topbar .meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-2);
+  border: 1px solid var(--line);
+  background: var(--bg-raise);
+  border-radius: 999px;
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+
+.chip .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-3);
+}
+
+.chip .dot.up { background: var(--ok); }
+.chip .dot.down { background: var(--danger); }
+
+/* ---------- layout ---------- */
+
+.stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(380px, 460px);
+  gap: 28px;
+  align-items: start;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px clamp(20px, 4vw, 48px) 72px;
+}
+
+h1 {
+  font-family: var(--font-ui);
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 38px);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.lede {
+  color: var(--text-2);
+  max-width: 58ch;
+  margin-bottom: 32px;
+}
+
+.lede code, .card .explanation code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--pink);
+  background: rgba(100, 77, 249, 0.18);
+  border-radius: 5px;
+  padding: 1px 6px;
+}
+
+/* ---------- cards ---------- */
+
+.card {
+  background: var(--bg-raise);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.stack > * + * { margin-top: 16px; }
+
+.card h2 {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card h2 .hint {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--text-3);
+  letter-spacing: 0;
+}
+
+/* ---------- state ---------- */
+
+textarea.state {
+  width: 100%;
+  min-height: 128px;
+  resize: vertical;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  line-height: 1.6;
+  transition: border-color 0.2s;
+}
+
+textarea.state:focus {
+  outline: none;
+  border-color: var(--line-strong);
+}
+
+textarea.state::placeholder { color: var(--text-3); }
+
+/* ---------- questions ---------- */
+
+.q-tools {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.q-tools button {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--bg-raise-2);
+  border: 1px dashed var(--line-strong);
+  color: var(--text-2);
+  border-radius: 8px;
+  padding: 10px 8px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.q-tools button:hover {
+  color: var(--text);
+  border-color: var(--violet-soft);
+  background: rgba(100, 77, 249, 0.14);
+}
+
+.q-tools button svg { width: 14px; height: 14px; }
+
+.q-list:empty::after {
+  content: "No questions yet — add a Choice, Score, or Noul above.";
+  display: block;
+  color: var(--text-3);
+  font-size: 13px;
+  padding: 14px 4px 4px;
+}
+
+.q-item {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.q-item + .q-item { margin-top: 12px; }
+
+.q-item.dragging { opacity: 0.55; }
+
+.q-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.q-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--pink);
+  background: rgba(100, 77, 249, 0.22);
+  border-radius: 5px;
+  padding: 3px 8px;
+}
+
+.q-remove {
+  background: none;
+  border: none;
+  color: var(--text-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.q-remove:hover { color: var(--danger); background: rgba(255, 122, 154, 0.1); }
+
+.q-remove svg { width: 13px; height: 13px; }
+
+.q-item input[type="text"] {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  padding: 6px 2px 8px;
+  font-size: 14px;
+  transition: border-color 0.15s;
+}
+
+.q-item input[type="text"]:focus {
+  outline: none;
+  border-color: var(--violet-soft);
+}
+
+.q-item input[type="text"]::placeholder { color: var(--text-3); }
+
+.q-options { margin-top: 10px; display: grid; gap: 8px; }
+
+.q-option-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.q-option-row .idx {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.q-option-row input {
+  flex: 1;
+  background: var(--bg-raise-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 13px;
+  transition: border-color 0.15s;
+}
+
+.q-option-row input:focus {
+  outline: none;
+  border-color: var(--violet-soft);
+}
+
+.q-option-row input::placeholder { color: var(--text-3); }
+
+.q-option-row button {
+  background: none;
+  border: none;
+  color: var(--text-3);
+  padding: 4px;
+  border-radius: 5px;
+  display: inline-flex;
+  transition: color 0.15s, background 0.15s;
+}
+
+.q-option-row button:hover { color: var(--danger); background: rgba(255, 122, 154, 0.1); }
+
+.q-option-row button svg { width: 14px; height: 14px; }
+
+.q-add-option {
+  background: none;
+  border: none;
+  color: var(--violet-soft);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  transition: color 0.15s;
+}
+
+.q-add-option:hover { color: var(--pink); }
+.q-add-option svg { width: 12px; height: 12px; }
+
+/* ---------- ask ---------- */
+
+.ask-row { margin-top: 22px; }
+
+.ask {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 22px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #4A34D4 0%, #644DF9 100%);
+  box-shadow: 0 14px 28px -10px rgba(5, 2, 12, 0.9);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+}
+
+.ask:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 34px -10px rgba(5, 2, 12, 0.95);
+  filter: brightness(1.06);
+}
+
+.ask:disabled { filter: saturate(0.4) brightness(0.65); cursor: wait; }
+
+.ask .spin {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: none;
+}
+
+.ask.loading .spin { display: inline-block; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- results reader ---------- */
+
+.results {
+  position: sticky;
+  top: 24px;
+}
+
+.result-empty { text-align: left; }
+
+.result-empty .explanation {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.result-empty .explanation p {
+  color: var(--text-2);
+  font-size: 13px;
+  padding-left: 14px;
+  border-left: 2px solid var(--line-strong);
+}
+
+.result-empty .explanation p strong {
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.r-item + .r-item { margin-top: 14px; }
+
+.r-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.r-instruction {
+  font-size: 13.5px;
+  font-weight: 600;
+  font-family: var(--font-ui);
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.r-stats {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.r-stat {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-2);
+  background: var(--bg-raise-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.r-stat b { color: var(--text); font-weight: 500; }
+
+.bars { display: grid; gap: 9px; }
+
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 160px) 1fr 64px;
+  align-items: center;
+  gap: 10px;
+}
+
+.bar-label {
+  font-size: 13px;
+  color: var(--text-2);
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bar-label.win { color: var(--text); font-weight: 700; }
+
+.bar-track {
+  height: 22px;
+  background: var(--bg-raise-2);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 6px;
+  background: rgba(139, 123, 245, 0.45);
+  transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bar-fill.win { background: var(--grad); }
+
+.bar-val {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+}
+
+.bar-val.win { color: var(--text); font-weight: 500; }
+
+/* noul */
+
+.noul-gauge {
+  height: 26px;
+  border-radius: 8px;
+  background: var(--bg-raise-2);
+  position: relative;
+  overflow: hidden;
+}
+
+.noul-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: var(--grad);
+  border-radius: 8px 0 0 8px;
+  transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.noul-mid {
+  position: absolute;
+  left: 50%;
+  top: -2px;
+  bottom: -2px;
+  width: 1px;
+  background: var(--text-3);
+  opacity: 0.6;
+}
+
+.noul-read {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.noul-read .big {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.noul-read .against {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+/* error */
+
+.r-error {
+  background: rgba(255, 122, 154, 0.08);
+  border: 1px solid rgba(255, 122, 154, 0.35);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.r-error b { color: var(--danger); display: block; margin-bottom: 4px; }
+
+/* skeleton */
+
+.skeleton {
+  height: 22px;
+  border-radius: 6px;
+  background: linear-gradient(100deg, var(--bg-raise-2) 40%, rgba(139, 123, 245, 0.18) 50%, var(--bg-raise-2) 60%);
+  background-size: 240% 100%;
+  animation: shimmer 1.1s ease-in-out infinite;
+}
+
+@keyframes shimmer { to { background-position: -140% 0; } }
+
+/* ---------- json drawer ---------- */
+
+.json-drawer {
+  margin: 28px auto 0;
+  padding: 0 clamp(20px, 4vw, 48px);
+  max-width: 1280px;
+}
+
+details.json {
+  background: var(--bg-raise);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+details.json summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 20px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+details.json summary::-webkit-details-marker { display: none; }
+
+details.json summary:hover { color: var(--text); }
+
+details.json .copy {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-3);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 4px 10px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+details.json .copy:hover { color: var(--text); border-color: var(--line-strong); }
+
+pre.json-view {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-2);
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 16px 20px;
+  overflow: auto;
+  max-height: 420px;
+}
+
+/* footer */
+.foot {
+  text-align: center;
+  color: var(--text-3);
+  font-size: 12.5px;
+  padding: 0 24px 40px;
+}
+
+.foot a { color: var(--violet-soft); text-decoration: none; }
+.foot a:hover { color: var(--pink); }
+
+/* responsive */
+
+@media (max-width: 980px) {
+  .stage { grid-template-columns: 1fr; }
+  .results { position: static; }
+}
+
+@media (max-width: 560px) {
+  .q-tools { flex-wrap: wrap; }
+  .q-tools button { flex: 1 1 45%; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="mark">Deem</span>
+    <span class="scope">Playground</span>
+  </div>
+  <div class="meta">
+    <span class="chip"><span class="dot" id="health-dot"></span><span id="health-text">connecting…</span></span>
+    <span class="chip" id="model-chip">deem-0.8</span>
+    <span class="chip" id="latency-chip" hidden>— ms</span>
+  </div>
+</header>
+
+<main class="stage">
+  <section>
+    <div class="stack">
+      <div>
+        <h1>Typed, calibrated decisions.</h1>
+        <p class="lede">Give Deem a state and typed questions. It returns
+        probability distributions in a single forward pass — no generation,
+        no chaining. The example below is live: press <em>Ask Deem</em>.</p>
+      </div>
+
+      <div class="card">
+        <h2>State <span class="hint">text, JSON, or any payload</span></h2>
+        <textarea id="state" class="state" spellcheck="false"></textarea>
+      </div>
+
+      <div class="card">
+        <h2>Questions <span class="hint">choice 2–255 · score 2–10 · noul yes/no</span></h2>
+        <div class="q-tools">
+          <button type="button" data-add="choice">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            Choice</button>
+          <button type="button" data-add="score">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            Score</button>
+          <button type="button" data-add="noul">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            Noul</button>
+        </div>
+        <div id="questions" class="q-list"></div>
+      </div>
+
+      <div class="ask-row">
+        <button class="ask" id="ask" type="button">
+          <span class="spin"></span>
+          <span id="ask-label">Ask Deem</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <aside class="results" aria-live="polite">
+    <div class="card" id="results">
+      <div class="result-empty">
+        <h2 style="margin-bottom:6px;">Reader</h2>
+        <div class="explanation">
+          <p><strong>choice</strong> — pick from 2–255 options. Deem returns a probability per option.</p>
+          <p><strong>score</strong> — rate on 2–10 ordered levels. Returns the full distribution and its expected value.</p>
+          <p><strong>noul</strong> — a yes/no proposition. Returns the probability it holds.</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<details class="json-drawer json" id="json-drawer" hidden>
+  <summary>Response JSON <button type="button" class="copy" id="json-copy">copy</button></summary>
+  <pre class="json-view" id="json-view"></pre>
+</details>
+
+<footer class="foot">
+  deem-0.8-v1 · Apache-2.0 · a community project by
+  <a href="https://libertai.io" rel="noopener">LibertAI</a>
+</footer>
+
+<script>
+"use strict";
+
+const $ = (sel, root = document) => root.querySelector(sel);
+const stateEl = $("#state");
+const questionsEl = $("#questions");
+const askBtn = $("#ask");
+const askLabel = $("#ask-label");
+const resultsEl = $("#results");
+const jsonDrawer = $("#json-drawer");
+const jsonView = $("#json-view");
+const latencyChip = $("#latency-chip");
+const ICON_X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+const ICON_PLUS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
+
+let uid = 0;
+
+/* ---------- question builder ---------- */
+
+function addQuestion(type, preset) {
+  preset = preset || {};
+  const item = document.createElement("div");
+  item.className = "q-item";
+  item.dataset.type = type;
+  item.dataset.qid = "q" + (++uid);
+
+  const typeLabels = { choice: "Choice", score: "Score", noul: "Noul" };
+  const placeholder = {
+    choice: "Which intent does this state express?",
+    score: "How urgent is this?",
+    noul: "The order is within the 30-day return window.",
+  };
+
+  let optionsHtml = "";
+  if (type !== "noul") {
+    const field = type === "choice" ? "option" : "level";
+    const plural = type === "choice" ? "options" : "levels";
+    optionsHtml = `
+      <div class="q-options" data-options></div>
+      <button type="button" class="q-add-option" data-add-option>${ICON_PLUS} add ${field}</button>
+      <p class="q-rule" hidden style="color:var(--danger);font-size:12px;margin-top:6px;" data-rule></p>`;
+  }
+
+  item.innerHTML = `
+    <div class="q-head">
+      <span class="q-tag">${typeLabels[type]}</span>
+      <button type="button" class="q-remove" aria-label="Remove question">${ICON_X} remove</button>
+    </div>
+    <input type="text" class="q-instructions" placeholder="${placeholder[type]}" value="">
+    ${optionsHtml}`;
+
+  const instructionsEl = item.querySelector(".q-instructions");
+  instructionsEl.value = preset.instructions || "";
+
+  const optionsEl = item.querySelector("[data-options]");
+  if (optionsEl) {
+    const addOption = (value) => {
+      const row = document.createElement("div");
+      row.className = "q-option-row";
+      const idx = document.createElement("span");
+      idx.className = "idx";
+      idx.textContent = String(optionsEl.children.length + 1).padStart(2, "0");
+      const input = document.createElement("input");
+      input.type = "text";
+      input.placeholder = type === "choice" ? "option" : "level";
+      input.value = value;
+      const del = document.createElement("button");
+      del.type = "button";
+      del.innerHTML = ICON_X;
+      del.setAttribute("aria-label", "Remove option");
+      del.addEventListener("click", () => { row.remove(); renumber(); });
+      row.append(idx, input, del);
+      optionsEl.append(row);
+      input.focus();
+    };
+    item._addOption = addOption;
+    item.querySelector("[data-add-option]").addEventListener("click", () => addOption(""));
+    (preset.values || []).forEach(v => addOption(v));
+  }
+
+  item.querySelector(".q-remove").addEventListener("click", () => item.remove());
+
+  function renumber() {
+    optionsEl?.querySelectorAll(".idx").forEach((el, i) => {
+      el.textContent = String(i + 1).padStart(2, "0");
+    });
+  }
+
+  return item;
+}
+
+document.querySelectorAll("[data-add]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const item = addQuestion(btn.dataset.add);
+    questionsEl.append(item);
+    item.querySelector(".q-instructions").focus();
+  });
+});
+
+/* ---------- example ---------- */
+
+stateEl.value =
+  "Ticket #4471: refund requested for damaged item, order 12 days old";
+questionsEl.append(
+  addQuestion("choice", {
+    instructions: "Which intent does this state express?",
+    values: ["refund", "exchange", "complaint"],
+  })
+);
+questionsEl.append(
+  addQuestion("noul", {
+    instructions: "The order is within the 30-day return window.",
+  })
+);
+questionsEl.append(
+  addQuestion("score", {
+    instructions: "How urgent is this ticket?",
+    values: ["low", "medium", "high"],
+  })
+);
+
+/* ---------- health ---------- */
+
+async function checkHealth() {
+  const dot = $("#health-dot");
+  const text = $("#health-text");
+  try {
+    const r = await fetch("/health");
+    const h = await r.json();
+    if (h && h.status === "ok") {
+      dot.classList.add("up");
+      text.textContent = "online · " + (h.backend || "api");
+    } else {
+      throw new Error(h && h.status);
+    }
+  } catch (e) {
+    dot.classList.add("down");
+    text.textContent = "offline";
+  }
+}
+checkHealth();
+
+/* ---------- request ---------- */
+
+function collectRequest() {
+  const stateText = stateEl.value.trim();
+  if (!stateText) { stateEl.focus(); throw new Error("Give Deem a state first."); }
+
+  const questions = [];
+  const items = [...questionsEl.children];
+  if (!items.length) throw new Error("Add at least one question.");
+
+  items.forEach((item, i) => {
+    const q = { id: item.dataset.qid, type: item.dataset.type,
+                instructions: item.querySelector(".q-instructions").value.trim() };
+    if (!q.instructions) {
+      item.querySelector(".q-instructions").focus();
+      throw new Error(`Question ${i + 1} (${q.type}) needs instructions.`);
+    }
+    if (q.type !== "noul") {
+      const values = [...item.querySelectorAll(".q-option-row input")]
+        .map(el => el.value.trim()).filter(Boolean);
+      const min = q.type === "choice" ? 2 : 2;
+      const max = q.type === "choice" ? 255 : 10;
+      const noun = q.type === "choice" ? "options" : "levels";
+      if (values.length < min)
+        throw new Error(`Question ${i + 1} (${q.type}) needs at least ${min} ${noun}.`);
+      if (values.length > max)
+        throw new Error(`Question ${i + 1} (${q.type}) allows at most ${max} ${noun}.`);
+      if (q.type === "choice") q.options = values;
+      else q.levels = values;
+    }
+    questions.push(q);
+  });
+
+  return { state: stateText, questions };
+}
+
+function renderError(msg) {
+  resultsEl.innerHTML = `<div class="r-error"><b>Deem couldn't answer</b>${escapeHtml(msg)}</div>`;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[c]));
+}
+
+function statRow(label, value) {
+  return `<span class="r-stat">${label} <b>${value}</b></span>`;
+}
+
+function fmt(p) {
+  let pct = p * 100;
+  if (pct > 99.99) pct = 99.99;
+  if (pct < 0.01) pct = 0.01;
+  return pct.toFixed(pct > 99.9 || pct < 0.1 ? 2 : 1) + "%";
+}
+
+function barList(entries, top) {
+  return `<div class="bars">` + entries.map(([label, p], i) => `
+    <div class="bar-row">
+      <div class="bar-label${label === top ? " win" : ""}">${escapeHtml(label)}</div>
+      <div class="bar-track"><div class="bar-fill${label === top ? " win" : ""}"
+           data-w="${(p * 100).toFixed(1)}" style="transition-delay:${i * 45}ms"></div></div>
+      <div class="bar-val${label === top ? " win" : ""}">${fmt(p)}</div>
+    </div>`).join("") + `</div>`;
+}
+
+function renderResults(payload, request) {
+  const usage = payload.usage || {};
+  let html = "";
+
+  for (const q of request.questions) {
+    const a = payload.answers && payload.answers[q.id];
+    if (!a) continue;
+    let body = "";
+    if (q.type === "choice") {
+      const entries = Object.entries(a.probabilities)
+        .sort((x, y) => y[1] - x[1]);
+      const top = entries[0][0];
+      body = barList(entries, top);
+    } else if (q.type === "score") {
+      // ordinal levels stay in natural order — the ordering is the information
+      const entries = Object.entries(a.probabilities);
+      const top = Object.keys(a.probabilities)
+        .reduce((m, k) => (a.probabilities[k] > a.probabilities[m] ? k : m));
+      body = barList(entries, top);
+    } else {
+      const v = a.value;
+      body = `
+        <div class="noul-gauge">
+          <div class="noul-fill" data-w="${(v * 100).toFixed(1)}"></div>
+          <div class="noul-mid"></div>
+        </div>
+        <div class="noul-read">
+          <span class="big">${v >= 0.5 ? "true" : "false"} · ${fmt(v)}</span>
+          <span class="against">against ${fmt(1 - v)}</span>
+        </div>`;
+    }
+    const stats = [
+      statRow("confidence", a.confidence != null ? a.confidence.toFixed(4) : "—"),
+    ];
+    if (a.temperature != null) stats.push(statRow("temp", a.temperature.toFixed(3)));
+    if (q.type === "score" && a.expected != null) {
+      const idx = q.levels.findIndex(l =>
+        l.toLowerCase() === String(a.level).toLowerCase());
+      const oneBased = idx >= 0 ? idx + 1 : null;
+      stats.push(statRow("expected", Number(a.expected).toFixed(2) +
+        (oneBased ? ` (${q.levels[0]}=1 … ${q.levels[q.levels.length - 1]}=${q.levels.length})` : "")));
+    }
+    html += `
+      <div class="r-item">
+        <div class="r-head">
+          <div class="r-instruction">${escapeHtml(q.instructions)}</div>
+        </div>
+        ${body}
+        <div class="r-stats" style="margin-top:12px;">${stats.join("")}</div>
+      </div>`;
+  }
+
+  resultsEl.innerHTML = `<h2 style="margin-bottom:14px;">Reader
+    <span class="hint">${usage.prompt_tokens != null ? usage.prompt_tokens + " tokens" : ""}</span></h2>` + html;
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      resultsEl.querySelectorAll(".bar-fill,.noul-fill").forEach(el => {
+        el.style.width = el.dataset.w + "%";
+      });
+    });
+  });
+}
+
+async function ask() {
+  let request;
+  try { request = collectRequest(); }
+  catch (e) { renderError(e.message); return; }
+
+  askBtn.disabled = true;
+  askBtn.classList.add("loading");
+  askLabel.textContent = "Asking…";
+  const t0 = performance.now();
+  latencyChip.hidden = false;
+  const timer = setInterval(() => {
+    latencyChip.textContent = (performance.now() - t0).toFixed(0) + " ms";
+  }, 50);
+
+  resultsEl.innerHTML = `<div class="r-item" style="margin:0;">
+    <div class="bars">${"<div class=\"skeleton\" style=\"margin-bottom:12px;\"></div>".repeat(3)}</div>
+  </div>`;
+
+  try {
+    const r = await fetch("/v1/systemone", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(request),
+    });
+    const ms = performance.now() - t0;
+    latencyChip.textContent = ms.toFixed(0) + " ms";
+    if (!r.ok) {
+      let msg = "HTTP " + r.status;
+      try { const e = await r.json(); msg = (e.error && e.error.message) || msg; } catch {}
+      throw new Error(msg);
+    }
+    const payload = await r.json();
+    renderResults(payload, request);
+    jsonView.textContent = JSON.stringify(payload, null, 2);
+    jsonDrawer.hidden = false;
+    if (window.innerWidth < 980) {
+      resultsEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  } catch (e) {
+    renderError(e.message + " — check the connection and try again.");
+  } finally {
+    clearInterval(timer);
+    askBtn.disabled = false;
+    askBtn.classList.remove("loading");
+    askLabel.textContent = "Ask Deem";
+  }
+}
+
+askBtn.addEventListener("click", ask);
+document.addEventListener("keydown", e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === "Enter") ask();
+});
+
+$("#json-copy").addEventListener("click", e => {
+  e.preventDefault();
+  navigator.clipboard?.writeText(jsonView.textContent);
+  e.target.textContent = "copied";
+  setTimeout(() => { e.target.textContent = "copy"; }, 1200);
+});
+</script>
+</body>
+</html>

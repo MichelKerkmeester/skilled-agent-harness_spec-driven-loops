@@ -1,0 +1,15 @@
+Now I have the full picture. Let me verify the baseline test count before editing.Baseline confirmed: 36 tests. Now the two S edits — first, `buildReport` under the section 12 divider:Now the main wiring — steps 5, 6, 7 replacing the final `return 0`:S is wired. Now append the four tests to T — first re-read its tail for the exact anchor:All three edits are in. Now the verification checks from the brief:Checks pass (both `node --check` exit 0, 40 tests). The working tree is shared with other workers, so let me confirm only my two files changed and re-read the edited regions in context:All checks pass and only the two named files in the injection-screen tree were touched (both untracked-new; the other dirty files in this worktree belong to other workers). Final state verified: S 1699 lines (+128), T 716 lines (+60), 40 `test('` entries.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs (+128/-0)
+- .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+60/-0)
+EDITS:
+- score-injection-screen.mjs:1445-1523 added exported buildReport under the section 12 divider (commit, instruction/instructionSha256/lexicalSha256, K, baseline subset, columns/stopped/skipped/requalify maps; verdict=column.outcome, reason, counts, brier, flagCounts, latency plus deem modelId/modelCommit/sourceCommit or jev jevVersion/provider/model)
+- score-injection-screen.mjs:1647-1695 replaced the final `return 0` with step 5 (stored/callLog), step 6 (Jev first, then Deem: gate, label-gate skip, headroom skip, else arm run) and step 7 (report.json, 2-space + newline, recursive mkdir, only on a column or a stop)
+- score-injection-screen.test.mjs:658-716 appended four tests (deem stub skip, jev no-credential skip, passing gate with no labels, both switches on the labeled fixture with report.json and 361 recorded calls)
+CHECKS:
+- node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs -> no output, exit 0
+- node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> no output, exit 0
+- grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> 40, exit 0
+BLOCKED REASON: none

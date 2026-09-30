@@ -1,0 +1,9 @@
+Both checks pass and the diff shows only the named file, only the named edit. Facts stated come from `design.md` section 2 (switches `--jev`/`--deem`, zero-call default, replay changes no stop) and the script itself (usage line 71, `parseArgs` options at 1586-1591 confirm the `jev`/`deem` switches), with FACTS.txt as the tiebreak. The hub `version:` frontmatter and the hub changelog are untouched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/SKILL.md (+1/-1)
+EDITS: .skilled/skills/system-deep-loop/SKILL.md:111 added one sentence in the `### Backend` runtime sentence: the offline stop-rater replay at `runtime/scripts/score-stop-rater.cjs`, no model call by default, its two arms behind `--jev` and `--deem`, and that it changes no stop
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/SKILL.md -> `✅ VALID: .skilled/skills/system-deep-loop/SKILL.md` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/SKILL.md -> `1 file changed, 1 insertion(+), 1 deletion(-)` (exit 0)
+BLOCKED REASON: none

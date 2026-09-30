@@ -1,0 +1,66 @@
+
+
+I have R, S and T read. Now let me check the repo for existing conventions (N reference, REPO RULES, sk-code route) before editing.
+
+The step brief `05-draw.md` exists in the packet and likely pins exact expectations. Let me read it plus the repo rules and the sk-code route (Gate 5 + persona requirement).
+
+Now let me load the repo's AGENTS.md and the sk-code route (persona requirement), and check the rule files that my actions trigger.
+
+The 05-draw brief matches my task exactly. Now let me run the required gates: Gate 1 lookup, Gate 2 compiled route for sk-code, and check sizes of the rule files that fire for my action.
+
+Gate 1: clean no-hit (exit 1, no rows). Gate 2 compiled route resolved to `sk-code-opencode` (surface packet). Loading that packet plus the rule files my action fires under Gate 5.
+
+The route resolved to `sk-code-opencode`; its §2 requires the JavaScript slice plus shared tier for `.mjs`. Let me size those resources before loading.
+
+Loading the JavaScript slice and shared tier the route requires.
+
+Loading the shared tier files the route keeps for all languages.
+
+Loading the communication and honesty rule files that fire on my report and turn end.
+
+All gates and rules are loaded. Before editing, let me check the sibling scorer N for the author's row-literal conventions (multi-line object style, null checks).
+
+N uses `!== null` consistently. Let me check one multi-line object-literal convention in N, then write the edits.
+
+All context loaded. Now I'll measure the exact divider width in S so my inserted section boundaries match byte-for-byte, then make the two edits.
+
+All context is loaded and the contract is clear. Now I'll add the five functions to S section 6, matching R §6 exactly (shuffle first, then one `rand()` per planted row in row order; exact 12-key row order).
+
+S section 6 is in place with the exact structure. Now appending the test to T.
+
+Both edits are in. Running the brief's three checks, plus a divider-width sanity check and a scoped-diff check (read-only).
+
+All three listed checks pass: both `node --check` exit 0, and T holds 12 tests. The divider check shows all dividers at exactly 67 `─`. Now the final-state verification: confirm only the two named files were touched and the file contracts hold.
+
+Everything verifies from the final state. The two files are the only ones my edits touched, the forbidden-string contract is clean (the one `specs/` grep hit is the pre-existing `CONTEXT_DIR` constant, not a comment), and the section dividers all measure 67 box-drawing characters.
+
+**What ran and returned:** S now carries the five exports under the DRAW divider (mulberry32, drawRows, readJsonl, writeJsonl, holdsOperatorContent, lines 433-557), with the shuffle-then-planted-rand order and the 12-key row order per R §6. T gained one test (lines 185-210) transcribed from the brief. `node --check` passed on both files (exit 0), and T holds 12 tests (grep count 12, exit 0).
+
+**What is inferred, not observed:** the test suite itself was not run, since the brief reserves suite execution for the orchestrator. Behavioral pass is inferred from the contract and the transcription, and will be observed when the orchestrator runs it.
+
+**State:** edited, not committed. Other workers' in-flight changes are present elsewhere in this worktree; my edits touched only S and T (the `injection-screen/` directory is untracked as a whole, created by earlier waves).
+
+SKILL ROUTING: sk-code (compiled route: single target sk-code-opencode surface, evidence-base) → JavaScript slice + shared tier loaded
+ARTIFACT: sk-code -> sk-code-opencode
+REPO RULES: prevent-overengineering.md, evidence-and-proof.md, communication.md, communication-prose.md, communication-handoff.md, uncertainty-and-honesty.md
+GATE 1: trigger-index lookup clean no-hit (exit 1, no rows)
+GATE 3: pre-resolved (AI_SESSION_CHILD=1) to specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen
+
+Next action for the orchestrator: run the test suite and spec validation, then commit.
+
+```
+STATUS: DONE
+FILES CHANGED:
+  .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs (+126/-0)
+  .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+27/-0)
+EDITS:
+  score-injection-screen.mjs:433 added mulberry32, drawRows, readJsonl, writeJsonl and holdsOperatorContent with JSDoc under the 6. DRAW divider (now lines 433-557)
+  tests/score-injection-screen.test.mjs:185 appended test 'drawRows is reproducible, caps each source and holds no text' (now lines 185-210)
+CHECKS:
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs -> (no output) (exit 0)
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> (no output) (exit 0)
+  grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> 12 (exit 0)
+  awk divider-width scan on score-injection-screen.mjs -> 67 (single distinct width, exit 0)
+  grep -n "API_KEY|TYPESAFE|Bearer|Authorization" score-injection-screen.mjs -> no matches (exit 1)
+BLOCKED REASON: none
+```

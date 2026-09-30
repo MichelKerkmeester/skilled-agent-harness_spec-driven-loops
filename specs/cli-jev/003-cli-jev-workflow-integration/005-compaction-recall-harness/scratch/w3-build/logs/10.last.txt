@@ -1,0 +1,14 @@
+All checks pass. The other dirty/untracked paths belong to concurrent workers; I touched only the named file.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/SKILL.md (+2/-1)
+EDITS: 
+- .skilled/skills/system-spec-kit/SKILL.md:5 frontmatter `version: 4.2.0.0` → `version: 4.3.0.0`
+- .skilled/skills/system-spec-kit/SKILL.md:571 inserted new Quick Reference Commands row `| Compaction recall census | … |` directly after the `| Free-text retrieval |` row
+CHECKS:
+- `grep -c 'score-compaction-recall.mjs' .skilled/skills/system-spec-kit/SKILL.md` -> `1` (exit 0)
+- `grep -c '^version: 4.3.0.0$' .skilled/skills/system-spec-kit/SKILL.md` -> `1` (exit 0)
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/SKILL.md` -> `✅ VALID: .skilled/skills/system-spec-kit/SKILL.md` (exit 0)
+- `git diff --numstat -- .skilled/skills/system-spec-kit/SKILL.md` -> `2	1	.skilled/skills/system-spec-kit/SKILL.md` (exit 0)
+BLOCKED REASON: none

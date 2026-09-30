@@ -1,0 +1,48 @@
+
+
+Now let me read the rest of S, the test file T, and the rulings.
+
+Now the test file T and the sibling's gate functions:
+
+Now let me read the sibling's gate functions and its test stub helpers:
+
+Let me read the sibling test's stub helpers in full:
+
+Baseline checks and the sibling's export list before editing:
+
+Baseline: 20 tests. Now the S edits — inserting the gates section between the verdict section and the CLI section:
+
+Now renumber the exports section and export the five gate functions:
+
+
+
+S is complete. Now the T edits — first the stub helper:
+
+Now the three gate design cases, inserted before the CLI tests:
+
+Both edits are in. Now the verification checks from the repo root:
+
+All three checks pass. Now self-inspection: confirm my edit scope, no duplicate definitions, and the section/export wiring:
+
+Files are untracked (created by earlier workers), so diff shows no baseline — let me get the line counts for the handback and confirm nothing else was touched by me:
+
+Final fidelity check — diff my five gate function bodies against the sibling's, line range by line range:
+
+All five gate bodies verified byte-identical to the sibling; scope confirmed to the two named files.
+
+One scope note before the handback: `makeStubs` carries the sibling's `jev` `--version`/`auth status`/`auth test` branches and the `cli-deem` health branches (`ok`/`stub`/`down`/`model`/`bad`); the sibling's `choice` branch is deliberately not copied — it parses the sibling's `pick=`/`first=` prompt grammar, which this script's arm option texts don't use, so it belongs with the arms brief that defines those texts.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs (+175/-0)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs (+121/-0)
+EDITS: S:683 added `9. GATES` section — `which` 696, `jevGate` 719, `deemCommand` 759, `readDeemHealth` 773, `deemGate` 839, each with JSDoc, bodies byte-identical to the sibling (verified by range diff)
+EDITS: S:854 renumbered `9. CLI` → `10. CLI`; S:966 renumbered `10. EXPORTS` → `11. EXPORTS`
+EDITS: S:1002 added `which, jevGate, deemCommand, readDeemHealth, deemGate` to `module.exports`; `main` untouched
+EDITS: T:107 added `makeStubs` helper (temp dir, logging `jev` + `cli-deem` stubs, env-controlled version/auth/health, chmod 0755)
+EDITS: T:323 design case 23 `a stub deem backend skips` (STUB_HEALTH=stub → `deem arm skipped: stub backend`, stub cmd chosen, one line only)
+EDITS: T:341 design case 24 `a jev without a credential skips` (STUB_AUTH_EXIT=3 → identity line then `jev arm skipped: no credential`)
+EDITS: T:361 design case 25 `jev off PATH and wrong version skip` (no jev → `jev not on PATH`; STUB_JEV_VERSION=jev 0.5.0 → `version` + `jev: found="jev 0.5.0" path=…` details line)
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs -> no output (exit 0)
+CHECKS: node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> no output (exit 0)
+CHECKS: grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs -> 23 (exit 0)
+BLOCKED REASON: none

@@ -2,7 +2,7 @@
 name: deep-improvement
 description: "Evaluator-first bounded agent improvement: 5-dim scoring, dynamic profiling, packet-local candidates, guarded promotion."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.17.2.0
+version: 1.19.0.0
 triggers:
   - deep-improvement
   - agent improvement loop
@@ -219,7 +219,7 @@ For changes that alter agent discipline, run a same-task A/B stress scenario (is
 Lane B benchmarks a model or prompt framework instead of mutating an agent file. Command: `/deep:model-benchmark`. Runtime entry is `scripts/shared/loop-host.cjs --mode=model-benchmark`. It reuses the three pluggable seams (candidate-source, dispatcher, scorer) and keeps the default agent-improvement path byte-identical when no mode flag is set.
 
 - **Entry + dispatch**: `loop-host.cjs` resolves `--mode=agent-improvement` (default) vs `--mode=model-benchmark`; the model-agnostic dispatcher `scripts/model-benchmark/dispatch-model.cjs` loads only on the model-benchmark path.
-- **Scoring**: `run-benchmark.cjs --scorer pattern` (default) uses the heading/pattern matcher; `--scorer 5dim` routes through the ported 120/003 five-dimension scorer with a pluggable `--grader noop|mock|llm` (default `noop`, deterministic).
+- **Scoring**: `run-benchmark.cjs --scorer pattern` (default) uses the heading/pattern matcher; `--scorer 5dim` routes through the ported 120/003 five-dimension scorer with a pluggable `--grader noop|mock|llm` (default `noop`, deterministic). Any other `--grader` value exits 2 at startup and names the value. `scripts/model-benchmark/scorer/score-d4-agreement.cjs --outputs <dir>` measures offline, with no model call by default, whether a Jev or Deem hallucination judgment agrees with operator labels more often than the deterministic check, and `--jev` or `--deem` adds a verdict column behind that backend's own check once 30 outputs carry labels. `scripts/model-benchmark/lib/score-verdict-fallback.cjs` measures offline, with no model call by default, whether a Jev or Deem verdict on regex-miss reviewer outputs matches the operator label more often than the best zero-call baseline, and `--jev` or `--deem` opens that backend's arm only past the 12-label gate, which prints `stop: fewer than 12 labeled regex-miss outputs` until 12 labeled regex-miss outputs exist.
 - **Promotion**: state records and reports carry `mode`/`scoringMethod` for lane attribution. Lane A promotes through the agent-scored gates in `promote-candidate.cjs`; Lane B promotes from the benchmark report via `promote-candidate.cjs --benchmark-report <report.json>` when status is `benchmark-complete` with a passing recommendation — both lanes still share one canonical-target guard, archive, and runtime-mirror sync.
 - **Hardening**: `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell execution in both the 5-dim scorer and the bundle-gate Layer-3 acceptance command; `DEEP_AGENT_GRADER_CACHE_RAW=0` redacts raw grader output from the cache. Both default permissive (trusted-author boundary: criteria come only from operator-authored benchmark profiles in the same trust domain as the loop) — flip both for hardened/shared-runner deployments.
 

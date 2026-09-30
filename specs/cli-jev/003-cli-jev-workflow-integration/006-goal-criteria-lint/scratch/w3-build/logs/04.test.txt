@@ -1,0 +1,18 @@
+✔ the ported parser counts criteria the way check-goal does (5.418ms)
+✔ each criterion carries its file line and a 12-hex text hash (0.383958ms)
+✔ rule 4 fails a dangling definite description (0.2635ms)
+✔ rule 4 passes a line whose references resolve locally (0.072958ms)
+✔ rule 5 fails a check that needs another document (1.297ms)
+✔ rule 5 passes a check on named commands and counts (0.063875ms)
+✔ a line can fail both rules (0.110583ms)
+✔ placeholder and unscored lines stay out of both rules (0.060916ms)
+✔ a goal with no criteria yields no records and counts as no_input (6.874708ms)
+✔ the walker excludes scratch paths and z_archive (20.096834ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 198.748542

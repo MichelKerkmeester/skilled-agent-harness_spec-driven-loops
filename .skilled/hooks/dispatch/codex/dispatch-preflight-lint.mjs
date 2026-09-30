@@ -7,8 +7,8 @@
 // PreToolUse(exec) preflight for CLI dispatch under Codex CLI -- the Codex sibling
 // of the Claude dispatch-preflight-lint hook. Intercepts a composed
 // `opencode run` / `claude -p` command BEFORE it spawns on the exec surface and
-// evaluates the target skill's declared hard_rules (SKILL.md `hard_rules:`
-// frontmatter). A `block`-severity violation denies with the rule's reason (the
+// evaluates the target skill's declared hard rules (the `hard-rules.json` sidecar
+// beside its SKILL.md). A `block`-severity violation denies with the rule's reason (the
 // same permissionDecision:'deny' envelope Codex honors); `warn` violations attach
 // an advisory and let the normal permission flow proceed. Runs on every exec
 // call, so it fast-exits on anything that is not a dispatch shape, and it FAILS

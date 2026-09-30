@@ -1,0 +1,34 @@
+I'll start by reading the reference files and the skill routing doc, and check whether the target files already exist.
+
+Reference headers read. Now let me read the required lines 203-220 of the tie-break script and locate `reorderSlots` to confirm its signature, plus the test import block.
+
+I have the reference style, the `reorderSlots` signature, and the exact required content. Let me check how the reference test file types its `.mjs` imports, and confirm the runtime's test config.
+
+Both target files are absent, the vitest config picks up `tests/**/*.vitest.ts`, and the reference test imports `.mjs` functions directly (no typecheck on tests). I have everything needed. Writing the script now.
+
+Script created. Now the vitest file with the nine tests.
+
+Both files created. Running the two verification checks plus a read-only git status to confirm only the two files are new.
+
+Both checks pass. Confirming scope with a read-only git status.
+
+Scope confirmed: my two files are the only ones I created; `score-jev-tiebreak.mjs` is untouched, and the other listed changes belong to concurrent workers. Let me get exact line counts for the handback.
+
+HANDBACK
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs (+115/-0)
+- .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts (+100/-0)
+EDITS:
+- score-suggested-order.mjs:1-10 banner `MODULE: Suggested Cluster Order Eval` with the exact measurement comment
+- score-suggested-order.mjs:12 `import { reorderSlots } from './score-jev-tiebreak.mjs';`
+- score-suggested-order.mjs:14-21 exported ALPHA/MARGIN/ADVISOR_BUDGET_MS/CHILD_TIMEOUT_MS/MIN_MOVABLE, plain CHOICE_QUESTION/NONE_DESCRIPTION/PASSES
+- score-suggested-order.mjs:23-115 six JSDoc'd exports: nearestRank, rotations, optionArgs, readProbabilities, topKey, orderFromMaps
+- score-suggested-order.vitest.ts:1-17 banner `MODULE: Suggested Cluster Order Eval Tests` with offline-checks comment; vitest import and the six helpers from the script
+- score-suggested-order.vitest.ts:19-100 describe('score-suggested-order pure helpers') with the nine specified its
+CHECKS:
+- `node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs` -> clean parse, no output (exit 0)
+- `node -e "import('./.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs').then((m) => console.log(m.nearestRank([5,1,3],0.5), m.topKey({a:0.4,b:0.4,none:0.2},['a','b','none']), m.CHILD_TIMEOUT_MS))"` -> `3 a 2500` (exit 0)
+- `git status --porcelain -- <both new files> <score-jev-tiebreak.mjs>` -> two `??` entries for the new files, no entry for score-jev-tiebreak.mjs (exit 0)
+BLOCKED REASON: none

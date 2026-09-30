@@ -1,0 +1,16 @@
+TASK: register one new feature in the catalog index. Three literal edits in one file.
+F = .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md. Read it first.
+
+1. Line 22: replace `The catalog covers 44 features across 7 groups.` with `The catalog covers 45 features across 7 groups.` Leave the rest of that line unchanged.
+2. Line 31: replace this exact line
+| [scorer-fusion](../feature-catalog/scorer-fusion) | 7 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config, offline tie-break eval |
+   with this exact line
+| [scorer-fusion](../feature-catalog/scorer-fusion) | 8 | 5-lane fusion, projection, ambiguity, attribution, ablation, weights config, offline tie-break eval, offline suggested-order eval |
+3. Directly after line 101, which reads
+| Offline Jev and Deem tie-break eval | [scorer-fusion/tie-break-eval.md](./scorer-fusion/tie-break-eval.md) |
+   insert this one new line
+| Offline suggested-order eval | [scorer-fusion/suggested-order-eval.md](./scorer-fusion/suggested-order-eval.md) |
+
+VERIFY (repo root):
+  grep -c "45 features across 7 groups\|| 8 | 5-lane fusion\|scorer-fusion/suggested-order-eval.md" .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md
+Accept when: only F changed (+3/-2 lines); grep prints 3.

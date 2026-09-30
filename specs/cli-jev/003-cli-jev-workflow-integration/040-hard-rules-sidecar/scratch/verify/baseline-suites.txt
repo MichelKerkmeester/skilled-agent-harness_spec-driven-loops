@@ -1,0 +1,20 @@
+Baseline suite counts, captured before the rules move out of SKILL.md frontmatter.
+Every command ran from the repository root. "runner" is the harness the suite file
+itself names; files that import vitest ran through the local vitest binary, the rest
+through node --test.
+
+runner                         pass  fail  exit  suite
+node --test                      20     0     0  .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+vitest run                       75     0     0  .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+node --test                      26     0     0  .skilled/skills/sk-git/scripts/lib/git-rule-checks.test.mjs
+node --test                       7     0     0  .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.test.mjs
+node --test                       7     0     0  .opencode/plugins/tests/source-root-consumers.test.cjs
+
+Exact commands:
+  node --test .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+  ./.skilled/node_modules/.bin/vitest run .skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+  node --test .skilled/skills/sk-git/scripts/lib/git-rule-checks.test.mjs
+  node --test .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.test.mjs
+  node --test .opencode/plugins/tests/source-root-consumers.test.cjs
+
+Total: 135 passed, 0 failed, every suite exit 0.

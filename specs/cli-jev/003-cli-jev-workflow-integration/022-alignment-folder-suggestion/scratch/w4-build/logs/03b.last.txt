@@ -1,0 +1,57 @@
+I'll start by reading the brief to find the S and T file paths.
+
+Now reading both target files.
+
+I have S and T. Before editing, let me check how S consumes these rules, load the routing skill per the persona, and run the Gate 1 lookup.
+
+Gate 1 lookup returned a clean no-hit. Now loading the repo rule files that fire for this action (adding tests + reporting results), the repo framework doc, and resolving the sk-code route per the persona.
+
+The router resolved `sk-code-opencode` (surface evidence packet). Loading it as the Gate 2 artifact route requires, plus the rest of AGENTS.md, and capturing a baseline diff for S and T before editing.
+
+The compiled router resolved `sk-code-opencode` (loaded). S and T are untracked new files, so the diff numbers will come from edit accounting.
+
+Before editing, I want the exact bytes of the brief's regex and grep pattern. Let me check whether the dispatch brief exists on disk in the scratch tree.
+
+Found the briefs directory. Let me locate the exact brief for this task and read its raw bytes for the regex/grep lines.
+
+
+
+The brief file `c03b-body.txt` is the ground truth for exact bytes. Let me dump the raw characters of the regex line and the grep pattern to eliminate any transcription ambiguity.
+
+Now I have byte-exact ground truth. The brief's regex class is `[,}\]]` (glyphs: `[ , } \ ] ]`) and the grep pattern is `(?:"\[,}\\\]\].\*)?\$/;` (BRE: literal `[,}\]]`, any char, literal `*`). To guarantee byte-exact transfer, I'll splice brief lines 9-17 directly into S with a guarded script rather than hand-transcribing backslashes.
+
+S spliced. Re-reading the edited region to confirm, and verifying the S side with the brief's own grep pattern extracted byte-exactly from the brief file.
+
+S is byte-exact — the brief's own grep pattern matches 8 lines. Now inserting the two test cases into T.
+
+T edited. Now verifying the inserted region's exact bytes — especially that `\n` is the two-glyph escape and not a real newline, and `${`/backtick are literal.
+
+The T insertion is byte-correct (backslash-n escape intact, `${` literal, backtick present). Line count went 207 → 224 (+17). The brief says "about +16" — let me compare with the sibling brief `c03-body.txt` to confirm the intended formatting before locking it in.
+
+Both files edited. Now running the brief's verification checks — the four listed commands, individually with exit codes, plus the brief's own VERIFY line executed verbatim.
+
+All four checks pass: S node --check exit 0, T node --check exit 0, greps print 12 and 8, and the brief's VERIFY line runs verbatim with exit 0. Let me check the baseline snapshot directory to get a precise diff accounting for the handback.
+
+All checks pass. One last byte-exactness check: diff S's edited region directly against the brief's source lines.
+
+Both files are verified: S's edited region is byte-identical to the brief's source lines (diff exit 0), T's insertion is byte-correct, and all four prescribed checks pass. Task complete.
+
+SKILL ROUTING: sk-code (artifact trigger) → compiled router resolved sk-code-opencode, packet loaded
+REPO RULES: prevent-overengineering.md, evidence-and-proof.md
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts (+8/-8)
+- .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts (+17/-0)
+EDITS:
+- S:79-87 replaced the eight decision-rule regexes with the brief's eight anchored lines, spliced byte-exact from brief lines 9-17 (blank line kept at 83); nothing else in S changed
+- T:98-114 inserted the two cases inside describe('line scan') after the last case (17 added lines: 16 code + one separator blank matching the file's case style; "about +16")
+CHECKS:
+- node --check <S> -> no output (exit 0)
+- node --check <T> -> no output (exit 0)
+- grep -c "it('" <T> -> 12 (exit 0)
+- grep -c '(?:"\[,}\\\]\].\*)?\$/;' <S> -> 8 (exit 0)
+- brief VERIFY line (all four, extracted from c03b-body.txt:28) run verbatim via eval -> prints 12 and 8, last-command exit 0
+- sed 79,87p <S> | diff - (brief 9,17p) -> no output (exit 0)
+- git status --porcelain <S> <T> -> both "??" (untracked); no other file written by this worker
+BLOCKED REASON: none

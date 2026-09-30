@@ -1,0 +1,29 @@
+S5 is implemented and the briefed checks are green. Two disclosures, then the handback.
+
+**Disclosures.**
+1. `jev K` (§3 wants "Jev verdict K=12; Deem verdict K=30"): the printed verdict needs `summarizeColumn`/`decideVerdict`/`verdictLine` and the Deem arm, which are S6/S7. At S5 the same K boundary is pinned instead: exactly the 12 accepted rows got 3 measured calls each (36 choice records), and the 18 withheld rows got 3 `unmeasured_withheld` records each with no spawn. Proposed amendment: restate that §3 row as the boundary, or leave the printed K to the `verdict coverage`/`verdict keep`/`verdict kill` cases once S7 lands. Same shape as the already-accepted trim on `gate at 30` from S2.
+2. Gate order in `main`: the payload check runs before the Jev gate so the S4 cases stay green with the trivial stub. `no accepted row` must still print `jev arm skipped: payload not accepted`, and `withheld row` must write its records without a passing gate. With at least one accepted row, main appends the withheld records, then runs `jevGate` and only on pass `runJevArm`. This reads §2's lines 9–11 as alternatives within the gate path.
+
+**Not observed:** vitest (the brief reserves it for the orchestrator). The four new cases' greenness is INFERRED from the code shape; the two checks below and the scoped status are observed.
+
+SKILL ROUTING: sk-code → sk-code-opencode (JavaScript `.mjs` route; style guide and quality standards read before the writes)
+REPO RULES: prevent-overengineering.md, scope-discipline.md, evidence-and-proof.md, uncertainty-and-honesty.md
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs (+403/-0 net)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts (+146/-0 net)
+  (counts are net line additions since the previous step's state; both files are untracked, so no diff base exists. Replaced lines were re-emitted in place.)
+EDITS: score-debug-next-check.mjs:14-27 imports extended with spawn, accessSync, fsConstants, delimiter
+EDITS: score-debug-next-check.mjs:75-94 constants JEV_VERSION, CALL_TIMEOUT_MS, BACKOFF_MS, CHOICE_QUESTION, NEXT_CHECK_OPTIONS
+EDITS: score-debug-next-check.mjs:421-774 new section 10 JEV GATE AND ARM: which, jevGate, spawnCall, stateText, rotateOptions, parseChoiceAnswer, runJevArm (JSDoc, exported); CLI and MAIN renumbered 11 and 12
+EDITS: score-debug-next-check.mjs:833-839 main deps env/timeoutMs/backoffMs
+EDITS: score-debug-next-check.mjs:924-935 main: withheld records first, then jevGate and runJevArm for the accepted payload
+EDITS: debug-next-check.vitest.ts:40-80 arm stub double (env table), ARM_STUB_SOURCE, makeArmStubs, stubLines
+EDITS: debug-next-check.vitest.ts:83-104 runScript gained the optional extraEnv parameter
+EDITS: debug-next-check.vitest.ts:354-448 added tests jev gate pass, jev gate skip, jev wrong version, jev K
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts -> 20 (exit 0)
+CHECKS: git status --porcelain -- <S> <T> -> `?? scripts/debug-next-check/`, `?? tests/debug-next-check.vitest.ts` (exit 0); no other path touched by this step
+BLOCKED REASON: none
+```

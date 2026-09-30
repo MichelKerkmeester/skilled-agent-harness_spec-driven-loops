@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ac coverage unresolved citation",
+      "ac coverage file line existence check",
+      "check-goal goal.md path",
+      "spec validator owner fixes",
+      "create.sh phase label folder number",
+      "ac coverage resolution rule plan",
+      "unresolved citation detail plan",
+      "check-goal goal.md path plan",
+      "spec validator fixes rollback",
+      "create.sh phase label plan",
+      "spec validator fixes tasks",
+      "ac coverage unresolved citation tasks"
+    ],
+    "key_topics": [
+      "coverage",
+      "unresolved",
+      "citation",
+      "file",
+      "line",
+      "existence",
+      "check",
+      "check-goal",
+      "goal",
+      "path",
+      "spec",
+      "validator"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/check-ac-coverage.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh",
+      ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/README.md",
+      "runtime/cli/spec/create.sh",
+      "scripts/README.md",
+      "tests/test-phase-system.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      "tests/check-ac-coverage.sh",
+      "references/validation/validation-rules.md",
+      "scratch/briefs/00-index.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-ac-coverage.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-system.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-system.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validation-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-goal.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-goal.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/check-goal.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "00-index.md",
+        "kind": "doc",
+        "path": "scratch/briefs/00-index.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "See Risks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Both",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`ACCOVERAGE` treats any `file:line` shape in a Verification cell as evidence",
+    "created_at": "2026-09-27T11:50:17Z",
+    "last_save_at": "2026-09-27T18:04:00.465Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cbbc15ff7954aca4fdd4559dffd59d1ebd521c5762d3c4e1567f48b3dc4a09eb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f65826bbaf7b733296b7dfb5407f4a1c3e899c3e3604b575956e9203095aec69",
+      "plan.md": "a978db9c35755be3f78f3c929aff36b9c33a56b0c403d35f57e842745f37e743",
+      "tasks.md": "74a9a7625ec3e0a5a8ce07c35050a40c9be8e4d5d1919e8452fc67e17e32f4ea",
+      "implementation-summary.md": "df4b04476a4ba0b23e5e21ec89aed6b665322e6441284ae58aa1943bd1e4563b"
+    },
+    "last_active_at": null
+  }
+}

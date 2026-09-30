@@ -1,0 +1,7 @@
+DRIFT cli-classifier
+DRIFT cli-deem
+DRIFT cli-usage
+DRIFT agent-orchestrate
+DRIFT agent-prompt-improver
+STALE cli-jev
+FAIL: 5 drifted, 1 stale; run without --check to regenerate

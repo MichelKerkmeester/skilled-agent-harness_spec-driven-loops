@@ -1,0 +1,23 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit",
+  "description": "Measure offline, on turn texts the operator names and labels, how often the completion-evidence sentinel's claim regex fires on a turn that never claimed completion or misses one that did, and whether a Jev or Deem noul reads a completion claim more accurately than the regex.",
+  "keywords": [
+    "r4",
+    "jev",
+    "deem",
+    "offline",
+    "completion",
+    "claim",
+    "audit"
+  ],
+  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "specId": "026",
+  "folderSlug": "completion-claim-audit",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

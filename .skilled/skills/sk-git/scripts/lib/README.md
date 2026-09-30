@@ -14,7 +14,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`scripts/lib/` holds the repository-aware parts of the sk-git preflight advisory. The rule registry parses only directly visible git commands, the context collector answers repository-state questions lazily, and the shared dispatch evaluator maps sk-git's `hard_rules` frontmatter onto the 17 checks. Runtime adapters import these modules rather than copying their logic.
+`scripts/lib/` holds the repository-aware parts of the sk-git preflight advisory. The rule registry parses only directly visible git commands, the context collector answers repository-state questions lazily, and the shared dispatch evaluator maps sk-git's `hard-rules.json` rules onto the 17 checks. Runtime adapters import these modules rather than copying their logic.
 
 The governing principle is **discriminator, not verb**. A command name alone is too noisy: `reset` is ordinary when it only unstages, while `reset --hard` becomes advisory-worthy only when the working tree contains changes. Every check therefore looks for positive command or repository state that distinguishes the surprising outcome. Uncertainty fails open and stays silent.
 

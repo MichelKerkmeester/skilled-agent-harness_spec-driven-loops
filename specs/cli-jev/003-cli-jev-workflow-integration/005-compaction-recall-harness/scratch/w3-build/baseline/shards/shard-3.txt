@@ -1,0 +1,323 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+FATAL WARN: lineage opencode runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+ ✓ ../system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts (154 tests) 174530ms
+     ✓ uses the research-specific 0.05 default for native dispatch when no threshold is explicit  602ms
+     ✓ tolerates a non-zero pi exit when artifacts are present, but still fails a pi run that produced none  3249ms
+     ✓ completes a hermetic live cli-codex leaf with top-level search argv  1059ms
+     ✓ rejects an unsupported policy before the pool or executor spawn is touched  346ms
+     ✓ feeds a deterministic 2-model by 3-branch by 2-replica manifest into the existing pool  6895ms
+     ✓ exits 0 and emits ok JSON for native fanout through opencode command dispatch  992ms
+     ✓ logs and falls back to flat_pool when wave assignment is requested  1023ms
+     ✓ replays a native fanout cassette with a stable normalized run envelope  1752ms
+     ✓ exits 3 (INPUT_VALIDATION) when the fan-out schema is invalid  341ms
+     ✓ creates two isolated lineage dirs and writes orchestration summary for 2 cli-opencode lineages  1502ms
+     ✓ dispatches a cli-opencode lineage with no explicit sandboxMode without throwing, and records danger-full-access as effective  988ms
+     ✓ sets distinct SPECKIT_OPENCODE_STATE_DIR for each same-kind replica to prevent lockfile collisions  1597ms
+     ✓ expands a single count>1 executor into replicas each receiving a distinct SPECKIT_OPENCODE_STATE_DIR  1519ms
+     ✓ records exit 3 (all failed) when the only lineage exits non-zero  1108ms
+     ✓ retries a salvage-miss lineage once and exits ok when the retry succeeds  1617ms
+     ✓ treats an exit-0/no-artifact lineage as salvage-miss and fails it after retry (not fulfilled)  1612ms
+     ✓ records exit 2 (some failed) when one of two lineages exits non-zero  1510ms
+     ✓ resolves a lineage with complete artifacts and a containment violation, carrying an advisory status  8844ms
+     ✓ completes the lineage with a containment advisory for the stray file, which survives byte-for-byte  8770ms
+     ✓ lets the --containment-mode flag override the fan-out config value, and rejects an unknown value  18599ms
+     ✓ reports an out-of-scope write from a lane that exits non-zero and keeps it failed  9175ms
+     ✓ reports an out-of-scope write from a lane that produced no artifacts and keeps it failed  9110ms
+     ✓ a burst above the threshold emits shared_checkout_detected and latches preserve despite a requested restore  12245ms
+     ✓ churn at or below the threshold leaves the requested restore mode alone  13867ms
+     ✓ a neighbour dirtying one path per heartbeat trips the cumulative arm without any burst  14016ms
+     ✓ overlaps the lineage sleeps: concurrency 2 saves ~one sleep versus a serial run of the same lineages  12377ms
+     ✓ writes a stopped partial orchestration summary when SIGTERM interrupts an in-flight run  821ms
+     ✓ persists a pre-dispatch checkpoint and delays lineage launch until it expires  1469ms
+     ✓ resumes a future checkpoint before dispatching lineages  1564ms
+     ✓ migrates legacy checkpoints without wait fields to the null state  1105ms
+     ✓ emits a stall_detected alert when a lineage event stream goes quiet  1374ms
+     ✓ detects a silent child even while host progress heartbeats continue  1177ms
+     ✓ emits progress events for a long lineage when cadence is configured  2129ms
+     ✓ does not emit progress events when cadence is left disabled  1997ms
+     ✓ halts an over-budget lineage before spawning the executor  346ms
+     ✓ halts the whole run before spawning any executor when the aggregate budget is exceeded  344ms
+     ✓ records skippedCount 0 and slotDurationMs for a fast completed lineage  1078ms
+     ✓ records missed fixed-rate slots without launching catch-up lineages  5340ms
+     ✓ omits --variant from opencode argv when reasoningEffort is unset  1057ms
+     ✓ includes --variant in opencode argv when reasoningEffort is set  1013ms
+     ✓ adds config.maxIterations to the prompt when lineage.iterations is set (A3)  948ms
+     ✓ omits config.maxIterations from the prompt when iterations is null (A3)  961ms
+     ✓ stamps the dispatched CLI seat env with its kind when the parent stack is empty  1112ms
+     ✓ appends the kind onto an existing parent dispatch stack (cross-kind chain)  1033ms
+     ✓ preserves per-replica state-dir + lineage-id env after the dispatch-env allowlist filter  980ms
+     ✓ demonstrates the guard end-to-end: the stamped kind is detected as same-kind recursion  949ms
+     ✓ injects expanded CLAUDE_CONFIG_DIR for a cli-claude-code lineage with configDir  1159ms
+     ✓ leaves CLAUDE_CONFIG_DIR absent when configDir is unset  998ms
+     ✓ completes the run and records a containment_git_contention warning naming the status call  6170ms
+     ✓ warns on the ledger with the lane label and the delta finding count  1181ms
+     ✓ stays silent for a review lane whose registry carries open findings  1126ms
+     ✓ stays silent for a research lane whose registry carries key findings  1107ms
+ ✓ ../system-deep-loop/runtime/tests/unit/model-benchmark-ledger-schema.vitest.ts (13 tests) 33346ms
+     ✓ extends all common stems and appends every common and mode-specific stem  30897ms
+     ✓ rejects foreign common variants before they can land on the lane ledger  652ms
+     ✓ requires a typed normalized scoring event before a promotion proposal  1033ms
+     ✓ denies unauthorized transitions before append  305ms
+     ✓ preserves immutable prepared bytes after caller mutation  395ms
+ ✓ ../system-deep-loop/runtime/tests/unit/branch-leases-waves.vitest.ts (16 tests) 63044ms
+     ✓ allows one independent-process holder and preserves monotonic reclaim  1035ms
+     ✓ rejects every stale protected mutation at commit without changing the accepted fold  7463ms
+     ✓ fences a two-process branch worker after the parent revokes its lease  5470ms
+     ✓ persists the held ledger fence on a committed branch mutation  2634ms
+     ✓ admits only the current wave, uses the full cap, and preserves pool settlement order  15757ms
+     ✓ rejects a cached pool item that fails the runtime validator  1398ms
+     ✓ requires durable close-and-advance authorization before a later wave opens  2728ms
+     ✓ retains the shipped pool retry classification and retry ownership semantics  6547ms
+     ✓ fails closed instead of collapsing non-canonical results onto a fallback digest  3307ms
+     ✓ reconstructs a partial wave and dispatches only its unsatisfied member after restart  6092ms
+     ✓ reconstructs ownership and wave authority after every durable boundary  6195ms
+     ✓ treats an accepted result as resume-complete after a crash before terminal transition  2497ms
+     ✓ fails closed on manifest and wave-plan drift during restart  1832ms
+ ✓ runtime/tests/progressive-validation.vitest.ts (50 tests) 210977ms
+       ✓ Level 1 detect runs and produces output  4995ms
+       ✓ Level 1 detect identifies missing files  2828ms
+       ✓ Level 1 detect with --json produces JSON output  2873ms
+       ✓ Level 1 does not modify files  2870ms
+       ✓ YYYY-MM-DD placeholder replaced with an ISO date  3218ms
+       ✓ [DATE] placeholder replaced with an ISO date  3206ms
+       ✓ date: TBD replaced with an ISO date  3223ms
+       ✓ headings starting at H2 are shifted to start at H1  3202ms
+       ✓ sub-heading levels are preserved relatively after normalization  3291ms
+       ✓ files already starting at H1 are not modified by heading fix  3104ms
+       ✓ trailing whitespace is trimmed from lines  3202ms
+       ✓ CRLF line endings are normalized to LF  3145ms
+       ✓ file ends with a newline after normalization  3099ms
+       ✓ JSON output includes autoFixes section with diffs  9021ms
+       ✓ each auto-fix item has type and description  8992ms
+       ✓ human-readable output mentions auto-fix activity  3206ms
+       ✓ Level 3 runs suggest phase for issues  8902ms
+       ✓ Level 4 with --json includes suggestions array  9139ms
+       ✓ suggestions include remediation guidance  9203ms
+       ✓ Level 4 JSON report has expected top-level keys  8886ms
+       ✓ Level 4 human report includes summary section  8641ms
+       ✓ Level 4 quiet mode produces single-line result  8448ms
+       ✓ report correctly reflects dry-run state  9178ms
+       ✓ exit code 2 for missing required files (errors)  2663ms
+       ✓ exit code in {0, 1, 2} for valid folder  2747ms
+       ✓ exit codes are consistent between levels  10772ms
+       ✓ exit code 2 with --strict mode when warnings exist  3301ms
+       ✓ --dry-run does not modify files  3223ms
+       ✓ --dry-run still shows what would be changed  3415ms
+       ✓ --dry-run JSON report shows count of proposed fixes  8805ms
+       ✓ files are unmodified after dry-run with whitespace issues  3325ms
+       ✓ validate.sh still works independently  2951ms
+       ✓ validate.sh --json produces valid JSON  2798ms
+       ✓ validate.sh error exit codes are unchanged  2710ms
+       ✓ level 1 only runs detect (no auto-fix)  2813ms
+       ✓ multiple auto-fix types can apply to the same file  8759ms
+       ✓ empty spec folder (no .md files) handled gracefully  2713ms
+       ✓ level 2 runs both detect and auto-fix  3283ms
+       ✓ level 2 propagates detect errors when required files are missing  2818ms
+       ✓ level 3 runs detect, auto-fix, and suggest  8718ms
+       ✓ level 4 is the default when no --level specified  9007ms
+ ✓ ../system-deep-loop/runtime/tests/unit/provenance-reduction.vitest.ts (9 tests) 43ms
+ ✓ runtime/tests/hooks-shared-provenance.vitest.ts (21 tests) 5ms
+ ↓ runtime/tests/copilot-user-prompt-submit-hook.vitest.ts (7 tests | 7 skipped)
+INFO [speckit-hook:session-stop] Stop hook fired for session producer-metadata-session
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session producer-metadata-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session double-replay-session
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session double-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session double-replay-session
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session double-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-replay-session
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session atomic-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-replay-session
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session atomic-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-enabled-no-summary
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session autosave-enabled-no-summary stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-enabled-state-write-fail
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+ERROR [speckit-hook:state] Failed to save state: injected EIO for autosave failure test
+WARN [speckit-hook:state] State update was not persisted for session autosave-enabled-state-write-fail
+INFO [speckit-hook:session-stop] Session autosave-enabled-state-write-fail stop processing complete
+ ✓ runtime/tests/hook-session-stop-replay.vitest.ts (5 tests) 23ms
+ ❯ runtime/tests/spec-gate-pi-extension.vitest.ts (9 tests | 8 failed) 29ms
+     × never appends a question to a dialog-capable session's turn, but opens the gate 5ms
+     ✓ stays silent and stateless on a read-only turn 3ms
+     × relays the reframed deferral exactly once where no dialog exists 4ms
+     × asks at the first write, binds the answer, and blocks that one call 3ms
+     × asks once per session: a cancelled dialog does not re-open on the next write 3ms
+     × never prompts for bash, and never for an exempt target 3ms
+     × still blocks under enforce-on, with the deny reason, when the dialog is cancelled 3ms
+     × answers a skip through the dialog and lets the retry through 3ms
+     × fails open when an invalid path is entered 3ms
+ ✓ runtime/tests/resource-map-extractor.vitest.ts (3 tests) 9ms
+ ✓ ../system-deep-loop/runtime/tests/unit/loop-lock-cli.vitest.ts (7 tests) 1887ms
+     ✓ refresh and release honor owner-pid gating like the library  476ms
+     ✓ refresh and release reject a nonce-bearing lock when --nonce is missing or wrong  462ms
+ ✓ runtime/tests/model-server-demand-probe.vitest.ts (3 tests) 2ms
+ ✓ runtime/tests/spec-folder-mutex-liveness.vitest.ts (6 tests) 34ms
+ ✓ ../system-deep-loop/runtime/tests/unit/dependency-seams.vitest.ts (6 tests) 330ms
+ ✓ ../system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts (4 tests) 5ms
+ ✓ ../system-deep-loop/runtime/tests/fanout-loop-prompt-in-process.test.ts (4 tests) 2ms
+stderr | runtime/tests/unit-path-security.vitest.ts > Path Security (T001-T007) > T002: path traversal attempt (../../etc/passwd) is rejected
+[utils] Path traversal blocked: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/etc/passwd -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/etc/passwd
+
+stderr | runtime/tests/unit-path-security.vitest.ts > Path Security (T001-T007) > T003: null bytes in path rejected
+[utils] Null byte in path blocked: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit/runtime/file .txt
+
+stderr | runtime/tests/unit-path-security.vitest.ts > Path Security (T001-T007) > T004: path outside allowed bases rejected
+[utils] Path traversal blocked: /usr/bin/node -> /usr/bin/node
+
+stderr | runtime/tests/unit-path-security.vitest.ts > Path Security (T001-T007) > T005: symlink resolution blocks escape from allowed base
+[utils] Path traversal blocked: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-test-pathsec-1790626511554/allowed/sneaky-link -> /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/speckit-test-pathsec-1790626511554/outside/secret.txt
+
+stderr | runtime/tests/unit-path-security.vitest.ts > Path Security (T001-T007) > T007: empty/null/undefined allowed_base_paths rejected
+[utils] validateFilePath called with empty allowedBasePaths
+[utils] validateFilePath called with empty allowedBasePaths
+[utils] validateFilePath called with empty allowedBasePaths
+
+ ✓ runtime/tests/unit-path-security.vitest.ts (7 tests) 3ms
+ ✓ ../system-deep-loop/runtime/tests/integration/status-script.vitest.ts (6 tests) 616ms
+ ✓ runtime/tests/multi-ai-council-rollback.vitest.ts (1 test) 6ms
+ ✓ runtime/tests/launcher-stop-hook-orphan-sweep.vitest.ts (4 tests) 201ms
+ ✓ runtime/tests/exclusion-ssot-unification.vitest.ts (1 test) 4ms
+ ✓ runtime/tests/launcher-existing-service-probe.vitest.ts (4 tests) 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi classify > never appends a question to a dialog-capable session's turn, but opens the gate
+Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/spec-gate-pi-RIojFv/.skilled/skills/.state/spec-gate/70692d73657373696f6e.json'
+ ❯ readState runtime/tests/spec-gate-pi-extension.vitest.ts:103:21
+    101|
+    102| function readState(root: string): any {
+    103|   return JSON.parse(readFileSync(statePath(root), "utf8"));
+       |                     ^
+    104| }
+    105|
+ ❯ runtime/tests/spec-gate-pi-extension.vitest.ts:132:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi classify > relays the reframed deferral exactly once where no dialog exists
+AssertionError: expected 'continue' to be 'transform' // Object.is equality
+
+Expected: "transform"
+Received: "continue"
+
+ ❯ runtime/tests/spec-gate-pi-extension.vitest.ts:150:26
+    148|
+    149|     const first = await invoke(handlers, "input", { text: "fix the log…
+    150|     expect(first.action).toBe("transform");
+       |                          ^
+    151|     expect(first.text).toContain(core.GATE_3_DEFERRED_INSTRUCTION);
+    152|     expect(first.text).not.toContain(core.GATE_3_QUESTION);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi enforce > asks at the first write, binds the answer, and blocks that one call
+Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/spec-gate-pi-4IYYO7/.skilled/skills/.state/spec-gate/70692d73657373696f6e.json'
+ ❯ readState runtime/tests/spec-gate-pi-extension.vitest.ts:103:21
+    101|
+    102| function readState(root: string): any {
+    103|   return JSON.parse(readFileSync(statePath(root), "utf8"));
+       |                     ^
+    104| }
+    105|
+ ❯ openGate runtime/tests/spec-gate-pi-extension.vitest.ts:164:12
+ ❯ runtime/tests/spec-gate-pi-extension.vitest.ts:170:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi enforce > asks once per session: a cancelled dialog does not re-open on the next write
+Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/spec-gate-pi-rjWD5m/.skilled/skills/.state/spec-gate/70692d73657373696f6e.json'
+ ❯ readState runtime/tests/spec-gate-pi-extension.vitest.ts:103:21
+    101|
+    102| function readState(root: string): any {
+    103|   return JSON.parse(readFileSync(statePath(root), "utf8"));
+       |                     ^
+    104| }
+    105|
+ ❯ openGate runtime/tests/spec-gate-pi-extension.vitest.ts:164:12
+ ❯ runtime/tests/spec-gate-pi-extension.vitest.ts:193:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi enforce > never prompts for bash, and never for an exempt target
+Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/spec-gate-pi-S2n7eL/.skilled/skills/.state/spec-gate/70692d73657373696f6e.json'
+ ❯ readState runtime/tests/spec-gate-pi-extension.vitest.ts:103:21
+    101|
+    102| function readState(root: string): any {
+    103|   return JSON.parse(readFileSync(statePath(root), "utf8"));
+       |                     ^
+    104| }
+    105|
+ ❯ openGate runtime/tests/spec-gate-pi-extension.vitest.ts:164:12
+ ❯ runtime/tests/spec-gate-pi-extension.vitest.ts:215:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi enforce > still blocks under enforce-on, with the deny reason, when the dialog is cancelled
+Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/spec-gate-pi-V9hbYy/.skilled/skills/.state/spec-gate/70692d73657373696f6e.json'
+ ❯ readState runtime/tests/spec-gate-pi-extension.vitest.ts:103:21
+    101|
+    102| function readState(root: string): any {
+    103|   return JSON.parse(readFileSync(statePath(root), "utf8"));
+       |                     ^
+    104| }
+    105|
+ ❯ openGate runtime/tests/spec-gate-pi-extension.vitest.ts:164:12
+ ❯ runtime/tests/spec-gate-pi-extension.vitest.ts:233:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi enforce > answers a skip through the dialog and lets the retry through
+Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/spec-gate-pi-UdwNVW/.skilled/skills/.state/spec-gate/70692d73657373696f6e.json'
+ ❯ readState runtime/tests/spec-gate-pi-extension.vitest.ts:103:21
+    101|
+    102| function readState(root: string): any {
+    103|   return JSON.parse(readFileSync(statePath(root), "utf8"));
+       |                     ^
+    104| }
+    105|
+ ❯ openGate runtime/tests/spec-gate-pi-extension.vitest.ts:164:12
+ ❯ runtime/tests/spec-gate-pi-extension.vitest.ts:245:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi enforce > fails open when an invalid path is entered
+Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/spec-gate-pi-JV6ueq/.skilled/skills/.state/spec-gate/70692d73657373696f6e.json'
+ ❯ readState runtime/tests/spec-gate-pi-extension.vitest.ts:103:21
+    101|
+    102| function readState(root: string): any {
+    103|   return JSON.parse(readFileSync(statePath(root), "utf8"));
+       |                     ^
+    104| }
+    105|
+ ❯ openGate runtime/tests/spec-gate-pi-extension.vitest.ts:164:12
+ ❯ runtime/tests/spec-gate-pi-extension.vitest.ts:258:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  1 failed | 20 passed | 1 skipped (22)
+      Tests  8 failed | 325 passed | 7 skipped (340)
+   Start at  22:07:04
+   Duration  488.01s (transform 789ms, setup 91ms, import 1.27s, tests 485.10s, environment 1ms)
+

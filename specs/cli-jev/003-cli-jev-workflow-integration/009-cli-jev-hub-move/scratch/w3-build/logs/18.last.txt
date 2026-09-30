@@ -1,0 +1,14 @@
+Both edit regions read. Let me confirm the `packetPath` field exists on `DISPATCH_SHAPES` entries (the new code depends on it):`packetPath` confirmed: the classifier shape resolves `cli-classifier/cli-usage`, so the new `GOVERNED`/`scanned` logic matches the brief. Checking the filter line's uniqueness before editing:Unique. Applying all four edits:All four edits applied. Re-reading the edited regions and running the two required checks:Both checks pass (`node --check` exit 0; grep count 0, exit 1 = no matches, as expected). Verifying the count is genuine — BSD grep's `\|` semantics can differ from GNU — with a real-alternation search:Zero matches confirmed under real alternation. Final check — diff stats for the file (+10/-7 expected):All accept criteria verified: one file changed, +10/-7, syntax clean, zero stale references (the `grep -c` exit 1 is grep's zero-match status — count is 0; corroborated under real alternation semantics).
+
+STATUS: DONE
+FILES CHANGED: .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs (+10/-7)
+EDITS: 
+- .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:12-18 replaced the CLI_JE/PACKET_ROOTS block with CLI_CLASSIFIER, GOVERNED (from DISPATCH_SHAPES.packetPath) and the scanned() predicate
+- .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:22 packetSkillDocs filter gained `&& scanned(root, entry.name)`
+- .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:467 govern assertion now expects skill 'cli-classifier'
+- .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs:472 doNotGovern fixture path now .skilled/skills/cli-classifier/cli-usage
+CHECKS: 
+- `node --check .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` -> no output (exit 0)
+- `grep -c "cli-jev\|CLI_JE\b" .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` -> `0` (exit 1; grep exits 1 on zero matches — count 0 as expected). Corroborated with an independent `cli-jev|CLI_JE\b` search: 0 matches.
+- `git diff --numstat -- .skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs` -> `10	7` (1 file changed, +10/-7)
+BLOCKED REASON: none

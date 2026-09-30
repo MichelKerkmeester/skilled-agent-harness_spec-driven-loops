@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 54 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 58 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
 
 ### REALISTIC TEST MODEL
 
@@ -103,7 +103,7 @@ Scenario verdict — three outcomes only:
 - `FAIL`: expected behavior is missing, output contradicts the contract, a critical check failed, or the core behavior worked but the required evidence or metadata is incomplete. An outcome another operator cannot reproduce from the captured evidence is a `FAIL`, not a partial pass.
 - `SKIP`: a concrete sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevented execution, and the run record names it
 
-Release is cleared only when all 54 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
+Release is cleared only when all 58 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
 
 ---
 
@@ -388,7 +388,7 @@ Expected signals: Recovery marker durable (fsynced) before the torn frame is ren
 
 ## 10. SCORING
 
-This category covers 2 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 5 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-010 | Bayesian scorer
 
@@ -417,6 +417,51 @@ Expected signals: First-iteration null delta, prior-snapshot delta, graph output
 
 #### Test Execution
 > **Feature File:** [DLR-040](../manual-testing-playbook/scoring/convergence-score-delta.md)
+
+---
+
+### DLR-056 | Stop-rater replay
+
+#### Description
+Adds `scripts/score-stop-rater.cjs`, an offline replay of the recorded deep-research lineages that changes no stop. A run prints the census and makes zero model calls by default. `--deem` and `--jev` each open one arm, and only after `--gold-reads` confirms the derived gold the census printed.
+
+#### Scenario Contract
+Prompt: `Run the offline stop-rater replay with logging stubs first on PATH and confirm the default run makes zero model calls, the label gate stops the arms, a stub backend is skipped by name, and the suite passes.`
+
+Expected signals: No stub call in the default run, `stop: fewer than 5 confirmed lineages` before any backend check, `jev arm skipped: no credential` and `deem arm skipped: stub backend` past the label gate, `git status --porcelain` unchanged, and 36 passing tests.
+
+#### Test Execution
+> **Feature File:** [DLR-056](../manual-testing-playbook/scoring/stop-rater-replay.md)
+
+---
+
+### DLR-057 | Stop-hint replay
+
+#### Description
+Adds `scripts/score-stop-hint.cjs`, an offline replay of one stop-rater report that scores its recorded stops as confirm-mode hints and changes no gate and no live loop. A run reads one `report.json`, makes no model call in any mode, and writes nothing unless `--out <dir>` asks for a report. `--jev` and `--deem` add the rater's recorded `jev` and `deem` columns to the two columns every report carries, `legacy` and `sources`.
+
+#### Scenario Contract
+Prompt: `Run the stop-hint replay on the fixture reports with logging stubs first on PATH and confirm the refusals name their reason on stderr, the gate stop prints one line and writes nothing, the missing model columns skip by name without changing the rest, no stub is called, and the suite passes.`
+
+Expected signals: `rater report not found: <dir>/report.json` and `rater report is not JSON: <path>` on stderr with empty stdout and exit 2, `stop: rater report has no confirmed gold` as the whole stdout with exit 0 in both gate shapes, `jev column skipped: rater report has none` and `deem column skipped: rater report has none` on a report with no rater columns, `git status --porcelain` unchanged, and 28 passing tests.
+
+#### Test Execution
+> **Feature File:** [DLR-057](../manual-testing-playbook/scoring/stop-hint-replay.md)
+
+---
+
+### DLR-058 | Severity replay
+
+#### Description
+Adds `scripts/score-severity-replay.cjs`, an offline replay that reads every tracked deep-review findings registry and measures whether a Jev or Deem severity choice would separate real P0 findings from false ones better than the recorded severity. It changes no severity, no registry and no review gate. The default run makes no model call and writes no file. `--write-label-sheet <path>` writes one JSONL row per P0 finding with every `label` empty for the operator to fill, `--labels <file>` reads the filled sheet back, and `--jev` and `--deem` each open one arm behind its own gate and require `--out <dir>`.
+
+#### Scenario Contract
+Prompt: `Run the offline severity replay with logging stubs first on PATH and confirm the default run makes zero model calls and writes no file, the label gate stops both arms by name, --jev without --out refuses with exit 2 before any census line, no stub is called, and the suite passes.`
+
+Expected signals: The default run prints the census and ends with `stop: fewer than 20 labeled P0 negatives` with no stub call, `jev arm skipped: label gate` and `deem arm skipped: label gate` print when both arms are requested and only `report.json` is written under `--out <dir>`, `--jev needs --out <dir> so every call is recorded` lands on stderr with exit 2 before any census line, `git status` outside `specs/` is unchanged, and 33 passing tests.
+
+#### Test Execution
+> **Feature File:** [DLR-058](../manual-testing-playbook/scoring/severity-replay.md)
 
 ---
 
@@ -630,7 +675,7 @@ Creates and validates the ADR-002 session->topic->round state shape, including s
 
 ## 14. FAN-OUT
 
-This category covers 10 scenarios validating the opt-in multi-executor fan-out layer added in packet 124: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, and artifact-dir-override parity.
+This category covers 11 scenarios validating the opt-in multi-executor fan-out layer added in packet 124: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, and artifact-dir-override parity.
 
 ### DLR-023 | Fan-out config schema
 
@@ -763,6 +808,19 @@ Expected signals: Wait checkpoint persistence, resume-waiting startup branch, nu
 
 #### Test Execution
 > **Feature File:** [DLR-047](../manual-testing-playbook/fanout/persisted-wait-crash-resume.md)
+
+### DLR-059 | Fan-out pair replay: census, label gate and stub-backend skip
+
+#### Description
+Adds `scripts/score-fanout-pairs.cjs`, an offline replay that reads the recorded fan-out lineage registries of the deep-research and deep-review runs holding at least two lineages and prints the near-line and cross-body pair census with the merge's own decision on each pair with deduplication on and off. The merge is unchanged and the default run makes no model call and writes no file. `--write-pair-sheet <path>` writes at most 60 pairs per class with an empty `label` for the operator to fill `same` or `different`, `--labels <file>` reads the filled sheet back, and `--jev` and `--deem` each open one arm behind its own gate and require `--out <dir>`.
+
+#### Scenario Contract
+Prompt: `Run the fan-out pair replay census and confirm it stops at the label gate without calling a backend, then show the test suite skipping a stub Deem backend.`
+
+Expected signals: The census prefixes `runs:`, `pairs:`, `class near-line:`, `class cross-body:` and `merge decisions:` print on stdout with exit 0 and no stub call, the run ends `stop: fewer than 40 labeled pairs`, the suite asserts `deem arm skipped: stub backend` in `deem gate skips a stub backend`, `git status --porcelain` is unchanged, and 42 passing tests.
+
+#### Test Execution
+> **Feature File:** [DLR-059](../manual-testing-playbook/fanout/fanout-pair-replay.md)
 
 ---
 
@@ -950,3 +1008,7 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-052 | [F050 system-deep-loop-guard](../feature-catalog/validation/mk-deep-loop-guard.md) | [validation/mk-deep-loop-guard.md](../manual-testing-playbook/validation/mk-deep-loop-guard.md) |
 | DLR-054 | [F052 Torn-tail recovery marker ordering](../feature-catalog/state-safety/torn-tail-recovery-marker-ordering.md) | [state-safety/torn-tail-recovery-marker-ordering.md](../manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md) |
 | DLR-055 | [F051 append-mode-event.cjs](../feature-catalog/script-entry-points/append-mode-event-script.md) | [script-entry-points/append-mode-event-script.md](../manual-testing-playbook/script-entry-points/append-mode-event-script.md) |
+| DLR-056 | [F056 Stop-rater replay](../feature-catalog/scoring/stop-rater-replay.md) | [scoring/stop-rater-replay.md](../manual-testing-playbook/scoring/stop-rater-replay.md) |
+| DLR-057 | [F057 Stop-hint replay](../feature-catalog/scoring/stop-hint-replay.md) | [scoring/stop-hint-replay.md](../manual-testing-playbook/scoring/stop-hint-replay.md) |
+| DLR-058 | [F058 Severity replay](../feature-catalog/scoring/severity-replay.md) | [scoring/severity-replay.md](../manual-testing-playbook/scoring/severity-replay.md) |
+| DLR-059 | [F059 Fan-out pair replay](../feature-catalog/fanout/fanout-pair-replay.md) | [fanout/fanout-pair-replay.md](../manual-testing-playbook/fanout/fanout-pair-replay.md) |

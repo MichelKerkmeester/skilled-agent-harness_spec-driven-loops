@@ -1,0 +1,31 @@
+TASK: port the vendored staged fit into S, add the fit column, and pin it with one case in T.
+R = specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/ref/design.md (read only).
+S, T and F are named at the top of R. Read S, T and R section 6 (bullets 1 to 4 and the fitStage/fitTokens part of the last
+bullet), then the two vendored files it names. Never edit F or the vendored files.
+
+In S:
+1. Section 3 (ESTIMATOR PORT): the port of R section 6 bullet 1, with its two-line "Ported from" comment at the top of the
+   section, and the three constants of bullet 2 in section 2. Export estimateTokens, collectToolCalls, fitState,
+   truncatedResultText and isPinned. Logic identical to the vendored TypeScript; only types removed.
+2. Section 4 (MESSAGES AND REDUCTION): export toMessage(record), the port of bullet 3.
+3. parseTranscript: keep the Messages of `user` and `assistant` records since the previous boundary (or the file start).
+   At each boundary add fitStage and fitTokens to the row per bullet 4, then start a new segment. A throw never stops the file.
+4. Row line: append ` fit=<fitStage with spaces replaced by _> fit_tokens=<fitTokens or n/a>`. Totals: add `fit_throws`
+   (count of rows with fitStage 'fit_throw') after partial_tails, in the totals line and report.totals.
+
+In T, add one case after the current ones: 'an oversized state records fit_throw and continues'.
+Build big.jsonl in a mkdtemp dir, one JSON record per line, trailing newline, with
+uuid = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, '0')}` and 1500 tool uses
+{ type: 'tool_use', id: `toolu_${i}`, name: 'Read', input: { file_path: `/tmp/CANARY-big/file_${i}.md` } }:
+ line 1 { type: 'assistant', uuid: uuid(1), isSidechain: false, message: { role: 'assistant', content: <the 1500 tool uses> } }
+ line 2 { type: 'user', uuid: uuid(2), isSidechain: false, message: { role: 'user', content: <for each use
+        { type: 'tool_result', tool_use_id: <its id>, content: 'CANARY-big result' }> } }
+ line 3 { type: 'system', subtype: 'compact_boundary', uuid: uuid(3), isSidechain: false, entrypoint: 'cli',
+        compactMetadata: { trigger: 'auto', preTokens: 900000, postTokens: 5000, durationMs: 1000 } }
+runCensus(['--transcripts', <big.jsonl>, '--transcripts', fixture('clean')]): code 0; report.rows has length 2;
+rows[0].file 'big.jsonl', rows[0].fitStage 'fit_throw', rows[0].fitTokens null; rows[1].file 'clean.jsonl', rows[1].fitStage 'full',
+rows[1].fitTokens a positive number; report.totals.fit_throws 1; some line starts with 'row big.jsonl ' and contains ' fit=fit_throw '.
+
+VERIFY (repo root): node --check .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs
+and: grep -c 'Ported from npm jevctl 0.2.3' .skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs (expect 1)
+Accept when: 2 files changed (S and T) and nothing else; node --check exits 0; the grep prints 1; T holds exactly 6 `it(` cases.

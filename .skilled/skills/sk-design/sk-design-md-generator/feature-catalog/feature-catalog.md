@@ -124,7 +124,7 @@ Confirms every hex in DESIGN.md traces to `tokens.json`, the required v3 Style R
 - Hex casing check flags uppercase hex, 3-digit shortcuts, `rgb()`, and `hsl()` as format violations.
 - Phantom-color detection flags hex values in DESIGN.md with no token source.
 - Prose-discipline check (WARNING-tier): flags interpretive-fabrication phrases ("gradient-as-depth", "unlike most systems", "replaces shadow elevation") and a "focus is consistent" claim unbacked by captured focus styles.
-- Dual score: a `valuesScore` (hex/section/format fidelity) and a separate `claimsScore` (prose provenance), so invented prose cannot hide behind verbatim hexes. `isPass()` requires `claimsScore >= 80` alongside a clean values pass.
+- Dual score: a `valuesScore` (hex/section/format fidelity) and a separate `claimsScore` (prose provenance), so invented prose cannot hide behind verbatim hexes. The verdict passes only with zero hard failures in the `target`, `schema` and `provenance` categories, and both scores print as information.
 - Four escalation conditions require human judgment rather than automated correction.
 
 #### Source Files

@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "jev research round 3",
+      "deem local classifier research",
+      "classifier context reduction research",
+      "five lineage classifier fan-out",
+      "cli-classifier hub research",
+      "jev research round 3 plan",
+      "five lineage fan-out plan",
+      "lineage lead steering protocol",
+      "deem classifier research plan",
+      "jev research round 3 tasks",
+      "five lineage fan-out tasks",
+      "lineage lead review tasks"
+    ],
+    "key_topics": [
+      "jev",
+      "research",
+      "round",
+      "deem",
+      "local",
+      "classifier",
+      "context",
+      "reduction",
+      "five",
+      "lineage",
+      "fan-out",
+      "cli-classifier"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "context/deem-local.md",
+      "context/research-angles.md",
+      "scratch/research-topic.txt",
+      "scratch/synthesis-brief.md",
+      "scratch/phase-brief.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "scratch/research-topic-draft.txt",
+      "research/orchestration-summary.json",
+      "research/resource-map.md",
+      "research/deep-research-state.jsonl",
+      "research/observability-events.jsonl",
+      "research/deep-research-config.json",
+      "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/__init__.py",
+      "research/findings-registry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deem-local.md",
+        "kind": "doc",
+        "path": "context/deem-local.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-angles.md",
+        "kind": "doc",
+        "path": "context/research-angles.md",
+        "source": "derived"
+      },
+      {
+        "name": "research-topic.txt",
+        "kind": "file",
+        "path": "scratch/research-topic.txt",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis-brief.md",
+        "kind": "doc",
+        "path": "scratch/synthesis-brief.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-brief.md",
+        "kind": "doc",
+        "path": "scratch/phase-brief.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "research-topic-draft.txt",
+        "kind": "file",
+        "path": "scratch/research-topic-draft.txt",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "observability-events.jsonl",
+        "kind": "file",
+        "path": "research/observability-events.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "__init__.py",
+        "kind": "file",
+        "path": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/__init__.py",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Research Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Classifier Models",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Local Deem",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Rounds 1 and 2 asked where Jev, a hosted and keyed typed-judgment model, earns a place here",
+    "created_at": "2026-09-27T05:35:24Z",
+    "last_save_at": "2026-09-27T09:37:40.603Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:c7c827a01aa7f27594e14d44d9b54c0fc3cf299527241a0dff56e1ab999eba1a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4e8b69574e1f1371a4f82d33420f4efbacb7ed315a07332b26bfdc34f1f3db3c",
+      "plan.md": "441e739bf4fb0ffa77b4badd4e97e172acc08c3e574bbc0252549471a69a05d9",
+      "tasks.md": "dc3ca4f5695463c7ac89186b137440178ad4ae7008b8883c516fd5c4d0aeed38",
+      "implementation-summary.md": "cbed77a85602b30268e7bca3bd25f19bcadd4257eea7a1525b56283e66abefb7",
+      "research/research.md": "7aa0fae1270ef986a417e1be1af727780d63859de0af6c6c92c488c3586a73e7"
+    },
+    "last_active_at": null
+  }
+}

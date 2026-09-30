@@ -1,0 +1,12 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-deem/README.md (+2/-2)
+EDITS:
+  .skilled/skills/cli-classifier/cli-deem/README.md:107 `use the \`cli-jev\` hub instead.` → `use this hub's \`cli-jev\` mode instead.`
+  .skilled/skills/cli-classifier/cli-deem/README.md:113 `| \`cli-jev\` | The hosted Jev transport.` → `| \`cli-jev\` | The hosted Jev transport, a mode of the same hub over the \`cli-usage\` packet.`
+CHECKS:
+  grep -c "cli-jev\` hub" .skilled/skills/cli-classifier/cli-deem/README.md -> `0` (exit 1 — grep's no-match exit; count 0 as expected)
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-deem/README.md -> `✅ VALID: .skilled/skills/cli-classifier/cli-deem/README.md ... Total issues: 0` (exit 0)
+BLOCKED REASON: none
+
+Note: `git status` shows many other modified/renamed files in the tree — those belong to concurrent workers; `git diff --numstat` confirms my only change is the named README (+2/-2).

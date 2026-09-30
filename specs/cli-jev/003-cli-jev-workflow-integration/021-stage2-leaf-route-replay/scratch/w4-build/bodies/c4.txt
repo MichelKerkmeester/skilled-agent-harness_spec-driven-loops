@@ -1,0 +1,10 @@
+TASK: add `parseArgs` and the zero-call `main` to S, with design cases 26 and 28 plus two exit-2 cases in T.
+R = `specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/design.md` (read only) and `specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/rulings.md` (read only; it overrides R where they differ).
+S and T exist; read both first. Read R section 2 "CLI switches and exit codes", "stdout lines" and "Files written", and the sibling's `parseArgs`, `main` and `require.main` block for the shape.
+STEP 1. S: add `USAGE`, `parseArgs(argv)` and `async main(argv, deps)` (deps: `out`, `err`, `repoRoot`, `env`). This brief's `main` runs only the zero-call path in this order: parse, the `--out` check (`--jev` or `--deem` without `--out` prints `error: --jev and --deem need --out <dir>` to stderr, exit 2, nothing on stdout), the `--transcripts` and `--prose` checks (exit 2 before other output), the per-hub and total lines from `runReplay`, the reads line (`router reads: not measured` without `--transcripts`), the replay verdict line, `report.json` when `--report` is set, return 0. Leave one comment `// arms run here` before `return 0` for the next brief. Add `if (require.main === module) main(process.argv.slice(2)).then((c) => { process.exitCode = c; });` and export `parseArgs` and `main`.
+STEP 2. T: append design cases 26 and 28, plus `--transcripts on a missing path exits 2` and `--prose on a missing file exits 2`, each calling `main` with captured `out` and `err` and a synthetic `repoRoot` where it needs one.
+VERIFY (repo root), paste each result line:
+  node --check .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs
+  node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs
+  grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs
+Accept when: 2 files changed (S and T) and nothing else; both `node --check` exit 0; the grep prints 20.

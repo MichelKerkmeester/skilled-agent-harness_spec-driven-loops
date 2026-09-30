@@ -1,0 +1,3 @@
+[sk-doc] compiled-routing-lockstep-parity fixture coverage passed
+[sk-doc] live report: 6/15 surfaces carry the directive block
+[sk-doc] live report: all surfaces carrying the directive are in normalized parity

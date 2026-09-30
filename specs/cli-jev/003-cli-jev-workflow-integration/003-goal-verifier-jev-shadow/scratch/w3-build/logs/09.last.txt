@@ -1,0 +1,8 @@
+Diff verified: one file, +3/−0, insertion only after line 139. Check passed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/hooks/README.md (+3/-0)
+EDITS: .skilled/hooks/README.md:139 inserted three hub-tree rows (count-pi-goal-nudges.mjs, build-verifier-fixture.cjs, score-verifier-labeled-set.cjs) directly after the goal-slice row
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/hooks/README.md -> ✅ VALID: .skilled/hooks/README.md / Total issues: 0 (exit 0)
+BLOCKED REASON: none

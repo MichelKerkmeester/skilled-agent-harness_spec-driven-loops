@@ -1,0 +1,8 @@
+The edit applied exactly once and the validator passes.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/README.md (+14/-1)
+EDITS: .skilled/skills/sk-doc/sk-create-skill/README.md:87 replaced the compiled-routing paragraph with the same paragraph plus the "Measuring Clarify Defaults" section (heading, prose, fenced bash block, closing paragraph)
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/README.md` -> `Total issues: 0` (exit 0)
+BLOCKED REASON: none

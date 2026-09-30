@@ -1,0 +1,19 @@
+All checks are done. Review report:
+
+**Finding (P1, seamSearch lists this phase's own files once committed): `closed`** — the two `SEAM_SELF` excludes are proven against the real tree: every untracked non-`specs/` non-fixture file holding `next_check` (feature-catalog entry, `score-debug-next-check.mjs`, `debug-next-check.vitest.ts`) has `debug-next-check` in a path component; with `SEAM_SELF` applied 0 such paths survive the candidate set (without it: 4), and the depth pattern `**/*debug-next-check*/**` matches 155 untracked files including `specs/.../031-debug-next-check/scratch/w4-session/sha-docs-before.txt` three levels below the named dir, so trailing `/**` reaches any depth. The excluded namespace is the hyphenated tool name `debug-next-check` only; a real caller carries the underscored choice key `next_check` and would have to literally name this census tool in its path to be dropped — in which case it is census tooling, not a caller. Nothing a real caller could plausibly be named falls out.
+
+**New P0 or P1 in the two files: none.** The JSDoc claims ("every path whose name holds debug-next-check is left out", "Paths named for this census are left out") match the behavior; comments carry no spec paths or task ids; the new test covers basename match, under-directory match and a caller survivor (`caller.md`), consistent with the existing `seam planted`/`seam clean` tests. The test's committed-state scenario (`git add -A` before `seamSearch`) is the exact post-commit condition of the finding; orchestrator reports `Tests 31 passed (31)` for this file (not re-run here per the brief's check list).
+
+**VERDICT: PASS**
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck)
+EDITS: none
+CHECKS:
+- `git ls-files --others --exclude-standard | grep debug-next-check` -> 4 non-specs census paths (feature-catalog + manual-testing-playbook entries, script, test) plus specs scratch (exit 0)
+- `git ls-files --others --exclude-standard | grep -v '^specs/' | grep -v 'runtime/cli/retrieval/fixtures/' | xargs grep -l 'next_check'` -> 3 files, all named `debug-next-check` (exit 0)
+- `git ls-files --others --exclude-standard -- ':(exclude,glob)**/*debug-next-check*' ':(exclude,glob)**/*debug-next-check*/**' ':(glob)**/*debug*' | grep -c 'debug-next-check'` -> `0` (exit 1; without the excludes the same query returns `4`)
+- `git ls-files --others --exclude-standard -- ':(glob)**/*debug-next-check*/**' | wc -l` -> `155`, first/last rows include `specs/.../031-debug-next-check/scratch/w4-session/sha-docs-before.txt` (exit 0) — trailing `/**` matches at any depth
+- `node .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` -> first line `seam: none` (exit 0)
+BLOCKED REASON: none

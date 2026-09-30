@@ -1,0 +1,23 @@
+## Cross-family review — `028-confirm-mode-stop-hint` code
+
+**Findings**
+
+- P1 `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:483` (with `:503`) - `requalify: rater changed` fires on every rerun even when the rater identity is unchanged: `raterSuffix(stored, …)` reads `jevVersion`/`provider`/`model` or `modelId`/`modelCommit`/`sourceCommit` fields, but `buildReport`'s stored column record holds only `record.rater` as one string - two runs on the same unchanged fixture (`--jev --deem --out <dir>`, identical `jev-1.0/official/stub-model`) both print `requalify: rater changed` before `verdict jev:` and `verdict deem:` (reproduced).
+- P1 `.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts:354` - the requalify test hand-writes the stored file in the *rater-report* column shape, never the shape this script writes, so the write→read round trip is untested and the bug above hides; no test asserts requalify is absent when the identity is unchanged.
+- P2 `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:99-106` - the reader exits 2 on a lineage with `lastIteration: null`, a shape 027 writes (`score-stop-rater.cjs:1679`, `:1850`) when a lineage has no state iterations - one such lineage makes a legitimate 027 report unreadable instead of unmeasured.
+- P2 `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:404` - the injected `env` seam is dead (never read) and the threshold constants (`:41-50`) are exported but unused by `decideVerdict`, which re-encodes the rule as integer forms at `:253-258`; constants and rule can drift silently.
+
+**Requirements**
+
+- REQ-001 met - no `child_process`/spawn anywhere (grepped), stub test logs nothing.
+- REQ-002 met - missing/unparseable report exits 2 with named errors (`:88`, `:94`); gate stop prints `stop: rater report has no confirmed gold`, exit 0, no verdict (`:446-450`). Label gate read from 027's report; the script writes no label file.
+- REQ-003 met - `hintFor`/`countColumn` match `g <= t < r` right, `t < g` wrong, `saved = r - t`; six counts printed. Sign test hand-checked: W=18, L=1 → (C(19,18)+C(19,19))/2^19 = 20/524288 ≈ 3.815e-5, prints `p=0.00003815`.
+- REQ-004 met - rule fixed in code (`:250-259`), printed first (`:454`), one `verdict <column>: keep|kill|stop (…)` line per column in the spec's format.
+- REQ-005 met - skip lines exact, other output byte-identical, exit 0 (tests).
+- REQ-006 not met - requalify over-fires on unchanged raters (P1 above); digest and rater fields on the verdict line are correct.
+- REQ-007 met - hint line stored only on `keep` (`:502`), exact wording, `<t>` literal; no workflow file touched.
+- REQ-008 met (tests) - 28 pass, every named case present; docs not written yet, out of this review.
+
+Dormancy, zero-call slice and secrets clean. Comment hygiene clean.
+
+VERDICT: FAIL

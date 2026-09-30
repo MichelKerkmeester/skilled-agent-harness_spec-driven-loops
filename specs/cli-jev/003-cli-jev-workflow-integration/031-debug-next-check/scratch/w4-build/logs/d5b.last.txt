@@ -1,0 +1,9 @@
+All facts verified against the script (`score-debug-next-check.mjs`: `--fixture`/`--jev`/`--deem`/`--out` at the CLI parse, `refused: fixture path inside the repository`, `jev_ok` payload split, `verdict` line shape, `report.json`/`calls.jsonl` writes under `--out` only) and FACTS. The block was placed after the completion claim audit block, its H3 matches the leaf title `Debug next check`, and its Description is byte-identical to the leaf's frontmatter description.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md (+16/-0)
+EDITS: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md:138 inserted `### Debug next check` block (Description, Current Reality, Source Files) after the completion claim audit block, before `### Alignment suggestion measurement`
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md --type feature_catalog -> `✅ VALID: .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md -> `1 file changed, 16 insertions(+)` (exit 0)
+BLOCKED REASON: none

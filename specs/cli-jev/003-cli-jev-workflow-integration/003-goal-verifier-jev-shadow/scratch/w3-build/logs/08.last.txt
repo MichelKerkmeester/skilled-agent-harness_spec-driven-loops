@@ -1,0 +1,16 @@
+The check passes with the affirmative marker and exit 0, and the diff shows exactly the five brief edits in the one named file (+24/−5: ten tree lines replace four, three table rows plus one test row, one sentence swap, three test-invocation lines plus the six-line census block). Nothing else in the tree was touched by me; the file is edited and uncommitted, as the orchestrator owns commits.
+
+REPO RULES: loaded communication.md, communication-prose.md, evidence-and-proof.md, communication-handoff.md.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/hooks/goal/README.md (+24/-5)
+EDITS:
+.s killed/hooks/goal/README.md:95-104 section 4 tree: four lib/ lines replaced with ten lines listing build-verifier-fixture.cjs(+test), count-pi-goal-nudges.mjs(+test), goal-core.cjs(+test), goal-slice.cjs(+test), score-verifier-labeled-set.cjs(+test)
+.skilled/hooks/goal/README.md:122-124 section 5 table: three rows inserted after the `lib/goal-slice.cjs` row (census, row builder, scorer)
+.skilled/hooks/goal/README.md:130 section 5 table: one row inserted after the `lib/goal-core.test.cjs`, `bin/goal.test.cjs` row (three test files)
+.skilled/hooks/goal/README.md:155 section 7 Imports row: "Nothing imports the plugin." replaced with the offline-scorer sentence
+.skilled/hooks/goal/README.md:170-172 and 181-185 section 8: three test lines inserted after the goal-core.test.cjs line; census command block with expected result inserted after "Expected result: all tests pass."
+CHECKS:
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/hooks/goal/README.md -> ✅ VALID: .skilled/hooks/goal/README.md (Total issues: 0) (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,20 @@
+ M .hermes/skills/system-skill-advisor/SKILL.md
+ M .skilled/skills/system-skill-advisor/README.md
+ M .skilled/skills/system-skill-advisor/SKILL.md
+ M .skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md
+ M .skilled/skills/system-skill-advisor/leaf-aliases.json
+ M .skilled/skills/system-skill-advisor/leaf-manifest.json
+ M .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
+ M .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+ M .skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/parity/README.md
+ M .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json
+ M .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json
+ M .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json
+ M .skilled/skills/system-spec-kit/runtime/data/trigger-index.json
+?? .skilled/skills/system-skill-advisor/changelog/v0.13.0.0.md
+?? .skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/tie-break-eval.md
+?? .skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/tie-break-eval.md
+?? .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs
+?? .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts
+?? specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/scratch/w3-build/

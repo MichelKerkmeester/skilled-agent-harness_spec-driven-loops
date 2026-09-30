@@ -1,0 +1,11 @@
+TASK: make three sentences in three sk-doc docs true to the code. Change only the three sentences named.
+FILES: `.skilled/skills/sk-doc/feature-catalog/feature-catalog.md`, `.skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md`, `.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md`. Read each first. The script is `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` (read only).
+EDIT 1: `feature-catalog.md` line 52, the "Leaf Route Replay" block: the words "recounts the `ROUTER.md` reads behind the block" name a markdown file in backticks without a link, which the catalog package validator flags (`phantom_root_row`). Rewrite that clause as "recounts each hub's router-file reads behind the block", with no backticked file name. Keep the rest of the line.
+EDIT 2: `leaf-route-replay.md` line 28 says a prose line that does not fit the grammar is "counted unparsed and never guessed". `readProse` counts such lines but `main` never prints the count, so the doc claims output the run does not show. Rewrite that clause as "a line that does not fit that grammar is skipped and never guessed". Keep the rest of the line.
+EDIT 3: `manual-testing-playbook.md` line 11 ends "SKL-007 links the sk-doc hub catalog entry for its script." SKL-008 links one too. Rewrite that sentence as "SKL-007 and SKL-008 each link the sk-doc hub catalog entry for their script."
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md --type feature_catalog
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md --type playbook
+  python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package sk-doc
+Accept when: only the three files changed; each validator exits 0; the package line reads `violations=6`.

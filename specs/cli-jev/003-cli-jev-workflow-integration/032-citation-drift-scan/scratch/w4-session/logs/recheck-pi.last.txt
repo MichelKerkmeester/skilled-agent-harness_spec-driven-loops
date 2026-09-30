@@ -1,0 +1,36 @@
+**P0 recheck (drift-flag polarity)**
+
+`closed - cite-drift-scan.mjs:1095,1399 set flag = probability < FLAG_THRESHOLD (0.5, line 73), matching REQ-011 "A row is flagged drifted when that probability is below 0.5"; Brier inputs at 1145/1457 use actual: drifted ? 0 : 1 against "the probability of yes" (REQ-011), and the brierScore JSDoc (lines 752-758) now says "1 for a window that still shows the claim and 0 for a drifted one". No >= FLAG_THRESHOLD or drifted ? 1 : 0 remains (rg exit 1).`
+
+**Expectation trace (fixed polarity, not a bent test — stubs and fixtures unchanged: stub answers 0.9 on every row; `gateRows(commit, 30, 10)` gives 30 `supports` rows on doc_line 2, whose token `resolves` the window shows, and 10 `partial` rows on doc_line 4, a no-token sentence):**
+- `flag = 0.9 < 0.5` = false on all calls → `call.flag` false (tests:712-713, 862-863) ✓
+- No row flagged → TP=0, FP=0; model right on exactly the 30 `supports` rows (A=30), comparator right on exactly the same 30 (B=30 per the pinned comparator cases at tests:485-506), so W=0, L=0 → `A=30 B=30 W=0 L=0 TP=0 FP=0` (tests:703, 842) ✓
+- TP+FP = 0 fails the precision gate ("TP+FP at least 1") → `kill (precision)`, consistent with the verdict expectation ✓
+- Brier: (30×(0.9−1)² + 10×(0.9−0)²)/40 = 8.4/40 = 0.21 → `brier deem: 0.2100` (tests:701); Jev scores 120 identical rerun entries → `brier jev: 0.2100` (tests:841) ✓
+- K=1 case (`jev one provider`): one `supports` row, token present → comparator right; 3 reruns at 0.9, modal flag false → model right → `A=1 B=1 W=0 L=0 TP=0 FP=0` (tests:937) ✓
+
+Each moved expectation is the unique arithmetic consequence of the corrected polarity over the unchanged fixture. Nothing was bent.
+
+**New findings:** none at P0 or P1 in the two files.
+
+**Test run** — `node --test .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs`:
+```
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21103.11275
+```
+exit 0.
+
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck)
+EDITS: none
+CHECKS: `node --test .skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs` -> `pass 32 fail 0` (exit 0) | `rg -n "FLAG_THRESHOLD|drifted \? [01]" <both files>` -> `flag = probability < FLAG_THRESHOLD` at 1095/1399, `actual: drifted ? 0 : 1` at 1145/1457 (exit 0) | `rg -n "0\.6100|>= FLAG_THRESHOLD|actual: drifted \? 1" <both files>` -> no match (exit 1)
+BLOCKED REASON: none

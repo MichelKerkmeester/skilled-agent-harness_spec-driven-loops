@@ -1,0 +1,23 @@
+Step 5 is built: draw and labels file. Summary of what changed and one flagged deviation:
+
+**What was built**
+- `read_jsonl` / `write_jsonl` / `holds_label` / `skill_of` / `draw_rows` with docstrings, plus `TOTAL_ROWS`, `ROWS_PER_CATEGORY`, `CANDIDATE_ROWS_PER_CATEGORY`, `MAX_ROWS_PER_SKILL`, `LABELS_PATH`, in a new section 5 (RUN renumbered to 6).
+- `main` now parses `--draw`, `--seed`, `--labels`, rejects arm/out switches in draw mode, validates the seed, refuses a labeled file, writes the labels file, and prints the design's draw lines.
+- T gains `FLAG_ALL_STUB` (flags every line, so the whole corpus section frame is drawable) and the four named cases: reproducibility/no text, per-skill cap, labeled-file refusal, invalid-seed rejection.
+
+**Deviation (flagged, not silent):** the design's draw row requires `section_sha12`, but `draw_rows(census, seed)` receives only the census and the step-3 census entries carried no section hash. I added `"sha12": sha12(body)` to each census section entry in `build_census` (the body text is already in hand there). No counter, key or test from step 3 changed; without this field the design's own step-6 `read_section` hash check could never match. If the orchestrator prefers this handled differently, rerun step 5 accordingly.
+
+Per the brief I did not run the test suite; only the two listed checks were run (both on the final state).
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py (+251/-0 net)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py (+152/-0 net)
+EDITS: hvr_reader_lens.py:35 added `import random`
+EDITS: hvr_reader_lens.py:398-407 build_census section entries now carry `sha12` of the section text
+EDITS: hvr_reader_lens.py:549-743 section 5 DRAW AND LABELS: constants, `read_jsonl`, `write_jsonl`, `holds_label`, `skill_of`, `draw_rows`; RUN renumbered to section 6
+EDITS: hvr_reader_lens.py:763-818 main: `--draw`/`--seed`/`--labels` parsing, seed validation, labeled-file refusal, draw + `draw:` stdout lines
+EDITS: test_hvr_reader_lens.py:346-376 added `FLAG_ALL_STUB` scanner stub
+EDITS: test_hvr_reader_lens.py:537-652 added `draw is reproducible and carries no text`, `draw caps rows per skill per category`, `draw refuses to overwrite a labeled file`, `--draw needs a valid non-negative seed`
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py -> (no output) (exit 0)
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> (no output) (exit 0)
+BLOCKED REASON: none

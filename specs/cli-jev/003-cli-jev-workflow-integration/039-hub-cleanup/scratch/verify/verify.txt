@@ -1,0 +1,1 @@
+move-simulation OK: all 7 hubs resolve; 0 reads under .opencode/specs

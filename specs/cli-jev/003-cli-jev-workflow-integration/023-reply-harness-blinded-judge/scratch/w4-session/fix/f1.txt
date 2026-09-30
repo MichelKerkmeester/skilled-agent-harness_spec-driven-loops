@@ -1,0 +1,13 @@
+TASK: name the `--jev` switch and its gate in the offline judge playbook scenario and its index section. One appended sentence in each of 2 named files.
+EDIT 1: `.skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md` line 16 ends with `leaves every census line as it was.` Append one space and this sentence to that same line:
+`--jev` adds a Jev column only after the identity line, `jev --version` printing `jev 0.6.2` and `jev auth status --provider <p>` exiting 0, and a stub whose `auth status` exits 3 prints `jev arm skipped: no credential` with every census line unchanged.
+EDIT 2: `.skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md`, in the `### COMM-011` section, the paragraph that starts `Verify the offline judge measurement counts` ends with `without changing the census.` Append one space and this sentence to that same line:
+The `--jev` switch is gated the same way, and a Jev without a credential prints its identity line and one skip line.
+Change nothing else in either file.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md --type playbook
+  grep -c -- "--jev" .skilled/skills/sk-communication/manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md
+  grep -c -- "--jev" .skilled/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md
+  git diff --stat -- .skilled/skills/sk-communication/manual-testing-playbook
+Accept when: exactly these 2 files changed, 1 insertion and 1 deletion each; both validators exit 0; both greps print at least 1.

@@ -1,0 +1,8 @@
+TASK: create one feature-catalog entry for the alignment suggestion measurement.
+FILE (create): `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md`
+MODEL: `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/compaction-recall-census.md`. Read it in full first. Same doc type (feature catalog entry, sk-doc mode `sk-create-feature-catalog`), same frontmatter keys, sections and anchors, and about the same length.
+WRITE: title "Alignment suggestion measurement". Say what S measures, its zero-call default, the label gate, the two opt-in arms with their gates, the keep rule and verdict line, and that nothing is served. The source table lists S and T as the implementation and test files and `runtime/cli/spec-folder/alignment-validator.ts` as read only. Link the playbook scenario `../../manual-testing-playbook/tooling-and-scripts/alignment-suggestion-measurement.md` (scenario 461) the way the model links its scenario.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md
+  grep -c "score-alignment-suggestion" .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md
+Accept when: 1 file created and nothing else changed; the validator exits 0; the grep prints at least 2.

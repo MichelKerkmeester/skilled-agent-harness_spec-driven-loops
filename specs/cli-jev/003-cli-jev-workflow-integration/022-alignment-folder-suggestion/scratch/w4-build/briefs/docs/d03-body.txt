@@ -1,0 +1,11 @@
+TASK: create manual testing playbook scenario 461 for the alignment suggestion measurement.
+FILE (create): `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/alignment-suggestion-measurement.md`
+MODEL: `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/compaction-recall-census.md` (scenario 460). Read it in full first. Same doc type (sk-doc mode `sk-create-manual-testing-playbook`), same frontmatter keys, sections, anchors and step table shape. Frontmatter `title: "461 -- Alignment suggestion measurement"` and `version: 4.4.0.0`.
+SCENARIO (three steps, each with its exact command and expected result from FACTS):
+ 1. From `.skilled/skills/system-spec-kit/runtime/cli`: `npx tsx evals/score-alignment-suggestion.ts` prints the census lines and both replay lines and exits 0, with no `jev` or `cli-deem` started.
+ 2. `npx tsx evals/score-alignment-suggestion.ts --score <rows file with empty labels> --deem --out <dir outside the repo>` prints `stop: fewer than 30 labeled rows (0 labeled)` and exits 0, and `<dir>` is not created.
+ 3. The vitest command from FACTS prints 42 passed and exits 0.
+Link the catalog entry `../../feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md` the way the model links its entry.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/alignment-suggestion-measurement.md
+Accept when: 1 file created and nothing else changed; the validator exits 0.

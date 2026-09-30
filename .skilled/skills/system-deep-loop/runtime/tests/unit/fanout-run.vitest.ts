@@ -2268,6 +2268,20 @@ describe('fanout-run.cjs — buildLoopPrompt identity wording', () => {
     }
   });
 
+  it('names the lineage steer.md by absolute path for a CLI lineage only', () => {
+    const lineageDir = 'specs/test-fanout-steer/research/lineages/seat';
+    const cliPrompt = buildLoopPrompt(
+      'research', 'specs/test-fanout-steer', lineageDir, 'fanout-research-run-123',
+      { kind: 'cli-opencode', label: 'seat', model: 'opencode-go/glm-5.1' }, 'test research topic',
+    );
+    expect(cliPrompt).toContain(`Before each iteration, read ${resolve(process.cwd(), lineageDir, 'steer.md')} when it exists.`);
+    const nativePrompt = buildLoopPrompt(
+      'research', 'specs/test-fanout-steer', lineageDir, 'fanout-research-run-123',
+      { kind: 'native', label: 'seat' } as never, 'test research topic',
+    );
+    expect(nativePrompt).not.toContain('steer.md');
+  });
+
   it('rejects deprecated context fan-out prompt construction', () => {
     expect(() => buildLoopPrompt(
       'context' as never,

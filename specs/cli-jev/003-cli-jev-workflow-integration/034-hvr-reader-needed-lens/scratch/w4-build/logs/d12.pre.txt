@@ -1,0 +1,35 @@
+M  .hermes/skills/deep-review/SKILL.md
+M  .skilled/commands/deep/assets/compiled/deep-review.contract.md
+ M .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/README.md
+M  .skilled/skills/system-deep-loop/deep-review/README.md
+M  .skilled/skills/system-deep-loop/deep-review/SKILL.md
+A  .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md
+M  .skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md
+A  .skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md
+A  .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md
+M  .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md
+M  .skilled/skills/system-deep-loop/deep-review/scripts/README.md
+A  .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs
+M  .skilled/skills/system-deep-loop/deep-review/scripts/tests/README.md
+A  .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs
+ M .skilled/skills/system-deep-loop/runtime/README.md
+ M .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md
+ M .skilled/skills/system-deep-loop/runtime/scripts/README.md
+ M specs/cli-jev/003-cli-jev-workflow-integration/scratch/w4-session/orchestration-log.md
+?? .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py
+?? .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py
+?? .skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md
+?? .skilled/skills/system-deep-loop/runtime/changelog/v1.9.0.0.md
+?? .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md
+?? .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs
+?? .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs
+?? .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts
+?? .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts
+?? specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch/w4-session/
+?? specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/scratch/w4-session/

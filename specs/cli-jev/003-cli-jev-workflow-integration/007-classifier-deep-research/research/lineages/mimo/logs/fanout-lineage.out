@@ -1,0 +1,9 @@
+All gates pass. Final state, honestly stated:
+
+- **Ran:** phase_init, 10/10 forced iterations (mimo-01…mimo-10, waves W1–W4 with the per-iteration contract), phase_synthesis — all inline in this session, no nested dispatch.
+- **Wrote (only inside the lineage):** `iterations/iteration-001.md`…`iteration-010.md`, `deltas/iter-001.jsonl`…`iter-010.jsonl`, `deep-research-config.json`, `deep-research-strategy.md`, `deep-research-state.jsonl` (12 records through the append gateway: config, 10 iterations, terminal synthesis), `findings-registry.json`, `research.md`, four counting harnesses + eight results files, `events/*.json`.
+- **Verified (observed output):** iteration files exactly 1..10; state records exactly 1..10; the **last** state record is `{"type":"event","event":"synthesis_complete","stopReason":"maxIterationsReached"}` (REQ-003's shape); `research.md` non-empty; `git status` shows no modified tracked file and nothing I wrote outside `research/lineages/mimo/` (the only out-of-lineage untracked file, `research/observability-events.jsonl`, is the fan-out runner's own).
+- **Inferred vs confirmed:** every load-bearing number is a counted result with a rerunnable harness in the lineage; the two proposed thresholds (Deem memory 2× baseline, replay divergence 5%) and all label-size/labor figures are marked inferred in the synthesis.
+- **Operator-only:** nothing is required; the synthesis's inputs await the Opus synthesis leaf and the lead's remaining `steer.md` reviews per REQ-004.
+
+FANOUT_LINEAGE_COMPLETE:mimo

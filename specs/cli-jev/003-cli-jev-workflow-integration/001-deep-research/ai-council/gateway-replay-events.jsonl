@@ -1,0 +1,16 @@
+{"event":"artifact_written","path":"ai-council/ai-council-config.json","bytes":null,"checksum":null,"timestamp":null,"seat_id":null,"round_id":"round-001"}
+{"event":"artifact_written","path":"ai-council/ai-council-strategy.md","bytes":null,"checksum":null,"timestamp":null,"seat_id":null,"round_id":"round-001"}
+{"event":"round_start","round":1,"timestamp":null,"seats":["seat-001","seat-002","seat-003"]}
+{"event":"artifact_written","path":"ai-council/seats/round-001/seat-001-opus-max.md","bytes":null,"checksum":null,"timestamp":null,"seat_id":"seat-001","round_id":"round-001"}
+{"event":"seat_returned","round":1,"seat":"seat-001","timestamp":null,"status":"ok"}
+{"event":"artifact_written","path":"ai-council/seats/round-001/seat-002-opus-max.md","bytes":null,"checksum":null,"timestamp":null,"seat_id":"seat-002","round_id":"round-001"}
+{"event":"seat_returned","round":1,"seat":"seat-002","timestamp":null,"status":"ok"}
+{"event":"artifact_written","path":"ai-council/seats/round-001/seat-003-opus-max.md","bytes":null,"checksum":null,"timestamp":null,"seat_id":"seat-003","round_id":"round-001"}
+{"event":"seat_returned","round":1,"seat":"seat-003","timestamp":null,"status":"ok"}
+{"event":"artifact_written","path":"ai-council/deliberations/round-001.md","bytes":null,"checksum":null,"timestamp":null,"seat_id":null,"round_id":"round-001"}
+{"event":"deliberation_synthesized","round":1,"timestamp":null,"convergence_score":0.86}
+{"event":"round_end","round":1,"timestamp":null,"new_findings_count":0}
+{"event":"artifact_written","path":"ai-council/council-report.md","bytes":null,"checksum":null,"timestamp":null,"seat_id":null,"round_id":"round-001"}
+{"event":"artifact_written","path":"ai-council/proposed-resynthesis.md","bytes":null,"checksum":null,"timestamp":null,"seat_id":null,"round_id":"round-001"}
+{"event":"artifact_written","path":"ai-council/ai-council-config.json","bytes":null,"checksum":null,"timestamp":null,"seat_id":null,"round_id":"round-001"}
+{"event":"council_complete","timestamp":null,"final_report_path":"ai-council/council-report.md","convergence":true}

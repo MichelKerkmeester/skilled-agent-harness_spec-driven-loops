@@ -1,0 +1,48 @@
+✔ positive fixture passes every named check (5.832458ms)
+✔ anchored criteria count even after a numbered directive list (0.744708ms)
+✔ an over-length phase child that is not a phase parent passes the budget (1.190292ms)
+✔ binding-row-removed-but-identifier-mentioned fails only missing-binding-row (1.474208ms)
+✔ objective-placeholder fails only placeholder (1.308292ms)
+✔ decision-placeholder fails only placeholder (1.169917ms)
+✔ criterion-placeholder fails only placeholder (1.038084ms)
+✔ criteria-count-out-of-range fails only criteria-count (1.126917ms)
+✔ over-budget-parent fails only parent-budget (1.925792ms)
+✔ over-budget-nested-phase-parent fails only parent-budget (1.630458ms)
+✔ frontmatter-inner-fence fails only frontmatter-fence (1.236667ms)
+✔ an unfilled copy of goal-top-level-template.md fails placeholder on objective, decision and criteria (1.048583ms)
+✔ an unfilled copy of goal-phase-parent-template.md fails placeholder on objective, decision and criteria (0.867375ms)
+✔ an unfilled copy of goal-phase-child-template.md fails placeholder on objective, decision and criteria (0.828792ms)
+✔ a goal.md path checks the folder that holds it (57.189875ms)
+✔ a path to another file still exits 2 as not a directory (27.735209ms)
+✔ the ported parser counts criteria the way check-goal does (6.622375ms)
+✔ each criterion carries its file line and a 12-hex text hash (0.392917ms)
+✔ rule 4 fails a dangling definite description (0.274417ms)
+✔ rule 4 passes a line whose references resolve locally (0.073042ms)
+✔ rule 5 fails a check that needs another document (1.289ms)
+✔ rule 5 passes a check on named commands and counts (0.06575ms)
+✔ a line can fail both rules (0.1095ms)
+✔ placeholder and unscored lines stay out of both rules (0.0635ms)
+✔ a goal with no criteria yields no records and counts as no_input (1.752583ms)
+✔ the walker excludes scratch paths and z_archive (5.936083ms)
+✔ the command line exits 0 and names a missing packet or a bad option (52.047959ms)
+✔ the report prints per-rule counts and each flagged line (59.623792ms)
+✔ per-rule precision, recall and F1 (0.468417ms)
+✔ the labeled violation rate carries a Wilson 95% interval (0.083792ms)
+✔ a rate under 0.05 prints the stop line (0.115209ms)
+✔ stale labels and unscored lines leave every rate (0.057208ms)
+✔ unlabeled rows print no rate (0.260209ms)
+✔ mixed rubrics print a mismatch and no rate (0.04825ms)
+✔ the command line scores fixture labels from a saved lint run (53.817333ms)
+✔ the command line refuses a missing labels flag and names a bad labels line (24.8855ms)
+✔ goal-top-level-template.md keeps the fixed text of goal.md.tmpl at level 2 (0.882625ms)
+✔ goal-phase-parent-template.md keeps the fixed text of goal.md.tmpl at level phase (0.183917ms)
+✔ goal-phase-child-template.md keeps the fixed text of goal.md.tmpl at level 2 (0.438958ms)
+✔ a template missing a fixed line fails parity and names the line (0.231083ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 204.347667

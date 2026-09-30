@@ -1,0 +1,16 @@
+All checks pass. The prepared copy replaced the target byte for byte.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md (+11/-11)
+EDITS:
+- .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md:5-6 title/description now say "resolves mode cli-deem"
+- .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md:13 version bumped to 1.1.0.0
+- .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md:15 heading updated to "A Deem request resolves mode cli-deem"
+- .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md:27 Why This Matters now describes the compiled front door and the `cli-deem`-only policy
+- .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md:33-39 contract expects `action: "route"`, `selectionKind: "single"`, one `cli-deem` target, registry `cli-deem,cli-jev`
+- .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md:53 scenario-table row updated to the compiled-route and two-mode-registry expectations
+CHECKS:
+- cmp specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/attach/playbook/hub-routing/deem-request-routes-to-transport.md .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md -> no output (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md -> "✅ VALID: ... Total issues: 0" (exit 0)
+BLOCKED REASON: none

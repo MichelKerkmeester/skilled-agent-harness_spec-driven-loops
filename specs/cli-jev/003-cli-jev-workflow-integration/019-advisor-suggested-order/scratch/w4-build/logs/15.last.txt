@@ -1,0 +1,10 @@
+Insert complete and verified: the new row sits directly after line 229, only F changed (+1/−0), grep count is 1, validator reports zero issues with exit 0. Work is edited and dirty in the worktree; the orchestrator runs tests, spec validation and commits. Nothing is blocked on me.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/README.md (+1/-0)
+EDITS: .skilled/skills/system-skill-advisor/README.md:230 inserted `| Offline suggested-order eval | ... |` row directly after line 229 (`| Offline tie-break eval |`), rest of file byte-identical
+CHECKS: grep -c "^| Offline suggested-order eval |" .skilled/skills/system-skill-advisor/README.md -> 1 (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/README.md | tail -3 -> "✅ VALID: .skilled/skills/system-skill-advisor/README.md / Total issues: 0" (exit 0)
+CHECKS: git diff --numstat -- .skilled/skills/system-skill-advisor/README.md -> "1	0	.skilled/skills/system-skill-advisor/README.md" (exit 0)
+BLOCKED REASON: none

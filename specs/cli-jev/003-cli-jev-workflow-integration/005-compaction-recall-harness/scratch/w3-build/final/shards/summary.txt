@@ -1,0 +1,13 @@
+shard 1/12 exit=0 seconds=103 ps_bytes=177668
+shard 2/12 exit=0 seconds=89 ps_bytes=171832
+shard 3/12 exit=1 seconds=487 ps_bytes=172638
+shard 4/12 exit=0 seconds=95 ps_bytes=173038
+shard 5/12 exit=0 seconds=151 ps_bytes=173167
+shard 6/12 exit=1 seconds=36 ps_bytes=172984
+shard 7/12 exit=0 seconds=96 ps_bytes=172603
+shard 8/12 exit=0 seconds=96 ps_bytes=172784
+shard 9/12 exit=0 seconds=91 ps_bytes=172411
+shard 10/12 exit=0 seconds=126 ps_bytes=173339
+shard 11/12 exit=0 seconds=103 ps_bytes=173176
+shard 12/12 exit=0 seconds=71 ps_bytes=173176
+failing_shards=2

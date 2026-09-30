@@ -1,0 +1,13 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs (+89/-13)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts (+48/-1)
+EDITS: .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs:16 extended fs/path imports for appendFileSync, mkdirSync, writeFileSync, join
+EDITS: .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs:61 added `ORDERS = 3` with JSDoc
+EDITS: .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs:348-389 new section 9: exported `payloadSplit(rows)` (accepted/withheld by `jev_ok`) and exported `createCallLog(outDir)` (lazy `calls.jsonl`, sibling shape); CLI/MAIN renumbered to 10/11
+EDITS: .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs:500-533 main: named `headroom`, created the call log, payload gate runs only where the Jev arm would — 3 `unmeasured_withheld` records per withheld row (wallMs 0, exitCode null, no spawn), or `jev arm skipped: payload not accepted` when no row is accepted
+EDITS: .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts:84 added `readCallsLog` JSONL helper
+EDITS: .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts:266-302 added tests `withheld row` (30 rows spread across labels with one `jev_ok:false`: 3 withheld records, orders 0-2, no wall time, no exit code) and `no accepted row` (skip line, exit 0)
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs -> no output, syntax accepted (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts -> 16 (exit 0); the two new names `withheld row` and `no accepted row` are present, 14 earlier tests untouched
+CHECKS: git status --porcelain -- .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts -> `?? .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/`, `?? .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts` (exit 0); no other path touched by this step
+BLOCKED REASON: none

@@ -1,0 +1,31 @@
+Mon Sep 28 13:26:14 CEST 2026
+## update.log tail
+2026-09-28T06:15:58Z current: model 8cbabbb, source 7cf293f
+## probe count before
+0
+exit 1
+## probe
+{"status": "ok", "model": "deem-0.8-v1", "backend": "torch"}
+exit 0
+## probe count after probe
+1
+exit 0
+## deem-ctl stop
+exit 0
+## deem-ctl start
+running (pid 43843)
+exit 0
+## probe count after restart
+1
+exit 0
+## probe line
+127.0.0.1 - - [28/Sep/2026 13:26:14] "GET /health?probe=016 HTTP/1.1" 200 -
+## DEEM_ACCESS_LOG=1 count
+1
+exit 0
+## status
+{"status": "ok", "model": "deem-0.8-v1", "backend": "torch"}
+model 8cbabbb, source 7cf293f
+exit 0
+## NUL bytes
+       0

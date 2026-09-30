@@ -1,0 +1,13 @@
+Verification passed and the scope is confirmed: only T was modified (both files are untracked in this worktree, so `git diff` is empty; `git status` shows no change by me to S). Note: line 727 also dereferenced `entry.tail[0]`, so it was adapted to `entry.tail(stubs)[0]` as part of the same scoping fix — without it the no-credential case would evaluate against `undefined`.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts (+6/-6)
+EDITS:
+- .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts:695 `tail` type changed from `string[]` to `(stubs: string) => string[]`
+- .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts:699 no-credential case `tail` changed to `(stubs) => ['jev arm skipped: no credential']`
+- .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts:704 wrong-version case `tail` changed to `(stubs) => [...]`, resolving `path.join(stubs, 'jev')` from the parameter
+- .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts:709 missing-binary case `tail` changed to `(stubs) => ['jev arm skipped: jev not on PATH']`
+- .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts:722 spread changed to `...entry.tail(stubs)`
+- .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts:727 log expectation changed to `entry.tail(stubs)[0] === 'jev arm skipped: no credential'`
+CHECKS: `npx vitest run tests/unit/score-severity-replay.vitest.ts` (from `.skilled/skills/system-deep-loop/runtime`) -> `Tests  27 passed (27)` (exit 0)
+BLOCKED REASON: none

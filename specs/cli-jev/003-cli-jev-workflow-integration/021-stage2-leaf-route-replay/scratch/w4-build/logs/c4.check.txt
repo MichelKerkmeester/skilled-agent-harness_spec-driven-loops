@@ -1,0 +1,28 @@
+✔ parseRouter reads an active block (2.217042ms)
+✔ parseRouter reports a stage1-only block (0.131292ms)
+✔ keywordHits guards the four keywords (0.142417ms)
+✔ scoreIntents weights and sorts (0.183958ms)
+✔ selectIntents keeps one point apart (0.160417ms)
+✔ selectIntents returns UNKNOWN (0.249542ms)
+✔ toPairs resolves packet-qualified and alias paths (0.342667ms)
+✔ toPairs counts an unresolvable path (0.081875ms)
+✔ scoreRow partial set (0.111625ms)
+✔ scoreRow empty prediction (0.10125ms)
+✔ scoreRow exact match (0.064917ms)
+✔ countRouterReads finds one read (2.901625ms)
+✔ countRouterReads prints no text (1.204041ms)
+✔ replayVerdict keeps (0.19075ms)
+✔ replayVerdict drops (0.127917ms)
+✔ replayVerdict stops on coverage (0.090875ms)
+✔ a switch without --out exits 2 (0.152833ms)
+✔ without the flag the reads line prints not measured (1.277083ms)
+✔ --transcripts on a missing path exits 2 (0.576291ms)
+✔ --prose on a missing file exits 2 (0.533958ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 72.060834

@@ -1,0 +1,17 @@
+Both copies are in place and byte-identical to the prepared file. Both show exactly +34/-8 per `git diff --numstat`. The other dirty files in `git status` belong to concurrent workers; I touched only the two named targets.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+- .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json (+34/-8)
+- specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json (+34/-8)
+EDITS:
+- .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json:1-154 full-file replacement with prepared copy (8 lines "cli-usage"→"cli-jev", 2 new case objects inserted: Deem single-route, Deem-verb must-not-route)
+- specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json:1-154 identical full-file replacement
+CHECKS:
+- cmp scratch/w3-build/attach/canary-cases.v1.json $R -> (no output) (exit 0)
+- cmp scratch/w3-build/attach/canary-cases.v1.json $T -> (no output) (exit 0)
+- python3 -c "import json,sys; d=json.load(open(sys.argv[1])); print(len(d['cases']))" $R -> 9 (exit 0)
+- grep -c '"cli-usage"' $R -> 0 (exit 1)
+- grep -c '"cli-jev"' $R -> 8 (exit 0)
+BLOCKED REASON: none

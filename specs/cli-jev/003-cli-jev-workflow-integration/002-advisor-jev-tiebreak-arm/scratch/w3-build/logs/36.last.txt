@@ -1,0 +1,10 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+6/-0)
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+22/-1)
+EDITS: score-jev-tiebreak.mjs:1511 JSDoc: a passing Deem gate returns 2 without --out, before its first call
+EDITS: score-jev-tiebreak.mjs:1568 main returns 2 when a passing Deem gate has no --out, before runDeemArm
+EDITS: score-jev-tiebreak.vitest.ts:420 health-line test passes a temp --out and removes it in finally
+EDITS: score-jev-tiebreak.vitest.ts:444 refusal test: passing Deem gate without --out exits 2 after health only
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> (no output) (exit 0)
+CHECKS: grep -c "runScript(\['--deem'\], env)" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts -> 6 (exit 0)
+BLOCKED REASON: none

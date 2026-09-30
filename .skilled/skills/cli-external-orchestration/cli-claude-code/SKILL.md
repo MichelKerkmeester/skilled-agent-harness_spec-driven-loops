@@ -3,15 +3,6 @@ name: cli-claude-code
 description: "Claude Code CLI executor for Anthropic-backed reasoning, edits, reviews, and structured cross-AI handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.5.2.0
-hard_rules:
-  - id: stdin-redirect-required
-    check: stdin-redirect-required
-    message: "Any non-interactive dispatch MUST close/redirect stdin (`</dev/null`). Omitting it can hang with zero output, which is indistinguishable from a slow model."
-    severity: error
-  - id: non-interactive-permission-mode-risk
-    check: non-interactive-permission-mode-risk
-    message: "Non-interactive `claude -p` with acceptEdits + no TTY + a Bash-heavy prompt can deadlock on an unanswerable shell-permission prompt; run it sandboxed with `--dangerously-skip-permissions` or ensure the prompt needs no shell approval."
-    severity: warn
 ---
 
 <!-- Keywords: claude-code, claude-cli, anthropic, cross-ai, deep-reasoning, extended-thinking, code-editing, structured-output, agent-delegation, opus, sonnet, haiku -->

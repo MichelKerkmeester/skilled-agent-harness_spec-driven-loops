@@ -1,0 +1,31 @@
+[
+  [],
+  [
+    {
+      "id": "stdin-redirect-required",
+      "severity": "block",
+      "message": "Ad-hoc `opencode run` MUST close/redirect stdin (`</dev/null`) — omitting it can hang indefinitely at 0% CPU with zero output.",
+      "check": "stdin-redirect-required",
+      "passed": false
+    }
+  ],
+  [
+    {
+      "id": "explicit-model-required",
+      "severity": "block",
+      "message": "Always pass `-m <provider/model>` to a non-interactive `opencode run`. When the configured default provider is out of quota, opencode retries the 429 indefinitely and produces NO output — indistinguishable from a deadlock. Confirm with `--print-logs --log-level DEBUG` (look for 'stream error … Error 429').",
+      "check": "explicit-model-required",
+      "passed": false
+    }
+  ],
+  [
+    {
+      "id": "command-flag-for-slash-prompt",
+      "severity": "block",
+      "message": "A slash-command-shaped prompt (`/family:name ...`) needs `--command <family>/<name>`, else opencode silently delivers the slash text as raw prose.",
+      "check": "command-flag-for-slash-prompt",
+      "passed": false
+    }
+  ],
+  []
+]

@@ -1,0 +1,30 @@
+All verification is complete. Summary:
+
+**S** (`score-verdict-fallback.cjs`): added §8 ARM HELPERS (`nearestRank`, `spawnCall`, `createCallLog`, ported verbatim from the sibling), §9 ARMS (`runDeemArm`: notice line, three option rotations per row, `answers.answer.choice` validation, exit-4 health recheck + one retry, exit table with stop lines and `deem: partial rows=<n>`, `calls.jsonl` records, latency line, requalify line, verdict line), `spawn` import, `labelsSha` (SHA-256 of the outputs file bytes), the plan/call-log wiring in `main`, and exports.
+
+**T** (`verdict-fallback.vitest.ts`): added the `arms` describe (test 17: `--deem` without `--out`; test 24: skipped arm + no `calls.jsonl`) and the `deem arm` describe (rows 18–22 end-to-end through `main` with a stub `cli-deem`). Test count 18 → 25.
+
+Since vitest is reserved for the orchestrator, I verified the pipeline with read-only `node` smokes in `os.tmpdir()` (cleaned up): all five verdict scenarios printed the exact expected lines, `calls.jsonl` held 36 measured records with orders 1/2/3 and the first-key rotation `pass,fail,block`, and the exit-4 retry / exit-3 stop paths behaved as designed.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs (+278/-11)
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts (+151/-0)
+EDITS: score-verdict-fallback.cjs:22 imports `spawn` beside `spawnSync` for the bounded child process
+EDITS: score-verdict-fallback.cjs:568-825 added §8 ARM HELPERS (`nearestRank`, `spawnCall`, `createCallLog`, JSDoc each) and §9 ARMS (`runDeemArm` with JSDoc: 3K planned-calls notice, three option rotations per row via `choice -q <QUESTION> -o <key>=<description>`, `answers.answer.choice` must be a submitted key, exit-4 health recheck + one retry, 2/3/130 stop lines + `deem: partial rows=<n>`, `unmeasured`/`unmeasured_timeout` statuses, `calls.jsonl` records with `output/order/attempt/wallMs/exitCode/pick/status` + `modelId/modelCommit/sourceCommit`, column latency line, requalify line, deem verdict line with commit-pair suffix)
+EDITS: score-verdict-fallback.cjs:886 declared `labelsSha` beside `kept`
+EDITS: score-verdict-fallback.cjs:893-895 read the outputs file once as bytes, parse its text, and hash the bytes as the label digest
+EDITS: score-verdict-fallback.cjs:960-969 `main` builds the call log and the open-gate plan and runs `runDeemArm` after a passing Deem gate; closed-gate skip lines unchanged
+EDITS: score-verdict-fallback.cjs:986 exported `nearestRank`, `spawnCall`, `createCallLog`, `runDeemArm`
+EDITS: verdict-fallback.vitest.ts:10 added the `Deem arm` module-map line
+EDITS: verdict-fallback.vitest.ts:588-613 added `arms` describe: test 17 (`--deem` without `--out` -> exit 2, exact stderr, no stub log) and test 24 (stub health -> `deem arm skipped: stub backend`, no `calls.jsonl`; the `report.skipped.deem` assertion belongs to the report step per the design)
+EDITS: verdict-fallback.vitest.ts:615-737 added `deem arm` describe: `HEALTHY` + `ANSWER` stub (stdin `ORDER:abc` marker picks the per-order key; digit 0 yields a non-submitted key), `runArm` helper (outputs file -> sha256, stub first on PATH, `--deem --out`), and the arm versions of rows 18-22: `verdict: keep` (36 measured calls, orders 1/2/3, exact keep line), `verdict: kill`, `verdict: stop (margin)`, `verdict: stop (coverage)`, `verdict: stop (flips)`
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts -> 25 (exit 0)
+CHECKS: read-only node smoke of `main` on all five arm scenarios (temp dir, removed) -> exact `verdict deem:` lines for keep/kill/margin/coverage/flips (exit 0)
+CHECKS: read-only node smoke of exit-4 retry and exit-3 stop -> `attempt 1 exitCode 4 unmeasured` then `attempt 2 measured`; `deem arm stopped: backend refused` + `deem: partial rows=0`, one call record, no verdict (exit 0)
+CHECKS: grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization' <S> -> no match (exit 1)
+CHECKS: grep -nE 'specs/|REQ-|phase [0-9]|packet|025-' <S> <T> -> no match (exit 1)
+CHECKS: git status --porcelain -- <S> <T> -> both `??` (exit 0)
+BLOCKED REASON: none
+```

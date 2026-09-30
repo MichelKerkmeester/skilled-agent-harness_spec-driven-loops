@@ -1,0 +1,15 @@
+TASK: add the compaction recall census block to the root feature catalog, in section 2 between two existing entries.
+FILE = .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md (the only file you may edit). Read lines 86 to 110 first.
+BLOCK = specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/content/catalog-index-block.md (read only, 16 lines, ends with `---` and one empty line)
+
+Insert the full content of BLOCK, byte for byte, immediately before the line `### Completion-verdict freshness validation`
+(line 106), so the file reads: ... the `---` and empty line that close `### Code standards alignment`, then BLOCK's 16 lines,
+then `### Completion-verdict freshness validation`. Use a script, for example:
+python3 -c "import pathlib;f=pathlib.Path('.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md');b=pathlib.Path('specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/scratch/w3-build/briefs/content/catalog-index-block.md').read_text();s=f.read_text();a='### Completion-verdict freshness validation\n';assert s.count(a)==1;f.write_text(s.replace(a,b+a))"
+Do not touch any other line.
+
+VERIFY (repo root), report each result and exit code:
+grep -n '^### Compaction recall census$' .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md   (expect line 106)
+grep -n '^### Completion-verdict freshness validation$' .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md   (expect line 122)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md   (expect exit 0)
+Accept when: 1 file changed (+16/-0) and nothing else; the two greps print lines 106 and 122; validate_document exits 0.

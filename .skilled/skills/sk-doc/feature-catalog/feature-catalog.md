@@ -1,19 +1,22 @@
 ---
 title: "sk-doc: Feature Catalog"
-description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across fourteen documentation-authoring packets, the default-on compiled-routing fast path that resolves ahead of it and the shared validator's changelog entry check."
+description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across fourteen documentation-authoring packets, the default-on compiled-routing fast path that resolves ahead of it, the zero-call clarify census, the stage-two leaf route replay with its keep rule, the shared validator's changelog entry check and the advisory goal-criteria lint."
 trigger_phrases:
   - "sk-doc feature catalog"
   - "sk-doc hub capabilities"
   - "packet-authored registry routing"
   - "sk-doc compiled routing"
   - "changelog entry frontmatter check"
-last_updated: "2026-09-27"
+  - "goal criteria lint"
+  - "clarify default measurement"
+  - "hvr reader-needed lens"
+last_updated: "2026-09-29"
 version: 2.2.0.12
 ---
 
 # sk-doc: Feature Catalog
 
-This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of fifteen workflow modes — spread across fourteen packets, since one packet backs two modes — whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to. The hub's shared validator also holds every changelog entry to its search metadata.
+This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of fifteen workflow modes — spread across fourteen packets, since one packet backs two modes — whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to. A zero-call census in `sk-create-skill` counts how often that fast path answers `clarify`. The hub's shared validator also holds every changelog entry to its search metadata. An advisory lint in `sk-create-goal` flags goal criteria a reader cannot check from the line alone.
 
 ---
 
@@ -39,6 +42,20 @@ Each of the hub's fourteen packets owns a single `Keyword triggers:` line as the
 
 See [`packet-authored-registry-routing/packet-authored-registry-routing.md`](packet-authored-registry-routing/packet-authored-registry-routing.md) for the full discriminator and source anchors.
 
+### Leaf Route Replay
+
+#### Description
+
+Replays each parent hub's stage-two keyword block against the committed gold with zero model calls and judges keep, drop or stop against the prose arm.
+
+#### Current Reality
+
+`leaf-route-replay.cjs` in `sk-create-skill` runs each parent hub's `INTENT_SIGNALS` and `RESOURCE_MAP` blocks over the 56-row committed gold, one row per committed scenario that carries a prompt and leaf pairs, and prints per-hub precision, recall, F1 and exact match with zero model calls. sk-code's gold row prints `surface slice not replayed` and stays unscored, and `cli-classifier` prints `stage1-only`. `--transcripts <dir>` recounts each hub's router-file reads behind the block as counts and bytes per hub and week, and `--prose <file>` compares the keyword arm with the pairs a prose transcript records under the coverage rule `10*P >= 9*N` and prints `replay verdict: keep`, `drop` or `stop (prose arm covers <P> of <N> rows)`. The tie-break arms stay dormant until `--jev` or `--deem` with `--out <dir>` run behind their own gates, Jev first, and end each column in `verdict <jev|deem>: <keep|kill|stop (<reason>)>` under the keep rule. A `keep` serves nothing.
+
+#### Source Files
+
+See [`packet-authored-registry-routing/leaf-route-replay.md`](packet-authored-registry-routing/leaf-route-replay.md) for the keyword arm, the gold, the replay rule and source anchors.
+
 ---
 
 ## 3. COMPILED ROUTING
@@ -56,6 +73,20 @@ The directive is on by default for `sk-doc`, one of the seven activated hubs: wi
 #### Source Files
 
 See [`compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md`](compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md) for resolution order, the tri-state flag, and serving-status anchors.
+
+### Clarify Default Measurement
+
+#### Description
+
+Counts how often compiled hubs answer clarify with zero model calls and judges a suggested default only past 30 labeled rows.
+
+#### Current Reality
+
+`score-clarify-default.cjs` in `sk-create-skill` replays the committed canary cases, hub playbook scenarios and routing-corpus prompts through each hub's compiled engine, read only, and prints clarify counts per hub and source. It writes unlabeled clarify rows for the operator. `--score` stops below 30 labeled rows, and past that gate `--jev` and `--deem` each earn a verdict against the router's first alternative that serves nothing.
+
+#### Source Files
+
+See [`compiled-routing-and-legacy-fallback/clarify-default-measurement.md`](compiled-routing-and-legacy-fallback/clarify-default-measurement.md) for the census sources, the label gate, the keep rule and source anchors.
 
 ---
 
@@ -75,4 +106,46 @@ Blocks a changelog entry that lacks the search metadata a spec document carries,
 
 See [`document-validation/changelog-entry-frontmatter-check.md`](document-validation/changelog-entry-frontmatter-check.md) for the checks, the type order and source anchors.
 
-Note: this catalog documents `sk-doc`'s own hub-level routing and shared validation. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.
+### Goal Criteria Lint
+
+#### Description
+
+Flags goal completion criteria that a reader cannot check from the line alone, so an author can fix them before the objective carries them.
+
+#### Current Reality
+
+`lint-goal-criteria.cjs` in `sk-create-goal` gives the mode's rules 4 and 5 their first machine check, with no model call and exit 0 on every input. `score-goal-lint.cjs` measures it against operator labels, and `goal-criteria-labels.jsonl` holds 100 drawn lines that wait for those labels.
+
+#### Source Files
+
+See [`document-validation/goal-criteria-lint.md`](document-validation/goal-criteria-lint.md) for the rules, the line classes and source anchors.
+
+### Citation Drift Scan
+
+#### Description
+
+Reports the dead file-and-line citations in the tracked skill docs, where the target is gone or the cited line sits past its end, so an author can repair the citation before a reader follows it.
+
+#### Current Reality
+
+`cite-drift-scan.mjs` in `sk-doc`'s shared scripts counts the file-and-line citations in the prose of every tracked skill doc at `HEAD`, resolves each against the tracked files and prints one `cite dead: <doc>:<line> -> <target>:<line>` line per dead citation, where the target is missing on disk or the cited line sits past its end. The default run makes zero model calls and writes no file. `--jev` and `--deem` each run one backend and each needs `--out <dir>` so every call is recorded, with the Jev gate and arm first when both are set.
+
+#### Source Files
+
+See [`document-validation/citation-drift-scan.md`](document-validation/citation-drift-scan.md) for the resolution order, the label sample and source anchors.
+
+### HVR Reader-Needed Lens
+
+#### Description
+
+Measures offline whether a Jev or Deem `noul` flags three reader-needed Human Voice Rules tells better than the scanner's floor, which flags none of them.
+
+#### Current Reality
+
+`hvr_reader_lens.py` in `sk-create-with-human-voice`'s scripts gives the three reader-needed tells their first measurement: synonym cycling, significance inflation and false ranges, which `hvr_scan.py` leaves to a reader. The census walks the tracked `*.md` files under `.skilled/skills/` outside `/changelog/`, `/fixtures/` and `node_modules`, reads each file at the recorded commit and runs the unchanged `hvr_scan.py --json` over a temporary copy of that committed text outside the repository, so uncommitted edits never change it. The default run makes no model call, writes no file and holds no credential. `--draw --seed <n>` writes `hvr-reader-lens-labels.jsonl`, 150 rows, 50 per category, each with an empty label the operator fills with `yes` or `no`, and until every row carries one the run stops at `stop: fewer than 150 labeled rows`. `--jev` and `--deem` each measure one backend and each needs `--out <dir>` so every call is recorded, with the Jev gate and arm first when both are set.
+
+#### Source Files
+
+See [`document-validation/hvr-reader-needed-lens.md`](document-validation/hvr-reader-needed-lens.md) for the census, the label draw and source anchors.
+
+Note: this catalog documents `sk-doc`'s own hub-level routing and shared validation, plus the goal-criteria lint of `sk-create-goal` and the clarify census and leaf route replay of `sk-create-skill`, which ship no catalog of their own. `create-diff` already owns a per-packet child-mode catalog (`sk-create-diff/feature-catalog/feature-catalog.md`); this root catalog does not duplicate or supersede it.

@@ -1,0 +1,10 @@
+The diff is exactly one inserted row directly before the `score-stop-rater.cjs` row, alphabetically correct, with everything else byte-identical. Every claim traces to the script and FACTS: `readRaterReport` reads `<dir>/report.json`, `columnLine` prints per-column hint counts, `verdictLine` prints one Keep-Rule verdict per column past `gate.label.passed`, `--jev`/`--deem` add the rater's recorded columns, `--out <dir>` writes the run's report, and the script calls no model in any mode. No number or printed line is quoted.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: one line per file: `.skilled/skills/system-deep-loop/runtime/scripts/README.md` (+1/-0)
+EDITS: one line per step: `.skilled/skills/system-deep-loop/runtime/scripts/README.md`:52 inserted the `score-stop-hint.cjs` row in the §3 FILES table directly before the `score-stop-rater.cjs` row, matching that row's two-sentence shape
+CHECKS: one line per check:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/scripts/README.md` -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/scripts/README.md` (exit 0)
+- `git diff --stat -- .skilled/skills/system-deep-loop/runtime/scripts/README.md` -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

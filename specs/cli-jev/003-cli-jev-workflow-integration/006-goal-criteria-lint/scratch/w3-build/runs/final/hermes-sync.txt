@@ -1,0 +1,2 @@
+DRIFT sk-create-goal
+FAIL: 1 drifted, 0 stale; run without --check to regenerate

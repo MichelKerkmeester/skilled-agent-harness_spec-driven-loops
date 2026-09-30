@@ -1,0 +1,17 @@
+All checks pass. Scope confirms A (+2/−1) and P (+2/−0) only.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md (+2/-1)
+- .skilled/skills/system-skill-advisor/runtime/tests/parity/README.md (+2/-0)
+EDITS:
+- A:29 `| Code files | 3 |` → `| Code files | 4 |`
+- A:71 inserted `score-suggested-order.mjs` structure row after the `score-jev-tiebreak.mjs` row (was line 70)
+- P:33 inserted `score-suggested-order.vitest.ts` tree line after the `score-jev-tiebreak.vitest.ts` tree line (was line 32)
+- P:44 inserted `score-suggested-order.vitest.ts` key-files row after the `score-jev-tiebreak.vitest.ts` row (was line 43)
+CHECKS:
+- `grep -c "| Code files | 4 |\|score-suggested-order.mjs" .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md` -> `2` (exit 0)
+- `grep -c "score-suggested-order.vitest.ts" .skilled/skills/system-skill-advisor/runtime/tests/parity/README.md` -> `2` (exit 0)
+- `git diff --numstat` (scoped to A and P) -> `2 1 A; 2 0 P` (exit 0)
+BLOCKED REASON: none

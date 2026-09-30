@@ -1,0 +1,21 @@
+The Deem choice loop now keeps a shared description unique by appending its key. Distinct descriptions stay as they are, and the Jev arm is unchanged. The goal for this packet is already set.
+
+SKILL ROUTING: compiled route → sk-code-opencode
+ARTIFACT: sk-code → sk-code-opencode
+REPO RULES: prevent-overengineering.md, evidence-and-proof.md, communication-handoff.md
+
+Extending the existing Deem option builder in place is enough: the client refuses two options that share a description, and a separate helper would only add a symbol for this one caller.
+
+`node --check` printed nothing and exited 0. The vitest file was not run. Both files are edited and uncommitted.
+
+The orchestrator runs the test suite and the commit.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+10/-1)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+10/-0)
+EDITS: score-jev-tiebreak.mjs:1232 a shared description now carries its key
+score-jev-tiebreak.mjs:1245 Deem option text is read from that map
+score-jev-tiebreak.vitest.ts:852 distinct descriptions stay bare
+score-jev-tiebreak.vitest.ts:882 shared descriptions include the key
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> (no output) (exit 0)
+BLOCKED REASON: none

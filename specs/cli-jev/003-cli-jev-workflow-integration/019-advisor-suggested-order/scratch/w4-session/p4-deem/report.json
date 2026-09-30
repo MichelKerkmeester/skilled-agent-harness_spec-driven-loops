@@ -1,0 +1,52 @@
+{
+  "census": [
+    "census: file=labeled rows=177 eligible=93 movable=22 gold_first=61 gold_outside=10 gold_top3=164 tau03=18 over25=0",
+    "census: file=holdout rows=64 eligible=18 movable=1 gold_first=15 gold_outside=2 gold_top3=49 tau03=0 over25=0",
+    "census: split=train rows=121 eligible=54 movable=9 gold_first=38 gold_outside=7 gold_top3=106 tau03=7 over25=0",
+    "census: split=test rows=120 eligible=57 movable=14 gold_first=38 gold_outside=5 gold_top3=107 tau03=11 over25=0",
+    "baseline: holdout_top1=53/70",
+    "comparator: name=scorer rows=111 mrr=0.7811 right1=76 right3=99",
+    "comparator: name=confidence rows=111 mrr=0.7766 right1=75 right3=99",
+    "comparator: name=always_second rows=111 mrr=0.5498 right1=25 right3=99",
+    "comparator: name=rerank rows=57 mrr=0.7588 right1=37 right3=51",
+    "power: movable=23 decided_ceiling=99 min_wins=16 win_rate_80=0.749"
+  ],
+  "advisor": {
+    "children": 241,
+    "p50_ms": 779,
+    "p95_ms": 1011,
+    "max_ms": 1787,
+    "over_2200": 0,
+    "killed": 0
+  },
+  "headroom": "ok",
+  "columns": {
+    "deem": {
+      "rows": 111,
+      "measured": 108,
+      "ties": 64,
+      "abstentions": 13,
+      "baseline": "scorer",
+      "calls": 333,
+      "p50_ms": 1140,
+      "verdict": {
+        "outcome": "kill",
+        "line": "verdict deem: kill K=111 M=108 W=9 L=35 F=86 p=1.0000 mrr=0.6176/0.7750 p95_ms=1686 model=deem-0.8-v1 model_commit=8cbabbb2c4a7ef13c6b43f0ef3ae4157983c6d21 source_commit=3883f79261e5c61d3e8f230cad02b50c6d2b1891",
+        "K": 111,
+        "M": 108,
+        "W": 9,
+        "L": 35,
+        "F": 86,
+        "p": 0.9999872757006756,
+        "p_loss": 0.000053022333133867505,
+        "mrr_column": 0.6175925925925928,
+        "mrr_baseline": 0.775,
+        "p95_ms": 1686,
+        "model": "deem-0.8-v1",
+        "model_commit": "8cbabbb2c4a7ef13c6b43f0ef3ae4157983c6d21",
+        "source_commit": "3883f79261e5c61d3e8f230cad02b50c6d2b1891"
+      }
+    }
+  },
+  "stopped": {}
+}

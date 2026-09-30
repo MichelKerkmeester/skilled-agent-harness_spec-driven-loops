@@ -1,0 +1,1095 @@
+goals_scanned=323
+scratch_excluded=30
+criteria=1543
+scored=1485
+rule4_violations=1017
+rule5_violations=41
+both_violations=40
+placeholder=51
+lexical_unscored=7
+no_input=13
+errors=0
+no_input specs/hooks/011-pi-fast-mode-w-subagent-support/goal.md
+no_input specs/sk-code/007-sk-code-obsidian-surface/goal.md
+no_input specs/sk-design/018-sk-design-parent-v2/003-md-generator-as-mode/goal.md
+no_input specs/sk-design/018-sk-design-parent-v2/004-chart-and-diagram-cutover/goal.md
+no_input specs/sk-design/018-sk-design-parent-v2/005-closure-and-routing-proof/goal.md
+no_input specs/sk-design/018-sk-design-parent-v2/006-design-mode-and-command-rename/goal.md
+no_input specs/sk-design/018-sk-design-parent-v2/007-close-inherited-failures/goal.md
+no_input specs/sk-design/018-sk-design-parent-v2/008-fundamentals-beyond-ui/goal.md
+no_input specs/sk-design/018-sk-design-parent-v2/009-router-conformance/goal.md
+no_input specs/sk-design/018-sk-design-parent-v2/010-readme-human-voice/goal.md
+no_input specs/sk-design/018-sk-design-parent-v2/011-router-vocabulary-repair/goal.md
+no_input specs/sk-design/018-sk-design-parent-v2/012-template-screenshots/goal.md
+no_input specs/sk-design/018-sk-design-parent-v2/goal.md
+criteria_count specs/cli-external-orchestration/071-cli-hermes-creation/goal.md 11
+criteria_count specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/goal.md 10
+criteria_count specs/sk-communication/006-sk-communication-clarity/goal.md 9
+criteria_count specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment/goal.md 2
+criteria_count specs/sk-design/019-sk-design-diagram-upgrade/goal.md 11
+criteria_count specs/sk-git/028-crawlable-commit-history/goal.md 10
+criteria_count specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/goal.md 10
+criteria_count specs/system-skill-advisor/025-mcp-decommission-cli-front-door/goal.md 8
+criteria_count specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/003-restore-level-upgrade-and-vocabulary-invariance/goal.md 2
+criteria_count specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/goal.md 8
+criteria_count specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/goal.md 8
+criteria_count specs/system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation/goal.md 11
+criteria_count specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md 8
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/goal.md:82: each lineage
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/goal.md:83: the six runtimes
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/goal.md:84: the ten angles | the synthesis
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/goal.md:85: the run
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/goal.md:86: The findings
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/goal.md:90: the flag
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support/goal.md:87: the seventh
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support/goal.md:89: the D4
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/003-deep-loop-executor-support/goal.md:90: its artifacts
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet/goal.md:86: the seventh
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet/goal.md:88: Every manifest | every hard
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/004-cli-hermes-skill-packet/goal.md:89: The six existing
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/005-hermes-runtime-folder/goal.md:90: the loadable | the seven absences | the quarantined
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/006-hermes-hook-and-plugin-layer/goal.md:87: its terminal | the refusal | the tool | the completion-evidence | the provider
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/008-hermes-playbook-and-catalog/goal.md:84: the scenarios
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout/goal.md:84: every roster
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/009-docs-governance-and-closeout/goal.md:85: the shipped
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/010-hermes-hook-parity/goal.md:84: Every P2
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/010-hermes-hook-parity/goal.md:85: the prompt-time | the user
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/010-hermes-hook-parity/goal.md:86: every bridge
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/goal.md:98: the shared
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/goal.md:99: every acceptance
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/goal.md:101: Every documented | its own runtime
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/goal.md:103: Each closed
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/goal.md:104: the tree
+rule4 specs/cli-external-orchestration/071-cli-hermes-creation/goal.md:106: The preflight
+rule4 specs/cli-jev/001-cli-jev-creation/003-hub-mode-registration/goal.md:84: the rebuilt
+rule4 specs/cli-jev/001-cli-jev-creation/003-hub-mode-registration/goal.md:85: the fixture | the jev
+rule4 specs/cli-jev/001-cli-jev-creation/004-catalog-and-playbook/goal.md:86: The run | each skip | the missing
+rule4 specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/goal.md:83: Every mode | the cli-jev | every executor-only
+rule4 specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/goal.md:84: The hub | its own registry
+rule4 specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/goal.md:85: The parent | its five children
+rule4 specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/goal.md:86: the parent | the five children
+rule4 specs/cli-jev/001-cli-jev-creation/005-docs-governance-and-closeout/goal.md:87: The authenticated
+rule4 specs/cli-jev/001-cli-jev-creation/goal.md:76: The jev | every claim
+rule4 specs/cli-jev/001-cli-jev-creation/goal.md:78: The hub | the transport
+rule4 specs/cli-jev/001-cli-jev-creation/goal.md:79: The compiled-serving | the new policy
+rule4 specs/cli-jev/001-cli-jev-creation/goal.md:80: The catalog | their package
+rule4 specs/cli-jev/001-cli-jev-creation/goal.md:81: The recursive | the parent
+rule4 specs/cli-jev/001-cli-jev-creation/goal.md:82: the authenticated | the two SKIP
+rule4 specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/goal.md:73: the old path | the index
+rule4 specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/goal.md:74: The track
+rule4 specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/goal.md:75: The derived
+rule4 specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/goal.md:76: the retired
+rule4 specs/cli-jev/002-cli-jev-hub-migration/001-track-and-packet-migration/goal.md:77: the recursive | the track
+rule4 specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/goal.md:73: the registry
+rule4 specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/goal.md:74: The mode
+rule4 specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/goal.md:75: the new home | the old hub
+rule4 specs/cli-jev/002-cli-jev-hub-migration/002-hub-scaffold-and-mode-migration/goal.md:76: The hub | the compiled | the documented
+rule4 specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/goal.md:75: The old hub | its doctor
+rule4 specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/goal.md:76: The audit
+rule4 specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/goal.md:77: Every roster | the transport | the four mirror
+rule4 specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/goal.md:78: The generated | each regeneration
+rule4 specs/cli-jev/002-cli-jev-hub-migration/003-decouple-and-rewire/goal.md:79: The hub | the old hub
+rule4 specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/goal.md:75: The hub | the fleet | the engine | every cohort | the guard | the serving-closure
+rule4 specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/goal.md:76: The rollout | the hub | the authored
+rule4 specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/goal.md:77: The activation | its authored | the sanctioned
+rule4 specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/goal.md:78: The hub | the sentinel | the kill-switch
+rule4 specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/goal.md:79: the whole fleet | the fleet
+rule4 specs/cli-jev/002-cli-jev-hub-migration/004-compiled-fleet-onboarding/goal.md:80: The hub | its doc | the version | the package
+rule4 specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/goal.md:76: The no-key | the surface | the recorded
+rule4 specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/goal.md:77: The credential | every capture
+rule4 specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/goal.md:78: The hub | the compiled | the kill-switch
+rule4 specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/goal.md:79: The dispatch
+rule4 specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/goal.md:80: their scripts
+rule4 specs/cli-jev/002-cli-jev-hub-migration/005-playbook-reverification-and-closeout/goal.md:81: the index | the refused | the reworded
+rule4 specs/cli-jev/002-cli-jev-hub-migration/goal.md:85: The hub | the doctor | its transport
+rule4 specs/cli-jev/002-cli-jev-hub-migration/goal.md:87: The dispatch | the moved
+rule4 specs/cli-jev/002-cli-jev-hub-migration/goal.md:88: the track
+rule4 specs/cli-jev/002-cli-jev-hub-migration/goal.md:89: the suites | their pre-existing | the archived
+rule4 specs/cli-jev/002-cli-jev-hub-migration/goal.md:90: The playbook | the new home
+rule4 specs/cli-jev/002-cli-jev-hub-migration/goal.md:91: The recursive
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/goal.md:91: each recommendation
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/goal.md:92: The synthesis | every citation | its ranked | the orchestrator
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/goal.md:93: the scorer | the outcome-weighted
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/goal.md:94: the provider | the default | the stub
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/goal.md:95: the Jev
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/goal.md:96: the sign | its own column | its order-flip
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/goal.md:97: the exact | the aggregate | the local | its order-flip | the commit
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/goal.md:98: each script | the trigger | the Hermes | the trigger | its fixtures
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/goal.md:90: its counting | the unit | the files | the date
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/goal.md:91: the plugin | the as-ingested | its own row | the five heuristic
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/goal.md:92: the better | the heuristic | the clamp | the plugin
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/goal.md:93: the label | the tail-window | the wrapper | the Deem | the zero-call
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/goal.md:94: the label | the heuristic | the tail-window | its flip
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/goal.md:95: the backend | the heuristic | every shadow | the shadow | its backend
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/003-goal-verifier-jev-shadow/goal.md:96: the census | the plugin | those two skills
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/goal.md:62: its changes | the first synthesis | the council
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/goal.md:63: the topic
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/goal.md:65: each recommendation
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/goal.md:66: The synthesis | every citation | the orchestrator
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/004-deep-research-expansion/goal.md:67: Every build | the final synthesis
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/goal.md:90: this project | the same files
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/goal.md:91: every invocation | the census
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/005-compaction-recall-harness/goal.md:93: the named
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/goal.md:91: every row
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/goal.md:62: the Deem | its rollback
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/goal.md:63: each lead | its lineage
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/goal.md:64: each state
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/goal.md:66: the answer | every citation | each recommendation
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/goal.md:67: the two-backend | the synthesis
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/goal.md:94: the submitted
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/goal.md:95: every import
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub/goal.md:98: the trigger | the trigger | the hub
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/goal.md:90: the route
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/goal.md:91: every moved
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/goal.md:93: every prompt | the move
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/goal.md:88: the fix
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/goal.md:89: the committed
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/goal.md:91: the scratch
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/goal.md:92: the cold-lookup | the path-only | the placement
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes/goal.md:94: the save | the shared
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/goal.md:90: the end | each put | their AC
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/goal.md:94: each return
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/011-spec-validator-fixes/goal.md:95: the stub
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/012-sk-doc-validator-and-reference-fixes/goal.md:87: the two deep-research
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/goal.md:86: each print
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs/goal.md:87: the CRAFT
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check/goal.md:87: this build
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check/goal.md:90: The build | the sk-design | its mirror
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/014-sk-design-doc-and-routing-check/goal.md:91: the rerun | its gold | the baseline
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/goal.md:90: the merge | the three rounds
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/goal.md:92: the fix | the replay
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes/goal.md:94: the replay
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/016-deem-local-hardening/goal.md:97: the revisit
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/goal.md:90: its other output | the default
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/goal.md:92: the default | the local
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/goal.md:93: the Jev
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/goal.md:94: each script | their index | the Hermes | its report
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/goal.md:84: its pre-edit
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/goal.md:85: the dependency-name | the same harness
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/018-worktree-provision-shared-link/goal.md:86: the other eight listed
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/goal.md:100: the deciding
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/goal.md:101: every skill | the build
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/goal.md:102: each changed | its recorded
+rule4 specs/cli-jev/003-cli-jev-workflow-integration/goal.md:103: the parent
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership/goal.md:81: The six hooks
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership/goal.md:82: those two models | every point
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership/goal.md:83: every other provider
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/001-reclaim-deepseek-direct-ownership/goal.md:84: the split
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/002-port-cache-economics/goal.md:83: The report
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard/goal.md:81: the streaks
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard/goal.md:82: The guard
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/goal.md:82: The refusal
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/004-port-hash-verified-edits/goal.md:83: The capability
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/goal.md:80: The directory
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/goal.md:81: every remaining
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/goal.md:82: The provenance
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/goal.md:84: their generators
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/goal.md:85: The spec-kit | the parity
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/goal.md:81: the code
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/006-reconcile-extension-documentation/goal.md:82: The root
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/goal.md:85: the carve-out
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/goal.md:87: the DeepSeek-direct
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/goal.md:94: The retired | every live
+rule4 specs/hooks/016-cache-optimizer-absorbs-deep-pi/goal.md:98: the shipped
+rule4 specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/goal.md:67: The decision | the MCP
+rule4 specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/goal.md:68: the pin | the same documents
+rule4 specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/goal.md:69: The human-voice | the sweep | the count
+rule4 specs/mcp-tooling/019-official-obsidian-cli/001-cli-versus-mcp/goal.md:70: The readiness | every document | the probe
+rule4 specs/mcp-tooling/019-official-obsidian-cli/goal.md:86: every folder
+rule4 specs/mcp-tooling/019-official-obsidian-cli/goal.md:87: The skill | the conditions
+rule4 specs/mcp-tooling/019-official-obsidian-cli/goal.md:89: the skill | the binary
+rule4 specs/mcp-tooling/019-official-obsidian-cli/goal.md:90: its acceptance
+rule4 specs/sk-communication/006-sk-communication-clarity/goal.md:95: The allocation | each adopted
+rule4 specs/sk-communication/006-sk-communication-clarity/goal.md:96: the router
+rule4 specs/sk-communication/006-sk-communication-clarity/goal.md:97: their rule
+rule4 specs/sk-communication/006-sk-communication-clarity/goal.md:98: The wording | every consumer | the skill
+rule4 specs/sk-communication/006-sk-communication-clarity/goal.md:99: The engine | the standard | its instruction
+rule4 specs/sk-communication/006-sk-communication-clarity/goal.md:100: The two adjacent-surface
+rule4 specs/sk-communication/006-sk-communication-clarity/goal.md:101: The harness | the release
+rule4 specs/sk-communication/006-sk-communication-clarity/goal.md:102: its status
+rule4 specs/sk-communication/006-sk-communication-clarity/goal.md:103: every folder
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research/goal.md:76: each applied
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research/goal.md:78: The library | every upstream
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/goal.md:70: the cloned | the date | the licence
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/goal.md:71: the two lineage
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/goal.md:72: every recommendation | each row
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/goal.md:73: Every recommendation
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/goal.md:75: The parent | the parent
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/001-visual-proof-and-forks/goal.md:81: The glow
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/001-visual-proof-and-forks/goal.md:82: each naming | the fork
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/002-chrome-rollout/goal.md:76: every file
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/002-chrome-rollout/goal.md:78: the whole corpus | the mono
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/002-chrome-rollout/goal.md:79: The corpus | the template
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/003-motion-layer/goal.md:76: each fallback | the animation
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/003-motion-layer/goal.md:77: those nine files
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/003-motion-layer/goal.md:78: The motion
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/004-interaction-layer/goal.md:78: the templates
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/004-interaction-layer/goal.md:79: the templates | This replaces | the set | the number
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/004-interaction-layer/goal.md:80: the templates
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/004-interaction-layer/goal.md:83: each interactive | the implementation
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/005-dark-theme/goal.md:77: the palette-block | the progress | the drafted
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/005-dark-theme/goal.md:81: The dark | the implementation
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/006-catalog-and-contract/goal.md:76: The written | every row | the ones
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/006-catalog-and-contract/goal.md:77: the same system
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/006-catalog-and-contract/goal.md:78: its shipped | the fixture
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/006-catalog-and-contract/goal.md:79: the sentinels
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/007-composed-form-and-closeout/goal.md:79: the catalog | the progress
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/007-composed-form-and-closeout/goal.md:82: The version | The original | its own release | the reading | the stricter
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/007-composed-form-and-closeout/goal.md:83: the headline-as-argument | the six family | the headline
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/goal.md:104: the dark | the composed | each carry
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/goal.md:105: Every animating | the same settled | the comparison
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/014-shadcn-adoptions/goal.md:77: each recorded | the mutation
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/014-shadcn-adoptions/goal.md:78: Every multi-series | its series | every tooltip | every time-path
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/014-shadcn-adoptions/goal.md:79: the contracts | the kept
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/015-shadcn-visual-upgrade/goal.md:78: Every template | the card | the tooltip
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/015-shadcn-visual-upgrade/goal.md:79: every form
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/015-shadcn-visual-upgrade/goal.md:80: the checker
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/015-shadcn-visual-upgrade/goal.md:81: the visual
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/016-design-md-theming/goal.md:79: The same script | the mark
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/016-design-md-theming/goal.md:80: its source
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/016-design-md-theming/goal.md:82: the fourth
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/019-cursor-stock-register/goal.md:76: the cursor-derived
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/019-cursor-stock-register/goal.md:77: the regenerated
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/019-cursor-stock-register/goal.md:78: the reference | the version | the bump
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish/goal.md:78: Every cartesian
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish/goal.md:79: Every table | the card-readout
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/022-visual-polish/goal.md:80: its cue | every tooltip
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/023-metric-delta-header/goal.md:76: Every scalar | their values
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/024-micro-forms/goal.md:76: every family
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies/goal.md:76: Every form | the declarations | the four families
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/025-mark-and-indicator-policies/goal.md:77: the four effects
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/034-emphasis-budget/goal.md:75: the family
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/034-emphasis-budget/goal.md:77: the corpus
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/034-emphasis-budget/goal.md:78: The four changed
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/035-median-and-ladder-correction/goal.md:75: Every box | the box
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/035-median-and-ladder-correction/goal.md:76: The dumbbell | the furthest | the last label
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/035-median-and-ladder-correction/goal.md:77: the final state
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/038-chart-command-alignment/goal.md:74: the stale
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/039-prerelease-versioning-and-residue/goal.md:76: The chart
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/039-prerelease-versioning-and-residue/goal.md:77: the version
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/039-prerelease-versioning-and-residue/goal.md:78: the sk-design
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/goal.md:104: Every phase-map
+rule4 specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/goal.md:105: every folder
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/002-skin-contract/goal.md:81: the reconciled
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/002-skin-contract/goal.md:83: every task | the notation
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/002-skin-contract/goal.md:84: the node-markup | the plan
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/002-skin-contract/goal.md:85: the five disagreeing
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/002-skin-contract/goal.md:87: the orchestrator | this authoring
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/goal.md:80: the applicator
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/goal.md:81: the ported
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/goal.md:82: the stock
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/goal.md:83: the four files
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/goal.md:84: the four files | the chart
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/goal.md:85: every task
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/003-applicator-and-sentinels/goal.md:86: the orchestrator | this authoring
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog/goal.md:81: the repaint
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog/goal.md:82: the header | the examples-references | the catalog
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog/goal.md:83: every capture
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog/goal.md:84: the sentinel-wrapped
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog/goal.md:86: the repainted
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/004-corpus-and-catalog/goal.md:87: the orchestrator | this authoring
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci/goal.md:85: the repainted
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci/goal.md:86: its completeness
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci/goal.md:87: The checker | the way | the chart
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci/goal.md:88: its most | this branch
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci/goal.md:89: Every registered | every mutant | its named | the suite | the workflow
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/005-checker-mutations-and-ci/goal.md:90: the orchestrator | this authoring
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/goal.md:85: the surrounding | the nine scenarios
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/goal.md:86: the newest | the capture-review
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/goal.md:87: The newest | its own generation | the way | the nine existing
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/goal.md:88: The newest | the reason
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/goal.md:89: the same item
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/006-capture-and-judgment/goal.md:90: the orchestrator | this authoring
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/007-manual-review-remediation/goal.md:90: Every AC-001
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/007-manual-review-remediation/goal.md:92: every file
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/007-manual-review-remediation/goal.md:93: the pre-remediation | the pre-fix
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/007-manual-review-remediation/goal.md:94: Every file | this node | its task | this closeout
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/007-manual-review-remediation/goal.md:95: the end | this closeout
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/008-doctrine-reconciliation/goal.md:84: its completeness-triple
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/008-doctrine-reconciliation/goal.md:85: the corpus
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/008-doctrine-reconciliation/goal.md:86: the nine corrected | the corpus
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/008-doctrine-reconciliation/goal.md:87: the orchestrator | this authoring
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/009-one-form-library/goal.md:94: the same per-family | the pre-move
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/009-one-form-library/goal.md:95: the recorded | the untokenized | this criterion
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/009-one-form-library/goal.md:97: the move
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/009-one-form-library/goal.md:99: the orchestrator | this authoring | this closeout
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference/goal.md:88: every file | its stock
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference/goal.md:89: The same script | every role | its gate | the stock | The chart | its *derived* | this run | the code | the stock
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference/goal.md:90: the run
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference/goal.md:91: its own stated | the completeness | its provenance | the completeness
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference/goal.md:92: the untouched
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference/goal.md:93: the reference | the bundle
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/011-full-page-capture/goal.md:79: this closeout
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/011-full-page-capture/goal.md:80: Every HTML | their source
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/011-full-page-capture/goal.md:82: the first report
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/011-full-page-capture/goal.md:84: the end | this closeout | the Log
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/goal.md:104: The corpus | the mutation | its completeness
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/goal.md:105: every form | every literal
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/goal.md:106: the Frontmatter
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/goal.md:113: Each systemic | the losing | the corpus
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/goal.md:115: the stock | the same gates
+rule4 specs/sk-design/019-sk-design-diagram-upgrade/goal.md:116: its findings
+rule4 specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/goal.md:67: the compiled-routing
+rule4 specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/goal.md:69: the prepared
+rule4 specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/goal.md:70: each name | the reader | its input
+rule4 specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/goal.md:71: The index | each list | the classes
+rule4 specs/sk-doc/049-sk-create-frontmatter/008-utilization-review/goal.md:72: the six realistic | the unverified
+rule4 specs/sk-doc/049-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract/goal.md:83: the sentence
+rule4 specs/sk-doc/049-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract/goal.md:84: the engine
+rule4 specs/sk-doc/049-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract/goal.md:85: every mode
+rule4 specs/sk-doc/049-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract/goal.md:86: the advisor
+rule4 specs/sk-doc/049-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract/goal.md:87: The sk-doc | the description | the eight hub-shaped
+rule4 specs/sk-doc/049-sk-create-frontmatter/009-fix-skill-review-drift-findings-for-sk-create-frontmatter-contract/goal.md:88: the move | the authored
+rule4 specs/sk-doc/049-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing/goal.md:81: the ten newcomer | the advisor
+rule4 specs/sk-doc/049-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing/goal.md:82: the eighteen | the mode
+rule4 specs/sk-doc/049-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing/goal.md:83: the mode
+rule4 specs/sk-doc/049-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing/goal.md:84: The mode | the registry
+rule4 specs/sk-doc/049-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing/goal.md:85: every hub | the authored
+rule4 specs/sk-doc/049-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing/goal.md:86: the parent
+rule4 specs/sk-doc/049-sk-create-frontmatter/goal.md:90: every folder
+rule4 specs/sk-doc/049-sk-create-frontmatter/goal.md:91: The mode | the frontmatter | the move
+rule4 specs/sk-doc/049-sk-create-frontmatter/goal.md:92: Every keyword | the mode | the hub | the advisor | the scorer
+rule4 specs/sk-doc/049-sk-create-frontmatter/goal.md:93: its acceptance
+rule4 specs/sk-doc/052-routing-completeness/001-transport-and-baseline/goal.md:61: The governing
+rule4 specs/sk-doc/052-routing-completeness/001-transport-and-baseline/goal.md:62: the recorded | its numbers
+rule4 specs/sk-doc/052-routing-completeness/001-transport-and-baseline/goal.md:63: The disagreement | the two scorers
+rule4 specs/sk-doc/052-routing-completeness/002-gate-a-signal-closure/goal.md:63: the Gate
+rule4 specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/goal.md:62: The corpus | the same rate
+rule4 specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/goal.md:63: The starting | its denominator
+rule4 specs/sk-doc/052-routing-completeness/003-gate-b-realistic-corpus/goal.md:64: Every excluded
+rule4 specs/sk-doc/052-routing-completeness/004-cross-hub-vocabulary/goal.md:62: every touched
+rule4 specs/sk-doc/052-routing-completeness/005-hub-surface-truth/goal.md:61: the new check
+rule4 specs/sk-doc/052-routing-completeness/005-hub-surface-truth/goal.md:62: The inventory | every leaf | its count | the tree
+rule4 specs/sk-doc/052-routing-completeness/005-hub-surface-truth/goal.md:63: The hub | its frontmatter | the hub | the registries
+rule4 specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/goal.md:62: the document | their bytes
+rule4 specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/goal.md:63: Every template | the tree | the count
+rule4 specs/sk-doc/052-routing-completeness/006-validator-and-template-debt/goal.md:64: Every detected | the reason
+rule4 specs/sk-doc/052-routing-completeness/007-spec-kit-residue/goal.md:70: the two failures
+rule4 specs/sk-doc/052-routing-completeness/007-spec-kit-residue/goal.md:71: The suite
+rule4 specs/sk-doc/052-routing-completeness/007-spec-kit-residue/goal.md:72: The missing | the numbers | its own change
+rule4 specs/sk-doc/052-routing-completeness/007-spec-kit-residue/goal.md:73: The ADR-008 | The whole-suite
+rule4 specs/sk-doc/052-routing-completeness/008-drift-after-closure/goal.md:63: every bucket
+rule4 specs/sk-doc/052-routing-completeness/008-drift-after-closure/goal.md:64: the hit
+rule4 specs/sk-doc/052-routing-completeness/008-drift-after-closure/goal.md:65: The scaffold | the fix
+rule4 specs/sk-doc/052-routing-completeness/008-drift-after-closure/goal.md:66: Every hub | the retirement
+rule4 specs/sk-doc/052-routing-completeness/008-drift-after-closure/goal.md:67: the placeholder
+rule4 specs/sk-doc/052-routing-completeness/goal.md:92: the final tree
+rule4 specs/sk-doc/052-routing-completeness/goal.md:93: Every findings-register | the closed-by-decision
+rule4 specs/sk-doc/052-routing-completeness/goal.md:94: its number
+rule4 specs/sk-doc/052-routing-completeness/goal.md:96: its reason | the residue
+rule4 specs/sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot/goal.md:59: The checker | the exemplar
+rule4 specs/sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot/goal.md:60: Every pilot | its original | its draft
+rule4 specs/sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot/goal.md:61: the GPT | the gateway
+rule4 specs/sk-doc/059-skill-changelog-retrofit/001-tooling-and-pilot/goal.md:62: the pilot
+rule4 specs/sk-doc/059-skill-changelog-retrofit/002-cli-external-orchestration/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/002-cli-external-orchestration/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/002-cli-external-orchestration/goal.md:62: the cli-external-orchestration | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/003-cli-jev/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/003-cli-jev/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/003-cli-jev/goal.md:62: the cli-jev | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/004-cli-orca/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/004-cli-orca/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/004-cli-orca/goal.md:62: the cli-orca | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode/goal.md:62: the mcp-code-mode | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/006-mcp-tooling/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/006-mcp-tooling/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/006-mcp-tooling/goal.md:62: the mcp-tooling | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/007-sk-code/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/007-sk-code/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/007-sk-code/goal.md:62: the sk-code | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/008-sk-communication/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/008-sk-communication/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/008-sk-communication/goal.md:62: the sk-communication | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/009-sk-design/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/009-sk-design/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/009-sk-design/goal.md:62: the sk-design | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/010-sk-doc/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/010-sk-doc/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/010-sk-doc/goal.md:62: the sk-doc | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/011-sk-git/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/011-sk-git/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/011-sk-git/goal.md:62: the sk-git | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/012-sk-prompt/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/012-sk-prompt/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/012-sk-prompt/goal.md:62: the sk-prompt | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/013-sk-vision/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/013-sk-vision/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/013-sk-vision/goal.md:62: the sk-vision | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/014-system-deep-loop/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/014-system-deep-loop/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/014-system-deep-loop/goal.md:62: the system-deep-loop | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/015-system-skill-advisor/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/015-system-skill-advisor/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/015-system-skill-advisor/goal.md:62: the system-skill-advisor | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/016-system-spec-kit/goal.md:60: The shape | every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/016-system-spec-kit/goal.md:61: Every kept
+rule4 specs/sk-doc/059-skill-changelog-retrofit/016-system-spec-kit/goal.md:62: the system-spec-kit | the compiled-route
+rule4 specs/sk-doc/059-skill-changelog-retrofit/goal.md:93: The shape | every skill | each failure | its reason
+rule4 specs/sk-doc/059-skill-changelog-retrofit/goal.md:94: Every rewritten
+rule4 specs/sk-doc/059-skill-changelog-retrofit/goal.md:95: every rewritten
+rule4 specs/sk-doc/059-skill-changelog-retrofit/goal.md:97: The compiled-route | the last skill
+rule4 specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/goal.md:84: every included
+rule4 specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/goal.md:85: Each defect
+rule4 specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/goal.md:86: each operation | the checker-versus-validator-amendment
+rule4 specs/sk-doc/060-create-goal-mode/001-goal-inventory-and-mode-contract/goal.md:87: the mode
+rule4 specs/sk-doc/060-create-goal-mode/002-mode-scaffold/goal.md:85: The strict
+rule4 specs/sk-doc/060-create-goal-mode/002-mode-scaffold/goal.md:86: The parent-skill
+rule4 specs/sk-doc/060-create-goal-mode/002-mode-scaffold/goal.md:87: The mode
+rule4 specs/sk-doc/060-create-goal-mode/002-mode-scaffold/goal.md:88: The mode
+rule4 specs/sk-doc/060-create-goal-mode/002-mode-scaffold/goal.md:89: The strict
+rule4 specs/sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars/goal.md:63: its failure
+rule4 specs/sk-doc/060-create-goal-mode/003-authoring-standards-and-exemplars/goal.md:65: The mode | the standards
+rule4 specs/sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/goal.md:70: The parent-and-nested-goals | the sk-create-goal
+rule4 specs/sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/goal.md:71: The parent-and-nested-goals
+rule4 specs/sk-doc/060-create-goal-mode/004-parent-and-nested-goal-authoring/goal.md:72: The scratch | every rule | the three generated-metadata
+rule4 specs/sk-doc/060-create-goal-mode/005-budget-and-chat-slice-handoff/goal.md:83: The fixture
+rule4 specs/sk-doc/060-create-goal-mode/007-hub-routing-integration/goal.md:86: The explicit-path
+rule4 specs/sk-doc/060-create-goal-mode/007-hub-routing-integration/goal.md:88: The same ten newcomer
+rule4 specs/sk-doc/060-create-goal-mode/008-command-and-playbook/goal.md:85: its owner
+rule4 specs/sk-doc/060-create-goal-mode/008-command-and-playbook/goal.md:87: The create-command
+rule4 specs/sk-doc/060-create-goal-mode/008-command-and-playbook/goal.md:88: The playbook
+rule4 specs/sk-doc/060-create-goal-mode/008-command-and-playbook/goal.md:89: The playbook
+rule4 specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/goal.md:86: The dated
+rule4 specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/goal.md:87: the selected
+rule4 specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/goal.md:88: The reachability
+rule4 specs/sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes/goal.md:84: the same report
+rule4 specs/sk-doc/060-create-goal-mode/010-asset-templates-and-folder-readmes/goal.md:86: every hub
+rule4 specs/sk-doc/060-create-goal-mode/011-cross-surface-references/goal.md:83: The root | the sk-doc
+rule4 specs/sk-doc/060-create-goal-mode/011-cross-surface-references/goal.md:86: every agent
+rule4 specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/goal.md:64: every check | the parent
+rule4 specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/goal.md:65: The review
+rule4 specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/goal.md:66: the shared | the ten OpenCode | the Pi
+rule4 specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/goal.md:67: The goal-hook | each pass
+rule4 specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/goal.md:69: every changed | the playbook | the sk-code
+rule4 specs/sk-doc/060-create-goal-mode/goal.md:92: the parent-skill
+rule4 specs/sk-doc/060-create-goal-mode/goal.md:94: The conformance | each negative | its named | the positive
+rule4 specs/sk-doc/060-create-goal-mode/goal.md:96: the hub
+rule4 specs/sk-doc/060-create-goal-mode/goal.md:97: their parity
+rule4 specs/sk-git/028-crawlable-commit-history/001-research/goal.md:77: each implementable
+rule4 specs/sk-git/028-crawlable-commit-history/001-research/goal.md:78: the orchestrator | the quoted
+rule4 specs/sk-git/028-crawlable-commit-history/003-contract-and-hook/goal.md:75: the commit-msg
+rule4 specs/sk-git/028-crawlable-commit-history/003-contract-and-hook/goal.md:76: the hook
+rule4 specs/sk-git/028-crawlable-commit-history/003-contract-and-hook/goal.md:78: every touched
+rule4 specs/sk-git/028-crawlable-commit-history/004-search-surface/goal.md:74: the search
+rule4 specs/sk-git/028-crawlable-commit-history/004-search-surface/goal.md:76: every touched
+rule4 specs/sk-git/028-crawlable-commit-history/005-history-rewrite/goal.md:76: The mirror | the frozen
+rule4 specs/sk-git/028-crawlable-commit-history/005-history-rewrite/goal.md:78: the hash
+rule4 specs/sk-git/028-crawlable-commit-history/005-history-rewrite/goal.md:79: the remap
+rule4 specs/sk-git/028-crawlable-commit-history/005-history-rewrite/goal.md:80: The rollback | the push
+rule4 specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/goal.md:75: every git | each marked
+rule4 specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/goal.md:76: Every adjusted | the hook
+rule4 specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/goal.md:77: the adjustments
+rule4 specs/sk-git/028-crawlable-commit-history/008-second-pass-subjects-and-attribution/goal.md:82: every subject_new | the hook
+rule4 specs/sk-git/028-crawlable-commit-history/008-second-pass-subjects-and-attribution/goal.md:83: the before-and-after
+rule4 specs/sk-git/028-crawlable-commit-history/008-second-pass-subjects-and-attribution/goal.md:84: every non-exempt | the grammar | every multi-packet
+rule4 specs/sk-git/028-crawlable-commit-history/008-second-pass-subjects-and-attribution/goal.md:85: the forbidden
+rule4 specs/sk-git/028-crawlable-commit-history/goal.md:107: the grammar
+rule4 specs/sk-git/028-crawlable-commit-history/goal.md:108: The commit-msg
+rule4 specs/sk-git/028-crawlable-commit-history/goal.md:109: the new identifier | the rewritten
+rule4 specs/sk-git/028-crawlable-commit-history/goal.md:110: the old history
+rule4 specs/sk-git/028-crawlable-commit-history/goal.md:111: the parent
+rule4 specs/sk-git/028-crawlable-commit-history/goal.md:114: every git | its adjustment
+rule4 specs/sk-git/028-crawlable-commit-history/goal.md:115: the second | every non-exempt | the commit-msg | every multi-packet | the hooks
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/001-angle-driven-review/goal.md:77: each numbered | the route-proof
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/001-angle-driven-review/goal.md:78: The wave-two | the spec | the seeds | the rewrite
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/001-angle-driven-review/goal.md:79: Every finding | the tree | the reason
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/002-roster-completeness/goal.md:77: its own registry
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/002-roster-completeness/goal.md:78: The seventh | every roster | the three hubs | their catalogs
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/002-roster-completeness/goal.md:79: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/003-version-authority/goal.md:77: Each hub | its declared
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/003-version-authority/goal.md:78: The registry
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/003-version-authority/goal.md:79: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/004-leaf-manifest-and-doctrine-reachability/goal.md:77: The leaf | every hub | the files | their walkers | the regenerated
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/004-leaf-manifest-and-doctrine-reachability/goal.md:78: the three hubs
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/004-leaf-manifest-and-doctrine-reachability/goal.md:79: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/005-catalog-and-readme-truth/goal.md:77: the three hubs | the tree
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/005-catalog-and-readme-truth/goal.md:79: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/006-confirm-variant-parity/goal.md:77: Every functional | its auto
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/006-confirm-variant-parity/goal.md:78: The confirm | their mode
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/006-confirm-variant-parity/goal.md:79: the deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/007-ledger-stem-producers/goal.md:77: Every stem | its reason
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/007-ledger-stem-producers/goal.md:78: Every producer
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/007-ledger-stem-producers/goal.md:79: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/008-agent-mirror-parity/goal.md:80: Every agent | the mirrors
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/008-agent-mirror-parity/goal.md:81: the mirror-sync | its output
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/008-agent-mirror-parity/goal.md:82: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/009-containment-promise-and-severity-scale/goal.md:77: The containment | the comments | the inline | the verifier | the runner
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/009-containment-promise-and-severity-scale/goal.md:78: the state
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/009-containment-promise-and-severity-scale/goal.md:79: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/010-version-authority-completion/goal.md:78: Each hub
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/010-version-authority-completion/goal.md:79: the authority
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/010-version-authority-completion/goal.md:80: their reason
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/010-version-authority-completion/goal.md:81: The compiled | every hub
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/010-version-authority-completion/goal.md:82: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/011-routing-doctrine-and-discovery/goal.md:84: the deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/011-routing-doctrine-and-discovery/goal.md:85: The runtime
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/012-missing-stress-fixture-root/goal.md:85: The sandbox | the canonical | the symlink
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/012-missing-stress-fixture-root/goal.md:86: the sandbox | the target
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/012-missing-stress-fixture-root/goal.md:87: the roster
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/012-missing-stress-fixture-root/goal.md:88: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/goal.md:75: each record
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/goal.md:77: Every finding | every tier | the tree | its reason
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/goal.md:78: Every bound | its criteria | the suite
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/goal.md:79: The routing | every hub | the end
+rule4 specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/goal.md:80: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/001-never-fatal-untracked/goal.md:81: the lane | the file | the ledger
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/001-never-fatal-untracked/goal.md:82: The same run | the change
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/001-never-fatal-untracked/goal.md:83: the current
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/002-iteration-record-dedupe/goal.md:82: the routed | the ones
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/002-iteration-record-dedupe/goal.md:83: the deduplication
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/002-iteration-record-dedupe/goal.md:85: The retained
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/003-publish-manifest-provenance/goal.md:80: the fan-out
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/003-publish-manifest-provenance/goal.md:81: the kind
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/003-publish-manifest-provenance/goal.md:82: The merged
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/004-index-lock-retry/goal.md:81: the retry | the finding
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/004-index-lock-retry/goal.md:82: the retry | the lane
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/004-index-lock-retry/goal.md:83: the current
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/005-churn-cumulative-arm/goal.md:81: the cumulative | the detector | the burst-only
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/005-churn-cumulative-arm/goal.md:83: The threshold
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/006-reducer-ordered-lists/goal.md:80: The retained
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/006-reducer-ordered-lists/goal.md:81: the lane
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/006-reducer-ordered-lists/goal.md:82: the existing
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/007-worktree-removal/goal.md:83: The deep-loop | the launch-wrapper
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/007-worktree-removal/goal.md:84: the shared | every lane | every out-of-scope | this checkout
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/008-quarantine-destination-canonical/goal.md:81: its quarantine | the link | the quarantine | the refusal | the lane
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/008-quarantine-destination-canonical/goal.md:82: the unmodified | the escaped
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/008-quarantine-destination-canonical/goal.md:83: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/009-baseline-deletion-detection/goal.md:81: the path | the file
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/009-baseline-deletion-detection/goal.md:82: the unmodified
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/009-baseline-deletion-detection/goal.md:83: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/010-containment-on-failed-lanes/goal.md:81: its directory | the ledger | the lane
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/010-containment-on-failed-lanes/goal.md:82: its directory
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/010-containment-on-failed-lanes/goal.md:83: the unmodified
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/010-containment-on-failed-lanes/goal.md:84: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/011-restore-never-through-symlink/goal.md:81: the link | the revert | the refusal
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/011-restore-never-through-symlink/goal.md:82: the unmodified | the baseline | the link
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/011-restore-never-through-symlink/goal.md:83: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/012-quarantine-retention-per-pass/goal.md:81: the same lane | the second
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/012-quarantine-retention-per-pass/goal.md:82: the unmodified
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/012-quarantine-retention-per-pass/goal.md:83: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config/goal.md:81: its registry | its deltas
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config/goal.md:82: the key
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config/goal.md:83: The retained | the check
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/013-review-lane-advisory-and-strict-config/goal.md:84: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/014-alignment-review/goal.md:81: the lanes | each state | the route-proof
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/014-alignment-review/goal.md:82: Every P0 | the reason
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/014-alignment-review/goal.md:83: The parent | the verdict | the binding
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/015-symlink-contained-paths/goal.md:81: the lane | the outside | the action | the refusal
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/015-symlink-contained-paths/goal.md:82: the link | the entry | the reason
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/015-symlink-contained-paths/goal.md:83: the quarantine | the check | the create | the link
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/015-symlink-contained-paths/goal.md:84: the current | the deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/016-command-yaml-alignment/goal.md:82: the four YAML | the call | the flags
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/016-command-yaml-alignment/goal.md:83: The confirm | the leaf
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/016-command-yaml-alignment/goal.md:84: The prompt | the YAML | the state-log | the gateway
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/016-command-yaml-alignment/goal.md:85: the deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/017-protocol-and-catalog-alignment/goal.md:82: The deep-review | the containment
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/017-protocol-and-catalog-alignment/goal.md:83: The hub | the registry
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/017-protocol-and-catalog-alignment/goal.md:84: the deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/018-orchestrate-mirror-alignment/goal.md:81: Every orchestrate | the delegation | its runtime | the source
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/018-orchestrate-mirror-alignment/goal.md:82: The agent | the orchestrate
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/018-orchestrate-mirror-alignment/goal.md:83: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/019-forced-depth-empty-records/goal.md:81: the state | the current
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/019-forced-depth-empty-records/goal.md:82: The gateway
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/019-forced-depth-empty-records/goal.md:83: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/020-direct-append-sites-through-gateway/goal.md:81: the direct | the append-site
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/020-direct-append-sites-through-gateway/goal.md:82: Each event | those sites | the state | the gateway | the current
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/020-direct-append-sites-through-gateway/goal.md:83: the deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/goal.md:86: The two new write-containment | their guard
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/goal.md:87: the longest
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/goal.md:88: the fixed
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/021-capture-folders-out-of-snapshot/goal.md:89: the runtime
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/goal.md:89: its lineage | every such
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/goal.md:90: the manifest | the content | the patch
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/goal.md:91: the summary
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/goal.md:92: every lineage | the main
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/goal.md:93: The deep-loop
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/goal.md:94: the revert-and-fail
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/goal.md:95: its criteria
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/goal.md:96: The suite
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/goal.md:97: Each confirmed | the remediated
+rule4 specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/goal.md:98: each confirmed
+rule4 specs/system-deep-loop/036-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard/goal.md:67: Every acceptance
+rule4 specs/system-deep-loop/036-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard/goal.md:69: the saved
+rule4 specs/system-deep-loop/036-deep-loop-innovation/028-cli-lineage-nesting-and-containment-guard/goal.md:71: The whole runtime | the committed
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation/goal.md:62: the same five names | the baseline
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation/goal.md:63: the recorded
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation/goal.md:65: its own output | its own exit
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/001-baseline-and-instrumentation/goal.md:66: The document | its absence
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/002-embedding-population/goal.md:65: the copied
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/002-embedding-population/goal.md:67: The reproduced
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/002-embedding-population/goal.md:68: its count
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research/goal.md:64: the written
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research/goal.md:65: the flag | the metrics
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research/goal.md:66: The regression | their files
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/003-weight-and-fusion-research/goal.md:68: The plan | the executor | the date
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/004-gated-enable/goal.md:64: the intended
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/004-gated-enable/goal.md:66: their intended
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/004-gated-enable/goal.md:67: each return | their intended
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/004-gated-enable/goal.md:68: the abstain
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/004-gated-enable/goal.md:69: the override | every recorded | its pre-enable
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/goal.md:63: every gate
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/goal.md:65: The corpus | the coverage | the final pass
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/goal.md:66: The predecessor | its result
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/goal.md:67: The parent | the parent
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/005-verification-and-closeout/goal.md:68: The resolved | the committed
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/goal.md:91: its committed
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/goal.md:92: The Gate | its raw
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/goal.md:93: each return | their intended
+rule4 specs/system-skill-advisor/023-semantic-lane-enablement/goal.md:94: the daemon | every ratchet | its pre-enable
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/goal.md:77: Every file | the MCP | the advisor | its owning
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/goal.md:78: Every runtime | the advisor | its exact
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/goal.md:79: Every caller | the transport | its owning
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/goal.md:80: Every document
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/goal.md:81: The preserve | every item
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/goal.md:82: The automatic
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/goal.md:83: the inventory
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/goal.md:77: The pre-change
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/goal.md:78: the resident | the stateless | the same harness
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/goal.md:79: The daemon | the numbers
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/goal.md:80: The socket
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/002-daemon-transport-decision/goal.md:82: the daemon | the mechanism
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/goal.md:77: the nine capabilities
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/goal.md:78: The parity
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/goal.md:79: The exit | every code
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/goal.md:80: The session | its cost
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/003-cli-front-door-parity/goal.md:81: The CLI | every field
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/goal.md:77: The Claude | the advisor | the CLI | the brief
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/goal.md:78: The pi | the advisor | the CLI | the brief
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/goal.md:79: The OpenCode | the advisor | the CLI | its latency
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/goal.md:80: Every doctor
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/goal.md:81: the advisor | the server
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/004-caller-rewire/goal.md:82: every runtime | the routing
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/goal.md:78: The MCP | the advisor | its dependency
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/goal.md:79: The stdio | the OpenCode
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/goal.md:80: Every runtime
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/goal.md:81: The advisor | its embedder | the shared | the removal
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/005-mcp-transport-removal/goal.md:82: Every preserve-set
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/goal.md:76: The package | the old name
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/goal.md:77: The CLI | the renamed
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/goal.md:78: The build | the typecheck | the renamed
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/goal.md:79: The dist | the renamed
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/006-runtime-package-rename/goal.md:80: the old directory
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/goal.md:76: the CLI
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/goal.md:77: The env | the env | the removed
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/goal.md:78: The residue | every exemption
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/goal.md:79: The skill | the CLI
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/goal.md:80: the advisor | the CLI | the route
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/007-docs-and-residue-sweep/goal.md:81: Every changed | its own documentation
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/goal.md:76: the parent
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/goal.md:77: its acceptance
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/goal.md:78: Every runtime | the routing
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/goal.md:79: the CLI | the final state
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/goal.md:80: The prompt-hook
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/goal.md:81: The advisor | the final state | their output
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/goal.md:82: The parent | every row
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/goal.md:80: The MCP | the advisor
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/goal.md:81: the CLI | the payload | each caller | the binary
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/goal.md:82: Every runtime | the brief | the call | the daemon
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/goal.md:83: The prompt-hook | the pre-change
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/goal.md:84: the advisor | the package
+rule4 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/goal.md:85: Every audit | its full iteration | each P0
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/goal.md:58: each terminal
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/goal.md:59: every ranked | the advisor
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/goal.md:60: The fan-out
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/goal.md:61: every citation | the ranked | each failed
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/001-deep-research/goal.md:62: each recommendation
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics/goal.md:59: the directives
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics/goal.md:60: each write
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics/goal.md:61: the advisor | the runtime
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics/goal.md:62: The Pi | the built
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics/goal.md:63: the log | the temp | the log
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/002-hook-deadline-and-diagnostics/goal.md:64: the fallback | the budget | the margin
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim/goal.md:59: the option
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim/goal.md:63: the recommendation | the option
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim/goal.md:64: the same turns
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/003-hook-path-cli-spawn-trim/goal.md:65: the CLI | the hook | the gate | the hook
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup/goal.md:59: the outage
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup/goal.md:60: the no-match | the skipped
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup/goal.md:61: the plugin | the renderer | the same status
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup/goal.md:62: the full fallback | every turn
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup/goal.md:63: The same five-turn | the OpenCode | the same result
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup/goal.md:64: the three heads | its case | the status
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup/goal.md:65: the no-match | the outage
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes/goal.md:59: the dashboard
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes/goal.md:60: the final empty | the old message
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes/goal.md:61: The existing | the file
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes/goal.md:62: the next message | the head
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes/goal.md:63: The same-message | the distinct-message
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes/goal.md:64: the review
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/005-follow-up-fixes/goal.md:65: the rebuilt
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/goal.md:58: each hold
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/goal.md:59: every finding | its severity
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/goal.md:60: The fan-out | the run
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/goal.md:61: Every P0 | its evidence
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/006-fanout-deep-review/goal.md:62: The convergence
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment/goal.md:58: Each changed | the scoped | the orchestrator | the cited
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment/goal.md:59: each edited | each edited
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment/goal.md:60: the Pi | the drift
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment/goal.md:61: the prompt | the transport-down | the prompt | the gate
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment/goal.md:62: The Pi | the catalog | the package
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/007-docs-and-standards-alignment/goal.md:63: each P2 | its reason
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/goal.md:59: The dispatch
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/goal.md:60: The diff | the daemon | the live | its evidence
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/goal.md:61: the cli-cursor | the allowlist
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/goal.md:62: Each FAIL
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/008-cross-cli-manual-testing/goal.md:63: Each CLI
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation/goal.md:58: the advisor
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation/goal.md:59: The Pi | the advisor
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation/goal.md:60: its generation | the live
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation/goal.md:61: each report | the orchestrator
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation/goal.md:62: each registered
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation/goal.md:63: the advisor | the diagnostics | its trust-grant | its own sandbox | the score-gap | its sandbox | the plugin | the sk-doc
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/009-test-findings-remediation/goal.md:64: the duplicate | the exact
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup/goal.md:61: every hook | the checkout | the config | the nodeterm
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup/goal.md:62: the siblings | the orchestrator | each behavior
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup/goal.md:63: The advisor | their recorded
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup/goal.md:64: The hook | the OpenCode | the daemon | each pass | the prompt
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/010-review-advisories-and-codex-cleanup/goal.md:65: the parent | the fixes
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/goal.md:59: The appended-phase | the fixed
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/goal.md:60: the frozen | its folder
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/goal.md:62: The advisor | the advisor
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/goal.md:60: The parent
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/goal.md:62: every hub
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/goal.md:63: the committed | the new teardown | the sandbox | the sandbox
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/goal.md:66: The system-spec-kit | each evidence | its file
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/goal.md:60: its sandbox | the signal-free
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/goal.md:61: the teardown | its sandbox
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/goal.md:62: the three teardown
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/goal.md:64: The watched | the sandbox | the daemon | the daemon | the live | the daemon
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/goal.md:65: every folder
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/013-review-follow-ups/goal.md:66: The fixes
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/goal.md:92: The Pi | the advisor | the spec-kit | the plugin
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/goal.md:94: each report | the orchestrator
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/goal.md:95: every folder
+rule4 specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/goal.md:96: The fixes
+rule4 specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/goal.md:63: the sections | its level
+rule4 specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/goal.md:64: The rendered-view
+rule4 specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/001-spec-template-context-optimization/goal.md:65: The scope-adherence
+rule4 specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/003-restore-level-upgrade-and-vocabulary-invariance/goal.md:62: the documents
+rule4 specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/003-restore-level-upgrade-and-vocabulary-invariance/goal.md:63: The public | the same thing
+rule4 specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/goal.md:64: the source
+rule4 specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/004-checklist-deprecation-closure/goal.md:65: The rule
+rule4 specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/goal.md:82: the document
+rule4 specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/goal.md:85: the intended
+rule4 specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template/goal.md:66: The document
+rule4 specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template/goal.md:67: The template
+rule4 specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/001-manifest-and-goal-template/goal.md:68: every level
+rule4 specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/002-durable-slice-validator/goal.md:67: its measurement
+rule4 specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/003-runtime-neutral-goal-dispatch/goal.md:66: The set | its dispatch
+rule4 specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/003-runtime-neutral-goal-dispatch/goal.md:67: the contract
+rule4 specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook/goal.md:65: The playbook | the set-string | the precedence
+rule4 specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook/goal.md:66: Its worked | the smallest
+rule4 specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/004-parent-set-string-playbook/goal.md:67: It | the durable
+rule4 specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/goal.md:89: its acceptance
+rule4 specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/goal.md:90: The document
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation/goal.md:61: the skill
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation/goal.md:62: the production
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation/goal.md:63: the old path | the production
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation/goal.md:64: the isolation
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/001-production-db-isolation/goal.md:65: the recorded
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/002-orphan-daemon-reaping/goal.md:65: The sweep
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:61: its bound
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:62: the handle | the process
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/003-test-hang-containment/goal.md:63: The healthy | the bound | the margin
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:62: the condition
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:63: the cap
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/004-live-follow-log-hygiene/goal.md:64: The per-checkout
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/goal.md:85: the production
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/goal.md:86: its respawn
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/goal.md:87: its bound | the handle
+rule4 specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/goal.md:88: the follower
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/goal.md:67: The three-arm
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/goal.md:68: the index
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/goal.md:69: The generator | the MCP
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/goal.md:70: Every malformed
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/goal.md:72: The retrieval | each executed | its exit
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/goal.md:73: the daemon
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire/goal.md:67: The residue | the mcp-server
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire/goal.md:70: The continuity | the MCP
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire/goal.md:71: The skill | its embedder | the shared
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire/goal.md:72: the five break-risk
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/002-memory-consumer-rewire/goal.md:73: the row | the reconciliation
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal/goal.md:68: every runtime
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal/goal.md:69: The skill | its embedder | the shared | the removal
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal/goal.md:71: the env | the removed
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal/goal.md:72: The residue | the removed
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/003-spec-memory-server-removal/goal.md:73: Every preserve-set | the five seams
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit/goal.md:67: The convention | the first retrofitted
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit/goal.md:68: the convention
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit/goal.md:70: The retrofit
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit/goal.md:72: Every retrofitted
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/004-grep-convention-doc-retrofit/goal.md:73: The trigger | the pre-retrofit
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/goal.md:66: its stop
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/goal.md:67: The synthesis
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/goal.md:68: The synthesis
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/goal.md:69: The synthesis
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/goal.md:70: this research
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/goal.md:66: its stop
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/goal.md:67: Every inventory
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/goal.md:68: The synthesis
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/goal.md:69: The synthesis | every seam | the old contract | the preserve
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/006-legacy-memory-surface-inventory/goal.md:70: the worklists | the preserve
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md:85: The trigger-index | the four fail-closed
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md:86: the published
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md:87: The trigger | the document
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md:88: the parent
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md:89: every open | the parent
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md:90: The alignment | the final residue
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/goal.md:93: its acceptance
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/goal.md:95: the retired | the residue | the literal | the literal | the deep | the recorded
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/goal.md:97: The trigger
+rule4 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/goal.md:98: The grep | the retrofit
+rule4 specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/goal.md:91: the residue | the drift-guard
+rule4 specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/goal.md:92: Every document | the sk-create-skill | its class
+rule4 specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/goal.md:94: The trigger
+rule4 specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/goal.md:95: the removed
+rule4 specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/goal.md:96: The engine | every gate | the old path
+rule4 specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/goal.md:97: the landed | each earlier | its fix | the rename | its own review | the criterion-reading
+rule4 specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/goal.md:98: the skill-root | the run
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system/goal.md:76: every P1
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system/goal.md:77: every row
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system/goal.md:79: Every P0
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/001-ripgrep-search-system/goal.md:80: the root-document
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization/goal.md:76: every P1
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization/goal.md:77: every row
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization/goal.md:79: Every P0
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/002-cli-runtime-utilization/goal.md:80: the evidence | each item
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/003-shared-package-utilization/goal.md:76: every P1
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/003-shared-package-utilization/goal.md:77: every row
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/003-shared-package-utilization/goal.md:79: Every P0
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/goal.md:76: every P1
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/goal.md:77: every row
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/goal.md:78: the renderer
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/goal.md:79: Every P0
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/004-template-system-and-acceptance-criteria/goal.md:80: the validator
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification/goal.md:77: Every P1
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification/goal.md:78: The plan
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification/goal.md:79: every P1
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/005-overengineering-simplification/goal.md:80: every row
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/006-retrieval-drift-remediation/goal.md:75: Every row | the research
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/006-retrieval-drift-remediation/goal.md:76: The seven retrieval | the README
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/006-retrieval-drift-remediation/goal.md:77: The committed | the same manifestHash
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/007-cli-package-residue-removal/goal.md:76: Every row | the research
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/007-cli-package-residue-removal/goal.md:77: the CLI | the removals
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/007-cli-package-residue-removal/goal.md:78: the CLI | the shared | the CLI | the mirror
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/008-env-example-dead-flags/goal.md:75: Every variable | the real
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/008-env-example-dead-flags/goal.md:76: The runtime | the edits
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/008-env-example-dead-flags/goal.md:77: The skill-level
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/009-shared-package-dead-half-removal/goal.md:76: Every row | the research
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/009-shared-package-dead-half-removal/goal.md:77: the CLI | the shared | the removals
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/009-shared-package-dead-half-removal/goal.md:78: The telemetry | the skill
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/010-template-contract-alignment/goal.md:76: Every row | the research
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/010-template-contract-alignment/goal.md:78: The manifest | every template | its marker
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/011-command-surface-contract-realignment/goal.md:76: Every row | the research
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/011-command-surface-contract-realignment/goal.md:77: every asset
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/011-command-surface-contract-realignment/goal.md:78: every registry
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/012-pre-existing-test-repair/goal.md:75: The continuity-freshness | the recursive-child-manifest
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/012-pre-existing-test-repair/goal.md:76: The full CLI
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement/goal.md:76: Every row | the retrieval
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement/goal.md:77: The judge | their own classes
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/013-trigger-phrase-quality-enforcement/goal.md:78: The committed
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/014-cli-decommission-orphan-removal/goal.md:76: Every row | the CLI
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/014-cli-decommission-orphan-removal/goal.md:77: The package | the check | the orphans
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/014-cli-decommission-orphan-removal/goal.md:78: the CI
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup/goal.md:76: Every row | the shared-package
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup/goal.md:77: The shared | its lane | the CLI | the removals
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/015-shared-package-post-remediation-cleanup/goal.md:78: The README | the code
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/016-template-seams-and-sentinel-repair/goal.md:76: Every row | the template
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/016-template-seams-and-sentinel-repair/goal.md:77: The sentinel | the checklist | its suite
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/016-template-seams-and-sentinel-repair/goal.md:78: The runtime | the workflow
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment/goal.md:76: Every row | the overengineering
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment/goal.md:77: the sentinel | the advisory
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/017-completion-gate-and-catalog-alignment/goal.md:78: The freshness | the malformed_fingerprint
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/018-scaffold-placeholder-and-upgrade-truth/goal.md:76: Every row | the template
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/018-scaffold-placeholder-and-upgrade-truth/goal.md:78: The upgrade | the lifecycle | the lazy
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth/goal.md:75: Every row | the CLI
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/019-ci-push-gates-and-runtime-doc-truth/goal.md:77: The validation | the four harnesses
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths/goal.md:76: Every row | the overengineering
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths/goal.md:77: The registry-coverage | every id
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/020-rule-headers-registry-coverage-and-playbook-paths/goal.md:78: The canonical-save
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/021-shared-readme-generator-and-dead-exports/goal.md:76: Every row | the shared
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/021-shared-readme-generator-and-dead-exports/goal.md:77: The generator | the shared
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/021-shared-readme-generator-and-dead-exports/goal.md:78: The two dead | the builds
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision/goal.md:76: Every row | the retrieval
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision/goal.md:77: The doctor | the route | the mirror
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/022-doctor-signal-truth-and-conventions-precision/goal.md:78: The conventions
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md:92: Every confirmed | its reason
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md:93: this parent
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md:94: The trigger
+rule4 specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/goal.md:95: every change | its durable
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports/goal.md:72: the same shared | the other four runtimes
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports/goal.md:73: The eight named
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports/goal.md:74: the new single
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/001-hook-adapter-thin-transports/goal.md:75: the lifecycle-hook
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/002-multiplexed-rule-split/goal.md:71: each name
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/002-multiplexed-rule-split/goal.md:73: the split
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/002-multiplexed-rule-split/goal.md:75: the tree
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/003-playbook-provenance-lines/goal.md:73: Every suite-backed
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/003-playbook-provenance-lines/goal.md:74: the changed
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/003-playbook-provenance-lines/goal.md:75: the provenance-line
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration/goal.md:71: The regex
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration/goal.md:73: The REQ-004
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep/goal.md:75: the four excluded
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep/goal.md:76: the token
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep/goal.md:77: the new class
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/005-provenance-title-sweep/goal.md:78: The runtime
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/008-review-research-scaffold-paths/goal.md:75: each scaffold
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/008-review-research-scaffold-paths/goal.md:77: the folder
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/008-review-research-scaffold-paths/goal.md:78: The scaffold
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers/goal.md:67: The SCAFFOLD_VALIDATION_COUNTS
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/010-manifest-dead-fields-and-coaching-markers/goal.md:70: the four removed
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/goal.md:67: The advisor
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/goal.md:68: the .js
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/011-advisor-import-and-ollama-consolidation/goal.md:69: the .js
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/012-root-resolver-consolidation/goal.md:67: every surviving | the same fixture
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/012-root-resolver-consolidation/goal.md:69: their separate
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/012-root-resolver-consolidation/goal.md:70: the final resolver | the boundary
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/013-gate1-instruction-parity/goal.md:72: The Pi
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/013-gate1-instruction-parity/goal.md:74: the generator
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/014-registration-schema-unification/goal.md:72: The canonical | every hook
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/014-registration-schema-unification/goal.md:73: The generator | the four JSON | their pre-change
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/014-registration-schema-unification/goal.md:75: the regenerated
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/015-criteria-file-line-enforcement/goal.md:72: the cutoff | the lifecycle-activation
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/015-criteria-file-line-enforcement/goal.md:75: the enforce | the gate
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/016-cross-session-operator-items/goal.md:72: The opening
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/016-cross-session-operator-items/goal.md:75: the worktree
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/goal.md:96: every acceptance | its four routed
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/goal.md:97: this parent
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/goal.md:98: The spec-kit
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/goal.md:99: The trigger
+rule4 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/goal.md:100: every change | its durable | the closeout
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/001-goal-unification-research/goal.md:76: the two lineages | the state
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/001-goal-unification-research/goal.md:77: every decision
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/001-goal-unification-research/goal.md:78: the lineage
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/002-decisions-and-contract-freeze/goal.md:75: the ADRs | the parent
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/002-decisions-and-contract-freeze/goal.md:76: this folder
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/003-speckit-goal-contract/goal.md:74: the full text
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/003-speckit-goal-contract/goal.md:76: this folder
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/004-goal-core-packet-backed/goal.md:77: this folder
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/005-runtime-surfaces/goal.md:78: this folder
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/006-speckit-command-integration/goal.md:77: this folder
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/007-retirement-docs-and-verification/goal.md:74: every folder
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/008-hardening-research/goal.md:80: the ledger
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/008-hardening-research/goal.md:81: The do-now | every suite
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/008-hardening-research/goal.md:82: The do-next | the implementation | the backlog
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/goal.md:49: their own field | the budget
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/goal.md:50: the bytes
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/goal.md:51: The binding-row
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/goal.md:52: the workflows | the nesting
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/goal.md:53: the three lifecycle
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/goal.md:54: the trigger
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/goal.md:55: The Devin
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/009-close-open-decisions/goal.md:56: Every suite
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation/goal.md:63: The hook | the durable | the validator
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation/goal.md:64: The canonical | the code | every document
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation/goal.md:65: the two carry
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation/goal.md:66: the same way | the old word
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation/goal.md:67: The kill | the session-free
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation/goal.md:68: The plugin | the record-store | the core
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation/goal.md:69: the field | its twin | the documents
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation/goal.md:72: Every stale
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/011-goal-drift-remediation/goal.md:73: the wrong
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/goal.md:91: the change | the chat
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/goal.md:93: the three lifecycle
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/013-goal-chat-send-shape/goal.md:94: the set-string | the resend | each name | the chat
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md:101: the set-string | the frontmatter-strip
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md:103: the source
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md:104: Every shipped | the same session
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md:105: the stripped
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md:106: The legacy
+rule4 specs/system-speckit/033-system-speckit-v4/038-goal-unification/goal.md:108: the opencode-goal
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research/goal.md:58: their iteration
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/001-deep-research/goal.md:60: Every blocker | the orchestrator
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/goal.md:59: the seed
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/goal.md:60: the lanes
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/002-per-runtime-reference-map/goal.md:61: The regenerated
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/goal.md:62: each give
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/goal.md:63: Every citation
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/goal.md:64: every guarded | their pre-probe
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/goal.md:65: Every probe | its shape
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/003-layout-probes/goal.md:66: every acceptance
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design/goal.md:63: every probe
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design/goal.md:64: the point
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design/goal.md:65: Every surface | the traceability
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design/goal.md:66: every finding
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/004-migration-design/goal.md:68: the main
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness/goal.md:63: every deliberate | the check | its hook
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness/goal.md:64: The six hook
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/005-gate-and-ci-readiness/goal.md:66: Every contract | the final check
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts/goal.md:66: the change | its start
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts/goal.md:67: the rebuilt | the drift | the no-spec-import | the suites
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts/goal.md:68: every rebuilt | every changed
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/006-dual-root-code-and-contracts/goal.md:69: every acceptance
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move/goal.md:63: the move
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move/goal.md:65: the compatibility
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move/goal.md:67: the move | the main | the seven global
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/007-source-root-move/goal.md:68: the main
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/008-links-and-generated-state/goal.md:62: The link
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/008-links-and-generated-state/goal.md:64: the four per-package
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/008-links-and-generated-state/goal.md:65: the committed | its three fixtures | the index
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/008-links-and-generated-state/goal.md:66: the four already-broken
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/goal.md:61: The final rescan
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/goal.md:63: Every batch | its manifest
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/goal.md:64: every generator | the final tree
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/009-reference-rewrite/goal.md:65: every acceptance
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover/goal.md:62: the bridge
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover/goal.md:63: the probe
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover/goal.md:65: Every changed | the manifest | the residue
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/010-machine-and-consumer-cutover/goal.md:66: the landing
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/goal.md:62: the pushed | its affirmative
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/goal.md:63: The residue | its planted | the independent | its control | every mutant
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/goal.md:64: the verified | every expected
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/goal.md:65: The main | the verified
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/011-verification-and-rollout/goal.md:66: the parent
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/goal.md:88: Each runtime | its skill
+rule4 specs/system-speckit/033-system-speckit-v4/041-skilled-source-root-migration/goal.md:89: the pre-005
+rule4 specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/goal.md:83: the convergence
+rule4 specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/goal.md:84: every row
+rule4 specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/goal.md:85: Every applied | the diff | the two release
+rule4 specs/system-speckit/033-system-speckit-v4/042-v4-doc-freshness/goal.md:87: the cited
+rule4 specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/goal.md:78: the sandbox
+rule4 specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/goal.md:80: the captured | the validator | the backfill
+rule4 specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/goal.md:81: the spec
+rule5 specs/sk-design/019-sk-design-diagram-upgrade/007-manual-review-remediation/goal.md:90: AC-001 | AC-037
+rule5 specs/sk-design/019-sk-design-diagram-upgrade/010-design-md-style-reference/goal.md:94: AC-018
+rule5 specs/sk-doc/059-skill-changelog-retrofit/002-cli-external-orchestration/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/002-cli-external-orchestration/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/003-cli-jev/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/003-cli-jev/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/004-cli-orca/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/004-cli-orca/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/005-mcp-code-mode/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/006-mcp-tooling/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/006-mcp-tooling/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/007-sk-code/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/007-sk-code/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/008-sk-communication/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/008-sk-communication/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/009-sk-design/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/009-sk-design/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/010-sk-doc/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/010-sk-doc/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/011-sk-git/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/011-sk-git/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/012-sk-prompt/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/012-sk-prompt/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/013-sk-vision/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/013-sk-vision/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/014-system-deep-loop/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/014-system-deep-loop/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/015-system-skill-advisor/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/015-system-skill-advisor/goal.md:61: Every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/016-system-spec-kit/goal.md:60: every kept
+rule5 specs/sk-doc/059-skill-changelog-retrofit/016-system-spec-kit/goal.md:61: Every kept
+rule5 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/goal.md:77: is listed
+rule5 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/goal.md:78: is listed
+rule5 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/goal.md:79: is listed
+rule5 specs/system-skill-advisor/025-mcp-decommission-cli-front-door/001-transport-and-consumer-inventory/goal.md:80: is listed
+rule5 specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/005-ripgrep-retrieval-research/goal.md:70: where they
+rule5 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/004-fingerprint-stamp-regeneration/goal.md:73: REQ-004
+rule5 specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/goal.md:96: AC-002
+rule5 specs/system-speckit/033-system-speckit-v4/038-goal-unification/008-hardening-research/goal.md:82: are listed
+rule5 specs/system-speckit/033-system-speckit-v4/066-pre-v4-spec-upgrade/goal.md:81: AC-001 | AC-007

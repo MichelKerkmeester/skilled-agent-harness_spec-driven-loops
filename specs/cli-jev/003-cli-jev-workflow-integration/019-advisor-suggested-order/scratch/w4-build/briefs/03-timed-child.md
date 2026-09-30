@@ -1,0 +1,73 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+=== BEGIN AGENT PERSONA (resolved runtime path: .claude/agents/code.md; focused summary for a one-change brief) ===
+You are @code, a leaf implementer dispatched by an orchestrator (Depth: 1). Never dispatch another agent.
+Scope: edit only the files this brief names. Read each file before editing it and re-read the edited region after.
+Standards: read .skilled/skills/sk-code/SKILL.md and follow the route it resolves for this file type.
+Comment hygiene is a hard block: no spec paths, packet or phase numbers, or REQ/task ids in code comments. Keep the durable why.
+Verification: run only the checks this brief lists. Fail closed: no retry loop, no workaround. Report exact commands, result lines and exit codes.
+Output: end with the HANDBACK block, STATUS DONE or BLOCKED.
+=== END AGENT PERSONA (resolved persona: code) ===
+
+TASK: add the timed child (the advisor, then an optional health check and one classifier call) and the parent side that spawns and kills it, with tests.
+R = .skilled/skills/system-skill-advisor/runtime. Files: S = R/scripts/routing-accuracy/score-suggested-order.mjs and T = R/tests/parity/score-suggested-order.vitest.ts. Read both first, then R/scripts/routing-accuracy/score-jev-tiebreak.mjs lines 771-820 (spawnCall; never edit that file) and R/hooks/claude/user-prompt-submit.ts lines 252-262.
+
+In S:
+1. Add `import { spawnSync } from 'node:child_process';`, `import { dirname, resolve } from 'node:path';`, `import { performance } from 'node:perf_hooks';`, `import { fileURLToPath } from 'node:url';` above the existing import, and add spawnCall to the score-jev-tiebreak import list (alphabetical).
+2. After the constants: `const SELF = fileURLToPath(import.meta.url);` `const HERE = dirname(SELF);` `const HOOK = resolve(HERE, '../../dist/hooks/claude/user-prompt-submit.js');`
+3. After columnLine add, each with a JSDoc block:
+ a. (not exported) `async function runHookAdvisor(prompt)`: `const { handleClaudeUserPromptSubmit } = await import(HOOK); await handleClaudeUserPromptSubmit({ prompt, cwd: process.cwd() });`
+ b. `export async function childMain(stdinText, deps = {})`: job = JSON.parse(stdinText) with fields prompt, optional health (a command array) and optional call ({ cmd: string[], args: string[] }). runAdvisor = deps.runAdvisor ?? runHookAdvisor. Time `await runAdvisor(job.prompt)` with performance.now(): advisorMs = Math.round(elapsed). result = { advisorMs, healthMs: null, healthCode: null, callMs: null, code: null, stdout: '' }. When job.health is an array: spawnSync(job.health[0], [...job.health.slice(1), 'health'], { env: process.env, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }), healthMs = rounded elapsed, healthCode = 127 when .error is set, else .status ?? -1; when healthCode is not 0 set result.code = healthCode and return result without the call. When job.call is set: spawnSync(job.call.cmd[0], [...job.call.cmd.slice(1), ...job.call.args], { env: process.env, encoding: 'utf8', input: job.prompt, stdio: ['pipe', 'pipe', 'pipe'] }); callMs = rounded elapsed; code = 127 when .error is set, else .status ?? -1; stdout = .stdout ?? ''. Return result.
+ c. `export async function runTimedChild(job, opts = {})`: file = opts.childFile ?? SELF; timeoutMs = opts.timeoutMs ?? CHILD_TIMEOUT_MS; r = await spawnCall(process.execPath, [file, '--child'], JSON.stringify(job), opts.env ?? process.env, timeoutMs). When r.timedOut return { wallMs: timeoutMs, timedOut: true, result: null } (a killed child counts at the full timeout). Else parse the last non-empty line of r.stdout as JSON (null on any failure) and return { wallMs: r.wallMs, timedOut: false, result }.
+ d. `export function childEnv(env)` returns { ...env, SPECKIT_CLAUDE_HOOK_TIMEOUT_MS: String(ADVISOR_BUDGET_MS), SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN: env.SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN ?? '1' }. Comment the why in one line: the shim gives the advisor 2,200 of its 2,500 ms, and a one-minute idle timeout lets the daemon the advisor starts for a temp database exit soon after the run.
+
+In T:
+1. Replace the test title 'stops on flips when a row answers with three disagreeing top keys' with 'stops on flips when one answer in each row disagrees with the other two'.
+2. Add childMain, runTimedChild and childEnv to the import, plus `import { existsSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';` `import { tmpdir } from 'node:os';` `import { dirname, join, resolve } from 'node:path';` `import { fileURLToPath, pathToFileURL } from 'node:url';`
+3. Helpers: `const SCRIPT = resolve(dirname(fileURLToPath(import.meta.url)), '../../scripts/routing-accuracy/score-suggested-order.mjs');` `function makeBin(name: string, body: string)`: temp dir, writes `#!/bin/sh\nD=$(dirname "$0")\necho "$*" >> "$D/${name}.log"\n${body}\n` to join(dir, name) with mode 0o755, returns dir. `function stubChild()`: temp dir with child.mjs holding: `import { childMain } from '<pathToFileURL(SCRIPT).href>';` read all of process.stdin into text; job = JSON.parse(text); ms = job.prompt.startsWith('slow') ? 5000 : job.prompt.startsWith('late') ? 2300 : 0; `const result = await childMain(text, { runAdvisor: () => new Promise((done) => setTimeout(done, ms)) });` then `process.stdout.write(`${JSON.stringify(result)}\n`, () => process.exit(0));` Returns the child.mjs path.
+4. describe('score-suggested-order timed child') with its:
+ 1. childMain runs health, then the call with the prompt on stdin: bin = makeBin('cli-deem', 'case "$1" in health) exit 0;; choice) cat > "$D/stdin.txt"; echo \'{"ok":true}\';; esac'); job { prompt: 'hello prompt', health: [join(bin,'cli-deem')], call: { cmd: [join(bin,'cli-deem')], args: ['choice','-q','Q'] } }, deps { runAdvisor: async () => {} }. Expect healthCode 0, code 0, stdout.trim() '{"ok":true}', typeof advisorMs 'number', the log lines ['health', 'choice -q Q'] and stdin.txt 'hello prompt'.
+ 2. A failing health skips the call: body 'case "$1" in health) exit 4;; esac'. Expect healthCode 4, code 4, callMs null and the log ['health'].
+ 3. runTimedChild({ prompt: 'quick' }, { childFile: stubChild() }) gives timedOut false, a number result.advisorMs and wallMs > 0.
+ 4. runTimedChild({ prompt: 'slow one' }, { childFile: stubChild() }) gives timedOut true, wallMs 2500 and result null, and returns in under 4000 ms.
+ 5. childEnv({ A: '1' }) holds A '1', SPECKIT_CLAUDE_HOOK_TIMEOUT_MS '2200' and SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN '1'; childEnv({ SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN: '5' }) keeps '5'.
+
+VERIFY (repo root): node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs
+  grep -c "export async function childMain\|export async function runTimedChild\|export function childEnv" .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs
+Accept when: the same 2 files changed and nothing else; node --check exits 0; grep prints 3.
+
+RUN CONTEXT
+- Repo root, a git worktree. Run every command from here:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration
+- Spec folder (pre-approved, Gate 3 answered): specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order
+- Other workers edit other files in this tree at the same time. Touch only the files this brief names.
+- The orchestrator runs the test suites, spec validation and every git commit after you return.
+- Your sandbox may block test runners that open local sockets (tsx, vitest). Run only the checks listed here; the orchestrator runs the rest.
+
+DON'T
+- Edit, create or delete any file this brief does not name.
+- Run a git command that writes (add, commit, stash, checkout, restore, reset, merge, rebase, push).
+- Install anything (npm/pnpm/pip/brew install, npm ci) or touch node_modules.
+- Open any .env file, print environment variables, or write a key or token into any file.
+- Call jev, the local Deem server (127.0.0.1:8300) or any network service.
+- Put spec paths, packet or phase numbers, or REQ/task ids in code comments.
+- Reformat, reorder or "improve" anything outside the named edit.
+- Ask a question. If a step cannot be done exactly as written, stop and report BLOCKED with the reason.
+
+HANDBACK (print exactly this block, filled in, as your last output)
+STATUS: DONE | BLOCKED
+FILES CHANGED: one line per file: <path> (+<added>/-<removed>)
+EDITS: one line per step: <file>:<line> <what changed>
+CHECKS: one line per check: <command> -> <result line> (exit <n>)
+BLOCKED REASON: <one line, or none>

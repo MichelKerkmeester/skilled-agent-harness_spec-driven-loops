@@ -1,0 +1,12 @@
+TASK: add scenario 461 to the skill's manual testing playbook index.
+FILE (edit): `.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md`. Read it first.
+EDIT 1: directly after line 202, which is
+| 460 | Compaction recall census | [460](tooling-and-scripts/compaction-recall-census.md) | [compaction-recall-census](../feature-catalog/tooling-and-scripts/compaction-recall-census.md) |
+insert this line:
+| 461 | Alignment suggestion measurement | [461](tooling-and-scripts/alignment-suggestion-measurement.md) | [alignment-suggestion-measurement](../feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md) |
+EDIT 2: if the file states a total scenario count, a tooling-and-scripts count or a scenario id list that includes 460, raise the count by one or add 461 beside 460. Change nothing else.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md --type playbook
+  grep -c "alignment-suggestion-measurement" .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+  node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-spec-kit
+Accept when: 1 file changed and nothing else; the validator exits 0; the grep prints at least 1; the package line says PASS and scenarios=87.

@@ -1,0 +1,4 @@
+44230 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/bin/system-skill-advisor-launcher.cjs
+44231 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+91614 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/bin/system-skill-advisor-launcher.cjs
+91626 /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js

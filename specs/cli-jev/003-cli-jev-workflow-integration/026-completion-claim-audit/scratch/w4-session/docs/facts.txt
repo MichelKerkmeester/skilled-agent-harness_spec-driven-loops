@@ -1,0 +1,32 @@
+# FACTS for the 026 doc steps (read from the code and the session's own runs, 2026-09-29)
+
+Script: `.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` (Node ESM, run with `node` from `.skilled/skills/system-spec-kit/runtime`).
+Test: `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts`, 23 tests, all pass (`npx vitest run tests/completion-claim-audit.vitest.ts` from `runtime`).
+Usage string (the synopsis; the script exports it): `node scripts/completion-claim-audit/score-completion-claims.mjs --rows <file> [--labels <file>] [--deem] [--jev] [--out <dir>] [--accept-payload]`.
+Versions (orchestrator ruling 2): system-spec-kit goes from 4.4.0.0 to 4.5.0.0, the changelog file is `changelog/v4.5.0.0.md`, the playbook scenario ID is 462. The design's `v4.4.0.0` is stale: phase 022 already used it.
+SKILL.md placement (ruling 3): a Quick Reference Commands row directly after the `Alignment suggestion measurement` row.
+
+Exit 2, each before any census line: no `--rows` prints `No rows named`; `--deem` or `--jev` without `--out` prints `--deem needs --out <dir> so every call is recorded`; an `--out` inside the repository prints `refused: report directory inside the repository`; an unknown switch prints node's own `Unknown option '--x'`.
+Zero model calls by default: logging stubs for `cli-deem` and `jev` first on PATH were never called.
+
+Default run on phase 003's fixture (`--rows .skilled/hooks/goal/lib/verifier-labeled-set.jsonl`, 50 rows, untracked), exit 0, full stdout:
+    rows: 50 fires: 4
+    words: completed=1 resolved=1 fixed=1 finished=0 shipped=0 released=0 deployed=1 implemented=0 occurred=0 happened=0
+    labels: none
+    labeled: 0 (yes 0, no 0)
+    regex accuracy: n/a (no labels)
+    regex false fires: 0 (by word: none)
+    regex missed claims: 0 (by word: none)
+    margin: 0.10
+    keep rule: coverage 10*M >= 9*K, then kill when p_loss < 0.05, then margin 10*(A-B) >= M, then sign test p_win < 0.05, then for jev flips 10*F <= 3*M
+    power: a keep needs at least 5 wins with no loss, 0.5^5 = 0.03125 < 0.05
+    stop: fewer than 30 labeled rows
+
+Arms, each only behind its switch and `--out <dir>` outside the repository. `--jev` runs its gate and arm first, then `--deem` (orchestrator ruling 4).
+- `--deem` with a Deem health reporting backend `stub` adds one line: `deem arm skipped: stub backend`.
+- `--jev` without `--accept-payload` adds two lines: `jev: path=<path> provider=official` and `jev arm skipped: payload not accepted`. The Jev payload is the operator's session text, so the arm needs `--accept-payload`.
+- A passing Deem arm first prints `deem: nothing leaves the machine; planned calls: <K>; ...`; a passing Jev arm first prints `jev: payload: the operator's session text, secrets stripped by the operator; planned calls: <3K+1>; estimated input tokens: <n>`.
+- Any run with `--jev` or `--deem` writes `report.json` in `--out`; a run past the gate also writes `calls.jsonl` there.
+Label gate (`LABEL_GATE = 30`, `CLASS_GATE = 5`): fewer than 30 labeled rows prints `stop: fewer than 30 labeled rows`; then fewer than 5 of either class prints `stop: fewer than 5 labeled yes rows` or `stop: fewer than 5 labeled no rows`; the `regex accuracy` line and a `no headroom` stop follow once rows are labeled.
+No row text reaches stdout: a 40-character slice of each fixture row was searched in every run's stdout, 0 of 50 found.
+No run has printed a `verdict` line. Docs must not claim one was printed.

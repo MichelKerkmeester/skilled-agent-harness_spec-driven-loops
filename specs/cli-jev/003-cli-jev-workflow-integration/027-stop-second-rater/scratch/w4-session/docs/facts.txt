@@ -1,0 +1,33 @@
+# FACTS for the 027 doc steps (read from the code and the session's own runs, 2026-09-29)
+
+Script: `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` (CommonJS, run with `node` from the repository root).
+Test: `.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts`, 36 tests, all pass (`npx vitest run tests/unit/score-stop-rater.vitest.ts` from `runtime`).
+Usage string (the synopsis; no run prints it): `node .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs [--jev] [--deem] [--out <dir>] [--gold-reads <file>]`.
+Versions and IDs, read at doc time: the newest runtime changelog is `v1.5.0.1.md`, so this phase writes `changelog/v1.6.0.0.md`; the highest catalog ID is F055 and the highest playbook ID is DLR-055, so this phase takes F056 and DLR-056; new entries carry `version: 1.6.0.0`. The hub `SKILL.md` `version:` and the hub changelog stay unchanged.
+
+Exit 2: `--jev` or `--deem` without `--out` prints `--jev needs --out <dir> so every call is recorded` (or `--deem ...`); a malformed `--gold-reads` row names its row and exits 2 before any line.
+Zero model calls by default: logging stubs for `cli-deem` and `jev` first on PATH were never called. The default run on the real tree takes about 1 s.
+
+Default run on the real tree, exit 0, full stdout (the `reads:` line lists 16 sampled lineage paths with their derived gold, cut here):
+    lineages: tracked 486 no config 37 forced 235 no deltas 92 kept 122 no gold 106 sampled 16 inert 4
+    gold: derived on 16 of 16 sampled
+    reads: specs/sk-doc/z_archive/019-skill-routing-refactor/001-research/004-system-code-graph-routing-research/research g=4 | specs/sk-doc/z_archive/019-skill-routing-refactor/001-research/005-system-deep-loop-routing-research/research g=7 | specs/sk-doc/z_archive/019-skill-routing-refactor/001-re
+    method recorded: right 5 of 16
+    method legacy: right 5 of 16
+    method sources: right 4 of 16
+    baseline: legacy right 5 of 16
+    question counts: 12 of 16 sampled lineages carry key/answered counts
+    margin: 0.10
+    keep rule: coverage 10*M >= 9*K, kill p_loss < 0.05, margin 10*(A-B) >= M, sign test p_win < 0.05, flips 10*F <= C (jev only)
+    power: a keep needs at least 5 wins with no loss, since 0.5^5 = 0.03125 < 0.05
+    planned calls: deem 239 jev 718
+
+Label gate: the operator's `--gold-reads <file>` (one JSON object per line: `lineage`, `gold_iteration`, `labeler`) must confirm the derived gold of the first 5 sampled lineages. Without it, `--jev` and `--deem` print `stop: fewer than 5 confirmed lineages` and call nothing; a read that differs prints `stop: derived gold disagrees on <n> of 5 lineages`.
+- On the real tree, `--jev --deem --out <dir>` adds exactly one line to the default run, `stop: fewer than 5 confirmed lineages`, with both stub logs empty and `report.json` written in `<dir>`. The same run with a `jev` whose auth fails and a Deem health reporting backend `stub` prints the same, because the label gate runs before either backend gate.
+- Past the gate (tests only), the Jev gate runs first, then Deem: a failed gate prints `jev arm skipped: no credential` or `deem arm skipped: stub backend`.
+The script changes no stop: it replays recorded lineages offline.
+No run has printed a `verdict` line. Docs must not claim one was printed.
+
+Added after the cross-family code review (2026-09-29, session-verified):
+- Sample order: kept lineages with an inert window come first, then the rest, and each group is ordered by the SHA-256 hex of the lineage path; the first 25 are sampled (`SAMPLE_MAX`). On the real tree all 16 candidates are sampled, so the counts above are unchanged.
+- Headroom closes the arms: when the census prints `no headroom` and the label gate has passed, `--jev` prints `jev arm skipped: no headroom` and `--deem` prints `deem arm skipped: no headroom`, and neither backend is called. On the real tree the census prints `planned calls: deem 239 jev 718`, not `no headroom`.

@@ -1,0 +1,25 @@
+jev (write to <dir>/jev, mode 0o755):
+#!/bin/sh
+echo "$*" >> "$(dirname "$0")/jev.log"
+case "$1" in
+  --version) echo "${STUB_JEV_VERSION:-jev 0.6.2}"; exit 0 ;;
+  auth) if [ "$2" = status ]; then exit "${STUB_JEV_AUTH:-0}"; fi; echo '{"model":"stub-model"}'; exit 0 ;;
+  choice) read -r state; case "$state" in pick:*) k="${state#pick:}"; printf '{"model":"stub-model","answers":{"answer":{"choice":"%s","probabilities":{"%s":0.9}}}}\n' "$k" "$k"; exit 0 ;; esac; exit 1 ;;
+esac
+exit 1
+
+cli-deem (write to <dir>/cli-deem, mode 0o755):
+#!/bin/sh
+echo "$*" >> "$(dirname "$0")/cli-deem.log"
+case "$1" in
+  health)
+    case "${STUB_DEEM_HEALTH:-ok}" in
+      ok) echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}'; exit 0 ;;
+      unreachable) exit 4 ;;
+      stub) echo '{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}'; exit 0 ;;
+      model) echo '{"ok":true,"backend":"torch","model":"other-model","model_commit":"m1","source_commit":"s1"}'; exit 0 ;;
+      bad) echo 'not json'; exit 0 ;;
+    esac ;;
+  choice) read -r state; case "$state" in pick:*) k="${state#pick:}"; printf '{"answers":{"answer":{"choice":"%s","probabilities":{"%s":0.9}}}}\n' "$k" "$k"; exit 0 ;; esac; exit 1 ;;
+esac
+exit 1

@@ -1,0 +1,8 @@
+The tree comment now reads `# Audit of the completion-claim detector, zero-call by default` with the leading `|   \`-- score-completion-claims.mjs  ` spacing untouched. The validator passed. The other modified files in `git status` belong to the other workers in this tree, my edit touched only the named file and only line 35.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-spec-kit/runtime/scripts/README.md` (+1/-1)
+EDITS: `.skilled/skills/system-spec-kit/runtime/scripts/README.md`:35 tree comment changed to `# Audit of the completion-claim detector, zero-call by default`, leading characters and spacing before `#` unchanged
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/scripts/README.md` -> `✅ VALID: .skilled/skills/system-spec-kit/runtime/scripts/README.md` with `Total issues: 0` (exit 0)
+BLOCKED REASON: none

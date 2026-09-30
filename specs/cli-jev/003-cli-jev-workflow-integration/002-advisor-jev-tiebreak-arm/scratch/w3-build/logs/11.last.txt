@@ -1,0 +1,15 @@
+The packet goal is set. `runJevArm` runs after a passing Jev gate when the census has headroom, and the stub tests cover a full column, a rejected key, and a usage error. The two files are edited, not committed, and not pushed.
+
+SKILL ROUTING: sk-code compiled route → sk-code-opencode. ARTIFACT: sk-code → JavaScript implementation for the choice arm.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+182/-1)
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+121/-17)
+EDITS: score-jev-tiebreak.mjs:20 added PASSES, CHOICE_QUESTION, and NONE_DESCRIPTION
+EDITS: score-jev-tiebreak.mjs:687 added runJevArm (payload line, auth test, three choice passes, exit-4 retry, stop lines, column summary)
+EDITS: score-jev-tiebreak.mjs:1036 main keeps the Jev gate and awaits runJevArm when it passed and headroom is ok
+EDITS: score-jev-tiebreak.vitest.ts:415 moved mk to module scope
+EDITS: score-jev-tiebreak.vitest.ts:566 added describe('score-jev-tiebreak jev arm') with the stub jev and three main-driven cases
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> exit:0 (exit 0)
+BLOCKED REASON: none

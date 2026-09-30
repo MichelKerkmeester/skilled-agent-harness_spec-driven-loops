@@ -1,0 +1,17 @@
+Both checks pass. The file is new (untracked), so `git diff --stat` prints nothing, and `git status --porcelain` scoped to the changelog folder shows only the new file.
+
+SKILL ROUTING: artifact trigger → sk-doc → sk-create-changelog (per design step 11), MODEL: `runtime/changelog/v1.7.0.0.md`
+
+**Summary of the written doc** (`.skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md`):
+- Frontmatter matched to the model's keys and order: `title`, `description` (244 chars, under the 250 budget), 4 `trigger_phrases`, `importance_tier`, `contextType`, `version: 1.8.0.0` (FACTS wins over the design's stale v1.6.0.0)
+- Same section order as the model: summary paragraph, `> Spec folder:` line at `(Level 1)`, `## Why This Release`, `## What's New at a Glance`, `## Upgrade`
+- Facts only from R section 2, FACTS and the script: zero-call census (stubs uncalled), `--write-label-sheet`/`--labels` with the verified keys and label vocabulary, the `stop: fewer than 20 labeled P0 negatives` gate line, `--jev`/`--deem` each behind `--out <dir>` with the verified skip lines, Jev-first order (ruling 3), and no severity changes. Ruling 4 honored: no `verdict` line is claimed, the bullet says none has printed
+- No em dashes, no prose semicolons, commands and paths in backticks
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md` (+32/-0)
+EDITS: `.skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md`:1 created the full changelog entry in the v1.7.0.0 model shape
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md` -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md / Document type: changelog / Total issues: 0` (exit 0)
+CHECKS: `git diff --stat -- .skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md` -> no output (new untracked file, `git status --porcelain` shows `?? .skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md`) (exit 0)
+BLOCKED REASON: none

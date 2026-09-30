@@ -1,0 +1,28 @@
+All required checks pass, the design's "all pass" check passes (29/29), and the final-state review confirms only S and T were written. One deviation to state: section 3's `requalify` row names both strings; the Deem commit-pair path is fully covered now, and the Jev-provider string belongs to `runJevArm`, which lands in the next build step — the test covers the Deem half end-to-end.
+
+Step 6 landed: `which`, `deemCommand`, `readDeemHealth`, `deemGate`, `spawnCall`, `createCallLog`, `readStoredReport`, `runDeemArm`, `buildReport`, the `--deem`/`--out` handling (exit 2 when a switch lacks `--out`), and the six named cases against a config-driven `cli-deem` stub (health by call index, `noul` keyed by the window hash so a wrong payload cannot fake a judgment).
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs (+521/-0)
+- .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs (+268/-0)
+EDITS:
+- score-residue-flagger.cjs:17 import now takes `spawn` beside `spawnSync`
+- score-residue-flagger.cjs:749 section 7 CALLS — `which`, `spawnCall` (bounded child, stdin closed, 127 on spawn error), `createCallLog`, `readStoredReport`
+- score-residue-flagger.cjs:871 section 8 ARM PLAN AND COLUMN — `buildPlan` (window read back at the row's commit, `window_sha12` verified, per-category instruction) and `summarizeColumn` (modal flag, F, baseRight from baseline flags, `decideVerdict` + `verdictLine`)
+- score-residue-flagger.cjs:957 section 9 DEEM ARM — `deemCommand(env, repoRoot)`, `readDeemHealth` (exit 3 reasons, stub/model/bad response, found line), `deemGate`, `runDeemArm` (exit-4 retry behind a health recheck, stop lines, `brier deem:`, `flips: n/a`, requalify, verdict)
+- score-residue-flagger.cjs:1170 section 10 REPORT — `buildReport` (2.3 keys: commit, census, labels digest/rows/labeled, baseline, headroom, margin, keepRule, instruction digests, columns, requalify, stopped, skipped)
+- score-residue-flagger.cjs:1273 main — `env`/`timeoutMs` from deps, `--out`-required exit 2 before any output or call, gate runs whenever its switch is set, `--deem` arm loop with label-gate/headroom skips, report.json only on a column or a stop
+- score-residue-flagger.cjs:1262,1336,1375 sections renumbered: 11 ARGUMENTS, 12 MAIN, 13 EXPORTS
+- score-residue-flagger.cjs:1406 exported the nine new functions after `verdictLine`
+- score-residue-flagger.test.cjs:535 added `writeDeemStub` (health by call index, `noul` by window hash, one log line per call) plus `stubEnv`, `smallPlan`, `planProbabilities`, `labelsProbabilities`, `deemHealthBody`
+- score-residue-flagger.test.cjs:557,564 stub holds the last health/noul answer for the calls after the configured ones
+- score-residue-flagger.test.cjs:636 added cases `deem gate pass`, `deem stub backend` (output diff against the default run is the skip line alone), `deem keep` (100 calls + report.json key check), `deem exit 4 changed pair`, `--out required`, `requalify` (Deem pair, line immediately before the verdict)
+CHECKS:
+- node --check .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs -> no output (exit 0)
+- node --check .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> no output (exit 0)
+- node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> ℹ tests 29, ℹ pass 29, ℹ fail 0 (exit 0)
+- python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <S> -> no output (exit 0)
+- python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh <T> -> no output (exit 0)
+- grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization' <S> -> no match (exit 1)
+BLOCKED REASON: none

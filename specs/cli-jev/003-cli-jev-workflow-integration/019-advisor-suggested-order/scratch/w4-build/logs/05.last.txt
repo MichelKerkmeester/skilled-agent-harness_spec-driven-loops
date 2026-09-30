@@ -1,0 +1,46 @@
+I'll start by reading the two target files and the reference sections of `score-jev-tiebreak.mjs`, as the brief requires.
+
+Now the reference `main()` pattern in `score-jev-tiebreak.mjs` (lines 1508-1590), plus the sk-code skill entry the persona names.
+
+Now let me read the top of `score-jev-tiebreak.mjs` (imports/exports) and the `classifyRow`/`loadCensus` definitions, since S must import them and the tests' eligibility math depends on `classifyRow`.
+
+
+
+I have the full picture of the reference pattern. Per the persona standard I'll load the surface packet the hub routes `.mjs` runtime scripts to (`sk-code-opencode`), briefly.
+
+
+
+Routing confirmed: hub `sk-code` → OPENCODE surface → JavaScript standards (`.mjs` under `.skilled/`). The brief is fully prescriptive and matches the neighboring `score-jev-tiebreak.mjs` conventions. Now making the edits to S.
+
+
+
+
+
+S is complete. Now the test file edits — imports first.
+
+Before appending the tests, let me verify `buildFold`/`rerankOrder`/`rankMetrics` field usage so the synthetic rows in `censusOf` won't break `summarizeCensus`.
+
+All fields the census path touches are covered by the prescribed row shape. Appending the test block now.
+
+Both files are edited. Running the brief's verification commands from the repo root.
+
+Both listed checks pass. Let me rigorously confirm stdout is empty on the refusal path (the brief's accept condition) and confirm only the two named files are touched.
+
+
+
+Both files are in their final state, the two listed checks pass, and the stdout/stderr split is confirmed. One recorded deviation from the brief's literal wording: T also needed `import { spawnSync } from 'node:child_process';` — the brief's test 2 calls `spawnSync`, so the import was required for the specified test body (nothing else beyond the brief).
+
+SKILL ROUTING: sk-code → OPENCODE surface → `references/javascript/style-guide.md` (`.mjs` runtime script + `.vitest.ts` tests). ARTIFACT: sk-code → sk-code-opencode JS standards; verification = the two brief-listed commands (vitest left to the orchestrator per RUN CONTEXT).
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs (+85/-1)
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts (+119/-1)
+EDITS: score-suggested-order.mjs:11-18 added `node:fs` (readFileSync, realpathSync) and `node:util` (parseArgs) imports; score-jev-tiebreak import gains classifyRow, loadCensus, summarizeCensus (alphabetical)
+EDITS: score-suggested-order.mjs:28-29 added `DEEM_MAX_KEYS = 25` and `KEEP_RULE_LINE`
+EDITS: score-suggested-order.mjs:384-462 added `export async function main(argv, deps = {})` (JSDoc deps in order census, timing, out, env, stdinText, childFile, runAdvisor; strict parseArgs → stderr + 2; `--child` stdin job → one JSON line, return 0; `--jev/--deem` without `--out` → stderr + 2 before stdout; filtered census lines, voided → 1; timing + advisor line; eligible/deemRows planned calls, margin, keep rule) plus the direct-run guard (realpathSync compare; `process.exit(code)` for `--child`, else `process.exitCode`)
+EDITS: score-suggested-order.vitest.ts:6-31 added `spawnSync` import (needed by the specified test 2 body), `vi` in the vitest import, `main` in the module import
+EDITS: score-suggested-order.vitest.ts:357-471 added `censusOf(movable, correct = 53)` (movable m-rows labeled, 4 f-rows + solo holdout; split train/test by index; prompt/gold/goldKey/order/tau03/confidence/score), `timing`, `KEEP_RULE`, and `describe('score-suggested-order entry point')` with the six prescribed tests (bad flag; --out refusal in-process and via spawnSync with no cli-deem.log; zero-call default with last four lines asserted; movable stop; voided baseline → 1 with no advisor line; --child stdout spy restored in finally)
+CHECKS: `node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs` -> no output (exit 0)
+CHECKS: `node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs --deem; echo "exit=$?"` -> stderr `--jev and --deem need --out <dir> so every call is recorded`, `exit=2` (exit 0 for the wrapper)
+CHECKS: stdout capture of the same run -> `stdout_chars=0`, `exit=2` (only the refusal, on stderr)
+BLOCKED REASON: none

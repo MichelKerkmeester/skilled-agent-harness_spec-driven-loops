@@ -1,0 +1,69 @@
+I'll start by reading the phase's canonical docs to understand requirements and criteria, then review each changed file.
+
+I have the phase requirements and criteria. Now let me read the remaining spec sections, the parent goal tail, and check the working tree state (read-only).
+
+The working tree holds the phase's docs plus the untracked script and test. Now I'll read all nine in-scope docs in full.
+
+Now the remaining in-scope docs.
+
+
+
+Now the implementation and its tests, which the docs describe and the review must check against.
+
+
+
+
+
+
+
+I've read the full script. Now the test file, and then I'll run the phase's tests and verify key behaviors.
+
+No secret patterns (`API_KEY`/`Bearer`/`Authorization`/`.env` reads) — only `JEV_PROVIDER` (a provider name) and token-estimate wording. Let me confirm the exact spec grep, then read the tests.
+
+
+
+Tests read in full — 28 cases matching the required surfaces. Now let me run the phase's tests and check comment hygiene, plus a few doc/code cross-checks.
+
+28/28 tests pass, exit 0. Now let me resolve the "failed gate never starts the other backend" clause against 002's precedent, and check the corpus data files and changelog folder.
+
+The phase's own build brief (`06-gates.md`) reads the clause as "each runs only behind its own switch" — no cross-gating. Let me confirm against 002's precedent, check the corpus files, and the playbook source-table claim.
+
+
+
+
+
+All six scenario source tables carry the "no feature-catalog entry" row, and 002's precedent confirms each arm runs behind its own switch. Now the hands-on checks: sign-test arithmetic by hand, the SKL-007 zero-call census sequence, and the doc validator.
+
+Observed: zero stub calls, 2 empty-label rows, gate stop both times, arithmetic exact (29/128, 2^-30). Now the doc validator on the changed docs and a broader comment-hygiene sweep.
+
+All four key docs validate clean (exit 0). Final cross-checks: version series and sibling catalog conventions, plus a scan of the two roots' changed lines against HEAD.
+
+One more package-level check on the changed docs: the playbook and catalog validators from the final state.
+
+
+
+Review complete. All checks run from the worktree root; the working tree is unchanged by this review (only `/tmp` scratch, removed).
+
+**Findings**
+
+- P2 `.skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md:43` - source table names only `labeled-prompts.jsonl`; the script reads it plus `holdout-prompts.jsonl` (`score-clarify-default.cjs:35`) - 70 of the 265 replayed corpus rows come from holdout (observed `corpus: rows=265`).
+- P2 `score-clarify-default.cjs:293-296` - an unreadable corpus file is skipped with no count or line - state: with `labeled-prompts.jsonl` unreadable the census exits 0 on `corpus: rows=70` and never mentions the lost prompts, against REQ-005's "never dropped silently" (builder also recorded this).
+- P2 `score-clarify-default.cjs:136` - `result.decision.action` is read outside the try - an engine returning a decision-less object (e.g. `{}`) throws out of `runCensus` instead of counting the prompt unparsed.
+- P2 `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` - the Deem arm's stop paths (exit 2/3/130, exit-4 health recheck, `partial_rows`) are untested while the Jev stop is pinned - REQ-009's enumerated cases are all present, so P2 only.
+
+**Requirements**
+
+- REQ-001 met - census with logging stubs first on PATH: exit 0, 359 prompts, stub log never created, outputs only under the named temp dir; porcelain unchanged.
+- REQ-002 met - 2-row file prints `stop: fewer than 30 labeled rows (0 labeled)`, exit 0, with and without `--deem --out`; foreign label exits 2 by row id.
+- REQ-003 met - Jev identity line then version/auth gates with the three skip lines; Deem health at 2,000 ms with not-reachable/stub/model/bad-health skip lines; skips leave base output byte-identical (tests) and exit 0.
+- REQ-004 met - the spec grep exits 1; the Jev call carries the prompt on stdin, the fixed `-q` and options only; transcripts print counts only.
+- REQ-005 met - unparsed counted per hub and source (24 observed); the unreadable-file path is the P2 above.
+- REQ-006 met - options are alternatives plus `none_of_these`, packet descriptions via the registry, three left rotations, modal pick, `unstable`; duplicate texts gain a recorded ` [key]` suffix (build-evidence deviation).
+- REQ-007 met - calls.jsonl fields/statuses, Jev exit-4 record-then-backoff, stops print `partial_rows` and no verdict; `--jev/--deem` without `--out` exits 2 with empty stdout.
+- REQ-008 met - payload, `planned_calls=3K(+1)` and token estimate before any call; Deem prints "nothing leaves the machine" and a p50 wall estimate; no dollar figure.
+- REQ-009 met - `node --test`: 28 tests, 28 pass, 0 fail, exit 0; every enumerated case present; both arms stubbed.
+- REQ-010 met - `validate_document.py` exit 0 on SKILL.md, README, changelog and the catalog entry; playbook package `PASS scenarios=7 categories=2`, 0 violations; catalog WARN 6, all pre-existing, none on the new entry.
+
+Keep rule checked by hand: `tailP(7,5)` = 29/128 = 0.2265625, `tailP(30,30)` = 2^-30 = 9.313e-10; threshold order coverage, kill, margin, sign test, flips matches spec section 4.
+
+VERDICT: PASS

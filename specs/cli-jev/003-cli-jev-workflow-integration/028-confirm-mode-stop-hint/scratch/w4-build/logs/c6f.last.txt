@@ -1,0 +1,14 @@
+Both checks pass; the edit is confined to the single named line in S.
+
+**Changed** — `.skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs` line 483, inside `main`. The requalify comparison now reads the stored identity from `prior.rater` (the field the same function writes at line 503, `record.rater = identity`) instead of calling `raterSuffix(stored, selection.column)`, whose `jevVersion`/`provider`/`model`/`modelId`/`modelCommit`/`sourceCommit` lookups against the stored record's `columns[<col>]` shape could never match the freshly computed `identity`. So an unchanged rater no longer trips `requalify: rater changed` on rerun, while a genuinely changed rater still does — the new expression compares the two same-shaped strings. A `prior` record with no string `rater` reads as `''`, which differs from any non-empty `identity` and so still requalifies, preserving the conservative default for records whose identity was never stored. Nothing else in S moved: `identity` and `verdictLine`'s rater suffix still come from `raterSuffix(loaded.report, ...)`, and T was not opened.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs (+1/-1)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:483 requalify test now reads identity from prior.rater instead of calling raterSuffix(stored, selection.column)
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs -> (no output, clean parse) (exit 0)
+CHECKS: grep -n "const requalified" .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs -> 483:    const requalified = prior !== null && typeof prior === 'object' && (typeof prior.rater === 'string' ? prior.rater : '') !== identity; (exit 0)
+BLOCKED REASON: none
+```
+
+One note for the orchestrator, outside my scope to act on: I did not run a read-only `git diff` to independently witness the one-file scope, because this tree has concurrent workers and such a diff would show their files too, so it would not have been probative evidence for the "only S changed" criterion. That criterion rests on my own record of a single `edit_lines` call against S.

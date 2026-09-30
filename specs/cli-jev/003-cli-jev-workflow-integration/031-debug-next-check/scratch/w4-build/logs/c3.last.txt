@@ -1,0 +1,19 @@
+S3 implemented and verified. One disclosed correction before the handback:
+
+**Design-value correction (no code change implied).** Section 3's `baseline tie` row — "read_code and reproduce both 18/30" — is arithmetically impossible: the four labels partition the 30 rows, so two counts cannot both cover 18 of them. I kept the 30-row fixture and the tie-break outcome, and used 15/15 (the largest possible tie on 30 rows), so the assertion is `baseline: read_code 15/30`. Proposed amendment: change that §3 row's input and expected to 15/30. The other two cases are exactly as given (20/30 winner; 28/30 → `no headroom`), and print order follows §2 (constants, baseline, `no headroom`, then the label-gate stop). Vitest was not run, per the brief; the orchestrator runs it.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs (+49/-0)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts (+60/-0; an absent trailing newline was normalized on write)
+EDITS: score-debug-next-check.mjs:306-346 added section 8 CONSTANT BASELINES: exported `constantAccuracies(rows)` and `chooseBaseline(counts)`, each with JSDoc; renumbered CLI divider 8 -> 9
+EDITS: score-debug-next-check.mjs:386 renumbered MAIN divider 9 -> 10
+EDITS: score-debug-next-check.mjs:445-458 main: four `constant <key>: <right>/<K>` lines, `baseline:` line, `no headroom` when `10*best > 9*K`, label-gate stop moved after them per section 2's print order
+EDITS: debug-next-check.vitest.ts:197-221 added `baseline best` (20 run_test / 4 read_code / 3 reproduce / 3 instrument)
+EDITS: debug-next-check.vitest.ts:223-239 added `baseline tie` (15 read_code / 15 reproduce; see disclosed correction)
+EDITS: debug-next-check.vitest.ts:241-255 added `no headroom` (28 read_code / 2 run_test, `--jev --deem --out`, no stub call, no calls.jsonl)
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts -> 14 (exit 0)
+CHECKS: git status --porcelain -- <S> <T> -> both `??`, only those two paths; scripts/debug-next-check/ holds only the script (exit 0)
+BLOCKED REASON: none
+```

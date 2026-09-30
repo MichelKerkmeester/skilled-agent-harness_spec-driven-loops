@@ -1,0 +1,2318 @@
+✔ every repository path a goal document cites still exists (32.726708ms)
+✖ the plugin suite count a playbook states matches the suite it names (110.683417ms)
+✔ the disable variable a goal surface names is the concern its canonical name (0.548042ms)
+✔ every goal environment variable the code reads is documented (3.558166ms)
+✔ every goal kill-switch name a document teaches actually disables something (1.837542ms)
+✖ history lists archived goals and leaves active state untouched (6.431167ms)
+✖ doctor and health report counts, log sizes, last sweep, and orphan candidates read-only (1.413041ms)
+✖ resume reactivates paused and usage-limited goals but rejects terminal resurrection (0.513334ms)
+✖ token budget appears in status and invalid set budgets fail closed (0.43275ms)
+✖ env caps configure new goals and status exposes remaining budgets (0.494834ms)
+✖ provider-limit detection accepts 429 variants and quota patterns only (0.600334ms)
+✖ retry-after deadline recovers lazily and malformed payloads stay suppressed (0.614709ms)
+✔ goal command documentation routes new verbs and budget validation (3.37425ms)
+✖ default autonomy suppresses continuation without logging (6.060125ms)
+✖ passive autonomy remains a kill switch without logging (0.769125ms)
+✖ smoke mode logs would-fire continuations and event metadata (0.697875ms)
+✖ active autonomy dispatches promptAsync with the requested directory (0.622166ms)
+✖ definite prompt rejection restores the prior continuation reservation (0.411541ms)
+✖ prompt timeout retains the reserved turn because delivery is indeterminate (0.363291ms)
+✖ verifier timeout suppresses the idle continuation cycle without prompting (0.338792ms)
+✖ continuously active continuation logs rotate at the configured byte bound (0.324625ms)
+✖ path-like continuation directory is preserved unchanged (0.88075ms)
+✖ concurrent idle continuation attempts acquire only one prompt reservation (0.712625ms)
+✖ stale verifier results suppress the old continuation without prompting (0.602083ms)
+✖ auto-turn cap suppresses further continuation and preserves usage count (0.397958ms)
+✖ failed continuation write releases the in-flight reservation (0.498708ms)
+✖ auto-turn cap remains unchanged on repeated suppression (0.511167ms)
+✖ missing session id suppresses continuation (0.452959ms)
+✖ missing promptAsync suppresses and records the reason (0.636417ms)
+✖ in-flight runtime state suppresses duplicate continuation attempts (0.520375ms)
+✖ blocked-by-prompt state suppresses continuation (0.496083ms)
+✖ busy session status suppresses continuation (0.520125ms)
+✖ continuation cooldown suppresses too-soon retries (0.527625ms)
+✖ wall-clock cap suppresses continuation and records durable state (0.54ms)
+✖ paused wall-clock time is not charged after resume (0.383416ms)
+✖ token budget exhaustion suppresses continuation and logs the reason (0.902208ms)
+✖ debug mode surfaces swallowed append and orphan sweep errors without throwing (0.548875ms)
+✖ module exports only the default plugin entrypoint (5.915792ms)
+✖ default export is a plugin factory function (0.858125ms)
+✖ default export exposes the complete pinned __test seam list (0.930833ms)
+✖ session.created keeps an active goal intact (5.12425ms)
+✖ native message headers charge tokens while only explicit assistant text parts become evidence (0.649666ms)
+✖ usage ledger retains old message totals beyond 64 message ids (0.569875ms)
+✖ message.updated accounts assistant usage once per message id (0.775125ms)
+✖ message.updated performs one write cycle for one event (5.391291ms)
+✖ message.updated crosses the token budget and suppresses continuation (0.711792ms)
+✖ interleaved message totals are charged by delta (0.679083ms)
+✖ budget-limited goals do not charge later usage updates (0.730417ms)
+✖ budget-limited goals resume only after the budget is raised (1.15425ms)
+✖ same objective after a terminal state creates a reset goal (0.753167ms)
+✖ missing usage payload leaves tokens unchanged and records unavailable source (0.550458ms)
+✖ retryable provider usage errors mark the goal usage-limited (0.315708ms)
+✖ retry-after parsing honors explicit units before epoch heuristics (0.306416ms)
+✖ non-usage provider errors do not suppress an active goal (0.250291ms)
+✖ permission.asked marks the goal blocked by prompt (0.518084ms)
+✖ permission.replied clears blocked-by-prompt state (0.644792ms)
+✖ question.asked marks the goal blocked by prompt (0.38925ms)
+✖ question.rejected clears blocked-by-prompt state (0.537958ms)
+✖ session.deleted flushes volatile session status before later idle handling (0.443416ms)
+✖ malformed session deletion preserves another session verifier lock (0.272417ms)
+✖ verifier timeout releases the session lock for a later idle event (0.247333ms)
+✖ app.disposed flushes volatile state before later idle handling (0.338792ms)
+✖ event errors are written to the goal events log without debug enabled (0.584666ms)
+✖ session.deleted archives an existing goal file exactly (0.309125ms)
+✖ session.deleted archives a long session id without probing an impossible legacy filename (0.235958ms)
+✖ history migrates a legacy archive and reports an occupied duplicate exactly once (0.474083ms)
+✖ session deletion archive failures preserve active state and write an event error (0.290583ms)
+✖ session.deleted does not reject when the active goal file is missing (0.330333ms)
+✖ disabled plugin events leave the state directory unchanged (0.34475ms)
+✖ disabled env flips apply per call to transform and tools (0.422042ms)
+✖ archive operations serialize with queued usage updates (0.271167ms)
+✖ archive pruning removes old archived files and keeps recent files (0.251959ms)
+✖ archive prune throttling runs pruning once in a throttle window (4.618583ms)
+✖ orphan sweep archives stale active files and keeps recent files (0.402292ms)
+✖ orphan sweep does not archive a goal refreshed after the stale read (0.236166ms)
+✖ orphan sweep prefilter avoids parsing fresh active files (1.776709ms)
+✖ orphan sweep throttle leaves later stale active files in place (0.482834ms)
+✖ both renderers emit the same ordered label set, and only the usage line differs (3.528334ms)
+✖ the brief cache key changes when a same-length write lands in the same millisecond (0.527667ms)
+✖ both renderers emit the same criteria field for a bound packet (0.534542ms)
+✖ setGoal rejects missing session id without creating files (3.994459ms)
+✖ setGoal creates an active enhanced goal (0.677541ms)
+✖ same objective refreshes an active goal without replacing it (0.562041ms)
+✖ different sessions persist to isolated state paths (0.67075ms)
+✖ session keys are fixed-length opaque digests and long ids remain persistable (0.616917ms)
+✖ long session ids clear without probing an impossible legacy filename (0.546375ms)
+✖ valid legacy active state migrates byte-for-byte to the digest path (0.509083ms)
+✖ occupied digest targets win without deleting conflicting legacy state (0.8645ms)
+✖ malformed and mismatched legacy state fail closed without deleting the source (0.626208ms)
+✖ legacy adoption requires a present embedded session identity (0.662917ms)
+✖ stored goals drop unknown fields and reject non-numeric token budgets (0.476041ms)
+✖ active state rejects an embedded session id that differs from its file path (0.447042ms)
+✖ fsyncDirectory failure logs to the state root (0.481667ms)
+✖ tool calls without session id fail closed without writing new goals (0.406583ms)
+✖ tool set, status, and transform expose the active goal injection (0.706083ms)
+✖ appendGoalBrief caches present and missing goal lookups (0.448459ms)
+✖ system transform adopts legacy active state before caching the goal brief (0.5275ms)
+✖ goal brief cache bounds missing sessions and clears on disposal (6.502667ms)
+✖ system transform failures remain fail-open and write a durable diagnostic (0.4185ms)
+✖ ensureGoalStateDir is memoized per state directory (1.772ms)
+✖ setGoal normalizes options once per call chain (1.806667ms)
+✖ stored prompt fields avoid rebuilding prompt enhancement (0.465ms)
+✖ goal status can omit injection preview without rendering it (0.3585ms)
+✖ same-objective refresh resumes paused timing without charging the pause (0.251083ms)
+✖ transform appends active goal injection after existing system context (0.320417ms)
+✖ long goal injection preserves structural lines while clipping content (0.390875ms)
+✖ adversarial role markers are sanitized from rendered goal injection (0.237875ms)
+✖ unicode role-marker bypass attempts are normalized and sanitized (0.233333ms)
+✖ punctuation and homoglyph role-marker cases are sanitized (0.256333ms)
+✖ non-colon role delimiters are sanitized without changing ordinary operators (0.228458ms)
+✖ verifier exception details are redacted from results, state, and status (0.253709ms)
+✖ long enhanced goal prompt respects the configured cap (0.365208ms)
+✖ tool clear removes an active tool-managed goal (0.230167ms)
+✖ met verifier verdict completes the goal and redacts evidence (6.299875ms)
+✖ verifier evidence redacts common key blocks and high-entropy secrets conservatively (0.645333ms)
+✖ blocked verifier verdict marks the goal blocked without completion source (0.392292ms)
+✖ ambiguous verifier verdict keeps the goal active and increments iterations (0.647209ms)
+✖ absent evidence defaults to not_met without calling the verifier (0.737834ms)
+✖ default heuristic verifier completes only explicit objective-specific evidence (0.595375ms)
+✖ default heuristic verifier rejects adversarial weak and mixed evidence (0.675833ms)
+✖ llm verifier mode blocks when isolated session APIs are unavailable (0.584125ms)
+✖ llm verifier uses a response-returning isolated session and deletes it (0.847416ms)
+✖ same-millisecond goal mutation makes a pending verifier result stale (0.557917ms)
+✖ verifier timeout returns promptly, keeps the goal active, and ignores late settlement (0.546417ms)
+✖ verifier is called exactly for the three evidence-backed sessions (0.584ms)
+✖ verifier result envelopes use one key set for early and applied paths (0.448334ms)
+✖ status transitions reject terminal resurrection and preserve known valid transitions (0.368958ms)
+✖ executeGoalAction set persists an enhanced goal via ToolContext (6.249375ms)
+✖ executeGoalStatus reflects the active tool-path goal (0.690833ms)
+✖ executeGoalAction clear removes the tool-path goal (0.557875ms)
+✖ invalid set action returns the documented failure envelope (0.453333ms)
+✖ registered opencode_goal reports created, refreshed, and replaced mutations (0.486333ms)
+✖ terminal same-objective set reports replacement and resets counters (0.469ms)
+✔ goal command documentation exposes the registered command contract (3.286708ms)
+✔ goal plugin reference links the OpenCode command document (0.216708ms)
+✔ regression graph key files exclude non-deliverable legacy basenames (1.366625ms)
+✖ executeGoalAction bind derives the objective from the packet and the injection never carries frontmatter (0.596417ms)
+✖ executeGoalAction packet reads a packet without binding, and bind refuses a missing document (0.458583ms)
+✖ executeGoalAction bind keeps a line break in the packet and workspace paths so the binding resolves (0.878833ms)
+✖ the system transform carries the resend reminder while the bound packet is unresent (0.743208ms)
+✖ executeGoalAction unbind, log, packet budget and an unknown action (0.427792ms)
+✖ executeGoalAction set reports a truncated text objective (0.308375ms)
+✖ a rebind to a different packet leaves the prior record in history (0.4405ms)
+ℹ tests 143
+ℹ suites 0
+ℹ pass 8
+ℹ fail 135
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 192.057125
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/goal-doc-contract.test.cjs:48:1
+✖ the plugin suite count a playbook states matches the suite it names (110.683417ms)
+  Error: Command failed: /Users/michelkerkmeester/.hermes/node/bin/node --test --test-reporter=tap /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/plugins/tests/opencode-goal-capabilities.test.cjs /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/plugins/tests/opencode-goal-continuation.test.cjs /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/plugins/tests/opencode-goal-export-contract.test.cjs /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/plugins/tests/opencode-goal-lifecycle.test.cjs /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/plugins/tests/opencode-goal-render-parity.test.cjs /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/plugins/tests/opencode-goal-state.test.cjs /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/plugins/tests/opencode-goal-supervisor.test.cjs /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/plugins/tests/opencode-goal-tool-path.test.cjs
+      at genericNodeError (node:internal/errors:999:15)
+      at wrappedFn (node:internal/errors:544:14)
+      at checkExecSyncError (node:child_process:942:11)
+      at execFileSync (node:child_process:978:15)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/goal-doc-contract.test.cjs:58:15)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    status: 1,
+    signal: null,
+    output: [ null, `TAP version 13\n# Subtest: history lists archived goals and leaves active state untouched\nnot ok 1 - history lists archived goals and leaves active state untouched\n  ---\n  duration_ms: 4.1525\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:50:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: doctor and health report counts, log sizes, last sweep, and orphan candidates read-only\nnot ok 2 - doctor and health report counts, log sizes, last sweep, and orphan candidates read-only\n  ---\n  duration_ms: 0.974542\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:70:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: resume reactivates paused and usage-limited goals but rejects terminal resurrection\nnot ok 3 - resume reactivates paused and usage-limited goals but rejects terminal resurrection\n  ---\n  duration_ms: 0.46725\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:112:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: token budget appears in status and invalid set budgets fail closed\nnot ok 4 - token budget appears in status and invalid set budgets fail closed\n  ---\n  duration_ms: 0.64275\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:144:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: env caps configure new goals and status exposes remaining budgets\nnot ok 5 - env caps configure new goals and status exposes remaining budgets\n  ---\n  duration_ms: 0.500334\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:164:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: provider-limit detection accepts 429 variants and quota patterns only\nnot ok 6 - provider-limit detection accepts 429 variants and quota patterns only\n  ---\n  duration_ms: 0.750416\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:187:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: retry-after deadline recovers lazily and malformed payloads stay suppressed\nnot ok 7 - retry-after deadline recovers lazily and malformed payloads stay suppressed\n  ---\n  duration_ms: 0.53\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:220:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: goal command documentation routes new verbs and budget validation\nok 8 - goal command documentation routes new verbs and budget validation\n  ---\n  duration_ms: 3.057458\n  type: 'test'\n  ...\n# Subtest: default autonomy suppresses continuation without logging\nnot ok 9 - `... 174492 more characters, null ],
+    pid: 43589,
+    stdout: `TAP version 13\n# Subtest: history lists archived goals and leaves active state untouched\nnot ok 1 - history lists archived goals and leaves active state untouched\n  ---\n  duration_ms: 4.1525\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:50:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: doctor and health report counts, log sizes, last sweep, and orphan candidates read-only\nnot ok 2 - doctor and health report counts, log sizes, last sweep, and orphan candidates read-only\n  ---\n  duration_ms: 0.974542\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:70:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: resume reactivates paused and usage-limited goals but rejects terminal resurrection\nnot ok 3 - resume reactivates paused and usage-limited goals but rejects terminal resurrection\n  ---\n  duration_ms: 0.46725\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:112:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: token budget appears in status and invalid set budgets fail closed\nnot ok 4 - token budget appears in status and invalid set budgets fail closed\n  ---\n  duration_ms: 0.64275\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:144:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: env caps configure new goals and status exposes remaining budgets\nnot ok 5 - env caps configure new goals and status exposes remaining budgets\n  ---\n  duration_ms: 0.500334\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:164:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: provider-limit detection accepts 429 variants and quota patterns only\nnot ok 6 - provider-limit detection accepts 429 variants and quota patterns only\n  ---\n  duration_ms: 0.750416\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:187:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: retry-after deadline recovers lazily and malformed payloads stay suppressed\nnot ok 7 - retry-after deadline recovers lazily and malformed payloads stay suppressed\n  ---\n  duration_ms: 0.53\n  type: 'test'\n  location: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/tests/opencode-goal-capabilities.test.cjs:220:1'\n  failureType: 'testCodeFailure'\n  error: "Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js"\n  code: 'ERR_MODULE_NOT_FOUND'\n  stack: |-\n    Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)\n    packageResolve (node:internal/modules/esm/resolve:784:25)\n    moduleResolve (node:internal/modules/esm/resolve:873:18)\n    defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n    #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n    ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n    #resolve (node:internal/modules/esm/loader:690:17)\n    ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n    ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n  ...\n# Subtest: goal command documentation routes new verbs and budget validation\nok 8 - goal command documentation routes new verbs and budget validation\n  ---\n  duration_ms: 3.057458\n  type: 'test'\n  ...\n# Subtest: default autonomy suppresses continuation without logging\nnot ok 9 - `... 174492 more characters,
+    stderr: null
+  }
+
+test at .opencode/plugins/tests/opencode-goal-capabilities.test.cjs:50:1
+✖ history lists archived goals and leaves active state untouched (6.431167ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-capabilities.test.cjs:70:1
+✖ doctor and health report counts, log sizes, last sweep, and orphan candidates read-only (1.413041ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-capabilities.test.cjs:112:1
+✖ resume reactivates paused and usage-limited goals but rejects terminal resurrection (0.513334ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-capabilities.test.cjs:144:1
+✖ token budget appears in status and invalid set budgets fail closed (0.43275ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-capabilities.test.cjs:164:1
+✖ env caps configure new goals and status exposes remaining budgets (0.494834ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-capabilities.test.cjs:187:1
+✖ provider-limit detection accepts 429 variants and quota patterns only (0.600334ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-capabilities.test.cjs:220:1
+✖ retry-after deadline recovers lazily and malformed payloads stay suppressed (0.614709ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:66:1
+✖ default autonomy suppresses continuation without logging (6.060125ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:102:1
+✖ passive autonomy remains a kill switch without logging (0.769125ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:130:1
+✖ smoke mode logs would-fire continuations and event metadata (0.697875ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:200:1
+✖ active autonomy dispatches promptAsync with the requested directory (0.622166ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:238:1
+✖ definite prompt rejection restores the prior continuation reservation (0.411541ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:271:1
+✖ prompt timeout retains the reserved turn because delivery is indeterminate (0.363291ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:317:1
+✖ verifier timeout suppresses the idle continuation cycle without prompting (0.338792ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:335:1
+✖ continuously active continuation logs rotate at the configured byte bound (0.324625ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:359:1
+✖ path-like continuation directory is preserved unchanged (0.88075ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:390:1
+✖ concurrent idle continuation attempts acquire only one prompt reservation (0.712625ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:423:1
+✖ stale verifier results suppress the old continuation without prompting (0.602083ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:470:1
+✖ auto-turn cap suppresses further continuation and preserves usage count (0.397958ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:500:1
+✖ failed continuation write releases the in-flight reservation (0.498708ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:537:1
+✖ auto-turn cap remains unchanged on repeated suppression (0.511167ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:566:1
+✖ missing session id suppresses continuation (0.452959ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:584:1
+✖ missing promptAsync suppresses and records the reason (0.636417ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:603:1
+✖ in-flight runtime state suppresses duplicate continuation attempts (0.520375ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:631:1
+✖ blocked-by-prompt state suppresses continuation (0.496083ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:663:1
+✖ busy session status suppresses continuation (0.520125ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:691:1
+✖ continuation cooldown suppresses too-soon retries (0.527625ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:721:1
+✖ wall-clock cap suppresses continuation and records durable state (0.54ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:754:1
+✖ paused wall-clock time is not charged after resume (0.383416ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:804:1
+✖ token budget exhaustion suppresses continuation and logs the reason (0.902208ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-continuation.test.cjs:844:1
+✖ debug mode surfaces swallowed append and orphan sweep errors without throwing (0.548875ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-export-contract.test.cjs:18:1
+✖ module exports only the default plugin entrypoint (5.915792ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-export-contract.test.cjs:23:1
+✖ default export is a plugin factory function (0.858125ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-export-contract.test.cjs:28:1
+✖ default export exposes the complete pinned __test seam list (0.930833ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:118:1
+✖ session.created keeps an active goal intact (5.12425ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:133:1
+✖ native message headers charge tokens while only explicit assistant text parts become evidence (0.649666ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:171:1
+✖ usage ledger retains old message totals beyond 64 message ids (0.569875ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:197:1
+✖ message.updated accounts assistant usage once per message id (0.775125ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:234:1
+✖ message.updated performs one write cycle for one event (5.391291ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:263:1
+✖ message.updated crosses the token budget and suppresses continuation (0.711792ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:312:1
+✖ interleaved message totals are charged by delta (0.679083ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:356:1
+✖ budget-limited goals do not charge later usage updates (0.730417ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:403:1
+✖ budget-limited goals resume only after the budget is raised (1.15425ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:445:1
+✖ same objective after a terminal state creates a reset goal (0.753167ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:484:1
+✖ missing usage payload leaves tokens unchanged and records unavailable source (0.550458ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:518:1
+✖ retryable provider usage errors mark the goal usage-limited (0.315708ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:553:1
+✖ retry-after parsing honors explicit units before epoch heuristics (0.306416ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:605:1
+✖ non-usage provider errors do not suppress an active goal (0.250291ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:638:1
+✖ permission.asked marks the goal blocked by prompt (0.518084ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:652:1
+✖ permission.replied clears blocked-by-prompt state (0.644792ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:667:1
+✖ question.asked marks the goal blocked by prompt (0.38925ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:681:1
+✖ question.rejected clears blocked-by-prompt state (0.537958ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:696:1
+✖ session.deleted flushes volatile session status before later idle handling (0.443416ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:741:1
+✖ malformed session deletion preserves another session verifier lock (0.272417ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:778:1
+✖ verifier timeout releases the session lock for a later idle event (0.247333ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:807:1
+✖ app.disposed flushes volatile state before later idle handling (0.338792ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:841:1
+✖ event errors are written to the goal events log without debug enabled (0.584666ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:872:1
+✖ session.deleted archives an existing goal file exactly (0.309125ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:894:1
+✖ session.deleted archives a long session id without probing an impossible legacy filename (0.235958ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:909:1
+✖ history migrates a legacy archive and reports an occupied duplicate exactly once (0.474083ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:938:1
+✖ session deletion archive failures preserve active state and write an event error (0.290583ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:958:1
+✖ session.deleted does not reject when the active goal file is missing (0.330333ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:968:1
+✖ disabled plugin events leave the state directory unchanged (0.34475ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:995:1
+✖ disabled env flips apply per call to transform and tools (0.422042ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:1020:1
+✖ archive operations serialize with queued usage updates (0.271167ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:1050:1
+✖ archive pruning removes old archived files and keeps recent files (0.251959ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:1075:1
+✖ archive prune throttling runs pruning once in a throttle window (4.618583ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:1093:1
+✖ orphan sweep archives stale active files and keeps recent files (0.402292ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:1136:1
+✖ orphan sweep does not archive a goal refreshed after the stale read (0.236166ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:1194:1
+✖ orphan sweep prefilter avoids parsing fresh active files (1.776709ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:1220:1
+✖ orphan sweep throttle leaves later stale active files in place (0.482834ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-render-parity.test.cjs:37:1
+✖ both renderers emit the same ordered label set, and only the usage line differs (3.528334ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-render-parity.test.cjs:76:1
+✖ the brief cache key changes when a same-length write lands in the same millisecond (0.527667ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-render-parity.test.cjs:102:1
+✖ both renderers emit the same criteria field for a bound packet (0.534542ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:82:1
+✖ setGoal rejects missing session id without creating files (3.994459ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:90:1
+✖ setGoal creates an active enhanced goal (0.677541ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:112:1
+✖ same objective refreshes an active goal without replacing it (0.562041ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:129:1
+✖ different sessions persist to isolated state paths (0.67075ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:147:1
+✖ session keys are fixed-length opaque digests and long ids remain persistable (0.616917ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:168:1
+✖ long session ids clear without probing an impossible legacy filename (0.546375ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:178:1
+✖ valid legacy active state migrates byte-for-byte to the digest path (0.509083ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:197:1
+✖ occupied digest targets win without deleting conflicting legacy state (0.8645ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:217:1
+✖ malformed and mismatched legacy state fail closed without deleting the source (0.626208ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:244:1
+✖ legacy adoption requires a present embedded session identity (0.662917ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:262:1
+✖ stored goals drop unknown fields and reject non-numeric token budgets (0.476041ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:289:1
+✖ active state rejects an embedded session id that differs from its file path (0.447042ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:309:1
+✖ fsyncDirectory failure logs to the state root (0.481667ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:319:1
+✖ tool calls without session id fail closed without writing new goals (0.406583ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:347:1
+✖ tool set, status, and transform expose the active goal injection (0.706083ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:368:1
+✖ appendGoalBrief caches present and missing goal lookups (0.448459ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:393:1
+✖ system transform adopts legacy active state before caching the goal brief (0.5275ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:413:1
+✖ goal brief cache bounds missing sessions and clears on disposal (6.502667ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:438:1
+✖ system transform failures remain fail-open and write a durable diagnostic (0.4185ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:454:1
+✖ ensureGoalStateDir is memoized per state directory (1.772ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:468:1
+✖ setGoal normalizes options once per call chain (1.806667ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:485:1
+✖ stored prompt fields avoid rebuilding prompt enhancement (0.465ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:523:1
+✖ goal status can omit injection preview without rendering it (0.3585ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:535:1
+✖ same-objective refresh resumes paused timing without charging the pause (0.251083ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:567:1
+✖ transform appends active goal injection after existing system context (0.320417ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:590:1
+✖ long goal injection preserves structural lines while clipping content (0.390875ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:617:1
+✖ adversarial role markers are sanitized from rendered goal injection (0.237875ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:651:1
+✖ unicode role-marker bypass attempts are normalized and sanitized (0.233333ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:676:1
+✖ punctuation and homoglyph role-marker cases are sanitized (0.256333ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:701:1
+✖ non-colon role delimiters are sanitized without changing ordinary operators (0.228458ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:725:1
+✖ verifier exception details are redacted from results, state, and status (0.253709ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:762:1
+✖ long enhanced goal prompt respects the configured cap (0.365208ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-state.test.cjs:772:1
+✖ tool clear removes an active tool-managed goal (0.230167ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:100:1
+✖ met verifier verdict completes the goal and redacts evidence (6.299875ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:133:1
+✖ verifier evidence redacts common key blocks and high-entropy secrets conservatively (0.645333ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:191:1
+✖ blocked verifier verdict marks the goal blocked without completion source (0.392292ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:212:1
+✖ ambiguous verifier verdict keeps the goal active and increments iterations (0.647209ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:233:1
+✖ absent evidence defaults to not_met without calling the verifier (0.737834ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:253:1
+✖ default heuristic verifier completes only explicit objective-specific evidence (0.595375ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:279:1
+✖ default heuristic verifier rejects adversarial weak and mixed evidence (0.675833ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:350:1
+✖ llm verifier mode blocks when isolated session APIs are unavailable (0.584125ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:375:1
+✖ llm verifier uses a response-returning isolated session and deletes it (0.847416ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:431:1
+✖ same-millisecond goal mutation makes a pending verifier result stale (0.557917ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:473:1
+✖ verifier timeout returns promptly, keeps the goal active, and ignores late settlement (0.546417ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:504:1
+✖ verifier is called exactly for the three evidence-backed sessions (0.584ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:526:1
+✖ verifier result envelopes use one key set for early and applied paths (0.448334ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-supervisor.test.cjs:555:1
+✖ status transitions reject terminal resurrection and preserve known valid transitions (0.368958ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-tool-path.test.cjs:40:1
+✖ executeGoalAction set persists an enhanced goal via ToolContext (6.249375ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-tool-path.test.cjs:51:1
+✖ executeGoalStatus reflects the active tool-path goal (0.690833ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-tool-path.test.cjs:59:1
+✖ executeGoalAction clear removes the tool-path goal (0.557875ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-tool-path.test.cjs:68:1
+✖ invalid set action returns the documented failure envelope (0.453333ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-tool-path.test.cjs:74:1
+✖ registered opencode_goal reports created, refreshed, and replaced mutations (0.486333ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-tool-path.test.cjs:99:1
+✖ terminal same-objective set reports replacement and resets counters (0.469ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-tool-path.test.cjs:180:1
+✖ executeGoalAction bind derives the objective from the packet and the injection never carries frontmatter (0.596417ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-tool-path.test.cjs:198:1
+✖ executeGoalAction packet reads a packet without binding, and bind refuses a missing document (0.458583ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-tool-path.test.cjs:211:1
+✖ executeGoalAction bind keeps a line break in the packet and workspace paths so the binding resolves (0.878833ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-tool-path.test.cjs:228:1
+✖ the system transform carries the resend reminder while the bound packet is unresent (0.743208ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-tool-path.test.cjs:241:1
+✖ executeGoalAction unbind, log, packet budget and an unknown action (0.427792ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-tool-path.test.cjs:261:1
+✖ executeGoalAction set reports a truncated text objective (0.308375ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-tool-path.test.cjs:267:1
+✖ a rebind to a different packet leaves the prior record in history (0.4405ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@opencode-ai/plugin' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.opencode/plugins/opencode-goal.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:331:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }

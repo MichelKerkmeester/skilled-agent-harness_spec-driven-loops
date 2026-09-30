@@ -261,13 +261,18 @@ async function tryImportRuntimeApi(specifier: string): Promise<any | null> {
   }
 }
 
-/** The retrieval package's index reader, frontmatter reader and path-alias folder, resolved once per process. */
+/** The retrieval package's index reader, frontmatter reader, path-alias folder and staleness comparison, resolved once per process. */
 interface TriggerIndexRetrievalLibrary {
   loadIndex: (indexPath?: string, options?: { hashIndex?: boolean }) => {
     index: { paths: string[]; phrases: Record<string, number[]> };
   };
   readTriggerPhrases: (rawContent: string) => { phrases: Array<{ normalized: string }> };
   canonicalRelativePath: (relativePath: string) => string;
+  compareDocumentPhrases: (
+    index: { paths: string[]; phrases: Record<string, number[]> },
+    documentPath: string,
+    declaredPhrases: Iterable<string>,
+  ) => { added: string[]; removed: string[] };
   /** Repository root the retrieval package's own paths are relative to. */
   repoRoot: string;
 }
@@ -300,15 +305,17 @@ async function loadTriggerIndexRetrievalLibrary(): Promise<TriggerIndexRetrieval
   }
 
   try {
-    const [lookupModule, frontmatterModule, corpusModule] = await Promise.all([
+    const [lookupModule, frontmatterModule, corpusModule, freshnessModule] = await Promise.all([
       import(path.join(retrievalDir, 'lookup-trigger-index.mjs')),
       import(path.join(retrievalDir, 'lib', 'frontmatter.mjs')),
       import(path.join(retrievalDir, 'lib', 'corpus.mjs')),
+      import(path.join(retrievalDir, 'lib', 'freshness.mjs')),
     ]);
     cachedTriggerIndexRetrievalLibrary = {
       loadIndex: lookupModule.loadIndex,
       readTriggerPhrases: frontmatterModule.readTriggerPhrases,
       canonicalRelativePath: corpusModule.canonicalRelativePath,
+      compareDocumentPhrases: freshnessModule.compareDocumentPhrases,
       // scripts/retrieval sits five levels under the repo root: retrieval → scripts →
       // system-spec-kit → skills → .skilled → repo root.
       repoRoot: path.resolve(retrievalDir, '..', '..', '..', '..', '..'),
@@ -377,18 +384,7 @@ async function checkTriggerIndexFreshness(
   const documentPath = library.canonicalRelativePath(
     toCanonicalRelativePath(path.join(specFolderPath, 'spec.md'), library.repoRoot),
   );
-  const pathId = loaded.index.paths.indexOf(documentPath);
-  const indexedPhrases = new Set<string>();
-  if (pathId !== -1) {
-    for (const [phrase, postings] of Object.entries(loaded.index.phrases)) {
-      if (postings.includes(pathId)) {
-        indexedPhrases.add(phrase);
-      }
-    }
-  }
-
-  const added = Array.from(currentPhrases).filter((phrase) => !indexedPhrases.has(phrase)).sort();
-  const removed = Array.from(indexedPhrases).filter((phrase) => !currentPhrases.has(phrase)).sort();
+  const { added, removed } = library.compareDocumentPhrases(loaded.index, documentPath, currentPhrases);
   if (added.length === 0 && removed.length === 0) {
     return { status: 'fresh', documentPath: documentPath || undefined };
   }

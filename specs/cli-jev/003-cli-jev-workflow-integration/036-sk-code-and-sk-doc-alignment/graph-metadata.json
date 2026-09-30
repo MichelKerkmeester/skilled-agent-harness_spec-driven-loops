@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code and sk doc alignment",
+      "alignment audit fixes",
+      "code header conformance",
+      "bracketed stderr tags",
+      "packet doc conformance",
+      "sk code and sk doc alignment plan",
+      "header conformance batches",
+      "stderr tag batch plan",
+      "alignment proof plan",
+      "cross-family review plan",
+      "alignment task batches",
+      "header batch tasks"
+    ],
+    "key_topics": [
+      "code",
+      "doc",
+      "alignment",
+      "audit",
+      "header",
+      "conformance",
+      "bracketed",
+      "stderr",
+      "tags",
+      "packet",
+      "plan",
+      "batches"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "changelog/v4.2.0.0.md",
+      "benchmark/reports/README.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/README.md",
+      ".skilled/skills/sk-communication/benchmark/reply-harness/README.md",
+      "scratch/audit/findings.md",
+      ".skilled/hooks/goal/lib/build-verifier-fixture.cjs",
+      ".skilled/hooks/goal/lib/count-pi-goal-nudges.mjs",
+      ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.2.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v4.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/audit/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-verifier-fixture.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/build-verifier-fixture.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "count-pi-goal-nudges.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/count-pi-goal-nudges.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-verifier-labeled-set.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/score-verifier-labeled-set.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lint-goal-criteria.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-goal-lint.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-clarify-default.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-verdict-fallback.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Claude",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-jev 003 packet shipped 130 files between `f9d701bd13` and `089693d899`, and a read-only audit on 2026-09-30 found conformance gaps against the two skills that own their standards",
+    "created_at": "2026-09-30T11:42:55Z",
+    "last_save_at": "2026-09-30T13:11:53.777Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:37df2de53ef887af4f6020e58126b5dd1945cb4b72df5451c37df01d3715a7c3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "05326d1ed4b0aa508d21b4d76958d48e1562417ec359f9af02ddb4890a51c232",
+      "plan.md": "6b5ba1878437ab11505969214deb55a2162ddda803e2a25b06f888b31b2134fb",
+      "tasks.md": "1ef6d79bb7082c335ad16a10e6f7b3088fecb42e6af1b11815b801111e9c3cf3",
+      "implementation-summary.md": "01efeb63ae90c9f8082de4db0f008f1413799ec51d49f83c4507ba2a83a71770"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor suggested order",
+      "near-tie cluster order",
+      "score-suggested-order",
+      "advisor child latency budget",
+      "r3 live form test",
+      "suggested order plan",
+      "score-suggested-order plan",
+      "advisor child timing plan",
+      "near-tie order keep rule",
+      "suggested order tasks",
+      "score-suggested-order tasks",
+      "advisor child timing tasks"
+    ],
+    "key_topics": [
+      "advisor",
+      "suggested",
+      "order",
+      "near-tie",
+      "cluster",
+      "score-suggested-order",
+      "child",
+      "latency",
+      "budget",
+      "live",
+      "form",
+      "test"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".hermes/skills/system-skill-advisor/SKILL.md",
+      "scratch/w4-build/build-evidence.md",
+      "scratch/w4-build/evidence-tail.draft.md",
+      "scratch/w4-session/session-evidence.md",
+      "scratch/w4-session/jev-run/calls.jsonl",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
+      ".skilled/skills/system-skill-advisor/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts",
+      "hooks/claude/user-prompt-submit.ts",
+      "scratch/w4-session/p4-deem/calls.jsonl"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-suggested-order.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-suggested-order.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence-tail.draft.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/evidence-tail.draft.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "calls.jsonl",
+        "kind": "file",
+        "path": "scratch/w4-session/jev-run/calls.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "score-jev-tiebreak.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The advisor marks a near-tie cluster",
+    "created_at": "2026-09-29T12:42:32Z",
+    "last_save_at": "2026-09-30T10:10:26.183Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:aa98487efb8f74ad1458d67b90b3a3e77fa7db8b90881bce9930a6cd12e6fa6d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "78c0d6b46af7d2553894a6f8979c096c0ea1aa1c37e36e2320fa626cdda1820a",
+      "plan.md": "797782e381f1a76aa71d9cf48aac8bc6c5209ed3a03ccb11f0a262047fac778b",
+      "tasks.md": "cb77b884017c4a6d6271cbd4de28eb0512aad8b2617f61e87655a864ac94b925",
+      "implementation-summary.md": "6dacade193103a82fa6e20ce5bea0ac26549166412f75b32aa94724a243503eb"
+    },
+    "last_active_at": null
+  }
+}

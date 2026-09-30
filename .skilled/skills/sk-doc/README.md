@@ -156,7 +156,7 @@ Skip sk-doc when the task belongs to a neighbor:
 | DQI below 60 ("needs_work") | Missing sections, no frontmatter on a strict file or multiple HVR violations | Fix in priority order: structure and section order first, then missing sections, then content density, then style. Re-run after each batch. |
 | `validate_document.py` exits 1 | A blocking format issue: missing required H2, non-sequential numbering or malformed frontmatter | Read the error message line by line. Fix each reported violation and re-run. |
 | `package_skill.py` fails | SKILL.md is over the 5000-word ceiling, a required section is missing or a subdirectory was not scaffolded | Run `extract_structure.py` on SKILL.md first. Move deep detail into `references/` files if the word count is too high. |
-| Wrong document type detected | The file path or content shape misled the detector | Check the detected type in the JSON output. Override with `--type` on `validate_document.py`. |
+| Wrong document type detected | The file path or content shape misled the detector, or no type rule matched and README rules were applied, which prints a `document_type_fallback` warning | Check the detected type in the JSON output. Override with `--type` on `validate_document.py`. |
 
 ---
 
@@ -190,6 +190,7 @@ The skill ships the checks that prove a document is ready.
 | Full quality | `python3 .skilled/skills/sk-doc/scripts/extract_structure.py document.md` returns the DQI, the checklist and the violations in JSON |
 | Flowchart shape | `bash .skilled/skills/sk-design/sk-design-diagram/scripts/validate-flowchart.sh` checks box alignment and label consistency |
 | Package gate | `python3 .skilled/skills/sk-doc/scripts/package_skill.py` validates a skill and bundles it to a zip |
+| Citation drift scan | `node .skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs` prints per-skill and total citation counts with zero model calls by default, and `--jev` and `--deem` each need `--out <dir>` to run one measurement arm |
 
 ---
 

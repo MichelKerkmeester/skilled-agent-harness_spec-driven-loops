@@ -1,0 +1,10 @@
+TASK: add scenario 459's row to the system-spec-kit manual testing playbook's scenario directory. One literal insert in one file.
+F = .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md. Read F first. Change nothing else in it.
+
+1. In F, the table under `### 7.8 Lifecycle, Retrieval and Context Preservation` has a row starting "| 190 | Session recovery via /speckit:resume |". Directly after that row insert this one row:
+| 459 | Track narrowing measurement | [459](retrieval/track-narrowing-measurement.md) | [track-narrowing-measurement](../feature-catalog/retrieval/track-narrowing-measurement.md) |
+
+VERIFY (repo root):
+  grep -c "^| 459 | Track narrowing measurement |" .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md   (expect 1)
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md   (expect exit 0)
+Accept when: 1 file changed and nothing else; the grep prints 1; the validator exits 0.

@@ -1,0 +1,11 @@
+File read; both occurrences confirmed at lines 19 and 37. Applying the exact replacement to both.Edit applied. Now running the three checks from the brief.All three checks pass (grep exit 1 on check 2 is the expected no-match status). Confirming the diff on the named file is exactly +2/-2.Edit complete and verified. The stale-dist warning was noted but not acted on per the brief (dist/ is rebuilt by the orchestrator).
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts (+2/-2)
+EDITS: .skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts:19 'cli-jev', -> 'cli-classifier', (COMPILED_ROUTING_HUBS)
+EDITS: .skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts:37 'cli-jev', -> 'cli-classifier', (DEFAULT_ON_HUBS)
+CHECKS: grep -c "'cli-classifier'," .skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts -> 2 (exit 0)
+CHECKS: grep -c "cli-jev" .skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts -> 0 (exit 1, expected no-match status)
+CHECKS: sed -n '13,21p;32,40p' .skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts -> both lists show seven entries, 'cli-classifier' in the fifth seat of each (exit 0)
+CHECKS: git diff --numstat -- .skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts -> 2	2 (exit 0)
+BLOCKED REASON: none

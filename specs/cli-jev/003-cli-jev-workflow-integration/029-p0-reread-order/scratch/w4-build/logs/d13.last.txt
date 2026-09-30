@@ -1,0 +1,9 @@
+All checks pass. The diff is exactly the named edit: one `### Severity replay` block after `### Stop-hint replay`, plus the two counts read from the file at doc time (`The 56 entries` -> `57`, scoring `4 features` -> `5 features`; the design's `54`/`2` were stale per ruling 2). Every claim in the block traces to the script code (`USAGE`/switches at line 71 and the `parseArgs` options, `gateLine` printed lines at 438-443, `LABEL_GATE = 20` at 49) and FACTS, and no verdict line is claimed since FACTS states none was ever printed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md (+18/-2)
+EDITS: .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md:19 `The 56 entries` -> `The 57 entries` (count read at doc time); .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md:27 scoring row `4 features` -> `5 features` (count read at doc time); .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md:460 inserted `### Severity replay` block (Description, How It Works, Source Files) after the `### Stop-hint replay` block
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md --type feature_catalog -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md`, `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md -> `1 file changed, 18 insertions(+), 2 deletions(-)` (exit 0)
+BLOCKED REASON: none

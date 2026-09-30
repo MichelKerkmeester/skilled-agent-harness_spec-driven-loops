@@ -1,0 +1,7 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/deep-review/README.md` (+1/-0)
+EDITS: `.skilled/skills/system-deep-loop/deep-review/README.md`:263 added one section 9 table row after the `scripts/runtime-capabilities.cjs` row (`:262`), shaped like that row (`| [`path`](./path) | purpose |`), naming the script, its zero-call default and both switches `--jev` and `--deem`, naming no verdict
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/README.md` -> `✅ VALID: .skilled/skills/system-deep-loop/deep-review/README.md` / `Document type: readme` / `Total issues: 0` (exit 0)
+CHECKS: `git diff --stat -- .skilled/skills/system-deep-loop/deep-review/README.md` -> `.skilled/skills/system-deep-loop/deep-review/README.md | 1 +` / `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

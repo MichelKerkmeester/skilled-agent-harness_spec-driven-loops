@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/013-sk-prompt-framework-docs",
+  "description": "Phase 13: sk-prompt-framework-docs",
+  "keywords": [
+    "phase",
+    "sk-prompt-framework-docs"
+  ],
+  "lastUpdated": "2026-09-27T11:50:20.007Z",
+  "specId": "013",
+  "folderSlug": "sk-prompt-framework-docs",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

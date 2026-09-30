@@ -1,0 +1,7 @@
+TASK: make the test fixture's git commit ignore the machine's global git hooks. One change in T. Change nothing in S.
+T = `.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts`. Read it first.
+WHY: five tests fail with `Command failed: git ... commit -qm fixture`. This machine sets a global `core.hooksPath`, and its commit-msg hook rejects a commit without a body. A test repository must not run the machine's hooks. The sibling test `.skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs` line 48 passes `'-c', 'core.hooksPath=/dev/null'` for the same reason.
+EDIT: in `commitAll` (near line 41), add `'-c', 'core.hooksPath=/dev/null',` to the git argument list directly after `'-c', 'commit.gpgsign=false',`. If any other `execFileSync('git', ...)` call in T runs `commit`, give it the same two arguments. Keep everything else byte-identical.
+VERIFY (from `.skilled/skills/system-deep-loop/runtime`), paste each result line:
+  npx vitest run tests/unit/score-stop-rater.vitest.ts
+Accept when: only T changed; the run prints `Tests  6 passed (6)`.

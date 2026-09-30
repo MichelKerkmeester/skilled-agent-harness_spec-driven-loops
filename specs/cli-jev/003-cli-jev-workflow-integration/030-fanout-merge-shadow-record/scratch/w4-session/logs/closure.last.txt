@@ -1,0 +1,26 @@
+Phase 030's docs now record the finished build and all four gates pass from the final state. `acceptance-criteria.md` is absent at Level 1, so there were no rows to mark there.
+
+STATUS: DONE | BLOCKED
+FILES CHANGED:
+- specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/spec.md (+14/-14)
+- specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/plan.md (+3/-3)
+- specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/tasks.md (+24/-24)
+- specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/goal.md (+38/-15)
+- specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/implementation-summary.md (+95/-18)
+- specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/graph-metadata.json (+68/-59) re-derived by `repair-derived.cjs`
+- `description.json` unchanged by the repair (no drift)
+EDITS:
+- tasks.md:31 closure record in the notation paragraph; T001 to T020 ticked with command/result evidence; T016 and T017 left `[B]`; completion rows carve out T016 beside T017 (parent D4)
+- goal.md:64-69 six completion criteria ticked; Progress rows for Build, Baseline, Session verification, Tests, Label gate stop, Docs and packages, Review and fixes, Commit, Closure pass, Open for the operator; Deviations and findings rows for the executor substitution, D7 not running, c10f, c11f/c11g, c11h/c11i, f1, the label-fixture proof scope, the close counts, the six P2, the amended completion rows, no build-evidence.md, premise corrections; continuity set to Complete, 100 percent
+- spec.md:3 description, :26 Status Complete, :33 handoff criteria with the gate stop and census counts, :53-56 deliverables, :104-112 Files to Change rows (line counts, F059, DLR-059, v1.9.0.0.md, generated copies)
+- plan.md:85 roster states amended parent D5 with the actual executors, :95 step 7 records the 2026-09-30 stop line, :124 dependency row 027 to 029 Complete
+- implementation-summary.md full closure rewrite: what was built, files and commit, deviations, both review verdicts, verification table, limitations, and the closure gate rows
+CHECKS:
+- `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record --apply` -> `inspected=1 repaired=1 failed=0` (exit 0)
+- `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record --strict` -> `RESULT: PASSED`, `Summary: Errors: 0  Warnings: 0`, 0 lines matching `RESULT: FAILED` (exit 0)
+- `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record` -> `RESULT: PASSED (5/5 checks)` (exit 0)
+- `node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record --workspace "$PWD"` -> `packet_durable_chars=3757`, `packet_budget=unknown` by design (exit 0)
+- `git status --porcelain` scoped to the phase folder: only the six files above plus untracked `scratch/w4-build/` and `scratch/w4-session/`; no untracked file outside `scratch/`
+BLOCKED REASON: none
+STATUS WHY: Status set to `Complete` in `spec.md` and `implementation-summary.md`. The final state printed its label-gate stop `stop: fewer than 40 labeled pairs`, every goal criterion is evidence-backed in the session record, and every remaining open row is an operator item under parent D4.
+OPEN ROWS: tasks.md T016 `[B]` (no operator-named pair-sheet path; the session wrote a 60-row sheet in its scratchpad only as the write-path proof) and T017 `[B]` (no operator labels, so no `--deem --out` or `--jev --out` run, no `calls.jsonl`, no verdict line printed). The six recorded P2 findings, a served form, and the unnamed reader of a shadow record also stay open for the operator.

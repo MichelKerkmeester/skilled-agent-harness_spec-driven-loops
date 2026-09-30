@@ -1,0 +1,6 @@
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/scratch/w4-build/design.md (+173/-0)
+EDITS: design.md:1 wrote the six-section build design for `score-stop-hint.cjs` — premises checked in today's tree (confirm-mode gate :1325-1354, R9 rows, sibling script/test, the stopped 027 example `report.json`), interface (switches, exit codes, stdout lines, report shape, exported functions, constants, Keep Rule), 28 test cases with gate-by-gate arithmetic, ordered c1–c5 code steps + d1–d7 doc steps, six-row proof plan, seven proposed open answers.
+CHECKS: `wc -l specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/scratch/w4-build/design.md` -> `173 specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/scratch/w4-build/design.md` (exit 0)
+CHECKS: `grep -c '^## ' specs/cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint/scratch/w4-build/design.md` -> `6` (exit 0)
+BLOCKED REASON: none

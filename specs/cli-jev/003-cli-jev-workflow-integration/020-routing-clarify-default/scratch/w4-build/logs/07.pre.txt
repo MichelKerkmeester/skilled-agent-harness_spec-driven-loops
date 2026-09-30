@@ -1,0 +1,22 @@
+ M .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs
+ M .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs
+ M .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts
+ M .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts
+?? .skilled/skills/cli-classifier/benchmark/injection-screen/
+?? .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs
+?? .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs
+?? .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs
+?? .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs
+?? .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs
+?? .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts
+?? .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs
+?? .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts
+?? .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts
+?? no-such-report-dir/
+?? specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/scratch/w4-build/
+?? specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/

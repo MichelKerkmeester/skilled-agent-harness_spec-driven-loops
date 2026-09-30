@@ -6,6 +6,7 @@
         "feature-catalog/assembly-and-context/generation-keyed-message-assembly.md",
         "feature-catalog/evaluation-and-observability/blind-non-inferiority-evaluation.md",
         "feature-catalog/evaluation-and-observability/content-free-observability.md",
+        "feature-catalog/evaluation-and-observability/offline-judge-agreement.md",
         "feature-catalog/fidelity-and-render/capability-aware-presentation.md",
         "feature-catalog/fidelity-and-render/protected-span-fidelity-validation.md",
         "feature-catalog/packaging-and-release/compatibility-doctor.md",
@@ -23,6 +24,7 @@
         "manual-testing-playbook/presentation-tiers/safe-native-preserves-original-visibility.md",
         "manual-testing-playbook/release-gating/compatibility-doctor-selects-original-only.md",
         "manual-testing-playbook/release-gating/human-certified-bundle-gates-release.md",
+        "manual-testing-playbook/release-gating/offline-judge-census-stops-at-label-gate.md",
         "manual-testing-playbook/release-gating/provisional-evaluation-blocks-release.md"
       ],
       "packet": ".",

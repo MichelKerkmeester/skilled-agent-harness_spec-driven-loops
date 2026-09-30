@@ -1,0 +1,53 @@
+{
+  "counts": {
+    "duplicate-phrase": 54,
+    "missing-frontmatter": 7296,
+    "non-yaml-frontmatter": 2,
+    "ok": 12332,
+    "valid-empty-list": 3632
+  },
+  "diagnosticsBytes": 3256467,
+  "durationMs": 21113.834209,
+  "indexBytes": 3569567,
+  "indexSha256": "75b6f76e477313f48f1ef18f830ccfa03213974dd2c9480d4a0e2bab368598e0",
+  "manifestBytes": 3292835,
+  "manifestHash": "2a72d09185f9392c20eaae161fec5bae4f89c31265b478434ce83ae0d0f9d5e0",
+  "paths": {
+    "diagnostics": "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/baseline/diag.json",
+    "index": "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/baseline/idx.json",
+    "manifest": "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/baseline/manifest.json",
+    "variants": "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/baseline/variants.json"
+  },
+  "published": true,
+  "stats": {
+    "aliasDocuments": 0,
+    "corpusBytes": 202052859,
+    "diagnosticRows": 10984,
+    "documentsScanned": 23316,
+    "ignoredMalformedDocuments": 2,
+    "indexedPaths": 12386,
+    "malformedDocuments": 0,
+    "phraseDeclarations": 44871,
+    "phraseQuality": {
+      "documents": {
+        "editor-fallback": 3,
+        "generic-workflow-word": 95,
+        "numeric-only": 52,
+        "prose-sentence": 16,
+        "single-token": 519,
+        "stop-word-only": 10
+      },
+      "phrases": {
+        "editor-fallback": 2,
+        "generic-workflow-word": 3,
+        "numeric-only": 33,
+        "ok": 32084,
+        "prose-sentence": 25,
+        "single-token": 250,
+        "stop-word-only": 2
+      }
+    },
+    "uniquePhrases": 32399
+  },
+  "variantsBytes": 2660309
+}

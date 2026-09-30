@@ -1,0 +1,26 @@
+trigger index published
+  documents scanned : 23314
+  unique phrases    : 32399
+  phrase decls      : 44871
+  indexed paths     : 12386
+  corpus bytes      : 202005912
+  index bytes       : 3569567
+  variants bytes    : 2660309
+  index sha256      : bd54b55c0f2071d63977363257ef17b159084afd59770df3ef1fb7af3455a389
+  manifest hash     : fdebd12ad1be6133cd344556b5bcdc81ce8736127474d99919f70150342ca67f
+  ignored malformed : 2
+  duration ms       : 20073.6
+  diagnostics:
+    duplicate-phrase         54
+    missing-frontmatter      7294
+    non-yaml-frontmatter     2
+    ok                       12332
+    valid-empty-list         3632
+  phrase quality (unique phrases / owning documents):
+    editor-fallback          2 / 3
+    generic-workflow-word    3 / 95
+    numeric-only             33 / 52
+    ok                       32084
+    prose-sentence           25 / 16
+    single-token             250 / 519
+    stop-word-only           2 / 10

@@ -1,0 +1,7 @@
+All checks pass. HANDBACK:
+
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts` (+14/-0; one existing import line modified in place)
+EDITS: `.skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts:8` added `mkdirSync` to the `node:fs` import (alphabetical position, kept on one line); `.skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts:303` inserted the `it('seam skips its own files', ...)` block exactly as specified, directly after the `seam clean` block; S (`score-debug-next-check.mjs`) read only, not modified
+CHECKS: `cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/debug-next-check.vitest.ts` -> `Tests  31 passed (31)` (`Test Files  1 passed (1)`) (exit 0)
+BLOCKED REASON: none

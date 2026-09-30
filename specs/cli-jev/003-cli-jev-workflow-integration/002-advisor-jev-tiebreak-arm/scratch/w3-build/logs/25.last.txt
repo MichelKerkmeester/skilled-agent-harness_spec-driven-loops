@@ -1,0 +1,13 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md (+5/-4)
+EDITS:
+  manual-testing-playbook.md:33 count updated 47 → 48 scenario files
+  manual-testing-playbook.md:130 release readiness threshold updated 47 → 48 scenario files
+  manual-testing-playbook.md:158 Wave 8 range updated SC-001..SC-005 → SC-001..SC-006
+  manual-testing-playbook.md:266 scorer-fusion validation range updated SC-001..SC-005 → SC-001..SC-006
+  manual-testing-playbook.md:274 added SC-006 row: Offline Jev and Deem Tie-Break Eval → scorer-fusion/tie-break-eval.md
+CHECKS:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md -> ✅ VALID: .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md (1 warning: document_type_fallback) (exit 0)
+  grep -c "SC-006\|48 " .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md -> 5 (exit 0)
+  git diff --numstat -- .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md -> 5	4	.skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md (exit 0)
+BLOCKED REASON: none

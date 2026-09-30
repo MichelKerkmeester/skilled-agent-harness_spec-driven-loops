@@ -1,0 +1,79 @@
+{
+  "corpusManifestHash": "5e9b9c9063a3093a51f87fbb2582aacdd39c89ff3cbe14aebd793677e543b319",
+  "documentsScanned": 23414,
+  "durationMs": 20752.208667,
+  "fresh": false,
+  "indexManifestHash": "5e87dcc907150c6a567730a56413a7cf2ce56dc5bfc84536b4e69464b6178df3",
+  "indexPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+  "missingDocuments": 6,
+  "obsoletePaths": [],
+  "staleDocuments": [
+    {
+      "added": [
+        "clarify default measurement",
+        "clarify label gate",
+        "compiled routing clarify census",
+        "score clarify default cjs"
+      ],
+      "path": ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "clarify default measurement"
+      ],
+      "path": ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "clarify census and label gate",
+        "sk create skill 1 4 0 0",
+        "sk create skill v1 4 0 0"
+      ],
+      "path": ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.4.0.0.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "deep improvement 1 18 0 0",
+        "deep improvement v1 18 0 0",
+        "offline hallucination grader measurement",
+        "unknown grader startup check"
+      ],
+      "path": ".skilled/skills/system-deep-loop/deep-improvement/changelog/v1.18.0.0.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "hallucination grader agreement",
+        "measure d4 grader against labels",
+        "offline hallucination grader test",
+        "score d4 agreement cjs"
+      ],
+      "path": ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/hallucination-grader-agreement.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "near tie cluster order",
+        "offline suggested order eval",
+        "system skill advisor 0 14 0 0",
+        "system skill advisor v0 14 0 0"
+      ],
+      "path": ".skilled/skills/system-skill-advisor/changelog/v0.14.0.0.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "near tie cluster order",
+        "offline suggested order eval",
+        "score suggested order",
+        "suggested order eval"
+      ],
+      "path": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md",
+      "removed": []
+    }
+  ],
+  "untrustedDocuments": []
+}

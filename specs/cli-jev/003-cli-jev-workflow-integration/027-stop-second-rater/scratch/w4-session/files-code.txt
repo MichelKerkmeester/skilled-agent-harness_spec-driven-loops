@@ -1,0 +1,2 @@
+.skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs
+.skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts

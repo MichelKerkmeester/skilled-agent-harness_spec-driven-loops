@@ -1,0 +1,21 @@
+Work is complete. Step 5 (Jev gate and arm) is implemented in both named files, verified, and nothing else was touched.
+
+```
+STATUS: DONE
+FILES CHANGED:
+  .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs (+334/-0)
+  .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts (+246/-0)
+EDITS:
+  S:1165-1496 inserted section 7 "JEV GATE AND ARM": isPublished (one git cat-file against origin/main), jevGate (identity line, PATH lookup, pinned `jev 0.6.2`, `auth status` credential check), runJevArm (notice, one auth test + provider, 3 rotated choice orders on stdin, once-per-registry published check with unmeasured_unpublished lines, exit-4 backoff retry, funnel noul per measured row, column/order/funnel/exact lines, requalify model changed, jev_version/provider/model verdict suffix); all JSDoc'd; failing auth test maps 3 -> key rejected, 130 -> interrupted, else usage error, the only stop lines the design names
+  S:1497-1499 renumbered EXPORTS 7 -> 8
+  S:1548-1550 exported isPublished, jevGate, runJevArm
+  T:12 banner extended with "Jev gate and arm (jevGate, isPublished, runJevArm)"
+  T:569-812 added describe 'score-severity-replay jev gate and arm' with four tests: the Jev gate passes a stub (20 negatives, auth test line, exact keep verdict), the Jev gate skips on no credential, a missing binary and a wrong version, an unpublished row is withheld from Jev (3 unmeasured_unpublished lines, no call), the Jev arm stops on a rejected key; all 23 earlier tests untouched
+CHECKS:
+  node --check .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs -> (no output) (exit 0)
+  grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts -> 27 (exit 0; 23 before, +4)
+  node --experimental-strip-types --check .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts -> (no output) (exit 0)
+  node stdin smoke of the four new cases against the real module with temp-dir jev stubs -> SMOKE: all checks passed (exit 0)
+  git status --porcelain -- <S> <T> -> both `??` (exit 0; only the two named files)
+BLOCKED REASON: none
+```

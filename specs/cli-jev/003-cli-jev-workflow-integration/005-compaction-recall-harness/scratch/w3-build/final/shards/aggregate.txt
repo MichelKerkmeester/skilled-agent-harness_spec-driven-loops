@@ -1,0 +1,10 @@
+files {"passed":261,"failed":2,"skipped":3} tests {"passed":3997,"failed":8,"skipped":21}
+ FAIL  runtime/tests/completion-evidence-pi-extension.vitest.ts
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi classify > never appends a question to a dialog-capable session's turn, but opens the gate
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi classify > relays the reframed deferral exactly once where no dialog exists
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi enforce > answers a skip through the dialog and lets the retry through
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi enforce > asks at the first write, binds the answer, and blocks that one call
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi enforce > asks once per session: a cancelled dialog does not re-open on the next write
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi enforce > fails open when an invalid path is entered
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi enforce > never prompts for bash, and never for an exempt target
+ FAIL  runtime/tests/spec-gate-pi-extension.vitest.ts > pi enforce > still blocks under enforce-on, with the deny reason, when the dialog is cancelled

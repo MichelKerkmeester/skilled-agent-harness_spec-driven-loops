@@ -1,0 +1,26 @@
+# Phase 037 context: Pi's native classifier runtime (session record, 2026-09-30)
+
+## Operator request and decision
+
+- The operator shared a post saying Pi 0.99 supports Jev natively and wrote: "Pi has native jev support this changes how we integrate it in cli pi".
+- Asked how to bring it in, the operator chose "Test it first (Recommended)": "New phase 037 in 003: run Pi's classify() and our jev CLI on the same rows and compare answers, speed and cost. Check which of our providers work, including the free OpenCode Jev. Check whether a llama.cpp model could stand in for Deem. Then decide."
+
+## Facts checked in this session (read-only, zero model calls)
+
+- Installed Pi: `pi --version` prints `0.99.1`. Package `@earendil-works/pi-coding-agent` at `~/.local/lib/node_modules/@earendil-works/pi-coding-agent`.
+- Pi `CHANGELOG.md` 0.99 lines 29, 36, 40, 41, 45 and 52: classifier models in `ModelRuntime` with `classify()`, a built-in TypeSafe `jev-latest` model, Jev on OpenRouter, Cloudflare Workers AI, Vercel AI Gateway and OpenCode Zen, every llama.cpp chat model also listed as a classifier, `models.classify()` in codemode scripts with its cost added to the session, and the `jev-router.ts` virtual-model example.
+- Pi `docs/models.md:103-136`: classifier models answer typed `choice`, `bool` and `score` questions about JSON state with probabilities. Request shape `models.classify(model, { state, questions: { <name>: { type, instructions, criteria } } })`. They are not in `/model` or `--list-models`. Reachable three ways: codemode scripts (`"defaultTools": ["+codemode"]`), extensions via `ctx.modelRegistry.classify()`, and the SDK.
+- Pi `docs/llama-cpp.md:89-99`: a llama.cpp router's chat models answer classifier questions from next-token label probabilities. The docs warn that raw label probabilities are overconfident and that small models may follow instructions inside the state.
+- SDK surface, `dist/core/model-runtime.d.ts`: `ModelRuntime.create(options)` (line 56, no network refresh unless asked, line 11), `getAvailableOfType(type, providerId?)` (line 75), `getModelOfType(type, provider, id)` (line 73), `classify(model, context, options?)` (line 106). Exported from the package root (`dist/index.d.ts:15`).
+- Zero-call probe (`ModelRuntime.create()` then `getAvailableOfType('classifier')`, no classify call): 12 classifier models known, 7 with credentials present, all through `openrouter`: `~typesafe/jev-latest`, `typesafe/jev-1.13`, `jaredpalmer/kev-4b`, `respan/span-01`, `respan/span-01-lite`, `respan/span-01-lite:free`, `upstage/solar-decide`. Not available: `typesafe/jev-latest` (no `TYPESAFE_API_KEY` in Pi), `opencode/jev-1.13` and `opencode/jev-1.13-free` (our OpenCode credential is Go, not Zen), Cloudflare and Vercel.
+- `command -v llama-server llama-cli` finds nothing, so no llama.cpp router is installed. Testing llama.cpp as a Deem stand-in needs an install, which waits on the operator's yes (parent D7).
+- Today's transport: `.skilled/skills/cli-classifier/cli-usage/SKILL.md:97` pins `jev --version` at `jev 0.6.2`, and the shipped arms shell out to `jev noul|choice|score` after `jev auth status --provider <p>`. `cli-external-orchestration/cli-pi/SKILL.md` never mentions classifiers.
+- A recorded baseline: `specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl`, 334 lines: one `auth_test` and 333 `choice` calls (111 rows, 3 orders each) on `jev-1.13.0` via provider `official`, each with `row_id`, `order`, `call_ms` and the full `probabilities` map. The run was `score-suggested-order.mjs --jev --out <dir>` (`run.txt`). Whether that script exports the prompt builder a replay needs is UNKNOWN until the design reads it. That script sits in the skill-advisor runtime tree, which another session's align packet owns, so 037 reads it and never edits it.
+
+## Proposed frame (the spec may refine; mark anything not above as proposed)
+
+- First slice, zero-call census: Pi version, classifier models known and available per provider, the jev CLI identity line, whether a llama.cpp router answers, and the replay row count. No model call, no file written.
+- Comparison, live, behind its own switch and the operator's yes: replay the 019 rows through Pi `classify()` on `openrouter` `typesafe/jev-1.13` as `choice` questions, and read the recorded CLI answers from `calls.jsonl` (or rerun the CLI if the design finds the replay needs same-day pairs). Report top-choice agreement, the median absolute probability difference, p95 latency per side and the cost per 100 calls Pi reports.
+- Keep rule fixed before the run (proposed): `adopt` when coverage is at least 90 percent, top-choice agreement is at least 95 percent and Pi's p95 latency is at most 1.5 times the CLI's. `keep-cli` when coverage holds and any other bound fails. `stop (coverage)` below 90 percent. One line `verdict pi-transport: adopt|keep-cli|stop (<reason>) ...`.
+- Extra columns, each only on the operator's yes because each costs money: the other four OpenRouter classifier families, and a llama.cpp model once one is installed.
+- No integration change in 037. Wiring Pi in as a cli-classifier transport, or teaching cli-pi workers to call classifiers, is a later phase after the verdict.

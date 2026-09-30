@@ -1,0 +1,16 @@
+All five edits applied to F; verification greps returned 5 and 0 as required. Scoped numstat for F is exactly +5/-4; other dirty files in the tree are concurrent workers' and untouched by me.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md (+5/-4)
+EDITS:
+- manual-testing-playbook.md:33 "48 deterministic scenario files" -> "49 deterministic scenario files"
+- manual-testing-playbook.md:130 "all 48 scenario files are" -> "all 49 scenario files are"
+- manual-testing-playbook.md:158 Wave 8 range `SC-001..SC-006` -> `SC-001..SC-007`
+- manual-testing-playbook.md:266 scorer fusion sentence range `SC-001..SC-006` -> `SC-001..SC-007`
+- manual-testing-playbook.md:276 inserted `| SC-007 | Offline Suggested-Order Eval | [suggested-order-eval.md](scorer-fusion/suggested-order-eval.md) |` after SC-006 row
+CHECKS:
+- grep -c "49 deterministic scenario files\|all 49 scenario files\|SC-001..SC-007\|^| SC-007 |" .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md -> 5 (exit 0)
+- grep -c "SC-001..SC-006\|48 scenario\|48 deterministic" .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md -> 0 (exit 1; grep -c exits 1 on zero matches, expected)
+- git diff --numstat -- <F> -> 5	4 (exit 0)
+BLOCKED REASON: none

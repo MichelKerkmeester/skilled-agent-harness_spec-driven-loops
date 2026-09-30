@@ -1,0 +1,14 @@
+✔ parseRouter reads an active block (2.0315ms)
+✔ parseRouter reports a stage1-only block (0.18725ms)
+✔ keywordHits guards the four keywords (0.158041ms)
+✔ scoreIntents weights and sorts (0.122375ms)
+✔ selectIntents keeps one point apart (0.079208ms)
+✔ selectIntents returns UNKNOWN (0.155958ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 53.104375

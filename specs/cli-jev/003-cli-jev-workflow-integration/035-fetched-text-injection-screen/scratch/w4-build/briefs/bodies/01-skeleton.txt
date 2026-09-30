@@ -1,0 +1,30 @@
+TASK: create the scorer S with its skeleton, constants and git helpers, and create its test file T with the fixture helpers and one test.
+R = specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/ref/design.md (read only). S and T are named at its top. Read R sections 1, 2, 3 and T now; later sections describe later briefs, so do not build them.
+
+STEP 1. Create S (new file) exactly per R sections 1 to 3:
+ a. Shebang, header comment, all 13 section dividers in order. Sections 4 to 12 hold only their divider for now.
+ b. Section 1 imports and section 2 constants, every constant R section 2 lists, with the comment line R section 2 gives.
+ c. Section 3 exports with JSDoc: git, trackedFiles, headCommit, readAtCommit, sha256, sha12, compareCodeUnits.
+ d. Section 13 holds a placeholder `export async function main(argv, deps = {})` that returns 0 (a later brief fills it; keep the JSDoc short), then the two entry lines of R section 1.
+
+STEP 2. Create T (new file) per R section T, with these private helpers and exactly one test:
+ - cleanEnv(): a copy of process.env without GIT_DIR, GIT_WORK_TREE, GIT_COMMON_DIR, GIT_INDEX_FILE, GIT_OBJECT_DIRECTORY,
+   GIT_ALTERNATE_OBJECT_DIRECTORIES, GIT_NAMESPACE, GIT_CEILING_DIRECTORIES, JEV_PROVIDER and CLI_DEEM_URL.
+ - tempDir(prefix): fs.mkdtempSync(path.join(os.tmpdir(), `injscreen-${prefix}-`)).
+ - makeRepo(files): files is an object of repo-relative path to text. root = tempDir('repo'); write each file (mkdir -p its parent);
+   then run git through execFileSync('git', ['-C', root, '-c', 'user.email=fixture@example.com', '-c', 'user.name=fixture',
+   '-c', 'commit.gpgsign=false', '-c', 'core.hooksPath=/dev/null', ...args], { env: cleanEnv(), stdio: 'pipe' }) for
+   ['init', '-q'], ['add', '-A'], ['commit', '-q', '-m', 'fixture']. Returns root.
+ - test 'trackedFiles lists committed paths and headCommit is a full hash':
+   root = makeRepo({ 'a.md': '# A\n', "dir/it's.md": '# B\n' });
+   assert.deepEqual(S.trackedFiles(root), ['a.md', "dir/it's.md"]);
+   const head = S.headCommit(root); assert.match(head, /^[0-9a-f]{40}$/);
+   assert.equal(S.readAtCommit(root, head, "dir/it's.md"), '# B\n');
+   assert.equal(S.sha12('abc'), 'ba7816bf8f01');
+
+VERIFY (repo root), paste each result line:
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs
+  node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs
+  node .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs; echo "exit=$?"   (expect no output and exit=0)
+  grep -cE 'API_KEY|TYPESAFE|Bearer|Authorization' .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs   (expect 0)
+Accept when: 2 files created (S and T) and nothing else changed; both node --check exit 0; the plain run prints nothing and exits 0.

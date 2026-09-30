@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hard rules sidecar",
+      "skill frontmatter hard rules",
+      "dispatch rule checks sidecar",
+      "hard-rules json",
+      "hard rule reader repoint",
+      "hard rules sidecar plan",
+      "skill frontmatter migration plan",
+      "dispatch rule reader design",
+      "hard rules verdict comparison",
+      "hard rules sidecar testing strategy",
+      "hard rules sidecar tasks",
+      "skill frontmatter migration tasks"
+    ],
+    "key_topics": [
+      "hard",
+      "rules",
+      "sidecar",
+      "skill",
+      "frontmatter",
+      "dispatch",
+      "rule",
+      "checks",
+      "hard-rules",
+      "json",
+      "reader",
+      "repoint"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/verify/compare.txt",
+      "scratch/verify/review-mimo-r1.txt",
+      "scratch/verify/session-evidence.md",
+      "scratch/w4-build/design.md",
+      ".skilled/skills/sk-git/hard-rules.json",
+      ".skilled/skills/cli-classifier/cli-jev/hard-rules.json",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/skills/sk-doc/sk-create-frontmatter/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
+      "scratch/verify/corpus.json",
+      "scratch/verify/record-verdicts.mjs",
+      "scratch/verify/baseline-suites.txt",
+      "scratch/verify/h2.txt",
+      "scratch/verify/hook-smoke-jev.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compare.txt",
+        "kind": "file",
+        "path": "scratch/verify/compare.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review-mimo-r1.txt",
+        "kind": "file",
+        "path": "scratch/verify/review-mimo-r1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/verify/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": "scratch/w4-build/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "hard-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-git/hard-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-frontmatter/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-md-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.json",
+        "kind": "config",
+        "path": "scratch/verify/corpus.json",
+        "source": "derived"
+      },
+      {
+        "name": "record-verdicts.mjs",
+        "kind": "file",
+        "path": "scratch/verify/record-verdicts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-suites.txt",
+        "kind": "file",
+        "path": "scratch/verify/baseline-suites.txt",
+        "source": "derived"
+      },
+      {
+        "name": "h2.txt",
+        "kind": "file",
+        "path": "scratch/verify/h2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hook-smoke-jev.txt",
+        "kind": "file",
+        "path": "scratch/verify/hook-smoke-jev.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nine SKILL.md files declare `hardrules:` in frontmatter: `sk-git`, `cli-classifier/cli-usage` (renamed to `cli-classifier/cli-jev` by phase 039, which runs first) and `cli-external-orchestration/` `cli-opencode`, `cli-cursor`, `cli-codex`, `cli-hermes`, `cli-devin`, `cli-claude-code` and `cli-pi`",
+    "created_at": "2026-09-30T16:29:44Z",
+    "last_save_at": "2026-09-30T18:36:54.117Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c910866e95b335b5317dc6989c910806e33784b35c7105020d99479c98132b97",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9b9b233501192f591c29bae131d3edcd03cf751debe7f4a239f6d33e0a11526d",
+      "plan.md": "abed97b5e8bdba6581bcedc9e3178753cbfb5b1056d56b6a97ba90a5154b0688",
+      "tasks.md": "b0a0e364c7ba0e2eb7d3737d8159a953c36b98535dfd1c9e07de63070a172dc8",
+      "implementation-summary.md": "6eada8b7ef88ebbcbdb45a22a46703cd7e34a4c94e350d2b5bf03f6f2b941a7b"
+    },
+    "last_active_at": null
+  }
+}

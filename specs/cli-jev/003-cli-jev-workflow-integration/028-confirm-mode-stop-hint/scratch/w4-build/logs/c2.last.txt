@@ -1,0 +1,20 @@
+Step c2 implemented. What I ran and what I did not:
+
+- OBSERVED: both listed checks from the final state — `node --check` on S printed nothing, exit 0; the test-count grep returned `11`, exit 0. Only S and T were written (`git status` shows both `??`; no other path touched). Comment-hygiene grep for spec/phase/REQ tokens returned no matches.
+- INFERRED, not observed by me: tests 6–11 pass under vitest. The brief assigns the suite to the orchestrator, so I ran no runner. My expectation rests on a manual trace of each case through `hintFor`/`countColumn`/`main`.
+- One flag: case 11 asserts the format against fixture A's actual content — every one of its 20 lineages stops at 2, so the printed lines are `column legacy: measured 20 hints 20 right 20 wrong 0 no hint 0 saved 20` and the same for `sources`. The design's `hints 19 right 18 wrong 1 …` line is marked "e.g." and does not match the fixture built in c1; I kept the fixture and tests 1–5 unchanged as instructed.
+- I renumbered the later section headers in S (MAIN 4→5, EXPORTS 5→6, CLI ENTRYPOINT 6→7) because the new section took 4; no function or earlier test text changed.
+
+Operator's next action: run `npx vitest run tests/unit/score-stop-hint.vitest.ts` (expect 11 passed) and commit S and T.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs (+81/-8)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts (+45/-2)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:124 added section 4 HINT COUNTER with JSDoc for `hintFor`, `countColumn`, `columnLine`; renumbered later section headers to 5/6/7
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:253 `main` prints `columnLine(countColumn(...))` for each `DEFAULT_COLUMNS` entry after a passed gate
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:283 exported `hintFor`, `countColumn`, `columnLine`
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts:4 added `Hint counter (hintFor, countColumn, columnLine)` to the module header
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts:122 appended tests 6–11 (describe `score-stop-hint hint counter`: right-in-window, wrong-before-gold, stop-at-last, stop-past-last, null-stop trims M; describe `score-stop-hint column lines`: two default lines via `main`)
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts -> 11 (exit 0)
+BLOCKED REASON: none

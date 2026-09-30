@@ -1,0 +1,8 @@
+
+❌ INVALID: .skilled/skills/sk-communication/benchmark/reply-harness/README.md
+Document type: readme
+Total issues: 1
+
+🚫 Blocking errors (1):
+  - [missing_required_section] Missing required section: overview
+    Fix: Add section with name containing "overview"

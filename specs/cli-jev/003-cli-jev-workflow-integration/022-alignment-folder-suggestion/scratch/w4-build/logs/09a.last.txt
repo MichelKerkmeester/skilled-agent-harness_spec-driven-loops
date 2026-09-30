@@ -1,0 +1,23 @@
+I'll start by reading the brief's reference doc to find which file S is.S is `.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts`. Let me locate the `replayPath` signature and body in S.The file already appears to show `savePath`. Let me check the git state (read-only) to see whether this edit is already present, and verify the exact current lines.S is untracked (a new file being built by the parallel worker team), and it already contains both target edits — `savePath: SavePath,` at line 335 and `if (savePath === 'cli')` at line 357. Let me verify the full state: confirm no other bare `path` parameter use remains in `replayPath`, then run the brief's checks.Both target edits are already present in the working tree and the file passes `node --check`. Now the three greps from the brief.All four checks pass. Summary of what I found:
+
+- S = `.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts` (named in the brief's ref doc, line 3).
+- The rename this brief describes is **already present** in the working tree: line 335 reads `  savePath: SavePath,` and line 357 reads `if (savePath === 'cli')`; a grep for `if (path === 'cli')` finds nothing, and no other bare `path` identifier remains inside `replayPath` (lines 334–373). I made no write, since both "new" lines already exist and the "old" lines do not — re-applying would be a no-op and any gratuitous edit would violate the pure-rename constraint.
+- S is untracked in git (`??`), so the accept clause "1 file changed (+2/-2)" is not observable as a diff; the state-based accept criteria (node --check exit 0; greps 1 / 1 / 0) all pass.
+
+HANDBACK
+
+STATUS: DONE
+
+FILES CHANGED: `.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts` (+0/-0 — rename already present at target state; no write performed this session)
+
+EDITS:
+- `.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:335` no change needed — signature already reads `  savePath: SavePath,` (rename pre-existing)
+- `.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:357` no change needed — body already reads `if (savePath === 'cli')` (rename pre-existing)
+
+CHECKS:
+- `node --check .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts` -> no output (exit 0)
+- `grep -c "savePath: SavePath," .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts` -> 1 (exit 0)
+- `grep -c "if (savePath === 'cli')" .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts` -> 1 (exit 0)
+- `grep -c "if (path === 'cli')" .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts` -> 0 (exit 1 — no matches, expected)
+
+BLOCKED REASON: none

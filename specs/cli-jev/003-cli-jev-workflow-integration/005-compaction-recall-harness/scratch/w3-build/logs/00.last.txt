@@ -1,0 +1,8 @@
+All six fixtures copied byte for byte and verified.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/clean.jsonl (+1/-0); .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/missing-written-file.jsonl (+1/-0); .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/unknown-type.jsonl (+1/-0); .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/malformed-line.jsonl (+1/-0); .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/no-brief.jsonl (+1/-0); .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/recorded-brief.jsonl (+1/-0)
+EDITS: none (byte-for-byte copies via cp only; no file opened, edited, reformatted or renamed)
+CHECKS: mkdir -p .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures -> ok (exit 0); cp .../fixtures/*.jsonl .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/ -> ok (exit 0); for f in clean missing-written-file unknown-type malformed-line no-brief recorded-brief; do cmp .../$f.jsonl .skilled/.../$f.jsonl && echo "same $f"; done -> "same clean", "same missing-written-file", "same unknown-type", "same malformed-line", "same no-brief", "same recorded-brief" (exit 0); ls .skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures | wc -l -> "6" (exit 0)
+BLOCKED REASON: none

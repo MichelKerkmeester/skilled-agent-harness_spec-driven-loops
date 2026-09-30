@@ -1,0 +1,5 @@
+  19 big
+  21 empty
+ 243 out
+  40 selection
+ 229 stub

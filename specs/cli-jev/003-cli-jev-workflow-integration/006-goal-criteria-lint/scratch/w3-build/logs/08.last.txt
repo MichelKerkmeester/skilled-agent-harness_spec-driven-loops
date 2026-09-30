@@ -1,0 +1,24 @@
+All steps complete and verified. Handback:
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+.skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs (+147/-12)
+.skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs (+75/-10)
+EDITS:
+score-goal-lint.cjs:7 added 1. IMPORTS section (node:fs, node:path) above 2. CONSTANTS
+score-goal-lint.cjs:36 HELPERS: getDefaultWorkspaceRoot() and parseLabels() returning { rows, errors }
+score-goal-lint.cjs:254 CORE LOGIC after formatScore: parseScoreArguments(argv) with JSDoc (--labels/--lint/--root, path.resolve'd)
+score-goal-lint.cjs:284 CORE LOGIC: main(argv) with JSDoc (exit 2 on parse/read failures, per-line label errors to stderr, --lint report or lintWorkspace run, score lines to stdout)
+score-goal-lint.cjs:329 EXPORTS extended with parseLabels, parseScoreArguments, main
+score-goal-lint.cjs:340 direct-run guard after EXPORTS (process.exitCode = main(...), catch -> exit 2)
+score-goal-lint.test.cjs:10 IMPORTS: spawnSync, fs, os, path, parseLabels, SCORER = path.join(__dirname, '..', 'score-goal-lint.cjs')
+score-goal-lint.test.cjs:131 appended test 7 (CLI scores fixture labels from a saved lint run; unlabeled.jsonl case; temp dir removed in finally)
+score-goal-lint.test.cjs:178 appended test 8 (CLI refuses missing --labels; parseLabels rejects lines 3 and 4)
+CHECKS:
+node --check .skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs -> no output (exit 0)
+node .skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs -> "[score-goal-lint] ERROR --labels is required" (exit 2)
+node --check .skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs -> no output (exit 0) (extra: AGENTS.md Law 3 syntax check on the second edited file; the brief's list covers only the scorer)
+BLOCKED REASON: none
+
+Note (inferred, per evidence rules): the two appended tests were not executed — the brief assigns test suites to the orchestrator. Both target files are currently untracked in git (`??`), so the +/− counts come from the edit operations, and the other untracked paths in `git status` belong to concurrent workers and were not touched. Test suites, spec validation and commit remain the orchestrator's to do.

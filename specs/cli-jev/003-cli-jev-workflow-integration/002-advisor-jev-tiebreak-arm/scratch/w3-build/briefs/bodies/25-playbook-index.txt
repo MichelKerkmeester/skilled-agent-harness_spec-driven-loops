@@ -1,0 +1,37 @@
+TASK: add scenario SC-006 to the manual testing playbook index and raise its counts from 47 to 48. Five literal edits in one file.
+File: .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md. Read it first.
+
+Edit 1, line 33. Old text inside the line:
+This playbook provides 47 deterministic scenario files across 9 categories
+New:
+This playbook provides 48 deterministic scenario files across 9 categories
+(The rest of line 33 stays as it is.)
+
+Edit 2, line 130. Old text inside the line:
+Release is `READY` only when all 47 scenario files are `PASS`
+New:
+Release is `READY` only when all 48 scenario files are `PASS`
+
+Edit 3, line 158. Old:
+- **Wave 8**: `SC-001..SC-005` scorer fusion.
+New:
+- **Wave 8**: `SC-001..SC-006` scorer fusion.
+
+Edit 4, line 266. Old:
+This category validates scorer fusion scenarios `SC-001..SC-005`.
+New:
+This category validates scorer fusion scenarios `SC-001..SC-006`.
+
+Edit 5, line 274. Old:
+| SC-005 | Lane-by-Lane Ablation Protocol | [005-ablation.md](scorer-fusion/ablation.md) |
+New:
+| SC-005 | Lane-by-Lane Ablation Protocol | [005-ablation.md](scorer-fusion/ablation.md) |
+| SC-006 | Offline Jev and Deem Tie-Break Eval | [tie-break-eval.md](scorer-fusion/tie-break-eval.md) |
+
+Nothing else in the file changes, including its frontmatter.
+
+VERIFY (repo root):
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
+  grep -c "SC-006\|48 " .skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
+Accept when: 1 file changed and nothing else; validate_document exits 0; the grep prints 5.
+

@@ -1,0 +1,17 @@
+SKILL ROUTING: advisor live; compiled router → sk-code-opencode (evidence-base surface; implement→verify doctrine applied). ARTIFACT: sk-code → sk-code-opencode contract loaded.
+REPO RULES: evidence-and-proof.md, root-cause-and-debugging.md, communication-handoff.md.
+
+Work ran as briefed: three hash-anchored edits to T only (`edit_lines` reported "5 lines replaced, 10 lines added"), both edited regions re-read and matching the brief byte-for-byte, comment carries no spec/REQ identifiers. The old expectation was arithmetically impossible (A−B must equal W−L), and the kill branch is now driven by a schedule wrong on every row; the corrected counts match S's `summarizeColumn`/`decideVerdict` semantics (binomial tail of 12/12 at p=0.5 → 0.0002441).
+
+One state caveat: T is untracked in this worktree (not in HEAD), so `git diff` on it is empty by construction — `git status --porcelain -uall` reports it pre-existing as `??`. I wrote no other file. Vitest was not run here per the brief; that is the orchestrator's step.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts (+10/-5, untracked, so no git diff)
+EDITS: 
+- .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts:194 added `killSchedule()` (with its doc comment) immediately after `keepSchedule()`
+- .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts:647 replaced `{ STUB_PICKS: 'instrument' },` with `{ STUB_PICKS: killSchedule() },`
+- .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts:652 expected line now `'verdict deem: kill K=30 M=30 A=0 B=12 W=0 L=12 F=0 p=0.0002441'`
+CHECKS: 
+- `grep -c "function killSchedule" .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts` -> `1` (exit 0)
+- `grep -c "STUB_PICKS: 'instrument'" .skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts` -> `0` (exit 1; grep's no-match status, count is the required 0)
+BLOCKED REASON: none

@@ -1,0 +1,8 @@
+== .skilled/skills/sk-doc/sk-create-goal/SKILL.md exit=0 :: Total issues: 0 
+== .skilled/skills/sk-doc/sk-create-goal/README.md exit=0 :: Total issues: 0 
+== .skilled/skills/sk-doc/sk-create-goal/scripts/README.md exit=0 :: Total issues: 0 
+== .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md exit=0 :: Total issues: 1 
+== .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md exit=0 :: Total issues: 0 
+== .skilled/skills/sk-doc/sk-create-goal/changelog/v1.3.0.0.md exit=0 :: Total issues: 0 
+== .skilled/skills/sk-doc/feature-catalog/feature-catalog.md exit=0 :: Total issues: 1 
+== .skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md exit=0 :: Total issues: 0 

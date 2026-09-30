@@ -1,0 +1,39 @@
+TASK: test-only. Pin how each model arm stops when a choice call exits 130 (interrupted) on the first judgment: the stop line, `partial_rows=0`, one recorded call, no column, no verdict, and exit 0 from main.
+File: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts only. First read the runJevArm choice loop, runDeemArm's deemCall and stop, and main's return in .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (do not edit the script), then describe('score-jev-tiebreak jev arm') and describe('score-jev-tiebreak deem arm') in the test file.
+
+1. In the jev arm describe's stubBody (line 722), replace this text:
+*hang*) exec sleep 30;;
+with:
+*sigint*) exit 130;; *hang*) exec sleep 30;;
+2. In the deem arm describe's stubBody (line 871), replace this text:
+exit 0;; *exit1*) exit 1;;
+with:
+exit 0;; *sigint*) exit 130;; *exit1*) exit 1;;
+3. Add as the last test inside describe('score-jev-tiebreak jev arm'):
+  it('stops on an interrupt at the first judgment and scores nothing', async () => {
+    const result = await drive(['sigint a', 'ok b', 'ok c', 'ok d', 'ok e', 'ok f']);
+    expect(result.code).toBe(0);
+    expect(result.lines).toContain('jev arm stopped: interrupted');
+    expect(result.lines).toContain('jev: partial_rows=0');
+    expect(result.lines.some((line) => line.startsWith('column: ') || line.startsWith('verdict: '))).toBe(false);
+    const choice = result.calls.filter((call) => call.kind === 'choice');
+    expect(choice).toHaveLength(1);
+    expect(choice[0]).toMatchObject({ row_id: 'r0', pass: 1, exit_code: 130, answer: null, status: 'unmeasured' });
+    expect(result.logLines.filter((line) => line.startsWith('choice'))).toHaveLength(1);
+  }, 60_000);
+4. Add as the last test inside describe('score-jev-tiebreak deem arm'):
+  it('stops on an interrupt at the first judgment and scores nothing', async () => {
+    const result = await drive(census(['sigint a', 'ok b', 'ok c', 'ok d', 'ok e', 'ok f']));
+    expect(result.code).toBe(0);
+    expect(result.lines).toContain('deem arm stopped: interrupted');
+    expect(result.lines).toContain('deem: partial_rows=0');
+    expect(result.lines.some((line) => /^(column|verdict|calibration): /.test(line))).toBe(false);
+    expect(result.calls).toHaveLength(1);
+    expect(result.calls[0]).toMatchObject({ kind: 'choice', row_id: 'r0', order: 0, exit_code: 130, answer: null, status: 'unmeasured' });
+    expect(result.logLines.filter((line) => line.startsWith('choice'))).toHaveLength(1);
+  }, 60_000);
+Change nothing else in the file. The script must stay byte-identical.
+
+VERIFY (repo root): grep -c "stops on an interrupt at the first judgment" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts
+Accept when: 1 file changed and nothing else; the grep prints 2. Do not run vitest; the orchestrator runs it.
+

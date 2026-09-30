@@ -1,0 +1,11 @@
+TASK: create the hub's v1.2.0.0 changelog entry from prepared text.
+New file F = .skilled/skills/cli-classifier/changelog/v1.2.0.0.md
+Source C = specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/content/changelog-v1.2.0.0.md (read only)
+
+STEP 1. Create F with exactly the bytes of C: run `cp` from C to F, then compare. Do not retype, reflow or edit the text.
+F must not exist before this step; if it does, stop and report BLOCKED. Edit no other file.
+
+VERIFY (repo root), paste each result line:
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/content/changelog-v1.2.0.0.md .skilled/skills/cli-classifier/changelog/v1.2.0.0.md && echo same   (expect "same")
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/changelog/v1.2.0.0.md   (expect "Total issues: 0" and exit 0)
+Accept when: 1 file created (F), byte-identical to C; the validator exits 0.

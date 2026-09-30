@@ -1,0 +1,10 @@
+The playbook index edit is done and the validator passes. Every claim in the new block is backed by `facts.txt` or the script (`USAGE` at `score-severity-replay.cjs:71`, the exit-2 refusals at `:1617-1618`, `gateLine` at `:438-444`, `buildLabelSheetLines` at `:350`), and no `verdict` line is claimed anywhere since no run printed one (rulings.md 4). The counts were read at doc time: scoring category `4` -> `5` (`:391`) and `56 deterministic scenarios` -> `57` (`:39`), exactly the two count slots the step names.
+
+One adjacent defect, recorded not fixed per `scope-discipline.md` §4: `manual-testing-playbook.md:106` reads "all 55 scenarios" and has been one behind the overview total since the DLR-057 step incremented line 39 but not that line. It sits outside the named edit and the step names only the two counts above, so it is yours to fold in or leave.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md (+18/-2)
+EDITS: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:39 overview count `56 deterministic scenarios` -> `57`; :391 scoring category count `4 scenarios` -> `5 scenarios`; :453 new `### DLR-058 | Severity replay` block after the DLR-057 block with description, scenario contract and feature-file line; :1000 new cross-reference row after the DLR-057 row
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md --type playbook -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md` `Total issues: 0` (exit 0); git diff --stat -- .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md -> `1 file changed, 18 insertions(+), 2 deletions(-)` (exit 0)
+BLOCKED REASON: none

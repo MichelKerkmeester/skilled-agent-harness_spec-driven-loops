@@ -1,0 +1,18 @@
+{
+ "file": ".skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md",
+ "context": [
+  "the dispatch audit now reports a jev dispatch under skill cli-classifier (the Jev transport is",
+  "mode cli-jev of the cli-classifier hub). This index row still names the old skill id."
+ ],
+ "edits": [
+  [
+   102,
+   "to `cli-jev` | dispatch-guards | `resolveDispatchPacket().skill === 'cli-jev'` |",
+   "to `cli-classifier` | dispatch-guards | `resolveDispatchPacket().skill === 'cli-classifier'` |"
+  ]
+ ],
+ "checks": [
+  "grep -c \"skill === 'cli-jev'\" .skilled/skills/cli-classifier/cli-usage/manual-testing-playbook/manual-testing-playbook.md   (expect 0)"
+ ],
+ "out": "specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/30.body.md"
+}

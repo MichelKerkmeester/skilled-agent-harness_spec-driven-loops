@@ -1,0 +1,12 @@
+Edits applied and checks run. The scoped diff for the named file is +2/-2; the other dirty files in `git diff --numstat` belong to concurrent workers and were not touched by me.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md (+2/-2)
+EDITS:
+.sskilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md:16 `cli-jev` dispatch, → Jev dispatch of the `cli-classifier` hub,
+.sskilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md:28 `directExecutor()` returns `cli-jev` for → `directExecutor()` returns `cli-classifier` for
+CHECKS:
+grep -c "cli-jev" .skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md -> 0 (exit 1 — grep exit 1 means no match, count 0 as expected)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/feature-catalog/dispatch-guards/dispatch-guards.md -> ✅ VALID ... Total issues: 0 (exit 0)
+BLOCKED REASON: none

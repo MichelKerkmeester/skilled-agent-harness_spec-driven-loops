@@ -1,0 +1,8 @@
+The step is done. The block was written at the end of the FAN-OUT section, which the file numbers `## 10` at doc time rather than the design's stale `§14`. Counts were read from the file at doc time per ruling 2, so the bumps are `57` to `58` entries and the fanout row `8` to `9` features, not the design's `54` to `55`. The block Description is byte-equal to the entry's frontmatter description so root-leaf parity holds, and every stated line and number was checked against `score-fanout-pairs.cjs` (`USAGE` at 1339, gate lines at 672-681, `decideVerdict` at 1370-1381, verdict line at 1451) and FACTS. No verdict line is claimed as printed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md (+18/-2)
+EDITS: .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md:19 entries count 57 to 58 read at doc time | :31 fanout row 8 to 9 features read at doc time | :846-860 added `### Fan-out pair replay` block with Description, How It Works and its `fanout/fanout-pair-replay.md` Source Files link line, modeled on the `Fixed-rate overrun accounting` block
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md --type feature_catalog -> `✅ VALID: ... Total issues: 0` (exit 0) | git diff --stat -- .skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md -> `1 file changed, 18 insertions(+), 2 deletions(-)` (exit 0)
+BLOCKED REASON: none

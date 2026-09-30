@@ -1,0 +1,16 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime
+
+Unknown option '--bogus'
+{"timestamp":"2026-09-28T14:21:35.182Z","runtime":"pi","status":"skipped","freshness":"unavailable","durationMs":1,"cacheHit":false}
+[system-skill-advisor-launcher] reclaimed stale bootstrap lock at ../../../../../../../../var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/system-skill-advisor-launcher-F4U9s2/runtime/database/.system-skill-advisor-launcher.lockdir (10s old)
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+Skill graph: SQLite unavailable; JSON export ignored for runtime
+[system-skill-advisor-launcher] skill-advisor reap skipped; pid 55758 executable 'node' != recorded 'some-unrelated-daemon' (pid reused)
+[system-skill-advisor-launcher] ownerLeaseReclaimed: stale-pid ownerPid=1039277
+
+ Test Files  130 passed (130)
+      Tests  1018 passed | 6 skipped (1024)
+   Start at  16:18:36
+   Duration  202.58s (transform 1.77s, setup 573ms, import 7.43s, tests 184.06s, environment 6ms)
+

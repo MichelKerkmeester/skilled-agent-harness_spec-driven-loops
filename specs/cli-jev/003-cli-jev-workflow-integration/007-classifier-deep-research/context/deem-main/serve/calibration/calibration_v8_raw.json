@@ -1,0 +1,117 @@
+{
+  "v6": {
+    "protocol": "v6 per-class calibrator, fit on the dev half of the v5 held-out rows (sha256(prompt) parity); gate metrics reported on the untouched eval half",
+    "arm": "b_temp",
+    "checkpoint": "scripts/sft/checkpoints/v5_17b",
+    "per_dataset": {
+      "ag_news": {
+        "temperature": 0.769576598778171,
+        "primitive": "choice",
+        "calibrator": {
+          "kind": "per_class_temperature",
+          "temperatures": [
+            0.7813819997502441,
+            0.7751553610668316,
+            0.7714995701962525,
+            0.7747134852023706
+          ]
+        }
+      },
+      "amazon_reviews_multi_en": {
+        "temperature": 1.3211704317976907,
+        "primitive": "score",
+        "calibrator": {
+          "kind": "per_class_temperature",
+          "temperatures": [
+            0.8353006444465668,
+            0.7550611448434813,
+            0.7498423821112693,
+            0.7461569510131424,
+            0.7395983729270992
+          ]
+        }
+      },
+      "boolq": {
+        "temperature": 1.1547806726012406,
+        "primitive": "noul",
+        "calibrator": {
+          "kind": "per_class_temperature",
+          "temperatures": [
+            1.1484545075711194,
+            1.1458939593785027
+          ]
+        }
+      },
+      "civil_comments": {
+        "temperature": 2.329959789433555,
+        "primitive": "noul",
+        "calibrator": {
+          "kind": "per_class_temperature",
+          "temperatures": [
+            2.2930898499972945,
+            2.4241859169424016
+          ]
+        }
+      },
+      "fever": {
+        "temperature": 0.790598790853163,
+        "primitive": "choice",
+        "calibrator": {
+          "kind": "per_class_temperature",
+          "temperatures": [
+            0.7864876671759177,
+            0.785509570790013,
+            0.7825666081175778
+          ]
+        }
+      },
+      "go_emotions": {
+        "temperature": 1.664683299081306,
+        "primitive": "noul",
+        "calibrator": {
+          "kind": "per_class_temperature",
+          "temperatures": [
+            1.656643039606865,
+            1.6631061412958457
+          ]
+        }
+      },
+      "mmlu": {
+        "temperature": 0.6688985074186382,
+        "primitive": "choice",
+        "calibrator": {
+          "kind": "per_class_temperature",
+          "temperatures": [
+            0.654101948177162,
+            0.6548152281936347,
+            0.6633221292743494,
+            0.654695819772985
+          ]
+        }
+      },
+      "snli": {
+        "temperature": 0.6065229523994232,
+        "primitive": "choice",
+        "calibrator": {
+          "kind": "per_class_temperature",
+          "temperatures": [
+            0.5798378980421353,
+            0.5905272397657314,
+            0.5786255415132548
+          ]
+        }
+      }
+    },
+    "per_primitive": {
+      "choice": {
+        "temperature": 1.0
+      },
+      "score": {
+        "temperature": 1.0
+      },
+      "noul": {
+        "temperature": 1.0
+      }
+    }
+  }
+}

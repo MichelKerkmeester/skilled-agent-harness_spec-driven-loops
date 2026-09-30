@@ -1,0 +1,19 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ runtime/tests/debug-next-check.vitest.ts (16 tests) 98269ms
+     ✓ default run  10599ms
+     ✓ mined corpus  8458ms
+     ✓ gate at 29  9685ms
+     ✓ gate at 30  11368ms
+     ✓ baseline best  12753ms
+     ✓ baseline tie  12611ms
+     ✓ no headroom  11751ms
+     ✓ withheld row  10306ms
+     ✓ no accepted row  10338ms
+
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+   Start at  20:01:03
+   Duration  98.43s (transform 40ms, setup 24ms, import 18ms, tests 98.27s, environment 0ms)
+

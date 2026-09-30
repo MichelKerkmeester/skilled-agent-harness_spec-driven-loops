@@ -1,0 +1,12 @@
+The one line is appended to the Lane B paragraph and nothing else in the file moved. OBSERVED: the validator read `Total issues: 0` with exit 0, and `git diff --stat` shows only `README.md` changed in my scope (the other dirty files belong to parallel workers and I did not touch them). The switches and the script path come from `facts.txt` and the script's own `parseArgs` block and `USAGE` string at `score-verdict-fallback.cjs:63`,1237-1244. No verdict line or run output is claimed, per the FACTS constraint. Nothing is left for the operator beyond the orchestrator's own commit and suite run.
+
+SKILL ROUTING: User directed -> sk-doc (mode `sk-create-readme`, packet loaded)
+ARTIFACT: sk-doc -> `sk-create-readme/SKILL.md` + `assets/readme-template.md` conventions
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/deep-improvement/README.md` (+1/-1)
+EDITS: `.skilled/skills/system-deep-loop/deep-improvement/README.md`:108 appended one line to the Lane B paragraph naming `scripts/model-benchmark/lib/score-verdict-fallback.cjs` and its switches `--profile`, `--outputs`, repeatable `--reports`, `--jev`, `--deem`, `--out`, `--accept-payload`
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/README.md` -> `✅ VALID: ... Total issues: 0` (exit 0)
+CHECKS: `git diff --stat -- .skilled/skills/system-deep-loop/deep-improvement/README.md` -> `1 file changed, 1 insertion(+), 1 deletion(-)` (exit 0)
+BLOCKED REASON: none

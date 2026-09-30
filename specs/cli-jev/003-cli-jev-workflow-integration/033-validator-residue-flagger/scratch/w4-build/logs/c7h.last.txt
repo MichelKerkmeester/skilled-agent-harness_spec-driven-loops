@@ -1,0 +1,8 @@
+Done. The census now parses each review file first and resolves its reviewed commit only when at least one table holds a row, once per file; `drawRows` (line 435) is untouched. Note: S is currently untracked in this worktree, so `git diff` is empty — the +4/-2 is this edit's line delta.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs (+4/-2)
+EDITS: .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs:321-324 parse the file first, then call reviewedCommit once per file only when a table holds at least one row, keeping the value rows use
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs -> no output (exit 0)
+CHECKS: node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs -> ℹ tests 35 / ℹ pass 35 / ℹ fail 0 (exit 0)
+BLOCKED REASON: none

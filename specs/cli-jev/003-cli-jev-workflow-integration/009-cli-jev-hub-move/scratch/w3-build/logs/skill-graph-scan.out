@@ -1,0 +1,55 @@
+{
+  "status": "ok",
+  "data": {
+    "progress": [
+      {
+        "step": "advisor_status_before",
+        "generation": 84,
+        "ok": true
+      },
+      {
+        "step": "skill_graph_scan",
+        "ok": true
+      },
+      {
+        "step": "advisor_status_after",
+        "generation": 85,
+        "ok": true
+      }
+    ],
+    "generationBefore": 84,
+    "generationAfter": 85,
+    "scan": {
+      "skillsRoot": "[REDACTED_PATH]",
+      "scannedFiles": 21,
+      "indexedFiles": 0,
+      "skippedFiles": 21,
+      "indexedNodes": 0,
+      "indexedEdges": 62,
+      "rejectedEdges": 0,
+      "deletedNodes": 0,
+      "warnings": [
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/002-valid-level1/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/003-valid-level2/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/004-valid-level3/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/053-template-compliant-level2/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/test-fixtures/063-template-compliant-level3/graph-metadata.json",
+        "NON-SKILL-METADATA: skipped .skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/phase-validation/valid-phase/graph-metadata.json",
+        "WEIGHT-BAND: sk-communication siblings sk-doc weight 0.3 outside recommended band [0.4, 0.6] (.skilled/skills/sk-communication/graph-metadata.json)",
+        "WEIGHT-BAND: sk-communication siblings sk-git weight 0.3 outside recommended band [0.4, 0.6] (.skilled/skills/sk-communication/graph-metadata.json)"
+      ],
+      "docs": {
+        "scannedDocs": 101,
+        "indexedDocs": 0,
+        "skippedDocs": 101,
+        "deletedDocs": 0
+      },
+      "embeddings": {
+        "embedded": 1,
+        "skipped": 14,
+        "failed": 0,
+        "warnings": []
+      }
+    }
+  }
+}

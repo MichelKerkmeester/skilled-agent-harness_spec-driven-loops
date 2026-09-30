@@ -1,0 +1,28 @@
+---
+title: "system-spec-kit v4.2.0.0, Measure Track Narrowing Before Building It"
+description: "A new script measures whether a classifier that names a packet's spec track beats ripgrep and the trigger-index lookup, with a default run that calls no model and changes no search."
+trigger_phrases:
+  - "system-spec-kit v4.2.0.0"
+  - "system-spec-kit 4.2.0.0"
+  - "track narrowing measurement"
+importance_tier: "normal"
+contextType: "general"
+version: 4.2.0.0
+---
+# v4.2.0.0, Measure Track Narrowing Before Building It
+
+Before a model is allowed to narrow a search to one spec track, there is now a way to measure whether it would help. `score-track-narrowing.mjs` asks the question on packets whose own descriptions give the answer, scores ripgrep and the trigger-index lookup on the same rows and judges a model against a keep rule fixed before any call. It changes no lookup, index or recipe, so every live search behaves as before.
+
+> Spec folder: `specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm` (Level 2)
+
+## What's New at a Glance
+
+- **The default run costs nothing.** It makes no model call and writes no file. It prints the test-set counts, both baselines, the keep rule and whether a 10-point gain still fits above the better baseline.
+- **`--deem` adds a local model column.** Behind the Deem health check, the local server picks one track or `none` in three option orders per row, and the verdict line names the commit pair it measured.
+- **`--jev` adds a hosted model column.** Behind the pinned Jev version and its credential check, one provider answers the same question, and the verdict line names that provider and model.
+- **Every model call is recorded.** A model run needs `--out <dir>` and writes `calls.jsonl` and `report.json` there. A later run into the same directory says when the model changed.
+- **The catalog and the playbook cover the script.** A feature catalog entry describes it, and scenario 459 checks the zero-call run and a skipped backend.
+
+## Upgrade
+
+No migration required. Nothing runs the script on its own; an operator starts it by hand.

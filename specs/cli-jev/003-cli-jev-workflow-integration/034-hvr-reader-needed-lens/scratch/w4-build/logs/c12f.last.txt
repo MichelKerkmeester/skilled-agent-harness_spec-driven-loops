@@ -1,0 +1,13 @@
+Both checks pass, and no bytecode or scratch artifacts were left behind (none found under the skill tree; the temporary copy lives in the system temp folder and is removed by the context manager). Only S was touched by me — the other entries in `git status` belong to concurrent workers.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py (+13/-4)
+EDITS:
+- hvr_reader_lens.py:40 added `import tempfile` between `import sys` and `import time`.
+- hvr_reader_lens.py:349-351 added one docstring sentence to `build_census`: the scanner reads the committed text from a temporary copy outside the repository, so uncommitted edits never change the census.
+- hvr_reader_lens.py:371-380 read every kept file's committed text once into `texts`, wrote each into a `tempfile.TemporaryDirectory()` at its repo-relative path (parents created, `encoding="utf-8"`), and ran the unchanged batch loop with that folder as `scan_batch`'s `repo_root`; the folder is gone before return.
+- hvr_reader_lens.py:388 per-file loop now uses `text = texts[path]` instead of re-reading at the commit.
+CHECKS:
+- `python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py` -> (no output) (exit 0)
+- `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py` -> ALL PASS (exit 0)
+BLOCKED REASON: none

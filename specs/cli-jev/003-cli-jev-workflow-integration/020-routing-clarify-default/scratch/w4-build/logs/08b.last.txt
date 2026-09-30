@@ -1,0 +1,28 @@
+
+
+
+
+Now let me check the script's actual output format for these skip paths, to make sure the expected strings match.
+
+
+
+
+
+The script confirms the exact skip lines: `deem arm skipped: model` + `deem: found="deem-9b-v1"` for a wrong model (DEEM_MODEL is `deem-0.8-v1`), and `deem arm skipped: bad health response` + `deem: found="not json"` for unparseable JSON. Now I'll make the two edits.
+
+
+
+Now the two acceptance checks:
+
+Both checks pass. Let me confirm the diff touches only the intended file and changes:
+
+
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs (+27/-0)
+EDITS: 
+- .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs:102-103 added the `model` and `bad` modes to the cli-deem stub's health case (nothing else in the stub touched)
+- .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs:623-646 appended test 28 pinning both skip paths: `deem arm skipped: model` + `deem: found="deem-9b-v1"`, and `deem arm skipped: bad health response` + `deem: found="not json"`, each with `withoutLines(stdout, [...]) === base.stdout`
+CHECKS: `node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` -> no output, syntax OK (exit 0)
+CHECKS: `grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` -> 28 (exit 0)
+BLOCKED REASON: none

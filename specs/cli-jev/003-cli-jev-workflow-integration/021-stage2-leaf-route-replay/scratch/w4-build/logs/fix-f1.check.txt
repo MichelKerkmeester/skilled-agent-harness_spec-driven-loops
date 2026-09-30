@@ -1,0 +1,44 @@
+✔ parseRouter reads an active block (2.364084ms)
+✔ parseRouter reports a stage1-only block (0.327625ms)
+✔ keywordHits guards the four keywords (0.247083ms)
+✔ scoreIntents weights and sorts (0.152125ms)
+✔ selectIntents keeps one point apart (0.078709ms)
+✔ selectIntents returns UNKNOWN (0.177416ms)
+✔ toPairs resolves packet-qualified and alias paths (0.478042ms)
+✔ toPairs counts an unresolvable path (0.111167ms)
+✔ scoreRow partial set (0.158958ms)
+✔ scoreRow empty prediction (0.089875ms)
+✔ scoreRow exact match (0.053666ms)
+✔ countRouterReads finds one read (7.089709ms)
+✔ countRouterReads prints no text (3.251833ms)
+✔ replayVerdict keeps (0.322666ms)
+✔ replayVerdict drops (0.099166ms)
+✔ replayVerdict stops on coverage (0.101666ms)
+✔ a stub deem backend skips (55.4205ms)
+✔ an unreachable deem health skips (58.835709ms)
+✔ a different deem model skips and names it (49.645416ms)
+✔ a bad deem health response skips (54.442917ms)
+✔ a jev without a credential skips (56.394792ms)
+✔ jev off PATH and wrong version skip (68.141875ms)
+✔ a switch without --out exits 2 (0.286292ms)
+✔ without the flag the reads line prints not measured (1.140792ms)
+✔ --transcripts on a missing path exits 2 (0.548875ms)
+✔ --prose on a missing file exits 2 (0.509458ms)
+✔ chooseBaseline prints the better arm (0.177125ms)
+✔ decideVerdict order (0.184917ms)
+✔ tailP(7, 5) equals 29/128 (0.046333ms)
+✔ tailP(30, 30) equals 2 ** -30 (0.049125ms)
+✔ no headroom at 4 improvable rows (47.82775ms)
+✔ headroom at 5 improvable rows (111.904625ms)
+✔ a deem stub answering the gold intent keeps (290.051416ms)
+✔ a deem stub abstaining stops on margin (303.003833ms)
+✔ a stopped jev arm prints partial (133.608292ms)
+✔ --jev --deem with a jev lacking a credential still runs the deem gate (166.759583ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1493.508416

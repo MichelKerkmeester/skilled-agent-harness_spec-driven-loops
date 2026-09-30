@@ -1,0 +1,23 @@
+Step 3 is implemented and both required checks pass. Re-reading confirmed: only the two named files changed, no bytecode or temporary artifacts left behind.
+
+**What changed**
+- **S** — added imports (`argparse`, `json`, `sys`); section 3 (CENSUS): `SCRIPT_DIR`, `DEFAULT_REPO_ROOT`, `SCANNER`, `CATEGORIES`, `BATCH_SIZE`, `SCANNER_SKIPPED_LINE`, `ScannerSkipped`, `ScannerFailed`, `scan_batch` (one `python3 <scanner> <paths...> --json` spawn per batch with `cwd=repo_root`, exit 1 parseable accepted, skip marker refused, other exits/unparseable output refused), `build_census` (frames tracked paths, reads each kept file at the commit, splits sections, marks flagged/in-band/per-category candidates), `census_lines`; section 4 (COMPARATORS); section 5 (RUN): `main` with the census stage, `stop: scanner skipped` on skip, exit 2 on scanner failure/unreadable input/thin parse, and the `__main__` guard.
+- **T** — one stub-scanner helper (`SCAN_STUB`, `make_scanner`) and the three named cases: `census counts files, sections, flagged and in-band`, `a skipped scanner stops the run`, `a scanner exit 2 stops the run`. All earlier functions and tests untouched.
+
+**One dependency note for the orchestrator:** `build_census` must print per-category candidate counts, and the named census case asserts them, so I implemented the comparator callees (`parse_significance_phrases`, `significance_hit`, `false_range_hit`, `MINIMUM_SIGNIFICANCE_PHRASES`, `FALSE_RANGE_PATTERN`, `DEFAULT_RULES_PATH`) to the exact interface the design fixes for them. Step 4's leaf will find them present and adds its three named comparator tests. Candidate semantics follow REQ-004/REQ-005: a candidate is a drawable section (flagged, in band) that its category's comparator flags; synonym cycling has no lexical comparator, so its candidate count is 0 and its rows draw at random.
+
+Per the brief I ran only the two listed checks (the orchestrator owns the test suite, spec validation and commits).
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py (+332/-0)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py (+108/-0)
+EDITS: hvr_reader_lens.py:29-35 added `argparse`, `json`, `sys` imports
+EDITS: hvr_reader_lens.py:262-336 section 3 CENSUS: constants, `ScannerSkipped`/`ScannerFailed`, `scan_batch`
+EDITS: hvr_reader_lens.py:339-441 `build_census`, `census_lines`
+EDITS: hvr_reader_lens.py:444-538 section 4 COMPARATORS: `DEFAULT_RULES_PATH`, `MINIMUM_SIGNIFICANCE_PHRASES`, `FALSE_RANGE_PATTERN`, `parse_significance_phrases`, `significance_hit`, `false_range_hit`
+EDITS: hvr_reader_lens.py:541-589 section 5 RUN: `main` census stage with skip line and exit-2 handling, `__main__` guard
+EDITS: test_hvr_reader_lens.py:296-339 scanner stub constant and `make_scanner` helper
+EDITS: test_hvr_reader_lens.py:403-463 the three named checks
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py -> no output, exit 0 (exit 0)
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> no output, exit 0 (exit 0)
+BLOCKED REASON: none

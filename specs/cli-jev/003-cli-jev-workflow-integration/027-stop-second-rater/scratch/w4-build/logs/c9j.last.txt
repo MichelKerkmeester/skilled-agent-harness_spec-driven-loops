@@ -1,0 +1,10 @@
+Both required checks pass. HANDBACK:
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts (+8/-3)
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts:909 added the headroom comment above the fixture loop; :912-918 replaced the single-iteration fixture with three 0.04-ratio iterations sharing one repeated source, with the oversized label only in `iter-001.jsonl`; :948 changed `expect(records).toHaveLength(5)` to `toHaveLength(15)`. S untouched — no edit call targeted it.
+CHECKS: `grep -c "leaves the baseline headroom, so the arm opens" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` -> `1` (exit 0)
+CHECKS: `grep -c "toHaveLength(15)" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` -> `3` (exit 0)
+BLOCKED REASON: none
+
+Note: T and S are both untracked in this worktree (`??`), so `git diff` cannot show the change; verification rests on the two greps and the re-read of the edited region (lines 907-944 now match the brief exactly).

@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/system-spec-kit/changelog/v4.3.0.0.md
+Document type: changelog
+Total issues: 0

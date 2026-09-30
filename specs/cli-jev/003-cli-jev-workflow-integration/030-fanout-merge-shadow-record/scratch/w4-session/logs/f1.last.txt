@@ -1,0 +1,15 @@
+Both edits match the brief word for word, and the `git diff` shows nothing outside the named passages.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+`.skilled/skills/system-deep-loop/SKILL.md` (+1/-1)
+`.skilled/skills/system-deep-loop/runtime/scripts/README.md` (+1/-0)
+EDITS:
+`.skilled/skills/system-deep-loop/SKILL.md`:111 replaced the fan-out sentence with the version naming `stop: fewer than 40 labeled pairs`, the 40 pairs / 10 cross-body counts, the `--jev` and `--deem` arms behind `--out <dir>` and each backend's own gate, and "leaves the merge unchanged", rest of the line untouched
+`.skilled/skills/system-deep-loop/runtime/scripts/README.md`:52 inserted " Until 40 pairs carry a label, 10 of them cross-body, the run prints `stop: fewer than 40 labeled pairs` or `stop: fewer than 10 labeled cross-body pairs` and no arm runs." right after "The merge is unchanged and the default run makes no call." in the `score-fanout-pairs.cjs` row
+CHECKS:
+`python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/SKILL.md` -> `✅ VALID: .skilled/skills/system-deep-loop/SKILL.md` / `Document type: skill` / `Total issues: 0` (exit 0)
+`python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/scripts/README.md` -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/scripts/README.md` / `Document type: readme` / `Total issues: 0` (exit 0)
+`git diff --stat -- .skilled/skills/system-deep-loop/SKILL.md .skilled/skills/system-deep-loop/runtime/scripts/README.md` -> `.skilled/skills/system-deep-loop/SKILL.md | 2 +-` , `.skilled/skills/system-deep-loop/runtime/scripts/README.md | 1 +` , `2 files changed, 2 insertions(+), 1 deletion(-)` (exit 0)
+BLOCKED REASON: none

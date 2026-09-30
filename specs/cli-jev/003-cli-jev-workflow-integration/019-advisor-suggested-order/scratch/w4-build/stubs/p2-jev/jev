@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "$*" >> "$(dirname "$0")/jev.log"
+case "$1" in --version) echo "jev 0.6.2"; exit 0;; auth) exit 3;; esac
+exit 1

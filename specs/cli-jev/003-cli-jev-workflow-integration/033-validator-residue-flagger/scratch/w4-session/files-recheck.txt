@@ -1,0 +1,5 @@
+.skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs
+.skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs
+.skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md
+.skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md
+.skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md

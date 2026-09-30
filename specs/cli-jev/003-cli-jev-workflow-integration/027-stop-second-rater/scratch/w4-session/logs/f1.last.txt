@@ -1,0 +1,19 @@
+All checks pass. The middle validator returns a document-type fallback warning but still exits 0 with `✅ VALID`. The grep exits 1 because zero matches is its no-match status, and it prints `0` for both files as required. The other dirty files in `git status` belong to concurrent workers and were not touched by me.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+`.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-rater-replay.md` (+2/-2)
+`.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md` (+1/-1)
+`.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md` (+1/-1)
+EDITS:
+`.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-rater-replay.md`:28 `34 passing tests` to `36 passing tests`
+`.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-rater-replay.md`:87 `34 passing tests` to `36 passing tests`
+`.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md`:431 `34 passing tests` to `36 passing tests`
+`.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md`:37 `with ties keeping \`legacy\`.` to `with a tie going to the first of \`legacy\`, \`sources\` and \`recorded\` in that order.`
+CHECKS:
+`python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-rater-replay.md` -> `✅ VALID: ...stop-rater-replay.md / Document type: playbook_feature / Total issues: 0` (exit 0)
+`python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md` -> `✅ VALID: ...manual-testing-playbook.md / Document type: readme / Total issues: 1 (warning: document_type_fallback)` (exit 0)
+`python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md` -> `✅ VALID: ...stop-rater-replay.md / Document type: feature_catalog / Total issues: 0` (exit 0)
+`grep -c "34 passing" .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-rater-replay.md .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md` -> `...stop-rater-replay.md:0 / ...manual-testing-playbook.md:0` (exit 1, no matches)
+BLOCKED REASON: none

@@ -1,0 +1,35 @@
+✔ parseRouter reads an active block (3.128041ms)
+✔ parseRouter reports a stage1-only block (0.242583ms)
+✔ keywordHits guards the four keywords (0.258458ms)
+✔ scoreIntents weights and sorts (0.1365ms)
+✔ selectIntents keeps one point apart (0.079ms)
+✔ selectIntents returns UNKNOWN (0.178375ms)
+✔ toPairs resolves packet-qualified and alias paths (0.322584ms)
+✔ toPairs counts an unresolvable path (0.06525ms)
+✔ scoreRow partial set (0.095416ms)
+✔ scoreRow empty prediction (0.074916ms)
+✔ scoreRow exact match (0.0445ms)
+✔ countRouterReads finds one read (2.474583ms)
+✔ countRouterReads prints no text (1.661666ms)
+✔ replayVerdict keeps (0.35ms)
+✔ replayVerdict drops (0.116666ms)
+✔ replayVerdict stops on coverage (0.078625ms)
+✔ a stub deem backend skips (44.331875ms)
+✔ a jev without a credential skips (52.742833ms)
+✔ jev off PATH and wrong version skip (47.209875ms)
+✔ a switch without --out exits 2 (0.256875ms)
+✔ without the flag the reads line prints not measured (1.69225ms)
+✔ --transcripts on a missing path exits 2 (0.581625ms)
+✔ --prose on a missing file exits 2 (0.4615ms)
+✔ chooseBaseline prints the better arm (0.168625ms)
+✔ decideVerdict order (0.135667ms)
+✔ tailP(7, 5) equals 29/128 (0.030167ms)
+✔ tailP(30, 30) equals 2 ** -30 (0.024583ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 232.421584

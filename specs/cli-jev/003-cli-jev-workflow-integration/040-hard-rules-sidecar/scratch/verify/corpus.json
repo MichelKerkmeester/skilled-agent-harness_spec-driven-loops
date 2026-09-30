@@ -1,0 +1,300 @@
+{
+  "rows": [
+    {
+      "skill": "cli-opencode",
+      "name": "pass",
+      "command": "opencode run -m p/m \"task\" </dev/null",
+      "expect": []
+    },
+    {
+      "skill": "cli-opencode",
+      "name": "stdin",
+      "command": "opencode run -m p/m \"task\"",
+      "expect": ["stdin-redirect-required"]
+    },
+    {
+      "skill": "cli-opencode",
+      "name": "model",
+      "command": "opencode run \"task\" </dev/null",
+      "expect": ["explicit-model-required"]
+    },
+    {
+      "skill": "cli-opencode",
+      "name": "slash",
+      "command": "opencode run -m p/m \"/memory:search q\" </dev/null",
+      "expect": ["command-flag-for-slash-prompt"]
+    },
+    {
+      "skill": "cli-opencode",
+      "name": "none",
+      "command": "git status",
+      "expect": []
+    },
+
+    {
+      "skill": "cli-claude-code",
+      "name": "pass",
+      "command": "claude -p \"task\" --dangerously-skip-permissions </dev/null",
+      "expect": []
+    },
+    {
+      "skill": "cli-claude-code",
+      "name": "stdin",
+      "command": "claude -p \"task\" --dangerously-skip-permissions",
+      "expect": ["stdin-redirect-required"]
+    },
+    {
+      "skill": "cli-claude-code",
+      "name": "warn",
+      "command": "claude -p \"task\" </dev/null",
+      "expect": ["non-interactive-permission-mode-risk"]
+    },
+    {
+      "skill": "cli-claude-code",
+      "name": "none",
+      "command": "git status",
+      "expect": []
+    },
+
+    {
+      "skill": "cli-codex",
+      "name": "pass",
+      "command": "codex exec -m gpt-5.5 \"task\" </dev/null",
+      "expect": []
+    },
+    {
+      "skill": "cli-codex",
+      "name": "stdin",
+      "command": "codex exec -m gpt-5.5 \"task\"",
+      "expect": ["stdin-redirect-required"]
+    },
+    {
+      "skill": "cli-codex",
+      "name": "availability",
+      "command": "codex exec -m gpt-5.5 \"task\" </dev/null",
+      "path": "poisoned",
+      "expect": ["codex-availability-required"]
+    },
+    {
+      "skill": "cli-codex",
+      "name": "none",
+      "command": "git status",
+      "expect": []
+    },
+
+    {
+      "skill": "cli-cursor",
+      "name": "pass",
+      "command": "cursor-agent -p \"task\" </dev/null",
+      "expect": []
+    },
+    {
+      "skill": "cli-cursor",
+      "name": "stdin",
+      "command": "cursor-agent -p \"task\"",
+      "expect": ["stdin-redirect-required"]
+    },
+    {
+      "skill": "cli-cursor",
+      "name": "availability",
+      "command": "cursor-agent -p \"task\" </dev/null",
+      "path": "poisoned",
+      "expect": ["cursor-availability-required"]
+    },
+    {
+      "skill": "cli-cursor",
+      "name": "none",
+      "command": "git status",
+      "expect": []
+    },
+
+    {
+      "skill": "cli-devin",
+      "name": "pass",
+      "command": "devin -p \"task\" </dev/null",
+      "expect": []
+    },
+    {
+      "skill": "cli-devin",
+      "name": "stdin",
+      "command": "devin -p \"task\"",
+      "expect": ["stdin-redirect-required"]
+    },
+    {
+      "skill": "cli-devin",
+      "name": "availability",
+      "command": "devin -p \"task\" </dev/null",
+      "path": "poisoned",
+      "expect": ["devin-availability-required"]
+    },
+    {
+      "skill": "cli-devin",
+      "name": "none",
+      "command": "git status",
+      "expect": []
+    },
+
+    {
+      "skill": "cli-pi",
+      "name": "pass",
+      "command": "pi -p --offline --model llmgateway/glm-5.3-flash \"task\" </dev/null",
+      "expect": []
+    },
+    {
+      "skill": "cli-pi",
+      "name": "stdin",
+      "command": "pi -p --offline --model llmgateway/glm-5.3-flash \"task\"",
+      "expect": ["stdin-redirect-required"]
+    },
+    {
+      "skill": "cli-pi",
+      "name": "availability",
+      "command": "pi -p --offline --model llmgateway/glm-5.3-flash \"task\" </dev/null",
+      "path": "poisoned",
+      "expect": ["pi-availability-required"]
+    },
+    {
+      "skill": "cli-pi",
+      "name": "offline",
+      "command": "pi -p --model llmgateway/glm-5.3-flash \"task\" </dev/null",
+      "expect": ["pi-offline-required"]
+    },
+    {
+      "skill": "cli-pi",
+      "name": "model",
+      "command": "pi -p --offline --model glm-5.3-flash \"task\" </dev/null",
+      "expect": ["pi-provider-qualified-model"]
+    },
+    {
+      "skill": "cli-pi",
+      "name": "none",
+      "command": "git status",
+      "expect": []
+    },
+
+    {
+      "skill": "cli-hermes",
+      "name": "pass",
+      "command": "hermes chat -Q --oneshot --query-file p.md --provider llmgateway --model deepseek-v4.1-flash --ignore-rules --source tool -t terminal,file,skills,todo,web --yolo",
+      "expect": []
+    },
+    {
+      "skill": "cli-hermes",
+      "name": "stdin",
+      "command": "hermes chat -Q --oneshot -q \"task\"",
+      "expect": ["stdin-redirect-required", "ignore-rules-required", "explicit-toolsets-required"]
+    },
+    {
+      "skill": "cli-hermes",
+      "name": "availability",
+      "command": "hermes chat -Q --oneshot --query-file p.md --provider llmgateway --model deepseek-v4.1-flash --ignore-rules --source tool -t terminal,file,skills,todo,web --yolo",
+      "path": "poisoned",
+      "expect": ["hermes-availability-required"]
+    },
+    {
+      "skill": "cli-hermes",
+      "name": "yolo",
+      "command": "hermes chat -Q --oneshot --query-file p.md --provider llmgateway --model deepseek-v4.1-flash --ignore-rules --source tool -t terminal,file,skills,todo,web",
+      "expect": ["yolo-required-for-writes"]
+    },
+    {
+      "skill": "cli-hermes",
+      "name": "rules",
+      "command": "hermes chat -Q --oneshot --query-file p.md --provider llmgateway --model deepseek-v4.1-flash --source tool -t terminal,file,skills,todo,web --yolo",
+      "expect": ["ignore-rules-required"]
+    },
+    {
+      "skill": "cli-hermes",
+      "name": "toolsets",
+      "command": "hermes chat -Q --oneshot --query-file p.md --provider llmgateway --model deepseek-v4.1-flash --ignore-rules --source tool -t search,todo --yolo",
+      "expect": ["explicit-toolsets-required"]
+    },
+    {
+      "skill": "cli-hermes",
+      "name": "worktree",
+      "command": "hermes chat -Q --oneshot --query-file p.md --provider llmgateway --model deepseek-v4.1-flash --ignore-rules --source tool -t terminal,file,skills,todo,web --yolo --worktree",
+      "expect": ["no-worktree-flag"]
+    },
+    {
+      "skill": "cli-hermes",
+      "name": "none",
+      "command": "git status",
+      "expect": []
+    },
+
+    {
+      "skill": "cli-jev",
+      "name": "pass",
+      "command": "jev noul -q \"Is it urgent?\" -s @state.txt </dev/null",
+      "expect": []
+    },
+    {
+      "skill": "cli-jev",
+      "name": "availability",
+      "command": "jev noul -q \"Is it urgent?\" -s @state.txt </dev/null",
+      "path": "poisoned",
+      "expect": ["jev-availability-required"]
+    },
+    {
+      "skill": "cli-jev",
+      "name": "stdin",
+      "command": "jev noul -q \"Is it urgent?\" -s -",
+      "expect": ["jev-stdin-bounded"]
+    },
+    {
+      "skill": "cli-jev",
+      "name": "choice",
+      "command": "jev choice -q \"Which queue?\" -s @state.txt -o only=the only option",
+      "expect": ["jev-choice-option-cardinality"]
+    },
+    {
+      "skill": "cli-jev",
+      "name": "score",
+      "command": "jev score -q \"How severe?\" -s @state.txt -l only",
+      "expect": ["jev-score-level-cardinality"]
+    },
+    {
+      "skill": "cli-jev",
+      "name": "value",
+      "command": "jev run @request.json --value",
+      "expect": ["jev-value-not-with-run"]
+    },
+    {
+      "skill": "cli-jev",
+      "name": "endpoint",
+      "command": "jev noul -q \"Is it urgent?\" -s @state.txt --provider custom",
+      "expect": ["jev-custom-endpoint-required"]
+    },
+    {
+      "skill": "cli-jev",
+      "name": "none",
+      "command": "git status",
+      "expect": []
+    },
+
+    {
+      "skill": "sk-git",
+      "name": "pass",
+      "command": "git status",
+      "expect": []
+    },
+    {
+      "skill": "sk-git",
+      "name": "scoped-drop",
+      "command": "git commit --only src -m x",
+      "expect": ["commit-scope-drops-untracked"]
+    },
+    {
+      "skill": "sk-git",
+      "name": "hard-reset",
+      "command": "git reset --hard HEAD",
+      "expect": ["reset-hard-discards-changes"]
+    },
+    {
+      "skill": "sk-git",
+      "name": "none",
+      "command": "npm install",
+      "expect": []
+    }
+  ]
+}

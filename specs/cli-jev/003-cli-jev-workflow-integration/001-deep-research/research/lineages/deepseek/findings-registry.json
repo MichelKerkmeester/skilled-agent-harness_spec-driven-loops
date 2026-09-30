@@ -1,0 +1,58 @@
+{
+  "lineage": "deepseek",
+  "sessionId": "fanout-deepseek-1790438758756-5mso8j",
+  "loop": "research",
+  "stopPolicy": "max-iterations",
+  "maxIterations": 10,
+  "stopReason": "maxIterationsReached",
+  "anglesAnswered": 10,
+  "ranked": [
+    {"id": "rec-routing-arm", "title": "Offline routing tie-break arm with census phase", "verdict": "next", "seam": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-outcome-rerank.mjs:127-133", "harness": "H1/H2", "loc": "150-200"},
+    {"id": "rec-d4-jev-grader", "title": "D4 jev grader kind", "verdict": "next", "seam": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:207-226", "harness": "H9", "loc": "60-100"},
+    {"id": "rec-stop-second-rater", "title": "Stop novelty second rater, replay only", "verdict": "next", "seam": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs:506-549", "harness": "H11", "loc": "60-100+replay"},
+    {"id": "rec-severity-replay", "title": "Severity replay via blinded adjudication", "verdict": "next", "seam": ".skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/README.md:26", "harness": "H14", "loc": "80-120+gold"},
+    {"id": "rec-goal-verifier-mode", "title": "Goal verifier jev mode (shadow, labeled set first)", "verdict": "later", "seam": ".skilled/plugins/opencode-goal.js:134", "harness": "H12+labeled set", "loc": "60-100+set"},
+    {"id": "rec-advisor-cached-lane", "title": "Cached advisor shadow lane", "verdict": "later", "seam": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:21-29", "harness": "H5+H1", "loc": "120-200"},
+    {"id": "rec-fanout-shadow-pairs", "title": "Fan-out same-point shadow pair record", "verdict": "later", "seam": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:341-351", "harness": "gap-gold", "loc": "60-100"},
+    {"id": "rec-alignment-suggestion", "title": "Below-50 spec-folder suggestion", "verdict": "later", "seam": ".skilled/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts:503-521", "harness": "gap-gold", "loc": "40-60"},
+    {"id": "rec-level-flags", "title": "Spec-level risk flags", "verdict": "later", "seam": ".skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh (digest S24)", "harness": "gap-gold", "loc": "40-60"},
+    {"id": "rec-completion-audit", "title": "Completion-claim offline audit", "verdict": "later", "seam": ".skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs:113-119", "harness": "gap-gold", "loc": "50-70"},
+    {"id": "rec-h13-judge", "title": "H13 reply-harness judge slot", "verdict": "later", "seam": ".skilled/skills/sk-communication/benchmark/reply-harness/README.md (digest H13)", "harness": "H13", "loc": "30"}
+  ],
+  "dropped": [
+    {"id": "drop-live-advisor", "reason": "2200 ms budget, SIGKILL to {}"},
+    {"id": "drop-fused-lane", "reason": "passes_threshold is code-owned"},
+    {"id": "drop-sentinel-live", "reason": "1200 ms check timeout"},
+    {"id": "drop-precompact-live", "reason": "1800 ms cap, merge warns above 1500 ms"},
+    {"id": "drop-cursor-devin-verifier", "reason": "no verifier surface"},
+    {"id": "drop-stop-authority", "reason": "STOP pending self-report agreement"},
+    {"id": "drop-guards", "reason": "5 s budget, repository facts, determinism"},
+    {"id": "drop-merge-live", "reason": "deterministic merge, no gold, no reproducibility"},
+    {"id": "drop-routing-front-door", "reason": "stdout contract, synchronous, 13-row gold"},
+    {"id": "drop-retrievability", "reason": "no retrieval gold"},
+    {"id": "drop-playbook-verdict", "reason": "no FAIL rows; human wins by contract"},
+    {"id": "drop-heuristic-replacement", "reason": "blocking-language safety property"},
+    {"id": "drop-new-surface", "reason": "transport posture covers it"},
+    {"id": "drop-helper-now", "reason": "zero callers"},
+    {"id": "drop-ratchet-arm", "reason": "network arm in deterministic ratchet"},
+    {"id": "drop-cache-in-stability", "reason": "nullifies the flip-rate measure"},
+    {"id": "drop-score-0-not-measured", "reason": "indistinguishable from maximal hallucination"}
+  ],
+  "keyFindings": [
+    {"id": "f-budget-2200", "title": "Advisor child effective budget is 2200 ms then SIGKILL to {}"},
+    {"id": "f-precompact-1800", "title": "PreCompact merge warns above 1500 ms against an 1800 ms cap"},
+    {"id": "f-stop-corroboration", "title": "Stop path already corroborates the self-report against graph novelty"},
+    {"id": "f-h14-binding", "title": "Blinded adjudication ships a deep-review severity adapter"},
+    {"id": "f-verifier-switch", "title": "OpenCode goal plugin already selects heuristic or llm verifiers by env"},
+    {"id": "f-version-probe", "title": "Exact jev 0.6.2 version probe closes the package collision"},
+    {"id": "f-no-cache-risk", "title": "No surviving idea touches a provider-cached prompt"},
+    {"id": "f-census-first", "title": "The routing arm's first output is a no-key census"}
+  ],
+  "buildOrder": [
+    "score-jev-tiebreak.mjs (routing arm + census + latency record)",
+    "D4 jev grader kind (grader/jev.cjs + factory branch + flag)",
+    "Stop second-rater replay",
+    "Severity replay via H14",
+    "Goal verifier jev mode (conditional on labeled set)"
+  ]
+}

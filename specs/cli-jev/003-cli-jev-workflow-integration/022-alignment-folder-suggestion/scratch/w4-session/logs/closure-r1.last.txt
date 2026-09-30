@@ -1,0 +1,27 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/tasks.md (+23/-23)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/goal.md (+35/-14)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/implementation-summary.md (+88/-20)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md (+3/-3)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/graph-metadata.json (+53/-45, derived through repair-derived.cjs)
+EDITS: spec.md:3 description tail "Planned, released 2026-09-29" -> "Released 2026-09-29, built and closed at its label gate the same day, commit ba70806077"
+EDITS: spec.md:26 Status Planned -> Complete
+EDITS: spec.md:87 CLI-path premise "is INFERRED ... the census confirms it" -> "was INFERRED ... the 2026-09-29 path replay confirms it" with the `replay cli: ... alternatives listed: 0` line
+EDITS: tasks.md:31 notation: "both proposed" -> "both created by this build", closure note with commit `ba70806077`, `BE`/`SE` shorthand and SE-wins rule
+EDITS: tasks.md:36-70 T001 to T018 ticked `[x]`, each with its command and result from BE/SE or a read-only command I ran
+EDITS: tasks.md:71 T019 -> `[B]` with "Open for the operator ... Not part of this phase's completion (parent D4, `SE` section 5)"
+EDITS: tasks.md:79-81 completion criteria ticked; row 2 amended to "No `[B]` ... other than T019" with reason citing parent D4
+EDITS: goal.md:12-31 _memory continuity: closure-leaf, 2026-09-29T16:53:36Z, completion_pct 100, next_safe_action compacted to 74 chars
+EDITS: goal.md:63-70 all 6 completion criteria ticked
+EDITS: goal.md:77-108 log: 8 progress rows (build, zero-call run, label gate, tests/suites, skill docs, review/commit, labels, live runs, phase docs) and 11 deviation rows (01 re-dispatch, 01c header anchoring, 02b isPathInsideRoot, stray folder, 03b quoted template, executor change, 5 review fixes, P2 findings, criterion amendment), each with its source
+EDITS: implementation-summary.md: full rewrite, Status Complete, build record (12 files in `ba70806077`), how delivered, decisions, verification table with commands and results, 9 limitations including premise corrections
+CHECKS: node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder <phase> --apply -> `inspected=1 repaired=1 failed=0` (exit 0)
+CHECKS: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <phase> --strict -> `RESULT: PASSED` (Errors: 0  Warnings: 0; `RESULT: FAILED` count 0) (exit 0)
+CHECKS: node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <phase> -> `RESULT: PASSED (5/5 checks)` (exit 0)
+CHECKS: node .skilled/hooks/goal/bin/goal.cjs packet <phase> --workspace "$PWD" -> `packet_durable_chars=3580` (packet_budget=unknown, by design for a phase child) (exit 0)
+CHECKS: git show --stat ba70806077 (read-only) -> 12 files: script, test, 9 skill docs, Hermes copy (exit 0)
+CHECKS: node retrieval/generate-trigger-index.mjs --check (read-only) -> stale for the new docs, exit 1, confirming session P2 finding 5
+BLOCKED REASON: none
+STATUS SET: `Complete` in spec.md and implementation-summary.md, because the scorer prints its label-gate stop `stop: fewer than 30 labeled rows (0 labeled)` from the final state (SE section 2 G2), which closes the phase under parent D4 and parent criterion 2, and every remaining open row is an operator item.
+ROWS LEFT OPEN: tasks.md T019 `[B]`, reason: needs the operator's `--transcripts`/`--rows-out` run and at least 30 labels, then a live Deem run and a Jev run on the operator's yes; parent D4 keeps it outside this phase's completion. Not a row, recorded in the log and limitations: the trigger index regeneration follows in the orchestrator's own commit (SE section 4, P2 finding 5, outside my write authority) and the 5 P2 findings are recorded, not chased (parent D5). The amended tasks.md criterion 2 and its reason are in goal.md's log. Accept check: my changes touch only the 5 phase-folder files listed above; every other dirty path in the tree belongs to concurrent workers.

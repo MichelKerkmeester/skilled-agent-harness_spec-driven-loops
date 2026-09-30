@@ -1,0 +1,28 @@
+Review complete. Both files opened in full; both test suites run; sign test checked by hand; `deem_command` and `sign_test_p` probed at runtime.
+
+**Findings**
+
+- `P1 hvr_reader_lens.py:1172,1190 - Deem fallback is broken twice over: REPO_CLI_DEEM resolves .skilled/cli-classifier/... (missing "skills/", file does not exist) and is spawned with sys.executable, not the `node` REQ-007 names - PATH without `cli-deem` yields python3 <nonexistent>.mjs health -> exit 2 -> "deem arm skipped: bad health response"; the Deem arm can never run via the documented fallback, and no test exercises deem_command without `cli-deem` on PATH`
+- `P1 test_hvr_reader_lens.py:1335 - report.json is never read by any check (only "not exists"); its content is a public output surface REQ-012/013 put per-category counts and identity in - a run of "both switches print Jev first" writes report.json via build_report (hvr_reader_lens.py:1966) and asserts only stdout, so a build_report regression passes all 38 checks`
+- `P2 hvr_reader_lens.py:1408-1421,1640-1655 - a coverage- or kill-failing column still prints its three category lines, brier and flips before the verdict; the accepted design (design.md:251, rulings.md:3) and spec "prints the first line that applies" say the verdict line prints alone - input: one category with M=8 of K=10 prints three category lines then "verdict deem: stop (coverage)"`
+- `P2 hvr_reader_lens.py:1941-1944 - every column line prints p50=none p95=none where the build contract fixes p50=<n>ms p95=<n>ms (design.md:91) - any completed --out run, though calls.jsonl holds wallMs`
+- `P2 hvr_reader_lens.py:2157,1875 - K counts non-refused rows, not "the category's labeled rows" - a 150-labeled labels file whose drawn doc was untracked at run time drops that category's K to 49 and re-bases coverage`
+
+**Requirements**
+
+- `REQ-001 met - default path skips both backends (main:2190-2194); test "default run calls no stub and writes no file" passes`
+- `REQ-002 met - frame rule, findings only via hvr_scan.py --json, skip -> `stop: scanner skipped` exit 0, scanner exit 2 -> exit 2; tested`
+- `REQ-003 met - .env and untracked paths refused before open (:164-166, :781-784), reads via git show at the recorded commit with hash check (:785-790)`
+- `REQ-004 met - 150 rows, ten fields, null labels, 50/50/50 with up to 25 candidate rows, cap 5/skill, labeled-file overwrite refused, gate line exact; tested`
+- `REQ-005 met - comparator chosen only on a strict win, both accuracies and yes share printed; tested`
+- `REQ-006 met - rule fixed in code and printed before any call; order coverage/kill/five conditions/two-category keep correct; sign test hand-checked (5,0)=C(5,5)/2^5=0.03125<0.05, below=True`
+- `REQ-007 not met - gate, 2,000 ms cap and four skip lines correct, but the PATH fallback (P1) is not the `node .../cli-deem.mjs` the requirement names`
+- `REQ-008 met - identity first, version pin, --provider on auth test and all 450 judgments, cost/payload lines, calls.jsonl fields, 017's exit table, --out refusal before any call; tested`
+- `REQ-009 met - grep clean; requests carry only -q and one stdin section`
+- `REQ-010 met - git is read-only (ls-files/rev-parse/show); writes only under --out`
+- `REQ-011 met - three verbatim questions with SHA-256 before any call, flag at >=0.5, Brier reported never decisive, Jev 3x / Deem 1x`
+- `REQ-012 met - cost lines, records, stops print partial and no verdict (p50/p95 P2 aside)`
+- `REQ-013 met - identity per column, requalify before verdict; tested`
+- `REQ-014 not checked - tests half passes (38 checks ALL PASS, test_hvr_scan.py ALL PASS) but report.json gap (P1); docs half is a separate review and is not yet in the tree`
+
+VERDICT: FAIL

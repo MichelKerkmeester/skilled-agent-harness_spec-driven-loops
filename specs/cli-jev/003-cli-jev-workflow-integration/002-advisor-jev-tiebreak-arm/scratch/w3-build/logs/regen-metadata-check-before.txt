@@ -1,0 +1,21 @@
+OK   [H] cli-classifier
+OK   [H] cli-external-orchestration
+OK   [H] cli-jev
+OK   [S] cli-orca
+OK   [S] mcp-code-mode
+OK   [H] mcp-tooling
+OK   [H] sk-code
+OK   [S] sk-communication
+OK   [H] sk-design
+OK   [H] sk-doc
+OK   [S] sk-git
+OK   [S] sk-prompt
+OK   [S] sk-vision
+OK   [H] system-deep-loop
+FAIL [S] system-skill-advisor
+       STALE_GENERATED_FILE: system-skill-advisor: leaf-manifest.json is stale (committed=5e2a57e849efc6ee37aa24c8ed3241464617c960fd58a9fd63563ce4b529c553 fresh=4b7cf90c2c8f7edfe8d8711fdf6ba21ca891086a9b3c824de5b4f2f5b9d7374c)
+       STALE_GENERATED_FILE: system-skill-advisor: leaf-aliases.json does not match the projection of its leaf-manifest.json
+OK   [S] system-spec-kit
+
+checked=16 passed=15 failed=1 fixed=0
+Re-run with --fix to regenerate missing or stale manifests; authored files must be written by hand.

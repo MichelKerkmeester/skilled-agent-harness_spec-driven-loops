@@ -1,0 +1,9 @@
+Both checks pass. The `| 462 |` index row is in place after `| 461 |`, shaped exactly like the `| 460 |` model row: ID, title stripped of its `462 -- ` scenario prefix (matching the scenario frontmatter and the feature-catalog leaf title), scenario link and catalog-entry link.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md (+1/-0)
+EDITS: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md:204 inserted `| 462 | Completion claim audit | [462](tooling-and-scripts/completion-claim-audit.md) | [completion-claim-audit](../feature-catalog/tooling-and-scripts/completion-claim-audit.md) |` after the `| 461 |` row (line 203)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md --type playbook -> `✅ VALID: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md` / `Document type: playbook` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

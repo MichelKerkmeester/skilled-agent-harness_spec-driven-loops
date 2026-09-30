@@ -1,0 +1,23 @@
+Both files are longer than what was shown. Let me read the rest.Let me read the remaining sections of both files.I have the full picture of both files. Per the persona, let me read the `sk-code` skill to follow its route, and check the runtime's package config for how tests are checked.`sk-code` routes by workflowMode through a compiled router. Let me run it as the skill directs, and check the runtime's tsconfig to know whether the test file is typechecked.The router resolved `sk-code-opencode` (system-code surface). Let me load that packet's SKILL.md.Route resolved: `sk-code-opencode` (JavaScript slice for the `.mjs`, TypeScript slice for the test). Now let me check for other consumers of this script and any test that runs both arms together, so the change is safe.No test runs both arms together, so the new compare line can't break existing stdout expectations. One more config check: whether `tsc` typechecks the `.mjs` scripts (this affects how I annotate the new map).Configs confirm the `.mjs` scripts and tests are outside the tsc program, so the brief's literal forms are safe. Now I'll apply the script edits.summarizeColumn edits are in. Now the compare functions after `verdictLine`, and the `main` wiring.Script edits done. Now the test file: imports, the new describe block, and the decided-count assertion.Both files are edited. Now run the required verification and confirm the change scope.`node --check` exits 0. The two named files are untracked in this worktree (as expected — the orchestrator commits later); the scratch dir is the orchestrator's pre-existing log area, untouched by me. Let me compute the exact line deltas for the handback and verify the test-file diff scope against the pre-task snapshot.The test-file diff against the pre-task snapshot is exactly my three additions (+35/-0). Let me confirm the script's net line delta.All edits verified. The script grew by exactly the counted 45 net lines (+49/-4), the test file by +35/-0 with a diff against the pre-task snapshot showing only the three intended additions, and `node --check` exits 0.
+
+HANDBACK
+
+STATUS: DONE
+FILES CHANGED:
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs (+49/-4)
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-jev-tiebreak.vitest.ts (+35/-0)
+EDITS:
+score-jev-tiebreak.mjs:508 JSDoc return type of summarizeColumn gains decidedRr: Record<string, number> after verdict
+score-jev-tiebreak.mjs:527 const decidedRr = {}; added beside the other counters
+score-jev-tiebreak.mjs:570,576 decidedRr[row.id] = rc added inside the rc > rs and rc < rs branches
+score-jev-tiebreak.mjs:647 decidedRr returned as a new field after verdict
+score-jev-tiebreak.mjs:686-720 compareColumns (paired keys, mean gap, one-sided 95% normal bound on n-1 sd) and compareLine added directly after verdictLine with JSDoc
+score-jev-tiebreak.mjs:1475-1493 main keeps jevResult/deemResult from both arms and prints the compare line only when both choice columns exist
+score-jev-tiebreak.vitest.ts:33-34 imports compareColumns and compareLine
+score-jev-tiebreak.vitest.ts:482 expect(Object.keys(summary.decidedRr)).toHaveLength(summary.decided) in the first column-and-keep-rule it()
+score-jev-tiebreak.vitest.ts:539-569 describe('score-jev-tiebreak column comparison') with the two-row exact bound/line test and the below-two-rows none-bound test
+CHECKS:
+node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs -> no output, syntax OK (exit 0)
+git status --porcelain -> only the two named files untracked (plus the pre-existing scratch/w3-build orchestrator dir); no other file touched (exit 0)
+diff 16.pre.vitest.ts <test file> -> only the three intended additions, +35/-0 (exit 1, differences present as expected)
+BLOCKED REASON: none

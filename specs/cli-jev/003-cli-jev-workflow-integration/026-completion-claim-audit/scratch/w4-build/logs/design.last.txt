@@ -1,0 +1,139 @@
+I'll start by reading the required context files before writing the design.
+
+Now reading the phase docs.
+
+
+
+
+
+Now reading the sibling scorer, sentinel, and cited seams.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I have the full picture now. Let me check the target directory and a couple of final details.
+
+
+
+
+
+
+
+
+
+
+
+I have everything I need. Now writing the design file.
+
+Now running the two required checks.
+
+
+
+
+
+The design is written and both checks pass. Summary of what the design fixes:
+
+**Premises** — all cited seams verified in today's tree: sentinel `:64`/`:70`/`:84`/`:113-119`/`:553-578`/`:568`, Claude adapter `:118-119`/`:132-139`, `.claude/settings.json:172-177`, research `:694` and `:88`, the 50-row fixture (`id`+`raw_text`, untracked), the sibling census and `judge-agreement.mjs` anchors. One `missing`: the spec's "completion-evidence sentinel's mention" in `SKILL.md` does not exist (grep, 2026-09-29) — carried to §6. The fixture census count was re-run read-only: 50 rows, 4 fires, words `deployed=1 fixed=1 completed=1 resolved=1`.
+
+**Interface** — script path, six switches with their exit-2 refusals, the 0/2 exit taxonomy, every stdout line (census, per-word, regex errors, margin/keep/power, gate, both arms' gate/arm/verdict/skip/stop lines), the two files written, 22 exported functions, and each constant (label gate 30, class gate 5, margin, `DEEM_P50_MS = 60.5`, timeouts 10000/90000/2000).
+
+**Test cases** — 22 lines covering census, per-word split, labels, class gate, headroom, default run, both gates, payload gate, `--out` refusals and all five verdicts, all on stubs.
+
+**Build steps** — 8 code steps (each one behavior + named tests) and 6 doc steps with path, sk-doc mode, MODEL file and facts.
+
+**Proof plan** — one row per goal criterion, with the label gate stop line as the accepted end state for criterion 4.
+
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/scratch/w4-build/design.md (+245/-0)
+EDITS: specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/scratch/w4-build/design.md:1 created the build design (6 sections, 245 lines)
+CHECKS: wc -l specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/scratch/w4-build/design.md -> 245 (exit 0); grep -c '^## ' specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/scratch/w4-build/design.md -> 6 (exit 0); git status --porcelain on the spec folder -> only the pre-existing untracked `scratch/w4-build/` (exit 0)
+BLOCKED REASON: none

@@ -1,66 +1,23 @@
 // Dependency-free dispatch hard-rule engine.
 //
-// Reads the `hard_rules:` frontmatter a dispatch skill declares in its SKILL.md and evaluates
-// each rule against a composed shell command BEFORE it is spawned. Used by the PreToolUse
-// preflight hook (manual/ad-hoc dispatch) and available to the fan-out in-process guard.
+// Reads the `hard-rules.json` sidecar beside a dispatch skill's SKILL.md and evaluates each rule
+// against a composed shell command BEFORE it is spawned. Used by the PreToolUse preflight hook
+// (manual/ad-hoc dispatch) and available to the fan-out in-process guard.
 // No external deps and no daemon: the enforcement path must survive even when the advisor is
-// down, so this parses just enough YAML for the flat hard_rules list rather than pulling a lib.
+// down, so the rules live in plain JSON a built-in parse reads without a YAML dependency.
 
 import fs from 'node:fs';
 import path from 'node:path';
 
-// ── Frontmatter parsing ──────────────────────────────────────────────────────
+const HARD_RULES_FILENAME = 'hard-rules.json';
 
-function stripQuotes(value) {
-  const v = value.trim();
-  if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) {
-    return v.slice(1, -1);
-  }
-  return v;
-}
-
-/**
- * Extract the `hard_rules:` list from a SKILL.md's YAML frontmatter.
- * Deliberately minimal: handles the flat list-of-maps shape this contract uses
- * (`- id:` / `check:` / `message:` / `severity:`), not arbitrary YAML.
- * @param {string} text - Full SKILL.md contents.
- * @returns {Array<{id:string, check:string, message:string, severity:string}>}
- */
-export function parseHardRules(text) {
-  if (typeof text !== 'string') return [];
-  const fmMatch = text.match(/^---\n([\s\S]*?)\n---/);
-  if (!fmMatch) return [];
-  const lines = fmMatch[1].split('\n');
-  const start = lines.findIndex((l) => /^hard_rules:\s*$/.test(l));
-  if (start === -1) return [];
-
-  const rules = [];
-  let current = null;
-  for (let i = start + 1; i < lines.length; i++) {
-    const line = lines[i];
-    if (line.trim() === '') continue;
-    // A non-indented line ends the hard_rules block.
-    if (!/^\s/.test(line)) break;
-    const itemMatch = line.match(/^\s*-\s+(\w+):\s*(.*)$/);
-    if (itemMatch) {
-      if (current) rules.push(current);
-      current = {};
-      current[itemMatch[1]] = stripQuotes(itemMatch[2]);
-      continue;
-    }
-    const kvMatch = line.match(/^\s+(\w+):\s*(.*)$/);
-    if (kvMatch && current) {
-      current[kvMatch[1]] = stripQuotes(kvMatch[2]);
-    }
-  }
-  if (current) rules.push(current);
-  return rules.filter((r) => r.id && r.check);
-}
-
-/** Read + parse hard_rules from a SKILL.md path; returns [] on any read/parse error (fail-open). */
+/** Read the sibling sidecar beside a SKILL.md; [] on any read, parse or shape error (fail-open). */
 export function readHardRules(skillMdPath) {
   try {
-    return parseHardRules(fs.readFileSync(skillMdPath, 'utf8'));
+    if (typeof skillMdPath !== 'string' || path.basename(skillMdPath) !== 'SKILL.md') return [];
+    const parsed = JSON.parse(fs.readFileSync(path.join(path.dirname(skillMdPath), HARD_RULES_FILENAME), 'utf8'));
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((rule) => rule && typeof rule === 'object' && rule.id && rule.check);
   } catch {
     return [];
   }
@@ -302,7 +259,8 @@ export const CHECKS = {
 export const KNOWN_CHECKS = Object.keys(CHECKS);
 
 /**
- * Evaluate a skill's hard_rules against a command string.
+ * Evaluate a skill's hard rules against a command string. Those are the rules `readHardRules`
+ * reads from the `hard-rules.json` sidecar beside the skill's SKILL.md.
  *
  * The optional third argument lets a caller supply its own check registry and a context object
  * describing state the command has not yet touched. Dispatch rules are answerable from the

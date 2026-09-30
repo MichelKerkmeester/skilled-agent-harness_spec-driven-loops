@@ -1,0 +1,13 @@
+All three edits landed and the edited regions match the brief exactly. Both verification counts pass (16 cases, `CASE_INSENSITIVE` ×2). I touched only T; the other dirty paths in the worktree belong to concurrent workers.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+31/-0)
+EDITS:
+- .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts:9 node:path import now `import { basename, delimiter, dirname, join, resolve } from 'node:path';`
+- .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts:93 CASE_INSENSITIVE probe inserted after runScript's closing `}`, one blank line each side
+- .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts:357 two new cases appended before the final `});`, each after one blank line (exact-case `it`, upper-cased `it.skipIf(!CASE_INSENSITIVE)`)
+CHECKS:
+- grep -cE '^  it[(.]' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts -> 16 (exit 0)
+- grep -c 'CASE_INSENSITIVE' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts -> 2 (exit 0)
+BLOCKED REASON: none

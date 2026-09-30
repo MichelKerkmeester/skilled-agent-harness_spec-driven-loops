@@ -1,0 +1,78 @@
+I'll start by reading the style models and the skill contract the brief names, then create the two files.
+
+Style models read. Now let me see the criteria-count check implementation, the test's remaining style, and the fixtures contract.
+
+Now the exports and tail of check-goal.cjs, plus the target spec folder's goal.md to understand the verification target.
+
+Now let me read the shared goal-slice module the brief requires importing, to confirm the exact contracts of `extractDurableSlice`, `splitFrontmatter` and `LOG_ANCHOR`.
+
+The contracts are clear. Before writing, I need exact box-width measurements to pad the new headers correctly, and I need to confirm the target goal.md is LF-only (the brief's line-offset formula assumes that). One read-only measurement command:
+
+The measurement hit a padding conflict — let me get exact numbers before deciding anything.
+
+The text is 74 chars and check-goal's box inner width is exactly 74 — a padding conflict with the leading-space style. Let me check how the rest of the repo's box headers handle long titles before deciding.
+
+The convention is a fixed inner width of 74 across 433 headers. Let me check whether any existing header text ever touches the border, and look at the one 73-width outlier:
+
+Two existing headers have flush-right text — that's the in-repo precedent for over-long titles. Let me inspect them precisely, since one (`goal-core.cjs`) is in the same goal-hooks family as the module we import:
+
+The repo precedent is revealing: over-long titles keep `// ║ ` + text + `║` and simply overflow the standard 74-wide box. Before choosing, let me check the packet docs for the task's own wording on this header:
+
+The brief file exists in the packet's scratch area — let me read its exact bytes for that header line to rule out any transcription drift (dash type, spacing):
+
+One quick history check on those two precedent headers, to see if that overflow style is current house style (recent) rather than legacy:
+
+Confirmed: the overflow style is current house style (goal-core.cjs was touched yesterday). Decision: keep check-goal.cjs's exact box width and write the title line as `// ║ ` + text + `║` (1-char overflow), matching the two in-repo precedents for over-long titles — and I'll flag it in the handback.
+
+Now writing file 1:
+
+Now file 2, the test file:
+
+Both files exist. Now the verification pass. First, byte-level checks that the box lines and the three ported functions match their models exactly, plus the two `node --check` commands:
+
+Two items: the test header is one space short (78 vs 79), and my divider index guesses were wrong — let me scan divider lines properly:
+
+All dividers and box lines match; only the test header needs one more padding space. Fixing it:
+
+
+
+Both `node --check` pass and the test header is byte-exact. Now the third listed check — the acceptance command:
+
+The acceptance check prints 7. Now a supplementary read-only mirror of both test cases (so the orchestrator's `node --test` run lands green), with temp fixtures cleaned up in-script:
+
+Both mirrors pass. Final checks: confirm the scoped change set and re-read the edited header region, plus get line counts for the handback:
+
+Everything is in order. Final full read of the new lint file to confirm the delivered bytes:
+
+
+
+Both files verified end to end. One judgment call to disclose before the handback:
+
+**Deviation note:** the required title `lint-goal-criteria — advisory lexical lint for goal criteria rules 4 and 5` is exactly 74 chars, and check-goal.cjs's box inner width is exactly 74 — the text cannot carry spaces on both sides inside that width. I kept the box at check-goal.cjs's exact width and wrote the title line as `// ║ ` + title + `║` (one leading space, line 80 vs box 79), matching the repo's only two precedents for over-long titles (`goal-core.cjs`, `opencode-goal.js`, same goal-hooks family, goal-core touched 2026-09-27).
+
+```
+STATUS: DONE
+FILES CHANGED:
+  .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs (+165/-0)
+  .skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs (+100/-0)
+EDITS:
+  lint-goal-criteria.cjs:1-3 box header; title 74 chars = 74-wide inner, one leading space kept, title line 1 over (goal-core.cjs precedent; see deviation note)
+  lint-goal-criteria.cjs:5-18 imports: fs, path, createHash, goal-slice trio via check-goal.cjs:19's exact path expression
+  lint-goal-criteria.cjs:20-27 constants: TAG, GOAL_FILE, ARCHIVE_DIR, SCRATCH_DIR
+  lint-goal-criteria.cjs:29-93 helpers: getAnchorBody, getGoalSections (with its comment), getCriterionItems ported byte-for-byte under the parity comment
+  lint-goal-criteria.cjs:95-154 core: readGoalCriteria with JSDoc; frontmatter/durable-slice guards, line offset, anchor/heading cursor, per-item line + text + text_sha12
+  lint-goal-criteria.cjs:156-165 exports: getAnchorBody, getGoalSections, getCriterionItems, readGoalCriteria; no top-level side effect or output
+  tests/lint-goal-criteria.test.cjs:1-3 box header padded to the 74-wide inner (79 total)
+  tests/lint-goal-criteria.test.cjs:5-19 imports: assert, createHash, fs, os, path, node:test; fixtures, check-goal, lint module
+  tests/lint-goal-criteria.test.cjs:21-41 WORKSPACE_ROOT, before/after pair (mkdtemp 'lint-goal-fixtures-', createGoalFixtures, rmSync)
+  tests/lint-goal-criteria.test.cjs:47-100 two tests: parser parity vs checkCriteriaCount (with detail substring), line/12-hex-hash deepEqual + broken-frontmatter error
+CHECKS:
+  node --check .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs -> no output (exit 0)
+  node --check .skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs -> no output (exit 0)
+  node -e "const m=require('./.skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs');const fs=require('fs');console.log(m.readGoalCriteria(fs.readFileSync('specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/goal.md','utf8')).criteria.length)" -> 7 (exit 0)
+  node -e <byte-parity check: box lines, dividers, ported functions, require path, exports> -> top/bottom match true, 10/10 lint dividers match, 8/8 test dividers match, all three functions byte-identical, exports [getAnchorBody,getGoalSections,getCriterionItems,readGoalCriteria] (exit 0)
+  node -e <test-body mirror: both tests run as the test file runs them> -> test2 mirror OK; test1 mirror OK [positive 3, directive-criteria 3, criteria-count-out-of-range 2, criterion-placeholder 3] (exit 0)
+  node -e <test header width check> -> test mid exact: true len 79 (exit 0)
+  git status --short -- .skilled/skills/sk-doc/sk-create-goal/scripts/ -> only the two new files listed (??), nothing else changed (exit 0)
+BLOCKED REASON: none
+```

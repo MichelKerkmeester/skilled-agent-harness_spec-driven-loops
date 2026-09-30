@@ -39,7 +39,7 @@ This playbook covers the operator-visible surface of the `create-with-human-voic
 
 Coverage runs in both directions on purpose. Tell detection covers text the mode must flag. The scope gate covers text the mode must leave alone, which is the half a term-list scanner will never volunteer.
 
-Every scenario names its target outright and runs against a shipped file. `HVS-003` uses the standard itself, and the other eight use a fixture under `scripts/tests/fixtures/`. Precondition 7 below maps each scenario to its fixture. The three scenarios that edit their target copy the fixture out of the packet first, so no run leaves a diff under it. The recovery path for the whole package is `git checkout` of any file a run touched by mistake.
+Every scenario names its target outright and runs against a shipped file. `HVS-003` uses the standard itself, `HVT-004` runs the lens over the tree at the recorded commit with no fixture, and the other eight use a fixture under `scripts/tests/fixtures/`. Precondition 7 below maps each of those to its fixture. The three scenarios that edit their target copy the fixture out of the packet first, so no run leaves a diff under it. The recovery path for the whole package is `git checkout` of any file a run touched by mistake.
 
 ### A Clean Mechanical Scan Is Not A Pass
 
@@ -204,7 +204,7 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ---
 
-## 7. TELL DETECTION (`HVT-001..HVT-003`)
+## 7. TELL DETECTION (`HVT-001..HVT-004`)
 
 ### HVT-001 | Hard blocker terms on the dirty fixture
 
@@ -256,6 +256,24 @@ Desired user-visible outcome: the user gets the mechanical number and a reader's
 
 #### Test Execution
 > **Feature File:** [HVT-003](tell-detection/judgment-pass-not-covered-by-the-scanner.md)
+> **Catalog:** no feature-catalog entry exists for this packet.
+
+---
+
+### HVT-004 | The reader-needed lens measurement
+
+#### Description
+Verify the zero-call run prints the census and the stop line and calls no backend, and that a stub-backend run adds only its skip line.
+
+#### Scenario Contract
+Prompt: `Run the reader-needed lens with the two stubs first on PATH, once with no switch and once with --deem, and tell me what it printed and whether anything left the machine.`
+
+The default run makes no model call, writes no file and holds no credential. Before the operator's labels exist it stops at the label gate with `stop: fewer than 150 labeled rows`, so a transcript that quotes a measurement from it has read the sample frame as a result. No run has printed a `verdict` line.
+
+Desired user-visible outcome: the user sees the census and the stop line as the whole result before the labels exist, and sees the default run call no backend and a stub backend refused at the health check without measuring anything.
+
+#### Test Execution
+> **Feature File:** [HVT-004](tell-detection/reader-needed-lens-measurement.md)
 > **Catalog:** no feature-catalog entry exists for this packet.
 
 ---
@@ -378,6 +396,7 @@ Desired user-visible outcome: the user sees the before number, the after number 
 |---|---|---|
 | `scripts/hvr_scan.py` against the two shipped fixtures | The mechanical subset: punctuation bans, blocker words, phrase blockers, soft deductions and the masking of code spans | Direct. `HVT-001` and `HVR-001` execute exactly this pair as the operator-facing control |
 | `scripts/tests/test_hvr_scan.py` | The scanner's masking contract: a code-tagged fence inside a template payload, a payload fence that stays prose, an inline span wrapping two lines and the pinned fixture numbers | Partial. It pins the numbers `HVT-001` and `HVR-001` assert, so a fixture edit fails here first |
+| `scripts/tests/test_hvr_reader_lens.py` | The lens's own checks: tracked reads at the commit, the frame walker and the section splitter, the census, the significance and false-range comparators, a reproducible draw, the label gate, the baselines and headroom, bounded calls with stub backends and the verdict arithmetic | Partial. It pins the census, the label gate and the skip lines `HVT-004` asserts, so a script edit fails here first |
 | `sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | This playbook package's own operator-scenario contract | None directly. It validates the playbook, not the workflow the playbook tests |
 
 The packet ships no automated test for the judgment pass, and none is possible: the eleven categories the scanner prints as unchecked are unchecked because a pattern cannot settle them. This playbook is the operator-facing equivalent for that half of the standard and does not claim to be more.

@@ -1,0 +1,5 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs (+56/-0)
+EDITS: test.cjs:404-405 inserted three `deemGate` skip tests after `a stub deem backend skips` — `an unreachable deem health skips` (STUB_HEALTH down: passed false, stdout exactly `deem arm skipped: not reachable`), `a different deem model skips and names it` (STUB_HEALTH model: passed false, stdout holds `deem arm skipped: model` and a `deem: found=` line containing `deem-9b-v1`), `a bad deem health response skips` (STUB_HEALTH bad: passed false, stdout holds `deem arm skipped: bad health response` and a `deem: found=` line); each asserts the stub log trims to exactly `['cli-deem health']` (no `noul`/choice call), same shape as the existing test with cleanup in `finally`
+CHECKS: `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` (baseline before edit) -> `tests 33 / pass 33 / fail 0` (exit 0); `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` (final) -> `tests 36 / pass 36 / fail 0` (exit 0)
+BLOCKED REASON: none

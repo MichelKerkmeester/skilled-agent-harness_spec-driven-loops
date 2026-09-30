@@ -1,0 +1,183 @@
+---
+name: sk-create-goal
+description: Authors packet goal.md files from existing specs and leaves the goal template and session state with their owners.
+allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+version: 1.2.0.0
+---
+
+<!-- Keywords: create-goal, /create:goal, packet goal, goal.md authoring, phase parent goal, nested phase child goal -->
+
+# Create Packet Goals
+
+`sk-create-goal` authors `goal.md` content for an existing spec packet. It fills per-kind templates that are checked copies of the system-spec-kit goal template and keeps runtime goal state with its existing owners.
+
+---
+
+## 1. WHEN TO USE
+
+### Activation Triggers
+
+Use this packet to:
+
+- Author or revise a top-level goal or phase-parent goal.
+- Author or revise a nested phase-child goal.
+- Add `goal.md` to an existing packet that has no goal.
+- Add a binding row and matching child goal when someone adds a phase.
+- Cut an over-budget parent goal without dropping a completion criterion.
+- Print a parent goal's chat slice for the operator to set or resend.
+- Handle a request that enters through `/create:goal`.
+
+Keyword triggers: `create packet goal`, `author goal.md`, `revise packet goal`, `phase parent goal`, `nested phase child goal`, `add a goal file`, `goal chat slice`, `/create:goal`.
+
+### When NOT to Use
+
+- The target packet does not exist. Use system-spec-kit to create it first.
+- The packet's phase structure is not established. Use system-spec-kit to plan the phases first.
+- The request is to set, bind, inject or resend a session objective. Redirect it to the goal hooks or the host's native goal command.
+- The request changes runtime goal behavior or system-spec-kit template tooling. Those owners remain outside this packet.
+
+This packet authors files only. Its goal-file work does not change session state.
+
+---
+
+## 2. SMART ROUTING
+
+Run these four decisions before writing:
+
+1. **File content or session state?** A request to author or revise a packet's `goal.md` is file work. A request to set, bind, inject or resend a session objective belongs to the goal hooks or the host's native goal command. Redirect session-state requests without editing a packet goal.
+2. **Does the packet exist? What role does it have?** Confirm the target directory exists. A nested phase child has a parent directory containing `spec.md`. A packet with direct phase-child directories is the phase parent. Otherwise, treat it as a top-level packet. If the packet is missing, route packet creation to system-spec-kit first.
+3. **Does `goal.md` exist?** Revise an existing goal. Add one to an existing packet that has none. Do not treat a missing packet as a goal-file request.
+4. **Does a child change alter a parent decision or criterion?** If it does, amend the parent first. Then print the updated parent chat slice for the operator to resend. Do not let a child goal override a parent decision.
+
+Discover reference and asset documents at call time. Keep loads inside this packet. For top-level, phase-parent and nested-child authoring, retrofit, phase-add or parent amendment work, load [`references/parent-and-nested-goals.md`](references/parent-and-nested-goals.md) and follow the matching workflow. For every goal authoring or revision request, also load [`references/authoring-standards.md`](references/authoring-standards.md), [`assets/goal-exemplars.md`](assets/goal-exemplars.md) and the template for the goal's kind before drafting. For a budget measurement or chat-slice handoff, load [`references/budget-and-handoff.md`](references/budget-and-handoff.md). Fall back to the workflow reference when no specific resource applies:
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/parent-and-nested-goals.md"
+UNKNOWN_FALLBACK = {
+    "load_level": "UNKNOWN_FALLBACK",
+    "needs_disambiguation": True,
+    "resources": [],
+}
+
+def discover_markdown_resources():
+    documents = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            documents.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {path.relative_to(SKILL_ROOT).as_posix() for path in documents}
+
+def _guard_in_skill(relative_path):
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError("Only packet-local markdown resources are routable")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def route_references(selected):
+    inventory = discover_markdown_resources()
+    loaded = []
+    seen = set()
+    for relative_path in selected:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
+    if not loaded:
+        fallback = _guard_in_skill(DEFAULT_RESOURCE)
+        if fallback in inventory:
+            load(fallback)
+            loaded.append(fallback)
+        return {**UNKNOWN_FALLBACK, "resources": loaded}
+    return {"resources": loaded}
+```
+
+---
+
+## 3. HOW IT WORKS
+
+1. Read the target packet's source specification and acceptance criteria. For a phase parent, read its phase map and inspect every direct phase-child directory on disk.
+2. Apply the four routing decisions above. For top-level, phase-parent, nested-child, retrofit, phase-add and amendment work, load and follow [`references/parent-and-nested-goals.md`](references/parent-and-nested-goals.md). Identify which goal files to add or revise and whether a child change requires a parent amendment first.
+3. Start each goal from the template for its kind: [`goal-top-level-template.md`](assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](assets/goal-phase-parent-template.md) or [`goal-phase-child-template.md`](assets/goal-phase-child-template.md). Each is a checked copy of system-spec-kit's [`goal.md.tmpl`](../../system-spec-kit/templates/addons/goal.md.tmpl) at that kind's level. Copy the block between its template markers into `goal.md`. When [`create.sh`](../../system-spec-kit/runtime/cli/spec/create.sh) `--with-goal` has already scaffolded a child's `goal.md`, keep that file and fill it with the child template's guidance. Child scaffolding alone does not create its parent goal.
+4. Before filling the template, load [`authoring-standards.md`](references/authoring-standards.md) and [`goal-exemplars.md`](assets/goal-exemplars.md). Fill it with packet-specific content and apply both resources. Use three to seven self-contained completion criteria that can be checked without opening another file. Leave no template placeholders. Copy the criteria verbatim into the objective text required by the goal contract.
+5. For a phase parent, make the binding table match the filesystem. Add one row for each direct phase-child directory, with that child's goal document as the target. Keep the table only in the phase-parent goal.
+6. Keep the durable slice at or below 4,000 characters wherever the cap applies. Load [`references/budget-and-handoff.md`](references/budget-and-handoff.md): section 2 says which goals carry the cap and how to read the packet report, and section 3 is the cut order for a goal that runs over. Never remove a criterion or make one uncheckable.
+7. Before handing off any authored or revised goal, run `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <packet>` from the repository root and resolve each finding. A finding left open for any reason, an operator brief included, stops the run: report it, print no chat slice and end with `STATUS=FAIL`.
+8. Only after the checker passes, and after authoring or amending a parent goal, load [`references/budget-and-handoff.md`](references/budget-and-handoff.md) for the projection distinction and runtime matrix, then print its chat slice with `node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace <root>`. The `chat_slice` is for the operator to set or resend. It is not a session bind.
+
+---
+
+## 4. RULES
+
+### ✅ ALWAYS
+
+1. Run the four pre-write decisions before changing a goal file.
+2. Derive each goal from the existing packet's source documents, not from a guessed or remembered summary.
+3. Start every goal from the asset template for its kind. Keep each template's fixed text identical to `goal.md.tmpl`. The parity test fails when they drift.
+4. Use three to seven self-contained criteria.
+5. Make each criterion checkable without opening another file.
+6. Remove every template placeholder.
+7. Preserve every criterion when cutting an over-budget parent.
+8. Compare each binding row with the direct phase-child directories on disk.
+9. Print the updated parent chat slice for the operator when parent goal content changes.
+
+### ⛔ NEVER
+
+1. Never change an asset template's fixed text or structure on its own. Change `goal.md.tmpl` through system-spec-kit, then carry its new fixed text into all three templates.
+2. Never modify system-spec-kit's template tooling or shared validator from this packet.
+3. Never bind a packet to a session, set or resend a session objective, inject runtime state or track whether an operator has set the goal.
+4. Never put a binding table in a top-level goal or a phase-child goal.
+5. Never omit a phase child from the parent's binding table or drop a completion criterion to meet the budget.
+
+### ⚠️ ESCALATE IF
+
+1. The source documents disagree about a decision or criterion. They also must describe the same phase structure. Report any conflict instead of choosing a truth silently.
+2. A phase child is missing the source documents needed to author its goal.
+3. The parent phase map and child directories do not agree.
+4. A child change requires a parent decision or criterion amendment, but the request would leave the parent untouched.
+5. A parent cannot meet the durable budget without losing a criterion or making one unclear. Do not cut the criterion count. Ask whether the packet scope should be split.
+6. The request requires session-goal state or a change to a system-spec-kit-owned contract.
+
+---
+
+## 5. REFERENCES
+
+- [`references/parent-and-nested-goals.md`](references/parent-and-nested-goals.md) defines the top-level, phase-parent, child, retrofit, phase-add and amendment workflows.
+- [`authoring-standards.md`](references/authoring-standards.md) gives the reader checks for goal content.
+- [`references/budget-and-handoff.md`](references/budget-and-handoff.md) explains the durable budget, the one full cut order, what a parent goal sent in chat contains and the runtime handoff.
+- [`goal-exemplars.md`](assets/goal-exemplars.md) records cited pass and failure examples.
+- [`goal-top-level-template.md`](assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](assets/goal-phase-parent-template.md) and [`goal-phase-child-template.md`](assets/goal-phase-child-template.md) are the blanks each goal kind is filled from.
+- [`goal.md.tmpl`](../../system-spec-kit/templates/addons/goal.md.tmpl) is the system-spec-kit source the three templates copy.
+- [`scripts/README.md`](scripts/README.md) describes the checker and its tests.
+- [`goal-set-string-playbook.md`](../../system-spec-kit/references/workflows/goal-set-string-playbook.md) documents the objective set string a runtime binds and when a changed goal is resent. The budget, the cut order and what a goal sent in chat contains are in `budget-and-handoff.md`.
+- [`goal hooks README`](../../../hooks/goal/README.md) documents the runtime session-state boundary.
+- [`goal.cjs`](../../../hooks/goal/bin/goal.cjs) prints a packet's file-derived slices without binding a session.
+
+---
+
+## 6. SUCCESS CRITERIA
+
+- Every authored goal starts from the template for its kind, and all three templates match `goal.md.tmpl`.
+- Every phase-parent binding row corresponds to a direct phase-child directory on disk. No child is omitted.
+- Each goal has three to seven self-contained criteria. No template placeholders remain.
+- Top-level and phase-parent durable slices meet the 4,000-character limit without losing a criterion.
+- Print parent chat slices for the operator. Do not change session objectives or runtime state.
+
+---
+
+## 7. INTEGRATION POINTS
+
+- **system-spec-kit:** Owns `goal.md.tmpl`, the source the three asset templates copy, and `create.sh --with-goal`, which scaffolds child goals with the same structure.
+- **Goal hooks and host command:** Own session binding and objective delivery. This includes injection and resend tracking. This packet only authors the source file and prints its chat slice for the operator.
+- **Command surface:** The intended entry point is `/create:goal`. The command itself lives outside this packet.
+- **sk-doc:** Routes goal-file authoring to this packet.
+
+---
+
+## 8. RELATED RESOURCES
+
+- [`README.md`](./README.md) is the short reader entry point.

@@ -1,0 +1,25 @@
+{
+  "specFolder": "agents/015-global-claude-md-agents-symlink",
+  "description": "Replace the global Claude Code CLAUDE.md with a symlink to the repo AGENTS.md, dropping the stop-after-compaction rule",
+  "keywords": [
+    "replace",
+    "global",
+    "claude",
+    "code",
+    "symlink",
+    "repo",
+    "agents",
+    "dropping",
+    "stop-after-compaction",
+    "rule"
+  ],
+  "lastUpdated": "2026-09-25T20:03:32.801Z",
+  "specId": "015",
+  "folderSlug": "global-claude-md-agents-symlink",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

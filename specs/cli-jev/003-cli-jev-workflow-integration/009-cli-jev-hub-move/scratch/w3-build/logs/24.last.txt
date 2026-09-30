@@ -1,0 +1,9 @@
+Both checks pass. The named file is exactly +1/-1 at line 142; the other paths in `git diff --numstat` are other workers' in-flight edits in this shared tree, untouched by me.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md (+1/-1)
+EDITS: .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:142 replaced `| \`cli-usage\` (the \`cli-jev\` hub's transport) |` with `| \`cli-usage\` (mode \`cli-jev\` of the \`cli-classifier\` hub) |`, rest of line and file byte-identical
+CHECKS: grep -c "cli-jev\` hub" .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md -> 0 (exit 1)
+CHECKS: grep -c "cli-classifier" .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md -> 1 (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,30 @@
+Mon Sep 28 13:25:06 CEST 2026
+## update.log tail
+2026-09-28T06:15:58Z current: model 8cbabbb, source 7cf293f
+## before: pid, log size
+82931
+     987
+## stop
+exit 0
+old holders gone after 0s
+## size after stop
+     987
+## start (new deem-ctl)
+running (pid 37605)
+exit 0
+## status
+{"status": "ok", "model": "deem-0.8-v1", "backend": "torch"}
+model 8cbabbb, source 7cf293f
+exit 0
+## log size, access lines, first old line kept
+    1419
+3
+2
+## tail
+py:279: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]Loading weights: 100%|██████████| 320/320 [00:00<00:00, 7539.73it/s]
+[deem] model=deem-0.8-v1 backend=torch listening on http://127.0.0.1:8300/v1/systemone
+127.0.0.1 - - [28/Sep/2026 13:25:21] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [28/Sep/2026 13:25:21] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [28/Sep/2026 13:25:21] "GET /health HTTP/1.1" 200 -

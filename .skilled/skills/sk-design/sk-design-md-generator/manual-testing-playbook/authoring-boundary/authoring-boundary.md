@@ -77,7 +77,7 @@ PRE: Waves 1 (SETUP-001 PASS) and 2 (EXTRACT-001 PASS) must be complete. A faith
 
 ### Optional Supplemental Checks
 
-Walk the Quick Boundary Check in `references/authoring-boundary.md` against the draft and confirm every box passes. The Quick Start is the ship-ready surface, so confirm no brief-provided or inferred value reached it, since a fabricated token under the banner of ground truth is the exact failure the cardinal rule prevents. Run `validate.ts` and confirm `claimsScore >= 80`, the prose-provenance signal that an inferred claim without a cited measured token would lower.
+Walk the Quick Boundary Check in `references/authoring-boundary.md` against the draft and confirm every box passes. The Quick Start is the ship-ready surface, so confirm no brief-provided or inferred value reached it, since a fabricated token under the banner of ground truth is the exact failure the cardinal rule prevents. Run `validate.ts` and confirm zero `provenance` failures (the run passes and `claimsScore` is 100), the prose-provenance signal that an inferred claim without a cited measured token would break.
 
 ---
 

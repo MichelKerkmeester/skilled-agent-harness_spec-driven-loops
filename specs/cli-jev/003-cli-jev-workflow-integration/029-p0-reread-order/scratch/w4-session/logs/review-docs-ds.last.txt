@@ -1,0 +1,25 @@
+**Findings**
+
+- P1 `.skilled/skills/system-deep-loop/SKILL.md:111` - REQ-011 says each of the five docs names the script, the gate and both switches; this sentence names only the script - the hub's Backend paragraph never mentions the label gate or `--jev`/`--deem`.
+- P2 `.skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs:639` - `recorded` rank is taken after rows without a P0 probability are filtered out (633-635), not against the registry's own order - a registry whose first labeled row is an unmeasured negative and whose second is `real` prints `recorded=1.0`, not 2.0.
+- P2 same:70 - USAGE's comment says it prints whenever the run cannot start; no code path prints it - `--oops` exits 2 with the parseArgs message and no usage line.
+- P2 same:1302-1306 - a timed-out or exit-1/4 `jev auth test` is logged `unmeasured` and stops as `jev arm stopped: usage error`, not REQ-009's `unmeasured_timeout` past 90 s.
+- P2 same:376 - the label-sheet refusal is lexical, not realpath - `ln -s <repo>/specs /tmp/link`, then `--write-label-sheet /tmp/link/labels.jsonl` writes inside the repository.
+- P2 `tests/unit/score-severity-replay.vitest.ts:119` - `an unreadable registry exits 2` asserts only `loadRegistries`' throw; `main`'s exit-2 mapping for unreadable input is never run.
+- P2 `score-severity-replay.cjs:321` - a comment embeds the finding-id shape `P2-001`; the hygiene grep exits 0 but the class is banned.
+
+**Requirements**
+
+- REQ-001 met - default run spawns git only, writes nothing; the stub test asserts empty logs.
+- REQ-002 met - live run printed every census line family as coded.
+- REQ-003 met - baseline = label `real`; `10*R>9*K` prints `no headroom` and runs no arm (ruling 5 order).
+- REQ-004 met - coverage/kill/margin/sign/flips order; W=10,L=0 gives p=1/1024=9.766e-4; power 0.5^5=0.031.
+- REQ-005 met - sheet fields, in-repo refusal exit 2, unknown label exit 2, <20 stop line, no model label.
+- REQ-006 met - identity line, `jev 0.6.2`, auth status, one auth test, same provider; Deem health/skips; server never started.
+- REQ-007 met - key grep exits 1; state excludes the finding id; Jev published-only, Deem every row.
+- REQ-008 met - question, four verbatim `convergence.md:399-401` options, three left rotations, modal at two, three keys unstable.
+- REQ-009 met - notices, `calls.jsonl` fields/statuses, exit lines, `--out` refusal, no verdict after a stop (auth-test P2 above).
+- REQ-010 met - order/funnel/exact are report-only; recorded-rank P2 above.
+- REQ-011 not met - 33 tests cover the named cases and the docs validate, but SKILL.md names neither the gate nor the switches.
+
+VERDICT: FAIL

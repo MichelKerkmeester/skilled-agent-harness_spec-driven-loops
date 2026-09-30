@@ -30,7 +30,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 47 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
+This playbook provides 49 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
 
 > **Numbering note (gap-09).** The directory layout skips slot `09--*` between `scorer-fusion` and `python-compat`. This mirrors the `feature-catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
@@ -127,7 +127,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 47 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
+Release is `READY` only when all 49 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
 
 ---
 
@@ -155,7 +155,7 @@ This section records wave planning for the canonical Skill Advisor manual test p
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
 - **Wave 6**: `AI-001..AI-006` auto-indexing behavior.
 - **Wave 7**: `LC-001..LC-005` lifecycle routing.
-- **Wave 8**: `SC-001..SC-005` scorer fusion.
+- **Wave 8**: `SC-001..SC-007` scorer fusion.
 - **Wave 9**: `PC-001..PC-005` Python compatibility.
 
 ---
@@ -263,7 +263,7 @@ This category validates lifecycle routing scenarios `LC-001..LC-005`.
 
 ## 14. SCORER FUSION
 
-This category validates scorer fusion scenarios `SC-001..SC-005`.
+This category validates scorer fusion scenarios `SC-001..SC-007`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -272,6 +272,8 @@ This category validates scorer fusion scenarios `SC-001..SC-005`.
 | SC-003 | Top-2 Ambiguity Window | [003-ambiguity.md](scorer-fusion/ambiguity.md) |
 | SC-004 | Lane Contribution Attribution | [004-lane-attribution.md](scorer-fusion/lane-attribution.md) |
 | SC-005 | Lane-by-Lane Ablation Protocol | [005-ablation.md](scorer-fusion/ablation.md) |
+| SC-006 | Offline Jev and Deem Tie-Break Eval | [tie-break-eval.md](scorer-fusion/tie-break-eval.md) |
+| SC-007 | Offline Suggested-Order Eval | [suggested-order-eval.md](scorer-fusion/suggested-order-eval.md) |
 
 ---
 

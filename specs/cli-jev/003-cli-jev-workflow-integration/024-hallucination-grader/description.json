@@ -1,0 +1,22 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader",
+  "description": "Turn the model-benchmark runner's silent mock fallback for an unknown --grader into a startup error, then measure offline whether a Jev or Deem noul that flags invented flags, files or functions in benchmark outputs agrees with the operator's labels more often than the 5dim scorer's deterministic hallucination-flag check.",
+  "keywords": [
+    "r7",
+    "jev",
+    "deem",
+    "offline",
+    "hallucination",
+    "grader"
+  ],
+  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "specId": "024",
+  "folderSlug": "hallucination-grader",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

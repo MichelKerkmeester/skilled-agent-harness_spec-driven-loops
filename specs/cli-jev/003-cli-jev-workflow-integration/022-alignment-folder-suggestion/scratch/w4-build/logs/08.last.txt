@@ -1,0 +1,70 @@
+
+
+
+
+
+
+
+
+
+
+Now let me read T.
+
+
+
+I've read R (sections 7–11), S, and T. Now let me set up tracking, check the environment baseline, and load the routing skill the persona names.
+
+Baseline confirmed: Node 26.8.2 parses both files (exit 0), T has 30 `it('` lines (needs 34), and S has no forbidden strings. The skill points to its SKILL.md for the route — reading it as the persona directs.
+
+The hub's documented default is the compiled router. Let me resolve the route for this TypeScript surface before writing code.
+
+Route resolved: `sk-code-opencode` (surface, evidence-base). Loading that packet.
+
+The packet says a TypeScript task loads the TS reference slice plus the shared tier. Let me size that slice before loading it.
+
+Loading the TypeScript slice plus the two shared-tier files most relevant to this edit (naming/commenting and imports/exports).
+
+Route loaded (`sk-code-opencode`, TS slice). Key takeaways applied: type-only imports last, trailing commas in multiline literals, WHY-only capitalized comments, explicit return types on exports. Now making the S edits.
+
+Now the main insert: section 10 MODEL ARMS between section 9 and section 11.
+
+Section 10 is in. Now wiring main's score mode (gates → arms → report.json).
+
+S is wired. Now adding the four model-arm cases to T.
+
+Both files are edited. Now re-reading the edited regions from disk to self-review (the insert output was truncated).
+
+
+
+Section 10 and main wiring verified on disk. Running the brief's verification commands now.
+
+The count is 36, not the expected 34. Let me see exactly which lines match to find the discrepancy.
+
+Found it: my two `split('\n')` lines each contain the substring `it('` (in "spl**it('**"). The file's existing convention uses `.split(/\n/)` — I'll match that, which also fixes the count to 34.
+
+Fixed. Re-running the full verification set plus a quick shell-semantics sanity check (the stubs read stdin without a trailing newline), and line counts for the handback.
+
+All checks pass. Final scope check and wrapping up.
+
+STATUS: DONE
+
+FILES CHANGED:
+- .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts (+442/-0 net)
+- .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts (+123/-0 net)
+
+EDITS:
+- S:13-22 imports: spawn added to node:child_process, createHash (node:crypto), appendFileSync (node:fs), `import type { Dirent }` last in the block
+- S:854-873 deemGate: passes with `{ passed: true, cmd, model, modelCommit, sourceCommit }` from the health check
+- S:875-1264 new section 10 MODEL ARMS: spawnCall, writeCall, buildDescriber (exported), runArm (exported) — measured/unmeasured/unmeasured_timeout, exit-4 retry (Jev waits backoffMs; Deem rereads health, stops `server gone` / `model commit changed mid-run`), exit 2/3/130 stops, Jev auth test (exit 3 -> `jev arm stopped: key rejected`, other non-zero -> `jev arm stopped: auth test failed`) recorded with row_id null and order null, stops print `partial_rows=<finished>` and no verdict, measured keys (none_of_these included) feed countVerdict
+- S:1408-1454 score mode: jevGate then deemGate, then each arm when its gate passed with ctx `{ out, env, timeoutMs ?? CALL_TIMEOUT_MS, backoffMs ?? BACKOFF_MS, outDir, describe ?? buildDescriber(specsRoot ?? SPECS_ROOT) }`; with --jev/--deem writes `<out>/report.json` `{ rows: { total, labeled, callable, stateNull }, baseline, columns }`; returns 0
+- T:651-772 describe('model arms') with the four cases (keep / stop (margin) / payload-skip byte-identical / Jev cost+verdict); T:677 and T:742 use `split(/\n/)` (a `split('\n')` literal contains the substring `it('` and would break the count)
+
+CHECKS:
+- node --check .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts -> (no output) (exit 0)
+- node --check .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts -> (no output) (exit 0)
+- grep -c "it('" .skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts -> 34 (exit 0)
+- grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization' .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts -> no matches (exit 1)
+- git status --porcelain -- <S> <T> -> both `??`; only these two files touched, no temp output left (exit 0)
+- printf 'pick:001-a' | sh -c 'read -r state; case "$state" in pick:*) ...' -> MEASURED 001-a (exit 0) — stub stdin without a trailing newline behaves as the arms assume
+
+BLOCKED REASON: none

@@ -1,0 +1,21 @@
+TASK: raise the skill's version and add one pointer to the new offline eval. Two literal edits in one file.
+File: .skilled/skills/system-skill-advisor/SKILL.md. Read it first.
+The frontmatter `description` line and the `<!-- Keywords: ... -->` line must stay byte-identical: the advisor's scorer reads both.
+
+Edit 1, line 5. Old:
+version: 0.11.1.0
+New:
+version: 0.13.0.0
+
+Edit 2, in section 5 REFERENCES, under "Package references:". Line 381 is the bullet that starts with
+- `references/scoring/validation-baselines.md`
+Keep line 381 exactly as it is and insert this one new line directly after it:
+- `runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs`: offline Jev and Deem tie-break eval of the near-tie cluster, with a zero-call census by default.
+
+The new line uses a colon after the path. Nothing else in the file changes.
+
+VERIFY (repo root):
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-skill-advisor/SKILL.md
+  grep -c "score-jev-tiebreak.mjs\|^version: 0.13.0.0" .skilled/skills/system-skill-advisor/SKILL.md
+Accept when: 1 file changed and nothing else; validate_document exits 0; the grep prints 2.
+

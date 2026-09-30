@@ -23,18 +23,24 @@ const SOURCE_NAMES = ['.skilled', '.opencode'];
 // fixtures' git calls at the enclosing repository.
 for (const name of Object.keys(process.env)) if (name.startsWith('GIT_')) delete process.env[name];
 
+// A packet's rules live in the sidecar beside its SKILL.md, so the guard only blocks when the
+// fixture writes both files.
 const BLOCKING_PACKET = [
   '---',
   'name: cli-opencode',
-  'hard_rules:',
-  '  - id: no-bare-agent-general',
-  '    check: no-bare-agent-general',
-  '    message: "fixture rule that blocks"',
-  '    severity: block',
   '---',
   '# Fixture',
   '',
 ].join('\n');
+
+const BLOCKING_RULES = `${JSON.stringify([
+  {
+    id: 'no-bare-agent-general',
+    check: 'no-bare-agent-general',
+    message: 'fixture rule that blocks',
+    severity: 'block',
+  },
+], null, 2)}\n`;
 
 function consumer(sourceName, files = {}) {
   const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'plugin-source-root-')));
@@ -59,6 +65,7 @@ for (const sourceName of SOURCE_NAMES) {
   test(`dispatch guard blocks by the packet's rules when the project carries only ${sourceName}`, async () => {
     const root = consumer(sourceName, {
       'skills/cli-external-orchestration/cli-opencode/SKILL.md': BLOCKING_PACKET,
+      'skills/cli-external-orchestration/cli-opencode/hard-rules.json': BLOCKING_RULES,
     });
     try {
       const hooks = await load('cli-dispatch-audit.js', root);
@@ -72,8 +79,11 @@ for (const sourceName of SOURCE_NAMES) {
   });
 
   test(`git preflight reads sk-git's rules when the project carries only ${sourceName}`, async () => {
-    const skillDoc = fs.readFileSync(path.join(REPO_ROOT, '.skilled', 'skills', 'sk-git', 'SKILL.md'), 'utf8');
-    const root = consumer(sourceName, { 'skills/sk-git/SKILL.md': skillDoc });
+    const skillDir = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-git');
+    const root = consumer(sourceName, {
+      'skills/sk-git/SKILL.md': fs.readFileSync(path.join(skillDir, 'SKILL.md'), 'utf8'),
+      'skills/sk-git/hard-rules.json': fs.readFileSync(path.join(skillDir, 'hard-rules.json'), 'utf8'),
+    });
     try {
       const hooks = await load('sk-git-preflight-advisory.js', root);
       await hooks['tool.execute.before']({ tool: 'bash' }, { args: { command: 'git add no-such-file.txt' } });

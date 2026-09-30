@@ -1,0 +1,2 @@
+.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py
+.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py

@@ -1,0 +1,15 @@
+The diff matches the brief exactly: two lines changed, only the named substrings replaced, all other characters byte-identical. The other dirty files in the tree are pre-existing concurrent-worker edits; I touched nothing outside the named file.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md (+2/-2)
+EDITS:
+.s​.skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md:20 replaced hub path/mode substring: `cli-jev` hub → `cli-classifier` hub, mode `cli-jev` over `cli-usage` packet
+.s​.skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md:47 `the \`cli-jev\` hub declares the axis.` → `the \`cli-classifier\` hub declares the axis.`
+CHECKS:
+grep -c "skills/cli-jev/" .skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md -> 0 (exit 1 — grep exits 1 on zero matches, result line 0 as expected)
+grep -c "cli-classifier" .skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md -> 2 (exit 0)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md -> ✅ VALID ... Total issues: 0 (exit 0)
+BLOCKED REASON: none
+
+(For exactness on the EDITS lines above — a stray zero-width character slipped into the two path prefixes in my handback rendering; the correct path is the one under FILES CHANGED.)

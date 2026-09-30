@@ -16,9 +16,12 @@
 //
 // Usage:
 //   node lookup-trigger-index.mjs "<prompt>" [--index <path>] [--spec-folder <scope>]
-//                                 [--limit <n>] [--no-index-hash] [--json]
+//                                 [--limit <n>] [--no-index-hash] [--scoring-only] [--json]
 //
 // --limit 0 lifts the cap and returns every candidate; the default is 20.
+// --scoring-only drops the score-0 partial candidates before the cap, so a
+// prompt nothing scores on comes back empty with exit 1. Without it the output
+// keeps them, matching the recorded results of the retired lane.
 //
 // Exit codes: 0 = candidates found, 1 = no candidates, 2 = bad invocation or unreadable index.
 // ───────────────────────────────────────────────────────────────────
@@ -112,7 +115,7 @@ export function specFolderMatches(documentPath, specFolder) {
  *
  * @param {ReturnType<typeof loadIndex>} loaded Result of loadIndex.
  * @param {string} prompt Raw prompt text.
- * @param {{ specFolder?: string | null, limit?: number }} [options] Query options.
+ * @param {{ specFolder?: string | null, limit?: number, scoringOnly?: boolean }} [options] Query options.
  * @returns {{
  *   normalizedQuery: string,
  *   tokens: string[],
@@ -191,12 +194,15 @@ export function lookup(loaded, prompt, options = {}) {
     }
   }
 
-  const ordered = Array.from(byPath, ([documentPath, value]) => ({
+  const ranked = Array.from(byPath, ([documentPath, value]) => ({
     matchClass: value.matchClass,
     path: documentPath,
     phrases: Array.from(value.phrases).sort(compareCodeUnits),
     score: value.score,
-  })).sort((a, b) => (b.score - a.score)
+  }));
+  // Filtered before the cap so score-0 rows never take a slot and then vanish.
+  const ordered = (options.scoringOnly ? ranked.filter((result) => result.score > 0) : ranked)
+    .sort((a, b) => (b.score - a.score)
     || (matchClassRank(a.matchClass) - matchClassRank(b.matchClass))
     || compareCodeUnits(a.path, b.path));
 
@@ -224,7 +230,7 @@ function normalizeSpecFolder(specFolder) {
  * dash is never read as a flag.
  *
  * @param {string[]} argv Arguments after the script name.
- * @returns {{ prompt: string, indexPath: string | undefined, specFolder: string | null, limit: number, json: boolean, hashIndex: boolean }} Parsed invocation.
+ * @returns {{ prompt: string, indexPath: string | undefined, specFolder: string | null, limit: number, json: boolean, hashIndex: boolean, scoringOnly: boolean }} Parsed invocation.
  */
 export function parseArgs(argv) {
   const prompts = [];
@@ -233,6 +239,7 @@ export function parseArgs(argv) {
   let limit = DEFAULT_LIMIT;
   let json = false;
   let hashIndex = true;
+  let scoringOnly = false;
   let literal = false;
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -251,6 +258,10 @@ export function parseArgs(argv) {
     }
     if (arg === '--no-index-hash') {
       hashIndex = false;
+      continue;
+    }
+    if (arg === '--scoring-only') {
+      scoringOnly = true;
       continue;
     }
     if (arg === '--index' || arg === '--spec-folder' || arg === '--limit') {
@@ -272,7 +283,7 @@ export function parseArgs(argv) {
   }
 
   if (prompts.length === 0) throw new Error('a prompt is required');
-  return { hashIndex, indexPath, json, limit, prompt: prompts.join(' '), specFolder };
+  return { hashIndex, indexPath, json, limit, prompt: prompts.join(' '), scoringOnly, specFolder };
 }
 
 /**
@@ -315,7 +326,11 @@ function main() {
     return 2;
   }
 
-  const answer = lookup(loaded, args.prompt, { limit: args.limit, specFolder: args.specFolder });
+  const answer = lookup(loaded, args.prompt, {
+    limit: args.limit,
+    scoringOnly: args.scoringOnly,
+    specFolder: args.specFolder,
+  });
   process.stdout.write(args.json ? `${JSON.stringify(answer, null, 2)}\n` : formatAnswer(answer));
   return answer.results.length > 0 ? 0 : 1;
 }

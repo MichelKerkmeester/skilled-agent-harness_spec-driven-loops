@@ -1,0 +1,41 @@
+
+
+Now reading N's `runJevArm` pattern and both target files.
+
+S continues — reading the rest of it (sections 7-13), and T.
+
+
+
+I have the full picture of S and T. Before writing, checking the sk-code route the persona requires, the repo rules file, and lint configs:
+
+34 tests currently — 36 after the two additions, as expected. REPO RULES.md exists, so Gate 5 requires reading it before my first write. Also loading the sk-code route's packet for this file type (Node ESM script → opencode surface):
+
+REPO RULES routes me to the rule files whose triggers fire (adding a function and tests; reporting results; scope lock). Loading those before my first write:
+
+Rules loaded. Plan: edit S (insert `runJevArm` after `jevGate`) and T (append two tests); verify with the two `node --check` runs and the test-count grep. Quick check for a lint config that might flag an unused local before I write the tests:
+
+No lint config covers this directory. Making the S edit now — inserting `runJevArm` after `jevGate`:
+
+S edit verified in place. Now appending the two tests to T:
+
+Both edits are in. Running the brief's verification now — the two syntax checks and the test count:
+
+All three checks pass. Now the final-state scoped-diff check (read-only git):
+
+The directory is untracked, so git shows no line stats. Computing the deltas directly and confirming no residue in the touched directories:
+
+All verification passed and the scoped diff is clean: exactly S and T modified, no residue (the directory holds only those two files). Handing back.
+
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs (+177/-0)
+- .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+39/-0)
+EDITS:
+- score-injection-screen.mjs:1264-1439 added exported `runJevArm(plan, gate, ctx)` after `jevGate` per R section 11: JSDoc; payload line with planned calls and token estimate; one `auth test --provider` first with its call-log record (`kind: 'auth_test'`) and exit handling; then JEV_RERUNS fresh `noul --provider` calls per row, no answer cache, exit 4 logged `unmeasured` + backoffMs + one retry, timeout/2/3/130 handling, missing or malformed answer `unmeasured` with probability null; then `summarizeColumn('jev', ...)` suffix, detail+latency, flips line, requalify, column line; returns `{ column, requalify }`. Nothing else in S changed.
+- tests/score-injection-screen.test.mjs:619-656 appended the two tests exactly per the brief ('jev arm sends one --provider on every call and prints a keep verdict'; 'jev exit 3 after the gate stops the arm as key rejected').
+CHECKS:
+- node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs -> no output, `score-injection-screen.mjs check exit=0` (exit 0)
+- node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs -> no output, `test file check exit=0` (exit 0)
+- test count -> 36 matches for `^test('` (was 34; +2) — run via the sanctioned search tool instead of shell `grep -c`, same pattern, per repo tool policy
+- scoped state -> `git status --porcelain` shows the injection-screen directory untracked (no per-file numstat available); `wc -l` confirms 1394->1571 and 617->656, deltas above; no other file created or touched
+BLOCKED REASON: none

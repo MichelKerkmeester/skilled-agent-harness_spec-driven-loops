@@ -1,0 +1,26 @@
+Read-only review complete. One note first: `specs/.../024-hallucination-grader/scratch/w4-build/build-evidence.md` does not exist in the tree (only `briefs/`, `logs/`, `baseline/`, `design.md`, `content/`); I reviewed against the appendix diff, which I verified matches the working tree.
+
+**Findings**
+
+- P2 `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/README.md:49` — the `d4-agreement.vitest.ts` table row leaves the count column empty (it is 32) while every sibling row states its count; the spec's file list asks for "the new test file with the suite's counts" — state `32` in the cell.
+
+No other finding. Dormancy holds: without `--deem`/`--jev` nothing spawns (zero-call test asserts stub logs empty); each arm is behind its own switch and its own gate, with one skip line and no side effects. Secret grep `API_KEY|TYPESAFE|Bearer|Authorization` on `score-d4-agreement.cjs` returns nothing (exit 1); comments carry no spec path or id. Keep rule order and thresholds match the spec verbatim (lines 298–302); hand-check: `binomialTail(5,5)` builds C(5,5)/2^5 = 1/32 = 0.03125 < 0.05, BigInt tail `20*num < den` exact (verified: num=1n den=32n).
+
+**Requirements**
+
+- REQ-001 met — ran `run-benchmark.cjs ... --grader jev`: exit 2, names `'jev'`, prints usage (guard at :590-595 before `loadProfile` :611); `buildGraderFn` throws (score-model-variant.cjs:214-216); full suite 205 passed.
+- REQ-002 met — ran default census live: prints margin, keep-rule, power and `stop:` lines, writes no file, spawns no stub.
+- REQ-003 met — live run printed outputs/matched/unmatched/`allowlist: 0 of 21`/labeled per class; unmatched labels counted as dropped.
+- REQ-004 met — bad label exits 2 naming the row (test); gates `stop: fewer than 30 labeled outputs` / `fewer than 5 labeled yes|no` (lines 1245-1253); SHA-256 in report and verdict.
+- REQ-005 met — constants fixed and printed pre-run (30-36, 1240-1242); checks in spec order, integers + exact tails; sign arithmetic hand-checked.
+- REQ-006 met — Deem only behind `--deem` after `readDeemHealth` (exit map matches cli-deem.mjs:66: 3 refused, 4 unreachable); four skip lines, skip byte-identical to census (tested).
+- REQ-007 met — identity line, `jev --version` exact `jev 0.6.2`, `auth status --provider P`; same `--provider P` to auth test and every `noul` (1041).
+- REQ-008 met — no key read/passed; `git ls-files` read-only; writes only under `--out`; untracked outputs need `--accept-payload`, Deem still runs (tested).
+- REQ-009 met — one fixed question printed verbatim (1239), stdin state = task, visibleSpec, allowlist, output; 0.5 threshold; Deem once, Jev three fresh calls, modal call (338-345).
+- REQ-010 met — cost lines before first call (819, 973), no dollar figure; calls.jsonl carries output name, noul, wallMs, exitCode, identities; 017-style exit handling; `--out` missing exits 2 pre-call (tested).
+- REQ-011 met — commit pair / version-provider-model per column; `requalify:` lines print before the verdict (917-923, 1103-1106), tested.
+- REQ-012 met — statuses `measured`/`failed`/`unmeasured`/`unmeasured_timeout`; unparseable → `failed`, never a score (tested).
+- REQ-013 met — 32 cases in d4-agreement.vitest.ts, every named case present, stubbed both arms; whole suite 205 green.
+- REQ-014 met — `validate_document.py` exits 0 on all 8 changed docs; they name the exit-2 check, script, zero-call default, `--jev`/`--deem` and the 30/5 gate as the code spells them.
+
+VERDICT: PASS

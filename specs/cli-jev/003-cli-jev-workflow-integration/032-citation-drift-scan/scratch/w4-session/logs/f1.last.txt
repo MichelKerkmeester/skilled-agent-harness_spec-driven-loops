@@ -1,0 +1,15 @@
+All five edits are in place, both validators run and pass.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md` (+3/-4)
+EDITS:
+`.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md`:26 replaced the refusal sentence with the refused/untracked and unresolved sentences
+`.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md`:26 `Every run prints` became `Every run except \`--draw\` prints`, rest of the sentence kept
+`.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md`:28 replaced the draw refusal sentence with the exits-2, any-`labeler`, construction-rows and one-`draw:`-line sentence
+`.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md`:9 `version: 2.2.3.0` became `version: 2.2.0.0`
+`.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md`:45 deleted the Implementation row whose File cell was `.skilled/skills/sk-doc/shared/scripts/cite-drift-labels.jsonl`
+CHECKS:
+`python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md` -> `✅ VALID: .skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md` / `Total issues: 0` (exit 0)
+`python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package sk-doc` -> `PACKAGE sk-doc: WARN tier=warn violations=6` (exit 0)
+BLOCKED REASON: none

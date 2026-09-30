@@ -1,0 +1,15 @@
+Both cases are in place and the listed check passes. Status follows.
+
+GATE 1: trigger-index lookup returned no rows (clean no-hit, exit 0). SKILL ROUTING: advisor live (cli-external-orchestration 0.95/0.18 vs sk-code 0.88/0.16 ambiguous); the persona directs sk-code. ARTIFACT: sk-code → compiled router resolved `sk-code-opencode` for this TypeScript file, contract loaded. REPO RULES: prevent-overengineering.md, evidence-and-proof.md, communication.md, communication-prose.md, communication-handoff.md.
+
+What ran: the verify command `grep -cE '^  it[(.]'` printed `21`, exit 0, matching the expected count (baseline before the edit was 19, OBSERVED). The file grew from 411 to 434 lines, so the edit is +23/-0 (OBSERVED via `wc -l`). The file is untracked in this worktree (`??` in `git status`), so `git diff` shows nothing about it. The edited region was re-read and matches the brief verbatim. No comments were added, so comment hygiene holds. I touched only T. The other dirty paths in `git status` belong to other workers.
+
+Not run by design: the vitest suite and spec validation, which the brief assigns to the orchestrator. Whether the two new cases pass against the script is unverified here and only the orchestrator's run confirms it.
+
+Operator's next step: nothing is blocked on you. The orchestrator runs the suites and the commit.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+23/-0)
+EDITS: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts:411 inserted the two prescribed cases before the final `});`, one blank line before each
+CHECKS: grep -cE '^  it[(.]' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts -> 21 (exit 0)
+BLOCKED REASON: none

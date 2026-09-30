@@ -1,0 +1,11 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs (+40/-8)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts (+60/-3)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:189 inserted section 5 COLUMN SELECTION with JSDoc for `selectColumns`; renumbered the MAIN/EXPORTS/CLI banner headers to 6/7/8
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:280 `main` iterates `selectColumns(report, {jev, deem})`, printing each skip line or the available column's `columnLine(countColumn(...))`
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs:318 exported `selectColumns`
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts:5 added `Column selector (selectColumns)` to the module header
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts:165 appended the four column-selection cases (default prints legacy+sources only with no jev/deem lines; `--jev --deem` print both skip lines with the rest byte-identical; `--jev` skips a stopped column; `--deem` skips a skipped column)
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts -> 15 (exit 0)
+BLOCKED REASON: none

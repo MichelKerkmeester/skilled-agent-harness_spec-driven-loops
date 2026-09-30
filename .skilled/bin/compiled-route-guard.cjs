@@ -43,8 +43,8 @@ const AUTHORED_ROOT = path.join(
 const SKILLS_ROOT = path.join(REPO_ROOT, '.skilled', 'skills');
 
 const HUBS = [
+  'cli-classifier',
   'cli-external-orchestration',
-  'cli-jev',
   'mcp-tooling',
   'sk-code',
   'sk-design',

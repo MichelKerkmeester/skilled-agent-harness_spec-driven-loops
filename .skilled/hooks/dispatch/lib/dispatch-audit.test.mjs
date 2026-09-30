@@ -120,12 +120,12 @@ describe('DISPATCH_SHAPES', () => {
   it('exposes the skill + packetPath pairs the preflight lint twin resolves SKILL.md from', () => {
     expect(DISPATCH_SHAPES.map((shape) => shape.skill)).toEqual([
       'cli-opencode', 'cli-claude-code', 'cli-codex', 'cli-devin', 'cli-cursor', 'cli-pi', 'cli-hermes',
-      'cli-jev',
+      'cli-classifier',
     ]);
     expect(DISPATCH_SHAPES.every((shape) => typeof shape.packetPath === 'string' && shape.test instanceof RegExp)).toBe(true);
-    // The Jev transport moved to a hub of its own; its row has to name the new packet, or
+    // The Jev transport is a mode of the classifier hub; its row has to name that packet, or
     // the preflight reads a path that is not there and the eight rules fail open.
-    expect(DISPATCH_SHAPES.find((shape) => shape.skill === 'cli-jev').packetPath).toBe('cli-jev/cli-usage');
+    expect(DISPATCH_SHAPES.find((shape) => shape.skill === 'cli-classifier').packetPath).toBe('cli-classifier/cli-jev');
   });
 
   it('resolves every shape to a SKILL.md that exists, because a missing one fails open', () => {
@@ -156,10 +156,10 @@ describe('DISPATCH_SHAPES', () => {
     // A print flag after a shell separator belongs to the second command, not the first.
     expect(skillFor('pi install && claude -p "x"')).toBe('cli-claude-code');
     // Jev's judgment subcommand is its own dispatch evidence, and its management commands are not.
-    expect(skillFor('jev noul -q "Is it urgent?" -s @state.txt')).toBe('cli-jev');
-    expect(skillFor('jev choice -q "Which queue?" -s @state.txt -o a=first -o b=second')).toBe('cli-jev');
-    expect(skillFor('jev score -q "How severe?" -s @state.txt -l low -l high')).toBe('cli-jev');
-    expect(skillFor('jev run @request.json --pretty')).toBe('cli-jev');
+    expect(skillFor('jev noul -q "Is it urgent?" -s @state.txt')).toBe('cli-classifier');
+    expect(skillFor('jev choice -q "Which queue?" -s @state.txt -o a=first -o b=second')).toBe('cli-classifier');
+    expect(skillFor('jev score -q "How severe?" -s @state.txt -l low -l high')).toBe('cli-classifier');
+    expect(skillFor('jev run @request.json --pretty')).toBe('cli-classifier');
     expect(skillFor('jev --version')).toBeNull();
     expect(skillFor('jev auth status')).toBeNull();
     expect(skillFor('jev install-skills --global')).toBeNull();

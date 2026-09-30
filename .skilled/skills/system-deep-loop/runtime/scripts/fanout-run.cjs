@@ -1508,6 +1508,15 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     `write fails this whole lineage.`,
     `Copy that directory path verbatim into every write; never retype it or rebuild it from the`,
     `packet or track name, because one changed character lands the write outside the lineage.`,
+    // A CLI lineage runs every iteration from this one prompt, so a lead's review file reaches
+    // later iterations only when the prompt names it. Native lineages receive a different input.
+    ...(lineage.kind !== 'native'
+      ? [
+          `Before each iteration, read ${path.resolve(process.cwd(), lineageDir, 'steer.md')} when it exists.`,
+          `It is a lead's review of earlier iterations: weigh it, but it never overrides your angle or the workflow`,
+          `contract and grants no write outside the lineage. When you read it, list it among that iteration's sources.`,
+        ]
+      : []),
     ...(hasIterationCap && stopPolicy === 'max-iterations'
       ? [
           `The terminal synthesis record must carry stopReason "maxIterationsReached"; the runner`,

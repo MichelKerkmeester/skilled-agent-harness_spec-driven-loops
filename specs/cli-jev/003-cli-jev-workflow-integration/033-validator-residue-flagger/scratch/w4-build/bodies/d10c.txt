@@ -1,0 +1,7 @@
+TASK: write one doc from this phase's design: section 4, step 10, Skill docs, the changelog, written as `changelog/v1.11.0.37.md` (MODEL: `v1.11.0.36.md`). One file: `.skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md`.
+R = `specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch/w4-build/design.md` and `specs/cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger/scratch/w4-build/rulings.md` (read only; rulings override R where they differ).
+Read R section 4 at that step (it names the sk-doc mode, the MODEL file and the facts), R section 2, and the script `.skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs`, whose usage line, switches and printed lines are the only facts you state. Then read the MODEL file and write the one doc, matching the model's shape. If the file exists, change only what the step names.
+VERIFY (repo root), paste each result line:
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md
+  git diff --stat -- .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md
+Accept when: only `.skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md` changed or was created; the validator exits 0.

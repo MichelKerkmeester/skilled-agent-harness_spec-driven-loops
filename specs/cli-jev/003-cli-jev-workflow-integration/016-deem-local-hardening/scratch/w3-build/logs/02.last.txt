@@ -1,0 +1,7 @@
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md (+2/-0)
+EDITS: specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md:75 inserted the `**Decisions of 2026-09-28.**` pointer paragraph followed by one empty line; all other lines untouched.
+CHECKS: `/usr/bin/grep -n '016-deem-local-hardening' <file>` -> `75:**Decisions of 2026-09-28.** The operator accepted this exposure until a hook calls Deem live, turned the server's access log on through `deem-ctl` (one line per request, appended to `server.log` across restarts), held `DEEM_N_ORDERS` at 1 and keeps a reviewed copy of `deem-ctl` beside this file. The options, rollbacks and revisit triggers are in `../../016-deem-local-hardening/spec.md` section 10.` (exit 0)
+CHECKS: `git diff --numstat -- <file>` -> `2	0	specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-local.md` (exit 0)
+CHECKS: `sed -n '73,77p' <file>` -> line 73 `**Exposure.** ... then delete the plist.` unchanged, line 74 empty, line 75 the new paragraph, line 76 empty, line 77 `## Measured after the run` (exit 0)
+BLOCKED REASON: none

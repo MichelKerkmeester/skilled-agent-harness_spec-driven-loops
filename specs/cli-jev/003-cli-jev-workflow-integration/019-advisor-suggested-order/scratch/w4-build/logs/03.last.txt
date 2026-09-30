@@ -1,0 +1,51 @@
+I'll start by reading the target files and the reference sections named in the brief.
+
+The hooks file path doesn't resolve as given. Let me locate it.
+
+The hooks file lives one level up from `runtime/`. Let me check the dist build path and read the referenced hook section.
+
+
+
+
+
+Now let me look at the sibling test's stub-binary/child patterns to match conventions.
+
+
+
+Let me check the vitest config and the sibling's spawnCall test patterns.
+
+
+
+Context is complete. Now I'll make the S file edits: imports, constants, then the timed-child functions.
+
+Now the timed-child functions, appended after `columnLine`:
+
+S file done. Now the T file: imports and helpers, then the title fix.
+
+Now the timed-child describe block at the end of the T file:
+
+Both files edited. Now running the brief's verification checks from the repo root:
+
+Both checks pass. Final confirmation that only the two named files carry my changes:
+
+Both files are new (untracked) in this worktree, which is why `git diff` is empty — the two named files are the only ones I touched. Let me confirm final line counts for the handback:
+
+Both edits are complete and verified. Here is the handback:
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs (+107/-0 net; 220→327 lines, untracked new file)
+FILES CHANGED: .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts (+92/-0 net; 231→323 lines, untracked new file)
+EDITS: score-suggested-order.mjs:11-16 added node:child_process/node:path/node:perf_hooks/node:url imports above the existing import and added spawnCall to the score-jev-tiebreak import list (alphabetical)
+EDITS: score-suggested-order.mjs:27-29 added SELF/HERE/HOOK constants after the constants block
+EDITS: score-suggested-order.mjs:231-240 added runHookAdvisor (not exported) with JSDoc: dynamic import of HOOK, handleClaudeUserPromptSubmit({ prompt, cwd: process.cwd() })
+EDITS: score-suggested-order.mjs:242-290 added exported childMain with JSDoc: advisor timed via performance.now, optional health spawn (code 127 on .error, else .status ?? -1, non-zero code returns before the call), optional call spawn with prompt on stdin (callMs, code, stdout)
+EDITS: score-suggested-order.mjs:292-312 added exported runTimedChild with JSDoc: spawnCall(process.execPath, [file, '--child'], JSON.stringify(job), env, timeoutMs); timedOut returns wallMs=timeoutMs/result null; else parses last non-empty stdout line as JSON (null on failure)
+EDITS: score-suggested-order.mjs:314-327 added exported childEnv with JSDoc and the one-line why: sets SPECKIT_CLAUDE_HOOK_TIMEOUT_MS to String(ADVISOR_BUDGET_MS) and SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN to env value ?? '1'
+EDITS: score-suggested-order.vitest.ts:6-26 added node:fs/node:os/node:path/node:url imports and appended childMain, runTimedChild, childEnv to the module import
+EDITS: score-suggested-order.vitest.ts:28-53 added SCRIPT const, makeBin (temp dir, sh stub with 0o755, log line), stubChild (temp child.mjs importing childMain via pathToFileURL, reads stdin, delays 5000/2300/0 by prompt prefix, writes JSON line then exits 0)
+EDITS: score-suggested-order.vitest.ts:237 replaced the flips test title with 'stops on flips when one answer in each row disagrees with the other two'
+EDITS: score-suggested-order.vitest.ts:268-323 added describe('score-suggested-order timed child') with 5 tests: health-then-call (log ['health','choice -q Q'], stdin 'hello prompt', stdout '{"ok":true}'), failing health skips call (healthCode/code 4, callMs null, log ['health'], no stdin capture), quick child (timedOut false, numeric advisorMs, wallMs > 0), slow child (timedOut true, wallMs 2500, result null, under 4000 ms), childEnv budget/idle-override assertions
+CHECKS: node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs -> no output (exit 0)
+CHECKS: grep -c "export async function childMain\|export async function runTimedChild\|export function childEnv" .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs -> 3 (exit 0)
+CHECKS: git status --porcelain on both paths -> both shown as untracked new files; no other path touched by me (exit 0)
+BLOCKED REASON: none

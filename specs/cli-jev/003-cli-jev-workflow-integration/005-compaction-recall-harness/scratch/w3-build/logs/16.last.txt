@@ -1,0 +1,8 @@
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md (+1/-0)
+EDITS: .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md:202 inserted compaction recall census row directly after line 201 (`| 089 | Code standards alignment |`)
+CHECKS: grep -n '^| 460 | Compaction recall census |' .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md -> `202:| 460 | Compaction recall census | [460](tooling-and-scripts/compaction-recall-census.md) | [compaction-recall-census](../feature-catalog/tooling-and-scripts/compaction-recall-census.md) |` (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md -> `✅ VALID ... Total issues: 1` (warning only: document_type_fallback, README rules applied) (exit 0)
+CHECKS: git diff --numstat -- <file> -> `1 0` (exit 0)
+BLOCKED REASON: none

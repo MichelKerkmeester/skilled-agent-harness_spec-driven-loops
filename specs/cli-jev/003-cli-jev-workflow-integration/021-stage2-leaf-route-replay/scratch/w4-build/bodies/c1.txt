@@ -1,0 +1,11 @@
+TASK: create the script S with its header, constants, router parser and keyword arm, and create its test file T with design cases 1 to 6.
+R = `specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/design.md` (read only) and `specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/rulings.md` (read only; it overrides R where they differ).
+S = `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs` (create). T = `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` (create). Sibling for the header, `'use strict'`, section dividers, JSDoc and test helpers: `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs` and `scripts/tests/score-clarify-default.test.cjs` (read only).
+Ported source for `keywordHits`, `scoreIntents` and `selectIntents`: `specs/cli-jev/003-cli-jev-workflow-integration/021-stage2-leaf-route-replay/scratch/w4-build/ref/router-replay.retired.cjs` lines 449 to 489 (read only). Keep their behavior exactly.
+STEP 1. S: box header naming the module, one JSDoc paragraph on what it measures (zero model calls by default, no credential held or read), `'use strict'`, the imports R section 2 names, every constant in R section 2 "Constants", then `parseRouter`, `keywordHits`, `scoreIntents`, `selectIntents` per R section 2 "Exported functions", each with JSDoc. End S with `module.exports = { ...those names and the constants... }`. No `main` yet.
+STEP 2. T: `node:test` and `node:assert/strict`, require S, and design cases 1 to 6 from R section 3, one `test('<name>', ...)` each with the input and expected values given there.
+VERIFY (repo root), paste each result line:
+  node --check .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs
+  node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs
+  grep -c "^test(" .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs
+Accept when: 2 files created (S and T) and nothing else; both `node --check` exit 0; the grep prints 6.

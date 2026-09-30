@@ -1,0 +1,239 @@
+{
+  "cells": {
+    "sk-code": {
+      "canary": {
+        "prompts": 9,
+        "unparsed": 0,
+        "route": 7,
+        "clarify": 0,
+        "defer": 1,
+        "reject": 1,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      },
+      "playbook": {
+        "prompts": 32,
+        "unparsed": 7,
+        "route": 17,
+        "clarify": 0,
+        "defer": 8,
+        "reject": 0,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      },
+      "corpus": {
+        "prompts": 52,
+        "unparsed": 0,
+        "route": 31,
+        "clarify": 0,
+        "defer": 21,
+        "reject": 0,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      }
+    },
+    "system-deep-loop": {
+      "canary": {
+        "prompts": 9,
+        "unparsed": 0,
+        "route": 5,
+        "clarify": 1,
+        "defer": 2,
+        "reject": 1,
+        "clarifyMode": 0,
+        "clarifyChecklist": 1,
+        "goldInAlternatives": 0
+      },
+      "playbook": {
+        "prompts": 20,
+        "unparsed": 0,
+        "route": 17,
+        "clarify": 0,
+        "defer": 3,
+        "reject": 0,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      },
+      "corpus": {
+        "prompts": 59,
+        "unparsed": 0,
+        "route": 36,
+        "clarify": 0,
+        "defer": 23,
+        "reject": 0,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      }
+    },
+    "mcp-tooling": {
+      "canary": {
+        "prompts": 14,
+        "unparsed": 0,
+        "route": 12,
+        "clarify": 0,
+        "defer": 1,
+        "reject": 1,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      },
+      "playbook": {
+        "prompts": 16,
+        "unparsed": 0,
+        "route": 15,
+        "clarify": 0,
+        "defer": 1,
+        "reject": 0,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      },
+      "corpus": {
+        "prompts": 14,
+        "unparsed": 0,
+        "route": 11,
+        "clarify": 0,
+        "defer": 3,
+        "reject": 0,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      }
+    },
+    "cli-external-orchestration": {
+      "canary": {
+        "prompts": 15,
+        "unparsed": 0,
+        "route": 10,
+        "clarify": 1,
+        "defer": 3,
+        "reject": 1,
+        "clarifyMode": 1,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      },
+      "playbook": {
+        "prompts": 24,
+        "unparsed": 17,
+        "route": 5,
+        "clarify": 0,
+        "defer": 2,
+        "reject": 0,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      },
+      "corpus": {
+        "prompts": 9,
+        "unparsed": 0,
+        "route": 9,
+        "clarify": 0,
+        "defer": 0,
+        "reject": 0,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      }
+    },
+    "cli-classifier": {
+      "canary": {
+        "prompts": 9,
+        "unparsed": 0,
+        "route": 5,
+        "clarify": 0,
+        "defer": 3,
+        "reject": 1,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      },
+      "playbook": {
+        "prompts": 5,
+        "unparsed": 0,
+        "route": 4,
+        "clarify": 0,
+        "defer": 1,
+        "reject": 0,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      }
+    },
+    "sk-doc": {
+      "canary": {
+        "prompts": 22,
+        "unparsed": 0,
+        "route": 17,
+        "clarify": 1,
+        "defer": 3,
+        "reject": 1,
+        "clarifyMode": 1,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      },
+      "playbook": {
+        "prompts": 26,
+        "unparsed": 0,
+        "route": 21,
+        "clarify": 0,
+        "defer": 5,
+        "reject": 0,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      },
+      "corpus": {
+        "prompts": 12,
+        "unparsed": 0,
+        "route": 6,
+        "clarify": 0,
+        "defer": 6,
+        "reject": 0,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      }
+    },
+    "sk-design": {
+      "canary": {
+        "prompts": 8,
+        "unparsed": 0,
+        "route": 7,
+        "clarify": 0,
+        "defer": 0,
+        "reject": 1,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      },
+      "playbook": {
+        "prompts": 4,
+        "unparsed": 0,
+        "route": 4,
+        "clarify": 0,
+        "defer": 0,
+        "reject": 0,
+        "clarifyMode": 0,
+        "clarifyChecklist": 0,
+        "goldInAlternatives": 0
+      }
+    }
+  },
+  "corpus": {
+    "rows": 265,
+    "none": 24,
+    "skillFiring": 241,
+    "mapped": 146,
+    "noCompiledHub": 95,
+    "unparsedLines": 0
+  },
+  "realClarifyRate": null,
+  "transcripts": null,
+  "rows": 2,
+  "rowsWithGold": 0
+}

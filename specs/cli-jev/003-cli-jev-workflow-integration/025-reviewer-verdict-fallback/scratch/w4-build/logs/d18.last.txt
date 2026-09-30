@@ -1,0 +1,17 @@
+REPO RULES: `prevent-overengineering.md`, `communication-prose.md`, `evidence-and-proof.md`, `communication-handoff.md`, `communication.md` loaded.
+SKILL ROUTING: User directed → sk-doc mode `sk-create-manual-testing-playbook`; ARTIFACT: sk-doc → `sk-create-manual-testing-playbook/SKILL.md` + `assets/manual-testing-playbook-snippet-template.md` loaded, MODEL `five-d-scorer/unknown-grader-and-d4-census.md` matched.
+
+Wrote the one file. Every printed line, switch and number comes from `facts.txt` (which wins over the design) and the script itself, which I opened at `parseArgs`, `deemGate`, `jevGate`, `createCallLog` and `main`. FACTS line 34 holds: no run has printed a `verdict` line, so the doc claims none. The usage string is left out because FACTS line 36 says no run prints it and the MODEL has no synopsis slot.
+
+Notes on evidence, honestly labeled:
+- OBSERVED: validator output and exit codes below.
+- OBSERVED: `git diff --stat` printed no line because the file is new and untracked. `git diff --no-index /dev/null <file>` shows `1 file changed, 118 insertions(+)`, and `git status --porcelain` for that folder lists only the new file.
+- The scenario's expected lines are the measured default-run stdout from FACTS plus the two skip behaviors FACTS records. Executing the scenario itself was not in my brief's check list, so it stays for the operator run.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/verdict-fallback-census.md (+118/-0)
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/verdict-fallback-census.md:1 created the file (frontmatter `feature_id: "MB-052"`, category, version 1.19.0.0, sections 1-5 matching the MODEL, scenario commands and expected lines for the zero-call census and the stub-backend skip)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/verdict-fallback-census.md -> `✅ VALID: .../verdict-fallback-census.md` `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/verdict-fallback-census.md -> no output (new untracked file, `git diff --no-index` shows 118 insertions) (exit 0)
+BLOCKED REASON: none

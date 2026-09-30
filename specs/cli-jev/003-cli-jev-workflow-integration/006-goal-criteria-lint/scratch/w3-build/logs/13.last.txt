@@ -1,0 +1,8 @@
+Both checks passed. Only the named target file was changed by this task.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-goal/README.md (+26/-5)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/README.md:122-140 added "### The Advisory Criteria Lint" subsection; :138 eight→nine scenarios; :149+ new lint-goal-criteria.md mode row; :161-162 tests row pass 40 + new Criteria lint row + scenarios=9; :178-179 scripts/README.md and playbook rows updated
+CHECKS: cmp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/readme.new.md .skilled/skills/sk-doc/sk-create-goal/README.md -> no output (exit 0); python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-goal/README.md -> "✅ VALID ... Total issues: 0" (exit 0)
+BLOCKED REASON: none

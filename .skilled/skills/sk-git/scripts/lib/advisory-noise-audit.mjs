@@ -110,7 +110,7 @@ function main() {
   // the first is true is the precise shape of failure this rule set exists to catch.
   if (rules.length === 0) {
     console.error(`no active rules found for ${repo} — nothing to measure, so no verdict is possible`);
-    console.error('check that sk-git/SKILL.md declares hard_rules and that each check is implemented');
+    console.error('check that sk-git/hard-rules.json holds the rule set and that each check is implemented');
     process.exit(2);
   }
 

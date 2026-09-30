@@ -1,0 +1,26 @@
+✔ readMaskedReply returns the body under the marker and null without one (1.167ms)
+✔ buildCensus counts every masked file and matches every distinct reply (30.423709ms)
+✔ buildCensus reports the masked reply whose source changed after masking (26.094542ms)
+✔ listMarkdown refuses a path that is not a directory (0.56325ms)
+✔ levelOfScore reads 0 as absent, 1 as fully met and a value between as partly met (0.378792ms)
+✔ levelOfScore returns null outside the scale or without a number (0.053333ms)
+✔ runBaseline maps every reply file to its dimension scores and leaves no temp dir (1531.531916ms)
+✔ runBaseline throws when score.mjs fails on a replies dir (61.884542ms)
+✔ parseLabels numbers a row by its 1-based line and skips the empty ones (0.478167ms)
+✔ parseLabels names the first missing dimension (0.1775ms)
+✔ parseLabels rejects a grade outside the three levels (0.169166ms)
+✔ joinLabels keys one entry per reply SHA and reports a grade conflict (27.479416ms)
+✔ joinLabels skips a graded reply edited after masking and refuses a path outside the census (25.103ms)
+✔ summaryLines stops below the label gate (0.522084ms)
+✔ summaryLines plans the arm calls and reports agreement above the gate (0.19625ms)
+✔ summaryLines refuses headroom when the baseline already agrees (0.07075ms)
+✔ the stub jev answers --version and logs the call, and cli-deem health exits 3 (302.484458ms)
+✔ the stub scores the same state 2, then 2, then 0 from the answers table (147.035667ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2208.467292

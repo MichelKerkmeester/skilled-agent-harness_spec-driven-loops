@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md
+Document type: playbook
+Total issues: 0

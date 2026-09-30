@@ -2,7 +2,7 @@
 name: sk-prompt
 description: "Prompt engineering: transforms a request into a structured, scored AI prompt via 7 frameworks, DEPTH thinking and CLEAR scoring."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 3.0.1.0
+version: 3.0.2.0
 ---
 
 <!-- Keywords: prompt-engineering, prompt-improvement, improve prompt, improve this prompt, improve the prompt, enhance prompt, prompt improvement, DEPTH, RICCE, CLEAR-scoring, framework-selection, RCAF, COSTAR, CRAFT, TIDD-EC, CRISPE -->
@@ -96,6 +96,14 @@ assets/format-guide-yaml.md              - YAML format deep-dive
 | CONDITIONAL | If intent signals match  | references/depth-framework.md, references/patterns-evaluation.md           |
 | CONDITIONAL | If design-generation signals match | references/patterns-evaluation.md                                 |
 | ON_DEMAND   | Only on explicit request | assets/format-guide-markdown.md, assets/format-guide-json.md, assets/format-guide-yaml.md |
+
+A run that loads `references/patterns-evaluation.md` reads three of its sections, not the whole file:
+
+1. `## 2. FRAMEWORK LIBRARY & SELECTION`, to score at least three frameworks and choose one.
+2. The chosen framework's `###` subsection under `## 3. FRAMEWORK DEEP DIVES`. A switch to another framework reads its subsection too. A name that matches no subsection reads all of section 3.
+3. `## 10. CLEAR EVALUATION MASTERY`, to score the result.
+
+A request that carries an on-demand keyword (the `ON_DEMAND_KEYWORDS` list below) reads the whole file.
 
 ### Smart Router Pseudocode
 
@@ -458,7 +466,7 @@ The canonical home of this contract is `.skilled/agents/prompt-improver.md`, so 
 
 ### Deterministic Agent Rules
 
-- Use `references/patterns-evaluation.md` as the framework-selection source of truth.
+- Use `references/patterns-evaluation.md` as the framework-selection source of truth. Read only `## 2. FRAMEWORK LIBRARY & SELECTION`, the chosen framework's subsection of `## 3. FRAMEWORK DEEP DIVES` and `## 10. CLEAR EVALUATION MASTERY`. A framework switch reads the new framework's subsection, and an on-demand keyword reads the whole file.
 - Use `references/depth-framework.md` for DEPTH flow and CLEAR dimension floors.
 - Choose Quick DEPTH energy for low-complexity routine prompts and Standard DEPTH energy for escalated prompts.
 - Require `CLEAR >= 40/50` and all per-dimension floors before returning success.

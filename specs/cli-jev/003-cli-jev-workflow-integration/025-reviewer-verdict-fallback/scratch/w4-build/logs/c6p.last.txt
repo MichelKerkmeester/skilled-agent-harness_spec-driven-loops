@@ -1,0 +1,16 @@
+Everything is implemented and verified. Step 6 (zero-call main) is complete: `main(argv, deps)` with full switch handling (`parseArgs`, exit-2 validation with messages on stderr and nothing on stdout), the census/baseline/question/options/orders/margin/keep/power stdout lines, the first-match gate (`stop: fewer than 12 labeled regex-miss outputs` → missing-label stops → `no headroom` → `planned calls: jev 3K+1, deem 3K`), the closed-gate `<backend> arm skipped: label gate|no headroom` lines (jev first per the ruling), and zero file writes. The four named tests were added with the section 3 inputs and expected values; all earlier functions and tests are untouched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs (+160/-14)
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts (+101/-8)
+EDITS: lib/score-verdict-fallback.cjs:22 added `node:util` parseArgs import
+EDITS: lib/score-verdict-fallback.cjs:430 section 11 MAIN: `main()` with JSDoc, switches, census stdout, gate lines, headroom, `planned calls:`, no file
+EDITS: lib/score-verdict-fallback.cjs:568 section 12 renamed EXPORTS + CLI ENTRYPOINT, `main` exported, CLI entrypoint added
+EDITS: tests/verdict-fallback.vitest.ts:8 module header gains "Zero-call run (main)"
+EDITS: tests/verdict-fallback.vitest.ts:66 `writeOutputs` helper (JSONL file)
+EDITS: tests/verdict-fallback.vitest.ts:82 `runMain` helper (deps injected, timeoutMs 5000, backoffMs 1)
+EDITS: tests/verdict-fallback.vitest.ts:482 tests 6, 7, 10, 11 in `score-verdict-fallback zero-call run`
+CHECKS: node --check .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts -> 16 (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,23 @@
+I'll start by reading both files named in the brief.I've read the test file. Now let me read the rest of the script to see sections 5 and the end of the file.Both files read. Now I need the exact divider line used in the file's section headers so the new section matches byte-for-byte, plus line-ending details.The header line is 70 chars: `// ` + 67 box-drawing dashes, LF endings, trailing newline. Now I'll append section 6 to the script.Script section 6 is in. Let me confirm the test file's divider width before appending there.Same 70-char dividers. Now the test file: three import insertions plus the new describe block.Imports updated. Now appending the new verdict test section.Both files edited. Now verification: the required `node --check`, plus divider consistency on both files.`node --check` exits 0, dividers are uniform. Node is v26, so I can also syntax-check the `.ts` with type stripping, and I'll run a pure-function sanity script mirroring the brief's expected values (no sockets, no test runner).All checks pass. Final-state verification: scoped diff and status.Both files are untracked in this worktree (created by earlier work, committed by the orchestrator later), so I'll report line deltas manually. Let me confirm final line counts and check for trailing whitespace in the additions.Core verification is green. The persona asks me to check the repo's `sk-code` route for this file type, so I'll read its contract before finalizing.The hub resolves this as an OpenCode-surface implement task. Let me run its documented compiled router to get the exact route.Route resolves to the `sk-code-opencode` surface packet. Let me read its contract and apply it to what I wrote.The route resolved to `sk-code-opencode` (JavaScript + TypeScript touched-language set); I applied its non-negotiables relevant to this change — comment hygiene (no artifact ids in comments), file-local conventions preserved, no plugin/descriptor surfaces touched. The orchestrator-owned gates (vitest suite, spec validation, drift guards, commit) stay deferred per the brief.
+
+Summary of the work:
+
+- **S** (`score-track-narrowing.mjs`): appended section `6. VERDICT` after section 5 with the fixed-rule comment and seven exported, JSDoc'd functions — `signTestP` (exact BigInt tail sum, `20n * num < den`), `modalPick`, `decideVerdict` (coverage → margin → sign test → flips, first failure wins, `p` carried always), `formatP`, `summarizeColumn` (measured = exactly `ORDERS` string answers, unstable/abstained counted wrong, verdict + column lines), `nearestRank`, `columnLine`.
+- **T** (`score-track-narrowing.vitest.ts`): added the five new imports and section `8. VERDICT` with the `col(...)` helper and the five specified cases, asserting the exact expected strings (`p=0.01563`, margin/coverage/flips prefixes, column line) and direct function equalities.
+
+Evidence: `node --check` exits 0 on both files; a pure-function sanity script mirroring all five test cases passed every assertion (including the exact line strings); dividers stay 70 chars, no trailing whitespace; only the two named files were modified by me (the `scratch/w3-build/` untracked dir in `git status` belongs to another worker and was not touched).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs (+210/-0)
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts (+134/-0)
+EDITS: S:799-1008 appended section "6. VERDICT" with signTestP, modalPick, decideVerdict, formatP, summarizeColumn, nearestRank, columnLine (exported, JSDoc, fixed-rule comment)
+EDITS: T:30 added columnLine to imports
+EDITS: T:35-36 added modalPick, nearestRank to imports
+EDITS: T:44-46 added signTestP, summarizeColumn to imports
+EDITS: T:431-558 appended section "8. VERDICT" with col helper and the five specified cases
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs -> no output (exit 0)
+CHECKS: node --check .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts -> no output (exit 0, Node v26 type stripping)
+CHECKS: node --input-type=module -e "<sanity: mirrors all five vitest cases on the exported functions>" -> sanity: all assertions passed (exit 0)
+CHECKS: node divider/whitespace scan on both files -> dividers [70] on both, 0 trailing-whitespace matches (exit 0)
+BLOCKED REASON: none

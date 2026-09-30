@@ -14,6 +14,7 @@ Verifies four cases:
 
 Plus a helper-contract case that pins check_description_length() at three
 boundaries without touching the file system.
+Plus two MCP-token cases: a skill granting server-only mcp__code_mode is invalid, one granting mcp__code_mode__* is valid.
 
 Usage:
     python3 test_quick_validate_086.py
@@ -67,6 +68,19 @@ def write_fixture(parent: Path, name: str, description: str) -> Path:
         SKILL_TEMPLATE.format(name=name, description=description, title=name.replace("-", " ").title()),
         encoding="utf-8",
     )
+    return skill_dir
+
+
+def write_tools_fixture(parent: Path, name: str, tools: str) -> Path:
+    skill_dir = parent / name
+    skill_dir.mkdir(parents=True, exist_ok=True)
+    skill_md = skill_dir / "SKILL.md"
+    body = SKILL_TEMPLATE.format(
+        name=name,
+        description="Skill fixture for the MCP tool token rule.",
+        title=name.replace("-", " ").title(),
+    ).replace("allowed-tools: [Read, Write]", f"allowed-tools: {tools}")
+    skill_md.write_text(body, encoding="utf-8")
     return skill_dir
 
 
@@ -201,6 +215,25 @@ def run_tests(verbose: bool) -> int:
         failed += 1
     elif verbose:
         print("  ok   over-hard → error emitted")
+
+    with tempfile.TemporaryDirectory(prefix="quick-validate-mcp-") as tmp:
+        parent = Path(tmp)
+
+        print("Case 6: mcp-server-only")
+        skill_dir = write_tools_fixture(parent, "mcp-server-only", "[Read, mcp__code_mode]")
+        valid, msg, warnings = validate_skill(skill_dir)
+        if not assert_eq("valid", valid, False, verbose):
+            failed += 1
+        if not assert_contains_substring("fq token required", [msg], "mcp__<server>__<tool>", verbose):
+            failed += 1
+
+        print("Case 7: mcp-wildcard")
+        skill_dir = write_tools_fixture(parent, "mcp-wildcard", "[Read, mcp__code_mode__*]")
+        valid, msg, warnings = validate_skill(skill_dir)
+        if not assert_eq("valid", valid, True, verbose):
+            failed += 1
+        if not assert_no_substring("no MCP tool token warning", warnings, "MCP tool token", verbose):
+            failed += 1
 
     print(f"\n{'PASS' if failed == 0 else f'FAIL ({failed} assertion(s))'}")
     return 0 if failed == 0 else 1

@@ -1,0 +1,9 @@
+All acceptance conditions hold: exactly one file touched by me, the EDIT applied once, both checks pass. The file carried pre-existing uncommitted companion edits (frontmatter/intro, +5/−4) before my step — those were left byte-identical; my step contributes +14/−0, making the file +19/−4 versus HEAD. The untyped validator run shows the expected single `document_type_fallback` warning already present at HEAD, left unfixed per the brief.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md (+14/-0)
+EDITS: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md:60 inserted "### Clarify Default Measurement" section (Description, Current Reality, Source Files) directly after the compiled-routing-and-legacy-fallback source-files line; nothing else changed
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md --type feature_catalog -> `Total issues: 0` (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md -> `Total issues: 1`, warning `[document_type_fallback] ... README rules were applied` (exit 0)
+BLOCKED REASON: none

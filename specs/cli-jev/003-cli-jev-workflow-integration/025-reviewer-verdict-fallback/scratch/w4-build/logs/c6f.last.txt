@@ -1,0 +1,16 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs (+7/-0)
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:57-58 added `REPO_ROOT` constant with one-line comment beside `DEFAULT_PROFILE`
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:112-117 `loadFixtureCases` non-absolute `fixtureDirArg` now tries cwd, then `path.resolve(REPO_ROOT, fixtureDirArg)` when it exists, then the profile folder; absolute path and all other code untouched
+CHECKS: `node -e "console.log(require('path').resolve(require.resolve('./model-benchmark/lib/score-verdict-fallback.cjs'), '../../../../../../../..'))"` (from `deep-improvement/scripts`) -> `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration` (the folder holding `.skilled`) (exit 0)
+CHECKS: `npx vitest run model-benchmark/tests/verdict-fallback.vitest.ts` (from `deep-improvement/scripts`) -> `Tests  16 passed (16)` (exit 0)
+
+NOTE: the `loadFixtureCases` JSDoc sentence (now lines 92-94) still says `fixtureDir` resolves against the working directory then the profile's own directory; it now under-describes the repo-root fallback. Left edited-out per the brief's "keep everything else byte-identical" instruction — worth a follow-up if verbatim compliance is not required.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs (+7/-0)
+EDITS: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:57-58 added `REPO_ROOT` constant with comment; .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:112-117 added repo-root fallback to `loadFixtureCases`
+CHECKS: node -e "console.log(require('path').resolve(require.resolve('./model-benchmark/lib/score-verdict-fallback.cjs'), '../../../../../../../..'))" -> /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration (exit 0)
+CHECKS: npx vitest run model-benchmark/tests/verdict-fallback.vitest.ts -> Tests  16 passed (16) (exit 0)
+BLOCKED REASON: none

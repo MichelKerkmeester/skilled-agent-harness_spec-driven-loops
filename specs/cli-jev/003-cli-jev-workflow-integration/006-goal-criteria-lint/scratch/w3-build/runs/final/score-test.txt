@@ -1,0 +1,16 @@
+✔ per-rule precision, recall and F1 (0.466042ms)
+✔ the labeled violation rate carries a Wilson 95% interval (0.08025ms)
+✔ a rate under 0.05 prints the stop line (0.153834ms)
+✔ stale labels and unscored lines leave every rate (0.072834ms)
+✔ unlabeled rows print no rate (0.291625ms)
+✔ mixed rubrics print a mismatch and no rate (0.053333ms)
+✔ the command line scores fixture labels from a saved lint run (53.836584ms)
+✔ the command line refuses a missing labels flag and names a bad labels line (24.999ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 117.6285

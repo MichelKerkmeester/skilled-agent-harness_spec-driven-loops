@@ -1,0 +1,24 @@
+Review complete. All checks ran from the worktree root; only the one directed scratch file was written.
+
+**Findings**
+
+- `P1 .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/harness/build-artifacts.cjs:132-150 (both trees) - typedGold records observed decisionAction but never asserts the fixture's expectedAction/expectedSelectionKind/expectedModes (009-sk-design's harness fails on them at :100-112) - fixture case deem-choice-single (fixtures/canary-cases.v1.json:70) expects route single cli-deem; a regression to defer or to cli-jev fails no test`
+- `P1 .skilled/skills/system-spec-kit/runtime/data/trigger-index.json (+ corpus-manifest.json, generation-diagnostics.json, sk-doc/.../baseline-readme-verdicts.json) - stale .skilled/skills/cli-jev/ paths survive, REQ-008 unmet - git grep -l '\.skilled/skills/cli-jev/' ... prints exactly these 4; build-evidence §7 declares them open for the committing session`
+- `P2 .skilled/skills/cli-classifier/hub-router.json:58-66 - the merge drops "cli-classifier"/"cli classifier" from cli-deem-aliases that HEAD's 008 hub-router held, undocumented in build-evidence - prompt "run the cli-classifier on this" routed single cli-deem before the move, now defers; if intended (hub name ≠ one mode), record the deviation`
+- `P2 .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json:201 - jev-transport-single still expects route single ["cli-jev"] though that hub (7 modes, no cli-jev) returns defer for "use jev choice to pick a queue" (probed via compiled-route.cjs) - spec edge case says the expectation stays "whatever that hub routes today"`
+
+**Requirements**
+
+- `REQ-002 met` — `scratch/route-baseline.txt` holds 17 prompt/JSON/exit triples (spec says 10; build recounts 17).
+- `REQ-004 met` — two modes; cli-jev has packet `cli-usage`, packetKind transport, routingClass metadata; `parent-skill-check.cjs` exit 0 observed (2 modes, 1.1.0.0).
+- `REQ-005 met` — all seven lists name cli-classifier once (resolve/flag hold their two lists each), zero `cli-jev` lines; runtime/twin `014` files byte-identical.
+- `REQ-006 met` — my own replay: 17/17 match on action/selectionKind/packetId/exit 0 (mode cli-usage→cli-jev). Probes: both backends → orderedBundle [cli-jev, cli-deem] jev-first; neither → defer; "ask deem for a probability…" → single cli-deem, no cross-leak either way.
+- `REQ-008 not met` — see finding 2.
+- `REQ-009 met` — tieBreak [cli-jev, cli-deem] (hub-router.json:10), orderedBundle reachable.
+- `REQ-010 met` — 31 changelog/dated-report rows all R100; sole M is the reports index README, not a dated report.
+- `REQ-012 met (as checked)` — HUB_CHILD, DEFAULT_ON_HUBS, guard/sync HUBS, both flag lists, serving-closure (7 hubs, fileCount 62, 0 `cli-jev`) all name cli-classifier; rollout twins identical; `freshness` fresh:true, hash aa840b21… re-derived. Status/guard/admission/sync gates not re-run here (evidence reports them passing).
+- `REQ-001/003/007/011/013 not checked` — commit-dependent or the other reviewer's share.
+
+Also checked: added code comments clean (no spec paths/REQ/task ids); no secret or `.env` exposure (only privacy-gate prose in specs).
+
+`VERDICT: FAIL`

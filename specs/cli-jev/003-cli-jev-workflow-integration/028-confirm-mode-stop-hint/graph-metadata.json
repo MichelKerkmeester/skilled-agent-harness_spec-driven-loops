@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/028-confirm-mode-stop-hint",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "confirm-mode stop hint",
+      "score-stop-hint",
+      "stop suggestion precision",
+      "gate post iteration hint",
+      "research r9 test phase",
+      "stop hint evaluator plan",
+      "score-stop-hint build",
+      "confirm-mode hint precision plan",
+      "rater report reader",
+      "stop hint tasks",
+      "score-stop-hint tasks",
+      "hint precision tests"
+    ],
+    "key_topics": [
+      "confirm-mode",
+      "stop",
+      "hint",
+      "score-stop-hint",
+      "suggestion",
+      "precision",
+      "gate",
+      "post",
+      "iteration",
+      "research",
+      "test",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts",
+      "runtime/scripts/README.md",
+      "runtime/README.md",
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/README.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/README.md",
+      ".skilled/skills/system-deep-loop/runtime/changelog/v1.7.0.0.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-hint-replay.md",
+      ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+      ".hermes/skills/system-deep-loop/SKILL.md",
+      "scratch/w4-session/session-evidence.md",
+      "scratch/w4-session/docs/facts.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-stop-hint.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-stop-hint.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-hint.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.7.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/changelog/v1.7.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "stop-hint-replay.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "facts.txt",
+        "kind": "file",
+        "path": "scratch/w4-session/docs/facts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement In",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Keep Rule",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "In confirm mode the operator answers a continue-or-stop question after every iteration",
+    "created_at": "2026-09-29T12:42:40Z",
+    "last_save_at": "2026-09-29T21:12:22.256Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7a86cc05059fafe44bb829f72fa6be0fe4739c3f4210846871508c814b6860a9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "14896685c2a681fedd86a4d8a5678b5b4ea64ccde92a2e95e125194e052d3ffe",
+      "plan.md": "84385dc27bfd1cf45241a0ae914b7a1020402e709b97466251357e4584922799",
+      "tasks.md": "44fb0bc4141d35ed8e679bc0b38b0eeddbc60a2b54f06e57f763ad7a38d7a736",
+      "implementation-summary.md": "032182f493bf6d2f6f6d96ecc9d75aff947bad95d32db77d6ca5cab27d8cbad6"
+    },
+    "last_active_at": null
+  }
+}

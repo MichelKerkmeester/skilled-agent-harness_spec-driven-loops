@@ -1,0 +1,32 @@
+STATUS: DONE
+FILES CHANGED:
+- specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/tasks.md (+5/-5)
+- specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/goal.md (+12/-5)
+- specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/implementation-summary.md (+24/-15)
+- specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/spec.md (+3/-3)
+- specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/graph-metadata.json (+15/-15)
+
+EDITS:
+- tasks.md:33 notation paragraph now records that the operator's 2026-09-30 `--jev` run closed T008 and T018
+- tasks.md:55 T008 ticked `[x]`; Jev half added (334 records, 333 `choice` calls all `measured` on attempt 1, every map full, same key set per row) beside the recorded Deem half
+- tasks.md:72 T018 ticked `[x]`; identity, `calls=333 timeouts=0`, column (p50 1089 / p95 1490) and `verdict jev: kill` lines with `scratch/w4-session/jev-run/`
+- tasks.md:86 completion row no longer names T008 and T018 as open; tasks.md:88 manual verification row adds the live Jev run
+- goal.md:14-17 continuity updated (timestamp, author, recent/next action, each <=96 chars, no banned words)
+- goal.md:88 Live Jev run row added to Progress, citing `scratch/w4-session/jev-run/`
+- goal.md:97-103 `verdict jev: kill` line added beside the Deem line; stale "No `verdict jev:` line exists" replaced with the result; zero-call lines extended with the Jev advisor timing; T008 map check recorded for both backends
+- goal.md:62-67 all six completion criteria were already `[x]`; the run left none to tick
+- implementation-summary.md:3 description now records both `kill` verdicts
+- implementation-summary.md:14-17 continuity updated; :28-33 open question moved to answered (Jev map full, Jev kill), open list emptied
+- implementation-summary.md:63/69-77 Jev verdict block and result added beside the Deem result
+- implementation-summary.md:157 P4 live Jev run verification row added
+- implementation-summary.md:175-179 Known Limitations item 1 replaced with the Jev result, resolved map item removed, remainder renumbered 2-5
+- spec.md:3 description, :77 whole-cluster order and :240 open question no longer say the Jev column is unrun
+
+CHECKS:
+- `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order --apply` -> `inspected=1 repaired=1 failed=0` (exit 0)
+- `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order --strict` -> `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED`, 0 `RESULT: FAILED` lines (exit 0)
+- `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order` -> `RESULT: PASSED (5/5 checks)` (exit 0)
+- `node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order --workspace "$PWD"` -> `packet_durable_chars=3880`, `packet_budget=unknown` (exit 0)
+- `git status --porcelain -- <phase folder>` -> only the five named docs modified outside `scratch/`; untracked `scratch/w4-session/jev-run/` and `jev-record*` were pre-existing orchestrator output (exit 0)
+
+BLOCKED REASON: none

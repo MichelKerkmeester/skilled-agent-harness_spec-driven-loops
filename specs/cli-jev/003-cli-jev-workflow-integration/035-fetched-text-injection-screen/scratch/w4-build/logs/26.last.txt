@@ -1,0 +1,10 @@
+Both checks pass. No other files touched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/manual-testing-playbook/measurements/injection-screen-measurement.md (+5924/-0)
+EDITS: .skilled/skills/cli-classifier/manual-testing-playbook/measurements/injection-screen-measurement.md:1 created via `cp` from source C, byte-identical, no retyping or reflow
+CHECKS:
+- `cmp specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch/w4-build/briefs/content/playbook-scenario-cc-004.md .skilled/skills/cli-classifier/manual-testing-playbook/measurements/injection-screen-measurement.md && echo same` -> `same` (exit 0)
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/manual-testing-playbook/measurements/injection-screen-measurement.md --type playbook_feature` -> `Document type: playbook_feature` / `Total issues: 0` (exit 0; first line `✅ VALID: .skilled/skills/cli-classifier/manual-testing-playbook/measurements/injection-screen-measurement.md`)
+BLOCKED REASON: none

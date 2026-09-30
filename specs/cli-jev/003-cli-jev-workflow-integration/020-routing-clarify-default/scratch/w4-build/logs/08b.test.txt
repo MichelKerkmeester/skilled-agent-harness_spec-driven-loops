@@ -1,0 +1,36 @@
+✔ census counts a mode clarify and keeps only gold among its alternatives (1.214417ms)
+✔ census counts a missing prompt, an engine throw and an unknown hub as unparsed (0.1025ms)
+✔ census keeps checklist alternatives apart and writes no row for them (0.090792ms)
+✔ rowLines writes every label empty (0.219792ms)
+✔ parseArgs reads both census flags and refuses an unknown flag or a missing value (0.116084ms)
+✔ hubForSkill maps a hub id and a mode packet and nothing else (0.076375ms)
+✔ countTranscripts counts each front-door line once, escaped or plain (166.293791ms)
+✔ the transcript count prints counts and no transcript text (1526.249708ms)
+✔ the gate stops at 29 labeled rows (187.353292ms)
+✔ 30 labeled rows pass the gate and print the fixed rule lines (543.695792ms)
+✔ a label outside the row's alternatives exits 2 and names the row (37.486ms)
+✔ a baseline above nine tenths prints no headroom (48.251458ms)
+✔ tailP is exact (0.174583ms)
+✔ decideVerdict checks coverage, kill, margin, sign test and flips in order (0.12825ms)
+✔ scoreColumn counts measured, unstable and flips (0.143917ms)
+✔ --deem without --out exits 2 before any output (46.478042ms)
+✔ a stub or unreachable deem backend skips the arm and leaves the rest byte-identical (302.415375ms)
+✔ a jev without a credential prints its identity and one skip line (150.372708ms)
+✔ jev off PATH and a wrong jev version each skip (140.159ms)
+✔ a deem stub that answers the label keeps (1229.517375ms)
+✔ a deem stub that answers the first alternative stops on margin (1184.956625ms)
+✔ a deem stub that loses to the baseline kills (1152.086916ms)
+✔ four failing deem calls in thirty rows stop on coverage (1238.180875ms)
+✔ the label gate blocks the deem arm before any call (40.923583ms)
+✔ a jev stub that answers the label keeps (1240.916042ms)
+✔ with both switches the jev verdict prints before the deem verdict (2295.519166ms)
+✔ a rejected key stops the jev arm with no verdict (121.337958ms)
+✔ a deem stub with another model or an unreadable health answer skips with a details line (188.440917ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11921.982916

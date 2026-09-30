@@ -1,0 +1,11 @@
+Both cases are in place and the count is 18. T is untracked in this worktree (created by a concurrent worker), so `git diff` shows nothing for it; my change to it is the one edit below, and every other dirty path in `git status` belongs to other workers per the run context.
+
+```
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+22/-1)
+EDITS: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts:373 added the symlink-refusal --out case (blank line 372)
+EDITS: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts:384 added the outside-accepted --out case (closing `});` re-emitted at 393)
+CHECKS: grep -cE '^  it[(.]' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts -> 18 (exit 0)
+BLOCKED REASON: none
+```

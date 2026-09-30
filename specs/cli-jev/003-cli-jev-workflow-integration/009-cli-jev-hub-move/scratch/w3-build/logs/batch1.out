@@ -1,0 +1,101 @@
+===== brief 21 (pi) .skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/21-ceo-dispatch-routing.md: 65 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/21-ceo-dispatch-routing.md exit=0 seconds=55
+--- handback 21
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md (+2/-2)
+EDITS:
+.s​.skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md:20 replaced hub path/mode substring: `cli-jev` hub → `cli-classifier` hub, mode `cli-jev` over `cli-usage` packet
+.s​.skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md:47 `the \`cli-jev\` hub declares the axis.` → `the \`cli-classifier\` hub declares the axis.`
+CHECKS:
+grep -c "skills/cli-jev/" .skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md -> 0 (exit 1 — grep exits 1 on zero matches, result line 0 as expected)
+grep -c "cli-classifier" .skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md -> 2 (exit 0)
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md -> ✅ VALID ... Total issues: 0 (exit 0)
+BLOCKED REASON: none
+
+(For exactness on the EDITS lines above — a stray zero-width character slipped into the two path prefixes in my handback rendering; the correct path is the one under FILES CHANGED.)
+--- tree delta
+101a102
+>  M .skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md
+numstat: 2	2	.skilled/skills/cli-external-orchestration/feature-catalog/cli-executor-dispatch-routing/cli-executor-dispatch-routing.md
+===== brief 22 (pi) .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/22-ceo-feature-catalog.md: 61 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/22-ceo-feature-catalog.md exit=0 seconds=45
+--- handback 22
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md (+1/-1)
+EDITS: .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md:39 replaced "moved to a hub of its own at [`../../cli-jev/SKILL.md`](../../cli-jev/SKILL.md) as the `cli-usage` mode," with "moved to the `cli-classifier` hub at [`../../cli-classifier/SKILL.md`](../../cli-classifier/SKILL.md) as mode `cli-jev` over the `cli-usage` packet,"
+CHECKS:
+- grep -c "cli-jev/SKILL.md" .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md -> `0` (exit 1; grep exits 1 on zero matches, count is 0 as expected)
+- test -f .skilled/skills/cli-classifier/SKILL.md -> no output (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md -> `✅ VALID: ... Total issues: 1` (exit 0; the one issue is a `document_type_fallback` warning, not an error)
+BLOCKED REASON: none
+
+Note: `git diff --numstat` on the named file shows `1  1` (+1/-1). `git status` shows other modified files in the tree, all belonging to concurrent workers per the run context; I touched no file other than the one this brief names.
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md -> `✅ VALID: ... Total issues: 1` (exit 0; the one issue is a `document_type_fallback` warning, not an error)
+--- tree delta
+102a103
+>  M .skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md
+numstat: 1	1	.skilled/skills/cli-external-orchestration/feature-catalog/feature-catalog.md
+===== brief 24 (pi) .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/24-prompt-card.md: 59 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/24-prompt-card.md exit=0 seconds=31
+--- handback 24
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md (+1/-1)
+EDITS: .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md:142 replaced `| \`cli-usage\` (the \`cli-jev\` hub's transport) |` with `| \`cli-usage\` (mode \`cli-jev\` of the \`cli-classifier\` hub) |`, rest of line and file byte-identical
+CHECKS: grep -c "cli-jev\` hub" .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md -> 0 (exit 1)
+CHECKS: grep -c "cli-classifier" .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md -> 1 (exit 0)
+BLOCKED REASON: none
+--- tree delta
+116a117
+>  M .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+numstat: 1	1	.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+===== brief 25 (pi) README.md
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/25-root-readme.md: 67 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/25-root-readme.md exit=0 seconds=42
+--- handback 25
+STATUS: DONE
+FILES CHANGED: README.md (+4/-4)
+EDITS:
+- README.md:825 list entry retitled `cli-jev` → `cli-classifier` with Deem model wording
+- README.md:827 JUDGMENT TRANSPORT description rewritten for the two classifier modes
+- README.md:1351 codebase-agnostic entry retitled `cli-jev` → `cli-classifier`
+- README.md:1353 parent-hub bullet rewritten to route `cli-jev`/`cli-deem` with per-mode requirements
+CHECKS:
+- grep -c "^\*\*\`cli-jev\`\*\*" README.md -> 0 (exit 1)
+- grep -c "^\*\*\`cli-classifier\`\*\*" README.md -> 2 (exit 0)
+- git diff --numstat README.md -> 4	4	README.md (exit 0)
+BLOCKED REASON: none
+--- tree delta
+120a121
+>  M README.md
+numstat: 4	4	README.md
+===== brief 26 (pi) .skilled/skills/README.txt
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/26-skills-readme.md: 60 lines
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/26-skills-readme.md exit=0 seconds=48
+--- handback 26
+STATUS: DONE
+FILES CHANGED: .skilled/skills/README.txt (+1/-1)
+EDITS: .skilled/skills/README.txt:45 inserted `cli-classifier` row above the `cli-external-orchestration` row (line 45) and deleted the old `cli-jev` row (former line 46) in the same replacement
+CHECKS: grep -c "cli-jev/README.md" .skilled/skills/README.txt -> 0 (exit 1) | sed -n '45p' .skilled/skills/README.txt | grep -c "^| \[\`cli-classifier\`\]" -> 1 (exit 0)
+BLOCKED REASON: none
+--- tree delta
+16a17
+>  M .skilled/skills/README.txt
+numstat: 1	1	.skilled/skills/README.txt
+===== brief 27 (devin) .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts
+specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/27-fanout-merge-test.md: 62 lines
+executor=devin model=deepseek-v4-1-flash-max brief=specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/briefs/27-fanout-merge-test.md exit=0 seconds=291
+--- handback 27
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts (+2/-2)
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts:1470 source path .skilled/skills/cli-jev/cli-usage/SKILL.md:167-174 -> .skilled/skills/cli-classifier/cli-usage/SKILL.md:167-174
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts:1472 source path .skilled/skills/cli-jev/cli-usage/SKILL.md:162-164 -> .skilled/skills/cli-classifier/cli-usage/SKILL.md:162-164
+CHECKS: grep -c "skills/cli-jev/" .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts -> 0 (exit 1)
+CHECKS: grep -c "skills/cli-classifier/cli-usage/SKILL.md" .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts -> 2 (exit 0)
+BLOCKED REASON: none
+--- tree delta
+118a119
+>  M .skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts
+numstat: 2	2	.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/008-cli-classifier-hub",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-classifier hub",
+      "cli-deem client",
+      "cli-deem health",
+      "deem node client",
+      "deem check stub backend",
+      "classifier hub first mode",
+      "cli-classifier hub plan",
+      "cli-deem client plan",
+      "cli-deem fake server tests",
+      "deem check health plan",
+      "cli-classifier hub tasks",
+      "cli-deem client tasks"
+    ],
+    "key_topics": [
+      "cli-classifier",
+      "hub",
+      "cli-deem",
+      "client",
+      "health",
+      "deem",
+      "node",
+      "check",
+      "stub",
+      "backend",
+      "classifier",
+      "first"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
+      ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
+      "benchmark/reports/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".hermes/skills/cli-classifier/SKILL.md",
+      ".hermes/skills/cli-deem/SKILL.md",
+      ".skilled/skills/cli-classifier/SKILL.md",
+      ".skilled/skills/cli-classifier/mode-registry.json",
+      ".skilled/skills/cli-classifier/graph-metadata.json",
+      ".skilled/skills/cli-classifier/leaf-manifest.json",
+      ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      "scratch/build/build-evidence.md",
+      "scratch/build/replay/stage2-replay.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-deem.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-deem.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "benchmark/reports/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/cli-classifier/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-classifier/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-classifier/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-classifier/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/build/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage2-replay.cjs",
+        "kind": "file",
+        "path": "scratch/build/replay/stage2-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Build Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four Planned",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four Planned phases want a Deem arm (002, 003, 005 and 006), and the repository has 0 runtime Deem callers",
+    "created_at": "2026-09-27T09:21:54Z",
+    "last_save_at": "2026-09-28T11:28:40.055Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:760c62ed47a955f7f76411cfef1f0fb3eab19bbbf038cd1a1805c29bee858c7e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "19153b5b757048bf411781f8a2a1e7ef96ff20cd0ad1834b2065b364cd9ea9b7",
+      "plan.md": "a064e4b691951ba72cf43d8908d577c08cfe489e94c351eda07d54816ec396cf",
+      "tasks.md": "5fc958c3ae1f94b3315e76eb87de1a4b15020ce6f13fa3e79a0018fb7dfd35fa",
+      "implementation-summary.md": "9da10ce66f26d3cfb769ba1daa9b2cf90b9678cb9ca1bc1da60197a5886a1580"
+    },
+    "last_active_at": null
+  }
+}

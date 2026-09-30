@@ -1,0 +1,8 @@
+Both checks pass. Receipts: `cmp` printed nothing, exit 0; validator printed `✅ VALID`, exit 0 (the `document_type_fallback` line is a warning, not a failure); `git diff --numstat` shows 22 added / 2 removed on the one named file, consistent with exactly the four described change sites (description word swap, section 7 heading range, new SCG-009 block, section 8 row, section 9 row). The only write I made was the single `cp` to the named target; no other file was touched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md (+22/-2)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md:3 frontmatter description "eight" -> "nine" · :162 section 7 heading range `SCG-001..SCG-008` -> `SCG-001..SCG-009` · :301-319 new SCG-009 block (Test Execution + scenario contract) inserted before section 8 · :331 section 8 automated-test row for `lint-goal-criteria.test.cjs` added · :352 section 9 cross-reference index row for SCG-009 added — all applied by byte-identical copy of playbook-root.new.md
+CHECKS: cmp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/playbook-root.new.md .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md -> no output (exit 0) · python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md -> "✅ VALID … Total issues: 1 (warning: document_type_fallback)" (exit 0)
+BLOCKED REASON: none

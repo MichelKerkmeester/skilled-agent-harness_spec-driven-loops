@@ -1,0 +1,28 @@
+Both listed checks pass, the diff is clean of anything outside S and T, and the six pure functions were exercised locally against the exact inputs the new tests encode.
+
+One note on the brief's "keep earlier functions unchanged": the two requalify lines this step names cannot exist without touching the verdict-printing blocks of `runJevArm`/`runDeemArm` and threading `stored`/`baseline` from `main`. Those are the only earlier-function edits, they add the named feature, and every existing test is untouched. `vitest` was not run (per the brief — the orchestrator runs it), so the run-level requalify case is inferred from the wiring and read-back, not observed green.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs (+179/-0); .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts (+138/-0)
+EDITS:
+- score-stop-rater.cjs:1337-1484 new section `12. VERDICT AND REQUALIFY`: `binomialTail`, `decideVerdict`, `formatP`, `summarizeColumn`, `verdictLine`, `readStoredReport`, each with JSDoc (rule order coverage/kill/margin/sign test/flips; `10*F <= C` with C measured calls; `p = p_loss` on kill else `p_win`; `baseline=<method>`)
+- score-stop-rater.cjs:1036-1051 jev arm: passes `ctx.baseline` to `summarizeColumn`; a stored provider/model change prints `requalify: model changed` before the verdict and is returned
+- score-stop-rater.cjs:1318-1333 deem arm: same on the commit pair, `requalify: model commit changed`
+- score-stop-rater.cjs:1755-1757 main: reads `<out>/report.json` once when `--jev`/`--deem` is set
+- score-stop-rater.cjs:1792,1831 both arm calls carry `baseline: baseline.method, stored`
+- score-stop-rater.cjs:842-845,1185-1188 arm JSDoc: ctx gains `baseline`/`stored`, returns `requalify: string|null`
+- score-stop-rater.cjs:1918-1923 exports the six new functions
+- score-stop-rater.cjs:1487,1559,1868,1931 dividers renumbered to 13 REPORT / 14 MAIN / 15 EXPORTS / 16 CLI
+- score-stop-rater.vitest.ts:10 header row for the verdict area
+- score-stop-rater.vitest.ts:947-1082 new describe `score-stop-rater verdict`: `verdict keep` (W=5,L=0 → keep, p=0.03125, baseline=legacy), `verdict kill` (W=0,L=5), `verdict stop (coverage)` (22 of 25 measured), `verdict stop (margin)` (gain 2 of 25), `requalify prints before the verdict` (seeded older pair, line order + report bucket)
+
+CHECKS:
+- `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs` -> no output (exit 0)
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts` -> 34 (exit 0)
+- `node -` (local, require S, scripted inputs) -> keep/kill/coverage/margin lines plus jev `F=20 C=60 -> stop (flips)`, `binomialTail(5,5) = 1n/32n`, `formatP = 0.03125` (exit 0)
+- `git status --porcelain` vs the step's pre-state -> S and T present as `??`; only two other concurrent-worker paths differ (`deep-improvement/SKILL.md`, phase 031 scratch), none touched here (diff exit 1)
+- `grep -nE 'REQ-|ADR-|CHK-|task-[0-9]|specs/|027[-_]|phase [0-9]|w4-build'` on S and T -> no match (exit 1)
+- `grep -nE 'API_KEY|TYPESAFE|Bearer|Authorization'` on S -> no match (exit 1)
+- `npx vitest run tests/unit/score-stop-rater.vitest.ts` -> NOT run (sandbox/brief; orchestrator runs it)
+
+BLOCKED REASON: none

@@ -1,0 +1,10 @@
+File matches the brief's expected lines 45-48 exactly (`const HUBS = [` / `'cli-external-orchestration',` / `'cli-jev',`), and `'cli-external-orchestration'` appears only in this list. Making the literal edit now.Edit applied. Now re-reading the edited region and running the brief's checks (plus one read-only diff as evidence for the `+1/-1` accept criterion).All checks pass: the edited region reads exactly as specified, syntax check exits 0, the exported `HUBS` list matches the expected string, and the diff is +1/-1 on the one named file. Nothing else was touched; the guard itself was not run.
+
+STATUS: DONE
+FILES CHANGED: .skilled/bin/compiled-route-guard.cjs (+1/-1)
+EDITS: .skilled/bin/compiled-route-guard.cjs:45-47 HUBS list head — `'cli-external-orchestration', 'cli-jev',` replaced with `'cli-classifier', 'cli-external-orchestration',` (cli-jev removed; cli-classifier leads alphabetically)
+CHECKS:
+- `node --check .skilled/bin/compiled-route-guard.cjs` -> no output, syntax OK (exit 0)
+- `node -e "console.log(require('./.skilled/bin/compiled-route-guard.cjs').HUBS.join(','))"` -> cli-classifier,cli-external-orchestration,mcp-tooling,sk-code,sk-design,sk-doc,system-deep-loop (exit 0)
+- supporting evidence, read-only: `git diff --numstat -- .skilled/bin/compiled-route-guard.cjs` -> `1	1	.skilled/bin/compiled-route-guard.cjs` (exit 0)
+BLOCKED REASON: none

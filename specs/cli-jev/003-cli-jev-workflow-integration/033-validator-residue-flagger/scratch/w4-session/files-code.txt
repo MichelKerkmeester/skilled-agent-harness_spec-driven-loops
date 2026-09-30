@@ -1,0 +1,2 @@
+.skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs
+.skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs

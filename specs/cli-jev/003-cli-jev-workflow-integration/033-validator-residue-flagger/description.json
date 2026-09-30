@@ -1,0 +1,23 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger",
+  "description": "Test offline whether a Jev or Deem noul flags correctness and traceability defects in document passages better than the review table does today, which is not at all.",
+  "keywords": [
+    "r26",
+    "jev",
+    "deem",
+    "offline",
+    "validator",
+    "residue",
+    "flagger"
+  ],
+  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "specId": "033",
+  "folderSlug": "validator-residue-flagger",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

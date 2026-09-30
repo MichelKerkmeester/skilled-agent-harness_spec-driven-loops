@@ -1,0 +1,17 @@
+TASK: add the ripgrep baseline to the track-narrowing script, with two vitest cases.
+S = .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs. T = .skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts. Read both first, and read retrieval/lib/rg-lane.mjs lines 1-200 (pathOnlyRecipe and runRecipe). rg-lane.mjs stays unchanged.
+
+In S:
+1. Add `import { pathOnlyRecipe, runRecipe } from './lib/rg-lane.mjs';` after the normalize import.
+2. At the end of section 3 add two exported functions with JSDoc:
+ a. ripgrepTokens(question): the distinct tokens of normalizeTriggerText(question).split(' ') with length >= 3, first-seen order. ('an ox quartz quartz Lantern' gives ['quartz', 'lantern'].)
+ b. ripgrepPick(question, ownFolder, context), context = { repoRoot, cache } where cache is a Map from token to string[] of repo-relative paths. For each token of ripgrepTokens(question): when the cache lacks it, run = runRecipe(pathOnlyRecipe(token, ['specs']), { cwd: context.repoRoot }); outcome 'error' throws new Error(`ripgrep failed on ${token}: ${run.stderr.trim()}`); outcome 'no-match' caches []; outcome 'match' caches the stdout lines trimmed, empty ones dropped, '\\' replaced by '/', a leading './' removed. Then each file scores the number of the question's tokens whose cached list holds it, skipping a file whose trackOf is null or which isInsideFolder(file, ownFolder) (skip that test when ownFolder is null). No scoring file returns null (an abstention). Otherwise take the files at the top score, count them per track, and return the track with the most such files; a tie on that count goes to the first track name by compareCodeUnits. The cache is kept across calls so each token runs ripgrep once per run.
+
+In T:
+1. Import ripgrepTokens and ripgrepPick from the script.
+2. New describe('score-track-narrowing ripgrep baseline') with two cases; each makes its root with tempDir, writes tracks 'alpha-track', 'beta' and 'gamma' with track(), writes the .md files below with write(root, rel, text), and uses context = { repoRoot: root, cache: new Map() }.
+ a. 'picks the track of the file matching the most distinct tokens': files specs/alpha-track/001-a/spec.md 'quartz lantern ember', specs/beta/002-b/spec.md 'quartz lantern', specs/beta/003-c/notes.md 'quartz', specs/gamma/004-d/spec.md 'ember'. ripgrepPick('quartz lantern ember', null, context) is 'alpha-track'; ripgrepPick('quartz lantern ember', 'specs/alpha-track/001-a', context) is 'beta'; context.cache has keys 'quartz', 'lantern' and 'ember', and context.cache.get('ember') sorted equals ['specs/alpha-track/001-a/spec.md', 'specs/gamma/004-d/spec.md']; ripgrepTokens('an ox quartz quartz Lantern') equals ['quartz', 'lantern'].
+ b. 'breaks a tie by file count, then by track name, and abstains on no match': files specs/beta/010-x/a.md 'harbor', specs/gamma/011-y/a.md 'harbor', specs/gamma/012-z/a.md 'stone', specs/gamma/013-w/a.md 'willow', specs/beta/014-w/a.md 'willow'. ripgrepPick('harbor stone', null, context) is 'gamma'; ripgrepPick('willow', null, context) is 'beta'; ripgrepPick('zzqxv wwkqz', null, context) is null.
+
+VERIFY (repo root): node --check .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs
+Accept when: 2 files changed and nothing else; node --check exits 0.

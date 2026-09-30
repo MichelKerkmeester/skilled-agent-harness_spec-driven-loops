@@ -1,0 +1,1 @@
+executor=pi model=llmgateway/mimo-v2.6-pro brief=specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/scratch/w4-session/review-code-pi.md exit=0 seconds=857

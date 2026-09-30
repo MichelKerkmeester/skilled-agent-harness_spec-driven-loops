@@ -1,0 +1,44 @@
+# FACTS for the 034 doc steps (read from the code and the session's own runs, 2026-09-29)
+
+Script: `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py` (Python 3, run with `python3` from the repository root).
+Test: `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py`, 41 checks, all pass (`python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py` prints one `PASS` line per check and `ALL PASS`).
+Labels file: `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr-reader-lens-labels.jsonl` by default (`--labels <path>` names another). It does not exist yet: the operator draws and labels it.
+Usage, from the script's docstring:
+    python3 hvr_reader_lens.py                     # census, questions, baselines
+    python3 hvr_reader_lens.py --draw --seed <n>   # write the labels file
+    python3 hvr_reader_lens.py --jev --out <dir>   # measure the Jev backend
+    python3 hvr_reader_lens.py --deem --out <dir>  # measure the Deem backend
+    python3 hvr_reader_lens.py --labels <path>     # point at another labels file
+Versions and IDs, read at doc time after 032's commit (orchestrator ruling 3): the packet's newest changelog is `changelog/v1.1.0.0.md`, so this phase writes `changelog/v1.2.0.0.md` and sets the packet `SKILL.md` `version:` from 1.1.0.0 to 1.2.0.0. A new file takes its anchor's major.minor with no edits: the catalog entry `.skilled/skills/sk-doc/feature-catalog/document-validation/hvr-reader-needed-lens.md` is `version: 2.2.0.0`, as its siblings `goal-criteria-lint.md` and `citation-drift-scan.md` are, and the playbook scenario is `version: 1.2.0.0`. The highest playbook ID is HVT-003, so this phase takes HVT-004. Existing index and README files keep their `version:` (the sk-doc catalog index 2.2.0.12, the packet playbook index 1.1.0.4, the packet README 1.1.0.4, the scripts README 1.0.0.0), as 032 left the index it edited; the design's 2.2.0.13 and 1.1.0.5 are not applied. The sk-doc hub `version:` (2.2.3.0) and the hub changelog stay unchanged.
+The labels file does not exist until the operator draws it, and the session commits none (parent D4), so no doc gives it a row of its own (not in a catalog Source Files table, not as a README row): a doc names it only as the default file `--draw` writes. Nearest models in the same indexes: 032's `### Citation Drift Scan` block in the sk-doc catalog index under `## 4. DOCUMENT VALIDATION` (add the new block after it), and the `### HVT-003` block under `## 7. TELL DETECTION (`HVT-001..HVT-003`)` in the packet playbook index.
+
+What it does: it measures offline whether a Jev or Deem `noul` flags three reader-needed Human Voice Rules tells better than the scanner's floor, which flags none of them: synonym cycling, significance inflation and false ranges. The census walks tracked `*.md` under `.skilled/skills/` outside `/changelog/`, `/fixtures/` and `node_modules`, reads each file at the recorded commit, splits it into heading sections and runs the unchanged `hvr_scan.py --json` over a temporary copy of that committed text outside the repository, so uncommitted edits never change the census. It changes no rule, no scanner and no scored doc. The default run makes no model call, writes no file and holds no credential.
+Labels: `--draw --seed <n>` writes 150 rows, 50 per category, each with its doc, section lines, commit and section hash, and an empty label. The operator labels each row `yes` or `no`. No model writes a label.
+
+Exit 2, each before any call:
+- `--jev` or `--deem` without `--out` prints `--jev and --deem need --out <dir> so every call is recorded` (the same line for either switch).
+- `--draw` with `--jev`, `--deem` or `--out` prints `--draw takes only --seed and --labels`; without a non-negative integer seed it prints `--draw needs --seed <non-negative integer>`; over a labels file that holds a label it prints `draw refused: <path> holds a label`.
+Zero model calls by default: logging stubs for `cli-deem` and `jev` first on PATH were never called.
+
+Default run on the real tree, exit 0 in about 228 s, full stdout (session run, 2026-09-29):
+    census: commit=<40-hex HEAD> files=7910 sections=107052 flagged=50983 in_band_5_80=40912 refused=5
+    census: category=synonym-cycling candidates=0
+    census: category=significance-inflation candidates=2
+    census: category=false-ranges candidates=784
+    question synonym-cycling sha256=e7dd7323d340c79869fc0ce0f90a34ef014fa1252c3f3e1342486e04cfe6f0ef: Does this passage refer to the same thing by three or more different words?
+    question significance-inflation sha256=848ce248ac0cfcc67ed27acb732421d9ac0ad6a44a827e413fabfefd5635dd15: Does this passage declare that something is important or historic instead of stating what happened?
+    question false-ranges sha256=c885108586da7be1539d9c8ecc3fdfc577d5919820016c92a5ae905be04a892c: Does this passage use a from X to Y construction whose endpoints are not on a meaningful scale?
+    margin: 0.10
+    keep rule: coverage 10*M >= 9*K, kill 5*TP < 3*(TP+FP) in every category, precision TP+FP >= 1 and 5*TP >= 4*(TP+FP), margin 10*(A-B) >= M, sign test p < 0.05, flips 10*F <= 3*M (jev only), keep at two categories passing
+    labels: labeled=0 of 150
+    stop: fewer than 150 labeled rows
+The counts read the live tree, so a later run may differ. Three runs at two commits during the session printed the same counts while other skill docs were being edited.
+
+Gates: `stop: fewer than 150 labeled rows`; then `stop: fewer than 2 categories can pass`; per category, `no headroom (<category>)` or `underpowered (<category>)`.
+Arms, each behind its own switch and `--out <dir>`, Jev first, then Deem, each on its own check. A failed check prints `jev arm skipped: jev not on PATH`, `jev arm skipped: version` (anything but `jev 0.6.2`), `jev arm skipped: no credential` or `deem arm skipped: <reason>` (such as `stub backend`). The Deem client is `cli-deem` on PATH, else `node .skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs`.
+Session runs from the final code (`$SP/w4v/034-proof`), stubs first on PATH:
+- `--deem --out <dir>` with a stub backend adds only `deem arm skipped: stub backend` after one `cli-deem health` call.
+- `--jev --out <dir>` with `jev auth status` exiting 3 adds `jev: path=<path> provider=official` and `jev arm skipped: no credential`.
+- Neither writes a file in `<dir>`.
+- `--draw --seed 20260929 --labels <file outside the repository>` exits 0 in about 213 s and prints `draw: seed=20260929 commit=<40-hex> rows=150`, then `draw: category=synonym-cycling rows=50 candidate_rows=0`, `draw: category=significance-inflation rows=50 candidate_rows=2`, `draw: category=false-ranges rows=50 candidate_rows=25` and `draw: wrote <file>`. Every row's label is empty.
+No run has printed a `verdict` line. Docs must not claim one was printed.

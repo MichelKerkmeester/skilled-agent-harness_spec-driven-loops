@@ -1,0 +1,10 @@
+TASK: create manual-testing-playbook scenario 459 for the track-narrowing script by copying a prepared file byte for byte. One new file.
+C = specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/briefs/content/playbook-scenario-459.md (read only; the orchestrator wrote it to sk-doc's playbook snippet template, modeled on scenario 458).
+F = .skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md (does not exist yet).
+
+1. Read C. Create F with exactly C's content: same bytes, same frontmatter, same final newline. Do not edit C and do not change a word.
+
+VERIFY (repo root):
+  cmp specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/briefs/content/playbook-scenario-459.md .skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md   (expect no output, exit 0)
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md   (expect exit 0)
+Accept when: 1 file created and nothing else changed; cmp exits 0; the validator exits 0.

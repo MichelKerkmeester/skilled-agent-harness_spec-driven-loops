@@ -1,0 +1,231 @@
+I'll start by reading the phase docs and understanding the scope, then work through the five review areas.
+
+Now let me read the rest of the spec, goal, and build evidence.
+
+Now let me set up my review plan and start examining the areas.
+
+
+
+Now let me start Area 1 — the merged hub files. First the registries and hub-router, comparing against both sources at HEAD.
+
+Now the HEAD versions of the cli-classifier files to compare the merge.
+
+Now the merged versions of graph-metadata, description, leaf-manifest in the working tree.
+
+Area 1 registries look merged. Now let me check SKILL.md/ROUTER.md/README.md diffs and then move to Area 2 (rollout child).
+
+Let me look at the full diff name-status and the SKILL/ROUTER/README diffs.
+
+
+
+Now the hub-root docs diffs — SKILL.md, ROUTER.md, README.md.
+
+
+
+Now the hub-routing playbook scenarios.
+
+
+
+
+
+Area 1 looks solid so far. Moving to Area 2 — the compiled rollout child and its twin.
+
+
+
+
+
+
+
+
+
+
+
+
+
+The diff above was path-limited. Let me compare the old and new canary corpora directly.
+
+
+
+Now let me verify tree agreement and recompute artifacts in memory (read-only).
+
+
+
+Now let me recompute the compiled artifacts in memory (read-only) and probe cross-mode routing.
+
+
+
+The in-memory rebuild matches the twin byte-for-byte. Note the both-backends prompt returned `single` — let me probe the ordered bundle more precisely.
+
+
+
+One probe routed to a single mode despite naming both backends. Let me dig into the scores.
+
+
+
+
+
+Area 2 core checks pass. Now Area 4 — the runtime activation folder and freshness.
+
+
+
+Freshness passes and matches the claimed fingerprint. Let me inspect the manifest library to confirm the digest is re-derived, not hand-written.
+
+
+
+Area 4 verified. Now Area 3 — the literal lists.
+
+
+
+
+
+Several other files reference the cohort. Let me check each for missed copies.
+
+
+
+Let me check the size-6 assertion, the baseline failure list, and the two stale-looking docs.
+
+
+
+
+
+Let me check the manifest test's temp handling before running it, and read the dispatch-audit diff.
+
+
+
+
+
+Let me verify the gates I plan to run are read-only, then run them.
+
+
+
+
+
+
+
+
+
+Now the foundation cross-check test (HUB_CHILD vs advisor hub sets) and the dispatch tests.
+
+
+
+
+
+
+
+Now Area 5 — re-run the replay.
+
+
+
+
+
+Now the exact comparison, plus my three extra prompts through the real front door.
+
+
+
+
+
+The replay matches 17/17. Now cross-cutting checks — the four stale-path files, changelogs, and comment hygiene.
+
+
+
+Now comment hygiene on added code lines, and the repo rule for hub routing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now the cli-deem/cli-usage doc edits — checking the privacy-gate language wasn't weakened.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now spot-check doc validation on my share's merged docs, including the one claimed pre-existing failure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me validate the two new Deem canary cases through the real front door, then do a final worktree check.
+
+Two final checks — the hub contract gate and phase validation.
+
+
+
+All checks are done. Let me compile the final report.
+
+**Findings**
+
+- P1 `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json:345` — REQ-008 not met in the working tree; the stale-path grep prints 4 generator outputs: this file, `runtime/cli/retrieval/fixtures/corpus-manifest.json:1668`, `generation-diagnostics.json:7898`, and `.skilled/skills/sk-doc/scripts/tests/code-folder/baseline-readme-verdicts.json:4047` — `git grep -l '\.skilled/skills/cli-jev/' -- . ':!specs' ':!**/changelog/**' ':!**/benchmark/reports/**'`. Build evidence §2 row 5 flags it OPEN (three rebuildable now, the sk-doc fixture waits on staging).
+- P2 `.skilled/skills/cli-classifier/hub-router.json:10` + `.../008-cli-classifier/lib/router.cjs:96-115` — a both-backend prompt by dispatch phrases resolves one-sided: `--prompt "use jev and deem to score this"` returns `route/single/cli-deem` (the gap-2 detector reads "use deem" and "deem score", 8 vs 4), dropping the Jev mention. orderedBundle keys on alias phrases only, so it is within the letter.
+- P2 `.../009-parent-hub-rollout/004-cli-external-orchestration/fixtures/canary-cases.v1.json:201-214` — `jev-transport-single` still expects `route/cli-jev`; that hub's policy now defers "use jev choice to pick a queue" (rebuilt in memory). Inert: no consumer reads `expectedModes`.
+- P2 `.skilled/skills/system-spec-kit/feature-catalog/governance/feature-flag-governance.md:56` and `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md:34` — hub-set prose lists 5 hubs, omitting cli-classifier (and sk-design, which the code lists). Pre-existing, not worsened.
+- P2 `.skilled/bin/tests/compiled-route-manifest.test.cjs:1127` — asserts `DEFAULT_ON_HUBS.size === 6`; cohort is 7, so `keeps fixed routing maps unchanged…` fails. Pre-existing (in `baseline-raw/manifest-test.failnames`), unchanged.
+
+Extra prompts: "use jev and deem to score this" → single cli-deem; "check this jev judgment against the deem judgment" → orderedBundle [cli-jev, cli-deem]; "what is the weather in Paris tomorrow" → defer; "ask deem for a probability that this incident is urgent" → single cli-deem. Replay: 17/17 match on action, selectionKind, packetId, exit (0 mismatch).
+
+**Requirements**
+
+- REQ-001 met — parent-skill-check exit 0, 2 modes, 0 warnings.
+- REQ-002 met — baseline 17 rows; scratchpad copy byte-equal to the phase copy.
+- REQ-003 met — 70 R + 11 D; D rows exactly the named merges; `find .skilled/skills/cli-jev` prints nothing (11 index rows until staging).
+- REQ-004 met — cli-jev over cli-usage, transport/metadata; gate exit 0.
+- REQ-005 met — each of the seven lists names cli-classifier once, cli-jev nowhere; twins cmp equal.
+- REQ-006 met — replay 17/17; orderedBundle reachable end-to-end.
+- REQ-007 not checked — no commit exists yet.
+- REQ-008 not met — see P1.
+- REQ-009 met — tieBreak lists both modes; orderedBundle produced.
+- REQ-010 met — changelogs R100, untouched elsewhere.
+- REQ-011 not met in part — same residual; twin compiled/activation rebuild byte-identical in memory; leaf-manifest, skill-graph, mirror and hermes gates pass.
+- REQ-012 met — status/guard/admission/sync exit 0; 7 hubs; freshness `fresh`, fingerprint `aa840b21…`; twins byte-equal.
+- REQ-013 met — CJ-001/CJ-002 R052, prompts unchanged, rewritten to mode cli-jev.
+
+VERDICT: FAIL

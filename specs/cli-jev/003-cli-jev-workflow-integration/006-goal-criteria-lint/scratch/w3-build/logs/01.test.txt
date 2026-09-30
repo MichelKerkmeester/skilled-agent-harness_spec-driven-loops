@@ -1,0 +1,10 @@
+✔ the ported parser counts criteria the way check-goal does (4.473209ms)
+✔ each criterion carries its file line and a 12-hex text hash (0.346875ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 82.371834

@@ -1,0 +1,8 @@
+PACKAGE sk-doc: WARN tier=warn violations=6
+WARN: 6 violation(s) (0 fail, 6 warn):
+  - [warn] [missing_prose_path] sk-doc/compiled-routing-and-legacy-fallback.md:28: prose path does not exist on disk: .skilled/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs
+  - [warn] [missing_prose_path] sk-doc/compiled-routing-and-legacy-fallback.md:28: prose path does not exist on disk: .skilled/bin/lib/compiled-routing/010-live-activation/activation/sk-doc/manifest.json
+  - [warn] [root_leaf_description_mismatch] sk-doc/packet-authored-registry-routing.md: normalized leaf description does not match root H3 'Packet-Authored, Registry-Projected Routing'
+  - [warn] [root_leaf_description_mismatch] sk-doc/compiled-routing-and-legacy-fallback.md: normalized leaf description does not match root H3 'Compiled Routing And Legacy Fallback'
+  - [warn] [missing_source_path] sk-doc/compiled-routing-and-legacy-fallback.md: SOURCE FILES path does not exist on disk: .skilled/bin/lib/compiled-routing/011-runtime-engine/lib/resolve.cjs
+  - [warn] [missing_source_path] sk-doc/compiled-routing-and-legacy-fallback.md: SOURCE FILES path does not exist on disk: .skilled/bin/lib/compiled-routing/010-live-activation/activation/sk-doc/manifest.json

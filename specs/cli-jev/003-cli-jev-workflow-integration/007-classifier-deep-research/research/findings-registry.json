@@ -1,0 +1,954 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "glm",
+    "grok",
+    "mimo",
+    "swe"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "glm": {
+      "kind": "cli-pi",
+      "model": "glm-5.3-flash",
+      "reasoningEffort": "max"
+    },
+    "grok": {
+      "kind": "cli-cursor",
+      "model": "grok-4.7-xhigh-fast",
+      "reasoningEffort": null
+    },
+    "mimo": {
+      "kind": "cli-pi",
+      "model": "mimo-v2.6-pro",
+      "reasoningEffort": "high"
+    },
+    "swe": {
+      "kind": "cli-devin",
+      "model": "swe-2-max",
+      "reasoningEffort": null
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q-amendments",
+      "text": "What exact two-backend amendments do 002, 003, 005 and 006 need?",
+      "status": "resolved",
+      "resolvedAtIteration": 10,
+      "answer": "Line map (002:3,49,86,92; 003:48,54,97,124-128; 005:91,105-109; 006:3,43,53,86,102-108), one replacement gate text, keep-rule deltas, six-step build order, and 006 takes no classifier.",
+      "evidence": [
+        "002/003/005/006 spec.md lines opened in iteration 10"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q-best-residue",
+      "text": "Which validator residue builds first as a slice?",
+      "status": "resolved",
+      "resolvedAtIteration": 6,
+      "answer": "Citation drift: 456 file:line citations, each a binary 'does line N support the claim' check in a sibling advisory. Deem preferred (local prose), label ~30 pairs, never a gate.",
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "q-build-order",
+      "text": "What is the backend-neutral build order?",
+      "status": "resolved",
+      "resolvedAtIteration": 9,
+      "answer": "Step 0 spec text; step 1 six parallel zero-call artifacts (~1,500 LOC); step 2 cli-deem standalone leaf (~440); step 3 six gated arms in gate-cheapness order; step 4 extraction wave. Total ~2,600-3,100 LOC + 120 doc lines.",
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "q-cli-deem-slice",
+      "text": "What is the smallest cli-deem slice — wrapper, translator or client?",
+      "status": "resolved",
+      "resolvedAtIteration": 1,
+      "answer": "A thin stdlib client to POST /v1/systemone on the run path with an envelope translator to the Jev-shaped result (~180 LOC + fixtures). Wrapper rejected (custom-provider fails request build for choice/score and auth status lies); transparent provider rejected (field names asymmetric). Model id must be pinned to deem-0.8-v1.",
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "q-custom-provider",
+      "text": "Does the custom provider make cli-deem a thin wrapper?",
+      "status": "resolved",
+      "resolvedAtIteration": 6,
+      "answer": "No. Typed subcommands fail at request build (criteria vs options/levels); audit status would report a dead server; the bearer is mandatory and ignored. Separate client verdict.",
+      "evidence": [
+        "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/__init__.py:90-108,253-302,364-393,419-421"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q-deadlines",
+      "text": "Which reduction seams have headroom for a local call?",
+      "status": "resolved",
+      "resolvedAtIteration": 4,
+      "answer": "Advisor 2,200 ms internal under a 2,500 ms child kill; PreCompact 1,800 ms internal; routing CLIs no clock; PostToolUse 5-10 s without an output-rewrite contract. Only a shell-out spawns; a Node-native fetch costs connect + warm 60-80 ms.",
+      "evidence": [
+        ".claude/settings.json:103-116,193-210,215-222",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/shared.ts:11-16"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q-deem-availability",
+      "text": "What exactly does 'Deem is available' mean?",
+      "status": "resolved",
+      "resolvedAtIteration": 1,
+      "answer": "GET /health within the probe budget; JSON parses; status ok; backend is torch or ensemble:* without stub; model == deem-0.8-v1. Four skip lines. Loading and update restarts read as not reachable.",
+      "evidence": [
+        "context/deem-main/serve/deem_server.py:772-777,845-846,979-984",
+        "~/.local/share/deem/bin/deem-ctl:59-66",
+        "context/deem-local.md:26"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q-failure-kill",
+      "text": "What prints and persists per backend failure, and what kills each survivor?",
+      "status": "resolved",
+      "resolvedAtIteration": 9,
+      "answer": "One combined table; no path returns a default; the no-behavior-change fixture proves byte-identical output and zero writes; four printed kill lines plus Deem's own; no averaging or failover on disagreement.",
+      "evidence": [
+        "iteration 9 F1-F5",
+        "BASE2 section 11"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q-first-pr",
+      "text": "What is the first PR-sized slice?",
+      "status": "resolved",
+      "resolvedAtIteration": 10,
+      "answer": "score-jev-tiebreak.mjs census slice only: ~180 LOC + ~120 vitest + ~20 spec lines; --jev answered by printed refusal; three pre-registered exits; rollback = git revert (REQ-006 read-only).",
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "q-flip-set",
+      "text": "Which flips survive contracts and callers?",
+      "status": "resolved",
+      "resolvedAtIteration": 5,
+      "answer": "Exactly one conditional flip: BASE1 row 1 under the Node-native path, gated by R1 keep and a measured connect+call p95 with the advisor's compiled-route work in place; rows 5/38/40 and the grok-04 set do not flip.",
+      "evidence": [
+        "iterations 4 F6-F7",
+        "iterations 5 F8",
+        "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/spec.md:92"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q-hub-blast",
+      "text": "What is the counted blast radius of moving cli-jev under cli-classifier?",
+      "status": "resolved",
+      "resolvedAtIteration": 7,
+      "answer": "92 files / 927 occurrences; nine surface classes; the seven-hub guard list, tri-state flag list and dispatch shape table are literals; an alias cannot carry a metadata hub; five-step skeleton-first plan.",
+      "evidence": [
+        ".skilled/bin/compiled-route-guard.cjs:40-50",
+        ".skilled/skills/system-skill-advisor/runtime/lib/compiled-routing-flag.ts:19,37",
+        ".skilled/hooks/dispatch/lib/dispatch-audit.mjs:46"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q-hub-shape",
+      "text": "What does cli-classifier look like as files?",
+      "status": "resolved",
+      "resolvedAtIteration": 7,
+      "answer": "A normal parent hub: SKILL.md/README.md/ROUTER.md/description.json/graph-metadata.json/mode-registry.json/hub-router.json/leaf-manifest.json + cli-usage and cli-deem modes. No third tier, no global switch. Move = 53 files / 39 refs / 12 generated surfaces, atomic.",
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "q-lifecycle",
+      "text": "What does deem-ctl already cover and what are its gaps?",
+      "status": "resolved",
+      "resolvedAtIteration": 2,
+      "answer": "Full start/stop/status/update/rollback with exit 0-4 and prune-to-two checkpoints; gaps: no model pin in its health rule, no smoke on a stopped-server update, no wait-for-exit after kill.",
+      "evidence": [
+        "~/.local/share/deem/bin/deem-ctl:59-66,105-121,123-128,160-183"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q-live-seam",
+      "text": "Does a live Deem seam need a warm server, and does precompute help?",
+      "status": "resolved",
+      "resolvedAtIteration": 8,
+      "answer": "Warm or skip; the host session.compact precompute contract exists with a still-leads stale rule, but no repo dispatch without a plugin; a background pass is the only live compaction home.",
+      "evidence": [
+        "context/external repo's/jev-cli-main/plugin/hooks/types/claude-code.d.ts:3310-3325,7196-7218,7258-7287",
+        ".claude/settings.json:158-178,215-222"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q-probe-shared",
+      "text": "Two-backend probe: shared or duplicated?",
+      "status": "resolved",
+      "resolvedAtIteration": 8,
+      "answer": "Contract now, file at the third BUILT caller (row 27 applied: 0 built, 2 designed-certain, 3 gated). Home: .skilled/bin/backend-probe.cjs. Per-process memo only — cross-run cache is wrong because deem-ctl updates swap weights.",
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "q-prompt-design-routers",
+      "text": "Where do sk-prompt and sk-design routers admit a classifier?",
+      "status": "resolved",
+      "resolvedAtIteration": 5,
+      "answer": "Their INTENT_MODEL scorers are embedded pseudocode executed by the main model; a deterministic port precedes any classifier. The only live-shaped arm is on the zero-score fallback class, behind per-feature switches and an ambiguity corpus.",
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "q-reduction-seam",
+      "text": "What is the top counted context-reduction seam?",
+      "status": "resolved",
+      "resolvedAtIteration": 4,
+      "answer": "The 005 offline compaction census (226 boundaries, ~104 s p50 each). Census first, stop line printed, deletion arm as amendment only if it clears; a live PreCompact classifier is refused (1.8 s budget, deadline-driven).",
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "q-routing-seam",
+      "text": "Can a classifier cut work in the resource-routing layer?",
+      "status": "resolved",
+      "resolvedAtIteration": 3,
+      "answer": "Bounded only: compiled routing is authoritative behind flag+manifest+policy-hash gates and cli-jev's ROUTER.md is stage1-only. The slice is an offline leaf-route replay runner over existing canary corpora, plus a bounded tie-break arm — never a replacement.",
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "q-validator-residue",
+      "text": "Which validator checks leave a judgment residue?",
+      "status": "resolved",
+      "resolvedAtIteration": 3,
+      "answer": "All 40 rules mapped; six approximate meaning with patterns; AC_COVERAGE never verifies a cited line exists; check-goal.cjs's four checks leave binding scope, hollow prose, measurability and kept-content residues.",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:3-411",
+        ".skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:236-358"
+      ],
+      "_lineages": [
+        "deepseek",
+        "swe"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-004",
+      "severity": "P1",
+      "label": "The Python jev-cli 0.6.2's typed choice/score subcommands do NOT reach Deem unchanged (criteria vs options/levels; answer-key mismatch); the passthrough run with a Deem-shaped question file does",
+      "iteration": 1,
+      "angle": "glm-01",
+      "question": "A",
+      "evidence": "jev_cli/__init__.py:364-369,381-393; deem_server.py:535-548,596-622",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter002-004",
+      "severity": "P1",
+      "label": "002 amendment, one word: :92 'Jev call' -> 'Jev or Deem call' makes the 0.8B census-internal scorer legal; 30-60 LOC inside their 330-530 budget; the 24-row ambiguity labels located at routing-accuracy/ambiguity-prompts.jsonl",
+      "iteration": 2,
+      "angle": "glm-02",
+      "question": "A",
+      "evidence": "002.../spec.md:85-115 (Files-to-Change); it.1 f-iter001-001",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter002-005",
+      "severity": "P2",
+      "label": "Correction of it.1: /health's model id is update-invariant, so it is NOT provenance alone (readlink + status pair); the calibration-wait gates on a vendor artifact that does not exist for this checkpoint — the measured flip rate subsumes calibration",
+      "iteration": 2,
+      "angle": "glm-02",
+      "question": "A",
+      "evidence": "deem-ctl:97-98; deem_server.py:772-777; deem-local.md:27; deepseek-002 F2,F9 (quoted); grok-007:36,56",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter001-001",
+      "severity": "P1",
+      "label": "Printed stop line: deem-0.8-v1 agreement on the 002 census deck — <0.68 (or <5 movable rows) stops all Deem work; >=0.68 with flip<=0.10 earns exactly one feature (N-glm-01-1)",
+      "iteration": 1,
+      "angle": "glm-01",
+      "question": "A,H",
+      "evidence": "004-deep-research-expansion/research/research.md:47,59-80; context/deem-local.md:27,52-53",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter001-002",
+      "severity": "P1",
+      "label": "Provenance gap: the 6-hourly launchd update switches models/current then gates on ONE synthetic smoke choice, while served answers carry no model/commit; corrected in it.2: /health's model id is update-invariant, so provenance = the models/current readlink + the deem-ctl status commit pair",
+      "iteration": 1,
+      "angle": "glm-01",
+      "question": "A,H",
+      "evidence": "deem-ctl:79-81,97-98,163,167,169-172; plist:7-15; deem_server.py:596-622,628-642,772-777",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter005-002",
+      "severity": "P1",
+      "label": "The wrongly-reopenable set: rows 44/47/49 (BASE2:794-799, read this iteration) — the prompt-CACHE (44), the missing->0 convention (47), the refuse-regex (49) each survive the 60ms local backend; the 60ms buys the egress/charge halves only",
+      "iteration": 5,
+      "angle": "glm-05",
+      "question": "B",
+      "evidence": "BASE2:794-799; grok-003:36-38 (theirs); mimo-001 res:15-16 (theirs); it.3 F2",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter001-003",
+      "severity": "P2",
+      "label": "Speed alone flips nothing: BASE1 rows 1 and 5 stay Later because their drop reasons were coverage (0-of-8) and contract, not latency",
+      "iteration": 1,
+      "angle": "glm-01",
+      "question": "B",
+      "evidence": "001-deep-research/research/research.md:572,576; 001-deep-research/context/repo-rules-digest.md:54-57,72-74",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter003-005",
+      "severity": "P2",
+      "label": "Rows 44/47/49 do not flip under the local model: 44 = cache-invalidation + persisted-prune; 47 = a missing->0 default bug; 49 = a refuse-list — the 60ms buys the egress/charge halves only",
+      "iteration": 3,
+      "angle": "glm-03",
+      "question": "B,C",
+      "evidence": "grok-003:36-38 (theirs, quoted)",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter003-003",
+      "severity": "P1",
+      "label": "Two it.2-cited counts retired by the recount: re-reads 30.1% main / 16.8% subagent (was 8.5%); ROUTER.md read 369x/40d (was 0); additionalContext 14.4MB/40d (361KB/day), hook_success 546.2MB stored",
+      "iteration": 3,
+      "angle": "glm-03",
+      "question": "C",
+      "evidence": "mimo-002:19-38,158 (r2:21,44-46,57,119,65,128,60,123,142-144)",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter003-001",
+      "severity": "P1",
+      "label": "The question-C metric's unit is wrong question-wide: fresh input at p50 2 tokens/turn makes the prompt cache the cost structure — every C-claim needs an attention + cache-creation + cache-bust accounting",
+      "iteration": 3,
+      "angle": "glm-03",
+      "question": "C,H",
+      "evidence": "mimo-001 res:15-16 (theirs); grok-003:36 (theirs); it.2's hop-arithmetic precedent",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter003-002",
+      "severity": "P1",
+      "label": "Stage-2 deterministic replay: the machine blocks already claim to be the replay source (sk-doc/ROUTER.md:145-152) and the compiled stage-1 machinery exists; extending one stage removes the model's 369/40d prose re-read+re-score duty — the 0.8B earns nothing on its biggest counted seam",
+      "iteration": 3,
+      "angle": "glm-03",
+      "question": "C,H",
+      "evidence": "swe-003's trace (compiled-route.cjs:87-107, resolve.cjs:59-125); mimo-002 recount (ROUTER.md 369 reads); the canary fixtures (theirs)",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter003-004",
+      "severity": "P2",
+      "label": "The four-part question-C threshold: >=1% of p50 carry, >=1 counted firing/week, cache-neutral-or-better, 0 new advisor identities/layers — MCP-Deem and the READ-time relevance judge fail it; the 005 deletion arm and the stage-2 replay pass by construction",
+      "iteration": 3,
+      "angle": "glm-03",
+      "question": "C,H",
+      "evidence": "it.3 F4; the F1 checklist; prevent-overengineering.md:6; digest Q5/Q6",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter003-006",
+      "severity": "P2",
+      "label": "The model's question-C role is NONE, yet: it loses every proposed seam to determinism that exists or to counts that don't; the survivor is the 005 deletion arm, where the model is not; its eventual role belongs to question D's printed precision",
+      "iteration": 3,
+      "angle": "glm-03",
+      "question": "C,H",
+      "evidence": "the F1 table; swe-004's convergence (theirs); deepseek-008's printed kill criteria (theirs)",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "N-mimo-01-baseline",
+      "finding": "Carried context per turn p50 384,219 / p95 887,519 cache-read tokens (66,498 unique messages)",
+      "iteration": 1,
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "f-iter004-002",
+      "severity": "P1",
+      "label": "The D-residue flagger is the ONLY D/E/F proposal measurable-before-building: the gold already exists (the review tables' severity+dimension labels); precision@0.8 on the 62/week stream = ~50 true/12 false; the 0.8B is a candidate scorer, ONE replay, not one phase — the third printed-number pattern instance",
+      "iteration": 4,
+      "angle": "glm-04",
+      "question": "D,H",
+      "evidence": "mimo-002:95-113 (theirs); the it.1-2 gates",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter004-001",
+      "severity": "P1",
+      "label": "The 59,661-byte E-prize (36,580+23,081B, their wc -c) is collected by a DOCS line — read only the SELECTED framework's section — because the pick is the printed matrix (SKILL.md:309-315), deterministic today; the 7-vs-5 label-set mismatch is a docs bug",
+      "iteration": 4,
+      "angle": "glm-04",
+      "question": "E",
+      "evidence": "grok-005:18-34 (theirs, quoted); my own: .skilled/skills/sk-prompt/SKILL.md:3,38",
+      "confidence": "confirmed (SKILL.md:3,38; the 36,580/23,081 + registry-5 = theirs, quoted-not-opened, marked)",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter004-003",
+      "severity": "P2",
+      "label": "E-score (CLEAR) and F-routing: 0 gold, 0 archived runs, hope-first inversions of the checklist; F's hub-router already IS the closed set; the 35+ playbook scenarios = the later replay-gold, if anyone labels them",
+      "iteration": 4,
+      "angle": "glm-04",
+      "question": "E,F",
+      "evidence": "grok-005:36-39; grok-006:20-22 (benchmark README:3,26-27)",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter004-004",
+      "severity": "P2",
+      "label": "F's rubric scoring = UNMEASURED (no run, no archived Lane-C; the mode baselines do not measure hub reach) — recorded as such per the W3 rule; alignment = hvr_scan's; voice/placeholders = under-threshold (9/8 per week)",
+      "iteration": 4,
+      "angle": "glm-04",
+      "question": "F",
+      "evidence": "grok-006:20-29; mimo-002:95-111",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter002-001",
+      "severity": "P1",
+      "label": "The least cli-classifier hub: 6 hub files + 2 member skills, every row pinned to its enforcing check; the true marginal cost is the vocabulary MERGE into one graph-metadata.json",
+      "iteration": 2,
+      "angle": "glm-02",
+      "question": "G",
+      "evidence": "validate_skill_package.py:210-232,255-290; parent-skill-check.cjs:271-274,14-16,71,82; skill-hub-routing.md:26-42",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter002-006",
+      "severity": "P2",
+      "label": "Wrapper convictions: swe-001's N-swe-01-2 dies as a wrapper (Jev's key ceremony for an authless server); grok-07's route (a) dies of fork-divergence + the 60s timeout; route (c) makes the ALL-8 key question vanish",
+      "iteration": 2,
+      "angle": "glm-02",
+      "question": "G",
+      "evidence": "swe-001:58-66; grok-007:44,56; deem_server.py:809-811",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter002-002",
+      "severity": "P1",
+      "label": "The four Planned phases mention the hub ZERO times (002/003/005/006 = 0/0/0/0) and 002's own Out of Scope already answers the question: the census is its only caller, --jev its own switch, no shared helper",
+      "iteration": 2,
+      "angle": "glm-02",
+      "question": "G,H",
+      "evidence": "002.../spec.md:92,98; rg -c over the four phases",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter002-003",
+      "severity": "P1",
+      "label": "D2.1 amendment: the hub is a ledger clause, not a build phase — mint only when 002's census printed AND exactly one more live caller exists; kill when either member has 0 callers (a 1-mode hub is air)",
+      "iteration": 2,
+      "angle": "glm-02",
+      "question": "G,H,A",
+      "evidence": "goal.md:50; 002:98; hub-router.json:8-11; counted: 638/83+30+2,372/467 references, +10-12KB, +1 hop",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter005-003",
+      "severity": "P1",
+      "label": "The smallest remaining program: 002 + one word + the 30-60LOC scorer; 005's deletion arm; the D-residue labeled replay (+ swe-006's citation-drift as the D-neighbor); two DOCS lines; two amendment paragraphs — the 0.8B appears only as a twice-gated candidate scorer",
+      "iteration": 5,
+      "angle": "glm-05",
+      "question": "H",
+      "evidence": "it.5 F3; it.2 f-iter002-004; swe-004 (theirs); it.4 f-iter004-002; swe-006 (theirs)",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter005-004",
+      "severity": "P1",
+      "label": "The kill: agreement<0.68 (or n<5) kills the 0.8B everywhere; the kill-BEFORE-the-kill: the 002/005 censuses can kill the model-halves without the agreement number ever being consulted; any weights change re-qualifies (D3.2); the flagger's precision<0.8 prints, it dies",
+      "iteration": 5,
+      "angle": "glm-05",
+      "question": "H",
+      "evidence": "it.5 F4; it.1 f-iter001-001; the D3.2 amendment; it.4",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter005-005",
+      "severity": "P2",
+      "label": "Decline FIRST: the cli-classifier hub as a build phase; then the MCP-Deem exposure; then any READ-time or tool-output rewrite until row-38's contract + the one-bucket count",
+      "iteration": 5,
+      "angle": "glm-05",
+      "question": "H",
+      "evidence": "it.5 F5; it.2 F1-F3; grok-003:26-30; BASE1 row 38",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "f-iter005-001",
+      "severity": "P1",
+      "label": "The #73-88 round-3 drop list: sixteen rows (six joins), each with reason+checklist+evidence+lineage — the refinement's deliverable, verbatim in iterations/iteration-005.md F1",
+      "iteration": 5,
+      "angle": "glm-05",
+      "question": "H,B",
+      "evidence": "it.5 F1; research-angles.md:900",
+      "confidence": "confirmed",
+      "_lineages": [
+        "glm"
+      ]
+    },
+    {
+      "id": "N-mimo-09-order",
+      "finding": "Measurement-first order: free numbers at 0 operator minutes, first judged feature at 80 min, rest 3.5-5 h",
+      "iteration": 9,
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "N-mimo-07-nosurface",
+      "finding": "No surface answers 'which backend and commit did feature X use'; /doctor:classifier proposed",
+      "iteration": 7,
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "N-mimo-10-survivor-kills",
+      "finding": "One printed kill line per survivor; half evaluable today with zero calls",
+      "iteration": 10,
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "N-mimo-03-deciding-line",
+      "finding": "Pre-registered deciding line: Deem non-inferior iff gap <= 10 points AND flip <= 0.10, else INCONCLUSIVE",
+      "iteration": 3,
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "N-mimo-04-reread-split",
+      "finding": "Re-reads split to 84 remainder waste (1,497 partial, 1,076 edit-preceding, 292 post-compaction)",
+      "iteration": 4,
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "N-mimo-06-empty-benchmark",
+      "finding": "sk-design benchmark tree empty; 53 scenarios counted; zero-call replay is build-now",
+      "iteration": 6,
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "N-mimo-04-buckets",
+      "finding": "Skill/reference loads 36.0 MB / 8,413 loads per 40 days = 9.5% of tool-result bytes",
+      "iteration": 4,
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "N-mimo-08-strict-zero",
+      "finding": "Strict post-pass same-folder edits: 0 of 2,435 passing validator invocations",
+      "iteration": 8,
+      "_lineages": [
+        "mimo"
+      ]
+    },
+    {
+      "id": "f-deepseek-001-cors-no-auth",
+      "text": "No auth; CORS * on every answer; any local process or open page can answer the probe.",
+      "addedAtIteration": 1,
+      "sources": [
+        "deem_server.py:804-811,837-839"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-deepseek-001-health-shape",
+      "text": "Deem /health is a pure dict read; stub passes status alone; only backend+model prove the served weights.",
+      "addedAtIteration": 1,
+      "sources": [
+        "deem_server.py:137-154,772-777,845-846,979-984"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-swe-001-wire",
+      "text": "Deem and Jev wire shapes are asymmetric; the thin client + envelope translator is the smallest honest path; model pin required (deem-0.8-v1).",
+      "addedAtIteration": 1,
+      "sources": [
+        "deem_server.py handlers",
+        "jev_cli/__init__.py",
+        "deem-ctl",
+        "cli-usage SKILL.md"
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "f-deepseek-010-amendment-map",
+      "text": "Line-level amendment map and one replacement gate text for all four Planned phases; 006 takes no classifier.",
+      "addedAtIteration": 10,
+      "sources": [
+        "002/003/005/006 spec.md lines"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-swe-010-firstpr",
+      "text": "First PR = census slice only; stub-silence test is the cross-backend audit template; movable prices both backends; revert-clean.",
+      "addedAtIteration": 10,
+      "sources": [
+        "002 REQ-001/004/005/006",
+        "routing-accuracy dir"
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "f-deepseek-002-commit-pair",
+      "text": "The served commit pair lives only in deem-ctl status; /health has no commit; records must carry the pair.",
+      "addedAtIteration": 2,
+      "sources": [
+        "deem-ctl:97-99,195-202"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-deepseek-002-smoke-gap",
+      "text": "A stopped-server update switches the model without a smoke decision; start validates liveness only.",
+      "addedAtIteration": 2,
+      "sources": [
+        "~/.local/share/deem/bin/deem-ctl:105-121,160-173"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-swe-002-validators",
+      "text": "16 checks across six validator tools + five naming scripts; residues are silent fallback, frontmatter content, severity asymmetry, DQI hollowness, citation drift.",
+      "addedAtIteration": 2,
+      "sources": [
+        "sk-doc validator tools",
+        "naming scripts"
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "f-deepseek-003-ac-coverage-gap",
+      "text": "AC_COVERAGE counts file:line presence, never checks the citation exists; a no-model fix is available.",
+      "addedAtIteration": 3,
+      "sources": [
+        "validation-rules.md:110-135"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-swe-003-compiled-routing",
+      "text": "Compiled serving is gated by flag + servingAuthority + exact policyHash/generation; cli-jev ROUTER.md is stage1-only; RESOURCE_MAP selects resources after mode selection.",
+      "addedAtIteration": 3,
+      "sources": [
+        "resolve.cjs",
+        "compiled-route.cjs",
+        "ROUTER.md files"
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "f-deepseek-004-budgets",
+      "text": "Advisor 3000/2500/2200 with {} fail-open; PreCompact 1800 internal with skip-on-exhaustion; routing CLIs have no clock.",
+      "addedAtIteration": 4,
+      "sources": [
+        "settings.json:103-116,215-222; shared.ts:11-16; compact-inject.ts:237-239,440-463"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-swe-004-census-first",
+      "text": "005's census prints the stop line before any arm; live PreCompact classifier refused on the 1.8 s budget; vendored compact.ts supplies the two-noul-per-call arm blueprint.",
+      "addedAtIteration": 4,
+      "sources": [
+        "005 spec.md",
+        "vendored compact.ts",
+        "PreCompact hook"
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "f-deepseek-005-advisor-headroom-spent",
+      "text": "The advisor already shells out to compiled-route.cjs inside its own budget; any added call competes with it.",
+      "addedAtIteration": 5,
+      "sources": [
+        "advisor-recommend.md:33,47"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-swe-005-routers",
+      "text": "sk-prompt/sk-design routers are embedded INTENT_MODEL pseudocode scored by the main model; deterministic port first; zero-score fallback is the only live-shaped arm.",
+      "addedAtIteration": 5,
+      "sources": [
+        "sk-prompt/sk-design SKILL.md",
+        "scenario corpora"
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "f-deepseek-006-auth-trap",
+      "text": "auth status --provider custom exits 0 with a key and no server; it must never be the Deem check.",
+      "addedAtIteration": 6,
+      "sources": [
+        "jev_cli/__init__.py:419-421"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-deepseek-006-no-scheme-guard",
+      "text": "No guard refuses loopback/plain-HTTP endpoints; the recorded matrix sent http://127.0.0.1:9 with a sentinel key.",
+      "addedAtIteration": 6,
+      "sources": [
+        "dispatch-rule-checks.mjs:280-283",
+        "probe-matrix.txt:148-153"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-swe-006-citedrift",
+      "text": "456 file:line citations, binary per-pair judgment, advisory sibling script, Deem-preferred, byte-identical fallback with neither backend.",
+      "addedAtIteration": 6,
+      "sources": [
+        "rg count over .skilled",
+        "validator surface"
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "f-deepseek-007-blast-radius",
+      "text": "Hub move touches 92 files / 927 refs; compiled-routing and dispatch literals are pinned; an alias cannot carry a metadata hub.",
+      "addedAtIteration": 7,
+      "sources": [
+        "compiled-route-guard.cjs:40-50",
+        "dispatch-audit.mjs:46",
+        "parent-skills-nested-packets.md:228-231"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-swe-007-hub",
+      "text": "cli-classifier is a normal two-mode parent hub; the move is a counted 53-file atomic job; hub root cannot host helpers (OVERLAY_FILES={}).",
+      "addedAtIteration": 7,
+      "sources": [
+        "cli-jev tree",
+        "skill-root-metadata-contract.cjs",
+        "leaf-manifest"
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "f-deepseek-008-precompute-contract",
+      "text": "Host precompute keeps its result only if the conversation still leads — the staleness rule a background pass mirrors.",
+      "addedAtIteration": 8,
+      "sources": [
+        "claude-code.d.ts:7278-7287"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-swe-008-probe",
+      "text": "Probe contract: independent parallel probes (Deem allowlist+pin; Jev REQ-002), 2 s/500 ms budgets, per-process memo, aligned skip lines; extraction at third built caller into .skilled/bin/.",
+      "addedAtIteration": 8,
+      "sources": [
+        "deepseek-01",
+        "002 REQ-002",
+        "006 REQ-012",
+        "BASE1 row 27"
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    },
+    {
+      "id": "f-deepseek-009-no-change-fixture",
+      "text": "The proof that neither backend changes today's behavior is a dead-backend fixture asserting byte-identical output and zero writes.",
+      "addedAtIteration": 9,
+      "sources": [
+        "iteration 9 F2"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "f-swe-009-order",
+      "text": "Five-step dependency order; cli-deem leaf precedes the hub (contests deepseek-10); 'deem arm stopped: server gone' added; ~2,600-3,100 LOC total.",
+      "addedAtIteration": 9,
+      "sources": [
+        "BASE2 §9/§13",
+        "sibling iterations 9-10",
+        "own 1-8"
+      ],
+      "_lineages": [
+        "swe"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 19,
+    "keyFindings": 57,
+    "sourceFindings": 65,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  }
+}

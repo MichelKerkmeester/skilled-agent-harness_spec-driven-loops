@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/sk-doc/sk-create-skill/changelog/v1.4.0.0.md
+Document type: changelog
+Total issues: 0

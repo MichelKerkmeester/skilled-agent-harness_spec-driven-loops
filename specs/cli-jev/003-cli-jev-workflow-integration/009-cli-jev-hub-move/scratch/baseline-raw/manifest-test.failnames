@@ -1,0 +1,16 @@
+✖ a concurrent external manifest created during publication survives finalize
+✖ aborts at staging-verify failure without touching the serving root
+✖ canonical compiled-route manifest
+✖ closure fingerprints reject code-byte drift in the retained rollback
+✖ failed finalize and revert verification retain both recoverable roots
+✖ failing tests:
+✖ finalize and revert cleanup resume after individual removal failures
+✖ keeps fixed routing maps unchanged and reports only authorized pre-publication drift
+✖ preserves the external manifest across the sync capture/restore round trip
+✖ publishes the current authored topology atomically into an isolated runtime
+✖ rejects arbitrary, symlinked, and stale rollback paths without mutation
+✖ rename failures retain a serving root and recoverable publication state
+✖ restores the exact prior closure when post-publish verification fails
+✖ revert swaps the retained rollback back into the serving root
+✖ terminal cleanup resumes lock failure without deleting newer publication state
+✖ three-way reconciliation preserves a serving-only external update

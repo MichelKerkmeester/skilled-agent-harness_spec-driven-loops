@@ -1,0 +1,8 @@
+#!/bin/sh
+# Logging stand-in for jev: records every invocation and answers nothing real.
+printf 'jev %s\n' "$*" >> "$(dirname "$0")/calls.log"
+case "$1" in
+  --version) echo "jev 0.6.2" ;;
+  auth) [ "$2" = status ] && exit 3; echo '{"model":"stub"}' ;;
+  *) exit 1 ;;
+esac

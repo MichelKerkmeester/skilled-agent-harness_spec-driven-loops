@@ -1,0 +1,10 @@
+Everything verified. The row sits exactly after the `score-clarify-default` row as the step names, mirrors the MODEL row's `| file | Tests ... on stub binaries. |` shape, and each claim maps to real test cases in `leaf-route-replay.test.cjs` (keyword scoring cases 1-11, `countRouterReads` 12-13 and 28, `replayVerdict` 14-16, `no headroom` 17-18, stub `jev`/`deem` gates 21-25) grounded in design section 2 and the script's own code.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: one line per file: `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md` (+1/-0)
+EDITS: one line per step: `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md`:32 inserted one table row `leaf-route-replay.test.cjs` after the `score-clarify-default.test.cjs` row, matching the MODEL row shape, rest byte-identical
+CHECKS: one line per check:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md` -> `✅ VALID: ... Total issues: 0` (exit 0)
+- `git diff --stat -- .skilled/skills/sk-doc/sk-create-skill/scripts/tests/README.md` -> `1 file changed, 1 insertion(+)` (exit 0)
+BLOCKED REASON: none

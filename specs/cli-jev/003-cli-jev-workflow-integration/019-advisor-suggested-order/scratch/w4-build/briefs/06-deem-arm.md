@@ -1,0 +1,70 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+=== BEGIN AGENT PERSONA (resolved runtime path: .claude/agents/code.md; focused summary for a one-change brief) ===
+You are @code, a leaf implementer dispatched by an orchestrator (Depth: 1). Never dispatch another agent.
+Scope: edit only the files this brief names. Read each file before editing it and re-read the edited region after.
+Standards: read .skilled/skills/sk-code/SKILL.md and follow the route it resolves for this file type.
+Comment hygiene is a hard block: no spec paths, packet or phase numbers, or REQ/task ids in code comments. Keep the durable why.
+Verification: run only the checks this brief lists. Fail closed: no retry loop, no workaround. Report exact commands, result lines and exit codes.
+Output: end with the HANDBACK block, STATUS DONE or BLOCKED.
+=== END AGENT PERSONA (resolved persona: code) ===
+
+TASK: add runArm, the model column that asks every row three times inside timed children, for the Deem backend, with tests.
+R = .skilled/skills/system-skill-advisor/runtime. Files: S = R/scripts/routing-accuracy/score-suggested-order.mjs and T = R/tests/parity/score-suggested-order.vitest.ts. Read both first, then R/scripts/routing-accuracy/score-jev-tiebreak.mjs lines 822-835 and 1424-1487 (writeCall, readDeemHealth; never edit that file).
+
+In S: add readDeemHealth and writeCall to the score-jev-tiebreak import (alphabetical); add `const DEEM_CHOICE_P50_MS = 241;`. Before main add `export async function runArm(backend, census, gate, ctx)` with a JSDoc block. In this step only backend 'deem' exists; gate is { cmd, model, modelCommit, sourceCommit }; ctx is { out, env, outDir, childFile, timeoutMs, advisorP50 }.
+ 1. rows = census rows whose classifyRow(row, census.isMatch) is not 'ineligible' and whose cluster.length <= DEEM_MAX_KEYS. identity = { model: gate.model, model_commit: gate.modelCommit, source_commit: gate.sourceCommit }.
+ 2. out(`deem: nothing leaves the machine planned_calls=${rows.length * PASSES} est_wall_s=${(rows.length * PASSES * ((ctx.advisorP50 ?? 0) + DEEM_CHOICE_P50_MS) / 1000).toFixed(1)}`); out(`question: ${CHOICE_QUESTION}`).
+ 3. walls = []; answersByRow = {}; timeouts = 0; finished = 0; stop(line) prints line, then `deem: partial_rows=${finished}`, and returns { stopped: line }.
+ 4. For each row: keys = [...row.cluster, 'none']; orders = rotations(keys); answersByRow[row.id] = []. For order 0..2: job = { prompt: row.prompt, health: gate.cmd, call: { cmd: gate.cmd, args: ['choice', '-q', CHOICE_QUESTION, ...optionArgs(orders[order], census.describe, row.cluster)] } }. attempt = 1, answer = null, then loop:
+    child = await runTimedChild(job, { env: ctx.env, childFile: ctx.childFile, timeoutMs: ctx.timeoutMs }); walls.push(child.wallMs); code = child.timedOut ? null : (child.result?.code ?? null); probs = code === 0 ? readProbabilities(child.result.stdout, keys) : { raw: null, full: null }; status = child.timedOut ? 'unmeasured_timeout' (and timeouts += 1) : probs.full ? 'measured' : 'unmeasured'.
+    writeCall(ctx.outDir, { backend, row_id: row.id, order, attempt, child_wall_ms: child.wallMs, advisor_ms: child.result?.advisorMs ?? null, health_ms: child.result?.healthMs ?? null, call_ms: child.result?.callMs ?? null, exit_code: code, probabilities: probs.raw, status, ...identity }).
+    Then, in order: measured -> answer = probs.full, leave the loop; timed out -> leave; code 2 -> return stop('deem arm stopped: usage error'); code 3 -> return stop('deem arm stopped: backend refused'); code 130 -> return stop('deem arm stopped: interrupted'); code 4 on attempt 1 -> h = readDeemHealth(gate.cmd, ctx.env); !h.ok -> return stop('deem arm stopped: server gone'); a model or source commit differing from the gate's -> return stop('deem arm stopped: model commit changed mid-run'); else attempt = 2 and loop once more; anything else -> leave the loop.
+    Push answer (null when not measured) to answersByRow[row.id]. After the three orders, finished += 1.
+ 5. s = judgeColumn(backend, rows, answersByRow, walls, census); out(`deem: calls=${walls.length} timeouts=${timeouts}`); out(columnLine(s)); s.identity = identity; s.line = verdictLineFor(s, `model=${gate.model} model_commit=${gate.modelCommit} source_commit=${gate.sourceCommit}`); out(s.line); return s.
+
+In T: add runArm to the import. Add `function nodeBin(name: string, js: string)`: temp dir holding `${name}.cjs` (the js) and an executable `name` shell wrapper `#!/bin/sh\nexec "${process.execPath}" "$(dirname "$0")/${name}.cjs" "$@"\n` (mode 0o755); returns the dir. Add a `DEEM_STUB` CommonJS string: append `${args.join(' ')}\n` to cli-deem.log next to __dirname; for args[0] 'health' print JSON { ok: true, backend: 'torch', model: 'deem-0.8-v1', model_commit: 'abc1234', source_commit: 'def5678' } and exit 0; exit 3 when process.env.STUB_MODE is 'refuse'; else read stdin, collect each value after '-o' up to its first '=', give key 'g' 0.7 and every other key 0.3 / (key count - 1), delete none when the prompt starts with 'partial', and print JSON { answers: { answer: { choice: 'g', probabilities } } }. Rows: `{ ...rowOf(id, cluster), prompt }`; census { rows, isMatch: strict, describe: (s: string) => `desc ${s}` }; gate { cmd: [join(dir, 'cli-deem')], model: 'deem-0.8-v1', modelCommit: 'abc1234', sourceCommit: 'def5678' }; ctx { out, env: { ...process.env, STUB_MODE }, outDir: a temp dir, childFile: stubChild(), advisorP50: 800 }. Read calls.jsonl lines as JSON. describe('score-suggested-order deem arm') with its:
+ 1. Six m rows, prompts 'p1'..'p6': out has 'deem: nothing leaves the machine planned_calls=18 est_wall_s=18.7' and 'question: Which skill should handle this request?'; the verdict line starts 'verdict deem: stop (margin) K=6 M=6 W=0 L=0 F=0' and ends 'model=deem-0.8-v1 model_commit=abc1234 source_commit=def5678'; calls.jsonl has 18 lines, each with a number child_wall_ms, model_commit 'abc1234', source_commit 'def5678', status 'measured' and probability keys a, g and none; the stub log has 18 'health' lines, its first choice line contains '-o a=desc a -o g=desc g -o none=None of these skills fits the request' and its second '-o g=desc g -o none=None of these skills fits the request -o a=desc a'. Timeout 60_000.
+ 2. Rows p1..p5 plus one with prompt 'partial six': the column line contains 'rows=6 measured=5' and that row's 3 calls have status 'unmeasured' and probabilities without none. Timeout 60_000.
+ 3. Ten m rows, eight f rows and two m rows with prompts 'slow 1' and 'slow 2' (the stub child sleeps past 2,500 ms): the 6 slow calls have status 'unmeasured_timeout' and child_wall_ms 2500, and the verdict line starts 'verdict deem: stop (latency) K=20 M=18 W=8 L=0 F=0 p=0.0039 mrr=1.0000/0.7778 p95_ms=2500'. Timeout 120_000.
+ 4. STUB_MODE 'refuse' with rows p1..p2: runArm returns { stopped: 'deem arm stopped: backend refused' }; out has 'deem: partial_rows=0' and no line starting 'verdict'; calls.jsonl has 1 line with exit_code 3.
+
+VERIFY (repo root): node --check .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs
+  grep -c "export async function runArm" .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs
+Accept when: the same 2 files changed and nothing else; node --check exits 0; grep prints 1.
+
+RUN CONTEXT
+- Repo root, a git worktree. Run every command from here:
+  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration
+- Spec folder (pre-approved, Gate 3 answered): specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order
+- Other workers edit other files in this tree at the same time. Touch only the files this brief names.
+- The orchestrator runs the test suites, spec validation and every git commit after you return.
+- Your sandbox may block test runners that open local sockets (tsx, vitest). Run only the checks listed here; the orchestrator runs the rest.
+
+DON'T
+- Edit, create or delete any file this brief does not name.
+- Run a git command that writes (add, commit, stash, checkout, restore, reset, merge, rebase, push).
+- Install anything (npm/pnpm/pip/brew install, npm ci) or touch node_modules.
+- Open any .env file, print environment variables, or write a key or token into any file.
+- Call jev, the local Deem server (127.0.0.1:8300) or any network service.
+- Put spec paths, packet or phase numbers, or REQ/task ids in code comments.
+- Reformat, reorder or "improve" anything outside the named edit.
+- Ask a question. If a step cannot be done exactly as written, stop and report BLOCKED with the reason.
+
+HANDBACK (print exactly this block, filled in, as your last output)
+STATUS: DONE | BLOCKED
+FILES CHANGED: one line per file: <path> (+<added>/-<removed>)
+EDITS: one line per step: <file>:<line> <what changed>
+CHECKS: one line per check: <command> -> <result line> (exit <n>)
+BLOCKED REASON: <one line, or none>

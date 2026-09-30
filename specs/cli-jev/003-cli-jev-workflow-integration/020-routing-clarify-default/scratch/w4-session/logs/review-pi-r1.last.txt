@@ -1,0 +1,23 @@
+**Findings**
+
+P2 score-clarify-default.cjs:1097,1255,658 - arm picks and `calls.jsonl` key on row id, but canary ids repeat across hubs (`one-turn-clarify` exists in both system-deep-loop and sk-doc fixtures); two same-id rows in one rows file share one row's answers in scoreColumn - input: a rows file with two rows id `one-turn-clarify`.
+P2 score-clarify-default.cjs:136 - `result.decision.action` sits outside the try; an evaluate result without `.decision` aborts the census with a stack instead of counting unparsed - input: an engineFor whose evaluate returns `{}`.
+P2 score-clarify-default.cjs:1563 - `main().then` has no catch; a describeModes throw (a mode packet SKILL.md with no `description:` line) exits 1 with an unhandled-rejection stack, not one error line.
+P2 score-clarify-default.cjs:1202 - a Jev `auth test` spawn past 90 s records `status: "unmeasured"`, not `unmeasured_timeout` (judgeChoice maps timeouts only for choice calls) - state: `jev` hangs on the auth test until JEV_TIMEOUT_MS.
+P2 score-clarify-default.cjs:538 - the shared-description ` [key]` suffix is not REQ-006's "verbatim" (recorded in build-evidence §8); REQ-006 needs its one-line amendment or shared-packet pairs (sk-create-skill / sk-create-skill-parent) are refused.
+
+**Requirements**
+
+REQ-001 met - no spawn anywhere in the census path (:1437-1520); key-pattern grep exits 1; stub-logging covered by gate tests.
+REQ-002 met - `stop: fewer than 30 labeled rows (N labeled)` at :1388, exit 0 before any arm even with switches; foreign label exits 2 naming the row (:1377); both tested.
+REQ-003 met - identity line then `jev 0.6.2` and `auth status` exit 0 (:742-778); `cli-deem health` 2 s (:856); each skip line prints and the tests assert the remaining output is byte-identical.
+REQ-004 met - grep exits 1; Jev request is stdin prompt, fixed `-q`, options only (:1221); transcript output is counts only (:424-438); Jev receives no key.
+REQ-005 met - unparsed counted per hub/source for null prompts, engine throws, unknown actions (:117-141), with the `.decision` edge above.
+REQ-006 met, recorded deviation - alternatives plus `none_of_these`, description via registry `packet` (:483-522), hashed (:529), three fresh rotations, modal pick, three-different-picks unstable (:596-614).
+REQ-007 met, recorded edge - every spawn logged with all named fields; exits 2/3/130 stop with `partial_rows` and no verdict; `--jev`/`--deem` without `--out` exits 2 first (:1447).
+REQ-008 met - payload class, planned calls 3K+1, est tokens before Jev's first call (:1137); "nothing leaves the machine", 3K calls, p50 wall estimate for Deem (:1020); no dollar figure.
+REQ-009 met - `node --test` run here: 28 pass, 0 fail, exit 0; every named case has happy path and edge; both arms stubbed; no assertion-free test.
+REQ-010 met (spot-checked) - SKILL.md:81,470 and the catalog entry :28,:30 name the switches, the 30-row gate and the verdict exactly as the code spells them.
+KEEP-RULE met - fixed as constants (:42-47) before any run; order and thresholds match §4 (:626-633); hand-checked tailP(7,5)=29/128=0.2266 -> `stop (sign test)` and tailP(30,30)=2^-30=9.313e-10 matches the keep line.
+
+VERDICT: PASS

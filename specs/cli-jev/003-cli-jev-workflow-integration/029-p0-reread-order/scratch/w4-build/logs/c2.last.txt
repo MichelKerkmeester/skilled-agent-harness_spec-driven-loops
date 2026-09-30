@@ -1,0 +1,16 @@
+Step 2 is implemented and verified. Two implementation notes for the orchestrator before the handback:
+
+1. `writeLabelSheet` returns the row count and does not print: the `label sheet: <path> rows=<n>` line, the stderr/exit-2 mapping for its refusal, and the unknown-label stderr mapping land with `main` in step 6 — the same pattern the design gives `orderLine`/`funnelLine`/`exactLine` (return a line, `main` prints it). Note for step 6: `main`'s "label-sheet path refusal before the census" needs its own early containment check, because `writeLabelSheet` only runs after the census.
+2. `parseLabels` keeps `""` rows in the map (value `''`) so `main` can derive `labeled: K` (non-empty values) and `labels dropped: n` (map size − K) from the map alone; the empty-label case's expected counts require that. Section headers renumbered: `4. LABELS AND GATE` inserted, exports became `5`.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs (+119/-4)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts (+95/-3)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs:334 inserted section `4. LABELS AND GATE` with `buildLabelSheetLines`, `writeLabelSheet`, `parseLabels`, `gateLine` (JSDoc each) and renumbered exports to `5`
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs:475 exported `buildLabelSheetLines`, `writeLabelSheet`, `parseLabels`, `gateLine` alongside the earlier names, none changed
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts:5 extended the module banner with `Labels and gate (buildLabelSheetLines, writeLabelSheet, parseLabels, gateLine)`
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts:151 appended `describe('score-severity-replay labels and gate')` with the seven named cases (sheet outside/inside, unknown label, empty label, gate at 19/20, no headroom); all five earlier tests unchanged
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs -> (no output) (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts -> 12 (exit 0)
+CHECKS: git status --porcelain -- <S> <T> -> both `??` (exit 0); repo-wide status vs the pre-run snapshot shows no path this step introduced
+BLOCKED REASON: none

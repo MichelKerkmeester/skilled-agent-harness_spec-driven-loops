@@ -1,0 +1,22 @@
+I'll start by reading the source, test, and model files as instructed.The read of S and T was truncated. Let me read the remaining portions.I have the full picture of S, T, and the M model region. Now let me follow the required standards: read the sk-code router, check repo rules (Gate 5), and verify some facts before editing.`REPO RULES.md` exists, so Gate 5 fires on my first write. Let me load it and run the sk-code compiled router, as the router contract requires.The compiled router deferred. Per the hub contract, a bare implement request defers to a pure surface bundle — let me re-run with an explicit surface hint, and load the governing rules that match my actions (adding an option/functions/tests, reporting results).Router resolved `sk-code-opencode` (surface bundle). Let me load the resolved packet, the rest of AGENTS.md, the rule files matching my actions, and run the Gate 1 lookup.Gate 1 lookup: clean no-hit (exit 1). The router resolved `sk-code-opencode`; per that packet's reference map, a `.mjs` task loads the JavaScript slice. Let me load it and check who imports the target file (touch check).Now let me complete the touch check (other importers of S) and capture a clean baseline for the two files before editing.Touch check complete: the only importer of S is T (line 9); no other code depends on it. Baseline captured (S: 693 lines, T: 555 lines, both untracked). 
+
+Pre-write pass done — the move is "add functions beside the existing ones" plus an in-place extension of `main`, all behind `--deem`; nothing cheaper satisfies the brief. Now applying the three edits.All three edits applied. Now running the brief's checks plus line-count deltas.All three checks pass (S check exit 0, T check exit 0, grep prints 23; line deltas S +158, T +48 — both exactly as expected). One more independent verification: confirm the four copied functions in S are byte-identical to the M model.Verbatim copy confirmed: empty diff (exit 0) between M:1045-1167 and S:584-706. Before composing the close-out, loading the reply rules that AGENTS.md §8 requires at turn end.STATUS: DONE
+
+FILES CHANGED:
+- .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs (+158/-0)
+- .skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs (+48/-0)
+
+EDITS:
+- judge-agreement.mjs:565 section 7 DEEM ARM inserted between section 6 and section 9: DEEM_MODEL, DEEM_P50_MS, HEALTH_TIMEOUT_MS, REPO_CLI_DEEM, and which/deemCommand/readDeemHealth/deemGate copied verbatim from the model.
+- judge-agreement.mjs:832 deem gate block added in main after the summary loop and before return 0, behind values.deem === true, with the skipped/refused comment above it.
+- judge-agreement.test.mjs:439 two tests added: health line + label-gate skip compared against a default run of the same fixture and env, and stub-backend skip compared against a default run of the same fixture and env.
+
+CHECKS:
+- node --check judge-agreement.mjs -> no output, syntax clean (exit 0)
+- node --check judge-agreement.test.mjs -> no output, syntax clean (exit 0)
+- grep -c "^export function" judge-agreement.mjs -> 23 (exit 0)
+- diff of S:584-706 against M:1045-1167 (sed extraction) -> empty diff, four functions byte-identical to the model (exit 0)
+- wc -l judge-agreement.mjs judge-agreement.test.mjs -> 851 / 603, from 693 / 555 baseline (exit 0)
+- git status --porcelain on both paths -> both still untracked (??), only these two files edited (exit 0)
+
+BLOCKED REASON: none

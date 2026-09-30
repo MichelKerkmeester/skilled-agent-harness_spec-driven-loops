@@ -1,0 +1,32 @@
+RECHECK — count fix `f2` (read-only; nothing edited)
+
+**closed -** Every f2 number matches the tree, and the `CENSUS_MISMATCH` is gone:
+- Scenario files: 57 `.md` under the 10 category folders minus `command-flow-stress-tests/README.md` (the validator excludes README by basename) = **56**; validator `HAND_TYPED_CENSUS` confirms derived census is 56 across 10.
+- First 7 categories (entry-points 4 + initialization 4 + iteration 8 + convergence 11 + pause-resume 4 + synthesis 5 + intra-routing 4) = **40**.
+- `feature-catalog/review-dimensions/` = **5** entries (correctness, maintainability, residue-flagger-measurement, security, traceability), matching the table row.
+- Line 31's other counts hold: 10 category dirs; CP-052..057 = 6 files, DRV-058..063 = 6 files, DRV-064..067 = 4 files (IDs verified in the files and §14).
+- Overview table's other rows hold: loop-lifecycle 9/9, state-management 7/7, severity-system 9/9.
+
+Validator PASS line:
+```
+PASS package=system-deep-loop/deep-review tier=FAIL_CLOSED scenarios=56 categories=10 operator=56 routing_gold_excluded=0 violations=0 warnings=3
+```
+exit 0. Remaining 3 warnings are not from this fix: `RESULT_PERSISTENCE_MARKER_MISSING` (advisory), `HAND_TYPED_CENSUS` (now agrees with the tree), `PROMPT_UNSYNCED` for `graph-events-review` (unchanged region, pre-existing).
+
+**New P0/P1: none.**
+P2-class note (not from f2, pre-f2 working tree): `manual-testing-playbook.md:129` (§7 intro) still says "covers 3 scenario summaries" while §7 now holds 4 summary blocks (DRV-001..003, DRV-069) and `entry-points-and-modes/` holds 4 scenario files. The package validator does not check per-section intro counts.
+
+VERDICT: PASS
+
+```
+STATUS: DONE
+FILES CHANGED: none (read-only recheck)
+EDITS: none
+CHECKS: node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-deep-loop/deep-review -> PASS package=system-deep-loop/deep-review tier=FAIL_CLOSED scenarios=56 categories=10 operator=56 routing_gold_excluded=0 violations=0 warnings=3 (exit 0)
+CHECKS: find <playbook> -mindepth 2 -name '*.md' ! -name 'README.md' | wc -l -> 56 (exit 0)
+CHECKS: first-7 sum 4+4+8+11+4+5+4 -> 40 (exit 0)
+CHECKS: find feature-catalog/review-dimensions -maxdepth 1 -name '*.md' | wc -l -> 5 (exit 0)
+CHECKS: folder-derived overview counts loop=9 state=7 dims=5 severity=9 vs table 9/7/5/9 -> match (exit 0)
+CHECKS: git status --porcelain over the two dirs -> both files ' M', two phase files untracked, no edits by this recheck (exit 0)
+BLOCKED REASON: none
+```

@@ -1,0 +1,11 @@
+HVR SCAN: .skilled/skills/sk-communication/benchmark/reply-harness/README.md
+  x1    first@1     hard   word-blocker           harness
+  x1    first@23    soft1  soft-deduction         do
+  x1    first@9     soft1  soft-deduction         get
+  x5    first@10    review oxford-comma-candidate , and
+  (--all lists every occurrence with line and column)
+
+  hard blockers:          1
+  mechanical deductions:  -7
+  mechanical ceiling:     93/100
+  NOT scored here:        three-item enumeration, triple headers, setup language, synonym cycling, false ranges, fragmented headers, copula avoidance, significance inflation, generic conclusions, sentence rhythm, personality

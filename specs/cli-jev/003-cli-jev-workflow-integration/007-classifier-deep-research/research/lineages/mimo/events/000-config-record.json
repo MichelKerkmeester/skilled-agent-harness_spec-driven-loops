@@ -1,0 +1,12 @@
+{
+  "type": "config",
+  "topic": "Find where a classifier model, Jev hosted or local Deem 0.8B, cuts the main AI's context and manual review work in this repository (mimo lineage: UX and measurement).",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
+  "sessionId": "fanout-mimo-1790490452777-942a1f",
+  "generation": 1,
+  "createdAt": "2026-09-27T06:33:55Z",
+  "timestamp": "2026-09-27T06:33:55Z"
+}

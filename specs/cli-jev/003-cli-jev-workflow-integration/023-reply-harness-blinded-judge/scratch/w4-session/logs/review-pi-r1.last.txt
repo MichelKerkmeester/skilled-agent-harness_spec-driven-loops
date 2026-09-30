@@ -1,0 +1,24 @@
+All reads and runs are complete: both scoped files opened in full, spec/goal/build-evidence/parent D1–D7 read, `node --test` run (43 pass, 0 fail), the zero-call census run over the three committed runs with logging stubs first on `PATH`, and the secret/comment greps run. Sign test checked by hand: `binomialTail(5,5)` sums C(5,5)=1 over 2^5=32 → 0.03125, and `20*1 < 32` marks it below 0.05 exactly (judge-agreement.mjs:429-439). `readDeemHealth` (judge-agreement.mjs:629-685) matches real `cli-deem`'s contract (`ok:true`, `torch|ensemble:*`, `deem-0.8-v1`, exits 1/2/3/4/130 at cli-deem.mjs:65-71, 380-384).
+
+P2 judge-agreement.mjs:1000-1002 - `jev --version` gate compares only the first line, so output `jev 0.6.2\njunk` passes though REQ-007 says printing exactly `jev 0.6.2` - a stub printing two lines with first line `jev 0.6.2` clears the gate
+P2 judge-agreement.test.mjs - no test covers the REQ-011 requalify branches - an `--out` dir whose report.json has `columns.deem.modelCommit:"other"` never asserts `requalify: model commit changed` (judge-agreement.mjs:946-951, 1215-1220)
+P2 judge-agreement.test.mjs - no test covers the exit-4 retry and mid-run commit-change stops - a score call exiting 4 then a changed health pair never asserts `deem arm stopped: model commit changed mid-run` (judge-agreement.mjs:905-915)
+P2 judge-agreement.mjs:1131 - the `jev auth test` calls.jsonl record logs `status:"measured"` though it holds no judgment - a reader filtering `status=measured` counts one cell too many
+
+REQ-001 met - stub-first census over the three committed runs printed the report and `stop: fewer than 20 labeled replies`, stub logs empty, exit 0, porcelain unchanged (concurrent worktree edits excluded)
+REQ-002 met - real run prints `masked: 42, distinct: 38, matched: 38` as the spec expects; join is trimmed-text SHA-256 (102-131); unmatched counted and dropped (308-310)
+REQ-003 met - 0/1/between mapping (144-150), total and per-dimension baseline agreement printed (404-405)
+REQ-004 met - row errors exit 2 naming the row (259-288), conflict prints `stop: label conflict` and exits 2 (1368-1372), gate line exact (409), labels SHA printed (1399-1400)
+REQ-005 met - checks in fixed order coverage/kill/margin/sign/flips (464-473), exact BigInt tails (429-439), hand-checked above
+REQ-006 met - gate and skip strings (629-706), never starts the server, skips byte-identical (tests at lines 440-487)
+REQ-007 met - identity line, version, then `auth status --provider P` (983-1016); same provider on check, `auth test` and every judgment (1106, 1170)
+REQ-008 met - secret grep empty, no key/.env read; untracked payload needs `--accept-payload` and Deem still runs (1428-1431, test 846)
+REQ-009 met - masked full text on stdin, `-q` guidance verbatim, three ordered levels (900, 1170), rounding 812-822, question-set SHA 343-345
+REQ-010 met - cost lines first (863, 1093), one record per call, exit handling and `partial` output, `--out` enforced before any call (1343-1346)
+REQ-011 met - requalify printed before the verdict (946-951, 1215-1220); untested, see finding
+REQ-012 met - per-dimension table printed, never read by `decideVerdict` (558-563)
+REQ-013 met - `node --test` 43 pass 0 fail, every named case present, both arms stubbed
+REQ-014 not checked - skill docs are outside the two scoped files
+D1 met - zero calls without switches (stub logs empty), Jev/Deem only behind their switches after their checks; a failing check prints its skip and changes nothing
+
+VERDICT: PASS

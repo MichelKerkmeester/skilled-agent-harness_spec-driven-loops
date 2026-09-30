@@ -2,21 +2,25 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parseHardRules, readHardRules, evaluate, CHECKS, KNOWN_CHECKS } from './dispatch-rule-checks.mjs';
+import { readHardRules, evaluate, CHECKS, KNOWN_CHECKS } from './dispatch-rule-checks.mjs';
 import { DISPATCH_SHAPES, matchDispatchShape, resolveDispatchPacket } from './dispatch-audit.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const CLI_ORCHESTRATION = path.resolve(HERE, '../../../skills/cli-external-orchestration');
-// The Jev transport left that hub for one of its own. A scan of a single root reads its
-// eight checks as implemented-but-undeclared, so every cli-* packet in either hub is scanned.
-const CLI_JE = path.resolve(HERE, '../../../skills/cli-jev');
-const PACKET_ROOTS = [CLI_ORCHESTRATION, CLI_JE];
+// The Jev transport is a mode of the classifier hub. A scan of a single root reads its
+// eight checks as implemented-but-undeclared, so that hub is scanned too, but only for the
+// packets a dispatch shape governs: its Deem client has no shape, so no preflight reads it.
+const CLI_CLASSIFIER = path.resolve(HERE, '../../../skills/cli-classifier');
+const PACKET_ROOTS = [CLI_ORCHESTRATION, CLI_CLASSIFIER];
+const GOVERNED = new Set(DISPATCH_SHAPES.map((shape) => shape.packetPath));
+const scanned = (root, name) => root === CLI_ORCHESTRATION || GOVERNED.has(`cli-classifier/${name}`);
 const packetSkillDocs = () =>
   PACKET_ROOTS.flatMap((root) =>
     fs.readdirSync(root, { withFileTypes: true })
-      .filter((entry) => entry.isDirectory() && entry.name.startsWith('cli-'))
+      .filter((entry) => entry.isDirectory() && entry.name.startsWith('cli-') && scanned(root, entry.name))
       .map((entry) => path.join(root, entry.name, 'SKILL.md'))
       .filter((md) => fs.existsSync(md)));
 const CO = path.join(CLI_ORCHESTRATION, 'cli-opencode/SKILL.md');
@@ -27,7 +31,7 @@ const CC = path.join(CLI_ORCHESTRATION, 'cli-claude-code/SKILL.md');
 const HERMES_NO_RULES = 'hermes chat -Q --oneshot --query-file p.md --source tool';
 const HERMES_BASE = `${HERMES_NO_RULES} --ignore-rules`;
 
-test('parses the flat hard_rules list from real SKILL.md frontmatter', () => {
+test('reads the real hard rules from the sidecar beside each SKILL.md', () => {
   const co = readHardRules(CO);
   assert.deepEqual(co.map((r) => r.id), [
     'stdin-redirect-required', 'explicit-model-required', 'no-bare-agent-general',
@@ -39,7 +43,7 @@ test('parses the flat hard_rules list from real SKILL.md frontmatter', () => {
   assert.deepEqual(readHardRules(CC).map((r) => r.id), [
     'stdin-redirect-required', 'non-interactive-permission-mode-risk',
   ]);
-  assert.ok(co.every((r) => r.message && r.severity)); // full shape survives parsing
+  assert.ok(co.every((r) => r.message && r.severity)); // full shape survives the sidecar read
 });
 
 // This guard used to name CO and CC explicitly. Those were the only two packets whose
@@ -211,10 +215,39 @@ test('fail-open: a check that throws never produces a violation', () => {
   }
 });
 
-test('parseHardRules returns [] for frontmatter without the key or malformed input', () => {
-  assert.deepEqual(parseHardRules('---\nname: x\n---\nbody'), []);
-  assert.deepEqual(parseHardRules(''), []);
-  assert.deepEqual(parseHardRules(null), []);
+test('readHardRules reads the sibling sidecar and fails open on malformed input', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'hard-rules-sidecar-'));
+  const packet = (name, sidecar) => {
+    const dir = path.join(root, name);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'SKILL.md'), `---\nname: ${name}\n---\nbody\n`);
+    if (sidecar !== undefined) fs.writeFileSync(path.join(dir, 'hard-rules.json'), sidecar);
+    return dir;
+  };
+  try {
+    const rules = [
+      { id: 'first', check: 'stdin-redirect-required', message: 'm1', severity: 'warn' },
+      { id: 'second', check: 'explicit-model-required', message: 'm2', severity: 'error' },
+    ];
+    // Sidecar present: both rules, in the order the file declares them.
+    assert.deepEqual(readHardRules(path.join(packet('present', JSON.stringify(rules)), 'SKILL.md')), rules);
+    // A missing, empty or shape-broken sidecar reads as no rules rather than throwing.
+    assert.deepEqual(readHardRules(path.join(packet('missing'), 'SKILL.md')), []);
+    assert.deepEqual(readHardRules(path.join(packet('empty', '[]'), 'SKILL.md')), []);
+    assert.deepEqual(readHardRules(path.join(packet('null', 'null'), 'SKILL.md')), []);
+    assert.deepEqual(readHardRules(path.join(packet('object', '{"rules":[{"id":"x","check":"x"}]}'), 'SKILL.md')), []);
+    assert.deepEqual(readHardRules(path.join(packet('malformed', '{'), 'SKILL.md')), []);
+    assert.deepEqual(readHardRules(path.join(packet('no-keys', '[{"message":"x","severity":"warn"}]'), 'SKILL.md')), []);
+    // A directory wearing the sidecar's name is a read error, not a rule set.
+    const dirSidecar = packet('directory');
+    fs.mkdirSync(path.join(dirSidecar, 'hard-rules.json'));
+    assert.deepEqual(readHardRules(path.join(dirSidecar, 'SKILL.md')), []);
+    // A folder argument must not reach a parent directory's sidecar, and neither must a non-string.
+    assert.deepEqual(readHardRules(path.join(root, 'present')), []);
+    assert.deepEqual(readHardRules(null), []);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });
 
 test('severity maps error and block to a blocking violation; anything else advises', () => {
@@ -461,12 +494,12 @@ test('a jev dispatch is governed from the command, and mentions of it are not', 
     ['stdio server started by a shell', 'jev-mcp < request.jsonl'],
   ];
   for (const [label, cmd] of govern) {
-    assert.equal(resolveDispatchPacket(cmd)?.skill, 'cli-jev', `should govern (${label}): ${cmd}`);
+    assert.equal(resolveDispatchPacket(cmd)?.skill, 'cli-classifier', `should govern (${label}): ${cmd}`);
   }
 
   const doNotGovern = [
     ['prose quoting it', 'echo "triage with jev choice before dispatch"'],
-    ['grep for the text', 'grep -rn "jev noul" .skilled/skills/cli-jev/cli-usage'],
+    ['grep for the text', 'grep -rn "jev noul" .skilled/skills/cli-classifier/cli-jev'],
     ['heredoc documenting it', 'python3 - <<\'PY\'\nshape = "jev score -l low -l high"\nPY'],
     ['node printing it', 'node -e \'console.log("jev run @request.json")\''],
     ['version probe', 'jev --version'],

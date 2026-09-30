@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli-jev hub move",
+      "cli-jev into cli-classifier",
+      "mode cli-jev over cli-usage",
+      "cli-jev canary replay baseline",
+      "cli-jev git mv whole hub",
+      "cli-classifier two modes",
+      "cli-jev hub move plan",
+      "cli-jev git mv plan",
+      "cli-classifier merge hub files",
+      "cli-jev route replay plan",
+      "cli-jev hub move tasks",
+      "cli-jev replay baseline tasks"
+    ],
+    "key_topics": [
+      "cli-jev",
+      "hub",
+      "move",
+      "cli-classifier",
+      "mode",
+      "cli-usage",
+      "canary",
+      "replay",
+      "baseline",
+      "git",
+      "whole",
+      "two"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/w3-build/disposition.md",
+      ".skilled/skills/cli-classifier/README.md",
+      ".skilled/skills/cli-classifier/ROUTER.md",
+      ".skilled/skills/cli-classifier/SKILL.md",
+      ".skilled/skills/cli-classifier/benchmark/README.md",
+      ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing-run.sh",
+      ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing.txt",
+      ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md",
+      ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/raw/hub-routing-run.sh",
+      ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/raw/hub-routing.txt",
+      ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/skill-benchmark-report.md",
+      ".skilled/skills/cli-classifier/changelog/v0.1.0.0.md",
+      ".skilled/skills/cli-classifier/changelog/v0.2.0.0.md",
+      ".skilled/skills/cli-classifier/cli-usage/README.md",
+      ".skilled/skills/cli-classifier/cli-usage/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "disposition.md",
+        "kind": "doc",
+        "path": "scratch/w3-build/disposition.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-routing-run.sh",
+        "kind": "script",
+        "path": ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing-run.sh",
+        "source": "derived"
+      },
+      {
+        "name": "hub-routing.txt",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/raw/hub-routing.txt",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.1.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/changelog/v0.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.2.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/changelog/v0.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Build Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Not To Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Decision D2 of the parent goal puts both classifier transports under one hub, but `cli-jev` is its own hub today with one mode",
+    "created_at": "2026-09-27T09:21:55Z",
+    "last_save_at": "2026-09-29T10:19:28.649Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:915edb533435cc626f8302ff659b0f5ac8cbac8936a8ca4e2fe4fffe6e24e541",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c860421ed32e56edb681b7fde001e40fe0b8044bbf4e2b1ddde01d7e8fe86bfc",
+      "plan.md": "1d5db9b9cf1a931a9a52f6abc329c33de1541a547fcd8545b707f8452916bc9d",
+      "tasks.md": "06cb0f0245a653a8d4835c07f8d92825fccb9744fd4cdae15178d8f3663ebdec",
+      "implementation-summary.md": "e0817db0c9dfcf134c7fd0f492c52ded02acf39f0a6352106017621022999bfa"
+    },
+    "last_active_at": null
+  }
+}

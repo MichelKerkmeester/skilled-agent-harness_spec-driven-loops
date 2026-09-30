@@ -1,0 +1,17 @@
+TASK: make one timing test independent of machine load. Test file only.
+File: T = .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts. Read it first. Do not touch the script.
+
+Why: the stub child sleeps 2,300 ms for a 'late' prompt, and under load its node start-up pushes it past the 2,500 ms kill, so asserting "not killed" fails for a reason the test does not care about. A killed child counts at 2,500 ms, which is also over 2,200, so the latency stop holds either way.
+
+In T, inside it('times the advisor child on each prompt and reports the latency stop') at about lines 363-368, replace exactly these three lines:
+    expect(t.killed).toBe(0);
+    expect(t.over2200).toBe(2);
+    expect(t.p95).toBeGreaterThanOrEqual(2300);
+with exactly these two lines:
+    expect(t.over2200).toBe(2);
+    expect(t.p95).toBeGreaterThan(2200);
+Change nothing else.
+
+VERIFY (repo root): grep -c "expect(t.killed).toBe(0)" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts
+  grep -c "expect(t.p95).toBeGreaterThan(2200)" .skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts
+Accept when: 1 file changed (the test file) and nothing else; the first grep prints 0 and the second prints 1.

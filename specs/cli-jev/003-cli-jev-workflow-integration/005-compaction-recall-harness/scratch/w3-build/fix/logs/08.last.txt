@@ -1,0 +1,8 @@
+The file is untracked in git (created by a concurrent worker in this worktree), so `git diff` is empty by nature; my edit changed exactly this one file (+22/-0). Edited region re-read and correct; verification grep reports 23 cases.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts (+22/-0)
+EDITS: .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts:435 added partial-tail case and stopLine case before final `});`
+CHECKS: grep -cE '^  it[(.]' .skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts -> 23 (exit 0)
+BLOCKED REASON: none

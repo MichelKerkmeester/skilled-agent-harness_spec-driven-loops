@@ -1,0 +1,137 @@
+✔ advisor-index-handoff.md exists and defines the verification-state enum (2.79425ms)
+✔ advisor-index-handoff.md states the description.json / graph-vocabulary guardrail (A7) (0.931417ms)
+✔ every full-handoff create surface references advisor-index-handoff.md by path (14.194666ms)
+✔ every full-handoff create surface reports refresh status as NOT RUN, never auto-refreshing (2.043834ms)
+✔ standalone create surfaces never render H-only metadata fields in the handoff (1.014417ms)
+✔ parent create surfaces render the H-specific fields (description.json, leaf-manifest.json, command-metadata.json) (0.613292ms)
+✔ parent create workflows use the scoped generate-leaf-manifest.cjs --write, never invoke the fleet --fix gate (0.924042ms)
+✔ doctor-skill-advisor.yaml derives skill_graph_validate severity using the shared vocabulary, not a top-level flag (2.761875ms)
+✔ doctor-skill-advisor.yaml terminal verification_status uses the fail/partial/pass/skipped_unverified vocabulary (0.924208ms)
+[sk-doc] leaf-manifest freshness traversal coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-leaf-manifest-freshness.test.cjs (118.46075ms)
+[sk-doc] compiled-routing-lockstep-parity fixture coverage passed
+[sk-doc] live report: 6/15 surfaces carry the directive block
+[sk-doc] live report: all surfaces carrying the directive are in normalized parity
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/compiled-routing-lockstep-parity.test.cjs (82.540833ms)
+[sk-doc] create journey proof passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/create-journey-proof.test.cjs (854.039834ms)
+[sk-doc] leaf-manifest scope contract coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-leaf-manifest-scopes.test.cjs (142.321292ms)
+[sk-doc] leaf-resource-contract unit coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-resource-contract.test.cjs (83.157417ms)
+[root-router-contract] all positive and negative fixtures passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/root-router-contract.test.cjs (66.300417ms)
+✔ census counts a mode clarify and keeps only gold among its alternatives (1.236917ms)
+✔ census counts a missing prompt, an engine throw and an unknown hub as unparsed (0.14425ms)
+✔ census keeps checklist alternatives apart and writes no row for them (0.086042ms)
+✔ rowLines writes every label empty (0.136375ms)
+✔ parseArgs reads both census flags and refuses an unknown flag or a missing value (0.13925ms)
+✔ hubForSkill maps a hub id and a mode packet and nothing else (0.175792ms)
+✔ countTranscripts counts each front-door line once, escaped or plain (2.557625ms)
+✔ the transcript count prints counts and no transcript text (691.365084ms)
+✔ the gate stops at 29 labeled rows (45.130917ms)
+✔ 30 labeled rows pass the gate and print the fixed rule lines (56.137459ms)
+✔ a label outside the row's alternatives exits 2 and names the row (49.317042ms)
+✔ a baseline above nine tenths prints no headroom (50.889625ms)
+✔ tailP is exact (0.129958ms)
+✔ decideVerdict checks coverage, kill, margin, sign test and flips in order (0.166166ms)
+✔ scoreColumn counts measured, unstable and flips (0.18225ms)
+✔ --deem without --out exits 2 before any output (43.691458ms)
+✔ a stub or unreachable deem backend skips the arm and leaves the rest byte-identical (319.822084ms)
+✔ a jev without a credential prints its identity and one skip line (263.192792ms)
+✔ jev off PATH and a wrong jev version each skip (155.981666ms)
+✔ a deem stub that answers the label keeps (1507.602083ms)
+✔ a deem stub that answers the first alternative stops on margin (1353.200916ms)
+✔ a deem stub that loses to the baseline kills (1278.732625ms)
+✔ four failing deem calls in thirty rows stop on coverage (1365.542875ms)
+✔ the label gate blocks the deem arm before any call (53.764625ms)
+✔ a jev stub that answers the label keeps (1354.154209ms)
+✔ with both switches the jev verdict prints before the deem verdict (2516.549875ms)
+✔ a rejected key stops the jev arm with no verdict (136.419541ms)
+✔ a deem stub with another model or an unreadable health answer skips with a details line (193.891875ms)
+[sk-doc] skill-derived regenerator + freshness gate coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs (232.614834ms)
+node:internal/assert/utils:146
+  throw error;
+  ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
+  [
++   'cli-classifier',
+    'cli-external-orchestration',
++   'cli-orca',
+    'mcp-code-mode',
+    'mcp-tooling',
+    'sk-code',
+    'sk-communication',
+    'sk-design',
+
+    at testFleetDiscoveryUsesTheAuthoredMarker (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs:249:10)
+    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs:589:3)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+    at Module.load (node:internal/modules/cjs/loader:1656:32)
+    at Module._load (node:internal/modules/cjs/loader:1448:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'cli-classifier',
+    'cli-external-orchestration',
+    'cli-orca',
+    'mcp-code-mode',
+    'mcp-tooling',
+    'sk-code',
+    'sk-communication',
+    'sk-design',
+    'sk-doc',
+    'sk-git',
+    'sk-prompt',
+    'sk-vision',
+    'system-deep-loop',
+    'system-skill-advisor',
+    'system-spec-kit'
+  ],
+  expected: [
+    'cli-external-orchestration',
+    'mcp-code-mode',
+    'mcp-tooling',
+    'sk-code',
+    'sk-communication',
+    'sk-design',
+    'sk-doc',
+    'sk-git',
+    'sk-prompt',
+    'sk-vision',
+    'system-deep-loop',
+    'system-skill-advisor',
+    'system-spec-kit'
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.8.2
+✖ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs (64.4485ms)
+[sk-doc] validate-compiled-routing-scenarios content-admission fixtures passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/validate-compiled-routing-scenarios.test.cjs (171.986375ms)
+[sk-doc] validate-playbook-topology quote-tolerance coverage passed
+✔ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/validate-playbook-topology.test.cjs (69.256417ms)
+ℹ tests 47
+ℹ suites 0
+ℹ pass 46
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11531.290583
+
+✖ failing tests:
+
+test at .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs:1:1
+✖ .skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs (64.4485ms)
+  'test failed'

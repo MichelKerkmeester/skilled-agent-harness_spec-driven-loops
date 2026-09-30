@@ -1,0 +1,3 @@
+{"type":"iteration","iteration":4,"status":"complete","focus":"grok-04: Which dropped rows a local model revives","findingsCount":3,"newInfoRatio":0.7,"noveltyJustification":"Classed all 72 drop rows. None of the latency rows flip on the warm p95 because spawn is unmeasured or a second reason remains.","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"deep-research","timestamp":"2026-09-27T07:40:00Z"}
+{"type":"finding","id":"N-grok-04-1","label":"Do not revive live hooks from the warm p95","verdict":"drop","question":"B"}
+{"type":"finding","id":"N-grok-04-2","label":"Prefer Deem for R19 and R2 arms only after their census kills pass","verdict":"later","question":"B"}

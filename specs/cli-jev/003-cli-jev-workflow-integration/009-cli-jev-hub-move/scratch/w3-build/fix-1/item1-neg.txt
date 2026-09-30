@@ -1,0 +1,3 @@
+$ node specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/fix-1/neg/neg-proof.cjs
+threw code=GOLD_MISMATCH message=gold mismatch for deem-choice-single: modes [cli-deem] but expected [cli-jev]
+exit=0

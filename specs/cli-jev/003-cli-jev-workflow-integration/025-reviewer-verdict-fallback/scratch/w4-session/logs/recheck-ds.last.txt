@@ -1,0 +1,23 @@
+Read-only recheck complete. All four fixes verified against the scripts, the playbook, the catalog leaf, and the package validator.
+
+**Fix recheck (one line per fix):**
+
+1. **closed** — `lib/README.md` Exports row: `grep` over `lib/*.cjs` shows `require.main === module` only in `reviewer-scorer.cjs:324` and `score-verdict-fallback.cjs:1416`; the `main()`/`main();` hits in `code-task-scorer.cjs` (172/197) sit inside the `RUNNER_CHILD_SOURCE` string, and the other five modules have no `main` — matches "two modules run with `node`, the rest have no CLI `main()`".
+2. **closed** — `lib/README.md` Imports row: `score-verdict-fallback.cjs:25` is `const { extractVerdict } = require('./reviewer-scorer.cjs')`; `sweep-reporter.cjs:38-39` requires `./sweep-stats.cjs` and `./correctness-gate.cjs`; those are the only two `./`-relative requires in `lib/`, so "Two modules require a sibling" is exact.
+3. **closed** — playbook: §15 lead list (line 715) ends "...score-delta benchmark gates, and the reviewer verdict fallback census"; the Model-Benchmark Mode cross-reference row (line 965) ends `reviewer-verdict-fallback.md`, and the target file exists; "8 scenario summaries" matches the 8 MB H3 scenarios (038–042, R01, 049, 052).
+4. **closed** — catalog root: H3 body (line 384) equals the leaf frontmatter `description` (line 3); validator output contains no `root_leaf_description_mismatch` for `reviewer-verdict-fallback.md` — only pre-existing mismatches for other leaves remain.
+
+**New P0/P1 in the three files:** none. (Checked the other hunks in the diff: the added `score-verdict-fallback.cjs` KEY FILES row, the MB-052 block, the 46→47 scenario count, the "6 features" table row, and the catalog entry all match the scripts — `LABEL_GATE = 12`, default profile `reviewer-regression.json`, `--jev/--deem` require `--out` (`score-verdict-fallback.cjs:1256`), `report.json`/`calls.jsonl` write paths, and the fixture census computes to `8 cases / 8 hits / 0 misses` from the four all-`VERDICT: FAIL` reviewer fixtures.)
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck, edits prohibited)
+EDITS: none (read-only recheck)
+CHECKS:
+- `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package system-deep-loop/deep-improvement` -> `PACKAGE system-deep-loop/deep-improvement: WARN tier=warn violations=36` (0 fail; no `root_leaf_description_mismatch` for reviewer-verdict-fallback.md) (exit 0)
+- `grep -n "require.main\|#!/usr/bin/env node" lib/*.cjs` -> only `reviewer-scorer.cjs:324`, `score-verdict-fallback.cjs:1,1416` (exit 0)
+- `grep -n "require(" lib/*.cjs` -> sibling requires only in `sweep-reporter.cjs:38-39` and `score-verdict-fallback.cjs:25` (exit 0)
+- `git diff -- <three named files>` (read-only) -> the four fix texts present; no contradicting changes (exit 0)
+- static fixture-census check over `reviewer-regression.json` + 4 fixtures -> 8 cases, all pattern-first `VERDICT: FAIL` lines = 8 hits / 0 misses (exit 0)
+BLOCKED REASON: none
+VERDICT: PASS

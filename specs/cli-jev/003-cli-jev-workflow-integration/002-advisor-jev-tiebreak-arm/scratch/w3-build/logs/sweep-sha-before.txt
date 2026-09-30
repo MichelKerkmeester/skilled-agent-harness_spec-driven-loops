@@ -1,0 +1,2 @@
+9dc45752aafc5a09262ee96fe5030784bb9d2072  .skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md
+8ac70c231f1fa4d3fa96ddc8cb238eaa4e08ae00  .skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md

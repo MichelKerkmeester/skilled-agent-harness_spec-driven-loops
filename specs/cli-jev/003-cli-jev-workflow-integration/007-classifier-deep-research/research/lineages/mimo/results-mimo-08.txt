@@ -1,0 +1,6 @@
+== validator residue v2 (invocations only, edits under validated folder)
+validator_invocations=2471
+invocations_with_folder_token=2455
+passing_invocations=2435
+passing_followed_by_md_edit_under_validated_folder=0
+passing_followed_by_md_edit_elsewhere=193

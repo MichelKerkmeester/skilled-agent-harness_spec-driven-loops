@@ -103,6 +103,70 @@ See [`tooling-and-scripts/code-standards-alignment.md`](tooling-and-scripts/code
 
 ---
 
+### Compaction recall census
+
+#### Description
+
+Scores, with zero model calls, what host compactions keep in the stock summary and the recorded brief and whether the vendored staged fit can hold each session, then prints one stop line for a later deletion arm.
+
+#### Current Reality
+
+`.skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs` makes no model call and starts no other program. It reads only the transcripts named with `--transcripts`, and its report holds counts, scores and labels, never transcript text.
+
+#### Source Files
+
+See [`tooling-and-scripts/compaction-recall-census.md`](tooling-and-scripts/compaction-recall-census.md) for full implementation and test file listings.
+
+---
+
+### Completion claim audit
+
+#### Description
+
+Scores, with zero model calls by default, how the completion-claim detector agrees with operator-labeled turns, then judges each labeled turn behind `--deem` or `--jev` and reports one keep, kill or stop decision per backend.
+
+#### Current Reality
+
+`.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` makes zero model calls by default and writes no file. Its census reads only the rows named with `--rows` and the labels named with `--labels`, and no row text reaches stdout or the report. Each judgment arm runs only behind `--deem` or `--jev` with `--out <dir>` outside the repository, and no run has printed a `verdict` line.
+
+#### Source Files
+
+See [`tooling-and-scripts/completion-claim-audit.md`](tooling-and-scripts/completion-claim-audit.md) for full implementation and test file listings.
+
+---
+
+### Debug next check
+
+#### Description
+
+Scores, with zero model calls by default, how often each constant next-check answer is right on operator-labeled debug rows and whether that leaves headroom, then judges the labeled rows behind `--jev` or `--deem` and reports one keep, kill or stop decision per backend.
+
+#### Current Reality
+
+`.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` makes zero model calls by default and writes nothing outside `--out`. Its fixture must sit outside the repository, `--jev` sends only rows marked `jev_ok: true`, and no run on real rows has printed a `verdict` line.
+
+#### Source Files
+
+See [`tooling-and-scripts/debug-next-check.md`](tooling-and-scripts/debug-next-check.md) for full implementation and test file listings.
+
+---
+
+### Alignment suggestion measurement
+
+#### Description
+
+Measures, with zero model calls on the default run, whether a classifier picking one listed spec folder would beat the plain baseline when a save's alignment score falls below 50, then prints one verdict per opt-in arm.
+
+#### Current Reality
+
+`.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts` runs offline: its default run makes zero model calls and starts neither `jev` nor `cli-deem`. Today it stops at its label gate because no operator labels exist yet.
+
+#### Source Files
+
+See [`tooling-and-scripts/alignment-suggestion-measurement.md`](tooling-and-scripts/alignment-suggestion-measurement.md) for full implementation and test file listings.
+
+---
+
 ### Completion-verdict freshness validation
 
 #### Description
@@ -736,6 +800,22 @@ The continuity ladder is `handover.md` -> `_memory.continuity` -> packet-first s
 #### Source Files
 
 See [`retrieval/session-recovery-spec-kit-resume.md`](retrieval/session-recovery-spec-kit-resume.md) for full implementation and test file listings.
+
+---
+
+### Track narrowing measurement
+
+#### Description
+
+Measures offline whether one classifier choice that names a packet's spec track beats ripgrep and the trigger-index lookup, under a keep rule fixed before any model call.
+
+#### Current Reality
+
+`.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs` makes no model call by default. `--deem` and `--jev` each add a model column behind that backend's own check, and the script changes no lookup, index or recipe.
+
+#### Source Files
+
+See [`retrieval/track-narrowing-measurement.md`](retrieval/track-narrowing-measurement.md) for full implementation and test file listings.
 
 ---
 

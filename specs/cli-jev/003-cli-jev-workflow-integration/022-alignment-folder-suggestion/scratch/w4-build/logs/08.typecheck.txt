@@ -1,0 +1,4 @@
+
+> @spec-kit/cli@1.7.2 typecheck
+> tsc --noEmit --composite false -p tsconfig.json
+

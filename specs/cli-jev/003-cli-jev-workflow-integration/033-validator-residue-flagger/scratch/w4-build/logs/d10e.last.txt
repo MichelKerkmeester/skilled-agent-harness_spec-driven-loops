@@ -1,0 +1,15 @@
+Both checks pass. Gate bookkeeping for the record:
+
+- Gate 1: trigger lookup run, confidence high (design step 10 names the exact file, mode, model block and content requirements).
+- SKILL ROUTING: design step 10 names mode `sk-create-feature-catalog` → ARTIFACT: sk-doc → loaded `.skilled/skills/sk-doc/SKILL.md`, `sk-create-feature-catalog/SKILL.md`, `assets/feature-catalog-template.md` before the write.
+- REPO RULES: `communication-prose.md`, `communication.md`, `evidence-and-proof.md`, `communication-handoff.md` loaded.
+
+What was written: one H3 block `### Residue Flagger Measurement` in section 4 of `.skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md`, directly after the Maintainability block, shaped like the Correctness block. The H3 title equals the leaf's `title` (`Residue Flagger Measurement`) and the `#### Description` is byte-identical to the leaf's `description`. The `#### How It Works` paragraph names `scripts/score-residue-flagger.cjs`, its zero-call default and both switches `--jev`/`--deem` with `--out <dir>`, checked against the script's `main()` (arms only under those switches, `--jev and --deem need --out <dir>` at line 1506, `stop: fewer than 100 labeled rows` at line 1523) and FACTS. No verdict is claimed anywhere.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md (+16/-0)
+EDITS: .skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md:368 added the Residue Flagger Measurement H3 block (Description, How It Works, Source Files) after the Maintainability block, before `## 5. SEVERITY SYSTEM`
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md --type feature_catalog -> `✅ VALID: .skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md` `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md -> `1 file changed, 16 insertions(+)` (exit 0)
+BLOCKED REASON: none

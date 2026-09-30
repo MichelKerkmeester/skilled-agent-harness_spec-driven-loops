@@ -1,0 +1,19 @@
+I'll start by reading the required files. First, let me check the skill routing contract and locate the target files.Now let me run the compiled router (per sk-code contract) and locate the design doc sections.The compiled router deferred; falling back to legacy routing (Node `.mjs` implement work → sk-code-quality workflow + sk-code-opencode surface). Now reading the design doc sections 8 and 10, plus the target files.Now let me read N's `runDeemArm` as the pattern, and S in full.Let me continue reading S (the rest) and the end of N's `runDeemArm`.Now reading the rest of S and the test file T.Let me read the rest of T and count the current tests.I have the full picture. Now applying STEP 1: `runDeemArm` in S, inserted after `deemGate` (end of section 10).STEP 1 done. Now STEP 2: add the `armPlan` helper to T after `stubEnv`.STEP 3: appending the four tests to the end of T.All three steps applied. Now running the verification commands from the repo root.Both syntax checks pass. Now the test count and a scope check on the working tree.Test count is 32 as expected. Let me confirm only the two named files were modified in that directory, and re-read the edited regions for a final self-review.All checks pass and the working tree confirms only the two named files were touched (both mtimes 17:06; the rest of the tree's changes belong to other workers). Final state reviewed:
+
+- S is 1345 lines: `runDeemArm` sits between `deemGate` and the section 11 header, JSDoc included, one `noul` call per row, exit-4 retry behind a health recheck, stops print `deem: partial rows=<n>` and return `{ stopped, partialRows }`, missing/malformed answers land as `unmeasured` with `probability: null`.
+- T is 596 lines: `armPlan` helper after `stubEnv`, four tests appended, 32 `test('` lines total.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs (+141/-0); .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs (+82/-0)
+EDITS:
+- score-injection-screen.mjs:1070 added exported `runDeemArm(plan, gate, ctx)` with JSDoc after `deemGate` (per-call record `{ backend, rowId, rerun, attempt, wallMs, exitCode, probability, flag, status, modelId, modelCommit, sourceCommit }`; exit 4 log + health recheck + one retry; timeout `unmeasured_timeout`; exit 2/3/130 stop lines; detail + latency, `flips: not applicable (deem noul)`, requalify, verdict line; returns `{ column, requalify }`)
+- score-injection-screen.test.mjs:132 added private `armPlan(root)` after `stubEnv`
+- score-injection-screen.test.mjs:523 appended test `deem arm prints a keep verdict and records every call`
+- score-injection-screen.test.mjs:548 appended test `a missing answer is recorded unmeasured, never 0`
+- score-injection-screen.test.mjs:564 appended test `deem exit 4 with a changed commit pair stops the arm`
+- score-injection-screen.test.mjs:582 appended test `a stored commit pair that differs prints requalify before the verdict`
+CHECKS:
+- `node --check .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs` -> no output (clean) (exit 0)
+- `node --check .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs` -> no output (clean) (exit 0)
+- `grep -c "^test('" .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs` -> 32 (exit 0)
+BLOCKED REASON: none

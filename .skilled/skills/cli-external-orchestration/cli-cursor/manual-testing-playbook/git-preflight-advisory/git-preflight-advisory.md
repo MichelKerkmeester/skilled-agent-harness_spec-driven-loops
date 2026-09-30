@@ -14,7 +14,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 This scenario validates the sk-git preflight advisory delivery under Cursor for `CU-026`. It focuses on the `preToolUse` `Shell` matcher invoking the shared hook directly and surfacing the `commit-scope-drops-untracked` advisory without blocking the command.
 
-The shared sk-git preflight hook at `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` reads the `hard_rules:` from `.skilled/skills/sk-git/SKILL.md`, evaluates them against repository state, and emits `hookSpecificOutput.additionalContext` starting with `⚠ sk-git advisory`. `.cursor/hooks.json` invokes that shared hook directly for the `Shell` matcher. The hook accepts `tool_name: "Shell"`, reads `tool_input.command`, and resolves the project from `workspace_roots[0]`; it advises, fails open, and never blocks.
+The shared sk-git preflight hook at `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` reads the rules from `hard-rules.json` beside `.skilled/skills/sk-git/SKILL.md`, evaluates them against repository state, and emits `hookSpecificOutput.additionalContext` starting with `⚠ sk-git advisory`. `.cursor/hooks.json` invokes that shared hook directly for the `Shell` matcher. The hook accepts `tool_name: "Shell"`, reads `tool_input.command`, and resolves the project from `workspace_roots[0]`; it advises, fails open, and never blocks.
 
 ### Why This Matters
 
@@ -73,7 +73,7 @@ Operators run the exact prompt and command sequence for `CU-026` and confirm the
 |---|---|
 | `.cursor/hooks.json` | `preToolUse` matcher `Shell` registration invoking the shared hook directly |
 | `../../../../../skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | The shared stdin hook that reads the Cursor `Shell` payload |
-| `../../../../../skills/sk-git/SKILL.md` | The `hard_rules:` frontmatter the hook parses |
+| `../../../../../skills/sk-git/SKILL.md` | The `hard-rules.json` sidecar the hook reads |
 | `../../../../../skills/sk-git/scripts/hooks/README.md` | Runtime matrix, suppression tiers, fail-open guarantees |
 
 ---

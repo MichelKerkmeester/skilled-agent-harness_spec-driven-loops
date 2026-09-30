@@ -1,0 +1,7 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+FATAL WARN: lineage opencode runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.
+FATAL WARN: lineage (cli-opencode) runs with --dangerously-skip-permissions. The lineageDir write boundary is prompt-only, not sandbox-enforced.

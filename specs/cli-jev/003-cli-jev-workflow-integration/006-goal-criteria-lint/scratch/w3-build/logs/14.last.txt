@@ -1,0 +1,9 @@
+All verification passed. Only the one named file changed, `cmp` is silent with exit 0, and the validator reports VALID with 0 issues.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-goal/scripts/README.md (+36/-5)
+EDITS: .skilled/skills/sk-doc/sk-create-goal/scripts/README.md:1-121 whole file replaced with scratch/w3-build/content/scripts-readme.new.md, byte-identical (frontmatter title/description/two trigger phrases, H1, five checks + lint paragraph + two state bullets, four tree lines, five key-file rows, lint paragraph + flow block, corrected --all exit rule and lint/scorer commands)
+CHECKS: cmp specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/content/scripts-readme.new.md .skilled/skills/sk-doc/sk-create-goal/scripts/README.md -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-goal/scripts/README.md -> ✅ VALID: .skilled/skills/sk-doc/sk-create-goal/scripts/README.md, Document type: readme, Total issues: 0 (exit 0)
+BLOCKED REASON: none

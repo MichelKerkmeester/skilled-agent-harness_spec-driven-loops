@@ -1,0 +1,8 @@
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py (+9/-2)
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py:88 docstring summary rewritten to "List the paths in HEAD's tree in git order" plus one sentence that every read is at a commit, so an index-only path is left out and a deletion-staged path stays in (Args/Returns kept)
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py:99 return now lists `git ls-tree -r -z --name-only HEAD`, split and filter unchanged
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> 41 PASS, ALL PASS (exit 0)
+CHECKS: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py -> no violations (exit 0)
+BLOCKED REASON: none

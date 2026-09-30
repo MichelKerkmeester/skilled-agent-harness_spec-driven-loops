@@ -1,0 +1,4 @@
+.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md
+.skilled/skills/sk-doc/manual-testing-playbook/document-validation/citation-drift-scan.md
+.skilled/skills/sk-doc/changelog/v2.2.3.0.md
+.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs

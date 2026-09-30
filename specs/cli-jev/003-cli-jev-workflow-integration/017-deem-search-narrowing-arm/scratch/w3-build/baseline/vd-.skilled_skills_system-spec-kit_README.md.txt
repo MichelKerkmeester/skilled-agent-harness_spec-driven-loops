@@ -1,0 +1,4 @@
+
+✅ VALID: .skilled/skills/system-spec-kit/README.md
+Document type: readme
+Total issues: 0

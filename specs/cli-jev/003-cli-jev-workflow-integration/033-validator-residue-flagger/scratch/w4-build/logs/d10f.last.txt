@@ -1,0 +1,8 @@
+Both checks pass. One shape note: the step phrase "sections 1 to 4" against a model that carries `## 5. SOURCE METADATA`. The brief directs matching the model's shape, every sibling file in the folder carries section 5, and `validate-playbook-package.cjs` hard-fails `SECTION_5_MISSING` with an empty `warnPackages`, so the doc carries all five sections with every slot filled from `design.md` section 2, `facts.txt`, and the script's code. No verdict line is claimed anywhere. The `git diff --stat` is empty because the file is newly created (untracked), so its stat is reported from line count.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md (+86/-0)
+EDITS: .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md:1 created, model shape (frontmatter `title`/`description`/`version`, sections 1-5 as in `auto-mode-deep-review-kickoff.md`), `DRV-069`, zero-call run plus `deem arm skipped: stub backend` stub-backend skip, `--jev`/`--deem` named with their `--out <dir>` rule, no verdict line claimed
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md -> `✅ VALID: .../residue-flagger-measurement.md` `Document type: playbook_feature` `Total issues: 0` (exit 0); git diff --stat -- .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md -> no output, file is new and untracked (exit 0)
+BLOCKED REASON: none

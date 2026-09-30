@@ -1,0 +1,14 @@
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs
+.skilled/skills/system-skill-advisor/runtime/tests/parity/score-suggested-order.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts
+.skilled/skills/system-skill-advisor/leaf-aliases.json
+.skilled/skills/system-skill-advisor/leaf-manifest.json
+.skilled/skills/system-skill-advisor/README.md
+.skilled/skills/system-skill-advisor/SKILL.md
+.skilled/skills/system-skill-advisor/feature-catalog/feature-catalog.md
+.skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+.skilled/skills/system-skill-advisor/runtime/tests/parity/README.md
+.skilled/skills/system-skill-advisor/changelog/v0.14.0.0.md
+.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md
+.skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/suggested-order-eval.md

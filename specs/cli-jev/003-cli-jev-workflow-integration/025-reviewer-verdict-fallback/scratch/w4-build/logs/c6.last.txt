@@ -1,0 +1,39 @@
+
+
+
+
+Both files exist from earlier steps. Reading them fully before editing.
+
+Now let me read the sibling script and test to follow their shape for `main` and the test helpers.
+
+
+
+
+
+
+
+Now the sibling test to follow its helper shape for `runMain` and stdout capture.
+
+The design's stdout list needs disambiguation. Let me check the spec folder for the original wording and any other scratch artifacts.
+
+
+
+Let me check the design body and the c6 brief body for any extra detail on the baseline stdout lines.
+
+
+
+This session is a resumed c6 attempt; no edits were made yet. Let me check the design body for extra detail.
+
+Now let me read `extractVerdict` in the reviewer scorer to understand exactly what counts as a regex hit, which constrains my test fixtures.
+
+Let me check the phase spec and goal for the stdout contract, which may pin the baseline lines.
+
+Let me check how the sibling scripts use USAGE, and look at the other sibling for the closest shape.
+
+
+
+
+
+Now let me check the default profile's fixture wiring and verify the real fixture census numbers (read-only smoke test).
+
+

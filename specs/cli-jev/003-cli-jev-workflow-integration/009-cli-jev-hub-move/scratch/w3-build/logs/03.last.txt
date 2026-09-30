@@ -1,0 +1,18 @@
+All steps completed and checks passed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED:
+- .skilled/skills/cli-classifier/SKILL.md (+173/-158 approx; byte-for-byte replace with prepared copy)
+- .skilled/skills/cli-jev/SKILL.md (deleted, -131)
+EDITS:
+- .skilled/skills/cli-classifier/SKILL.md:whole file copied byte-for-byte from scratch/w3-build/attach/SKILL.md
+- .skilled/skills/cli-jev/SKILL.md:file removed with plain `rm` (working tree only, not git rm)
+CHECKS:
+- cmp specs/cli-jev/003-cli-jev-workflow-integration/009-cli-jev-hub-move/scratch/w3-build/attach/SKILL.md .skilled/skills/cli-classifier/SKILL.md -> no output (exit 0)
+- test ! -e .skilled/skills/cli-jev/SKILL.md -> no output (exit 0)
+- python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/SKILL.md -> "✅ VALID: .skilled/skills/cli-classifier/SKILL.md / Document type: skill / Total issues: 0" (exit 0)
+- grep -c '^| `cli-jev` | `cli-usage` | transport' .skilled/skills/cli-classifier/SKILL.md -> "1" (exit 0)
+BLOCKED REASON: none
+
+Note: `git status` on my two named files shows exactly ` M .skilled/skills/cli-classifier/SKILL.md` and ` D .skilled/skills/cli-jev/SKILL.md` — 1 changed, 1 deleted. Other renames visible in the tree are pre-staged changes from concurrent workers, untouched by me.

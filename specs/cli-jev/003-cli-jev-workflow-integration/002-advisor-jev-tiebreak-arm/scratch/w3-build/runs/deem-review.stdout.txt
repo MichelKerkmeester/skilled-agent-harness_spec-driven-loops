@@ -1,0 +1,19 @@
+census: file=labeled rows=177 eligible=93 movable=22 gold_first=61 gold_outside=10 gold_top3=164 tau03=18 over25=0
+census: file=holdout rows=64 eligible=18 movable=1 gold_first=15 gold_outside=2 gold_top3=49 tau03=0 over25=0
+census: split=train rows=121 eligible=54 movable=9 gold_first=38 gold_outside=7 gold_top3=106 tau03=7 over25=0
+census: split=test rows=120 eligible=57 movable=14 gold_first=38 gold_outside=5 gold_top3=107 tau03=11 over25=0
+baseline: holdout_top1=53/70
+comparator: name=scorer rows=111 mrr=0.7811 right1=76 right3=99
+comparator: name=confidence rows=111 mrr=0.7766 right1=75 right3=99
+comparator: name=always_second rows=111 mrr=0.5498 right1=25 right3=99
+comparator: name=rerank rows=57 mrr=0.7588 right1=37 right3=51
+power: movable=23 decided_ceiling=99 min_wins=16 win_rate_80=0.749
+deem: health backend=torch model=deem-0.8-v1 model_commit=8cbabbb2c4a7ef13c6b43f0ef3ae4157983c6d21 source_commit=c8a5523c5a7ead9a2132363edfcffd1ec86a6dbc
+deem: nothing leaves the machine planned_calls=528 est_wall_s=34.6 unmeasured_over25=0
+column: backend=deem rows=111 measured=111 wins=8 losses=30 ties=44 abstentions=12 unmeasured=0 unstable=17
+column: backend=deem movable_wins=8 gold_demotions=24 none_on_gold_in_cluster=9 p_win=0.9999 p_loss=0.0002 flip=0.3123
+column: backend=deem tau03_inside_wins=1 tau03_inside_losses=6 tau03_outside_wins=7 tau03_outside_losses=24
+column: backend=deem mrr=0.7015 right1=60 right3=97 scorer_mrr=0.7811 confidence_mrr=0.7766 always_second_mrr=0.5498 heldout_mrr=0.7047 rerank_mrr=0.7588
+column: backend=deem latency_p50_ms=241 latency_p95_ms=340
+verdict: kill backend=deem decided=38 wins=8 losses=30 p_win=0.9999 p_loss=0.0002 flip=0.3123 model=deem-0.8-v1 model_commit=8cbabbb2c4a7ef13c6b43f0ef3ae4157983c6d21 source_commit=c8a5523c5a7ead9a2132363edfcffd1ec86a6dbc
+calibration: backend=deem n=195 measured=195 accuracy=0.4974 f1=0.4432 brier=0.4217 ece5=0.4137 temperature=10.00 archived_f1=0.9843

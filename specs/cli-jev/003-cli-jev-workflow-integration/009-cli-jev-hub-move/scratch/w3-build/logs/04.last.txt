@@ -1,0 +1,19 @@
+I'll start by reading the target file to confirm the exact lines before editing.
+
+Both target lines confirmed. Applying the two edits.
+
+
+
+Both edits applied. Running the three verification checks.
+
+Checks pass. Now confirming the diff is exactly two replaced lines with no line count change.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/cli-classifier/cli-usage/SKILL.md (+2/-2)
+EDITS: .skilled/skills/cli-classifier/cli-usage/SKILL.md:45 reworded to "`cli-usage` is the packet of the hub's `cli-jev` transport mode"
+EDITS: .skilled/skills/cli-classifier/cli-usage/SKILL.md:282 reworded to "`cli-usage` is the packet of mode `cli-jev` in the `cli-classifier` hub, beside `cli-deem`"
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/cli-usage/SKILL.md -> ✅ VALID: .skilled/skills/cli-classifier/cli-usage/SKILL.md (exit 0)
+CHECKS: grep -c 'packet of mode `cli-jev` in the `cli-classifier` hub' .skilled/skills/cli-classifier/cli-usage/SKILL.md -> 1 (exit 0)
+CHECKS: grep -c "hub's first" .skilled/skills/cli-classifier/cli-usage/SKILL.md -> 0 (exit 1; grep's no-match status, count is the expected 0)
+CHECKS: git diff --numstat -- .skilled/skills/cli-classifier/cli-usage/SKILL.md -> 2 2 .skilled/skills/cli-classifier/cli-usage/SKILL.md, file still 319 lines (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/033-validator-residue-flagger",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validator residue flagger",
+      "score-residue-flagger",
+      "correctness traceability flagger",
+      "review finding residue",
+      "residue flagger keep rule",
+      "residue flagger plan",
+      "score-residue-flagger plan",
+      "residue flagger label gate",
+      "residue flagger build order",
+      "residue flagger tasks",
+      "score-residue-flagger tasks",
+      "residue flagger verification"
+    ],
+    "key_topics": [
+      "validator",
+      "residue",
+      "flagger",
+      "score-residue-flagger",
+      "correctness",
+      "traceability",
+      "review",
+      "finding",
+      "keep",
+      "rule",
+      "plan",
+      "label"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs",
+      ".skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs",
+      ".skilled/skills/system-deep-loop/deep-review/scripts/README.md",
+      ".skilled/skills/system-deep-loop/deep-review/scripts/tests/README.md",
+      ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+      ".hermes/skills/deep-review/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-review/README.md",
+      ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md",
+      ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md",
+      ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md",
+      ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.md",
+      "scratch/w4-session/docs/facts.txt",
+      "scratch/w4-session/session-evidence.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-residue-flagger.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-residue-flagger.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-review/scripts/tests/score-residue-flagger.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.11.0.37.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.0.37.md",
+        "source": "derived"
+      },
+      {
+        "name": "residue-flagger-measurement.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/review-dimensions/residue-flagger-measurement.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "facts.txt",
+        "kind": "file",
+        "path": "scratch/w4-session/docs/facts.txt",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Jev",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A document can pass every validator and still hold a correctness or traceability defect, because no validator checks either (`research.md:475`)",
+    "created_at": "2026-09-29T12:42:44Z",
+    "last_save_at": "2026-09-29T22:01:24.667Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:261928cbe4d5db3d5405a81dcf107440b370bb7e8370496129e4ab3a0b8ce415",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6eaf0386f716c22c2f126540378c5aded65f6e1f14fc1af52a4d3f48abae9b2a",
+      "plan.md": "c2daae88f85ceda1a3517fd493b864bd6bac2bf9311a93407dce2db8f7221b95",
+      "tasks.md": "416f6ffffff186ce2dc13bc38400fca804d8fd029528d8eb8eaaaf44575b1b49",
+      "implementation-summary.md": "3432783b34b0d04188d5d9538d4d8901cc1fc02a2727f53a4bfdfab22d7a9191"
+    },
+    "last_active_at": null
+  }
+}

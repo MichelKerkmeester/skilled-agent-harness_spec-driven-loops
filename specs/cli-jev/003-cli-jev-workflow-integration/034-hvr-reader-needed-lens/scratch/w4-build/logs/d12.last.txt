@@ -1,0 +1,14 @@
+Done. Gate outputs: REPO RULES: `communication-prose.md`, `evidence-and-proof.md`, `communication.md`, `communication-handoff.md` loaded. SKILL ROUTING: brief directs → `sk-doc` mode `sk-create-skill`; ARTIFACT: `sk-doc` → `sk-create-skill` (mode `SKILL.md` and `assets/skill/skill-md-template.md` read).
+
+What changed, in `.skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md` only:
+- `version:` 1.1.0.0 to 1.2.0.0, the value FACTS gives (newest packet changelog `v1.1.0.0.md`, this phase writes `v1.2.0.0.md`).
+- One sentence added under `scripts/hvr_scan.py` in the Resource Domains list, stating the four facts the step names: the offline reader-needed lens, its zero-call default, its `--jev`/`--deem` switches with `--out <dir>`, and that `hvr_scan.py` is unchanged. Every fact checked against the script's own docstring and `argparse` block (`scripts/hvr_reader_lens.py:12-25`, `:2067-2075`). The design models the file's Resource Domains and Related Resources lists; the step says one sentence and the Related Resources list is a table whose unit is a row, so the sentence went into the sentence-shaped list.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md (+2/-1)
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md:5 version 1.1.0.0 to 1.2.0.0
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md:59 one sentence added under `scripts/hvr_scan.py` in Resource Domains, naming the lens, its zero-call default, `--jev`/`--deem` with `--out <dir>`, and `hvr_scan.py` unchanged
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md -> "✅ VALID: .skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md" / "Total issues: 0" (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md -> "1 file changed, 2 insertions(+), 1 deletion(-)" (exit 0)
+BLOCKED REASON: none

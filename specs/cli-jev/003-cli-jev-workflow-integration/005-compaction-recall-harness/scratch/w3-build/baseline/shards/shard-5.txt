@@ -1,0 +1,153 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-spec-kit
+
+ ✓ ../system-deep-loop/runtime/tests/unit/blinded-adjudication.vitest.ts (39 tests) 80249ms
+     ✓ exposes an exact merit-only payload with assignment-local labels  980ms
+     ✓ normalizes presentation-only style and records source/presentation digests  916ms
+     ✓ rejects producer-equivalent and eligibility-changing submission profiles  910ms
+     ✓ exposes no proof-free append path for adjudication evidence  441ms
+     ✓ records mirrored raw evidence, reaches a stable verdict, and replays exactly  8649ms
+     ✓ rejects forged complete-verdict evidence, graph, and authority fields  8518ms
+     ✓ classifies an order-sensitive counterfactual as unstable without a winner  3342ms
+     ✓ fails closed when a required probe or mirrored judgment is missing  1971ms
+     ✓ requires the complete council probe policy at admission and reduction  3567ms
+     ✓ preserves ties and hard vetoes instead of forcing a preference  3390ms
+     ✓ rejects forged assignments and appends no accepted raw score  959ms
+     ✓ rejects forged opaque labels and identity-derived weighting fields  943ms
+     ✓ keeps all five request adapters typed and preserves verdict status without re-reduction  8312ms
+     ✓ returns the exact legacy result after recording a non-authoritative shadow comparison  9425ms
+     ✓ denies premature deblinding and records the denied audit without identities  696ms
+     ✓ requires external authorization and releases only the audited post-verdict scope  17967ms
+     ✓ appends invalidation without deleting the original verdict or raw evidence  8799ms
+ ❯ ../system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts (53 tests | 1 failed) 18305ms
+     ✓ rejects direct domain append when no durable allow proof exists 178ms
+     ✓ has no cast-reachable direct append method on the exported class 3ms
+     ✓ rejects an append whose fence has been superseded, before any frame commits  482ms
+     ✓ rejects a capability minted outside any coordinator, holding no lease at all 154ms
+     ✓ uses one exact allow once, returns the original receipt on retry, and rejects ID conflict  872ms
+     ✓ rejects one allow when presented for a different event or ledger identity  570ms
+     ✓ records a deny only in the non-domain audit stream 185ms
+     ✓ defaults missing, unknown, unsupported, stale, exceptional, and timed-out inputs to deny  638ms
+     ✓ fails closed when authority or audit storage is unavailable 122ms
+     ✓ denies before policy evaluation when no identity resolver is configured 114ms
+     ✓ denies when the resolver returns null 116ms
+     ✓ denies when the resolver throws 115ms
+     ✓ denies a partial identity result (actor only) 133ms
+     ✓ denies a partial identity result (capability only) 131ms
+     ✓ denies a partial identity result (evidence only) 125ms
+     ✓ denies a partial identity result (actor and capability) 112ms
+     ✓ denies a partial identity result (actor and evidence) 114ms
+     ✓ denies a partial identity result (capability and evidence) 120ms
+     ✓ denies a forged actorId once the resolver pins the expected one 119ms
+     ✓ denies a forged capabilityId once the resolver pins the expected one 122ms
+     ✓ denies a forged evidenceDigest once the resolver pins the expected one 126ms
+     ✓ allows only after all three independently resolved values match and records every flag true 132ms
+     ✓ accepts a digest-valid allow only when all three identity flags are true 117ms
+     ✓ rejects a digest-valid decision when actor false 113ms
+     ✓ rejects a digest-valid decision when capability false 120ms
+     ✓ rejects a digest-valid decision when evidence false 113ms
+     ✓ rejects a digest-valid decision when actor missing 117ms
+     ✓ rejects a digest-valid decision when capability missing 114ms
+     ✓ rejects a digest-valid decision when evidence missing 114ms
+     ✓ rejects a digest-valid decision when actor malformed 112ms
+     ✓ rejects a digest-valid decision when capability malformed 110ms
+     ✓ rejects a digest-valid decision when evidence malformed 107ms
+     ✓ rejects a digest-valid decision when actor tampered non-boolean 109ms
+     ✓ still rejects request or digest drift even when identity flags are true 110ms
+     ✓ pins every legacy boundary named by the persistence census 0ms
+     ✓ returns the same legacy result for allow, deny, and typed-ledger failure  708ms
+     ✓ rejects unsafe ledger identities and uses owner-only immutable frame permissions  329ms
+     × serializes concurrent processes into one contiguous unambiguous head 451ms
+     ✓ detects mutation before yielding a typed event  1102ms
+     ✓ detects deletion before yielding a typed event  1070ms
+     ✓ detects insertion before yielding a typed event  1053ms
+     ✓ detects reorder before yielding a typed event  988ms
+     ✓ detects fork before yielding a typed event  1066ms
+     ✓ detects and byte-preserves a torn tail, then resumes at the same next sequence  1294ms
+     ✓ completes an interrupted quarantine when the recovery marker is already durable  1099ms
+     ✓ rejects a recomputed frame carrying an unknown event type or altered authorization link  420ms
+     ✓ rebuilds byte-identical projections from verified events only  1092ms
+     ✓ verifies allow linkage, deny absence, and policy parity across both streams  550ms
+     ✓ keeps a crash-before-domain-commit allow durable and visibly unapplied  512ms
+     ✓ replay parity holds when a policy binds captured authorization state into its digest  428ms
+     ✓ gives two policies with identical evaluator source but different captured state different identity digests 0ms
+     ✓ re-derives the exact same identity digest for the same evaluator source and captured state across two independent registrations 0ms
+     ✓ gives a policy declaring no captured authorization state a stable deterministic identity digest that does not collide with a declared-state sibling 0ms
+ ✓ ../system-deep-loop/runtime/tests/unit/agent-improvement-ledger-schema.vitest.ts (12 tests) 23187ms
+     ✓ authorizes, appends, and verifies every imported and added event stem  21714ms
+     ✓ rejects foreign common variants before durable append  764ms
+     ✓ denies unauthorized transitions before the append boundary  315ms
+     ✓ preserves prepared event bytes after caller mutation  344ms
+ ✓ ../system-deep-loop/runtime/tests/unit/stopping-clocks.vitest.ts (31 tests) 644ms
+     ✓ authorizes one terminal event, accepts exact retry, and rejects a conflict  454ms
+ ✓ ../system-deep-loop/runtime/tests/unit/post-dispatch-validate.vitest.ts (30 tests) 43ms
+nested cli-claude-code dispatch refused [recursion-guard-stack]: cli-claude-code already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-claude-code again
+nested cli-codex dispatch refused [recursion-guard-env]: CODEX_SESSION_ID is set for cli-codex — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-stack]: cli-codex already appears in SPECKIT_CLI_DISPATCH_STACK — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-lineage]: SPECKIT_FANOUT_LINEAGE_ID is set, so this process is already a fan-out CLI lineage — run the iteration in-process instead of dispatching cli-codex again
+nested cli-codex dispatch refused [recursion-guard-ancestry]: cli-codex executor binary appears in process ancestry — run the iteration in-process instead of dispatching cli-codex again
+ ✓ ../system-deep-loop/runtime/tests/unit/executor-audit.vitest.ts (49 tests) 89ms
+ ✓ ../system-deep-loop/runtime/tests/unit/atomic-state.vitest.ts (18 tests) 5634ms
+     ✓ serializes identical concurrent diff-gated appends so exactly one row lands  312ms
+     ✓ does not reclaim an append lock owned by a live process just because it looks old  5005ms
+ ✓ ../system-deep-loop/runtime/tests/integration/divergent-pivot.vitest.ts (14 tests) 1505ms
+     ✓ produces an identical completed result via prepare / recordPivotSeatResult / finalize as via runDivergentPivot  317ms
+ ✓ runtime/tests/env-reference-drift.vitest.ts (5 tests) 669ms
+ ✓ runtime/tests/validation-orchestrator-bridge.vitest.ts (11 tests) 276ms
+ ✓ ../system-deep-loop/runtime/tests/unit/append-mode-event-legacy-seam.vitest.ts (4 tests) 2527ms
+     ✓ a legacy config row that upcasts appends to the deep-research ledger and exits 0  1010ms
+     ✓ a legacy row the upcaster refuses exits 1 carrying the decision reason and writes nothing  347ms
+     ✓ a canonical stem event still appends unchanged with no warnings key  828ms
+     ✓ a non-research mode given a legacy row exits 1 with the original unrecognized-format message  341ms
+ ✓ runtime/tests/upgrade-baseline.vitest.ts (10 tests) 17ms
+ ✓ ../system-deep-loop/runtime/tests/unit/permissions-gate.vitest.ts (9 tests) 8ms
+ ✓ ../system-deep-loop/runtime/tests/unit/optimizer-manifest-anti-convergence.vitest.ts (3 tests) 3ms
+ ✓ runtime/tests/api-validation.vitest.ts (7 tests) 14ms
+ ✓ runtime/tests/model-server-respawn-lock-atomic.vitest.ts (6 tests) 15ms
+ ✓ ../system-deep-loop/runtime/tests/receipt-crypto.test.ts (11 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/unit/observability-events.vitest.ts (3 tests) 4ms
+ ✓ ../system-deep-loop/runtime/tests/unit/stop-policy-yaml-parity.vitest.ts (6 tests) 26ms
+ ✓ ../system-deep-loop/runtime/tests/unit/evidence-contract.vitest.ts (8 tests) 2ms
+ ✓ ../system-deep-loop/runtime/tests/integration/council-graph-value-scenarios.vitest.ts (6 tests) 1060ms
+ ✓ runtime/tests/budget-allocator.vitest.ts (4 tests) 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  ../system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts > locked ordering and immutable integrity > serializes concurrent processes into one contiguous unambiguous head
+Error: Writer 4 exited 1: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/immutable-frame-store.ts:626
+      throw new AuthorizedLedgerError(
+            ^
+
+AuthorizedLedgerError: Ledger writer lock identity changed before release
+    at ImmutableFrameStore.#releaseLock (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/immutable-frame-store.ts:626:13)
+    at ImmutableFrameStore.withExclusiveLock (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/immutable-frame-store.ts:321:12)
+    at async AppendOnlyLedger.getVerifiedHead (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:373:13)
+    at async createFixtureRequest (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/runtime/tests/fixtures/authorized-ledger-fixtures.ts:157:16)
+    at async <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/runtime/tests/fixtures/authorized-ledger-worker.ts:59:19) {
+  code: 'LOCK_LOST',
+  phase: 'lock',
+  details: { ledgerId: 'fixture-domain' }
+}
+
+Node.js v26.8.2
+
+ ❯ ImmutableFrameStore.#releaseLock ../system-deep-loop/runtime/lib/authorized-ledger/immutable-frame-store.ts:626:13
+    624|     const holder = readLockRecord(this.#lockPath);
+    625|     if (!holder || holder.token !== token || holder.owner_pid !== proc…
+    626|       throw new AuthorizedLedgerError(
+       |             ^
+    627|         AuthorizedLedgerErrorCodes.LOCK_LOST,
+    628|         'lock',
+ ❯ ImmutableFrameStore.withExclusiveLock ../system-deep-loop/runtime/lib/authorized-ledger/immutable-frame-store.ts:321:12
+ ❯ AppendOnlyLedger.getVerifiedHead ../system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts:373:13
+ ❯ createFixtureRequest ../system-deep-loop/runtime/tests/fixtures/authorized-ledger-fixtures.ts:157:16
+ ❯ ChildProcess.<anonymous> ../system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts:248:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 21 passed (22)
+      Tests  1 failed | 338 passed (339)
+   Start at  22:16:46
+   Duration  137.21s (transform 872ms, setup 64ms, import 1.49s, tests 134.28s, environment 1ms)
+
