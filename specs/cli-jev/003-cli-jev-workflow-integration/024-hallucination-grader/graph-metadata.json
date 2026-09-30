@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The 5dim scorer weighs D4, the hallucination dimension, at 0.15 (`.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:58`) and takes D4 from the grader (`:300`)",
     "created_at": "2026-09-29T12:42:36Z",
-    "last_save_at": "2026-09-29T16:39:59.897Z",
+    "last_save_at": "2026-09-30T07:34:29.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:edb90c43bef5fdda6fb520e6f55f322713f0579a1468ea5654c6c870c97f5e86",
+    "source_fingerprint": "sha256:38bafe93f829164031b78254164e273147728ec30d94c1efe747f3201861f1d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fada9e041981b55bccf52dfe4a942c1133bcc3b90ad77a33f4665a838d88ea8d",
       "plan.md": "0921266e9ab4b8591d2c448ec70a93612807793fadbb8d8adaa05e33d53f2fa0",
       "tasks.md": "52e8919c5e80ec3231b5ae4935e03c894d72c07782e6f278b2aca4e7059edeb3",
-      "implementation-summary.md": "ed3374c4a302ad5a67ad3307815d51eef932de38f3756afe2534437d966e9ce2"
+      "implementation-summary.md": "6f089f55ffd21ebba59f3887b35fa5e781536b11e0196ebfbc31a9457b895582"
     },
     "last_active_at": null
   }

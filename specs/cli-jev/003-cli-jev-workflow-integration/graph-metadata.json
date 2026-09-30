@@ -139,12 +139,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -164,6 +158,12 @@
       },
       {
         "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Find",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -207,17 +207,17 @@
     ],
     "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-09-29T17:32:47.207Z",
+    "last_save_at": "2026-09-30T07:32:56.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:38434f518b53f19a8e66205d755a7f9ce4c29472351154a3fc4438c4155fe8be",
+    "source_fingerprint": "sha256:c9a23ffc48b8d2b18202c527ad82bf79b82008a8dca6cb7fe60a11f82b39d91d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6b687307fe7222d6b3c4caeabe00ff2a21b5e278f58e70e727c51e9641b2371a"
+      "spec.md": "aa341e63bc9872e15ff6f95dad480378987fd7c8400804f99a20f7c87ab3590a"
     },
     "last_active_child_id": "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
     "last_active_at": "2026-09-27T09:37:40.643Z"
