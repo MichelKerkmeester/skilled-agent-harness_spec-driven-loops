@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 56 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 57 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
 
 ### REALISTIC TEST MODEL
 
@@ -388,7 +388,7 @@ Expected signals: Recovery marker durable (fsynced) before the torn frame is ren
 
 ## 10. SCORING
 
-This category covers 4 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 5 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-010 | Bayesian scorer
 
@@ -447,6 +447,21 @@ Expected signals: `rater report not found: <dir>/report.json` and `rater report 
 
 #### Test Execution
 > **Feature File:** [DLR-057](../manual-testing-playbook/scoring/stop-hint-replay.md)
+
+---
+
+### DLR-058 | Severity replay
+
+#### Description
+Adds `scripts/score-severity-replay.cjs`, an offline replay that reads every tracked deep-review findings registry and measures whether a Jev or Deem severity choice would separate real P0 findings from false ones better than the recorded severity. It changes no severity, no registry and no review gate. The default run makes no model call and writes no file. `--write-label-sheet <path>` writes one JSONL row per P0 finding with every `label` empty for the operator to fill, `--labels <file>` reads the filled sheet back, and `--jev` and `--deem` each open one arm behind its own gate and require `--out <dir>`.
+
+#### Scenario Contract
+Prompt: `Run the offline severity replay with logging stubs first on PATH and confirm the default run makes zero model calls and writes no file, the label gate stops both arms by name, --jev without --out refuses with exit 2 before any census line, no stub is called, and the suite passes.`
+
+Expected signals: The default run prints the census and ends with `stop: fewer than 20 labeled P0 negatives` with no stub call, `jev arm skipped: label gate` and `deem arm skipped: label gate` print when both arms are requested and only `report.json` is written under `--out <dir>`, `--jev needs --out <dir> so every call is recorded` lands on stderr with exit 2 before any census line, `git status` outside `specs/` is unchanged, and 33 passing tests.
+
+#### Test Execution
+> **Feature File:** [DLR-058](../manual-testing-playbook/scoring/severity-replay.md)
 
 ---
 
@@ -982,3 +997,4 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-055 | [F051 append-mode-event.cjs](../feature-catalog/script-entry-points/append-mode-event-script.md) | [script-entry-points/append-mode-event-script.md](../manual-testing-playbook/script-entry-points/append-mode-event-script.md) |
 | DLR-056 | [F056 Stop-rater replay](../feature-catalog/scoring/stop-rater-replay.md) | [scoring/stop-rater-replay.md](../manual-testing-playbook/scoring/stop-rater-replay.md) |
 | DLR-057 | [F057 Stop-hint replay](../feature-catalog/scoring/stop-hint-replay.md) | [scoring/stop-hint-replay.md](../manual-testing-playbook/scoring/stop-hint-replay.md) |
+| DLR-058 | [F058 Severity replay](../feature-catalog/scoring/severity-replay.md) | [scoring/severity-replay.md](../manual-testing-playbook/scoring/severity-replay.md) |

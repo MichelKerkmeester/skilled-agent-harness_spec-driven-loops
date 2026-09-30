@@ -49,6 +49,7 @@ The `lib/` child contains CLI-only guards and writer-lock helpers.
 | `query.cjs` | Queries coverage gaps, contradictions and stored graph state. |
 | `reduce-state.cjs` | Reduces durable state records into a current runtime projection. |
 | `render-command-contract.cjs` | Renders the command contract used by validation and dispatch. |
+| `score-severity-replay.cjs` | Measures offline whether a Jev or Deem severity choice would separate real P0 findings from false ones better than the recorded severity, with no model call by default and no severity change. The `--write-label-sheet <path>` and `--labels <file>` switches write and read the operator's label sheet, `--jev` and `--deem` open the rating arms behind the label gate, and `--out <dir>` records every call. |
 | `score-stop-hint.cjs` | Replays one stop-rater report offline and prints per-column hint counts and one Keep-Rule verdict per column past its label gate, with no model call in any mode. The `--rater-report <dir>` switch names the report to read, `--jev` and `--deem` add the rater's recorded columns, and `--out <dir>` writes the run's report. |
 | `score-stop-rater.cjs` | Replays recorded deep-research stop decisions offline against gold derived from the delta files, with no model call by default. The `--jev` and `--deem` switches open a rating arm and `--gold-reads <file>` supplies the confirmed reads that gate it. |
 | `status.cjs` | Reports session-scoped graph health and stored row counts. |
