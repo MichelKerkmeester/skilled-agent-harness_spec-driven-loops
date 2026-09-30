@@ -2,6 +2,10 @@
 // MODULE: Advisor Daemon Server
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -25,7 +29,7 @@ import { publishSkillGraphGeneration } from './lib/freshness/generation.js';
 import { startSkillGraphDaemon, type SkillGraphDaemon } from './lib/daemon/lifecycle.js';
 import type { SkillGraphFsWatcher } from './lib/daemon/watcher.js';
 import { readAdvisorStatus } from './handlers/advisor-status.js';
-import { runWithCallerContext, type CallerContext } from './lib/context/caller-context.js';
+import { runWithCallerContext, type CallerContext } from './lib/caller-context.js';
 import {
   getIpcBridgeStats,
   resolveIpcSocketPath,
@@ -37,9 +41,21 @@ import {
   type LauncherIdleMonitor,
 } from './lib/ipc/launcher-idle-timeout.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. EXPORTS
+// ───────────────────────────────────────────────────────────────────
+
 export { dispatchTool, TOOL_DEFINITIONS };
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const TOOL_NAMES = new Set(TOOL_DEFINITIONS.map((tool) => tool.name));
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function resolveSkillGraphDbPath(): string {
   return path.join(resolveSkillGraphDbDir(), 'skill-graph.sqlite');
@@ -123,6 +139,10 @@ function logSkillGraphIndexResult(trigger: string, result: ReturnType<typeof ind
   console.error(`[system-skill-advisor-launcher] Skill graph ${trigger}: indexed=${result.indexedFiles}`);
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. DAEMON LIFECYCLE
+// ───────────────────────────────────────────────────────────────────
+
 async function startupSkillGraphScan(): Promise<void> {
   const skillGraphSourceDir = resolveSkillGraphSourceDir();
   if (!skillGraphSourceDir) {
@@ -188,6 +208,10 @@ async function shutdownAdvisor(reason: string): Promise<void> {
   closeSkillGraphDb();
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. CALLER AUTHORITY
+// ───────────────────────────────────────────────────────────────────
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
@@ -220,6 +244,10 @@ export function buildCallerContext(extra: unknown): CallerContext {
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 7. PROTOCOL CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 // The advisor's own wire dialect, versioned independently of MCP. It is an
 // integer-valued string because frame shapes, not capabilities, decide when it moves.
 const ADVISOR_PROTOCOL_VERSION = '1';
@@ -232,6 +260,10 @@ const JSON_RPC_INVALID_PARAMS = -32602;
 const JSON_RPC_INTERNAL_ERROR = -32603;
 const JSON_RPC_INVALID_REQUEST = -32600;
 const JSON_RPC_DAEMON_UNAVAILABLE = -32000;
+
+// ───────────────────────────────────────────────────────────────────
+// 8. JSON-RPC FRAMING
+// ───────────────────────────────────────────────────────────────────
 
 function jsonRpcResult(id: unknown, result: unknown): Record<string, unknown> {
   return { jsonrpc: '2.0', id: id ?? null, result };
@@ -329,6 +361,10 @@ async function handleAdvisorFrame(frame: unknown): Promise<Record<string, unknow
     return jsonRpcError(id, JSON_RPC_INTERNAL_ERROR, message);
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 9. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 export async function main(): Promise<void> {
   console.error(`[system-skill-advisor-launcher] DB: ${resolveSkillGraphDbPath()}`);

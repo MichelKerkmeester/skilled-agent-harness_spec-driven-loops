@@ -17,7 +17,7 @@ import {
   isRouteExcludedSkillId,
   loadRouteExclusionsFromDir,
   resetRouteExclusionsCache,
-} from '../lib/routing/route-exclusions.js';
+} from '../lib/route-exclusions.js';
 import { filterDefaultRoutable } from '../lib/lifecycle/archive-handling.js';
 
 const COMMITTED_FILE = 'route-exclusions.json';

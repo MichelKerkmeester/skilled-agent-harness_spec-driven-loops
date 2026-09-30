@@ -25,7 +25,7 @@ vi.mock('../../handlers/advisor-status.js', () => ({
 import { advisorPromptCache } from '../../lib/prompt-cache.js';
 import { AdvisorRecommendInputSchema } from '../../schemas/advisor-tool-schemas.js';
 import { handleAdvisorRecommend } from '../../handlers/advisor-recommend.js';
-import { buildErrorResponse, ErrorCodes, MemoryError } from '../__fixtures__/errors.js';
+import { buildErrorResponse, ErrorCodes, MemoryError } from '../fixtures/errors.js';
 import { dispatchTool } from '../../tools/index.js';
 
 const tempDirs: string[] = [];

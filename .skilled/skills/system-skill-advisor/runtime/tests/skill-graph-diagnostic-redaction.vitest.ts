@@ -9,8 +9,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import MkSkillAdvisorPlugin from '../../../../plugins/system-skill-advisor.js';
 import { handleSkillGraphScan } from '../handlers/skill-graph/scan.js';
-import { runWithCallerContext } from '../lib/context/caller-context.js';
-import type { CallerContext } from '../lib/context/caller-context.js';
+import { runWithCallerContext } from '../lib/caller-context.js';
+import type { CallerContext } from '../lib/caller-context.js';
 
 function trustedCaller(): CallerContext & { readonly trusted: true } {
   return {

@@ -2,6 +2,10 @@
 // MODULE: Skill Advisor Prompt Policy
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { canonicalFold } from './shared/unicode-normalization.js';
 import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -9,6 +13,10 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 interface PromptPolicyConfig {
   sets: {
@@ -26,6 +34,10 @@ interface PromptPolicyConfig {
     LONG_NON_CASUAL_CHARS: number;
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. POLICY CONFIG
+// ───────────────────────────────────────────────────────────────────
 
 const policyJsonPath = process.env.SPECKIT_ADVISOR_PROMPT_POLICY_PATH
   ?? join(__dirname, '..', 'data', 'prompt-policy.default.json');
@@ -57,6 +69,10 @@ const LENGTH_AND_TOKEN_VISIBLE_CHARS = resolveNumericThreshold('SPECKIT_ADVISOR_
 const LENGTH_AND_TOKEN_MEANINGFUL_FLOOR = resolveNumericThreshold('SPECKIT_ADVISOR_PROMPT_POLICY_LENGTH_AND_TOKEN_MEANINGFUL_FLOOR', policyConfig.thresholds.LENGTH_AND_TOKEN_MEANINGFUL_FLOOR);
 const LONG_NON_CASUAL_CHARS = resolveNumericThreshold('SPECKIT_ADVISOR_PROMPT_POLICY_LONG_NON_CASUAL_CHARS', policyConfig.thresholds.LONG_NON_CASUAL_CHARS);
 
+// ───────────────────────────────────────────────────────────────────
+// 4. RESULT TYPE
+// ───────────────────────────────────────────────────────────────────
+
 export interface AdvisorPromptPolicyResult {
   readonly fire: boolean;
   readonly reason: string;
@@ -65,6 +81,10 @@ export interface AdvisorPromptPolicyResult {
   readonly visibleCharCount: number;
   readonly metalinguisticMentions: string[];
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function normalizePrompt(prompt: string): string {
   return canonicalFold(prompt).replace(/\s+/g, ' ').trim();
@@ -89,6 +109,10 @@ function hasExplicitMarker(canonicalLower: string): boolean {
 function hasWorkIntentVerb(tokens: string[]): boolean {
   return tokens.some((token) => WORK_INTENT_VERBS.has(token));
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** Extract explicit `sk-*` mentions used for prompt-policy diagnostics. */
 export function extractMetalinguisticSkillMentions(prompt: string): string[] {

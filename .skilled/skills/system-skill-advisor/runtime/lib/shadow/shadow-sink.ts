@@ -2,11 +2,23 @@
 // MODULE: Advisor Shadow Sink
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { appendFileSync, existsSync, mkdirSync, realpathSync, renameSync, statSync } from 'node:fs';
 import { dirname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const DEFAULT_MAX_BYTES = 10 * 1024 * 1024;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export interface ShadowDeltaRecord {
   prompt: string;
@@ -30,6 +42,10 @@ export interface RecordShadowDeltaResult {
   rotated: boolean;
   error?: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function defaultShadowDeltaPath(): string {
   const here = dirname(fileURLToPath(import.meta.url));
@@ -153,6 +169,10 @@ function shadowDeltaSinkEnabled(): boolean {
   const flag = (process.env.SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED ?? '').trim().toLowerCase();
   return flag === '1' || flag === 'true';
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   recordShadowDelta,

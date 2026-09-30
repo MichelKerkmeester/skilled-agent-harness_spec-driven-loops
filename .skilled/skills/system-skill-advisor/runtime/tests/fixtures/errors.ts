@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Error Response Fixtures
+// ───────────────────────────────────────────────────────────────────
 export const ErrorCodes = {
   SEARCH_FAILED: 'SEARCH_FAILED',
 } as const;

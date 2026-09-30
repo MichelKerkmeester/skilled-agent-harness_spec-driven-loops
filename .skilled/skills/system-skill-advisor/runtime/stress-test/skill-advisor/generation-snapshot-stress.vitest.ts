@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Generation Snapshot Stress Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';

@@ -2,6 +2,10 @@
 // MODULE: Embedders — schema helpers
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { createHash } from 'node:crypto';
 import os from 'node:os';
 import path from 'node:path';
@@ -17,6 +21,10 @@ import type { BackendKind } from '@spec-kit/shared/embeddings/types.js';
 
 import { getManifest } from './registry.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export interface ActiveEmbedder {
   readonly name: string;
   readonly dim: number;
@@ -27,6 +35,10 @@ interface MetadataRow {
   readonly key: string;
   readonly value: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 // The shared-embedder alignment flipped the default
 // from `embeddinggemma-300m` to the `'auto'` sentinel. The shared cascade
@@ -51,11 +63,19 @@ const ACTIVE_EMBEDDER_PROVIDERS = new Set<AutoSelectedEmbedderProvider>([
   'hf-local',
 ]);
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function validateDim(dim: number): void {
   if (!Number.isInteger(dim) || dim <= 0) {
     throw new RangeError(`Embedder dimension must be a positive integer, got ${dim}`);
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function vecTableNameForDim(dim: number): string {
   validateDim(dim);
@@ -184,9 +204,9 @@ export function setActiveEmbedder(
   setActiveEmbedderTransactional(db, name, dim, undefined, provider);
 }
 
-// ───────────────────────────────────────────────────────────────
-// Cascade integration
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 6. CASCADE INTEGRATION
+// ───────────────────────────────────────────────────────────────────
 
 export interface EnsureActiveEmbedderOptions {
   /** Override the content-type passed to the shared cascade. Defaults to 'text'. */
@@ -316,6 +336,10 @@ export async function ensureActiveEmbedder(
 
   return { name: result.name, dim: result.dim, provider: result.provider };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 7. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export const __embedderSchemaTestables = {
   setActiveEmbedderTransactional,

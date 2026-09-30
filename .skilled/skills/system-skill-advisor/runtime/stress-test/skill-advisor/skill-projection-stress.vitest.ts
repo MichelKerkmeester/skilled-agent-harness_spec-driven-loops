@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Skill Projection Stress Tests
+// ───────────────────────────────────────────────────────────────────
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';

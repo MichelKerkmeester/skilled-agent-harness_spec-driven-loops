@@ -26,7 +26,7 @@ import {
 } from '../lib/derived/sanitizer.js';
 import { syncDerivedMetadata } from '../lib/derived/sync.js';
 import { capContribution, isAuthorLane, trustLaneForSource } from '../lib/derived/trust-lanes.js';
-import { computeCorpusStats, createDebouncedCorpusUpdater } from '../lib/corpus/df-idf.js';
+import { computeCorpusStats, createDebouncedCorpusUpdater } from '../lib/df-idf.js';
 import { createSkillGraphWatcher, type SkillGraphFsWatcher } from '../lib/daemon/watcher.js';
 import { readSkillGraphGeneration } from '../lib/freshness/generation.js';
 import { filterCorpusStatEligible, filterDefaultRoutable, routePolicyForPath } from '../lib/lifecycle/archive-handling.js';

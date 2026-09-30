@@ -8,7 +8,7 @@ import {
   handleAdvisorStatus,
   handleAdvisorValidate,
 } from '../handlers/index.js';
-import type { CallerContext } from '../lib/context/caller-context.js';
+import type { CallerContext } from '../lib/caller-context.js';
 import { advisorRebuildTool } from './advisor-rebuild.js';
 import { advisorRecommendTool } from './advisor-recommend.js';
 import { advisorStatusTool } from './advisor-status.js';

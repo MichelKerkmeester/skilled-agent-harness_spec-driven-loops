@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: @spec-kit/shared import specifiers carry the .js extension
+// MODULE: Shared Import Specifier Extension
 // ───────────────────────────────────────────────────────────────────
 // The advisor consumes @spec-kit/shared as compiled ESM, where a bare
 // specifier resolves only through a bundler's guess. Production code settled

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# ====================================================================
-# check-prompt-quality-card-sync.sh — Drift guard for the shared
-#                                      prompt-knowledge layers
-# ====================================================================
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: CHECK PROMPT QUALITY CARD SYNC
+# ───────────────────────────────────────────────────────────────
+# Drift guard for the shared prompt-knowledge layers.
 # Enforces "one home per fact" across sk-prompt (framework engine) and
 # the cli-* executors.
 # Two structural checks (no semantic/NLP matching — pointer presence and

@@ -10,7 +10,7 @@ import { dirname, join } from 'node:path';
 // parameter on `computeCorpusStats` so callers can pass a different filter
 // (or the eligible documents directly) without the corpus math module
 // reaching into the lifecycle subsystem.
-import { filterCorpusStatEligible } from '../lifecycle/archive-handling.js';
+import { filterCorpusStatEligible } from './lifecycle/archive-handling.js';
 
 export type CorpusEligibilityPredicate = <T extends { sourcePath: string }>(
   entries: readonly T[],

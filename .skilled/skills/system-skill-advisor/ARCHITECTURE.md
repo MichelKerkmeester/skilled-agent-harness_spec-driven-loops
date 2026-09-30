@@ -73,10 +73,18 @@ system-skill-advisor/
 │   ├── skill-advisor-cli.ts # Nine-command CLI over the daemon IPC
 │   ├── handlers/            # Command handlers
 │   ├── tools/               # Command definitions and dispatcher
-│   ├── lib/                 # scorer, daemon, freshness, skill-graph, embedders, ipc
+│   ├── lib/                 # 18 flat modules (caller-context, df-idf, route-exclusions,
+│   │                        # render, prompt-cache, ...) and 15 domain folders: scorer,
+│   │                        # daemon, freshness, lifecycle, skill-graph, embedders, ipc, ...
+│   ├── schemas/             # Zod and JSON contracts
+│   ├── compat/              # Public compatibility export barrel
+│   ├── config/              # route-exclusions.json and its local override
+│   ├── data/                # Static JSON copied into dist
+│   ├── types/               # Ambient declarations (better-sqlite3)
 │   ├── scripts/             # skill_advisor.py, graph compiler, guards
 │   ├── database/            # Local SQLite skill graph
-│   ├── tests/               # Vitest and integration coverage
+│   ├── tests/               # Vitest and Python coverage; shared fixtures in tests/fixtures/
+│   ├── stress-test/         # Stress suites (vitest.stress.config.ts)
 │   ├── bench/               # Scorer benchmarks
 │   └── dist/                # Generated build output
 ├── hooks/                   # Prompt-time adapters and hook references

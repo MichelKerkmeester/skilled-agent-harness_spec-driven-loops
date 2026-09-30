@@ -1663,7 +1663,7 @@ def test_graph_compiler():
         fixture_path = os.path.join(
             os.path.dirname(os.path.realpath(__file__)),
             "..",
-            "__shared__",
+            "fixtures",
             "affordance-injection-fixtures.json",
         )
         fixture_path = os.path.realpath(fixture_path)

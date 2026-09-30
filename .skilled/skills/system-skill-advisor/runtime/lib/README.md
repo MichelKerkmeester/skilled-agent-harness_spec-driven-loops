@@ -59,7 +59,6 @@ Dependency direction: handlers/scripts -> lib -> schemas and shared helpers
 lib/
 +-- auth/                       # Trusted caller checks
 +-- compat/                     # Compatibility and daemon probes
-+-- corpus/                     # Text scoring helpers
 +-- cross-skill-edges/          # Inbound enhances edge detection/apply helpers
 +-- daemon/                     # Advisor daemon helpers
 +-- derived/                    # Derived metadata helpers
@@ -136,6 +135,9 @@ lib/
 | `skill-advisor-brief.ts` | Builds concise advisor recommendation briefs. |
 | `normalize-adapter-output.ts` | Normalizes adapter result shapes. |
 | `subprocess.ts` | Wraps external process execution for advisor scripts or probes. |
+| `df-idf.ts` | Computes DF/IDF statistics over the active corpus, excluding archived and future skills through `lifecycle/archive-handling`, with a cached variant and a debounced updater. Only tests and the stress suite import it today. |
+| `route-exclusions.ts` | Loads the operator denylist of skill ids the advisor never routes: `config/route-exclusions.json`, fully replaced by a gitignored `route-exclusions.local.json` when present, or the directory in `SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR`. A missing or malformed file yields an empty set and never throws. |
+| `caller-context.ts` | Holds the per-request caller context (session id, transport, caller pid, `trusted` flag) in `AsyncLocalStorage`, read by the trusted-caller gate. |
 | `cross-skill-edges/` | Detects and optionally applies inbound `enhances` graph edges. |
 | `embedders/` | Owns advisor vector schema helpers and shared embedder shims. |
 | `ipc/` | Owns launcher socket bridge and idle-timeout helpers. |

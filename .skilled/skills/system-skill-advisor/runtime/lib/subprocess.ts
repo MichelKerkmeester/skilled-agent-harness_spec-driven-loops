@@ -2,6 +2,10 @@
 // MODULE: Skill Advisor Subprocess Runner
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -12,6 +16,10 @@ import { isRecord } from './utils/json-guard.js';
 import type { ChildProcess } from 'node:child_process';
 import type { AdvisorThresholds } from './prompt-cache.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './compat/contract.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Compact summary of a compiled routing decision, small enough to cross the
@@ -83,8 +91,16 @@ interface SpawnAttemptResult {
   readonly durationMs: number;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const DEFAULT_TIMEOUT_MS = 3000;
 const SQLITE_BUSY_PATTERN = /\bSQLITE_BUSY\b|database is locked/i;
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function parsePositiveInt(value: string | undefined, fallback: number): number {
   if (typeof value !== 'string' || value.trim().length === 0) {
@@ -134,6 +150,10 @@ function coerceCompiledRouteSummary(value: unknown): CompiledRouteSummary | unde
     generation: typeof value.generation === 'number' ? value.generation : null,
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function parseRecommendations(stdout: string): AdvisorRecommendation[] {
   const parsed: unknown = JSON.parse(stdout);
@@ -260,6 +280,10 @@ async function delay(ms: number): Promise<void> {
     setTimeout(resolve, ms);
   });
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Run the Python skill advisor with prompt input carried over stdin. */
 export async function runAdvisorSubprocess(

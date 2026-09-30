@@ -2,9 +2,15 @@
 // MODULE: Advisor Packed BM25F Lexical Shadow Lane
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import type { AdvisorProjection, SkillProjection } from '../types.js';
 import { tokenize } from '../text.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 export const ADVISOR_BM25_LEXICAL_SHADOW_LANE_ID = 'bm25_lexical_shadow' as const;
 
 const BM25_K1 = 1.2;
@@ -23,6 +29,9 @@ const BM25_SHORT_QUERY_MIDPOINT = 2;
 const BM25_LONG_QUERY_MIDPOINT = 8;
 const BM25_LONG_QUERY_TERM_FLOOR = 5;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function isQueryLengthCalibrationEnabled(): boolean {
   const value = process.env[ADVISOR_BM25_QUERY_LENGTH_CALIBRATION_FLAG]?.trim().toLowerCase();
   return value ? TRUE_FLAG_VALUES.has(value) : false;
@@ -44,6 +53,9 @@ export function resolveBm25LogisticMidpoint(queryTermCount: number, enabled: boo
   return BM25_DEFAULT_LOGISTIC_MIDPOINT;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 const BM25F_FIELD_NAMES = [
   'name',
   'keywords',
@@ -124,6 +136,9 @@ interface PackedPostingList {
   descriptionTfs: Uint32Array;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function emptyFieldFrequency(): FieldTermFrequency {
   return {
     total: 0,
@@ -210,6 +225,9 @@ function topWeightedFields(
     .slice(0, 3);
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 export class AdvisorPackedBm25Index {
   private readonly skillIds: string[] = [];
   private readonly skillNumbersById = new Map<string, number>();
@@ -378,6 +396,9 @@ export class AdvisorPackedBm25Index {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 7. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 export function buildAdvisorBm25Index(projection: AdvisorProjection): AdvisorPackedBm25Index {
   return new AdvisorPackedBm25Index(projection.skills);
 }

@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
-// MODULE: Scorer Eval Baseline Capture
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// MODULE: SCORER EVAL BASELINE CAPTURE
+// ───────────────────────────────────────────────────────────────────
 //
 // Captures the current scorer accuracy across the full corpus, the independent
 // holdout, the frozen ambiguity slice, and the named intent buckets, under the
@@ -17,12 +17,20 @@
 //   node capture-scorer-eval-baseline.mjs            # print JSON to stdout
 //   node capture-scorer-eval-baseline.mjs --write     # also write the baseline
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const CORPUS_JSONL = resolve(HERE, 'labeled-prompts.jsonl');
@@ -31,6 +39,10 @@ const AMBIGUITY_JSONL = resolve(HERE, 'ambiguity-prompts.jsonl');
 const DELEGATION_JSON = resolve(HERE, '../../tests/parity/fixtures/executor-delegation-cases.json');
 const OUTPUT_JSON = resolve(HERE, 'scorer-eval-baseline.json');
 const DIST = resolve(HERE, '../../dist/runtime');
+
+// ───────────────────────────────────────────────────────────────────
+// 3. RUNTIME SETUP
+// ───────────────────────────────────────────────────────────────────
 
 process.env.SYSTEM_SKILL_ADVISOR_DB_DIR = mkdtempSync(join(tmpdir(), 'advisor-eval-baseline-'));
 process.env.SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC = '1';
@@ -51,6 +63,10 @@ const { findAdvisorWorkspaceRoot } = await import(join(DIST, 'lib/utils/workspac
 
 const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
 const WORKSPACE_ROOT = findAdvisorWorkspaceRoot(HERE, { maxDepth: 14, sentinel: SENTINEL });
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function sha256File(path) {
   return `sha256:${createHash('sha256').update(readFileSync(path)).digest('hex')}`;
@@ -86,6 +102,10 @@ function scoreSet(rows) {
   }
   return { correct, total: rows.length, accuracy: accuracy(correct, rows.length) };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 const corpus = readJsonl(CORPUS_JSONL);
 let unknown = 0;
@@ -148,6 +168,10 @@ const baseline = {
     },
   },
 };
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 const serialized = JSON.stringify(baseline, null, 2) + '\n';
 if (process.argv.includes('--write')) {
