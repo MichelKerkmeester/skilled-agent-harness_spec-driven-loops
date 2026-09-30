@@ -1,0 +1,9 @@
+system-skill-advisor {'files': 300, 'header': 267, 'big': 132, 'big_nonum': 113, 'alt': 15, 'mixed': 0, 'tests': 161}
+  e.g. big_nonum: ['.skilled/skills/system-skill-advisor/runtime/advisor-server.ts', '.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts', '.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts']
+  e.g. alt: ['.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts', '.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts', '.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-trusted-prompt-time.vitest.ts']
+system-spec-kit {'files': 559, 'header': 305, 'big': 312, 'big_nonum': 185, 'alt': 80, 'mixed': 35, 'tests': 301}
+  e.g. big_nonum: ['.skilled/skills/system-spec-kit/runtime/tests/dist-freshness.vitest.ts', '.skilled/skills/system-spec-kit/runtime/tests/unit-rrf-fusion.vitest.ts', '.skilled/skills/system-spec-kit/runtime/tests/launcher-ipc-bridge-probe.vitest.ts']
+  e.g. alt: ['.skilled/skills/system-spec-kit/runtime/tests/edge-cases.vitest.ts', '.skilled/skills/system-spec-kit/runtime/tests/entity-extractor.vitest.ts', '.skilled/skills/system-spec-kit/runtime/tests/embedders/hf-model-server-perimeter.vitest.ts']
+system-deep-loop {'files': 566, 'header': 435, 'big': 380, 'big_nonum': 147, 'alt': 45, 'mixed': 0, 'tests': 186}
+  e.g. big_nonum: ['.skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts', '.skilled/skills/system-deep-loop/runtime/tests/executor-audit-receipts.test.ts', '.skilled/skills/system-deep-loop/runtime/tests/unit/cycle-detection.vitest.ts']
+  e.g. alt: ['.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-memory-upsert-yaml.vitest.ts', '.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-convergence-floor.vitest.ts', '.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts']
