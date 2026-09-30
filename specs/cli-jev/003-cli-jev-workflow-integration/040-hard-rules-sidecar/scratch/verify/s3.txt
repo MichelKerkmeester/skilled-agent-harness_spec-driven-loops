@@ -1,0 +1,34 @@
+✔ a directory-scoped commit silently drops untracked files inside that scope (267.300959ms)
+✔ naming an untracked file directly needs no advisory because git refuses it (147.090458ms)
+✔ a scoped commit with no untracked files in scope stays silent (149.608584ms)
+✔ commit --only flags a named path with nothing to contribute (179.171583ms)
+✔ add flags a pathspec matching nothing (144.808291ms)
+✔ add flags a pathspec resolving only to ignored files (143.226041ms)
+✔ add -u flags the untracked files it will leave behind (147.860042ms)
+✔ restore flags a path whose staged copy will survive the revert (160.66525ms)
+✔ restore stays silent when nothing is staged for the path (136.096791ms)
+✔ restoring from a ref is flagged because it stages without an add (115.36425ms)
+✔ one-sided merge strategies are flagged; ordinary merges are not (117.90675ms)
+✔ case-only pathspec is flagged only where the filesystem folds case (214.841292ms)
+✔ a clean filter on a staged path is flagged (145.524333ms)
+✔ reset --hard fires only when the tree holds modifications (151.69875ms)
+✔ clean -x fires on any real deletion; the plain form gets headroom (147.602875ms)
+✔ branch -D fires only for a branch with unmerged commits (247.371291ms)
+✔ stash clear fires only when entries exist (192.127209ms)
+✔ shape-only destructive tokens fire regardless of state (119.192792ms)
+✔ a command that changes directory is evaluated against that directory (228.673875ms)
+✔ parser separates flags from pathspec across invocation shapes (0.087167ms)
+✔ a pathspec behind a shell expansion never reads as matching nothing (116.63175ms)
+✔ non-git and unparseable commands never fire a rule (136.484542ms)
+✔ every declared rule resolves to an implementation and never blocks (0.264ms)
+✔ a check that throws is swallowed, so a broken rule cannot stop work (0.085042ms)
+✔ the shared engine still evaluates command-only rules unchanged (0.0715ms)
+✔ a poisoned GIT_DIR/GIT_WORK_TREE cannot redirect a throwaway repo write onto another repo (223.3175ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3767.266791

@@ -160,8 +160,8 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 36 | 036-sk-code-and-sk-doc-alignment/ | Align every file the packet created with sk-code-opencode and sk-doc: code header markers, bracketed stderr tags, playbook and catalog validator failures, voice-rule blockers and one missing README, proved by each skill's own validators | Complete |
 | 37 | 037-pi-native-classifier-transport/ | Measure Pi 0.99's native classifier runtime against the jev CLI on the same Jev 1.13 questions (agreement, latency, cost), after a zero-call census of reachable classifier models, with no integration change | Complete |
 | 38 | 038-pi-classifier-transport-integration/ | Make Pi a working, opt-in Jev transport for `choice` questions, and document it for Pi workers, with today's behavior unchanged when the switch is off | Planned |
-| 39 | 039-hub-cleanup/ | Make the cli-classifier hub say what it is: a `cli-jev` folder for the Jev mode, pre-release versions everywhere, and a testing playbook for each transport. | Planned |
-| 40 | 040-hard-rules-sidecar/ | Move every rule, unchanged, into a `hard-rules.json` sidecar beside its SKILL.md, repoint every reader and test in the same change, and document where hard rules live, with enforcement identical before and after. | Planned |
+| 39 | 039-hub-cleanup/ | Make the cli-classifier hub say what it is: a `cli-jev` folder for the Jev mode, pre-release versions everywhere, and a testing playbook for each transport. | Complete |
+| 40 | 040-hard-rules-sidecar/ | Move every rule, unchanged, into a `hard-rules.json` sidecar beside its SKILL.md, repoint every reader and test in the same change, and document where hard rules live, with enforcement identical before and after. | Complete |
 
 ### Phase Transition Rules
 

@@ -1,0 +1,40 @@
+[
+  [],
+  [
+    {
+      "id": "stdin-redirect-required",
+      "severity": "block",
+      "message": "Any non-interactive `pi -p` MUST close/redirect stdin (`</dev/null`) — omitting it hangs indefinitely with ZERO output, which reads as a slow model rather than a deadlock.",
+      "check": "stdin-redirect-required",
+      "passed": false
+    }
+  ],
+  [
+    {
+      "id": "pi-availability-required",
+      "severity": "block",
+      "message": "Run command -v pi before every dispatch; if it fails, refuse the route without constructing or launching a command.",
+      "check": "command-v-pi-required",
+      "passed": false
+    }
+  ],
+  [
+    {
+      "id": "pi-offline-required",
+      "severity": "block",
+      "message": "Any non-interactive `pi -p` MUST pass `--offline`. Pi's startup network probes are not bounded by the dispatch timeout and hung past two minutes in this packet's live probe, which reads as a slow model rather than a stalled startup.",
+      "check": "pi-offline-required",
+      "passed": false
+    }
+  ],
+  [
+    {
+      "id": "pi-provider-qualified-model",
+      "severity": "block",
+      "message": "A `--model` passed to `pi -p` MUST carry its provider, as `provider/model`. A bare id resolves against Pi's own default provider, so the run silently uses a different provider's model instead of failing, and the LLM Gateway rejects the unqualified form outright.",
+      "check": "pi-provider-qualified-model",
+      "passed": false
+    }
+  ],
+  []
+]
