@@ -1,5 +1,5 @@
 {
-  "manifestHash": "35e30eb1b3e67e97759d130689dc50d572e18da81a3733c13e3bb2866f751f45",
+  "manifestHash": "cb843340d0e3a0abb9fdb6f4d400d19c4928be230e26e5f6a56d73798701eeb5",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -62649,6 +62649,9 @@
     "hard rules sidecar acceptance criteria": [
       2976
     ],
+    "hard rules sidecar closure": [
+      2978
+    ],
     "hard rules sidecar criteria": [
       2977
     ],
@@ -62681,9 +62684,6 @@
     ],
     "hard rules verdict comparison checklist": [
       2981
-    ],
-    "hard rules verdict comparison status": [
-      2978
     ],
     "hard rules verdict criteria": [
       2976
