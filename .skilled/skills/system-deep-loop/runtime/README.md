@@ -49,6 +49,7 @@ Consumers import domain behavior from `lib/` or invoke a documented script from 
 The stop-rater replay at `scripts/score-stop-rater.cjs` makes no model call by default and opens its two rating arms only behind the `--jev` and `--deem` switches.
 The stop-hint replay script `scripts/score-stop-hint.cjs` takes the `--rater-report <dir>` input, the `--jev` and `--deem` column switches and the `--out <dir>` output, makes no model call and leaves the gate unchanged.
 The severity replay script `scripts/score-severity-replay.cjs` makes no model call by default, stops at the label gate below 20 labeled P0 negatives and opens its two severity arms only behind the `--jev` and `--deem` switches.
+The fan-out pair replay script `scripts/score-fanout-pairs.cjs` makes no model call by default, stops at the label gate below 40 labeled pairs or 10 labeled cross-body pairs and opens its two scoring arms only behind the `--jev` and `--deem` switches.
 
 ---
 

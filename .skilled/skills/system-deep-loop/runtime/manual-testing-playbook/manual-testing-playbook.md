@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 57 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 58 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
 
 ### REALISTIC TEST MODEL
 
@@ -103,7 +103,7 @@ Scenario verdict — three outcomes only:
 - `FAIL`: expected behavior is missing, output contradicts the contract, a critical check failed, or the core behavior worked but the required evidence or metadata is incomplete. An outcome another operator cannot reproduce from the captured evidence is a `FAIL`, not a partial pass.
 - `SKIP`: a concrete sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevented execution, and the run record names it
 
-Release is cleared only when all 55 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
+Release is cleared only when all 58 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
 
 ---
 
@@ -675,7 +675,7 @@ Creates and validates the ADR-002 session->topic->round state shape, including s
 
 ## 14. FAN-OUT
 
-This category covers 10 scenarios validating the opt-in multi-executor fan-out layer added in packet 124: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, and artifact-dir-override parity.
+This category covers 11 scenarios validating the opt-in multi-executor fan-out layer added in packet 124: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, and artifact-dir-override parity.
 
 ### DLR-023 | Fan-out config schema
 
@@ -808,6 +808,19 @@ Expected signals: Wait checkpoint persistence, resume-waiting startup branch, nu
 
 #### Test Execution
 > **Feature File:** [DLR-047](../manual-testing-playbook/fanout/persisted-wait-crash-resume.md)
+
+### DLR-059 | Fan-out pair replay: census, label gate and stub-backend skip
+
+#### Description
+Adds `scripts/score-fanout-pairs.cjs`, an offline replay that reads the recorded fan-out lineage registries of the deep-research and deep-review runs holding at least two lineages and prints the near-line and cross-body pair census with the merge's own decision on each pair with deduplication on and off. The merge is unchanged and the default run makes no model call and writes no file. `--write-pair-sheet <path>` writes at most 60 pairs per class with an empty `label` for the operator to fill `same` or `different`, `--labels <file>` reads the filled sheet back, and `--jev` and `--deem` each open one arm behind its own gate and require `--out <dir>`.
+
+#### Scenario Contract
+Prompt: `Run the fan-out pair replay census and confirm it stops at the label gate without calling a backend, then show the test suite skipping a stub Deem backend.`
+
+Expected signals: The census prefixes `runs:`, `pairs:`, `class near-line:`, `class cross-body:` and `merge decisions:` print on stdout with exit 0 and no stub call, the run ends `stop: fewer than 40 labeled pairs`, the suite asserts `deem arm skipped: stub backend` in `deem gate skips a stub backend`, `git status --porcelain` is unchanged, and 42 passing tests.
+
+#### Test Execution
+> **Feature File:** [DLR-059](../manual-testing-playbook/fanout/fanout-pair-replay.md)
 
 ---
 
@@ -998,3 +1011,4 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-056 | [F056 Stop-rater replay](../feature-catalog/scoring/stop-rater-replay.md) | [scoring/stop-rater-replay.md](../manual-testing-playbook/scoring/stop-rater-replay.md) |
 | DLR-057 | [F057 Stop-hint replay](../feature-catalog/scoring/stop-hint-replay.md) | [scoring/stop-hint-replay.md](../manual-testing-playbook/scoring/stop-hint-replay.md) |
 | DLR-058 | [F058 Severity replay](../feature-catalog/scoring/severity-replay.md) | [scoring/severity-replay.md](../manual-testing-playbook/scoring/severity-replay.md) |
+| DLR-059 | [F059 Fan-out pair replay](../feature-catalog/fanout/fanout-pair-replay.md) | [fanout/fanout-pair-replay.md](../manual-testing-playbook/fanout/fanout-pair-replay.md) |
