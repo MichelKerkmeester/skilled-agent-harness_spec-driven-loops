@@ -1,5 +1,5 @@
 {
-  "manifestHash": "360b3805a3886d4b9e28af3cb1b703975b8d36bb69e36373f807fa63ca8b6d4a",
+  "manifestHash": "35e30eb1b3e67e97759d130689dc50d572e18da81a3733c13e3bb2866f751f45",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11187,8 +11187,14 @@
     "artifact certificate binding implementation": [
       "artifact certificate binding implementation"
     ],
+    "artifact gate criteria": [
+      "artifact gate criteria"
+    ],
     "artifact progress liveness fanout": [
       "artifact progress liveness fanout"
+    ],
+    "artifact regeneration plan": [
+      "artifact regeneration plan"
     ],
     "artifact routing gate": [
       "artifact routing gate"
@@ -14193,6 +14199,15 @@
     "call tool chain patterns": [
       "call_tool_chain patterns"
     ],
+    "caller byte invariance criteria": [
+      "caller byte invariance criteria"
+    ],
+    "caller opt in checklist": [
+      "caller opt-in checklist"
+    ],
+    "caller opt in status": [
+      "caller opt-in status"
+    ],
     "caller side ranking tuple": [
       "caller-side ranking tuple"
     ],
@@ -16557,8 +16572,17 @@
     "choice judgment": [
       "choice judgment"
     ],
+    "choice question pi backend": [
+      "choice question pi backend"
+    ],
     "choice selection": [
       "choice selection"
+    ],
+    "choice transport fallback": [
+      "choice transport fallback"
+    ],
+    "choice transport opt in goal": [
+      "choice transport opt-in goal"
     ],
     "chokidar dead dependency": [
       "chokidar dead dependency"
@@ -17040,6 +17064,9 @@
     "classifier tasks": [
       "classifier tasks"
     ],
+    "classifier transport testing strategy": [
+      "classifier transport testing strategy"
+    ],
     "classifier verified fixture": [
       "classifier verified fixture"
     ],
@@ -17376,6 +17403,9 @@
     "cleanup research": [
       "cleanup-research"
     ],
+    "cleanup verification checklist": [
+      "cleanup verification checklist"
+    ],
     "clear cache": [
       "clear cache"
     ],
@@ -17427,14 +17457,14 @@
     "cli chrome skin": [
       "cli chrome skin"
     ],
-    "cli classifier 1 0 0 0": [
-      "cli-classifier 1.0.0.0"
+    "cli classifier 0 3 0 0": [
+      "cli-classifier 0.3.0.0"
     ],
-    "cli classifier 1 1 0 0": [
-      "cli-classifier 1.1.0.0"
+    "cli classifier 0 4 0 0": [
+      "cli-classifier 0.4.0.0"
     ],
-    "cli classifier 1 2 0 0": [
-      "cli-classifier 1.2.0.0"
+    "cli classifier 0 5 0 0": [
+      "cli-classifier 0.5.0.0"
     ],
     "cli classifier benchmark": [
       "cli-classifier benchmark"
@@ -17448,11 +17478,29 @@
     "cli classifier benchmark reports": [
       "cli-classifier benchmark reports"
     ],
+    "cli classifier cleanup tasks": [
+      "cli classifier cleanup tasks"
+    ],
     "cli classifier feature catalog": [
       "cli-classifier feature catalog"
     ],
     "cli classifier hub": [
       "cli-classifier hub"
+    ],
+    "cli classifier hub cleanup": [
+      "cli classifier hub cleanup"
+    ],
+    "cli classifier hub cleanup acceptance criteria": [
+      "cli classifier hub cleanup acceptance criteria"
+    ],
+    "cli classifier hub cleanup goal": [
+      "cli classifier hub cleanup goal"
+    ],
+    "cli classifier hub cleanup plan": [
+      "cli classifier hub cleanup plan"
+    ],
+    "cli classifier hub cleanup summary": [
+      "cli classifier hub cleanup summary"
     ],
     "cli classifier hub features": [
       "cli-classifier hub features"
@@ -17487,20 +17535,26 @@
     "cli classifier merge hub files": [
       "cli-classifier merge hub files"
     ],
+    "cli classifier pi transport": [
+      "cli-classifier pi transport"
+    ],
+    "cli classifier pre release versions": [
+      "cli classifier pre-release versions"
+    ],
     "cli classifier root router": [
       "cli-classifier root router"
     ],
     "cli classifier two modes": [
       "cli-classifier two modes"
     ],
-    "cli classifier v1 0 0 0": [
-      "cli-classifier v1.0.0.0"
+    "cli classifier v0 3 0 0": [
+      "cli-classifier v0.3.0.0"
     ],
-    "cli classifier v1 1 0 0": [
-      "cli-classifier v1.1.0.0"
+    "cli classifier v0 4 0 0": [
+      "cli-classifier v0.4.0.0"
     ],
-    "cli classifier v1 2 0 0": [
-      "cli-classifier v1.2.0.0"
+    "cli classifier v0 5 0 0": [
+      "cli-classifier v0.5.0.0"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -18042,8 +18096,8 @@
     "cli decommission orphan removal": [
       "cli decommission orphan removal"
     ],
-    "cli deem 1 0 0 0": [
-      "cli-deem 1.0.0.0"
+    "cli deem 0 1 0 0": [
+      "cli-deem 0.1.0.0"
     ],
     "cli deem build result": [
       "cli-deem build result"
@@ -18084,6 +18138,15 @@
     "cli deem noul": [
       "cli-deem noul"
     ],
+    "cli deem playbook": [
+      "cli-deem playbook"
+    ],
+    "cli deem playbook goal": [
+      "cli deem playbook goal"
+    ],
+    "cli deem playbook plan": [
+      "cli deem playbook plan"
+    ],
     "cli deem readme": [
       "cli-deem readme"
     ],
@@ -18096,8 +18159,11 @@
     "cli deem status": [
       "cli-deem status"
     ],
-    "cli deem v1 0 0 0": [
-      "cli-deem v1.0.0.0"
+    "cli deem testing playbook": [
+      "cli deem testing playbook"
+    ],
+    "cli deem v0 1 0 0": [
+      "cli-deem v0.1.0.0"
     ],
     "cli deem verification tasks": [
       "cli-deem verification tasks"
@@ -18642,14 +18708,32 @@
     "cli jev 0 1 0 0": [
       "cli-jev 0.1.0.0"
     ],
+    "cli jev 0 1 1 0": [
+      "cli-jev 0.1.1.0"
+    ],
+    "cli jev 0 1 2 0": [
+      "cli-jev 0.1.2.0"
+    ],
     "cli jev 0 2 0 0": [
       "cli-jev 0.2.0.0"
     ],
     "cli jev authenticated verification": [
       "cli-jev authenticated verification"
     ],
+    "cli jev benchmark": [
+      "cli-jev benchmark"
+    ],
+    "cli jev benchmark index": [
+      "cli-jev benchmark index"
+    ],
+    "cli jev benchmark reports": [
+      "cli-jev benchmark reports"
+    ],
     "cli jev canary replay baseline": [
       "cli-jev canary replay baseline"
+    ],
+    "cli jev capabilities": [
+      "cli-jev capabilities"
     ],
     "cli jev changelog entry": [
       "cli-jev changelog entry"
@@ -18735,6 +18819,9 @@
     "cli jev joins the compiled serving closure": [
       "cli-jev Joins the Compiled Serving Closure"
     ],
+    "cli jev manual testing playbook benchmark": [
+      "cli-jev manual testing playbook benchmark"
+    ],
     "cli jev mode of cli classifier": [
       "cli-jev mode of cli-classifier"
     ],
@@ -18783,8 +18870,17 @@
     "cli jev v0 1 0 0": [
       "cli-jev v0.1.0.0"
     ],
+    "cli jev v0 1 1 0": [
+      "cli-jev v0.1.1.0"
+    ],
+    "cli jev v0 1 2 0": [
+      "cli-jev v0.1.2.0"
+    ],
     "cli jev v0 2 0 0": [
       "cli-jev v0.2.0.0"
+    ],
+    "cli jev validation report": [
+      "cli-jev validation report"
     ],
     "cli jev workflow integration": [
       "cli-jev workflow integration"
@@ -19597,50 +19693,14 @@
     "cli unknown fallback": [
       "cli unknown fallback"
     ],
-    "cli usage 1 0 0 0": [
-      "cli-usage 1.0.0.0"
-    ],
-    "cli usage 1 0 1 0": [
-      "cli-usage 1.0.1.0"
-    ],
-    "cli usage 1 0 2 0": [
-      "cli-usage 1.0.2.0"
-    ],
-    "cli usage benchmark": [
-      "cli-usage benchmark"
-    ],
-    "cli usage benchmark index": [
-      "cli-usage benchmark index"
-    ],
-    "cli usage benchmark reports": [
-      "cli-usage benchmark reports"
-    ],
-    "cli usage capabilities": [
-      "cli-usage capabilities"
-    ],
-    "cli usage feature catalog": [
-      "cli-usage feature catalog"
-    ],
-    "cli usage manual testing playbook benchmark": [
-      "cli-usage manual testing playbook benchmark"
-    ],
     "cli usage mode": [
       "cli-usage mode"
     ],
-    "cli usage playbook": [
-      "cli-usage playbook"
+    "cli usage to cli jev rename goal": [
+      "cli usage to cli jev rename goal"
     ],
-    "cli usage v1 0 0 0": [
-      "cli-usage v1.0.0.0"
-    ],
-    "cli usage v1 0 1 0": [
-      "cli-usage v1.0.1.0"
-    ],
-    "cli usage v1 0 2 0": [
-      "cli-usage v1.0.2.0"
-    ],
-    "cli usage validation report": [
-      "cli-usage validation report"
+    "cli usage to cli jev rename plan": [
+      "cli usage to cli jev rename plan"
     ],
     "cli versus mcp": [
       "cli versus mcp"
@@ -28312,8 +28372,14 @@
     "deem health check": [
       "deem health check"
     ],
+    "deem health checks": [
+      "deem health checks"
+    ],
     "deem hub route replay": [
       "deem hub route replay"
+    ],
+    "deem judgment checks": [
+      "deem judgment checks"
     ],
     "deem judgment subcommands": [
       "deem judgment subcommands"
@@ -28332,6 +28398,9 @@
     ],
     "deem local server": [
       "deem local server"
+    ],
+    "deem manual testing": [
+      "deem manual testing"
     ],
     "deem model pin": [
       "deem model pin"
@@ -28359,6 +28428,15 @@
     ],
     "deem pick an option": [
       "deem pick an option"
+    ],
+    "deem playbook closure gate": [
+      "deem playbook closure gate"
+    ],
+    "deem playbook status": [
+      "deem playbook status"
+    ],
+    "deem playbook tasks": [
+      "deem playbook tasks"
     ],
     "deem question cap": [
       "deem question cap"
@@ -28392,6 +28470,9 @@
     ],
     "deem update schedule": [
       "deem update schedule"
+    ],
+    "deem validation scenarios": [
+      "deem validation scenarios"
     ],
     "deem whole cluster kill": [
       "deem whole-cluster kill"
@@ -34139,6 +34220,18 @@
     ],
     "dispatch rule checks hermes": [
       "dispatch rule checks hermes"
+    ],
+    "dispatch rule checks sidecar": [
+      "dispatch rule checks sidecar"
+    ],
+    "dispatch rule reader design": [
+      "dispatch rule reader design"
+    ],
+    "dispatch rule reader goal": [
+      "dispatch rule reader goal"
+    ],
+    "dispatch rule reader status": [
+      "dispatch rule reader status"
     ],
     "dispatch script tasks": [
       "dispatch script tasks"
@@ -45143,8 +45236,62 @@
     "hard exclusion audit memory health shipped": [
       "hard exclusion audit memory_health shipped"
     ],
+    "hard rule reader repoint": [
+      "hard rule reader repoint"
+    ],
+    "hard rules enforcement goal": [
+      "hard rules enforcement goal"
+    ],
     "hard rules engine": [
       "hard rules engine"
+    ],
+    "hard rules json": [
+      "hard-rules json"
+    ],
+    "hard rules sidecar": [
+      "hard rules sidecar"
+    ],
+    "hard rules sidecar acceptance criteria": [
+      "hard rules sidecar acceptance criteria"
+    ],
+    "hard rules sidecar criteria": [
+      "hard rules sidecar criteria"
+    ],
+    "hard rules sidecar goal": [
+      "hard rules sidecar goal"
+    ],
+    "hard rules sidecar plan": [
+      "hard rules sidecar plan"
+    ],
+    "hard rules sidecar status": [
+      "hard rules sidecar status"
+    ],
+    "hard rules sidecar summary": [
+      "hard rules sidecar summary"
+    ],
+    "hard rules sidecar tasks": [
+      "hard rules sidecar tasks"
+    ],
+    "hard rules sidecar testing strategy": [
+      "hard rules sidecar testing strategy"
+    ],
+    "hard rules sidecar waiver adr": [
+      "hard rules sidecar waiver adr"
+    ],
+    "hard rules task dependencies": [
+      "hard rules task dependencies"
+    ],
+    "hard rules verdict comparison": [
+      "hard rules verdict comparison"
+    ],
+    "hard rules verdict comparison checklist": [
+      "hard rules verdict comparison checklist"
+    ],
+    "hard rules verdict comparison status": [
+      "hard rules verdict comparison status"
+    ],
+    "hard rules verdict criteria": [
+      "hard rules verdict criteria"
     ],
     "hardcoded checkout root": [
       "hardcoded checkout root"
@@ -46424,6 +46571,12 @@
     ],
     "hub card references removed": [
       "hub-card references removed"
+    ],
+    "hub cleanup closure": [
+      "hub cleanup closure"
+    ],
+    "hub cleanup criteria": [
+      "hub cleanup criteria"
     ],
     "hub component resolution plan": [
       "hub component resolution plan"
@@ -48706,6 +48859,9 @@
     "jev opt in measured integration": [
       "jev opt-in measured integration"
     ],
+    "jev packet folder rename": [
+      "jev packet folder rename"
+    ],
     "jev packetkind": [
       "jev packetKind"
     ],
@@ -48837,6 +48993,18 @@
     ],
     "jev transport mode": [
       "jev transport mode"
+    ],
+    "jev transport pi switch": [
+      "jev transport pi switch"
+    ],
+    "jev transport switch design": [
+      "jev transport switch design"
+    ],
+    "jev transport switch goal": [
+      "jev transport switch goal"
+    ],
+    "jev transport switch tasks": [
+      "jev transport switch tasks"
     ],
     "jev triage": [
       "jev triage"
@@ -61805,6 +61973,9 @@
     "opt in only closure": [
       "opt-in-only closure"
     ],
+    "opt in pi backend": [
+      "opt-in pi backend"
+    ],
     "opt in relation backfill collectors": [
       "opt-in relation backfill collectors"
     ],
@@ -65546,6 +65717,24 @@
     "pi classifier transport": [
       "Pi classifier transport"
     ],
+    "pi classifier transport acceptance criteria": [
+      "pi classifier transport acceptance criteria"
+    ],
+    "pi classifier transport integration": [
+      "pi classifier transport integration"
+    ],
+    "pi classifier transport integration goal": [
+      "pi classifier transport integration goal"
+    ],
+    "pi classifier transport plan": [
+      "pi classifier transport plan"
+    ],
+    "pi classifier transport summary": [
+      "pi classifier transport summary"
+    ],
+    "pi classifier transport tasks": [
+      "pi classifier transport tasks"
+    ],
     "pi classify comparison completion": [
       "pi classify comparison completion"
     ],
@@ -66118,6 +66307,15 @@
     "pi transport comparison plan": [
       "pi transport comparison plan"
     ],
+    "pi transport follow up list": [
+      "pi transport follow-up list"
+    ],
+    "pi transport integration criteria": [
+      "pi transport integration criteria"
+    ],
+    "pi transport integration status": [
+      "pi transport integration status"
+    ],
     "pi transport keep rule": [
       "pi transport keep rule"
     ],
@@ -66174,6 +66372,9 @@
     ],
     "pi worker": [
       "pi worker"
+    ],
+    "pi worker classifier docs": [
+      "pi worker classifier docs"
     ],
     "pi workflow mode": [
       "pi workflow mode"
@@ -67416,6 +67617,15 @@
     ],
     "pre push test failures": [
       "pre-push test failures"
+    ],
+    "pre release version criteria": [
+      "pre-release version criteria"
+    ],
+    "pre release version sweep plan": [
+      "pre-release version sweep plan"
+    ],
+    "pre release versions goal": [
+      "pre-release versions goal"
     ],
     "pre rendered verdict fragment": [
       "pre rendered verdict fragment"
@@ -69599,6 +69809,12 @@
     ],
     "reader profile split": [
       "reader profile split"
+    ],
+    "reader repoint checklist": [
+      "reader repoint checklist"
+    ],
+    "reader repoint criteria": [
+      "reader repoint criteria"
     ],
     "reader table computed": [
       "reader table computed"
@@ -72462,8 +72678,17 @@
     "rename a vault note": [
       "rename a vault note"
     ],
+    "rename and alias criteria": [
+      "rename and alias criteria"
+    ],
+    "rename and repoint tasks": [
+      "rename and repoint tasks"
+    ],
     "rename checklist": [
       "rename checklist"
+    ],
+    "rename cli usage to cli jev": [
+      "rename cli usage to cli jev"
     ],
     "rename commit closure gate": [
       "rename commit closure gate"
@@ -72506,6 +72731,9 @@
     ],
     "rename spec kit memory mcp namespace": [
       "rename spec kit memory mcp namespace"
+    ],
+    "rename status": [
+      "rename status"
     ],
     "rename status verification": [
       "rename status verification"
@@ -85565,6 +85793,24 @@
     "skill frontmatter description": [
       "skill frontmatter description"
     ],
+    "skill frontmatter hard rules": [
+      "skill frontmatter hard rules"
+    ],
+    "skill frontmatter migration closure gate": [
+      "skill frontmatter migration closure gate"
+    ],
+    "skill frontmatter migration goal": [
+      "skill frontmatter migration goal"
+    ],
+    "skill frontmatter migration plan": [
+      "skill frontmatter migration plan"
+    ],
+    "skill frontmatter migration status": [
+      "skill frontmatter migration status"
+    ],
+    "skill frontmatter migration tasks": [
+      "skill frontmatter migration tasks"
+    ],
     "skill frontmatter requirements": [
       "skill frontmatter requirements"
     ],
@@ -94335,6 +94581,12 @@
     "transport surface classification": [
       "transport surface classification"
     ],
+    "transport switch criteria": [
+      "transport switch criteria"
+    ],
+    "transport switch status": [
+      "transport switch status"
+    ],
     "trapezoid layer diagram": [
       "trapezoid layer diagram"
     ],
@@ -97119,6 +97371,12 @@
     ],
     "version suffix flag rename": [
       "version suffix flag rename"
+    ],
+    "version sweep status": [
+      "version sweep status"
+    ],
+    "version sweep tasks": [
+      "version sweep tasks"
     ],
     "versioned event envelope": [
       "versioned event envelope"
