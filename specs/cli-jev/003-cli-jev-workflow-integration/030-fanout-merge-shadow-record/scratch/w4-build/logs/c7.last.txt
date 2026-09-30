@@ -1,0 +1,19 @@
+C7 implemented in S and T. Both verification commands were run from the repo root and pass.
+
+Notes for the orchestrator (inferred, not observed — vitest is out of my sandbox):
+- The two gate tests (`jev gate passes a stub`, `jev gate skips on exit 3`) exercise only C7 code.
+- The two arm tests (`jev arm withholds an unpublished pair`, `jev arm prints keep`) drive `runJevArm`, which prints its column through `summarizeColumn` — defined in C9 by the design. They are expected to fail until C9 lands, as C1's tests did before C2.
+- `runJevArm` takes `plan.baselineCalls` as a `Map<pairKey, 'same'|'different'>` and answers as `Map<pairKey, number[]>`, mirroring the shipped sibling `score-d4-agreement.cjs`.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs (+396/-0) | .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts (+107/-0)
+EDITS:
+- scripts/score-fanout-pairs.cjs:20 added `spawn` beside `spawnSync` in the `node:child_process` import
+- scripts/score-fanout-pairs.cjs:79-93 added `NOUL_QUESTION`, `JEV_ORDERS`, `JEV_VERSION`, `JEV_CALL_TIMEOUT_MS`, `JEV_BACKOFF_MS`
+- scripts/score-fanout-pairs.cjs:664-1035 added section 7 JEV GATE AND ARM with `which`, `publishedAt`, `jevGate`, `stateText`, `spawnCall`, `createCallLog`, `runJevArm`, each with JSDoc; EXPORTS renumbered to section 8
+- scripts/score-fanout-pairs.cjs:1060-1066 added the seven new functions to `module.exports`
+- tests/unit/score-fanout-pairs.vitest.ts:538-643 added `armPair`/`JEV_STUB`/`stubEnv` helpers and the four named tests `jev gate passes a stub`, `jev gate skips on exit 3`, `jev arm withholds an unpublished pair`, `jev arm prints keep`
+CHECKS:
+- `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs` -> (no output) (exit 0)
+- `grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts` -> 28 (exit 0)
+BLOCKED REASON: none

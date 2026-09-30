@@ -1,0 +1,52 @@
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-deep-loop/runtime
+
+ ❯ tests/unit/score-fanout-pairs.vitest.ts (3 tests | 3 failed) 12ms
+     × walker skips a one-lineage run 6ms
+     × walker accepts both research registry names 3ms
+     × walker reads the review findings field 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/score-fanout-pairs.vitest.ts > score-fanout-pairs walker > walker skips a one-lineage run
+TypeError: pairs.walkRuns is not a function
+ ❯ tests/unit/score-fanout-pairs.vitest.ts:157:24
+    155|       ...writeRun(root, 'research', 'run-one', ['solo']),
+    156|     ].sort();
+    157|     const runs = pairs.walkRuns(root, { listTracked: () => tracked }) …
+       |                        ^
+    158|     expect(runs).toHaveLength(1);
+    159|     expect(runs[0].key).toBe('research:run-two');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/unit/score-fanout-pairs.vitest.ts > score-fanout-pairs walker > walker accepts both research registry names
+TypeError: pairs.walkRuns is not a function
+ ❯ tests/unit/score-fanout-pairs.vitest.ts:169:24
+    167|       ...writeRun(root, 'research', 'run-mix', [{ label: 'beta', regis…
+    168|     ].sort();
+    169|     const runs = pairs.walkRuns(root, { listTracked: () => tracked }) …
+       |                        ^
+    170|     expect(runs).toHaveLength(1);
+    171|     expect(runs[0].lineages.map((lineage) => lineage.label)).toEqual([…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/unit/score-fanout-pairs.vitest.ts > score-fanout-pairs walker > walker reads the review findings field
+TypeError: pairs.findingsOf is not a function
+ ❯ tests/unit/score-fanout-pairs.vitest.ts:189:28
+    187|       'utf8',
+    188|     );
+    189|     const findings = pairs.findingsOf(root, 'review', registry) as Rec…
+       |                            ^
+    190|     expect(findings.map((finding) => finding.findingId)).toEqual(['R-1…
+    191|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  19:36:23
+   Duration  117ms (transform 13ms, setup 0ms, import 21ms, tests 12ms, environment 0ms)
+

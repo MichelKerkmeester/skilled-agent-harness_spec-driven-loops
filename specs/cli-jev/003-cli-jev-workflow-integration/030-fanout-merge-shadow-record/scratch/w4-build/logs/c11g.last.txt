@@ -1,0 +1,10 @@
+The edit landed exactly as specified: lines 333–347 hold the new `it('oracle marks a one-side drop', ...)` block, positioned immediately after the unreadable-pair test and before `baseline picks the better decision`, inside the merge-oracle describe. One edit, no other change.
+
+Note: `git status --short` reports this test file as untracked (`??`) in the worktree — pre-existing state, not caused by this edit; the orchestrator commits after handback.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts (+16/-0)
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts:333 inserted `it('oracle marks a one-side drop', ...)` after the `oracle marks an unreadable pair` block, before `baseline picks the better decision`
+CHECKS: grep -c "oracle marks a one-side drop" .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts -> 1 (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,10 @@
+Both checks pass. The file is new and untracked so `git diff --stat` is empty by design, and the scoped `git status --porcelain` shows it created (`??`) and nothing else.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pair-replay.md (+94/-0)
+EDITS: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pair-replay.md:1 created the playbook scenario file DLR-059, version 1.9.0.0, MODEL fanout-merge-research.md shape, covering the census prefixes, the stop: fewer than 40 labeled pairs label-gate stop and the deem arm skipped: stub backend skip, with no verdict line claimed
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pair-replay.md -> ✅ VALID ... Document type: playbook_feature, Total issues: 0 (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/fanout/fanout-pair-replay.md -> (empty, new untracked file confirmed by git status --porcelain showing ?? for this path only) (exit 0)
+BLOCKED REASON: none
+```

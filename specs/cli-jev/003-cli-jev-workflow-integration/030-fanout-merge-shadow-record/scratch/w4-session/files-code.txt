@@ -1,0 +1,2 @@
+.skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs
+.skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts

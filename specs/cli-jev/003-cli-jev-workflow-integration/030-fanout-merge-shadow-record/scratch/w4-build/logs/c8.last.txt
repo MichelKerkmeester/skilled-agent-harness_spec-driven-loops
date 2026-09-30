@@ -1,0 +1,21 @@
+C8 is implemented in S and T. Summary before the handback block:
+
+- **S** — added the Deem constants (`DEEM_ORDERS`, `DEEM_MODEL`, `DEEM_P50_MS`, `HEALTH_TIMEOUT_MS`) and new §8 with JSDoc'd `deemCommand`, `readDeemHealth`, `deemGate`, `readStoredReport`, `nearestRank`, `runDeemArm`; exports header renumbered to §9 and all six functions exported.
+- **T** — added `DEEM_STUB` and the `score-fanout-pairs deem gate and arm` describe with the four named C8 cases; test count 28 → 32.
+- **Expected-until-C9** (inferred, not observed — vitest is out of my sandbox): the arm case drives `runDeemArm`, whose column comes through `summarizeColumn`, defined in C9. Like C7's two arm tests, it will report `summarizeColumn is not defined` until C9 lands; the three gate cases exercise C8 code only.
+- Extra sandbox-safe probe (no test runner, no network) confirmed: gate pass line `deem: health backend=torch model=deem-0.8-v1 model_commit=abc123 source_commit=def456`, stub-backend and exit-4 skip lines only, and the arm's 10 calls with pair 0 `AB=0.9 BA=0.1` both `measured` and the answers map carrying `[0.9, 0.1]`.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs (+292/-0)
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts (+86/-0)
+EDITS: scripts/score-fanout-pairs.cjs:93 added `DEEM_ORDERS`, `DEEM_MODEL`, `DEEM_P50_MS`, `HEALTH_TIMEOUT_MS` with WHY comments in §2
+EDITS: scripts/score-fanout-pairs.cjs:1050-1321 added §8 DEEM GATE AND ARM: `deemCommand`, `readDeemHealth` (2,000 ms timeout, four skip reasons), `deemGate`, `readStoredReport`, `nearestRank`, `runDeemArm` (notice line, AB/BA noul calls, exit-4 recheck, stop lines, requalify) — each JSDoc'd
+EDITS: scripts/score-fanout-pairs.cjs:1324 renumbered the exports header to §9
+EDITS: scripts/score-fanout-pairs.cjs:1353-1358 exported `deemCommand`, `readDeemHealth`, `deemGate`, `runDeemArm`, `readStoredReport`, `nearestRank`
+EDITS: tests/unit/score-fanout-pairs.vitest.ts:645-659 added `DEEM_STUB`
+EDITS: tests/unit/score-fanout-pairs.vitest.ts:661-729 added the four named C8 tests in `score-fanout-pairs deem gate and arm`
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs -> no output (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-fanout-pairs.vitest.ts -> 32 (exit 0)
+CHECKS: node heredoc probe of deemGate/deemCommand/runDeemArm -> gate-pass/gate-stub/gate-gone lines exact; arm 10 calls, pair0 AB=0.9 BA=0.1 measured, answers [0.9, 0.1] (exit 0)
+CHECKS: git status --porcelain -- S T -> both `??`, no other path touched by this step (exit 0)
+BLOCKED REASON: none
