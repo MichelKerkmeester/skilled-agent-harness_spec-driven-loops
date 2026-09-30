@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 57,
-    "missing-frontmatter": 7359,
+    "missing-frontmatter": 7360,
     "non-yaml-frontmatter": 2,
-    "ok": 12540,
+    "ok": 12546,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23590,
+  "documentsScanned": 23597,
   "ignoredMalformedDocuments": 2,
   "ignoredPaths": [
     {
@@ -26,7 +26,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ace47e17d97eaa269005b0a8d85d0d73c519ba4b293ba02eb03bb98757ded0c2",
+  "manifestHash": "f1b54f72d0f2d997ba0e06fafb384dfc7ae8a2af716587b9c1ec545600fc59a7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -41,7 +41,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 32651,
+      "ok": 32678,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -53,6 +53,12 @@
       "line": 2,
       "path": ".skilled/skills/cli-classifier/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/README.md",
+      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -71079,6 +71085,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/scratch",
       "reason": "excluded directory"
     },
     {

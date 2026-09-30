@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fbc10f336095fa085ac165c45599621a38516a203df1684106014b1560ccefd9",
+  "corpusHash": "aa6488b46267103bd2071260a23a8b3b606977a4f19302730e00a5706c2034fb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23590,
+  "includedPathCount": 23597,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -107,6 +107,7 @@
     ".skilled/skills/cli-classifier/ROUTER.md",
     ".skilled/skills/cli-classifier/SKILL.md",
     ".skilled/skills/cli-classifier/benchmark/README.md",
+    ".skilled/skills/cli-classifier/benchmark/injection-screen/README.md",
     ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md",
     ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/skill-benchmark-report.md",
     ".skilled/skills/cli-classifier/benchmark/reports/README.md",
@@ -8869,6 +8870,12 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/plan.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/acceptance-criteria.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/README.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-ask.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-pick.md",
@@ -23620,7 +23627,7 @@
     "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ace47e17d97eaa269005b0a8d85d0d73c519ba4b293ba02eb03bb98757ded0c2",
+  "manifestHash": "f1b54f72d0f2d997ba0e06fafb384dfc7ae8a2af716587b9c1ec545600fc59a7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24668,6 +24675,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/scratch",
       "reason": "excluded directory"
     },
     {

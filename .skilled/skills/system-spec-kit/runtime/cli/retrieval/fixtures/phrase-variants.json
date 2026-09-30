@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ace47e17d97eaa269005b0a8d85d0d73c519ba4b293ba02eb03bb98757ded0c2",
+  "manifestHash": "f1b54f72d0f2d997ba0e06fafb384dfc7ae8a2af716587b9c1ec545600fc59a7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10095,6 +10095,18 @@
     "align skill advisor graph id": [
       "align skill_advisor graph id"
     ],
+    "alignment acceptance criteria": [
+      "alignment acceptance criteria"
+    ],
+    "alignment audit completion criteria": [
+      "alignment audit completion criteria"
+    ],
+    "alignment audit fixes": [
+      "alignment audit fixes"
+    ],
+    "alignment audit summary": [
+      "alignment audit summary"
+    ],
     "alignment cli opencode": [
       "alignment cli opencode"
     ],
@@ -10158,6 +10170,15 @@
     "alignment mode retired six modes": [
       "alignment mode retired six modes"
     ],
+    "alignment phase status": [
+      "alignment phase status"
+    ],
+    "alignment proof plan": [
+      "alignment proof plan"
+    ],
+    "alignment proof results": [
+      "alignment proof results"
+    ],
     "alignment registry seal and multi executor group": [
       "alignment registry seal and multi executor group"
     ],
@@ -10188,11 +10209,20 @@
     "alignment suggestion tasks": [
       "alignment suggestion tasks"
     ],
+    "alignment task batches": [
+      "alignment task batches"
+    ],
     "alignment validation": [
       "alignment validation"
     ],
     "alignment validator": [
       "alignment validator"
+    ],
+    "alignment verification checklist": [
+      "alignment verification checklist"
+    ],
+    "alignment waiver adr": [
+      "alignment waiver adr"
     ],
     "all ai sessions on the same branch": [
       "all ai sessions on the same branch"
@@ -13454,6 +13484,9 @@
     ],
     "bracket placeholders": [
       "bracket placeholders"
+    ],
+    "bracketed stderr tags": [
+      "bracketed stderr tags"
     ],
     "branch": [
       "branch"
@@ -21264,6 +21297,9 @@
     "code graph workspace root fix changelog": [
       "code graph workspace root fix changelog"
     ],
+    "code header conformance": [
+      "code header conformance"
+    ],
     "code implement code quality code debug code verify research": [
       "code-implement code-quality code-debug code-verify research"
     ],
@@ -26256,6 +26292,9 @@
     ],
     "cross encoder sidecar phase 002": [
       "cross-encoder sidecar phase 002"
+    ],
+    "cross family review plan": [
+      "cross-family review plan"
     ],
     "cross file calls resolution": [
       "cross-file calls resolution"
@@ -34329,6 +34368,9 @@
     "doc drift validator": [
       "doc drift validator"
     ],
+    "doc fix tasks": [
+      "doc fix tasks"
+    ],
     "doc frontmatter authoring tasks": [
       "doc frontmatter authoring tasks"
     ],
@@ -35170,6 +35212,9 @@
     ],
     "drift after closure tasks": [
       "drift after closure tasks"
+    ],
+    "drift and validator criteria": [
+      "drift and validator criteria"
     ],
     "drift audit deep history correction": [
       "drift audit deep history correction"
@@ -45205,6 +45250,15 @@
     ],
     "head footer panel structure": [
       "head footer panel structure"
+    ],
+    "header and stderr alignment": [
+      "header and stderr alignment"
+    ],
+    "header batch tasks": [
+      "header batch tasks"
+    ],
+    "header conformance batches": [
+      "header conformance batches"
     ],
     "header normalization phase": [
       "header normalization phase"
@@ -62915,6 +62969,12 @@
     ],
     "packet closure": [
       "packet closure"
+    ],
+    "packet doc conformance": [
+      "packet doc conformance"
+    ],
+    "packet doc conformance goal": [
+      "packet doc conformance goal"
     ],
     "packet document status agreement": [
       "packet document status agreement"
@@ -81212,6 +81272,18 @@
     "sk code alignment tasks": [
       "sk-code alignment tasks"
     ],
+    "sk code and sk doc alignment": [
+      "sk code and sk doc alignment"
+    ],
+    "sk code and sk doc alignment goal": [
+      "sk code and sk doc alignment goal"
+    ],
+    "sk code and sk doc alignment plan": [
+      "sk code and sk doc alignment plan"
+    ],
+    "sk code and sk doc alignment summary": [
+      "sk code and sk doc alignment summary"
+    ],
     "sk code any type follow on": [
       "sk-code any-type follow-on"
     ],
@@ -89724,6 +89796,15 @@
     ],
     "status schema by task": [
       "status schema by task"
+    ],
+    "stderr tag batch plan": [
+      "stderr tag batch plan"
+    ],
+    "stderr tag criteria": [
+      "stderr tag criteria"
+    ],
+    "stderr tag tasks": [
+      "stderr tag tasks"
     ],
     "stdin close shutdown handler": [
       "stdin close shutdown handler"
