@@ -14,14 +14,33 @@
     "canonical",
     "exemplar"
   ],
-  "lastUpdated": "2026-09-24T18:03:45.256Z",
+  "lastUpdated": "2026-09-26T07:45:13.338Z",
   "specId": "059",
   "folderSlug": "skill-changelog-retrofit",
   "parentChain": [
     "sk-doc"
   ],
-  "memorySequence": 1,
+  "memorySequence": 35,
   "memoryNameHistory": [
-    "24-09-26_19-03__split-the-skill-changelog-retrofit-into-a-phase.md"
+    "25-09-26_21-12__stopping-here-per-claude-claude-md-under-context.md",
+    "25-09-26_22-09__the-background-tasks-are-all-progressing-so-i-m.md",
+    "26-09-26_00-10__the-goal-is-still-active-and-nothing-in-it-has.md",
+    "26-09-26_02-11__the-goal-is-still-active-its-text-is-unchanged.md",
+    "26-09-26_03-13__the-goal-is-unchanged-goal-md-was-last-modified.md",
+    "26-09-26_05-09__the-background-work-is-progressing-main11-pid.md",
+    "26-09-26_08-16__the-work-is-moving-the-agent-run-has-21-passes.md",
+    "26-09-26_08-43__i-m-not-committing-the-stop-hook-is-right-that.md",
+    "26-09-26_08-43__i-m-still-holding-the-commits-the-stop-hook-has.md",
+    "26-09-26_08-44__the-commits-are-still-held-and-i-m-leaving-it.md",
+    "26-09-26_08-44__still-held-with-nothing-new-to-act-on-only-your.md",
+    "26-09-26_08-44__the-commits-are-still-held-nothing-has-changed.md",
+    "26-09-26_08-44__still-held-waiting-on-your-1a-2a.md",
+    "26-09-26_08-44__still-held-only-your-1a-2a-moves-this-forward.md",
+    "26-09-26_08-44__still-held-only-your-1a-2a-unblocks-the-commits.md",
+    "26-09-26_08-44__still-held-waiting-on-your-1a-2a.md",
+    "26-09-26_08-44__still-held-waiting-on-your-1a-2a.md",
+    "26-09-26_08-44__still-held-waiting-on-your-1a-2a.md",
+    "26-09-26_08-45__still-held-waiting-on-your-1a-2a.md",
+    "26-09-26_08-45__still-held-waiting-on-your-1a-2a.md"
   ]
 }

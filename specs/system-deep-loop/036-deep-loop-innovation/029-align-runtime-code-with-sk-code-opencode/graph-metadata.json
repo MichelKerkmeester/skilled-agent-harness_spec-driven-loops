@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep loop runtime alignment",
+      "sk-code-opencode section dividers deep loop",
+      "deep loop architecture md",
+      "check-sections check-folders",
+      "architecture template sk-create-readme",
+      "deepseek comment alignment loop",
+      "deepseek alignment loop driver",
+      "comment-only diff filter",
+      "one file per brief loop",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "loop",
+      "runtime",
+      "alignment",
+      "sk-code-opencode",
+      "section",
+      "dividers",
+      "architecture",
+      "check-sections",
+      "check-folders",
+      "template",
+      "sk-create-readme"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/investigation/devin-swe2max-merge-factcheck.md",
+      "scratch/investigation/devin-swe2max-merge-factcheck.brief.txt",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
+      ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
+      ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py",
+      ".skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md",
+      ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+      "scratch/investigation/census.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "devin-swe2max-merge-factcheck.md",
+        "kind": "doc",
+        "path": "scratch/investigation/devin-swe2max-merge-factcheck.md",
+        "source": "derived"
+      },
+      {
+        "name": "devin-swe2max-merge-factcheck.brief.txt",
+        "kind": "file",
+        "path": "scratch/investigation/devin-swe2max-merge-factcheck.brief.txt",
+        "source": "derived"
+      },
+      {
+        "name": "verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "code-style-guide.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "test_verify_alignment_drift.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py",
+        "source": "derived"
+      },
+      {
+        "name": "directory-and-test-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "census.py",
+        "kind": "file",
+        "path": "scratch/investigation/census.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Prerequisites",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Orchestrator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Code under `.skilled/skills/system-deep-loop/runtime/` does not follow the sk-code-opencode comment and structure rules in `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
+    "created_at": "2026-09-30T05:43:46Z",
+    "last_save_at": "2026-09-30T07:46:01.760Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a6b7f65542ef0fabce1d6fb905ab1ffff20223404220a33f090bf1c9164446c6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5e662a01bedd2122c8563f5e1c8aeca6d5ab77f2e7616f09f32cdd9779225142",
+      "plan.md": "0abf019805145522bfda190fd7a1261b860df0bbb14acf75780fdc03fb60389e",
+      "tasks.md": "ec3a82476cbf34691c15bcd58156258a420fa8bd1db5da4ebb8122e4e5837e2f",
+      "implementation-summary.md": "4183ded66e2d80aaef5f1caf375368d4925626eb699e8ab51416692636ebf24e"
+    },
+    "last_active_at": null
+  }
+}

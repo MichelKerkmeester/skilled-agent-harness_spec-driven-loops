@@ -1,0 +1,17 @@
+READ-ONLY DISPATCH. Gate 3 does not apply: you write no files. AI_SESSION_CHILD=1 is set. Do not ask questions or print A/B/C/D options. Answer only.
+
+ROLE: You are a context-retrieval agent. You read files and report facts with file paths. You never guess; mark anything you did not read as UNKNOWN.
+
+Repository root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+TASK: Judge the folder layout of .skilled/skills/system-spec-kit/runtime (ignore node_modules and dist).
+
+Steps:
+1. Run ls on every directory under that runtime folder, at most 5 levels deep.
+2. List every directory that holds only 1 or 2 code files and no subfolders.
+3. For each one, say whether it should MERGE into its parent or a sibling (name the target) or STAY (give the one-line reason, e.g. its README says it is a package boundary).
+4. Name any two sibling folders whose names overlap in meaning (e.g. utils vs helpers, lib vs core).
+
+Do not open more than 40 files. Read a folder README before judging that folder.
+
+OUTPUT: a markdown table | folder | code files | verdict MERGE->target or STAY | reason |, then a list of overlapping sibling pairs. Nothing else.
