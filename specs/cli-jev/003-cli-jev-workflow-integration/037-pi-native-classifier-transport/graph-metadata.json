@@ -47,6 +47,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs",
       ".skilled/skills/cli-classifier/benchmark/README.md",
       "feature-catalog/feature-catalog.md",
       "manual-testing-playbook/manual-testing-playbook.md",
@@ -92,6 +94,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-pi-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-pi-transport.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs",
         "source": "derived"
       },
       {
@@ -189,23 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Pi 0.99.1 can call Jev itself",
     "created_at": "2026-09-30T13:18:46Z",
-    "last_save_at": "2026-09-30T13:27:55.452Z",
+    "last_save_at": "2026-09-30T13:37:35.542Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e55fac8f551bf757fd2b28c8e08a6042937864ef08cc5f26acc173097e1380b5",
+    "source_fingerprint": "sha256:4c7c28aa7e24d9af3a4a3e0927f9ca4b5ce87bc63bc46e8b3dee83dbac258db8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1bf2835b1602587ec217eccf9fb547ac638111e7b91561f676c2ee8008873d81",
-      "plan.md": "ab21907e38fc76a169d82d5b06ea02555d7deeb65a6e360d161bb85cfa321298",
-      "tasks.md": "f95ef54d719c86a1fd18fa01853b2d54fa36768e29a60d9fb445d8762f43fbc1",
-      "implementation-summary.md": "709f22116f31c8712770c6c03ce371fb5461b441b6ed85675bae4eb24e234c1d"
+      "spec.md": "e286e04f61023cd8667284ff7f4673d9fe78b33468acf46a768d86bf376e0fe6",
+      "plan.md": "e52fd443ea43ad69b944ed7f7a8f8df7a186431dfc6e7c67729f8dcdba66980c",
+      "tasks.md": "f9b340e5b46c1991ec163a8b5e1bba0d38e9ee3a6d4f57f055258bd3be92c7c3",
+      "implementation-summary.md": "94f70c96d158ce9919c70edcc1f70e889b567b309ec292ba2ebc435c366fc670"
     },
     "last_active_at": null
   }

@@ -53,8 +53,8 @@ The first slice is a zero-call census, the pattern phases 002 and 019 already us
 - Build roles: parent D5 through this phase's D6. Skill docs: parent D6.
 
 **Deliverables**:
-- `compare-pi-transport.mjs` (proposed name) under `.skilled/skills/cli-classifier/benchmark/pi-transport/`, with a zero-call census by default and one live comparison arm behind its own switch.
-- `tests/compare-pi-transport.test.mjs` (proposed) covering every public surface, both backends stubbed.
+- `score-pi-transport.mjs` (proposed name) under `.skilled/skills/cli-classifier/benchmark/pi-transport/`, with a zero-call census by default and one live comparison arm behind its own switch.
+- `tests/score-pi-transport.test.mjs` (proposed) covering every public surface, both backends stubbed.
 - One zero-call report, and on the operator's yes one live run with its `calls.jsonl` in a directory the operator names.
 - The cli-classifier docs of section 3, written through sk-doc.
 - Every run line and the verdict line recorded in `implementation-summary.md` and `goal.md`'s log.
@@ -89,7 +89,7 @@ Produce one measured verdict, before any integration change, on whether Pi's nat
 ### In Scope
 
 - The zero-call census: Pi's version, the classifier models known and available per provider, the jev CLI identity line, whether a llama.cpp router answers, and the replay row count. No model call and no file written.
-- The live comparison arm behind its own switch and the operator's yes: replay the 019 rows through Pi `classify()` on `openrouter` `typesafe/jev-1.13` as `choice` questions, with the CLI side read from the recorded `calls.jsonl`, or both sides rerun on a fresh fixture when section 10's first question resolves that way.
+- The live comparison arm behind its own switch and the operator's yes: replay the 019 rows through Pi `classify()` on `openrouter` `typesafe/jev-1.13` as `choice` questions, with the CLI side read from the recorded `calls.jsonl`, or both sides rerun (`--pi --cli`) on a fresh fixture when section 10's first question resolves that way.
 - Coverage, top-choice agreement, the median absolute probability difference, p95 latency per side and Pi's cost per 100 calls.
 - The keep rule in section 4, fixed at spec approval before any live run, and one verdict line.
 - The proposed script under `.skilled/skills/cli-classifier/benchmark/pi-transport/`, its `node --test` tests with both backends stubbed, and the cli-classifier docs parent D6 requires.
@@ -107,8 +107,8 @@ Produce one measured verdict, before any integration change, on whether Pi's nat
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/cli-classifier/benchmark/pi-transport/compare-pi-transport.mjs` | Create | Census, live arm, comparison metrics and the keep-rule verdict. Proposed name |
-| `.skilled/skills/cli-classifier/benchmark/pi-transport/tests/compare-pi-transport.test.mjs` | Create | Every public surface, both backends stubbed, run with `node --test`. Proposed name |
+| `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs` | Create | Census, live arm, comparison metrics and the keep-rule verdict. Proposed name |
+| `.skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs` | Create | Every public surface, both backends stubbed, run with `node --test`. Proposed name |
 | `.skilled/skills/cli-classifier/benchmark/pi-transport/README.md` | Create | The folder README through sk-doc: what the run measures, how to run it, the switch and the verdict. Proposed name |
 | `.skilled/skills/cli-classifier/benchmark/README.md` | Modify | One row in section 2 LAYOUT for the new folder |
 | `.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-comparison.md` | Create | One catalog entry through sk-doc. Proposed name |
@@ -190,11 +190,11 @@ The rule below is the context's proposed frame, fixed here at spec approval. Cha
 
 ### Proof Plan
 
-Written before the build. `S` is the proposed `.skilled/skills/cli-classifier/benchmark/pi-transport/compare-pi-transport.mjs`, `T` its test file, and `STUB` a directory of logging `jev` and stub-backend fixtures.
+Written before the build. `S` is the proposed `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs`, `T` its test file, and `STUB` a directory of logging `jev` and stub-backend fixtures.
 
 1. With `STUB` first on `PATH` and the Pi SDK probe stubbed, `node $S` prints the census lines, exits 0, makes no classify call and writes nothing. Boundary: with no Pi credential the per-provider line reports zero available and the run still exits 0.
 2. `node --test $T` exits 0 with at least one happy path and one edge case per public surface. Boundary: a partial probability map marks its row `unmeasured` and never a zero.
-3. `node $S --live --out <dir>` on stubs writes `calls.jsonl` with one line per call and prints the report lines. `node $S --live` without `--out` exits 2 before any call (proposed).
+3. `node $S --pi --out <dir>` on stubs writes `calls.jsonl` with one line per call and prints the report lines. `node $S --pi` without `--out` exits 2 before any call (proposed).
 4. On the operator's yes, one live run on the real tree prints one `verdict pi-transport:` line and every report line, with the model identity on each side read from the run. Boundary: any number not read from the run voids the verdict.
 5. `python3 .skilled/skills/sk-doc/scripts/validate_document.py` exits 0 on every changed doc, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport --strict` prints `RESULT: PASSED`.
 
@@ -281,8 +281,8 @@ Written before the build. `S` is the proposed `.skilled/skills/cli-classifier/be
 
 ## 10. OPEN QUESTIONS
 
-- Does `score-suggested-order.mjs` export the prompt builder a replay needs? UNKNOWN until the design reads it. The script sits in the skill-advisor runtime tree, which this phase reads and never edits. Proposed answer: if it exports a usable builder, the arm replays its rows. If not, both sides rerun on a fresh fixture the design builds, so both sides see identical rows.
-- Is a same-day CLI rerun needed for a fair latency comparison? Proposed answer: the design decides from the 019 `calls.jsonl`. If its `call_ms` came from the same in-process path the replay uses, the recorded answers keep the comparison fair. If not, one same-day CLI rerun on the same fixture, on the operator's yes, so both sides share a day and a machine load.
+- Does `score-suggested-order.mjs` export the prompt builder a replay needs? UNKNOWN until the design reads it. The script sits in the skill-advisor runtime tree, which this phase reads and never edits. Proposed answer: if it exports a usable builder, the arm replays its rows. If not, both sides rerun (`--pi --cli`) on a fresh fixture the design builds, so both sides see identical rows.
+- Is a same-day CLI rerun needed for a fair latency comparison? Proposed answer: the design decides from the 019 `calls.jsonl`. If its `call_ms` came from the same in-process path the replay uses, the recorded answers keep the comparison fair. If not, one same-day rerun of both sides (`--pi --cli`) on the same fixture, on the operator's yes, so both sides share a day and a machine load.
 - Which extra columns the operator wants. Proposed answer: none before the first verdict. The four other OpenRouter classifier families and a llama.cpp model each cost money, so each is its own operator yes, and the llama.cpp column also needs an install yes.
 <!-- /ANCHOR:questions -->
 

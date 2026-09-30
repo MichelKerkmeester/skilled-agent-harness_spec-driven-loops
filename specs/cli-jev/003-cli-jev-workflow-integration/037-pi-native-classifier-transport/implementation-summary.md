@@ -63,8 +63,8 @@ One row per planned file. Nothing below exists yet, so every action is `Planned`
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/cli-classifier/benchmark/pi-transport/compare-pi-transport.mjs` (proposed) | Planned create | The census, the live arm, the metrics and the keep-rule verdict |
-| `.skilled/skills/cli-classifier/benchmark/pi-transport/tests/compare-pi-transport.test.mjs` (proposed) | Planned create | Every public surface, both backends stubbed, `node --test` |
+| `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs` (proposed) | Planned create | The census, the live arm, the metrics and the keep-rule verdict |
+| `.skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs` (proposed) | Planned create | Every public surface, both backends stubbed, `node --test` |
 | `.skilled/skills/cli-classifier/benchmark/pi-transport/README.md` (proposed) | Planned create | The folder README through sk-doc |
 | `.skilled/skills/cli-classifier/benchmark/README.md` | Planned modify | One row in section 2 LAYOUT for the new folder |
 | `.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-comparison.md` and `feature-catalog/feature-catalog.md` (proposed) | Planned create and modify | The catalog entry and its index row |

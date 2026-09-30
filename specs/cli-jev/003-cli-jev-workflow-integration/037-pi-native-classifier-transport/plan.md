@@ -31,7 +31,7 @@ contextType: "implementation"
 
 ### Overview
 
-`compare-pi-transport.mjs` (proposed) prints a zero-call census by default: Pi's version, the classifier models known and available per provider, the jev CLI identity line, whether a llama.cpp router answers, and the replay row count. Behind its own switch and the operator's yes, it replays the 019 rows through Pi's SDK as `choice` questions on `openrouter` `typesafe/jev-1.13` and reads the recorded CLI answers from the 019 `calls.jsonl`. Coverage, top-choice agreement, the median absolute probability difference, p95 latency per side and Pi's cost per 100 calls feed the keep rule in `spec.md` section 4, which prints one `verdict pi-transport:` line. Nothing is wired, and no runtime file changes.
+`score-pi-transport.mjs` (proposed) prints a zero-call census by default: Pi's version, the classifier models known and available per provider, the jev CLI identity line, whether a llama.cpp router answers, and the replay row count. Behind its own switch and the operator's yes, it replays the 019 rows through Pi's SDK as `choice` questions on `openrouter` `typesafe/jev-1.13` and reads the recorded CLI answers from the 019 `calls.jsonl`. Coverage, top-choice agreement, the median absolute probability difference, p95 latency per side and Pi's cost per 100 calls feed the keep rule in `spec.md` section 4, which prints one `verdict pi-transport:` line. Nothing is wired, and no runtime file changes.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -68,7 +68,7 @@ Single-file offline measurement script in 019's shape: exported pure functions f
 ### Key Components
 
 - **Census**: reads Pi's version, calls `ModelRuntime.create()` then `getAvailableOfType('classifier')` with no classify call, runs `jev --version` and `jev auth status --provider official` for the identity line, checks `command -v llama-server llama-cli`, and counts the 019 `calls.jsonl` rows and calls.
-- **Replay loader**: reads the 019 rows and their three orders each, then asks the design's first open question, whether `score-suggested-order.mjs` exports the prompt builder a replay needs or the build must rerun both sides on a fresh fixture.
+- **Replay loader**: reads the 019 rows and their three orders each, then asks the design's first open question, whether `score-suggested-order.mjs` exports the prompt builder a replay needs or the build must rerun both sides (`--pi --cli`) on a fresh fixture.
 - **Pi backend**: one `choice` question per row through the SDK's `classify(model, context, options?)` (`dist/core/model-runtime.d.ts:106`) on `openrouter` `typesafe/jev-1.13`, with the request shape `models.classify(model, { state, questions: { <name>: { type, instructions, criteria } } })` from `docs/models.md:103-136`.
 - **CLI baseline reader**: the recorded `official` provider answers, probabilities and `call_ms` from the 019 `calls.jsonl`.
 - **Comparison metrics**: coverage, top-choice agreement, the median absolute probability difference, p95 latency per side and Pi's cost per 100 calls.
@@ -119,7 +119,7 @@ Each phase's observable check:
 
 1. **Design.** Read `score-suggested-order.mjs` and Pi's SDK, then write the interface and the test cases as a design note under `scratch/`. Check: the note names the exports the replay needs, the exact `classify()` request shape, the fixed timeout bound, the same-day-rerun decision and the fallback fixture, with every `UNKNOWN` item named.
 2. **Zero-call census slice with tests.** The census, both availability lines, the identity line, the llama.cpp check and the replay row count, plus their tests. Check: a stub-backed default run prints the census lines, exits 0, makes no classify call and writes no file, and `node --test` exits 0.
-3. **Live comparison arm with stubbed tests.** The replay, the Pi backend, the metrics and the verdict behind the switch, plus their tests with both backends stubbed. Check: `--live --out <dir>` on stubs writes one `calls.jsonl` line per call and prints the report lines, and every public surface has a happy path and an edge case.
+3. **Live comparison arm with stubbed tests.** The replay, the Pi backend, the metrics and the verdict behind the switch, plus their tests with both backends stubbed. Check: `--pi --out <dir>` on stubs writes one `calls.jsonl` line per call and prints the report lines, and every public surface has a happy path and an edge case.
 4. **Docs through sk-doc.** The folder README, the `benchmark/README.md` row, the catalog entry with its index row and the playbook scenario with its index row. Check: `validate_document.py` exits 0 on each.
 5. **Cross-family review.** MiMo reviews every DeepSeek diff and DeepSeek reviews any MiMo fix. Check: one review file with a verdict, no open P0 or P1 finding, each review's file hashes equal before and after, and P2 findings recorded.
 6. **The approved live run and closure.** On the operator's yes, the session runs the live arm on the real tree, reads the verdict line and every report line, records them in `goal.md`'s log and `acceptance-criteria.md`, runs the gates and refreshes the derived metadata. Check: one `verdict pi-transport:` line and `validate.sh --strict` `RESULT: PASSED`.
@@ -130,7 +130,7 @@ Each phase's observable check:
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-Commands run from the repository root. `S` is `.skilled/skills/cli-classifier/benchmark/pi-transport/compare-pi-transport.mjs` (proposed) and `T` its test file (proposed).
+Commands run from the repository root. `S` is `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs` (proposed) and `T` its test file (proposed).
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
@@ -154,7 +154,7 @@ Commands run from the repository root. `S` is `.skilled/skills/cli-classifier/be
 | `jev 0.6.2` and the 019 baseline | Internal | Present | The census identity line and the CLI side are missing |
 | The operator's yes for the live run | Operator | Not yet given | The live arm never starts. The default run is unaffected |
 | The operator's install yes for a llama.cpp column | Operator | Not yet given | That extra column never runs |
-| `score-suggested-order.mjs` | Internal, another session's tree | Read only | Without its prompt builder the build reruns both sides on a fresh fixture (`spec.md` section 10) |
+| `score-suggested-order.mjs` | Internal, another session's tree | Read only | Without its prompt builder the build reruns both sides (`--pi --cli`) on a fresh fixture (`spec.md` section 10) |
 | DeepSeek V4.1 Flash and MiMo v2.6 Pro | External, dispatched by Bash | Under D6 | A phase waits or reports the blocker |
 <!-- /ANCHOR:dependencies -->
 
