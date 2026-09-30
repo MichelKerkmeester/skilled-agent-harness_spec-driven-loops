@@ -1,0 +1,21 @@
+census: file=labeled rows=177 eligible=93 movable=22 gold_first=61 gold_outside=10 gold_top3=164 tau03=18 over25=0
+census: file=holdout rows=64 eligible=18 movable=1 gold_first=15 gold_outside=2 gold_top3=49 tau03=0 over25=0
+census: split=train rows=121 eligible=54 movable=9 gold_first=38 gold_outside=7 gold_top3=106 tau03=7 over25=0
+census: split=test rows=120 eligible=57 movable=14 gold_first=38 gold_outside=5 gold_top3=107 tau03=11 over25=0
+baseline: holdout_top1=53/70
+comparator: name=scorer rows=111 mrr=0.7811 right1=76 right3=99
+comparator: name=confidence rows=111 mrr=0.7766 right1=75 right3=99
+comparator: name=always_second rows=111 mrr=0.5498 right1=25 right3=99
+comparator: name=rerank rows=57 mrr=0.7588 right1=37 right3=51
+power: movable=23 decided_ceiling=99 min_wins=16 win_rate_80=0.749
+advisor child: p50=718 p95=1088 max=1668 over_2200=0 children=241 killed=0
+planned calls: jev=334 deem=333
+margin: 0.05
+keep rule: coverage 10*M>=9*K, kill P(X>=L)<=0.05, margin 20*(SA-SB)>=M, sign test P(X>=W)<0.05, flips 10*F<=3*M, latency p95<=2200ms
+jev: path=/Users/michelkerkmeester/.local/bin/jev provider=official
+jev: payload=routing corpus prompts and skill projection descriptions planned_calls=334 est_input_tokens=76893
+question: Which skill should handle this request?
+jev: auth_test provider=official model=jev-1.13.0
+jev: calls=333 timeouts=0
+column jev: rows=111 measured=111 wins=13 losses=25 ties=73 abstentions=8 flips=13 baseline=scorer p_loss=0.0365 calls=333 p50_ms=1089 p95_ms=1490
+verdict jev: kill K=111 M=111 W=13 L=25 F=13 p=0.9832 mrr=0.7260/0.7811 p95_ms=1490 jev_version=0.6.2 provider=official model=jev-1.13.0

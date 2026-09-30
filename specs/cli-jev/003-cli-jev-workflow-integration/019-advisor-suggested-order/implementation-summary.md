@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Phase 19: advisor-suggested-order"
-description: "score-suggested-order.mjs measures offline whether a Jev or Deem whole-cluster order beats the skill advisor's best zero-call order and fits the 2,200 ms advisor budget inside a child like the prompt shim's. The zero-call run and a live Deem run printed `verdict deem: kill` from the final state, and the Jev column waits on the operator. Built as 6aa7ca0980."
+description: "score-suggested-order.mjs measures offline whether a Jev or Deem whole-cluster order beats the skill advisor's best zero-call order and fits the 2,200 ms advisor budget inside a child like the prompt shim's. The zero-call run and live Deem and Jev runs printed `verdict deem: kill` and `verdict jev: kill` from the final state. Built as 6aa7ca0980."
 trigger_phrases:
   - "advisor suggested order summary"
   - "score-suggested-order status"
@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order"
-    last_updated_at: "2026-09-29T16:50:00Z"
-    last_updated_by: "closure-leaf"
-    recent_action: "Recorded the build, the Deem kill verdict and the closure gates"
-    next_safe_action: "Operator runs the --jev arm if wanted, then the orchestrator commits the phase docs"
+    last_updated_at: "2026-09-30T10:07:58Z"
+    last_updated_by: "markdown-leaf"
+    recent_action: "Recorded the operator's live Jev run and its kill verdict"
+    next_safe_action: "Orchestrator commits the phase docs and the parent goal's log"
     blockers: []
     key_files:
       - ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs"
@@ -25,11 +25,12 @@ _memory:
       session_id: "spec-cli-jev-003-019-advisor-suggested-order"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "Whether a jev choice map holds a probability for every submitted key, which waits on the operator's --jev run"
+    open_questions: []
     answered_questions:
       - "Deem's map holds every submitted key: 328 of 333 answers, 5 timeouts"
+      - "Jev's map holds every submitted key: all 333 choice calls measured on attempt 1"
       - "A Deem whole-cluster order loses to the scorer's order: kill, 9 wins and 35 losses"
+      - "A Jev whole-cluster order loses to the scorer's order: kill, 13 wins and 25 losses"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary: Phase 19: advisor-suggested-order
@@ -59,13 +60,21 @@ _memory:
 
 ### Phase 19: advisor-suggested-order
 
-**What the runs found.** The live Deem run printed `kill` from the final state:
+**What the runs found.** Both live runs printed `kill` from the final state. Deem first, on 2026-09-29:
 
 ```text
 verdict deem: kill K=111 M=108 W=9 L=35 F=86 p=1.0000 mrr=0.6176/0.7750 p95_ms=1686 model=deem-0.8-v1 model_commit=8cbabbb2c4a7ef13c6b43f0ef3ae4157983c6d21 source_commit=3883f79261e5c61d3e8f230cad02b50c6d2b1891
 ```
 
-The column's mean reciprocal rank fell to 0.6176 against the scorer's 0.7750 on the same 108 measured rows, with 9 wins and 35 losses and `p_loss=0.0001`. The zero-call run beside it printed `advisor child: p50=629 p95=929 max=2500 over_2200=4 children=241 killed=1`, so the advisor itself sits under the 2,200 ms ceiling at p95 while 4 of 241 children passed it under load. A `kill` closes the Deem whole-cluster order at `deem-0.8-v1` on `3883f792`, beside 002's kill of the pick-first form. No `verdict jev:` line exists, because the Jev column waits on the operator's `--jev` run.
+The Deem column's mean reciprocal rank fell to 0.6176 against the scorer's 0.7750 on the same 108 measured rows, with 9 wins and 35 losses and `p_loss=0.0001`. The zero-call run beside it printed `advisor child: p50=629 p95=929 max=2500 over_2200=4 children=241 killed=1`, so the advisor itself sits under the 2,200 ms ceiling at p95 while 4 of 241 children passed it under load. A `kill` closes the Deem whole-cluster order at `deem-0.8-v1` on `3883f792`, beside 002's kill of the pick-first form.
+
+The operator's live Jev run printed `kill` on 2026-09-30:
+
+```text
+verdict jev: kill K=111 M=111 W=13 L=25 F=13 p=0.9832 mrr=0.7260/0.7811 p95_ms=1490 jev_version=0.6.2 provider=official model=jev-1.13.0
+```
+
+The Jev column's mean reciprocal rank of 0.7260 sits below the scorer's 0.7811 on the same 111 rows, with 13 wins and 25 losses and `p_loss=0.0365`. All 111 rows were measured and all 333 `choice` calls returned a probability for every submitted key. Its in-child p95 was 1,490 ms, under the 2,200 ms ceiling, and the advisor timed `p50=718 p95=1088 max=1668 over_2200=0 children=241 killed=0` beside it. A `kill` closes the Jev whole-cluster order at `jev-1.13.0` (`jev-cli` 0.6.2, provider `official`), beside 002's kill of the pick-first form. With both backends at `kill`, nothing is served and the advisor's order is unchanged. Source: `scratch/w4-session/jev-run/`.
 
 ### Files Changed
 
@@ -145,6 +154,7 @@ One row per deviation the build record names, with the close-pass amendments. Th
 | P2 gate skips (`SE` section 2) | Stub `cli-deem` reporting backend `stub` with `--deem`: exit 0, `deem arm skipped: stub backend`. Stub `jev` with `auth status` exit 3 and no `JEV_PROVIDER`: exit 0, `jev: path=<stub>/jev provider=official` then `jev arm skipped: no credential`. Against P1 with `advisor child:` masked, only those lines differ |
 | P3 eval file (`SE` section 2) | `vitest run tests/parity/score-suggested-order.vitest.ts`: `Tests 45 passed (45)`, exit 0 |
 | P4 live Deem run (`SE` section 2) | `node score-suggested-order.mjs --deem --out scratch/w4-session/p4-deem`, exit 0 in 597 s. `deem: health backend=torch model=deem-0.8-v1 model_commit=8cbabbb2c4a7ef13c6b43f0ef3ae4157983c6d21 source_commit=3883f79261e5c61d3e8f230cad02b50c6d2b1891`, `deem: calls=333 timeouts=5`, `column deem: rows=111 measured=108 wins=9 losses=35 ties=64 abstentions=13 flips=86 baseline=scorer p_loss=0.0001 calls=333 p50_ms=1140 p95_ms=1686` and the verdict line above. `calls.jsonl` holds 333 lines with `child_wall_ms`, `model_commit` and `source_commit`, 5 of them `unmeasured_timeout`. The advisor-side porcelain was the same before and after. Nothing left the machine |
+| P4 live Jev run (`scratch/w4-session/jev-run/`) | `node score-suggested-order.mjs --jev --out <dir>`, exit 0 in 558 s, empty stderr. `jev: path=/Users/michelkerkmeester/.local/bin/jev provider=official`, `jev: calls=333 timeouts=0`, `column jev: rows=111 measured=111 wins=13 losses=25 ties=73 abstentions=8 flips=13 baseline=scorer p_loss=0.0365 calls=333 p50_ms=1089 p95_ms=1490` and the verdict line above. `calls.jsonl` holds 334 records, every one `measured` on attempt 1. The advisor timed `p50=718 p95=1088 max=1668 over_2200=0 children=241 killed=0` |
 | P5 no key and read-only (`SE` section 2) | `grep -nE 'API_KEY\|TYPESAFE\|Bearer\|Authorization'` on the script exit 1. Porcelain identical before and after P1 and P2 |
 | G1 suite and typecheck (`SE` section 2) | Full advisor suite `Test Files 131 passed (131)`, `Tests 1075 passed \| 6 skipped (1081)`, exit 0, against T001's baseline of 130 files and 1,030 passed: +1 file, +45 tests, 0 new failures. `npm run typecheck` exit 0 |
 | G2 docs (`SE` section 2) | `validate_document.py` exit 0 on all 9 changed docs. Comment hygiene checker exit 0 on the script, its test and the playbook pin test |
@@ -162,12 +172,11 @@ One row per deviation the build record names, with the close-pass amendments. Th
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The Jev column is the operator's run.** The live `--jev` form sends routing-corpus prompts and skill projection descriptions, both committed, to the hosted classifier, about 334 calls, and waits on the operator's yes. Command: `node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs --jev --out <dir>`. T008's Jev half and T018 stay open for the operator under parent D4. No row here waits on operator labels, and serving needs a `keep` and a later phase, so there is nothing to open from this phase's `kill`.
-2. **Jev's probability map is unconfirmed.** Whether `jev choice` returns a probability for every submitted key is UNKNOWN until one real answer is read. Deem's map is settled: all 328 non-timeout answers of the 333-call run carried one (`scratch/w4-session/p4-deem/calls.jsonl`).
-3. **Four P2 review findings are recorded, not chased** (parent D5). They are the `none` tie rule, the `auth_test` line shape in `calls.jsonl`, `SKILL.md:383` not naming the switch literals and the catalog entry omitting the Deem arm's 25-key cluster cap. See `goal.md`'s log.
-4. **Not every REQ-009 exit path has a test.** `score-suggested-order.mjs:508-517` implements `backend refused`, `server gone`, `model commit changed mid-run`, `key rejected` and `interrupted`. The vitest covers `backend refused` (`score-suggested-order.vitest.ts:626-636`), `key rejected` and the busy retry (`:693-731`). `server gone` and `model commit changed mid-run` have no case.
-5. **The corpora never used a 4-key cluster.** The built cases use 2-key clusters with a 1-key solo row, and the order-builder case is 3-key (`score-suggested-order.vitest.ts:178`). No 4-key case was built (T003).
-6. **No dispatch record shows a sk-code router call.** The code briefs followed brief 01's OpenCode patterns instead (T002).
+1. **The Jev run sent the routing corpus to the hosted classifier and printed `kill`.** The operator approved one live run on 2026-09-30: 333 calls, all `measured` on attempt 1, so every probability map held every submitted key. Both backends now print `kill` for the whole-cluster order, nothing is served and no row waits on operator labels. Evidence: `scratch/w4-session/jev-run/`.
+2. **Four P2 review findings are recorded, not chased** (parent D5). They are the `none` tie rule, the `auth_test` line shape in `calls.jsonl`, `SKILL.md:383` not naming the switch literals and the catalog entry omitting the Deem arm's 25-key cluster cap. See `goal.md`'s log.
+3. **Not every REQ-009 exit path has a test.** `score-suggested-order.mjs:508-517` implements `backend refused`, `server gone`, `model commit changed mid-run`, `key rejected` and `interrupted`. The vitest covers `backend refused` (`score-suggested-order.vitest.ts:626-636`), `key rejected` and the busy retry (`:693-731`). `server gone` and `model commit changed mid-run` have no case.
+4. **The corpora never used a 4-key cluster.** The built cases use 2-key clusters with a 1-key solo row, and the order-builder case is 3-key (`score-suggested-order.vitest.ts:178`). No 4-key case was built (T003).
+5. **No dispatch record shows a sk-code router call.** The code briefs followed brief 01's OpenCode patterns instead (T002).
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1,0 +1,29 @@
+TASK: record the operator's live Jev run in this phase's own docs, then run the four gates.
+
+## Pre-resolved gates
+
+- Gate 3 is answered: the phase folder above. On 2026-09-30 the operator answered "Yes, run it" to one live `--jev` run of this phase's script. The orchestrator session ran it and saved the output. Parent D5 says only Pi writes, so you are that writer.
+- Write authority, frozen: this phase folder's own docs only (`spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`, `goal.md`, and the derived `description.json` and `graph-metadata.json` through `repair-derived.cjs`). No other file, and nothing under `scratch/`. No git writes. Never open a `.env` file.
+- Use only the facts below and what you read in `specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/`. Do not rerun the script: it calls a hosted service.
+- In every doc's `_memory.continuity` frontmatter, keep `recent_action` and `next_safe_action` to one line of at most 96 characters and one sentence, with no URL and none of the words because, so that, which means, the reason, details or summary.
+- Keep each doc's template markers, anchors and frontmatter. No em dashes. Keep `goal.md`'s durable slice at or under 4,000 characters (the run goes in its log section, which is volatile).
+
+## Facts (from `specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/`)
+
+- Command: `node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs --jev --out <dir>`, from 2026-09-30T09:53:49Z to 10:03:07Z, 558 s, exit 0, empty stderr (`run.txt`, `stderr.txt`).
+- Identity and payload lines (`stdout.txt`): `jev: path=/Users/michelkerkmeester/.local/bin/jev provider=official`, `jev: payload=routing corpus prompts and skill projection descriptions planned_calls=334 est_input_tokens=76893`, `jev: auth_test provider=official model=jev-1.13.0`, `jev: calls=333 timeouts=0`.
+- Column line: `column jev: rows=111 measured=111 wins=13 losses=25 ties=73 abstentions=8 flips=13 baseline=scorer p_loss=0.0365 calls=333 p50_ms=1089 p95_ms=1490`.
+- Verdict line: `verdict jev: kill K=111 M=111 W=13 L=25 F=13 p=0.9832 mrr=0.7260/0.7811 p95_ms=1490 jev_version=0.6.2 provider=official model=jev-1.13.0`. The column's mean reciprocal rank 0.7260 is below the scorer's 0.7811 on the same rows.
+- `calls.jsonl` holds 334 records: one `auth_test` and 333 `choice` calls, every one `status` `measured` on attempt 1. The script marks a call `measured` only when `readProbabilities` finds a finite number for every submitted key (`score-suggested-order.mjs:82-100`, `:480-485`), so every Jev `probabilities` map held every submitted key. Each row's three option orders returned the same key set.
+- The advisor timing in `report.json`: 241 children, p50 718 ms, p95 1,088 ms, max 1,668 ms, 0 over 2,200 ms, 0 killed.
+- With Deem's earlier `kill`, both backends now print `kill` for this phase. Nothing is served and the advisor's order is unchanged.
+
+## What to do
+
+1. `tasks.md`: T018 becomes `[x]` with the identity, verdict, p50 and p95 lines and the path `scratch/w4-session/jev-run/`. T008: tick it if the docs already record the Deem half (one real `cli-deem choice` answer read and its key check), adding the Jev half from the facts above. If the Deem half is not recorded anywhere, leave T008 open and say so. Update the completion row that names T008 and T018 as open.
+2. `goal.md`: add log rows for the Jev run and its verdict, each citing `scratch/w4-session/jev-run/`. Tick any criterion the run now meets.
+3. `implementation-summary.md`: add the Jev result beside the Deem result where the verdicts are described, add a verification row, and replace the Known Limitations item that says the Jev column is the operator's run with the result.
+4. `spec.md`: correct any line that still says the Jev column is unrun.
+5. Run `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order --apply`, then `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order --strict` (must print `RESULT: PASSED`; count `RESULT: FAILED` over the whole output), then `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order`, then `node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order --workspace "$PWD"` (check `packet_durable_chars` is at or under 4000). Zsh has no `PIPESTATUS`: redirect to a file and read `$?`. Fix what fails in the phase docs and rerun.
+
+Accept when: only this phase's docs changed (outside `scratch/`); `validate.sh` prints `RESULT: PASSED` and no `RESULT: FAILED`; `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)`; `packet_durable_chars` is at or under 4000.
