@@ -2312,8 +2312,10 @@ const PI_ALLOWED_MODELS = new Set([
   'minimax-m3',
   'gpt-6-luna',
   'gpt-6-sol',
-  // MiMo is reached through DevPass only, and the gateway serves no ultraspeed tier.
+  // Both MiMo literals are DevPass-fronted. opencode-go and Cline routes are direct-dispatch
+  // only, and the gateway serves no ultraspeed tier.
   'mimo-v2.6-pro',
+  'mimo-v2.6-flash',
   'qwen3.8-max',
   // OpenRouter carries exactly DeepSeek V4 Flash and GLM-5.3-Flash; each id keeps its
   // upstream provider path so `${provider}/${model}` composes the full
@@ -2541,6 +2543,7 @@ const PI_MODEL_PROVIDERS = new Map([
   ['gpt-6-luna', 'openai-codex'],
   ['gpt-6-sol', 'openai-codex'],
   ['mimo-v2.6-pro', 'llmgateway'],
+  ['mimo-v2.6-flash', 'llmgateway'],
   ['qwen3.8-max', 'opencode-go'],
   // OpenRouter fronts exactly DeepSeek V4 Flash and GLM-5.3-Flash here. Each model id
   // already carries its upstream provider path, so `${provider}/${model}` yields the

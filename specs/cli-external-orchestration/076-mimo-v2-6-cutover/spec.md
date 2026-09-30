@@ -97,6 +97,11 @@ Every living surface that names a MiMo id — skills, settings, enforcement, mir
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Pi allowlist copy lines 2305-2306, `PI_MODEL_PROVIDERS` 2526-2527, `HERMES_ALLOWED_MODELS` line 2626 |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts` | Modify | Lines 953-954, the paired-roster comment at 984, positive pairing 989, negative 991, effort-pinning loop 1015 |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | Provider-map expectation lines 1884-1885 |
+| `.skilled/skills/cli-external-orchestration/cli-pi/changelog/v1.5.12.0.md` | Create | MiMo Flash and the OpenCode Go and Cline routes, version 1.5.12.0 |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.13.0.md` | Create | The same routes on the OpenCode roster, version 1.4.13.0 |
+| `.skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/supported-model-allowlist-smoke.md` | Modify | PI-017 counts ten allowlist ids |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json` | Modify | Re-minted after the two version bumps, with its authored copy under `specs/sk-doc/019-skill-routing-refactor/` |
+| `.hermes/skills/cli-pi/SKILL.md`, `.hermes/skills/cli-opencode/SKILL.md` | Regenerate | Generated Hermes copies of the two bumped skills |
 | `.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md` | Modify | Line 357, the within-round example dispatch |
 | `.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md` | Modify | Lines 138 and 240, the same example in pattern and ASCII-diagram form |
 <!-- /ANCHOR:scope -->
@@ -122,6 +127,7 @@ Every living surface that names a MiMo id — skills, settings, enforcement, mir
 | REQ-005 | Version bumps and changelog entries ship for the three affected skills, and the repository's frontmatter gate accepts them | `check-frontmatter-versions.sh` reports zero failures; each new entry's YAML carries `version` |
 | REQ-006 | The HerMeS pairing claim stays truthful | The pairing test asserts Hermes = Pi's roster minus the `-ultraspeed` id at their v2.6 spellings; the comment keeps its durable WHY (gateway-HTTP-400 rationale) with only the model token changed |
 | REQ-007 | The spec packet validates | `validate.sh` on this packet with `--strict` prints `RESULT: PASSED` |
+| REQ-009 | MiMo v2.6 Flash joins the DevPass fan-out, and MiMo Pro and Flash are reachable on OpenCode Go and the Cline Pass in Pi and OpenCode | `mimo-v2.6-flash` sits in both Pi allowlist copies and maps to `llmgateway`, the five new Pi picker entries resolve, and each new route replied `PONG` on 2026-09-30 |
 | REQ-008 | MiMo v2.6 Pro is selectable through the existing LLM Gateway provider without changing the Xiaomi route or fan-out mapping | `.pi/models.json` contains the live-catalog-backed bare model under `providers.llmgateway`, `.pi/settings.json` contains `llmgateway/mimo-v2.6-pro`, and the deep-loop map still sends the bare literal to `xiaomi` |
 <!-- /ANCHOR:requirements -->
 

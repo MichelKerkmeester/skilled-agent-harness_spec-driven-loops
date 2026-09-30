@@ -69,6 +69,8 @@ opencode-go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and 
 | `opencode-go/glm-5.3` | — | Z.AI GLM 5.3 via the Go gateway; list-verified in `opencode models opencode-go` on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
 | `opencode-go/glm-5.3-flash` | — | Z.AI GLM-5.3-Flash via the Go gateway; reasoning model whose ladder here is `low`/`high`/**`max`** — this route has **no `xhigh`** — pinned to `--variant max` by policy; ladder re-verified in `opencode models opencode-go --verbose` on 2026-09-04 |
 | `opencode-go/qwen3.8-max` | — | Qwen 3.8 Max via the Go gateway; a live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
+| `opencode-go/mimo-v2.6-pro` | — | MiMo-V2.6-Pro via the Go gateway. Reasoning and image-capable, 1M context, 131K output, and catalog costs of $0.435 in, $0.87 out and $0.003625 cached read per million tokens. The verbose catalog lists no variants for this route, so omit `--variant`. Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
+| `opencode-go/mimo-v2.6-flash` | — | MiMo-V2.6-Flash via the Go gateway, with the same limits as Pro and catalog costs of $0.14 in, $0.28 out and $0.0028 cached read per million tokens. No variants are listed, so omit `--variant`. Dispatch-verified 2026-09-30 with a `PONG` reply |
 
 ### cline-pass
 
@@ -77,6 +79,8 @@ Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-
 | Model id | Default? | Notes |
 |----------|----------|-------|
 | `cline-pass/cline-pass/deepseek-v4.1-flash` | — | DeepSeek V4.1 Flash via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier). **Listing-only — not yet dispatchable here.** Cline's own API lists `deepseek/deepseek-v4.1-flash`, but opencode resolves provider models from models.dev, which carries no cline-pass V4.1 entry, so this id fails at resolution with `Unexpected server error` before any request leaves the machine — the identical signature the GLM-5.3-Flash note below describes. The route is additionally out of quota until the monthly Cline Pass window resets, so the older `cline-pass/cline-pass/deepseek-v4-flash` id cannot be dispatch-tested either, and no cost, context or output figure here has been measured. Re-verify against `opencode models cline-pass` and one live turn before relying on this row; the V4.1 id supersedes the V4-Flash one only once that turn passes. cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.6`/`mimo-v2.6-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope. DeepSeek V4 Pro was retired from the roster and is not a dispatch target here |
+| `cline-pass/cline-pass/mimo-v2.6-pro` | — | MiMo-V2.6-Pro via the Cline provider, covered by the Cline Pass. Reasoning and image-capable, 1M context and 131K output. Pass the three-segment id. Cline's `xiaomi/mimo-v2.6-pro` id bills Cline Credits instead of the Pass and answered `402 insufficient_credits` on 2026-09-30, so it is not on the roster. Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
+| `cline-pass/cline-pass/mimo-v2.6-flash` | — | MiMo-V2.6-Flash via the Cline provider, on the Pass like the Pro row above and with the same limits and id rule. Dispatch-verified 2026-09-30 with a `PONG` reply |
 
 > **GLM-5.3-Flash is NOT available on cli-opencode's Cline route.** Unlike cli-pi (which passes the raw Cline id `z-ai/glm-5.3-flash` straight through and works), opencode's `cline-pass` adapter returns `Unexpected server error` for every id form (`cline-pass/z-ai/glm-5.3-flash`, `cline-pass/cline-pass/glm-5.3-flash`), and `opencode models cline-pass` lists only `glm-5.3` (no `-flash` variant). Verified 2026-08-27. Reach GLM-5.3-Flash on cli-opencode via **`opencode-go/glm-5.3-flash`** or **`llmgateway/glm-5.3-flash`** instead.
 
@@ -88,13 +92,14 @@ DevPass (LLM Gateway) subscription, base `https://api.llmgateway.io/v1`, OpenAI-
 
 > **DevPass bills per token at normal API list rates.** The plan buys credits at a 3x bonus, which discounts the bill rather than removing it, so a cached read still costs less than an uncached one and neither is free. LLM Gateway classifies a model **Premium** at $15+/1M output or $5+/1M input and caps Premium use at 12%/15%/18% of monthly credits per week (Lite/Pro/Max). All three models below are **Standard**, so **no weekly cap applies to this roster**.
 
-> **`llmgateway` fronts 262 models; exactly the three below are in scope.** The rest are forbidden under the closed-roster rule, and `llmgateway/auto` is excluded deliberately because a router can resolve outside a closed roster.
+> **`llmgateway` fronts 262 models; exactly the four below are in scope.** The rest are forbidden under the closed-roster rule, and `llmgateway/auto` is excluded deliberately because a router can resolve outside a closed roster.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
 | `llmgateway/deepseek-v4.1-flash` | — | DeepSeek V4.1 Flash via DevPass; reasoning **and images**; pinned `--variant max`, which the route accepts; context 1.05M, output 384K; $0.15 in and $0.60 out per million tokens, cached reads $0.003. Well under the gateway's Premium threshold, so no weekly cap. Live-verified 2026-09-10. Three efforts plus off: **`low`**, **`high`** and **`max`**, with `minimal` folding into `low`, `medium` and `xhigh` folding into `high`, and `none` disabling thinking. Default `high`. `ultra` and the integer form are rejected here. It replaced `deepseek-v4-flash-vision-exp`, which the gateway deactivated and now answers `410` for |
 | `llmgateway/glm-5.3-flash` | — | GLM-5.3-Flash via DevPass; reasoning, full ladder including **both `xhigh` and `max`** — the only GLM-5.3-Flash route carrying both, so `--variant max`. Context 1.05M, output 131K. Dispatch-tested 2026-09-04 |
-| `llmgateway/mimo-v2.6-pro` | — | MiMo-V2.6-Pro via DevPass; active catalog row with reasoning, text and image input, 1M context, 131K output, costs $0.435 in, $0.87 out, $0.0036 cached read per million tokens, and variants `none`/`low`/`medium`/`high`. MiMo's only route on this roster since 2026-09-23, when the Xiaomi Direct API and Token Plan routes were removed; the gateway serves no ultraspeed tier. Always pass `--variant high`. No OpenCode round-trip on this route is recorded yet |
+| `llmgateway/mimo-v2.6-pro` | — | MiMo-V2.6-Pro via DevPass; active catalog row with reasoning, text and image input, 1M context, 131K output, costs $0.435 in, $0.87 out, $0.0036 cached read per million tokens, and variants `none`/`low`/`medium`/`high`. The Xiaomi Direct API and Token Plan routes left the roster on 2026-09-23, and the gateway serves no ultraspeed tier. Always pass `--variant high`. No OpenCode round-trip on this route is recorded yet |
+| `llmgateway/mimo-v2.6-flash` | — | MiMo-V2.6-Flash via DevPass, the cheaper MiMo tier. Reasoning and image-capable, 1M context, 131K output, variants `none`/`low`/`medium`/`high`, and catalog costs of $0.14 in, $0.28 out and $0.0028 cached read per million tokens. Always pass `--variant high`. Dispatch-verified 2026-09-30 by a one-turn `opencode run` that replied `PONG` |
 
 ---
 
@@ -131,7 +136,7 @@ cli-opencode expresses reasoning effort through the **`--variant`** flag, which 
 | `minimax` (MiniMax-M3) | behavior unverified — omitted by default; confirm before relying |
 | `openai` GPT-6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
 | `cline-pass` (deepseek-v4.1-flash) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max`**; **default/pinned `--variant xhigh`** (top thinking tier) |
-| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`; `glm-5.3-flash` carries the full ladder to `max`; `mimo-v2.6-pro` carries `none`/`low`/`medium`/`high`, and **`--variant high`** is the standing MiMo default. Always pass `--variant` explicitly here |
+| `llmgateway` (DevPass) | per-model, not per-provider. `deepseek-v4.1-flash` carries three efforts plus off, `low`/**`high`**/**`max`**, with `minimal` folding into `low` and `medium`/`xhigh` folding into `high`; `glm-5.3-flash` carries the full ladder to `max`; `mimo-v2.6-pro` and `mimo-v2.6-flash` carry `none`/`low`/`medium`/`high`, and **`--variant high`** is the standing MiMo default. Always pass `--variant` explicitly here |
 
 ---
 
