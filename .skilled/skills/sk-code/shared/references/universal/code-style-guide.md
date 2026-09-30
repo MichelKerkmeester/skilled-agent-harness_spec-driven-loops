@@ -98,7 +98,7 @@ Most communities have a conventional order. Follow it.
 These two rules hold on every surface.
 
 - **No double-underscore folder names.** A folder name never starts and ends with `__`: not `__tests__`, `__fixtures__`, `__helpers__`, `__shared__` or `__snapshots__`. Name the folder for what it holds, as `fixtures/` or `helpers/`. When a tool generates such a name by default, configure the tool rather than keep the name; for vitest snapshots that means setting `resolveSnapshotPath`.
-- **Test code lives under a `tests/` tree.** Tests, their fixtures and their helpers go under the package's top-level `tests/` folder, mirroring the source layout below it. A test file never sits beside the source file it covers.
+- **Test code lives under a `tests/` tree.** Tests, their fixtures and their helpers go under the package's top-level `tests/` folder. Keep that folder flat while the file names stay unique, and group by area only when a group holds several files. A test file never sits beside the source file it covers.
 
 `verify_alignment_drift.py --check-folders` in sk-code-opencode flags both the name rule and code folders that lack a README.
 

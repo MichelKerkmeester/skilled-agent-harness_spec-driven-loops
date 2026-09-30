@@ -77,7 +77,7 @@ Use the standard header format for identification:
 ```bash
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SPECKIT: CREATE SPEC FOLDER
+# COMPONENT: CREATE SPEC FOLDER
 # ───────────────────────────────────────────────────────────────
 # Creates spec folder with templates based on documentation level.
 #
