@@ -1,7 +1,7 @@
 {
   "resourceContractVersion": 1,
   "skill": "cli-classifier",
-  "version": "1.2.0.0",
+  "version": "0.5.0.0",
   "description": "Declarative packet registry: workflowMode, packetKind, backendKind, toolSurface, and advisorRouting for cli-classifier. The advisor routes the hub identity. The hub resolves one of its two transport packets.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
@@ -57,8 +57,8 @@
         "mutatesWorkspace": false,
         "bashAllowlist": []
       },
-      "packet": "cli-usage",
-      "packetSkillName": "cli-usage",
+      "packet": "cli-jev",
+      "packetSkillName": "cli-jev",
       "grandfatheredFolderMismatch": false,
       "command": null,
       "aliases": [
@@ -69,11 +69,12 @@
         "cli-jev",
         "cli jev",
         "jev probability judgment",
-        "typed judgment cli"
+        "typed judgment cli",
+        "cli-usage"
       ],
       "advisorRouting": {
         "routingClass": "metadata",
-        "packetSkillName": "cli-usage"
+        "packetSkillName": "cli-jev"
       }
     }
   ],

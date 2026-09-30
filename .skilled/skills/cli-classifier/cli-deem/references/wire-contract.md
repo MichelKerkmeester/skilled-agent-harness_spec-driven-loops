@@ -9,7 +9,7 @@ trigger_phrases:
   - "deem question cap"
 importance_tier: "important"
 contextType: "implementation"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Deem Wire Contract

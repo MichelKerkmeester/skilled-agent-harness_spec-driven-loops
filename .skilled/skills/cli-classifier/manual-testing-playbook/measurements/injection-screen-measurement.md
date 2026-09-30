@@ -1,7 +1,7 @@
 ---
 title: "CC-004 -- The injection screen scorer runs with zero model calls"
 description: "This scenario validates that the offline injection screen scorer prints its censuses with zero model calls and that a failed backend gate adds one skip line and changes nothing, for `CC-004`."
-version: 1.0.0.0
+version: 0.3.0.0
 ---
 
 # CC-004 -- The injection screen scorer runs with zero model calls

@@ -1376,7 +1376,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 **`cli-classifier`** - ✅ codebase-agnostic
 
-- Parent hub for typed-judgment transports: routes to `cli-jev` (the `jev` CLI, over the `cli-usage` packet) or `cli-deem` (the local Deem server) for a probability, an option key, a score position or a batch of keyed answers. Stack-independent. Mode `cli-jev` needs the `jev` CLI on PATH and mode `cli-deem` needs the local Deem server running
+- Parent hub for typed-judgment transports: routes to `cli-jev` (the `jev` CLI, over the `cli-jev` packet) or `cli-deem` (the local Deem server) for a probability, an option key, a score position or a batch of keyed answers. Stack-independent. Mode `cli-jev` needs the `jev` CLI on PATH and mode `cli-deem` needs the local Deem server running
 
 **`mcp-tooling`** - ✅ codebase-agnostic
 

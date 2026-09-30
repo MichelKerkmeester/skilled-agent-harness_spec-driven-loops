@@ -65,7 +65,7 @@ function sourceInputs() {
   const paths = {
     'cli-classifier/SKILL.md': path.join(SKILL_ROOT, 'SKILL.md'),
     'cli-classifier/cli-deem/SKILL.md': path.join(SKILL_ROOT, 'cli-deem', 'SKILL.md'),
-    'cli-classifier/cli-usage/SKILL.md': path.join(SKILL_ROOT, 'cli-usage', 'SKILL.md'),
+    'cli-classifier/cli-jev/SKILL.md': path.join(SKILL_ROOT, 'cli-jev', 'SKILL.md'),
     'cli-classifier/hub-router.json': path.join(SKILL_ROOT, 'hub-router.json'),
     'cli-classifier/mode-registry.json': path.join(SKILL_ROOT, 'mode-registry.json'),
   };

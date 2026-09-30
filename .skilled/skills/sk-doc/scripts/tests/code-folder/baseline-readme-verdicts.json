@@ -1,5 +1,5 @@
 {
-  "count": 1105,
+  "count": 1109,
   "mode": "readme",
   "results": [
     {
@@ -680,6 +680,26 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/benchmark/injection-screen/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/cli-classifier/benchmark/reports/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -700,7 +720,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/cli-classifier/cli-usage/README.md",
+      "file": ".skilled/skills/cli-classifier/cli-jev/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -710,7 +730,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/cli-classifier/cli-usage/benchmark/README.md",
+      "file": ".skilled/skills/cli-classifier/cli-jev/benchmark/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -720,7 +740,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/cli-classifier/cli-usage/benchmark/reports/README.md",
+      "file": ".skilled/skills/cli-classifier/cli-jev/benchmark/reports/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -10940,6 +10960,33 @@
       "total_issues": 0,
       "valid": true,
       "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/scratch/w4-build/drafts/reply-harness/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": "specs/cli-jev/003-cli-jev-workflow-integration/023-reply-harness-blinded-judge/scratch/w4-build/drafts/skill/README.md",
+      "return_code": 0,
+      "total_issues": 1,
+      "valid": true,
+      "warnings": [
+        {
+          "line": "## 5. PACKAGE MAP AND DEEPER DOCS",
+          "message": "Non-sequential section number: expected 4, found 5",
+          "severity": "warning",
+          "type": "non_sequential_numbering"
+        }
+      ]
     },
     {
       "auto_fixable_count": 0,

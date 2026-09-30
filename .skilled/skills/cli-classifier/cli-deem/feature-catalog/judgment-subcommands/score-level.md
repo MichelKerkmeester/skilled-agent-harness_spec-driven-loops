@@ -5,7 +5,7 @@ trigger_phrases:
   - "score level"
   - "deem ordered scale"
   - "cli-deem score"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Score level (cli-deem score)

@@ -5,7 +5,7 @@ trigger_phrases:
   - "cli-deem readme"
   - "local deem judgment"
   - "deem health check"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # cli-deem
@@ -110,7 +110,7 @@ For a hosted judgment with a stored key, use this hub's `cli-jev` mode instead. 
 
 | Skill | Relationship |
 |---|---|
-| `cli-jev` | The hosted Jev transport, a mode of the same hub over the `cli-usage` packet. Same answer field names, a different backend, no silent failover between the two |
+| `cli-jev` | The hosted Jev transport, a mode of the same hub over the `cli-jev` packet. Same answer field names, a different backend, no silent failover between the two |
 | `cli-classifier` | The hub that routes a Deem request to this packet |
 
 ---
@@ -147,4 +147,4 @@ For a hosted judgment with a stored key, use this hub's `cli-jev` mode instead. 
 | [`references/deem-ctl-lifecycle.md`](./references/deem-ctl-lifecycle.md) | Starting, updating and rolling back the server |
 | [`references/model-pin.md`](./references/model-pin.md) | What the model id and the commit pair name |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | One entry per subcommand with source anchors |
-| [`changelog/v1.0.0.0.md`](./changelog/v1.0.0.0.md) | The first release |
+| [`changelog/v0.1.0.0.md`](./changelog/v0.1.0.0.md) | The first release |

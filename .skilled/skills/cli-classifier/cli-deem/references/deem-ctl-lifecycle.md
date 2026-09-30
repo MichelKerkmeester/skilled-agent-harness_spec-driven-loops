@@ -9,7 +9,7 @@ trigger_phrases:
   - "deem update schedule"
 importance_tier: "normal"
 contextType: "general"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Deem Server Lifecycle with deem-ctl

@@ -5,7 +5,7 @@ trigger_phrases:
   - "choice selection"
   - "deem pick an option"
   - "cli-deem choice"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Choice selection (cli-deem choice)

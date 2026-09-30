@@ -469,7 +469,7 @@ test('a jev dispatch is governed from the command, and mentions of it are not', 
 
   const doNotGovern = [
     ['prose quoting it', 'echo "triage with jev choice before dispatch"'],
-    ['grep for the text', 'grep -rn "jev noul" .skilled/skills/cli-classifier/cli-usage'],
+    ['grep for the text', 'grep -rn "jev noul" .skilled/skills/cli-classifier/cli-jev'],
     ['heredoc documenting it', 'python3 - <<\'PY\'\nshape = "jev score -l low -l high"\nPY'],
     ['node printing it', 'node -e \'console.log("jev run @request.json")\''],
     ['version probe', 'jev --version'],

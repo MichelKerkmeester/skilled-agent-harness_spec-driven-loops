@@ -2,7 +2,7 @@
 name: cli-deem
 description: "Local Deem classifier transport: noul probabilities, choice keys, score positions and batched runs from the served Deem model, gated by a health check."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 <!-- Keywords: cli-deem, deem, deem cli, local deem, deem model, deem classifier, deem health, deem noul, deem choice, deem score, deem run, deem-0.8-v1, commit pair, local typed judgment -->
@@ -31,7 +31,7 @@ version: 1.0.0.0
 - **The server is not running.** Every subcommand then exits 4 and changes nothing. Starting the server is the operator's step with `deem-ctl`, never this client's.
 - **The question is a fact this repository can answer.** A grep, a test run or a read settles it. A model opinion about it is a guess.
 - **The request needs an edit, a build or a test.** This packet has no file or process tools. Dispatch a workflow mode and use `cli-deem` only for the judgment that steers it.
-- **A hosted judgment is wanted.** Jev with a stored key is this hub's `cli-jev` mode, over the `cli-usage` packet. The two backends never fail over to each other silently.
+- **A hosted judgment is wanted.** Jev with a stored key is this hub's `cli-jev` mode, over the `cli-jev` packet. The two backends never fail over to each other silently.
 - **A prose answer is the deliverable.** Deem returns no explanation.
 
 ---

@@ -17,7 +17,7 @@ version: 1.6.0.0
 
 `cli-external-orchestration` is registry-driven: `mode-registry.json` lists all seven modes in one `modes[]` array, and `hub-router.json` decides whether a request resolves to a single mode, an ordered bundle, or a deferred disambiguation.
 
-The seven executor packets — `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` — are `packetKind: "workflow"`; each independently classifies dispatch intent, chooses or confirms a provider, and conducts the dispatched session. The transport this hub used to declare, `cli-jev`, now lives in the `cli-classifier` hub (`.skilled/skills/cli-classifier/`) as mode `cli-jev` over the `cli-usage` packet: it returns one typed judgment from a state and runs nothing, and that hub's `transport-axis` extension names it.
+The seven executor packets — `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` — are `packetKind: "workflow"`; each independently classifies dispatch intent, chooses or confirms a provider, and conducts the dispatched session. The transport this hub used to declare, `cli-jev`, now lives in the `cli-classifier` hub (`.skilled/skills/cli-classifier/`) as mode `cli-jev` over the `cli-jev` packet: it returns one typed judgment from a state and runs nothing, and that hub's `transport-axis` extension names it.
 
 ---
 

@@ -7,12 +7,12 @@ trigger_phrases:
   - "injection screen measurement"
   - "feature catalog"
 last_updated: "2026-09-29"
-version: 1.0.0.0
+version: 0.3.0.0
 ---
 
 # cli-classifier: Feature Catalog
 
-This document combines the current feature inventory for the `cli-classifier` hub into a single reference. It covers what the hub owns itself. Each transport keeps its own catalog: `cli-usage/feature-catalog/` for Jev and `cli-deem/feature-catalog/` for Deem.
+This document combines the current feature inventory for the `cli-classifier` hub into a single reference. It covers what the hub owns itself. Each transport keeps its own catalog: `cli-jev/feature-catalog/` for Jev and `cli-deem/feature-catalog/` for Deem.
 
 ---
 
