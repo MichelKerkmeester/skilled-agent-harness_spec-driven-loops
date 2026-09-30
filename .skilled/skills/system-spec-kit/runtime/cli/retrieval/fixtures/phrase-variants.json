@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cb843340d0e3a0abb9fdb6f4d400d19c4928be230e26e5f6a56d73798701eeb5",
+  "manifestHash": "40ab21b44e9232972396ae75934646dc73e831738f3efb74cc1151a447117104",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -18714,6 +18714,9 @@
     "cli jev 0 1 2 0": [
       "cli-jev 0.1.2.0"
     ],
+    "cli jev 0 1 3 0": [
+      "cli-jev 0.1.3.0"
+    ],
     "cli jev 0 2 0 0": [
       "cli-jev 0.2.0.0"
     ],
@@ -18875,6 +18878,9 @@
     ],
     "cli jev v0 1 2 0": [
       "cli-jev v0.1.2.0"
+    ],
+    "cli jev v0 1 3 0": [
+      "cli-jev v0.1.3.0"
     ],
     "cli jev v0 2 0 0": [
       "cli-jev v0.2.0.0"
@@ -19338,6 +19344,9 @@
     "cli pi 1 5 12 0": [
       "cli-pi 1.5.12.0"
     ],
+    "cli pi 1 5 13 0": [
+      "cli-pi 1.5.13.0"
+    ],
     "cli pi 1 5 2 0": [
       "cli-pi 1.5.2.0"
     ],
@@ -19464,6 +19473,9 @@
     ],
     "cli pi v1 5 12 0": [
       "cli-pi v1.5.12.0"
+    ],
+    "cli pi v1 5 13 0": [
+      "cli-pi v1.5.13.0"
     ],
     "cli pi v1 5 2 0": [
       "cli-pi v1.5.2.0"
@@ -48991,11 +49003,23 @@
     "jev transport comparison goal": [
       "jev transport comparison goal"
     ],
+    "jev transport mjs": [
+      "jev-transport.mjs"
+    ],
     "jev transport mode": [
       "jev transport mode"
     ],
+    "jev transport module": [
+      "jev transport module"
+    ],
     "jev transport pi switch": [
       "jev transport pi switch"
+    ],
+    "jev transport selection": [
+      "jev transport selection"
+    ],
+    "jev transport switch": [
+      "JEV_TRANSPORT switch"
     ],
     "jev transport switch design": [
       "jev transport switch design"
@@ -58364,6 +58388,9 @@
     "modelcontextprotocol sdk root cause": [
       "modelcontextprotocol sdk root cause"
     ],
+    "models classify": [
+      "models.classify"
+    ],
     "models json": [
       "models.json"
     ],
@@ -65714,8 +65741,12 @@
     "pi child compaction loop": [
       "pi child compaction loop"
     ],
+    "pi classifier calls": [
+      "pi classifier calls"
+    ],
     "pi classifier transport": [
-      "Pi classifier transport"
+      "Pi classifier transport",
+      "pi classifier transport"
     ],
     "pi classifier transport acceptance criteria": [
       "pi classifier transport acceptance criteria"

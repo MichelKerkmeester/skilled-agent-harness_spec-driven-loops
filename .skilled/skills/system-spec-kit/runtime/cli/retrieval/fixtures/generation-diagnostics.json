@@ -1,12 +1,12 @@
 {
   "counts": {
     "duplicate-phrase": 57,
-    "missing-frontmatter": 7372,
+    "missing-frontmatter": 7373,
     "non-yaml-frontmatter": 2,
-    "ok": 12572,
+    "ok": 12575,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23635,
+  "documentsScanned": 23639,
   "ignoredMalformedDocuments": 2,
   "ignoredPaths": [
     {
@@ -26,7 +26,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "cb843340d0e3a0abb9fdb6f4d400d19c4928be230e26e5f6a56d73798701eeb5",
+  "manifestHash": "40ab21b44e9232972396ae75934646dc73e831738f3efb74cc1151a447117104",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -41,7 +41,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 32794,
+      "ok": 32804,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -316,6 +316,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-integration.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
