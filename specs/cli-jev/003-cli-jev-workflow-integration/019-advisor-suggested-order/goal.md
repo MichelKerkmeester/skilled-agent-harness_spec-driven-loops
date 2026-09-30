@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order"
-    last_updated_at: "2026-09-29T16:50:00Z"
-    last_updated_by: "closure-leaf"
-    recent_action: "Recorded the build, the Deem kill verdict and the closure gates"
-    next_safe_action: "Operator runs the --jev arm if wanted, then the orchestrator commits the phase docs"
+    last_updated_at: "2026-09-30T10:07:58Z"
+    last_updated_by: "markdown-leaf"
+    recent_action: "Recorded the operator's live Jev run and its kill verdict"
+    next_safe_action: "Orchestrator commits the phase docs and the parent goal's log"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/spec.md"
@@ -85,6 +85,7 @@ and findings belong here.
 | Build | Done | 2026-09-29: 18 single-change briefs from `scratch/w4-build/briefs/`, Devin 12 and Pi 6, each `STATUS: DONE`. `score-suggested-order.mjs` 710 lines, its test 856 lines with 45 cases, 9 skill docs. Source: `scratch/w4-build/build-evidence.md` and `scratch/w4-build/evidence-tail.draft.md` section 3 |
 | Proof plan P1 to P5 | Done | Rerun from the final state by the session: the zero-call run, both gate skips, 45 tests, the live Deem run and the grep and porcelain checks. Source: `scratch/w4-session/session-evidence.md` section 2 |
 | Live Deem run | Done | `node score-suggested-order.mjs --deem --out scratch/w4-session/p4-deem`, exit 0 in 597 s, 333 calls, 5 `unmeasured_timeout`. Verdict lines below. Source: `scratch/w4-session/p4.stdout.txt` |
+| Live Jev run | Done | 2026-09-30: the operator answered "Yes, run it" and the session ran `node score-suggested-order.mjs --jev --out <dir>`, exit 0 in 558 s, 333 calls, 0 timeouts, all 334 `calls.jsonl` records `measured` on attempt 1, so every probability map held every submitted key. Advisor p50 718 ms, p95 1,088 ms, 0 over 2,200 ms. Verdict below. Source: `scratch/w4-session/jev-run/` |
 | Cross-family review | Done | Pi MiMo on the code and Devin DeepSeek on the docs, both `VERDICT: PASS`, no open P0 or P1, 4 P2 below. Source: `scratch/w4-session/session-evidence.md` section 3 |
 | Commit | Done | `6aa7ca0980`, 15 files, not pushed. The trigger index rebuild follows in its own commit. Source: `scratch/w4-session/session-evidence.md` section 4 |
 | Phase docs | Done | 2026-09-29 closure pass: `tasks.md`, `spec.md`, `plan.md`, this goal and `implementation-summary.md` record the build, and the four gates are in `implementation-summary.md` Verification |
@@ -93,7 +94,13 @@ and findings belong here.
 
 `verdict deem: kill K=111 M=108 W=9 L=35 F=86 p=1.0000 mrr=0.6176/0.7750 p95_ms=1686 model=deem-0.8-v1 model_commit=8cbabbb2c4a7ef13c6b43f0ef3ae4157983c6d21 source_commit=3883f79261e5c61d3e8f230cad02b50c6d2b1891`
 
-Zero-call lines beside it: `advisor child: p50=629 p95=929 max=2500 over_2200=4 children=241 killed=1` on the build's final zero-call run, and `advisor child: p50=779 p95=1011 max=1787 over_2200=0 children=241 killed=0` in the Deem run. No `verdict jev:` line exists, because the Jev column waits on the operator's `--jev` run.
+`verdict jev: kill K=111 M=111 W=13 L=25 F=13 p=0.9832 mrr=0.7260/0.7811 p95_ms=1490 jev_version=0.6.2 provider=official model=jev-1.13.0`
+
+The Jev column's mean reciprocal rank of 0.7260 sits below the scorer's 0.7811 on the same 111 rows, with 13 wins and 25 losses. Its in-child p95 was 1,490 ms, under the 2,200 ms ceiling. With Deem's `kill` above, both backends now print `kill` for this phase. Nothing is served and the advisor's order is unchanged. Source: `scratch/w4-session/jev-run/stdout.txt` and `report.json`.
+
+Zero-call lines beside it: `advisor child: p50=629 p95=929 max=2500 over_2200=4 children=241 killed=1` on the build's final zero-call run, `advisor child: p50=779 p95=1011 max=1787 over_2200=0 children=241 killed=0` in the Deem run and `advisor child: p50=718 p95=1088 max=1668 over_2200=0 children=241 killed=0` in the Jev run.
+
+T008 map check: every Deem non-timeout answer carried a probability for every submitted key (328 of 333 `calls.jsonl` lines `measured`, 5 `unmeasured_timeout`, `scratch/w4-session/p4-deem/calls.jsonl`), and every Jev `choice` call was `measured` on attempt 1, so every map held every submitted key, with each row's three option orders returning the same key set (`scratch/w4-session/jev-run/calls.jsonl`).
 
 ### Deviations and findings
 

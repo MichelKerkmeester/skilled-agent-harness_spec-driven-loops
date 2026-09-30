@@ -39,7 +39,7 @@
       "test"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -54,13 +54,13 @@
       "scratch/w4-build/build-evidence.md",
       "scratch/w4-build/evidence-tail.draft.md",
       "scratch/w4-session/session-evidence.md",
-      "scratch/w4-session/p4-deem/calls.jsonl",
+      "scratch/w4-session/jev-run/calls.jsonl",
       ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs",
       ".skilled/skills/system-skill-advisor/SKILL.md",
       ".skilled/skills/system-skill-advisor/README.md",
       ".skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts",
       "hooks/claude/user-prompt-submit.ts",
-      "scratch/w4-session/p4.stdout.txt"
+      "scratch/w4-session/p4-deem/calls.jsonl"
     ],
     "entities": [
       {
@@ -144,7 +144,7 @@
       {
         "name": "calls.jsonl",
         "kind": "file",
-        "path": "scratch/w4-session/p4-deem/calls.jsonl",
+        "path": "scratch/w4-session/jev-run/calls.jsonl",
         "source": "derived"
       },
       {
@@ -169,12 +169,6 @@
         "name": "user-prompt-submit.ts",
         "kind": "code",
         "path": "hooks/claude/user-prompt-submit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "p4.stdout.txt",
-        "kind": "file",
-        "path": "scratch/w4-session/p4.stdout.txt",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor marks a near-tie cluster",
     "created_at": "2026-09-29T12:42:32Z",
-    "last_save_at": "2026-09-29T16:53:07.774Z",
+    "last_save_at": "2026-09-30T10:10:26.183Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6b468ca371f528fade8b78da3553ad9342fcf52bc951b29c9786b4bd5e99d88",
+    "source_fingerprint": "sha256:aa98487efb8f74ad1458d67b90b3a3e77fa7db8b90881bce9930a6cd12e6fa6d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "06da607b276ba8bdca4208a35e0c158fcc433a0d0f3220ea501fa1c625580297",
+      "spec.md": "78c0d6b46af7d2553894a6f8979c096c0ea1aa1c37e36e2320fa626cdda1820a",
       "plan.md": "797782e381f1a76aa71d9cf48aac8bc6c5209ed3a03ccb11f0a262047fac778b",
-      "tasks.md": "914eb40a2bb78e98fb8f0a77d59b34a166f1f687d7c471b91bc25cdcd940d201",
-      "implementation-summary.md": "2edf303f922bec6ef2e2de060511ee039a7a45730964a9702e5ae76aeeb58819"
+      "tasks.md": "cb77b884017c4a6d6271cbd4de28eb0512aad8b2617f61e87655a864ac94b925",
+      "implementation-summary.md": "6dacade193103a82fa6e20ce5bea0ac26549166412f75b32aa94724a243503eb"
     },
     "last_active_at": null
   }
