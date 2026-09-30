@@ -1,0 +1,10 @@
+The doc is written and verified. The file is new (untracked), so `git diff --stat` prints nothing while `git status --porcelain` shows `??` for exactly that one path, which confirms it is the only file I created or changed.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md` (+85/-0)
+EDITS: `.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md`:1 created the F058 catalog entry in the `stop-hint-replay.md` shape: frontmatter with `version: 1.8.0.0`, `# Severity replay (score-severity-replay.cjs)`, sections 1-4 with `Group: Scoring`, `Feature ID: F058`, `scripts/score-severity-replay.cjs` as implementation and `tests/unit/score-severity-replay.vitest.ts` as validation. Facts limited to the script's `USAGE` line, its five switches, printed lines and refusal messages from FACTS and the script code. FACTS over R where they differ: F058 not the design's stale F056. No `verdict` line is quoted or claimed as printed, per ruling 4 and FACTS line 50.
+CHECKS: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md` -> `✅ VALID: .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md` / `Document type: feature_catalog` / `Total issues: 0` (exit 0)
+CHECKS: `git diff --stat -- .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md` -> no output, file is new and untracked (exit 0)
+CHECKS: `git status --porcelain -- .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md` -> `?? .skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md` (exit 0)
+BLOCKED REASON: none

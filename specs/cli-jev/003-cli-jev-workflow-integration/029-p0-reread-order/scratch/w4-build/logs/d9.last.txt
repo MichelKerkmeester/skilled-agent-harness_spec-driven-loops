@@ -1,0 +1,9 @@
+The one sentence is appended to the section 3 Backend paragraph on line 111 of `.skilled/skills/system-deep-loop/SKILL.md`, right after the `score-stop-hint.cjs` clause and before the improvement sentence, matching the shape of the two sibling replay clauses. It names the offline severity replay at `runtime/scripts/score-severity-replay.cjs`, its zero-call default and that it changes no severity. Each claim comes from the script's header (lines 8-10) and FACTS, and the hub `version:` and changelog are untouched.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/SKILL.md (+1/-1)
+EDITS: .skilled/skills/system-deep-loop/SKILL.md:111 appended one sentence after the score-stop-hint.cjs clause naming the offline severity replay at runtime/scripts/score-severity-replay.cjs, its zero-call default and that it changes no severity
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/SKILL.md -> "✅ VALID: .skilled/skills/system-deep-loop/SKILL.md / Document type: skill / Total issues: 0" (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/SKILL.md -> " 1 file changed, 1 insertion(+), 1 deletion(-)" (exit 0)
+BLOCKED REASON: none

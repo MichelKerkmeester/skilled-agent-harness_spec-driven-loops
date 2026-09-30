@@ -1,0 +1,22 @@
+All checks done. Reading the function and its callers first:
+
+- `buildRowState` (line 328) builds exactly four sections — Title, Dimension, Evidence refs, Recommendation — and never touches `row.findingId`. The doc's first sentence ("The finding id never enters it") matches the body exactly.
+- Callers (lines 1052, 1107, 1257, 1388, 1438) pass that text to the severity judgment call (`QUESTION_SEVERITY` = "Which severity does this review finding deserve?") and the funnel call. Registry ids in this repo are severity-bearing (`P2-001`, `R1-P1-001`, `SRR-P2-001` — sampled from `deep-review-findings-registry.json` files), so the fix's reason — the id carries the very severity the call judges — matches why the id is excluded. (Minor nuance, below P1: legacy `F001`-shaped ids don't literally begin with their severity, but the exclusion is correct regardless and the phrase matches the current id convention the old comment cited.)
+- Scan for residual violations: `grep -c "P[0-2]-[0-9]"` → 0; `rg` for `P[0-9]-[0-9]+|specs/|0[0-9]{2}-|REQ-|CHK-|ADR-|phase [0-9]|task [0-9]` → no matches anywhere in the file (comment or code).
+- Nothing but the comment changed: the fix brief (`scratch/w4-build/briefs/c8f.md`) constrained the edit to that one JSDoc block and prescribed the exact replacement text; the file now contains exactly that text at lines 321–322 and the function body is internally consistent with its doc and the surrounding code. Note honestly: the file is untracked in git (`??`, `git log` empty), so no git baseline exists to diff against — this is a consistency reading, not a git-verified diff.
+
+closed - JSDoc at score-severity-replay.cjs:317-322 matches buildRowState's body (title/dimension/evidenceRefs/recommendation only, id never included) and the callers' severity-judgment use; no finding id, spec path, phase number or REQ/CHK/ADR/task id remains anywhere in the file (grep P[0-2]-[0-9] → 0, rg id/path scan → no matches).
+
+New P0 or P1: none.
+
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck)
+EDITS: none
+CHECKS: `node --check .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs` -> no output, syntax OK (exit 0)
+CHECKS: `python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs` -> no output (exit 0)
+CHECKS: `grep -c "P[0-2]-[0-9]" .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs` -> `0` (exit 1, grep no-match)
+CHECKS: `rg -n "P[0-9]-[0-9]+|specs/|0[0-9]{2}-|REQ-|CHK-|ADR-|phase [0-9]|task [0-9]" .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs` -> no matches (exit 1)
+BLOCKED REASON: none

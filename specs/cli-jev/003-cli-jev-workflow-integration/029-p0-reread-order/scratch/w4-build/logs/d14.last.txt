@@ -1,0 +1,9 @@
+Created the playbook scenario from design section 4 step 14, the script's own code and FACTS (DLR-058, version 1.8.0.0 per FACTS, MODEL shape from `scoring/stop-hint-replay.md`). Every printed line, switch, exit code and count in the doc comes from `score-severity-replay.cjs` or FACTS. No `verdict` line is claimed anywhere, per rulings.md ruling 4.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/severity-replay.md (+167/-0)
+EDITS: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/severity-replay.md:1 created the file: frontmatter `DLR-058 -- Severity replay` `version: 1.8.0.0`, sections 1-5 in the MODEL order, 14 command steps covering the census run, the label-sheet write, the label-gate stop and the stub-backend skip with expected lines and failure triage
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/severity-replay.md -> `✅ VALID: ... severity-replay.md` / `Document type: playbook_feature` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/severity-replay.md -> no diff lines, file is new and untracked (`??` in git status --porcelain) (exit 0)
+BLOCKED REASON: none

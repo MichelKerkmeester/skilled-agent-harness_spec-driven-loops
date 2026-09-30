@@ -1,0 +1,23 @@
+All checks pass and the scoped edits are complete. Final state verified:
+
+- **S** gained section 5 (keep rule and column) with all nine named functions, each JSDoc'd and exported; EXPORTS renumbered to 6 and extended.
+- **T** gained the keep-rule describe block with six cases; the only earlier text touched is the module header comment (two lines added).
+- A read-only `node` harness over the pure functions reproduced every expected value in the tests (keep, kill, coverage, unstable/flips, sign test, order line, plus funnel/exact/nearestRank smoke).
+
+```
+STATUS: DONE
+FILES CHANGED:
+  .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs (+268/-1)
+  .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts (+128/-0)
+EDITS:
+  S:445-703 inserted section 5 "KEEP RULE AND COLUMN": binomialTail, modalPick, decideVerdict, formatP, summarizeColumn, orderLine, funnelLine, exactLine, nearestRank (all JSDoc'd)
+  S:704 renumbered EXPORTS section 5 -> 6
+  S:738-746 added the nine keep-rule function names to module.exports
+  T:8-9 added "Keep rule and column" line to the module header comment
+  T:243-367 added describe 'score-severity-replay keep rule' with six tests: keep, kill, stop (coverage), unstable+flips, sign test, reread order
+CHECKS:
+  node --check .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs -> (no output) (exit 0)
+  grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts -> 18 (exit 0)
+  node (stdin harness calling the pure functions, no writes/no sockets) -> keep/kill/coverage/unstable/sign/order all matched the asserted values; exports ok: true (exit 0)
+BLOCKED REASON: none
+```

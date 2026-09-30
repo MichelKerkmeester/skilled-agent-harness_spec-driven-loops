@@ -1,0 +1,20 @@
+Step 7 (suite hardening) is complete. Baseline from c6's run: `Tests 31 passed (31)`; the suite now holds 33 stub-only tests. I covered the two remaining REQ-011 edges that had no direct assertion:
+
+- **`the finding id never reaches a logged call`** — a `P2-001`-shaped row through the Deem arm; every logged call's `row` equals `sha256(registry#findingId)[0:16]` and `calls.jsonl` never contains the raw id.
+- **`the Deem gate skips a stub backend byte-identically`** — main-level: a labels-only run vs. a `--deem --out` run against a stub `backend=stub` health; the arm run's stdout prefix is byte-identical to the no-arm run, the tail is exactly the skip line, and only `health` was spawned.
+
+No production code changed; both added tests replicate behavior already implemented. Verified by smoke against the real module with temp shell stubs (all checks passed).
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts (+54/-0)
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts:16 added `import { createHash } from 'node:crypto';`
+       .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts:570-597 added test `the finding id never reaches a logged call` (P2-001 row, four logged calls, digest equality, raw id absent)
+       .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts:1025-1047 added test `the Deem gate skips a stub backend byte-identically` (no-arm stdout prefix equals the arm run's, tail is the skip line, only `health` spawned)
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs -> (no output) (exit 0)
+CHECKS: grep -cE "^\s*(it|test)\(" .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts -> 33 (exit 0)
+CHECKS: node --experimental-strip-types --check <T> -> (no output) (exit 0)
+CHECKS: node smoke of both new cases against the real module with temp shell stubs -> SMOKE: all checks passed (exit 0)
+CHECKS: git status --porcelain -- <S> <T> -> both `??`; S mtime unchanged 19:59:51, T written 20:04:47 (exit 0)
+BLOCKED REASON: none
+```

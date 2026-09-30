@@ -1,0 +1,26 @@
+Done. The JSDoc at `buildRowState` now carries no id-shaped literal; the two brief-mandated lines are in place verbatim as full ` * `-prefixed lines, with the preceding sentence (`refs and recommendation.`) ending on its own line since the replacement text itself starts a fresh line (the only way to insert the given lines "exactly" — the old sentence began mid-line).
+
+`.skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs:318-328` now reads:
+
+```
+/**
+ * The text a severity call reads for one row: its title, dimension, evidence
+ * refs and recommendation.
+ * The finding id never enters it, because an id begins with its severity,
+ * the very thing the call is meant to judge.
+ *
+ * @param {{ title: string, dimension: string, evidenceRefs: string[],
+ *   recommendation: string }} row - Row from p0RowsOf
+ * @returns {string} Row state handed to the model
+ */
+```
+
+Note on scope confirmation: the file is untracked in this worktree (the packet builds it uncommitted), so `git diff` has no baseline; no other file was touched by me.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs (+3/-2)
+EDITS: .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs:320-322 reworded the `buildRowState` JSDoc rationale — "because ids such as `P2-001` carry the severity…" replaced by "because an id begins with its severity, / the very thing the call is meant to judge."
+CHECKS: node --check .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs -> no output, syntax OK (exit 0)
+CHECKS: python3 .skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs -> no output, file clean (exit 0)
+CHECKS: grep -c "P[0-2]-[0-9]" .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs -> 0 (was 1 before; exit 1 = no match)
+BLOCKED REASON: none

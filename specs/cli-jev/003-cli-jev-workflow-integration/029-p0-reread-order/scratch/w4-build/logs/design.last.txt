@@ -1,0 +1,124 @@
+I'll start by reading the phase docs and understanding the structure.
+
+Now reading this phase's docs:
+
+
+
+Now let me locate the sibling scorer and its test, plus the runtime structure:
+
+
+
+
+
+
+
+Now the sibling test file:
+
+
+
+Now let me explore the runtime structure, registry schema, and cited premises:
+
+
+
+
+
+
+
+
+
+
+
+Premises check out so far. Now the doc files the spec names:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me check the sibling phase specs (024, 025, 027) for their Keep Rule and verdict line conventions:
+
+
+
+
+
+
+
+Let me check the Deem/Jev choice response shapes and the census corpus:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me check which sk-doc modes the sibling builds named for their doc steps:
+
+
+
+
+
+All facts gathered. Now I'll write the design file:
+
+Now the verification commands:
+
+Both checks pass (177 lines, 6 headings). Confirming my footprint:
+
+One refinement — making the changelog target explicit in the open questions (the brief's "skill's changelog/" vs the spec's runtime path):
+
+
+
+Design complete and verified. Summary of what the design fixes:
+
+- **Interface**: `score-severity-replay.cjs` with the zero-call census, `--write-label-sheet`/`--labels` (repo refusal, label validation), the 20-negative label gate, `no headroom`, the `--jev`/`--deem` arms behind their own gates, the sibling's Keep Rule (coverage → kill → margin → sign test → flips → keep, exact BigInt tails), the `verdict`/`order`/`funnel`/`exact` lines, exact stdout formats, `calls.jsonl`/`report.json`, and every constant.
+- **Tests**: 27 named cases, both arms on stubs only, with an injected `deps.git` seam so the census stays hermetic.
+- **Build steps**: 7 Devin code briefs (one behavior plus named tests each) and 8 Pi doc briefs (scripts README row, `SKILL.md` sentence, runtime README line, `runtime/changelog/v1.6.0.0.md`, catalog entry + index, playbook scenario + index), then session-owned runs/review/commit.
+- **Premises**: every cited line reopened — one drift found (`convergence.md:398-400` → the description rows are `:399-401`) and the census preview numbers marked as run-time computed.
+
+HANDBACK
+
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-build/design.md (+177/-0)
+EDITS: specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-build/design.md:1-177 created the build design with sections 1 to 6 (premises, interface, test cases, build steps, proof plan, open questions); specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-build/design.md:173 refined open question 5 to name the runtime changelog target against the hub changelog
+CHECKS: wc -l specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-build/design.md -> 177 specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-build/design.md (exit 0); grep -c '^## ' specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-build/design.md -> 6 (exit 0); git status --porcelain -- specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/ -> ?? specs/cli-jev/003-cli-jev-workflow-integration/029-p0-reread-order/scratch/w4-build/ (exit 0)
+BLOCKED REASON: none

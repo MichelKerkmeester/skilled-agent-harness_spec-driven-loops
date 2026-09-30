@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 29: p0-reread-order"
-description: "Test research R10 offline: count the archived P0 findings and their downgrades with zero calls, stop at the operator's label gate until 20 P0 negatives are labeled, then measure whether a Jev or Deem severity choice separates real P0s from false ones better than the recorded severity. Each backend column ends in one verdict line under a keep rule fixed here, with the reread order and a validity funnel reported beside it."
+description: "Complete at its label gate. score-severity-replay.cjs counts the archived P0 findings and their transitions with zero model calls, writes the P0 label sheet outside the repository and stops at stop: fewer than 20 labeled P0 negatives until the operator labels 20 P0 negatives; past the gate its --jev and --deem arms print one verdict per backend column under the Keep Rule fixed in section 4. Its 33 tests cover the census, the label gate, both gates, the Keep Rule, the reread order and the funnel, and the system-deep-loop docs describe it. Built as 2239858286."
 trigger_phrases:
   - "p0 reread order"
   - "severity replay"
@@ -23,14 +23,14 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 29 of 35 |
 | **Predecessor** | 028-confirm-mode-stop-hint |
 | **Successor** | 030-fanout-merge-shadow-record |
-| **Handoff Criteria** | The zero-call census has printed the registry counts, the severity transitions, the P0 population and the rejected-P0 phrase counts. Then either the scorer printed `stop: fewer than 20 labeled P0 negatives` or `no headroom`, or a run past the gate printed one `verdict <backend>:` line per backend column that ran, or that backend's skip line |
+| **Handoff Criteria** | The zero-call census printed the registry counts, the severity transitions, the P0 population and the rejected-P0 phrase counts, and the 2026-09-29 final run then printed `stop: fewer than 20 labeled P0 negatives` (parent D4). Past the operator's 20 labeled P0 negatives one `--deem --out` run and, on the operator's flag, one `--jev --out` run would print one `verdict <backend>:` line per backend column that ran, or that backend's skip line; no verdict line has printed |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,10 +50,10 @@ This is **Phase 29** of the cli-jev workflow integration specification. On 2026-
 - The build roles of parent D5 and the doc route of parent D6, in `plan.md`.
 
 **Deliverables**:
-- `score-severity-replay.cjs` (proposed) with the zero-call census by default, a label-sheet writer, a `--jev` arm and a `--deem` arm (proposed switches)
-- `tests/unit/score-severity-replay.vitest.ts` (proposed) against fixture registries with stub `jev` and `cli-deem` binaries
-- One census report and, past the label gate, one report per model arm in a directory the operator names
-- The `system-deep-loop` docs parent D6 names, written through sk-doc
+- `score-severity-replay.cjs`, built at 1,817 lines, with the zero-call census by default, a label-sheet writer, a `--jev` arm and a `--deem` arm
+- `tests/unit/score-severity-replay.vitest.ts`, built at 1,048 lines and 33 cases, against fixture registries and iteration files with stub `jev` and `cli-deem` binaries
+- One `report.json` per `--out` run. The final-state runs below the label gate wrote only `report.json` and no `calls.jsonl`; a report per model arm waits on the operator's labels
+- The eight `system-deep-loop` docs parent D6 names, written through sk-doc and committed
 
 **Changelog**:
 - None. The parent packet has no `../changelog/` folder (checked 2026-09-29).
@@ -103,17 +103,17 @@ Owner of every code path below: `system-deep-loop`. The code follows sk-code's O
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs` | Create | Census, label sheet, label gate, both arms, the Keep Rule and the report-only lines. Proposed name. About 450 to 600 LOC (estimate) |
-| `.skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts` | Create | Fixture-registry, stub-`jev` and stub-`cli-deem` cases |
+| `.skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs` | Created | Census, label sheet, label gate, both arms, the Keep Rule and the report-only lines. Built at 1,817 lines |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts` | Created | Fixture-registry, stub-`jev` and stub-`cli-deem` cases. Built at 1,048 lines and 33 cases |
 | `.skilled/skills/system-deep-loop/runtime/scripts/README.md` | Modify | One row for the new script |
 | `.skilled/skills/system-deep-loop/SKILL.md` | Modify | Parent D6: one sentence naming the offline severity replay and saying no severity changes |
 | `.skilled/skills/system-deep-loop/runtime/README.md` | Modify | Parent D6: one line naming the script, its zero-call default, the label gate and the two switches |
-| `.skilled/skills/system-deep-loop/runtime/changelog/v<next>.md` | Create | Parent D6, through `sk-create-changelog`. The newest file at planning is `v1.5.0.1.md` |
+| `.skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md` | Created | Parent D6, through `sk-create-changelog`. The next version after 028's `v1.7.0.0.md` |
 | `.skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md` and `feature-catalog.md` | Create, Modify | Parent D6: one entry (proposed name) and its index row |
 | `.skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/severity-replay.md` and `manual-testing-playbook.md` | Create, Modify | Parent D6: the census, the label-gate stop and a stub-backend skip, plus the index row |
-| Generated copies (the Hermes `SKILL.md`, leaf manifests, trigger index) | Regenerate | Only when their own checks report them stale after the doc edits |
+| Generated copies (the Hermes `SKILL.md`, the two activation manifests, the three compiled deep command contracts) | Regenerated | The Hermes copy, both `system-deep-loop` activation manifests and the three recompiled contracts are in the commit; the trigger index follows in its own commit |
 | `specs/**/deep-review-findings-registry.json`, review `iterations/iteration-*.md` | Read only | The census corpus |
-| `<operator-named label file>`, `<operator-named report dir>/` | Read, Create at run time | The labels, and `report.json` with `calls.jsonl` from a model run |
+| `<operator-named label file>`, `<operator-named report dir>/` | Read, Create at run time | The labels, and `report.json` with `calls.jsonl` from a model run. A 95-row sheet with empty labels was written outside the repository during session verification; no labels file exists and no `calls.jsonl` was written |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -137,7 +137,7 @@ Owner of every code path below: `system-deep-loop`. The code follows sk-code's O
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-008 | The call shape is fixed and shared | Each row goes to `jev choice --provider P` or `cli-deem choice` on stdin with `-q "Which severity does this review finding deserve?"` (proposed wording, fixed before any run) and four options: `P0`, `P1` and `P2` with the verbatim descriptions of `deep-review/references/convergence/convergence.md:398-400`, and `not_a_finding=The cited evidence does not show a defect` (proposed). Three option orders, the list above, then rotated left by one, then by two, with no answer cache, so for Jev the three orders are also its three reruns. The modal pick is the key at least two orders name, three different keys make the row `unstable` |
+| REQ-008 | The call shape is fixed and shared | Each row goes to `jev choice --provider P` or `cli-deem choice` on stdin with `-q "Which severity does this review finding deserve?"` (proposed wording, fixed before any run) and four options: `P0`, `P1` and `P2` with the verbatim descriptions of `deep-review/references/convergence/convergence.md:399-401`, and `not_a_finding=The cited evidence does not show a defect` (proposed). Three option orders, the list above, then rotated left by one, then by two, with no answer cache, so for Jev the three orders are also its three reruns. The modal pick is the key at least two orders name, three different keys make the row `unstable` |
 | REQ-009 | Every call and exit has one handling, and the cost prints first | The Deem arm prints "nothing leaves the machine", planned calls and a wall-time estimate at 65.6 ms labeled as the 2-option p50 of `deem-local.md`. The Jev arm prints the payload class (published review registry text), planned calls and estimated input tokens, never a dollar figure. `calls.jsonl` holds one line per call with row key, order index, wall ms, exit code, backend, the pick or probability, and a status of `measured`, `unmeasured`, `unmeasured_timeout` or `unmeasured_unpublished`, with the commit pair on Deem lines and version, provider and model on Jev lines. Exits follow phase 002's handling: Deem 1 or HTTP 400 `unmeasured`, 2 stop, 3 `deem arm stopped: backend refused`, 4 one health recheck (`model commit changed mid-run` or `server gone`), 130 `interrupted`. Jev 1 `unmeasured`, 2 stop, 3 after the gate `jev arm stopped: key rejected`, 4 one backoff retry, past 90 s `unmeasured_timeout`, 130 `interrupted`. A stopped arm prints no verdict. `--jev` or `--deem` without `--out` exits 2 before any call |
 | REQ-010 | The reread order and the validity funnel are reported, never decisive | Order: for each registry with two or more labeled rows, the rank of its first `real` row when rows sort by the column's mean `P0` probability, against the registry's own order, printed as `order <backend>: registries=<n> first_real_rank=<x> recorded=<y>`. Funnel: one `noul` per measured row, `-q "Does the cited evidence show the defect this finding claims?"` (proposed), one call per backend with no rerun because it never decides, printed as `funnel <backend>: asked=<n> measured=<m> yes=<y> no=<z>` with yes at a probability of 0.5 or more. A third line prints how many negatives the column put in their labeled class. None of these lines enters the Keep Rule |
 | REQ-011 | Tests cover every public surface, and the docs stay true (parent D6) | `score-severity-replay.vitest.ts` exits 0 with a happy path and one edge case each: the census counts a fixture's P0 rows and transitions, the phrase counter finds a planted phrase, the label sheet writes outside the repository and refuses a path inside, the label reader rejects an unknown label, the gate prints its stop line at 19 negatives and passes at 20, `no headroom` prints above 90 percent, the finding id never reaches a logged call, the Jev gate passes a stub and skips on exit 3, the Deem gate passes a fake health and skips a stub backend byte-identically, a Deem exit 4 with a new pair stops the arm, an unpublished row is withheld from Jev and the verdict prints `keep`, `kill` and `stop (coverage)`. `SKILL.md`, both READMEs, the changelog, the catalog entry and the playbook entry each name the script, the gate and both switches, and `validate_document.py` exits 0 on each |

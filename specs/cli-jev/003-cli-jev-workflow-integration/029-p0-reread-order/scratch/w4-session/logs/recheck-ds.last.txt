@@ -1,0 +1,25 @@
+## Recheck report
+
+**P1 (REQ-011 hub sentence, `SKILL.md` line 111):** `closed` — the sentence now names the script (`runtime/scripts/score-severity-replay.cjs`), the stop line (`stop: fewer than 20 labeled P0 negatives`; script line 440 with `LABEL_GATE = 20` at line 49), both switches with the `--out <dir>` precondition (refusal at lines 1616–1620 exits 2 before any run when `--jev`/`--deem` lack `--out`), the per-backend gates (`jevGate` lines 1196–1228: PATH, version, auth status; `deemGate` lines 828–840: health), and "changes no severity" holds — the only writes are the label sheet (refused inside the repo, lines 378–382), `calls.jsonl` under `--out` (lines 910–916) and `report.json` under `--out` (line 1744).
+
+**Other five docs:** each names script + label gate + both switches.
+- `runtime/README.md`:51 — script, "stops at the label gate below 20 labeled P0 negatives", `--jev`/`--deem`.
+- `runtime/scripts/README.md`:52 — script, "behind the label gate", `--jev`/`--deem`, `--out`.
+- `runtime/changelog/v1.8.0.0.md`:13,25,26 — script, "label gate needs 20 labeled P0 negatives", `--jev`/`--deem`/`--out`, exit 2.
+- `feature-catalog/scoring/severity-replay.md`:23,45,49,51 — script, gate line/stop text, `--jev`/`--deem`, `--out`.
+- `manual-testing-playbook/scoring/severity-replay.md`:15,25,28,56,58 — script, "label gate stops the run before any backend is reached", stop line, `--jev`/`--deem` in the commands.
+
+**Fix scope:** `git diff` shows the edit confined to line 111 (`1 file changed, 1 insertion(+), 1 deletion(-)`); the added severity sentence matches script behavior, and no other SKILL.md mention of the replay exists.
+
+**New P0/P1:** none.
+
+**Validation result:** `✅ VALID: .skilled/skills/system-deep-loop/SKILL.md` (Document type: skill, Total issues: 0, exit 0).
+
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck)
+EDITS: none — reviewed Pi MiMo's edit at .skilled/skills/system-deep-loop/SKILL.md:111 (severity replay sentence, 1 insert/1 delete)
+CHECKS: rg against runtime/scripts/score-severity-replay.cjs (LABEL_GATE=20 @49, stop line @440, --out refusal @1616-1620, jevGate @1196-1228, deemGate @828-840) -> all sentence claims match (exit 0); rg per-doc script/--jev/--deem/gate counts in 5 docs -> 1/3/3/1, 1/3/3/2, 3/1/1/4, 5/2/2/3, 7/1/2/11 (exit 0); git diff --stat .skilled/skills/system-deep-loop/SKILL.md -> 1 file changed, 1 insertion(+), 1 deletion(-) (exit 0); python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-deep-loop/SKILL.md -> ✅ VALID: .skilled/skills/system-deep-loop/SKILL.md, Total issues: 0 (exit 0)
+BLOCKED REASON: none

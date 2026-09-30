@@ -1,0 +1,12 @@
+Change applied, verified, tests green.
+
+Change verification (file is untracked, so `git diff` has no baseline — I confirmed the edit by line-hash comparison instead): pre-edit read gave line 234 hash `9a541e1a`; post-edit re-read shows `0167bb33` on line 234 only, with every surrounding line hash identical (228–233, 235–240). Script S was never written to — read only.
+
+Test math check: `gateLine(201, 20, 181)` → `negatives 20 >= LABEL_GATE 20` passes the label gate, then `10*181 = 1810 > 9*201 = 1809` → state `headroom`, line `no headroom`. Both existing `expect` lines are untouched and now exercise the intended branch.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts (+1/-1)
+EDITS: .skilled/skills/system-deep-loop/runtime/tests/unit/score-severity-replay.vitest.ts:234 `replay.gateLine(30, 2, 28)` → `replay.gateLine(201, 20, 181)`
+CHECKS: `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/score-severity-replay.vitest.ts` -> `Tests  12 passed (12)` (exit 0)
+BLOCKED REASON: none
+NOTES: T is untracked (`??` via `git status --porcelain --ignored`), so no tracked diff/churn figures exist; I ran no git write command and left staging to the orchestrator.
