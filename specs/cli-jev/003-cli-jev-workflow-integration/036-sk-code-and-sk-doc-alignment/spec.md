@@ -23,7 +23,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-30 |
 | **Branch** | `worktrees/071-cli-jev-sk-alignment` |
 | **Parent Spec** | ../spec.md |
