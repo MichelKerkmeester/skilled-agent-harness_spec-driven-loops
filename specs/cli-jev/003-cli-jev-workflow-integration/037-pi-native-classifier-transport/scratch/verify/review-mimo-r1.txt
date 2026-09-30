@@ -1,0 +1,26 @@
+**Findings**
+
+- P1 score-pi-transport.mjs:1354 (with buildReplayPlan :575) - K is `plan.size`, so rebuild-excluded rows vanish from the keep rule: coverage can never fail on a drifted rebuild and `stop (coverage)` (design §7: "if fewer than 90 percent of K survive") never fires - a census drift excluding most of the 111 baseline rows yields K=<survivors> coverage=100.0 and can print `adopt` on a fraction of the corpus.
+- P1 tests/score-pi-transport.test.mjs:1 - `columnLine` and `meanMap` are exported public surfaces with no test; meanMap's mean value is never asserted (topKeyByMean is invariant to sum-vs-mean scaling) and no test drives `main` past the census, so column/verdict/report wiring never runs - grep finds zero test callers of either.
+- P2 score-pi-transport.mjs:1363 - report.json carries no field naming the recorded-vs-fresh latency asymmetry design §7 commits to ("names the asymmetry in report.json and the docs") - the report object is census/pi/cli/metrics/verdict/stopped only, and no doc names it.
+- P2 score-pi-transport.mjs:1054 - judge compares one-decimal rounded coverage/agreement against 90/95, so a true 89.96 % would pass as 90.0 - unreachable at K≤111, a boundary hazard for larger replays.
+- P2 score-pi-transport.mjs:740 - a timeout records its status but prints no skip/stop line (only the summary's `timeouts=<n>`), and a jev exit outside 0/2/3/130 records `unmeasured` silently - REQ-008 asks each non-measured exit for one skip or stop line.
+
+**REQs**
+
+- REQ-001 met - default run prints the census, spawns only `jev --version`/`auth status` probes and catalog reads, no classify, no file (test asserts empty cwd, two-probe stub log).
+- REQ-002 met - arms refuse without `--out` (exit 2, empty stdout); one calls.jsonl line per call with row id, order, ms, exit code, status, map.
+- REQ-003 met - key grep exits 1; `create()` takes no options; only `auth test`'s model field is read.
+- REQ-004 met - both sides ask Jev 1.13; `--pi --cli` builds each question once for both.
+- REQ-005 met - hand-checked: agreement over both-measured rows (8/9=88.9), median nearest-rank over per-order per-key |diff| (0.25 case), p95 `nearestRank`; `probabilitiesFrom` matches `answers.answer.probabilities` per the SDK types.
+- REQ-006 met - 90/95/1.5 in spec order, verdict fields match the Keep Rule block, printed once, last.
+- REQ-007 met - partial maps unmeasured, never zero; one-sided rows leave both totals.
+- REQ-008 met - refusal/credential/model print a skip or stop line and record status (timeout line is the P2 above).
+- REQ-009 not met - `columnLine`/`meanMap` untested (P1); otherwise 37 cases, backends stubbed, no socket.
+- REQ-010 met - default run writes nothing; armed writes only under `--out`; runtime tree untouched per git status.
+- REQ-011 met - all six changed docs validate VALID (two hub files via README-fallback notice); no doc names a verdict; playbook runs stub + refused invocation + `node --test` only.
+- REQ-012 not checked - scope and comment hygiene hold; author/reviewer identity unverifiable from the tree.
+
+`node --test .../score-pi-transport.test.mjs`: 37 pass, 0 fail.
+
+VERDICT: FAIL
