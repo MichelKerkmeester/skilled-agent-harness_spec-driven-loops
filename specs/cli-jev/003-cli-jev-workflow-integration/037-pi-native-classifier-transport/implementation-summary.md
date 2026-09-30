@@ -1,29 +1,29 @@
 ---
 title: "Implementation Summary: Phase 37: pi-native-classifier-transport"
-description: "Planned. Nothing is built. This phase will measure whether Pi's native classifier runtime answers the packet's Jev questions as the jev CLI does, at a similar speed and cost, with a zero-call census by default and one live comparison run behind the operator's yes. No verdict exists yet."
+description: "Complete. Pi's native `classify()` on `openrouter` `typesafe/jev-1.13` answered the 019 rows at 95.5 percent top-choice agreement and p95 340 ms against the jev CLI's recorded 387 ms, and the one approved live run printed `verdict pi-transport: adopt`. The scorer, its 41 tests and the cli-classifier docs are committed as `b34b9d1907`. No integration change was made."
 trigger_phrases:
   - "pi transport summary"
   - "pi native classifier transport status"
   - "classifier census summary"
-  - "pi transport planned state"
+  - "pi transport verdict"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport"
-    last_updated_at: "2026-09-30T13:22:09Z"
+    last_updated_at: "2026-09-30T15:48:14Z"
     last_updated_by: "markdown-leaf"
-    recent_action: "Wrote the planned-state stub. Nothing is built"
-    next_safe_action: "Build the phase, then rewrite this file from the run evidence"
+    recent_action: "Rewrote this file with the build, review and live-run results"
+    next_safe_action: "None. Wiring Pi as a transport is a later phase on the operator's call"
     blockers: []
     key_files:
-      - "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/spec.md"
-      - "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/context/context.md"
+      - "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json"
+      - "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/verify/session-evidence.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-037-pi-native-classifier-transport"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,8 +41,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 037-pi-native-classifier-transport |
-| **Status** | Planned |
-| **Completed** | Not built. Planned 2026-09-30 |
+| **Status** | Complete |
+| **Completed** | 2026-09-30, build `b34b9d1907` |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -51,26 +51,38 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built. This file is a planned-state stub: it records what the phase will build, where the code will live, and which checks will decide it. No script, test or doc exists under the proposed paths yet, no live run has happened, and no `verdict pi-transport:` line exists.
+Pi's native classifier runtime can answer the packet's Jev questions, and the one approved live run measured how well. `score-pi-transport.mjs` reads what is installed and available with zero model calls by default. Behind `--pi --out <dir>` it replays the 019 rows through `ModelRuntime.classify()` on `openrouter` `typesafe/jev-1.13`, compares the answers and the timings against the recorded jev CLI side under the keep rule fixed in `spec.md` section 4, and prints one verdict line. The build is committed as `b34b9d1907` on `worktrees/071-cli-jev-sk-alignment`, with the phase record in `e060ac29fd`.
 
 ### Phase 37: pi-native-classifier-transport
 
-The phase will compare Pi's native classifier runtime against today's shell-out transport on the same questions. The first slice reads Pi's version, the classifier models known and available per provider, the jev CLI identity line, whether a llama.cpp router answers, and the replay row count, all with zero model calls. The second slice sits behind its own switch and the operator's yes, replays the 019 rows through `ModelRuntime.classify()` on `openrouter` `typesafe/jev-1.13`, and compares them against the recorded CLI answers in the 019 `calls.jsonl` under the keep rule fixed in `spec.md` section 4.
+**Census.** The default run prints Pi 0.99.1, 12 classifier models known with 7 available, all through `openrouter`, `jev 0.6.2` with `provider=official auth=ok`, `llama.cpp: server=none cli=none`, and the 019 baseline's 111 rows and 333 calls. It makes no `classify()` call and writes no file (`scratch/verify/census.txt`).
+
+**Live comparison.** The approved run replayed the 111 rows as 333 `choice` calls, every one `measured`, and compared them with the recorded CLI maps (`scratch/live-run/calls.jsonl`, 334 lines including the model check, and `scratch/live-run/report.json`).
+
+**Verdict lines.**
+
+```
+pi: rows=111 calls=333 measured=111 unmeasured=0 timeouts=0 excluded=0
+column pi: rows=111 measured=111 p50_ms=249 p95_ms=340 cost_per_100=0.0022
+column cli: rows=111 measured=111 p50_ms=326 p95_ms=387 calls=333
+metrics: coverage=100.0 agreement=95.5 median_abs_dp=0.0100
+verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022
+```
+
+**Docs.** The folder README, the `benchmark/README.md` row, the feature catalog entry with its index row and the playbook scenario with its index row were written through sk-doc and pass `validate_document.py` VALID, with no doc claiming a verdict no run printed.
 
 ### Files Changed
 
-One row per planned file. Nothing below exists yet, so every action is `Planned`.
-
 | File | Action | Purpose |
 |------|--------|---------|
-| `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs` (proposed) | Planned create | The census, the live arm, the metrics and the keep-rule verdict |
-| `.skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs` (proposed) | Planned create | Every public surface, both backends stubbed, `node --test` |
-| `.skilled/skills/cli-classifier/benchmark/pi-transport/README.md` (proposed) | Planned create | The folder README through sk-doc |
-| `.skilled/skills/cli-classifier/benchmark/README.md` | Planned modify | One row in section 2 LAYOUT for the new folder |
-| `.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-comparison.md` and `feature-catalog/feature-catalog.md` (proposed) | Planned create and modify | The catalog entry and its index row |
-| `.skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md` and `manual-testing-playbook/manual-testing-playbook.md` (proposed) | Planned create and modify | The playbook scenario and its index row |
-| `<operator-named report dir>/` | Planned at run time | `report.json` and `calls.jsonl` from the one approved live run |
-| `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md` | Planned modify | Filled as a Planned phase on 2026-09-30, docs only |
+| `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs` | Created | The census, the live arm, the metrics and the keep-rule verdict |
+| `.skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs` | Created | Every public surface, both backends stubbed, `node --test` |
+| `.skilled/skills/cli-classifier/benchmark/pi-transport/README.md` | Created | The folder README through sk-doc |
+| `.skilled/skills/cli-classifier/benchmark/README.md` | Modified | One row in section 2 LAYOUT for the new folder |
+| `.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-comparison.md` and `feature-catalog/feature-catalog.md` | Created and modified | The catalog entry and its index row |
+| `.skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md` and `manual-testing-playbook/manual-testing-playbook.md` | Created and modified | The playbook scenario and its index row |
+| `scratch/w4-build/design.md`, `scratch/verify/`, `scratch/live-run/` | Created | The design, the gate outputs and the run's records |
+| `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md`, `implementation-summary.md` | Modified | The phase record, closed in this pass |
 | `description.json`, `graph-metadata.json` | Derived | Refreshed through `repair-derived.cjs` |
 <!-- /ANCHOR:what-built -->
 
@@ -79,11 +91,11 @@ One row per planned file. Nothing below exists yet, so every action is `Planned`
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. The phase is Planned, and this stub was written on 2026-09-30 from `scratch/context/context.md` and the operator's "Test it first (Recommended)" answer.
+DeepSeek V4.1 Flash on Cline at xhigh wrote the design, the scorer, the tests and the docs, then the fix for the review findings. MiMo v2.6 Pro at high reviewed read-only. Round 1 printed `VERDICT: FAIL` on two P1s: `K` was `plan.size`, so rebuild-excluded rows left the coverage denominator and `stop (coverage)` could never fire, and `columnLine` and `meanMap` were untested with no test driving `main` past the census. DeepSeek set `K = plan.size + excluded.length` and added four tests (37 to 41), and round 2 printed `VERDICT: PASS` with no findings (`scratch/verify/review-mimo-r1.txt`, `scratch/verify/review-mimo-r2.txt`).
 
-The planned path is the parent D5 roster through this phase's D6: DeepSeek V4.1 Flash writes the script, its tests and the docs, MiMo v2.6 Pro reviews every DeepSeek diff, and DeepSeek reviews any MiMo fix. The session runs the zero-call census on the real tree and the one approved live run, records every result in `goal.md`'s log and `acceptance-criteria.md`, and commits path-scoped.
+The session ran the zero-call census on the real tree, then one live run on the operator's "Pi side only (Recommended)" yes: 333 Pi calls through Pi's own OpenRouter credential against the recorded 019 CLI answers, no fresh CLI calls. The run took 1 min 29 s, exit 0, and every call is recorded. The build commit is `b34b9d1907`, and the evidence and phase-doc commit is `e060ac29fd`.
 
-Two design questions decide how the live arm is built, and both are open in `spec.md` section 10. Whether `score-suggested-order.mjs` exports the prompt builder a replay needs is UNKNOWN until the design reads it, with a fresh both-sides fixture as the proposed fallback. Whether a same-day CLI rerun is needed for a fair latency comparison is the design's decision from the recorded `call_ms` shape.
+The design settled the two open questions: `score-suggested-order.mjs` exports `rotations` and `optionArgs` but not the question literals, so the replay copies the two literals (pinned by a test) and builds each question in process; the CLI side stays the recorded 019 run, and the fresh both-sides `--pi --cli` path exists as the fallback (`scratch/w4-build/design.md`).
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -95,7 +107,7 @@ Two design questions decide how the live arm is built, and both are open in `spe
 |----------|-----|
 | The default run is a zero-call census (D1) | The packet's pattern from phases 002 and 019: read what is installed and available before any call costs anything |
 | Pi is reached through its SDK from a Node script (D2) | The SDK is one of the three documented classifier surfaces (`docs/models.md:103-136`), and a script keeps credentials in Pi's own store |
-| Both sides ask Jev 1.13 (D3) | The CLI's 019 baseline ran `jev-1.13.0` through `official`, and Pi can ask the same model through `openrouter` `typesafe/jev-1.13`, so the rows line up |
+| Both sides ask Jev 1.13 (D3) | The CLI's 019 baseline ran `jev-1.13.0` through `official`, and Pi asked the same model through `openrouter` `typesafe/jev-1.13`, so the rows line up |
 | The keep rule is fixed in `spec.md` before any live run (D4) | A threshold chosen after the numbers arrive would decide the run rather than measure it |
 | No integration change here (D5) | The verdict comes first. Wiring Pi into a transport is a later phase on the operator's call |
 | DeepSeek writes and MiMo reviews (D6) | Parent D5's roster, with the reverse direction for any MiMo fix and no Claude worker |
@@ -106,16 +118,18 @@ Two design questions decide how the live arm is built, and both are open in `spe
 <!-- ANCHOR:verification -->
 ## Verification
 
-Nothing is verified. Every check below is pending the build, and each row will be rewritten from the run's own output at closure.
+All checks ran from the final build state, with the raw outputs under `scratch/verify/` and `scratch/live-run/`.
 
 | Check | Result |
 |-------|--------|
-| `node $S` default census on the real tree | Pending. Nothing is built, so no census line exists |
-| `node --test $T` over the stubbed backends | Pending. The test file does not exist yet |
-| The key grep on `$S` | Pending. The script does not exist yet |
-| `python3 .skilled/skills/sk-doc/scripts/validate_document.py` on each changed doc | Pending. No changed doc exists yet |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport --strict` | Pending the closure pass. The planned state is not closeable |
-| The one approved live run and its `verdict pi-transport:` line | Pending. Waits on the build and the operator's yes |
+| `node score-pi-transport.mjs` default census on the real tree | Exit 0, 12 census lines (`scratch/verify/census.txt`) |
+| `node --test tests/score-pi-transport.test.mjs` | 41 pass, 0 fail (`scratch/verify/tests.txt`) |
+| `verify_alignment_drift.py --check-exact-headers --fail-on-warn` on the two code files | `[alignment-drift] PASS`, `Scanned files: 2`, `Findings: 0`, `Errors: 0`, `Warnings: 0` (`scratch/verify/drift.txt`) |
+| Comment hygiene and the key grep on the pi-transport folder and both measurement docs | Hygiene exit 0 on both files, key grep exit 1 with no match (`scratch/verify/session-evidence.md`) |
+| `validate_document.py` on each changed doc | All changed docs VALID, playbook package PASS (7 scenarios), catalog 0 violations, HVR hard blockers 0 (`scratch/verify/session-evidence.md`) |
+| The one approved live run | Exit 0 after 1 min 29 s; `scratch/live-run.stdout.txt` ends in `verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022` |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport --strict` | `RESULT: PASSED` (this closure pass) |
+| `check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport` | `RESULT: PASSED (5/5 checks)` (this closure pass) |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -123,12 +137,11 @@ Nothing is verified. Every check below is pending the build, and each row will b
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Nothing is built.** All five acceptance criteria are `Unmet`, no verdict line exists, and this file will be rewritten from the run evidence at closure.
-2. **The replay's prompt source is UNKNOWN.** Whether `score-suggested-order.mjs` exports the builder the replay needs is unresolved until the design reads it. The proposed fallback is a fresh fixture both sides rerun on.
-3. **No live number exists.** The agreement, probability-difference, latency and cost figures all wait on the operator's yes for one live run.
-4. **The speed comparison may need a same-day CLI rerun.** Whether the 019 `call_ms` values are comparable to a fresh Pi latency is the design's decision, and a rerun also waits on the operator's yes.
-5. **The llama.cpp column is doubly gated.** It needs the operator's install yes, because the machine has no `llama-server` or `llama-cli`, and its raw label probabilities are documented as overconfident (`docs/llama-cpp.md:89-99`).
+1. **The verdict holds on a one-row margin.** Agreement 95.5 is 106 of 111 rows, and one more disagreement would give 94.6 and `keep-cli`. The five disagreements are near ties: `rr-iter3-071` Pi sk-doc 0.52 against CLI system-spec-kit 0.56, `rr-iter3-081` Pi system-spec-kit 0.53 against CLI sk-prompt 0.50, `rr-iter3-125` Pi system-spec-kit 0.34 against CLI none 0.32, `rr-iter3-127` Pi system-deep-loop 0.34 against CLI system-spec-kit 0.32, and `P1-MCP-002` Pi mcp-code-mode 0.55 against CLI sk-code 0.50 (`scratch/verify/session-evidence.md`).
+2. **The latency pair is not same-day.** Pi's calls are fresh while the CLI side is the 019 run recorded on 2026-09-29. Pi's p95 of 340 ms sits against the recorded 387 ms, inside the 1.5x bound either way, and the same-day `--pi --cli` alternative exists behind its own switch (`spec.md` section 10).
+3. **Four P2s recorded, not fixed (parent D5).** `report.json` carries no field naming the recorded-vs-fresh latency asymmetry; the judge compares one-decimal rounded percentages, unreachable at K=111 and a hazard for larger replays; a timeout records its status but prints no own skip line; and a jev exit outside 0, 2, 3 or 130 records `unmeasured` without a line (`scratch/verify/review-mimo-r1.txt`).
+4. **No integration change yet.** Wiring Pi in as a `cli-classifier` transport, or teaching cli-pi workers to call classifiers, is a later phase on the operator's call (`spec.md` section 3).
+5. **The verdict is scoped to its identities.** It holds for Pi 0.99.1 on `openrouter` `typesafe/jev-1.13` against the CLI's `official` `jev-1.13.0`; a later Pi or Jev identity reruns the rule in full before any use (`spec.md` section 5, Kill criterion).
 <!-- /ANCHOR:limitations -->
 
 ---
-

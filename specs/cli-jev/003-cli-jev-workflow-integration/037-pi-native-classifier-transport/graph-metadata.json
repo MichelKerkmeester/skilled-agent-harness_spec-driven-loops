@@ -39,7 +39,7 @@
       "zero-call"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,17 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/verify/census.txt",
+      "scratch/live-run/calls.jsonl",
+      "scratch/live-run/report.json",
       ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
       ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
       ".skilled/skills/cli-classifier/benchmark/README.md",
+      ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-comparison.md",
       "feature-catalog/feature-catalog.md",
+      ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md",
       "manual-testing-playbook/manual-testing-playbook.md",
-      "scratch/context/context.md",
-      "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl",
-      ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
-      ".skilled/skills/cli-classifier/feature-catalog/feature-catalog.md",
-      ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs"
+      "scratch/w4-build/design.md",
+      "scratch/verify/review-mimo-r1.txt",
+      "scratch/verify/review-mimo-r2.txt"
     ],
     "entities": [
       {
@@ -97,6 +100,24 @@
         "source": "derived"
       },
       {
+        "name": "census.txt",
+        "kind": "file",
+        "path": "scratch/verify/census.txt",
+        "source": "derived"
+      },
+      {
+        "name": "calls.jsonl",
+        "kind": "file",
+        "path": "scratch/live-run/calls.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "report.json",
+        "kind": "config",
+        "path": "scratch/live-run/report.json",
+        "source": "derived"
+      },
+      {
         "name": "score-pi-transport.mjs",
         "kind": "file",
         "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
@@ -111,7 +132,13 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/cli-classifier/benchmark/README.md",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-transport-comparison.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-comparison.md",
         "source": "derived"
       },
       {
@@ -127,27 +154,21 @@
         "source": "derived"
       },
       {
-        "name": "context.md",
+        "name": "design.md",
         "kind": "doc",
-        "path": "scratch/context/context.md",
+        "path": "scratch/w4-build/design.md",
         "source": "derived"
       },
       {
-        "name": "calls.jsonl",
+        "name": "review-mimo-r1.txt",
         "kind": "file",
-        "path": "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl",
+        "path": "scratch/verify/review-mimo-r1.txt",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-external-orchestration/cli-pi/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "score-suggested-order.mjs",
+        "name": "review-mimo-r2.txt",
         "kind": "file",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs",
+        "path": "scratch/verify/review-mimo-r2.txt",
         "source": "derived"
       },
       {
@@ -185,29 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "One Node",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Pi 0.99.1 can call Jev itself",
     "created_at": "2026-09-30T13:18:46Z",
-    "last_save_at": "2026-09-30T13:37:35.542Z",
+    "last_save_at": "2026-09-30T15:50:17.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c7c28aa7e24d9af3a4a3e0927f9ca4b5ce87bc63bc46e8b3dee83dbac258db8",
+    "source_fingerprint": "sha256:95f1e62ad7a04ddc5db6ef1a58e7447b6afd0ea2fffac069068da5aef653fd12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e286e04f61023cd8667284ff7f4673d9fe78b33468acf46a768d86bf376e0fe6",
+      "spec.md": "e014757b34a172839b74f895fb3fb24a4613513a91acccba935e87e680d47844",
       "plan.md": "e52fd443ea43ad69b944ed7f7a8f8df7a186431dfc6e7c67729f8dcdba66980c",
-      "tasks.md": "f9b340e5b46c1991ec163a8b5e1bba0d38e9ee3a6d4f57f055258bd3be92c7c3",
-      "implementation-summary.md": "94f70c96d158ce9919c70edcc1f70e889b567b309ec292ba2ebc435c366fc670"
+      "tasks.md": "6f9edce8eefb71ad65818724766cf736cfdf477fe9a9ca633c8cbbd5cec6deb8",
+      "implementation-summary.md": "f7f04373c70f7eb2d78c7bc97b5758d42923dee261759f89aef00a21eece0dc4"
     },
     "last_active_at": null
   }

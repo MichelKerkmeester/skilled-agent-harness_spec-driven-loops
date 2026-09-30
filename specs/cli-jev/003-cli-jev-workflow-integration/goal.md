@@ -106,7 +106,7 @@ Decisions outrank each child goal.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] 002, 003, 005, 006, 008, 009, 016, 017, 036 and 037 are Complete
+- [x] 002, 003, 005, 006, 008, 009, 016, 017, 036 and 037 are Complete
 - [x] 019 to 035 are Complete: each prints its verdict line or stops at its label gate
 - [x] `validate_document.py` exits 0 on every skill doc a build changed
 - [x] No open P0 or P1 finding, and no changed runtime's suite fails beyond its baseline
@@ -170,6 +170,7 @@ and findings belong here.
 | Wave 4 builds, 019 to 035 (2026-09-29 to 30) | Done | Build and closure commits, in order: 019 `6aa7ca0980` and `812dc819ca`, 020 `65c71719ac` and `c6a34cd5d3`, 021 `fcacc26bf3` and `89597dee09`, 022 `ba70806077` and `ef315fe275`, 023 `b5e71ae777` and `9a45072a8b`, 024 `fb3f9c0599` and `f9fa987f55`, 025 `d657558a2e` and `6ff1448c22`, 026 `1a0fb2ea33` and `a2e73ccefc`, 027 `709b1078ee` and `c91420429b`, 028 `97200ea481` and `ad47f5ed98`, 029 `2239858286` and `7910612e72`, 030 `fe84dd1899` and `7b8845b31c`, 031 `ca40e3c2dc` and `11cc3c15e2`, 032 `c5d3ced36f` and `ae83f97dbf`, 033 `c13e968a58` and `85af2cd997`, 034 `2588231589` and `8b7fb3d126`, 035 `3d0641004b` and `0d931506be`. Each phase's `scratch/w4-session/session-evidence.md` (019 to 024 in their `implementation-summary.md`) holds its proofs, its cross-family review with P0 and P1 fixed and rechecked, and its recorded P2 list. Each stops at its label gate with no model labels (D4). Cross-phase events are in `scratch/w4-session/orchestration-log.md` |
 | Parent closure, criteria 2 and 5 (2026-09-30) | Done | From HEAD `7b8845b31c`: all 35 children say Status Complete in `spec.md`, and each of 019 to 035 has 0 open boxes in its `goal.md`. `validate.sh --strict --recursive` on this packet: exit 0, 36 x `RESULT: PASSED`, 0 `RESULT: FAILED`, `Errors: 0  Warnings: 0`. `check-goal.cjs` passes on 36 of 36 folders. The deep-loop runtime suite after 030: `Test Files 128 passed (128)`, `Tests 2531 passed (2531)`. Nothing is pushed or merged |
 | 036 sk-code and sk-doc alignment | Done | Build `46d3795333` on worktree 071. C1 headers on 9 files, C2 stderr tags on 11 scripts, D1 to D4 doc fixes. Strict header check 0 errors on 34 files, 90 docs valid, cli-classifier playbook PASS, 0 catalog violations on the packet's 28 entries, every suite at baseline. MiMo review PASS with one P2 recorded |
+| 037 pi native classifier transport | Done | Build `b34b9d1907` on worktree 071: `score-pi-transport.mjs`, its 41-case test file and the cli-classifier docs. The approved live run (Pi side only, 333 calls over 111 rows, 1 min 29 s, exit 0) printed `verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022`. MiMo review FAIL on two P1s, then PASS after the fix; no integration change |
 
 ### Deviations and findings
 
