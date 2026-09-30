@@ -1,0 +1,32 @@
+Recorded the finished build in the phase docs and ran all four gates from the final state. Summary of the work:
+
+- `tasks.md`: ticked T001 to T014, T018, T019, T020 with each closing command and result; left T015, T016 and T017 as `[B]` for the operator (draw and labels, then the arm runs), with parent D4 as the reason; amended the Completion Criteria to the label-gate close.
+- `goal.md`: ticked all six criteria, amended criterion 4 to the label-gate close with a logged reason citing parent D4, added the build, verification, review, commit and closure progress rows, and added one deviation row per fix and per labels-file/design deviation. Durable slice 3,934 characters.
+- `implementation-summary.md`: full rewrite to Complete, with what was built (2,295-line script, 42-case test, eight docs), the 13-file commit `2588231589`, the session's final-state verification, review verdicts, the five recorded P2 findings and the operator items.
+- `spec.md`: Status Complete, description and handoff row updated, and the `git ls-files` mechanism text corrected to HEAD's tree in REQ-002, REQ-003 and Out of Scope.
+- `plan.md`: Definition of Ready and Definition of Done ticked with evidence, the roster corrected to parent D5 as amended (Devin quota ran out, DeepSeek through Cline, docs on Pi MiMo), step 7 corrected for the uncommitted draw, and dependency rows updated.
+
+Status set: `Complete` in `spec.md` and `implementation-summary.md`, because the final-state default run prints its label-gate stop (`labels: labeled=0 of 150`, `stop: fewer than 150 labeled rows`) and every remaining open row is an operator item under parent D4. No `acceptance-criteria.md` exists for this Level 1 phase.
+
+Rows left open (all operator items under parent D4):
+- T015: the 150-row draw and its commit; no labels file is committed, so the draw is the operator's first step.
+- T016: the operator's `yes` or `no` label on each of the 150 rows; no model writes a label.
+- T017: the post-label zero-call run, then the `--jev --out` and `--deem --out` runs when their gates pass.
+
+STATUS: DONE
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/tasks.md (+24/-24)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/goal.md (+36/-13)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/spec.md (+9/-9)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/plan.md (+16/-16)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/implementation-summary.md (+96/-24)
+FILES CHANGED: specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens/graph-metadata.json (+66/-59, re-derived by repair-derived.cjs)
+EDITS: tasks.md:31-88 ticked 17 tasks with evidence, left T015/T016/T017 `[B]` with parent D4 reasons, amended the three Completion Criteria
+EDITS: goal.md:14-27 continuity frontmatter to Complete; :62-67 ticked six criteria and amended criterion 4 citing parent D4; :80-108 build/verification/review/commit/closure progress rows and 11 deviation rows
+EDITS: spec.md:3,26,33 status and handoff to the label-gate close; :109,140,141 corrected `git ls-files` to HEAD's tree; :55,121 labels-file rows record that the build commits none
+EDITS: plan.md:27 framework reads HEAD's tree; :42-52 quality gates ticked with evidence; :97 roster states parent D5 as amended; :107 step 7 records the uncommitted draw; :133-138 dependency rows updated
+EDITS: implementation-summary.md:1-249 full rewrite: metadata Complete, what was built, files changed, delivery, decisions, verification, limitations
+CHECKS: node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens --apply -> inspected=1 repaired=1 failed=0 (exit 0)
+CHECKS: bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens --strict -> RESULT: PASSED (Summary: Errors: 0  Warnings: 0; 0 lines matching RESULT: FAILED) (exit 0)
+CHECKS: node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens -> RESULT: PASSED (5/5 checks) (exit 0)
+CHECKS: node .skilled/hooks/goal/bin/goal.cjs packet specs/cli-jev/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens --workspace "$PWD" -> packet_durable_chars=3934; packet_budget=unknown (phase child, by design) (exit 0)
+BLOCKED REASON: none

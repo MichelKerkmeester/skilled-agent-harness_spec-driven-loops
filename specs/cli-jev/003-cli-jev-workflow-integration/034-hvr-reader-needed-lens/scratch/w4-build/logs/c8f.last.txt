@@ -1,0 +1,10 @@
+The `FLAG_AT` fix itself works (module compiles, the NameError at line 1342 is gone), but the suite does not reach ALL PASS. Per the brief's fail-closed rule I am stopping and reporting BLOCKED: a second missing module-level symbol (`summarize_column`) aborts the run at S:1406, plus one standalone FAIL. Both are outside this brief's single-change scope.
+
+```
+STATUS: BLOCKED
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py (+2/-0)
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py:1164-1165 added one-line comment and `FLAG_AT = 0.5` directly after `DEEM_MODEL`; all other bytes untouched
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> 23 PASS, then `FAIL deem gate skips a stub backend`; traceback: `NameError: name 'summarize_column' is not defined` at hvr_reader_lens.py:1406 via test line 1001 (exit 1)
+BLOCKED REASON: `FLAG_AT` NameError resolved, but the suite still fails: first error line `NameError: name 'summarize_column' is not defined` (called at hvr_reader_lens.py:1406, defined nowhere in S) and the test `deem gate skips a stub backend` fails; neither is in this brief's scope.
+```

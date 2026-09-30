@@ -1,0 +1,24 @@
+Step 6 is built and verified. Summary of what changed:
+
+**Script** — new section 6 (`hvr_reader_lens.py:742-997`), RUN renumbered to 7:
+- `GATE_STOP_LINE`, `STOP_CATEGORIES_LINE` constants.
+- `read_section`: refuses (raises `ValueError`, before any git call) an untracked doc, a `.env*` basename, or a section whose `sha12` no longer matches; otherwise reads `git show <commit>:<doc>` and returns the section text.
+- `build_rows`: one in-memory row per drawn row; refused rows stay in the list marked `refused` (so the refusal is countable) with `text=None`, and the comparator flag is recomputed from committed text (`significance_hit` / `false_range_hit`; synonym cycling has none).
+- `label_gate` / `gate_lines`: `{complete, labeled, total}` and the `labels: labeled=<n> of 150` + stop lines; a missing file counts 0.
+- `summarize_baseline` / `baseline_lines`: per-category flag-nothing vs comparator counts, comparator chosen only on a strict win (tie → flag-nothing), `B`, `yesShare`, and the per-row chosen-baseline flag map; refused rows excluded.
+- `headroom_lines` / `stop_categories`: `no headroom` at `10*B > 9*K`, `underpowered` at `K-B < 5`, stop when fewer than two categories can pass.
+
+**Tests** — `test_hvr_reader_lens.py:654-780`: the four named cases with the section 3 inputs/expected values; every earlier function and test untouched.
+
+**Flagged decision (not silent):** the design left `read_section`'s refusal observable only through its caller, so `build_rows` keeps refused rows marked `refused` and `summarize_baseline` skips them; the refusal test counts them at both layers (`read_section` raises 2×, `build_rows` marks 2) and proves "never read" because a git read of the missing object would raise `RuntimeError`, not the caught `ValueError`.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py (+253/-0)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py (+128/-0)
+EDITS: hvr_reader_lens.py:742-997 new section 6: `GATE_STOP_LINE`, `STOP_CATEGORIES_LINE`, `read_section`, `build_rows`, `label_gate`, `gate_lines`, `summarize_baseline`, `baseline_lines`, `headroom_lines`, `stop_categories`
+EDITS: hvr_reader_lens.py:995-997 RUN banner renumbered 6 -> 7
+EDITS: test_hvr_reader_lens.py:654-780 added `synthetic_rows` plus the four named cases: label gate at 149, baseline comparator-vs-flag-nothing, headroom/power/categories stop, untracked/.env refusal
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py -> (no output) (exit 0)
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> (no output) (exit 0)
+CHECKS: EXTRA self-check python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> ALL PASS, 18 PASS lines (the top argparse stderr line is the pre-existing `--draw --jev` seed case, as in the step-5 check log) (exit 0)
+BLOCKED REASON: none

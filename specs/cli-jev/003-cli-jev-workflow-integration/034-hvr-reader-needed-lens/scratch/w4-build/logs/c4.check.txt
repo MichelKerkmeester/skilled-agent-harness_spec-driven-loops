@@ -1,0 +1,12 @@
+PASS tracked files and read at commit
+PASS frame walker keeps skill markdown and refuses .env and changelog
+PASS split sections at ATX headings
+PASS a heading inside a fence does not split
+PASS census counts files, sections, flagged and in-band
+PASS a skipped scanner stops the run
+PASS a scanner exit 2 stops the run
+PASS significance comparator flags a listed phrase
+PASS false-range comparator flags a construction and a genuine range
+PASS a thin standard stops the comparator parse
+
+ALL PASS

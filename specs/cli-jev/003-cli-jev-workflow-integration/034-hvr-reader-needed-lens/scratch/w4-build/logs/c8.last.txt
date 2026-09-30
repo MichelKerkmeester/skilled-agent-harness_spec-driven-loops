@@ -1,0 +1,14 @@
+Implementation and the two listed checks are complete. One flagged note before the handback.
+
+**Flag — verdict seam deferred, as the design orders it.** The design's next-but-one code step still owns `summarize_column` and main's run/report wiring. `run_deem_arm` prints the arm epilogue through that seam (payload notice, records, stops all work without it), so in the suite as it stands: `deem arm prints a verdict and records every call` raises at the `summarize_column` call, `a stored commit pair that differs prints requalify` is not reached after it, and `deem gate skips a stub backend`'s main-level assertion awaits main running the gate. The gate pass (`deem gate passes a torch health`), the stub skip line, the exit-4 commit-pair stop, and the `--out` refusal are self-contained at this step. Every earlier function and test is untouched. I did not run the suite (brief: only the listed checks); py_compile passes on both files.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py (+281/-0)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py (+216/-0)
+EDITS: hvr_reader_lens.py:1156-1433 new section `8. DEEM ARM` — `DEEM_MODEL`, `DEEM_P50_MS`, `HEALTH_TIMEOUT_MS`, `REPO_CLI_DEEM`, then `deem_command`, `read_deem_health` (four skip reasons), `deem_gate` (health/skip lines, `deem: found=` for model and bad health response), `run_deem_arm` (payload notice, one `noul` per row with the row's `-q`, exit-4 recheck/retry, 2/3/130 stops with `deem: partial rows=`, commit-pair `calls.jsonl` records, column/category/brier/flips/requalify/verdict epilogue); `RUN` renumbered `9`
+EDITS: hvr_reader_lens.py:1458-1460 added `--jev`, `--deem`, `--out` arguments
+EDITS: hvr_reader_lens.py:1465-1467 `main` refuses `--jev`/`--deem` without `--out` right after parsing
+EDITS: test_hvr_reader_lens.py:844-1058 added the six named cases: `deem gate passes a torch health`, `deem gate skips a stub backend`, `deem exit 4 with a changed commit pair stops the arm`, `--out is required for both switches`, `deem arm prints a verdict and records every call`, `a stored commit pair that differs prints requalify`
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py -> (no output) (exit 0)
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> (no output) (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,12 @@
+Step 7 is built and the two listed checks pass. One flagged note before the handback: the two test names step 7 names are absent from design §3 (the only step whose cases the table omits). With no table row to copy, their inputs/expected were derived from §2.4 (the `calls.jsonl` status vocabulary) and §2.5 (`spawn_call`'s returned dict): the timeout case asserts the `timed_out` mark and `code=None` that the arms record as `unmeasured_timeout`, and the missing-answer case spawns the empty-body stub and asserts the `create_call_log` record is `probability=null`/`status=unmeasured`, never 0. The arm-level status mapping itself stays with the arm steps' named tests. `GIT_ENV_REDIRECTORS` was named by the step but already exists at line 48 from step 1; it is unchanged.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py (+161/-0)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py (+62/-0)
+EDITS: hvr_reader_lens.py:39 added `import time`
+EDITS: hvr_reader_lens.py:996-1158 new section `7. CALLS AND RECORDS`: `JEV_TIMEOUT_MS=90000`, `JEV_BACKOFF_MS=2000`, and `which`, `spawn_call` (bounded child, stdin closed, timeout kill, code 127 on spawn error), `create_call_log` (`{"append": fn}`, empty file on first append, compact JSON lines), `read_stored_report` (parsed or None), each with a docstring; `RUN` renumbered to section 8
+EDITS: test_hvr_reader_lens.py:782-842 added checks `a spawn past the timeout is killed and marked unmeasured_timeout` and `a missing answer is recorded unmeasured, never 0`
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py -> (no output) (exit 0)
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> (no output) (exit 0)
+BLOCKED REASON: none

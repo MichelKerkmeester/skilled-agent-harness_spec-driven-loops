@@ -1,0 +1,8 @@
+Edit applied and verified. One note for the orchestrator: the target file is currently untracked in this worktree (`??`), so it will need `git add` before any commit.
+
+**HANDBACK**
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py (+16/-0)
+EDITS: test_hvr_reader_lens.py:1331-1346 — added `both_report = json.loads(...)` plus the `check("report.json holds each column's verdict line, categories and identity", ...)` call exactly as specified, immediately after the `both switches print Jev first` check
+CHECKS: python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> ALL PASS (exit 0); new line `PASS report.json holds each column's verdict line, categories and identity` present
+BLOCKED REASON: none

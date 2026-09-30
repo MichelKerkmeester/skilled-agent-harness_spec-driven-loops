@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 34: hvr-reader-needed-lens"
-description: "Test offline whether a Jev or Deem noul flags three reader-needed voice tells, synonym cycling, significance inflation and false ranges, better than the HVR scanner's floor, which flags none of them. A zero-call census over committed skill docs prints first, the operator labels 150 rows, and each backend column ends in keep, kill or stop under a rule fixed here. Planned, released 2026-09-29."
+description: "Test offline whether a Jev or Deem noul flags three reader-needed voice tells, synonym cycling, significance inflation and false ranges, better than the HVR scanner's floor, which flags none of them. A zero-call census over committed skill docs prints first, the operator labels 150 rows, and each backend column ends in keep, kill or stop under a rule fixed here. Built and closed at its label gate on 2026-09-29, commit `2588231589`."
 trigger_phrases:
   - "hvr reader-needed lens"
   - "hvr_reader_lens"
@@ -23,14 +23,14 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-09-29 |
 | **Branch** | `worktrees/069-cli-jev-workflow-integration` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 34 of 35 |
 | **Predecessor** | 033-validator-residue-flagger |
 | **Successor** | 035-fetched-text-injection-screen |
-| **Handoff Criteria** | The zero-call run has printed the census and either `stop: fewer than 150 labeled rows` or each category's baseline with its headroom line. After the operator's labels, each backend whose gate passed has printed one `verdict <backend>:` line from a live `--out` run with its `calls.jsonl`, or its skip line, or the zero-call run printed `stop: fewer than 2 categories can pass`. The lines go in `goal.md`'s log for the parent goal's log |
+| **Handoff Criteria** | The zero-call run has printed the census and `stop: fewer than 150 labeled rows`. No labels file is committed (parent D4), so the phase closed at its label gate. After the operator's draw and labels, each backend whose gate passed would print one `verdict <backend>:` line from a live `--out` run with its `calls.jsonl`, or its skip line, or the zero-call run would print `stop: fewer than 2 categories can pass`. The lines go in `goal.md`'s log for the parent goal's log |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -52,7 +52,7 @@ This is **Phase 34** of the cli-jev workflow integration specification. It is on
 **Deliverables**:
 - `hvr_reader_lens.py` (proposed) with the census, the two lexical comparators, a `--draw` mode that writes the unlabeled sample, the label gate, the per-category baselines, a `--jev` arm and a `--deem` arm (proposed switches)
 - `test_hvr_reader_lens.py` (proposed) against fixture docs in a temp git repository, with stub `jev` and `cli-deem` binaries
-- `hvr-reader-lens-labels.jsonl` (proposed) with 150 drawn rows and no text
+- `hvr-reader-lens-labels.jsonl` (proposed) with 150 drawn rows and no text. The build commits none (parent D4); the draw is the operator's first step
 - One zero-call report and, once the labels exist and at least two categories can pass, one live report per backend whose gate passed, in a directory the operator names
 - The docs parent goal D6 names, written through sk-doc: the packet's `SKILL.md` and `README.md`, one changelog file, one feature-catalog entry and one manual-testing-playbook entry
 
@@ -106,7 +106,7 @@ Produce one verdict per backend column that settles whether a Jev or Deem `noul`
 - The other eight reader-needed categories. Adding one is an amendment before the first model run.
 - A served form over drafts. That payload is the operator's private text, so it would need a payload-acceptance gate like 003's D9 (`../003-goal-verifier-jev-shadow/goal.md:64`), with Deem running when the gate is not accepted, and a later phase after a `keep`.
 - A shared Jev or Deem client library, one shared backend flag or silent failover (rows 110, 80 and 81).
-- Reading an untracked file, a `.env` file or anything outside `git ls-files`.
+- Reading an untracked file, a `.env` file or anything outside HEAD's tree.
 - A dollar figure in any cost line.
 
 ### Files to Change
@@ -117,8 +117,8 @@ Owner of every path below: `sk-doc`, in its `sk-create-with-human-voice` packet,
 |-----------|-------------|-------------|
 | `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py` | Create | Census, section split, comparators, `--draw`, label gate, baselines, `--jev` and `--deem` arms and the per-column verdicts. deepseek-04 estimated 80 to 140 LOC for a Jev-only lens (`../004-deep-research-expansion/research/research.md:722`). With the census, the draw, two arms and the verdict, about 400 to 500 (estimate) |
 | `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py` | Create | Plain-runner checks in `test_hvr_scan.py`'s style, ending `ALL PASS`, with stub `jev` and `cli-deem` binaries |
-| `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr-reader-lens-labels.jsonl` | Create | 150 drawn rows, no text. The build writes ids and hashes. The operator fills every label |
-| `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/README.md` | Modify | Rows for the script, the test and the labels file |
+| `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr-reader-lens-labels.jsonl` | Create | 150 drawn rows, no text. The operator draws it with `--draw --seed <n>` and fills every label. The build writes ids and hashes and commits none (parent D4; the draw ran as a scratchpad proof) |
+| `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/README.md` | Modify | Rows for the script and the test, and a usage fence. The labels file gets no row of its own (parent D4) |
 | `.skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md` and its Hermes copy `.hermes/skills/sk-create-with-human-voice/SKILL.md` | Modify and regenerate | One sentence naming the offline lens, its zero-call default and its two switches, and saying the scanner is unchanged. The copy is regenerated with `sync-skills-hermes.cjs` |
 | `.skilled/skills/sk-doc/sk-create-with-human-voice/README.md` | Modify | One line naming the script, its default and its switches |
 | `.skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v<next>.md` | Create | The next version after the newest at build time (`v1.1.0.0.md` at planning), through `sk-create-changelog` |
@@ -137,8 +137,8 @@ Owner of every path below: `sk-doc`, in its `sk-create-with-human-voice` packet,
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | **The default run makes zero model calls.** | Without `--jev` or `--deem`, the script prints the census and the label-gate line or each category's baseline with its headroom line, never spawns `jev` or `cli-deem` and writes no file. Stub `jev` and `cli-deem` binaries first on `PATH`, each logging one line per call, log nothing |
-| REQ-002 | **The census counts sections from committed files through the unchanged scanner.** | It reads only `git ls-files` paths matching the In Scope rule and gets findings only from `hvr_scan.py --json`. It prints files, sections, flagged sections, flagged sections of 5 to 80 lines, candidate sections per lexical comparator and the HEAD commit. No section text is printed. When the scanner prints `{"skipped": true, ...}` because `SKDOC_SKIP_VALIDATION` is on (`validation_switch.py:32`, `:105-118`), the run prints `stop: scanner skipped` and exits 0, and never counts a skipped file as clean. A scanner exit 2 stops the run with exit 2 |
-| REQ-003 | **Nothing private is read.** | A path outside `git ls-files`, or any basename starting `.env`, is never opened and is counted as `refused`. Every drawn section is read at its recorded commit with `git show` |
+| REQ-002 | **The census counts sections from committed files through the unchanged scanner.** | It reads only paths in HEAD's tree matching the In Scope rule and gets findings only from `hvr_scan.py --json`. It prints files, sections, flagged sections, flagged sections of 5 to 80 lines, candidate sections per lexical comparator and the HEAD commit. No section text is printed. When the scanner prints `{"skipped": true, ...}` because `SKDOC_SKIP_VALIDATION` is on (`validation_switch.py:32`, `:105-118`), the run prints `stop: scanner skipped` and exits 0, and never counts a skipped file as clean. A scanner exit 2 stops the run with exit 2 |
+| REQ-003 | **Nothing private is read.** | A path outside HEAD's tree, or any basename starting `.env`, is never opened and is counted as `refused`. Every drawn section is read at its recorded commit with `git show` |
 | REQ-004 | **The labels exist before any model verdict, and no model writes one.** | `--draw --seed <n>` writes `hvr-reader-lens-labels.jsonl` with 150 rows `{id, category, doc, section_start, section_end, commit, section_sha12, candidate, label, labeler}` and no text, drawn from flagged sections of 5 to 80 lines, no more than 5 per skill per category (proposed). Synonym cycling draws 50 rows at random. False ranges and significance inflation each draw up to 25 rows from sections their comparator flags and the rest from sections it does not, and the report prints how many candidate rows each drew. Every `label` and `labeler` is null. The operator labels each row `yes` or `no` for its own category. `--draw` refuses to overwrite a file that holds a label. Until 150 rows carry a label, every run prints `stop: fewer than 150 labeled rows` and no arm calls, even with a switch set |
 | REQ-005 | **Each category's baseline is the better of the scanner's floor and the standard's lexical rule.** | Flag-nothing never flags, which is what the scanner does for these categories. The category's comparator flags its candidate rows. Synonym cycling's baseline is flag-nothing. For the other two, the baseline is whichever is right on more labeled rows, flag-nothing on a tie. The report prints both accuracies and the `yes` share per category |
 | REQ-006 | **The keep rule is fixed before any model run and applies per backend column.** | See the Keep Rule below. Changing it after the first model run is an amendment that voids every earlier verdict |

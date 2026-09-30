@@ -24,7 +24,7 @@ contextType: "implementation"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Python 3, standard library only, beside `hvr_scan.py` in `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/` |
-| **Framework** | None. The script runs `hvr_scan.py --json`, `git ls-files` and `git show` as subprocesses and spawns `jev` and `cli-deem` as binaries |
+| **Framework** | None. The script runs `hvr_scan.py --json`, a `git ls-tree` read of HEAD's tree and `git show` as subprocesses and spawns `jev` and `cli-deem` as binaries |
 | **Storage** | None. Reads committed skill docs, writes the labels file only in `--draw` mode and reports only to an operator-named directory |
 | **Testing** | A plain-runner test file, `scripts/tests/test_hvr_reader_lens.py`, in `test_hvr_scan.py`'s style: one `check()` per case, `ALL PASS` at the end, exit 0 |
 
@@ -39,17 +39,17 @@ contextType: "implementation"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent goal D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel
-- [ ] The keep rule, the draw rule, the two comparators and the three `-q` instructions in `spec.md` are unchanged since 2026-09-29
-- [ ] Phase 008 (`ee3a1b057c`) and phase 009 (`ea883967d4`) are Complete, which they are, so this is a check, not a wait
+- [x] The operator released this phase on 2026-09-29: the "Bind and release" answer amended parent goal D3, so this is a check, not a wait. Builds run in number order, and disjoint builds may run in parallel. Evidence: the build ran under the release, `2588231589` sits on the released line and this phase is Complete at its label gate (`git log` at this closure pass)
+- [x] The keep rule, the draw rule, the two comparators and the three `-q` instructions in `spec.md` are unchanged since 2026-09-29. Evidence: no fix touched the keep rule or the questions; `T` pins the verdict outcomes and the question digests, and its last run prints 42 `PASS` lines and `ALL PASS` (`SE` sections 1 and 2)
+- [x] Phase 008 (`ee3a1b057c`) and phase 009 (`ea883967d4`) are Complete, which they are, so this is a check, not a wait. Evidence: design section 1 rechecked both statuses; the Deem client path c11f fixed is phase 008's `.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs` (`SE` sections 1 and 3)
 
 ### Definition of Done
-- [ ] `test_hvr_reader_lens.py` prints `ALL PASS` with at least 18 checks, and `test_hvr_scan.py` still prints `ALL PASS`
-- [ ] The labels file holds 150 operator labels, or the phase log records `stop: fewer than 150 labeled rows` as the state it waits in
-- [ ] One verdict line per backend whose gate passed, or `stop: fewer than 2 categories can pass`, is in `goal.md`'s log for the parent goal's log
-- [ ] `git status --porcelain` shows only the Files to Change paths, this phase folder and the report directory, and `git diff --stat` on `hvr_scan.py` is empty
-- [ ] `validate_document.py` exits 0 on every skill doc the phase changed (parent goal D6)
-- [ ] A cross-family review of the code leaves no open P0 or P1 finding (parent goal D5)
+- [x] `test_hvr_reader_lens.py` prints `ALL PASS` with at least 18 checks, and `test_hvr_scan.py` still prints `ALL PASS`. Evidence: 42 `PASS` lines and `ALL PASS`; `test_hvr_scan.py` prints 11 and `ALL PASS` (`SE` section 2)
+- [x] The labels file holds 150 operator labels, or the phase log records `stop: fewer than 150 labeled rows` as the state it waits in. Evidence: no labels file is committed (parent D4), and the phase log records the stop line as the state it waits in (`SE` section 2)
+- [x] One verdict line per backend whose gate passed, or `stop: fewer than 2 categories can pass`, or the label gate stop line `stop: fewer than 150 labeled rows` (parent D4), is in `goal.md`'s log for the parent goal's log. Evidence: the phase closed on the label gate stop; no verdict line exists (`SE` section 2)
+- [x] `git status --porcelain` shows only the Files to Change paths, this phase folder and the report directory, and `git diff --stat` on `hvr_scan.py` is empty. Evidence: the runs moved porcelain only by the parallel doc queues and the session's own commits; `hvr_scan.py` is byte-identical to HEAD (`SE` sections 1 and 2)
+- [x] `validate_document.py` exits 0 on every skill doc the phase changed (parent goal D6). Evidence: exit 0 on all eight docs (`SE` section 2)
+- [x] A cross-family review of the code leaves no open P0 or P1 finding (parent goal D5). Evidence: Pi MiMo on the code printed `VERDICT: FAIL` with 2 P1; c11f, c11g, c11h, c12f and c12g closed them (two rechecks `VERDICT: PASS`); DeepSeek on the docs printed `VERDICT: FAIL` with 1 P1, closed by c13f and c13g (recheck Pi MiMo `VERDICT: PASS`); five P2 recorded (`SE` section 3)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -94,7 +94,7 @@ Tracked skill docs go through the unchanged scanner. Its finding lines mark flag
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-**Who builds (parent goal D5).** A fresh Opus 5.5 xhigh build orchestrator writes one single-change brief per step below and runs them through Devin `deepseek-v4-1-flash-max` and Pi `llmgateway/mimo-v2.6-pro` at thinking `high`, by Bash only. The parent session verifies each step against its check, sends the code to a review by a model family other than the one that wrote it and commits with path-scoped commits. The build fixes P0 and P1 findings and records P2 findings. Code follows sk-code's route for Python, and the skill docs go through sk-doc (parent goal D6).
+**Who builds (parent D5, amended on 2026-09-29).** Only Pi writes, with no Claude leaves: DeepSeek V4.1 Flash on Cline at `--thinking xhigh`, then OpenCode Go, then LLM Gateway at `--thinking max`, and `llmgateway/mimo-v2.6-pro` at `high`. The session writes one single-change brief per step, runs the CLI executors by Bash only, verifies each step against its check, sends a file to a review by a model family other than the one that wrote it, fixes P0 and P1 findings, records P2 findings and commits path-scoped. Code follows sk-code's route for Python, and the skill docs go through sk-doc (parent goal D6). The design step ran on Devin first and exited 1 when Devin's daily quota ran out, so it and every code step and fix ran on DeepSeek V4.1 Flash through Cline at `--thinking xhigh`; the eight docs ran on Pi MiMo at `high`, after the session built `scratch/w4-session/docs/facts.txt` from its own runs.
 
 Each step's observable check:
 
@@ -104,7 +104,7 @@ Each step's observable check:
 4. **Baselines and label gate.** Check: the default run on the drawn file prints `stop: fewer than 150 labeled rows`, and on a test file with 150 labels prints both accuracies per category, the `yes` share, `margin: 0.10`, the `keep rule:` line and the headroom and power lines.
 5. **Model arms.** Add the Deem arm, then the Jev arm. Check: the test cases for both gates, both skips, both exit paths and one `--provider` per `jev` call pass.
 6. **Verdict.** Check: the test cases `keep`, `kill (precision)`, `stop (coverage)`, `stop (categories)` and `requalify` pass.
-7. **Label gate.** The build commits the drawn file and stops. The operator labels 150 rows. Check: the default run no longer prints the stop line.
+7. **Label gate.** The draw runs with a recorded seed and commit as a scratchpad proof, and no labels file is committed (parent D4, which outranks the phase's ruling 4). The operator labels 150 rows. Check: the default run no longer prints the stop line.
 8. **Runs.** One zero-call run, then, unless it prints `stop: fewer than 2 categories can pass`, one `--jev --out <dir>` run when the Jev gate passes and one `--deem --out <dir>` run when the Deem gate passes. Check: one verdict line and three category lines per column that ran, and every `calls.jsonl` line carries `wallMs` and `exitCode`, the commit pair on Deem lines and provider and model on Jev lines. The lines go in `goal.md`'s log.
 9. **Skill docs.** After the runs. Check: `validate_document.py` exits 0 on each changed doc, and the Hermes copy of `SKILL.md` is regenerated.
 10. **Review and commit.** Check: no open P0 or P1 finding, and `test_hvr_scan.py` still prints step 1's 11 PASS and `ALL PASS`.
@@ -130,12 +130,12 @@ Each step's observable check:
 | Dependency | Type | Status | Impact if blocked |
 |------------|------|--------|-------------------|
 | The operator's release | Operator | Released 2026-09-29 (parent goal D3, amended by the operator's "Bind and release"). Builds run in number order, and disjoint builds may run in parallel | Nothing is built |
-| The operator's 150 labels | Operator | Waiting on the draw | Steps 8 and 9 wait. The phase holds at the label gate |
+| The operator's 150 labels | Operator | Not written | Every arm stops at the gate. The phase closed there: the 2026-09-29 draw proof wrote 150 rows with seed 20260929 into the session scratchpad and no labels file is committed (parent D4) |
 | Phase 008 `cli-deem` | Internal | Complete (`ee3a1b057c`) | The Deem arm cannot run |
-| Local Deem server passing its check | External, operator-run | Served per `007-classifier-deep-research/context/deem-local.md` | The Deem run prints its skip line |
-| `jev` 0.6.2 and a credential for provider P | External, operator-held | `jev --version` printed `jev 0.6.2` on 2026-09-29 (this leaf) | The Jev run prints its skip line |
+| Local Deem server passing its check | External, operator-run | Served per `007-classifier-deep-research/context/deem-local.md`; no live run started | The Deem run prints its skip line |
+| `jev` 0.6.2 and a credential for provider P | External, operator-held | `jev --version` printed `jev 0.6.2` on 2026-09-29 (this leaf); no live run started | The Jev run prints its skip line |
 | `node` on `PATH` when `cli-deem` is not | External | Present on the operator's machine (assumed, UNKNOWN on another) | The Deem gate prints `deem arm skipped: not reachable` |
-| sk-doc modes for the docs | Internal | Available | Step 9 waits |
+| sk-doc modes for the docs | Internal | Ran: the eight docs landed in `2588231589` and `validate_document.py` exits 0 on each | None |
 <!-- /ANCHOR:dependencies -->
 
 ---

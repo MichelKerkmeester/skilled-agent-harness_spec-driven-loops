@@ -1,0 +1,22 @@
+The file is written and validated. Verification results:
+
+```
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.0.0.md
+✅ VALID: .skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.0.0.md
+Document type: changelog
+Total issues: 0
+exit=0
+
+$ git diff --stat -- .skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.0.0.md
+(no output, the file is new and untracked)
+exit=0
+$ git status --porcelain -- .skilled/skills/sk-doc/sk-create-with-human-voice/changelog/
+?? .skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.0.0.md
+```
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.0.0.md (+33/-0)
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.0.0.md:1 created the `v1.2.0.0` packet changelog entry, frontmatter and section order matched to `changelog/v1.1.0.0.md`, facts limited to R step 14's list verified against the script and FACTS (new script and labels file, zero-call default, label gate, `--jev`/`--deem` behind their own gates with Jev first per ruling 1, `hvr_scan.py` byte-identical, `Upgrade: No migration required.`), no `verdict` line claimed per ruling 6
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.0.0.md -> `✅ VALID: .skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.0.0.md` / `Total issues: 0` (exit 0) | git diff --stat -- .skilled/skills/sk-doc/sk-create-with-human-voice/changelog/v1.2.0.0.md -> no output, file is new and untracked (exit 0)
+BLOCKED REASON: none

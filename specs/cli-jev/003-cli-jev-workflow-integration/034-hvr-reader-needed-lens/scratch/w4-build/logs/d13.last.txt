@@ -1,0 +1,9 @@
+Both checks pass. The diff is exactly the one content line plus the blank line that separates it as its own line of prose, with nothing else in the file touched and `version: 1.1.0.4` kept.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/README.md (+2/-0)
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/README.md:96 one line added at the end of section 3 QUICK START naming `scripts/hvr_reader_lens.py`, its zero-call default (`Its default run makes no model call`) and both switches (`--jev` and `--deem` each measure one backend against the operator's labels). `version: 1.1.0.4` kept, everything else byte-identical
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-with-human-voice/README.md -> `✅ VALID: .skilled/skills/sk-doc/sk-create-with-human-voice/README.md` / `Total issues: 0` (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/sk-doc/sk-create-with-human-voice/README.md -> ` 1 file changed, 2 insertions(+)` (exit 0)
+BLOCKED REASON: none

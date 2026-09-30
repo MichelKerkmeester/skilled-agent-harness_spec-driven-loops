@@ -1,0 +1,12 @@
+SKILL ROUTING: sk-code → compiled-route resolved `sk-code-opencode` (surface, Python slice loaded: style-guide, quality-standards, quick-reference, directory-and-test-conventions, naming-and-commenting).
+REPO RULES: none in this repository (no `REPO RULES.md` at worktree root).
+ARTIFACT: sk-code → sk-code-opencode evidence applied; comment hygiene kept (no comment added).
+
+The staged-file check is in place at `test_hvr_reader_lens.py:489-502`, and both checks pass. One note for the orchestrator: both `hvr_reader_lens.py` and the test file are untracked (`??`) in this worktree, and `scripts/README.md` shows ` M` from a concurrent worker — neither is mine; my only write was the one edit to T.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py (+15/-0)
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py:489-502 added check "census leaves out a staged, uncommitted doc": writes `.skilled/skills/alpha-skill/staged.md` ("# Staged\nFINDING body\n") via `_write_files`, stages it with `S.git(scan_root, ["add", staged_doc])` (no commit), then asserts `staged_doc not in S.tracked_files(scan_root)` and `S.census_lines(S.build_census(scan_root, S.head_commit(scan_root), S.tracked_files(scan_root), scanner)) == census_text`
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> no output (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> `PASS census leaves out a staged, uncommitted doc` / `ALL PASS`, 42 PASS lines (was 41) (exit 0)
+BLOCKED REASON: none

@@ -1,0 +1,24 @@
+The fix checks out against the spec. Review follows.
+
+**Finding check**
+
+`closed` - `build_census` reads every kept file once with `read_at_commit` → `git show <commit>:<path>` (`hvr_reader_lens.py:123`), writes those committed texts into `tempfile.TemporaryDirectory()` at the same relative paths (`:373-376`), runs `scan_batch(scanner, temp_root, ...)` (`:379`) so the scanner reads the committed copy (the unchanged `hvr_scan.py` reads `Path(target)` relative to cwd, `hvr_scan.py:611`, and reports `result["path"] = target`, `:621`, so the findings map keys still match `kept`), and builds the sections from the same `texts` dict (`:381-382`). The new check "census reads committed text, not uncommitted edits" (test `:486`) strips the `FINDING` markers from the fixture's working-tree copy and confirms the census lines are unchanged — it passes. Test last line: `ALL PASS` (exit 0).
+
+**REQ-002 / REQ-003 of the phase `spec.md`**
+
+- Nothing outside the tracked frame is opened: only `frame_paths`-kept `git ls-files` paths are read (`git show`), the scanner opens only the temp copies of those paths, and its standard resolves from the scanner's own script path (`hvr_scan.py:55-56`), unchanged behavior. Skipped-scan contract holds: `exit_if_validation_off` resolves the env var and `.skilled/hooks/hook-flags.env` from `validation_switch.py`'s own location, not the cwd, so the temp-folder cwd does not change skip behavior; "a skipped scanner stops the run" and "a scanner exit 2 stops the run" both pass.
+- Nothing is written inside the repository: the only writes are inside the system-temp `TemporaryDirectory()` (default `TMPDIR`, outside the repo). One sub-P1 note, not rated: if an operator sets `TMPDIR` inside the repository the copies would land there — the stock stdlib default does not, and the test harness's fixtures use the same default.
+- The temporary folder is gone when the census returns: the `with tempfile.TemporaryDirectory()` block wraps every batch scan and its exit runs cleanup whether the block returns or raises `ScannerSkipped`/`ScannerFailed`.
+
+**New P0 or P1 in the two files**
+
+None. Two non-rated observations, below P1: `scan_batch`'s docstring still calls its second parameter "the repository the paths are read from" (`:307`) — it is now the folder holding the temp copies; and a `deps`-supplied relative scanner path would resolve against the temp folder, but no CLI flag exposes `scanner` (`main` argparse has none), so no public surface is affected.
+
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (+0/-0)
+EDITS: none
+CHECKS: `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py` -> `ALL PASS` (exit 0)
+BLOCKED REASON: none
