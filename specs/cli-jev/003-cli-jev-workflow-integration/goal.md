@@ -46,9 +46,9 @@ _memory:
 |----|----------|
 | D1 | Jev first, else Deem, dormant unless one passes its check (`jev auth status --provider <p>` or Deem's health check). Jev gets no secret |
 | D2 | Hub `cli-classifier` holds `cli-jev` and `cli-deem`. Deem 0.8B bf16 stays served locally |
-| D3 | Built: 002, 003, 005, 006, 008, 009, 016, 017. Released 2026-09-29: 019 to 035 in order, one per `later` item, then 036 to 038. Disjoint builds may run in parallel |
+| D3 | Released 2026-09-29: 019 to 035, then 036 to 040. Disjoint builds may run in parallel |
 | D4 | 003, 006 and 019 to 035 stop at their label gate. No model labels. R17 is dropped |
-| D5 | The session orchestrates, verifies and commits. Only Pi writes: DeepSeek V4.1 Flash on Cline (`xhigh`), then OpenCode Go, then LLM Gateway (`max`), and `llmgateway/mimo-v2.6-pro` at `high`. No Claude leaves. Cross-family review: fix P0 and P1, record P2 |
+| D5 | The session orchestrates, verifies and commits. Only Pi writes: DeepSeek V4.1 Flash on Cline (`xhigh`), then OpenCode Go, then LLM Gateway (`max`), and MiMo v2.6 Pro at `high`. No Claude leaves. Cross-family review: fix P0 and P1, record P2 |
 | D6 | Skill docs change via sk-doc, code via sk-code's OpenCode route |
 | D7 | Stop only for an install yes or a missing credential. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
@@ -100,6 +100,8 @@ Decisions outrank each child goal.
 | 036 | `036-sk-code-and-sk-doc-alignment/goal.md` |
 | 037 | `037-pi-native-classifier-transport/goal.md` |
 | 038 | `038-pi-classifier-transport-integration/goal.md` |
+| 039 | `039-hub-cleanup/goal.md` |
+| 040 | `040-hard-rules-sidecar/goal.md` |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -107,7 +109,7 @@ Decisions outrank each child goal.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 038 are Complete
+- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 040 are Complete
 - [x] 019 to 035 are Complete: each prints its verdict line or stops at its label gate
 - [x] `validate_document.py` exits 0 on every skill doc a build changed
 - [x] No open P0 or P1 finding, and no changed runtime's suite fails beyond its baseline
@@ -243,4 +245,5 @@ and findings belong here.
 | Directive amendment: bind 036 (2026-09-30) | Source: the operator's "Make sure all skills and things we created aligns with sk code opencode and sk doc" and the answer "New phase in 003 (Recommended)". D3 releases 036 after 035. D7 drops "Worktree 069" and "no push or merge to main", which the operator lifted for the 2026-09-30 landing. Criterion 1 adds 036 and is open again until 036 is Complete. The objective and binding line were cut to keep the slice under 4,000 characters |
 | Directive amendment: bind 037 (2026-09-30) | Source: the operator's "Pi has native jev support this changes how we integrate it in cli pi" and the answer "Test it first (Recommended)". D3 releases 037 after 036. Criterion 1 adds 037 and is open until 037 is Complete. To stay under 4,000 characters the objective drops "with docs true to the code" (D6 carries it), D1 drops "exits 0", D5 drops "by Bash" and the binding line is shortened |
 | Directive amendment: bind 038 (2026-09-30) | Source: the operator's answer "Plan the integration" after 037 printed `adopt`, and "Merge to main (Recommended)", which landed 036 and 037 at `2748c84f14`. D3 releases 038 after 037. Criterion 1 adds 038 and is open until 038 is Complete. To stay under 4,000 characters D1 drops "With neither, behavior is today's." (dormant already says it), D2 drops "and current", D3 drops "research" and D4 splits its label sentence |
+| Directive amendment: bind 039 and 040 (2026-09-30) | Source: the operator's "its also missing cli-jev", "all cli classifier skills nad modes should stay pre-release ... dont reach v1.0.0.0", "cli deem is also missing testing playbook" and "you have hard rules in skill frontmatter? Thats not supported", then the answers "Rename to cli-jev (Recommended)", "Continue each line (Recommended)" and "Move rules out of frontmatter". 039 renames the Jev packet folder, holds versions to 0.x and adds the cli-deem playbook. 040 moves hard rules to a sidecar. Both run before 038's build. To stay under 4,000 characters D3 drops its Built list (criterion 1 names those phases) and "in order, one per `later` item" (019 to 035 are Complete), and D5 names MiMo by its display name |
 <!-- /ANCHOR:log -->
