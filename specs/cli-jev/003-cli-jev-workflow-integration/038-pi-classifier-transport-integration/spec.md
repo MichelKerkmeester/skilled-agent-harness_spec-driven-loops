@@ -162,7 +162,7 @@ The context's grep found 21 script files that spawn `jev` directly, and its owne
 | ID | Requirement |
 |----|-------------|
 | REQ-009 | **Docs through sk-doc.** `cli-jev`, the `cli-pi/SKILL.md` classifier section, the catalog entry with its index row and the playbook scenario with its index row each pass `validate_document.py` VALID, and no doc claims a measurement no run printed |
-| REQ-010 | **Executors and scope (parent D5 through D6).** DeepSeek V4.1 Flash writes, MiMo v2.6 Pro reviews, no Claude worker writes or reviews. P0 and P1 findings are fixed and rechecked, P2 findings are recorded. Only section 3's files change, and code comments carry no spec path, phase number or requirement id |
+| REQ-010 | **Executors and scope (parent D5 through D6).** DeepSeek V4.1 Flash writes, SWE 2 max on cli-devin reviews (Luna 6 max fast on cli-codex as the second reviewer), no MiMo or Claude worker writes or reviews. P0 and P1 findings are fixed and rechecked, P2 findings are recorded. Only section 3's files change, and code comments carry no spec path, phase number or requirement id |
 | REQ-011 | **The invariance proof is byte-level.** The switch-off check runs each changed caller against a stub `jev` before and after the change and compares bytes with `diff`, not exit codes alone. The outputs sit under `scratch/verify/` |
 | REQ-012 | **The live smoke call is optional.** A small live `choice` call runs only on the operator's yes, and no build step depends on it |
 

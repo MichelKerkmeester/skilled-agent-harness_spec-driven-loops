@@ -78,7 +78,7 @@ The phase will add `.skilled/skills/cli-classifier/shared/scripts/jev-transport.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not started. The plan delivers the module first with both backends stubbed, then the caller opt-in behind a byte-for-byte proof, then the docs through sk-doc and a cross-family review, then the closure gates. DeepSeek V4.1 Flash writes and MiMo v2.6 Pro reviews under parent D5 through this phase's D6, with no Claude worker. The session runs the switch-off comparisons and the closure gates, and a live smoke call waits on the operator's yes.
+Not started. The plan delivers the module first with both backends stubbed, then the caller opt-in behind a byte-for-byte proof, then the docs through sk-doc and a cross-family review, then the closure gates. DeepSeek V4.1 Flash writes and SWE 2 max on cli-devin or Luna 6 max fast on cli-codex reviews under parent D5 through this phase's D6, with no MiMo or Claude worker. The session runs the switch-off comparisons and the closure gates, and a live smoke call waits on the operator's yes.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -93,7 +93,7 @@ Not started. The plan delivers the module first with both backends stubbed, then
 | The transport returns the CLI's shape (D3) | An opting-in caller then changes one call and keeps its parsing |
 | A gate failure prints one skip line and falls back (D4) | A silent switch would make a Pi failure look like a Pi answer |
 | Credentials stay in Pi's own store (D5) | The transport then never touches a key, and runtime trees owned by other packets are not edited |
-| DeepSeek writes and MiMo reviews (D6) | Parent D5's roster, with the reverse direction for any MiMo fix and no Claude worker |
+| DeepSeek writes and SWE 2 max or Luna 6 max reviews (D6) | Parent D5's roster, with the reverse direction for any fix the reviewer writes and no MiMo or Claude worker |
 <!-- /ANCHOR:decisions -->
 
 ---

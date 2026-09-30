@@ -52,7 +52,7 @@ Frozen choices. Changing one is an amendment.
 | D3 | The transport returns the shape callers get from the jev CLI today. A caller that opts in changes one call, not its parsing |
 | D4 | When Pi is asked for but its gate fails, the transport prints one skip line and does what `spec.md` fixes. It never switches silently |
 | D5 | Pi's own store holds every credential. The transport never reads, prints or passes a key. Runtime trees owned by other packets are not edited |
-| D6 | Executors follow parent D5: DeepSeek writes, MiMo reviews, no Claude workers. Fix P0 and P1, record P2 |
+| D6 | Executors follow parent D5: DeepSeek writes, SWE 2 max or Luna 6 max reviews, no MiMo or Claude workers. Fix P0 and P1, record P2 |
 <!-- /ANCHOR:directive -->
 
 ---

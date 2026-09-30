@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 38: pi-classifier-transport-integration"
-description: "Phase 037 measured Pi's native classifier runtime as an `adopt` for `choice` questions, so this plan wires that route in as an opt-in transport beside the jev CLI. One shared module under cli-classifier answers a `choice` question through Pi's SDK and returns the shape callers read today, the CLI stays the default, each gate failure falls back with one skip line, and only the `choice` callers the design approves change. DeepSeek writes, MiMo reviews, and docs go through sk-doc."
+description: "Phase 037 measured Pi's native classifier runtime as an `adopt` for `choice` questions, so this plan wires that route in as an opt-in transport beside the jev CLI. One shared module under cli-classifier answers a `choice` question through Pi's SDK and returns the shape callers read today, the CLI stays the default, each gate failure falls back with one skip line, and only the `choice` callers the design approves change. DeepSeek writes, SWE 2 max or Luna 6 max reviews, and docs go through sk-doc."
 trigger_phrases:
   - "pi classifier transport plan"
   - "jev transport switch design"
@@ -45,14 +45,14 @@ One shared module under `.skilled/skills/cli-classifier/shared/scripts/` (propos
 - [ ] Phase 037 is Complete, and its verdict line `verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022` is in `037-pi-native-classifier-transport/scratch/live-run.stdout.txt`
 - [ ] Pi 0.99.1 is installed, and `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs` holds the Pi helpers the design reads
 - [ ] `jev 0.6.2` is on `PATH`, and `cli-jev/SKILL.md` holds the Output Contract and the Transport Guard
-- [ ] The executors are available under D6: DeepSeek V4.1 Flash to write, MiMo v2.6 Pro to review
+- [ ] The executors are available under D6: DeepSeek V4.1 Flash to write, SWE 2 max on cli-devin or Luna 6 max fast on cli-codex to review
 
 ### Definition of Done
 - [ ] The five completion criteria in `goal.md` pass from the final state
 - [ ] Every row of `acceptance-criteria.md` is `Met` with its observed command output, or left open with the reason
-- [ ] MiMo reviewed every DeepSeek diff and DeepSeek reviewed any MiMo fix, with no open P0 or P1 finding (parent D5 through D6)
+- [ ] SWE 2 max or Luna 6 max reviewed every DeepSeek diff and DeepSeek reviewed any fix the reviewer wrote, with no open P0 or P1 finding (parent D5 through D6)
 - [ ] The switch-off `diff` is empty for every changed caller, and the key grep exits 1 on the module
-- [ ] MiMo and DeepSeek between them leave every file hash of a read-only review unchanged
+- [ ] SWE 2 max, Luna 6 max and DeepSeek between them leave every file hash of a read-only review unchanged
 - [ ] `validate.sh --strict` on this phase prints `RESULT: PASSED`, `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)`, and `goal.cjs packet` prints `packet_durable_chars` at or under 4000
 - [ ] The three runtime trees show an empty `git diff --stat`, and only the files in `spec.md` section 3 changed
 <!-- /ANCHOR:quality-gates -->
@@ -115,7 +115,7 @@ This is an integration phase, not a bug fix, so the addendum records the produce
 
 Follow the ordered tasks in `tasks.md`. It owns the task checkboxes and state. The six phases below are the plan of record.
 
-**Who builds (parent D5 through this phase's D6).** DeepSeek V4.1 Flash writes the module, the tests, the caller changes and the docs, each dispatched through the external orchestration route. MiMo v2.6 Pro reviews every DeepSeek diff, and DeepSeek reviews any MiMo fix. No Claude worker writes or reviews. The session records every gate result and commits path-scoped. P0 and P1 findings are fixed and rechecked, P2 findings are recorded.
+**Who builds (parent D5 through this phase's D6).** DeepSeek V4.1 Flash writes the module, the tests, the caller changes and the docs, each dispatched through the external orchestration route. SWE 2 max on cli-devin or Luna 6 max fast on cli-codex reviews every DeepSeek diff, and DeepSeek reviews any fix the reviewer writes. No MiMo or Claude worker writes or reviews. The session records every gate result and commits path-scoped. P0 and P1 findings are fixed and rechecked, P2 findings are recorded.
 
 Each phase's observable check:
 
@@ -123,7 +123,7 @@ Each phase's observable check:
 2. **Transport module with stubbed tests.** The switch resolver, the type gate, the Pi gate, the Pi backend, the result mapper, the CLI backend and the skip line, plus their tests. Check: a stub-backed switch-off run returns the CLI's result with no added output, a switch-on run answers one `choice` question through the Pi stub, and `node --test` exits 0.
 3. **Caller opt-in.** Only the `choice` callers the design approves, one call site each. Check: each changed caller's switch-off output `diff`s empty against its pre-change recording, and its switch-on output answers through the Pi stub in a test.
 4. **Docs through sk-doc.** The `cli-jev` Pi route, the `cli-pi/SKILL.md` classifier section, the catalog entry and the playbook scenario with their index rows. Check: `validate_document.py` exits 0 on each changed doc, and no doc claims a measurement no run printed.
-5. **Cross-family review.** MiMo reviews every DeepSeek diff and DeepSeek reviews any MiMo fix. Check: one review file with a verdict, no open P0 or P1 finding, each review's file hashes equal before and after, and P2 findings recorded.
+5. **Cross-family review.** SWE 2 max or Luna 6 max reviews every DeepSeek diff and DeepSeek reviews any fix the reviewer writes. Check: one review file with a verdict, no open P0 or P1 finding, each review's file hashes equal before and after, and P2 findings recorded.
 6. **Closure.** Record every gate result and the follow-up list, mark each acceptance criterion from its evidence, then run `repair-derived.cjs --apply`, `validate.sh --strict`, `check-goal.cjs` and `goal.cjs packet`. Check: `RESULT: PASSED`, `RESULT: PASSED (5/5 checks)`, and `packet_durable_chars` at or under 4000.
 <!-- /ANCHOR:phases -->
 
@@ -156,7 +156,7 @@ Commands run from the repository root. `M` is `.skilled/skills/cli-classifier/sh
 | The 037 scorer and its 41-case suite | Internal | Committed at `b34b9d1907` | The design's move-versus-copy decision loses its check |
 | The design's caller approval | Internal | Not yet produced | Only the docs and the module land, with no caller change |
 | The operator's yes for a live smoke call | Operator | Not yet given | The smoke call never runs. The build is unaffected |
-| DeepSeek V4.1 Flash and MiMo v2.6 Pro | External, dispatched | Under D6 | A phase waits or reports the blocker |
+| DeepSeek V4.1 Flash, SWE 2 max on cli-devin and Luna 6 max fast on cli-codex | External, dispatched | Under D6 | A phase waits or reports the blocker |
 <!-- /ANCHOR:dependencies -->
 
 ---
