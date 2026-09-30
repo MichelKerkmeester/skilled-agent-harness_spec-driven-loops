@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/015-global-claude-md-agents-symlink",
+  "spec_folder": "agents/015-global-claude-md-agents-symlink",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "stop after compaction",
+      "compaction auto continue",
+      "global claude md symlink",
+      "claude md agents md symlink",
+      "context compaction behavior rule",
+      "global claude md symlink plan",
+      "claude md backup and relink",
+      "compaction stop rule removal",
+      "global claude md symlink tasks",
+      "claude md relink verification",
+      "global claude md symlink summary",
+      "compaction auto continue shipped"
+    ],
+    "key_topics": [
+      "stop",
+      "compaction",
+      "auto",
+      "continue",
+      "global",
+      "claude",
+      "symlink",
+      "agents",
+      "context",
+      "behavior",
+      "rule",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Compaction Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Back",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Does Claude Code",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Claude Code",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The global Claude Code instruction file, `~/.claude/CLAUDE.md`, held a \"Context Compaction Behavior\" block",
+    "created_at": "2026-09-25T20:03:32Z",
+    "last_save_at": "2026-09-25T20:05:05.438Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6aeec5324966ea4aa0b2b92df72bed7e9d65fe04a2594f1cb714d2735649c807",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1661e9ce6f4bb8c3aeb74e95f8381283a51c053b95f5fb8853f19063eb77444f",
+      "plan.md": "6190de135b810d614eb9377b0d2340f18ed45c7af308de3b43310201c1a6771d",
+      "tasks.md": "e12910bf8de9c00c6193c32ccb77448398f49e1a60396b8f6babe0d87b32ccff",
+      "implementation-summary.md": "0a7d8c56189a1eaf4a0386e8e3c2a793e4efdd12018e173d5193f09e094c4a89"
+    },
+    "last_active_at": null
+  }
+}

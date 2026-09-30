@@ -2401,7 +2401,7 @@ reference_only_appendix:
     note: "Checkpoint commits are intentionally excluded from workflow.steps."
     commands:
       - "git add {state_paths.iteration_pattern} {state_paths.state_log} {state_paths.findings_registry} {state_paths.strategy} {state_paths.review_output}"
-      - 'git commit -m "chore(deep-review): iteration {NNN} complete"'
+      - 'git commit -m "chore(deep-review): iteration {NNN} complete" -m "{one-line summary of what the iteration found}"'
   severity_weights:
     note: "Severity weights for newFindingsRatio calculation"
     weights:

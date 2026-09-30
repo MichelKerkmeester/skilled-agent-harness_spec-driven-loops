@@ -97,7 +97,7 @@ Any new branch must be created through the naming allocator, never by `git branc
 - [ ] **Commit .gitignore update**
   ```bash
   git add .gitignore
-  git commit -m "chore: ignore worktree directories"
+  git commit -m "chore: ignore worktree directories" -m "Keeps worktree checkouts out of the parent repository."
   ```
 
 **For global directory**: Skip safety verification (outside project)
@@ -365,7 +365,7 @@ bash .skilled/skills/sk-git/scripts/worktree-naming.sh create <slug> main
 - [ ] Commit immediately
   ```bash
   git add .gitignore
-  git commit -m "chore: ignore worktree directories"
+  git commit -m "chore: ignore worktree directories" -m "Keeps worktree checkouts out of the parent repository."
   ```
 
 - [ ] Proceed with worktree creation

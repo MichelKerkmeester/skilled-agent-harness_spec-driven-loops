@@ -1,0 +1,16 @@
+# CLI pre-flight, 2026-09-28T12:41:46Z: binary on PATH, version and auth verdict (raw auth output not kept)
+pi: on PATH
+opencode: on PATH
+devin: on PATH
+cursor-agent: on PATH
+codex: on PATH
+pi 0.87.1
+opencode 1.18.32
+devin devin 3000.11.3 (9c803229faa4)
+cursor-agent 2026.09.26-dd393fe
+codex codex-cli 0.157.1
+codex auth: ok
+devin auth: ok
+cursor auth: ok
+opencode llmgateway provider: configured
+opencode opencode-go provider: configured

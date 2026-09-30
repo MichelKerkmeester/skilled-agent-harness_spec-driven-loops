@@ -1,0 +1,18 @@
+# Teardown lines in each tester's final report, counted with grep -c over reports/<cli>-<id>.md
+# 433 and CP-004 check the live generation file. CP-003 does not. An OpenCode raw stream also
+# holds the scenario text the tester printed with cat, so only the final reports are counted.
+433	pi	unchanged=1	CHANGED=0	removed=1
+433	opencode	unchanged=2	CHANGED=0	removed=1
+433	devin	unchanged=1	CHANGED=0	removed=1
+433	cursor	unchanged=1	CHANGED=0	removed=1
+433	codex	unchanged=1	CHANGED=0	removed=1
+CP-003	pi	unchanged=0	CHANGED=0	removed=1
+CP-003	opencode	unchanged=0	CHANGED=0	removed=2
+CP-003	devin	unchanged=0	CHANGED=0	removed=2
+CP-003	cursor	unchanged=0	CHANGED=0	removed=1
+CP-003	codex	unchanged=0	CHANGED=0	removed=1
+CP-004	pi	unchanged=1	CHANGED=0	removed=1
+CP-004	opencode	unchanged=1	CHANGED=0	removed=1
+CP-004	devin	unchanged=2	CHANGED=0	removed=2
+CP-004	cursor	unchanged=2	CHANGED=0	removed=2
+CP-004	codex	unchanged=1	CHANGED=0	removed=1

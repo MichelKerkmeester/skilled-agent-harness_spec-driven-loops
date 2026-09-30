@@ -3,7 +3,7 @@ name: sk-git
 description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, and finish; single-skill workflow guidance with no spec."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.6.0.0
+version: 1.7.0.0
 hard_rules:
   - id: commit-scope-drops-untracked
     check: commit-scope-drops-untracked
@@ -469,14 +469,17 @@ Apply this sequence:
 
 #### 6. Body Contract
 
-A body is required when any condition applies:
+Every authored commit carries a body: at least one prose line, separated from the subject by a
+blank line, that says why the change exists. The number of staged paths never excuses a missing
+body, because a later search reads the body to learn the reason, and a one-path commit is
+searched as often as a large one. Trailers such as `Spec:` and `Commit-Id:` are machine data and
+do not count as a body. Only the Git-generated subjects in §1 are exempt.
 
-- Four or more paths are staged.
-- The change fixes a regression, failure, race, security issue, or data risk — or is breaking / has migration requirements.
+Use the full structure below when any condition applies:
+
+- The change fixes a regression, failure, race, security issue, or data risk, or it is breaking or has migration requirements.
 - The reason or tradeoff is not obvious from the subject.
 - The commit spans code plus generated metadata or multiple repository areas.
-
-Omit a body only for a small, self-explanatory change affecting at most three paths.
 
 Preferred structure:
 

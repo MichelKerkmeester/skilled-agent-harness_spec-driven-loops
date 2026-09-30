@@ -77,21 +77,23 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 |---------|--------------|--------|--------------|
 | `validate.sh` skip path | Producer of the report | Update | `validate-skip-switch.vitest.ts` |
 | `repair-derived.cjs` | Reads `results` and `entries` for error rows | Unchanged | The regression test in `repair-derived.vitest.ts` |
-| `strict-pass-freshness.ts` | Reads the exit code, `passed` and the rows | Unchanged, counts a skip as a pass | `strict-pass-freshness.ts:255-270` |
-| `quality-audit.sh` | Reads the exit code only | Unchanged | `quality-audit.sh:130-145` |
-| `progressive-validate.sh` | Passes the output through | Unchanged | `progressive-validate.sh:246-285` |
+| `strict-pass-freshness.ts` | Reads the exit code, `passed` and the rows | Update after the review: a `skipped` status, counted apart, and a skipped baseline row never makes a later failure a known one | `strict-pass-freshness.vitest.ts` |
+| `quality-audit.sh` | Read the exit code only | Update after the review: reads the JSON report in both modes and counts a skipped folder apart | `quality-audit-script.vitest.ts` |
+| `progressive-validate.sh` | Passed the output through, stderr merged into stdout under `--json` | Update after the review: captures stdout alone and reports `skipped` | `progressive-validation.vitest.ts`, T-PB2-16 |
 | `create.sh` | Runs `--quiet` and reads the exit code | Unchanged | `create.sh:1027`, `:1665`, `:1901` |
 | `changed-packet-validation.yml` | CI consumer | Unchanged, never sees the switch | `rg -n 'SKIP_VALIDATION\|HOOK_FLAGS_CONFIG' .github` finds nothing |
 | Post-edit router | Runs `check-frontmatter-versions.sh`, exit 1 is a finding | Unchanged, a skip exits 0 | `post-edit-router.cjs:38` |
 | sk-doc validators | Producers of findings | Update, check path only | `test_validation_switch.py` |
 | Scripts that import validator functions | Library readers | Unchanged, the guard sits in `main` | `audit_descriptions.py:49`, `validate_catalog_package.py:46`, and the rename engine and reference checker, which import `check_no_new_snake_case` |
 | `audit_readmes.py` | Reads `valid` from `validate_document.py --json` | Unchanged, a skip line carries `valid: true` | `test_validation_switch.py` compares the line exactly |
+| The four readers of `hook-flags.env` | Parse the file for every hook and both switches | Update after close: a `#` after a space or tab ends a value. Update after the review: the shell reader trims only a value's edges and tests whether the variable is set, and the shell and dist readers drop a byte order mark | The cross-reader tests in `hook-flags.test.cjs` and the example test in `test_validation_switch.py` |
 
 Required inventories:
 - Same-class producers: `rg -n 'SPECKIT_SKIP_VALIDATION|SPECKIT_VALIDATION\b' .skilled` found one reader, `validate.sh`, with two skip exits (lines 19 and 115). Both move onto one path.
 - Consumers of changed symbols: `rg -n 'validate\.sh' --glob '!**/tests/**'` over the runtime, scripts, hooks and workflows, and a per-validator `rg -F <name>` over code, workflows and commands.
+- Readers of the flags file, for the comment rule: `rg -l -L 'HOOK_FLAGS_CONFIG|hook-flags\.env'` over the code and every runtime folder. Four readers parse the file: `hook-flags.cjs`, `hook-flags.sh`, `validation_switch.py` and `check-dist-staleness.sh`, and each runtime's dist checker is a link to the last. Every other consumer goes through one of the four.
 - Matrix axes: where the value comes from (environment, file, neither), the environment value (truthy, falsy, empty, unset), the output mode (text, JSON) and the validator mode (check, write, self-test).
-- Algorithm invariant: a switch is on only when its effective value is truthy, and the effective value is the environment value whenever the variable is set, else the last `NAME=` line of the flags file. Adversarial cases: environment `0` over file `1`, empty environment over file `1`, a quoted `'yes'`, a commented line, spaces around `=`, and a missing file.
+- Algorithm invariant: a switch is on only when its effective value is truthy, and the effective value is the environment value whenever the variable is set, else the last `NAME=` line of the flags file. Adversarial cases: environment `0` over file `1`, empty environment over file `1`, a quoted `'yes'`, a commented line, spaces around `=`, and a missing file. The comment rule adds a comment after a bare value, after quotes and after a tab, `a#b`, `on#x` and an empty value before a comment.
 <!-- /ANCHOR:affected-surfaces -->
 
 

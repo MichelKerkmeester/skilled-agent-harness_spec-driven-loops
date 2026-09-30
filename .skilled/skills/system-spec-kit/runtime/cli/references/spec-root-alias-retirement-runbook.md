@@ -74,7 +74,7 @@ node -e "const fs=require('node:fs');try{fs.lstatSync('specs');throw new Error('
 Commit the staged deletion as a reviewable release candidate only after the pre-retirement matrix and local no-alias checks are green:
 
 ```bash
-git commit -m "chore(spec-kit): retire specs alias"
+git commit -m "chore(spec-kit): retire specs alias" -m "The pre-retirement matrix and the no-alias checks are green, so nothing still needs the root specs path."
 ```
 
 Push the candidate through the normal review process. The root `specs` path is a workflow trigger, so the deletion commit runs the three operating-system jobs again. Do not merge or promote the candidate unless that post-removal run is green and its skip report satisfies the same policy.
@@ -101,7 +101,7 @@ test ! -e specs && test ! -L specs
 ln -s .opencode/specs specs
 test "$(readlink specs)" = ".opencode/specs"
 git add -- specs
-git commit -m "chore(spec-kit): restore temporary relative specs bridge"
+git commit -m "chore(spec-kit): restore temporary relative specs bridge" -m "A newly discovered consumer needs the root specs path for a short compatibility period."
 ```
 
 Do not restore the old absolute link blob from history. Do not use the bridge on a host that cannot create directory symlinks, and do not treat it as recovery for `core.symlinks=false`, archives, or other non-symlink environments. Those environments must continue using `.opencode/specs` directly. The bridge is a temporary repository-metadata convenience while the dependent consumer is fixed; it is never a data rollback and never permits legacy writes.

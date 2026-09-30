@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/078-layer-3-own-paths-baseline",
+  "spec_folder": "cli-external-orchestration/078-layer-3-own-paths-baseline",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/sk-git/references/commit-workflows.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/permissions-matrix.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "destructive-scope-violations.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-workflows.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/references/commit-workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "permissions-matrix.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/permissions-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Keep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Layer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The cli-opencode skill requires a recovery baseline before any non-interactive `opencode run` with `--dangerously-skip-permissions` in a deep-loop dispatch",
+    "created_at": "2026-09-29T07:29:10Z",
+    "last_save_at": "2026-09-29T07:31:38.719Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9819026495b1d58d89ef620438ecd7a2f9ca8327e53bca06162e47fd262de234",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "509eae7185ee8042adf7e3ad08ba564bb3c6b54ba6d5aaf309ba3a27c767ebc9",
+      "plan.md": "dac441defe3f40fe15dd3d3ec06f8d01fe68fd78f706a7dd2b47dc947d348cb5",
+      "tasks.md": "075b06f3c8fe6a32472e61a88671f12e0f5940c860b8d146cf4b18261893b1fa",
+      "implementation-summary.md": "afc6beffbb45d3b14d375f3f8f726a40c872c3d403a5ac97575175b59980baf8"
+    },
+    "last_active_at": null
+  }
+}

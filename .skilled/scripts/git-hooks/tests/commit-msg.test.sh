@@ -39,7 +39,8 @@ setup_repo() {
   SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git -C "$TMP" commit -qm "chore(sk-git): seed the fixture"
 }
 
-# Four staged paths, the threshold that demands an explanatory body line.
+# Four staged paths. The body rule no longer depends on the count, so these
+# cases prove a multi-path change is held to the same rule as a one-path one.
 stage_four() {
   local n
   for n in 1 2 3 4; do printf 'file %s\n' "$n" > "$TMP/file$n.txt"; done
@@ -97,7 +98,7 @@ MSG
 run_hook; RC=$?
 check "four paths with only trailer keys is blocked" 1 "$RC" "SKILL.md requires a body"
 
-# ── 4. one prose line alongside the keys clears the four-path gate ──────────
+# ── 4. one prose line alongside the keys clears the body gate ───────────────
 setup_repo
 stage_four
 cat > "$TMP/message.txt" <<'MSG'
@@ -289,6 +290,52 @@ This explains why the Anthropic client moved.
 MSG
 run_hook; RC=$?
 check "prose mentioning the vendor passes" 0 "$RC"
+
+# ── 17. every block names its bypass, the early ones included ──────────
+# A caller with no one at the keyboard can only escape a block the message
+# explains, so the two checks that run before validation name it too.
+setup_repo
+printf '# only a comment\n' > "$TMP/message.txt"
+run_hook; RC=$?
+check "an empty message names its bypass" 1 "$RC" "Bypass: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1"
+
+setup_repo
+( cd "$TMP" && bash "$HOOK" "$TMP/no-such-message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
+check "a missing message file names its bypass" 1 "$RC" "Bypass: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1"
+
+# ── 18. one staged path still needs a body ──────────────────────────────────
+# A small commit is searched as often as a large one, so the path count no
+# longer excuses a missing why.
+setup_repo
+printf 'one\n' > "$TMP/one.txt"
+git -C "$TMP" add one.txt
+printf 'docs(sk-git): add a one-path note\n' > "$TMP/message.txt"
+run_hook; RC=$?
+check "a one-path subject-only message is blocked" 1 "$RC" "SKILL.md requires a body"
+
+# ── 19. trailers alone are not a body, however few paths ────────────────────
+setup_repo
+printf 'one\n' > "$TMP/one.txt"
+git -C "$TMP" add one.txt
+cat > "$TMP/message.txt" <<'MSG'
+docs(sk-git): add a one-path note
+
+Spec: example/001-demo
+MSG
+run_hook; RC=$?
+check "a one-path message with only a Spec trailer is blocked" 1 "$RC" "SKILL.md requires a body"
+
+# ── 20. subjects Git writes itself stay exempt from the body rule ───────────
+setup_repo
+GENERATED_RC=0
+for subject in 'Merge branch side' 'Revert "docs(sk-git): add a note"' \
+    'fixup! docs(sk-git): add a note' 'squash! docs(sk-git): add a note' \
+    'amend! docs(sk-git): add a note'; do
+  printf '%s\n' "$subject" > "$TMP/message.txt"
+  run_hook || { GENERATED_RC=1; printf 'blocked: %s\n' "$subject" >> "$TMP/generated.log"; }
+done
+cp "$TMP/generated.log" "$TMP/out.log" 2>/dev/null || : > "$TMP/out.log"
+check "Git-generated subjects pass without a body" 0 "$GENERATED_RC"
 
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"

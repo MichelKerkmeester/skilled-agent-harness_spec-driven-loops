@@ -8,7 +8,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "pull request commit hygiene"
   - "commit id trailer"
-version: 1.6.0.0
+version: 1.7.0.0
 ---
 
 # sk-git

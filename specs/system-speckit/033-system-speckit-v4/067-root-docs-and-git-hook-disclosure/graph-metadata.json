@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure",
+  "spec_folder": "system-speckit/033-system-speckit-v4/067-root-docs-and-git-hook-disclosure",
+  "parent_id": "system-speckit/033-system-speckit-v4",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "root docs and git hook disclosure",
+      "readme git hooks section",
+      "readme off switches section",
+      "git hook block message bypass",
+      "contributing clone url",
+      "root docs git hook plan",
+      "git hook bypass line plan",
+      "off switches section plan",
+      "root docs git hook tasks",
+      "git hook bypass line tasks",
+      "root docs git hook disclosure summary",
+      "git hook bypass lines shipped"
+    ],
+    "key_topics": [
+      "root",
+      "docs",
+      "git",
+      "hook",
+      "disclosure",
+      "readme",
+      "hooks",
+      "section",
+      "switches",
+      "block",
+      "message",
+      "bypass"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/scripts/git-hooks/tests/commit-msg.test.sh",
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+      ".skilled/changelog/skilled/v4.0.0.2.md",
+      ".claude/settings.json",
+      ".pi/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit-msg.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/commit-msg.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.2.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.0.2.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Git Hooks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Off Switches",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quick Start",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Docs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A fresh review of the external user experience on 2026-09-28 found the root docs stale",
+    "created_at": "2026-09-28T15:56:26Z",
+    "last_save_at": "2026-09-28T20:57:54.086Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:046f87c34071312c64ce2e948cf35d003ad0eb1b29457d25961a9f29aa0df719",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "dbc2016b93c4e2ecb6e8856b1f3651da6daf23e6c95571f7bf42d5016e8210e8",
+      "plan.md": "ece06f8a9ec1c494469e46a57f72d56980af78a89663b0d98af0c51945cd6ce5",
+      "tasks.md": "5541125a29a3ffacf3964db75be92b57475bb74256db0d7411138de513cbc2f3",
+      "implementation-summary.md": "12e0c56e2e5a85b0a796eb5a9cd97849e2768ac687d335ed3c5985220a1ea98b"
+    },
+    "last_active_at": null
+  }
+}

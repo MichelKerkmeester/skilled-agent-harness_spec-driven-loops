@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/015-readme-alignment",
+  "description": "Phase 15: readme-alignment",
+  "keywords": [
+    "phase",
+    "readme-alignment"
+  ],
+  "lastUpdated": "2026-09-28T15:48:50.151Z",
+  "specId": "015",
+  "folderSlug": "readme-alignment",
+  "parentChain": [
+    "system-skill-advisor",
+    "030-pi-skill-orchestrator-based-research-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

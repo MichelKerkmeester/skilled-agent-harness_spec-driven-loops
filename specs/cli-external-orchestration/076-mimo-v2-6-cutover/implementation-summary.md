@@ -96,6 +96,9 @@ The authoritative row-per-file ledger lives in `spec.md` §3 and now includes th
 provider rosters and their new versioned changelog entries; the prior Xiaomi, HerMeS, deep-loop and council
 surfaces from the original cutover. The new route is a provider-qualified direct path and does not widen the
 bare-literal fan-out mapping.
+### MiMo Flash and the OpenCode Go and Cline routes (2026-09-30)
+
+The operator asked for MiMo Flash on cli-pi and cli-opencode, on DevPass, OpenCode Go and Cline, and for the missing MiMo Pro routes on the last two. OpenCode ships all five routes, so only its roster changed. Pi needed `llmgateway/mimo-v2.6-flash` and two Cline models declared, and five picker entries. The bare `mimo-v2.6-flash` literal joined the Pi allowlist and fans out through `llmgateway`, the same way Pro does. The OpenCode Go and Cline routes stay direct-dispatch, since one literal maps to one provider. Cline's `xiaomi/` ids bill Cline Credits, and the account's balance returned `402`, so the roster uses the `cline-pass/` model type the Pass covers. The Hermes roster was left unchanged, because the request named cli-pi and cli-opencode only.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -151,6 +154,10 @@ packet changed.
 | Pi config and picker | PASS — JSON assertions returned `CONFIG_OK`; `pi --list-models` lists `llmgateway/mimo-v2.6-pro` at 1M/131.1K beside the existing routes |
 | Fan-out preservation | PASS — `PI_MODEL_PROVIDERS` still maps bare `mimo-v2.6-pro` to `xiaomi`, and the Hermes roster remains unchanged |
 | Packet amendment route and picker | PASS — the model definition, `enabledModels` entry, roster docs, version bumps, changelogs, derived metadata, and amended packet gates are complete; live credentialed dispatch remains operator-side |
+| Phase 5 live routes, 2026-09-30 | PASS. Pi at `--thinking high` and `opencode run` each replied `PONG` on `llmgateway/mimo-v2.6-flash`, `opencode-go/mimo-v2.6-pro`, `opencode-go/mimo-v2.6-flash`, `cline-pass/cline-pass/mimo-v2.6-pro` and `cline-pass/cline-pass/mimo-v2.6-flash` |
+| Phase 5 070 trio and typecheck | PASS. 259/259 across three files, exit 0, 192.34 s. `npm run typecheck` exit 0 |
+| Phase 5 frontmatter gate | PASS. 2960 files, ok 2951, 9 skipped, zero failures, exit 0 |
+| Phase 5 hub manifest and Hermes copies | PASS. Freshness was `fresh` at HEAD, `stale-manifest` after the bumps and `fresh` after `refresh`. `sync-skills-hermes.cjs --check` reports 71 copies in sync |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -190,6 +197,8 @@ packet changed.
 7. **The LLM Gateway catalog is not a live credential probe.** The route is active in the catalog and will
    use the existing provider key, but only a real Pi request proves authentication and upstream availability.
    It remains direct-dispatch only. The bare deep-loop literal continues to route through Xiaomi.
+8. **The Hermes roster does not carry MiMo Flash.** The code says the Pi and Hermes rosters are meant to hold the same bare literals, and no test compares them, so Hermes now lacks `mimo-v2.6-flash`. Adding it is a separate operator call.
+9. **Cline's pre-existing GLM route bills Cline Credits.** `cline-pass/z-ai/glm-5.3-flash` returned the same `402 insufficient_credits` on 2026-09-30. It was out of scope here and stays unchanged.
 <!-- /ANCHOR:limitations -->
 
 ---

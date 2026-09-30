@@ -1886,8 +1886,9 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       'minimax-m3': 'minimax',
       'gpt-6-luna': 'openai-codex',
       'gpt-6-sol': 'openai-codex',
-      // MiMo goes through DevPass only → llmgateway/mimo-v2.6-pro.
+      // Both MiMo literals go through DevPass → llmgateway/mimo-v2.6-{pro,flash}.
       'mimo-v2.6-pro': 'llmgateway',
+      'mimo-v2.6-flash': 'llmgateway',
       'qwen3.8-max': 'opencode-go',
       // OpenRouter routes exactly DeepSeek V4 Flash and GLM-5.3-Flash, each dispatched as
       // openrouter/<upstream>/<id>; both stay on the max thinking pin.

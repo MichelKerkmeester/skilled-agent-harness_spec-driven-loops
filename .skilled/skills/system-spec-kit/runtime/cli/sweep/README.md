@@ -17,7 +17,7 @@ description: "Runs validate.sh --strict across every spec folder and flags regre
 
 | File | Purpose |
 |------|---------|
-| `strict-pass-freshness.ts` | CLI entrypoint. `--roots <path[,path...]>` scopes the sweep, `--baseline <report.json>` supplies the prior-pass set, `--format json\|text` controls output. Classifies each folder as `pass`, `regression`, `new-failure`, `first-run` or `error`. |
+| `strict-pass-freshness.ts` | CLI entrypoint. `--roots <path[,path...]>` scopes the sweep, `--baseline <report.json>` supplies the prior-pass set, `--format json\|text` controls output. Classifies each folder as `pass`, `regression`, `new-failure`, `first-run`, `known-failure`, `skipped` or `error`. A `skipped` folder had validation switched off, so it counts as neither a pass nor a failure, and a skipped baseline row never makes a later failure a known one. |
 
 ---
 

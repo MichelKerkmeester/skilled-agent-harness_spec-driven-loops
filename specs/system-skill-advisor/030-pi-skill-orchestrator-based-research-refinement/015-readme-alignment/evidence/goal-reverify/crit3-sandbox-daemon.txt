@@ -1,0 +1,77 @@
+# CP-004 steps 2 to 5 as written, HEAD e36d99cfb8, scenario sha addccbca97a0, steps sha bb87a7fe6eed
+## before, 2026-09-28T16:54:13Z
+generation file: 70409facde7c83b6
+live lease:      8e24716e8ca7f400
+advisor processes:
+  pid=63384 ppid=1 .worktrees/069-cli-jev-workflow-integration/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=63389 ppid=63384 .worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=81654 ppid=1 .skilled/bin/system-skill-advisor-launcher.cjs
+  pid=81788 ppid=81654 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+## steps 2 to 5
+{
+  "status": "error",
+  "error": "backend unavailable: connect ENOENT /tmp/cp004.TozPcr/sock/daemon-ipc.sock",
+  "exitCode": 75
+}
+warm-only exit=75
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [
+      {
+        "skillId": "sk-git",
+        "score": 0.764453,
+        "confidence": 0.9309,
+        "uncertainty": 0.12,
+        "dominantLane": "explicit_author",
+        "status": "active"
+      }
+    ],
+    "ambiguous": false,
+    "freshness": "live",
+    "trustState": {
+      "state": "live",
+      "reason": null,
+      "generation": 1,
+      "checkedAt": "2026-09-28T16:54:20.454Z",
+      "lastLiveAt": "2026-09-28T16:54:16.697Z"
+    },
+    "generatedAt": "2026-09-28T16:54:20.548Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": true
+    },
+    "_shadow": {
+      "model": "advisor-shadow-learned-weights-v1",
+      "liveWeightsFrozen": true,
+      "recommendations": [
+        {
+          "skillId": "sk-git",
+          "liveScore": 0.764453,
+          "shadowScore": 0.703711,
+          "delta": -0.060742,
+          "dominantShadowLane": "explicit_author"
+        }
+      ]
+    }
+  }
+}
+cold-start exit=0
+live generation file unchanged
+sandbox advisor exited; sandbox removed
+steps took 33s
+## after, 2026-09-28T16:54:46Z
+generation file: 70409facde7c83b6
+live lease:      8e24716e8ca7f400
+advisor processes:
+  pid=63384 ppid=1 .worktrees/069-cli-jev-workflow-integration/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=63389 ppid=63384 .worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=81654 ppid=1 .skilled/bin/system-skill-advisor-launcher.cjs
+  pid=81788 ppid=81654 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+sandbox folders left: 0

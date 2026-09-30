@@ -1,0 +1,9 @@
+# state 2026-09-28T14:25:32Z, HEAD 0dc044de8c
+advisor processes (this repo, Barter coder, worktree 069):
+  pid=21222 ppid=1 started=Sep 28 09:51:42 .skilled/bin/system-skill-advisor-launcher.cjs
+  pid=21257 ppid=21222 started=Sep 28 09:51:43 .skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+  pid=63384 ppid=1 started=Sep 28 11:03:10 .worktrees/069-cli-jev-workflow-integration/.skilled/bin/system-skill-advisor-launcher.cjs
+  pid=63389 ppid=63384 started=Sep 28 11:03:10 .worktrees/069-cli-jev-workflow-integration/.skilled/skills/system-skill-advisor/runtime/dist/runtime/advisor-server.js
+scenario sandbox folders under /tmp (cp003.*, cp004.*, cli-playbook.*): none
+live generation: 8df90d80dc9b8aa8 generation=582 reason=advisor-server-watcher-reindex updatedAt=2026-09-28T11:37:14.259Z
+live lease:      e15c9dd6fef843c8 pid=21222 childPid=21257

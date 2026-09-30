@@ -351,7 +351,7 @@ After each iteration is verified (JSONL appended, iteration file written, reduce
    git add research/research.md  # if it exists
    ```
 2. **Sanitize**: Exclude `.env`, credentials, large binaries from staging
-3. **Commit**: `git commit -m "chore(deep-research): iteration {NNN} complete"`
+3. **Commit**: `git commit -m "chore(deep-research): iteration {NNN} complete" -m "{one-line summary of what the iteration found}"`
 4. **On commit failure**: Log warning and continue (checkpoint is non-blocking)
 
 Checkpoint commits provide rollback points: `git log -- research/` shows the last good state for the research packet. If state corruption occurs, `git checkout HEAD~1 -- research/deep-research-state.jsonl` restores the previous version.

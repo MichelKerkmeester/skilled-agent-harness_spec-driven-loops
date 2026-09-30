@@ -510,7 +510,7 @@ Agent: "Promoting to a numbered branch from this detached HEAD state..."
 > .skilled/skills/sk-git/scripts/worktree-naming.sh create new-approach-promoted "$sha"
   -> worktrees/004-new-approach-promoted .worktrees/004-new-approach-promoted
 > cd .worktrees/004-new-approach-promoted
-> git add . && git commit -m "feat: experimental approach"
+> git add . && git commit -m "feat: experimental approach" -m "Promotes the experiment that won the comparison."
 ```
 
 ---
@@ -634,7 +634,7 @@ git worktree prune
 
 **Actions**:
 1. Add appropriate pattern to .gitignore
-2. Commit immediately: `git add .gitignore && git commit -m "chore: ignore worktree directories"`
+2. Commit immediately: `git add .gitignore && git commit -m "chore: ignore worktree directories" -m "Keeps worktree checkouts out of the parent repository."`
 3. Proceed with worktree creation
 
 ---

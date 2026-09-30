@@ -10,7 +10,7 @@ trigger_phrases:
   - "failed push rejected remote"
 importance_tier: normal
 contextType: general
-version: 1.1.0.12
+version: 1.7.0.22
 ---
 
 # Shared Patterns - Cross-Workflow Reference
@@ -158,7 +158,7 @@ git diff --name-only               # Changed file names only
 **Stage files**:
 ```bash
 git add <specific-files>           # Targeted staging (preferred)
-git add src/ tests/                # Stage directories
+git add path/to/dir/               # A whole directory, only when every file in it is yours
 git add -p                         # Interactive staging
 ```
 
@@ -170,8 +170,7 @@ git reset HEAD .                   # Unstage all
 
 **Commit**:
 ```bash
-git commit -m "type(scope): description"
-git commit -m "Subject" -m "Body"
+git commit -m "type(scope): description" -m "Body explaining why"
 git commit -v                      # Commit with diff in editor
 ```
 
@@ -258,7 +257,7 @@ git remote show origin             # Show remote details
 ```
 <type>(<scope>): <description>
 
-[optional body]
+<body: why the change exists, required on every authored commit>
 
 [optional footer]
 ```
@@ -298,8 +297,9 @@ Type and scope are both required — see [`../SKILL.md`](../SKILL.md) "Commit Me
 - Target 80 characters, hard maximum 100 (canonical: [`../SKILL.md`](../SKILL.md) "Commit Message Logic")
 - Specific and descriptive
 
-### Body (Optional)
+### Body (Required)
 
+- Every authored commit carries one, however few paths it stages. Trailers such as `Spec:` do not count
 - Explain **what** and **why**, not how
 - Wrap at 72 characters
 - Separate from subject with blank line
@@ -363,7 +363,7 @@ cd .worktrees/<NNN>-quick-fix
 
 # 3. Commit
 git add <files>
-git commit -m "fix(scope): description"
+git commit -m "fix(scope): description" -m "Body explaining why"
 
 # 4. Run tests
 npm test  # or appropriate test command
@@ -390,7 +390,7 @@ cd .worktrees/<NNN>-new-feature
 
 # 3. Commit changes
 git add <files>
-git commit -m "feat(scope): description"
+git commit -m "feat(scope): description" -m "Body explaining why"
 
 # 4. Run tests
 npm test
@@ -418,7 +418,7 @@ cd .worktrees/<NNN>-detached-experiment
 bash .skilled/skills/sk-git/scripts/worktree-naming.sh create new-approach HEAD
 cd ../<NNN>-new-approach
 git add .
-git commit -m "feat(scope): experimental approach"
+git commit -m "feat(scope): experimental approach" -m "Body explaining why"
 
 # 3b. If discarding: Just remove
 cd ../..
@@ -443,7 +443,7 @@ npm test
 
 # 3. Commit fixes
 git add <files>
-git commit -m "fix(scope): address test failures"
+git commit -m "fix(scope): address test failures" -m "Body explaining why"
 
 # 4. Re-run tests
 npm test

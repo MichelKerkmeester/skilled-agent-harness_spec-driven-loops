@@ -1,0 +1,283 @@
+I'll start by invoking the deep-loop skill and reading the deep-review workflow contract, plus exploring the target spec folder and lineage directory.
+
+I have the skill contract. Let me read the remainder of the SKILL.md, the lineage invocation metadata, and explore the spec folder's review area.
+
+The lineage scaffolding exists but no review state files yet — this lineage is fresh. Let me read the core protocol docs that define init, iteration, and synthesis phases.
+
+Now let me read the loop protocol and state format — these define the exact artifacts I must produce.
+
+
+
+
+
+
+
+Now the JSONL state schema and convergence docs.
+
+Now let me examine the YAML workflow I'm executing (the fan-out lineage variant), plus the templates and convergence math.
+
+Let me inspect the YAML workflow's key steps — especially the fan-out lineage handling, deltas, and synthesis event shape.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I now have the full workflow map. Let me check the sibling lineage's progress and read the review target's manifest and spec.
+
+Let me read the artifact templates I need to conform to, then the packet docs under review.
+
+Now let me read the packet documents under review — starting with spec.md and plan.md.
+
+
+
+
+
+
+
+
+
+I have the full picture of the packet. Now let me check the repo rules and the append gateway mechanics (the lineage already carries ledger dirs, suggesting gateway writes stay inside the lineage).
+
+
+
+Gate 5 fires: my writes and result-reporting match two triggers. Loading those rule files now.
+
+
+
+Rules loaded. Now the Gate 1 lookup — first verifying it's read-only, then running it.
+
+Gate 1 lookup is read-only and done. Now let me check the reducer's expectations for deltas, anchors, and the resource-map emission so my direct writes conform.
+
+Key detail found — the reducer expects ANCHOR markers. Let me check what the fan-out merge reads from each lineage and look at an existing real strategy file for the canonical shape.
+
+Let me examine a real completed review packet to match the canonical shapes exactly.
+
+
+
+
+
+
+
+I have all the shapes I need. Setting up the task list, then starting phase_init.
+
+
+
+
+
+All 127 scope files validated. Writing the init artifacts now.
+
+
+
+Now the strategy file — the persistent brain for the loop.
+
+Phase init complete. Starting Iteration 1 — Correctness: reading the core switch implementation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me check the convergence math formula before writing iteration 1's records.
+
+Iteration 1 evidence gathered. Writing the iteration 1 artifacts now — prompt, iteration file.
+
+
+
+
+
+
+
+
+
+Let me verify the strategy file's completed-dimensions section state.
+
+
+
+Iteration 1 complete. Starting Iteration 2 — Security.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let me verify the pre-change behavior from git history (read-only) to confirm the semantics-change claim.
+
+
+
+
+
+Iteration 2 evidence complete. Getting the timestamp and writing iteration 2 artifacts.
+
+
+
+
+
+
+
+
+
+Iteration 2 complete. Starting Iteration 3 — Traceability: running the core protocols.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Traceability evidence gathered — including an executed verification of the retrieval claim. Writing iteration 3 artifacts.
+
+
+
+
+
+
+
+
+
+Iteration 3 complete. Starting Iteration 4 — Maintainability and the overlay protocols.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iteration 4 evidence complete. Writing iteration 4 artifacts.
+
+
+
+
+
+
+
+
+
+Iteration 4 complete. Starting Iteration 5 — broadening pass over remaining scope and finding re-verification.
+
+
+
+
+
+
+
+Found a citation drift in F004 (line :74 → :71). Correcting it in the iteration file and registry, then continuing the sweep.
+
+
+
+
+
+Iteration 5 sweeps complete — no new findings, one citation corrected. Writing iteration 5 artifacts.
+
+
+
+Before the synthesis phase, let me check the closeout emitter's exact event shape.
+
+
+
+
+
+I need to correct the run-5 graph event I just wrote — claiming STOP_ALLOWED without graph tooling was wrong. Appending a visible correction instead of silently rewriting.
+
+
+
+
+
+The loop is complete (5/5). Now phase_synthesis — compiling the review report.
+
+
+
+
+
+Phase synthesis complete. Running final verification of all lineage artifacts.
+
+
+
+
+
+FANOUT_LINEAGE_COMPLETE:deepseek

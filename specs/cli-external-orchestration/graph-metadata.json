@@ -9,7 +9,8 @@
     "cli-external-orchestration/073-cli-pi-build-brief-and-blackhole",
     "cli-external-orchestration/075-cli-runtime-readme-refresh",
     "cli-external-orchestration/076-mimo-v2-6-cutover",
-    "cli-external-orchestration/077-gpt-6-luna-sol-cutover"
+    "cli-external-orchestration/077-gpt-6-luna-sol-cutover",
+    "cli-external-orchestration/078-layer-3-own-paths-baseline"
   ],
   "manual": {
     "depends_on": [],

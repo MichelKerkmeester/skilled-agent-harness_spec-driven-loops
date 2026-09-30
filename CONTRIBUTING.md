@@ -1,6 +1,6 @@
-# Contributing to OpenCode Dev Environment
+# Contributing to Skilled
 
-Welcome! We're excited that you're interested in contributing to the OpenCode Dev Environment. This document provides guidelines and best practices for contributing.
+Welcome! We're excited that you're interested in contributing to Skilled. This document provides guidelines and best practices for contributing.
 
 ---
 
@@ -30,13 +30,15 @@ Welcome! We're excited that you're interested in contributing to the OpenCode De
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/opencode-dev-environment.git
-cd opencode-dev-environment
+git clone https://github.com/YOUR_USERNAME/skilled-agent-harness_spec-driven-loops.git
+cd skilled-agent-harness_spec-driven-loops
 
 # Install dependencies (if modifying MCP server)
 cd .skilled/skills/system-spec-kit
 npm install
 ```
+
+Your first AI session in the clone installs this repository's git hooks. [Git Hooks](README.md#git-hooks) in the README says what they block and how to turn them off.
 
 ### Testing Changes
 
@@ -82,21 +84,26 @@ async function generateEmbedding(text, inputType = null) {
 
 ## 4. 💬 COMMIT MESSAGES
 
-We follow [Conventional Commits](https://www.conventionalcommits.org/):
+We follow [Conventional Commits](https://www.conventionalcommits.org/) with a required scope, `type(scope): summary`:
 
 | Type | Description | Example |
 |------|-------------|---------|
-| **feat** | New feature | `feat: add Voyage embedding provider` |
-| **fix** | Bug fix | `fix: correct dimension mismatch in factory` |
-| **docs** | Documentation | `docs: update README with new provider options` |
-| **chore** | Maintenance | `chore: update dependencies` |
-| **refactor** | Code restructuring | `refactor: extract common API logic` |
+| **feat** | New feature | `feat(embeddings): add Voyage embedding provider` |
+| **fix** | Bug fix | `fix(embeddings): correct dimension mismatch in factory` |
+| **docs** | Documentation | `docs(readme): update README with new provider options` |
+| **chore** | Maintenance | `chore(deps): update dependencies` |
+| **refactor** | Code restructuring | `refactor(api): extract common API logic` |
 
 | Guideline | Rule |
 |-----------|------|
-| **Length** | Keep the first line under 72 characters |
-| **Mood** | Use imperative ("add" not "added") |
-| **References** | Reference issues when applicable: `fix: resolve #123` |
+| **Scope** | Name the changed subsystem in lowercase, such as `sk-git` or `system-spec-kit` |
+| **Length** | Keep the first line under 72 characters. The hook blocks one over 100 |
+| **Mood** | Use imperative ("add" not "added"), starting in lowercase |
+| **Body** | Add one when four or more files are staged, saying what changed and why |
+| **References** | Reference issues in the last paragraph: `Fixes #123` |
+| **Attribution** | Leave out `Co-Authored-By:` and `Claude-Session:` lines |
+
+The repository's `commit-msg` hook blocks a message that breaks these rules, and its message names the one-command bypass. [Git Hooks](README.md#git-hooks) in the README lists what each hook blocks.
 
 ---
 
@@ -180,7 +187,7 @@ This PR adds a Voyage AI embedding provider to the shared embedding stack.
 
 ## 8. 🏆 RECOGNITION
 
-Contributors are recognized in release notes. Thank you for helping improve OpenCode Dev Environment!
+Contributors are recognized in release notes. Thank you for helping improve Skilled!
 
 ---
 

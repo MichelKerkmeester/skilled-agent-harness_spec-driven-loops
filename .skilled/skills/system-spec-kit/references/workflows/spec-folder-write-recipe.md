@@ -8,7 +8,7 @@ trigger_phrases:
   - "strict validate first try"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.5
+version: 4.1.0.20
 ---
 
 # Spec Folder Write Recipe
@@ -81,7 +81,7 @@ node .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-descr
   --level N
 
 node .skilled/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js \
-  --root <folder>
+  <folder>
 ```
 
 Verification gate: confirm `description.json` and `graph-metadata.json` exist and describe the same folder.
@@ -98,19 +98,23 @@ Common pitfalls: `SPECDOC_SUFFICIENCY_004` (research.md needs anchor + citation 
 
 ### Step 7: Commit + push
 
-- Stay on main (no feature branches per memory rule)
-- Conventional commit message: `feat|chore|fix(<packet>): <short description>`
-- Co-Authored-By trailer
+- Workspace: use the one the operator chose, a worktree or the current branch. Never pick it yourself and never create a branch with git primitives (see "Workspace Choice Enforcement" in `.skilled/skills/sk-git/SKILL.md`). `main` is on the remote allowlist, so pushing it needs no extra approval, and a branch off the allowlist needs the operator's go-ahead for that push (see "Remote Push Permission Enforcement" in the same file).
+- Subject: `type(subsystem): summary`. Take the type from the first match in the priority list in `.skilled/skills/sk-git/SKILL.md` (a doc-only packet is `docs`) and name the owning subsystem as the scope, such as `spec-kit`. Never use the packet number or path as the scope.
+- Body: at least one prose line that says why. Trailers do not count as a body.
+- Trailers: `Spec: <track>/<packet>`, the packet's path below `specs/` without the `specs/` segment. `prepare-commit-msg` stamps `Commit-Id:`, so never type it.
+- No attribution trailers. The `commit-msg` hook refuses `Co-Authored-By:` and `Claude-Session:`.
 
-Verification gate: confirm `git status --short` only includes the intended packet files before commit.
+The full contract is `.skilled/skills/sk-git/assets/commit-message-template.md`.
+
+Verification gate: stage the packet files by explicit path, then confirm `git diff --cached --name-only` lists only the intended packet files before commit. In a shared tree `git status --short` also lists other sessions' changes, so it cannot be the test (see "Step 7: Scoped-Staging Discipline" in `.skilled/skills/sk-git/references/commit-workflows.md`).
 
 ---
 
 ## 4. POST-CHECKS
 
 - [ ] validate.sh --strict exit 0
-- [ ] git status clean (only the new packet files)
-- [ ] git push origin main success
+- [ ] The commit holds only the new packet files (in a shared tree, `git status` may still list other sessions' changes)
+- [ ] The commit reached origin on the branch you worked on (the Workspace bullet in Step 7 says which pushes need approval)
 - [ ] /speckit:save via generate-context.js (optional but recommended)
 
 ---

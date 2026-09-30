@@ -20,6 +20,7 @@ per-turn while scoping per-edit work to the edited file.
 """
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -32,14 +33,18 @@ def _hook_flags_config():
             source_root_from_script(), "hooks", "hook-flags.env"
         )
         cfg = {}
-        with open(path, "r", encoding="utf-8") as fh:
+        # utf-8-sig drops a byte order mark, which would otherwise stay on the
+        # first name, as the hooks' own readers drop it.
+        with open(path, "r", encoding="utf-8-sig") as fh:
             for raw in fh:
                 line = raw.strip()
                 if not line or line.startswith("#") or "=" not in line:
                     continue
                 key, _, val = line.partition("=")
                 key = key.strip()
-                val = val.strip()
+                # A '#' after a space or tab ends the value, as in the hooks'
+                # own resolver, so a line with a trailing comment still counts.
+                val = re.sub(r"[ \t]#.*$", "", val).strip()
                 if len(val) >= 2 and val[0] == val[-1] and val[0] in ("'", '"'):
                     val = val[1:-1]
                 if key:

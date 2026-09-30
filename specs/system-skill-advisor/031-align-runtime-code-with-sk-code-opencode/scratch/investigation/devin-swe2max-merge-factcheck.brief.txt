@@ -1,0 +1,25 @@
+READ-ONLY DISPATCH. Gate 3 does not apply: you write no files. AI_SESSION_CHILD=1 is set. Do not ask questions or print A/B/C/D options.
+Use only your read, grep and glob tools. Do not run shell commands.
+
+ROLE: You are a code reviewer checking another model's claims. Report only what you verified in files, with paths. Mark anything you could not verify UNVERIFIED.
+
+Repository root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+TASK: Fact-check these folder-merge claims for .skilled/skills/system-skill-advisor/runtime.
+
+Claims:
+1. types/ (1 file, better-sqlite3.d.ts) should merge into lib/skill-graph/, its only SQLite consumer.
+2. lib/auth/ (1 file) should merge into lib/; README claims no package boundary.
+3. lib/context/ (1 file) should merge into lib/.
+4. lib/corpus/ (1 file) should merge into lib/.
+5. lib/routing/ (1 file, no README) should merge into lib/.
+6. lib/scorer/lanes/__tests__/ (1 test) should merge into lib/scorer/lanes/.
+7. stress-test/search-quality/ (1 file) should merge into stress-test/skill-advisor/.
+8. tests/utils/ (1 file) should merge into tests/; its README says it is a regression test, not a helper.
+
+For EACH claim:
+1. grep the whole skill folder (not only runtime/) for every file that imports or requires the source folder or its files. Include scripts, tests, package.json, tsconfig and .md links.
+2. State whether the reason given is true.
+3. Give a verdict: CONFIRMED (safe to merge; list every importer path that must change), REJECTED (say why), or UNVERIFIED.
+
+OUTPUT: one markdown table | claim | importers found (paths) | reason true? | verdict |. Nothing else.

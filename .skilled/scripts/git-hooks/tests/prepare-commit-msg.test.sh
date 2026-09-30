@@ -298,7 +298,7 @@ ln -s "$COMMIT_MSG_HOOK" "$TMP/hooks/commit-msg"
 git -C "$TMP" config core.hooksPath "$TMP/hooks"
 echo change > "$TMP/change.txt"
 git -C "$TMP" add change.txt
-git -C "$TMP" commit -qm "feat(sk-git): integrate through git"; RC=$?
+git -C "$TMP" commit -q -m "feat(sk-git): integrate through git" -m "Both hooks run on one real commit."; RC=$?
 check_rc "commit through both hooks exits 0" 0 "$RC"
 git -C "$TMP" log -1 --format=%B > "$TMP/committed.txt"
 check_count "committed message carries the stamped id" '^Commit-Id: [0-9]{7}$' 1 "$TMP/committed.txt"
