@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-29T16:06:52Z"
     last_updated_by: "closure-leaf"
     recent_action: "Closed the phase at the label gate: build commit b5e71ae777, 6 of 6 goal criteria ticked"
-    next_safe_action: "Orchestrator commits the phase docs and rebuilds the trigger index. The operator grades 20 replies, then a live Deem run and, on their yes, a Jev run"
+    next_safe_action: "Operator: grade 20 replies, then a live Deem run and a Jev run on their yes"
     blockers: []
     key_files:
       - ".skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs"

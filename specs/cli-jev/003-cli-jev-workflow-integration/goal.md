@@ -11,9 +11,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration"
-    last_updated_at: "2026-09-29T13:53:00Z"
+    last_updated_at: "2026-09-30T07:32:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Bound and released 019 to 035, criteria 2 and 5 open"
+    recent_action: "Ticked criteria 2 and 5, all five met"
     next_safe_action: "Operator: the open items in the log row Open for the operator"
     blockers: []
     key_files:
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-workflow-integration"
       parent_session_id: null
-    completion_pct: 94
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -105,10 +105,10 @@ Each child goal binds its phase. Decisions outrank it. Only the criteria below d
 ## 3. COMPLETION CRITERIA
 
 - [x] 002, 003, 005, 006, 008, 009, 016 and 017 are Complete
-- [ ] 019 to 035 are Complete: each prints its verdict line or stops at its label gate
+- [x] 019 to 035 are Complete: each prints its verdict line or stops at its label gate
 - [x] `validate_document.py` exits 0 on every skill doc a build changed
 - [x] No open P0 or P1 finding, and no changed runtime's suite fails beyond its baseline
-- [ ] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
+- [x] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -165,6 +165,8 @@ and findings belong here.
 | 009 closure and criterion 2 (2026-09-29) | Done | A closure leaf closed 009 from the build and session evidence: 27 of 27 tasks, 6 of 6 goal criteria, `spec.md` and `implementation-summary.md` Status Complete. Its reruns at `c0178c093d`: the move commit's 70 renames and 11 merges, 0 hub files left, and the stale-path grep with no output. 009's gates: `repair-derived.cjs --apply` `failed=0`, `validate.sh --strict` `RESULT: PASSED` with 0 errors and 0 warnings, `check-goal.cjs` 5/5. `sync-phase-map-status` set phase map row 9 to Complete, so all 18 rows read Complete. Criterion 2 ticked in place, wording unchanged. The parent gates after these edits are in the row "009 closure gates (2026-09-29)". Source: `009-cli-jev-hub-move/implementation-summary.md` Verification |
 | 009 closure gates (2026-09-29) | Done | From the final state of the closure edits. `repair-derived.cjs --apply` exit 0 with `failed=0` on 009 and on this packet. `validate.sh --strict --recursive` on this packet exit 0, 19 x `RESULT: PASSED` and 0 `RESULT: FAILED`. 18 folders print `Errors: 0  Warnings: 0`, and this packet prints one advisory warning, `goal.md: recent_action reads long or narrative`. An archive of HEAD `c0178c093d` validated the same way prints that warning too, so it predates this closure. `check-goal.cjs` `RESULT: PASSED (5/5 checks)` on this packet and on 009. `goal.cjs packet` `packet_durable_chars=3969` and `packet_budget=ok`, the length before the tick, and the slice hash moved from `f54206c2...` to `4d829891...` with the tick. Source: the closure pass |
 | Later items phased (2026-09-29) | Done | Source: the operator, 2026-09-29: "leave nothing for later instead of PR item drop that. I want a phase per later item not yet planned or implemented so we can test everything". `create.sh --phase --parent specs/cli-jev/003-cli-jev-workflow-integration --level 1 --with-goal --skip-branch --phases 17` appended 17 children and printed `PHASE_COUNT: 17 (new, 35 total)`. Four spec leaves filled them, one per item the round-3 synthesis ranked `later` (`007-classifier-deep-research/research/research.md` section 12): `019-advisor-suggested-order` R3, `020-routing-clarify-default` R12, `021-stage2-leaf-route-replay` R25, `022-alignment-folder-suggestion` R13, `023-reply-harness-blinded-judge` R6, `024-hallucination-grader` R7, `025-reviewer-verdict-fallback` R5, `026-completion-claim-audit` R4, `027-stop-second-rater` R8, `028-confirm-mode-stop-hint` R9, `029-p0-reread-order` R10, `030-fanout-merge-shadow-record` R15, `031-debug-next-check` R18, `032-citation-drift-scan` R24, `033-validator-residue-flagger` R26, `034-hvr-reader-needed-lens` R22 and `035-fetched-text-injection-screen` R16. Each child's `spec.md` says Status Planned. None is released, because D3 releases 008, 016, 002, 017, 003, 005, 006 and 009 only and releasing these is the operator's call (item 12 of the row "Open for the operator"). R17 has no phase (row "R17 dropped (2026-09-29)"). `spec.md` now shows phase map rows 19 to 35 as Planned with one scope sentence each, handoff rows that read from 009 or from the predecessor a child names (002 for 019, 003 for 026, 027 for 028 and 015 for 030) and the 17 phases in Scope and Files to Change. Docs only, uncommitted. Gates from the final state: `repair-derived.cjs --apply` exit 0 with `failed=0`. `validate.sh --strict --recursive` on this packet exit 0, 36 x `RESULT: PASSED`, 36 x `Errors: 0  Warnings: 0` and 0 `RESULT: FAILED`. `goal.cjs packet` `packet_durable_chars=3969` and `packet_budget=ok`, with the slice hash unchanged at `4d829891...`. `check-goal.cjs` passes 5/5 on each of the 17 new children and fails on this packet, 4/5 with `missing-binding-row findings=17` (row "Binding gap for 019 to 035 (2026-09-29)") |
+| Wave 4 builds, 019 to 035 (2026-09-29 to 30) | Done | Build and closure commits, in order: 019 `6aa7ca0980` and `812dc819ca`, 020 `65c71719ac` and `c6a34cd5d3`, 021 `fcacc26bf3` and `89597dee09`, 022 `ba70806077` and `ef315fe275`, 023 `b5e71ae777` and `9a45072a8b`, 024 `fb3f9c0599` and `f9fa987f55`, 025 `d657558a2e` and `6ff1448c22`, 026 `1a0fb2ea33` and `a2e73ccefc`, 027 `709b1078ee` and `c91420429b`, 028 `97200ea481` and `ad47f5ed98`, 029 `2239858286` and `7910612e72`, 030 `fe84dd1899` and `7b8845b31c`, 031 `ca40e3c2dc` and `11cc3c15e2`, 032 `c5d3ced36f` and `ae83f97dbf`, 033 `c13e968a58` and `85af2cd997`, 034 `2588231589` and `8b7fb3d126`, 035 `3d0641004b` and `0d931506be`. Each phase's `scratch/w4-session/session-evidence.md` (019 to 024 in their `implementation-summary.md`) holds its proofs, its cross-family review with P0 and P1 fixed and rechecked, and its recorded P2 list. Each stops at its label gate with no model labels (D4). Cross-phase events are in `scratch/w4-session/orchestration-log.md` |
+| Parent closure, criteria 2 and 5 (2026-09-30) | Done | From HEAD `7b8845b31c`: all 35 children say Status Complete in `spec.md`, and each of 019 to 035 has 0 open boxes in its `goal.md`. `validate.sh --strict --recursive` on this packet: exit 0, 36 x `RESULT: PASSED`, 0 `RESULT: FAILED`, `Errors: 0  Warnings: 0`. `check-goal.cjs` passes on 36 of 36 folders. The deep-loop runtime suite after 030: `Test Files 128 passed (128)`, `Tests 2531 passed (2531)`. Nothing is pushed or merged |
 
 ### Deviations and findings
 
