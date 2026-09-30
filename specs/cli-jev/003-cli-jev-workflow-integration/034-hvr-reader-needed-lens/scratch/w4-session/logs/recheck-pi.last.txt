@@ -1,0 +1,18 @@
+Both fixes verified against the two files and the suite.
+
+**Fix 1 — Deem fallback (`REPO_CLI_DEEM`)**: `closed` — `hvr_reader_lens.py:1172` sets `REPO_CLI_DEEM = SCRIPT_DIR.parents[2] / "cli-classifier" / "cli-deem" / "scripts" / "cli-deem.mjs"` with the comment above it (1170-1171) stating node runs the Node client when nothing is on PATH; `deem_command` (1187-1190) returns `["node", str(REPO_CLI_DEEM)]` when `which("cli-deem", env)` finds nothing. The resolved path is the real `.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs` on disk. The new check at `test_hvr_reader_lens.py:860` ("deem command falls back to the classifier checkout under node") pins all three facts: `fallback_cmd[0] == "node"`, the path is a file, basename `cli-deem.mjs` — PASS.
+
+**Fix 2 — report.json**: `closed` — `test_hvr_reader_lens.py:1333` ("report.json holds each column's verdict line, categories and identity"), immediately after "both switches print Jev first" (1314), reads `report.json` from the both-switches run and asserts each column's `line` equals its printed verdict line, both columns carry the full `S.CATEGORIES` set, jev carries `jevVersion == S.JEV_VERSION` and `provider`, deem carries `modelId`/`modelCommit`/`sourceCommit`. `build_report` (`hvr_reader_lens.py:1965-2033`) writes exactly that shape (`line`, `categories`, `entry.update(column identity)`). PASS.
+
+Test last line: `ALL PASS` (40 checks, exit 0).
+
+New findings sweep of the two files: no new P0 or P1. Comment hygiene clean — no spec paths, packet/phase numbers, or REQ/ADR/CHK/task ids in comments in either file.
+
+VERDICT: PASS
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: none (read-only recheck)
+EDITS: none (read-only recheck)
+CHECKS: `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py` -> `ALL PASS` (exit 0)
+BLOCKED REASON: none

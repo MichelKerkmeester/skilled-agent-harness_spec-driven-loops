@@ -1,0 +1,13 @@
+Wrote the step 11 edit to the existing scripts README, matching the file's own `## 0. OVERVIEW` table shape (sk-create-readme mode, `assets/readme-code-template.md` read). Every fact traces to the script's docstring/argparse code or FACTS: the two rows name the zero-call census, the `--draw` 150-row sample with empty labels defaulting to `hvr-reader-lens-labels.jsonl` (named in the script's row only, no row of its own), the `stop: fewer than 150 labeled rows` gate, `--jev`/`--deem` behind `--out <dir>`, and the test's 41 checks (counted `^    check(` in the test: 41). The usage fence reproduces the script's docstring Usage lines verbatim, covering every switch. `hvr_scan.py` rows, fixtures, frontmatter and version 1.0.0.0 untouched.
+
+SKILL ROUTING: User directed → sk-doc (advisor ambiguous sk-code 0.95/0.16 vs sk-doc 0.95/0.16). ARTIFACT: sk-doc → sk-create-readme mode, template `assets/readme-code-template.md`
+
+The validator warning `non_sequential_numbering: expected 1, found 0` is pre-existing (`## 0. OVERVIEW` predates this edit; the diff shows no heading change) and does not fail the gate.
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/README.md (+10/-0)
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/README.md:24 added `hvr_reader_lens.py` OVERVIEW row naming `hvr-reader-lens-labels.jsonl` as the default `--draw` output; .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/README.md:26 added `tests/test_hvr_reader_lens.py` OVERVIEW row; .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/README.md:51-57 added USAGE fence with one line per switch from the script docstring
+CHECKS: python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/README.md -> "✅ VALID: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/README.md" (1 pre-existing warning, exit 0) (exit 0)
+CHECKS: git diff --stat -- .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/README.md -> "1 file changed, 10 insertions(+)" (exit 0)
+BLOCKED REASON: none

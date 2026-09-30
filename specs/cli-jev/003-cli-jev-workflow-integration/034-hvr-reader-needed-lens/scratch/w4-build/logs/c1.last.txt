@@ -1,0 +1,12 @@
+SKILL ROUTING: sk-code → compiled router resolved `sk-code-opencode` (evidence-base); Python references loaded. REPO RULES: none in this repository (no `REPO RULES.md`).
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py (+167/-0)
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py (+345/-0)
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py:1 created the module header, docstring and `GIT_ENV_REDIRECTORS`; `git`, `tracked_files`, `head_commit`, `read_at_commit`, `sha256`, `sha12`, `frame_paths`, each with a docstring
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py:1 created the plain-runner harness (`clean_env`, `temp_dir`, `_write_files`, `make_repo`, `JEV_STUB`/`DEEM_STUB`, `make_stubs`, `stub_log`, `stub_env`, `run_main`, the corpus fixture) and the two named cases
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py -> (no output) (exit 0)
+CHECKS: python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> (no output) (exit 0)
+BLOCKED REASON: none
+
+Note for the orchestrator: the corpus fixture's content and the stubs' tell rule are a matched pair the design left unpinned (candidate sections carry `This marks a pivotal moment in the field.` or `From startups to enterprises, everyone benefits.`; the stubs answer 0.9 to those and 0.1 otherwise). Later steps must label from those same constructions; `git status --porcelain` in the scripts dir shows only the two new files.

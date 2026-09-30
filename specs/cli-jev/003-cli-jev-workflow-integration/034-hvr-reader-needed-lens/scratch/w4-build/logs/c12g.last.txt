@@ -1,0 +1,10 @@
+Verification complete.
+
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py (+12/-0)
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py:478-488 added the dirty-tree census check (writes the fixture doc in the working tree, rebuilds the census, asserts `census_lines` still equals `census_text`); blank-line separators around it preserved, nothing else touched
+CHECKS: python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> "PASS census reads committed text, not uncommitted edits" (exit 0)
+CHECKS: python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> "ALL PASS" (exit 0)
+BLOCKED REASON: none
+
+Notes: `hvr_reader_lens.py` (S) was not edited — it and T are both untracked in this worktree (`HEAD` holds neither), so no committed baseline exists to show a diff; the only writes in this session were the insertion in T.

@@ -1,0 +1,12 @@
+All verified. The diff is exactly the named edit: one trigger phrase plus the one block, nothing else touched, `version: 2.2.0.12` kept per FACTS (the design's `2.2.0.13` not applied) and no count in the file changes with this entry (the packet, mode, gold-row and label-line counts all predate and exclude it).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: `.skilled/skills/sk-doc/feature-catalog/feature-catalog.md` (+15/-0)
+EDITS:
+- `.skilled/skills/sk-doc/feature-catalog/feature-catalog.md`:11 added trigger phrase `hvr reader-needed lens` to the frontmatter list, matching the H3 heading and the leaf's first trigger phrase
+- `.skilled/skills/sk-doc/feature-catalog/feature-catalog.md`:137 added `### HVR Reader-Needed Lens` block with `#### Description`, `#### Current Reality`, `#### Source Files` directly after the `### Citation Drift Scan` block and before the closing Note; Description is byte-identical to the leaf's frontmatter `description` (package validator enforces that parity)
+CHECKS:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/feature-catalog.md --type feature_catalog` -> `✅ VALID: .skilled/skills/sk-doc/feature-catalog/feature-catalog.md` / `Document type: feature_catalog` / `Total issues: 0` (exit 0)
+- `git diff --stat -- .skilled/skills/sk-doc/feature-catalog/feature-catalog.md` -> `.skilled/skills/sk-doc/feature-catalog/feature-catalog.md | 15 +++++++++++++++` / `1 file changed, 15 insertions(+)` (exit 0)
+BLOCKED REASON: none

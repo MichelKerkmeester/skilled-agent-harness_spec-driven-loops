@@ -1,0 +1,34 @@
+PASS tracked files and read at commit
+PASS frame walker keeps skill markdown and refuses .env and changelog
+PASS split sections at ATX headings
+PASS a heading inside a fence does not split
+PASS census counts files, sections, flagged and in-band
+PASS a skipped scanner stops the run
+PASS a scanner exit 2 stops the run
+PASS significance comparator flags a listed phrase
+PASS false-range comparator flags a construction and a genuine range
+PASS a thin standard stops the comparator parse
+PASS draw is reproducible and carries no text
+PASS draw caps rows per skill per category
+PASS draw refuses to overwrite a labeled file
+PASS --draw needs a valid non-negative seed
+PASS label gate stops at 149 labeled rows
+PASS baseline picks the comparator only when it beats flag-nothing
+PASS headroom, power and the categories stop
+PASS an untracked or .env row is refused
+PASS a spawn past the timeout is killed and marked unmeasured_timeout
+PASS a missing answer is recorded unmeasured, never 0
+PASS deem gate passes a torch health
+FAIL deem gate skips a stub backend
+PASS deem exit 4 with a changed commit pair stops the arm
+PASS --out is required for both switches
+Traceback (most recent call last):
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py", line 1065, in <module>
+    sys.exit(run())
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py", line 1001, in run
+    verdict_arm = S.run_deem_arm(
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py", line 1398, in run_deem_arm
+    ctx["callLog"]["append"](record(row, attempt, result, probability, status))
+  File "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/069-cli-jev-workflow-integration/.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py", line 1340, in record
+    "flag": None if probability is None else probability >= FLAG_AT,
+NameError: name 'FLAG_AT' is not defined

@@ -1,0 +1,18 @@
+Step 4's script-side work (step 2.5 comparators) was already present and matches design §2.5/§2.6 exactly, so no write to S was needed. My change is confined to T: the three named step-4 test cases, using the real standard's eight parsed phrases for the significance case, the standard's own WRONG/genuine-range pair for false ranges, and a one-phrase standard for the thin-parse refusal (stderr captured so the expected refusal stays out of the runner's PASS/FAIL output). Test execution is reserved for the orchestrator per the brief; py_compile ran clean on both.
+
+STATUS: DONE
+FILES CHANGED:
+- `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py` (+37/-0)
+- `.skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py` (+0/-0; step-4 comparators already present and verified, untouched)
+
+EDITS:
+- T:11 added `import contextlib` / `import io` for the expected-refusal capture
+- T:467 added `significance comparator flags a listed phrase` (parses `DEFAULT_RULES_PATH`, asserts 8 phrases, true for the listed construction, false for plain prose)
+- T:477 added `false-range comparator flags a construction and a genuine range` (both true; pattern is scale-blind)
+- T:485 added `a thin standard stops the comparator parse` (one-phrase standard, SystemExit code 2)
+
+CHECKS:
+- `python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_reader_lens.py` -> (no output) (exit 0)
+- `python3 -m py_compile .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py` -> (no output) (exit 0)
+
+BLOCKED REASON: none

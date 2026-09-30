@@ -1,0 +1,11 @@
+File T is untracked in this worktree (created by the pipeline, committed later by the orchestrator), which is why `git diff` shows nothing — the change is on disk and verified by re-read. No other file was written by me.
+
+VERIFY output: last line `ALL PASS`, exit 0.
+
+```
+STATUS: DONE
+FILES CHANGED: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py (+1/-1)
+EDITS: .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py:1153 replaced call[:1] with call[:2] in the auth-test count of "jev arm sends one --provider on every call"
+CHECKS: python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/test_hvr_reader_lens.py -> ALL PASS (exit 0)
+BLOCKED REASON: none
+```

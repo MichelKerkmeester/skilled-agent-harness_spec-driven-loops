@@ -1,0 +1,6 @@
+PASS tracked files and read at commit
+PASS frame walker keeps skill markdown and refuses .env and changelog
+PASS split sections at ATX headings
+PASS a heading inside a fence does not split
+
+ALL PASS

@@ -1,0 +1,10 @@
+The doc is written and validated. Content checks: version `2.2.0.0` per FACTS, source rows only for `hvr_reader_lens.py`, `hvr_scan.py` and `tests/test_hvr_reader_lens.py` (no labels-file row, named in section 2 only as the default file `--draw` writes), Group `Document Validation`, and no `verdict` line claimed anywhere. Every switch, printed line and number comes from FACTS or from opening `hvr_reader_lens.py` (usage docstring, `main`, `frame_paths`, `build_census`, `label_gate`, `baseline_lines`, `headroom_lines`, `jev_gate`, `run_deem_arm`).
+
+HANDBACK
+STATUS: DONE
+FILES CHANGED: one line per file: `.skilled/skills/sk-doc/feature-catalog/document-validation/hvr-reader-needed-lens.md` (+59/-0, new file)
+EDITS: one line per step: `.skilled/skills/sk-doc/feature-catalog/document-validation/hvr-reader-needed-lens.md`:1 created the catalog entry at `version: 2.2.0.0`, frontmatter plus sections 1 OVERVIEW, 2 HOW IT WORKS, 3 SOURCE FILES (3 rows), 4 SOURCE METADATA, matching `goal-criteria-lint.md`'s shape
+CHECKS: one line per check:
+- `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/feature-catalog/document-validation/hvr-reader-needed-lens.md` -> `✅ VALID: .skilled/skills/sk-doc/feature-catalog/document-validation/hvr-reader-needed-lens.md` (`Document type: feature_catalog`, `Total issues: 0`) (exit 0)
+- `git diff --stat -- .skilled/skills/sk-doc/feature-catalog/document-validation/hvr-reader-needed-lens.md` -> no output (exit 0), the file is new and untracked so the diff is empty; `git status --porcelain -- <path>` shows `?? .skilled/skills/sk-doc/feature-catalog/document-validation/hvr-reader-needed-lens.md` (exit 0)
+BLOCKED REASON: none
