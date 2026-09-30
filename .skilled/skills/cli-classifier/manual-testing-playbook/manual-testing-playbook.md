@@ -1,7 +1,7 @@
 ---
 title: "cli-classifier: Manual Testing Playbook"
 description: "Operator-facing manual validation for cli-classifier hub routing: a Jev request resolves mode cli-jev, a Deem request resolves mode cli-deem, and other requests stay out."
-version: 1.1.0.0
+version: 0.4.0.0
 ---
 
 # cli-classifier: Manual Testing Playbook
@@ -15,7 +15,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-The walked tree holds the hub-routing scenarios for `cli-classifier` and one measurement scenario for its offline injection screen scorer. The hub registers two modes, both declared `packetKind: "transport"`: `cli-jev`, which runs over the packet folder `cli-usage` and bridges the hosted Jev service, and `cli-deem`, a client for the Deem model served on this machine. The routing questions are small. Does a Jev request resolve `cli-jev`? Does a Deem request resolve `cli-deem`? Do other requests stay out? Each transport's own behavior is covered in its packet: `cli-usage/manual-testing-playbook/` for Jev and `cli-deem/scripts/tests/cli-deem.test.mjs` for Deem. These scenarios do not replace them.
+The walked tree holds the hub-routing scenarios for `cli-classifier` and one measurement scenario for its offline injection screen scorer. The hub registers two modes, both declared `packetKind: "transport"`: `cli-jev`, which runs over the packet folder `cli-jev` and bridges the hosted Jev service, and `cli-deem`, a client for the Deem model served on this machine. The routing questions are small. Does a Jev request resolve `cli-jev`? Does a Deem request resolve `cli-deem`? Do other requests stay out? Each transport's own behavior is covered in its packet: `cli-jev/manual-testing-playbook/` for Jev and `cli-deem/scripts/tests/cli-deem.test.mjs` for Deem. These scenarios do not replace them.
 
 The `CJ-` scenarios came from the retired `cli-jev` hub with the Jev transport. Their two recorded runs sit under `benchmark/reports/`.
 
@@ -90,7 +90,7 @@ Prompt: `ask deem for a probability that this incident is urgent`
 
 ### CC-002 | A Jev request resolves mode cli-jev
 
-Verify a request that names the hosted Jev service ranks `cli-classifier` first and the front door routes a single `cli-jev` target over `cli-usage`.
+Verify a request that names the hosted Jev service ranks `cli-classifier` first and the front door routes a single `cli-jev` target over `cli-jev`.
 
 Prompt: `ask jev for a probability that this plan ships on time`
 
@@ -112,11 +112,11 @@ Prompt: `Use jev judgment to decide whether this incident is urgent, and give me
 
 > **Feature File:** [CJ-001](hub-routing/judgment-request-routes-to-transport.md)
 
-### CJ-002 | The cli-jev name resolves the Jev transport
+### CJ-002 | The cli-usage name resolves the Jev transport
 
-Verify a request that names only `cli-jev` routes a single `cli-jev` target through the alias registration.
+Confirm the `cli-usage` name resolves mode `cli-jev` over the `cli-jev` transport packet.
 
-Prompt: `cli-jev noul for this question.`
+Prompt: `cli-usage noul for this question.`
 
 > **Feature File:** [CJ-002](hub-routing/alias-still-resolves.md)
 
@@ -149,7 +149,7 @@ Prompt: `Run the Pi transport scorer with a fake jev on my PATH and show me its 
 | Hub routing contract | [cli-classifier SKILL.md](../SKILL.md) | `CC-001`, `CC-002`, `CC-003`, `CJ-001`, `CJ-002` |
 | Router vocabulary | [hub-router.json](../hub-router.json) | `CC-001`, `CC-002`, `CC-003`, `CJ-001`, `CJ-002` |
 | Compiled canary corpus | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json` | none, replayed by the rollout runner |
-| Jev transport behavior | [cli-usage playbook](../cli-usage/manual-testing-playbook/manual-testing-playbook.md) | none, covered by the `JEV-` scenarios |
+| Jev transport behavior | [cli-jev playbook](../cli-jev/manual-testing-playbook/manual-testing-playbook.md) | none, covered by the `JEV-` scenarios |
 | Deem client behavior | [cli-deem tests](../cli-deem/scripts/tests/cli-deem.test.mjs) | none, covered by `node --test` |
 | Injection screen scorer | [score-injection-screen tests](../benchmark/injection-screen/tests/score-injection-screen.test.mjs) | `CC-004` |
 | Pi transport scorer | [score-pi-transport tests](../benchmark/pi-transport/tests/score-pi-transport.test.mjs) | `CC-005` |
@@ -164,6 +164,6 @@ Prompt: `Run the Pi transport scorer with a fake jev on my PATH and show me its 
 | CC-002 | A Jev request resolves mode cli-jev | Hub Routing | [CC-002](hub-routing/jev-request-stays-with-cli-jev.md) |
 | CC-003 | An out-of-domain request resolves nothing here | Hub Routing | [CC-003](hub-routing/out-of-domain-resolves-nothing.md) |
 | CJ-001 | A Jev judgment request resolves mode cli-jev | Hub Routing | [CJ-001](hub-routing/judgment-request-routes-to-transport.md) |
-| CJ-002 | The cli-jev name resolves the Jev transport | Hub Routing | [CJ-002](hub-routing/alias-still-resolves.md) |
+| CJ-002 | The cli-usage name resolves the Jev transport | Hub Routing | [CJ-002](hub-routing/alias-still-resolves.md) |
 | CC-004 | The injection screen scorer runs with zero model calls | Measurements | [CC-004](measurements/injection-screen-measurement.md) |
 | CC-005 | The Pi transport scorer runs with zero model calls | Measurements | [CC-005](measurements/pi-transport-comparison.md) |

@@ -17,7 +17,7 @@
         "references/mcp-server.md",
         "references/providers-and-models.md"
       ],
-      "packet": "cli-usage",
+      "packet": "cli-jev",
       "workflowMode": "cli-jev"
     }
   ],

@@ -7,7 +7,7 @@ trigger_phrases:
   - "deem judgment subcommands"
   - "feature catalog"
 last_updated: "2026-09-28"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # cli-deem: Feature Catalog

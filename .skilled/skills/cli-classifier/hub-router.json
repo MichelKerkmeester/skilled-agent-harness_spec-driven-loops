@@ -1,12 +1,12 @@
 {
   "skill": "cli-classifier",
-  "version": "1.2.0.0",
+  "version": "0.5.0.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
     "tieBreak": ["cli-jev", "cli-deem"],
     "outcomes": {
-      "single": "one dominant judgment intent routes to its transport: a Jev request to cli-jev over the cli-usage packet, a Deem request to cli-deem",
+      "single": "one dominant judgment intent routes to its transport: a Jev request to cli-jev, a Deem request to cli-deem",
       "orderedBundle": "a request that names both backends by their aliases, such as a jev judgment checked against a deem judgment, routes to both transports in tieBreak order, cli-jev first",
       "defer": "unclear or contradictory intent asks for disambiguation"
     },
@@ -17,7 +17,7 @@
     "cli-jev": {
       "weight": 4,
       "classes": ["cli-usage-aliases", "jev-dispatch"],
-      "resources": ["cli-usage/SKILL.md"]
+      "resources": ["cli-jev/SKILL.md"]
     },
     "cli-deem": {
       "weight": 4,

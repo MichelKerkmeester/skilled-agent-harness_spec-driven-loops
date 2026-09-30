@@ -43,7 +43,7 @@ export const DISPATCH_SHAPES = [
   // Jev has no print flag: the judgment subcommand IS the dispatch, exactly as `codex exec` is for
   // codex. `jev-mcp` is a stdio server rather than a judgment, and it is matched here so the
   // packet's host-only rule can refuse a shell start instead of leaving it unclassified.
-  { test: /\bjev\s+(?:noul|choice|score|run)\b|\bjev-mcp\b/, skill: 'cli-classifier', packetPath: 'cli-classifier/cli-usage' },
+  { test: /\bjev\s+(?:noul|choice|score|run)\b|\bjev-mcp\b/, skill: 'cli-classifier', packetPath: 'cli-classifier/cli-jev' },
 ];
 
 const MAX_INSPECTED_COMMAND_CHARS = 32_768;

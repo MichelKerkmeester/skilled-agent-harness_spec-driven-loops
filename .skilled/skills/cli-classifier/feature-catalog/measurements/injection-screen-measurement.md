@@ -6,7 +6,7 @@ trigger_phrases:
   - "fetched text injection screen"
   - "score-injection-screen"
   - "prompt injection classifier test"
-version: 1.0.0.0
+version: 0.3.0.0
 ---
 
 # Injection screen measurement (score-injection-screen.mjs)

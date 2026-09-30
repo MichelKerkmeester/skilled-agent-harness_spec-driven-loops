@@ -125,7 +125,7 @@ describe('DISPATCH_SHAPES', () => {
     expect(DISPATCH_SHAPES.every((shape) => typeof shape.packetPath === 'string' && shape.test instanceof RegExp)).toBe(true);
     // The Jev transport is a mode of the classifier hub; its row has to name that packet, or
     // the preflight reads a path that is not there and the eight rules fail open.
-    expect(DISPATCH_SHAPES.find((shape) => shape.skill === 'cli-classifier').packetPath).toBe('cli-classifier/cli-usage');
+    expect(DISPATCH_SHAPES.find((shape) => shape.skill === 'cli-classifier').packetPath).toBe('cli-classifier/cli-jev');
   });
 
   it('resolves every shape to a SKILL.md that exists, because a missing one fails open', () => {

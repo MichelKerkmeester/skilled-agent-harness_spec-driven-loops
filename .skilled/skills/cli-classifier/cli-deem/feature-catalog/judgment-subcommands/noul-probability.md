@@ -5,7 +5,7 @@ trigger_phrases:
   - "noul probability"
   - "deem yes no probability"
   - "cli-deem noul"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Noul probability (cli-deem noul)

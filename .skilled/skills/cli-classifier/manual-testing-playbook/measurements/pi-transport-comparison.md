@@ -1,7 +1,7 @@
 ---
 title: "CC-005 -- The Pi transport scorer runs with zero model calls"
 description: "This scenario validates that the offline Pi transport scorer prints its transport census with zero model calls and that its live arms stay dormant behind their usage gates, for `CC-005`."
-version: 1.0.0.0
+version: 0.3.0.0
 ---
 
 # CC-005 -- The Pi transport scorer runs with zero model calls

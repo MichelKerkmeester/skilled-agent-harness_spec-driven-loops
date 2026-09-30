@@ -8,7 +8,7 @@ trigger_phrases:
   - "deem-0.8-v1 label"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Deem Model Pin and Commit Pair

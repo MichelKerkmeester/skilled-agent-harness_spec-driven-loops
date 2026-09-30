@@ -5,7 +5,7 @@ trigger_phrases:
   - "cli-classifier hub"
   - "local classifier hub"
   - "jev judgment hub"
-version: 1.1.0.0
+version: 0.4.0.0
 ---
 
 # cli-classifier
@@ -22,7 +22,7 @@ Every feature that wants a typed judgment needs the same two things: a way to le
 |---|---|
 | **Use it for** | Typed judgments from the hosted Jev service or from the locally served Deem model |
 | **Invoke with** | A request that names Jev, Deem, `cli-jev` or `cli-deem`. The advisor resolves the hub |
-| **Routes to** | Mode `cli-jev` (packet `cli-usage`) or mode `cli-deem`, through `mode-registry.json` and `hub-router.json` |
+| **Routes to** | Mode `cli-jev` (packet `cli-jev`) or mode `cli-deem`, through `mode-registry.json` and `hub-router.json` |
 | **Produces** | One typed value from the chosen transport, with an exit code that names the outcome |
 
 ---
@@ -31,7 +31,7 @@ Every feature that wants a typed judgment needs the same two things: a way to le
 
 ### What It Does
 
-`cli-classifier` is one public advisor identity over two `packetKind: "transport"` packets. The hub holds no packet-local logic. `mode-registry.json` resolves the mode. `leaf-manifest.json` inventories the leaves each mode can load. Mode `cli-jev` runs over the packet folder `cli-usage` and bridges the `jev` CLI and MCP surface. Mode `cli-deem` asks the local Deem server. Either returns a probability, one option key, an ordered level or a batch of keyed answers, and neither writes into this workspace.
+`cli-classifier` is one public advisor identity over two `packetKind: "transport"` packets. The hub holds no packet-local logic. `mode-registry.json` resolves the mode. `leaf-manifest.json` inventories the leaves each mode can load. Mode `cli-jev` runs over the packet folder `cli-jev` and bridges the `jev` CLI and MCP surface. Mode `cli-deem` asks the local Deem server. Either returns a probability, one option key, an ordered level or a batch of keyed answers, and neither writes into this workspace.
 
 ### Why It Matters
 
@@ -43,7 +43,7 @@ Every feature that wants a typed judgment needs the same two things: a way to le
 request that names Jev or Deem
    |
    v
-advisor  -->  cli-classifier  -->  hub-router.json  -->  cli-jev (cli-usage)  or  cli-deem
+advisor  -->  cli-classifier  -->  hub-router.json  -->  cli-jev  or  cli-deem
                                                            |
                                                            v
                                           one typed answer and an exit code
@@ -57,7 +57,7 @@ The hub registers two modes. The registry lists them and the router picks one, o
 
 | Mode | Packet | Kind | Use it for | Pointer |
 |---|---|---|---|---|
-| `cli-jev` | `cli-usage/` | transport | Hosted Jev judgments through the `jev` CLI and its MCP surface | [`README.md`](./cli-usage/README.md) |
+| `cli-jev` | `cli-jev/` | transport | Hosted Jev judgments through the `jev` CLI and its MCP surface | [`README.md`](./cli-jev/README.md) |
 | `cli-deem` | `cli-deem/` | transport | The Deem availability check and typed judgments from the local Deem model | [`README.md`](./cli-deem/README.md) |
 
 ---
@@ -83,9 +83,9 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 
 | Release | Entry |
 |---|---|
-| v1.2.0.0 | [`changelog/v1.2.0.0.md`](./changelog/v1.2.0.0.md) |
-| v1.1.0.0 | [`changelog/v1.1.0.0.md`](./changelog/v1.1.0.0.md) |
-| v1.0.0.0 | [`changelog/v1.0.0.0.md`](./changelog/v1.0.0.0.md) |
+| v0.5.0.0 | [`changelog/v0.5.0.0.md`](./changelog/v0.5.0.0.md) |
+| v0.4.0.0 | [`changelog/v0.4.0.0.md`](./changelog/v0.4.0.0.md) |
+| v0.3.0.0 | [`changelog/v0.3.0.0.md`](./changelog/v0.3.0.0.md) |
 | v0.2.0.0 | [`changelog/v0.2.0.0.md`](./changelog/v0.2.0.0.md) |
 | v0.1.0.0 | [`changelog/v0.1.0.0.md`](./changelog/v0.1.0.0.md) |
 

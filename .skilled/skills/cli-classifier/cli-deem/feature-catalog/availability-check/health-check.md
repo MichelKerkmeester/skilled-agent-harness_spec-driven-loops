@@ -7,7 +7,7 @@ trigger_phrases:
   - "deem availability"
   - "cli-deem health"
 importance_tier: "important"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Health check (cli-deem health)

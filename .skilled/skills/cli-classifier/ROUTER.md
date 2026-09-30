@@ -9,7 +9,7 @@ trigger_phrases:
   - "typed judgment routing"
 importance_tier: important
 contextType: implementation
-version: 1.2.0.0
+version: 0.5.0.0
 router_state: stage1-only
 skill_pointer: SKILL.md
 ---
@@ -18,7 +18,7 @@ skill_pointer: SKILL.md
 
 This is the cli-classifier hub's second-layer control document, first-class at the hub root as `ROUTER.md`. `hub-router.json` selects the workflow mode. This document would map a request's intent to the exact packet-local leaf resources that mode loads.
 
-The hub ships `router_state: stage1-only`. It owns no second stage yet, so all four machine collections stay empty and routing delegates to `hub-router.json` plus `mode-registry.json`. Promote to `active` only when the maps carry concrete, resolvable leaf paths, never placeholder intents. Every `RESOURCE_MAP` path would be packet-qualified (`cli-usage/references/...` or `cli-deem/references/...`) and would convert to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
+The hub ships `router_state: stage1-only`. It owns no second stage yet, so all four machine collections stay empty and routing delegates to `hub-router.json` plus `mode-registry.json`. Promote to `active` only when the maps carry concrete, resolvable leaf paths, never placeholder intents. Every `RESOURCE_MAP` path would be packet-qualified (`cli-jev/references/...` or `cli-deem/references/...`) and would convert to the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary.
 
 ---
 
@@ -32,7 +32,7 @@ An intent that matches nothing is a gap to report, not a reason to load everythi
 
 ## 2. INTENT MODEL
 
-Two modes are registered, both `packetKind: "transport"`. Mode `cli-jev` runs over the packet folder `cli-usage`, a bridge to the `jev` CLI and MCP surface for hosted Jev judgments. Mode `cli-deem` is a client for the locally served Deem model. A judgment request resolves to the transport whose backend it names. A request that needs work done resolves to a workflow mode in whatever hub owns that work, with the transport attached as the judgment source.
+Two modes are registered, both `packetKind: "transport"`. Mode `cli-jev` runs over the packet folder `cli-jev`, a bridge to the `jev` CLI and MCP surface for hosted Jev judgments. Mode `cli-deem` is a client for the locally served Deem model. A judgment request resolves to the transport whose backend it names. A request that needs work done resolves to a workflow mode in whatever hub owns that work, with the transport attached as the judgment source.
 
 One dominant judgment intent routes to its transport. A request that names both backends by their aliases routes to both in tie-break order, `cli-jev` first. Two near-tied intents (within the router's ambiguity delta) defer rather than guess a value.
 

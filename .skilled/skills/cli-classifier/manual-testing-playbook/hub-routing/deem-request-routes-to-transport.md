@@ -9,7 +9,7 @@ expected_resources:
   - cli-deem/SKILL.md
 expected_workflow_mode: cli-deem
 expected_leaf_resources: []
-version: 1.1.0.0
+version: 0.4.0.0
 ---
 
 # CC-001 -- A Deem request resolves mode cli-deem

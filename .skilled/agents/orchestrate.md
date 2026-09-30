@@ -472,7 +472,7 @@ TASK #2: Implement Notification System
 
 **Trigger:** The user names an external CLI executor in their own words — one of the seven `cli-external-orchestration` executor modes: `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, `cli-hermes`.
 
-The transport that answers a typed judgment question lives in the classifier hub: mode `cli-jev` of `.skilled/skills/cli-classifier/`, over the packet `cli-usage`. It runs nothing, so it is never a delegation target, though it can be named the same way — as the object of a request for a judgment rather than for work — and its contract is dispatchable only when the user asks for a judgment.
+The transport that answers a typed judgment question lives in the classifier hub: mode `cli-jev` of `.skilled/skills/cli-classifier/`, over the packet `cli-jev`. It runs nothing, so it is never a delegation target, though it can be named the same way — as the object of a request for a judgment rather than for work — and its contract is dispatchable only when the user asks for a judgment.
 
 **Action:**
 
@@ -835,7 +835,7 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 | Echo full tool output (>50 lines) into conversation | Raw output accumulates rapidly; summarize to 3-5 bullet points | §7 |
 | Continue after session degradation without user confirmation | Lost context leads to incorrect assumptions; stop, re-read AGENTS.md, summarize state, wait for confirmation | §6 |
 | Choose an external CLI executor the user did not name | External delegation is opt-in by explicit user request; an advisor score or a speed judgment is not a request, and self-selecting one sends the frozen scope outside this runtime with no operator decision behind it | §4 Rule 7 |
-| Delegate work to `cli-usage` (mode `cli-jev` of the `cli-classifier` hub) | The transport mode answers one typed judgment and runs nothing; it has no file tools, no loop and no lineage, so a task sent to it comes back as an opinion rather than a change | §4 Rule 7 |
+| Delegate work to `cli-jev` of the `cli-classifier` hub | The transport mode answers one typed judgment and runs nothing; it has no file tools, no loop and no lineage, so a task sent to it comes back as an opinion rather than a change | §4 Rule 7 |
 
 ---
 
@@ -850,5 +850,5 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 - `.skilled/agents/deep-research.md` — the LEAF for evidence-first iterative investigation.
 - `.skilled/agents/deep-review.md` — the LEAF for `/deep:review` iterative code-audit passes.
 - `.skilled/skills/cli-external-orchestration/SKILL.md` — the hub that routes the seven external CLI executor modes and owns their invariants (§4 Rule 7).
-- `.skilled/skills/cli-classifier/SKILL.md` — the hub whose `cli-jev` mode carries the `cli-usage` transport, the judgment-only mode that runs nothing (§4 Rule 7).
+- `.skilled/skills/cli-classifier/SKILL.md` — the hub whose `cli-jev` mode carries the `cli-jev` transport, the judgment-only mode that runs nothing (§4 Rule 7).
 - `.skilled/repo-rules/delegation-and-orchestration.md` — the orchestrating posture: what a brief must carry, and why a delegate's return is unverified.

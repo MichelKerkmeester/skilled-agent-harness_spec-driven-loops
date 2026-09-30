@@ -5,7 +5,7 @@ trigger_phrases:
   - "batched run"
   - "deem batch request"
   - "cli-deem run"
-version: 1.0.0.0
+version: 0.1.0.0
 ---
 
 # Batched run (cli-deem run)
