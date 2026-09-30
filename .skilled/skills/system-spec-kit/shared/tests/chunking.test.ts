@@ -1,6 +1,10 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Chunking Tests
+// ───────────────────────────────────────────────────────────────────
+
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { MAX_TEXT_LENGTH, semanticChunk } from './chunking.js';
+import { MAX_TEXT_LENGTH, semanticChunk } from '../chunking.js';
 
 test('short text passes through unchanged', () => {
   assert.equal(semanticChunk('# Title\n\nShort body.\n'), '# Title\n\nShort body.\n');

@@ -83,7 +83,7 @@ Run from `.skilled/skills/system-spec-kit/runtime`.
 node --check hooks/lib/workspace/repo-root.mjs
 ```
 
-Expected result: no syntax errors. `findRepoRoot` and `hoistAboveOpencodeTree` are exercised indirectly through `hooks/lib/spec-gate/spec-gate-core.test.mjs`, the only current consumer of this module.
+Expected result: no syntax errors. `findRepoRoot` and `hoistAboveOpencodeTree` are exercised indirectly through `tests/hooks/spec-gate-core.test.mjs`, the only current consumer of this module.
 
 ---
 

@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Socket Server Helper Tests
+// ───────────────────────────────────────────────────────────────────
+
 // Script-style assertions for the pure helpers of the IPC socket server,
 // mirroring the colocated *.test.ts convention in shared/parsing. Run directly
 // (tsx/node type stripping); throws on the first failing assertion.
@@ -6,7 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { parseMaxClients, SOCKET_FILE_NAME } from './socket-server.js';
+import { parseMaxClients, SOCKET_FILE_NAME } from '../ipc/socket-server.js';
 
 function assert(condition: boolean, label: string): void {
   if (!condition) throw new Error(`${label} failed`);

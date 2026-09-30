@@ -30,8 +30,7 @@ parsing/
 ├── README.md
 ├── memory-sufficiency.ts
 ├── memory-template-contract.ts
-├── spec-doc-health.ts
-└── spec-doc-health.test.ts
+└── spec-doc-health.ts
 ```
 
 | File | Purpose |
@@ -39,7 +38,6 @@ parsing/
 | `memory-template-contract.ts` | Validates rendered memory documents for required anchors and template artifacts |
 | `memory-sufficiency.ts` | Scores whether memory evidence has enough concrete context to save |
 | `spec-doc-health.ts` | Computes lightweight spec folder health metadata for pipeline annotations |
-| `*.test.ts` | Edge-case coverage for frontmatter parsing and spec document health rules |
 
 ---
 

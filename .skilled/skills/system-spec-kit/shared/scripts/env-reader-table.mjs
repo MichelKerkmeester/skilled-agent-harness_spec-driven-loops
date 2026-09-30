@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Environment Variable Reader Table
+// ───────────────────────────────────────────────────────────────────
+
 // Derives the README's configuration table from the code: every process.env
 // read under shared/ (tests and dist excluded), grouped by the row it belongs
 // to, with the reader files listed per variable. `--check` compares the table

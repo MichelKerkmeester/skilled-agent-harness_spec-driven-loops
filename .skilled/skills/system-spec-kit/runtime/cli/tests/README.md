@@ -35,7 +35,9 @@ runtime/cli/tests/
 +-- check-*.sh                # Rule harnesses the validation lane runs after the suites
 +-- test_dual_threshold.py    # Python threshold check
 +-- *.vitest.ts               # TypeScript regression suites
++-- *.test.mjs                # node:test suites (Hermes skill-copy generator)
 +-- fixtures/                 # Test-local fixtures
++-- snapshots/                # Golden snapshots (vitest resolveSnapshotPath)
 +-- test-fixtures -> ../test-fixtures
 `-- README.md
 ```
@@ -45,7 +47,7 @@ Suite groups:
 | Group | Coverage |
 | --- | --- |
 | Shell tests | Spec validation, phase workflow and upgrade-level behavior |
-| Node tests | Script modules, extractors, loaders, templates and regressions |
+| Node tests | Script modules, extractors, loaders, templates and regressions, plus the Hermes skill-copy generator under `node --test` |
 | Vitest suites | Memory, validation, import policy and templates |
 | Python tests | Dual-threshold decision behavior |
 
@@ -79,6 +81,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/tests/test-validation.sh
 (cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run \
   --config ../../vitest.config.ts --project cli tests/test-integration.vitest.ts)
 python3 .skilled/skills/system-spec-kit/runtime/cli/tests/test_dual_threshold.py
+node --test .skilled/skills/system-spec-kit/runtime/cli/tests/sync-skills-hermes.test.mjs
 ```
 
 ---

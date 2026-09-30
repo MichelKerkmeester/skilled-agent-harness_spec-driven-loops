@@ -97,7 +97,7 @@ const DIST_PACKAGES = Object.freeze([
         'lib/description',
       ],
     },
-    excludedSegments: ['tests', 'stress-test', 'test-helpers'],
+    excludedSegments: ['tests', 'stress-test'],
   },
   {
     id: 'mcp-code-mode/mcp-server',

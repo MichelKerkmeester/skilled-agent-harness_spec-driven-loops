@@ -26,9 +26,6 @@ function walkTsFiles(dir: string, out: string[] = []): string[] {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     const full = join(dir, entry.name);
     if (entry.isDirectory()) {
-      // test-helpers/ is excluded from the production tsc build, so it never
-      // produces dist output — skip it to mirror the build's scope.
-      if (entry.name === 'test-helpers') continue;
       walkTsFiles(full, out);
     }
     else if (entry.isFile() && entry.name.endsWith('.ts') && !entry.name.endsWith('.d.ts')) out.push(full);

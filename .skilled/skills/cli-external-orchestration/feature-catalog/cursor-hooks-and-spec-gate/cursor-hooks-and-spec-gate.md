@@ -67,7 +67,7 @@ Cursor CLI and the Cursor desktop editor consume the same `.cursor/hooks.json`. 
 | `.skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/confirmed-non-delivery-documentation.md` | Manual playbook | Records the prompt-classification delivery limitation. |
 | `.skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/hooks/task-dispatch-guard-live-fire.md` | Manual playbook | Reproduces the confirmed task-dispatch guard. |
 | `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.test.cjs` | Automated test | Exercises the shared allow/warn guard policy consumed by the Cursor adapter. |
-| `.skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs` | Automated test | Exercises startup identity, environment, binding, terminal-state, and enforce-consumer behavior. |
+| `.skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-prebind.test.mjs` | Automated test | Exercises startup identity, environment, binding, terminal-state, and enforce-consumer behavior. |
 
 ---
 

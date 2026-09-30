@@ -22,7 +22,7 @@ description: "Codex CLI hook adapters that normalize Codex lifecycle payloads an
 | `user-prompt-submit.ts` | `UserPromptSubmit` adapter. Delegates to `user-prompt-submit.js` and normalizes its JSON response into the Codex envelope. |
 | `session-stop.ts` | `Stop` adapter. Delegates to `session-stop.js`. |
 | `compact-inject.ts` | `PreCompact` adapter. Delegates to `compact-inject.js`. |
-| `completion-evidence-stop.cjs` | Standalone Codex `Stop` sentinel. Reads the last-spec-folder state written by the lifecycle hooks, resolves the active packet and calls `../../lib/hooks/completion-evidence-sentinel.cjs` for an advisory-only completion-evidence check. Never blocks the turn. |
+| `completion-evidence-stop.cjs` | Standalone Codex `Stop` sentinel. Reads the last-spec-folder state written by the lifecycle hooks, resolves the active packet and calls `../lib/completion-evidence-sentinel.cjs` for an advisory-only completion-evidence check. Never blocks the turn. |
 
 ---
 
@@ -40,7 +40,7 @@ Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 npx vitest run tests/directive-lifecycle-adapter-parity.vitest.ts tests/hook-adapter-runtime-label.vitest.ts tests/hook-completion-evidence-stop.vitest.ts
-node --test hooks/codex/spec-gate-codex.test.mjs
+node --test tests/hooks/spec-gate-codex.test.mjs
 ```
 
 Expected result: `directive-lifecycle-adapter-parity.vitest.ts` passes for the `codex` case (process-level, spawning the compiled adapter and confirming lifecycle-boundary delivery), `hook-completion-evidence-stop.vitest.ts` covers the sentinel path shared with `completion-evidence-stop.cjs`, and the co-located spec-gate suite passes under `node --test`. `tests/hook-adapter-runtime-label.vitest.ts` imports `shared.ts` directly and checks the runtime label. `session-start.ts`, `session-stop.ts`, `compact-inject.ts` and `user-prompt-submit.ts` have no dedicated Vitest file of their own. They are exercised indirectly through the Claude adapters they delegate to.
@@ -55,7 +55,6 @@ This folder also holds the Codex CLI side of the Gate-3 spec-folder discipline, 
 |------|---------|
 | `spec-gate-classify.mjs` | `UserPromptSubmit` hook. Runs `classifyIntent()` against each user turn and opens the session gate. Emits **nothing**: the question is delivered at the first mutation. |
 | `spec-gate-enforce.mjs` | `PreToolUse` hook. Maps Codex's `exec`/`apply_patch`/`edit` tool names onto the core's `bash`/`write`/`edit` vocabulary, parses `*** Add/Update/Delete File:` and `*** Move to:` headers out of `apply_patch` patch bodies to find the real target path, then runs `evaluateMutation()`. The first in-gate Write/Edit emits the once-per-session mutation notice as `additionalContext` and records the delivery marker after the envelope is written; later mutations are silent. |
-| `spec-gate-codex.test.mjs` | Co-located tests, run with `node --test`. |
 
 `.codex/hooks.json` wires `spec-gate-classify.mjs` to `UserPromptSubmit` and `spec-gate-enforce.mjs` to the `exec|apply_patch|edit` `PreToolUse` matcher.
 
@@ -64,5 +63,5 @@ This folder also holds the Codex CLI side of the Gate-3 spec-folder discipline, 
 ## 6. RELATED
 
 - [`../README.md`](../README.md)
-- [`../../lib/hooks/completion-evidence-sentinel.cjs`](../../lib/hooks/completion-evidence-sentinel.cjs)
+- [`../lib/completion-evidence-sentinel.cjs`](../lib/completion-evidence-sentinel.cjs)
 - [`../lib/spec-gate/README.md`](../lib/spec-gate/README.md)

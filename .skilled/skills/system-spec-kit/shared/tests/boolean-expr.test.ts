@@ -13,7 +13,7 @@ import {
   parseBooleanExprString,
   parseWhenField,
   validateBooleanExpr,
-} from './boolean-expr.js';
+} from '../predicates/boolean-expr.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 

@@ -4,7 +4,7 @@
 
 import assert from 'node:assert/strict';
 
-import { findUnactionedFailures } from './unactioned-recorded-failure-audit.mjs';
+import { findUnactionedFailures } from '../validation/unactioned-recorded-failure-audit.mjs';
 
 // 1. An unrouted recorded failure is surfaced (the deceptive class).
 assert.ok(

@@ -1,6 +1,10 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Retry Backoff Unit Tests
+// ───────────────────────────────────────────────────────────────────
+
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { calculateBackoff, classifyError, getBackoffSequence, isPermanentError, isTransientError, retryWithBackoff } from './retry.js';
+import { calculateBackoff, classifyError, getBackoffSequence, isPermanentError, isTransientError, retryWithBackoff } from '../utils/retry.js';
 
 const FAST = { maxRetries: 3, baseDelayMs: 100, maxDelayMs: 10_000, exponentialBase: 2 };
 

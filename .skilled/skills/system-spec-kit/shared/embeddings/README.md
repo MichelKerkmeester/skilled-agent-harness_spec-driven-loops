@@ -38,8 +38,6 @@ embeddings/
 +-- profile.ts              # Profile slugs, dtype resolution and database path derivation
 +-- adapters/               # Manifest-driven adapters (ollama)
 +-- providers/              # IEmbeddingProvider implementations (ollama, hf-local, openai, voyage)
-+-- profile.test.ts         # Profile slug and path tests
-+-- registry.test.ts        # Registry and canonical fallback tests
 `-- README.md
 ```
 
@@ -161,7 +159,7 @@ python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/syst
 
 Expected result: the validator exits with code `0`.
 
-Sibling unit tests (`profile.test.ts`, `registry.test.ts`) run under the shared test runner; run them after changing profile or registry logic.
+The unit tests `../tests/profile.test.ts` and `../tests/registry.test.ts` run under the shared test runner; run them after changing profile or registry logic.
 
 ---
 

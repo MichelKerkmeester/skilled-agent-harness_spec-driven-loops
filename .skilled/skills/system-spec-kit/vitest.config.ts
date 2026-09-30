@@ -17,6 +17,11 @@ const TEARDOWN_TIMEOUT_MS = 1_000;
 // bare 5s default.
 export default {
   test: {
+    // Snapshots live in a plain `snapshots/` folder beside each test, because
+    // the folder rule forbids double-underscore names such as vitest's default
+    // `__snapshots__`.
+    resolveSnapshotPath: (testPath: string, snapExtension: string) =>
+      path.join(path.dirname(testPath), 'snapshots', `${path.basename(testPath)}${snapExtension}`),
     projects: [
       {
         // Hook sources load through runtime symlinks under `.pi`/`.opencode`, so

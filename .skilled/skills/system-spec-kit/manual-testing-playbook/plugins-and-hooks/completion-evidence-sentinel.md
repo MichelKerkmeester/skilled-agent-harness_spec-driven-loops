@@ -24,7 +24,7 @@ expected_leaf_resources: []
 
 `system-completion-sentinel` is an OpenCode plugin (`.skilled/plugins/system-completion-sentinel.js`) that
 adapts the runtime-neutral core `completion-evidence-sentinel.cjs`
-(`.skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs`) onto
+(`.skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs`) onto
 OpenCode's `session.idle` and `session.created` events. The identical core is also consumed by a
 standalone Claude Code Stop hook,
 `.skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs`, wired in
@@ -130,7 +130,7 @@ const path = require('node:path');
 const fs = require('node:fs');
 const os = require('node:os');
 
-const core = require(path.resolve(process.cwd(), '.skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs'));
+const core = require(path.resolve(process.cwd(), '.skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs'));
 const projectDir = fs.mkdtempSync(path.join(os.tmpdir(), 'sentinel-core-live-'));
 
 function section(title) { console.log(`\n--- ${title} ---`); }
@@ -347,7 +347,7 @@ Capture, for every step in the Commands sequence above:
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - OpenCode plugin (adapter): `.skilled/plugins/system-completion-sentinel.js`
 - OpenCode plugin unit test: `.skilled/plugins/tests/system-completion-sentinel.test.cjs`
-- Runtime-neutral core: `.skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs`
+- Runtime-neutral core: `.skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs`
 - Core vitest suite: `.skilled/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts`
 - Claude Stop hook (adapter): `.skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs`
 - Claude Stop hook vitest suite: `.skilled/skills/system-spec-kit/runtime/tests/hook-completion-evidence-stop.vitest.ts`

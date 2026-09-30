@@ -9,12 +9,16 @@
 // for pipeline integration. Does NOT replace validate.sh — this is
 // a lightweight evaluator for metadata annotation only.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import * as fs from 'fs';
 import * as path from 'path';
 import { parseFrontmatter } from '../frontmatter/parse-frontmatter.js';
 
 // ───────────────────────────────────────────────────────────────────
-// Types
+// 2. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────────
 
 export interface SpecDocHealthIssue {
@@ -39,7 +43,7 @@ export interface SpecDocHealthResult {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// Constants
+// 3. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
 const SPECKIT_LEVEL_RE = /<!--\s*SPECKIT_LEVEL:\s*(\d\+?)\s*-->/;
@@ -66,7 +70,7 @@ const PHASE_PARENT_REQUIRED_FILES = ['spec.md', 'description.json', 'graph-metad
 const PHASE_CHILD_RE = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
 
 // ───────────────────────────────────────────────────────────────────
-// Level Detection
+// 4. LEVEL DETECTION
 // ───────────────────────────────────────────────────────────────────
 
 function detectLevel(folderPath: string): number | null {
@@ -90,7 +94,7 @@ function detectLevel(folderPath: string): number | null {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// Rule Checks
+// 5. RULE CHECKS
 // ───────────────────────────────────────────────────────────────────
 
 // Mirrors the single-source-of-truth contract enforced by validate.sh /
@@ -300,7 +304,7 @@ function checkContentSubstance(folderPath: string): SpecDocHealthIssue[] {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// Main Evaluator
+// 6. MAIN EVALUATOR
 // ───────────────────────────────────────────────────────────────────
 
 export function evaluateSpecDocHealth(specFolderPath: string): SpecDocHealthResult {

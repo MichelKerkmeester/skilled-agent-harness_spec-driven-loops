@@ -19,7 +19,7 @@ import {
   getCanonicalFallback,
   listManifests,
   MANIFESTS,
-} from './registry.js';
+} from '../embeddings/registry.js';
 
 function assert(cond: boolean, label: string): void {
   if (!cond) {

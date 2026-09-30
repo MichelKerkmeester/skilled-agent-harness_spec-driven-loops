@@ -72,7 +72,7 @@ utils, config and parsing do not import domain modules
 | Continuity | `continuity/`, `resume/`, `context/` | Own continuity records, the resume ladder and the shared payload envelope. |
 | Discovery | `discovery/`, `config/` | Locate spec documents and name the canonical spec-document set. |
 | Content | `parsing/`, `extraction/` | Normalize markdown and extract entities from it. |
-| Support | `utils/`, `hooks/`, `test-helpers/` | Shared plumbing: path identity, hook policy, test helpers. |
+| Support | `utils/` | Shared plumbing: path identity, index scope, sanitizers. |
 
 ---
 
@@ -87,13 +87,11 @@ lib/
 ├── discovery/       # Lib seam over spec-document discovery
 ├── extraction/      # Rule-based entity extraction and its denylist
 ├── graph/           # graph-metadata.json schema, parser, drift gate, access telemetry
-├── hooks/           # Runtime-neutral completion-evidence sentinel policy
 ├── parsing/         # Markdown content normalization
 ├── resume/          # Resume ladder construction
 ├── search/          # Per-folder description discovery and search flags
 ├── spec/            # Phase-parent detection
 ├── templates/       # Level contract resolution
-├── test-helpers/    # Environment snapshot helper for tests
 ├── utils/           # Canonical paths, index scope, sanitizers, exhaustiveness
 ├── validation/      # Orchestrator, structure rules, generated-metadata integrity
 ├── MODULE-MAP.md    # Per-module ownership and dependency directions

@@ -15,11 +15,11 @@ import { join, dirname } from 'node:path';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-import * as core from './spec-gate-core.mjs';
+import * as core from '../../hooks/lib/spec-gate/spec-gate-core.mjs';
 
-const CORE_SOURCE_PATH = fileURLToPath(new URL('./spec-gate-core.mjs', import.meta.url));
-const CORE_MODULE_URL = new URL('./spec-gate-core.mjs', import.meta.url).href;
-const CLASSIFIER_MODULE_PATH = fileURLToPath(new URL('../../../../shared/dist/gate-3-classifier.js', import.meta.url));
+const CORE_SOURCE_PATH = fileURLToPath(new URL('../../hooks/lib/spec-gate/spec-gate-core.mjs', import.meta.url));
+const CORE_MODULE_URL = new URL('../../hooks/lib/spec-gate/spec-gate-core.mjs', import.meta.url).href;
+const CLASSIFIER_MODULE_PATH = fileURLToPath(new URL('../../../shared/dist/gate-3-classifier.js', import.meta.url));
 
 function makeWorkspace(base = tmpdir()) {
   const root = mkdtempSync(join(base, 'spec-gate-test-'));
@@ -587,7 +587,7 @@ test('Gate-3 delivery matrix keeps only unchanged repeated positive eligible for
 });
 
 test('Gate-3 observed emission rejects lifecycle epoch zero at the sink', async () => {
-  const policyPlan = await import('../../../../../system-skill-advisor/runtime/dist/runtime/lib/policy-plan.js');
+  const policyPlan = await import('../../../../system-skill-advisor/runtime/dist/runtime/lib/policy-plan.js');
   policyPlan.clearPolicyObservationSink();
   core.resetGate3DeliveryShadow();
   core.observeGate3QuestionDelivery(observedGate3Request({
@@ -626,7 +626,7 @@ test('Gate-3 delivery confirmation rejects lifecycle epoch zero', () => {
 });
 
 test('Gate-3 adapters: classify emits no question, enforce acknowledges its notice', () => {
-  const hooksRoot = fileURLToPath(new URL('../../', import.meta.url));
+  const hooksRoot = fileURLToPath(new URL('../../hooks/', import.meta.url));
   const classifyAdapters = [
     'claude/spec-gate-classify.mjs',
     'codex/spec-gate-classify.mjs',

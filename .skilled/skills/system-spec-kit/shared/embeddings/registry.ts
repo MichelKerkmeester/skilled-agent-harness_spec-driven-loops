@@ -9,9 +9,17 @@
 // code-tuned consumers.
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import type { EmbedderAdapter } from './adapter.js';
 import { OllamaAdapter } from './adapters/ollama.js';
 import type { BackendKind, EmbedderManifest } from './types.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Frozen list of supported embedder manifests.
@@ -30,6 +38,10 @@ const MANIFESTS: ReadonlyArray<EmbedderManifest> = Object.freeze([
     notes: 'Drop-in 768-dim swap candidate. Retrieval-specialist trained on 235M pairs with hard negatives. Requires prefix tokens. Local-first cascade default per ADR-014.',
   },
 ]);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export class NotImplementedError extends Error {
   constructor(backend: BackendKind) {
@@ -87,6 +99,10 @@ export function getAdapter(name: string): EmbedderAdapter | undefined {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────────
+
 /**
  * Re-export the canonical MANIFESTS reference for callers that need direct
  * access to the frozen array (e.g. INSTALL_GUIDE truth-checks).
@@ -94,7 +110,7 @@ export function getAdapter(name: string): EmbedderAdapter | undefined {
 export { MANIFESTS };
 
 // ───────────────────────────────────────────────────────────────────
-// Canonical per-provider fallback
+// 5. CANONICAL PER-PROVIDER FALLBACK
 // ───────────────────────────────────────────────────────────────────
 // Single source of truth for "what model do we use when no env var is set,
 // no `vec_metadata.active_embedder_name` row exists, and the cascade probe

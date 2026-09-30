@@ -1,7 +1,11 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: JSONC Comment Stripper Tests
+// ───────────────────────────────────────────────────────────────────
+
 // Script-style assertions for the JSONC comment stripper, run through the
 // package's node --test lane; throws on the first failing assertion.
 
-import { stripJsoncComments } from './jsonc-strip.js';
+import { stripJsoncComments } from '../utils/jsonc-strip.js';
 
 function assert(condition: boolean, label: string): void {
   if (!condition) throw new Error(`${label} failed`);

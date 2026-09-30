@@ -46,7 +46,7 @@ Current state:
                                    │
                                    ▼
                          ┌────────────────────┐
-                         │ ../lib/hooks/      │
+                         │ hooks/lib/         │
                          │ evidence sentinel  │
                          └────────────────────┘
 
@@ -85,7 +85,7 @@ runtime/hooks/
 | `lib/workspace/repo-root.mjs` | Repository-root resolution used by the spec-gate core. |
 | `shared-provenance.ts` | Sanitizes recovered compact payloads, stripping adversarial system/developer/assistant/user prefixes, and wraps them with explicit provenance markers so downstream hooks can tell cached context from a first-class turn. Consumed by `claude/shared.ts` and `claude/hook-state.ts`. |
 
-The completion-evidence policy each runtime's Stop-equivalent adapter calls lives one level up, at `../lib/hooks/completion-evidence-sentinel.cjs`.
+The completion-evidence policy each runtime's Stop-equivalent adapter calls lives in `lib/completion-evidence-sentinel.cjs`.
 
 ---
 
@@ -164,9 +164,9 @@ Run from `.skilled/skills/system-spec-kit/runtime` unless noted. `npx vitest run
 
 ```bash
 npx vitest run tests/hook-*.vitest.ts tests/hooks-*.vitest.ts tests/user-prompt-submit-shim.vitest.ts tests/directive-lifecycle-*.vitest.ts
-node --test hooks/lib/spec-gate/spec-gate-core.test.mjs
-node --test hooks/claude/spec-gate-claude.test.mjs
-node --test hooks/codex/spec-gate-codex.test.mjs
+node --test tests/hooks/spec-gate-core.test.mjs
+node --test tests/hooks/spec-gate-claude.test.mjs
+node --test tests/hooks/spec-gate-codex.test.mjs
 ```
 
 Expected result: every listed Vitest file passes, and each `node --test` spec-gate suite passes. Cursor and Devin carry their own spec-gate suites; see their READMEs.

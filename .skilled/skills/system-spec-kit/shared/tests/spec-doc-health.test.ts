@@ -1,12 +1,12 @@
 // ───────────────────────────────────────────────────────────────────
-// TESTS: Spec Document Health Evaluator
+// MODULE: Spec Document Health Evaluator
 // ───────────────────────────────────────────────────────────────────
 // Run: npx ts-node shared/parsing/spec-doc-health.test.ts
 
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
-import { evaluateSpecDocHealth } from './spec-doc-health.js';
+import { evaluateSpecDocHealth } from '../parsing/spec-doc-health.js';
 
 function assertEqual(actual: unknown, expected: unknown, label: string): void {
   if (actual !== expected) {
