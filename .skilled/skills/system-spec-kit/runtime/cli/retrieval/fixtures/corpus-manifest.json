@@ -1,5 +1,5 @@
 {
-  "corpusHash": "aa6488b46267103bd2071260a23a8b3b606977a4f19302730e00a5706c2034fb",
+  "corpusHash": "11d1c0851a545b788ef1f825e8a31c7679f4e25bb88d6e9bb318ed7e45535607",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23597,
+  "includedPathCount": 23606,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -108,6 +108,7 @@
     ".skilled/skills/cli-classifier/SKILL.md",
     ".skilled/skills/cli-classifier/benchmark/README.md",
     ".skilled/skills/cli-classifier/benchmark/injection-screen/README.md",
+    ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
     ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md",
     ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/skill-benchmark-report.md",
     ".skilled/skills/cli-classifier/benchmark/reports/README.md",
@@ -173,6 +174,7 @@
     ".skilled/skills/cli-classifier/cli-usage/references/providers-and-models.md",
     ".skilled/skills/cli-classifier/feature-catalog/feature-catalog.md",
     ".skilled/skills/cli-classifier/feature-catalog/measurements/injection-screen-measurement.md",
+    ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-comparison.md",
     ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md",
     ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md",
     ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/jev-request-stays-with-cli-jev.md",
@@ -180,6 +182,7 @@
     ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/out-of-domain-resolves-nothing.md",
     ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/injection-screen-measurement.md",
+    ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md",
     ".skilled/skills/cli-classifier/shared/README.md",
     ".skilled/skills/cli-external-orchestration/README.md",
     ".skilled/skills/cli-external-orchestration/ROUTER.md",
@@ -8876,6 +8879,12 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/plan.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/spec.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/acceptance-criteria.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/README.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-ask.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-pick.md",
@@ -23627,7 +23636,7 @@
     "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f1b54f72d0f2d997ba0e06fafb384dfc7ae8a2af716587b9c1ec545600fc59a7",
+  "manifestHash": "360b3805a3886d4b9e28af3cb1b703975b8d36bb69e36373f807fa63ca8b6d4a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24679,6 +24688,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/036-sk-code-and-sk-doc-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch",
       "reason": "excluded directory"
     },
     {

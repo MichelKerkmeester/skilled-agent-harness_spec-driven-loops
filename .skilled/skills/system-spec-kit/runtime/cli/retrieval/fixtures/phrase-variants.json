@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f1b54f72d0f2d997ba0e06fafb384dfc7ae8a2af716587b9c1ec545600fc59a7",
+  "manifestHash": "360b3805a3886d4b9e28af3cb1b703975b8d36bb69e36373f807fa63ca8b6d4a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17001,6 +17001,15 @@
     "classifier build order": [
       "classifier build order"
     ],
+    "classifier census criteria": [
+      "classifier census criteria"
+    ],
+    "classifier census summary": [
+      "classifier census summary"
+    ],
+    "classifier census tasks": [
+      "classifier census tasks"
+    ],
     "classifier context reduction research": [
       "classifier context reduction research"
     ],
@@ -17009,6 +17018,9 @@
     ],
     "classifier intended approach": [
       "classifier intended approach"
+    ],
+    "classifier replay comparison": [
+      "classifier replay comparison"
     ],
     "classifier research round 3 goal": [
       "classifier research round 3 goal"
@@ -48556,6 +48568,9 @@
     "jev cli": [
       "jev cli"
     ],
+    "jev cli comparison": [
+      "jev CLI comparison"
+    ],
     "jev cli reference": [
       "jev cli reference"
     ],
@@ -48813,6 +48828,12 @@
     ],
     "jev transport classification": [
       "jev transport classification"
+    ],
+    "jev transport comparison": [
+      "jev transport comparison"
+    ],
+    "jev transport comparison goal": [
+      "jev transport comparison goal"
     ],
     "jev transport mode": [
       "jev transport mode"
@@ -65522,6 +65543,18 @@
     "pi child compaction loop": [
       "pi child compaction loop"
     ],
+    "pi classifier transport": [
+      "Pi classifier transport"
+    ],
+    "pi classify comparison completion": [
+      "pi classify comparison completion"
+    ],
+    "pi classify comparison tasks": [
+      "pi classify comparison tasks"
+    ],
+    "pi classify replay plan": [
+      "pi classify replay plan"
+    ],
     "pi claude hook adapter": [
       "pi claude hook adapter"
     ],
@@ -65826,8 +65859,20 @@
     "pi model provider mapping deepseek": [
       "pi model provider mapping deepseek"
     ],
+    "pi model runtime classify": [
+      "pi model runtime classify"
+    ],
     "pi models json overlay": [
       "pi models.json overlay"
+    ],
+    "pi native classifier transport": [
+      "pi native classifier transport"
+    ],
+    "pi native classifier transport goal": [
+      "pi native classifier transport goal"
+    ],
+    "pi native classifier transport status": [
+      "pi native classifier transport status"
     ],
     "pi native skills": [
       "pi native skills"
@@ -66060,6 +66105,45 @@
     ],
     "pi tools capabilities reference": [
       "pi-tools capabilities reference"
+    ],
+    "pi transport acceptance criteria": [
+      "pi transport acceptance criteria"
+    ],
+    "pi transport closure gate": [
+      "pi transport closure gate"
+    ],
+    "pi transport comparison": [
+      "pi transport comparison"
+    ],
+    "pi transport comparison plan": [
+      "pi transport comparison plan"
+    ],
+    "pi transport keep rule": [
+      "pi transport keep rule"
+    ],
+    "pi transport summary": [
+      "pi transport summary"
+    ],
+    "pi transport task breakdown": [
+      "pi transport task breakdown"
+    ],
+    "pi transport task dependencies": [
+      "pi transport task dependencies"
+    ],
+    "pi transport testing strategy": [
+      "pi transport testing strategy"
+    ],
+    "pi transport verdict": [
+      "pi transport verdict"
+    ],
+    "pi transport verdict criteria": [
+      "pi transport verdict criteria"
+    ],
+    "pi transport verification checklist": [
+      "pi transport verification checklist"
+    ],
+    "pi transport waiver adr": [
+      "pi transport waiver adr"
     ],
     "pi turn end event probe": [
       "pi turn end event probe"
@@ -78149,6 +78233,9 @@
     ],
     "score model variant cjs": [
       "score-model-variant.cjs"
+    ],
+    "score pi transport": [
+      "score-pi-transport"
     ],
     "score residue flagger": [
       "score-residue-flagger"
@@ -99062,6 +99149,9 @@
     ],
     "zero blocked legacy replay": [
       "zero blocked legacy replay"
+    ],
+    "zero call classifier census plan": [
+      "zero-call classifier census plan"
     ],
     "zero call compaction census": [
       "zero-call compaction census"
