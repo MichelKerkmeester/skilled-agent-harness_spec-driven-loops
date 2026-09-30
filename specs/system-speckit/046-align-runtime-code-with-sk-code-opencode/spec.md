@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Align system-spec-kit runtime code with sk-code-opencode"
-description: "The system-spec-kit runtime drifts from sk-code-opencode: 254 of 559 files lack a MODULE header, 185 of 312 large files lack numbered section dividers, 35 files mix both divider formats, and 2 code folders lack a README. A cheap DeepSeek loop fixes the comment and README drift; fact-checked folder merges follow."
+description: "The system-spec-kit runtime drifts from sk-code-opencode: 254 of 559 files lack a MODULE header, 185 of 312 large files lack numbered section dividers, 35 files mix both divider formats, and 3 code folders lack a README. A cheap DeepSeek loop fixes the comment and README drift; fact-checked folder merges follow."
 trigger_phrases:
   - "spec kit runtime alignment"
   - "sk-code-opencode section dividers spec kit"
@@ -22,9 +22,9 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-30 |
-| **Branch** | `main` (workspace choice deferred to the build) |
+| **Branch** | `worktrees/070-runtime-code-alignment`, merged to `main` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,7 +48,7 @@ Measured on 2026-09-30 (census script over 559 JS/TS files, `node_modules` and `
 | Files using a non-standard divider shape | 80 |
 | Files mixing Format A and Format B dividers, which §4 forbids | 35 |
 | Code folders | 81 |
-| Code folders with no `README.md` | 2: `cli/hermes`, `cli/hermes/tests` |
+| Code folders with no `README.md` | 3: `cli/hermes`, `cli/hermes/tests`, `hooks/opencode` (its one file is a symlink, which the first census skipped; the checker flag found it) |
 | Single-file leaf folders | 25 |
 
 `runtime/shared` is a tracked symlink to `../shared/dist`, not a duplicated build tree; DeepSeek's report claimed otherwise and was wrong. The ARCHITECTURE.md for this skill exists and follows the shared 8-section skeleton.
@@ -65,7 +65,7 @@ Every runtime file carries the sk-code-opencode header and, when it is a non-tes
 ### In Scope
 - MODULE header on every runtime JS/TS file, tests included.
 - Numbered section dividers on non-test files over 150 lines, one format per file, which also resolves the 35 mixed-format files.
-- A code README for `runtime/cli/hermes` and `runtime/cli/hermes/tests`, unless the tests folder is merged away.
+- A code README for `runtime/cli/hermes`, `runtime/hooks/opencode`, and `runtime/cli/hermes/tests` unless that folder is merged away.
 - Folder merges from the candidate list below, only for rows the SWE-2 MAX fact-check marks CONFIRMED, with every importer updated.
 - A refresh of `ARCHITECTURE.md` §2 PACKAGE TOPOLOGY if merges change the tree.
 

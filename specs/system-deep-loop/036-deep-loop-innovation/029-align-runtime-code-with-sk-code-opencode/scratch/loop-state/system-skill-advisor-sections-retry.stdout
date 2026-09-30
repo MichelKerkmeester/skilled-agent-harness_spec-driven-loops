@@ -1,0 +1,4 @@
+targets: 1 (system-skill-advisor sections), already done: 40
+2026-09-30T13:42:09Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/beta-reliability.ts	KEPT	sections
+2026-09-30T13:44:34Z	-	GATE-PASS	tests [      Tests  971 passed | 6 skipped (977)]
+2026-09-30T13:44:34Z	-	DONE	attempted=1 kept=1

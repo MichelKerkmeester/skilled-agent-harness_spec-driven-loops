@@ -24,9 +24,9 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-09-30 |
-| **Branch** | `main` (workspace choice deferred to the build) |
+| **Branch** | `worktrees/070-runtime-code-alignment`, merged to `main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 29 of 29 |
 | **Predecessor** | 028-cli-lineage-nesting-and-containment-guard |

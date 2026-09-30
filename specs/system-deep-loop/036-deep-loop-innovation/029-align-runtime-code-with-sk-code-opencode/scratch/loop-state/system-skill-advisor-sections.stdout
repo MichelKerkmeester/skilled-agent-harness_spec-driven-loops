@@ -1,0 +1,46 @@
+targets: 42 (system-skill-advisor sections), already done: 0
+2026-09-30T12:43:16Z	.skilled/skills/system-skill-advisor/runtime/advisor-server.ts	KEPT	sections
+2026-09-30T12:44:59Z	.skilled/skills/system-skill-advisor/runtime/bench/scorer-calibration.bench.ts	KEPT	sections
+2026-09-30T12:47:02Z	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts	KEPT	sections
+2026-09-30T12:48:15Z	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts	KEPT	sections
+2026-09-30T12:49:08Z	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts	KEPT	sections
+2026-09-30T12:50:11Z	.skilled/skills/system-skill-advisor/runtime/lib/affordance-normalizer.ts	KEPT	sections
+2026-09-30T12:51:13Z	.skilled/skills/system-skill-advisor/runtime/lib/daemon/lease.ts	KEPT	sections
+2026-09-30T12:51:51Z	.skilled/skills/system-skill-advisor/runtime/lib/daemon/lifecycle.ts	KEPT	sections
+2026-09-30T12:52:24Z	.skilled/skills/system-skill-advisor/runtime/lib/daemon/watcher.ts	KEPT	sections
+2026-09-30T12:54:22Z	.skilled/skills/system-skill-advisor/runtime/lib/embedders/schema.ts	KEPT	sections
+2026-09-30T12:54:54Z	.skilled/skills/system-skill-advisor/runtime/lib/freshness/generation.ts	KEPT	sections
+2026-09-30T12:55:47Z	.skilled/skills/system-skill-advisor/runtime/lib/freshness/trust-state.ts	KEPT	sections
+2026-09-30T12:56:30Z	.skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts	KEPT	sections
+2026-09-30T12:59:59Z	.skilled/skills/system-skill-advisor/runtime/lib/prompt-policy.ts	KEPT	sections
+2026-09-30T13:00:52Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/ablation.ts	KEPT	sections
+2026-09-30T13:02:30Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts	KEPT	sections
+2026-09-30T13:06:31Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/beta-reliability.ts	PROVIDER	{"timestamp":"2026-09-30T13:02:32.856Z","runtime":"pi","status":"ok","freshness":"live","durationMs":652,"cacheHit":false,"skillLabel":"cli-external-orchestration","emittedBytes":307,"directivesSuppressed":false}
+2026-09-30T13:07:09Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/executor-delegation.ts	KEPT	sections
+2026-09-30T13:07:47Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/feedback-calibration.ts	KEPT	sections
+2026-09-30T13:09:06Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts	KEPT	sections
+2026-09-30T13:10:09Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/bm25.ts	KEPT	sections
+2026-09-30T13:10:42Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts	KEPT	sections
+2026-09-30T13:11:10Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/graph-causal.ts	KEPT	sections
+2026-09-30T13:12:04Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts	KEPT	sections
+2026-09-30T13:14:11Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts	KEPT	sections
+2026-09-30T13:14:59Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/scoring-constants.ts	KEPT	sections
+2026-09-30T13:15:01Z	-	GATE-PASS	typecheck
+2026-09-30T13:15:44Z	.skilled/skills/system-skill-advisor/runtime/lib/scorer/types.ts	KEPT	sections
+2026-09-30T13:16:27Z	.skilled/skills/system-skill-advisor/runtime/lib/shadow/shadow-sink.ts	KEPT	sections
+2026-09-30T13:19:35Z	.skilled/skills/system-skill-advisor/runtime/lib/shared/shared-payload.ts	REVERTED	checker still flags the file
+2026-09-30T13:20:33Z	.skilled/skills/system-skill-advisor/runtime/lib/shared/unicode-normalization.ts	KEPT	sections
+2026-09-30T13:21:41Z	.skilled/skills/system-skill-advisor/runtime/lib/skill-advisor-brief.ts	KEPT	sections
+2026-09-30T13:22:09Z	.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/bfs-traversal.ts	KEPT	sections
+2026-09-30T13:23:37Z	.skilled/skills/system-skill-advisor/runtime/lib/skill-graph/doc-frontmatter.ts	KEPT	sections
+2026-09-30T13:24:24Z	.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts	KEPT	sections
+2026-09-30T13:25:57Z	.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts	KEPT	sections
+2026-09-30T13:26:50Z	.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs	KEPT	sections
+2026-09-30T13:27:33Z	.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs	KEPT	sections
+2026-09-30T13:28:21Z	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-local-native-divergence-ledger.mjs	KEPT	sections
+2026-09-30T13:29:03Z	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs	KEPT	sections
+2026-09-30T13:29:47Z	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-outcome-rerank.mjs	KEPT	sections
+2026-09-30T13:30:36Z	.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts	KEPT	sections
+2026-09-30T13:32:04Z	.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts	KEPT	sections
+2026-09-30T13:34:09Z	-	GATE-PASS	tests [      Tests  8 failed | 963 passed | 6 skipped (977)]
+2026-09-30T13:34:09Z	-	DONE	attempted=42 kept=40

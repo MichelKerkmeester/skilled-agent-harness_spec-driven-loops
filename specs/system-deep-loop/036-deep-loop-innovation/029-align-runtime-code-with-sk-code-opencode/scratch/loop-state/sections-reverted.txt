@@ -1,0 +1,3 @@
+.skilled/skills/system-deep-loop/runtime/lib/agent-improvement-sealed-artifacts/agent-improvement-artifact-material.ts
+.skilled/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-errors.ts
+.skilled/skills/system-deep-loop/runtime/lib/blinded-adjudication/index.ts

@@ -1,0 +1,5 @@
+targets: 2 (system-skill-advisor readme), already done: 0
+2026-09-30T13:35:17Z	.skilled/skills/system-skill-advisor/runtime/types	KEPT	readme
+2026-09-30T13:36:30Z	.skilled/skills/system-skill-advisor/runtime/lib/routing	KEPT	readme
+2026-09-30T13:39:05Z	-	GATE-PASS	tests [      Tests  971 passed | 6 skipped (977)]
+2026-09-30T13:39:05Z	-	DONE	attempted=2 kept=2
