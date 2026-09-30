@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e0dcfc7cd78264d726a016a036431073ac2b3e0e475d4ec3696e2e66171429b1",
+  "manifestHash": "8ec64256c09df09d5d5755769ccc0c5b0502ff86fb3d0409b5cbde67bd153b3f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16776,17 +16776,23 @@
     "citationpolicy do not cite results": [
       "citationPolicy do_not_cite_results"
     ],
+    "cite drift labels jsonl": [
+      "cite-drift-labels.jsonl"
+    ],
     "cite drift scan": [
       "cite-drift-scan"
+    ],
+    "cite drift scan complete": [
+      "cite-drift-scan complete"
     ],
     "cite drift scan completion criteria": [
       "cite-drift-scan completion criteria"
     ],
+    "cite drift scan mjs": [
+      "cite-drift-scan.mjs"
+    ],
     "cite drift scan plan": [
       "cite-drift-scan plan"
-    ],
-    "cite drift scan planned": [
-      "cite-drift-scan planned"
     ],
     "cite drift scan tasks": [
       "cite-drift-scan tasks"
@@ -23182,6 +23188,9 @@
     "completion claim audit tasks": [
       "completion claim audit tasks"
     ],
+    "completion claim census": [
+      "completion claim census"
+    ],
     "completion claim census plan": [
       "completion claim census plan"
     ],
@@ -27802,6 +27811,12 @@
     "debug logging flag": [
       "debug logging flag"
     ],
+    "debug next check": [
+      "debug next check"
+    ],
+    "debug next check census": [
+      "debug next-check census"
+    ],
     "debug next check choice": [
       "debug next_check choice"
     ],
@@ -29015,6 +29030,9 @@
     "deep improvement 1 18 0 0": [
       "deep-improvement 1.18.0.0"
     ],
+    "deep improvement 1 19 0 0": [
+      "deep-improvement 1.19.0.0"
+    ],
     "deep improvement 1 2 0 0": [
       "deep-improvement 1.2.0.0"
     ],
@@ -29365,6 +29383,9 @@
     ],
     "deep improvement v1 18 0 0": [
       "deep-improvement v1.18.0.0"
+    ],
+    "deep improvement v1 19 0 0": [
+      "deep-improvement v1.19.0.0"
     ],
     "deep improvement v1 2 0 0": [
       "deep-improvement v1.2.0.0"
@@ -29999,6 +30020,18 @@
     "deep loop runtime 1 5 0 1": [
       "deep-loop-runtime 1.5.0.1"
     ],
+    "deep loop runtime 1 6 0 0": [
+      "deep-loop-runtime 1.6.0.0"
+    ],
+    "deep loop runtime 1 7 0 0": [
+      "deep-loop-runtime 1.7.0.0"
+    ],
+    "deep loop runtime 1 8 0 0": [
+      "deep-loop-runtime 1.8.0.0"
+    ],
+    "deep loop runtime 1 9 0 0": [
+      "deep-loop-runtime 1.9.0.0"
+    ],
     "deep loop runtime ci job": [
       "deep-loop runtime ci job"
     ],
@@ -30055,6 +30088,18 @@
     ],
     "deep loop runtime v1 5 0 1": [
       "deep-loop-runtime v1.5.0.1"
+    ],
+    "deep loop runtime v1 6 0 0": [
+      "deep-loop-runtime v1.6.0.0"
+    ],
+    "deep loop runtime v1 7 0 0": [
+      "deep-loop-runtime v1.7.0.0"
+    ],
+    "deep loop runtime v1 8 0 0": [
+      "deep-loop-runtime v1.8.0.0"
+    ],
+    "deep loop runtime v1 9 0 0": [
+      "deep-loop-runtime v1.9.0.0"
     ],
     "deep loop safe now gated split": [
       "deep-loop safe-now gated split"
@@ -31052,6 +31097,9 @@
     "deep review 1 11 0 36": [
       "deep-review 1.11.0.36"
     ],
+    "deep review 1 11 0 37": [
+      "deep-review 1.11.0.37"
+    ],
     "deep review 1 2 0 0": [
       "deep-review 1.2.0.0"
     ],
@@ -31650,6 +31698,9 @@
     ],
     "deep review v1 11 0 36": [
       "deep-review v1.11.0.36"
+    ],
+    "deep review v1 11 0 37": [
+      "deep-review v1.11.0.37"
     ],
     "deep review v1 2 0 0": [
       "deep-review v1.2.0.0"
@@ -32445,6 +32496,9 @@
     ],
     "derived generated affordance scoring": [
       "derived generated affordance scoring"
+    ],
+    "derived gold label gate": [
+      "derived gold label gate"
     ],
     "derived graph projection": [
       "derived graph projection"
@@ -38780,6 +38834,12 @@
     "fan out loop dispatch": [
       "fan-out loop dispatch"
     ],
+    "fan out pair census": [
+      "fan-out pair census"
+    ],
+    "fan out pair replay": [
+      "fan-out pair replay"
+    ],
     "fan out persisted wait crash resume": [
       "fan-out persisted-wait crash resume"
     ],
@@ -39979,6 +40039,9 @@
     ],
     "finding set stability": [
       "finding-set stability"
+    ],
+    "finding table census": [
+      "finding table census"
     ],
     "findings completeness mapping table": [
       "findings completeness mapping table"
@@ -46317,14 +46380,20 @@
     "hvr reader lens": [
       "hvr_reader_lens"
     ],
+    "hvr reader lens complete": [
+      "hvr_reader_lens complete"
+    ],
     "hvr reader lens completion criteria": [
       "hvr_reader_lens completion criteria"
     ],
     "hvr reader lens plan": [
       "hvr reader lens plan"
     ],
-    "hvr reader lens planned": [
-      "hvr_reader_lens planned"
+    "hvr reader lens py": [
+      "hvr_reader_lens.py"
+    ],
+    "hvr reader lens py draw": [
+      "hvr_reader_lens.py --draw"
     ],
     "hvr reader lens status": [
       "hvr reader lens status"
@@ -46333,6 +46402,7 @@
       "hvr reader lens tasks"
     ],
     "hvr reader needed lens": [
+      "hvr reader needed lens",
       "hvr reader-needed lens"
     ],
     "hvr reader needed lens goal": [
@@ -48891,8 +48961,14 @@
     "labeled ground truth graph preservation": [
       "labeled ground truth graph preservation"
     ],
+    "labeled p0 negatives": [
+      "labeled P0 negatives"
+    ],
     "labeled prompts corpus": [
       "labeled prompts corpus"
+    ],
+    "labeled regex miss outputs": [
+      "labeled regex-miss outputs"
     ],
     "labeled set gap threshold harness": [
       "labeled set gap threshold harness"
@@ -48905,6 +48981,9 @@
     ],
     "labeled set scorer tasks": [
       "labeled set scorer tasks"
+    ],
+    "labeled turn judgment": [
+      "labeled turn judgment"
     ],
     "lag ceiling gauge stall detector": [
       "lag-ceiling gauge stall detector"
@@ -49663,7 +49742,11 @@
       "leaf review agent"
     ],
     "leaf route replay": [
+      "leaf route replay",
       "leaf-route-replay"
+    ],
+    "leaf route replay cjs": [
+      "leaf-route-replay.cjs"
     ],
     "leaf route replay completion criteria": [
       "leaf-route-replay completion criteria"
@@ -53753,6 +53836,9 @@
     ],
     "measure packet shapes": [
       "measure packet shapes"
+    ],
+    "measure reviewer verdict fallback": [
+      "measure reviewer verdict fallback"
     ],
     "measure the track claim": [
       "measure the track claim"
@@ -58524,6 +58610,9 @@
     "near duplicate title line": [
       "near-duplicate title line"
     ],
+    "near line cross body pairs": [
+      "near-line cross-body pairs"
+    ],
     "near tie cluster eval": [
       "near-tie cluster eval"
     ],
@@ -58775,6 +58864,9 @@
     ],
     "next check keep rule": [
       "next check keep rule"
+    ],
+    "next check label census": [
+      "next-check label census"
     ],
     "next check label gate plan": [
       "next check label gate plan"
@@ -60344,6 +60436,18 @@
     "offline review verifier plan": [
       "offline review verifier plan"
     ],
+    "offline reviewer verdict fallback test": [
+      "offline reviewer verdict fallback test"
+    ],
+    "offline severity replay": [
+      "offline severity replay"
+    ],
+    "offline stop decision replay": [
+      "offline stop-decision replay"
+    ],
+    "offline stop hint replay": [
+      "offline stop-hint replay"
+    ],
     "offline suggested order eval": [
       "offline suggested-order eval"
     ],
@@ -61256,6 +61360,9 @@
     ],
     "operator owned strategy fields": [
       "operator-owned strategy fields"
+    ],
+    "operator pair labels": [
+      "operator pair labels"
     ],
     "operator preflight": [
       "operator preflight"
@@ -62748,6 +62855,9 @@
     ],
     "pair label gate tasks": [
       "pair label gate tasks"
+    ],
+    "pair replay label gate": [
+      "pair replay label gate"
     ],
     "paired allowlist copies": [
       "paired allowlist copies"
@@ -68809,11 +68919,11 @@
     "r20 stop line": [
       "r20 stop line"
     ],
+    "r25 closure": [
+      "r25 closure"
+    ],
     "r25 leaf routing": [
       "r25 leaf routing"
-    ],
-    "r25 planned phase": [
-      "r25 planned phase"
     ],
     "r3 live form test": [
       "r3 live form test"
@@ -69127,11 +69237,17 @@
     "reader needed lens label tasks": [
       "reader-needed lens label tasks"
     ],
+    "reader needed lens measurement": [
+      "reader-needed lens measurement"
+    ],
     "reader needed lens verdict": [
       "reader-needed lens verdict"
     ],
     "reader needed lens verification": [
       "reader-needed lens verification"
+    ],
+    "reader needed tells": [
+      "reader-needed tells"
     ],
     "reader needed voice categories": [
       "reader-needed voice categories"
@@ -73526,6 +73642,9 @@
     "residue flagger label tasks": [
       "residue flagger label tasks"
     ],
+    "residue flagger measurement": [
+      "residue flagger measurement"
+    ],
     "residue flagger plan": [
       "residue flagger plan"
     ],
@@ -75658,6 +75777,9 @@
     "router presentation split": [
       "router presentation split"
     ],
+    "router read recount": [
+      "router read recount"
+    ],
     "router replay benchmark": [
       "router replay benchmark"
     ],
@@ -77593,14 +77715,17 @@
     "score completion claims": [
       "score-completion-claims"
     ],
+    "score completion claims complete": [
+      "score-completion-claims complete"
+    ],
     "score completion claims completion criteria": [
       "score-completion-claims completion criteria"
     ],
+    "score completion claims mjs": [
+      "score-completion-claims.mjs"
+    ],
     "score completion claims plan": [
       "score-completion-claims plan"
-    ],
-    "score completion claims planned": [
-      "score-completion-claims planned"
     ],
     "score completion claims tasks": [
       "score-completion-claims tasks"
@@ -77632,6 +77757,9 @@
     "score debug next check completion criteria": [
       "score-debug-next-check completion criteria"
     ],
+    "score debug next check mjs": [
+      "score-debug-next-check.mjs"
+    ],
     "score debug next check tasks": [
       "score-debug-next-check tasks"
     ],
@@ -77646,6 +77774,9 @@
     ],
     "score fanout pairs build": [
       "score-fanout-pairs build"
+    ],
+    "score fanout pairs cjs": [
+      "score-fanout-pairs.cjs"
     ],
     "score fanout pairs completion criteria": [
       "score-fanout-pairs completion criteria"
@@ -77716,14 +77847,14 @@
     "score residue flagger": [
       "score-residue-flagger"
     ],
+    "score residue flagger complete": [
+      "score-residue-flagger complete"
+    ],
     "score residue flagger completion criteria": [
       "score-residue-flagger completion criteria"
     ],
     "score residue flagger plan": [
       "score-residue-flagger plan"
-    ],
-    "score residue flagger planned": [
-      "score-residue-flagger planned"
     ],
     "score residue flagger tasks": [
       "score-residue-flagger tasks"
@@ -77743,6 +77874,9 @@
     "score severity replay build": [
       "score-severity-replay build"
     ],
+    "score severity replay cjs": [
+      "score-severity-replay.cjs"
+    ],
     "score severity replay completion criteria": [
       "score-severity-replay completion criteria"
     ],
@@ -77755,6 +77889,9 @@
     "score stop hint build": [
       "score-stop-hint build"
     ],
+    "score stop hint cjs": [
+      "score-stop-hint.cjs"
+    ],
     "score stop hint completion criteria": [
       "score-stop-hint completion criteria"
     ],
@@ -77766,6 +77903,9 @@
     ],
     "score stop rater build": [
       "score-stop-rater build"
+    ],
+    "score stop rater cjs": [
+      "score-stop-rater.cjs"
     ],
     "score stop rater completion criteria": [
       "score-stop-rater completion criteria"
@@ -77811,6 +77951,9 @@
     ],
     "score verdict fallback": [
       "score-verdict-fallback"
+    ],
+    "score verdict fallback cjs": [
+      "score-verdict-fallback.cjs"
     ],
     "score verdict fallback completion criteria": [
       "score-verdict-fallback completion criteria"
@@ -77905,6 +78048,15 @@
     ],
     "scoring rubric cross critique": [
       "scoring_rubric cross-critique"
+    ],
+    "scoring severity replay": [
+      "scoring severity replay"
+    ],
+    "scoring stop hint replay": [
+      "scoring stop-hint replay"
+    ],
+    "scoring stop rater replay": [
+      "scoring stop-rater replay"
     ],
     "scoring tasks": [
       "scoring tasks"
@@ -79351,6 +79503,9 @@
     ],
     "severity replay plan": [
       "severity replay plan"
+    ],
+    "severity replay runtime": [
+      "severity replay runtime"
     ],
     "severity replay tasks": [
       "severity replay tasks"
@@ -82173,6 +82328,9 @@
     "sk create skill 1 4 0 0": [
       "sk-create-skill 1.4.0.0"
     ],
+    "sk create skill 1 5 0 0": [
+      "sk-create-skill 1.5.0.0"
+    ],
     "sk create skill playbook": [
       "sk-create-skill playbook"
     ],
@@ -82191,11 +82349,17 @@
     "sk create skill v1 4 0 0": [
       "sk-create-skill v1.4.0.0"
     ],
+    "sk create skill v1 5 0 0": [
+      "sk-create-skill v1.5.0.0"
+    ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
     ],
     "sk create with human voice 1 1 0 0": [
       "sk-create-with-human-voice 1.1.0.0"
+    ],
+    "sk create with human voice 1 2 0 0": [
+      "sk-create-with-human-voice 1.2.0.0"
     ],
     "sk create with human voice testing": [
       "sk-create-with-human-voice testing"
@@ -82205,6 +82369,9 @@
     ],
     "sk create with human voice v1 1 0 0": [
       "sk-create-with-human-voice v1.1.0.0"
+    ],
+    "sk create with human voice v1 2 0 0": [
+      "sk-create-with-human-voice v1.2.0.0"
     ],
     "sk deep research cli codex dispatch": [
       "sk-deep-research cli-codex dispatch"
@@ -82584,6 +82751,9 @@
     "sk doc 2 2 2 0": [
       "sk-doc 2.2.2.0"
     ],
+    "sk doc 2 2 3 0": [
+      "sk-doc 2.2.3.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -82829,6 +82999,9 @@
     ],
     "sk doc v2 2 2 0": [
       "sk-doc v2.2.2.0"
+    ],
+    "sk doc v2 2 3 0": [
+      "sk-doc v2.2.3.0"
     ],
     "sk doc validator findings obsidian surface": [
       "sk-doc validator findings obsidian surface"
@@ -84809,6 +84982,9 @@
     ],
     "skill doc citation drift": [
       "skill doc citation drift"
+    ],
+    "skill doc citation drift check": [
+      "skill doc citation drift check"
     ],
     "skill doc citation drift verdict": [
       "skill doc citation drift verdict"
@@ -88483,6 +88659,12 @@
     "stage one stage two routing proof": [
       "stage one stage two routing proof"
     ],
+    "stage two keyword replay": [
+      "stage-two keyword replay"
+    ],
+    "stage two leaf route replay": [
+      "stage-two leaf route replay"
+    ],
     "stage1 candidate gen degrade": [
       "stage1 candidate gen degrade"
     ],
@@ -88506,9 +88688,6 @@
     ],
     "stage2 leaf route replay": [
       "stage2 leaf route replay"
-    ],
-    "stage2 replay not built": [
-      "stage2 replay not built"
     ],
     "stage2 replay plan": [
       "stage2 replay plan"
@@ -89337,6 +89516,12 @@
     "stop hint keep rule": [
       "stop hint keep rule"
     ],
+    "stop hint replay": [
+      "stop-hint replay"
+    ],
+    "stop hint replay runtime": [
+      "stop-hint replay runtime"
+    ],
     "stop hint tasks": [
       "stop hint tasks"
     ],
@@ -89370,8 +89555,14 @@
     "stop preserving bad statuses": [
       "stop preserving bad statuses"
     ],
+    "stop rater replay": [
+      "stop-rater replay"
+    ],
     "stop rater replay plan": [
       "stop rater replay plan"
+    ],
+    "stop rater replay runtime": [
+      "stop-rater replay runtime"
     ],
     "stop rater tasks": [
       "stop rater tasks"
@@ -91216,6 +91407,12 @@
     "system spec kit 4 4 0 0": [
       "system-spec-kit 4.4.0.0"
     ],
+    "system spec kit 4 5 0 0": [
+      "system-spec-kit 4.5.0.0"
+    ],
+    "system spec kit 4 6 0 0": [
+      "system-spec-kit 4.6.0.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -91572,6 +91769,12 @@
     ],
     "system spec kit v4 4 0 0": [
       "system-spec-kit v4.4.0.0"
+    ],
+    "system spec kit v4 5 0 0": [
+      "system-spec-kit v4.5.0.0"
+    ],
+    "system spec kit v4 6 0 0": [
+      "system-spec-kit v4.6.0.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
