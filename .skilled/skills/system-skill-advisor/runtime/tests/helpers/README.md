@@ -1,15 +1,15 @@
 ---
-title: "Lib Test Helpers: Env Snapshot Utility"
-description: "Test-only helper for the skill-advisor runtime lib, not product code."
+title: "Test Helpers: Env Snapshot Utility"
+description: "Test-only helper for the skill-advisor runtime tests, not product code."
 ---
 
-# Lib Test Helpers: Env Snapshot Utility
+# Test Helpers: Env Snapshot Utility
 
 ---
 
 ## 1. OVERVIEW
 
-`lib/test-helpers/` is a test-only helper folder inside the skill-advisor `runtime/lib/` package. Nothing in `lib/` or the advisor runtime depends on it. It exists so tests that mutate `process.env` can capture and restore the exact keys they touched.
+`tests/helpers/` holds test-only helpers for the skill-advisor runtime. No product code depends on it, and the production build excludes `tests/`. It exists so tests that mutate `process.env` can capture and restore the exact keys they touched.
 
 ---
 
