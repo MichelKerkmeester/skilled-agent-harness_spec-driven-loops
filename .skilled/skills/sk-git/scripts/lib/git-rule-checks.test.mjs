@@ -343,7 +343,7 @@ test('non-git and unparseable commands never fire a rule', () => {
 
 test('every declared rule resolves to an implementation and never blocks', () => {
   const rules = readHardRules(SKILL_MD);
-  assert.ok(rules.length >= 10, 'frontmatter declares the rule set');
+  assert.ok(rules.length >= 10, 'the sidecar declares the rule set');
   for (const r of rules) {
     assert.ok(GIT_CHECKS[r.check], `rule ${r.id} has no implementation`);
     assert.equal(r.severity, 'warn', `rule ${r.id} must advise, never block`);

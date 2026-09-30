@@ -193,6 +193,8 @@ Is this document invoked programmatically?
 | `version` | ✅ Required | ⚪ Optional | ✅ Required | ✅ Required | ❌ Out of scope | 4-part `X.Y.Z.W` for skill docs. See [frontmatter-versioning.md](../references/frontmatter-versioning.md) |
 | `tags` | ⚪ Optional | ❌ N/A | ❌ N/A | ❌ N/A | ❌ N/A | Categorization keywords |
 
+Hard rules are not a frontmatter field. A skill declares them in a `hard-rules.json` file beside its `SKILL.md`, a JSON array of `{id, check, message, severity}` objects that the dispatch preflight reads.
+
 ---
 
 ## 3. FIELD REFERENCE
@@ -394,6 +396,8 @@ trigger_phrases:
 ### SKILL.md Frontmatter Template
 
 **Required Fields**: `name`, `description`, `allowed-tools`
+
+Hard rules are not part of this block. They live in a `hard-rules.json` file beside the skill's `SKILL.md`, a JSON array of `{id, check, message, severity}` objects that the dispatch preflight reads.
 
 ```yaml
 ---

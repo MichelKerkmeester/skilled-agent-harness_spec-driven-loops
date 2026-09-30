@@ -40,7 +40,7 @@ Anchors: `dispatch-audit.mjs` (`DISPATCH_SHAPES`, `directExecutor`, `hasDispatch
 
 ## 2. The eight declared rules
 
-Declared in `SKILL.md` `hard_rules:`, implemented in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`,
+Declared in `hard-rules.json` beside `SKILL.md`, implemented in `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`,
 each with a satisfied/violated fixture pair in `dispatch-rule-checks.test.mjs`.
 
 | # | Rule id | Check id | Severity | What it refuses |

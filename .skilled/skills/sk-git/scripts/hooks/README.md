@@ -14,7 +14,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-The git preflight advisory evaluates a shell command before it runs and surfaces surprising git behavior without changing the command's permission or exit path. The git rules were already written down in `sk-git/SKILL.md`'s `hard_rules:` frontmatter and still did not reach anyone, because they were surfaced by *prompt* routing while the damage happens at *command* time. This hook closes that gap: it reads the same frontmatter the dispatch preflight reads, evaluates it against the repository as it stands before the command runs, and prints a line.
+The git preflight advisory evaluates a shell command before it runs and surfaces surprising git behavior without changing the command's permission or exit path. The git rules were already written down in `hard-rules.json` beside `sk-git/SKILL.md` and still did not reach anyone, because they were surfaced by *prompt* routing while the damage happens at *command* time. This hook closes that gap: it reads the same sidecar the dispatch preflight reads, evaluates it against the repository as it stands before the command runs, and prints a line.
 
 The shared stdin hook (`git-preflight-advisory.mjs`) accepts Claude's `Bash` payload, Codex/Devin's `exec` payload, and Cursor's `Shell` payload directly: one file, three tool labels. OpenCode and Pi adapt their native tool events onto the same hard-rule parser, 17 checks, and lazy git context through their own plugin and extension.
 
@@ -28,7 +28,7 @@ The advisory runs on the pre-tool event for a shell command. It:
 
 1. **Kill-switch + suppression.** Checks `isHookEnabled('git-preflight')` (master `SYSTEM_HOOKS_DISABLED` or `SK_GIT_PREFLIGHT_DISABLED`), then resolves three suppression tiers (see Configuration). Silence is the safe no-op.
 2. **Gate on shape.** Only a directly visible `git ...` invocation matching `GIT_SHAPE` is worth inspecting; anything else exits before a single git process is spawned, keeping the cost off every unrelated command. Aliases, wrapper scripts, and anything behind a shell variable are left alone.
-3. **Read + filter rules.** `readHardRules` parses the `hard_rules:` frontmatter from `sk-git/SKILL.md`, keeps only rules whose `check` exists in `GIT_CHECKS` and whose id is not silenced.
+3. **Read + filter rules.** `readHardRules` reads `hard-rules.json` beside `sk-git/SKILL.md`, keeps only rules whose `check` exists in `GIT_CHECKS` and whose id is not silenced.
 4. **Collect lazy context.** `createGitContext` builds a lazy repository-state collector; each accessor runs only when a check asks for it and caches for one invocation. Everything read is state that exists *before* the command runs: where a question can only be answered afterwards, there is deliberately no accessor.
 5. **Evaluate.** `evaluate` runs each rule's check against the parsed command and context. A check returns `true` (fine) or `false` (advise). A check that throws is swallowed by the evaluator.
 6. **Surface.** Caps at 3 findings plus one omitted-count line, names the subcommand the reader just invoked, and emits the advisory through the runtime's channel.
@@ -69,7 +69,7 @@ The 17 checks gate on **state, never on the verb**: roughly one in seven operati
 
 ## 3. PER-RUNTIME DELIVERY
 
-Every runtime evaluates the **same** `GIT_SHAPE` gate, `GIT_CHECKS` rule set, `readHardRules` frontmatter parser, and `createGitContext` lazy collector. What differs is the tool event each runtime fires, the payload shape, and the channel the advisory is handed back through.
+Every runtime evaluates the **same** `GIT_SHAPE` gate, `GIT_CHECKS` rule set, `readHardRules` sidecar reader, and `createGitContext` lazy collector. What differs is the tool event each runtime fires, the payload shape, and the channel the advisory is handed back through.
 
 | Runtime | Adapter | Event / wiring | Payload difference it handles | Delivery |
 |---|---|---|---|---|
@@ -113,7 +113,7 @@ The hooks-tree index at `.skilled/hooks/git-preflight/` mirrors these: `shared/g
 | `../lib/git-context.mjs` | Lazy repository-state collector. Each accessor runs only when a check asks, caches for one invocation, and fails soft (returns `null`/safe unknown) on any git failure or 1.5s timeout. Reads only pre-command state. |
 | `.skilled/plugins/sk-git-preflight-advisory.js` | OpenCode plugin. `tool.execute.before` for `bash` evaluates the same engine and buffers at most 20 advisory events; `experimental.chat.system.transform` drains them as one system block on the next turn. Never prints; never blocks. |
 | `pi/git-preflight-advisory.ts` | Pi `tool_call`/`tool_result` extension. Evaluates on `tool_call`, buffers by call id, appends to `tool_result` content. Warn-only, never `block: true`. |
-| `../../hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared `readHardRules` frontmatter parser and `evaluate` runner imported by all adapters. |
+| `../../hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared `readHardRules` sidecar reader and `evaluate` runner imported by all adapters. |
 | `../../hooks/shared/hook-flags.mjs` / `.cjs` | Kill-switch resolver (`isHookEnabled('git-preflight')`). |
 
 ---
@@ -141,7 +141,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 | Boundary | Rule |
 |---|---|
 | Advisory only | Every surfaced result is warning-only and capped at 3 findings plus one omitted-count line. No adapter ever emits a block or deny decision; the command always runs. |
-| Fail-open | Non-git commands stop at `GIT_SHAPE`. Missing/malformed stdin produces no advisory and exits 0. Missing frontmatter produces an empty rule set. A check that throws is swallowed by the evaluator. Git subprocess failures and timeouts return safe unknown values. A Cursor `Shell` payload the hook cannot parse fails open exactly as a `Bash`/`exec` one. Pi catches import and evaluation errors and returns `undefined`. OpenCode catches evaluation and transform errors, never throws, never writes stdout/stderr. `main().catch(approve)` makes the fail-open path the exit-0 path. |
+| Fail-open | Non-git commands stop at `GIT_SHAPE`. Missing/malformed stdin produces no advisory and exits 0. A missing or malformed sidecar produces an empty rule set. A check that throws is swallowed by the evaluator. Git subprocess failures and timeouts return safe unknown values. A Cursor `Shell` payload the hook cannot parse fails open exactly as a `Bash`/`exec` one. Pi catches import and evaluation errors and returns `undefined`. OpenCode catches evaluation and transform errors, never throws, never writes stdout/stderr. `main().catch(approve)` makes the fail-open path the exit-0 path. |
 | State, not verb | Every check gates on repository state, never on the command verb alone. A check that cannot find a discriminator does not belong here. |
 | Pre-command only | `git-context.mjs` reads only state that exists before the command runs. Where a question can only be answered afterwards, there is deliberately no accessor. |
 | Cost | Nothing runs until a check asks for it; unrelated commands exit at the shape gate before a single git process is spawned. Each git call is bounded to 1.5s. |
@@ -181,7 +181,7 @@ For stdin smoke tests, create a temporary repository with hooks disabled, then p
 ## 9. RELATED
 
 - [`../lib/README.md`](../lib/README.md): the rule-engine and context-collector library.
-- [`../../SKILL.md`](../../SKILL.md): the `hard_rules:` frontmatter the advisory executes.
+- [`../../SKILL.md`](../../SKILL.md): the manifest whose sibling `hard-rules.json` the advisory executes.
 - [`pi/README.md`](pi/README.md): the Pi extension bridge.
 - [`../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs`](../../../../hooks/dispatch/lib/dispatch-rule-checks.mjs): the shared `readHardRules`/`evaluate` runner.
 - [`../../../../hooks/README.md`](../../../../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix.

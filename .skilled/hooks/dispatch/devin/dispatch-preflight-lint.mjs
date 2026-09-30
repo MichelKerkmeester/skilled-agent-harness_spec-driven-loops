@@ -8,8 +8,8 @@
 // PreToolUse(exec) preflight for CLI dispatch under Devin CLI -- the Devin sibling
 // of the Codex/Claude dispatch-preflight-lint hook. Intercepts a composed
 // `opencode run` / `claude -p` / `codex exec -p` command BEFORE it spawns on the
-// shell surface and evaluates the target skill's declared hard_rules (SKILL.md
-// `hard_rules:` frontmatter). A `block`-severity violation denies with the rule's
+// shell surface and evaluates the target skill's declared hard rules (the `hard-rules.json`
+// sidecar beside its SKILL.md). A `block`-severity violation denies with the rule's
 // reason; `warn` violations attach an advisory and let the normal permission flow
 // proceed. FAILS OPEN -- any internal error approves silently, never blocks.
 
