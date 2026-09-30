@@ -2,6 +2,10 @@
 // MODULE: Path Coverage Termination Evaluator
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   canonicalBytes,
   canonicalJson,
@@ -30,7 +34,15 @@ import type {
   UncoveredPathReport,
 } from './types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const SHA256_PATTERN = /^[a-f0-9]{64}$/;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function compareText(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
@@ -140,6 +152,10 @@ function projectionHashMatches(projection: PathCoverageProjection): boolean {
   return sha256Bytes(canonicalBytes(core)) === projectionHash;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 interface EvaluatedPath {
   readonly definition: CoveragePath;
   readonly record: PathCoverageRecord;
@@ -148,6 +164,10 @@ interface EvaluatedPath {
   readonly hasValidExclusionAuthorization: boolean;
   readonly missingEvidenceClasses: readonly string[];
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function evaluatePaths(input: EvaluatePathCoverageInput): readonly EvaluatedPath[] {
   const profile = modeCoverageProfiles.resolve(
@@ -448,6 +468,10 @@ function reasonFor(decision: TerminationDecision, certificate: CoverageCertifica
   }
   return `${certificate.openPathIds.length} required path(s) remain open`;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Evaluate stopping from explicit frozen inputs without consulting iteration count. */
 export function evaluatePathCoverageTermination(

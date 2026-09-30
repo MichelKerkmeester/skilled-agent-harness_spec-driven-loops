@@ -2,6 +2,9 @@
 // MODULE: Result Envelope Types
 // ──────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import type {
   AppendOnlyLedger,
   DurableAppendReceipt,
@@ -16,6 +19,9 @@ import type {
 } from '../event-envelope/index.js';
 import type { AuthorizedEvidenceWriter } from '../receipts-and-effect-recovery/index.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 export type LeafResultStatus = 'cancelled' | 'failed' | 'partial' | 'succeeded' | 'timed_out';
 export type ProvenanceKind = 'estimated' | 'measured' | 'unknown';
 

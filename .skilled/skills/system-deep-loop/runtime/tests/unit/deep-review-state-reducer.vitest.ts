@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Review State Reducer Tests
+// ───────────────────────────────────────────────────────────────────
+
 // Regression coverage for reduceReviewState's write behavior when part of its
 // input is a warning-class problem rather than a hard failure. The registry,
 // strategy, and dashboard are all derived from the same in-memory records

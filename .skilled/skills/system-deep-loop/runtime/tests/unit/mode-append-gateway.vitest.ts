@@ -31,7 +31,7 @@ import {
 
 import type { EventWritePreflight } from '../../lib/event-envelope/index.js';
 import type { EventTypeRegistry } from '../../lib/event-envelope/index.js';
-import type { ResolvedCutoverBinding } from '../../lib/cutover-binding/index.js';
+import type { ResolvedCutoverBinding } from '../../lib/mode-append-gateway/index.js';
 import type { LegacyProjectionEngine } from '../../lib/legacy-projections/index.js';
 
 // ───────────────────────────────────────────────────────────────────

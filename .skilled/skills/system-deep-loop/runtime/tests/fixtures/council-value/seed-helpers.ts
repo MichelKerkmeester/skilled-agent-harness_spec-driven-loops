@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Council Value Seed Helpers
+// ───────────────────────────────────────────────────────────────────
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -75,7 +78,7 @@ export interface ScenarioFixture {
 }
 
 const require = createRequire(import.meta.url);
-const { getScenarioData } = require('./data/scenarios.cjs') as {
+const { getScenarioData } = require('./scenarios.cjs') as {
   getScenarioData: (scenarioId: string) => ScenarioData;
 };
 
@@ -313,7 +316,7 @@ async function runGraph(
     case 'DAC-032': {
       const data = parseScriptData(runScript('status', namespaceArgs(namespace)));
       const nodesByKind = data.nodesByKind as Record<string, number>;
-      // NORMALIZATION (gap #6 of 101/007):
+      // NORMALIZATION:
       // Runtime status CLI returns readiness plus separate counts.
       // The operator-facing scenario DAC-032 expects an "incomplete" flag distinguishing
       // partial mid-round state from healthy state. This block derives that flag from the

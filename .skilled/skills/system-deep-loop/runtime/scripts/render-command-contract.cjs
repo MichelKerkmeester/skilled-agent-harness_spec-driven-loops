@@ -1,6 +1,12 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Render Command Contract
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -11,6 +17,9 @@ const {
 } = require('../../shared/rollout/resolve-injection-mode.cjs');
 const { checkCommand } = require('./check-contract-drift.cjs');
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const MANIFEST_PATH = '.skilled/commands/deep/assets/compiled/manifest.jsonl';
 
@@ -32,6 +41,9 @@ const COMMANDS = {
   },
 };
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function absolutePath(sourcePath) {
   return path.resolve(WORKSPACE_ROOT, sourcePath);
 }
@@ -128,6 +140,9 @@ function appendManifestRow(row, manifestPath = absolutePath(MANIFEST_PATH)) {
   fs.appendFileSync(manifestPath, `${JSON.stringify(row)}\n`, 'utf8');
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 function renderCommandContract(command, options = {}) {
   const definition = getCommandDefinition(command);
   const mode = resolveMode(definition.command);
@@ -235,6 +250,9 @@ function main(argv = process.argv.slice(2)) {
   process.stdout.write(result.output);
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 if (require.main === module) {
   try {
     main();
@@ -244,6 +262,9 @@ if (require.main === module) {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 module.exports = {
   COMMANDS,
   MANIFEST_PATH,

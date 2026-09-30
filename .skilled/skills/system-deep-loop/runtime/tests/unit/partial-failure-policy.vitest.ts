@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Partial Failure Policy
+// MODULE: Partial Failure Policy
 // ───────────────────────────────────────────────────────────────────
 
 import { mkdtempSync, rmSync } from 'node:fs';

@@ -1,13 +1,8 @@
 #!/usr/bin/env node
 
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime — Fan-Out CLI Lineage Pool Runner                      ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Input:  CLI args (--spec-folder, --loop-type, --fanout-config-json,      ║
-// ║         --base-artifact-dir).                                            ║
-// ║ Output: JSON to stdout.                                                  ║
-// ║ Exit:   0=all ok, 1=script error, 2=some failed, 3=all failed.          ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Fan-Out Lineage Pool Runner
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 

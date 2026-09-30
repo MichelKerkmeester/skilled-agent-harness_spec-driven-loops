@@ -1,5 +1,9 @@
 // MODULE: Deep-Loop Executor Audit
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { randomBytes } from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, writeFileSync } from 'node:fs';
@@ -9,7 +13,9 @@ import type { ExecutorConfig, ExecutorKind } from './executor-config.js';
 import { appendJsonlRecord as appendJsonlRecordSafe, repairJsonlTail } from './jsonl-repair.js';
 import { deriveReceiptKey, signReceipt } from './receipt-crypto.js';
 
-// ───── TYPE DEFINITIONS ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export const CLI_DISPATCH_STACK_ENV = 'SPECKIT_CLI_DISPATCH_STACK' as const;
 export const FANOUT_LINEAGE_ENV = 'SPECKIT_FANOUT_LINEAGE_ID' as const;
@@ -46,7 +52,9 @@ export type ExecutorDispatchAllowedResult =
       detail: string;
     };
 
-// ───── CONSTANTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 type ExecutorDispatchGuardContext = {
   env?: Record<string, string | undefined>;
@@ -188,7 +196,9 @@ type RunAuditedExecutorCommandInput = {
   dispatchId?: string;
 };
 
-// ───── HELPERS ─────
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function getExecutorKind(config: ExecutorConfig): ExecutorKind {
   return config.kind ?? (config as ExecutorConfig & { type?: ExecutorKind }).type ?? 'native';
@@ -530,7 +540,9 @@ function pickString(value: unknown): string | null {
   return typeof value === 'string' && value.trim() !== '' ? value : null;
 }
 
-// ───── DISPATCH RECEIPTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 5. DISPATCH RECEIPTS
+// ───────────────────────────────────────────────────────────────────
 //
 // KEY CONTAINMENT GUARANTEE:
 // The run-master secret lives ONLY as the module-scoped `runMasterSecret`
@@ -739,7 +751,9 @@ function completeReceipt(
   tryWriteReceipt(input.stateLogPath, input.executor, input.iteration, 'completion', ctx.completionPath, record);
 }
 
-// ───── EXPORTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Detect whether the same executor kind already appears in the dispatch stack.

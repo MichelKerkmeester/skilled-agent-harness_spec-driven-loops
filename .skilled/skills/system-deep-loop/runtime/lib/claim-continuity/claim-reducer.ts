@@ -2,6 +2,10 @@
 // MODULE: Claim Continuity Reducer
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   TypedReducerRegistry,
   rebuildProjection,
@@ -60,11 +64,19 @@ import type {
   ClaimRelationshipRecord,
 } from './claim-continuity-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const NON_CORRECTABLE_EVENTS = new Set([
   CLAIM_MATCH_RECORDED_EVENT,
   CLAIM_REGISTERED_EVENT,
   CLAIM_CORRECTION_RECORDED_EVENT,
 ]);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function compareCodeUnits(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
@@ -594,6 +606,10 @@ function foldLifecycleAndEvidence(
     record.corrected_event_ids.sort(compareCodeUnits);
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Recompute the complete disposable projection from the retained event journal. */
 export function recomputeClaimContinuityState(

@@ -1,17 +1,17 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime — Fan-Out Cross-Lineage Merge                          ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Input:  CLI args (--loop-type, --artifact-dir).                          ║
-// ║ Output: JSON to stdout.                                                  ║
-// ║ Exit:   0=ok, 1=script error, 3=input validation error.                 ║
-// ║                                                                          ║
-// ║ Reads every {artifact-dir}/lineages/{label}/ sub-packet and produces:   ║
-// ║   research: deduplicated deep-research-findings-registry.json +          ║
-// ║             fanout-attribution.md                                        ║
-// ║   review:   severity-rollup deep-review-findings-registry.json           ║
-// ║             (strongest-restriction: any lineage P0 → merged FAIL) +     ║
-// ║             fanout-attribution.md                                        ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Fan-Out Cross-Lineage Merge
+// ───────────────────────────────────────────────────────────────────
+
+// Input:  CLI args (--loop-type, --artifact-dir).
+// Output: JSON to stdout.
+// Exit:   0=ok, 1=script error, 3=input validation error.
+//
+// Reads every {artifact-dir}/lineages/{label}/ sub-packet and produces:
+//   research: deduplicated deep-research-findings-registry.json +
+//             fanout-attribution.md
+//   review:   severity-rollup deep-review-findings-registry.json
+//             (strongest-restriction: any lineage P0 → merged FAIL) +
+//             fanout-attribution.md
 
 'use strict';
 

@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Research Deltas Contract
+// ───────────────────────────────────────────────────────────────────
+
 // Proves the deep-research-deltas projection surface fans ledger events out
 // into one per-iteration delta file whose rows match the exact shape the real
 // consumer (verify-iteration) reads. The load-bearing check is not

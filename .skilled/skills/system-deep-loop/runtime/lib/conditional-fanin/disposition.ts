@@ -2,6 +2,10 @@
 // MODULE: Conditional Fan-In Disposition
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   canonicalBytes,
   sha256Bytes,
@@ -17,6 +21,10 @@ import type {
   OutstandingDisposition,
 } from './types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function stableDispositionKey(
   decisionIdentity: string,
   logicalBranchId: string,
@@ -28,6 +36,10 @@ function stableDispositionKey(
     kind,
   }))}`;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function planOutstandingDispositions(
   decisionIdentity: string,
@@ -116,6 +128,10 @@ export function planOutstandingDispositions(
   return Object.freeze(dispositions);
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export interface OutstandingDispositionPorts {
   withdrawQueued(disposition: OutstandingDisposition): Promise<void>;
   proveNoDispatch(disposition: OutstandingDisposition): Promise<string>;
@@ -131,6 +147,10 @@ export interface ApplyOutstandingDispositionsInput {
     disposition: OutstandingDisposition,
   ) => Omit<BudgetEvidenceInput, 'requestId' | 'operationId' | 'evidenceDigest'>;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export async function applyOutstandingDispositions(
   input: ApplyOutstandingDispositionsInput,

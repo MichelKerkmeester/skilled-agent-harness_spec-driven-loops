@@ -1,26 +1,8 @@
 #!/usr/bin/env node
 
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime — Loop-Lock CLI Adapter                               ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Thin CLI front door over lib/deep-loop/loop-lock.ts so non-TS callers    ║
-// ║ (command YAML, shells, other runtimes) share one locking contract        ║
-// ║ instead of drifting per mode. Every subcommand is a direct pass-through  ║
-// ║ to the library; the adapter adds only argv parsing and JSON framing.     ║
-// ║                                                                          ║
-// ║ Subcommands:                                                             ║
-// ║   acquire --lock-path P --packet-id X [--ttl-ms N] [--runtime-kind K]    ║
-// ║           [--owner-pid PID]                                              ║
-// ║   status  --lock-path P                                                  ║
-// ║   refresh --lock-path P --owner-pid PID [--nonce N]                      ║
-// ║   release --lock-path P --owner-pid PID [--nonce N]                      ║
-// ║ Output: one JSON object on stdout.                                       ║
-// ║ Exit:   0=ok, 1=script error, 3=input validation error.                 ║
-// ║                                                                          ║
-// ║ deep_research / deep_review / deep_ai-council YAMLs call THIS adapter.    ║
-// ║ The retired standalone context loop used to keep a separate host wrapper; ║
-// ║ no active workflow should dispatch that wrapper or recreate that surface. ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Loop-Lock CLI Adapter
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 

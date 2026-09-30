@@ -2,6 +2,10 @@
 // MODULE: Next Focus Replay
 // ──────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
 import { validateNextFocusCandidate } from './next-focus-candidates.js';
 import {
@@ -29,7 +33,15 @@ import type {
   ScoredNextFocusCandidate,
 } from './next-focus-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const NOVELTY_COMPLEMENT_BPS = 10_000;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function integrity(message: string, decisionId?: string): NextFocusError {
   return new NextFocusError(
@@ -304,6 +316,10 @@ function parseDecision(payload: Readonly<JsonObject>, eventType: string): NextFo
   }
   throw integrity('Stored event type and next-focus outcome are inconsistent.', decisionId);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Restore the recorded recommendation from verified events without deriving a new ranking. */
 export function replayNextFocusDecision(

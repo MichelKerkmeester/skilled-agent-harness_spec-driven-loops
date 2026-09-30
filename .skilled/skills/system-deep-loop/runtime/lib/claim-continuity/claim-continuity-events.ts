@@ -2,6 +2,10 @@
 // MODULE: Claim Continuity Event Contracts
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   AuthorizationReasonCodes,
   AuthorizationVerdicts,
@@ -19,6 +23,10 @@ import type {
   PolicyReference,
 } from '../authorized-ledger/index.js';
 import type { EventTypeDefinition, JsonObject } from '../event-envelope/index.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const CLAIM_MATCH_RECORDED_EVENT = 'deep-loop.claim.match-recorded';
 export const CLAIM_REGISTERED_EVENT = 'deep-loop.claim.registered';
@@ -52,6 +60,10 @@ export const CLAIM_CONTINUITY_WRITE_CAPABILITY = 'claim-continuity-write';
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
 const ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,511}$/;
 const CLAIM_EVENT_TYPE_SET = new Set<string>(CLAIM_CONTINUITY_EVENT_TYPES);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function isObject(value: unknown): value is Readonly<JsonObject> {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -215,6 +227,10 @@ function definition(
     upcasters: [],
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Build the closed event manifest, including read contracts for sibling relationships. */
 export function createClaimContinuityEventRegistry(): EventTypeRegistry {

@@ -16,9 +16,17 @@
 // denies on any mismatch. This module only removes the human keyboard from
 // the path; it never asserts an identity it could not establish.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { execFileSync } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
 import { hostname, userInfo } from 'node:os';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const CutoverBindingErrorCodes = Object.freeze({
   /** No durable operator identity could be established from the environment. */
@@ -28,6 +36,10 @@ export const CutoverBindingErrorCodes = Object.freeze({
   /** A commit was named but does not exist in this repository's history. */
   COMMIT_UNKNOWN: 'COMMIT_UNKNOWN',
 } as const);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type CutoverBindingErrorCode =
   typeof CutoverBindingErrorCodes[keyof typeof CutoverBindingErrorCodes];
@@ -78,6 +90,10 @@ export interface CutoverBindingEnvironment {
   readonly osHost: () => string | null;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function runGit(repositoryRoot: string, args: readonly string[]): string | null {
   try {
     const stdout = execFileSync('git', ['-C', repositoryRoot, ...args], {
@@ -115,6 +131,10 @@ export function createDefaultEnvironment(repositoryRoot: string): CutoverBinding
 function shortDigest(value: string): string {
   return createHash('sha256').update(value, 'utf8').digest('hex').slice(0, 16);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Establishes the flip's bindings, or refuses.

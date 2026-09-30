@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime — Mode Event Append CLI                                ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Input:  CLI args (--mode, --run-directory, --event-json).                ║
-// ║ Output: JSON to stdout.                                                  ║
-// ║ Exit:   0=success, 1=script error, 2=append failed.                      ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Mode Event Append CLI
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 
@@ -200,7 +196,7 @@ async function main() {
     AuthorizationReasonCodes,
   } = await import('../lib/authorized-ledger/index.ts');
   const { prepareEventWrite } = await import('../lib/event-envelope/index.ts');
-  const { resolveCutoverBinding } = await import('../lib/cutover-binding/index.ts');
+  const { resolveCutoverBinding } = await import('../lib/mode-append-gateway/index.ts');
   const { resolveAuthorityRoot } = await import('../lib/authority-root/index.ts');
   const { admitCanonicalWrite } = await import('../lib/deep-research-authority/index.ts');
   const { AUTHORITY_FLIP_MODE_ORDER } = await import('../lib/per-mode-authority-flip/index.ts');

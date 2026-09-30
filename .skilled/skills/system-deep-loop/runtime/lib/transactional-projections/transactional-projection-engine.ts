@@ -2,6 +2,10 @@
 // MODULE: Transactional Projection Engine
 // ──────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { GENESIS_RECORD_HASH } from '../authorized-ledger/index.js';
 import { canonicalBytes, canonicalJson, sha256Bytes } from '../event-envelope/index.js';
 import {
@@ -45,7 +49,15 @@ import type {
   StageProjectionRebuildInput,
 } from './transactional-projection-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const HASH_PATTERN = /^[a-f0-9]{64}$/u;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 type OpenGeneration = Pick<ProjectionGeneration,
   | 'generationSchemaVersion'
@@ -73,6 +85,10 @@ export interface TransactionalProjectionEngineOptions {
   readonly eventRegistryDigest: string;
   readonly retainedPublishedGenerations?: number;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function cloneJson<T extends JsonValue>(value: T): T {
   return JSON.parse(canonicalJson(value)) as T;
@@ -614,6 +630,10 @@ function projectionErrorFromStore(error: unknown): never {
   }
   throw error;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** Applies verified ledger events into one atomic, fenced projection bundle. */
 export class TransactionalProjectionEngine {

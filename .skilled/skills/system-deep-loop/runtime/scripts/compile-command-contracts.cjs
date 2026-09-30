@@ -1,9 +1,21 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Compile Command Contracts
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 'use strict';
 
 const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const WORKSPACE_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const GENERATED_HEADER_START = '<!-- GENERATED_COMMAND_CONTRACT_HEADER_START';
@@ -359,6 +371,10 @@ const COMMANDS = {
   },
 };
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function relPath(absolutePath) {
   return path.relative(WORKSPACE_ROOT, absolutePath).split(path.sep).join('/');
 }
@@ -469,6 +485,10 @@ function buildRenderBlocks(definition) {
     '<!-- END renderBlocks.confirm -->',
   ].join('\n');
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function buildContractBody(definition) {
   const sourceList = definition.sourcePaths.map((sourcePath, index) => `${index + 1}. \`${sourcePath}\``).join('\n');
@@ -733,6 +753,10 @@ if (require.main === module) {
     process.exit(1);
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 module.exports = {
   COMMANDS,

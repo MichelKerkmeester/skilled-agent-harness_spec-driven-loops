@@ -1,5 +1,9 @@
 // MODULE: Agent Improvement Sealed Artifact Types
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import type {
   DeepImprovementArtifactAccessRole,
   DeepImprovementArtifactConsumer,
@@ -21,6 +25,10 @@ import type {
   AgentIrLocusReference,
   EvaluationManifestRingReference,
 } from '../agent-improvement-ledger-schema/index.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const CANONICAL_ARTIFACT_KINDS = {
   BASE_AGENT_BUNDLE: 'agent-improvement-base-agent-bundle',
@@ -64,6 +72,10 @@ export const AgentImprovementArtifactKinds = Object.freeze(
     FOUR_RING_EXPOSURE_MANIFEST: { value: CANONICAL_ARTIFACT_KINDS.FOUR_RING_EXPOSURE },
   }),
 ) as typeof CANONICAL_ARTIFACT_KINDS & ArtifactKindAliases;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type AgentImprovementArtifactKind =
   typeof AgentImprovementArtifactKinds[keyof typeof AgentImprovementArtifactKinds];
@@ -381,6 +393,10 @@ export interface AgentImprovementArtifactReadPolicy
   readonly requiredExposureEpochId?: string;
   readonly requiredExecutorFingerprint?: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export type AgentImprovementCommonArtifactConsumer = DeepImprovementArtifactConsumer;
 export type AgentImprovementCommonArtifactAccessRole = DeepImprovementArtifactAccessRole;

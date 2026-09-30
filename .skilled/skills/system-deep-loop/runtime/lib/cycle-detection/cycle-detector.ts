@@ -2,6 +2,10 @@
 // MODULE: Deterministic Cycle Detector
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { immutableJsonClone } from '../event-envelope/canonical-json.js';
 import { resolveCycleDetectorPolicy } from './cycle-detection-policy.js';
 import {
@@ -21,6 +25,10 @@ import type {
   CycleSignatureKind,
 } from './cycle-detection-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 interface IndexedObservation {
   readonly index: number;
   readonly observation: CycleObservation;
@@ -31,6 +39,10 @@ interface RepetitionCandidate {
   readonly fingerprint: string;
   readonly matches: readonly IndexedObservation[];
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function notEvaluable(
   history: Readonly<CycleHistoryProjection>,
@@ -190,6 +202,10 @@ function activeCycleProgress(
   if (startIndex < 0 || startIndex === observations.length - 1) return null;
   return assessCycleProgress(observations, startIndex, observations.length - 1);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Evaluate the latest bounded suffix while keeping stop authority outside this module. */
 export function evaluateCycleHistory(

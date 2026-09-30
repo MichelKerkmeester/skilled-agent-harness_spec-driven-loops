@@ -2,6 +2,10 @@
 // MODULE: Model Benchmark Projection Types
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import type {
   LatencyObservation,
   ModelBenchmarkEventStem,
@@ -14,6 +18,10 @@ import type {
   DeepImprovementCommonLegacyProjection,
   DeepImprovementCommonProjectionState,
 } from '../deep-improvement-common-reducers/index.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type ModelBenchmarkRebuildReasonCode =
   | 'checkpoint-digest-mismatch'

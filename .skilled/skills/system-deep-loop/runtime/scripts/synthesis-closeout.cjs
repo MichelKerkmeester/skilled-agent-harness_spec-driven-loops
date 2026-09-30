@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime: Synthesis Close-out                                   ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Input:  CLI args.                                                        ║
-// ║ Output: one staged event JSON file in --event-dir.                       ║
-// ║ Exit:   0 staged, 1 script error, 2 research synthesis incomplete.       ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Synthesis Close-Out
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 
@@ -27,6 +27,10 @@ const {
   resolve,
   sep,
 } = require('node:path');
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 // Per-mode structured finding fields, in the order a record is searched.
 const FINDING_FIELDS = Object.freeze({
@@ -61,6 +65,10 @@ const PATH_FLAGS = Object.freeze([
   ['output', '--output'],
   ['dashboard', '--dashboard'],
 ]);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function parseArgs(argv) {
   const args = {};
@@ -284,6 +292,10 @@ function stage(eventDir, scopeRunId, mode, eventRecord) {
   );
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 function closeOut(args) {
   const mode = args.mode;
   const fields = FINDING_FIELDS[mode];
@@ -436,6 +448,10 @@ function closeOut(args) {
     stopReason: args.stopReason,
   });
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 function main() {
   try {

@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Runtime Bootstrap Tests
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 // Guards the process-boot helpers that keep the deep-loop tsx re-exec working
@@ -12,9 +15,9 @@ const path = require('node:path');
 
 const os = require('node:os');
 
-const { tsxChildEnv, resolveContainmentRepoRoot } = require('../runtime-bootstrap.cjs');
+const { tsxChildEnv, resolveContainmentRepoRoot } = require('../../scripts/runtime-bootstrap.cjs');
 
-const SCRIPTS_DIR = path.join(__dirname, '..');
+const SCRIPTS_DIR = path.join(__dirname, '..', '..', 'scripts');
 
 // The entrypoints that re-exec their TypeScript implementation under tsx. Every
 // one must build its child env through tsxChildEnv so the flag is stripped.
@@ -84,7 +87,7 @@ function withSymlinkFixture(run) {
   const realLineage = path.join(realRepo, 'specs', 'foo', 'lineage');
   fs.mkdirSync(cwd, { recursive: true });
   fs.mkdirSync(realLineage, { recursive: true });
-  // cwd/link-lineage -> realRepo/specs/foo/lineage (the symlinked spec tree).
+  // cwd/link-lineage points at the lineage folder inside the real worktree.
   const linkLineage = path.join(cwd, 'link-lineage');
   fs.symlinkSync(realLineage, linkLineage);
   const gitToplevel = (dir) => {

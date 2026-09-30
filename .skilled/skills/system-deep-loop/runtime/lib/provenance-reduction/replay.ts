@@ -2,6 +2,10 @@
 // MODULE: Provenance Reduction Replay Verification
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { canonicalJson } from '../event-envelope/index.js';
 import { stableDigest } from './identity.js';
 
@@ -15,6 +19,10 @@ import type {
   ReductionLedgerEvent,
   SourceBucketSchedule,
 } from './types.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function eventDigest(event: ReductionLedgerEvent): string {
   return stableDigest({
@@ -44,6 +52,10 @@ function requiredStringArray(value: unknown, field: string): string[] {
   }
   return [...value] as string[];
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** Reconstruct the reduction evidence projection from deterministic ledger events alone. */
 export function replayProvenanceLedger(

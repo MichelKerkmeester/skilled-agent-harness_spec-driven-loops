@@ -2,6 +2,10 @@
 // MODULE: Next Focus Candidates
 // ──────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { canonicalBytes, sha256Bytes } from '../event-envelope/index.js';
 import { validatePivotCandidate } from '../deep-loop/pivot-candidates.js';
 import { NextFocusError, NextFocusErrorCodes } from './next-focus-errors.js';
@@ -19,8 +23,16 @@ import type {
   RequiredNextFocusSignal,
 } from './next-focus-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const MIN_BPS = 0;
 const MAX_BPS = 10_000;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function compareCodeUnits(left: string, right: string): number {
   if (left === right) return 0;
@@ -207,6 +219,10 @@ function validateSignal(
   }
   return nonApplicableSignal(rationale);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** Create the canonical immutable source snapshot shared by one decision. */
 export function createNextFocusSourceSnapshot(

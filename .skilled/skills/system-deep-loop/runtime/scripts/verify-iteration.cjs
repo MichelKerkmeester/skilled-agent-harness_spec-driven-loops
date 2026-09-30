@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Iteration Leaf Verification
+// ───────────────────────────────────────────────────────────────────
+
 'use strict';
 
 // After-dispatch leaf-reliability check for the deep-loop iteration loop.
@@ -19,9 +24,17 @@
 // watermark so a receipt-less projection cannot be counted as a verified
 // iteration once the mode has actually moved to ledger authority.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const LEAF_BY_LOOP = {
   review: 'deep-review',
@@ -55,6 +68,10 @@ const REASONS = {
   GATEWAY_BYPASS_DETECTED: 'gateway_bypass_detected',
   LEDGER_BACKING_MISSING: 'ledger_backing_missing',
 };
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function pad3(n) {
   return String(n).padStart(3, '0');
@@ -123,6 +140,10 @@ function findIterationNarrative(iterationsDir, iteration) {
 function isNonEmptyString(value) {
   return typeof value === 'string' && value.trim().length > 0;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 // Route-proof lives on the canonical iteration record. Absent fields => the leaf did
 // not emit route-proof at all; present-but-wrong => it ran as something other than
@@ -359,6 +380,10 @@ function verify(loopType, artifactDir, iteration) {
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
+
 function main(argv = process.argv.slice(2)) {
   const args = parseArgs(argv);
   if (args.help) {
@@ -389,5 +414,9 @@ function main(argv = process.argv.slice(2)) {
 if (require.main === module) {
   process.exit(main());
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 module.exports = { verify, checkGatewayReceipt, checkLedgerBacking, checkRouteProof, findIterationNarrative, readJsonlRecords, readJsonlRecordsDetailed, pad3, REASONS, LEAF_BY_LOOP, STATE_LOG_BY_LOOP, ARTIFACT_ID_BY_LOOP };

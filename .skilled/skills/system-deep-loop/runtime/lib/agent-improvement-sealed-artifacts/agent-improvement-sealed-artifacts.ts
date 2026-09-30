@@ -1,5 +1,9 @@
 // MODULE: Agent Improvement Sealed Artifact Adapter
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   SealedArtifactError,
   SealedArtifactErrorCodes,
@@ -55,6 +59,10 @@ import type {
   AgentImprovementVerifiedSealedArtifact,
 } from './agent-improvement-sealed-artifact-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const BINDING_FIELDS = new Set([
   'bindingVersion',
   'artifactKind',
@@ -64,6 +72,10 @@ const BINDING_FIELDS = new Set([
 const REGISTERED_KINDS: ReadonlySet<string> = new Set(
   AGENT_IMPROVEMENT_ARTIFACT_KIND_REGISTRY.map((entry) => entry.artifactKind),
 );
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   if (value === null || Array.isArray(value) || typeof value !== 'object') return false;
@@ -270,6 +282,10 @@ async function verifyNamedReferences(
     }
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Validate the closed event-to-seal binding without resolving artifact bytes. */
 export function parseAgentImprovementSealedArtifactBinding<TKind extends AgentImprovementArtifactKind = AgentImprovementArtifactKind>(
