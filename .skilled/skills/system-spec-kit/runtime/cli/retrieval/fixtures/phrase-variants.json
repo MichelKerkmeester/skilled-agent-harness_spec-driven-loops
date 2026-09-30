@@ -1,5 +1,5 @@
 {
-  "manifestHash": "40ab21b44e9232972396ae75934646dc73e831738f3efb74cc1151a447117104",
+  "manifestHash": "17db491a937fbd00084ad689b6904ed3d21405d5502819e6e2ae136c0903f98b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7876,6 +7876,9 @@
     "adapter parity": [
       "adapter parity"
     ],
+    "adapter playbook bijection validator": [
+      "adapter playbook bijection validator"
+    ],
     "adapter resident memory benchmark": [
       "adapter resident memory benchmark",
       "adapter-resident-memory-benchmark"
@@ -8307,6 +8310,9 @@
     "advisor adjacent 116 realignment": [
       "advisor adjacent 116 realignment"
     ],
+    "advisor alignment loop": [
+      "advisor alignment loop"
+    ],
     "advisor ambiguity cluster jev": [
       "advisor ambiguity cluster jev"
     ],
@@ -8470,9 +8476,6 @@
     "advisor consumer cutover": [
       "advisor consumer cutover"
     ],
-    "advisor corpus": [
-      "advisor corpus"
-    ],
     "advisor corpus expectation update": [
       "advisor corpus expectation update"
     ],
@@ -8604,6 +8607,9 @@
     ],
     "advisor feedback calibration": [
       "advisor feedback calibration"
+    ],
+    "advisor folder merges": [
+      "advisor folder merges"
     ],
     "advisor freshness": [
       "advisor freshness"
@@ -11073,6 +11079,9 @@
     "architecture launcher reference fix": [
       "architecture launcher reference fix"
     ],
+    "architecture md template": [
+      "architecture md template"
+    ],
     "architecture readme": [
       "architecture readme"
     ],
@@ -11898,6 +11907,9 @@
     "authority flip state": [
       "authority flip state"
     ],
+    "authority registry": [
+      "authority registry"
+    ],
     "authority registry cas reduction": [
       "authority registry cas reduction"
     ],
@@ -11906,6 +11918,9 @@
     ],
     "authority registry mutators removed": [
       "authority registry mutators removed"
+    ],
+    "authority selector": [
+      "authority selector"
     ],
     "authorization boundary status": [
       "authorization boundary status"
@@ -12911,6 +12926,9 @@
     ],
     "better sqlite3 adapter ports": [
       "better-sqlite3 adapter ports"
+    ],
+    "better sqlite3 ambient types": [
+      "better-sqlite3 ambient types"
     ],
     "better sqlite3 drift deferred": [
       "better-sqlite3 drift deferred"
@@ -17429,6 +17447,9 @@
     ],
     "cli": [
       "cli"
+    ],
+    "cli adapter shims": [
+      "cli adapter shims"
     ],
     "cli adapter stress tests": [
       "cli adapter stress tests"
@@ -23068,6 +23089,9 @@
     "compaction auto continue shipped": [
       "compaction auto continue shipped"
     ],
+    "compaction boundary report": [
+      "compaction boundary report"
+    ],
     "compaction brief recall": [
       "compaction brief recall"
     ],
@@ -23421,6 +23445,9 @@
     ],
     "completion claim census tasks": [
       "completion claim census tasks"
+    ],
+    "completion claim detector": [
+      "completion claim detector"
     ],
     "completion claim gate": [
       "completion claim gate"
@@ -23829,6 +23856,9 @@
     ],
     "configuration style prompt template": [
       "configuration-style prompt template"
+    ],
+    "configuration table drift": [
+      "configuration table drift"
     ],
     "configure executor": [
       "configure executor"
@@ -30107,6 +30137,9 @@
     "deep loop mode write ownership": [
       "deep-loop mode write ownership"
     ],
+    "deep loop package topology": [
+      "deep-loop package topology"
+    ],
     "deep loop packet migration": [
       "deep loop packet migration"
     ],
@@ -30298,6 +30331,9 @@
     ],
     "deep loop runtime alignment": [
       "deep loop runtime alignment"
+    ],
+    "deep loop runtime architecture": [
+      "deep-loop runtime architecture"
     ],
     "deep loop runtime ci job": [
       "deep-loop runtime ci job"
@@ -30730,6 +30766,9 @@
     ],
     "deep research ascii identifiers": [
       "deep research ASCII identifiers"
+    ],
+    "deep research authority": [
+      "deep research authority"
     ],
     "deep research authority composition plan": [
       "deep-research authority composition plan"
@@ -33710,9 +33749,6 @@
     ],
     "devtools quick commands": [
       "devtools quick commands"
-    ],
-    "df idf advisor": [
-      "df idf advisor"
     ],
     "df idf corpus": [
       "df-idf corpus"
@@ -37266,6 +37302,9 @@
     "env knob docs tasks": [
       "env knob docs tasks"
     ],
+    "env reader table": [
+      "env reader table"
+    ],
     "env reader table script": [
       "env reader table script"
     ],
@@ -37292,9 +37331,6 @@
     ],
     "env reference remediation tasks": [
       "ENV_REFERENCE remediation tasks"
-    ],
-    "env snapshot": [
-      "env snapshot"
     ],
     "env snapshot restore": [
       "env snapshot restore"
@@ -39427,6 +39463,9 @@
     ],
     "fanout salvage ledger plan": [
       "fanout salvage ledger plan"
+    ],
+    "fanout scheduler stress matrix": [
+      "fanout scheduler stress matrix"
     ],
     "fanout scope metadata governance rollup": [
       "fanout scope metadata governance rollup"
@@ -41956,6 +41995,9 @@
     "frontmatter packet closeout": [
       "frontmatter packet closeout"
     ],
+    "frontmatter parser": [
+      "frontmatter parser"
+    ],
     "frontmatter playbook execution results": [
       "frontmatter playbook execution results"
     ],
@@ -42324,6 +42366,9 @@
     ],
     "gate 3 delivery residue": [
       "gate-3 delivery residue"
+    ],
+    "gate 3 hook coverage": [
+      "gate 3 hook coverage"
     ],
     "gate 3 preamble": [
       "gate 3 preamble"
@@ -45906,6 +45951,9 @@
     "hermes yolo required for writes": [
       "hermes-yolo-required-for-writes"
     ],
+    "hermetic cli stand in binaries": [
+      "hermetic cli stand-in binaries"
+    ],
     "hermetic code graph db cleanup": [
       "hermetic code graph db cleanup"
     ],
@@ -46436,6 +46484,9 @@
     ],
     "hook state producer patch": [
       "hook-state producer patch"
+    ],
+    "hook suites": [
+      "hook suites"
     ],
     "hook surface review tier2": [
       "hook surface review tier2"
@@ -52889,6 +52940,9 @@
     "markdown delivery standards": [
       "markdown delivery standards"
     ],
+    "markdown frontmatter": [
+      "markdown frontmatter"
+    ],
     "markdown link integrity": [
       "markdown link integrity"
     ],
@@ -57842,6 +57896,12 @@
     "mode append gateway": [
       "mode append gateway"
     ],
+    "mode append gateway flow": [
+      "mode append gateway flow"
+    ],
+    "mode authority record": [
+      "mode authority record"
+    ],
     "mode aware promotion path": [
       "mode-aware promotion path"
     ],
@@ -57961,6 +58021,9 @@
     ],
     "mode scaffold verification": [
       "mode scaffold verification"
+    ],
+    "mode state write path": [
+      "mode state write path"
     ],
     "mode switch": [
       "mode switch"
@@ -59317,6 +59380,9 @@
     ],
     "next action verb list": [
       "next action verb list"
+    ],
+    "next check choice scorer": [
+      "next check choice scorer"
     ],
     "next check keep rule": [
       "next check keep rule"
@@ -61418,6 +61484,9 @@
     "opencode goal verifier accuracy": [
       "opencode goal verifier accuracy"
     ],
+    "opencode hook adapter": [
+      "opencode hook adapter"
+    ],
     "opencode hooks browsability mirror": [
       "opencode hooks browsability mirror"
     ],
@@ -61531,6 +61600,9 @@
     ],
     "opencode plugin exemption tier": [
       "opencode plugin exemption tier"
+    ],
+    "opencode plugin hooks": [
+      "opencode plugin hooks"
     ],
     "opencode plugin loader": [
       "opencode plugin loader"
@@ -61675,6 +61747,9 @@
     ],
     "opencode source root blockers": [
       "opencode source root blockers"
+    ],
+    "opencode spec gate plugin": [
+      "opencode spec gate plugin"
     ],
     "opencode stdin dev null rule": [
       "opencode stdin dev null rule"
@@ -62991,6 +63066,9 @@
       "P3 D5 D6",
       "p3 d5 d6"
     ],
+    "package architecture template": [
+      "package architecture template"
+    ],
     "package aware typescript build": [
       "package aware typescript build"
     ],
@@ -63029,6 +63107,9 @@
     ],
     "package relocation tasks": [
       "package relocation tasks"
+    ],
+    "package root markers": [
+      "package root markers"
     ],
     "package skill check": [
       "package skill check"
@@ -63671,6 +63752,9 @@
     ],
     "parse when field": [
       "parse when field"
+    ],
+    "parse yaml frontmatter": [
+      "parse yaml frontmatter"
     ],
     "parseable json format": [
       "parseable json format"
@@ -76924,6 +77008,9 @@
     "runtime api boundary": [
       "runtime api boundary"
     ],
+    "runtime architecture doc": [
+      "runtime architecture doc"
+    ],
     "runtime bootstrap tsxchildenv": [
       "runtime-bootstrap tsxChildEnv"
     ],
@@ -78295,6 +78382,9 @@
     "scoped staging discipline": [
       "scoped staging discipline"
     ],
+    "scoped test gate": [
+      "scoped test gate"
+    ],
     "score 0 partial miss shape": [
       "score-0 partial miss shape"
     ],
@@ -78344,6 +78434,7 @@
       "score-clarify-default tasks"
     ],
     "score compaction recall": [
+      "score compaction recall",
       "score-compaction-recall"
     ],
     "score compaction recall completion criteria": [
@@ -78362,6 +78453,7 @@
       "score-compaction-recall tasks"
     ],
     "score completion claims": [
+      "score completion claims",
       "score-completion-claims"
     ],
     "score completion claims complete": [
@@ -78398,6 +78490,7 @@
       "score-d4-agreement tasks"
     ],
     "score debug next check": [
+      "score debug next check",
       "score-debug-next-check"
     ],
     "score debug next check build": [
@@ -80708,6 +80801,9 @@
     "shared package confirmed findings": [
       "shared package confirmed findings"
     ],
+    "shared package coverage": [
+      "shared package coverage"
+    ],
     "shared package dead half removal": [
       "shared package dead half removal"
     ],
@@ -80814,6 +80910,9 @@
     "shared safe fix engine": [
       "shared safe-fix engine"
     ],
+    "shared scripts": [
+      "shared scripts"
+    ],
     "shared service event parity": [
       "shared service event parity"
     ],
@@ -80831,6 +80930,9 @@
     ],
     "shared synthesis close out script": [
       "shared synthesis close-out script"
+    ],
+    "shared tests": [
+      "shared tests"
     ],
     "shared tool runner": [
       "shared tool runner"
@@ -80888,6 +80990,9 @@
     ],
     "shellcheck integration": [
       "shellcheck integration"
+    ],
+    "shim mode switch": [
+      "shim mode switch"
     ],
     "shipped 027 alignment": [
       "shipped 027 alignment"
@@ -85263,6 +85368,9 @@
     "skill advisor runtime state": [
       "skill advisor runtime state"
     ],
+    "skill advisor runtime types": [
+      "skill advisor runtime types"
+    ],
     "skill advisor schema tests": [
       "skill advisor schema tests"
     ],
@@ -85365,9 +85473,6 @@
     "skill advisor tests": [
       "skill advisor tests"
     ],
-    "skill advisor text scoring": [
-      "skill advisor text scoring"
-    ],
     "skill advisor threshold consolidation": [
       "skill-advisor threshold consolidation"
     ],
@@ -85403,6 +85508,9 @@
     ],
     "skill and repo readmes cleanup tasks": [
       "skill-and-repo-readmes cleanup tasks"
+    ],
+    "skill architecture document": [
+      "skill architecture document"
     ],
     "skill asset templates": [
       "skill asset templates"
@@ -87593,6 +87701,9 @@
     "spec gate core port": [
       "spec gate core port"
     ],
+    "spec gate deferral": [
+      "spec gate deferral"
+    ],
     "spec gate enforce": [
       "spec gate enforce"
     ],
@@ -87625,6 +87736,9 @@
     ],
     "spec gate state leak": [
       "spec gate state leak"
+    ],
+    "spec gate tests": [
+      "spec gate tests"
     ],
     "spec gate tmp exemption": [
       "spec gate tmp exemption"
@@ -87753,6 +87867,9 @@
     ],
     "spec kit fix followup p2 findings for package extraction changelog": [
       "spec kit fix followup p2 findings for package extraction changelog"
+    ],
+    "spec kit folder merges": [
+      "spec-kit folder merges"
     ],
     "spec kit greenfield": [
       "spec-kit greenfield"
@@ -88214,7 +88331,8 @@
       "spec-kit restructure verification"
     ],
     "spec kit runtime alignment": [
-      "spec kit runtime alignment"
+      "spec kit runtime alignment",
+      "spec-kit runtime alignment"
     ],
     "spec kit runtime api surface": [
       "@spec-kit/runtime api surface"
@@ -88245,6 +88363,9 @@
     ],
     "spec kit shared package": [
       "spec kit shared package"
+    ],
+    "spec kit shared test suites": [
+      "spec kit shared test suites"
     ],
     "spec kit simplification follow up": [
       "spec-kit simplification follow-up"
@@ -91645,6 +91766,9 @@
     "system deep loop 3 0 1 0": [
       "system-deep-loop 3.0.1.0"
     ],
+    "system deep loop architecture": [
+      "system-deep-loop architecture"
+    ],
     "system deep loop archive renumber": [
       "system-deep-loop archive renumber"
     ],
@@ -91888,20 +92012,11 @@
     "system skill advisor runtime config": [
       "system_skill_advisor runtime config"
     ],
-    "system skill advisor runtime lib context": [
-      "system-skill-advisor runtime/lib/context"
-    ],
     "system skill advisor runtime lib scorer lanes": [
       "system-skill-advisor runtime/lib/scorer/lanes"
     ],
-    "system skill advisor runtime lib scorer lanes tests": [
-      "system-skill-advisor runtime/lib/scorer/lanes/__tests__"
-    ],
     "system skill advisor runtime scripts routing accuracy": [
       "system-skill-advisor runtime/scripts/routing-accuracy"
-    ],
-    "system skill advisor runtime stress test search quality": [
-      "system-skill-advisor runtime/stress-test/search-quality"
     ],
     "system skill advisor scaffold": [
       "system-skill-advisor scaffold"
@@ -92308,17 +92423,11 @@
     "system spec kit references drift": [
       "system-spec-kit references drift"
     ],
-    "system spec kit runtime tests deep loop": [
-      "system-spec-kit runtime/tests/deep-loop"
-    ],
     "system spec kit runtime tests description": [
       "system-spec-kit runtime/tests/description"
     ],
-    "system spec kit runtime tests graph": [
-      "system-spec-kit runtime/tests/graph"
-    ],
     "system spec kit runtime tests helpers": [
-      "system-spec-kit runtime/tests/__helpers__"
+      "system-spec-kit runtime/tests/helpers"
     ],
     "system spec kit runtime tests local llm features performance": [
       "system-spec-kit runtime/tests/local-llm-features/performance"
@@ -93500,9 +93609,6 @@
     ],
     "test hang containment tasks": [
       "test hang containment tasks"
-    ],
-    "test helpers": [
-      "test helpers"
     ],
     "test lane repair plan": [
       "test lane repair plan"
@@ -98859,6 +98965,9 @@
     ],
     "workspace root hoist above specs": [
       "workspace root hoist above specs"
+    ],
+    "workspace root resolution": [
+      "workspace root resolution"
     ],
     "workspace specs root membership": [
       "workspace specs root membership"
