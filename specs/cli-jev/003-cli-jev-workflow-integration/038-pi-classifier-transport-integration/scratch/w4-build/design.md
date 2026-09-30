@@ -103,7 +103,7 @@ outcome, and its Pi branch serializes the CLI's JSON onto `stdout`:
 | `answers.answer.probabilities` | the answer's `probabilities` | `:1133`, `:996`, `score-suggested-order.mjs:85-99` |
 | `answers.answer.confidence` | Pi's own value; callers ignore it | — |
 | top-level `model` | Pi's model id | `leaf-route-replay.cjs:1419-1425`, `score-clarify-default.cjs` |
-| exit `0` = a judgment was produced (`cli-usage/SKILL.md:169`) | `code: 0`, `stderr: ''`, `timedOut: false` | `judgeChoice`, `readProbabilities` |
+| exit `0` = a judgment was produced (`cli-jev/SKILL.md:169`) | `code: 0`, `stderr: ''`, `timedOut: false` | `judgeChoice`, `readProbabilities` |
 
 Emitted bytes: `JSON.stringify(payload) + '\n'` — compact, like the CLI's default output, with the
 trailing newline Python's `print` produces. `wallMs` is measured around the Pi call.
@@ -167,7 +167,7 @@ after all three gates pass. No retry runs inside the module.
 
 **CLI also unavailable.** The module's spawn error is `{ code: 127, stderr: <message> }`, which is
 what the callers' own `spawnCall` returns today. In practice the caller's gate stops first: its
-`jevGate` runs `command -v jev` and `--version` (`cli-usage/SKILL.md:97`; `leaf-route-replay.cjs:720-746`)
+`jevGate` runs `command -v jev` and `--version` (`cli-jev/SKILL.md:97`; `leaf-route-replay.cjs:720-746`)
 and `auth status` refuses on exit 3 (`:1400-1402`), so the caller stops with the CLI's own error and
 exit status, unchanged.
 
@@ -244,7 +244,7 @@ the mode named. Code comments carry no spec path, phase number or requirement id
    runs and `diff` them.
 7. **Caller opt-in C.** The same edit in `score-clarify-default.cjs`: the `require` line and the spawn
    at `:1150`. Record and `diff` both runs.
-8. **Docs: `cli-usage`.** `.skilled/skills/cli-classifier/cli-usage/SKILL.md` (sk-doc mode
+8. **Docs: `cli-jev`.** `.skilled/skills/cli-classifier/cli-jev/SKILL.md` (sk-doc mode
    `sk-create-skill`; shape model: the sibling transport packet `.skilled/skills/cli-classifier/cli-deem/SKILL.md`,
    which documents a second backend against the same reader). Add a `### Transport Selection`
    subsection under section 2 next to `### Prerequisite Detection` (`:92-104`) and `### Transport Guard`
@@ -293,7 +293,7 @@ One row per completion criterion in `goal.md`, run from the final state.
 | Switch off, every changed caller prints what it printed before, byte for byte, on a stub-backed run | run the two recorded harness cases once from the pre-change state and once from the final state, then `diff scratch/verify/<caller>.before.txt scratch/verify/<caller>.after.txt`, and `diff` the two `STUB_LOG` lists | both `diff` runs print nothing, exit 0 |
 | Switch on, the transport answers a `choice` question through Pi and returns the CLI's result shape, both backends stubbed | `node --test .skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs` | `# fail 0` and `# pass 21` for the module suite, exit 0; the switch-on row asserts `answers.answer.choice` and `probabilities` over the submitted keys, and the two caller rows are the recorded runs below |
 | A failed Pi gate prints one skip line and follows the rule, one test per gate | the four gate rows in the same suite, captured to `scratch/verify/transport-tests.txt` | one line per gate — `(package)`, `(model)`, `(credential)`, `(backend)` — and zero `classify` calls on each failure path |
-| `cli-usage` and `cli-pi/SKILL.md` document the Pi route; `validate_document.py` VALID on every changed doc | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <each changed doc>` | `✅ VALID` and exit 0 on each, with no verdict or number beyond the recorded run |
+| `cli-jev` and `cli-pi/SKILL.md` document the Pi route; `validate_document.py` VALID on every changed doc | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <each changed doc>` | `✅ VALID` and exit 0 on each, with no verdict or number beyond the recorded run |
 | Runtime-tree callers listed as a follow-up with paths; `validate.sh --strict` passes | `git diff --stat -- .skilled/skills/system-deep-loop .skilled/skills/system-skill-advisor .skilled/skills/system-spec-kit` then `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration --strict` | empty `diff --stat`; the 13 rows of `spec.md` section 3 named in `implementation-summary.md`; `RESULT: PASSED` |
 
 Plus the two REQ-011/REQ-006 checks: the byte comparison above, and

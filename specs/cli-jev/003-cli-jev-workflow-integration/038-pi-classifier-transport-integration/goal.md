@@ -63,7 +63,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] With the switch off, every changed caller prints what it printed before, byte for byte, on a stub-backed run
 - [ ] With the switch on, the transport answers a `choice` question through Pi and returns the CLI's result shape, proved by tests with both backends stubbed
 - [ ] A failed Pi gate prints one skip line and follows the rule in `spec.md`, proved by a test for each gate
-- [ ] `cli-usage` and `cli-pi/SKILL.md` document the Pi route, and `validate_document.py` is VALID on every changed doc
+- [ ] `cli-jev` and `cli-pi/SKILL.md` document the Pi route, and `validate_document.py` is VALID on every changed doc
 - [ ] Runtime-tree callers are listed as a follow-up with file paths, and `validate.sh --strict` passes for this phase
 <!-- /ANCHOR:completion -->
 
