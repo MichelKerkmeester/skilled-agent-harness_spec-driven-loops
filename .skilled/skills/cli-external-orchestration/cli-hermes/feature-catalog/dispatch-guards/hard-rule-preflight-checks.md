@@ -17,7 +17,7 @@ version: 1.0.0.0
 
 Seven Hermes-specific checks evaluate a composed command before it is spawned, covering binary availability, approval scope, rule injection, toolsets, worktrees, MCP configuration and hooks.
 
-The packet declares its rules as frontmatter; a dependency-free engine implements them. Neither half is useful alone, and a declared rule whose check is missing simply never fires.
+The packet declares its rules in a `hard-rules.json` sidecar beside its `SKILL.md`, and a dependency-free engine implements them. Neither half is useful alone, and a declared rule whose check is missing simply never fires.
 
 ---
 
@@ -35,7 +35,7 @@ Omitting the approval bypass does not block ordinary writes or commands. It leav
 
 ### Severity And Failure Posture
 
-The engine parses just enough of the frontmatter to read the flat rule list, evaluates only rules whose check exists, and treats an unknown check as a skip. A check that throws is treated as passing, because a guard must never block a dispatch by malfunctioning. A rule's own declared severity decides the outcome: `block` or `error` denies the dispatch, and anything else is advisory.
+The engine reads the flat rule list from the sidecar, evaluates only rules whose check exists, and treats an unknown check as a skip. A check that throws is treated as passing, because a guard must never block a dispatch by malfunctioning. A rule's own declared severity decides the outcome: `block` or `error` denies the dispatch, and anything else is advisory.
 
 ---
 
@@ -45,8 +45,8 @@ The engine parses just enough of the frontmatter to read the flat rule list, eva
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared | `parseHardRules`, `readHardRules`, the Hermes checks in `CHECKS`, and the severity mapping in `evaluate`. |
-| `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The packet's `hard_rules` frontmatter: rule ids, check names, messages and severities. |
+| `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared | `readHardRules`, the Hermes checks in `CHECKS`, and the severity mapping in `evaluate`. |
+| `.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md` | Handler | The packet's `hard-rules.json` sidecar: rule ids, check names, messages and severities. |
 | `.skilled/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md` | Handler | The hook boundary the hooks rule states. |
 | `.skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md` | Handler | The operator boundary the MCP rule states. |
 

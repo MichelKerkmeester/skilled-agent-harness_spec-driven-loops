@@ -3,27 +3,6 @@ name: cli-opencode
 description: "OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback with full runtime context."
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.4.13.0
-hard_rules:
-  - id: stdin-redirect-required
-    check: stdin-redirect-required
-    message: "Ad-hoc `opencode run` MUST close/redirect stdin (`</dev/null`) — omitting it can hang indefinitely at 0% CPU with zero output."
-    severity: error
-  - id: explicit-model-required
-    check: explicit-model-required
-    message: "Always pass `-m <provider/model>` to a non-interactive `opencode run`. When the configured default provider is out of quota, opencode retries the 429 indefinitely and produces NO output — indistinguishable from a deadlock. Confirm with `--print-logs --log-level DEBUG` (look for 'stream error … Error 429')."
-    severity: error
-  - id: no-bare-agent-general
-    check: no-bare-agent-general
-    message: "Never pass a bare top-level `--agent general`; opencode rejects it on run."
-    severity: warn
-  - id: command-flag-for-slash-prompt
-    check: command-flag-for-slash-prompt
-    message: "A slash-command-shaped prompt (`/family:name ...`) needs `--command <family>/<name>`, else opencode silently delivers the slash text as raw prose."
-    severity: error
-  - id: share-requires-confirmation
-    check: share-requires-confirmation
-    message: "`--share` publishes the session and requires prior operator confirmation."
-    severity: warn
 ---
 
 <!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, openai, minimax, minimax-coding-plan, minimax-m3, token-plan, mimo, mimo-v2.6-pro, mimo-v2.6-flash, llmgateway, glm-5.2, zai-coding-plan, z.ai-coding-plan, glm-coding-plan, deepseek-v4-flash-latest, deepseek-v4.1-flash, gpt-6-luna, cline, cline-pass, cline-deepseek-v4-flash, cline-deepseek-v4.1-flash -->

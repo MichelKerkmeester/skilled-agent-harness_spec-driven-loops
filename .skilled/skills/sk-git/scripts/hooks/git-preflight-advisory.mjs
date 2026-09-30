@@ -7,7 +7,7 @@
 //
 // The git rules were already written down and still did not reach anyone, because they were
 // surfaced by *prompt* routing while the damage happens at *command* time. This hook closes that
-// gap: it reads the same `hard_rules:` frontmatter the dispatch preflight reads, evaluates it
+// gap: it reads the same `hard-rules.json` sidecar the dispatch preflight reads, evaluates it
 // against the repository as it stands before the command runs, and prints a line.
 //
 // It advises and never blocks. Blocking belongs to the pre-commit, commit-msg and pre-push hooks,

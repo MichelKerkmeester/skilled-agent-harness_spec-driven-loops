@@ -83,7 +83,7 @@ permission-policy/
 |---|---|
 | `system-spec-kit/runtime/hooks/devin/permission-request-policy.mjs` | The adapter. Parses the `PermissionRequest` payload, validates identity, classifies the tool as `write` / `exec` / unknown, delegates to the shared cores, and emits the decision envelope. Fails closed on every error path. |
 | `system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` | The shared write-target policy core (`isExemptTargetPath`) that `evaluateWrite` delegates to. Not in this folder. |
-| `hooks/dispatch/lib/dispatch-rule-checks.mjs` | The shared dispatch hard-rule evaluator (`evaluate`, `readHardRules`) that `evaluateExec` delegates to. Hard rules are read from `cli-external-orchestration/cli-opencode/SKILL.md`. Not in this folder. |
+| `hooks/dispatch/lib/dispatch-rule-checks.mjs` | The shared dispatch hard-rule evaluator (`evaluate`, `readHardRules`) that `evaluateExec` delegates to. Hard rules are read from `hard-rules.json` beside `cli-external-orchestration/cli-opencode/SKILL.md`. Not in this folder. |
 | `.skilled/hooks/shared/hook-flags.cjs` | The shared kill-switch resolver the adapter imports (`isHookEnabled('permission-policy')`). |
 
 The hub entry under `devin/` is a relative symlink into `system-spec-kit`; edit the source, not the symlink.

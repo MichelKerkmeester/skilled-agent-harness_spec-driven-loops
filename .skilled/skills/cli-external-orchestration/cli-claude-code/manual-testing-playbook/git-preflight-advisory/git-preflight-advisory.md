@@ -14,7 +14,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 This scenario validates the sk-git preflight advisory delivery under Claude Code for `CC-028`. It focuses on the `PreToolUse` Bash hook surfacing the `commit-scope-drops-untracked` advisory without blocking the command.
 
-The advisory is the shared sk-git preflight hook at `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs`. It reads the 17 `hard_rules:` from `.skilled/skills/sk-git/SKILL.md`, evaluates them against repository state, and emits `hookSpecificOutput.additionalContext` starting with `⚠ sk-git advisory`. It never blocks, fails open, and caps at three advisories per command.
+The advisory is the shared sk-git preflight hook at `.skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs`. It reads the 17 rules from `hard-rules.json` beside `.skilled/skills/sk-git/SKILL.md`, evaluates them against repository state, and emits `hookSpecificOutput.additionalContext` starting with `⚠ sk-git advisory`. It never blocks, fails open, and caps at three advisories per command.
 
 ### Why This Matters
 
@@ -109,7 +109,7 @@ transcript from every command in the table below.
 || File | Role |
 ||---|---|
 || `../../../../../skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | The shared stdin hook the Claude `Bash` matcher invokes |
-|| `../../../../../skills/sk-git/SKILL.md` | The 17 `hard_rules:` frontmatter the hook parses |
+|| `../../../../../skills/sk-git/SKILL.md` | The 17 rules in the `hard-rules.json` sidecar the hook reads |
 || `.claude/settings.json` | `PreToolUse` matcher `Bash` registration of the shared hook |
 || `../../../../../skills/sk-git/scripts/hooks/README.md` | Runtime matrix, suppression tiers, fail-open guarantees |
 

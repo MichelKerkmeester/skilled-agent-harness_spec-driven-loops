@@ -13,9 +13,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`dispatch/` owns two concerns that fire around composed CLI dispatch commands (`opencode run`, `claude -p`, `codex exec -p`, `devin -p`, and siblings): a **preflight lint** that evaluates a dispatch skill's declared `hard_rules:` against the command string *before* it spawns, and an **audit trail** that appends one scrubbed JSONL line per completed dispatch. Both cores are dependency-free by design so enforcement survives even when the skill advisor daemon is down.
+`dispatch/` owns two concerns that fire around composed CLI dispatch commands (`opencode run`, `claude -p`, `codex exec -p`, `devin -p`, and siblings): a **preflight lint** that evaluates a dispatch skill's declared hard rules (`hard-rules.json` beside its `SKILL.md`) against the command string *before* it spawns, and an **audit trail** that appends one scrubbed JSONL line per completed dispatch. Both cores are dependency-free by design so enforcement survives even when the skill advisor daemon is down.
 
-The `DISPATCH_SHAPES` registry in `lib/dispatch-audit.mjs` is the single source of truth for what counts as a dispatch, shared by both concerns so the before-lint and the after-audit can never disagree about a command's shape. The preflight may deny or advise; the audit never decides, it only records. Every path fails open: a missing `SKILL.md`, malformed frontmatter, a throwing check, or an unwritable log resolves to allow/skip, never to a blocked or broken dispatch.
+The `DISPATCH_SHAPES` registry in `lib/dispatch-audit.mjs` is the single source of truth for what counts as a dispatch, shared by both concerns so the before-lint and the after-audit can never disagree about a command's shape. The preflight may deny or advise; the audit never decides, it only records. Every path fails open: a missing `SKILL.md`, malformed sidecar JSON, a throwing check, or an unwritable log resolves to allow/skip, never to a blocked or broken dispatch.
 
 The concern is one runtime-neutral pair of cores plus a thin adapter per runtime. The cores make every decision; each adapter only translates its runtime's event shape into the core's input and delivers the result.
 
@@ -23,7 +23,7 @@ The concern is one runtime-neutral pair of cores plus a thin adapter per runtime
 
 ## 2. WHAT IT DOES
 
-**Preflight lint** fires before a composed CLI dispatch command spawns. It matches the command against `DISPATCH_SHAPES`, resolves the matched skill's `SKILL.md`, reads its `hard_rules:` frontmatter, and evaluates each rule. A `block`-severity violation denies the tool call with this reason (the model sees it as the denial message):
+**Preflight lint** fires before a composed CLI dispatch command spawns. It matches the command against `DISPATCH_SHAPES`, resolves the matched skill's `SKILL.md`, reads the `hard-rules.json` sidecar beside it, and evaluates each rule. A `block`-severity violation denies the tool call with this reason (the model sees it as the denial message):
 
 ```text
 Dispatch blocked by <skill> hard-rule(s):
@@ -37,7 +37,7 @@ Dispatch blocked by <skill> hard-rule(s):
   • [<rule-id>] <rule message>
 ```
 
-The five checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`), with the messages the declaring skill's frontmatter carries:
+The five checks currently registered in `lib/dispatch-rule-checks.mjs` (`CHECKS`), with the messages the declaring skill's sidecar carries:
 
 | Check id | Satisfied when |
 |---|---|
@@ -83,7 +83,7 @@ Two runtimes are mirrored rather than hosted here. OpenCode's real plugin cannot
 ```text
 dispatch/
 +-- lib/
-|   +-- dispatch-rule-checks.mjs       # hard-rule engine: parses SKILL.md hard_rules frontmatter, evaluates checks
+|   +-- dispatch-rule-checks.mjs       # hard-rule engine: reads the hard-rules.json sidecar, evaluates checks
 |   +-- dispatch-rule-checks.test.mjs  # node --test
 |   +-- dispatch-audit.mjs             # dispatch-shape recognition, scrubbing, JSONL append, log rotation
 |   `-- dispatch-audit.test.mjs        # npx vitest run
@@ -101,7 +101,7 @@ dispatch/
 
 | File | Responsibility |
 |---|---|
-| `lib/dispatch-rule-checks.mjs` | The hard-rule engine. `parseHardRules`/`readHardRules` extract the `hard_rules:` list from a SKILL.md's YAML frontmatter (just enough YAML for the flat list-of-maps shape, no library). `CHECKS` holds the five pure check functions. `evaluate` runs the rules against a command and returns only the violated ones, mapping `block`/`error` severity to `block` and everything else to `warn`. Imports Node builtins only. |
+| `lib/dispatch-rule-checks.mjs` | The hard-rule engine. `readHardRules` reads the `hard-rules.json` sidecar beside a SKILL.md (a JSON array of rule objects, no library). `CHECKS` holds the five pure check functions. `evaluate` runs the rules against a command and returns only the violated ones, mapping `block`/`error` severity to `block` and everything else to `warn`. Imports Node builtins only. |
 | `lib/dispatch-audit.mjs` | Runtime-neutral audit core. `DISPATCH_SHAPES` is the shared dispatch registry. `inspectDispatch`/`matchDispatchShape` recognize a dispatch (tokenizing the shell command, distinguishing `direct`/`ambiguous`/`none`). `extractDispatchMeta` pulls model/target/duration/exit/size hints. `buildAuditLine` scrubs secrets, truncates, and formats one JSONL line. `appendAuditLog` does the size-rotated append. `recordDispatch` runs the whole pipeline. Never writes stdout/stderr, never throws past its boundary. |
 | `claude/dispatch-preflight-lint.mjs`, `codex/` and `devin/` siblings | PreToolUse adapters. A `block` denies with the rule's reason; `warn` attaches an advisory. Fast-exit on non-dispatch commands, fail open on any internal error. |
 | `claude/dispatch-audit-posttooluse.mjs`, `codex/` and `devin/` siblings | PostToolUse adapters feeding the audit core after a Bash/exec call completes. Observe-only, never emit a permission decision. |
@@ -133,7 +133,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 |---|---|
 | Imports | `lib/` cores import Node builtins only. Adapters import their own `../lib/` and `../../shared/hook-flags.mjs` (or `hook-flags.cjs` for the OpenCode plugin): nothing outside this tree. The Cursor proxy imports `hook-flags.mjs` by a deep repo-relative path because its real home is under `system-spec-kit`. |
 | Decisions | Preflight may deny (`block` severity) or advise (`warn`). Audit never decides; it only records. Pi's preflight adds an authorization deny that is independent of the target skill's declared rules. |
-| Failure | Every path fails open. A missing `SKILL.md`, malformed frontmatter, a throwing check, an unparsable payload, or an unwritable log resolves to allow/skip. |
+| Failure | Every path fails open. A missing `SKILL.md`, malformed sidecar JSON, a throwing check, an unparsable payload, or an unwritable log resolves to allow/skip. |
 | Output | The cores never write stdout or stderr. Each adapter owns its own transport. Audit writes only to the rotated log file. |
 
 ---
@@ -160,4 +160,4 @@ Expected result: `ok`, with no module-resolution error (confirms the OpenCode ad
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in, with the full kill-switch index and coverage matrix.
 - [`../injection-contract.md`](../injection-contract.md): the advisory's exact injected text and its visibility to the operator.
 - [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the adapters use.
-- [`../../skills/cli-external-orchestration/cli-opencode/SKILL.md`](../../skills/cli-external-orchestration/cli-opencode/SKILL.md): the primary `hard_rules:` declarer these checks enforce.
+- [`../../skills/cli-external-orchestration/cli-opencode/SKILL.md`](../../skills/cli-external-orchestration/cli-opencode/SKILL.md): the primary hard-rule declarer these checks enforce.

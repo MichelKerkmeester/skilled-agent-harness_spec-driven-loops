@@ -73,7 +73,7 @@ Operators run the exact prompt and command sequence for `GIT-042` and confirm th
 | `../../scripts/hooks/git-preflight-advisory.mjs` | The shared stdin hook that evaluates `Bash`, `exec`, and Cursor `Shell` payloads and emits `additionalContext` |
 | `../../scripts/lib/git-rule-checks.mjs` | The `commit-scope-drops-untracked` check and the `GIT_SHAPE` gate |
 | `../../scripts/lib/git-context.mjs` | The lazy repository-state collector the check reads |
-| `../../SKILL.md` | The 17 `hard_rules:` frontmatter the hook parses |
+| `../../SKILL.md` | The manifest whose sibling `hard-rules.json` holds the 17 rules the hook reads |
 | `../../scripts/hooks/README.md` | Runtime matrix, suppression tiers, and fail-open guarantees |
 
 ---
