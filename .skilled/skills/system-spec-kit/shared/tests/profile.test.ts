@@ -32,8 +32,7 @@ console.log('=== profile.test: resolveActiveProfileModel invariants ===');
 //    Read the COMPILED .js if .ts isn't available; fall back to import-graph proof
 const here = dirname(fileURLToPath(import.meta.url));
 const profileTsCandidates = [
-  join(here, '..', '..', 'embeddings', 'profile.ts'),
-  join(here, '..', '..', '..', 'embeddings', 'profile.ts'),
+  join(here, '..', 'embeddings', 'profile.ts'),
 ];
 
 let profileSource: string | null = null;
@@ -86,7 +85,7 @@ for (const key of ENV_KEYS) {
 
 try {
   // Use the registry helper directly to assert canonical values
-  const { getCanonicalFallback } = await import('./registry.js');
+  const { getCanonicalFallback } = await import('../embeddings/registry.js');
 
   assert(
     getCanonicalFallback('voyage') === 'voyage-code-3',

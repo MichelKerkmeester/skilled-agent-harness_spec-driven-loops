@@ -11,11 +11,11 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   graphMetadataSchema,
   SAVE_LINEAGE_VALUES,
-} from '../../lib/graph/graph-metadata-schema.js';
+} from '../lib/graph/graph-metadata-schema.js';
 import {
   deriveGraphMetadata,
   refreshGraphMetadataForSpecFolder,
-} from '../../lib/graph/graph-metadata-parser.js';
+} from '../lib/graph/graph-metadata-parser.js';
 
 const createdRoots = new Set<string>();
 

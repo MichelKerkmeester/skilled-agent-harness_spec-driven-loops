@@ -4,7 +4,9 @@
 // Reciprocal Rank Fusion for combining search results
 // TypeScript source (previously orphaned .js only)
 
-/* --- 1. CONSTANTS --- */
+// ───────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 // Hybrid search pipeline
 // RRF K-value sensitivity analysis
@@ -59,7 +61,9 @@ const MIN_QUERY_TERM_LENGTH = 2;
 const RETRIEVAL_PROFILE_FLAG = 'SPECKIT_RETRIEVAL_PROFILE_WEIGHTS';
 const RETRIEVAL_PROFILE_TRUTHY = new Set(['true', '1', 'yes', 'on', 'enabled']);
 
-/* --- 2. INTERFACES --- */
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** A single item from a ranked retrieval list, identified by its unique ID. */
 interface RrfItem {
@@ -185,6 +189,10 @@ const DEFAULT_RETRIEVAL_PROFILES: Readonly<Record<RetrievalClass, RetrievalProfi
     }),
   }),
 });
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /** Canonical key for cross-channel deduplication (`42`, `"42"`, `"mem:42"` -> `"42"`). */
 function canonicalRrfId(id: number | string): string {
@@ -336,7 +344,9 @@ function applyRetrievalProfileToRankedLists(
   return hasActiveList ? profiled : lists;
 }
 
-/* --- 3. FEATURE FLAG HELPERS --- */
+// ───────────────────────────────────────────────────────────────────
+// 4. FEATURE FLAG HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Check if calibrated overlap bonus is enabled.
@@ -356,7 +366,9 @@ function clamp(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, value));
 }
 
-/* --- 4. CORE FUNCTIONS --- */
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Fuse two ranked result lists using Reciprocal Rank Fusion.
@@ -800,7 +812,9 @@ function normalizeRrfScores(results: FusionResult[]): void {
   }
 }
 
-/* --- 4. EXPORTS --- */
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   SOURCE_TYPES,

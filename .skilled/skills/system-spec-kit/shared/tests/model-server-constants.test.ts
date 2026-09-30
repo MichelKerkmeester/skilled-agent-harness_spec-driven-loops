@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Model Server Constants Test
+// ───────────────────────────────────────────────────────────────────
+
 // Script-style assertions, run directly with tsx like the other colocated tests.
 //
 // The hf-local client and the process that binds the model-server socket live
@@ -20,7 +24,7 @@ function literal(file: string, name: string): string {
   return match[1];
 }
 
-const client = path.join(HERE, 'providers', 'hf-local.ts');
+const client = path.join(HERE, '..', 'embeddings', 'providers', 'hf-local.ts');
 const supervision = path.join(REPO_BIN, 'lib', 'model-server-supervision.cjs');
 const launcher = path.join(REPO_BIN, 'system-skill-advisor-launcher.cjs');
 

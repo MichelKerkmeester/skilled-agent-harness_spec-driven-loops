@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Shared Config Root Test
+// ───────────────────────────────────────────────────────────────────
+
 // Script-style assertions for the shared config package root, mirroring the
 // colocated *.test.ts convention in shared/parsing. Run directly (tsx/node
 // type stripping); throws on the first failing assertion.
@@ -11,7 +15,7 @@ import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const SHARED_DIR = path.dirname(fileURLToPath(import.meta.url));
+const SHARED_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SKILL_ROOT = path.resolve(SHARED_DIR, '..');
 
 const env = { ...process.env };

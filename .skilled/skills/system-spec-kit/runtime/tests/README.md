@@ -32,7 +32,8 @@ This README names directories rather than individual suites. The file set moves;
 tests/
 +-- *.vitest.ts    # Unit, integration and regression suites
 +-- _support/      # Vitest setup shared by both configs
-+-- helpers/   # Shared env helpers for flag-driven tests
++-- helpers/       # Shared env helpers for flag-driven tests
++-- hooks/         # node:test suites for the hook adapters and spec-gate core
 +-- fixtures/      # Sample documents and data
 `-- README.md
 ```
@@ -58,15 +59,14 @@ tests ───▶ shared temp state without explicit setup and cleanup
 ```text
 tests/
 ├── _support/            # Vitest setup file loaded by both vitest configs
-├── helpers/         # setEnv / restoreEnv / withFeatureFlag for env-driven suites
+├── helpers/             # setEnv / restoreEnv / withFeatureFlag for env-driven suites
 ├── adversarial/         # Adversarial input handling
 ├── advisor-fixtures/    # Fixture inputs for advisor-facing suites
 ├── archive/             # Retained suites kept out of the active areas
-├── deep-loop/           # Deep-loop integration coverage
 ├── description/         # description.json generation and repair suites
 ├── embedders/           # Embedder-facing suites
 ├── fixtures/            # Shared document and data fixtures
-├── graph/               # graph-metadata.json suites
+├── hooks/               # node:test suites for the hook adapters and spec-gate core
 ├── local-llm-features/  # Local model feature suites
 ├── security/            # Security and sanitization suites
 ├── validation/          # Spec folder validation rule suites
@@ -82,9 +82,9 @@ Use `rg --files tests -g '*.vitest.ts'` for the full live inventory.
 | Area | Where | Responsibility |
 |---|---|---|
 | Validation rules | `validation/`, top-level suites | Level contracts, per-document structure rules, and the folder report shape. |
-| Generated metadata | `graph/`, `description/` | Schema conformance, derivation, merge behavior, and the integrity and drift gates. |
+| Generated metadata | `description/`, top-level suites | Schema conformance, derivation, merge behavior, and the integrity and drift gates. |
 | Discovery and continuity | Top-level suites | Spec-document discovery, folder discovery, index scope, continuity records and the resume ladder. |
-| Hook adapters | Top-level suites | Per-runtime lifecycle adapters, the shared spec-gate core, and the completion-evidence sentinel. |
+| Hook adapters | `hooks/`, top-level suites | Per-runtime lifecycle adapters, the shared spec-gate core, and the completion-evidence sentinel. The `hooks/` suites run under `node --test`. |
 | Package guards | Top-level suites | Build freshness, architecture seam boundaries, and documentation parity against the environment reference. |
 | Security | `security/`, `adversarial/` | Sanitization, prompt-safety and adversarial input handling. |
 
@@ -169,7 +169,8 @@ Focused examples:
 
 ```bash
 npx vitest run tests/validation
-npx vitest run tests/graph tests/description
+npx vitest run tests/description tests/graph-metadata-lineage.vitest.ts
+node --test tests/hooks/*.test.mjs
 ```
 
 Expected result: selected suites pass with isolated database and temp state.

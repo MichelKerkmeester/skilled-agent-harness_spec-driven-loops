@@ -10,7 +10,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
 
-const SCRIPT = join(dirname(fileURLToPath(import.meta.url)), '..', 'sync-skills-hermes.cjs');
+const SCRIPT = join(dirname(fileURLToPath(import.meta.url)), '..', 'hermes', 'sync-skills-hermes.cjs');
 
 function fixture() {
   const root = mkdtempSync(join(tmpdir(), 'hermes-skills-'));

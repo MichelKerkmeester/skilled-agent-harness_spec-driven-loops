@@ -1,8 +1,12 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Embedder Auto-Select Tests
+// ───────────────────────────────────────────────────────────────────
+
 // Script-style assertions for the embedder auto-select helpers, mirroring the
 // colocated *.test.ts convention in shared/parsing. Run directly (tsx/node type
 // stripping); throws on the first failing assertion.
 
-import { __autoSelectTestables, providerResolutionFromAutoSelect } from './auto-select.js';
+import { __autoSelectTestables, providerResolutionFromAutoSelect } from '../embeddings/auto-select.js';
 
 function assert(condition: boolean, label: string): void {
   if (!condition) throw new Error(`${label} failed`);

@@ -18,7 +18,7 @@ import { dirname, join } from 'node:path';
 import childProcess from 'node:child_process';
 
 const require = createRequire(import.meta.url);
-const sentinelCore = require('../lib/hooks/completion-evidence-sentinel.cjs') as {
+const sentinelCore = require('../hooks/lib/completion-evidence-sentinel.cjs') as {
   COMPLETION_CLAIM_PATTERN: RegExp;
   SPEC_FOLDER_TEXT_PATTERN: RegExp;
   KILL_SWITCH_ENV: string;
@@ -226,7 +226,7 @@ describe('completion-evidence-sentinel core', () => {
 
   it('REQ-004: never invokes validate.sh, vitest, npm test, or a build', () => {
     const source = readFileSync(
-      join(import.meta.dirname, '..', 'lib', 'hooks', 'completion-evidence-sentinel.cjs'),
+      join(import.meta.dirname, '..', 'hooks', 'lib', 'completion-evidence-sentinel.cjs'),
       'utf8',
     );
     // Strip comment-only lines first: the module's own header prose names

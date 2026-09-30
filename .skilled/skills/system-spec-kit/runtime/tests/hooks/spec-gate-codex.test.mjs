@@ -19,10 +19,10 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 
-import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
+import * as guardCore from '../../hooks/lib/spec-gate/spec-gate-core.mjs';
 
-const CLASSIFY_HOOK_PATH = fileURLToPath(new URL('./spec-gate-classify.mjs', import.meta.url));
-const ENFORCE_HOOK_PATH = fileURLToPath(new URL('./spec-gate-enforce.mjs', import.meta.url));
+const CLASSIFY_HOOK_PATH = fileURLToPath(new URL('../../hooks/codex/spec-gate-classify.mjs', import.meta.url));
+const ENFORCE_HOOK_PATH = fileURLToPath(new URL('../../hooks/codex/spec-gate-enforce.mjs', import.meta.url));
 
 function makeWorkspace() {
   const root = mkdtempSync(join(tmpdir(), 'codex-spec-gate-'));

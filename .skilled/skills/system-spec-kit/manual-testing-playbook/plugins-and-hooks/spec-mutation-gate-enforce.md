@@ -67,7 +67,7 @@ Expected: TAP output, `# tests 11`, `# pass 11`, `# fail 0`.
 2. Run the shared spec-gate-core unit-test suite (uses `node:test` module mocks). Neutralize the same ambient gate vars as step 1 (plus the kill-switch) so the run is hermetic in a child-dispatched shell:
 
 ```bash
-env -u AI_SESSION_CHILD -u SYSTEM_SPEC_GATE_ENFORCE -u SYSTEM_SPEC_GATE_DISABLED node --experimental-test-module-mocks --test .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs
+env -u AI_SESSION_CHILD -u SYSTEM_SPEC_GATE_ENFORCE -u SYSTEM_SPEC_GATE_DISABLED node --experimental-test-module-mocks --test .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs
 ```
 
 Expected: `tests 108`, `pass 108`, `skipped 0`, `fail 0` (Node prints them with an `ℹ` prefix). The three tests that self-skip without `--experimental-test-module-mocks` are why the flag is required for this count.
@@ -205,7 +205,7 @@ Capture, for every step in the Commands sequence above:
 - OpenCode plugin adapter: `.skilled/plugins/system-spec-gate.js`
 - Plugin adapter unit test: `.skilled/plugins/tests/system-spec-gate.test.cjs`
 - Runtime-neutral core: `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs`
-- Core unit test: `.skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs`
+- Core unit test: `.skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs`
 - Pi extension suite: `.skilled/skills/system-spec-kit/runtime/tests/spec-gate-pi-extension.vitest.ts`
 - Claude classify hook: `.skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-classify.mjs`
 - Claude enforce hook: `.skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-enforce.mjs`

@@ -2,7 +2,15 @@
 // MODULE: Memory Sufficiency
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { parseFrontmatter } from '../frontmatter/parse-frontmatter.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const COMMENT_RE = /<!--[\s\S]*?-->/g;
 const CODE_FENCE_RE = /```[\s\S]*?```/g;
@@ -59,6 +67,10 @@ const GENERIC_TOOL_TITLE_RE = /^(tool:\s*)?(read|write|edit|bash|grep|glob|searc
 
 export const MEMORY_SUFFICIENCY_REJECTION_CODE = 'INSUFFICIENT_CONTEXT_ABORT' as const;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export interface MemoryEvidenceFile {
   path?: string;
   description?: string;
@@ -114,7 +126,15 @@ export interface MemorySufficiencyResult {
   score: number;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTED CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const MANUAL_FALLBACK_SOURCE = 'manual-fallback' as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function stripFrontmatter(content: string): string {
   return parseFrontmatter(content).body;
@@ -308,6 +328,10 @@ function collectSupportContexts(snapshot: MemoryEvidenceSnapshot): string[] {
 function isManualFallbackSource(sourceClassification?: string | null): boolean {
   return normalizeWhitespace(sourceClassification || '').toLowerCase() === MANUAL_FALLBACK_SOURCE;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function evaluateMemorySufficiency(snapshot: MemoryEvidenceSnapshot): MemorySufficiencyResult {
   const primaryEvidenceTexts: string[] = [];

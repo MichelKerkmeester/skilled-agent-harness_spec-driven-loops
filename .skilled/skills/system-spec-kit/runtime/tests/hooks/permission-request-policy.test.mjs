@@ -9,7 +9,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
 
-const HOOK_PATH = fileURLToPath(new URL('./permission-request-policy.mjs', import.meta.url));
+const HOOK_PATH = fileURLToPath(new URL('../../hooks/devin/permission-request-policy.mjs', import.meta.url));
 
 function makeWorkspace() {
   const root = mkdtempSync(join(tmpdir(), 'devin-permission-request-'));

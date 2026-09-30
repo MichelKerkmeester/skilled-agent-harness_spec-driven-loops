@@ -1,8 +1,11 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Secret Scrubber Tests
+// ───────────────────────────────────────────────────────────────────
 // Script-style assertions for the secret scrubber, mirroring the colocated
 // *.test.ts convention in shared/parsing. Run directly (tsx/node type
 // stripping); throws on the first failing assertion.
 
-import { scrubSecrets, scrubSecretsDetailed } from './secret-scrubber.js';
+import { scrubSecrets, scrubSecretsDetailed } from '../parsing/secret-scrubber.js';
 
 function assert(condition: boolean, label: string): void {
   if (!condition) throw new Error(`${label} failed`);

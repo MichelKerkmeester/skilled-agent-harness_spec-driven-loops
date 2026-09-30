@@ -1,8 +1,12 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Frontmatter Parser Tests
+// ───────────────────────────────────────────────────────────────────
+
 // Script-style assertions for the shared frontmatter parser, mirroring the
 // colocated *.test.ts convention in shared/parsing. Run directly (tsx/node
 // type stripping); throws on the first failing assertion.
 
-import { parseFrontmatter } from './parse-frontmatter.js';
+import { parseFrontmatter } from '../frontmatter/parse-frontmatter.js';
 
 function assertEqual(actual: unknown, expected: unknown, label: string): void {
   const actualJson = JSON.stringify(actual);

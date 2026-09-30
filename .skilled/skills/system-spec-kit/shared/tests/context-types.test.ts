@@ -1,7 +1,11 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Context Type Canonicalizer Tests
+// ───────────────────────────────────────────────────────────────────
+
 // Script-style assertions for the context-type canonicalizer; throws on the
 // first failing assertion.
 
-import { isLegacyContextType, resolveCanonicalContextType } from './context-types.js';
+import { isLegacyContextType, resolveCanonicalContextType } from '../context-types.js';
 
 function assert(condition: boolean, label: string): void {
   if (!condition) throw new Error(`${label} failed`);
