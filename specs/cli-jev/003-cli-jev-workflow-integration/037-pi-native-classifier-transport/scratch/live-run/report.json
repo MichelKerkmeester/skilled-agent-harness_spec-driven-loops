@@ -1,0 +1,70 @@
+{
+  "census": [
+    "pi: path=/Users/michelkerkmeester/.local/lib/node_modules/@earendil-works/pi-coding-agent version=0.99.1",
+    "pi classifier cloudflare-workers-ai: known=1 available=0",
+    "pi classifier opencode: known=2 available=0",
+    "pi classifier openrouter: known=7 available=7",
+    "pi classifier typesafe: known=1 available=0",
+    "pi classifier vercel-ai-gateway: known=1 available=0",
+    "pi classifier total: known=12 available=7",
+    "jev: path=/Users/michelkerkmeester/.local/bin/jev version=0.6.2 provider=official",
+    "jev identity: provider=official auth=ok",
+    "llama.cpp: server=none cli=none",
+    "baseline: path=specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl rows=111 choice=333 rows_with_3_full_maps=111",
+    "replay: rows=111 calls=333 key_source=recorded"
+  ],
+  "pi": {
+    "backend": "pi",
+    "rows": 111,
+    "calls": 333,
+    "measured": 111,
+    "unmeasured": 0,
+    "timeouts": 0,
+    "excluded": 0,
+    "p50_ms": 249,
+    "p95_ms": 340,
+    "cost_per_100": 0.002239924324324326,
+    "model": "typesafe/jev-1.13",
+    "provider": "openrouter",
+    "version": "0.99.1"
+  },
+  "cli": {
+    "backend": "jev",
+    "rows": 111,
+    "calls": 333,
+    "measured": 111,
+    "unmeasured": 0,
+    "timeouts": 0,
+    "excluded": 0,
+    "p50_ms": 326,
+    "p95_ms": 387,
+    "cost_per_100": null,
+    "model": "jev-1.13.0",
+    "provider": "official",
+    "version": "0.6.2"
+  },
+  "metrics": {
+    "K": 111,
+    "M": 111,
+    "coverage": 100,
+    "agreement": 95.5,
+    "median_abs_dp": 0.01,
+    "p95_ms_pi": 340,
+    "p95_ms_cli": 387,
+    "cost_per_100": 0.002239924324324326
+  },
+  "verdict": {
+    "K": 111,
+    "M": 111,
+    "coverage": 100,
+    "agreement": 95.5,
+    "median_abs_dp": 0.01,
+    "p95_ms_pi": 340,
+    "p95_ms_cli": 387,
+    "cost_per_100": 0.002239924324324326,
+    "outcome": "adopt",
+    "reason": null,
+    "line": "verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022"
+  },
+  "stopped": {}
+}

@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport"
-    last_updated_at: "2026-09-30T13:22:09Z"
+    last_updated_at: "2026-09-30T15:48:14Z"
     last_updated_by: "markdown-leaf"
-    recent_action: "Authored the planned phase docs from the recorded context"
-    next_safe_action: "Operator: give the live-run yes and choose any extra columns"
+    recent_action: "Ticked all five criteria from the live run and the build's verify outputs"
+    next_safe_action: "None. Wiring Pi as a transport is a later phase on the operator's call"
     blockers: []
     key_files:
       - "specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/spec.md"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-037-pi-native-classifier-transport"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -59,11 +59,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The default run prints Pi's version, the classifier models available per provider, the jev CLI identity line and the replay row count, and makes no model call
-- [ ] One approved live run prints top-choice agreement, the median probability difference, p95 latency per side and Pi's cost per 100 calls, with every call in `calls.jsonl`
-- [ ] The run ends in one `verdict pi-transport:` line under the keep rule fixed in `spec.md`
-- [ ] The script's tests cover each public surface with a happy path and an edge case, both backends stubbed
-- [ ] `validate_document.py` is VALID on every doc the phase changes, and `validate.sh --strict` passes for this phase
+- [x] The default run prints Pi's version, the classifier models available per provider, the jev CLI identity line and the replay row count, and makes no model call
+- [x] One approved live run prints top-choice agreement, the median probability difference, p95 latency per side and Pi's cost per 100 calls, with every call in `calls.jsonl`
+- [x] The run ends in one `verdict pi-transport:` line under the keep rule fixed in `spec.md`
+- [x] The script's tests cover each public surface with a happy path and an edge case, both backends stubbed
+- [x] `validate_document.py` is VALID on every doc the phase changes, and `validate.sh --strict` passes for this phase
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,14 +80,18 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Spec authored | Done | 2026-09-30, docs only, from `scratch/context/context.md` and the operator's "Test it first (Recommended)". Status Planned, Level 2, priority P1. No build exists |
-| Build | Pending | No code exists yet. The completion criteria above are all open, and no verdict line exists |
-| Live run | Pending | Waits on the operator's yes, one approved run on the real tree |
+| Build | Done | `b34b9d1907` on worktree 071: `score-pi-transport.mjs`, its 41-case test file, the `benchmark/pi-transport/README.md`, the `benchmark/README.md` row, the catalog entry with its index row and the playbook scenario with its index row |
+| Review | Done | MiMo v2.6 Pro at high: round 1 `VERDICT: FAIL` on two P1s (`score-pi-transport.mjs:1354` with `buildReplayPlan:575`, and the untested `columnLine` and `meanMap` with no test driving `main` past the census), fixed by DeepSeek V4.1 Flash; round 2 `VERDICT: PASS` with no findings over 41 tests (`scratch/verify/review-mimo-r1.txt`, `scratch/verify/review-mimo-r2.txt`) |
+| Census | Done | `scratch/verify/census.txt`, exit 0: Pi 0.99.1, 12 classifier models known and 7 available through `openrouter`, `jev 0.6.2` `auth=ok`, `llama.cpp: server=none cli=none`, baseline 111 rows and 333 calls |
+| Live run | Done | The operator's "Pi side only (Recommended)" yes: one run on 2026-09-30, 1 min 29 s, exit 0. `scratch/live-run.stdout.txt` and `report.json`: 333 Pi calls, 111 measured rows, `verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022` |
+| Closure | Done | The five criteria above ticked from the run records; the gates rerun in this pass (strict validate `RESULT: PASSED`, `check-goal.cjs` 5/5, `packet_budget=ok`) |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| Planned state | Nothing is built. The five completion criteria are open, and the three open questions in `spec.md` section 10 each carry a proposed answer. The keep rule in `spec.md` section 4 was fixed at spec approval, before any live call |
+| Planned state (2026-09-30) | At authoring, nothing was built and the five completion criteria were open. The three open questions in `spec.md` section 10 each carried a proposed answer, and the keep rule in `spec.md` section 4 was fixed at spec approval, before any live call |
+| Review P1 fix (2026-09-30) | MiMo round 1 `VERDICT: FAIL` on two P1s: `K` was `plan.size`, so rebuild-excluded rows left the coverage denominator and `stop (coverage)` could never fire; and `columnLine` and `meanMap` were untested with no test driving `main` past the census. DeepSeek V4.1 Flash set `K = plan.size + excluded.length` and added four tests (37 to 41), and MiMo round 2 `VERDICT: PASS` with no findings |
 | Prior evidence | The operator's live 019 Jev run holds 333 `choice` calls over 111 rows on `jev-1.13.0` through provider `official`, every call `measured` on attempt 1 (`specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/scratch/w4-session/jev-run/calls.jsonl`). Pi's zero-call probe found 12 classifier models known and 7 with credentials present, all through `openrouter` |
 | Today's transport | `.skilled/skills/cli-classifier/cli-usage/SKILL.md:97` pins `jev --version` at `jev 0.6.2`, and the shipped arms shell out to `jev noul\|choice\|score` after `jev auth status --provider <p>` |
 | Out of scope | Wiring Pi into `cli-classifier` or `cli-pi` waits on the verdict and the operator's call. The skill-advisor runtime tree is read-only to this phase, and no install runs (parent D7) |

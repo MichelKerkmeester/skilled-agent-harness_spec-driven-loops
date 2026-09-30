@@ -158,7 +158,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 34 | 034-hvr-reader-needed-lens/ | R22: whether a Jev or Deem `noul` flags synonym cycling, significance inflation and false ranges in skill-doc sections better than the HVR scanner's floor and the standard's lexical rules, after a zero-call census of flagged sections that stops at a 150-row label gate | Complete |
 | 35 | 035-fetched-text-injection-screen/ | R16: whether a Jev or Deem `noul` spots text that tries to instruct the agent better than flag-nothing and a lexical screen, on public vendored text with operator-planted instructions, after a zero-call fetch and corpus census that stops at a 90-row label gate, with the fetch seam left open | Complete |
 | 36 | 036-sk-code-and-sk-doc-alignment/ | Align every file the packet created with sk-code-opencode and sk-doc: code header markers, bracketed stderr tags, playbook and catalog validator failures, voice-rule blockers and one missing README, proved by each skill's own validators | Complete |
-| 37 | 037-pi-native-classifier-transport/ | Measure Pi 0.99's native classifier runtime against the jev CLI on the same Jev 1.13 questions (agreement, latency, cost), after a zero-call census of reachable classifier models, with no integration change | Planned |
+| 37 | 037-pi-native-classifier-transport/ | Measure Pi 0.99's native classifier runtime against the jev CLI on the same Jev 1.13 questions (agreement, latency, cost), after a zero-call census of reachable classifier models, with no integration change | Complete |
 
 ### Phase Transition Rules
 
