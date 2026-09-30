@@ -1,0 +1,12 @@
+targets: 9 (system-deep-loop readme), already done: 0
+2026-09-30T11:30:00Z	.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter	KEPT	readme
+2026-09-30T11:30:48Z	.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/shims	KEPT	readme
+2026-09-30T11:31:57Z	.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures	KEPT	readme
+2026-09-30T11:33:20Z	.skilled/skills/system-deep-loop/runtime/scripts/tests	KEPT	readme
+2026-09-30T11:34:03Z	.skilled/skills/system-deep-loop/runtime/lib/deep-research-authority	KEPT	readme
+2026-09-30T11:35:51Z	.skilled/skills/system-deep-loop/runtime/lib/cutover-binding	KEPT	readme
+2026-09-30T11:36:40Z	.skilled/skills/system-deep-loop/runtime/lib/authority-root	KEPT	readme
+2026-09-30T11:38:03Z	.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway	KEPT	readme
+2026-09-30T11:38:51Z	.skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip	KEPT	readme
+2026-09-30T12:01:28Z	-	GATE-PASS	tests [      Tests  4 failed | 2704 passed | 8 skipped (2716)]
+2026-09-30T12:01:28Z	-	DONE	attempted=9 kept=9

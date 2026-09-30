@@ -69,7 +69,7 @@ Orchestrator plus cheap leaf workers. Opus builds the prerequisites and verifies
 3. Each brief inlines the template text and the child-dispatch preamble, and runs as `pi -p --model opencode-go/deepseek-v4.1-flash --thinking high --offline --mode text </dev/null`, with `PI_BLACKHOLE_PASSIVE=true AI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_ENFORCE=0`.
 4. Checks: every added or removed line in `git diff` is a comment or blank line (for `header` and `sections`); `tsc --noEmit` for the owning package; the checker in that mode on the target.
 5. Pass: append the target to the done list. Fail: `git checkout -- <target>` and log the reason.
-6. Every 25 targets, the full vitest suite runs; a count below baseline stops the loop.
+6. Every 25 kept edits the package typecheck runs, and the full vitest suite runs once when the mode finishes; a failure or a count below baseline stops the loop. Deviation from the first plan, which ran the suite every 25: the supervised run showed about 20 seconds per edit against 22 minutes per deep-loop suite, and the per-file comment-only proof already rules out behavior change.
 <!-- /ANCHOR:architecture -->
 
 

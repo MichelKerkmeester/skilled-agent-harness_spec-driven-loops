@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/031-align-runtime-code-with-sk-code-opencode",
   "description": "Align runtime code with sk-code-opencode: section comments, folder depth, code READMEs, ARCHITECTURE.md (system-skill-advisor)",
   "keywords": [
@@ -14,13 +15,14 @@
     "architecture",
     "system-skill-advisor"
   ],
-  "lastUpdated": "2026-09-30T05:43:45.625Z",
+  "lastUpdated": "2026-09-30T22:06:51.595Z",
   "specId": "031",
   "folderSlug": "align-runtime-code-with-sk-code-opencode",
   "parentChain": [
     "system-skill-advisor"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "30-09-26_23-06__skill-advisor-runtime-aligned-with-sk-code.md"
+  ]
 }

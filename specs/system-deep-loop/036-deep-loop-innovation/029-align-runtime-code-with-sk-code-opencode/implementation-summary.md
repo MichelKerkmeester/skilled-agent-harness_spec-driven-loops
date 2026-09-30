@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: system-deep-loop runtime alignment (investigation)"
-description: "Investigation done, build not started: the system-deep-loop runtime has 131 files without a header among other sk-code-opencode drift, and the folder-merge list is fact-checked."
+title: "Implementation Summary: system-deep-loop runtime alignment"
+description: "The deep-loop runtime now meets sk-code-opencode: headers, numbered sections, code READMEs, three folder merges and an ARCHITECTURE.md, plus the checker flags, loop driver and template the two sibling packets reused."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -11,22 +11,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode"
-    last_updated_at: "2026-09-30T05:43:47Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-09-30T22:06:48Z"
+    last_updated_by: "generate-context"
+    recent_action: "Merged to main and finished the after-merge routing, version and index steps"
+    next_safe_action: "Verify nothing remains; the packet is closed"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py"
+      - ".skilled/skills/system-deep-loop/ARCHITECTURE.md"
+      - ".skilled/skills/sk-doc/sk-create-readme/assets/architecture-template.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:8934a66ea02208645c47823d15e62c6ca4cd3bd6ebfbbc584d485dd7a0c7d2f8"
       session_id: "scaffold-029-align-runtime-code-with-sk-code-opencode"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-# Implementation Summary: system-deep-loop runtime alignment (investigation)
+# Implementation Summary: system-deep-loop runtime alignment
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
@@ -39,7 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 029-align-runtime-code-with-sk-code-opencode |
-| **Completed** | Not complete: investigation only, 2026-09-30 |
+| **Completed** | 2026-10-01, merged to main as `46fc86c8e8` |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,19 +51,26 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No runtime code has changed yet. What exists is the measured size of the drift and a fact-checked list of the folder merges, so the loop can start from numbers rather than impressions.
+The deep-loop runtime now passes the sk-code-opencode checker with its three strict flags on: every file carries a module header, every long non-test file has numbered sections, and every code folder has a README. The packet also built the shared tools the advisor and spec-kit packets reused.
 
-### Investigation
+### Shared tooling
 
-The system-deep-loop runtime has 131 files without a header, 68 in-scope files without numbered sections, 9 code folders without a README, and no ARCHITECTURE.md. The sk-code-opencode checker misses all of it in its default mode. Of the proposed folder merges, 3 of 4 DeepSeek merge proposals survive; `deep-research-authority` is rejected.
+`verify_alignment_drift.py` gained `--check-sections` and `--check-folders`, both off by default, so the default output is unchanged. The shared style guide now states two rules for every surface: no double-underscore folder names, and test code lives under a `tests/` tree, never beside its source. `sk-create-readme` gained an eight-section ARCHITECTURE template. The loop driver `scratch/align-loop.sh` sends DeepSeek V4.1 Flash one short brief per file and keeps an edit only when a comment-only proof, an outside-edit fingerprint, the checker and the test gates all pass.
+
+### Deep-loop runtime
+
+The loop kept 133 header edits (3 of them from the hand-checked dry run), 71 section edits and 9 READMEs. Three fact-checked merges landed: `lib/cutover-binding/` into `lib/mode-append-gateway/`, `scripts/tests/` into `tests/unit/`, and `council-value/data/` into its parent. `ARCHITECTURE.md` follows the template's eight sections.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md` | Created | Measured drift, scope and fact-checked merge table |
-| `scratch/investigation/devin-swe2max-merge-factcheck.md` | Created | SWE-2 MAX importer-level verdict on every merge proposal |
-| `scratch/investigation/devin-swe2max-merge-factcheck.brief.txt` | Created | The exact brief sent, so the check can be rerun |
+| `sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py` | Modified | Section and folder checks |
+| `sk-code/shared/references/universal/code-style-guide.md` | Modified | "Folders and tests" rule |
+| `sk-doc/sk-create-readme/assets/architecture-template.md` | Created | ARCHITECTURE template |
+| `system-deep-loop/runtime/**` | Modified | Headers, sections, READMEs, three merges |
+| `system-deep-loop/ARCHITECTURE.md` | Created | Package architecture |
+| `scratch/align-loop.sh`, `scratch/align_loop_checks.py`, `scratch/repoint_imports.py` | Created | Loop driver, gates and import rewriter |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -68,7 +78,7 @@ The system-deep-loop runtime has 131 files without a header, 68 in-scope files w
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-A census script counted headers, numbered sections, divider shapes and README coverage. DeepSeek V4.1 Flash at `high`, through cli-pi on `opencode-go`, judged the folder layout with read-only tools. SWE-2 MAX, through cli-devin in `auto` mode, then checked every merge claim against the real importers. The census script and the DeepSeek reports live in `specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode/scratch/investigation/`.
+The work ran in the worktree `worktrees/070-runtime-code-alignment`. DeepSeek V4.1 Flash at `high`, through cli-pi on the `opencode-go` provider, did the per-file comment edits and the READMEs. Opus did the merges, the checker flags and the template. The branch merged `origin/main` once; three conflicts were resolved with the operator's approval, the files main had added were brought to the same standard, and main was fast-forwarded and pushed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -78,9 +88,11 @@ A census script counted headers, numbered sections, divider shapes and README co
 
 | Decision | Why |
 |----------|-----|
-| Test files get the header but not numbered sections | Operator decision 2026-09-30; roughly halves the loop |
-| No merge moves without a SWE-2 MAX CONFIRMED verdict | DeepSeek's layout claims were wrong or overstated in checked cases |
-| Checker flags are the loop's done signal | The default checker reports 0 findings, so it cannot tell the loop when to stop |
+| Test files get the header but not numbered sections | Operator decision; it roughly halves the loop |
+| No merge without a SWE-2 MAX CONFIRMED verdict | DeepSeek's layout claims were wrong or overstated in checked cases |
+| Restore rejected edits from a pre-dispatch snapshot, never from HEAD | Earlier uncommitted modes would otherwise be lost |
+| `tests/` may stay flat while file names are unique | The operator asked for fewer sub-folders, and mirroring the source tree added folders that held one file |
+| Apply the version tool to edited docs only | `--skill sk-code --update` rewrote 330 unrelated docs |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -90,9 +102,13 @@ A census script counted headers, numbered sections, divider shapes and README co
 
 | Check | Result |
 |-------|--------|
-| `verify_alignment_drift.py` default mode | 0 findings, which shows the gap, not alignment |
-| Merge claims | Fact-checked by SWE-2 MAX; the riskiest claim re-read by hand |
-| Runtime tests | Not run yet; the baseline is the first build task |
+| Checker, three flags, deep-loop runtime | Findings 0 on main |
+| Checker default mode | Unchanged from the baseline capture |
+| Checker suite | 26/26 |
+| Typecheck | Exit 0 |
+| Vitest | Baseline 2704 passed with 4 failed; the same set after the loops; 2852 passed and 0 failed after merging main, which fixed the 4 |
+| sk-doc routing | `compiled-serving`, manifest fresh |
+| README verdict baseline and directory manifest | Rewritten, then plain runs pass |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -100,8 +116,6 @@ A census script counted headers, numbered sections, divider shapes and README co
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The section count is a regex heuristic.** A file whose dividers use an unusual numbering shape may be counted as missing; the checker flag replaces the heuristic.
-2. **One DeepSeek claim was wrong here.** DeepSeek said `cutover-binding` had one importer; it has five, one of them a dynamic `import()`.
+1. **One transient outside-edit revert has no known cause.** The fingerprint check twice reported an outside edit with an empty path list; both targets were kept on retry, and the driver now logs the paths.
+2. **The section check is a line-count heuristic.** A file just under 150 lines never needs sections, however it is organized.
 <!-- /ANCHOR:limitations -->
-
----
