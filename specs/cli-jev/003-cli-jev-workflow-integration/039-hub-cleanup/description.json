@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/039-hub-cleanup",
+  "description": "Phase 39: hub-cleanup",
+  "keywords": [
+    "phase",
+    "hub-cleanup"
+  ],
+  "lastUpdated": "2026-09-30T16:29:43.805Z",
+  "specId": "039",
+  "folderSlug": "hub-cleanup",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

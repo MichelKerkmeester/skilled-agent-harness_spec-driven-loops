@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar",
+  "description": "Phase 40: hard-rules-sidecar",
+  "keywords": [
+    "phase",
+    "hard-rules-sidecar"
+  ],
+  "lastUpdated": "2026-09-30T16:29:44.819Z",
+  "specId": "040",
+  "folderSlug": "hard-rules-sidecar",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

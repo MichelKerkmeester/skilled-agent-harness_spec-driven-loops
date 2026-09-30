@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hard rules sidecar",
+      "skill frontmatter hard rules",
+      "dispatch rule checks sidecar",
+      "hard-rules json",
+      "hard rule reader repoint",
+      "hard rules sidecar plan",
+      "skill frontmatter migration plan",
+      "dispatch rule reader design",
+      "hard rules verdict comparison",
+      "hard rules sidecar testing strategy",
+      "hard rules sidecar tasks",
+      "skill frontmatter migration tasks"
+    ],
+    "key_topics": [
+      "hard",
+      "rules",
+      "sidecar",
+      "skill",
+      "frontmatter",
+      "dispatch",
+      "rule",
+      "checks",
+      "hard-rules",
+      "json",
+      "reader",
+      "repoint"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/context/context.md",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/skills/sk-design/sk-design-md-generator/backend/scripts/schema-v3.ts",
+      ".skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs",
+      ".skilled/hooks/dispatch/codex/dispatch-preflight-lint.mjs",
+      ".skilled/hooks/dispatch/devin/dispatch-preflight-lint.mjs",
+      ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      ".opencode/plugins/cli-dispatch-audit.js",
+      ".skilled/hooks/dispatch/opencode/cli-dispatch-audit.js",
+      ".opencode/plugins/sk-git-preflight-advisory.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": "scratch/context/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-md-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-skills-hermes.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "schema-v3.ts",
+        "kind": "code",
+        "path": ".skilled/skills/sk-design/sk-design-md-generator/backend/scripts/schema-v3.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/claude/dispatch-preflight-lint.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-audit.js",
+        "kind": "code",
+        "path": ".opencode/plugins/cli-dispatch-audit.js",
+        "source": "derived"
+      },
+      {
+        "name": "sk-git-preflight-advisory.js",
+        "kind": "code",
+        "path": ".opencode/plugins/sk-git-preflight-advisory.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nine SKILL.md files declare `hardrules:` in frontmatter: `sk-git`, `cli-classifier/cli-usage` (renamed to `cli-classifier/cli-jev` by phase 039, which runs first) and `cli-external-orchestration/` `cli-opencode`, `cli-cursor`, `cli-codex`, `cli-hermes`, `cli-devin`, `cli-claude-code` and `cli-pi`",
+    "created_at": "2026-09-30T16:29:44Z",
+    "last_save_at": "2026-09-30T16:38:31.839Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ebed82fbf696428124338efb41c3cc0859e2eece405a388061e79714583c1fd4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "db47e785ebed1326595c8805a457c73bbb21ac2d715e544161eaf9cbe7743fef",
+      "plan.md": "abed97b5e8bdba6581bcedc9e3178753cbfb5b1056d56b6a97ba90a5154b0688",
+      "tasks.md": "671b8650d6ec0b81e8759370e21eab73606502c0f9937ccd5bc1ff20e6f5d0f3",
+      "implementation-summary.md": "25772ce3c034aa86f957d5d1fb8ef9b9fef8ad11373924dd59d031c6a90347c5"
+    },
+    "last_active_at": null
+  }
+}
