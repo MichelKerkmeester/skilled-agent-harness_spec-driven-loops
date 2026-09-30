@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "0.99.1",
   "theme": "dark",
   "defaultProvider": "llmgateway",
   "defaultModel": "gpt-6-luna",
