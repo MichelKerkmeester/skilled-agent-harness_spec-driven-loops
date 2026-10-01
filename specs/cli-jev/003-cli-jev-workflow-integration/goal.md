@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration"
     last_updated_at: "2026-09-30T07:32:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Ticked criteria 2 and 5, all five met"
+    recent_action: "Closed 041 and ticked criterion 1, all five met"
     next_safe_action: "Operator: the open items in the log row Open for the operator"
     blockers: []
     key_files:
@@ -45,11 +45,11 @@ _memory:
 | ID | Decision |
 |----|----------|
 | D1 | Jev first, else Deem, dormant unless one passes its check (`jev auth status --provider <p>` or Deem's health check). Jev gets no secret |
-| D2 | Hub `cli-classifier` holds `cli-jev` and `cli-deem`. Deem 0.8B bf16 stays served locally |
-| D3 | Released 2026-09-29: 019 to 035, then 036 to 040. Disjoint builds may run in parallel |
-| D4 | 003, 006 and 019 to 035 stop at their label gate. No model labels. R17 is dropped |
+| D2 | Hub `cli-classifier` holds `cli-jev` and `cli-deem`. Deem 0.8B bf16 runs locally |
+| D3 | Released: 019 to 041. Disjoint builds may run in parallel |
+| D4 | 003, 006 and 019 to 035 stop at their label gate. No model labels |
 | D5 | The session orchestrates, verifies and commits. Workers: DeepSeek V4.1 Flash on cli-pi (Cline `xhigh`, then OpenCode Go `max`), SWE 2 max on cli-devin, Luna 6 max fast on cli-codex. No MiMo, no Claude leaves. Cross-family review: fix P0 and P1, record P2 |
-| D6 | Skill docs change via sk-doc, code via sk-code's OpenCode route |
+| D6 | Skill docs via sk-doc, code via sk-code's OpenCode route |
 | D7 | Stop only for an install yes or a missing credential. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
 
@@ -102,6 +102,7 @@ Decisions outrank each child goal.
 | 038 | `038-pi-classifier-transport-integration/goal.md` |
 | 039 | `039-hub-cleanup/goal.md` |
 | 040 | `040-hard-rules-sidecar/goal.md` |
+| 041 | `041-code-readmes-and-routing-alignment/goal.md` |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -109,7 +110,7 @@ Decisions outrank each child goal.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 040 are Complete
+- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 041 are Complete
 - [x] 019 to 035 are Complete: each prints its verdict line or stops at its label gate
 - [x] `validate_document.py` exits 0 on every skill doc a build changed
 - [x] No open P0 or P1 finding, and no changed runtime's suite fails beyond its baseline
@@ -177,6 +178,7 @@ and findings belong here.
 | 039 hub cleanup | Done | Build `03a6f5f285` on worktree 071, docs `a829c9a870`, index `54b1707ec5`: the cli-classifier Jev packet folder is renamed to `cli-jev` with `cli-usage` kept as a routing alias, every version field in the hub continues under `0.x` with seven changelogs renamed and their history kept, and `cli-deem` gains a ten-scenario testing playbook. MiMo review PASS with three P2s recorded |
 | 040 hard rules sidecar | Done | The working tree at start HEAD `b3964f2a3f` on worktree 071: 50 rules across nine `hard-rules.json` sidecars beside their SKILL.md files, every reader and test moved in the same change, the before-and-after verdict comparison byte-equal for all nine skills, and the five suites at 135 of 135 with 0 failed. MiMo review PASS with two P2s fixed; the orchestrator commits the build path-scoped |
 | 038 pi classifier transport integration | Done | The working tree at HEAD `c5c72d31ec` on worktree 071: one opt-in Pi transport module for Jev `choice` questions beside the jev CLI, two approved callers wired with one call site each behind byte-identical switch-off recordings (59 and 202 lines), a module suite at 22 of 22 with 0 failed and one row per gate, and 9 changed docs VALID. SWE 2 max review PASS with no open P0 or P1 and four P2s recorded; the orchestrator commits the build path-scoped |
+| 041 code READMEs and routing alignment | Done | Build `2116de635c` on worktree 071, 32 files, all written by DeepSeek V4.1 Flash on cli-pi. Eleven code-folder READMEs, each VALID with its documented test command passing. Hub `ROUTER.md` promoted to `router_state: active` with seven intents, both mode section 2s on the sk-create-skill template, one keyword list across all three routers. The ten-prompt compiled-route probe keeps its eight correct rows and now routes the two former misses; the fleet vocabulary-reach check passes with cli-classifier at 49 phrases; the leaf-route replay scores the hub's four new gold rows at F1 1.000. SWE 2 max review round 1 FAIL (five P1 stale-wording and evidence items, all fixed), round 2 PASS with one P2, fixed. Phase docs: strict PASSED, check-goal 5/5, 26 of 26 checklist rows. Evidence: `041-code-readmes-and-routing-alignment/scratch/build/build-evidence.md` |
 
 ### Deviations and findings
 
@@ -250,4 +252,5 @@ and findings belong here.
 | Directive amendment: bind 038 (2026-09-30) | Source: the operator's answer "Plan the integration" after 037 printed `adopt`, and "Merge to main (Recommended)", which landed 036 and 037 at `2748c84f14`. D3 releases 038 after 037. Criterion 1 adds 038 and is open until 038 is Complete. To stay under 4,000 characters D1 drops "With neither, behavior is today's." (dormant already says it), D2 drops "and current", D3 drops "research" and D4 splits its label sentence |
 | Directive amendment: bind 039 and 040 (2026-09-30) | Source: the operator's "its also missing cli-jev", "all cli classifier skills nad modes should stay pre-release ... dont reach v1.0.0.0", "cli deem is also missing testing playbook" and "you have hard rules in skill frontmatter? Thats not supported", then the answers "Rename to cli-jev (Recommended)", "Continue each line (Recommended)" and "Move rules out of frontmatter". 039 renames the Jev packet folder, holds versions to 0.x and adds the cli-deem playbook. 040 moves hard rules to a sidecar. Both run before 038's build. To stay under 4,000 characters D3 drops its Built list (criterion 1 names those phases) and "in order, one per `later` item" (019 to 035 are Complete), and D5 names MiMo by its display name |
 | Directive amendment: executor roster (2026-09-30) | Source: the operator's words above. D5 drops MiMo v2.6 Pro and the LLM Gateway fallback, and adds SWE 2 max on cli-devin (`devin -p --model swe-2-max --permission-mode dangerous`) and Luna 6 max fast on cli-codex (`codex exec --model gpt-6-luna -c model_reasoning_effort="max" -c service_tier="fast"`). DeepSeek stays on cli-pi through Cline, then OpenCode Go. Closed phases keep their MiMo records as history. The 038 review MiMo had started was stopped before it reported |
+| Directive amendment: bind 041, and the labeling decision (2026-10-01) | Source: the operator, 2026-09-30: "Scripts and tests folder nested inside are missing code readme's" and "make sure smart routing in oarent hub and nested modes are 100% oerfected snd sligned with sk doc create skill". D3 now reads "Released: 019 to 041", BINDING gained row 041, and criterion 1 names 036 to 041 and was reopened until 041 closed. To fit the budget, D2 "stays served locally" became "runs locally", D4 dropped "R17 is dropped" (recorded in the row "Directive amendment: bind and release 019 to 035") and D6 dropped "change". `goal.cjs packet`: 4,029 characters before the cuts, 3,998 after, `packet_budget=ok`. Also on 2026-10-01, asked how the 17 label gates should be filled, the operator chose "AI drafts, you confirm (Recommended)" and "After 041 lands (Recommended)": two models label each row separately, rows where they agree are pre-filled, and the operator approves or flips each row, so labels stay human-approved and D4's "No model labels" holds. That work is a later phase on the operator's release. Rollback: `git show d2e2a333cd:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
 <!-- /ANCHOR:log -->
