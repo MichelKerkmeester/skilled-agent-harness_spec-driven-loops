@@ -645,6 +645,37 @@ test('verifyGoalHeuristic returns not-met when evidence contains blocking langua
   assert.equal(result.verdict, 'not-met');
 });
 
+test('verifyGoalHeuristic returns not-met when evidence carries a bare fail count', () => {
+  const result = core.verifyGoalHeuristic({
+    goal: { ...FIXTURE_GOAL, objective: 'close the battery checklist items' },
+    transcriptText: '1 P0 fail (CHK-006). Marking the 5 passing items in the battery checklist done.',
+  });
+  assert.equal(result.verdict, 'not-met');
+});
+
+test('verifyGoalHeuristic does not treat a zero fail count as blocking', () => {
+  const nodeTestSummary = core.verifyGoalHeuristic({
+    goal: { ...FIXTURE_GOAL, objective: 'close the battery checklist items' },
+    transcriptText: 'ℹ pass 25\nℹ fail 0\nAll battery checklist items done and verified.',
+  });
+  assert.equal(nodeTestSummary.verdict, 'met');
+  for (const tail of ['fail: 0', '0 fail', 'fails=0']) {
+    const result = core.verifyGoalHeuristic({
+      goal: { ...FIXTURE_GOAL, objective: 'close the battery checklist items' },
+      transcriptText: `Battery checklist items done and verified; ${tail}.`,
+    });
+    assert.equal(result.verdict, 'met');
+  }
+});
+
+test('verifyGoalHeuristic returns not-met when evidence carries a bare fails verdict', () => {
+  const result = core.verifyGoalHeuristic({
+    goal: { ...FIXTURE_GOAL, objective: 'close the battery checklist items' },
+    transcriptText: 'The battery checklist items are done, but the review step fails.',
+  });
+  assert.equal(result.verdict, 'not-met');
+});
+
 test('verifyGoalHeuristic returns unclear for short or off-topic evidence', () => {
   const short = core.verifyGoalHeuristic({ goal: FIXTURE_GOAL, transcriptText: 'ok' });
   assert.equal(short.verdict, 'unclear');
