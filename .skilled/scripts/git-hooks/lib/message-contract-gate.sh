@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Message Contract Gate Helpers
+# ───────────────────────────────────────────────────────────────
 # Shared helpers for the hooks that enforce a repository's template contract.
 #
 # WHY: the hooks are symlinked machine-wide, so the validator must be found next

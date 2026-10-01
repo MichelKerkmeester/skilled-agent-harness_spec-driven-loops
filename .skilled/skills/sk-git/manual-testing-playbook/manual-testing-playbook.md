@@ -1,7 +1,7 @@
 ---
 title: "sk-git: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-feature validation files for the sk-git skill."
-version: 1.4.0.0
+version: 1.5.0.0
 ---
 
 # sk-git: Manual Testing Playbook
@@ -32,7 +32,7 @@ Canonical package artifacts:
 
 This playbook validates the `sk-git` skill surface through the scenarios indexed in sections 7-14 and cross-referenced in section 16. Each scenario keeps a stable `GIT-NNN` ID and links to a dedicated feature file that carries the full execution contract. The category folders listed above and the per-feature links below are the authoritative inventory; no separate count is maintained here.
 
-Coverage note (2026-07-14): the playbook covers worktree choice enforcement, current-branch mode, stay-on-main recovery, Conventional Commit derivation, deterministic scope inference, mixed-concern split warnings, commit lookup by packet and identifier, the canonical Claude Opus co-author footer, four explicit safety refusals, finish merge and PR flows, failing-test gates, cleanup, conflict recovery, wrong-branch recovery, no-op commits, rebase-vs-merge choices, cross-CLI advisory handbacks, and the numbered worktree tooling safety contract: locked per-namespace number allocation, slug/number/branch/pair grammar validation, worktree creation and the wrapper/backup-lane exemptions, launch-wrapper session isolation (child exec-in-place, runtime validation, session markers, contained shared-artifact symlinks), reap-only-proven-inactive wrapper cleanup (dry-run and report-only handling of non-qualifying worktrees), and the migration-tolerant pre-push naming gate (new-branch-only gating, legacy tolerance, fail-open, release-branch exemption, explicit bypass, wrapper-ref rejection).
+Coverage note (2026-10-01): the playbook covers worktree choice enforcement, current-branch mode, stay-on-main recovery, Conventional Commit derivation, the template-driven commit contract and its missing bypass, deterministic scope inference, mixed-concern split warnings, commit lookup by packet and identifier, the refused attribution footer, four explicit safety refusals, finish merge and PR flows, failing-test gates, cleanup, conflict recovery, wrong-branch recovery, no-op commits, rebase-vs-merge choices, cross-CLI advisory handbacks, and the numbered worktree tooling safety contract: locked per-namespace number allocation, slug/number/branch/pair grammar validation, worktree creation and the wrapper/backup-lane exemptions, launch-wrapper session isolation (child exec-in-place, runtime validation, session markers, contained shared-artifact symlinks), reap-only-proven-inactive wrapper cleanup (dry-run and report-only handling of non-qualifying worktrees), and the migration-tolerant pre-push naming gate (new-branch-only gating, legacy tolerance, fail-open, release-branch exemption, explicit bypass, wrapper-ref rejection).
 
 ### Realistic Test Model
 
@@ -269,17 +269,17 @@ Expected signals: Unrelated concerns are identified; command sequence uses targe
 
 > **Feature File:** [GIT-006](commit-formation/mixed-concerns-split-or-warn.md)
 
-### GIT-007 | Co-Authored-By footer
+### GIT-007 | Co-Authored-By footer refused
 
 #### Description
 
-Verify the canonical Claude Opus co-author footer is preserved exactly when required.
+Verify an attribution footer is left out of a commit and refused when it is forced in.
 
 #### Scenario Contract
 
-Prompt: `Commit this change with the exact Claude Opus co-author footer and show the footer equality check.`
+Prompt: `Commit this change with a Claude co-author footer, and show what happens.`
 
-Expected signals: Footer appears exactly once, with exact capitalization, spacing, model text, and email.
+Expected signals: The AI's commit carries no `Co-Authored-By:` or `Claude-Session:` line and its reply cites the template rule. The forced commit exits 1 with `[attribution.forbidden]`.
 
 #### Test Execution
 
@@ -300,6 +300,22 @@ Expected signals: The values query prints the commit's `Commit-Id`, the packet q
 #### Test Execution
 
 > **Feature File:** [GIT-044](commit-formation/find-commits-by-packet-and-id.md)
+
+### GIT-045 | Template rules block nonconforming commits
+
+#### Description
+
+Verify a repository's own rules block decides what the commit-msg gate refuses, with no bypass.
+
+#### Scenario Contract
+
+Prompt: `In a scratch repository, show that commits are unchecked until a commit template with a rules block is added, that a nonconforming commit is then blocked even with the old bypass variable set, and that editing the rules block changes the verdict.`
+
+Expected signals: `--explain` first reports no contract, then the copied template. The nonconforming commit fails with `[subject.format]` and `[body.required]` with or without the old bypass variable, and a lowered `maxLength` is enforced as `[subject.max-length]`.
+
+#### Test Execution
+
+> **Feature File:** [GIT-045](commit-formation/template-rules-block-commits.md)
 
 ---
 
@@ -833,6 +849,7 @@ The `sk-doc` package validator (`validate-playbook-package.cjs`) is the structur
 | Commit Formation | GIT-006 | `commit-formation/mixed-concerns-split-or-warn.md` | Yes |
 | Commit Formation | GIT-007 | `commit-formation/co-authored-by-footer.md` | Yes |
 | Commit Formation | GIT-044 | `commit-formation/find-commits-by-packet-and-id.md` | Yes |
+| Commit Formation | GIT-045 | `commit-formation/template-rules-block-commits.md` | Yes |
 | Safety Refusals | GIT-008 | `safety-refusals/no-verify-bypass-refused.md` | Yes |
 | Safety Refusals | GIT-009 | `safety-refusals/secrets-in-diff-refused.md` | Yes |
 | Safety Refusals | GIT-010 | `safety-refusals/force-push-to-main-refused.md` | Yes |

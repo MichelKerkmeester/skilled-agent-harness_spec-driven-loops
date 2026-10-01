@@ -190,10 +190,10 @@ node .skilled/bin/skill-advisor.cjs list-tools --format json
 The first AI session you open in the main checkout installs this repository's git hooks. From then on git checks every commit and push you make there.
 
 - **pre-commit** blocks code comments that cite spec packets or task ids, and keeps generated mirrors and metadata in step with the files you stage
-- **commit-msg** blocks a subject that does not read `type(scope): summary` or runs past 100 characters. It also asks for a body once four or more files are staged, and refuses `Co-Authored-By` and `Claude-Session` trailers
-- **pre-push** blocks a push that deletes more than 100 tracked files or carries out-of-date generated metadata. A push to any branch other than `main`, a `skilled/v*` release branch or one on the sk-git allowlist needs your approval for that push
+- **commit-msg** holds each message to the rules block in sk-git's [commit template](.skilled/skills/sk-git/assets/commit-message-template.md): a `type(scope): summary` subject of at most 100 characters, a prose body, `Spec:` and `Commit-Id:` trailers that search can find, and no `Co-Authored-By` or `Claude-Session` lines
+- **pre-push** blocks a push that deletes more than 100 tracked files or carries out-of-date generated metadata. It re-checks every pushed commit against the same commit rules, so a `--no-verify` commit is caught here, and checks a new branch's name against the [worktree checklist](.skilled/skills/sk-git/assets/worktree-checklist.md). A push to any branch other than `main`, a `skilled/v*` release branch or one on the sk-git allowlist needs your approval for that push
 
-Every block message names the variable that lets that one command through, such as `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...`. `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` turns off every pre-commit gate at once, from the environment or from `.skilled/hooks/hook-flags.env`.
+The commit, PR and branch rules have no bypass variable. To change them, edit the rules block in the template, and every gate follows it: both hooks, the agent gate that checks `git commit` and `gh pr create` before they run, and the `message-contract` CI check. A repository whose templates carry no rules block is not checked. The other gates' block messages name the variable that lets that one command through, such as `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...`. `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` turns off every pre-commit gate at once, from the environment or from `.skilled/hooks/hook-flags.env`.
 
 To stop using the hooks, remove them and switch off the session check that would put them back:
 

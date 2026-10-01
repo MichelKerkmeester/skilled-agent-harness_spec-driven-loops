@@ -1,9 +1,6 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Message Contract Loader and Validator                         ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Enforce the commit, PR and branch rules a repository's own      ║
-// ║          templates declare, from one place every gate shares.            ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Message Contract Loader and Validator
+// ───────────────────────────────────────────────────────────────────
 //
 // The rules used to live twice: as prose in the templates and as regexes in a bash hook. Editing
 // the template changed nothing that was enforced, and because the hook is installed machine-wide,

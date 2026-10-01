@@ -1,10 +1,7 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: PreToolUse Message Contract Gate                              ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Refuse a commit message, PR description or new branch name     ║
-// ║          that breaks the repository's own templates before it runs.     ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: PreToolUse Message Contract Gate
+// ───────────────────────────────────────────────────────────────────
 //
 // The commit-msg and pre-push hooks catch a bad message after the agent has acted, and a PR
 // description never passes through a git hook at all. This gate reads the shell command an agent

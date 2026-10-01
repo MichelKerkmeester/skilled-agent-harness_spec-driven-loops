@@ -1,10 +1,7 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Message Contract CLI                                          ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: One command line every gate calls, so the commit-msg hook,      ║
-// ║          pre-push, the agent gate and CI reach the same verdict.         ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Message Contract CLI
+// ───────────────────────────────────────────────────────────────────
 //
 // Usage:
 //   validate-message.mjs --commit <file> [--stage pre-stamp]

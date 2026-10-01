@@ -80,6 +80,9 @@ Each of the three templates has an "Enforced rules" section holding a JSON block
 | `hook-registry.json` and the four rendered runtime configs | Modified | Register the agent gate for Claude, Codex, Devin and Cursor |
 | Tests: `commit-msg.test.sh`, `pre-push-message-contract.test.sh`, `message-contract.test.mjs` | Modified / Created | 29, 10 and 17 cases |
 | sk-git `SKILL.md`, references, feature catalog, READMEs, changelog `v1.8.0.0`, `.env.example` | Modified / Created | Document the contract and drop the bypass |
+| sk-git feature catalog entry `workflow-playbooks/message-contract-enforcement.md` and playbook scenario GIT-045 | Created | Catalog the contract and give operators a scratch-repository test of it, registered in `leaf-manifest.json` and `leaf-aliases.json` |
+| Playbook scenario GIT-007 | Modified | It asked for the co-author footer the contract refuses; it now checks that the footer is left out and refused |
+| Root `README.md`, `CONTRIBUTING.md`, git-hooks `tests/README.md` | Modified | Describe template-driven rules and drop the bypass wording |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -126,6 +129,9 @@ Built in worktree `worktrees/073-message-contract-enforcement`, because the mach
 | sk-doc `validate_document.py` on 10 edited docs, comment hygiene on 9 code files | PASS |
 | Agent gate over real payloads | Claude-shape deny envelope, Cursor-shape deny with exit 2, unrelated and garbage input allowed |
 | Timing | `commit-msg` 0.23 s (target 0.3 s); 500-commit range 0.67 s, down from 21.69 s with identical verdicts (target 5 s) |
+| sk-code-opencode `verify_alignment_drift.py` (headers, sections, folders) over both script roots | 3 errors, all present on `main` (two older guard libraries without headers, `hooks/opencode` without a README); the new files add none |
+| `validate-playbook-package.cjs --package sk-git` / `validate_catalog_package.py --package sk-git --strict` | PASS, 38 scenarios, 0 violations / exit 0 with 13 advisory warnings of the kind every existing entry already carries |
+| GIT-045 and GIT-007 command sequences run in scratch repositories | Every expected signal observed, including `[subject.max-length]` after the edited `maxLength` and `[attribution.forbidden]` on a forced footer |
 | `install-git-hooks-worktree-harness.sh` | FAIL, and it fails the same way before this change: it greps for a `HOOK_SOURCE_DIR` line the installer stopped using |
 <!-- /ANCHOR:verification -->
 
