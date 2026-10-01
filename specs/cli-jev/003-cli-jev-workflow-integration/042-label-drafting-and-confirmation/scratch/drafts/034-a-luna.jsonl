@@ -1,0 +1,100 @@
+{"row":"SY01","label":"no","reason":"Result and outcome overlap, while failure is explicitly contrasted with them."}
+{"row":"SY02","label":"no","reason":"The Style Reference, cited evidence, and human taste decision are distinct things."}
+{"row":"SY03","label":"no","reason":"The passage distinguishes implementation, debugging, and verification workflows."}
+{"row":"SY04","label":"no","reason":"Dots, ornaments, and illustration accents are examples or types of decorative marks."}
+{"row":"SY05","label":"no","reason":"The entries have distinct lifecycle states and metadata."}
+{"row":"SY06","label":"no","reason":"The scanner, lens, tests, and playbook are separate components."}
+{"row":"SY07","label":"no","reason":"The playbook, feature catalog, and live docs serve different roles."}
+{"row":"SY08","label":"no","reason":"Each surface name refers to a different level and use."}
+{"row":"SY09","label":"no","reason":"The listed files handle different parts of goal-hook behavior."}
+{"row":"SY10","label":"no","reason":"The root playbook and per-feature execution contract are distinct sources."}
+{"row":"SY11","label":"no","reason":"The event envelope fields name separate values and producers."}
+{"row":"SY12","label":"no","reason":"The panel content, canonical example, and conventions are distinct."}
+{"row":"SY13","label":"no","reason":"The passage contrasts comment syntax used in different languages and contexts."}
+{"row":"SY14","label":"no","reason":"Context, anchor evidence, and body evidence are explicitly separate categories."}
+{"row":"SY15","label":"no","reason":"Paths, symbols, data flow, and unknowns are different outputs."}
+{"row":"SY16","label":"no","reason":"The diff and rendered report are distinct artifacts."}
+{"row":"SY17","label":"no","reason":"The five RICCE elements are different prompt components."}
+{"row":"SY18","label":"no","reason":"Branch, checkout, and worktree state are distinct."}
+{"row":"SY19","label":"no","reason":"The listed report files contain different kinds of information."}
+{"row":"SY20","label":"no","reason":"The feature and its catalog inventory are separate items."}
+{"row":"SY21","label":"no","reason":"The traits and evidence named here are distinct."}
+{"row":"SY22","label":"no","reason":"Detection boxes and changed-region highlights describe different outputs."}
+{"row":"SY23","label":"no","reason":"The sidecar result and commit fallback cover different parts of the contract."}
+{"row":"SY24","label":"no","reason":"An endpoint problem and a key problem are distinguished."}
+{"row":"SY25","label":"no","reason":"The navigation pill and primary CTA are related but separate components."}
+{"row":"SY26","label":"no","reason":"The contract, behavior, execution flow, and metadata are distinct."}
+{"row":"SY27","label":"no","reason":"The implementation, docs, and benchmark measurement refer to different resources."}
+{"row":"SY28","label":"no","reason":"The headline treatment, display face, and marker describe separate design choices."}
+{"row":"SY29","label":"no","reason":"The examples distinguish explanatory comments from commented-out code."}
+{"row":"SY30","label":"no","reason":"Publication state, decisions, and commands refer to different things."}
+{"row":"SY31","label":"no","reason":"Marker and marker file are two mentions; branch and allocation plan are separate."}
+{"row":"SY32","label":"yes","reason":"The same white placeholder shape is called an inner circle, a cutout, negative space, and a hole."}
+{"row":"SY33","label":"no","reason":"Workflow mode, advisor identity, and routing are distinct."}
+{"row":"SY34","label":"no","reason":"The available list, its names, and the namespace contract are separate properties."}
+{"row":"SY35","label":"no","reason":"The benchmark report, source, artifacts, and index are distinct."}
+{"row":"SY36","label":"no","reason":"The package, its components, and its consumers are distinguished."}
+{"row":"SY37","label":"no","reason":"The listed benchmark dimensions measure different things."}
+{"row":"SY38","label":"no","reason":"The passage explicitly separates the session-context section from the goal section."}
+{"row":"SY39","label":"no","reason":"The live branch is explicitly clarified as the primary checkout’s current branch."}
+{"row":"SY40","label":"no","reason":"Rows, prompts, intents, pairs, and hubs refer to different parts of the replay."}
+{"row":"SY41","label":"no","reason":"Search hits and module probes are separate checks."}
+{"row":"SY42","label":"no","reason":"Read, Write, Glob, and Bash name different tools."}
+{"row":"SY43","label":"no","reason":"A branch and a directory are different parts of a worktree."}
+{"row":"SY44","label":"no","reason":"The provenance fields record different values."}
+{"row":"SY45","label":"no","reason":"Subject tokens, slugs, and rationale fields serve different purposes."}
+{"row":"SY46","label":"no","reason":"The required subsections have different names and roles."}
+{"row":"SY47","label":"no","reason":"Action describes the button’s purpose, while pill describes its shape."}
+{"row":"SY48","label":"no","reason":"The report and its verdict are distinct."}
+{"row":"SY49","label":"no","reason":"The goal file is the source, while the brief and additional context are its rendered output."}
+{"row":"SY50","label":"no","reason":"The path, package version, transcript digest, and rollback steps are distinct."}
+{"row":"SI01","label":"no","reason":"The triage steps explain command behavior and what to do next."}
+{"row":"SI02","label":"no","reason":"The use cases describe what the Orca surfaces support."}
+{"row":"SI03","label":"no","reason":"The passage identifies the playbook source and where its exception is documented."}
+{"row":"SI04","label":"no","reason":"The passage explains the promotion and rollback operations."}
+{"row":"SI05","label":"no","reason":"The table describes what each implementation reference contains."}
+{"row":"SI06","label":"no","reason":"The passage gives concrete conditions for using the sequential mode."}
+{"row":"SI07","label":"no","reason":"The note explains what the two packaging gates check."}
+{"row":"SI08","label":"no","reason":"The source map describes how its resources are organized."}
+{"row":"SI09","label":"no","reason":"The metadata and references describe distinct capabilities."}
+{"row":"SI10","label":"no","reason":"The expected results list concrete command outputs."}
+{"row":"SI11","label":"no","reason":"The source map describes the resources and scoring fields."}
+{"row":"SI12","label":"no","reason":"The row states what the automated test exercises."}
+{"row":"SI13","label":"no","reason":"The criteria specify observable pass and fail conditions."}
+{"row":"SI14","label":"no","reason":"The passage identifies the source map and its recorded fields."}
+{"row":"SI15","label":"no","reason":"The card description specifies its placement, color, and styling."}
+{"row":"SI16","label":"no","reason":"The passage gives a concrete planning command and its framework."}
+{"row":"SI17","label":"no","reason":"The passage describes where scoring, rendering, and orchestration happen."}
+{"row":"SI18","label":"no","reason":"CRITICAL PATH labels a concrete workspace verification scenario."}
+{"row":"SI19","label":"no","reason":"The criteria describe observable hook and checker results."}
+{"row":"SI20","label":"no","reason":"The overview states the feature’s metadata and catalog location."}
+{"row":"SI21","label":"no","reason":"The passage gives concrete trait implementation and evidence guidance."}
+{"row":"SI22","label":"no","reason":"The contract lists the required subcommands and outputs."}
+{"row":"SI23","label":"no","reason":"The criteria specify concrete advisory and command outcomes."}
+{"row":"SI24","label":"no","reason":"The passage identifies the playbook source and its documentation exception."}
+{"row":"SI25","label":"yes","reason":"It says continuity is what makes the ID worth capturing instead of describing an event."}
+{"row":"SI26","label":"no","reason":"The guide provides concrete colors and component prompt examples."}
+{"row":"SI27","label":"no","reason":"The matrix gives practical reasons and actions for each scenario."}
+{"row":"SI28","label":"no","reason":"The metadata and references identify different image capabilities."}
+{"row":"SI29","label":"no","reason":"The verdict reports concrete results from two scenarios."}
+{"row":"SI30","label":"no","reason":"The card description specifies its appearance and placement."}
+{"row":"SI31","label":"no","reason":"The passage explains what the marker and environment variables do."}
+{"row":"SI32","label":"no","reason":"The placeholder description explains its form and visual function."}
+{"row":"SI33","label":"no","reason":"The passage gives concrete invocation and routing instructions."}
+{"row":"SI34","label":"no","reason":"The sentence describes the guide’s subject and tested patterns."}
+{"row":"SI35","label":"no","reason":"The references provide specific sequence and command guidance."}
+{"row":"SI36","label":"no","reason":"The triage steps specify checks and outcomes for each failure."}
+{"row":"SI37","label":"no","reason":"It instructs readers to avoid declaring importance and lists phrases to avoid."}
+{"row":"SI38","label":"no","reason":"The command map states what each command does."}
+{"row":"SI39","label":"no","reason":"The passage identifies the document’s testing and execution contents."}
+{"row":"SI40","label":"no","reason":"The triggers describe specific Orca tasks and runtime conditions."}
+{"row":"SI41","label":"no","reason":"The principle ties completion claims to concrete verification steps."}
+{"row":"SI42","label":"no","reason":"The passage specifies provider selection and fallback behavior."}
+{"row":"SI43","label":"no","reason":"The boundary bullets give concrete test-placement rules."}
+{"row":"SI44","label":"no","reason":"The passage explains how to find the reference needed for a task."}
+{"row":"SI45","label":"no","reason":"The gate gives concrete input checks and response statuses."}
+{"row":"SI46","label":"no","reason":"The references describe distinct read-back and deletion options."}
+{"row":"SI47","label":"no","reason":"The description explains how the border signals the button’s intended style."}
+{"row":"SI48","label":"no","reason":"The report states a verdict and its scoring context."}
+{"row":"SI49","label":"no","reason":"The command sequence and table describe concrete session-injection checks."}
+{"row":"SI50","label":"no","reason":"The orchestration steps specify a concrete delete and verification sequence."}

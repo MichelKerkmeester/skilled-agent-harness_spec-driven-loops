@@ -38,19 +38,19 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Find where a classifier cuts the main AI's context and review work, and build every released phase.
+**Objective:** Find where a classifier saves the main AI work, and build every released phase.
 
 ### Decisions
 
 | ID | Decision |
 |----|----------|
 | D1 | Jev first, else Deem, dormant unless one passes its check (`jev auth status --provider <p>` or Deem's health check). Jev gets no secret |
-| D2 | Hub `cli-classifier` holds `cli-jev` and `cli-deem`. Deem 0.8B bf16 runs locally |
-| D3 | Released: 019 to 041. Disjoint builds may run in parallel |
-| D4 | 003, 006 and 019 to 035 stop at their label gate. No model labels |
-| D5 | The session orchestrates, verifies and commits. Workers: DeepSeek V4.1 Flash on cli-pi (Cline `xhigh`, then OpenCode Go `max`), SWE 2 max on cli-devin, Luna 6 max fast on cli-codex. No MiMo, no Claude leaves. Cross-family review: fix P0 and P1, record P2 |
-| D6 | Skill docs via sk-doc, code via sk-code's OpenCode route |
-| D7 | Stop only for an install yes or a missing credential. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
+| D2 | Hub `cli-classifier` holds `cli-jev` and `cli-deem`, Deem served locally |
+| D3 | Released: 019 to 042, disjoint builds in parallel |
+| D4 | 003, 006 and 019 to 035 stop at their label gate. Only operator-confirmed labels count |
+| D5 | Session orchestrates, verifies and commits. Workers: DeepSeek V4.1 Flash on cli-pi (Cline `xhigh`, then OpenCode Go `max`), SWE 2 max on cli-devin, Luna 6 max fast on cli-codex. No MiMo or Claude leaves. Cross-family review: fix P0 and P1, record P2 |
+| D6 | Docs via sk-doc, code via sk-code |
+| D7 | Stop only for an install yes or missing credential. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -103,6 +103,7 @@ Decisions outrank each child goal.
 | 039 | `039-hub-cleanup/goal.md` |
 | 040 | `040-hard-rules-sidecar/goal.md` |
 | 041 | `041-code-readmes-and-routing-alignment/goal.md` |
+| 042 | `042-label-drafting-and-confirmation/goal.md` |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -110,10 +111,10 @@ Decisions outrank each child goal.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 041 are Complete
+- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 042 are Complete
 - [x] 019 to 035 are Complete: each prints its verdict line or stops at its label gate
 - [x] `validate_document.py` exits 0 on every skill doc a build changed
-- [x] No open P0 or P1 finding, and no changed runtime's suite fails beyond its baseline
+- [x] No open P0 or P1, and no changed runtime suite fails beyond its baseline
 - [x] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
 <!-- /ANCHOR:completion -->
 
@@ -253,4 +254,6 @@ and findings belong here.
 | Directive amendment: bind 039 and 040 (2026-09-30) | Source: the operator's "its also missing cli-jev", "all cli classifier skills nad modes should stay pre-release ... dont reach v1.0.0.0", "cli deem is also missing testing playbook" and "you have hard rules in skill frontmatter? Thats not supported", then the answers "Rename to cli-jev (Recommended)", "Continue each line (Recommended)" and "Move rules out of frontmatter". 039 renames the Jev packet folder, holds versions to 0.x and adds the cli-deem playbook. 040 moves hard rules to a sidecar. Both run before 038's build. To stay under 4,000 characters D3 drops its Built list (criterion 1 names those phases) and "in order, one per `later` item" (019 to 035 are Complete), and D5 names MiMo by its display name |
 | Directive amendment: executor roster (2026-09-30) | Source: the operator's words above. D5 drops MiMo v2.6 Pro and the LLM Gateway fallback, and adds SWE 2 max on cli-devin (`devin -p --model swe-2-max --permission-mode dangerous`) and Luna 6 max fast on cli-codex (`codex exec --model gpt-6-luna -c model_reasoning_effort="max" -c service_tier="fast"`). DeepSeek stays on cli-pi through Cline, then OpenCode Go. Closed phases keep their MiMo records as history. The 038 review MiMo had started was stopped before it reported |
 | Directive amendment: bind 041, and the labeling decision (2026-10-01) | Source: the operator, 2026-09-30: "Scripts and tests folder nested inside are missing code readme's" and "make sure smart routing in oarent hub and nested modes are 100% oerfected snd sligned with sk doc create skill". D3 now reads "Released: 019 to 041", BINDING gained row 041, and criterion 1 names 036 to 041 and was reopened until 041 closed. To fit the budget, D2 "stays served locally" became "runs locally", D4 dropped "R17 is dropped" (recorded in the row "Directive amendment: bind and release 019 to 035") and D6 dropped "change". `goal.cjs packet`: 4,029 characters before the cuts, 3,998 after, `packet_budget=ok`. Also on 2026-10-01, asked how the 17 label gates should be filled, the operator chose "AI drafts, you confirm (Recommended)" and "After 041 lands (Recommended)": two models label each row separately, rows where they agree are pre-filled, and the operator approves or flips each row, so labels stay human-approved and D4's "No model labels" holds. That work is a later phase on the operator's release. Rollback: `git show d2e2a333cd:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
+| Directive amendment: bind 042 and the label rule (2026-10-01) | Source: the operator's "continue" of 2026-10-01, answering the offer to release the labeling phase, and the earlier answers "AI drafts, you confirm (Recommended)" and "After 041 lands (Recommended)". D4 "No model labels" became "Only operator-confirmed labels count": models may draft a label, but a scorer reads only rows the operator confirmed. D3 now releases 019 to 042, BINDING gained row 042, and criterion 1 names 036 to 042 and is open until 042 closes. Budget cuts, same meaning: the objective "cuts the main AI's context and review work" became "saves the main AI work"; D2 dropped "0.8B bf16" (the model pin lives in `cli-deem/references/model-pin.md`); D3 "Disjoint builds may run in parallel" became "disjoint builds in parallel"; D5 dropped "The" and "no Claude leaves" became "or Claude leaves"; D6 "Skill docs ... sk-code's OpenCode route" became "Docs ... sk-code" (the route is sk-code's own choice); D7 dropped "a"; criterion 4 dropped "finding" and "'s". `goal.cjs packet`: 3,998 before, 4,042 after the additions, 3,999 after the cuts, `packet_budget=ok`; `check-goal.cjs` 5/5. Rollback: `git show ebcc68e8ed:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
+| Exception to D4 and D5: delegated Claude arbiter in 042 (2026-10-01) | Source: the operator in chat, "Let fresh opus 5.5 xhigh decide", then "Opus decides, you see a digest (Recommended)", then "dont use opus xhigh", "your using multiple" and "Instead use Opus medium". One fresh Opus 5.5 medium leaf, run alone, settled every 042 label row from its source, with the Luna and SWE drafts as claims. That is a Claude leaf, which D5 rules out, and its labels are delegated rather than read by the operator, which D4 does not name. The directive text is unchanged: the exception is scoped to 042 and recorded in `042-label-drafting-and-confirmation/decision-record.md` ADR-001. Every label row with a `labeler` field reads `operator-delegated:opus-5.5-medium` |
 <!-- /ANCHOR:log -->

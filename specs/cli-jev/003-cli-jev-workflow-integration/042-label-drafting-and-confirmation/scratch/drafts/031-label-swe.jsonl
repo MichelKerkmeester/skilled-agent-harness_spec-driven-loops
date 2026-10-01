@@ -1,0 +1,35 @@
+{"id":"d02","label":"read_code","reason":"The exit/shutdown code path directly shows whether stdio clients are closed or abandoned."}
+{"id":"d03","label":"run_test","reason":"A one-off inventory of the spaced checkout settles whether loop-lock.js is actually present."}
+{"id":"d04","label":"read_code","reason":"The re-election/SIGTERM handler shows whether the child is released or killed."}
+{"id":"d05","label":"run_test","reason":"A one-off dynamic import printing the module namespace settles whether pipeline sits under default."}
+{"id":"d06","label":"run_test","reason":"An integrity check on the main database directly confirms or rules out corruption."}
+{"id":"d07","label":"read_code","reason":"Server code shows whether any session-end handler or parent-death check exists."}
+{"id":"d08","label":"read_code","reason":"Router rules reveal whether activation requires a subcommand/alias or matches plain phrasing."}
+{"id":"d09","label":"run_test","reason":"Rerunning the doctor command with a cleared npx cache directly tests the cache hypothesis."}
+{"id":"d10","label":"instrument","reason":"A timing-dependent drop needs elapsed-time and delivered-byte records that do not exist yet."}
+{"id":"d11","label":"read_code","reason":"Pipeline ordering of lifecycle reduction versus dedup hashing is visible in the code."}
+{"id":"d12","label":"read_code","reason":"The checker's line-counting logic near EOF settles the off-by-one claim."}
+{"id":"d13","label":"read_code","reason":"The command's output path shows whether the skip notice writes to stdout inside the JSON stream."}
+{"id":"d14","label":"read_code","reason":"The advisor's signal handling shows whether teardown signals are handled or ignored."}
+{"id":"d15","label":"read_code","reason":"The renderer's insertion/replacement code reveals unescaped output and $& rescanning."}
+{"id":"d16","label":"read_code","reason":"The citation splitter's split/trim logic shows whether delimiters stay attached."}
+{"id":"d17","label":"read_code","reason":"The classifier code shows whether Markdown files default to README before specific rules run."}
+{"id":"d18","label":"read_code","reason":"The chat client's message-assembly path shows where guidance is appended and how the goal is sliced."}
+{"id":"d19","label":"read_code","reason":"The validator's classification logic shows whether file roles bypass standard skill sections."}
+{"id":"d20","label":"read_code","reason":"The directory-walk code shows whether hidden folders are filtered from the scenario count."}
+{"id":"d21","label":"read_code","reason":"The dependency detector's classification of link-only specifiers is visible in its code."}
+{"id":"d22","label":"read_code","reason":"The shell reader's normalization code shows whether internal spaces are stripped."}
+{"id":"d23","label":"read_code","reason":"The routing configuration shows whether generic flowchart requests map to chart mode."}
+{"id":"d24","label":"read_code","reason":"The policy allowlist file shows whether the target test's resolver import is listed."}
+{"id":"d25","label":"read_code","reason":"The canary's target list shows whether it still references the removed CLAUDE.md."}
+{"id":"d26","label":"instrument","reason":"Confirming which brief a run used requires a run record of brief selection that does not exist."}
+{"id":"d27","label":"read_code","reason":"The six scripts' set-flags lines are directly readable for a missing pipefail."}
+{"id":"d28","label":"read_code","reason":"The hook's git invocation shows whether it sanitizes inherited GIT_DIR before git -C."}
+{"id":"d29","label":"read_code","reason":"The global and checkout hook configs show whether the same handlers are registered twice."}
+{"id":"d30","label":"read_code","reason":"The test's copied-tree and path logic shows which validator path it actually edits."}
+{"id":"d31","label":"read_code","reason":"The traversal code shows whether a folder without marker files is skipped."}
+{"id":"d32","label":"read_code","reason":"The track-root file shows whether packet 003 is registered as a child."}
+{"id":"d33","label":"read_code","reason":"Comparing existing source-mode values against recorded digests settles the staleness claim."}
+{"id":"d34","label":"read_code","reason":"The reclaim path's ordering of reap/respawn versus the adoption check is in the code."}
+{"id":"d35","label":"read_code","reason":"The hook message templates show whether the one-command bypass is documented."}
+{"id":"d36","label":"read_code","reason":"validate.sh's skip-switch early-exit relative to arg parsing and JSON output is in the script."}

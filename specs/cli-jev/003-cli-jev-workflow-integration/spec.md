@@ -163,6 +163,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 39 | 039-hub-cleanup/ | Make the cli-classifier hub say what it is: a `cli-jev` folder for the Jev mode, pre-release versions everywhere, and a testing playbook for each transport. | Complete |
 | 40 | 040-hard-rules-sidecar/ | Move every rule, unchanged, into a `hard-rules.json` sidecar beside its SKILL.md, repoint every reader and test in the same change, and document where hard rules live, with enforcement identical before and after. | Complete |
 | 41 | 041-code-readmes-and-routing-alignment/ | Give every code folder this packet created a README, and align the cli-classifier hub's and both modes' smart routing with the sk-create-skill canon, with every correct routing decision unchanged. | Complete |
+| 42 | 042-label-drafting-and-confirmation/ | Fill the eleven label gates today's corpus can fill, run each zero-call gate, and record the blocked five and 028. | Complete |
 
 ### Phase Transition Rules
 
@@ -217,6 +218,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 038-pi-classifier-transport-integration | 039-hub-cleanup | 038 is Planned and waits for the rename | `cli-jev/SKILL.md` exists and the routing gates pass |
 | 039-hub-cleanup | 040-hard-rules-sidecar | 039 is Complete, so the Jev packet path is final | No SKILL.md declares `hard_rules:` and the engine's verdicts match before and after |
 | 040-hard-rules-sidecar | 041-code-readmes-and-routing-alignment | 040 is Complete and the hub's paths are final | Each README validates and its command passes, `ROUTER.md` is active and `parent-skill-check` passes with 0 warnings, and the routing probe keeps its correct rows |
+| 041-code-readmes-and-routing-alignment | 042-label-drafting-and-confirmation | 041 is Complete, so the label files and scorers are at their final paths | Every fillable feature's zero-call gate prints its line or a recorded stop, and `validate.sh --strict` passes on 042 |
 <!-- /ANCHOR:phase-map -->
 
 ---

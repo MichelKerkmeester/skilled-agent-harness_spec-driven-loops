@@ -1,0 +1,15 @@
+== 003 builder redraw onto the existing fixture (expect refusal)
+[build-verifier-fixture] error: OUT_EXISTS .skilled/hooks/goal/lib/verifier-labeled-set.jsonl
+exit 2
+== 029 sheet writer with an in-repo path (expect refusal)
+refusing to write the label sheet inside the repository
+exit 2
+ls: specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch/gates/should-not-exist.jsonl: No such file or directory
+== 032 redraw onto the written label file (expect refusal)
+[cite-drift-scan] draw: refusing to overwrite /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/071-cli-jev-sk-alignment/.skilled/skills/sk-doc/shared/scripts/cite-drift-labels.jsonl, operator labels present
+exit 2
+== 023 hostile variant: label file withheld
+labels: none
+labeled: 0
+stop: fewer than 20 labeled replies
+exit 0
