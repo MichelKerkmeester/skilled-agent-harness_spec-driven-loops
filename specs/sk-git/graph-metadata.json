@@ -15,7 +15,8 @@
     "sk-git/028-crawlable-commit-history",
     "sk-git/029-worktree-dependency-provisioning",
     "sk-git/030-commit-body-always-required",
-    "sk-git/031-fix-broad-staging-in-examples"
+    "sk-git/031-fix-broad-staging-in-examples",
+    "sk-git/032-template-driven-message-enforcement"
   ],
   "manual": {
     "depends_on": [],
