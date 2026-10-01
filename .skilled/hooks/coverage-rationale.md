@@ -85,6 +85,10 @@ Per the goal contract: OpenCode has `opencode-goal` + `/goal-opencode`, Pi has a
 **The four editors share one `shared/` adapter instead of a copy each; only opencode and pi carry runtime-native subfolders.**
 A folder scan shows just `opencode/` and `pi/` because the editor adapter is centralized in `shared/git-preflight-advisory.mjs`.
 
+### `git-message-gate` — covered on **all six**, and in Hermes
+**Same shape as `git-preflight`: the four editors share the `shared/` gate, and only opencode and pi carry runtime-native subfolders.**
+Claude, Codex, Cursor and Devin run `shared/git-message-gate.mjs` through the hook registry. The OpenCode plugin and the Pi extension import its `evaluateCommand`, and the Hermes `repo-guards` plugin runs it from `pre_tool_call`.
+
 ### `git` (commit hooks) — **no runtime subfolders**
 **They fire from git itself, independent of any AI runtime.**
 `pre-commit`/`pre-push`/`commit-msg` install into `.git/hooks` (or `core.hooksPath`), so there is no per-runtime axis to populate.

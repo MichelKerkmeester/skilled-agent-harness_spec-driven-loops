@@ -81,6 +81,7 @@ Each of the three templates has an "Enforced rules" section holding a JSON block
 | Tests: `commit-msg.test.sh`, `pre-push-message-contract.test.sh`, `message-contract.test.mjs` | Modified / Created | 29, 10 and 17 cases |
 | sk-git `SKILL.md`, references, feature catalog, READMEs, changelog `v1.8.0.0`, `.env.example` | Modified / Created | Document the contract and drop the bypass |
 | sk-git feature catalog entry `workflow-playbooks/message-contract-enforcement.md` and playbook scenario GIT-045 | Created | Catalog the contract and give operators a scratch-repository test of it, registered in `leaf-manifest.json` and `leaf-aliases.json` |
+| `.opencode/plugins/sk-git-message-gate.js`, `sk-git/scripts/hooks/pi/git-message-gate.ts`, `.hermes/plugins/repo-guards/__init__.py` | Created / Modified | The agent gate for OpenCode (throws), Pi (`block: true`) and Hermes (`action: block`), each calling the shared `evaluateCommand`, with a test suite each, the `.pi/extensions` link, the registry's `pi` entry and a `.skilled/hooks/git-message-gate/` index |
 | Playbook scenario GIT-007 | Modified | It asked for the co-author footer the contract refuses; it now checks that the footer is left out and refused |
 | Root `README.md`, `CONTRIBUTING.md`, git-hooks `tests/README.md` | Modified | Describe template-driven rules and drop the bypass wording |
 <!-- /ANCHOR:what-built -->
@@ -131,6 +132,7 @@ Built in worktree `worktrees/073-message-contract-enforcement`, because the mach
 | Timing | `commit-msg` 0.23 s (target 0.3 s); 500-commit range 0.67 s, down from 21.69 s with identical verdicts (target 5 s) |
 | sk-code-opencode `verify_alignment_drift.py` (headers, sections, folders) over both script roots | 3 errors, all present on `main` (two older guard libraries without headers, `hooks/opencode` without a README); the new files add none |
 | `validate-playbook-package.cjs --package sk-git` / `validate_catalog_package.py --package sk-git --strict` | PASS, 38 scenarios, 0 violations / exit 0 with 13 advisory warnings of the kind every existing entry already carries |
+| OpenCode, Pi and Hermes gate suites | PASS 5/5, 3/3 and 48/48; alignment over the new adapter files 0 errors |
 | GIT-045 and GIT-007 command sequences run in scratch repositories | Every expected signal observed, including `[subject.max-length]` after the edited `maxLength` and `[attribution.forbidden]` on a forced footer |
 | `install-git-hooks-worktree-harness.sh` | FAIL, and it fails the same way before this change: it greps for a `HOOK_SOURCE_DIR` line the installer stopped using |
 <!-- /ANCHOR:verification -->
@@ -141,7 +143,7 @@ Built in worktree `worktrees/073-message-contract-enforcement`, because the mach
 ## Known Limitations
 
 1. **CI has not run on GitHub yet.** Its push-step logic ran locally. Until the owner makes `message-contract` a required status check, CI reports and does not block.
-2. **OpenCode, Pi and Hermes have no agent gate.** Their commits are still held by `commit-msg`, `pre-push` and CI.
+2. **The OpenCode, Pi and Hermes gates are proven by unit tests, not a live session.** Each test drives the real plugin or extension entry point against a throwaway repository, but no OpenCode, Pi or Hermes session has run one yet.
 3. **Old history is not re-checked.** The last 500 commits hold 130 that the new rules would block, such as `1430237b9b` (no body) and `8e4b86b247` (`Spec:` without a track). Pushes check only new commits.
 4. **Other repositories need the validator to run CI.** The local hooks work for any repository through the machine-wide install, but a repository's own CI needs a copy of `validate-message.mjs` and its library.
 <!-- /ANCHOR:limitations -->

@@ -37,6 +37,7 @@ Tests are CJS (`.test.cjs`) so they can `require()` Node builtins and the shared
 | `session-cleanup.test.cjs` | `session-cleanup.js` | Lifecycle cleanup and safety gating. |
 | `sk-code-post-edit-quality.test.cjs` | `sk-code-post-edit-quality.js` | Post-edit routing and adapter behavior; `tool.execute.before`/`after` callID correlation. |
 | `sk-communication-projection.test.cjs` | `sk-communication-projection.js` | Projection gate matrix, snapshot restore, and fail-open boundary. |
+| `sk-git-message-gate.test.cjs` | `sk-git-message-gate.js` | Refuses a nonconforming commit in a throwaway repository with its rule id, passes a conforming one, a non-bash tool and a repository without a contract, and refuses when the rules block cannot be read. |
 | `source-root-consumers.test.cjs` | `cli-dispatch-audit.js`, `sk-git-preflight-advisory.js`, `codex-hooks-watchdog.js` | Each reads its rules or installer under whichever source root a consumer project carries, and stays silent with neither. |
 | `speckit-goal-offer-contract.test.cjs` | goal-offer command wiring | Goal-offer command wiring outside the plugin entrypoint set. |
 | `system-completion-sentinel.test.cjs` | `system-completion-sentinel.js` | Completion-sentinel lifecycle behavior; `session.idle` resolution via stubbed `ctx.client`. |

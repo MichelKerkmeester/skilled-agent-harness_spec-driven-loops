@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Hermes Repo Guards Plugin
+# ───────────────────────────────────────────────────────────────
 """Repo guard bridge for Hermes Agent.
 
 Hermes keeps shell hooks in the operator's user-level config, so a repository cannot carry them.
@@ -36,6 +39,7 @@ COMPLETION_EVIDENCE_STOP = (
 SESSION_START = REPO_ROOT / ".skilled" / "skills" / "system-spec-kit" / "runtime" / "dist" / "hooks" / "devin" / "session-start.js"
 SESSION_STOP = REPO_ROOT / ".skilled" / "skills" / "system-spec-kit" / "runtime" / "dist" / "hooks" / "devin" / "session-stop.js"
 GIT_PREFLIGHT_ADVISORY = REPO_ROOT / ".skilled" / "hooks" / "git-preflight" / "shared" / "git-preflight-advisory.mjs"
+GIT_MESSAGE_GATE = REPO_ROOT / ".skilled" / "hooks" / "git-message-gate" / "shared" / "git-message-gate.mjs"
 SK_VISION = REPO_ROOT / ".skilled" / "hooks" / "sk-vision" / "devin" / "sk-vision.mjs"
 POST_EDIT_QUALITY = (
     REPO_ROOT / ".skilled" / "hooks" / "post-edit-quality" / "devin" / "post-edit-quality.cjs"
@@ -144,6 +148,10 @@ AGENT_SKILL_PREFIX = "agent-"
 # A git-shaped command invokes the binary at a command boundary, so a path or an argument that
 # merely mentions git is not a git call.
 GIT_SHAPE = re.compile(r"(?:^|[\s;&|(])git\s")
+
+# The message gate reads `git commit`, `gh pr create|edit` and branch-creating commands, so any
+# command naming either binary is worth the core's time; the core does the exact parsing.
+MESSAGE_GATE_SHAPE = re.compile(r"\b(?:git|gh)\b")
 
 # The Hermes file-write tools. The post-edit quality core recognizes the edit-tool name of its own
 # runtime and stays silent for any other, so a Hermes write is reported under that name; the core
@@ -270,6 +278,23 @@ def _git_advisory(command: str) -> Optional[str]:
     return context.strip() if isinstance(context, str) and context.strip() else None
 
 
+def _message_gate_denial(command: str) -> Optional[Dict[str, Any]]:
+    """A block when the command's commit message, PR description or new branch name breaks the
+    repository's own sk-git templates, else None.
+
+    The gate has no kill switch on any runtime, and a core that cannot run allows the call: the
+    commit-msg hook, the pre-push hook and CI still enforce the same rules.
+    """
+    if not MESSAGE_GATE_SHAPE.search(command):
+        return None
+    payload = {"tool_name": "exec", "tool_input": {"command": command}, "cwd": os.getcwd()}
+    output = _hook_output(_run_core(GIT_MESSAGE_GATE, payload))
+    if output.get("permissionDecision") != "deny":
+        return None
+    reason = output.get("permissionDecisionReason")
+    return {"action": "block", "message": reason.strip()} if isinstance(reason, str) and reason.strip() else None
+
+
 def _post_edit_advisory(path: str) -> Optional[str]:
     """The post-edit quality pass's advisory for one edited file, or None when the checkers stay silent."""
     payload = {"tool_name": DEVIN_EDIT_TOOL, "tool_input": {"file_path": path}, "cwd": os.getcwd()}
@@ -380,8 +405,9 @@ def pre_tool_call(
     tool_name: str = "", args: Optional[Dict[str, Any]] = None, session_id: str = "", **_: Any
 ) -> Optional[Dict[str, Any]]:
     """Refuse a self-dispatch or a read-only leaf's write, run the dispatch preflight, block a
-    denied `delegate_task` batch, and block a write the enforced spec gate has not been bound
-    for yet.
+    command whose commit message, PR description or branch name breaks the sk-git templates,
+    block a denied `delegate_task` batch, and block a write the enforced spec gate has not been
+    bound for yet.
 
     Only a verdict that has to stop the call belongs here. This is the one hook Hermes blocks the
     tool on when the callback overruns its budget, so a core that answers with guidance rather than
@@ -406,7 +432,7 @@ def pre_tool_call(
                 reason = output.get("permissionDecisionReason")
                 if isinstance(reason, str) and reason.strip():
                     return {"action": "block", "message": reason.strip()}
-            return None
+            return _message_gate_denial(command)
         if tool_name == DELEGATE_TOOL:
             return _dispatch_guard(tool_args, session_id)
         return None

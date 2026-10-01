@@ -533,6 +533,9 @@
             "message": ""
           }
         ]
+      },
+      "pi": {
+        "extension": "git-message-gate.ts"
       }
     },
     {
