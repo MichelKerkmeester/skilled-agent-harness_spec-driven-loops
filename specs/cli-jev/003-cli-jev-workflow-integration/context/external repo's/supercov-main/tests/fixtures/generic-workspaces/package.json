@@ -1,9 +1,0 @@
-{
-  "name": "supercov-generic-workspaces-fixture",
-  "private": true,
-  "workspaces": ["packages/*"],
-  "scripts": {
-    "test": "npm --workspace @supercov-fixture/server run test",
-    "test:coverage": "node ../../../bin/supercov.js -- npm test"
-  }
-}

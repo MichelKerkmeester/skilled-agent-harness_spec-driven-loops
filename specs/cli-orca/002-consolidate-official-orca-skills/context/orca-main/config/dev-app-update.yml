@@ -1,4 +1,0 @@
-provider: github
-owner: stablyai
-repo: orca
-updaterCacheDirName: orca-updater

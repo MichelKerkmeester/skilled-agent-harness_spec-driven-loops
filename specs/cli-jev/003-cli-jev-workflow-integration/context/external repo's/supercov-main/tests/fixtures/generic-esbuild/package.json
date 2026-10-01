@@ -1,9 +1,0 @@
-{
-  "name": "supercov-generic-esbuild-fixture",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "esbuild src/permission.js --bundle --platform=node --format=esm --outfile=dist/permission.js",
-    "test": "node --test"
-  }
-}
