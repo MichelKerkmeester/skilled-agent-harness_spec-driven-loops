@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "label finding fixes",
+      "stop rater gold fix",
+      "goal verifier clamp fix",
+      "goal lint model arm",
+      "label finding fixes plan",
+      "stop rater gold fix plan",
+      "goal verifier clamp fix plan",
+      "goal lint model arm plan",
+      "label finding fixes tasks",
+      "stop rater gold fix tasks",
+      "goal verifier clamp fix tasks",
+      "goal lint model arm tasks"
+    ],
+    "key_topics": [
+      "label",
+      "finding",
+      "stop",
+      "rater",
+      "gold",
+      "goal",
+      "verifier",
+      "clamp",
+      "lint",
+      "model",
+      "arm",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md",
+      ".skilled/hooks/goal/lib/goal-core.cjs",
+      ".skilled/hooks/goal/lib/goal-core.test.cjs",
+      ".skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs",
+      ".skilled/hooks/goal/README.md",
+      ".opencode/plugins/opencode-goal.js",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs",
+      "build/fix/006a.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-stop-rater.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-stop-rater.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stop-rater-replay.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-verifier-labeled-set.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "score-goal-lint.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-goal-lint.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "006a.md",
+        "kind": "doc",
+        "path": "build/fix/006a.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 042 labeled every fillable gate and found three tool defects",
+    "created_at": "2026-10-01T18:41:49Z",
+    "last_save_at": "2026-10-01T18:49:06.724Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5a258de04381007fb5c59d9ec8312670b13fc48ad5b9a95f4cd351034794e2b9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "447d41dc03c001a4fdec63938cdc858b3a87ea7cb18a47cf70e694cd28157aa1",
+      "plan.md": "1905a61a5a9691552e12b76e7622b0c8c4cb6874e20b153200538ffa5265fd5b",
+      "tasks.md": "5aab15453b1afe756d003ccef957f20f9379198dabda48165e837717df06f810",
+      "implementation-summary.md": "968605d9f220582c1c0f714e6d3a01cf3d478fccf99b673fc818408fc2aecad5"
+    },
+    "last_active_at": null
+  }
+}
