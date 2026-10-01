@@ -1,5 +1,5 @@
 {
-  "count": 1116,
+  "count": 1040,
   "mode": "readme",
   "results": [
     {
@@ -690,7 +690,27 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/benchmark/injection-screen/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -711,6 +731,26 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/cli-classifier/cli-deem/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/cli-deem/scripts/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/cli-deem/scripts/tests/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -751,6 +791,26 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/cli-classifier/shared/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/shared/scripts/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/shared/scripts/tests/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -6777,6 +6837,16 @@
     {
       "auto_fixable_count": 0,
       "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
       "document_type": "unknown",
       "file": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/fixtures/README.md",
       "return_code": 0,
@@ -6970,6 +7040,16 @@
           "type": "non_sequential_numbering"
         }
       ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
     },
     {
       "auto_fixable_count": 0,
@@ -10861,40 +10941,6 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-external-orchestration/z_archive/042-improved-communication/context/claudish-to-english-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/001-cli-jev-creation/context/jev-cli-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
       "file": "specs/cli-jev/003-cli-jev-workflow-integration/006-goal-criteria-lint/scratch/w3-build/logs/13.pre/README.md",
@@ -10911,74 +10957,6 @@
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/eval/tare/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/rust/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research/context/deem-main/serve/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
       "warnings": []
     },
     {
@@ -11069,934 +11047,6 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/jev-cli-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/jev-cli-main/plugin/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/jev-cli-main/plugin/hooks/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/jev-review-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/pi-jev-context-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/coverage-model-v1/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/evidence-v3/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/frontend-v2/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/probe-v2/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/rust-compiler-companion-v1/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/rust-coverage-v1/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/rust-probe-transport-v1/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/rust-probe-transport-v3/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/contracts/v1/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/examples/checkout-verification/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/examples/checkout-verification/agent-run/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/examples/checkout-verification/recorded/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/examples/react-verification/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/plugins/supercov/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/spikes/python-monitoring/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/spikes/query-index/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/supercov-main/spikes/rustc-backend/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/.github/actions/cloud-sql-rollout-lease/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/cloud/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/cloud/apps/relay-ops/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "unknown",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/cloud/apps/relay/src/test-fixtures/relay-contract-baseline/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/cloud/infra/terraform/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/config/scripts/session-search-file-id-e2e/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/closed-editor-model-lifetime/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/audits/plugin-uninstall-log-retirement/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/docs/site/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/packages/expo-two-way-audio/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/mobile/src/test-support/rpc-recording/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/src/main/__fixtures__/shell-wrapper-snapshots/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/src/main/providers/__tests__/shell-ready-framework/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/daemon-relocation-spike/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/freeze-repro/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/omp-child-history-rendered/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/omp-picker-search-rendered/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/omp-remote-sidebar-rendered/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/omp-source-control-ui/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/omp-transcript-rendered/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/relay-bench/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/repro-watcher-crash-7547/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/win-crash-survival-e2e/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/win-update-e2e/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/tests/tools/windows-pty-native-capability-smoke/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-fast-mode/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-gpt-fast-mode/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/hooks/011-pi-fast-mode-w-subagent-support/context/pi-openai-fast-mode/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
       "file": "specs/hooks/021-compat-opt-in-and-image-declaration/review/README.md",
       "return_code": 1,
       "total_issues": 1,
@@ -12014,177 +11064,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/sk-code/z_archive/001-sk-code-review-creation/context/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
       "file": "specs/sk-code/z_archive/015-sk-code-ponytail-based-refinement/changelog/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/sk-communication/001-sk-communication-creation/context/claudish-to-english-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/sk-communication/006-sk-communication-clarity/context/claude-style-patch-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/sk-communication/006-sk-communication-clarity/context/i-have-adhd-main/evals/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/composition-patterns/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/react-best-practices/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/.agents/skills/zod/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/008-evilcharts-reference-research/context/evilcharts/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -12248,47 +11128,6 @@
       "file": "specs/sk-doc/z_archive/019-skill-routing-refactor/research/post-019-angles/README.md",
       "return_code": 1,
       "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/sk-doc/z_archive/028-sk-create-diagram/context/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Remove the Table of Contents and use numbered H2 sections for navigation.",
-          "message": "This document type must not contain a Table of Contents.",
-          "rule_id": "general_no_toc",
-          "severity": "blocking",
-          "type": "general_no_toc"
-        },
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/context/README.md",
-      "return_code": 1,
-      "total_issues": 2,
       "valid": false,
       "warnings": []
     },
@@ -12416,159 +11255,6 @@
       ],
       "document_type": "readme",
       "file": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docgen-service/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/docs/screenshots/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/context/agent-swarms/src/assets/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/context/graph-arch/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/context/graph-arch/bench/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/context/graph-engineering-master/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/context/graphene-main/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/system-deep-loop/037-graph-engineering/context/graphene-main/bench/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -12839,47 +11525,6 @@
       ],
       "document_type": "readme",
       "file": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/008-verification-and-closeout/playbook-runs/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Remove the Table of Contents and use numbered H2 sections for navigation.",
-          "message": "This document type must not contain a Table of Contents.",
-          "rule_id": "general_no_toc",
-          "severity": "blocking",
-          "type": "general_no_toc"
-        },
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/README.md",
-      "return_code": 1,
-      "total_issues": 2,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/context/pi-skill-orchestrator-main/docs/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,

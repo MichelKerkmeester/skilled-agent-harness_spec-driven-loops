@@ -60,12 +60,6 @@ dist/
 .skilled/output/
 
 # ───────────────────────────────────────────
-# Exceptions: vendored prebuilt artifacts
-# ───────────────────────────────────────────
-!specs/system-deep-loop/037-graph-engineering/context/agent-swarms/vendor/image-size/dist/
-!specs/system-deep-loop/037-graph-engineering/context/agent-swarms/vendor/image-size/dist/**
-
-# ───────────────────────────────────────────
 # TypeScript compiler output: system-skill-advisor
 # ───────────────────────────────────────────
 .opencode/skills/system-skill-advisor/runtime/lib/**/*.js
@@ -368,6 +362,12 @@ specs/**/lineages/*/.codex-home/
 # filesystem limit and a worktree could no longer be removed.
 specs/**/containment/baseline/
 specs/**/containment/quarantine/
+
+# Packet source material. context/ holds vendored third-party repositories and
+# reference captures that stay on disk for local research. Tracked, they shipped
+# tens of thousands of foreign files that plugin security scanners read as this
+# repository's own code.
+specs/**/context/
 
 # A packet-local save mutex, acquired by the continuity generator while it mutates
 # canonical documents. It names the process holding it, so it is machine state and

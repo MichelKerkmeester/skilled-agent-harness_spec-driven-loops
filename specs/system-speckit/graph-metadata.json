@@ -23,7 +23,8 @@
     "system-speckit/043-fix-write-recipe-workspace-bullet",
     "system-speckit/044-fix-write-recipe-post-checks",
     "system-speckit/045-fix-write-recipe-verification-gate",
-    "system-speckit/046-align-runtime-code-with-sk-code-opencode"
+    "system-speckit/046-align-runtime-code-with-sk-code-opencode",
+    "system-speckit/047-plugin-scanner-readiness"
   ],
   "manual": {
     "depends_on": [],

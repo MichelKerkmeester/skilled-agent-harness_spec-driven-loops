@@ -1,7 +1,0 @@
-[workspace]
-resolver = "2"
-members = ["deem-runtime"]
-
-[profile.release]
-lto = "thin"
-codegen-units = 1

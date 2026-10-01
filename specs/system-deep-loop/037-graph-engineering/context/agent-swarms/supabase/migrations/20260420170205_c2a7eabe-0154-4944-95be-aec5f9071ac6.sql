@@ -1,1 +1,0 @@
-DELETE FROM public.user_data_tables WHERE is_sample = true AND user_id IS NOT NULL;
