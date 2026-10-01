@@ -54,12 +54,13 @@
       ".skilled/hooks/goal/lib/goal-core.test.cjs",
       ".skilled/hooks/goal/lib/score-verifier-labeled-set.test.cjs",
       ".skilled/hooks/goal/README.md",
-      ".opencode/plugins/opencode-goal.js",
+      ".skilled/hooks/goal/pi/goal-context.ts",
+      ".skilled/hooks/goal/pi/goal-pi.test.mjs",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs",
+      ".opencode/plugins/opencode-goal.js",
       "build/fix/006a.md",
-      "build/fix/006c.md",
-      ".devin/SYNC.md"
+      "build/fix/006c.md"
     ],
     "entities": [
       {
@@ -141,9 +142,15 @@
         "source": "derived"
       },
       {
-        "name": "opencode-goal.js",
+        "name": "goal-context.ts",
         "kind": "code",
-        "path": ".opencode/plugins/opencode-goal.js",
+        "path": ".skilled/hooks/goal/pi/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-pi.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/pi/goal-pi.test.mjs",
         "source": "derived"
       },
       {
@@ -159,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".opencode/plugins/opencode-goal.js",
+        "source": "derived"
+      },
+      {
         "name": "006a.md",
         "kind": "doc",
         "path": "build/fix/006a.md",
@@ -168,12 +181,6 @@
         "name": "006c.md",
         "kind": "doc",
         "path": "build/fix/006c.md",
-        "source": "derived"
-      },
-      {
-        "name": "SYNC.md",
-        "kind": "doc",
-        "path": ".devin/SYNC.md",
         "source": "derived"
       },
       {
@@ -199,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 042 labeled every fillable gate and found three tool defects",
     "created_at": "2026-10-01T18:41:49Z",
-    "last_save_at": "2026-10-01T21:09:18.442Z",
+    "last_save_at": "2026-10-01T21:29:27.662Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a253614b1c48f1bcee8eb407caae19aef9e29581f313f5f994c8a776050efebf",
+    "source_fingerprint": "sha256:6a66cacbef3bd5a82d5428c515bb2d8447db271b2844c379cdf3ed6367a97591",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "447d41dc03c001a4fdec63938cdc858b3a87ea7cb18a47cf70e694cd28157aa1",
       "plan.md": "1905a61a5a9691552e12b76e7622b0c8c4cb6874e20b153200538ffa5265fd5b",
       "tasks.md": "15f8c4b0c758c91897643e63aa0e6c68768a5697bb6fc8e3f801329e1d784256",
-      "implementation-summary.md": "968605d9f220582c1c0f714e6d3a01cf3d478fccf99b673fc818408fc2aecad5"
+      "implementation-summary.md": "86ccb90f2ecbe86c6ba57d54d57e2983b2b6fbf5b69dd596da0526fa4c4d8f7c"
     },
     "last_active_at": null
   }
