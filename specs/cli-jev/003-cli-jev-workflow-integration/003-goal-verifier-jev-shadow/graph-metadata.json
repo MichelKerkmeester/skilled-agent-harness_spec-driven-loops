@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Two runtimes judge \"is this goal done\" with a heuristic",
     "created_at": "2026-09-26T18:26:44Z",
-    "last_save_at": "2026-09-29T06:14:59.257Z",
+    "last_save_at": "2026-10-01T18:40:06.430Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b7b7a4e1a616c3dacc01fab312a8e9390f3e32e4b3d4c189b7036e076dd19893",
+    "source_fingerprint": "sha256:3a66e02a6a59714f857a303b7d33c978b28dd09eb3f728bfa2e2858c39fdec3d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8f715c200ded745cb2bd44372b748c9be3ab6bb0622c9cc8a6c304230cf80342",

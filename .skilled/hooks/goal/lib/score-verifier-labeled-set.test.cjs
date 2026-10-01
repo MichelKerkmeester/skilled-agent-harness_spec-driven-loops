@@ -247,8 +247,10 @@ test('main scores the set through the plugin arms and writes the zero-call repor
       assert.ok(result.stdout.includes(line), `missing line: ${line}`);
     }
     assert.ok(
-      result.stdout.indexOf('table: verdict=unclear label_met=1 label_not_met=0 label_blocked=0')
-        > result.stdout.indexOf('arm: parity'),
+      result.stdout.indexOf(
+        'table: verdict=met label_met=29 label_not_met=0 label_blocked=0',
+        result.stdout.indexOf('arm: parity'),
+      ) > -1,
     );
     assert.equal(fs.existsSync(path.join(stub, 'jev.log')), false);
     assert.equal(fs.existsSync(path.join(stub, 'cli-deem.log')), false);
