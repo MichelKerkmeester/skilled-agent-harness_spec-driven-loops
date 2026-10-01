@@ -2,7 +2,7 @@
 name: sk-create-readme
 description: Author sk-doc folder, code-folder and skill/project READMEs from local evidence.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 <!-- Keywords: create-readme, folder readme, code folder readme, project readme, skill readme, /create:readme, audit_readmes -->
