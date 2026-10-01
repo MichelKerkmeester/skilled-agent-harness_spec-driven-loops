@@ -22,6 +22,7 @@ import {
   TEMPLATE_FILES,
   extractContract,
   loadContract,
+  rangeContext,
   templateDriftErrors,
   validateBranch,
   validateCommit,
@@ -149,6 +150,19 @@ test('branch names follow the grammar and worktree directories pair with them', 
 test('a repository without templates enforces nothing', () => {
   const dir = tempRepo(false);
   for (const kind of Object.keys(TEMPLATE_FILES)) assert.equal(loadContract(dir, kind), null);
+});
+
+test('a pushed commit finds a packet the repository keeps out of git', () => {
+  const dir = tempRepo(false);
+  const git = (...args) => execFileSync('git', ['-C', dir, ...args], { encoding: 'utf8' });
+  fs.writeFileSync(path.join(dir, '.gitignore'), '/specs\n');
+  fs.mkdirSync(path.join(dir, 'specs', '001-kept'), { recursive: true });
+  git('add', '.gitignore');
+  git('-c', 'user.name=t', '-c', 'user.email=t@t', 'commit', '-q', '-m', 'chore: init');
+  const sha = git('rev-parse', 'HEAD').trim();
+  const ctx = rangeContext(dir, [sha])(sha);
+  assert.equal(ctx.specExists('specs/001-kept'), true);
+  assert.equal(ctx.specExists('specs/002-missing'), false);
 });
 
 test('a .sk-git copy is used, and a broken one throws rather than passing', () => {
