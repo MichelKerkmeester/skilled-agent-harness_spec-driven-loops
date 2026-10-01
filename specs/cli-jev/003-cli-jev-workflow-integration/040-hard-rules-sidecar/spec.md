@@ -29,7 +29,7 @@ contextType: "implementation"
 | **Parent Spec** | ../spec.md |
 | **Phase** | 40 of 40 |
 | **Predecessor** | 039-hub-cleanup |
-| **Successor** | None |
+| **Successor** | 041-code-readmes-and-routing-alignment |
 | **Handoff Criteria** | The five completion criteria in `goal.md` each run from the final state: the nine skills hold `hard-rules.json` and a grep for `^hard_rules:` in any SKILL.md finds nothing, the engine and every reader read the sidecar while their suites stay green, the recorded before-and-after run of the engine over a fixed command set matches for every skill, sk-doc's frontmatter contract names the sidecar and `validate_document.py` is VALID on every changed doc, `sync-skills-hermes.cjs --check` passes, and `validate.sh --strict` prints `RESULT: PASSED` for this phase. |
 <!-- /ANCHOR:metadata -->
 
