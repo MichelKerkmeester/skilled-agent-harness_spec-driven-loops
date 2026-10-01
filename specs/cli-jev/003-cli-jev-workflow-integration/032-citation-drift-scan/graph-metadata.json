@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Skill docs cite code as `file:line`, and agents follow those citations to decide what the code does",
     "created_at": "2026-09-29T12:42:43Z",
-    "last_save_at": "2026-09-29T21:28:12.469Z",
+    "last_save_at": "2026-10-01T17:56:20.760Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2328b64a64091a0c37d7bdcf510995d043a13128c9a4de37db11983b56b45414",
+    "source_fingerprint": "sha256:4cce5d87cd28df42f57b4e802d8fb9f8e521790a56fbe1deadebe9ce7882fcd8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "979f9532b5711c005b14046c3b7099f72969cda4b7fdf31e714fa302676248f2",

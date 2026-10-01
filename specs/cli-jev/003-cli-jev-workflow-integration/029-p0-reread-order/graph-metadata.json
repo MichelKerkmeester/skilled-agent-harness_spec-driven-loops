@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A deep-review P0 blocks release",
     "created_at": "2026-09-29T12:42:41Z",
-    "last_save_at": "2026-09-30T06:07:09.439Z",
+    "last_save_at": "2026-10-01T17:56:17.742Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9cacfa95215a90780816d2f2e96490cddadd31d210d6ffd3179a259472718f5",
+    "source_fingerprint": "sha256:65579c7a0a1f04f27dbb114f3631691811258e39cce7ba7a368f9f8a24962a94",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "39f8e3009ebb1ac7a80d3ffabcac1af82107cd4dcfaa1546b359e70b196dc279",
