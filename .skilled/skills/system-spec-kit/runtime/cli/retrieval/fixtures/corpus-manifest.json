@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5a1168ae8e71a92a8475433c7c388eca6f174c39571504ae4d438c9dd8af72ea",
+  "corpusHash": "2a2ad6dfc636e5d38951da446c3ea14d1b2c9397565ac65b288a01fab90390e7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23675,
+  "includedPathCount": 23682,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8954,6 +8954,13 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/plan.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/spec.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/acceptance-criteria.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/decision-record.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/README.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-ask.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-pick.md",
@@ -23705,7 +23712,7 @@
     "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cc7bbcef6132d289377876481ec05d934b5a55ec8fcea9102dc3e877d7e9bd12",
+  "manifestHash": "19c4df9ff5cef9256fd85d4a914200ad1a07b02aa269b03e465e55fc40cbc494",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24773,6 +24780,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch",
       "reason": "excluded directory"
     },
     {

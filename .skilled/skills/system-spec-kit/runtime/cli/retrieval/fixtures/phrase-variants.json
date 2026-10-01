@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cc7bbcef6132d289377876481ec05d934b5a55ec8fcea9102dc3e877d7e9bd12",
+  "manifestHash": "19c4df9ff5cef9256fd85d4a914200ad1a07b02aa269b03e465e55fc40cbc494",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13128,6 +13128,12 @@
     "blast radius traversal helper": [
       "blast radius traversal helper"
     ],
+    "blind draft compare": [
+      "blind draft compare"
+    ],
+    "blind label drafts": [
+      "blind label drafts"
+    ],
     "blind non inferiority evaluation": [
       "Blind non-inferiority evaluation"
     ],
@@ -16078,6 +16084,9 @@
     ],
     "charts dataview excalidraw git outliner minimal": [
       "charts dataview excalidraw git outliner minimal"
+    ],
+    "chat label confirmation": [
+      "chat label confirmation"
     ],
     "chat message display validation": [
       "chat.message display validation"
@@ -23971,6 +23980,9 @@
     ],
     "confirm the target file": [
       "confirm the target file"
+    ],
+    "confirmation batch tasks": [
+      "confirmation batch tasks"
     ],
     "confirmed drift table": [
       "confirmed drift table"
@@ -32558,6 +32570,9 @@
     "delegate to pi": [
       "delegate to pi"
     ],
+    "delegated label arbiter": [
+      "delegated label arbiter"
+    ],
     "delegated readme refresh": [
       "delegated readme refresh"
     ],
@@ -35423,6 +35438,9 @@
     ],
     "dr 001 prefix": [
       "DR-001 prefix"
+    ],
+    "draft compare tasks": [
+      "draft compare tasks"
     ],
     "draw io import": [
       "draw.io import"
@@ -42641,6 +42659,9 @@
     "gate rerun tasks": [
       "gate rerun tasks"
     ],
+    "gate run checklist": [
+      "gate run checklist"
+    ],
     "gate three shared core": [
       "gate three shared core"
     ],
@@ -49580,8 +49601,29 @@
     "l9 sweep disposition": [
       "L9 sweep disposition"
     ],
+    "label confirmation method": [
+      "label confirmation method"
+    ],
+    "label drafting confirmation": [
+      "label drafting confirmation"
+    ],
+    "label drafting criteria": [
+      "label drafting criteria"
+    ],
+    "label drafting plan": [
+      "label drafting plan"
+    ],
+    "label drafting summary": [
+      "label drafting summary"
+    ],
     "label gate": [
       "label gate"
+    ],
+    "label gate criteria": [
+      "label gate criteria"
+    ],
+    "label gates filled": [
+      "label gates filled"
     ],
     "label task with tag": [
       "label task with tag"
@@ -49612,6 +49654,15 @@
     ],
     "labeled turn judgment": [
       "labeled turn judgment"
+    ],
+    "labeling card criteria": [
+      "labeling card criteria"
+    ],
+    "labeling card gate": [
+      "labeling card gate"
+    ],
+    "labeling task breakdown": [
+      "labeling task breakdown"
     ],
     "lag ceiling gauge stall detector": [
       "lag-ceiling gauge stall detector"
@@ -62016,17 +62067,26 @@
     "operator approval grammar": [
       "operator approval grammar"
     ],
+    "operator confirmed labels": [
+      "operator-confirmed labels"
+    ],
     "operator copy of goal": [
       "operator copy of goal"
     ],
     "operator deferred rss severity": [
       "operator deferred rss severity"
     ],
+    "operator delegated labels": [
+      "operator-delegated labels"
+    ],
     "operator enablement guide": [
       "operator enablement guide"
     ],
     "operator fix deep review findings for doctor update orchestrator changelog": [
       "operator fix deep review findings for doctor update orchestrator changelog"
+    ],
+    "operator label gate": [
+      "operator label gate"
     ],
     "operator owned strategy fields": [
       "operator-owned strategy fields"
@@ -62261,6 +62321,9 @@
     ],
     "opus lens prompting alignment": [
       "opus lens prompting alignment"
+    ],
+    "opus medium arbiter": [
+      "opus medium arbiter"
     ],
     "opus review remediation decisions": [
       "opus review remediation decisions"
@@ -95478,6 +95541,9 @@
     "two data folders collapsed": [
       "two data folders collapsed"
     ],
+    "two draft criteria": [
+      "two draft criteria"
+    ],
     "two executor fan out research": [
       "two executor fan-out research"
     ],
@@ -99794,6 +99860,12 @@
     ],
     "zero call compaction census": [
       "zero-call compaction census"
+    ],
+    "zero call gate results": [
+      "zero-call gate results"
+    ],
+    "zero call gate run": [
+      "zero call gate run"
     ],
     "zero calls investigation": [
       "zero calls investigation"
