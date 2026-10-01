@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Seventeen child phases of this packet carry a label gate or follow one, and each is Complete with its gate still open",
     "created_at": "2026-10-01T12:59:07Z",
-    "last_save_at": "2026-10-01T17:14:09.745Z",
+    "last_save_at": "2026-10-01T21:31:40.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9d248b26d64b47b07255a2ae18f9144a9dd03bf031cc9b9b61ea084c707cbb4d",
+    "source_fingerprint": "sha256:9dafd9f6ddd004ebe330de6229d65f9267c0f2b58325d9c06f721e5c62407023",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c12657a95a1a6d0f023af0ec27d8446ca659507865d0cf2ccee39a473af34049",

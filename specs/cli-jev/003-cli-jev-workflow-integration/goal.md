@@ -112,11 +112,11 @@ Decisions outrank each child goal.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 043 are Complete
+- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 043 are Complete
 - [x] 019 to 035 are Complete: each prints its verdict line or stops at its label gate
 - [x] `validate_document.py` exits 0 on every skill doc a build changed
 - [x] No open P0 or P1, and no changed runtime suite fails beyond its baseline
-- [ ] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
+- [x] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -259,4 +259,5 @@ and findings belong here.
 | Exception to D4 and D5: delegated Claude arbiter in 042 (2026-10-01) | Source: the operator in chat, "Let fresh opus 5.5 xhigh decide", then "Opus decides, you see a digest (Recommended)", then "dont use opus xhigh", "your using multiple" and "Instead use Opus medium". One fresh Opus 5.5 medium leaf, run alone, settled every 042 label row from its source, with the Luna and SWE drafts as claims. That is a Claude leaf, which D5 rules out, and its labels are delegated rather than read by the operator, which D4 does not name. The exception is recorded in `042-label-drafting-and-confirmation/decision-record.md` ADR-001, and the next row writes it into D4 and D5. Every label row with a `labeler` field reads `operator-delegated:opus-5.5-medium` |
 | Directive amendment: the delegated arbiter (2026-10-01) | Source: the operator chose "Amend D4 and D5" in chat. D4 "Only operator-confirmed labels count" became "Only operator-confirmed or -delegated labels count". D5 "No MiMo or Claude leaves" became "No MiMo or Claude leaves bar a delegated arbiter". Budget cuts, same meaning: D1 "dormant unless one passes its check (`jev auth status --provider <p>` or Deem's health check)" became "dormant unless `jev auth status --provider <p>` or Deem's health check passes", D2 "`cli-deem`, Deem served locally" became "local `cli-deem`", D3 "Released: ... disjoint builds in parallel" became "Released ... disjoint ones in parallel", D5 "verifies and commits" became "verifies, commits". `goal.cjs packet`: 3,999 before, 4,016 after the additions, 4,000 after the cuts, `packet_budget=ok`. Rollback: `git show 11edbfea62:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
 | Directive amendment: bind 043 (2026-10-01) | Source: the operator's choices for the label findings (027 "Both fixes", 006 "Build 006's model arm", 003 "Fix it in goal-core") and "Send goal prompt for what were doing and still open sk create goal". D3 now releases 019 to 043, BINDING gained row 043, and criterion 1 names 036 to 043 and is open until 043 closes. Budget cut, by section 3 step 5 of sk-create-goal's `budget-and-handoff.md`: D5's executor settings moved here, unchanged in force. DeepSeek V4.1 Flash runs on cli-pi through Cline at `xhigh`, then OpenCode Go at `max`, and Luna 6 max runs on the `fast` tier. `goal.cjs packet`: 4,000 before, 4,044 after the additions, 3,999 after the cut, `packet_budget=ok`. Rollback: `git show 5543f6861e:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
+| 043 Complete, all criteria met (2026-10-01) | 043 shipped the three label-finding fixes and closed three DeepSeek V4.1 Flash review rounds (commits `55c33b363e` to `1f5d472ef7`, P2s in 043's log). Every child criterion 1 names reads Complete, and 042's acceptance status was corrected from In Progress to match its Met rows. `validate.sh --strict --recursive` printed `RESULT: PASSED` with 0 errors and 0 warnings on all 44 folders, and `check-goal.cjs` passed 5/5 on each. Nothing is pushed or merged |
 <!-- /ANCHOR:log -->

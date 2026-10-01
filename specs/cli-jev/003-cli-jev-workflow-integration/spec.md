@@ -164,7 +164,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 40 | 040-hard-rules-sidecar/ | Move every rule, unchanged, into a `hard-rules.json` sidecar beside its SKILL.md, repoint every reader and test in the same change, and document where hard rules live, with enforcement identical before and after. | Complete |
 | 41 | 041-code-readmes-and-routing-alignment/ | Give every code folder this packet created a README, and align the cli-classifier hub's and both modes' smart routing with the sk-create-skill canon, with every correct routing decision unchanged. | Complete |
 | 42 | 042-label-drafting-and-confirmation/ | Fill the eleven label gates today's corpus can fill, run each zero-call gate, and record the blocked five and 028. | Complete |
-| 43 | 043-label-finding-fixes/ | Fix the tool defects 042's labels found: 027's stop-rater gold and lineage filter, 003's goal-core evidence clamp, and 006's model arm. | In Progress |
+| 43 | 043-label-finding-fixes/ | Fix the tool defects 042's labels found: 027's stop-rater gold and lineage filter, 003's goal-core evidence clamp, and 006's model arm. | Complete |
 
 ### Phase Transition Rules
 
