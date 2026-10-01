@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7acd1b1b1a33462ca428121c999ebbfe55bff20261be27b4c26f78f227bcc1c4",
+  "corpusHash": "18e211ad8aaddc8e4b4669025dc8ed0d0108c8de94df92eca2fbd5471ba6c6bb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23682,
+  "includedPathCount": 23689,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6318,6 +6318,7 @@
     ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.3.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-goal/changelog/v1.4.0.0.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/add-goal-to-packet-without-goal.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/cut-over-budget-parent.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/detect-unbound-phase.md",
@@ -8961,6 +8962,12 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/plan.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/spec.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/acceptance-criteria.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/README.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-ask.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-pick.md",
@@ -23712,7 +23719,7 @@
     "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "689413ebf985cf0146ad0c531805bd163da9a74aca47bfb0e46421a6c97b81f8",
+  "manifestHash": "c44666216d18f11a71cbaf37dff90e17b9fb56e14ac2c0c731a27f873d884eff",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24784,6 +24791,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/scratch",
       "reason": "excluded directory"
     },
     {
