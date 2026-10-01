@@ -26,6 +26,9 @@ const STOP_LINE = 'r20 model arm not built: labeled_violation_rate<0.05';
 const JEV_VERSION = '0.6.2';
 const JEV_RERUNS = 3;
 const JEV_TIMEOUT_MS = 120000;
+// The wait behind the one retry a transient Jev exit 4 earns.
+const JEV_RETRY_BACKOFF_MS = 2000;
+const JEV_BACKOFF_VIEW = new Int32Array(new SharedArrayBuffer(4));
 const JEV_MAX_BUFFER_BYTES = 1024 * 1024;
 const JEV_FLAG_THRESHOLD = 0.5;
 const JEV_MIN_F1_GAIN = 0.2;
@@ -354,7 +357,7 @@ function jevVerdict(jevMetrics, lintMetrics, flipRate) {
 
 // A rule keeps or kills only when nine tenths of the asked rows carry a score.
 function coverageStop(measured, asked) {
-  return 10 * measured < 9 * asked
+  return asked === 0 || 10 * measured < 9 * asked
     ? { verdict: 'stop (coverage)', reason: 'coverage', M: measured, K: asked }
     : null;
 }
@@ -406,27 +409,46 @@ function runJevArm(joined, criteria, lintScore, gate, env, callLog, out) {
       let unmeasuredStatus = null;
 
       for (let rerun = 0; rerun < JEV_RERUNS; rerun += 1) {
-        const call = spawnCall(gate.path, args, stdinText, env);
+        let call = spawnCall(gate.path, args, stdinText, env);
         modelCalls += 1;
-        const probability = call.code === 0 ? parseNoul(call.stdout) : null;
-        logJevCall(callLog, gate.path, gate.provider, 'noul', args, call, {
+        let attempt = 1;
+        const details = {
           rowId: record.id,
           rowIndex: rowIndex + 1,
           question: question.rule,
-          rerun: rerun + 1,
+          rerun: rerun + 1
+        };
+
+        // A dropped call is not a judgment: one backoff retry, then unmeasured.
+        if (!call.timedOut && call.code === 4) {
+          logJevCall(callLog, gate.path, gate.provider, 'noul', args, call, {
+            ...details,
+            attempt,
+            probability: null,
+            status: 'unmeasured'
+          });
+          Atomics.wait(JEV_BACKOFF_VIEW, 0, 0, JEV_RETRY_BACKOFF_MS);
+          call = spawnCall(gate.path, args, stdinText, env);
+          modelCalls += 1;
+          attempt = 2;
+        }
+
+        const probability = call.code === 0 ? parseNoul(call.stdout) : null;
+        logJevCall(callLog, gate.path, gate.provider, 'noul', args, call, {
+          ...details,
+          attempt,
           probability,
           status: call.code === 3 ? 'key_rejected' : call.timedOut ? 'unmeasured_timeout' : probability === null ? 'unmeasured' : 'measured'
         });
 
-        if (call.code === 3) {
-          const reason = 'key rejected';
-          out('jev arm stopped: ' + reason);
-          return { status: 'stopped', reason, provider: gate.provider, jevVersion: JEV_VERSION, modelCalls };
-        }
-        if (call.code !== 0 && call.code !== 1 && !call.timedOut) {
-          const reason = 'call failed';
-          out('jev arm stopped: ' + reason);
-          return { status: 'stopped', reason, provider: gate.provider, jevVersion: JEV_VERSION, modelCalls };
+        let stopReason = null;
+        if (call.code === 3) stopReason = 'key rejected';
+        else if (call.code === 2) stopReason = 'usage error';
+        else if (call.code === 130) stopReason = 'interrupted';
+        else if (call.code !== 0 && call.code !== 1 && call.code !== 4 && !call.timedOut) stopReason = 'call failed';
+        if (stopReason !== null) {
+          out('jev arm stopped: ' + stopReason);
+          return { status: 'stopped', reason: stopReason, provider: gate.provider, jevVersion: JEV_VERSION, modelCalls };
         }
         // A question decides only when every rerun measures, so one failed or
         // unreadable call leaves it unmeasured and ends its reruns.
@@ -730,6 +752,36 @@ function runDeemArm(joined, criteria, lintScore, gate, env, callLog, out) {
     unmeasuredCalls,
     verdicts
   };
+}
+
+// A report an earlier run left in --out names the identity that measured it;
+// a new identity requalifies the column, so an earlier keep cannot stand in.
+function readStoredReport(outDir) {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+function requalifyNotice(backend, stored, identity) {
+  const prior = stored?.columns?.[backend];
+  if (prior === undefined || prior === null) return null;
+  if (
+    backend === 'deem' &&
+    (prior.modelId !== identity.modelId ||
+      prior.modelCommit !== identity.modelCommit ||
+      prior.sourceCommit !== identity.sourceCommit)
+  ) {
+    return 'deem commit pair changed';
+  }
+  if (
+    backend === 'jev' &&
+    (prior.jevVersion !== identity.jevVersion || prior.provider !== identity.provider)
+  ) {
+    return 'jev identity changed';
+  }
+  return null;
 }
 
 function lintColumn(score) {
@@ -1076,6 +1128,7 @@ function main(argv) {
 
   if (options.jev || options.deem) {
     const callLog = createCallLog(options.out);
+    const stored = readStoredReport(options.out);
     const columns = { lint: lintColumn(score) };
 
     if (options.jev) {
@@ -1089,10 +1142,13 @@ function main(argv) {
           jevVersion: JEV_VERSION
         };
       } else {
+        const requalified = requalifyNotice('jev', stored, { jevVersion: JEV_VERSION, provider: gate.provider });
+        if (requalified !== null) console.log('requalify: ' + requalified);
         const joined = joinedLabeledRows(parsed.rows, records, score);
         const root = options.root || getDefaultWorkspaceRoot();
         const criteria = joined.map(({ record }) => getCriterionText(record, root));
         columns.jev = runJevArm(joined, criteria, score, gate, process.env, callLog, console.log);
+        if (requalified !== null) columns.jev.requalified = requalified;
       }
     }
 
@@ -1105,10 +1161,17 @@ function main(argv) {
           found: gate.found ?? null
         };
       } else {
+        const requalified = requalifyNotice('deem', stored, {
+          modelId: gate.model,
+          modelCommit: gate.modelCommit,
+          sourceCommit: gate.sourceCommit
+        });
+        if (requalified !== null) console.log('requalify: ' + requalified);
         const joined = joinedLabeledRows(parsed.rows, records, score);
         const root = options.root || getDefaultWorkspaceRoot();
         const criteria = joined.map(({ record }) => getCriterionText(record, root));
         columns.deem = runDeemArm(joined, criteria, score, gate, process.env, callLog, console.log);
+        if (requalified !== null) columns.deem.requalified = requalified;
       }
     }
 

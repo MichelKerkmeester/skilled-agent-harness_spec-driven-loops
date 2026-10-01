@@ -103,14 +103,17 @@ function makeJevFixture(directory) {
  * @param {object} options Gate results, model exit status and answer probabilities.
  * @returns {{ binDir: string, logPath: string, env: NodeJS.ProcessEnv }} Stub path and environment.
  */
-function makeStubJev(directory, { answers = [], version = 'jev 0.6.2', authStatus = 0, noulExit = 0 } = {}) {
+function makeStubJev(directory, { answers = [], version = 'jev 0.6.2', authStatus = 0, noulExit = 0, noulExits = [] } = {}) {
   const binDir = path.join(directory, 'bin');
   const logPath = path.join(directory, 'jev.log');
   const counterPath = path.join(directory, 'counter.txt');
+  const answerCounterPath = path.join(directory, 'answer-counter.txt');
   const answersPath = path.join(directory, 'answers.txt');
+  const exitsPath = path.join(directory, 'exits.txt');
   const executable = path.join(binDir, 'jev');
   fs.mkdirSync(binDir, { recursive: true });
   fs.writeFileSync(answersPath, answers.join('\n') + (answers.length > 0 ? '\n' : ''));
+  fs.writeFileSync(exitsPath, noulExits.join('\n') + (noulExits.length > 0 ? '\n' : ''));
   fs.writeFileSync(executable, `#!/bin/sh
 printf '%s\\n' "$*" >> "$JEV_LOG"
 case "$1" in
@@ -123,7 +126,6 @@ case "$1" in
     exit 0
     ;;
   noul)
-    if [ "$JEV_STUB_NOUL_EXIT" -ne 0 ]; then exit "$JEV_STUB_NOUL_EXIT"; fi
     if [ -f "$JEV_COUNTER" ]; then
       IFS= read -r count < "$JEV_COUNTER" || count=0
     else
@@ -131,12 +133,18 @@ case "$1" in
     fi
     count=$((count + 1))
     printf '%s\\n' "$count" > "$JEV_COUNTER"
-    answer=
-    index=0
-    while IFS= read -r candidate; do
-      index=$((index + 1))
-      if [ "$index" -eq "$count" ]; then answer="$candidate"; break; fi
-    done < "$JEV_ANSWERS_FILE"
+    exitCode="$JEV_STUB_NOUL_EXIT"
+    scripted=$(sed -n "\${count}p" "$JEV_EXITS_FILE")
+    if [ -n "$scripted" ]; then exitCode="$scripted"; fi
+    if [ "$exitCode" -ne 0 ]; then exit "$exitCode"; fi
+    if [ -f "$JEV_ANSWER_COUNTER" ]; then
+      IFS= read -r ok < "$JEV_ANSWER_COUNTER" || ok=0
+    else
+      ok=0
+    fi
+    ok=$((ok + 1))
+    printf '%s\\n' "$ok" > "$JEV_ANSWER_COUNTER"
+    answer=$(sed -n "\${ok}p" "$JEV_ANSWERS_FILE")
     if [ -z "$answer" ]; then answer=0.9; fi
     printf '{"answers":{"answer":{"noul":%s}}}\\n' "$answer"
     exit 0
@@ -154,7 +162,9 @@ exit 2
       PATH: [binDir, process.env.PATH || ''].filter(Boolean).join(path.delimiter),
       JEV_LOG: logPath,
       JEV_COUNTER: counterPath,
+      JEV_ANSWER_COUNTER: answerCounterPath,
       JEV_ANSWERS_FILE: answersPath,
+      JEV_EXITS_FILE: exitsPath,
       JEV_STUB_VERSION: version,
       JEV_STUB_AUTH_STATUS: String(authStatus),
       JEV_STUB_NOUL_EXIT: String(noulExit),
@@ -604,6 +614,110 @@ test('a Jev arm that measures no row stops both rules on coverage', () => {
   }
 });
 
+test('a Jev arm over rows that all miss the join stops both rules on coverage', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'score-goal-lint-jev-no-join-'));
+
+  try {
+    const fixture = makeJevFixture(dir);
+    const placeholderHash = hashText('A criterion the lint never scored.');
+    const lintPath = path.join(dir, 'lint-mixed.json');
+    fs.writeFileSync(lintPath, JSON.stringify({
+      records: [...fixture.records, rec(placeholderHash, 'placeholder', [], [])]
+    }));
+    const labelsPath = path.join(dir, 'labels-mixed.jsonl');
+    fs.writeFileSync(
+      labelsPath,
+      [lab('ffffffffffff', false, false), lab(placeholderHash, true, true)]
+        .map((row) => JSON.stringify(row)).join('\n') + '\n'
+    );
+
+    const stub = makeStubJev(dir);
+    const out = path.join(dir, 'jev-out');
+    const result = spawnSync(
+      process.execPath,
+      [SCORER, '--labels', labelsPath, '--lint', lintPath, '--root', fixture.root, '--jev', '--out', out],
+      { encoding: 'utf8', env: stub.env }
+    );
+
+    assert.equal(result.status, 0, result.stderr + result.stdout);
+    assert.ok(result.stdout.includes('stale=1'));
+    assert.ok(result.stdout.includes('not_scored=1'));
+    assert.ok(result.stdout.includes('verdict jev rule4: stop (coverage) M=0 K=0 '));
+    assert.ok(result.stdout.includes('verdict jev rule5: stop (coverage) M=0 K=0 '));
+    assert.ok(!/verdict jev rule[45]: (keep|kill)/u.test(result.stdout));
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('a Jev exit 4 gets one backoff retry, then leaves the question unmeasured', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'score-goal-lint-jev-retry-'));
+
+  try {
+    const fixture = makeJevFixture(dir);
+    const answers = [];
+    for (const row of fixture.labels) {
+      for (const label of ['rule4_ok', 'rule5_ok']) {
+        const probability = row[label] === false ? '0.1' : '0.9';
+        answers.push(probability, probability, probability);
+      }
+    }
+
+    const once = makeStubJev(path.join(dir, 'once'), { answers, noulExits: [4] });
+    const onceOut = path.join(dir, 'once-out');
+    const first = runFixture(fixture, ['--jev', '--out', onceOut], once.env);
+
+    assert.equal(first.status, 0, first.stderr + first.stdout);
+    const onceCalls = fs.readFileSync(path.join(onceOut, 'calls.jsonl'), 'utf8').trim().split('\n').map(JSON.parse);
+    const onceNoul = onceCalls.filter((call) => call.phase === 'noul');
+    assert.equal(onceNoul.length, 25);
+    assert.equal(onceNoul[0].exitCode, 4);
+    assert.equal(onceNoul[0].attempt, 1);
+    assert.equal(onceNoul[1].exitCode, 0);
+    assert.equal(onceNoul[1].attempt, 2);
+    const onceReport = JSON.parse(fs.readFileSync(path.join(onceOut, 'report.json'), 'utf8'));
+    assert.ok(Math.abs(onceReport.columns.jev.rows[0].rule4.meanProbability - 0.1) <= Number.EPSILON);
+    assert.equal(onceReport.columns.jev.rows[0].rule4.status, undefined);
+    assert.equal(onceReport.columns.jev.status, 'completed');
+
+    // The unmeasured question's three answers are never served, so the twice
+    // stub's answer list drops them to keep every later call aligned.
+    const twice = makeStubJev(path.join(dir, 'twice'), { answers: answers.slice(3), noulExits: [4, 4] });
+    const twiceOut = path.join(dir, 'twice-out');
+    const second = runFixture(fixture, ['--jev', '--out', twiceOut], twice.env);
+
+    assert.equal(second.status, 0, second.stderr + second.stdout);
+    const twiceReport = JSON.parse(fs.readFileSync(path.join(twiceOut, 'report.json'), 'utf8'));
+    assert.equal(twiceReport.columns.jev.rows[0].rule4.status, 'unmeasured');
+    assert.equal(twiceReport.columns.jev.unmeasuredCalls, 1);
+    assert.ok(second.stdout.includes('verdict jev rule4: stop (coverage) M=3 K=4'));
+    assert.ok(second.stdout.includes('verdict jev rule5: keep ('));
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('Jev exit 130 stops the arm with the interrupted line', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'score-goal-lint-jev-interrupted-'));
+
+  try {
+    const fixture = makeJevFixture(dir);
+    const stub = makeStubJev(dir, { noulExit: 130 });
+    const out = path.join(dir, 'jev-out');
+    const result = runFixture(fixture, ['--jev', '--out', out], stub.env);
+
+    assert.equal(result.status, 0, result.stderr + result.stdout);
+    assert.ok(result.stdout.endsWith('jev arm stopped: interrupted\n'));
+    assert.ok(!result.stdout.includes('verdict jev rule'));
+
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    assert.equal(report.columns.jev.status, 'stopped');
+    assert.equal(report.columns.jev.reason, 'interrupted');
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test('--deem without --out exits before invoking the Deem stub', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'score-goal-lint-deem-no-out-'));
 
@@ -779,6 +893,42 @@ test('a Deem arm that measures no row stops both rules on coverage', () => {
     assert.equal(report.columns.deem.unmeasuredCalls, 8);
     assert.equal(report.columns.deem.verdicts.rule4.verdict, 'stop (coverage)');
     assert.equal(report.columns.deem.verdicts.rule5.verdict, 'stop (coverage)');
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('a second Deem run under a new commit pair requalifies the column', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'score-goal-lint-deem-requalify-'));
+
+  try {
+    const fixture = makeJevFixture(dir);
+    const answers = fixture.labels.flatMap((row) => ['rule4_ok', 'rule5_ok'].map(
+      (label) => row[label] === false ? '0.1' : '0.9'
+    ));
+    const stub = makeStubDeem(dir, { answers });
+    const out = path.join(dir, 'deem-out');
+
+    const first = runFixture(fixture, ['--deem', '--out', out], stub.env);
+    assert.equal(first.status, 0, first.stderr + first.stdout);
+    assert.ok(!first.stdout.includes('requalify:'));
+
+    fs.writeFileSync(path.join(dir, 'health.json'), JSON.stringify({
+      ok: true,
+      backend: 'torch',
+      model: 'deem-0.8-v1',
+      model_commit: 'model-commit-v2',
+      source_commit: 'source-commit-fixture'
+    }));
+    fs.rmSync(path.join(dir, 'deem-counter.txt'), { force: true });
+
+    const second = runFixture(fixture, ['--deem', '--out', out], stub.env);
+    assert.equal(second.status, 0, second.stderr + second.stdout);
+    assert.ok(second.stdout.includes('requalify: deem commit pair changed\n'));
+
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    assert.equal(report.columns.deem.requalified, 'deem commit pair changed');
+    assert.equal(report.columns.deem.modelCommit, 'model-commit-v2');
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
   }
