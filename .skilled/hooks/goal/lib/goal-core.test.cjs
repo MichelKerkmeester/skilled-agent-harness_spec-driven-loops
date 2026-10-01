@@ -653,13 +653,26 @@ test('verifyGoalHeuristic returns not-met when evidence carries a bare fail coun
   assert.equal(result.verdict, 'not-met');
 });
 
+test('verifyGoalHeuristic returns not-met when evidence carries a plural failures count', () => {
+  for (const text of [
+    '1 P0 failures (CHK-006). Marking the 5 passing items in the battery checklist done.',
+    '2 failures in the battery checklist run. Marking the 5 passing items done.',
+  ]) {
+    const result = core.verifyGoalHeuristic({
+      goal: { ...FIXTURE_GOAL, objective: 'close the battery checklist items' },
+      transcriptText: text,
+    });
+    assert.equal(result.verdict, 'not-met');
+  }
+});
+
 test('verifyGoalHeuristic does not treat a zero fail count as blocking', () => {
   const nodeTestSummary = core.verifyGoalHeuristic({
     goal: { ...FIXTURE_GOAL, objective: 'close the battery checklist items' },
     transcriptText: 'ℹ pass 25\nℹ fail 0\nAll battery checklist items done and verified.',
   });
   assert.equal(nodeTestSummary.verdict, 'met');
-  for (const tail of ['fail: 0', '0 fail', 'fails=0']) {
+  for (const tail of ['fail: 0', '0 fail', 'fails=0', '0 failures', 'failures: 0']) {
     const result = core.verifyGoalHeuristic({
       goal: { ...FIXTURE_GOAL, objective: 'close the battery checklist items' },
       transcriptText: `Battery checklist items done and verified; ${tail}.`,
