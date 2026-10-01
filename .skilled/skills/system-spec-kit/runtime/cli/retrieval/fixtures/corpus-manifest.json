@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2a2ad6dfc636e5d38951da446c3ea14d1b2c9397565ac65b288a01fab90390e7",
+  "corpusHash": "7acd1b1b1a33462ca428121c999ebbfe55bff20261be27b4c26f78f227bcc1c4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -23712,7 +23712,7 @@
     "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "19c4df9ff5cef9256fd85d4a914200ad1a07b02aa269b03e465e55fc40cbc494",
+  "manifestHash": "689413ebf985cf0146ad0c531805bd163da9a74aca47bfb0e46421a6c97b81f8",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
