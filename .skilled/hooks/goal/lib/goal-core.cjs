@@ -592,9 +592,14 @@ function verifierResult(verdict, reason, evidence, confidence) {
  * `defaultHeuristicSupervisorVerifier`. Free-form assistant text can sound
  * conclusive while still describing a blocker, so ambiguous or mixed
  * evidence always stays open (`not-met`/`unclear`) rather than `met`.
+ * It judges the tail of the evidence because the completion proof comes
+ * last, and a cut there would read as truncation.
  */
 function verifyGoalHeuristic({ goal, transcriptText } = {}) {
-  const safeEvidence = sanitizeInlineText(transcriptText || '', DEFAULT_MAX_EVIDENCE_CHARS);
+  const fullEvidence = sanitizeInlineText(transcriptText || '', Infinity);
+  const safeEvidence = fullEvidence.length > DEFAULT_MAX_EVIDENCE_CHARS
+    ? fullEvidence.slice(-DEFAULT_MAX_EVIDENCE_CHARS).trimStart()
+    : fullEvidence;
   const safeObjective = sanitizeInlineText(goal?.objective || '', DEFAULT_MAX_OBJECTIVE_CHARS);
 
   if (safeEvidence.length < 24) {
