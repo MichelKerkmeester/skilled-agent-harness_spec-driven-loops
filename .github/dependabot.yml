@@ -20,3 +20,15 @@ updates:
       npm-runtime:
         patterns:
           - "*"
+
+  # Workflow actions are pinned to commit SHAs, which never move on their own;
+  # this keeps them current without giving up the pin.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      github-actions:
+        patterns:
+          - "*"
