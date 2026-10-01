@@ -17,7 +17,7 @@ trigger_phrases:
 
 The directory inventory is authoritative for the auto-loaded plugin surface. Shared policy cores stay under their owning skill (`system-spec-kit`, `system-skill-advisor`, `sk-git`, `sk-code`, `sk-communication`, `sk-vision`, `system-completion`, `system-deep-loop`); the files here are **transport adapters** that translate OpenCode events into those cores and keep terminal output out of the TUI. The single shared boundary every plugin honors: **never write to stdout or stderr**, OpenCode overlays those onto the TUI prompt line and corrupts the interactive session. Findings are injected via `experimental.chat.system.transform`, returned from tool handlers, or persisted to bounded workspace logs.
 
-Every plugin honors a per-concern kill-switch via the shared `hook-flags.cjs` resolver (`isHookEnabled('<concern>')`), plus the master `SYSTEM_HOOKS_DISABLED`. A disabled plugin is a genuine full no-op, not just a no-emit no-op. All advisory checks fail open; rejection is opt-in per each plugin's own contract.
+Every plugin except `sk-git-message-gate.js` honors a per-concern kill-switch via the shared `hook-flags.cjs` resolver (`isHookEnabled('<concern>')`), plus the master `SYSTEM_HOOKS_DISABLED`. A disabled plugin is a genuine full no-op, not just a no-emit no-op. The message gate has no switch because the commit, PR and branch rules carry no bypass on any surface. All advisory checks fail open; rejection is opt-in per each plugin's own contract.
 
 ---
 
@@ -32,6 +32,7 @@ Every plugin honors a per-concern kill-switch via the shared `hook-flags.cjs` re
 | `session-cleanup.js` | `session-cleanup` | `event` (`session.created`/`deleted`), `experimental.chat.system.transform` | Performs bounded session and host cleanup. Startup guards + teardown cleanup; reaps MCP helper processes via `session-cleanup.sh`. |
 | `sk-code-post-edit-quality.js` | `post-edit-quality` | `tool.execute.before`, `tool.execute.after`, `experimental.chat.system.transform` | Runs bounded post-edit quality checks. `tool.execute.before` stashes the edited path keyed by callID (after has no file path); `tool.execute.after` runs the router core; findings drained on the next transform and recorded to a workspace log. |
 | `sk-communication-projection.js` | `sk-communication-projection` | `chat.message` | Projects assistant text through the `chat.message` hook, gated by enablement and a kill-switch, with byte-exact restore. Owns its own `isHookEnabled` (not the shared resolver) and `SK_COMMUNICATION_PROJECTION_DISABLED`. |
+| `sk-git-message-gate.js` | `git-message-gate` (no kill switch) | `tool.execute.before` for `bash` | Refuses a `git commit` message, `gh pr` description or new branch name that breaks the repository's own sk-git templates by throwing; allows what the shared gate cannot read. The one plugin with no kill switch, because the commit and push rules carry no bypass on any surface. |
 | `sk-git-preflight-advisory.js` | `git-preflight` | `tool.execute.before` for `bash`, `experimental.chat.system.transform` | Advises on Git command scope before execution. Buffers at most 20 advisory events and drains them on the next transform; never prints. |
 | `sk-vision.js` | `sk-vision` | `tool` (13 `sk_vision_*` tools) | Symlink → `../skills/sk-vision/vision-runtime/dist/plugin.js`. Local vision adapter: OCR, inspect, detect, pixel analysis. Auto-inspect uses a 2s grace and never awaits full GPU. |
 | `system-completion-sentinel.js` | `completion` | `event` (`session.created`/`idle`) | Checks completion evidence at session lifecycle points. On `session.idle`, resolves completion state via `ctx.client.session.messages()` (guarded, fail-open). Throttled-sweeps the shared state dir on `session.created`. |
@@ -57,6 +58,7 @@ plugins/
 +-- session-cleanup.js
 +-- sk-code-post-edit-quality.js
 +-- sk-communication-projection.js
++-- sk-git-message-gate.js
 +-- sk-git-preflight-advisory.js
 +-- sk-vision.js                           # symlink -> ../skills/sk-vision/vision-runtime/dist/plugin.js
 +-- system-completion-sentinel.js
@@ -119,7 +121,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 Plugin factories register some subset of:
 
 - `tool`: tools exposed to the model (e.g. `spec_kit_skill_advisor_status`, the goal tools, the 13 `sk_vision_*` tools, the read-only completion-evidence tool).
-- `tool.execute.before`: pre-tool evaluation (spec-gate enforce, git-preflight, mcp-route-guard, post-edit-quality path stash, deep-loop guard).
+- `tool.execute.before`: pre-tool evaluation (spec-gate enforce, git message gate, git-preflight, mcp-route-guard, post-edit-quality path stash, deep-loop guard).
 - `tool.execute.after`: post-tool evaluation (cli-dispatch-audit, post-edit-quality run).
 - `experimental.chat.system.transform`: per-turn system-context injection (advisor, memory, spec-gate classify, goal, post-edit-quality drain, dist-freshness).
 - `chat.message`: assistant message projection (sk-communication-projection).
@@ -149,5 +151,5 @@ Expected result: no syntax errors across every plugin (resolves imports against 
 
 - [`tests/README.md`](./tests/README.md): the plugin regression suites.
 - [`tests/helpers/README.md`](./tests/helpers/README.md): the shared test helpers.
-- [`../hooks/README.md`](../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix. Several plugins are mirrored there as the OpenCode adapter for their concern (`spec-gate`, `skill-advisor`, `git-preflight`, `session-cleanup`).
+- [`../hooks/README.md`](../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix. Several plugins are mirrored there as the OpenCode adapter for their concern (`spec-gate`, `skill-advisor`, `git-preflight`, `git-message-gate`, `session-cleanup`).
 - [`../skills/`](../skills/): the shared skill cores these plugins adapt.
