@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-git/032-template-driven-message-enforcement"
-    last_updated_at: "2026-10-01T18:20:00Z"
+    last_updated_at: "2026-10-01T19:05:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Built and verified the message contract in worktree 073 (38b2135472 plus the speedup commit)"
-    next_safe_action: "Merge worktree 073, then run and require the CI check"
+    recent_action: "Merged to main, pushed, CI passed and the check is required"
+    next_safe_action: "None; the packet is complete"
     blockers: []
     key_files:
       - ".skilled/skills/sk-git/scripts/lib/message-contract.mjs"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-git-032-template-driven-message-enforcement"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Creation standards cover PR descriptions and branch and worktree names"
@@ -48,7 +48,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 032-template-driven-message-enforcement |
-| **Completed** | Not yet: AC-006 and AC-009 open |
+| **Completed** | 2026-10-01 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -91,7 +91,7 @@ Each of the three templates has an "Enforced rules" section holding a JSON block
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Built in worktree `worktrees/073-message-contract-enforcement`, because the machine-wide hooks link into the main checkout and a half-built hook there would have blocked every repository and every running session. The new hook ran first against the 22 original test cases with only the contract wired in. It then ran against the last 40 and the last 500 real commits, which surfaced a too-strict packet check and a slow range scan; both were fixed before closing. Nothing is merged or pushed.
+Built in worktree `worktrees/073-message-contract-enforcement`, because the machine-wide hooks link into the main checkout and a half-built hook there would have blocked every repository and every running session. The new hook ran first against the 22 original test cases with only the contract wired in. It then ran against the last 40 and the last 500 real commits, which surfaced a too-strict packet check and a slow range scan; both were fixed before closing. It was fast-forwarded into `main` at 502e06659c and pushed; the first GitHub run (36910183390) passed, and ruleset 24326453 now requires the check on the default branch.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -142,7 +142,7 @@ Built in worktree `worktrees/073-message-contract-enforcement`, because the mach
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **CI has not run on GitHub yet.** Its push-step logic ran locally. Until the owner makes `message-contract` a required status check, CI reports and does not block.
+1. **Admins can bypass the required check.** Ruleset `message-contract-required` lets the admin role bypass it, so the owner's direct pushes to `main` are held by the local pre-push gate rather than by GitHub. Pull requests from anyone else must pass the check.
 2. **The OpenCode, Pi and Hermes gates are proven by unit tests, not a live session.** Each test drives the real plugin or extension entry point against a throwaway repository, but no OpenCode, Pi or Hermes session has run one yet.
 3. **Old history is not re-checked.** The last 500 commits hold 130 that the new rules would block, such as `1430237b9b` (no body) and `8e4b86b247` (`Spec:` without a track). Pushes check only new commits.
 4. **Other repositories need the validator to run CI.** The local hooks work for any repository through the machine-wide install, but a repository's own CI needs a copy of `validate-message.mjs` and its library.
