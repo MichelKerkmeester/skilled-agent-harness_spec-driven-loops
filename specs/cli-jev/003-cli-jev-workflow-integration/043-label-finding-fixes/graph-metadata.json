@@ -58,7 +58,8 @@
       ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs",
       "build/fix/006a.md",
-      "build/fix/006c.md"
+      "build/fix/006c.md",
+      ".devin/SYNC.md"
     ],
     "entities": [
       {
@@ -170,6 +171,12 @@
         "source": "derived"
       },
       {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".devin/SYNC.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -198,17 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 042 labeled every fillable gate and found three tool defects",
     "created_at": "2026-10-01T18:41:49Z",
-    "last_save_at": "2026-10-01T20:22:38.692Z",
+    "last_save_at": "2026-10-01T20:29:59.311Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +220,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:061225ef9412cb0ad338b883c45d37f618ca561d1528eca01b623228392b98dc",
+    "source_fingerprint": "sha256:5735301bad5f05d6ba1b8fcaf04392b220b84bf333a5d85fab42adfb39b22af7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "447d41dc03c001a4fdec63938cdc858b3a87ea7cb18a47cf70e694cd28157aa1",

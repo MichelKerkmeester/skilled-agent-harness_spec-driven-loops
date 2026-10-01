@@ -173,7 +173,11 @@ function deltaIterationFiles(lineageDir) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Return a finding's unique file sources in first-seen order.
+ * Return unique file sources in first-seen order. Trim each candidate, unwrap a
+ * `[SOURCE: ...]` value, then remove a leading `file:` and skip other word
+ * prefixes. From the first token, strip repeated `:<n>` or `:<n>-<n>` line
+ * references and a trailing `#L...` anchor. Keep only tokens containing `/` or
+ * ending in a one-to-eight-character alphanumeric extension.
  *
  * @param {object} record - Finding record from a delta file
  * @returns {string[]} Normalized unique sources
@@ -191,11 +195,31 @@ function findingSources(record) {
       continue;
     }
     const trimmed = candidate.trim();
-    if (trimmed === '' || /^[A-Za-z]+:(?![\\/])/.test(trimmed)) {
+    if (trimmed === '') {
       continue;
     }
-    const source = trimmed.replace(/:\d+(?:-\d+)?(?:,\d+(?:-\d+)?)*$/, '');
-    if (source === '' || seen.has(source)) {
+
+    const wrapped = /^\[SOURCE:\s*([\s\S]*)\]$/.exec(trimmed);
+    let normalized = (wrapped === null ? trimmed : wrapped[1]).trim();
+    if (normalized.startsWith('file:')) {
+      normalized = normalized.slice('file:'.length).trim();
+    }
+    if (normalized === '' || /^[A-Za-z]+:(?![\\/])/.test(normalized)) {
+      continue;
+    }
+
+    const token = /^[^\s,;()\[\]]+/.exec(normalized);
+    if (token === null) {
+      continue;
+    }
+    const source = token[0]
+      .replace(/#L.*$/, '')
+      .replace(/(?::\d+(?:-\d+)?)+$/, '');
+    if (
+      source === '' ||
+      (!source.includes('/') && !/\.[A-Za-z0-9]{1,8}$/.test(source)) ||
+      seen.has(source)
+    ) {
       continue;
     }
     seen.add(source);
