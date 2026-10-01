@@ -213,14 +213,14 @@
     ],
     "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-10-01T07:25:28.277Z",
+    "last_save_at": "2026-10-01T07:47:58.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:a1685c1522256a6f357262ec93dcb73f539b660f943ad26610670ca29e1bcb93",
+    "source_fingerprint": "sha256:55affd1455535816e09a151ef94a45438ed89539f9fbe4959e73c9be86fbc325",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c3d24a1f5b8e7bbeb94150c5053d448bb38df9cb702f3e04298237ea006f8957"
