@@ -38,7 +38,7 @@ const REPO_ROOT = resolve(SCRIPT_DIR, '..', '..', '..', '..', '..', '..');
 
 const require = createRequire(import.meta.url);
 // Loaded from the sentinel itself so the census can never drift from the Stop hooks' own detector.
-const { COMPLETION_CLAIM_PATTERN, detectCompletionClaim } = require('../../lib/hooks/completion-evidence-sentinel.cjs');
+const { COMPLETION_CLAIM_PATTERN, detectCompletionClaim } = require('../../hooks/lib/completion-evidence-sentinel.cjs');
 
 // The census scans the same trailing slice the detector does; both lengths must move together
 // or a row can fire while holding no claim word in the slice.
