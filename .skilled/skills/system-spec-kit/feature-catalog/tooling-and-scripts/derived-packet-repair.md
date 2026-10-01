@@ -6,7 +6,7 @@ trigger_phrases:
   - "repair-derived"
   - "packet autofix boundary"
   - "derived versus authored failures"
-version: 3.6.0.1
+version: 1.6.0.1
 ---
 
 # Derived packet repair

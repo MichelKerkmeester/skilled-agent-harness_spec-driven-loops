@@ -6,7 +6,7 @@ trigger_phrases:
   - "score-compaction-recall.mjs"
   - "compact_boundary census"
   - "compaction brief recall"
-version: 4.3.0.0
+version: 2.3.0.0
 ---
 
 # Compaction recall census (score-compaction-recall.mjs)

@@ -6,7 +6,7 @@ trigger_phrases:
   - "score-alignment-suggestion.ts"
   - "alignment suggestion scorer"
   - "alignment folder suggestion"
-version: 4.4.0.0
+version: 2.4.0.0
 ---
 
 # Alignment suggestion measurement (score-alignment-suggestion.ts)

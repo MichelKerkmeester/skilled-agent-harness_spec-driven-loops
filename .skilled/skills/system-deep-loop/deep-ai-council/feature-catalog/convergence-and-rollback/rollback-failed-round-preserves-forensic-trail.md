@@ -7,7 +7,7 @@ trigger_phrases:
   - "roll back council round"
   - "failed round forensic evidence"
   - "rollback state event"
-version: 2.3.0.9
+version: 1.7.0.9
 ---
 
 # Rollback failed round preserves forensic trail

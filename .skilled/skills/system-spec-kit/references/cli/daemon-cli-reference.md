@@ -9,7 +9,7 @@ trigger_phrases:
   - "cli vs mcp transport"
 importance_tier: important
 contextType: implementation
-version: 3.6.0.8
+version: 1.6.0.8
 ---
 
 # Daemon CLI Reference

@@ -7,7 +7,7 @@ trigger_phrases:
   - shared neutrality
   - import restriction
   - thin wrapper validation
-version: 3.6.0.16
+version: 1.6.0.16
 ---
 
 # Architecture boundary enforcement

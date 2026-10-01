@@ -1,7 +1,7 @@
 ---
 title: "139 -- Session capturing pipeline quality"
 description: "This scenario validates Session capturing pipeline quality for `139`. It focuses on Canonical coverage sourced from M-007 session-capturing closure verification."
-version: 3.6.0.17
+version: 1.6.0.17
 id: tooling-and-scripts-session-capturing-pipeline-quality-coverage
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

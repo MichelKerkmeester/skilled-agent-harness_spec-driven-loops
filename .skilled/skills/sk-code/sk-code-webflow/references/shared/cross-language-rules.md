@@ -8,7 +8,7 @@ trigger_phrases:
   - "why not what comments"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.3
+version: 1.5.0.3
 ---
 
 # Cross-Language Rules: Webflow

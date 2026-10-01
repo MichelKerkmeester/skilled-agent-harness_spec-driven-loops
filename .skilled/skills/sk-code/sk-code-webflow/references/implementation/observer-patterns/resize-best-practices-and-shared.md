@@ -8,7 +8,7 @@ trigger_phrases:
   - "webflow resizeobserver best"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.4
+version: 1.5.0.4
 ---
 
 # ResizeObserver, Best Practices, Quick Reference & SharedObservers

@@ -8,7 +8,7 @@ trigger_phrases:
   - "strict validation checklist"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.5
+version: 1.5.0.5
 ---
 
 # Spec Folder Authoring Checklist

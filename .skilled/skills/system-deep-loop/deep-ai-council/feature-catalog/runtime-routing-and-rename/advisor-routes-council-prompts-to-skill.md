@@ -7,7 +7,7 @@ trigger_phrases:
   - "route council request"
   - "scorer coverage"
   - "skill routing council"
-version: 2.3.0.8
+version: 1.7.0.8
 ---
 
 # Advisor routes council prompts to skill

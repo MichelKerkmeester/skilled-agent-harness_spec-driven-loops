@@ -7,7 +7,7 @@ trigger_phrases:
   - "check-native-modules"
   - "node abi marker"
   - "check-prerequisites"
-version: 3.6.0.13
+version: 1.6.0.13
 ---
 
 # Setup, Native Module Health, and MCP Installation

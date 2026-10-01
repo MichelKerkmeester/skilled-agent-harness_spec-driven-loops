@@ -1,7 +1,7 @@
 ---
 title: "M-013 -- AC_COVERAGE single-source ratio"
 description: "Verify the acceptance-coverage advisory takes its total and its evidence from one document, so a packet that recorded its criteria is never scored as if it had not."
-version: 4.0.0.0
+version: 2.0.0.0
 id: tooling-and-scripts-ac-coverage-single-source-ratio
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

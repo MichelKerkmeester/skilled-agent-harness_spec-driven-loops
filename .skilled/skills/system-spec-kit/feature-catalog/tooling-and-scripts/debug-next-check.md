@@ -6,7 +6,7 @@ trigger_phrases:
   - "score-debug-next-check.mjs"
   - "debug next_check choice"
   - "next-check label census"
-version: 4.6.0.0
+version: 2.6.0.0
 ---
 
 # Debug next check (score-debug-next-check.mjs)

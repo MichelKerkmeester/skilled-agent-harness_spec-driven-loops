@@ -7,7 +7,7 @@ trigger_phrases:
   - "redact council graph metadata"
   - "metadata key allowlist"
   - "prompt-safe query output"
-version: 2.3.0.10
+version: 1.7.0.10
 ---
 
 # runtime query CLI hostile metadata redaction

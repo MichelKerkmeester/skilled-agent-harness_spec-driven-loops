@@ -8,7 +8,7 @@ trigger_phrases:
   - "commenting universal rules"
 importance_tier: normal
 contextType: implementation
-version: 4.2.0.13
+version: 2.2.0.13
 ---
 
 # Universal Code Style Guide

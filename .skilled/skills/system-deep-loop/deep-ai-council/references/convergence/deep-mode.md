@@ -8,7 +8,7 @@ trigger_phrases:
   - "council cost guards"
 importance_tier: "normal"
 contextType: "planning"
-version: 2.3.0.3
+version: 1.7.0.3
 ---
 
 # Deep Mode Session Hierarchy

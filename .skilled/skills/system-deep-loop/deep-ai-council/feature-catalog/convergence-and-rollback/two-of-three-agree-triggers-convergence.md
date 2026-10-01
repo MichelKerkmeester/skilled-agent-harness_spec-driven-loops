@@ -7,7 +7,7 @@ trigger_phrases:
   - "majority agreement stop rule"
   - "convergence threshold"
   - "check council agreement to proceed"
-version: 2.3.0.9
+version: 1.7.0.9
 ---
 
 # Two-of-three agree triggers convergence

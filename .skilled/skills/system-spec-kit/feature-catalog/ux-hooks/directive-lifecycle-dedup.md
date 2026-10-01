@@ -7,7 +7,7 @@ trigger_phrases:
   - "SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP"
   - "SPECKIT_PI_DIRECTIVE_DEDUP"
   - "advisor directive repetition"
-version: 3.7.0.3
+version: 1.7.0.3
 ---
 
 # Cross-runtime directive-lifecycle dedup

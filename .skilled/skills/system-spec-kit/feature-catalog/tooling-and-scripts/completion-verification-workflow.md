@@ -7,7 +7,7 @@ trigger_phrases:
   - tasks checklist completion gate
   - P0 P1 evidence markers
   - spec folder completion check
-version: 3.6.0.7
+version: 1.6.0.7
 ---
 
 # Completion Verification Workflow

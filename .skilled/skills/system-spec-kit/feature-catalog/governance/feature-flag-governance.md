@@ -7,7 +7,7 @@ trigger_phrases:
   - "flag sunset and audit"
   - "compiled routing kill switch"
   - "SPECKIT_COMPILED_ROUTING"
-version: 4.0.0.0
+version: 2.0.0.0
 ---
 
 # Feature flag governance

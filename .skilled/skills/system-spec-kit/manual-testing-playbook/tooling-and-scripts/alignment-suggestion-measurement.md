@@ -1,7 +1,7 @@
 ---
 title: "461 -- Alignment suggestion measurement"
 description: "This scenario validates the alignment suggestion measurement for `461`. It focuses on a default run that prints the census lines and both replay lines with no model call, and on the suite that proves 42 stub-backed cases."
-version: 4.4.0.0
+version: 2.4.0.0
 ---
 
 # 461 -- Alignment suggestion measurement

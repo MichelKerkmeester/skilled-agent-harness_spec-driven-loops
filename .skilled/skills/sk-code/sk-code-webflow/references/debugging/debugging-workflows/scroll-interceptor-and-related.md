@@ -7,7 +7,7 @@ trigger_phrases:
   - "scroll interceptor and related reference"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.18
+version: 1.5.0.18
 ---
 
 

@@ -1,7 +1,7 @@
 ---
 title: "DOC-346 -- Version migration cleanup legacy"
 description: "Manual scenario validating /doctor:update --cleanup-legacy per-file prompts and confirmed-only legacy deletion after migration."
-version: 3.6.0.5
+version: 1.6.0.5
 id: doctor-commands-version-migration-cleanup-legacy
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

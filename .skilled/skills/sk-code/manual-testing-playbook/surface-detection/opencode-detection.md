@@ -1,7 +1,7 @@
 ---
 title: "SD-002: OPENCODE Surface Detection"
 description: "Verify sk-code routes system-code prompts (paths under .skilled/) to the OPENCODE surface and loads the opencode/* reference and asset trees with correct sub-language detection."
-version: 3.5.0.6
+version: 1.5.0.6
 ---
 
 # SD-002: OPENCODE Surface Detection

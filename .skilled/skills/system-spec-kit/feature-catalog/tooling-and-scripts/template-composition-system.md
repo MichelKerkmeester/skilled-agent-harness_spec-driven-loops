@@ -7,7 +7,7 @@ trigger_phrases:
   - "scaffold spec packet"
   - "level-contract-resolver"
   - "inline gate renderer"
-version: 3.6.0.9
+version: 1.6.0.9
 ---
 
 # Template Composition System

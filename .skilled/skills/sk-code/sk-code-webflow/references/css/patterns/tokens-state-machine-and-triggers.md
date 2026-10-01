@@ -8,7 +8,7 @@ trigger_phrases:
   - "css validation architecture"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.4
+version: 1.5.0.4
 ---
 
 # CSS Patterns - Webflow Implementation Reference

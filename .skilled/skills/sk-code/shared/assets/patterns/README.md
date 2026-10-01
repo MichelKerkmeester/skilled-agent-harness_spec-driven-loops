@@ -4,7 +4,7 @@ description: "Code-facing README for .skilled/skills/sk-code/shared/assets/patte
 trigger_phrases:
   - "sk-code assets/universal/patterns"
   - "code README"
-version: 3.5.0.5
+version: 1.5.0.5
 ---
 
 # sk code assets universal patterns

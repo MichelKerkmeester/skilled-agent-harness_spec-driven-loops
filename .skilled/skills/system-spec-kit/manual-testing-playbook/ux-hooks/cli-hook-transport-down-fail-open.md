@@ -1,7 +1,7 @@
 ---
 title: "433 -- CLI Hook Transport-Down Fail-Open"
 description: "Manual check that the skill-advisor prompt hook exits 0 and never blocks the prompt when the daemon socket is absent, with a status line or a brief in every case."
-version: 3.6.0.2
+version: 1.6.0.2
 id: ux-hooks-cli-hook-transport-down-fail-open
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

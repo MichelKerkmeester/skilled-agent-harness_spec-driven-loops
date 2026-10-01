@@ -1,7 +1,7 @@
 ---
 title: "457 -- Cross-runtime directive-lifecycle dedup"
 description: "Validate lifecycle-scoped directive delivery through the canonical decision, registered runtime adapters, plugin and Pi seams, and separately classified native-host receipts."
-version: 3.7.0.3
+version: 1.7.0.3
 id: ux-hooks-directive-lifecycle-dedup
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:

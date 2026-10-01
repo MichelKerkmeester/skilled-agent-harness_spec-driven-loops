@@ -8,7 +8,7 @@ trigger_phrases:
   - "motion import verification"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.3
+version: 1.5.0.3
 ---
 
 # Motion.dev Install Card - Install and Import Snippets

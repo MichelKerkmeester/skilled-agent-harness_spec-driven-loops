@@ -1,7 +1,7 @@
 ---
 title: "463 -- Debug next check"
 description: "This scenario validates the debug next check for `463`. It focuses on a default run with stubs first on the path that starts no backend, the label-gate stop over 29 rows that prints no row text, the stub-backend skip over 30 rows, and the suite that proves zero model calls."
-version: 4.6.0.0
+version: 2.6.0.0
 ---
 
 # 463 -- Debug next check

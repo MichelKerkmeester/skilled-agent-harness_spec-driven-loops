@@ -8,7 +8,7 @@ trigger_phrases:
   - "spec folder detection"
 importance_tier: normal
 contextType: implementation
-version: 3.6.0.27
+version: 1.6.0.27
 ---
 
 # Folder Routing & Alignment

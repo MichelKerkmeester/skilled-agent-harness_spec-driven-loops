@@ -1,7 +1,7 @@
 ---
 title: "449 -- CLI compact list-tools and completion generation"
 description: "Manual check that the skill-advisor CLI exposes compact and names-only list-tools output without schemas, and generates parseable bash/zsh completion scripts."
-version: 4.0.0.0
+version: 2.0.0.0
 id: tooling-and-scripts-cli-compact-and-completion
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

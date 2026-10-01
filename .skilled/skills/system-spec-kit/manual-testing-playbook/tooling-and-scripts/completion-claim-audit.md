@@ -1,7 +1,7 @@
 ---
 title: "462 -- Completion claim audit"
 description: "This scenario validates the completion claim audit for `462`. It focuses on a default run over the synthetic rows with stubs first on the path that starts no backend and prints no row text, the stub-backend skip, and the suite that proves zero model calls."
-version: 4.5.0.0
+version: 2.5.0.0
 ---
 
 # 462 -- Completion claim audit

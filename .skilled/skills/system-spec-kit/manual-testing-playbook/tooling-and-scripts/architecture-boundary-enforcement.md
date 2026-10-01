@@ -1,7 +1,7 @@
 ---
 title: "206 -- Architecture boundary enforcement"
 description: "This scenario validates architecture boundary enforcement for `206`. It focuses on confirming shared neutrality and thin-wrapper-only enforcement."
-version: 3.6.0.11
+version: 1.6.0.11
 id: tooling-and-scripts-architecture-boundary-enforcement
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

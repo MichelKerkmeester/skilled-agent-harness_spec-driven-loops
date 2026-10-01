@@ -1,7 +1,7 @@
 ---
 title: "DAC-026 -- Council graph MCP surface retired"
 description: "This scenario validates that no MCP tool family carries council graph operations and that they route through runtime/ --loop-type council."
-version: 2.3.0.8
+version: 1.7.0.8
 ---
 
 # DAC-026 -- Council graph MCP surface retired

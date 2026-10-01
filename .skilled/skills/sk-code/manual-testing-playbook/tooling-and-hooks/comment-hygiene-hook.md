@@ -1,7 +1,7 @@
 ---
 title: "TH-002: check-comment-hygiene.sh wiring into claude-posttooluse.sh"
 description: "Verify that an Edit introducing a forbidden ephemeral-artifact comment makes the shared PostToolUse hook print a COMMENT HYGIENE WARNING banner to stdout while always exiting 0, and that the direct check-comment-hygiene.sh checker returns rc=1 on the offending file and rc=0 once the comment is rewritten as a durable WHY."
-version: 3.5.0.16
+version: 1.5.0.16
 ---
 
 # TH-002: check-comment-hygiene.sh wiring into claude-posttooluse.sh

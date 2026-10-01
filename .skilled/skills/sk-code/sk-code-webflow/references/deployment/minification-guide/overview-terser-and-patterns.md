@@ -8,7 +8,7 @@ trigger_phrases:
   - "minified ast verification"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.15
+version: 1.5.0.15
 ---
 
 

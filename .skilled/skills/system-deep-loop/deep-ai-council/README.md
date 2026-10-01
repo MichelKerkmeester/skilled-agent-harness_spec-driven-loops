@@ -8,7 +8,7 @@ trigger_phrases:
   - "multi-seat planning"
   - "planning council"
   - "council convergence"
-version: 2.4.0.0
+version: 1.8.0.0
 ---
 
 # deep-ai-council

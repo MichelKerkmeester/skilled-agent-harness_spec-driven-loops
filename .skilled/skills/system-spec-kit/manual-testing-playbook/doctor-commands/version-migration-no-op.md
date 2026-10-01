@@ -1,7 +1,7 @@
 ---
 title: "DOC-347 -- Version migration no-op"
 description: "Manual scenario validating /doctor:update --migrate no-op behavior when the installed version already equals migration-manifest.json current_version."
-version: 3.6.0.5
+version: 1.6.0.5
 id: doctor-commands-version-migration-no-op
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

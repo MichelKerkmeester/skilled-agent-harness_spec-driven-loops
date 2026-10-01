@@ -8,7 +8,7 @@ trigger_phrases:
   - "webflow state machine"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.4
+version: 1.5.0.4
 ---
 
 # State Machine, Cloudflare Worker Proxy & Form Integration

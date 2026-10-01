@@ -6,7 +6,7 @@ trigger_phrases:
   - "SPECKIT_COMPLETION_FRESHNESS"
   - "CONTINUITY_FRESHNESS validator"
   - "completion fingerprint freshness"
-version: 3.6.0.1
+version: 1.6.0.1
 ---
 
 # Completion-verdict freshness validation

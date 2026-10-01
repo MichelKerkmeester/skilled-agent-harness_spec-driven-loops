@@ -9,7 +9,7 @@ trigger_phrases:
   - "animation initialization safeguards"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.5
+version: 1.5.0.5
 ---
 
 # Motion.dev Integration Patterns

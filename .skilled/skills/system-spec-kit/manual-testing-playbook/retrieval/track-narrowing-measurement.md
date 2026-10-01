@@ -1,7 +1,7 @@
 ---
 title: "459 -- Track narrowing measurement"
 description: "This scenario validates the track narrowing measurement for `459`. It focuses on the zero-call default run and a Deem arm that skips a stub backend."
-version: 4.2.0.0
+version: 2.2.0.0
 ---
 
 # 459 -- Track narrowing measurement

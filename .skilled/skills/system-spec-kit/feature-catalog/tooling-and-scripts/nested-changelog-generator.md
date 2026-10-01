@@ -6,7 +6,7 @@ trigger_phrases:
   - "packet changelog identity phrase"
   - "nested-changelog.js"
   - "packet-local changelog"
-version: 4.1.0.0
+version: 2.1.0.0
 ---
 
 # Nested changelog generator (nested-changelog.js)

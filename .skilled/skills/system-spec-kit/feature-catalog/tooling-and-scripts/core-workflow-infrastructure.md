@@ -7,7 +7,7 @@ trigger_phrases:
   - "post-save review"
   - "quality scorer"
   - "indexing pipeline"
-version: 3.6.0.7
+version: 1.6.0.7
 ---
 
 # Core Workflow Infrastructure

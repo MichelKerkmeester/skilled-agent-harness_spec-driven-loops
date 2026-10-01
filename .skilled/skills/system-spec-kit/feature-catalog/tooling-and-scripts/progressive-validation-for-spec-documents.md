@@ -7,7 +7,7 @@ trigger_phrases:
   - spec document validation
   - auto-fix validation pipeline
   - validate.sh wrapper
-version: 4.1.0.26
+version: 2.1.0.26
 ---
 
 # Progressive validation for spec documents

@@ -1,7 +1,7 @@
 ---
 title: "DAC-033 -- Cross-mode anti-convergence contract"
 description: "This scenario validates the council min-round anti-convergence floor, fail-closed runtime stop policy, and shared optimizer/runtime guard anchors for DAC-033."
-version: 2.3.0.1
+version: 1.7.0.1
 ---
 
 # DAC-033 -- Cross-mode anti-convergence contract

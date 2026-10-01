@@ -1,6 +1,6 @@
 {
   "skill": "system-deep-loop",
-  "version": "3.0.2.0",
+  "version": "1.5.2.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,

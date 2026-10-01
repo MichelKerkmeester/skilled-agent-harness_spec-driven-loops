@@ -1,7 +1,7 @@
 ---
 title: "429 -- CLI Dist-Freshness Guard Trip"
 description: "Manual check that a CLI shim refuses a stale dist entrypoint with exit 69 and a rebuild instruction, that the per-system dev-override env restores pass-through, and that the trip is fully reversible via content restore."
-version: 4.0.0.0
+version: 2.0.0.0
 id: tooling-and-scripts-cli-dist-freshness-guard
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

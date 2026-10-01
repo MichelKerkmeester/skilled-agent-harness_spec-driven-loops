@@ -9,7 +9,7 @@ trigger_phrases:
   - "insufficient vantage diversity"
 importance_tier: "normal"
 contextType: "planning"
-version: 2.3.0.8
+version: 1.7.0.8
 ---
 
 # AI Council Failure Handling
