@@ -11,17 +11,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-git/032-template-driven-message-enforcement"
-    last_updated_at: "2026-10-01T17:03:25Z"
+    last_updated_at: "2026-10-01T19:05:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Recorded evidence for the build at 38b2135472"
-    next_safe_action: "Run the workflow on GitHub; decide OpenCode and Pi gate wiring"
+    recent_action: "Closed AC-006: first CI run passed and the check is required by ruleset 24326453"
+    next_safe_action: "None; the packet is complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-git-032-template-driven-message-enforcement"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -59,7 +59,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003 | Given git config `skgit.messageContract`, a repo `.sk-git/` template, the repo's sk-git templates and none of them, When `validate-message.mjs --explain` runs, Then it names the expected source each time and reports no enforcement when none exists | .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs:152; `message-contract.test.mjs` resolution tests (no templates, `.sk-git/`, missing `skgit.contractDir`) and `validate-message.mjs --explain` output (38b2135472) | Met | - |
 | AC-004 | REQ-004 | Given a fixture repository whose template allows only `feat`/`fix`, drops `Spec:` and sets a 72-character limit, When commits are validated there, Then its rules apply and sk-git's do not | .skilled/scripts/git-hooks/tests/commit-msg.test.sh:377; `commit-msg.test.sh` case 24: a `.sk-git/` template with only feat/fix and a 50-char limit accepts `feat: …` and rejects `docs(…)` and a 61-char subject (38b2135472) | Met | - |
 | AC-005 | REQ-005 | Given a commit whose subject, body or trailers break the contract, When `git commit` runs, Then it is blocked and each violation is printed with its rule id | .skilled/scripts/git-hooks/tests/commit-msg.test.sh:81; `commit-msg.test.sh` 29/29; every block names its rule id (38b2135472) | Met | - |
-| AC-006 | REQ-006 | Given a pushed commit or PR body that breaks the contract, When the `message-contract` workflow runs, Then the check fails and names the commit or section | .github/workflows/message-contract.yml:41; Workflow written and its push-step logic run locally against `origin/main..HEAD`; it has not run on GitHub yet, and making it required is an owner setting | Unmet | - |
+| AC-006 | REQ-006 | Given a pushed commit or PR body that breaks the contract, When the `message-contract` workflow runs, Then the check fails and names the commit or section | .github/workflows/message-contract.yml:41; First GitHub run 36910183390 on push 502e06659c passed; the check "Commit messages, branch names and PR description follow the templates" is required on the default branch by ruleset 24326453 (`message-contract-required`, active, admin role may bypass) | Met | - |
 | AC-007 | REQ-007 | Given every case in `tests/commit-msg.test.sh`, When run through the old hook and the new validator, Then the verdicts are identical | 19 of 22 original cases give identical verdicts; 3 change on purpose (bypass case 9, `specs/`-prefixed Spec cases 4 and 10) | Superseded | ADR-004 |
 | AC-008 | REQ-008 | Given a commit made with `--no-verify` that breaks the contract, When it is pushed, Then `pre-push` blocks the push | .skilled/scripts/git-hooks/tests/pre-push-message-contract.test.sh:86; `pre-push-message-contract.test.sh` cases 2 and 3: a hookless commit is blocked at push, including below a good tip; 10/10 (38b2135472) | Met | - |
 | AC-009 | REQ-009 | Given an agent runs `gh pr create` with a body missing a required section, When the PreToolUse gate fires, Then the call is denied with the violated rule ids | .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs:179; Gate denies over real payloads for Claude, Codex and Devin (`permissionDecision: deny`) and Cursor (`permission: deny`, exit 2), rendered through the hook registry. OpenCode throws the refusal (.opencode/plugins/tests/sk-git-message-gate.test.cjs, 5/5), Pi returns `{ block: true }` (.skilled/skills/sk-git/scripts/hooks/pi/git-message-gate.test.ts, 3/3) and Hermes returns `action: block` (.hermes/plugins/repo-guards/tests/test_repo_guards.py, 48/48, one case running the real core). Not yet proven in a live OpenCode, Pi or Hermes session | Met | - |
@@ -90,7 +90,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Eleven of twelve criteria are met or superseded. AC-006 waits for the workflow's first run on GitHub and the required-check setting in the ruleset.
+All twelve criteria are met or superseded. AC-007 is superseded by ADR-004.
 <!-- /ANCHOR:closure -->
