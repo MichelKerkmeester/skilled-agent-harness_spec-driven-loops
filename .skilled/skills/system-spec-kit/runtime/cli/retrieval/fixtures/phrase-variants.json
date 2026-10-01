@@ -1,5 +1,5 @@
 {
-  "manifestHash": "17db491a937fbd00084ad689b6904ed3d21405d5502819e6e2ae136c0903f98b",
+  "manifestHash": "77b5d9e2faf996e55bc1489ff5ec4a570c2b45c7cc88110df48601386e0aebeb",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8993,6 +8993,9 @@
     "advisor routing code queue": [
       "advisor routing code queue"
     ],
+    "advisor runtime alignment": [
+      "advisor runtime alignment"
+    ],
     "advisor runtime directory": [
       "advisor runtime directory"
     ],
@@ -11096,6 +11099,12 @@
     ],
     "architecture smell patterns": [
       "architecture smell patterns"
+    ],
+    "architecture template": [
+      "architecture template"
+    ],
+    "architecture template route": [
+      "architecture template route"
     ],
     "architecture template sk create readme": [
       "architecture template sk-create-readme"
@@ -29777,6 +29786,9 @@
     "deep loop and cli contract drift": [
       "deep loop and cli contract drift"
     ],
+    "deep loop architecture": [
+      "deep loop architecture"
+    ],
     "deep loop architecture md": [
       "deep loop architecture md"
     ],
@@ -30329,6 +30341,9 @@
     "deep loop runtime 1 9 0 0": [
       "deep-loop-runtime 1.9.0.0"
     ],
+    "deep loop runtime 1 9 1 0": [
+      "deep-loop-runtime 1.9.1.0"
+    ],
     "deep loop runtime alignment": [
       "deep loop runtime alignment"
     ],
@@ -30406,6 +30421,9 @@
     ],
     "deep loop runtime v1 9 0 0": [
       "deep-loop-runtime v1.9.0.0"
+    ],
+    "deep loop runtime v1 9 1 0": [
+      "deep-loop-runtime v1.9.1.0"
     ],
     "deep loop safe now gated split": [
       "deep-loop safe-now gated split"
@@ -41236,6 +41254,9 @@
     ],
     "folder utilities": [
       "folder utilities"
+    ],
+    "folders and tests rule": [
+      "folders and tests rule"
     ],
     "follow each failure enumeration": [
       "follow each failure enumeration"
@@ -60748,6 +60769,9 @@
     "obsidian surface subfolder authoring": [
       "obsidian surface subfolder authoring"
     ],
+    "obsidian test layout": [
+      "obsidian test layout"
+    ],
     "obsidian theme": [
       "obsidian theme"
     ],
@@ -77056,6 +77080,9 @@
     "runtime cli target layout": [
       "runtime cli target layout"
     ],
+    "runtime code alignment": [
+      "runtime code alignment"
+    ],
     "runtime code not aligned with sk code": [
       "runtime code not aligned with sk-code"
     ],
@@ -79400,6 +79427,9 @@
     "section 6 heading fix": [
       "Section 6 Heading Fix"
     ],
+    "section and folder checks": [
+      "section and folder checks"
+    ],
     "section count rule removed": [
       "section count rule removed"
     ],
@@ -81663,6 +81693,9 @@
     "sk code 4 2 3 0": [
       "sk-code 4.2.3.0"
     ],
+    "sk code 4 2 4 0": [
+      "sk-code 4.2.4.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -82002,6 +82035,9 @@
     "sk code obsidian 0 1 0 0": [
       "sk-code-obsidian 0.1.0.0"
     ],
+    "sk code obsidian 0 1 1 0": [
+      "sk-code-obsidian 0.1.1.0"
+    ],
     "sk code obsidian assets checklists": [
       "sk-code-obsidian assets checklists"
     ],
@@ -82101,6 +82137,9 @@
     "sk code obsidian v0 1 0 0 release note": [
       "sk-code-obsidian v0.1.0.0 release note"
     ],
+    "sk code obsidian v0 1 1 0": [
+      "sk-code-obsidian v0.1.1.0"
+    ],
     "sk code onboard implement": [
       "sk-code onboard implement"
     ],
@@ -82124,6 +82163,9 @@
     ],
     "sk code opencode 1 0 1 0": [
       "sk-code-opencode 1.0.1.0"
+    ],
+    "sk code opencode 1 1 0 0": [
+      "sk-code-opencode 1.1.0.0"
     ],
     "sk code opencode alignment": [
       "sk-code opencode alignment"
@@ -82169,6 +82211,9 @@
     ],
     "sk code opencode v1 0 1 0": [
       "sk-code-opencode v1.0.1.0"
+    ],
+    "sk code opencode v1 1 0 0": [
+      "sk-code-opencode v1.1.0.0"
     ],
     "sk code overlay hardcoded replacement": [
       "sk-code overlay hardcoded replacement"
@@ -82499,6 +82544,9 @@
     ],
     "sk code v4 2 3 0": [
       "sk-code v4.2.3.0"
+    ],
+    "sk code v4 2 4 0": [
+      "sk-code v4.2.4.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -83082,6 +83130,9 @@
     "sk create readme 1 2 0 0": [
       "sk-create-readme 1.2.0.0"
     ],
+    "sk create readme 1 3 0 0": [
+      "sk-create-readme 1.3.0.0"
+    ],
     "sk create readme playbook": [
       "sk-create-readme playbook"
     ],
@@ -83096,6 +83147,9 @@
     ],
     "sk create readme v1 2 0 0": [
       "sk-create-readme v1.2.0.0"
+    ],
+    "sk create readme v1 3 0 0": [
+      "sk-create-readme v1.3.0.0"
     ],
     "sk create repo rule 1 0 0 0": [
       "sk-create-repo-rule 1.0.0.0"
@@ -83556,6 +83610,9 @@
     "sk doc 2 2 4 0": [
       "sk-doc 2.2.4.0"
     ],
+    "sk doc 2 2 5 0": [
+      "sk-doc 2.2.5.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -83807,6 +83864,9 @@
     ],
     "sk doc v2 2 4 0": [
       "sk-doc v2.2.4.0"
+    ],
+    "sk doc v2 2 5 0": [
+      "sk-doc v2.2.5.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -91766,6 +91826,9 @@
     "system deep loop 3 0 1 0": [
       "system-deep-loop 3.0.1.0"
     ],
+    "system deep loop 3 0 2 0": [
+      "system-deep-loop 3.0.2.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -91871,6 +91934,9 @@
     "system deep loop v3 0 1 0": [
       "system-deep-loop v3.0.1.0"
     ],
+    "system deep loop v3 0 2 0": [
+      "system-deep-loop v3.0.2.0"
+    ],
     "system deep research bugs": [
       "system deep research bugs"
     ],
@@ -91930,6 +91996,9 @@
     ],
     "system skill advisor 0 14 0 0": [
       "system-skill-advisor 0.14.0.0"
+    ],
+    "system skill advisor 0 14 1 0": [
+      "system-skill-advisor 0.14.1.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -92053,6 +92122,9 @@
     ],
     "system skill advisor v0 14 0 0": [
       "system-skill-advisor v0.14.0.0"
+    ],
+    "system skill advisor v0 14 1 0": [
+      "system-skill-advisor v0.14.1.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -92317,6 +92389,9 @@
     ],
     "system spec kit 4 6 0 0": [
       "system-spec-kit 4.6.0.0"
+    ],
+    "system spec kit 4 6 1 0": [
+      "system-spec-kit 4.6.1.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -92680,6 +92755,9 @@
     ],
     "system spec kit v4 6 0 0": [
       "system-spec-kit v4.6.0.0"
+    ],
+    "system spec kit v4 6 1 0": [
+      "system-spec-kit v4.6.1.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
