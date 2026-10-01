@@ -8,7 +8,11 @@ expected_intent: cli-jev
 expected_resources:
   - cli-jev/SKILL.md
 expected_workflow_mode: cli-jev
-expected_leaf_resources: []
+expected_leaf_resources:
+  - workflow_mode: cli-jev
+    leaf_resource_id: references/cli-reference.md
+  - workflow_mode: cli-jev
+    leaf_resource_id: references/integration-patterns.md
 created: 2026-09-20
 version: 0.4.0.0
 ---
@@ -21,7 +25,7 @@ This document captures the realistic routing contract, observed behavior, execut
 
 ## 1. OVERVIEW
 
-The `jev judgment` phrase is a `cli-usage-aliases` signal, so the `cli-classifier` hub resolves `workflowMode: cli-jev` and selects the `cli-jev` transport packet. The prompt names no Deem phrase, so the answer is one dominant route rather than an ordered bundle with `cli-deem` or a deferred disambiguation.
+The `jev judgment` phrase is a `cli-jev-aliases` signal, so the `cli-classifier` hub resolves `workflowMode: cli-jev` and selects the `cli-jev` transport packet. The prompt names no Deem phrase, so the answer is one dominant route rather than an ordered bundle with `cli-deem` or a deferred disambiguation.
 
 ### Why This Matters
 

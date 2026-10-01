@@ -8,7 +8,11 @@ expected_intent: cli-jev
 expected_resources:
   - cli-jev/SKILL.md
 expected_workflow_mode: cli-jev
-expected_leaf_resources: []
+expected_leaf_resources:
+  - workflow_mode: cli-jev
+    leaf_resource_id: references/cli-reference.md
+  - workflow_mode: cli-jev
+    leaf_resource_id: references/integration-patterns.md
 version: 0.4.0.0
 ---
 

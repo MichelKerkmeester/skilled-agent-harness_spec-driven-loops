@@ -15,7 +15,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-The walked tree holds the hub-routing scenarios for `cli-classifier` and one measurement scenario for its offline injection screen scorer. The hub registers two modes, both declared `packetKind: "transport"`: `cli-jev`, which runs over the packet folder `cli-jev` and bridges the hosted Jev service, and `cli-deem`, a client for the Deem model served on this machine. The routing questions are small. Does a Jev request resolve `cli-jev`? Does a Deem request resolve `cli-deem`? Do other requests stay out? Each transport's own behavior is covered in its packet: `cli-jev/manual-testing-playbook/` for Jev and `cli-deem/scripts/tests/cli-deem.test.mjs` for Deem. These scenarios do not replace them.
+The walked tree holds the hub-routing scenarios for `cli-classifier` and one measurement scenario for its offline injection screen scorer. The hub registers two modes, both declared `packetKind: "transport"`: `cli-jev`, which bridges the hosted Jev service, and `cli-deem`, a client for the Deem model served on this machine. The routing questions are small. Does a Jev request resolve `cli-jev`? Does a Deem request resolve `cli-deem`? Do other requests stay out? Each transport's own behavior is covered in its packet: `cli-jev/manual-testing-playbook/` for Jev and `cli-deem/scripts/tests/cli-deem.test.mjs` for Deem. These scenarios do not replace them.
 
 The `CJ-` scenarios came from the retired `cli-jev` hub with the Jev transport. Their two recorded runs sit under `benchmark/reports/`.
 
