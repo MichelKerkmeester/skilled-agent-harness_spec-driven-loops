@@ -175,14 +175,16 @@ function deltaIterationFiles(lineageDir) {
 /**
  * Return unique file sources in first-seen order. Trim each candidate, unwrap a
  * `[SOURCE: ...]` value, then remove a leading `file:` and skip other word
- * prefixes. From the first token, strip repeated `:<n>` or `:<n>-<n>` line
- * references and a trailing `#L...` anchor. Keep only tokens containing `/` or
- * ending in a one-to-eight-character alphanumeric extension.
+ * prefixes. Trim line and prose suffixes, preserving a whitespace path only
+ * when it exactly matches a tracked repo-relative path. Keep paths containing
+ * `/`, which keeps a cited URL, or files with a 1-to-12-character alphanumeric
+ * extension containing a letter.
  *
  * @param {object} record - Finding record from a delta file
+ * @param {Set<string>} [tracked] - Optional repo-relative tracked paths
  * @returns {string[]} Normalized unique sources
  */
-function findingSources(record) {
+function findingSources(record, tracked) {
   const candidates = [
     record.source,
     ...(Array.isArray(record.sources) ? record.sources : []),
@@ -208,16 +210,19 @@ function findingSources(record) {
       continue;
     }
 
-    const token = /^[^\s,;()\[\]]+/.exec(normalized);
-    if (token === null) {
+    const boundary = normalized.search(/:\d|#L|,|;|\(|\)|\[|\]/);
+    const segment = (boundary === -1 ? normalized : normalized.slice(0, boundary)).trim();
+    if (segment === '') {
       continue;
     }
-    const source = token[0]
-      .replace(/#L.*$/, '')
-      .replace(/(?::\d+(?:-\d+)?)+$/, '');
+    const isTrackedPath = tracked instanceof Set && tracked.has(segment);
+    const source = /\s/.test(segment) && !isTrackedPath
+      ? segment.split(/\s+/, 1)[0]
+      : segment;
+    const hasExtension = /\.(?=[A-Za-z0-9]*[A-Za-z])[A-Za-z0-9]{1,12}$/.test(source);
     if (
       source === '' ||
-      (!source.includes('/') && !/\.[A-Za-z0-9]{1,8}$/.test(source)) ||
+      (!source.includes('/') && !hasExtension) ||
       seen.has(source)
     ) {
       continue;
@@ -235,11 +240,12 @@ function findingSources(record) {
  * seen nowhere earlier, else null.
  *
  * @param {Array<{ n: number, file: string }>} files - Delta files in iteration order
+ * @param {Set<string>} [tracked] - Optional repo-relative tracked paths
  * @returns {{ gold: number|null, cited: Map<number, number>, firstAppearance: Map<number, number> }}
  *   Gold iteration, plus per-iteration citation and first-appearance counts
  * @throws {Error} When a delta file cannot be read
  */
-function deriveGold(files) {
+function deriveGold(files, tracked) {
   const cited = new Map();
   const firstAppearance = new Map();
   const seen = new Set();
@@ -262,7 +268,7 @@ function deriveGold(files) {
       if (record === null || typeof record !== 'object' || record.type !== 'finding') {
         continue;
       }
-      const sources = findingSources(record);
+      const sources = findingSources(record, tracked);
       if (sources.length === 0) {
         continue;
       }
@@ -1676,8 +1682,23 @@ async function main(argv, deps = {}) {
   }
 
   let stateFiles;
+  let trackedPaths;
   try {
     stateFiles = listStateFiles(repoRoot);
+    // A full tracked-file list outgrows spawnSync's 1 MB default buffer.
+    const trackedResult = spawnSync('git', ['ls-files', '-z'], {
+      cwd: repoRoot,
+      encoding: 'utf8',
+      maxBuffer: 256 * 1024 * 1024,
+    });
+    if (trackedResult.error) {
+      throw trackedResult.error;
+    }
+    if (trackedResult.status !== 0) {
+      const detail = typeof trackedResult.stderr === 'string' ? trackedResult.stderr.trim() : '';
+      throw new Error(detail === '' ? 'git ls-files failed' : `git ls-files failed: ${detail}`);
+    }
+    trackedPaths = new Set(trackedResult.stdout.split('\0').filter(Boolean));
   } catch (error) {
     err(error instanceof Error ? error.message : String(error));
     return 2;
@@ -1708,7 +1729,7 @@ async function main(argv, deps = {}) {
         continue;
       }
       kept += 1;
-      const { gold, cited, firstAppearance } = deriveGold(deltas);
+      const { gold, cited, firstAppearance } = deriveGold(deltas, trackedPaths);
       const records = [];
       for (const line of fs.readFileSync(path.join(repoRoot, stateFile), 'utf8').split('\n')) {
         const trimmed = line.trim();
