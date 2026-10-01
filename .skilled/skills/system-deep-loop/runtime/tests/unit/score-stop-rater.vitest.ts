@@ -356,6 +356,40 @@ describe('score-stop-rater gold', () => {
     expect(rater.findingSources({ evidence: [evidence] })).toEqual(expected);
   });
 
+  it.each([
+    { source: 'REPO RULES.md:12', expected: [], tracked: undefined },
+    { source: 'REPO RULES.md:12', expected: ['REPO RULES.md'], tracked: new Set(['REPO RULES.md']) },
+    { source: '.gitignore', expected: ['.gitignore'], tracked: undefined },
+    { source: "specs/x/external repo's/a/cli.ts:1", expected: ['specs/x/external'], tracked: undefined },
+    {
+      source: "specs/x/external repo's/a/cli.ts:1",
+      expected: ["specs/x/external repo's/a/cli.ts"],
+      tracked: new Set(["specs/x/external repo's/a/cli.ts"]),
+    },
+    { source: 'p=0.05', expected: [], tracked: undefined },
+    { source: 'newInfoRatio=0.04, below x', expected: [], tracked: undefined },
+    { source: 'https://example.com/x', expected: ['https://example.com/x'], tracked: undefined },
+  ])('findingSources parses source "$source"', ({ source, expected, tracked }) => {
+    expect(rater.findingSources({ source }, tracked)).toEqual(expected);
+  });
+
+  it('main uses tracked paths when deriving gold', async () => {
+    const repo = gitRepo();
+    fs.writeFileSync(path.join(repo, 'REPO RULES.md'), 'tracked source\n', 'utf8');
+    makeLineage(repo, 'lineage-a', {
+      config: {},
+      records: [iteration(1, 0.5)],
+      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'REPO RULES.md:12' }] },
+    });
+    commitAll(repo);
+    const { code, lines, errs } = await runMain([], repo);
+    expect(errs).toEqual([]);
+    expect(code).toBe(0);
+    const census = censusOf(lines);
+    expect(census.noGold).toBe(0);
+    expect(census.sampled).toBe(1);
+  });
+
   it('gold drops a lineage with no source', async () => {
     const repo = gitRepo();
     makeLineage(repo, 'lineage-a', {

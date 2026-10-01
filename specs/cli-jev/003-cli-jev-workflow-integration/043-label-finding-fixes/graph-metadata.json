@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Phase 042 labeled every fillable gate and found three tool defects",
     "created_at": "2026-10-01T18:41:49Z",
-    "last_save_at": "2026-10-01T21:03:19.653Z",
+    "last_save_at": "2026-10-01T21:09:18.442Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:126cea1309bed66bb10ac18535bcb30bab7a5e6832e4a583f92dc3de9f1e7a2d",
+    "source_fingerprint": "sha256:a253614b1c48f1bcee8eb407caae19aef9e29581f313f5f994c8a776050efebf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "447d41dc03c001a4fdec63938cdc858b3a87ea7cb18a47cf70e694cd28157aa1",
