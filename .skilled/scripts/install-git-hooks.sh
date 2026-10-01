@@ -14,7 +14,6 @@
 #   post-rewrite — anchors and surfaces an un-applied --autostash entry after amend/rebase
 #   pre-push    — blocks a mass deletion, and blocks any push to a branch outside the allowlist unless this push is approved: creating a branch needs it named, updating it accepts a blanket approval; (2) blocks any push (new or update) to a branch outside the remote allowlist (main, skilled/v*, plus .opencode/skills/sk-git/scripts/remote-branch-allowlist.txt) unless explicitly permitted for that push
 #
-# Bypass commit-message validator: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...
 # Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ...
 # Bypass routing re-mint: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ...
 # Bypass pre-push remote-permission gate: SPECKIT_ALLOW_REMOTE_PUSH=1 git push ...
@@ -138,6 +137,15 @@ if [ "${1:-}" = "--status" ]; then
       printf '    SHADOWED: the installed hook resolves outside this checkout\n'
     fi
   done
+  # The commit, PR and branch rules come from this repository's templates, so
+  # show which ones apply here.
+  validator="$HOOK_SOURCE_DIR/../../skills/sk-git/scripts/validate-message.mjs"
+  printf '\nmessage contract:\n'
+  if command -v node >/dev/null 2>&1 && [[ -f "$validator" ]]; then
+    node "$validator" --repo "$REPO_ROOT" --explain 2>&1 | sed 's/^/  /'
+  else
+    printf '  unavailable: node or %s is missing\n' "$validator"
+  fi
   exit 0
 fi
 
@@ -176,7 +184,7 @@ done
 
 echo ""
 echo "Hooks installed. Test: 'git commit --allow-empty -m \"chore(repo): test hook installation\" -m \"Check that the installed hooks run.\"' should run silently unless a gate has something to report."
-echo "Bypass commit-message validator: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ..."
+echo "Commit-message, PR and branch rules come from this repository's sk-git templates and have no bypass; --status shows which apply."
 echo "Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..."
 echo "Bypass routing re-mint: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..."
 echo "Note: the target is resolved by Git (git rev-parse --git-path hooks), so a"

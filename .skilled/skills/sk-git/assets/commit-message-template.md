@@ -9,14 +9,14 @@ trigger_phrases:
   - "commit subject length rules"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 # Commit Message Template - Repository-Specific Contract
 
 ## 1. OVERVIEW
 
-This asset shows the commit shape sk-git enforces: a `type(scope): summary` subject, a short prose body and a final trailer paragraph that names the packet and carries the stamped ordinal. The rules live in `SKILL.md`. This file carries the procedure, the examples and the self-check you run before `git commit`.
+This asset shows the commit shape sk-git enforces: a `type(scope): summary` subject, a short prose body and a final trailer paragraph that names the packet and carries the stamped ordinal. The reasoning lives in `SKILL.md`. This file carries the procedure, the examples, the self-check you run before `git commit` and, in section 7, the rules block every gate enforces.
 
 ---
 
@@ -45,9 +45,8 @@ then `Refs:` for external links only.
 The `prepare-commit-msg` hook stamps both machine keys, so never type a
 `Commit-Id:` by hand.
 
-Structural rules are enforced by
-[../../../scripts/git-hooks/commit-msg](../../../scripts/git-hooks/commit-msg)
-(bypass: `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...`).
+The rules block in section 7 is what the `commit-msg` and `pre-push` hooks, the
+agent gate and CI enforce. There is no bypass switch.
 
 ---
 
@@ -154,23 +153,112 @@ actually gets committed here, not generic auth/API scaffolding.
 
 ## 6. SELF-CHECK
 
-- [ ] Authored subject matches `type(scope)[!]: imperative summary`.
+- [ ] Authored subject matches `type(scope)[!]: imperative summary` (`subject.format`).
 - [ ] Type is the first match in the canonical priority.
-- [ ] Scope is stable, lowercase, and not numeric-only.
-- [ ] Summary says what changed, not how the work was organized.
-- [ ] Summary is not vague or dependent on internal jargon.
-- [ ] Subject is at most 100 characters.
-- [ ] The message has a prose body that says why, whatever the path count.
+- [ ] Scope is stable, lowercase, and not numeric-only (`subject.scope-numeric`).
+- [ ] Summary says what changed, not how the work was organized (`subject.process-language`).
+- [ ] Summary is not vague or dependent on internal jargon (`subject.vague`).
+- [ ] Subject is at most 100 characters (`subject.max-length`).
+- [ ] The message has a prose body that says why, whatever the path count (`body.required`).
 - [ ] Verification claims name the command or observed evidence.
-- [ ] Breaking changes include `!` and `BREAKING CHANGE:`.
+- [ ] Breaking changes include `!` and `BREAKING CHANGE:` (`breaking.footer`).
 - [ ] Message remains understandable without the linked spec or issue.
-- [ ] The trailer paragraph is the last paragraph and stays contiguous.
+- [ ] The trailer paragraph is the last paragraph and stays contiguous (`trailer.final-paragraph`).
+- [ ] `Spec:` names an existing packet without the `specs/` prefix (`trailer.spec-prefix`, `trailer.spec-exists`).
 - [ ] The `Commit-Id:` value was stamped by the hook, not typed by hand.
+- [ ] No `Co-Authored-By`, `Claude-Session` or vendor attribution line (`attribution.forbidden`).
 
 ---
 
-## 7. RELATED RESOURCES
+## 7. ENFORCED RULES
+
+The JSON block below is the rulebook. The `commit-msg` hook, the `pre-push` hook,
+the agent gate and the CI check all read it from this file through
+`scripts/validate-message.mjs`, so editing the block changes what every gate
+enforces. Another repository gets its own rules by carrying its own copy of this
+template, in `.sk-git/` at its root or in the directory git config
+`skgit.contractDir` names. A repository with no rules block is not checked.
+
+Each rule has an id, and every block message names the id it failed:
+
+| Rule id | What it checks |
+|---------|----------------|
+| `message.empty` | The message has content after comments are stripped |
+| `subject.format` | The subject is `type(scope)[!]: summary` with a listed type and a scope matching `scopePattern` |
+| `subject.scope-numeric` | The scope is a subsystem name, not a bare number |
+| `subject.summary-start` | The summary starts with a lowercase imperative verb |
+| `subject.repeated-spaces` | The summary has no double spaces |
+| `subject.trailing-punctuation` | The summary does not end with punctuation |
+| `subject.vague` | The summary is not one of the listed vague phrases |
+| `subject.max-length` | The subject is at most `maxLength` characters |
+| `subject.process-language` | Warning only: phase, wave, lane, task-count or tranche language in the summary |
+| `body.blank-line` | A blank line separates the subject from the body |
+| `body.required` | At least one prose line sits above the trailers |
+| `body.line-length` | Warning only: a prose line is longer than `warnLineLength` |
+| `trailer.final-paragraph` | `Spec:` and `Commit-Id:` sit in the last paragraph with no prose beside them |
+| `trailer.commit-id-format` | `Commit-Id:` holds exactly seven digits |
+| `trailer.commit-id-unique` | No other commit already carries the same `Commit-Id:` |
+| `trailer.spec-prefix` | `Spec:` omits the `specs/` prefix, so `git log --grep='^Spec: <track>/<packet>'` finds it |
+| `trailer.spec-exists` | `Spec:` names a packet folder that exists under `specs/` |
+| `attribution.forbidden` | No `Co-Authored-By:`, `Claude-Session:` or vendor-naming trailer |
+| `breaking.footer` | A `!` subject carries a `BREAKING CHANGE:` footer |
+
+Git-generated subjects listed in `passthroughSubjects` skip every rule.
+
+```json
+{
+  "kind": "commit",
+  "version": 1,
+  "help": {
+    "expected": "type(scope): imperative summary",
+    "example": "fix(code-graph): consume invalidation markers after commits"
+  },
+  "passthroughSubjects": ["^Merge ", "^Revert \".*\"$", "^fixup! ", "^squash! ", "^amend! "],
+  "subject": {
+    "types": ["build", "chore", "ci", "docs", "feat", "fix", "merge", "perf", "refactor", "release", "revert", "style", "test"],
+    "scopeRequired": true,
+    "scopePattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+    "forbidNumericScope": true,
+    "allowBreakingMarker": true,
+    "summaryStart": { "pattern": "^[a-z]", "hint": "a lowercase imperative verb" },
+    "forbidTrailingPattern": "[.!?;:,]$",
+    "forbidRepeatedSpaces": true,
+    "maxLength": 100,
+    "vagueSummaries": ["change files", "changes", "checkpoint", "cleanup", "fix", "fix bug", "misc", "misc changes", "miscellaneous changes", "stuff", "update", "update files", "update stuff", "various changes", "work in progress", "wip"],
+    "warnPatterns": [
+      {
+        "id": "subject.process-language",
+        "pattern": "(Phase\\s[A-Z0-9]|wave\\s[+A-Za-z0-9]|Lane\\s[A-Z]|[0-9]+\\stasks?|swarm|tranche|WU[0-9]+)",
+        "message": "Subject contains internal process language; move it to Context or Refs when it does not describe behavior."
+      }
+    ]
+  },
+  "body": {
+    "required": true,
+    "blankLineAfterSubject": true,
+    "warnLineLength": 100
+  },
+  "trailers": {
+    "looseKeys": ["Co-Authored-By", "Signed-off-by", "Reviewed-by", "Tested-by", "Refs", "Fixes", "Closes", "Related to"],
+    "strictKeys": ["Spec", "Commit-Id"],
+    "machineKeys": ["Spec", "Commit-Id"],
+    "machineKeysInFinalParagraph": true,
+    "commitId": { "key": "Commit-Id", "pattern": "^[0-9]{7}$", "hint": "exactly seven digits", "unique": true },
+    "spec": { "key": "Spec", "root": "specs", "forbiddenPrefix": "specs/", "mustExist": true }
+  },
+  "attribution": {
+    "forbiddenKeys": ["Co-Authored-By", "Claude-Session"],
+    "forbiddenTrailerValuePattern": "anthropic"
+  },
+  "breakingFooterPattern": "^BREAKING CHANGE: .+$"
+}
+```
+
+---
+
+## 8. RELATED RESOURCES
 
 - [../SKILL.md](../SKILL.md) - Canonical Commit Message Logic
-- [../../../scripts/git-hooks/commit-msg](../../../scripts/git-hooks/commit-msg) - Structural enforcement hook
+- [../scripts/validate-message.mjs](../scripts/validate-message.mjs) - The validator every gate calls
+- [../../../scripts/git-hooks/commit-msg](../../../scripts/git-hooks/commit-msg) - Commit-time gate
 - [Conventional Commits Specification](https://www.conventionalcommits.org/) - Official specification for commit message formatting

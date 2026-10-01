@@ -108,6 +108,7 @@ The hooks-tree index at `.skilled/hooks/git-preflight/` mirrors these: `shared/g
 
 | File | Responsibility |
 |---|---|
+| `git-message-gate.mjs` | Blocking companion to the advisory, wired beside it for Claude, Codex, Devin and Cursor through the hook registry. Denies a `git commit -m`/`-F`, a `gh pr create`/`edit` body or a branch-creating command whose text breaks the repository's own template rules. Allows what it cannot read, since the commit-msg and pre-push hooks and CI stand behind it. OpenCode and Pi are not wired yet. |
 | `git-preflight-advisory.mjs` | Shared stdin hook for `Bash`, `exec`, and Cursor `Shell` payloads. Reads the repo from payload `cwd`, Cursor's `workspace_roots[0]`, or the runtime project-directory env. Kill-switch, suppression tiers, shape gate, rule read/filter, lazy context, evaluate, cap-at-3 surface, `additionalContext` JSON emit. `main().catch(approve)`: the fail-open path is also the exit-0 path. |
 | `../lib/git-rule-checks.mjs` | The `GIT_SHAPE` gate, `parseGitCommand` (subcommand/flags/pathspec split with value-flag and `--` handling), and the 17 `GIT_CHECKS`. Each check gates on state, returns `true` (fine) / `false` (advise), and fails open on uncertainty. |
 | `../lib/git-context.mjs` | Lazy repository-state collector. Each accessor runs only when a check asks, caches for one invocation, and fails soft (returns `null`/safe unknown) on any git failure or 1.5s timeout. Reads only pre-command state. |

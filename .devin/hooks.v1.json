@@ -81,6 +81,11 @@
           "type": "command",
           "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs || { printf \"%s\\n\" \"mk-hook-drift host=devin event=PreToolUse adapter=git-preflight-advisory.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"\\\",\\\"mkHookDrift\\\":true}}\"; }'",
           "timeout": 5
+        },
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs || { printf \"%s\\n\" \"mk-hook-drift host=devin event=PreToolUse adapter=git-message-gate.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PreToolUse\\\",\\\"additionalContext\\\":\\\"\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+          "timeout": 5
         }
       ]
     },

@@ -73,6 +73,12 @@
         "type": "command",
         "matcher": "Shell",
         "timeout": 10
+      },
+      {
+        "command": "node .skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=preToolUse adapter=git-message-gate.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
+        "type": "command",
+        "matcher": "Shell",
+        "timeout": 10
       }
     ],
     "postToolUse": [

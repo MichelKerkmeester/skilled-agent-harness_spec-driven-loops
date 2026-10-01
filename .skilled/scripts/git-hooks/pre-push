@@ -13,6 +13,10 @@
 #   4. Test suites:       discovered suites report failures, or block when enforced.
 #   5. Track roots:       each pushed commit's track roots must list exactly the
 #                         packets they hold (SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 skips).
+#   6. Message contract:  every pushed commit and every new branch name must meet
+#                         the rules the repository's own templates declare. This
+#                         is what catches a commit made with --no-verify, and it
+#                         has no bypass.
 #
 # The gates are independently bypassable; skipping one never skips another.
 #
@@ -98,6 +102,32 @@ fi
 
 
 
+# --- Message contract: the rules come from the pushed repository's templates, ---
+# --- the validator from beside this hook ---
+REMOTE_NAME="${1:-origin}"
+_self="${BASH_SOURCE[0]}"
+while [[ -L "$_self" ]]; do
+  _link="$(readlink "$_self")"
+  case "$_link" in /*) _self="$_link" ;; *) _self="$(dirname "$_self")/$_link" ;; esac
+done
+HOOK_DIR="$(cd "$(dirname "$_self")" && pwd -P)"
+CONTRACT_GATE_READY=0
+CONTRACT_GATE_BROKEN=""
+if [[ -f "$HOOK_DIR/lib/message-contract-gate.sh" ]]; then
+  # shellcheck source=lib/message-contract-gate.sh
+  . "$HOOK_DIR/lib/message-contract-gate.sh"
+  CONTRACT_VALIDATOR="$(mcg_validator_path "$HOOK_DIR")"
+  _unavailable="$(mcg_unavailable_reason "$CONTRACT_VALIDATOR")"
+  if [[ -z "$_unavailable" ]]; then
+    CONTRACT_GATE_READY=1
+  elif mcg_repo_declares_rules "$REPO_ROOT" commit-message-template.md \
+       || mcg_repo_declares_rules "$REPO_ROOT" worktree-checklist.md; then
+    CONTRACT_GATE_BROKEN="$_unavailable"
+  fi
+elif _in_toolchain_repo; then
+  CONTRACT_GATE_BROKEN="the hook helpers are missing at $HOOK_DIR/lib"
+fi
+
 REJECTED=0
 AUTOSYNC_LIVE_PUSH=0
 SKILL_CHANGES_PUSHED=0
@@ -157,6 +187,37 @@ while read -r _ local_sha remote_ref remote_sha; do
   fi
 
   PUSHED_SHAS="${PUSHED_SHAS} ${local_sha}"
+
+  # ── Gate 6: message contract — every branch, releases and main included ──
+  # A deletion pushes no commits. A new branch is checked from where it leaves
+  # what the remote already has; an update from the old remote tip, with the
+  # ref being overwritten excluded so a rebase is not compared with itself.
+  if [[ ! "$local_sha" =~ ^0+$ ]]; then
+    if [[ -n "$CONTRACT_GATE_BROKEN" ]]; then
+      echo "BLOCKED [gate:message-contract]: this repository declares message rules, but $CONTRACT_GATE_BROKEN." >&2
+      REJECTED=1
+      continue
+    fi
+    if [[ "$CONTRACT_GATE_READY" -eq 1 ]]; then
+      if [[ "$is_new" -eq 1 ]]; then
+        _range="$local_sha --not --remotes=$REMOTE_NAME"
+      else
+        _range="$remote_sha..$local_sha"
+      fi
+      if ! node "$CONTRACT_VALIDATOR" --repo "$REPO_ROOT" --rev-list "$_range" \
+           --exclude-ref "refs/remotes/$REMOTE_NAME/$branch_name"; then
+        echo "BLOCKED [gate:message-contract]: commits pushed to '$branch_name' break the commit rules above." >&2
+        echo "   Reword them (git rebase -i, then reword) and push again." >&2
+        REJECTED=1
+        continue
+      fi
+      if [[ "$is_new" -eq 1 ]] && ! node "$CONTRACT_VALIDATOR" --repo "$REPO_ROOT" --branch "$branch_name"; then
+        echo "BLOCKED [gate:message-contract]: new branch '$branch_name' breaks the naming rules above." >&2
+        REJECTED=1
+        continue
+      fi
+    fi
+  fi
 
   # Release branches are the one namespace the naming/permission gates never touch.
   case "$branch_name" in
