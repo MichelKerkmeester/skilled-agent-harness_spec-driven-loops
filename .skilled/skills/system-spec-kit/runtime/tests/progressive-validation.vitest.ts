@@ -20,7 +20,7 @@
 // CHK-PI-B2-009 [P1]: Dry-run mode: no changes applied
 // CHK-PI-B2-010 [P2]: Existing validate.sh callers unaffected
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { execSync, ExecSyncOptionsWithStringEncoding } from 'child_process';
+import { execFileSync, ExecSyncOptionsWithStringEncoding } from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
@@ -121,10 +121,9 @@ function runProgressive(
   folderPath: string,
   extraArgs: string[] = []
 ): { stdout: string; exitCode: number } {
-  const args = [folderPath, ...extraArgs].filter(Boolean).join(' ');
-  const cmd = args ? `"${PROGRESSIVE_VALIDATE}" ${args}` : `"${PROGRESSIVE_VALIDATE}"`;
+  const args = [folderPath, ...extraArgs].filter(Boolean);
   try {
-    const stdout = execSync(cmd, {
+    const stdout = execFileSync(PROGRESSIVE_VALIDATE, args, {
       ...EXEC_OPTS,
       stdio: ['pipe', 'pipe', 'pipe'],
     });
@@ -143,9 +142,9 @@ function runValidate(
   folderPath: string,
   extraArgs: string[] = []
 ): { stdout: string; exitCode: number } {
-  const args = [folderPath, ...extraArgs].join(' ');
+  const args = [folderPath, ...extraArgs];
   try {
-    const stdout = execSync(`"${VALIDATE_SH}" ${args}`, {
+    const stdout = execFileSync(VALIDATE_SH, args, {
       ...EXEC_OPTS,
       stdio: ['pipe', 'pipe', 'pipe'],
     });
