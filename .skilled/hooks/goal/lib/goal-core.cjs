@@ -593,7 +593,9 @@ function verifierResult(verdict, reason, evidence, confidence) {
  * conclusive while still describing a blocker, so ambiguous or mixed
  * evidence always stays open (`not-met`/`unclear`) rather than `met`.
  * It judges the tail of the evidence because the completion proof comes
- * last, and a cut there would read as truncation.
+ * last, and a cut there would read as truncation. Only the last
+ * `DEFAULT_MAX_EVIDENCE_CHARS` characters are judged, so a blocker stated
+ * earlier in a longer transcript is never seen by this verifier.
  */
 function verifyGoalHeuristic({ goal, transcriptText } = {}) {
   const fullEvidence = sanitizeInlineText(transcriptText || '', Infinity);
