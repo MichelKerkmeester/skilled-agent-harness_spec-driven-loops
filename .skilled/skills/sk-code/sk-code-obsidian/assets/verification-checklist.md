@@ -10,7 +10,7 @@ trigger_phrases:
   - "completion claim obsidian plugin"
 importance_tier: important
 contextType: implementation
-version: 0.1.0.2
+version: 0.1.0.3
 ---
 
 # Verification-Gate Checklist
@@ -68,7 +68,7 @@ succeeding, a build finishing, or code "looking right" proves nothing on its own
   drop below that floor means a test was broken or silently skipped, not that the suite shrank for
   a good reason
 - [ ] A new source file with test-worthy logic got a `*.test.ts` under the top-level `tests/` tree,
-  at the path mirroring its source, never beside the source and never in a `__tests__` folder
+  flat while file names stay unique, never beside the source and never in a `__tests__` folder
   (universal rule: `shared/references/universal/code-style-guide.md` §3 "Folders and tests")
 
 ---

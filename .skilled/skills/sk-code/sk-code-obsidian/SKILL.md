@@ -2,7 +2,7 @@
 name: sk-code-obsidian
 description: "Read-only Obsidian-plugin design-system and source-convention evidence for the Note Database plugin."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.1.0.0
+version: 0.1.1.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -214,7 +214,8 @@ adopts — each labeled honestly, because most of them are not shipped yet.
   against the current tree, these folders owe both documents: `src`, `src/data`, `src/views`,
   `src/views/modals`, `tools`, `tools/screenshots`, `tools/screenshots/scenarios`. The two `__tests__`
   folders owe nothing, because the next rule removes them.
-- **A top-level `tests/` tree** mirroring `src/`, holding every test, fixture and helper, with no
+- **A top-level `tests/` tree** holding every test, fixture and helper, flat while file names stay
+  unique and grouped by area only when a group holds several files, with no
   double-underscore folder names. This is the universal rule in
   [code-style-guide.md](../shared/references/universal/code-style-guide.md) §3 "Folders and tests".
   Moving the 49 co-located test files and both `__tests__` folders is a migration in the plugin repo,
