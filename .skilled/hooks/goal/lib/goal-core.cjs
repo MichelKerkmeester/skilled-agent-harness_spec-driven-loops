@@ -128,8 +128,10 @@ const VERIFIER_STOPWORDS = new Set([
   'mission', 'phase', 'that', 'this', 'update', 'with', 'work',
 ]);
 
-// Ported verbatim from opencode-goal's default heuristic supervisor verifier patterns.
-const VERIFIER_BLOCKING_PATTERN = /\b(blocked?|blocker|error|failed|failing|failure|cannot|can't|unable|todo|not yet|partial(?:ly)?|still need(?:s)?|incomplete|not complete|not done|waiting|pending)\b/i;
+// Ported from opencode-goal's default heuristic supervisor verifier patterns. The
+// fail alternative skips a zero-count report (a test summary prints `fail 0`) but
+// still blocks on a real count (`P0 fail`, `10 fail`) or a bare `fails` verdict.
+const VERIFIER_BLOCKING_PATTERN = /\b(blocked?|blocker|error|failed|failing|failure|(?<!\b0\s+)fails?(?!\s*[:=]?\s*0\b)|cannot|can't|unable|todo|not yet|partial(?:ly)?|still need(?:s)?|incomplete|not complete|not done|waiting|pending)\b/i;
 const VERIFIER_COMPLETION_PATTERN = /\b(done|completed?|finished|implemented|fixed|resolved|delivered|shipped|verified|validated|tests? passed|checks? passed|passing)\b/i;
 
 class GoalError extends Error {
