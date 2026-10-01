@@ -7,7 +7,7 @@ trigger_phrases:
   - "run doctor subsystem diagnostic"
   - "cross-subsystem aligner doctor update"
   - "how do I diagnose and repair a spec-kit subsystem"
-version: 3.6.0.6
+version: 1.6.0.6
 ---
 
 # Doctor commands

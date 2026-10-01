@@ -8,7 +8,7 @@ trigger_phrases:
   - "css accessibility checklist"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.4
+version: 1.5.0.4
 ---
 
 # Quick Reference & Related

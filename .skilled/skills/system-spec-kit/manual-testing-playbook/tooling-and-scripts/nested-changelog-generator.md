@@ -1,7 +1,7 @@
 ---
 title: "458 -- Nested changelog generator"
 description: "This scenario validates the nested changelog generator for `458`. It focuses on the identity phrase a phase entry carries, the lookup that finds it and frontmatter that parses for a quoted title."
-version: 4.1.0.0
+version: 2.1.0.0
 ---
 
 # 458 -- Nested changelog generator

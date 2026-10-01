@@ -9,7 +9,7 @@ trigger_phrases:
   - "spec folder diagnosis"
 importance_tier: normal
 contextType: general
-version: 3.6.0.39
+version: 1.6.0.39
 ---
 
 # Troubleshooting Reference - Issue Resolution Guide

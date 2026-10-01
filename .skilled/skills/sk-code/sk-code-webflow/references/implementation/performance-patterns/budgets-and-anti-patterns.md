@@ -8,7 +8,7 @@ trigger_phrases:
   - "webflow performance budgets"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.17
+version: 1.5.0.17
 ---
 
 # Performance Budgets, Anti-Patterns & Related

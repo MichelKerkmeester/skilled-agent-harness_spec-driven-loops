@@ -7,7 +7,7 @@ trigger_phrases:
   - memory save quality gate
   - sufficiency enforcement
   - template contract validation
-version: 3.6.0.30
+version: 1.6.0.30
 ---
 
 # Session Capturing Pipeline Quality

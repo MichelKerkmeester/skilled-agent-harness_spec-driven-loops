@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript event delegation webflow"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.7
+version: 1.5.0.7
 ---
 
 # Shared Document Listener & WeakMap/WeakSet Caching

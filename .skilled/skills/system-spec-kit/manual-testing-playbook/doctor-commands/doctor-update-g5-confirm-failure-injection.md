@@ -1,7 +1,7 @@
 ---
 title: "DOC-338 -- Doctor update G5 failure injection mid-rebuild"
 description: "Manual scenario validating /doctor:update failure handling when SPECKIT_FAIL_STEP=skill-graph injects a synthetic mid-run failure."
-version: 3.6.0.7
+version: 1.6.0.7
 id: doctor-commands-doctor-update-g5-confirm-failure-injection
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

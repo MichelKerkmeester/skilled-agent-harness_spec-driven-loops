@@ -8,7 +8,7 @@ trigger_phrases:
   - "multi viewport testing"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.6
+version: 1.5.0.6
 ---
 
 # Automation Patterns, Error Patterns & Browser Compatibility

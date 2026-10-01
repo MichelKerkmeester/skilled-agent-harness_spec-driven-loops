@@ -7,7 +7,7 @@ trigger_phrases:
   - orphaned build artifact detection
   - dist lib source mapping
   - build artifact cleanup
-version: 3.6.0.6
+version: 1.6.0.6
 ---
 
 # Source-dist alignment enforcement

@@ -1,7 +1,7 @@
 ---
 title: "DAC-017 -- OUT_OF_SCOPE_WRITE rejection"
 description: "This scenario validates out-of-scope write rejection for `DAC-017`. It focuses on path guards and agent-body scoped-write rules."
-version: 2.3.0.8
+version: 1.7.0.8
 ---
 
 # DAC-017 -- OUT_OF_SCOPE_WRITE rejection

@@ -9,7 +9,7 @@ trigger_phrases:
   - "manual save triggers"
 importance_tier: normal
 contextType: implementation
-version: 3.6.0.25
+version: 1.6.0.25
 ---
 
 # Trigger Configuration - Keywords and Manual Save Settings

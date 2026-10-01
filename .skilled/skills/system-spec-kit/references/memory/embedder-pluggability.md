@@ -11,7 +11,7 @@ trigger_phrases:
   - "embedder device selection"
 importance_tier: important
 contextType: implementation
-version: 3.6.0.14
+version: 1.6.0.14
 ---
 
 # Embedder Pluggability

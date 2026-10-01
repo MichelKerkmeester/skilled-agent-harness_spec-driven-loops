@@ -8,7 +8,7 @@ trigger_phrases:
   - "webflow priority timing"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.3
+version: 1.5.0.3
 ---
 
 # Priority/Timing Decision Tree, Compatibility & Webflow Timing

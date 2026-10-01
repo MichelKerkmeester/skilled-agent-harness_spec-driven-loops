@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 4.2.1.0
+version: 2.2.1.0
 ---
 
 # sk-code

@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 4.1.0.62
+version: 2.1.0.62
 ---
 
 # Validation Rules Reference - Complete Rule Reference

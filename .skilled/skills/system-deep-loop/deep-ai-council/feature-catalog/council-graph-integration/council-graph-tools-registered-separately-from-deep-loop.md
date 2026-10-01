@@ -7,7 +7,7 @@ trigger_phrases:
   - "council graph no mcp context"
   - "council graph runtime cli only"
   - "council graph derived projection ownership"
-version: 2.3.0.11
+version: 1.7.0.11
 ---
 
 # Council graph MCP surface retired

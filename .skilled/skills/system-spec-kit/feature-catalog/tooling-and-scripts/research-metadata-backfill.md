@@ -6,7 +6,7 @@ trigger_phrases:
   - "backfill-research-metadata"
   - "backfill iteration metadata"
   - "research iteration folders"
-version: 3.6.0.5
+version: 1.6.0.5
 ---
 
 # Research metadata backfill

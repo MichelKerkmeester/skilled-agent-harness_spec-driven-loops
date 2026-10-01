@@ -1,7 +1,7 @@
 ---
 title: "DBG-SCAF-001 -- Debug-delegation scaffold generator + failure-threshold prompt rehearsal"
 description: "Validates that scaffold-debug-delegation.sh generates a well-formed debug-delegation.md from a synthetic failure trail, that versioned filenames work when prior scaffolds exist, and that the y/n/skip prompt in speckit-implement.yaml/speckit-complete.yaml never autonomously dispatches @debug."
-version: 3.6.0.9
+version: 1.6.0.9
 id: tooling-and-scripts-debug-delegation-scaffold-generator
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

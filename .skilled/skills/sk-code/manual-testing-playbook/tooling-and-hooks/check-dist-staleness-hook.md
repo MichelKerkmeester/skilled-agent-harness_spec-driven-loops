@@ -1,7 +1,7 @@
 ---
 title: "TH-001: check-dist-staleness.sh wiring into claude-posttooluse.sh"
 description: "Verify that editing a file under a watched dist-producing source tree with a stale compiled dist output makes the shared PostToolUse hook print a STALE DIST WARNING banner, and that the hook always exits 0 regardless of checker outcome."
-version: 3.5.0.16
+version: 1.5.0.16
 ---
 
 # TH-001: check-dist-staleness.sh wiring into claude-posttooluse.sh

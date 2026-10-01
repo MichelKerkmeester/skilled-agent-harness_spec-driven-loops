@@ -1,7 +1,7 @@
 ---
 title: "DR-004: Language reference folder validator"
 description: "Verify verify_stack_folders.py confirms every known code-opencode language has an on-disk references folder, allows shared material, flags unknown reference folders, and exits non-zero on a mismatch."
-version: 4.1.0.4
+version: 2.1.0.4
 ---
 
 # DR-004: Language reference folder validator

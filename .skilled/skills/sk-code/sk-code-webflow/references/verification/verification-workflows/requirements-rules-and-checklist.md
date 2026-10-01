@@ -7,7 +7,7 @@ trigger_phrases:
   - "requirements rules and checklist reference"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.8
+version: 1.5.0.8
 ---
 
 

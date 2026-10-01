@@ -1,7 +1,7 @@
 ---
 title: "152 -- No symlinks in lib/ tree"
 description: "This scenario validates the no-symlinks policy by confirming zero symlinks exist under runtime/lib/. It enforces the ARCHITECTURE.md 'No Symlinks in lib/ Tree' policy."
-version: 3.6.0.16
+version: 1.6.0.16
 id: tooling-and-scripts-no-symlinks-in-lib-tree
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

@@ -9,7 +9,7 @@ trigger_phrases:
   - "suggested phase counts"
 importance_tier: normal
 contextType: planning
-version: 3.6.0.12
+version: 1.6.0.12
 ---
 
 # Phase Definitions

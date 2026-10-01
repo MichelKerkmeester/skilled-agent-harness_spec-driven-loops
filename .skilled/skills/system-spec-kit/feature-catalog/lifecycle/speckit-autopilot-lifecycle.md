@@ -7,7 +7,7 @@ trigger_phrases:
   - "SPECKIT_AUTOPILOT_RESULT"
   - "branch-preserved speckit failure"
   - "unattended task metadata"
-version: 3.6.0.99
+version: 1.6.0.99
 ---
 
 # Speckit autopilot lifecycle

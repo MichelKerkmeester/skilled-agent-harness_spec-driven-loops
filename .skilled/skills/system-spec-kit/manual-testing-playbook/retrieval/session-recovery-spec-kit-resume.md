@@ -3,7 +3,7 @@ title: "190 -- Session recovery via /speckit:resume"
 description: "This scenario validates interrupted-session recovery via /speckit:resume for `190`."
 audited_post_018: true
 phase_018_change: Removed CONTINUE_SESSION from the active ladder and aligned the recovery order to `handover.md -> _memory.continuity -> spec docs`.
-version: 4.0.0.0
+version: 2.0.0.0
 id: retrieval-session-recovery-spec-kit-resume
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:

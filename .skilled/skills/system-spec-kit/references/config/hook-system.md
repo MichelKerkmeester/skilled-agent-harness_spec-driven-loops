@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode timeout fallback"
 importance_tier: important
 contextType: implementation
-version: 3.6.0.35
+version: 1.6.0.35
 ---
 
 # Hook System Reference

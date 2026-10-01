@@ -6,7 +6,7 @@ trigger_phrases:
   - "score-completion-claims.mjs"
   - "completion claim census"
   - "labeled turn judgment"
-version: 4.5.0.0
+version: 2.5.0.0
 ---
 
 # Completion claim audit (score-completion-claims.mjs)

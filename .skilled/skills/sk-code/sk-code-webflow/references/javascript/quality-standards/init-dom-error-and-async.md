@@ -11,7 +11,7 @@ trigger_phrases:
   - "cleanup destroy pattern"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.7
+version: 1.5.0.7
 ---
 
 # Webflow JavaScript Quality Standards

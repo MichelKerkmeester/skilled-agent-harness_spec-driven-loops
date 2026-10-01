@@ -8,7 +8,7 @@ trigger_phrases:
   - "webflow development best"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.14
+version: 1.5.0.14
 ---
 
 # Development Best Practices, Production Config, Testing & Integration

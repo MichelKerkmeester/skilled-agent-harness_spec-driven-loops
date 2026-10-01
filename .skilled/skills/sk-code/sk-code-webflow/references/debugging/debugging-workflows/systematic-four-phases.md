@@ -8,7 +8,7 @@ trigger_phrases:
   - "browser devtools profiling"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.18
+version: 1.5.0.18
 ---
 
 

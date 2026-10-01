@@ -2,7 +2,7 @@
 title: "063 -- Feature flag governance"
 description: "This scenario validates Feature flag governance for `063`. It focuses on Confirm governance policy conformance and the compiled-routing tri-state contract."
 audited_post_018: true
-version: 4.0.0.0
+version: 2.0.0.0
 id: governance-feature-flag-governance
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

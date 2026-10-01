@@ -6,7 +6,7 @@ trigger_phrases:
   - "score-track-narrowing.mjs"
   - "spec track classifier baseline"
   - "track narrowing keep rule"
-version: 4.2.0.0
+version: 2.2.0.0
 ---
 
 # Track narrowing measurement (score-track-narrowing.mjs)

@@ -8,7 +8,7 @@ trigger_phrases:
   - "webflow jsdoc usage"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.6
+version: 1.5.0.6
 ---
 
 # Commenting (JS-Specific) & Related

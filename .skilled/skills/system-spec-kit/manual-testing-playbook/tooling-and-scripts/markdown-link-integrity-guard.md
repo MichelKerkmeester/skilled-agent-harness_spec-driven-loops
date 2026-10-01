@@ -1,7 +1,7 @@
 ---
 title: "Markdown link integrity guard"
 description: "This scenario validates the markdown link integrity guard. It runs check-markdown-links.cjs and its --self-test, records the current baseline, and confirms an injected broken link is named and counted before reverting."
-version: 3.6.0.1
+version: 1.6.0.1
 id: tooling-and-scripts-markdown-link-integrity-guard
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

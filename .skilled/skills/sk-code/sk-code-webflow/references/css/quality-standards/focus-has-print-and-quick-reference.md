@@ -8,7 +8,7 @@ trigger_phrases:
   - "css deployment checklist"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.2
+version: 1.5.0.2
 ---
 
 # Focus-Visible, :has(), Print & Quick Reference

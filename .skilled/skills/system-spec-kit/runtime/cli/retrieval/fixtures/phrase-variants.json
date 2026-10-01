@@ -1,5 +1,5 @@
 {
-  "manifestHash": "77b5d9e2faf996e55bc1489ff5ec4a570c2b45c7cc88110df48601386e0aebeb",
+  "manifestHash": "fb3a816fda0cd99f4e2ea19792cc94add965c95279119c7158d702479603e488",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -28556,29 +28556,29 @@
     "deep ai council 1 3 0 0": [
       "deep-ai-council 1.3.0.0"
     ],
-    "deep ai council 2 0 0 0": [
-      "deep-ai-council 2.0.0.0"
+    "deep ai council 1 4 0 0": [
+      "deep-ai-council 1.4.0.0"
     ],
-    "deep ai council 2 1 0 0": [
-      "deep-ai-council 2.1.0.0"
+    "deep ai council 1 5 0 0": [
+      "deep-ai-council 1.5.0.0"
     ],
-    "deep ai council 2 1 1 0": [
-      "deep-ai-council 2.1.1.0"
+    "deep ai council 1 5 1 0": [
+      "deep-ai-council 1.5.1.0"
     ],
-    "deep ai council 2 2 0 0": [
-      "deep-ai-council 2.2.0.0"
+    "deep ai council 1 6 0 0": [
+      "deep-ai-council 1.6.0.0"
     ],
-    "deep ai council 2 3 0 0": [
-      "deep-ai-council 2.3.0.0"
+    "deep ai council 1 7 0 0": [
+      "deep-ai-council 1.7.0.0"
     ],
-    "deep ai council 2 4 0 0": [
-      "deep-ai-council 2.4.0.0"
+    "deep ai council 1 8 0 0": [
+      "deep-ai-council 1.8.0.0"
     ],
-    "deep ai council 2 4 1 0": [
-      "deep-ai-council 2.4.1.0"
+    "deep ai council 1 8 1 0": [
+      "deep-ai-council 1.8.1.0"
     ],
-    "deep ai council 2 4 2 0": [
-      "deep-ai-council 2.4.2.0"
+    "deep ai council 1 8 2 0": [
+      "deep-ai-council 1.8.2.0"
     ],
     "deep ai council anti patterns": [
       "deep-ai-council anti-patterns"
@@ -28904,29 +28904,29 @@
     "deep ai council v1 3 0 0": [
       "deep-ai-council v1.3.0.0"
     ],
-    "deep ai council v2 0 0 0": [
-      "deep-ai-council v2.0.0.0"
+    "deep ai council v1 4 0 0": [
+      "deep-ai-council v1.4.0.0"
     ],
-    "deep ai council v2 1 0 0": [
-      "deep-ai-council v2.1.0.0"
+    "deep ai council v1 5 0 0": [
+      "deep-ai-council v1.5.0.0"
     ],
-    "deep ai council v2 1 1 0": [
-      "deep-ai-council v2.1.1.0"
+    "deep ai council v1 5 1 0": [
+      "deep-ai-council v1.5.1.0"
     ],
-    "deep ai council v2 2 0 0": [
-      "deep-ai-council v2.2.0.0"
+    "deep ai council v1 6 0 0": [
+      "deep-ai-council v1.6.0.0"
     ],
-    "deep ai council v2 3 0 0": [
-      "deep-ai-council v2.3.0.0"
+    "deep ai council v1 7 0 0": [
+      "deep-ai-council v1.7.0.0"
     ],
-    "deep ai council v2 4 0 0": [
-      "deep-ai-council v2.4.0.0"
+    "deep ai council v1 8 0 0": [
+      "deep-ai-council v1.8.0.0"
     ],
-    "deep ai council v2 4 1 0": [
-      "deep-ai-council v2.4.1.0"
+    "deep ai council v1 8 1 0": [
+      "deep-ai-council v1.8.1.0"
     ],
-    "deep ai council v2 4 2 0": [
-      "deep-ai-council v2.4.2.0"
+    "deep ai council v1 8 2 0": [
+      "deep-ai-council v1.8.2.0"
     ],
     "deep ai council verified sealed reads": [
       "deep ai council verified sealed reads"
@@ -81648,53 +81648,53 @@
     "sk agent improver deep improvement rename": [
       "sk-agent-improver deep-improvement rename"
     ],
-    "sk code 3 0 0 0": [
-      "sk-code 3.0.0.0"
+    "sk code 1 0 0 0": [
+      "sk-code 1.0.0.0"
     ],
-    "sk code 3 1 0 0": [
-      "sk-code 3.1.0.0"
+    "sk code 1 1 0 0": [
+      "sk-code 1.1.0.0"
     ],
-    "sk code 3 2 0 0": [
-      "sk-code 3.2.0.0"
+    "sk code 1 2 0 0": [
+      "sk-code 1.2.0.0"
     ],
-    "sk code 3 2 1 0": [
-      "sk-code 3.2.1.0"
+    "sk code 1 2 1 0": [
+      "sk-code 1.2.1.0"
     ],
-    "sk code 3 3 0 0": [
-      "sk-code 3.3.0.0"
+    "sk code 1 3 0 0": [
+      "sk-code 1.3.0.0"
     ],
-    "sk code 3 3 1 0": [
-      "sk-code 3.3.1.0"
+    "sk code 1 3 1 0": [
+      "sk-code 1.3.1.0"
     ],
-    "sk code 3 4 0 0": [
-      "sk-code 3.4.0.0"
+    "sk code 1 4 0 0": [
+      "sk-code 1.4.0.0"
     ],
-    "sk code 3 5 0 0": [
-      "sk-code 3.5.0.0"
+    "sk code 1 5 0 0": [
+      "sk-code 1.5.0.0"
     ],
-    "sk code 4 0 0 0": [
-      "sk-code 4.0.0.0"
+    "sk code 2 0 0 0": [
+      "sk-code 2.0.0.0"
     ],
-    "sk code 4 0 1 0": [
-      "sk-code 4.0.1.0"
+    "sk code 2 0 1 0": [
+      "sk-code 2.0.1.0"
     ],
-    "sk code 4 1 0 0": [
-      "sk-code 4.1.0.0"
+    "sk code 2 1 0 0": [
+      "sk-code 2.1.0.0"
     ],
-    "sk code 4 2 0 0": [
-      "sk-code 4.2.0.0"
+    "sk code 2 2 0 0": [
+      "sk-code 2.2.0.0"
     ],
-    "sk code 4 2 1 0": [
-      "sk-code 4.2.1.0"
+    "sk code 2 2 1 0": [
+      "sk-code 2.2.1.0"
     ],
-    "sk code 4 2 2 0": [
-      "sk-code 4.2.2.0"
+    "sk code 2 2 2 0": [
+      "sk-code 2.2.2.0"
     ],
-    "sk code 4 2 3 0": [
-      "sk-code 4.2.3.0"
+    "sk code 2 2 3 0": [
+      "sk-code 2.2.3.0"
     ],
-    "sk code 4 2 4 0": [
-      "sk-code 4.2.4.0"
+    "sk code 2 2 4 0": [
+      "sk-code 2.2.4.0"
     ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
@@ -82500,53 +82500,53 @@
     "sk code two axis tasks": [
       "sk-code two-axis tasks"
     ],
-    "sk code v3 0 0 0": [
-      "sk-code v3.0.0.0"
+    "sk code v1 0 0 0": [
+      "sk-code v1.0.0.0"
     ],
-    "sk code v3 1 0 0": [
-      "sk-code v3.1.0.0"
+    "sk code v1 1 0 0": [
+      "sk-code v1.1.0.0"
     ],
-    "sk code v3 2 0 0": [
-      "sk-code v3.2.0.0"
+    "sk code v1 2 0 0": [
+      "sk-code v1.2.0.0"
     ],
-    "sk code v3 2 1 0": [
-      "sk-code v3.2.1.0"
+    "sk code v1 2 1 0": [
+      "sk-code v1.2.1.0"
     ],
-    "sk code v3 3 0 0": [
-      "sk-code v3.3.0.0"
+    "sk code v1 3 0 0": [
+      "sk-code v1.3.0.0"
     ],
-    "sk code v3 3 1 0": [
-      "sk-code v3.3.1.0"
+    "sk code v1 3 1 0": [
+      "sk-code v1.3.1.0"
     ],
-    "sk code v3 4 0 0": [
-      "sk-code v3.4.0.0"
+    "sk code v1 4 0 0": [
+      "sk-code v1.4.0.0"
     ],
-    "sk code v3 5 0 0": [
-      "sk-code v3.5.0.0"
+    "sk code v1 5 0 0": [
+      "sk-code v1.5.0.0"
     ],
-    "sk code v4 0 0 0": [
-      "sk-code v4.0.0.0"
+    "sk code v2 0 0 0": [
+      "sk-code v2.0.0.0"
     ],
-    "sk code v4 0 1 0": [
-      "sk-code v4.0.1.0"
+    "sk code v2 0 1 0": [
+      "sk-code v2.0.1.0"
     ],
-    "sk code v4 1 0 0": [
-      "sk-code v4.1.0.0"
+    "sk code v2 1 0 0": [
+      "sk-code v2.1.0.0"
     ],
-    "sk code v4 2 0 0": [
-      "sk-code v4.2.0.0"
+    "sk code v2 2 0 0": [
+      "sk-code v2.2.0.0"
     ],
-    "sk code v4 2 1 0": [
-      "sk-code v4.2.1.0"
+    "sk code v2 2 1 0": [
+      "sk-code v2.2.1.0"
     ],
-    "sk code v4 2 2 0": [
-      "sk-code v4.2.2.0"
+    "sk code v2 2 2 0": [
+      "sk-code v2.2.2.0"
     ],
-    "sk code v4 2 3 0": [
-      "sk-code v4.2.3.0"
+    "sk code v2 2 3 0": [
+      "sk-code v2.2.3.0"
     ],
-    "sk code v4 2 4 0": [
-      "sk-code v4.2.4.0"
+    "sk code v2 2 4 0": [
+      "sk-code v2.2.4.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -91799,35 +91799,35 @@
     "system deep loop 1 1 0 0": [
       "system-deep-loop 1.1.0.0"
     ],
-    "system deep loop 2 0 0 0": [
-      "system-deep-loop 2.0.0.0"
+    "system deep loop 1 2 0 0": [
+      "system-deep-loop 1.2.0.0"
     ],
-    "system deep loop 2 1 0 0": [
-      "system-deep-loop 2.1.0.0"
+    "system deep loop 1 3 0 0": [
+      "system-deep-loop 1.3.0.0"
     ],
-    "system deep loop 2 2 0 0": [
-      "system-deep-loop 2.2.0.0"
+    "system deep loop 1 4 0 0": [
+      "system-deep-loop 1.4.0.0"
     ],
-    "system deep loop 2 2 1 0": [
-      "system-deep-loop 2.2.1.0"
+    "system deep loop 1 4 1 0": [
+      "system-deep-loop 1.4.1.0"
     ],
-    "system deep loop 2 2 2 0": [
-      "system-deep-loop 2.2.2.0"
+    "system deep loop 1 4 2 0": [
+      "system-deep-loop 1.4.2.0"
     ],
-    "system deep loop 2 2 3 0": [
-      "system-deep-loop 2.2.3.0"
+    "system deep loop 1 4 3 0": [
+      "system-deep-loop 1.4.3.0"
     ],
-    "system deep loop 2 2 4 0": [
-      "system-deep-loop 2.2.4.0"
+    "system deep loop 1 4 4 0": [
+      "system-deep-loop 1.4.4.0"
     ],
-    "system deep loop 3 0 0 0": [
-      "system-deep-loop 3.0.0.0"
+    "system deep loop 1 5 0 0": [
+      "system-deep-loop 1.5.0.0"
     ],
-    "system deep loop 3 0 1 0": [
-      "system-deep-loop 3.0.1.0"
+    "system deep loop 1 5 1 0": [
+      "system-deep-loop 1.5.1.0"
     ],
-    "system deep loop 3 0 2 0": [
-      "system-deep-loop 3.0.2.0"
+    "system deep loop 1 5 2 0": [
+      "system-deep-loop 1.5.2.0"
     ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
@@ -91907,35 +91907,35 @@
     "system deep loop v1 1 0 0": [
       "system-deep-loop v1.1.0.0"
     ],
-    "system deep loop v2 0 0 0": [
-      "system-deep-loop v2.0.0.0"
+    "system deep loop v1 2 0 0": [
+      "system-deep-loop v1.2.0.0"
     ],
-    "system deep loop v2 1 0 0": [
-      "system-deep-loop v2.1.0.0"
+    "system deep loop v1 3 0 0": [
+      "system-deep-loop v1.3.0.0"
     ],
-    "system deep loop v2 2 0 0": [
-      "system-deep-loop v2.2.0.0"
+    "system deep loop v1 4 0 0": [
+      "system-deep-loop v1.4.0.0"
     ],
-    "system deep loop v2 2 1 0": [
-      "system-deep-loop v2.2.1.0"
+    "system deep loop v1 4 1 0": [
+      "system-deep-loop v1.4.1.0"
     ],
-    "system deep loop v2 2 2 0": [
-      "system-deep-loop v2.2.2.0"
+    "system deep loop v1 4 2 0": [
+      "system-deep-loop v1.4.2.0"
     ],
-    "system deep loop v2 2 3 0": [
-      "system-deep-loop v2.2.3.0"
+    "system deep loop v1 4 3 0": [
+      "system-deep-loop v1.4.3.0"
     ],
-    "system deep loop v2 2 4 0": [
-      "system-deep-loop v2.2.4.0"
+    "system deep loop v1 4 4 0": [
+      "system-deep-loop v1.4.4.0"
     ],
-    "system deep loop v3 0 0 0": [
-      "system-deep-loop v3.0.0.0"
+    "system deep loop v1 5 0 0": [
+      "system-deep-loop v1.5.0.0"
     ],
-    "system deep loop v3 0 1 0": [
-      "system-deep-loop v3.0.1.0"
+    "system deep loop v1 5 1 0": [
+      "system-deep-loop v1.5.1.0"
     ],
-    "system deep loop v3 0 2 0": [
-      "system-deep-loop v3.0.2.0"
+    "system deep loop v1 5 2 0": [
+      "system-deep-loop v1.5.2.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"
@@ -92156,8 +92156,203 @@
     "system spec gate enforce": [
       "SYSTEM_SPEC_GATE_ENFORCE"
     ],
-    "system spec kit 1 2 6 0": [
-      "system-spec-kit 1.2.6.0"
+    "system spec kit 0 0 0 0": [
+      "system-spec-kit 0.0.0.0"
+    ],
+    "system spec kit 0 0 0 1": [
+      "system-spec-kit 0.0.0.1"
+    ],
+    "system spec kit 0 1 0 0": [
+      "system-spec-kit 0.1.0.0"
+    ],
+    "system spec kit 0 1 10 0": [
+      "system-spec-kit 0.1.10.0"
+    ],
+    "system spec kit 0 1 5 0": [
+      "system-spec-kit 0.1.5.0"
+    ],
+    "system spec kit 0 1 6 0": [
+      "system-spec-kit 0.1.6.0"
+    ],
+    "system spec kit 0 1 7 0": [
+      "system-spec-kit 0.1.7.0"
+    ],
+    "system spec kit 0 1 8 0": [
+      "system-spec-kit 0.1.8.0"
+    ],
+    "system spec kit 0 1 9 0": [
+      "system-spec-kit 0.1.9.0"
+    ],
+    "system spec kit 0 2 0 0": [
+      "system-spec-kit 0.2.0.0"
+    ],
+    "system spec kit 0 2 10 0": [
+      "system-spec-kit 0.2.10.0"
+    ],
+    "system spec kit 0 2 11 0": [
+      "system-spec-kit 0.2.11.0"
+    ],
+    "system spec kit 0 2 12 0": [
+      "system-spec-kit 0.2.12.0"
+    ],
+    "system spec kit 0 2 13 0": [
+      "system-spec-kit 0.2.13.0"
+    ],
+    "system spec kit 0 2 14 0": [
+      "system-spec-kit 0.2.14.0"
+    ],
+    "system spec kit 0 2 15 0": [
+      "system-spec-kit 0.2.15.0"
+    ],
+    "system spec kit 0 2 16 0": [
+      "system-spec-kit 0.2.16.0"
+    ],
+    "system spec kit 0 2 17 0": [
+      "system-spec-kit 0.2.17.0"
+    ],
+    "system spec kit 0 2 18 0": [
+      "system-spec-kit 0.2.18.0"
+    ],
+    "system spec kit 0 2 19 0": [
+      "system-spec-kit 0.2.19.0"
+    ],
+    "system spec kit 0 2 2 0": [
+      "system-spec-kit 0.2.2.0"
+    ],
+    "system spec kit 0 2 20 0": [
+      "system-spec-kit 0.2.20.0"
+    ],
+    "system spec kit 0 2 21 0": [
+      "system-spec-kit 0.2.21.0"
+    ],
+    "system spec kit 0 2 22 0": [
+      "system-spec-kit 0.2.22.0"
+    ],
+    "system spec kit 0 2 22 1": [
+      "system-spec-kit 0.2.22.1"
+    ],
+    "system spec kit 0 2 23 0": [
+      "system-spec-kit 0.2.23.0"
+    ],
+    "system spec kit 0 2 24 0": [
+      "system-spec-kit 0.2.24.0"
+    ],
+    "system spec kit 0 2 24 1": [
+      "system-spec-kit 0.2.24.1"
+    ],
+    "system spec kit 0 2 25 0": [
+      "system-spec-kit 0.2.25.0"
+    ],
+    "system spec kit 0 2 26 0": [
+      "system-spec-kit 0.2.26.0"
+    ],
+    "system spec kit 0 2 28 0": [
+      "system-spec-kit 0.2.28.0"
+    ],
+    "system spec kit 0 2 29 0": [
+      "system-spec-kit 0.2.29.0"
+    ],
+    "system spec kit 0 2 3 0": [
+      "system-spec-kit 0.2.3.0"
+    ],
+    "system spec kit 0 2 30 0": [
+      "system-spec-kit 0.2.30.0"
+    ],
+    "system spec kit 0 2 31 0": [
+      "system-spec-kit 0.2.31.0"
+    ],
+    "system spec kit 0 2 4 0": [
+      "system-spec-kit 0.2.4.0"
+    ],
+    "system spec kit 0 2 5 0": [
+      "system-spec-kit 0.2.5.0"
+    ],
+    "system spec kit 0 2 6 0": [
+      "system-spec-kit 0.2.6.0"
+    ],
+    "system spec kit 0 2 7 0": [
+      "system-spec-kit 0.2.7.0"
+    ],
+    "system spec kit 0 2 8 0": [
+      "system-spec-kit 0.2.8.0"
+    ],
+    "system spec kit 0 2 9 0": [
+      "system-spec-kit 0.2.9.0"
+    ],
+    "system spec kit 0 3 0 1": [
+      "system-spec-kit 0.3.0.1"
+    ],
+    "system spec kit 0 3 0 10": [
+      "system-spec-kit 0.3.0.10"
+    ],
+    "system spec kit 0 3 0 11": [
+      "system-spec-kit 0.3.0.11"
+    ],
+    "system spec kit 0 3 0 12": [
+      "system-spec-kit 0.3.0.12"
+    ],
+    "system spec kit 0 3 0 13": [
+      "system-spec-kit 0.3.0.13"
+    ],
+    "system spec kit 0 3 0 14": [
+      "system-spec-kit 0.3.0.14"
+    ],
+    "system spec kit 0 3 0 15": [
+      "system-spec-kit 0.3.0.15"
+    ],
+    "system spec kit 0 3 0 2": [
+      "system-spec-kit 0.3.0.2"
+    ],
+    "system spec kit 0 3 0 3": [
+      "system-spec-kit 0.3.0.3"
+    ],
+    "system spec kit 0 3 0 4": [
+      "system-spec-kit 0.3.0.4"
+    ],
+    "system spec kit 0 3 0 5": [
+      "system-spec-kit 0.3.0.5"
+    ],
+    "system spec kit 0 3 0 6": [
+      "system-spec-kit 0.3.0.6"
+    ],
+    "system spec kit 0 3 0 7": [
+      "system-spec-kit 0.3.0.7"
+    ],
+    "system spec kit 0 3 0 8": [
+      "system-spec-kit 0.3.0.8"
+    ],
+    "system spec kit 0 3 0 9": [
+      "system-spec-kit 0.3.0.9"
+    ],
+    "system spec kit 0 3 1 0": [
+      "system-spec-kit 0.3.1.0"
+    ],
+    "system spec kit 0 4 1 0": [
+      "system-spec-kit 0.4.1.0"
+    ],
+    "system spec kit 1 1 1 0": [
+      "system-spec-kit 1.1.1.0"
+    ],
+    "system spec kit 1 3 1 0": [
+      "system-spec-kit 1.3.1.0"
+    ],
+    "system spec kit 1 4 2 0": [
+      "system-spec-kit 1.4.2.0"
+    ],
+    "system spec kit 1 5 0 5": [
+      "system-spec-kit 1.5.0.5"
+    ],
+    "system spec kit 1 7 0 0": [
+      "system-spec-kit 1.7.0.0"
+    ],
+    "system spec kit 1 7 1 0": [
+      "system-spec-kit 1.7.1.0"
+    ],
+    "system spec kit 1 8 0 0": [
+      "system-spec-kit 1.8.0.0"
+    ],
+    "system spec kit 1 9 0 0": [
+      "system-spec-kit 1.9.0.0"
     ],
     "system spec kit 2 0 0 0": [
       "system-spec-kit 2.0.0.0"
@@ -92165,233 +92360,38 @@
     "system spec kit 2 1 0 0": [
       "system-spec-kit 2.1.0.0"
     ],
-    "system spec kit 2 1 10 0": [
-      "system-spec-kit 2.1.10.0"
+    "system spec kit 2 1 1 0": [
+      "system-spec-kit 2.1.1.0"
+    ],
+    "system spec kit 2 1 2 0": [
+      "system-spec-kit 2.1.2.0"
+    ],
+    "system spec kit 2 1 3 0": [
+      "system-spec-kit 2.1.3.0"
+    ],
+    "system spec kit 2 1 4 0": [
+      "system-spec-kit 2.1.4.0"
     ],
     "system spec kit 2 1 5 0": [
       "system-spec-kit 2.1.5.0"
     ],
-    "system spec kit 2 1 6 0": [
-      "system-spec-kit 2.1.6.0"
-    ],
-    "system spec kit 2 1 7 0": [
-      "system-spec-kit 2.1.7.0"
-    ],
-    "system spec kit 2 1 8 0": [
-      "system-spec-kit 2.1.8.0"
-    ],
-    "system spec kit 2 1 9 0": [
-      "system-spec-kit 2.1.9.0"
-    ],
     "system spec kit 2 2 0 0": [
       "system-spec-kit 2.2.0.0"
     ],
-    "system spec kit 2 2 10 0": [
-      "system-spec-kit 2.2.10.0"
+    "system spec kit 2 3 0 0": [
+      "system-spec-kit 2.3.0.0"
     ],
-    "system spec kit 2 2 11 0": [
-      "system-spec-kit 2.2.11.0"
+    "system spec kit 2 4 0 0": [
+      "system-spec-kit 2.4.0.0"
     ],
-    "system spec kit 2 2 12 0": [
-      "system-spec-kit 2.2.12.0"
+    "system spec kit 2 5 0 0": [
+      "system-spec-kit 2.5.0.0"
     ],
-    "system spec kit 2 2 13 0": [
-      "system-spec-kit 2.2.13.0"
+    "system spec kit 2 6 0 0": [
+      "system-spec-kit 2.6.0.0"
     ],
-    "system spec kit 2 2 14 0": [
-      "system-spec-kit 2.2.14.0"
-    ],
-    "system spec kit 2 2 15 0": [
-      "system-spec-kit 2.2.15.0"
-    ],
-    "system spec kit 2 2 16 0": [
-      "system-spec-kit 2.2.16.0"
-    ],
-    "system spec kit 2 2 17 0": [
-      "system-spec-kit 2.2.17.0"
-    ],
-    "system spec kit 2 2 18 0": [
-      "system-spec-kit 2.2.18.0"
-    ],
-    "system spec kit 2 2 19 0": [
-      "system-spec-kit 2.2.19.0"
-    ],
-    "system spec kit 2 2 2 0": [
-      "system-spec-kit 2.2.2.0"
-    ],
-    "system spec kit 2 2 20 0": [
-      "system-spec-kit 2.2.20.0"
-    ],
-    "system spec kit 2 2 21 0": [
-      "system-spec-kit 2.2.21.0"
-    ],
-    "system spec kit 2 2 22 0": [
-      "system-spec-kit 2.2.22.0"
-    ],
-    "system spec kit 2 2 22 1": [
-      "system-spec-kit 2.2.22.1"
-    ],
-    "system spec kit 2 2 23 0": [
-      "system-spec-kit 2.2.23.0"
-    ],
-    "system spec kit 2 2 24 0": [
-      "system-spec-kit 2.2.24.0"
-    ],
-    "system spec kit 2 2 24 1": [
-      "system-spec-kit 2.2.24.1"
-    ],
-    "system spec kit 2 2 25 0": [
-      "system-spec-kit 2.2.25.0"
-    ],
-    "system spec kit 2 2 26 0": [
-      "system-spec-kit 2.2.26.0"
-    ],
-    "system spec kit 2 2 28 0": [
-      "system-spec-kit 2.2.28.0"
-    ],
-    "system spec kit 2 2 29 0": [
-      "system-spec-kit 2.2.29.0"
-    ],
-    "system spec kit 2 2 3 0": [
-      "system-spec-kit 2.2.3.0"
-    ],
-    "system spec kit 2 2 30 0": [
-      "system-spec-kit 2.2.30.0"
-    ],
-    "system spec kit 2 2 31 0": [
-      "system-spec-kit 2.2.31.0"
-    ],
-    "system spec kit 2 2 4 0": [
-      "system-spec-kit 2.2.4.0"
-    ],
-    "system spec kit 2 2 5 0": [
-      "system-spec-kit 2.2.5.0"
-    ],
-    "system spec kit 2 2 6 0": [
-      "system-spec-kit 2.2.6.0"
-    ],
-    "system spec kit 2 2 7 0": [
-      "system-spec-kit 2.2.7.0"
-    ],
-    "system spec kit 2 2 8 0": [
-      "system-spec-kit 2.2.8.0"
-    ],
-    "system spec kit 2 2 9 0": [
-      "system-spec-kit 2.2.9.0"
-    ],
-    "system spec kit 2 3 0 1": [
-      "system-spec-kit 2.3.0.1"
-    ],
-    "system spec kit 2 3 0 10": [
-      "system-spec-kit 2.3.0.10"
-    ],
-    "system spec kit 2 3 0 11": [
-      "system-spec-kit 2.3.0.11"
-    ],
-    "system spec kit 2 3 0 12": [
-      "system-spec-kit 2.3.0.12"
-    ],
-    "system spec kit 2 3 0 13": [
-      "system-spec-kit 2.3.0.13"
-    ],
-    "system spec kit 2 3 0 14": [
-      "system-spec-kit 2.3.0.14"
-    ],
-    "system spec kit 2 3 0 15": [
-      "system-spec-kit 2.3.0.15"
-    ],
-    "system spec kit 2 3 0 2": [
-      "system-spec-kit 2.3.0.2"
-    ],
-    "system spec kit 2 3 0 3": [
-      "system-spec-kit 2.3.0.3"
-    ],
-    "system spec kit 2 3 0 4": [
-      "system-spec-kit 2.3.0.4"
-    ],
-    "system spec kit 2 3 0 5": [
-      "system-spec-kit 2.3.0.5"
-    ],
-    "system spec kit 2 3 0 6": [
-      "system-spec-kit 2.3.0.6"
-    ],
-    "system spec kit 2 3 0 7": [
-      "system-spec-kit 2.3.0.7"
-    ],
-    "system spec kit 2 3 0 8": [
-      "system-spec-kit 2.3.0.8"
-    ],
-    "system spec kit 2 3 0 9": [
-      "system-spec-kit 2.3.0.9"
-    ],
-    "system spec kit 2 3 1 0": [
-      "system-spec-kit 2.3.1.0"
-    ],
-    "system spec kit 2 4 1 0": [
-      "system-spec-kit 2.4.1.0"
-    ],
-    "system spec kit 3 1 1 0": [
-      "system-spec-kit 3.1.1.0"
-    ],
-    "system spec kit 3 3 1 0": [
-      "system-spec-kit 3.3.1.0"
-    ],
-    "system spec kit 3 4 2 0": [
-      "system-spec-kit 3.4.2.0"
-    ],
-    "system spec kit 3 5 0 5": [
-      "system-spec-kit 3.5.0.5"
-    ],
-    "system spec kit 3 7 0 0": [
-      "system-spec-kit 3.7.0.0"
-    ],
-    "system spec kit 3 7 1 0": [
-      "system-spec-kit 3.7.1.0"
-    ],
-    "system spec kit 3 8 0 0": [
-      "system-spec-kit 3.8.0.0"
-    ],
-    "system spec kit 3 9 0 0": [
-      "system-spec-kit 3.9.0.0"
-    ],
-    "system spec kit 4 0 0 0": [
-      "system-spec-kit 4.0.0.0"
-    ],
-    "system spec kit 4 1 0 0": [
-      "system-spec-kit 4.1.0.0"
-    ],
-    "system spec kit 4 1 1 0": [
-      "system-spec-kit 4.1.1.0"
-    ],
-    "system spec kit 4 1 2 0": [
-      "system-spec-kit 4.1.2.0"
-    ],
-    "system spec kit 4 1 3 0": [
-      "system-spec-kit 4.1.3.0"
-    ],
-    "system spec kit 4 1 4 0": [
-      "system-spec-kit 4.1.4.0"
-    ],
-    "system spec kit 4 1 5 0": [
-      "system-spec-kit 4.1.5.0"
-    ],
-    "system spec kit 4 2 0 0": [
-      "system-spec-kit 4.2.0.0"
-    ],
-    "system spec kit 4 3 0 0": [
-      "system-spec-kit 4.3.0.0"
-    ],
-    "system spec kit 4 4 0 0": [
-      "system-spec-kit 4.4.0.0"
-    ],
-    "system spec kit 4 5 0 0": [
-      "system-spec-kit 4.5.0.0"
-    ],
-    "system spec kit 4 6 0 0": [
-      "system-spec-kit 4.6.0.0"
-    ],
-    "system spec kit 4 6 1 0": [
-      "system-spec-kit 4.6.1.0"
+    "system spec kit 2 6 1 0": [
+      "system-spec-kit 2.6.1.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -92522,8 +92522,203 @@
     "system spec kit stale reference cleanup": [
       "system-spec-kit stale reference cleanup"
     ],
-    "system spec kit v1 2 6 0": [
-      "system-spec-kit v1.2.6.0"
+    "system spec kit v0 0 0 0": [
+      "system-spec-kit v0.0.0.0"
+    ],
+    "system spec kit v0 0 0 1": [
+      "system-spec-kit v0.0.0.1"
+    ],
+    "system spec kit v0 1 0 0": [
+      "system-spec-kit v0.1.0.0"
+    ],
+    "system spec kit v0 1 10 0": [
+      "system-spec-kit v0.1.10.0"
+    ],
+    "system spec kit v0 1 5 0": [
+      "system-spec-kit v0.1.5.0"
+    ],
+    "system spec kit v0 1 6 0": [
+      "system-spec-kit v0.1.6.0"
+    ],
+    "system spec kit v0 1 7 0": [
+      "system-spec-kit v0.1.7.0"
+    ],
+    "system spec kit v0 1 8 0": [
+      "system-spec-kit v0.1.8.0"
+    ],
+    "system spec kit v0 1 9 0": [
+      "system-spec-kit v0.1.9.0"
+    ],
+    "system spec kit v0 2 0 0": [
+      "system-spec-kit v0.2.0.0"
+    ],
+    "system spec kit v0 2 10 0": [
+      "system-spec-kit v0.2.10.0"
+    ],
+    "system spec kit v0 2 11 0": [
+      "system-spec-kit v0.2.11.0"
+    ],
+    "system spec kit v0 2 12 0": [
+      "system-spec-kit v0.2.12.0"
+    ],
+    "system spec kit v0 2 13 0": [
+      "system-spec-kit v0.2.13.0"
+    ],
+    "system spec kit v0 2 14 0": [
+      "system-spec-kit v0.2.14.0"
+    ],
+    "system spec kit v0 2 15 0": [
+      "system-spec-kit v0.2.15.0"
+    ],
+    "system spec kit v0 2 16 0": [
+      "system-spec-kit v0.2.16.0"
+    ],
+    "system spec kit v0 2 17 0": [
+      "system-spec-kit v0.2.17.0"
+    ],
+    "system spec kit v0 2 18 0": [
+      "system-spec-kit v0.2.18.0"
+    ],
+    "system spec kit v0 2 19 0": [
+      "system-spec-kit v0.2.19.0"
+    ],
+    "system spec kit v0 2 2 0": [
+      "system-spec-kit v0.2.2.0"
+    ],
+    "system spec kit v0 2 20 0": [
+      "system-spec-kit v0.2.20.0"
+    ],
+    "system spec kit v0 2 21 0": [
+      "system-spec-kit v0.2.21.0"
+    ],
+    "system spec kit v0 2 22 0": [
+      "system-spec-kit v0.2.22.0"
+    ],
+    "system spec kit v0 2 22 1": [
+      "system-spec-kit v0.2.22.1"
+    ],
+    "system spec kit v0 2 23 0": [
+      "system-spec-kit v0.2.23.0"
+    ],
+    "system spec kit v0 2 24 0": [
+      "system-spec-kit v0.2.24.0"
+    ],
+    "system spec kit v0 2 24 1": [
+      "system-spec-kit v0.2.24.1"
+    ],
+    "system spec kit v0 2 25 0": [
+      "system-spec-kit v0.2.25.0"
+    ],
+    "system spec kit v0 2 26 0": [
+      "system-spec-kit v0.2.26.0"
+    ],
+    "system spec kit v0 2 28 0": [
+      "system-spec-kit v0.2.28.0"
+    ],
+    "system spec kit v0 2 29 0": [
+      "system-spec-kit v0.2.29.0"
+    ],
+    "system spec kit v0 2 3 0": [
+      "system-spec-kit v0.2.3.0"
+    ],
+    "system spec kit v0 2 30 0": [
+      "system-spec-kit v0.2.30.0"
+    ],
+    "system spec kit v0 2 31 0": [
+      "system-spec-kit v0.2.31.0"
+    ],
+    "system spec kit v0 2 4 0": [
+      "system-spec-kit v0.2.4.0"
+    ],
+    "system spec kit v0 2 5 0": [
+      "system-spec-kit v0.2.5.0"
+    ],
+    "system spec kit v0 2 6 0": [
+      "system-spec-kit v0.2.6.0"
+    ],
+    "system spec kit v0 2 7 0": [
+      "system-spec-kit v0.2.7.0"
+    ],
+    "system spec kit v0 2 8 0": [
+      "system-spec-kit v0.2.8.0"
+    ],
+    "system spec kit v0 2 9 0": [
+      "system-spec-kit v0.2.9.0"
+    ],
+    "system spec kit v0 3 0 1": [
+      "system-spec-kit v0.3.0.1"
+    ],
+    "system spec kit v0 3 0 10": [
+      "system-spec-kit v0.3.0.10"
+    ],
+    "system spec kit v0 3 0 11": [
+      "system-spec-kit v0.3.0.11"
+    ],
+    "system spec kit v0 3 0 12": [
+      "system-spec-kit v0.3.0.12"
+    ],
+    "system spec kit v0 3 0 13": [
+      "system-spec-kit v0.3.0.13"
+    ],
+    "system spec kit v0 3 0 14": [
+      "system-spec-kit v0.3.0.14"
+    ],
+    "system spec kit v0 3 0 15": [
+      "system-spec-kit v0.3.0.15"
+    ],
+    "system spec kit v0 3 0 2": [
+      "system-spec-kit v0.3.0.2"
+    ],
+    "system spec kit v0 3 0 3": [
+      "system-spec-kit v0.3.0.3"
+    ],
+    "system spec kit v0 3 0 4": [
+      "system-spec-kit v0.3.0.4"
+    ],
+    "system spec kit v0 3 0 5": [
+      "system-spec-kit v0.3.0.5"
+    ],
+    "system spec kit v0 3 0 6": [
+      "system-spec-kit v0.3.0.6"
+    ],
+    "system spec kit v0 3 0 7": [
+      "system-spec-kit v0.3.0.7"
+    ],
+    "system spec kit v0 3 0 8": [
+      "system-spec-kit v0.3.0.8"
+    ],
+    "system spec kit v0 3 0 9": [
+      "system-spec-kit v0.3.0.9"
+    ],
+    "system spec kit v0 3 1 0": [
+      "system-spec-kit v0.3.1.0"
+    ],
+    "system spec kit v0 4 1 0": [
+      "system-spec-kit v0.4.1.0"
+    ],
+    "system spec kit v1 1 1 0": [
+      "system-spec-kit v1.1.1.0"
+    ],
+    "system spec kit v1 3 1 0": [
+      "system-spec-kit v1.3.1.0"
+    ],
+    "system spec kit v1 4 2 0": [
+      "system-spec-kit v1.4.2.0"
+    ],
+    "system spec kit v1 5 0 5": [
+      "system-spec-kit v1.5.0.5"
+    ],
+    "system spec kit v1 7 0 0": [
+      "system-spec-kit v1.7.0.0"
+    ],
+    "system spec kit v1 7 1 0": [
+      "system-spec-kit v1.7.1.0"
+    ],
+    "system spec kit v1 8 0 0": [
+      "system-spec-kit v1.8.0.0"
+    ],
+    "system spec kit v1 9 0 0": [
+      "system-spec-kit v1.9.0.0"
     ],
     "system spec kit v2 0 0 0": [
       "system-spec-kit v2.0.0.0"
@@ -92531,233 +92726,38 @@
     "system spec kit v2 1 0 0": [
       "system-spec-kit v2.1.0.0"
     ],
-    "system spec kit v2 1 10 0": [
-      "system-spec-kit v2.1.10.0"
+    "system spec kit v2 1 1 0": [
+      "system-spec-kit v2.1.1.0"
+    ],
+    "system spec kit v2 1 2 0": [
+      "system-spec-kit v2.1.2.0"
+    ],
+    "system spec kit v2 1 3 0": [
+      "system-spec-kit v2.1.3.0"
+    ],
+    "system spec kit v2 1 4 0": [
+      "system-spec-kit v2.1.4.0"
     ],
     "system spec kit v2 1 5 0": [
       "system-spec-kit v2.1.5.0"
     ],
-    "system spec kit v2 1 6 0": [
-      "system-spec-kit v2.1.6.0"
-    ],
-    "system spec kit v2 1 7 0": [
-      "system-spec-kit v2.1.7.0"
-    ],
-    "system spec kit v2 1 8 0": [
-      "system-spec-kit v2.1.8.0"
-    ],
-    "system spec kit v2 1 9 0": [
-      "system-spec-kit v2.1.9.0"
-    ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
     ],
-    "system spec kit v2 2 10 0": [
-      "system-spec-kit v2.2.10.0"
+    "system spec kit v2 3 0 0": [
+      "system-spec-kit v2.3.0.0"
     ],
-    "system spec kit v2 2 11 0": [
-      "system-spec-kit v2.2.11.0"
+    "system spec kit v2 4 0 0": [
+      "system-spec-kit v2.4.0.0"
     ],
-    "system spec kit v2 2 12 0": [
-      "system-spec-kit v2.2.12.0"
+    "system spec kit v2 5 0 0": [
+      "system-spec-kit v2.5.0.0"
     ],
-    "system spec kit v2 2 13 0": [
-      "system-spec-kit v2.2.13.0"
+    "system spec kit v2 6 0 0": [
+      "system-spec-kit v2.6.0.0"
     ],
-    "system spec kit v2 2 14 0": [
-      "system-spec-kit v2.2.14.0"
-    ],
-    "system spec kit v2 2 15 0": [
-      "system-spec-kit v2.2.15.0"
-    ],
-    "system spec kit v2 2 16 0": [
-      "system-spec-kit v2.2.16.0"
-    ],
-    "system spec kit v2 2 17 0": [
-      "system-spec-kit v2.2.17.0"
-    ],
-    "system spec kit v2 2 18 0": [
-      "system-spec-kit v2.2.18.0"
-    ],
-    "system spec kit v2 2 19 0": [
-      "system-spec-kit v2.2.19.0"
-    ],
-    "system spec kit v2 2 2 0": [
-      "system-spec-kit v2.2.2.0"
-    ],
-    "system spec kit v2 2 20 0": [
-      "system-spec-kit v2.2.20.0"
-    ],
-    "system spec kit v2 2 21 0": [
-      "system-spec-kit v2.2.21.0"
-    ],
-    "system spec kit v2 2 22 0": [
-      "system-spec-kit v2.2.22.0"
-    ],
-    "system spec kit v2 2 22 1": [
-      "system-spec-kit v2.2.22.1"
-    ],
-    "system spec kit v2 2 23 0": [
-      "system-spec-kit v2.2.23.0"
-    ],
-    "system spec kit v2 2 24 0": [
-      "system-spec-kit v2.2.24.0"
-    ],
-    "system spec kit v2 2 24 1": [
-      "system-spec-kit v2.2.24.1"
-    ],
-    "system spec kit v2 2 25 0": [
-      "system-spec-kit v2.2.25.0"
-    ],
-    "system spec kit v2 2 26 0": [
-      "system-spec-kit v2.2.26.0"
-    ],
-    "system spec kit v2 2 28 0": [
-      "system-spec-kit v2.2.28.0"
-    ],
-    "system spec kit v2 2 29 0": [
-      "system-spec-kit v2.2.29.0"
-    ],
-    "system spec kit v2 2 3 0": [
-      "system-spec-kit v2.2.3.0"
-    ],
-    "system spec kit v2 2 30 0": [
-      "system-spec-kit v2.2.30.0"
-    ],
-    "system spec kit v2 2 31 0": [
-      "system-spec-kit v2.2.31.0"
-    ],
-    "system spec kit v2 2 4 0": [
-      "system-spec-kit v2.2.4.0"
-    ],
-    "system spec kit v2 2 5 0": [
-      "system-spec-kit v2.2.5.0"
-    ],
-    "system spec kit v2 2 6 0": [
-      "system-spec-kit v2.2.6.0"
-    ],
-    "system spec kit v2 2 7 0": [
-      "system-spec-kit v2.2.7.0"
-    ],
-    "system spec kit v2 2 8 0": [
-      "system-spec-kit v2.2.8.0"
-    ],
-    "system spec kit v2 2 9 0": [
-      "system-spec-kit v2.2.9.0"
-    ],
-    "system spec kit v2 3 0 1": [
-      "system-spec-kit v2.3.0.1"
-    ],
-    "system spec kit v2 3 0 10": [
-      "system-spec-kit v2.3.0.10"
-    ],
-    "system spec kit v2 3 0 11": [
-      "system-spec-kit v2.3.0.11"
-    ],
-    "system spec kit v2 3 0 12": [
-      "system-spec-kit v2.3.0.12"
-    ],
-    "system spec kit v2 3 0 13": [
-      "system-spec-kit v2.3.0.13"
-    ],
-    "system spec kit v2 3 0 14": [
-      "system-spec-kit v2.3.0.14"
-    ],
-    "system spec kit v2 3 0 15": [
-      "system-spec-kit v2.3.0.15"
-    ],
-    "system spec kit v2 3 0 2": [
-      "system-spec-kit v2.3.0.2"
-    ],
-    "system spec kit v2 3 0 3": [
-      "system-spec-kit v2.3.0.3"
-    ],
-    "system spec kit v2 3 0 4": [
-      "system-spec-kit v2.3.0.4"
-    ],
-    "system spec kit v2 3 0 5": [
-      "system-spec-kit v2.3.0.5"
-    ],
-    "system spec kit v2 3 0 6": [
-      "system-spec-kit v2.3.0.6"
-    ],
-    "system spec kit v2 3 0 7": [
-      "system-spec-kit v2.3.0.7"
-    ],
-    "system spec kit v2 3 0 8": [
-      "system-spec-kit v2.3.0.8"
-    ],
-    "system spec kit v2 3 0 9": [
-      "system-spec-kit v2.3.0.9"
-    ],
-    "system spec kit v2 3 1 0": [
-      "system-spec-kit v2.3.1.0"
-    ],
-    "system spec kit v2 4 1 0": [
-      "system-spec-kit v2.4.1.0"
-    ],
-    "system spec kit v3 1 1 0": [
-      "system-spec-kit v3.1.1.0"
-    ],
-    "system spec kit v3 3 1 0": [
-      "system-spec-kit v3.3.1.0"
-    ],
-    "system spec kit v3 4 2 0": [
-      "system-spec-kit v3.4.2.0"
-    ],
-    "system spec kit v3 5 0 5": [
-      "system-spec-kit v3.5.0.5"
-    ],
-    "system spec kit v3 7 0 0": [
-      "system-spec-kit v3.7.0.0"
-    ],
-    "system spec kit v3 7 1 0": [
-      "system-spec-kit v3.7.1.0"
-    ],
-    "system spec kit v3 8 0 0": [
-      "system-spec-kit v3.8.0.0"
-    ],
-    "system spec kit v3 9 0 0": [
-      "system-spec-kit v3.9.0.0"
-    ],
-    "system spec kit v4 0 0 0": [
-      "system-spec-kit v4.0.0.0"
-    ],
-    "system spec kit v4 1 0 0": [
-      "system-spec-kit v4.1.0.0"
-    ],
-    "system spec kit v4 1 1 0": [
-      "system-spec-kit v4.1.1.0"
-    ],
-    "system spec kit v4 1 2 0": [
-      "system-spec-kit v4.1.2.0"
-    ],
-    "system spec kit v4 1 3 0": [
-      "system-spec-kit v4.1.3.0"
-    ],
-    "system spec kit v4 1 4 0": [
-      "system-spec-kit v4.1.4.0"
-    ],
-    "system spec kit v4 1 5 0": [
-      "system-spec-kit v4.1.5.0"
-    ],
-    "system spec kit v4 2 0 0": [
-      "system-spec-kit v4.2.0.0"
-    ],
-    "system spec kit v4 3 0 0": [
-      "system-spec-kit v4.3.0.0"
-    ],
-    "system spec kit v4 4 0 0": [
-      "system-spec-kit v4.4.0.0"
-    ],
-    "system spec kit v4 5 0 0": [
-      "system-spec-kit v4.5.0.0"
-    ],
-    "system spec kit v4 6 0 0": [
-      "system-spec-kit v4.6.0.0"
-    ],
-    "system spec kit v4 6 1 0": [
-      "system-spec-kit v4.6.1.0"
+    "system spec kit v2 6 1 0": [
+      "system-spec-kit v2.6.1.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"

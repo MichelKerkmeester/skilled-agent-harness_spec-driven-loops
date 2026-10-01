@@ -8,7 +8,7 @@ trigger_phrases:
   - "mobile browser css patterns"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.4
+version: 1.5.0.4
 ---
 
 # Focus Detection, Accessibility & Mobile/Browser Patterns

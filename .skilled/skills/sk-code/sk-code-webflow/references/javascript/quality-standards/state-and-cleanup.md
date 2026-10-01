@@ -8,7 +8,7 @@ trigger_phrases:
   - "component cleanup pattern"
 importance_tier: normal
 contextType: implementation
-version: 3.5.0.7
+version: 1.5.0.7
 ---
 
 # State Management & Cleanup/Destroy Patterns

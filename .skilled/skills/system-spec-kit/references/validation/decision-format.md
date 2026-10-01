@@ -9,7 +9,7 @@ trigger_phrases:
   - "adr decision records"
 importance_tier: important
 contextType: general
-version: 3.6.0.16
+version: 1.6.0.16
 ---
 
 # Structured Gate Decision Format

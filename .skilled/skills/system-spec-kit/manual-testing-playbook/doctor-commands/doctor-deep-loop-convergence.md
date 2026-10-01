@@ -1,7 +1,7 @@
 ---
 title: "DOC-333 -- Doctor deep-loop convergence"
 description: "Manual scenario validating /doctor deep-loop gold-battery convergence signals for work packets with three or more iterations."
-version: 3.6.0.8
+version: 1.6.0.8
 id: doctor-commands-doctor-deep-loop-convergence
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

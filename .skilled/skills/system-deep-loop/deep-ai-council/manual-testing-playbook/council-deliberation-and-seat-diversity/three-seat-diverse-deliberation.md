@@ -1,7 +1,7 @@
 ---
 title: "DAC-003 -- Three-seat diverse deliberation"
 description: "This scenario validates three-seat diverse deliberation for DAC-003."
-version: 2.3.0.8
+version: 1.7.0.8
 ---
 
 # DAC-003 -- Three-seat diverse deliberation

@@ -1,7 +1,7 @@
 ---
 title: "445 -- Completion Freshness Validator"
 description: "Manual check that completion freshness is disabled by default, warns on stale continuity when enabled, and promotes stale state to strict failure only with enforce mode."
-version: 3.6.0.1
+version: 1.6.0.1
 id: feature-flag-reference-completion-freshness-validator
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

@@ -7,7 +7,7 @@ trigger_phrases:
   - "orphan-only MCP sweeper delegation"
   - "SPECKIT_STOP_HOOK_ORPHAN_SWEEP"
   - "stop hook reap ownerless daemon"
-version: 3.6.0.2
+version: 1.6.0.2
 ---
 
 # Orphan sweep stop-hook activation

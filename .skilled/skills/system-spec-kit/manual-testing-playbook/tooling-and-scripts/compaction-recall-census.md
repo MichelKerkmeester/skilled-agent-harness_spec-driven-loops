@@ -1,7 +1,7 @@
 ---
 title: "460 -- Compaction recall census"
 description: "This scenario validates the compaction recall census for `460`. It focuses on a run over the synthetic fixtures that prints one stop line and no fixture text, and on the suite that proves zero model calls."
-version: 4.3.0.0
+version: 2.3.0.0
 ---
 
 # 460 -- Compaction recall census

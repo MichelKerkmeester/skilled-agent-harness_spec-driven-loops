@@ -1,7 +1,7 @@
 ---
 title: "181 -- Template Compliance Contract Enforcement"
 description: "Verify that the 3-layer template compliance system prevents non-compliant spec documents from being created."
-version: 3.6.0.12
+version: 1.6.0.12
 id: tooling-and-scripts-template-compliance-contract-enforcement-produces-compliant
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:

@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli fallback hooks"
   - "transport-down fail-open"
   - "opencode plugin cli bridge"
-version: 3.6.0.1
+version: 1.6.0.1
 ---
 
 # CLI hook fallbacks and plugin bridges

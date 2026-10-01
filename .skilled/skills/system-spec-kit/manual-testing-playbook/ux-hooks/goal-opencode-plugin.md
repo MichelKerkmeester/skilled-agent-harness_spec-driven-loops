@@ -1,7 +1,7 @@
 ---
 title: "454 -- Goal OpenCode plugin active-goal injection and status"
 description: "Manual scenario validating the local /goal-opencode OpenCode plugin, active-goal injection preview, prompt metadata, and restart boundary."
-version: 3.8.0.0
+version: 1.8.0.0
 id: ux-hooks-goal-opencode-plugin
 expected_workflow_mode: system-spec-kit
 expected_leaf_resources:

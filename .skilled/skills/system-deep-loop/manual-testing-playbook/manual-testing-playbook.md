@@ -1,7 +1,7 @@
 ---
 title: "system-deep-loop: Manual Testing Playbook"
 description: "Operator-facing reference for manually validating system-deep-loop hub routing, advisor integration, backend discrimination, state discipline, and per-mode artifact ownership against the live skill registry."
-version: "2.0.0.0"
+version: "1.2.0.0"
 ---
 
 # system-deep-loop: Manual Testing Playbook

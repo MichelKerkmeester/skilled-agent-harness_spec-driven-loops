@@ -1,7 +1,7 @@
 ---
 title: "425 -- Orphan Sweep Stop-Hook Activation"
 description: "Manual check for the automated-test-backed Stop-hook orphan-sweep fallback that stays off by default and only sweeps stray launcher processes when the operator opts in via the environment flag."
-version: 3.6.0.2
+version: 1.6.0.2
 id: tooling-and-scripts-orphan-sweep-stop-hook-activation
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []

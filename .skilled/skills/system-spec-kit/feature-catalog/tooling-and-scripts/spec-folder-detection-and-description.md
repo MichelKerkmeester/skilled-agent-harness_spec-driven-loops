@@ -7,7 +7,7 @@ trigger_phrases:
   - "detect spec folder"
   - "alignment validator"
   - "generate-description"
-version: 3.6.0.7
+version: 1.6.0.7
 ---
 
 # Spec-Folder Detection and Description Metadata

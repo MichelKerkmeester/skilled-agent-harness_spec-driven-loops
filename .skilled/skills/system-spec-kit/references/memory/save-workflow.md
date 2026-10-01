@@ -8,7 +8,7 @@ trigger_phrases:
   - "save method selection"
 importance_tier: normal
 contextType: implementation
-version: 3.6.0.55
+version: 1.6.0.55
 ---
 
 # Memory Save Workflow - Context Preservation Methods
