@@ -1,5 +1,5 @@
 {
-  "manifestHash": "689413ebf985cf0146ad0c531805bd163da9a74aca47bfb0e46421a6c97b81f8",
+  "manifestHash": "c44666216d18f11a71cbaf37dff90e17b9fb56e14ac2c0c731a27f873d884eff",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -26362,6 +26362,9 @@
     "criteria exec hardening gate": [
       "criteria exec hardening gate"
     ],
+    "criteria labels filled": [
+      "criteria labels filled"
+    ],
     "criterion count preserved": [
       "criterion count preserved"
     ],
@@ -43860,6 +43863,18 @@
     "goal line length standard": [
       "goal line length standard"
     ],
+    "goal lint model arm": [
+      "goal lint model arm"
+    ],
+    "goal lint model arm built": [
+      "goal lint model arm built"
+    ],
+    "goal lint model arm plan": [
+      "goal lint model arm plan"
+    ],
+    "goal lint model arm tasks": [
+      "goal lint model arm tasks"
+    ],
     "goal log": [
       "goal log"
     ],
@@ -44276,6 +44291,18 @@
     ],
     "goal validator coverage": [
       "goal validator coverage"
+    ],
+    "goal verifier clamp fix": [
+      "goal verifier clamp fix"
+    ],
+    "goal verifier clamp fix plan": [
+      "goal verifier clamp fix plan"
+    ],
+    "goal verifier clamp fix tasks": [
+      "goal verifier clamp fix tasks"
+    ],
+    "goal verifier clamp fixed": [
+      "goal verifier clamp fixed"
     ],
     "goal verifier deem shadow": [
       "goal verifier deem shadow"
@@ -49615,6 +49642,18 @@
     ],
     "label drafting summary": [
       "label drafting summary"
+    ],
+    "label finding fixes": [
+      "label finding fixes"
+    ],
+    "label finding fixes plan": [
+      "label finding fixes plan"
+    ],
+    "label finding fixes summary": [
+      "label finding fixes summary"
+    ],
+    "label finding fixes tasks": [
+      "label finding fixes tasks"
     ],
     "label gate": [
       "label gate"
@@ -83215,6 +83254,9 @@
     "sk create goal 1 3 0 0": [
       "sk-create-goal 1.3.0.0"
     ],
+    "sk create goal 1 4 0 0": [
+      "sk-create-goal 1.4.0.0"
+    ],
     "sk create goal acceptance criteria": [
       "sk-create-goal acceptance criteria"
     ],
@@ -83283,6 +83325,9 @@
     ],
     "sk create goal v1 3 0 0": [
       "sk-create-goal v1.3.0.0"
+    ],
+    "sk create goal v1 4 0 0": [
+      "sk-create-goal v1.4.0.0"
     ],
     "sk create manual testing playbook 1 0 0 0": [
       "sk-create-manual-testing-playbook 1.0.0.0"
@@ -90733,6 +90778,18 @@
     ],
     "stop preserving bad statuses": [
       "stop preserving bad statuses"
+    ],
+    "stop rater gold fix": [
+      "stop rater gold fix"
+    ],
+    "stop rater gold fix plan": [
+      "stop rater gold fix plan"
+    ],
+    "stop rater gold fix tasks": [
+      "stop rater gold fix tasks"
+    ],
+    "stop rater gold fixed": [
+      "stop rater gold fixed"
     ],
     "stop rater replay": [
       "stop-rater replay"
