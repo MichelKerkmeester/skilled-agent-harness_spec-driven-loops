@@ -71,6 +71,7 @@ contextType: "general"
 - [x] T021 Remove `SPECKIT_SKIP_COMMIT_MSG_VALIDATE` and every other validation skip path from the hooks and docs
 - [ ] T022 Wire the agent gate for OpenCode (plugin), Pi (extension) and Hermes, or record an approved deferral
 - [ ] T023 Run `message-contract.yml` on GitHub once, then the owner makes it a required status check in the branch ruleset
+- [x] T024 Align the new code with sk-code-opencode headers and audit the playbook, feature catalog, root README and CONTRIBUTING for the contract and the removed bypass
 <!-- /ANCHOR:phase-3 -->
 
 ---

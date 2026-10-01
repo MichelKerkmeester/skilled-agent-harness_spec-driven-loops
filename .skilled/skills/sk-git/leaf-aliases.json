@@ -56,6 +56,11 @@
   },
   {
     "workflowMode": "sk-git",
+    "leafResourceId": "feature-catalog/workflow-playbooks/message-contract-enforcement.md",
+    "diskPath": "feature-catalog/workflow-playbooks/message-contract-enforcement.md"
+  },
+  {
+    "workflowMode": "sk-git",
     "leafResourceId": "feature-catalog/workflow-playbooks/numbered-worktree-workflows.md",
     "diskPath": "feature-catalog/workflow-playbooks/numbered-worktree-workflows.md"
   },
@@ -88,6 +93,11 @@
     "workflowMode": "sk-git",
     "leafResourceId": "manual-testing-playbook/commit-formation/scope-inference-skill-folder.md",
     "diskPath": "manual-testing-playbook/commit-formation/scope-inference-skill-folder.md"
+  },
+  {
+    "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/commit-formation/template-rules-block-commits.md",
+    "diskPath": "manual-testing-playbook/commit-formation/template-rules-block-commits.md"
   },
   {
     "workflowMode": "sk-git",

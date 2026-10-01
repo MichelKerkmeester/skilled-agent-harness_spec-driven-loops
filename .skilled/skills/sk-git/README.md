@@ -201,7 +201,7 @@ sk-git/
 +-- references/                    # Phase workflows loaded by the router
 +-- assets/                        # PR template, commit template, worktree checklist
 +-- feature-catalog/               # Capability catalog by category
-+-- manual-testing-playbook/       # 42 manual scenarios across 8 categories
++-- manual-testing-playbook/       # 38 manual scenarios across 8 categories
 `-- changelog/                     # Versioned change history
 ```
 
@@ -263,7 +263,7 @@ A: Grep the `Spec:` trailer with the packet query: `git log -E --grep='^Spec: sk
 
 ## 8. VERIFICATION
 
-The skill ships a manual testing playbook with scenarios across 8 categories and a feature catalog covering worktree, commit, finish, GitKraken and numbered worktree tooling.
+The skill ships a manual testing playbook with scenarios across 8 categories and a feature catalog covering worktree, commit, the template-driven message contract, finish, GitKraken and numbered worktree tooling.
 
 | Check | How to run it |
 |---|---|

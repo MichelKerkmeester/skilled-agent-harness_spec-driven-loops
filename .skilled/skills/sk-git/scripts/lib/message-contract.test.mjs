@@ -1,9 +1,6 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Message Contract Tests                                        ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Prove the shipped templates, the validator and the agent gate   ║
-// ║          agree, and that another repository's template replaces them.    ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Message Contract Tests
+// ───────────────────────────────────────────────────────────────────
 //
 // The shipped templates are tested as they are on disk, not as a copy, so an edit to a template
 // that breaks its own rules block or drifts from its prose fails here. Repository behaviour runs

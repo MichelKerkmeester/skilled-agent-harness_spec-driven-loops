@@ -6,8 +6,8 @@ trigger_phrases:
   - "git workflow capabilities"
   - "worktree naming allocator"
   - "sk-git capability inventory"
-last_updated: "2026-09-11"
-version: 1.1.0.0
+last_updated: "2026-10-01"
+version: 1.2.0.0
 ---
 
 # sk-git: Feature Catalog
@@ -133,6 +133,22 @@ Type and scope selection both follow a fixed first-match priority order; the com
 #### Source Files
 
 See [`workflow-playbooks/conventional-commit-workflows.md`](workflow-playbooks/conventional-commit-workflows.md) for full implementation and test file listings.
+
+---
+
+### Template-driven message contract
+
+#### Description
+
+One validator holds every commit message, PR description and new branch name to the "Enforced rules" block in the repository's own sk-git templates, at four gates with no bypass.
+
+#### Current Reality
+
+`validate-message.mjs` is the only place a rule is evaluated. The commit-msg hook, pre-push gate 6, the agent PreToolUse gate and the `message-contract` CI workflow all call it, so a `--no-verify` commit is still caught at push. The templates are found through git config `skgit.contractDir`, then `.sk-git/`, then the sk-git assets directory; a repository with no rules block is not checked, and a broken block blocks rather than passing.
+
+#### Source Files
+
+See [`workflow-playbooks/message-contract-enforcement.md`](workflow-playbooks/message-contract-enforcement.md) for full implementation and test file listings.
 
 ---
 

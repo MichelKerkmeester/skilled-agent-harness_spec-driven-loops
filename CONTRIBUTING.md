@@ -99,11 +99,11 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/) with a re
 | **Scope** | Name the changed subsystem in lowercase, such as `sk-git` or `system-spec-kit` |
 | **Length** | Keep the first line under 72 characters. The hook blocks one over 100 |
 | **Mood** | Use imperative ("add" not "added"), starting in lowercase |
-| **Body** | Add one when four or more files are staged, saying what changed and why |
+| **Body** | Add a prose paragraph below the subject, saying what changed and why |
 | **References** | Reference issues in the last paragraph: `Fixes #123` |
 | **Attribution** | Leave out `Co-Authored-By:` and `Claude-Session:` lines |
 
-The repository's `commit-msg` hook blocks a message that breaks these rules, and its message names the one-command bypass. [Git Hooks](README.md#git-hooks) in the README lists what each hook blocks.
+The repository's `commit-msg` hook blocks a message that breaks these rules, and `pre-push` checks every pushed commit again, so `--no-verify` does not get one through. There is no bypass variable. The rules live in the `Enforced rules` block of [the commit template](.skilled/skills/sk-git/assets/commit-message-template.md), and each block message names the rule id it failed. [Git Hooks](README.md#git-hooks) in the README lists what each hook blocks.
 
 ---
 
