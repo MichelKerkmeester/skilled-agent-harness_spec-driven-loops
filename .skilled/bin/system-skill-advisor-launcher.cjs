@@ -1242,6 +1242,16 @@ function buildIfNeeded(actions) {
     throw new Error('launcher artifact bootstrap is disabled under vitest; pre-stage build artifacts via configureLauncherPathsForTesting');
   }
 
+  // The runtime build compiles with the spec-kit workspace's TypeScript and
+  // node types, so a fresh clone needs that workspace installed first or the
+  // shared build fails on missing Node globals.
+  const specKitDir = path.resolve(runtimeDir, '..', '..', 'system-spec-kit');
+  if (!exists(path.join(specKitDir, 'node_modules', '.bin', 'tsc'))) {
+    actions.push('installed the system-spec-kit workspace dependencies');
+    const specKitInstall = exists(path.join(specKitDir, 'package-lock.json')) ? 'ci' : 'install';
+    run('npm', [specKitInstall, '--no-audit', '--no-fund', '--silent'], { cwd: specKitDir });
+  }
+
   actions.push('installed dependencies and built the @spec-kit/system-skill-advisor daemon');
   const installCommand = exists(path.join(runtimeDir, 'package-lock.json')) ? 'ci' : 'install';
   run('npm', [installCommand, '--no-audit', '--no-fund', '--silent'], { cwd: runtimeDir });
