@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A deep-research loop decides when to stop from the model's own `newInfoRatio`, the self-reported share of new information in each iteration",
     "created_at": "2026-09-29T12:42:39Z",
-    "last_save_at": "2026-09-29T19:53:46.054Z",
+    "last_save_at": "2026-10-01T18:46:36.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d44d3277a168228603b59a784adf1878386436fd7cd5247299f002295ee38ba",
+    "source_fingerprint": "sha256:411c226699daf43ff19acd1dc0335055a81fa694971e21b64d4e924c40ae4336",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b1bcf4e11c8b482f0ece4fa168f68af92abfc4b20e3a9d5f2d7be5650ca371e4",

@@ -117,9 +117,9 @@ function readConfig(lineageDir) {
 }
 
 /**
- * Whether a lineage config leaves the stop decision movable. Only an explicit
- * blocker forces the stop; a missing field never does, so the census counts the
- * same lineages as the recorded corpus.
+ * Whether a lineage config leaves the stop decision movable. The `stopPolicy`
+ * and `convergenceMode` fields fall back to their counterparts under
+ * `antiConvergence`; only an explicit blocker forces the stop.
  *
  * @param {object|null} config - Parsed lineage config
  * @returns {boolean} True when the stop decision is replayable
@@ -132,7 +132,8 @@ function isMovable(config) {
   if (stopPolicy === 'max-iterations') {
     return false;
   }
-  if (config.convergenceMode === 'off') {
+  const convergenceMode = config.convergenceMode ?? config.antiConvergence?.convergenceMode;
+  if (convergenceMode === 'off') {
     return false;
   }
   const min = config.minIterations;
@@ -172,9 +173,42 @@ function deltaIterationFiles(lineageDir) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Derive a lineage's gold iteration from its delta files. A source is a
- * finding's `source` string; gold is the last iteration that introduces at
- * least one source seen nowhere earlier, else null.
+ * Return a finding's unique file sources in first-seen order.
+ *
+ * @param {object} record - Finding record from a delta file
+ * @returns {string[]} Normalized unique sources
+ */
+function findingSources(record) {
+  const candidates = [
+    record.source,
+    ...(Array.isArray(record.sources) ? record.sources : []),
+    ...(Array.isArray(record.evidence) ? record.evidence : []),
+  ];
+  const sources = [];
+  const seen = new Set();
+  for (const candidate of candidates) {
+    if (typeof candidate !== 'string') {
+      continue;
+    }
+    const trimmed = candidate.trim();
+    if (trimmed === '' || /^[A-Za-z]+:(?![\\/])/.test(trimmed)) {
+      continue;
+    }
+    const source = trimmed.replace(/:\d+(?:-\d+)?(?:,\d+(?:-\d+)?)*$/, '');
+    if (source === '' || seen.has(source)) {
+      continue;
+    }
+    seen.add(source);
+    sources.push(source);
+  }
+  return sources;
+}
+
+/**
+ * Derive a lineage's gold iteration from its delta files. Sources are
+ * normalized file references from a finding's `source`, `sources`, or
+ * `evidence`; gold is the last iteration that introduces at least one source
+ * seen nowhere earlier, else null.
  *
  * @param {Array<{ n: number, file: string }>} files - Delta files in iteration order
  * @returns {{ gold: number|null, cited: Map<number, number>, firstAppearance: Map<number, number> }}
@@ -204,14 +238,16 @@ function deriveGold(files) {
       if (record === null || typeof record !== 'object' || record.type !== 'finding') {
         continue;
       }
-      const source = typeof record.source === 'string' ? record.source : '';
-      if (source === '') {
+      const sources = findingSources(record);
+      if (sources.length === 0) {
         continue;
       }
-      citedCount += 1;
-      if (!seen.has(source)) {
-        seen.add(source);
-        firstCount += 1;
+      for (const source of sources) {
+        citedCount += 1;
+        if (!seen.has(source)) {
+          seen.add(source);
+          firstCount += 1;
+        }
       }
     }
     cited.set(entry.n, citedCount);
@@ -1912,6 +1948,7 @@ module.exports = {
   readConfig,
   isMovable,
   deltaIterationFiles,
+  findingSources,
   deriveGold,
   readStateRecords,
   coverageSeries,

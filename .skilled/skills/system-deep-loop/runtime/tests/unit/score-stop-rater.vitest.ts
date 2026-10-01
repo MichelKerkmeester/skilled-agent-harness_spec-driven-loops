@@ -229,6 +229,21 @@ describe('score-stop-rater walker', () => {
     expect(census.kept).toBe(0);
   });
 
+  it('walker drops an anti-convergence off-mode lineage', async () => {
+    const repo = gitRepo();
+    makeLineage(repo, 'lineage-a', {
+      config: { antiConvergence: { convergenceMode: 'off' } },
+      records: [iteration(1, 0.5)],
+      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src-a' }] },
+    });
+    commitAll(repo);
+    const { code, lines } = await runMain([], repo);
+    expect(code).toBe(0);
+    const census = censusOf(lines);
+    expect(census.forced).toBe(1);
+    expect(census.kept).toBe(0);
+  });
+
   it('sample keeps the first 25 lineages by SHA-256 of the path', async () => {
     const repo = gitRepo();
     const names = Array.from({ length: 30 }, (_, index) => `lineage-${index}`);
@@ -261,6 +276,70 @@ describe('score-stop-rater gold', () => {
     const files = rater.deltaIterationFiles(dir);
     const result = rater.deriveGold(files);
     expect(result.gold).toBe(2);
+  });
+
+  it('gold counts sources and evidence arrays', () => {
+    const dir = tempDir('stop-rater-gold-arrays-');
+    fs.mkdirSync(path.join(dir, 'deltas'));
+    fs.writeFileSync(
+      path.join(dir, 'deltas', 'iter-001.jsonl'),
+      JSON.stringify({ type: 'finding', sources: ['a.md'] }) + '\n',
+      'utf8',
+    );
+    fs.writeFileSync(
+      path.join(dir, 'deltas', 'iter-002.jsonl'),
+      JSON.stringify({ type: 'finding', evidence: ['b.md'] }) + '\n',
+      'utf8',
+    );
+    const result = rater.deriveGold(rater.deltaIterationFiles(dir));
+    expect(result.gold).toBe(2);
+    expect(result.cited.get(1)).toBe(1);
+    expect(result.cited.get(2)).toBe(1);
+    expect(result.firstAppearance.get(1)).toBe(1);
+    expect(result.firstAppearance.get(2)).toBe(1);
+  });
+
+  it('gold deduplicates sources with different line references', () => {
+    const dir = tempDir('stop-rater-gold-lines-');
+    fs.mkdirSync(path.join(dir, 'deltas'));
+    fs.writeFileSync(
+      path.join(dir, 'deltas', 'iter-001.jsonl'),
+      JSON.stringify({ type: 'finding', source: 'a.md:1-5' }) + '\n',
+      'utf8',
+    );
+    fs.writeFileSync(
+      path.join(dir, 'deltas', 'iter-002.jsonl'),
+      JSON.stringify({ type: 'finding', source: 'a.md:9-12' }) + '\n',
+      'utf8',
+    );
+    const result = rater.deriveGold(rater.deltaIterationFiles(dir));
+    expect(result.gold).toBe(1);
+  });
+
+  it('gold ignores a tool-prefixed source', () => {
+    const dir = tempDir('stop-rater-gold-tool-source-');
+    fs.mkdirSync(path.join(dir, 'deltas'));
+    fs.writeFileSync(
+      path.join(dir, 'deltas', 'iter-001.jsonl'),
+      JSON.stringify({ type: 'finding', source: 'Glob:x/*.json' }) + '\n',
+      'utf8',
+    );
+    const result = rater.deriveGold(rater.deltaIterationFiles(dir));
+    expect(result.gold).toBeNull();
+    expect(result.cited.get(1)).toBe(0);
+  });
+
+  it('findingSources normalizes and deduplicates sources in first-seen order', () => {
+    expect(typeof rater.findingSources).toBe('function');
+    expect(rater.findingSources({
+      source: 'a.md:3',
+      sources: ['b.md:1-2', 'a.md:7'],
+    })).toEqual(['a.md', 'b.md']);
+    expect(rater.findingSources({
+      source: 1,
+      sources: ['  ', 2],
+      evidence: [null],
+    })).toEqual([]);
   });
 
   it('gold drops a lineage with no source', async () => {
