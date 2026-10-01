@@ -146,14 +146,20 @@ function extractContentText(content: unknown): string {
   return "";
 }
 
-/** Flattens a `turn_end` event's ending message plus any tool results into one evidence string for the heuristic verifier. */
+/**
+ * Flattens a `turn_end` event's tool results plus its ending message into one evidence string for the heuristic verifier.
+ *
+ * Tool results come first and the assistant message last: the verifier judges
+ * only the tail of the evidence, so on a tool-heavy turn the message must sit
+ * inside that tail window or the turn's own conclusion is never judged.
+ */
 function extractTurnEndText(event: TurnEndEvent): string {
   const messageText = extractContentText((event.message as { content?: unknown } | undefined)?.content);
   const toolResultText = (event.toolResults || [])
     .map((result) => extractContentText(result.content))
     .filter(Boolean)
     .join("\n");
-  return [messageText, toolResultText].filter(Boolean).join("\n");
+  return [toolResultText, messageText].filter(Boolean).join("\n");
 }
 
 /**
