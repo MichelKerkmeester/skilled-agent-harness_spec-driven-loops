@@ -664,7 +664,9 @@ export function worktreeContext(repoRoot) {
 /**
  * Context for commits that already exist, as pre-push and CI see them. A packet counts as existing
  * when the commit's own tree or the tip of the range holds it: code commits routinely land before
- * the commit that adds their packet docs, and both arrive in the same push. An id collides with
+ * the commit that adds their packet docs, and both arrive in the same push. A repository that keeps
+ * its packets out of git, through an ignore rule, has them in no tree at all, so a folder on disk
+ * also counts, as it does when the commit is written. An id collides with
  * any remote commit outside the checked range. `excludeRefs` drops the ref being overwritten, so a
  * rebased branch is not compared with the pre-rebase copies of its own commits.
  */
@@ -704,7 +706,7 @@ export function rangeContext(repoRoot, shas, excludeRefs = []) {
   };
   const seenInRange = new Map();
   return (sha) => ({
-    specExists: (rel) => atTip(rel) || inTree(sha, rel),
+    specExists: (rel) => atTip(rel) || inTree(sha, rel) || fs.existsSync(path.join(repoRoot, rel)),
     commitIdOwner: (id) => {
       const earlier = seenInRange.get(id);
       if (earlier && earlier !== sha) return earlier.slice(0, 10);
