@@ -202,7 +202,7 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The sk-git commit contract is written three times: as prose in `SKILL.md` and `assets/commit-message-template.md`, and as hardcoded regexes in `.skilled/scripts/git-hooks/commit-msg`",
     "created_at": "2026-10-01T17:03:25Z",
-    "last_save_at": "2026-10-01T18:51:27.267Z",
+    "last_save_at": "2026-10-01T18:59:48.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:65b309b4b1210485b2ebb59c93e1c0f5dda206e5f65bc797c8aa08c307da7b17",
+    "source_fingerprint": "sha256:842d1db27a896a6830d22292d35333e2bb6f222614c318a05190f4648dbdcb03",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d5c75c553dd4e75b2e03412f03ca43bac130148e5975bdd61e52cc5807f3a82",
+      "spec.md": "97619f1552b64cb3e57a571ee644fa8e720c3793f16f9aa0a7b2c3f20b20842d",
       "plan.md": "ab992415b37712cc5a96daa9a0c45419fa39ae2371ac5818828b506cb4e1fa53",
-      "tasks.md": "a61c745b4517e777cac8bd99d71e0d4b30bf87de9890b9b836851952634274cd",
+      "tasks.md": "77fbbdbe6edc6b973b53b329a892a8f75173175963cb40f2ae37cba5a922dbf6",
       "decision-record.md": "98fc00ee8299999cac07b7954adc7632df53d3ce35e62251424f81d5f7cc6f41",
-      "implementation-summary.md": "6e28f0e3ddfafa62f48c3151dc70ed51d20235d39c7305e3d17a03008d669568"
+      "implementation-summary.md": "f7e595c5e645f17383b3dee12680b6f740a0350e5d398c6b5fb367382bf5da6d"
     },
     "last_active_at": null
   }
