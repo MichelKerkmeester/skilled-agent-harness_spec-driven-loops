@@ -24,7 +24,7 @@ Current state:
 - `check-goal.cjs` reads goal files and never writes one.
 - Durable-slice cutting and budget lookup come from the goal hooks' `goal-slice.cjs`, so the checker measures a goal the same way `goal.cjs packet` does.
 - Placeholder detection covers system-spec-kit's `goal.md.tmpl` wording and the wording of the three templates in `../assets/`, which the checker reads at load time.
-- `lint-goal-criteria.cjs` and `score-goal-lint.cjs` read goal files and a labels file and write nothing. The lint always exits 0, so it never blocks a handoff.
+- `lint-goal-criteria.cjs` and `score-goal-lint.cjs` read goal files and a labels file and write nothing by default. With `--out`, which `--jev` and `--deem` require, the scorer writes `calls.jsonl` and `report.json`. The lint always exits 0, so it never blocks a handoff.
 - The lint copies the checker's criterion parser instead of importing it, because the checker exports only packet-level runners. A parity test holds the two to the same criteria count.
 
 ---
@@ -35,8 +35,8 @@ Current state:
 scripts/
 +-- check-goal.cjs               # CLI and exported checks
 +-- lint-goal-criteria.cjs       # Advisory lint for criteria rules 4 and 5
-+-- score-goal-lint.cjs          # Scores the lint against labels
-+-- goal-criteria-labels.jsonl   # Drawn criterion lines waiting for labels
++-- score-goal-lint.cjs          # Scores the lint against labels, with opt-in Jev and Deem arms
++-- goal-criteria-labels.jsonl   # Drawn criterion lines, 98 labeled under one rubric
 +-- tests/
 |   +-- check-goal.test.cjs      # Positive, negative and unfilled-template controls
 |   +-- lint-goal-criteria.test.cjs # Both rules, the walker and parser parity
@@ -55,11 +55,11 @@ scripts/
 |---|---|
 | `check-goal.cjs` | Runs the five named checks on one packet, or on every active goal with `--all`. Exports `CHECKS`, `checkMissingBindingRows`, `checkPlaceholders`, `checkCriteriaCount`, `checkParentBudget`, `checkFrontmatterFence`, `checkGoalPacket` and `scanCorpus`. |
 | `lint-goal-criteria.cjs` | Lints the criteria of one packet, or of every active goal with `--all`, for rules 4 and 5. Skips `z_archive` and counts `scratch` goals apart. Prints counts and flagged lines, or JSON with `--json`, and always exits 0. |
-| `score-goal-lint.cjs` | Joins labels to the lint by text hash and prints per-rule precision, recall and F1, the labeled violation rate with a Wilson 95% interval and the stop line under 5%. Counts stale and unlabeled rows apart and refuses mixed rubrics. |
-| `goal-criteria-labels.jsonl` | 100 drawn criterion lines, one JSON row each with `id`, `text_sha12` and four label fields left null for the operator. No row holds criterion text. |
+| `score-goal-lint.cjs` | Joins labels to the lint by text hash and prints per-rule precision, recall and F1, the labeled violation rate with a Wilson 95% interval and the stop line under 5%. Counts stale and unlabeled rows apart and refuses mixed rubrics. `--jev` and `--deem`, each requiring `--out <dir>`, run a model arm that asks two questions per labeled criterion and prints a per-rule column and a keep-or-kill verdict. |
+| `goal-criteria-labels.jsonl` | 100 drawn criterion lines, one JSON row each with `id`, `text_sha12` and four label fields. An operator-delegated arbiter filled 98 under rubric `mimo-02-strict-v1` and left 2 stale rows null. No row holds criterion text. |
 | `tests/check-goal.test.cjs` | Proves the positive fixture passes every check, each negative fixture fails only its named check, and an unfilled copy of each asset template fails the placeholder check. |
 | `tests/lint-goal-criteria.test.cjs` | Holds each rule to its pass and fail cases, the walker to its scratch and archive exclusions, the parser to the checker's criteria count and the command line to exit 0. |
-| `tests/score-goal-lint.test.cjs` | Proves the per-rule numbers, the Wilson interval, the stale, unlabeled and mixed-rubric cases and the stop line on synthetic labels. |
+| `tests/score-goal-lint.test.cjs` | Proves the per-rule numbers, the Wilson interval, the stale, unlabeled and mixed-rubric cases and the stop line on synthetic labels, and runs both model arms against stub CLIs to cover the gates, the keep and kill verdicts, the coverage stop and the `--out` artifacts. |
 | `tests/template-parity.test.cjs` | Fails when an asset template's fixed text drifts from `goal.md.tmpl` at that template's level. |
 | `tests/fixtures/goal-fixtures.cjs` | Writes throwaway goal packets into a temporary directory for the checker tests. |
 
@@ -74,7 +74,7 @@ packet/goal.md ──▶ goal-slice.cjs (durable slice, budget) ──▶ five c
 ../assets/goal-*-template.md ──▶ placeholder wording ──┘
 ```
 
-The lint imports the same `goal-slice.cjs` and nothing else outside Node. The scorer reads a labels file and either a saved `--json` lint run or a fresh one. Neither makes a model call or spawns a process.
+The lint imports the same `goal-slice.cjs` and nothing else outside Node. The scorer reads a labels file and either a saved `--json` lint run or a fresh one. Without `--jev` or `--deem` neither makes a model call or spawns a process. Those switches spawn the Jev or Deem CLI and record every call under `--out`.
 
 ```text
 specs/**/goal.md ──▶ lint-goal-criteria.cjs (rules 4 and 5) ──▶ report or JSON, exit 0
@@ -95,10 +95,10 @@ node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs --all
 ```bash
 node .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs <packet>
 node .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs --all [--json]
-node .skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs --labels .skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl [--lint <lint.json>]
+node .skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs --labels .skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl [--lint <lint.json>] [--jev|--deem --out <dir>]
 ```
 
-The lint takes the same `<packet>`, `--all` and `--root` and always exits 0. The scorer runs the lint in process unless `--lint` names a saved `--json` run. It exits 0 when it prints a score and 2 when its input cannot be read.
+The lint takes the same `<packet>`, `--all` and `--root` and always exits 0. The scorer runs the lint in process unless `--lint` names a saved `--json` run. It exits 0 when it prints a score and 2 when its input cannot be read or a flag is misused. `--jev` and `--deem` are additive, each needs `--out <dir>` and either or both may run.
 
 ---
 
