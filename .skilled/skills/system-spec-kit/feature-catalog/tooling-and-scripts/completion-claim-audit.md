@@ -48,7 +48,7 @@ Before it prints a line, the run checks its census whole: every string in it mus
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` | Script | Parses the rows and labels, runs the census and the gate, drives both judgment arms and writes the report |
-| `.skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs` | Shared | Exports `detectCompletionClaim` and its claim pattern, the one detector the census counts |
+| `.skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs` | Shared | Exports `detectCompletionClaim` and its claim pattern, the one detector the census counts |
 
 ### Validation And Tests
 

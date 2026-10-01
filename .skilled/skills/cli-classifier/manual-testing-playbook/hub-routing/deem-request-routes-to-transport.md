@@ -8,7 +8,9 @@ expected_intent: cli-deem
 expected_resources:
   - cli-deem/SKILL.md
 expected_workflow_mode: cli-deem
-expected_leaf_resources: []
+expected_leaf_resources:
+  - workflow_mode: cli-deem
+    leaf_resource_id: references/wire-contract.md
 version: 0.4.0.0
 ---
 
