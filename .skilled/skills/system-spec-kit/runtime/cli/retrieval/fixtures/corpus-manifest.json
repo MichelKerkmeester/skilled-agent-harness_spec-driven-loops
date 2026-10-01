@@ -1,5 +1,5 @@
 {
-  "corpusHash": "40fb7c4dd178695aa77e40f7c37ed135f8dbec2dc20f2874e726b000ca35db2f",
+  "corpusHash": "e4979617e778222420d752612307cda5f0c35f2bbe73a00b8d79758b81c95854",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23639,
+  "includedPathCount": 23659,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -108,7 +108,9 @@
     ".skilled/skills/cli-classifier/SKILL.md",
     ".skilled/skills/cli-classifier/benchmark/README.md",
     ".skilled/skills/cli-classifier/benchmark/injection-screen/README.md",
+    ".skilled/skills/cli-classifier/benchmark/injection-screen/tests/README.md",
     ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
+    ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/README.md",
     ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md",
     ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/skill-benchmark-report.md",
     ".skilled/skills/cli-classifier/benchmark/reports/README.md",
@@ -117,9 +119,11 @@
     ".skilled/skills/cli-classifier/changelog/v0.3.0.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.4.0.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.5.0.0.md",
+    ".skilled/skills/cli-classifier/changelog/v0.6.0.0.md",
     ".skilled/skills/cli-classifier/cli-deem/README.md",
     ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
     ".skilled/skills/cli-classifier/cli-deem/changelog/v0.1.0.0.md",
+    ".skilled/skills/cli-classifier/cli-deem/changelog/v0.1.1.0.md",
     ".skilled/skills/cli-classifier/cli-deem/feature-catalog/availability-check/health-check.md",
     ".skilled/skills/cli-classifier/cli-deem/feature-catalog/feature-catalog.md",
     ".skilled/skills/cli-classifier/cli-deem/feature-catalog/judgment-subcommands/batched-run.md",
@@ -140,6 +144,8 @@
     ".skilled/skills/cli-classifier/cli-deem/references/deem-ctl-lifecycle.md",
     ".skilled/skills/cli-classifier/cli-deem/references/model-pin.md",
     ".skilled/skills/cli-classifier/cli-deem/references/wire-contract.md",
+    ".skilled/skills/cli-classifier/cli-deem/scripts/README.md",
+    ".skilled/skills/cli-classifier/cli-deem/scripts/tests/README.md",
     ".skilled/skills/cli-classifier/cli-jev/README.md",
     ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
     ".skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md",
@@ -152,6 +158,7 @@
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.1.0.md",
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.2.0.md",
     ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.3.0.md",
+    ".skilled/skills/cli-classifier/cli-jev/changelog/v0.1.4.0.md",
     ".skilled/skills/cli-classifier/cli-jev/feature-catalog/dispatch-guards/dispatch-guards.md",
     ".skilled/skills/cli-classifier/cli-jev/feature-catalog/feature-catalog.md",
     ".skilled/skills/cli-classifier/cli-jev/feature-catalog/judgment-primitives/judgment-primitives.md",
@@ -198,6 +205,8 @@
     ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md",
     ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-integration.md",
     ".skilled/skills/cli-classifier/shared/README.md",
+    ".skilled/skills/cli-classifier/shared/scripts/README.md",
+    ".skilled/skills/cli-classifier/shared/scripts/tests/README.md",
     ".skilled/skills/cli-external-orchestration/README.md",
     ".skilled/skills/cli-external-orchestration/ROUTER.md",
     ".skilled/skills/cli-external-orchestration/SKILL.md",
@@ -6319,6 +6328,7 @@
     ".skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md",
     ".skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md",
     ".skilled/skills/sk-doc/sk-create-goal/scripts/README.md",
+    ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/README.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/README.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
@@ -6465,6 +6475,7 @@
     ".skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md",
     ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/README.md",
+    ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/README.md",
     ".skilled/skills/sk-git/README.md",
     ".skilled/skills/sk-git/SKILL.md",
     ".skilled/skills/sk-git/assets/commit-message-template.md",
@@ -8289,6 +8300,9 @@
     ".skilled/skills/system-spec-kit/runtime/lib/utils/README.md",
     ".skilled/skills/system-spec-kit/runtime/lib/validation/README.md",
     ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
+    ".skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/README.md",
+    ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/README.md",
+    ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/README.md",
     ".skilled/skills/system-spec-kit/runtime/stress-test/README.md",
     ".skilled/skills/system-spec-kit/runtime/stress-test/substrate/README.md",
     ".skilled/skills/system-spec-kit/runtime/tests/README.md",
@@ -8918,6 +8932,12 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar/plan.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar/spec.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/acceptance-criteria.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/README.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-ask.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-pick.md",
@@ -23669,7 +23689,7 @@
     "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "40ab21b44e9232972396ae75934646dc73e831738f3efb74cc1151a447117104",
+  "manifestHash": "0bff8d17df4feb3083ee8ff204144a42fc1d4514790d1f4fe505ec5f6157e5da",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24737,6 +24757,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment/scratch",
       "reason": "excluded directory"
     },
     {
