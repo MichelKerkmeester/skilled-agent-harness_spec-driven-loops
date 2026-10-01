@@ -1,68 +1,119 @@
 ---
-title: "Completion claim audit"
-description: "Census of the completion-claim detector over labeled turns, zero-call by default, with gated local and hosted model arms."
+title: "Completion Claim Audit: Detector Scoring"
+description: "Scores the completion-claim detector against operator-labeled turns, with zero model calls by default."
 trigger_phrases:
   - "completion claim audit"
   - "score completion claims"
   - "completion claim detector"
 ---
 
-# Completion claim audit
+# Completion Claim Audit: Detector Scoring
 
 ---
 
 ## 1. OVERVIEW
 
-`completion-claim-audit/` holds `score-completion-claims.mjs`, the operator-run census that scores the completion-claim detector against labeled turns. The detector and its claim-word pattern come from `../../lib/hooks/completion-evidence-sentinel.cjs`, the same module the Stop hooks load, so the census cannot drift from the hook.
+`completion-claim-audit/` holds one operator-run script. `score-completion-claims.mjs` scores the completion-claim detector against turns an operator has labeled `yes` or `no`, counts how the detector fires, and works out whether a model judge would beat the plain pattern by enough to be worth its cost.
 
-A default run makes no model call. It reads a JSONL rows file, runs the detector over the trailing slice of every turn, and prints its counts with the regex baseline. Only row ids, counts and SHA-256 hashes reach the output. When any other string reaches the output object, the run prints `stop: census void (free text in output)` and writes nothing.
+Current state:
 
-Two model arms sit behind switch flags, and both need the label gate to reach `planned`. A gate that stops prints its own `stop:` or skip line and leaves the census as printed.
+- One ESM module with a CLI entry point and exported functions the sibling test suite calls directly.
+- The detector and its pattern are loaded from the completion-evidence sentinel module, never a second copy, so the census and the Stop hooks cannot drift apart.
+- No model call happens unless `--deem` or `--jev` is passed, and each arm runs only behind its own check.
+- Only ids, counts and hashes leave the run. A string the output guard cannot account for voids the run before anything prints or writes.
 
 ---
 
-## 2. CONTENTS
+## 2. FILES
 
 | File | Responsibility |
 |---|---|
-| `score-completion-claims.mjs` | The census and scoring harness. The default run reads `--rows` with optional `--labels` and calls no model. `--deem` and `--jev` each add a backend column behind their own gate, `--out` records the run, and `--accept-payload` lets the Jev arm send row text. |
+| `score-completion-claims.mjs` | Argument parsing, row and label parsing, the census, the regex error counts, the label gate, the two backend gates and arms, the output guard and the report. |
+
+The module is laid out in named zones: imports, constants, rows, census, labels, gate, output guard, output directory, verdict, deem gate, deem arm, jev gate, jev arm, main.
 
 ---
 
-## 3. USAGE
+## 3. BOUNDARIES AND FLOW
 
-Run from `.skilled/skills/system-spec-kit/runtime`.
-
-```bash
-node scripts/completion-claim-audit/score-completion-claims.mjs --rows <file> [--labels <file>] [--deem] [--jev] [--out <dir>] [--accept-payload]
-```
-
-| Switch | Behavior |
+| Boundary | Rule |
 |---|---|
-| `--rows <file>` | Required. One JSON object per line with a non-empty string `id` and a string `raw_text`. Blank lines are skipped. |
-| `--labels <file>` | One JSON object per line with an `id` and a `claim` of `yes` or `no`. A label for an id outside the rows file refuses the run. |
-| `--deem` | Adds the local Deem column. Needs `--out`. The health check accepts the pinned model `deem-0.8-v1` and runs before the label gate and before any call. |
-| `--jev` | Adds the hosted Jev column. Needs `--out` and `--accept-payload`. The gate checks the pinned `jev 0.6.2` version and the credential. |
-| `--out <dir>` | Report directory. Refused when it resolves inside the repository. It holds `report.json` for the run and `calls.jsonl`, one record per model call. |
-| `--accept-payload` | Confirms the operator's row text may leave the machine. Without it the Jev arm prints `jev arm skipped: payload not accepted`. |
+| Model calls | None by default. `--deem` runs the local Deem CLI and `--jev` runs the Jev CLI, each only behind its own gate. |
+| Network | The Jev arm only, and only when `--accept-payload` is passed. The Deem arm scores locally and says so before its first call. |
+| Reads | The `--rows` and `--labels` files, and a `report.json` already present in `--out` for the commit and model comparison. |
+| Writes | `calls.jsonl` and `report.json` under `--out`. A report directory that resolves inside the repository is refused. |
+| Output content | Fixed labels, this run's row ids and lowercase hex digests. Any other string voids the run. |
+| Exit codes | `0` for a printed or voided census, `2` for a refused command line or unreadable input. |
 
-A default run prints the row and fire counts, one word line, the label counts, the regex accuracy with its false fires and missed claims, the margin, keep rule and power lines, and one gate line. The exit status is 0 when the census printed and 2 for a refused command line, unreadable input or a report directory inside the repository.
+Main flow:
 
----
-
-## 4. VALIDATION
-
-Run from the repository root.
-
-```bash
-cd .skilled/skills/system-spec-kit/runtime && npm test -- --run tests/completion-claim-audit.vitest.ts
+```text
+--rows jsonl
+      │
+      ▼
+parseRows -> runCensus                     row count, fire count, words, fired ids
+      │
+      ▼
+parseLabels -> classCounts -> regexErrors  labeled rows, classes, B, false fires, missed claims
+      │
+      ▼
+gateLine                                   stop, no headroom, or planned calls
+      │
+      ▼
+deemGate / jevGate -> runDeemArm / runJevArm
+      │
+      ▼
+summarizeColumn -> decideVerdict           column counts, verdict, both tails
+      │
+      ▼
+hasFreeText guard -> stdout lines, calls.jsonl, report.json
 ```
 
-Expected result: the suite passes and the runner exits 0. The suite drives the script with synthetic fixtures from `tests/completion-claim-audit-fixtures/` and stub `jev` and `cli-deem` binaries first on `PATH`, so no backend is called.
+---
+
+## 4. KEEP RULE
+
+The label gate opens an arm only when the labels hold at least 30 rows, at least 5 in each class, and enough headroom for a 10-point gain over the regex baseline. Anything else prints `stop` or `no headroom` and leaves every backend unstarted.
+
+Each backend column reports the same counts: `K` labeled rows, `M` measured rows, `A` judge calls that match the label, `B` regex calls that match the label, `W` judge-only wins, `L` judge-only losses, and `F` rerun flips on the Jev backend alone. The verdict takes the first failed check in this order: coverage `10*M >= 9*K`, kill when the exact one-sided loss tail sits below 0.05, margin `10*(A-B) >= M`, sign test on `W` against `W + L`, then the flip check for the Jev backend. Both tails are summed in BigInt, so no float comparison decides a verdict.
 
 ---
 
-## 5. RELATED
+## 5. ENTRYPOINTS
+
+| Entrypoint | Type | Purpose |
+|---|---|---|
+| `node score-completion-claims.mjs --rows <file> [--labels <file>] [--deem] [--jev] [--out <dir>] [--accept-payload]` | CLI | Runs the census, then whichever arm its switch asks for. |
+| `--deem` | CLI flag | Adds the Deem column. It needs `--out` so every call is recorded. |
+| `--jev` | CLI flag | Adds the Jev column. It needs `--out` and `--accept-payload`. |
+| `--labels` | CLI flag | Scores the regex against the operator's labels and opens the gate. |
+| `main(argv, deps)` | Function | Runs the census end to end and returns the exit code. Its writer, environment, timeout and backoff dependencies are replaceable in tests. |
+| `parseRows`, `detectTail`, `runCensus` | Function | Row parsing, the trailing slice the detector reads, and the fire counts by claim word. |
+| `parseLabels`, `sha256Hex`, `classCounts`, `regexErrors` | Function | Label parsing, the label set hash, the class counts and the regex error counts by word. |
+| `gateLine`, `stringLeaves`, `hasFreeText` | Function | The label gate line, the nested strings of an output object, and the free-text guard. |
+| `binomialTail`, `summarizeColumn`, `decideVerdict`, `verdictLine`, `formatP`, `nearestRank` | Function | The exact tail, the column counts, the verdict, and the verdict and latency lines. |
+| `which`, `deemCommand`, `readDeemHealth`, `deemGate`, `runDeemArm` | Function | Deem discovery, the health check that accepts the pinned model, and the one-call-per-row arm. |
+| `jevGate`, `runJevArm`, `spawnCall`, `createCallLog`, `readStoredReport` | Function | The Jev version and credential gate, the three-pass arm, the bounded child process, the call log and an earlier run's report. |
+
+Rows report `unmeasured` wherever a backend gave no usable score, and a stopped arm prints its line with the rows that finished and no column or verdict.
+
+---
+
+## 6. VALIDATION
+
+Run from `.skilled/skills/system-spec-kit/runtime`:
+
+```bash
+npm test -- --run tests/completion-claim-audit.vitest.ts
+```
+
+Expected result: the suite passes. Its fixtures are synthetic and stub `jev` and `cli-deem` binaries sit first on `PATH`, so the run needs no live backend and no key.
+
+---
+
+## 7. RELATED
 
 - [`Scripts`](../README.md)
-- [`Runtime tests`](../../tests/README.md)
+- [`Runtime`](../../README.md)
+- [`Compaction recall`](../compaction-recall/README.md)
+- [`Completion claim audit tests`](../../tests/completion-claim-audit.vitest.ts)

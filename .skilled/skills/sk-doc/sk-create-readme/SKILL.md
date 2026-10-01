@@ -2,7 +2,7 @@
 name: sk-create-readme
 description: Author sk-doc folder, code-folder and skill/project READMEs from local evidence.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 <!-- Keywords: create-readme, folder readme, code folder readme, project readme, skill readme, /create:readme, audit_readmes -->
@@ -47,6 +47,7 @@ Route by artifact type first, then by folder purpose.
 | --- | --- | --- |
 | Project, skill, feature or component README | `README.md` in the target folder | `assets/readme-template.md` |
 | Source-code folder README | `README.md` in the source folder | `assets/readme-code-template.md` |
+| Skill package architecture document | `ARCHITECTURE.md` at the skill package root | `assets/architecture-template.md` |
 
 This packet uses simple artifact routing. It selects general README or code-folder README behavior from request intent and target-folder purpose. It does not use runtime keyed resource discovery by project, stack, mode or model. The only packet-local resource groups are `references/readme/` and `assets/`.
 
@@ -375,6 +376,7 @@ The core workflow lives in this `SKILL.md`. Use these files only for deep overfl
 
 - `assets/readme-template.md` for the full fillable general README scaffold.
 - `assets/readme-code-template.md` for the full fillable code-folder scaffold and diagram examples.
+- `assets/architecture-template.md` for a skill package's `ARCHITECTURE.md`: the fixed eight-section system document.
 - `references/README.md` for the overflow route map that indexes the `readme/` reference group.
 - `references/readme/` for extended README type, voice, writing-pattern and quality detail across three single-concern files.
 - `../shared/references/core-standards.md` for shared document formatting rules.

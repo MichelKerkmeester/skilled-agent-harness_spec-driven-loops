@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: live hf-model-server integration (real spawned process)
+// MODULE: Live Hf-Model-Server Integration
 // ───────────────────────────────────────────────────────────────────
 // Spawns the REAL .skilled/bin/hf-model-server.cjs over a unix socket and exercises the
 // hardened transport/route/reclaim machinery. The transport subset (bind, route-404,

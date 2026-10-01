@@ -25,8 +25,7 @@
     "allowImportingTsExtensions": true
   },
   "include": [
-    "tests/**/*.ts",
-    "lib/test-helpers/**/*.ts"
+    "tests/**/*.ts"
   ],
   "exclude": ["node_modules", "dist", "cli/**"]
 }

@@ -2,8 +2,14 @@
 // MODULE: Description Schema
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import { z, type ZodIssue } from 'zod';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 export const DESCRIPTION_CANONICAL_DERIVED_KEYS = [
   'specFolder',
   'specId',
@@ -48,6 +54,9 @@ const RESERVED_KEY_SET = new Set<string>(DESCRIPTION_RESERVED_KEYS);
 
 const stringArraySchema = z.array(z.string());
 
+// ───────────────────────────────────────────────────────────────────
+// 3. SCHEMA DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 export const folderDescriptionSchema = z.object({
   specFolder: z.string(),
   description: z.string(),
@@ -68,6 +77,9 @@ export const perFolderDescriptionSchema = folderDescriptionSchema.extend({
   level: z.union([z.number(), z.string()]).optional(),
 }).passthrough();
 
+// ───────────────────────────────────────────────────────────────────
+// 4. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 export type FolderDescriptionShape = z.infer<typeof folderDescriptionSchema>;
 export type PerFolderDescriptionShape = z.infer<typeof perFolderDescriptionSchema>;
 
@@ -97,6 +109,9 @@ export type DescriptionKnownAuthoredOptionalFields = Pick<
   DescriptionKnownAuthoredOptionalKey
 >;
 
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 /** Whether a description.json key is one of the schema's reserved (derived, authored, or tracking) keys. */
 export function isDescriptionReservedKey(key: string): key is DescriptionReservedKey {
   return RESERVED_KEY_SET.has(key);

@@ -22,6 +22,10 @@
 //      come from its archived graph metadata. Adding a new executor, a new
 //      small model, or retiring one needs no change here.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -31,6 +35,10 @@ import type {
   AdvisorScoredRecommendation,
   SkillLifecycleStatus,
 } from './types.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 // The code hub is the fallback a bare executor framing otherwise saturates; it
 // is the one skill this resolver deliberately demotes so the executor wins.
@@ -75,6 +83,10 @@ const DELEGATION_CUES = /\b(use|delegate to|ask|run|invoke|dispatch|hand off to|
 // bare ".skilled/" path are the code hub's own opencode surface, not an
 // executor handoff, so they must never lift an executor.
 const NEGATIVE_GUARD = /\bopencode[-\s]?(standards|route|skill|agent|plugin|command|convention)\b|\.opencode\//;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** One resolved delegation decision. */
 export interface ExecutorDelegation {
@@ -150,6 +162,10 @@ interface FilesystemAliasCacheEntry {
   readonly data: FilesystemAliasData;
   readonly sourceMtimes: ReadonlyMap<string, number | null>;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 // Reads cli-external-orchestration's mode-registry.json workflow-mode packets as the
 // executor-delegation source of truth. A missing or malformed
@@ -345,6 +361,10 @@ function longestPhraseMatch(promptLower: string, phrases: Iterable<[string, stri
   }
   return best;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** Pure detector: returns a delegation decision or null (no delegation present). */
 export function resolveExecutorDelegation(

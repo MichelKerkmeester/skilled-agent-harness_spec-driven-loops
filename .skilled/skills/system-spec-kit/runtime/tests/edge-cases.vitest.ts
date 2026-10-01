@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Edge Cases — Hook + Code Graph Resilience
+// MODULE: Edge Cases Hook Resilience
 // ───────────────────────────────────────────────────────────────────
 // Tests for empty transcript, missing dependencies, expired cache,
 // concurrent sessions, and other boundary conditions.

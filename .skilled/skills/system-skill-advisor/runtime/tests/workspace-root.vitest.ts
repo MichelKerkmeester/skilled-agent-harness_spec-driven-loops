@@ -1,0 +1,177 @@
+// ───────────────────────────────────────────────────────────────
+// MODULE: Advisor Workspace-Root Resolver Tests
+// ───────────────────────────────────────────────────────────────
+// Guards the sentinel-not-found fallback. The resolver must never hand back a
+// directory inside an `.skilled/` tree, because the advisor writes runtime
+// state under whatever root it returns; a root inside `.skilled/` materializes
+// a nested tree that then satisfies every future walk-up, making the leak
+// permanent.
+//
+// These tests assert the BOUNDARY, not a list of known-bad subtrees. An earlier
+// version asserted only that the fallback avoided `specs/`, so leaks into
+// `skills/` were never in scope and went unnoticed.
+//
+// The source tree sits under `.skilled` or `.opencode`, or under `.skilled` with
+// `.opencode` linked to it, and the walk treats both names as the same tree.
+
+import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { join, resolve, sep } from 'node:path';
+import { tmpdir } from 'node:os';
+
+import { afterAll, describe, expect, it } from 'vitest';
+
+import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
+
+const SENTINEL = '.skilled/skills/system-spec-kit/SKILL.md';
+const tmpRoots: string[] = [];
+
+function makeTmpRoot(): string {
+  const root = mkdtempSync(join(tmpdir(), 'advisor-workspace-root-'));
+  tmpRoots.push(root);
+  return root;
+}
+
+function mkdirp(dir: string): string {
+  mkdirSync(dir, { recursive: true });
+  return dir;
+}
+
+afterAll(() => {
+  for (const root of tmpRoots) {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+describe('findAdvisorWorkspaceRoot — sentinel walk-up', () => {
+  it('returns the directory that holds the sentinel (happy path)', () => {
+    const repo = makeTmpRoot();
+    const seat = mkdirp(join(repo, '.skilled', 'skills', 'sk-doc', 'create-diff'));
+    mkdirp(join(repo, '.skilled', 'skills', 'system-spec-kit'));
+    writeFileSync(join(repo, SENTINEL), '# sentinel\n');
+    expect(findAdvisorWorkspaceRoot(seat)).toBe(resolve(repo));
+  });
+});
+
+describe('findAdvisorWorkspaceRoot — fallback never lands inside an .opencode tree', () => {
+  const nested = [
+    ['skills', join('.opencode', 'skills', 'system-spec-kit')],
+    ['skills, deep', join('.opencode', 'skills', 'sk-doc', 'create-diff', 'scripts')],
+    ['runtime', join('.opencode', 'skills', 'system-skill-advisor', 'runtime')],
+    ['specs', join('.opencode', 'specs', 'system-speckit', '028-x')],
+    ['commands', join('.opencode', 'commands', 'deep', 'assets')],
+    ['bin', join('.opencode', 'bin', 'lib')],
+    ['plugins', join('.opencode', 'plugins', 'tests')],
+  ] as const;
+
+  for (const [label, rel] of nested) {
+    it(`hoists above .opencode for a start under ${label}`, () => {
+      const repo = makeTmpRoot();
+      expect(findAdvisorWorkspaceRoot(mkdirp(join(repo, rel)))).toBe(resolve(repo));
+    });
+  }
+
+  it('hoists above the OUTERMOST .opencode when a leak already nested one inside another', () => {
+    const repo = makeTmpRoot();
+    const seat = mkdirp(join(repo, '.opencode', 'skills', 'sk-doc', '.opencode', 'skills'));
+    expect(findAdvisorWorkspaceRoot(seat)).toBe(resolve(repo));
+  });
+
+  it('never returns a path containing an .opencode segment, for any nested start', () => {
+    const repo = makeTmpRoot();
+    for (const [, rel] of nested) {
+      expect(findAdvisorWorkspaceRoot(mkdirp(join(repo, rel))).split(sep)).not.toContain('.opencode');
+    }
+  });
+});
+
+describe('findAdvisorWorkspaceRoot — ordinary paths keep prior fallback', () => {
+  it('returns the start dir for a path with no sentinel and no .skilled segment', () => {
+    const repo = makeTmpRoot();
+    const plain = mkdirp(join(repo, 'src', 'lib'));
+    expect(findAdvisorWorkspaceRoot(plain)).toBe(resolve(plain));
+  });
+});
+
+describe('findAdvisorWorkspaceRoot — either source-root name', () => {
+  type Layout = 'today' | 'skilled-only' | 'whole-link';
+  const layouts: ReadonlyArray<readonly [Layout, readonly string[]]> = [
+    ['today', ['.opencode']],
+    ['skilled-only', ['.skilled']],
+    ['whole-link', ['.opencode', '.skilled']],
+  ];
+
+  function makeLayoutRepo(layout: Layout): string {
+    const repo = makeTmpRoot();
+    const skillDir = mkdirp(join(repo, layout === 'today' ? '.opencode' : '.skilled', 'skills', 'system-spec-kit'));
+    writeFileSync(join(skillDir, 'SKILL.md'), '# sentinel\n');
+    if (layout === 'whole-link') symlinkSync('.skilled', join(repo, '.opencode'));
+    return repo;
+  }
+
+  for (const [layout, entries] of layouts) {
+    for (const entry of entries) {
+      it(`${layout} through ${entry}: default, explicit and capped walks all name the root`, () => {
+        const repo = makeLayoutRepo(layout);
+        const seat = mkdirp(join(repo, entry, 'skills', 'sk-doc', 'create-diff'));
+        expect(findAdvisorWorkspaceRoot(seat)).toBe(resolve(repo));
+        expect(findAdvisorWorkspaceRoot(seat, { sentinel: SENTINEL })).toBe(resolve(repo));
+        expect(findAdvisorWorkspaceRoot(seat, { maxDepth: 2 })).toBe(resolve(repo));
+      });
+    }
+  }
+
+  for (const layout of ['today', 'skilled-only'] as const) {
+    it(`${layout}: a workspace inside an ancestor named .skilled keeps its own root on full and capped walks`, () => {
+      const repo = mkdirp(join(makeTmpRoot(), '.skilled', 'outer', 'repo'));
+      const skillDir = mkdirp(join(repo, layout === 'today' ? '.opencode' : '.skilled', 'skills', 'system-spec-kit'));
+      writeFileSync(join(skillDir, 'SKILL.md'), '# sentinel\n');
+      const seat = mkdirp(join(skillDir, 'runtime', 'lib'));
+      expect(findAdvisorWorkspaceRoot(seat)).toBe(resolve(repo));
+      expect(findAdvisorWorkspaceRoot(seat, { maxDepth: 2 })).toBe(resolve(repo));
+    });
+  }
+
+  it('a walk capped at zero levels keeps a workspace that sits under a directory named .skilled', () => {
+    const repo = mkdirp(join(makeTmpRoot(), '.skilled', 'outer', 'repo'));
+    const skillDir = mkdirp(join(repo, '.opencode', 'skills', 'system-spec-kit'));
+    writeFileSync(join(skillDir, 'SKILL.md'), '# sentinel\n');
+    expect(findAdvisorWorkspaceRoot(repo, { maxDepth: 0 })).toBe(resolve(repo));
+  });
+
+  it('tests a sentinel under the legacy spec alias as written, never under .skilled', () => {
+    const repo = makeTmpRoot();
+    mkdirp(join(repo, '.skilled', 'specs'));
+    writeFileSync(join(repo, '.skilled', 'specs', 'marker'), 'marker\n');
+    const start = mkdirp(join(repo, 'work', 'sub'));
+    expect(findAdvisorWorkspaceRoot(start, { sentinel: '.opencode/specs/marker' })).toBe(resolve(start));
+  });
+
+  it('tests a sentinel spelled under .skilled/specs under the legacy .opencode/specs spelling too', () => {
+    const repo = makeTmpRoot();
+    mkdirp(join(repo, '.opencode', 'specs'));
+    writeFileSync(join(repo, '.opencode', 'specs', 'marker'), 'marker\n');
+    const start = mkdirp(join(repo, 'work', 'sub'));
+    expect(findAdvisorWorkspaceRoot(start, { sentinel: '.skilled/specs/marker' })).toBe(resolve(repo));
+  });
+
+  it('hoists above the OUTERMOST segment when a .skilled tree leaked an .opencode tree inside it', () => {
+    const repo = makeTmpRoot();
+    const seat = mkdirp(join(repo, '.skilled', 'skills', 'x', '.opencode', 'skills'));
+    expect(findAdvisorWorkspaceRoot(seat)).toBe(resolve(repo));
+  });
+
+  it('never treats look-alike segments as a source root', () => {
+    const repo = makeTmpRoot();
+    const plain = mkdirp(join(repo, '055-skilled-source-root-migration', 'skilled', '.skilled-backup'));
+    expect(findAdvisorWorkspaceRoot(plain)).toBe(resolve(plain));
+  });
+
+  it('never returns a path containing a .skilled or .opencode segment for a start under either tree', () => {
+    const repo = makeTmpRoot();
+    for (const name of ['.skilled', '.opencode']) {
+      const segments = findAdvisorWorkspaceRoot(mkdirp(join(repo, name, 'skills', 'system-spec-kit'))).split(sep);
+      expect(segments).not.toContain('.skilled');
+      expect(segments).not.toContain('.opencode');
+    }
+  });
+});

@@ -1,6 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: filterTriggerPhrases — 3-stage trigger phrase filter pipeline
-// Path fragments, short tokens, shingle dedup
+// MODULE: Trigger Phrase Filter
 // ───────────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';

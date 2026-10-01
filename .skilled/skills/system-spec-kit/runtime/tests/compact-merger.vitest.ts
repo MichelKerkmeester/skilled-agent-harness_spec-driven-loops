@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Compact Brief Merge Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it, vi } from 'vitest';
 
 import { mergeCompactBrief, type MergeInput } from '@spec-kit/shared/compact-merger';

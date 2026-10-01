@@ -19,7 +19,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "scaffold-031-align-runtime-code-with-sk-code-opencode"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** 031-align-runtime-code-with-sk-code-opencode
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-09-30
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the recorded baseline, When every loop mode and merge has landed, Then the typecheck exits 0 and vitest reports at least 963 passed and at most 8 failed, plus the moved cosine test's own cases passing | T016: typecheck 0; vitest 975 passed / 0 failed, including the 4 moved cosine cases | Met | - |
+| AC-002 | REQ-002 | Given a DeepSeek edit, When it changes a code line or adds a tool directive, Then the driver restores the pre-dispatch snapshot and logs REVERTED | T004, T005: 2 REVERTED lines in the loop logs (one false provider match, retried and kept; one edit the checker still flagged, finished by hand); `comment-only` exit 0 on the hand edit | Met | - |
+| AC-003 | REQ-003 | Given the advisor runtime, When the checker runs with `--check-exact-headers --check-sections --check-folders`, Then it reports 0 errors | T015: exit 0, Findings 0, Errors 0, Warnings 0 | Met | - |
+| AC-004 | REQ-004 | Given the advisor runtime, When `--check-folders` runs, Then no code folder lacks a README and no folder name uses double underscores | T006, T013, T015: 2 READMEs written by the loop; the 3 double-underscore folders removed; `--check-folders` reports nothing | Met | - |
+| AC-005 | REQ-005 | Given the fact-checked merge table, When the build ends, Then every CONFIRMED merge has landed with `rg` finding no importer on the old path, and the REJECTED `types` and `auth` merges are recorded with their reasons | T007-T013: context, corpus, routing, tests/utils, cosine move, search-quality deletion and fixture renames landed with `rg` empty for each old path; `types` and `auth` recorded as REJECTED in the fact-check | Met | - |
 
 ### Status values
 
@@ -79,8 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+All five criteria are Met. The work is merged to main as `46fc86c8e8`, and the advisor suite reports 1079 passed and 0 failed on the merged tree.
 <!-- /ANCHOR:closure -->

@@ -8,7 +8,7 @@ trigger_phrases:
   - "bash naming conventions"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.14
+version: 1.0.0.23
 ---
 
 # Shell Style Guide
@@ -77,7 +77,7 @@ Use the standard header format for identification:
 ```bash
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SPECKIT: CREATE SPEC FOLDER
+# COMPONENT: CREATE SPEC FOLDER
 # ───────────────────────────────────────────────────────────────
 # Creates spec folder with templates based on documentation level.
 #

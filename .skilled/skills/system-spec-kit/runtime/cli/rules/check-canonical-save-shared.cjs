@@ -1,6 +1,6 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Canonical-save rules: shared context                                     ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Canonical Save Rules Shared Context
+// ───────────────────────────────────────────────────────────────────
 // Every canonical-save rule reads the same packet surfaces: description.json,
 // graph-metadata.json, the root spec and the child packet directories. Building
 // them once here lets each rule script stay the size of its own decision.

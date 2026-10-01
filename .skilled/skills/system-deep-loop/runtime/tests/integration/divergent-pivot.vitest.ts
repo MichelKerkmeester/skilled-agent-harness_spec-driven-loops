@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Divergent Pivot Integration Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';

@@ -1,10 +1,14 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Skill Graph Handlers
+// ───────────────────────────────────────────────────────────────────
+
 import { mkdtempSync, mkdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { handleSkillGraphQuery } from '../handlers/skill-graph/query.js';
 import { handleSkillGraphScan } from '../handlers/skill-graph/scan.js';
-import { runWithCallerContext, type CallerContext } from '../lib/context/caller-context.js';
+import { runWithCallerContext, type CallerContext } from '../lib/caller-context.js';
 import { closeDb, getDb, indexSkillMetadata, initDb } from '../lib/skill-graph/skill-graph-db.js';
 import { writeGraphMetadata } from './fixtures/skill-graph-db.js';
 

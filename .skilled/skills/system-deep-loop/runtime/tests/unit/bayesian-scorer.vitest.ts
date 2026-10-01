@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Bayesian Scorer Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it } from 'vitest';
 
 import { computeScore, shouldDemote } from '../../lib/deep-loop/bayesian-scorer';

@@ -95,7 +95,7 @@ completion/
 
 | File | Responsibility |
 |---|---|
-| `system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs` | The runtime-neutral core. `detectCompletionClaim` (tail-anchored regex), `resolveSpecFolderFromText` (regex extraction), `evaluateCompletionEvidence` (checklist or implementation-summary check + dedup), `appendAdvisoryLog` (bounded log), `sweepStaleSentinelState` (throttled sweep). Never writes stdout/stderr. |
+| `system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs` | The runtime-neutral core. `detectCompletionClaim` (tail-anchored regex), `resolveSpecFolderFromText` (regex extraction), `evaluateCompletionEvidence` (checklist or implementation-summary check + dedup), `appendAdvisoryLog` (bounded log), `sweepStaleSentinelState` (throttled sweep). Never writes stdout/stderr. |
 | `system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs` | Claude `Stop` adapter. Reads `last_assistant_message`, resolves spec folder from the shared lifecycle state file, runs the core, logs to stderr + advisory log. Skips re-entrant `stop_hook_active`. |
 | `system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs` | Codex `Stop` adapter. Same structure as Claude. Dormant-safe if Codex doesn't surface the message field. |
 | `system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs` | Devin `Stop` adapter. Same structure as Claude. |
@@ -165,5 +165,5 @@ Expected result: `ok function` (confirms the tool plugin loads).
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in, with the full kill-switch index and coverage matrix.
 - [`../shared/README.md`](../shared/README.md): the shared kill-switch resolver the adapters use.
 - [`../../skills/system-spec-kit/runtime/hooks/README.md`](../../skills/system-spec-kit/runtime/hooks/README.md): the owning skill's hook contract.
-- [`../../skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs`](../../skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs): the runtime-neutral core.
+- [`../../skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs`](../../skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs): the runtime-neutral core.
 - [`../../plugins/README.md`](../../plugins/README.md): the OpenCode plugins index.

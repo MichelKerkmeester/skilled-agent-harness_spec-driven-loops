@@ -1,12 +1,18 @@
 // MODULE: Deep-Loop Lock
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { createHash, randomUUID } from 'node:crypto';
 import { closeSync, existsSync, fsyncSync, linkSync, openSync, readFileSync, renameSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
 import { createConnection, createServer, type Server } from 'node:net';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 
-// ───── TYPE DEFINITIONS ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 import type { ExecutorKind } from './executor-config.js';
 
@@ -47,7 +53,9 @@ export type LoopLockAcquireResult =
   | { acquired: true; lock: LoopLockData; reclaimed?: LoopLockData }
   | { acquired: false; holder?: LoopLockData };
 
-// ───── CONSTANTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const DEFAULT_LOOP_LOCK_HEARTBEAT_INTERVAL_MS = 15_000;
 
@@ -57,7 +65,9 @@ const HOST_LOCAL_SINGLE_FLIGHT_PROBE_TIMEOUT_MS = 500;
 let heartbeatTimer: ReturnType<typeof setInterval> | null = null;
 const hostLocalSingleFlightLeases = new Map<string, HostLocalSingleFlightLease>();
 
-// ───── DOMAIN ERRORS ─────
+// ───────────────────────────────────────────────────────────────────
+// 4. DOMAIN ERRORS
+// ───────────────────────────────────────────────────────────────────
 
 export class LoopLockHeldError extends Error {
   holder: LoopLockData;
@@ -69,7 +79,9 @@ export class LoopLockHeldError extends Error {
   }
 }
 
-// ───── HELPERS ─────
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 type SerializedLoopLockData = {
   owner_pid: number;
@@ -508,7 +520,9 @@ function lockIdentityMatches(holder: LoopLockData, ownerPid: number, expectedAcq
   return true;
 }
 
-// ───── EXPORTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Check whether a process is still alive.

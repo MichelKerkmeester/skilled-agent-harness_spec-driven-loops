@@ -1,0 +1,9 @@
+.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter
+.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/shims
+.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/fixtures
+.skilled/skills/system-deep-loop/runtime/scripts/tests
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-authority
+.skilled/skills/system-deep-loop/runtime/lib/cutover-binding
+.skilled/skills/system-deep-loop/runtime/lib/authority-root
+.skilled/skills/system-deep-loop/runtime/lib/mode-append-gateway
+.skilled/skills/system-deep-loop/runtime/lib/per-mode-authority-flip

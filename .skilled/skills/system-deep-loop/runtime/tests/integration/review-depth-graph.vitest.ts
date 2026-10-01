@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Review Depth Graph Integration Tests
+// ───────────────────────────────────────────────────────────────────
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import fs from 'node:fs';

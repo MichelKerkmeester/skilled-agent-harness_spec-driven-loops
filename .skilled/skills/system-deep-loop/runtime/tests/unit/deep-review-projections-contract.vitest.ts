@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Review Projections Contract
+// ───────────────────────────────────────────────────────────────────
+
 // Proves the deep-review-projections projection surface folds ledger
 // events into the ledger-derivable findings registry whose JSON shape
 // matches the exact records the finding/evidence/adjudication/lineage

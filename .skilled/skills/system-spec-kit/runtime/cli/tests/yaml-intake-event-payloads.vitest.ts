@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: YAML intake-event payload vocabulary boundary
+// MODULE: YAML Intake Event Payload Vocabulary
 // ───────────────────────────────────────────────────────────────────
 // The /speckit: plan and /speckit: complete
 // assets emit `intake_triggered` / `intake_completed` events that

@@ -1,6 +1,8 @@
 // MODULE: Deep-Loop Bayesian Scorer
 
-// ───── CORE LOGIC ─────
+// ───────────────────────────────────────────────────────────────────
+// 1. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Compute a Bayesian estimate of success probability using Laplace smoothing.

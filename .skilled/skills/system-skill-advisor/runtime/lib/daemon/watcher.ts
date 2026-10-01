@@ -2,6 +2,10 @@
 // MODULE: Advisor Daemon Watcher
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { createHash } from 'node:crypto';
 import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
@@ -20,6 +24,10 @@ import {
   createWatcherOrchestrator,
   type PendingSkill,
 } from './watcher-orchestrator.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export interface WatchTarget {
   readonly path: string;
@@ -98,6 +106,10 @@ export interface SkillGraphWatcher {
 // the top of this file. Local code references PendingSkill identically to
 // the previous module-private interface.
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const SKILL_MD = 'SKILL.md';
 const GRAPH_METADATA = 'graph-metadata.json';
 const DEFAULT_DEBOUNCE_MS = 2_000;
@@ -113,6 +125,10 @@ const TEMP_SUFFIX_PATTERN = /(?:\.tmp|\.swp|~)$/i;
 // a single `COUNTERS:...` synthetic line at the head of status().diagnostics so
 // the public return type (readonly string[]) does not change.
 const DIAGNOSTICS_RING_BUFFER_CAP = 100;
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function envPositiveInt(name: string, fallback: number): number {
   const value = process.env[name];
@@ -371,6 +387,10 @@ export function writeFileAtomic(filePath: string, content: string): void {
     }
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): SkillGraphWatcher {
   const workspaceRoot = resolve(options.workspaceRoot);
@@ -692,6 +712,10 @@ export function createSkillGraphWatcher(options: SkillGraphWatcherOptions): Skil
     },
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export const __testables = {
   defaultSkillsRoot,

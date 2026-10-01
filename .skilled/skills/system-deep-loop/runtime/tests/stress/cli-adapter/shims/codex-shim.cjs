@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Codex CLI Shim
+// ───────────────────────────────────────────────────────────────────
+
 'use strict';
 
 const { spawn, spawnSync } = require('node:child_process');

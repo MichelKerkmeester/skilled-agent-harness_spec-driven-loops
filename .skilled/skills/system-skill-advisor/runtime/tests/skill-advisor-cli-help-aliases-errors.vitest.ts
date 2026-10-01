@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Skill Advisor CLI Help Tests
+// ───────────────────────────────────────────────────────────────────
 import { describe, expect, it } from 'vitest';
 
 import { __testing, runSkillAdvisorCli } from '../skill-advisor-cli.js';

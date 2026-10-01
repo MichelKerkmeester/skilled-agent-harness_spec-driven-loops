@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: CLI Executor Matrix Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';

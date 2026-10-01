@@ -2,6 +2,9 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Process Sweep
 // ───────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import { isMainModule } from '../lib/esm-entry.js';
 import {
   collectInventory,
@@ -14,6 +17,9 @@ import {
   type PidLockState,
 } from './process-memory-harness.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 /** One process (or stale PID lock) row in a sweep plan, with its termination verdict. */
 export interface SweepPlanRow {
   pid: number;
@@ -57,6 +63,9 @@ type CliPayload = (SweepPlan & {
   note: string;
 }) | SweepApplyResult;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 /**
  * Report the sweep plan in apply shape without signalling any process.
  *
@@ -84,6 +93,9 @@ export function applySweep(inventory: Inventory, opts: ApplySweepOptions): Sweep
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function hasKnownProjectIdentity(row: Pick<SweepPlanRow, 'command'>): boolean {
   return hasKnownProjectOwnerMarker(row.command);
 }
@@ -147,6 +159,9 @@ function evaluateEligibility(
   return { eligibleForTermination: false, rationale: 'default-preserve' };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 /**
  * Build a dry-run sweep plan: classify every process and stale PID lock and
  * decide whether each would be eligible for termination.
@@ -193,6 +208,9 @@ export function planSweep(inventory: Inventory, opts: PlanSweepOptions): SweepPl
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 function showHelp(): void {
   console.log(`process-sweep - process inventory sweep
 

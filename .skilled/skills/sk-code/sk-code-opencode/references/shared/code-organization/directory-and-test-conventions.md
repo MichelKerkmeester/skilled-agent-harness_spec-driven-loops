@@ -8,7 +8,7 @@ trigger_phrases:
   - "script directory structure"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.17
+version: 1.0.0.13
 ---
 
 # Directory & Test File Conventions
@@ -126,7 +126,6 @@ mcp-server/
 │   ├── storage/                # Persistence layer
 │   │   └── transaction-manager.ts
 │   ├── templates/
-│   ├── test-helpers/
 │   ├── utils/                  # General utilities
 │   └── validation/             # Document and metadata validation
 ├── scripts/                    # Server-specific scripts
@@ -134,7 +133,7 @@ mcp-server/
 │   └── finalize-dist.mjs       # Build finalization
 ├── tests/                      # Test files (*.vitest.ts)
 │   ├── _support/               # Shared test support
-│   └── __helpers__/            # Test helpers
+│   └── helpers/                # Test helpers
 └── dist/                       # Compiled output (gitignored)
 ```
 
@@ -248,26 +247,17 @@ scripts/
 
 ### Test File Location
 
-Keep tests close to source:
+Tests live in the package's top-level `tests/` tree. Keep it flat while file names stay unique, and group by area only when a group holds several files:
 
 ```
-Option A: Adjacent tests/
-lib/
-├── search/
-│   ├── vector-index.ts
-│   └── tests/
-│       └── vector-index.test.ts
-
-Option B: Top-level tests/
 lib/
 ├── search/
 │   └── vector-index.ts
 tests/
-└── search/
-    └── vector-index.test.ts
+└── vector-index.test.ts
 ```
 
-OpenCode uses **Option B** (top-level tests/) for most projects.
+A test never sits beside its source, and no folder is named with double underscores. Both rules are universal: see [code-style-guide.md](../../../../shared/references/universal/code-style-guide.md) §3 "Folders and tests".
 
 ### Test File Structure
 

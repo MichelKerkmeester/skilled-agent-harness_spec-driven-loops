@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Generate Context CLI Authority
+// ───────────────────────────────────────────────────────────────────
+
 // TEST: Generate Context CLI Authority
 // Ensures main() preserves explicit CLI targets into runWorkflow
 import fs from 'node:fs';

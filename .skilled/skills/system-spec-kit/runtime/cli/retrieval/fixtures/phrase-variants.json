@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0bff8d17df4feb3083ee8ff204144a42fc1d4514790d1f4fe505ec5f6157e5da",
+  "manifestHash": "77b5d9e2faf996e55bc1489ff5ec4a570c2b45c7cc88110df48601386e0aebeb",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7876,6 +7876,9 @@
     "adapter parity": [
       "adapter parity"
     ],
+    "adapter playbook bijection validator": [
+      "adapter playbook bijection validator"
+    ],
     "adapter resident memory benchmark": [
       "adapter resident memory benchmark",
       "adapter-resident-memory-benchmark"
@@ -8307,6 +8310,9 @@
     "advisor adjacent 116 realignment": [
       "advisor adjacent 116 realignment"
     ],
+    "advisor alignment loop": [
+      "advisor alignment loop"
+    ],
     "advisor ambiguity cluster jev": [
       "advisor ambiguity cluster jev"
     ],
@@ -8470,9 +8476,6 @@
     "advisor consumer cutover": [
       "advisor consumer cutover"
     ],
-    "advisor corpus": [
-      "advisor corpus"
-    ],
     "advisor corpus expectation update": [
       "advisor corpus expectation update"
     ],
@@ -8604,6 +8607,9 @@
     ],
     "advisor feedback calibration": [
       "advisor feedback calibration"
+    ],
+    "advisor folder merges": [
+      "advisor folder merges"
     ],
     "advisor freshness": [
       "advisor freshness"
@@ -8986,6 +8992,9 @@
     ],
     "advisor routing code queue": [
       "advisor routing code queue"
+    ],
+    "advisor runtime alignment": [
+      "advisor runtime alignment"
     ],
     "advisor runtime directory": [
       "advisor runtime directory"
@@ -11073,6 +11082,9 @@
     "architecture launcher reference fix": [
       "architecture launcher reference fix"
     ],
+    "architecture md template": [
+      "architecture md template"
+    ],
     "architecture readme": [
       "architecture readme"
     ],
@@ -11087,6 +11099,12 @@
     ],
     "architecture smell patterns": [
       "architecture smell patterns"
+    ],
+    "architecture template": [
+      "architecture template"
+    ],
+    "architecture template route": [
+      "architecture template route"
     ],
     "architecture template sk create readme": [
       "architecture template sk-create-readme"
@@ -11898,6 +11916,9 @@
     "authority flip state": [
       "authority flip state"
     ],
+    "authority registry": [
+      "authority registry"
+    ],
     "authority registry cas reduction": [
       "authority registry cas reduction"
     ],
@@ -11906,6 +11927,9 @@
     ],
     "authority registry mutators removed": [
       "authority registry mutators removed"
+    ],
+    "authority selector": [
+      "authority selector"
     ],
     "authorization boundary status": [
       "authorization boundary status"
@@ -12911,6 +12935,9 @@
     ],
     "better sqlite3 adapter ports": [
       "better-sqlite3 adapter ports"
+    ],
+    "better sqlite3 ambient types": [
+      "better-sqlite3 ambient types"
     ],
     "better sqlite3 drift deferred": [
       "better-sqlite3 drift deferred"
@@ -16079,9 +16106,6 @@
     "cheapest next check": [
       "cheapest next check"
     ],
-    "cheapest next check measurement": [
-      "cheapest next check measurement"
-    ],
     "check ac coverage": [
       "check-ac-coverage"
     ],
@@ -16186,9 +16210,6 @@
     ],
     "check goal script": [
       "check-goal script"
-    ],
-    "check goal tests": [
-      "check-goal tests"
     ],
     "check graph metadata last active": [
       "check-graph-metadata last-active"
@@ -17067,9 +17088,6 @@
     "classifier rpc summary": [
       "classifier RPC summary"
     ],
-    "classifier surface router": [
-      "classifier surface router"
-    ],
     "classifier tasks": [
       "classifier tasks"
     ],
@@ -17439,6 +17457,9 @@
     "cli": [
       "cli"
     ],
+    "cli adapter shims": [
+      "cli adapter shims"
+    ],
     "cli adapter stress tests": [
       "cli adapter stress tests"
     ],
@@ -17474,9 +17495,6 @@
     ],
     "cli classifier 0 5 0 0": [
       "cli-classifier 0.5.0.0"
-    ],
-    "cli classifier 0 6 0 0": [
-      "cli-classifier 0.6.0.0"
     ],
     "cli classifier benchmark": [
       "cli-classifier benchmark"
@@ -17556,9 +17574,6 @@
     "cli classifier root router": [
       "cli-classifier root router"
     ],
-    "cli classifier shared scripts": [
-      "cli-classifier shared scripts"
-    ],
     "cli classifier two modes": [
       "cli-classifier two modes"
     ],
@@ -17570,9 +17585,6 @@
     ],
     "cli classifier v0 5 0 0": [
       "cli-classifier v0.5.0.0"
-    ],
-    "cli classifier v0 6 0 0": [
-      "cli-classifier v0.6.0.0"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -18117,9 +18129,6 @@
     "cli deem 0 1 0 0": [
       "cli-deem 0.1.0.0"
     ],
-    "cli deem 0 1 1 0": [
-      "cli-deem 0.1.1.0"
-    ],
     "cli deem build result": [
       "cli-deem build result"
     ],
@@ -18145,8 +18154,7 @@
       "cli-deem completion criteria"
     ],
     "cli deem fake server tests": [
-      "cli-deem fake server tests",
-      "cli-deem fake-server tests"
+      "cli-deem fake server tests"
     ],
     "cli deem feature catalog": [
       "cli-deem feature catalog"
@@ -18178,12 +18186,6 @@
     "cli deem score": [
       "cli-deem score"
     ],
-    "cli deem script tests": [
-      "cli-deem script tests"
-    ],
-    "cli deem scripts": [
-      "cli-deem scripts"
-    ],
     "cli deem status": [
       "cli-deem status"
     ],
@@ -18192,9 +18194,6 @@
     ],
     "cli deem v0 1 0 0": [
       "cli-deem v0.1.0.0"
-    ],
-    "cli deem v0 1 1 0": [
-      "cli-deem v0.1.1.0"
     ],
     "cli deem verification tasks": [
       "cli-deem verification tasks"
@@ -18748,9 +18747,6 @@
     "cli jev 0 1 3 0": [
       "cli-jev 0.1.3.0"
     ],
-    "cli jev 0 1 4 0": [
-      "cli-jev 0.1.4.0"
-    ],
     "cli jev 0 2 0 0": [
       "cli-jev 0.2.0.0"
     ],
@@ -18915,9 +18911,6 @@
     ],
     "cli jev v0 1 3 0": [
       "cli-jev v0.1.3.0"
-    ],
-    "cli jev v0 1 4 0": [
-      "cli-jev v0.1.4.0"
     ],
     "cli jev v0 2 0 0": [
       "cli-jev v0.2.0.0"
@@ -19741,9 +19734,6 @@
     ],
     "cli unknown fallback": [
       "cli unknown fallback"
-    ],
-    "cli usage aliases rename": [
-      "cli-usage-aliases rename"
     ],
     "cli usage mode": [
       "cli-usage mode"
@@ -20685,9 +20675,6 @@
     ],
     "code folder readme template": [
       "code folder readme template"
-    ],
-    "code folder readmes": [
-      "code folder readmes"
     ],
     "code folder readmes proof of concept": [
       "code-folder readmes proof-of-concept"
@@ -21824,32 +21811,14 @@
     "code readme freshness": [
       "code readme freshness"
     ],
-    "code readmes acceptance criteria": [
-      "code readmes acceptance criteria"
-    ],
     "code readmes cleanup plan": [
       "code-readmes cleanup plan"
     ],
     "code readmes cleanup tasks": [
       "code-readmes cleanup tasks"
     ],
-    "code readmes completion criteria": [
-      "code readmes completion criteria"
-    ],
-    "code readmes goal": [
-      "code readmes goal"
-    ],
     "code readmes one per folder": [
       "code readmes one per folder"
-    ],
-    "code readmes plan": [
-      "code readmes plan"
-    ],
-    "code readmes tasks": [
-      "code readmes tasks"
-    ],
-    "code readmes waiver adr": [
-      "code readmes waiver adr"
     ],
     "code remediation plan": [
       "code remediation plan"
@@ -23129,8 +23098,8 @@
     "compaction auto continue shipped": [
       "compaction auto continue shipped"
     ],
-    "compaction boundary scoring": [
-      "compaction boundary scoring"
+    "compaction boundary report": [
+      "compaction boundary report"
     ],
     "compaction brief recall": [
       "compaction brief recall"
@@ -23299,15 +23268,6 @@
     ],
     "compiled route obsidian proof": [
       "compiled-route obsidian proof"
-    ],
-    "compiled route probe": [
-      "compiled route probe"
-    ],
-    "compiled route probe checklist": [
-      "compiled route probe checklist"
-    ],
-    "compiled route probe criteria": [
-      "compiled route probe criteria"
     ],
     "compiled route re mint": [
       "compiled route re-mint"
@@ -23905,6 +23865,9 @@
     ],
     "configuration style prompt template": [
       "configuration-style prompt template"
+    ],
+    "configuration table drift": [
+      "configuration table drift"
     ],
     "configure executor": [
       "configure executor"
@@ -26107,9 +26070,6 @@
     "create goal routing republish": [
       "create-goal routing republish"
     ],
-    "create goal script tests": [
-      "create-goal script tests"
-    ],
     "create health md chart": [
       "create health md chart"
     ],
@@ -26268,9 +26228,6 @@
     ],
     "create with human voice": [
       "create with human voice"
-    ],
-    "create with human voice script tests": [
-      "create-with-human-voice script tests"
     ],
     "create workspace tag": [
       "create workspace tag"
@@ -28134,7 +28091,6 @@
       "debug next check"
     ],
     "debug next check census": [
-      "debug next check census",
       "debug next-check census"
     ],
     "debug next check choice": [
@@ -28145,9 +28101,6 @@
     ],
     "debug next check plan": [
       "debug next check plan"
-    ],
-    "debug next check scorer": [
-      "debug next check scorer"
     ],
     "debug next check tasks": [
       "debug next check tasks"
@@ -28425,17 +28378,11 @@
     "deem classifier research plan": [
       "deem classifier research plan"
     ],
-    "deem client entrypoint": [
-      "deem client entrypoint"
-    ],
     "deem client goal binding": [
       "deem client goal binding"
     ],
     "deem client results": [
       "deem client results"
-    ],
-    "deem client tests": [
-      "deem client tests"
     ],
     "deem commit pair": [
       "deem commit pair"
@@ -28554,9 +28501,6 @@
     "deem research round 3 results": [
       "deem research round 3 results"
     ],
-    "deem resource loading": [
-      "deem resource loading"
-    ],
     "deem routing control": [
       "deem routing control"
     ],
@@ -28565,9 +28509,6 @@
     ],
     "deem search narrowing goal": [
       "deem search narrowing goal"
-    ],
-    "deem smart routing template": [
-      "deem smart routing template"
     ],
     "deem spec track narrowing": [
       "deem spec track narrowing"
@@ -29845,6 +29786,9 @@
     "deep loop and cli contract drift": [
       "deep loop and cli contract drift"
     ],
+    "deep loop architecture": [
+      "deep loop architecture"
+    ],
     "deep loop architecture md": [
       "deep loop architecture md"
     ],
@@ -30205,6 +30149,9 @@
     "deep loop mode write ownership": [
       "deep-loop mode write ownership"
     ],
+    "deep loop package topology": [
+      "deep-loop package topology"
+    ],
     "deep loop packet migration": [
       "deep loop packet migration"
     ],
@@ -30394,8 +30341,14 @@
     "deep loop runtime 1 9 0 0": [
       "deep-loop-runtime 1.9.0.0"
     ],
+    "deep loop runtime 1 9 1 0": [
+      "deep-loop-runtime 1.9.1.0"
+    ],
     "deep loop runtime alignment": [
       "deep loop runtime alignment"
+    ],
+    "deep loop runtime architecture": [
+      "deep-loop runtime architecture"
     ],
     "deep loop runtime ci job": [
       "deep-loop runtime ci job"
@@ -30468,6 +30421,9 @@
     ],
     "deep loop runtime v1 9 0 0": [
       "deep-loop-runtime v1.9.0.0"
+    ],
+    "deep loop runtime v1 9 1 0": [
+      "deep-loop-runtime v1.9.1.0"
     ],
     "deep loop safe now gated split": [
       "deep-loop safe-now gated split"
@@ -30828,6 +30784,9 @@
     ],
     "deep research ascii identifiers": [
       "deep research ASCII identifiers"
+    ],
+    "deep research authority": [
+      "deep research authority"
     ],
     "deep research authority composition plan": [
       "deep-research authority composition plan"
@@ -33808,9 +33767,6 @@
     ],
     "devtools quick commands": [
       "devtools quick commands"
-    ],
-    "df idf advisor": [
-      "df idf advisor"
     ],
     "df idf corpus": [
       "df-idf corpus"
@@ -37364,6 +37320,9 @@
     "env knob docs tasks": [
       "env knob docs tasks"
     ],
+    "env reader table": [
+      "env reader table"
+    ],
     "env reader table script": [
       "env reader table script"
     ],
@@ -37390,9 +37349,6 @@
     ],
     "env reference remediation tasks": [
       "ENV_REFERENCE remediation tasks"
-    ],
-    "env snapshot": [
-      "env snapshot"
     ],
     "env snapshot restore": [
       "env snapshot restore"
@@ -39526,6 +39482,9 @@
     "fanout salvage ledger plan": [
       "fanout salvage ledger plan"
     ],
+    "fanout scheduler stress matrix": [
+      "fanout scheduler stress matrix"
+    ],
     "fanout scope metadata governance rollup": [
       "fanout scope metadata governance rollup"
     ],
@@ -41296,6 +41255,9 @@
     "folder utilities": [
       "folder utilities"
     ],
+    "folders and tests rule": [
+      "folders and tests rule"
+    ],
     "follow each failure enumeration": [
       "follow each failure enumeration"
     ],
@@ -42054,6 +42016,9 @@
     "frontmatter packet closeout": [
       "frontmatter packet closeout"
     ],
+    "frontmatter parser": [
+      "frontmatter parser"
+    ],
     "frontmatter playbook execution results": [
       "frontmatter playbook execution results"
     ],
@@ -42422,6 +42387,9 @@
     ],
     "gate 3 delivery residue": [
       "gate-3 delivery residue"
+    ],
+    "gate 3 hook coverage": [
+      "gate 3 hook coverage"
     ],
     "gate 3 preamble": [
       "gate 3 preamble"
@@ -44130,9 +44098,6 @@
     ],
     "goal template parity test": [
       "goal template parity test"
-    ],
-    "goal template parity tests": [
-      "goal template parity tests"
     ],
     "goal template placeholder check": [
       "goal template placeholder check"
@@ -46007,6 +45972,9 @@
     "hermes yolo required for writes": [
       "hermes-yolo-required-for-writes"
     ],
+    "hermetic cli stand in binaries": [
+      "hermetic cli stand-in binaries"
+    ],
     "hermetic code graph db cleanup": [
       "hermetic code graph db cleanup"
     ],
@@ -46538,6 +46506,9 @@
     "hook state producer patch": [
       "hook-state producer patch"
     ],
+    "hook suites": [
+      "hook suites"
+    ],
     "hook surface review tier2": [
       "hook surface review tier2"
     ],
@@ -46940,9 +46911,6 @@
     ],
     "hvr scan script": [
       "hvr scan script"
-    ],
-    "hvr scanner masking tests": [
-      "hvr scanner masking tests"
     ],
     "hvr scoring arithmetic": [
       "hvr scoring arithmetic"
@@ -47979,9 +47947,6 @@
     "injection screen build order": [
       "injection screen build order"
     ],
-    "injection screen fixture tests": [
-      "injection screen fixture tests"
-    ],
     "injection screen keep rule": [
       "injection screen keep rule"
     ],
@@ -48005,9 +47970,6 @@
     ],
     "injection screen tasks": [
       "injection screen tasks"
-    ],
-    "injection screen tests": [
-      "injection screen tests"
     ],
     "injection screen verdict": [
       "injection screen verdict"
@@ -49065,9 +49027,6 @@
     "jev research verification": [
       "jev research verification"
     ],
-    "jev resource loading table": [
-      "jev resource loading table"
-    ],
     "jev round 2 synthesis": [
       "jev round 2 synthesis"
     ],
@@ -49088,9 +49047,6 @@
     ],
     "jev skills and workflows research": [
       "jev skills and workflows research"
-    ],
-    "jev smart routing template": [
-      "jev smart routing template"
     ],
     "jev spec track narrowing": [
       "jev spec track narrowing"
@@ -49145,9 +49101,6 @@
     ],
     "jev transport switch tasks": [
       "jev transport switch tasks"
-    ],
-    "jev transport tests": [
-      "jev transport tests"
     ],
     "jev triage": [
       "jev triage"
@@ -53007,6 +52960,9 @@
     ],
     "markdown delivery standards": [
       "markdown delivery standards"
+    ],
+    "markdown frontmatter": [
+      "markdown frontmatter"
     ],
     "markdown link integrity": [
       "markdown link integrity"
@@ -57364,9 +57320,6 @@
     "missing active vector success": [
       "missing active vector success"
     ],
-    "missing code readme": [
-      "missing code readme"
-    ],
     "missing code readme runtime modules": [
       "missing code readme runtime modules"
     ],
@@ -57964,6 +57917,12 @@
     "mode append gateway": [
       "mode append gateway"
     ],
+    "mode append gateway flow": [
+      "mode append gateway flow"
+    ],
+    "mode authority record": [
+      "mode authority record"
+    ],
     "mode aware promotion path": [
       "mode-aware promotion path"
     ],
@@ -58084,8 +58043,8 @@
     "mode scaffold verification": [
       "mode scaffold verification"
     ],
-    "mode section 2 smart router": [
-      "mode section 2 smart router"
+    "mode state write path": [
+      "mode state write path"
     ],
     "mode switch": [
       "mode switch"
@@ -59442,6 +59401,9 @@
     ],
     "next action verb list": [
       "next action verb list"
+    ],
+    "next check choice scorer": [
+      "next check choice scorer"
     ],
     "next check keep rule": [
       "next check keep rule"
@@ -60807,6 +60769,9 @@
     "obsidian surface subfolder authoring": [
       "obsidian surface subfolder authoring"
     ],
+    "obsidian test layout": [
+      "obsidian test layout"
+    ],
     "obsidian theme": [
       "obsidian theme"
     ],
@@ -61543,6 +61508,9 @@
     "opencode goal verifier accuracy": [
       "opencode goal verifier accuracy"
     ],
+    "opencode hook adapter": [
+      "opencode hook adapter"
+    ],
     "opencode hooks browsability mirror": [
       "opencode hooks browsability mirror"
     ],
@@ -61656,6 +61624,9 @@
     ],
     "opencode plugin exemption tier": [
       "opencode plugin exemption tier"
+    ],
+    "opencode plugin hooks": [
+      "opencode plugin hooks"
     ],
     "opencode plugin loader": [
       "opencode plugin loader"
@@ -61800,6 +61771,9 @@
     ],
     "opencode source root blockers": [
       "opencode source root blockers"
+    ],
+    "opencode spec gate plugin": [
+      "opencode spec gate plugin"
     ],
     "opencode stdin dev null rule": [
       "opencode stdin dev null rule"
@@ -63116,6 +63090,9 @@
       "P3 D5 D6",
       "p3 d5 d6"
     ],
+    "package architecture template": [
+      "package architecture template"
+    ],
     "package aware typescript build": [
       "package aware typescript build"
     ],
@@ -63154,6 +63131,9 @@
     ],
     "package relocation tasks": [
       "package relocation tasks"
+    ],
+    "package root markers": [
+      "package root markers"
     ],
     "package skill check": [
       "package skill check"
@@ -63796,6 +63776,9 @@
     ],
     "parse when field": [
       "parse when field"
+    ],
+    "parse yaml frontmatter": [
+      "parse yaml frontmatter"
     ],
     "parseable json format": [
       "parseable json format"
@@ -66454,9 +66437,6 @@
     "pi transport acceptance criteria": [
       "pi transport acceptance criteria"
     ],
-    "pi transport census tests": [
-      "pi transport census tests"
-    ],
     "pi transport closure gate": [
       "pi transport closure gate"
     ],
@@ -66489,9 +66469,6 @@
     ],
     "pi transport testing strategy": [
       "pi transport testing strategy"
-    ],
-    "pi transport tests": [
-      "pi transport tests"
     ],
     "pi transport verdict": [
       "pi transport verdict"
@@ -69947,9 +69924,6 @@
     ],
     "reader needed lens measurement": [
       "reader-needed lens measurement"
-    ],
-    "reader needed lens tests": [
-      "reader-needed lens tests"
     ],
     "reader needed lens verdict": [
       "reader-needed lens verdict"
@@ -76506,12 +76480,6 @@
     "route validate tasks": [
       "route-validate tasks"
     ],
-    "router active criteria": [
-      "router active criteria"
-    ],
-    "router active promotion": [
-      "router active promotion"
-    ],
     "router alignment": [
       "router alignment"
     ],
@@ -76566,9 +76534,6 @@
     "router presentation split": [
       "router presentation split"
     ],
-    "router promotion checklist": [
-      "router promotion checklist"
-    ],
     "router read recount": [
       "router read recount"
     ],
@@ -76596,9 +76561,6 @@
     "router split tasks": [
       "router split tasks"
     ],
-    "router state active": [
-      "router state active"
-    ],
     "router template": [
       "router template"
     ],
@@ -76607,9 +76569,6 @@
     ],
     "router trigger row": [
       "router trigger row"
-    ],
-    "router vocabulary classes": [
-      "router vocabulary classes"
     ],
     "router walk": [
       "router walk"
@@ -76634,18 +76593,6 @@
     ],
     "routing alias tasks": [
       "routing alias tasks"
-    ],
-    "routing alignment closure gate": [
-      "routing alignment closure gate"
-    ],
-    "routing alignment goal": [
-      "routing alignment goal"
-    ],
-    "routing alignment plan": [
-      "routing alignment plan"
-    ],
-    "routing alignment tasks": [
-      "routing alignment tasks"
     ],
     "routing baseline recapture": [
       "routing-baseline-recapture"
@@ -77085,6 +77032,9 @@
     "runtime api boundary": [
       "runtime api boundary"
     ],
+    "runtime architecture doc": [
+      "runtime architecture doc"
+    ],
     "runtime bootstrap tsxchildenv": [
       "runtime-bootstrap tsxChildEnv"
     ],
@@ -77129,6 +77079,9 @@
     ],
     "runtime cli target layout": [
       "runtime cli target layout"
+    ],
+    "runtime code alignment": [
+      "runtime code alignment"
     ],
     "runtime code not aligned with sk code": [
       "runtime code not aligned with sk-code"
@@ -78456,6 +78409,9 @@
     "scoped staging discipline": [
       "scoped staging discipline"
     ],
+    "scoped test gate": [
+      "scoped test gate"
+    ],
     "score 0 partial miss shape": [
       "score-0 partial miss shape"
     ],
@@ -78505,6 +78461,7 @@
       "score-clarify-default tasks"
     ],
     "score compaction recall": [
+      "score compaction recall",
       "score-compaction-recall"
     ],
     "score compaction recall completion criteria": [
@@ -78560,6 +78517,7 @@
       "score-d4-agreement tasks"
     ],
     "score debug next check": [
+      "score debug next check",
       "score-debug-next-check"
     ],
     "score debug next check build": [
@@ -78625,9 +78583,6 @@
     "score injection screen tasks": [
       "score-injection-screen tasks"
     ],
-    "score injection screen tests": [
-      "score-injection-screen tests"
-    ],
     "score jev tiebreak": [
       "score-jev-tiebreak"
     ],
@@ -78660,9 +78615,6 @@
     ],
     "score pi transport": [
       "score-pi-transport"
-    ],
-    "score pi transport tests": [
-      "score-pi-transport tests"
     ],
     "score residue flagger": [
       "score-residue-flagger"
@@ -79472,11 +79424,11 @@
     "secrets and privacy review": [
       "secrets and privacy review"
     ],
-    "section 2 reshape checklist": [
-      "section 2 reshape checklist"
-    ],
     "section 6 heading fix": [
       "Section 6 Heading Fix"
+    ],
+    "section and folder checks": [
+      "section and folder checks"
     ],
     "section count rule removed": [
       "section count rule removed"
@@ -80879,6 +80831,9 @@
     "shared package confirmed findings": [
       "shared package confirmed findings"
     ],
+    "shared package coverage": [
+      "shared package coverage"
+    ],
     "shared package dead half removal": [
       "shared package dead half removal"
     ],
@@ -80985,8 +80940,8 @@
     "shared safe fix engine": [
       "shared safe-fix engine"
     ],
-    "shared scripts tests": [
-      "shared scripts tests"
+    "shared scripts": [
+      "shared scripts"
     ],
     "shared service event parity": [
       "shared service event parity"
@@ -81005,6 +80960,9 @@
     ],
     "shared synthesis close out script": [
       "shared synthesis close-out script"
+    ],
+    "shared tests": [
+      "shared tests"
     ],
     "shared tool runner": [
       "shared tool runner"
@@ -81062,6 +81020,9 @@
     ],
     "shellcheck integration": [
       "shellcheck integration"
+    ],
+    "shim mode switch": [
+      "shim mode switch"
     ],
     "shipped 027 alignment": [
       "shipped 027 alignment"
@@ -81732,6 +81693,9 @@
     "sk code 4 2 3 0": [
       "sk-code 4.2.3.0"
     ],
+    "sk code 4 2 4 0": [
+      "sk-code 4.2.4.0"
+    ],
     "sk code 4 enforcement": [
       "sk-code §4 enforcement"
     ],
@@ -82071,6 +82035,9 @@
     "sk code obsidian 0 1 0 0": [
       "sk-code-obsidian 0.1.0.0"
     ],
+    "sk code obsidian 0 1 1 0": [
+      "sk-code-obsidian 0.1.1.0"
+    ],
     "sk code obsidian assets checklists": [
       "sk-code-obsidian assets checklists"
     ],
@@ -82170,6 +82137,9 @@
     "sk code obsidian v0 1 0 0 release note": [
       "sk-code-obsidian v0.1.0.0 release note"
     ],
+    "sk code obsidian v0 1 1 0": [
+      "sk-code-obsidian v0.1.1.0"
+    ],
     "sk code onboard implement": [
       "sk-code onboard implement"
     ],
@@ -82193,6 +82163,9 @@
     ],
     "sk code opencode 1 0 1 0": [
       "sk-code-opencode 1.0.1.0"
+    ],
+    "sk code opencode 1 1 0 0": [
+      "sk-code-opencode 1.1.0.0"
     ],
     "sk code opencode alignment": [
       "sk-code opencode alignment"
@@ -82238,6 +82211,9 @@
     ],
     "sk code opencode v1 0 1 0": [
       "sk-code-opencode v1.0.1.0"
+    ],
+    "sk code opencode v1 1 0 0": [
+      "sk-code-opencode v1.1.0.0"
     ],
     "sk code overlay hardcoded replacement": [
       "sk-code overlay hardcoded replacement"
@@ -82568,6 +82544,9 @@
     ],
     "sk code v4 2 3 0": [
       "sk-code v4.2.3.0"
+    ],
+    "sk code v4 2 4 0": [
+      "sk-code v4.2.4.0"
     ],
     "sk code verification workflow": [
       "sk-code verification workflow"
@@ -83151,6 +83130,9 @@
     "sk create readme 1 2 0 0": [
       "sk-create-readme 1.2.0.0"
     ],
+    "sk create readme 1 3 0 0": [
+      "sk-create-readme 1.3.0.0"
+    ],
     "sk create readme playbook": [
       "sk-create-readme playbook"
     ],
@@ -83165,6 +83147,9 @@
     ],
     "sk create readme v1 2 0 0": [
       "sk-create-readme v1.2.0.0"
+    ],
+    "sk create readme v1 3 0 0": [
+      "sk-create-readme v1.3.0.0"
     ],
     "sk create repo rule 1 0 0 0": [
       "sk-create-repo-rule 1.0.0.0"
@@ -83625,6 +83610,9 @@
     "sk doc 2 2 4 0": [
       "sk-doc 2.2.4.0"
     ],
+    "sk doc 2 2 5 0": [
+      "sk-doc 2.2.5.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -83876,6 +83864,9 @@
     ],
     "sk doc v2 2 4 0": [
       "sk-doc v2.2.4.0"
+    ],
+    "sk doc v2 2 5 0": [
+      "sk-doc v2.2.5.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -85437,6 +85428,9 @@
     "skill advisor runtime state": [
       "skill advisor runtime state"
     ],
+    "skill advisor runtime types": [
+      "skill advisor runtime types"
+    ],
     "skill advisor schema tests": [
       "skill advisor schema tests"
     ],
@@ -85539,9 +85533,6 @@
     "skill advisor tests": [
       "skill advisor tests"
     ],
-    "skill advisor text scoring": [
-      "skill advisor text scoring"
-    ],
     "skill advisor threshold consolidation": [
       "skill-advisor threshold consolidation"
     ],
@@ -85577,6 +85568,9 @@
     ],
     "skill and repo readmes cleanup tasks": [
       "skill-and-repo-readmes cleanup tasks"
+    ],
+    "skill architecture document": [
+      "skill architecture document"
     ],
     "skill asset templates": [
       "skill asset templates"
@@ -86996,9 +86990,6 @@
     "smart router rewritten": [
       "smart router rewritten"
     ],
-    "smart router section 2 reshape": [
-      "smart router section 2 reshape"
-    ],
     "smart router telemetry": [
       "smart router telemetry"
     ],
@@ -87770,6 +87761,9 @@
     "spec gate core port": [
       "spec gate core port"
     ],
+    "spec gate deferral": [
+      "spec gate deferral"
+    ],
     "spec gate enforce": [
       "spec gate enforce"
     ],
@@ -87802,6 +87796,9 @@
     ],
     "spec gate state leak": [
       "spec gate state leak"
+    ],
+    "spec gate tests": [
+      "spec gate tests"
     ],
     "spec gate tmp exemption": [
       "spec gate tmp exemption"
@@ -87930,6 +87927,9 @@
     ],
     "spec kit fix followup p2 findings for package extraction changelog": [
       "spec kit fix followup p2 findings for package extraction changelog"
+    ],
+    "spec kit folder merges": [
+      "spec-kit folder merges"
     ],
     "spec kit greenfield": [
       "spec-kit greenfield"
@@ -88391,7 +88391,8 @@
       "spec-kit restructure verification"
     ],
     "spec kit runtime alignment": [
-      "spec kit runtime alignment"
+      "spec kit runtime alignment",
+      "spec-kit runtime alignment"
     ],
     "spec kit runtime api surface": [
       "@spec-kit/runtime api surface"
@@ -88422,6 +88423,9 @@
     ],
     "spec kit shared package": [
       "spec kit shared package"
+    ],
+    "spec kit shared test suites": [
+      "spec kit shared test suites"
     ],
     "spec kit simplification follow up": [
       "spec-kit simplification follow-up"
@@ -91822,6 +91826,12 @@
     "system deep loop 3 0 1 0": [
       "system-deep-loop 3.0.1.0"
     ],
+    "system deep loop 3 0 2 0": [
+      "system-deep-loop 3.0.2.0"
+    ],
+    "system deep loop architecture": [
+      "system-deep-loop architecture"
+    ],
     "system deep loop archive renumber": [
       "system-deep-loop archive renumber"
     ],
@@ -91924,6 +91934,9 @@
     "system deep loop v3 0 1 0": [
       "system-deep-loop v3.0.1.0"
     ],
+    "system deep loop v3 0 2 0": [
+      "system-deep-loop v3.0.2.0"
+    ],
     "system deep research bugs": [
       "system deep research bugs"
     ],
@@ -91983,6 +91996,9 @@
     ],
     "system skill advisor 0 14 0 0": [
       "system-skill-advisor 0.14.0.0"
+    ],
+    "system skill advisor 0 14 1 0": [
+      "system-skill-advisor 0.14.1.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -92065,20 +92081,11 @@
     "system skill advisor runtime config": [
       "system_skill_advisor runtime config"
     ],
-    "system skill advisor runtime lib context": [
-      "system-skill-advisor runtime/lib/context"
-    ],
     "system skill advisor runtime lib scorer lanes": [
       "system-skill-advisor runtime/lib/scorer/lanes"
     ],
-    "system skill advisor runtime lib scorer lanes tests": [
-      "system-skill-advisor runtime/lib/scorer/lanes/__tests__"
-    ],
     "system skill advisor runtime scripts routing accuracy": [
       "system-skill-advisor runtime/scripts/routing-accuracy"
-    ],
-    "system skill advisor runtime stress test search quality": [
-      "system-skill-advisor runtime/stress-test/search-quality"
     ],
     "system skill advisor scaffold": [
       "system-skill-advisor scaffold"
@@ -92115,6 +92122,9 @@
     ],
     "system skill advisor v0 14 0 0": [
       "system-skill-advisor v0.14.0.0"
+    ],
+    "system skill advisor v0 14 1 0": [
+      "system-skill-advisor v0.14.1.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -92380,6 +92390,9 @@
     "system spec kit 4 6 0 0": [
       "system-spec-kit 4.6.0.0"
     ],
+    "system spec kit 4 6 1 0": [
+      "system-spec-kit 4.6.1.0"
+    ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
     ],
@@ -92485,17 +92498,11 @@
     "system spec kit references drift": [
       "system-spec-kit references drift"
     ],
-    "system spec kit runtime tests deep loop": [
-      "system-spec-kit runtime/tests/deep-loop"
-    ],
     "system spec kit runtime tests description": [
       "system-spec-kit runtime/tests/description"
     ],
-    "system spec kit runtime tests graph": [
-      "system-spec-kit runtime/tests/graph"
-    ],
     "system spec kit runtime tests helpers": [
-      "system-spec-kit runtime/tests/__helpers__"
+      "system-spec-kit runtime/tests/helpers"
     ],
     "system spec kit runtime tests local llm features performance": [
       "system-spec-kit runtime/tests/local-llm-features/performance"
@@ -92748,6 +92755,9 @@
     ],
     "system spec kit v4 6 0 0": [
       "system-spec-kit v4.6.0.0"
+    ],
+    "system spec kit v4 6 1 0": [
+      "system-spec-kit v4.6.1.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -93677,9 +93687,6 @@
     ],
     "test hang containment tasks": [
       "test hang containment tasks"
-    ],
-    "test helpers": [
-      "test helpers"
     ],
     "test lane repair plan": [
       "test lane repair plan"
@@ -99036,6 +99043,9 @@
     ],
     "workspace root hoist above specs": [
       "workspace root hoist above specs"
+    ],
+    "workspace root resolution": [
+      "workspace root resolution"
     ],
     "workspace specs root membership": [
       "workspace specs root membership"

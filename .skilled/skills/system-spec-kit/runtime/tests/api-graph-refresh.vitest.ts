@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: API Graph Refresh Resolver
+// MODULE: API Graph Refresh Resolver
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';

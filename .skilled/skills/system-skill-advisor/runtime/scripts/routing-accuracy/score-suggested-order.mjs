@@ -1,12 +1,16 @@
 #!/usr/bin/env node
-// ───────────────────────────────────────────────────────────────
-// MODULE: Suggested Cluster Order Eval
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// MODULE: SUGGESTED CLUSTER ORDER EVAL
+// ───────────────────────────────────────────────────────────────────
 //
 // Measures, offline, whether a Jev or local Deem answer that orders the advisor's
 // whole near-tie cluster beats the best zero-call order, with each call timed
 // inside a child spawned the way the prompt shim spawns the advisor. The default
 // run makes no model call. The script holds no credential and reads none.
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 
 import { spawnSync } from 'node:child_process';
 import { mkdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
@@ -16,6 +20,10 @@ import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 
 import { alwaysSecondOrder, binomTail, classifyRow, confidenceOrder, deemGate, jevGate, loadCensus, readDeemHealth, reciprocalRank, reorderSlots, spawnCall, summarizeCensus, writeCall } from './score-jev-tiebreak.mjs';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const ALPHA = 0.05;
 export const MARGIN = 0.05;
@@ -35,6 +43,10 @@ const KEEP_RULE_LINE = 'keep rule: coverage 10*M>=9*K, kill P(X>=L)<=0.05, margi
 const SELF = fileURLToPath(import.meta.url);
 const HERE = dirname(SELF);
 const HOOK = resolve(HERE, '../../dist/hooks/claude/user-prompt-submit.js');
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Nearest-rank quantile of a numeric sample; null when the sample is empty.
@@ -385,6 +397,10 @@ export function headroomLine(movable, advisorP95) {
   return null;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 /**
  * Choice arm over every eligible row, three rotated orders each: the Jev arm
  * sends the prompts to the hosted classifier, and the Deem arm to the local
@@ -701,6 +717,10 @@ export async function main(argv, deps = {}) {
   }
   return 0;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 if (process.argv[1] && realpathSync(process.argv[1]) === realpathSync(SELF)) {
   const code = await main(process.argv.slice(2));

@@ -2,6 +2,10 @@
 // MODULE: Provenance-Balanced Reduction
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   AdjudicationStatuses,
   digestCandidateContent,
@@ -44,6 +48,10 @@ import type {
   ReductionShadowReceipt,
   SourceBucketSchedule,
 } from './types.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 interface CandidateOccurrence {
   readonly baseDigest: string;
@@ -92,6 +100,10 @@ interface ValidatedUpstream {
   readonly registrations: ReadonlyMap<string, CandidateProvenance>;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const FLEET_STATUSES = new Set([
   'admitted',
   'cancelled',
@@ -104,6 +116,10 @@ const MAX_NORMALIZED_WEIGHT_SHARE = 10_000;
 const MAX_POLICY_WEIGHT_TERM = 1_000;
 const MAX_REDUCTION_CANDIDATES = 10_000;
 const MAX_SOURCE_BUCKETS = 1_000;
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function asObject(value: unknown): Record<string, unknown> | null {
   if (value === null || Array.isArray(value) || typeof value !== 'object') return null;
@@ -337,6 +353,10 @@ function validateUpstream(
   }
   return Object.freeze({ envelopes, registrations });
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function fleetScope(input: ReduceProvenanceInput): {
   readonly admittedBuckets: ReadonlySet<string>;
@@ -1167,6 +1187,10 @@ function shadowReceipt(
   };
   return Object.freeze({ ...core, receiptDigest: stableDigest(core) });
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Reduce decision-bound successful envelopes into deterministic shadow output and evidence. */
 export async function reduceProvenance(

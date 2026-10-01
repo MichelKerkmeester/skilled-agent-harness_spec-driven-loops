@@ -41,7 +41,7 @@ trigger_phrases:
 
 - Keep tests deterministic and offline-safe.
 - Use temporary workspaces and databases.
-- Put reusable fixtures in `../fixtures/` or `../__fixtures__/` when shared by multiple suites.
+- Put reusable fixtures in `../fixtures/` when shared by multiple suites.
 
 ---
 

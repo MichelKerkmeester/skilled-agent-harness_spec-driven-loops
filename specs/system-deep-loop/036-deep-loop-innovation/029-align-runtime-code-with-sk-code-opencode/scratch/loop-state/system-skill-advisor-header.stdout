@@ -1,0 +1,37 @@
+targets: 33 (system-skill-advisor header), already done: 0
+2026-09-30T12:29:38Z	.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.mjs	KEPT	header
+2026-09-30T12:29:56Z	.skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs	KEPT	header
+2026-09-30T12:30:13Z	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/gate3-corpus-runner.mjs	KEPT	header
+2026-09-30T12:30:31Z	.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/chokidar-narrow-scope-stress.vitest.ts	KEPT	header
+2026-09-30T12:30:49Z	.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/daemon-lifecycle-stress.vitest.ts	KEPT	header
+2026-09-30T12:31:06Z	.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/df-idf-corpus-stress.vitest.ts	KEPT	header
+2026-09-30T12:31:24Z	.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/five-lane-fusion-stress.vitest.ts	KEPT	header
+2026-09-30T12:31:42Z	.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/generation-cache-invalidation-stress.vitest.ts	KEPT	header
+2026-09-30T12:32:00Z	.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/generation-snapshot-stress.vitest.ts	KEPT	header
+2026-09-30T12:32:17Z	.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/single-writer-lease-stress.vitest.ts	KEPT	header
+2026-09-30T12:32:35Z	.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/skill-projection-stress.vitest.ts	KEPT	header
+2026-09-30T12:32:52Z	.skilled/skills/system-skill-advisor/runtime/stress-test/skill-advisor/trust-state-stress.vitest.ts	KEPT	header
+2026-09-30T12:33:10Z	.skilled/skills/system-skill-advisor/runtime/tests/__fixtures__/errors.ts	KEPT	header
+2026-09-30T12:33:27Z	.skilled/skills/system-skill-advisor/runtime/tests/compiled-routing-consumption.vitest.ts	KEPT	header
+2026-09-30T12:33:44Z	.skilled/skills/system-skill-advisor/runtime/tests/hooks/prompt-advisor.vitest.ts	KEPT	header
+2026-09-30T12:34:12Z	.skilled/skills/system-skill-advisor/runtime/tests/launcher-idle-timeout.vitest.ts	KEPT	header
+2026-09-30T12:34:29Z	.skilled/skills/system-skill-advisor/runtime/tests/launcher-lease.vitest.ts	KEPT	header
+2026-09-30T12:35:02Z	.skilled/skills/system-skill-advisor/runtime/tests/launcher-model-server-default.vitest.ts	KEPT	header
+2026-09-30T12:35:29Z	.skilled/skills/system-skill-advisor/runtime/tests/migration-lineage-identity.vitest.ts	KEPT	header
+2026-09-30T12:35:47Z	.skilled/skills/system-skill-advisor/runtime/tests/scorer/provenance-self-boost-guard.vitest.ts	KEPT	header
+2026-09-30T12:36:04Z	.skilled/skills/system-skill-advisor/runtime/tests/shadow-sink.vitest.ts	KEPT	header
+2026-09-30T12:36:26Z	.skilled/skills/system-skill-advisor/runtime/tests/shared-import-specifier-extension.vitest.ts	KEPT	header
+2026-09-30T12:36:44Z	.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-dual-client.vitest.ts	KEPT	header
+2026-09-30T12:37:01Z	.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-help-aliases-errors.vitest.ts	KEPT	header
+2026-09-30T12:37:14Z	.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-job-semantics.vitest.ts	KEPT	header
+2026-09-30T12:37:16Z	-	GATE-PASS	typecheck
+2026-09-30T12:37:33Z	.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-manifest-parity.vitest.ts	KEPT	header
+2026-09-30T12:37:46Z	.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-parity.vitest.ts	KEPT	header
+2026-09-30T12:38:03Z	.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-test-utils.ts	KEPT	header
+2026-09-30T12:38:16Z	.skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-launcher-orphan-reaping.vitest.ts	KEPT	header
+2026-09-30T12:38:33Z	.skilled/skills/system-skill-advisor/runtime/tests/skill-graph-bfs-traversal.vitest.ts	KEPT	header
+2026-09-30T12:38:51Z	.skilled/skills/system-skill-advisor/runtime/tests/skill-graph-handlers.vitest.ts	KEPT	header
+2026-09-30T12:39:03Z	.skilled/skills/system-skill-advisor/runtime/tests/skill-graph-queries-parity.vitest.ts	KEPT	header
+2026-09-30T12:39:16Z	.skilled/skills/system-skill-advisor/runtime/tests/system-skill-advisor-plugin.vitest.ts	KEPT	header
+2026-09-30T12:41:33Z	-	GATE-PASS	tests [      Tests  971 passed | 6 skipped (977)]
+2026-09-30T12:41:33Z	-	DONE	attempted=33 kept=33

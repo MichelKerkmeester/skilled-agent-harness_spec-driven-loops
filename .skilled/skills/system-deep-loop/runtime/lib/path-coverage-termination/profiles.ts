@@ -2,6 +2,10 @@
 // MODULE: Mode Coverage Profiles
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { canonicalJson } from '../event-envelope/index.js';
 
 import type {
@@ -10,7 +14,15 @@ import type {
   PathCoverageMode,
 } from './types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const CLOSEABLE_STATUSES = Object.freeze(['addressed', 'excluded'] as const);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function region(
   regionId: string,
@@ -60,6 +72,10 @@ function profile(
     closeableStatuses: CLOSEABLE_STATUSES,
   });
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export const MODE_COVERAGE_PROFILES: readonly ModeCoverageProfile[] = Object.freeze([
   profile('research', [
@@ -184,5 +200,9 @@ export class ModeCoverageProfileRegistry {
     )));
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export const modeCoverageProfiles = new ModeCoverageProfileRegistry();

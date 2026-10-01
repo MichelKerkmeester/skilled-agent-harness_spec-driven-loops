@@ -2,6 +2,10 @@
 // MODULE: Deep AI Council Artifact Material
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { canonicalBytes } from '../event-envelope/index.js';
 import {
   ArtifactCanonicalizerRegistry,
@@ -25,6 +29,10 @@ import type {
   DeepAiCouncilArtifactSourceEventRange,
   DeepAiCouncilArtifactVisibility,
 } from './deep-ai-council-sealed-artifact-types.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const DEEP_AI_COUNCIL_ARTIFACT_CANONICALIZATION_VERSION =
   'deep-ai-council-binding@1';
@@ -120,6 +128,10 @@ const TEST_GATE_KINDS: ReadonlySet<string> = new Set([
   DeepAiCouncilArtifactKinds.TEST_FIXTURE,
   DeepAiCouncilArtifactKinds.TEST_GATE_EVIDENCE,
 ]);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function invalidMaterial(artifactKind: string, field: string): never {
   throw new SealedArtifactError(
@@ -265,6 +277,10 @@ function expectedVisibility(artifactKind: DeepAiCouncilArtifactKind): DeepAiCoun
   return ['public'];
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 function parseMaterial(
   artifactKind: DeepAiCouncilArtifactKind,
   input: unknown,
@@ -356,6 +372,10 @@ function canonicalizeDeepAiCouncilMaterial(
   }
   return Uint8Array.from(canonicalBytes({ artifactKind, material }));
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export function createDeepAiCouncilArtifactCanonicalizerRegistry(): ArtifactCanonicalizerRegistry {
   const definitions: ArtifactCanonicalizerDefinition[] =

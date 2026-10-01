@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Hook registration synchronizer
+// MODULE: Hook Registration Synchronizer
 // ───────────────────────────────────────────────────────────────────
 // The registry must reproduce the committed registration files byte for byte,
 // --check must report a hand-edited file and a missing Pi symlink, and write

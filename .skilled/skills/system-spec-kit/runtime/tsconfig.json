@@ -46,7 +46,6 @@
     "../shared/**",
     "cli/**",
     "hooks/pi/**",
-    "lib/test-helpers/**",
     "tests/fixtures/**/*.ts",
     "tests/**",
     "tests/**/*.vitest.ts",

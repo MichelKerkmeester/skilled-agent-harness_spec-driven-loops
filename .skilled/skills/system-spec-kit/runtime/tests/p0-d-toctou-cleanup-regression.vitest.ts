@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: P0-D TOCTOU Cleanup Regression
+// MODULE: TOCTOU Cleanup Regression
 // ───────────────────────────────────────────────────────────────────
 
 import fs, { existsSync, mkdirSync, mkdtempSync, rmSync, utimesSync } from 'node:fs';

@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Factory auto-resolution without sqlite3 on PATH
+// MODULE: Factory Auto-Resolution
 // ───────────────────────────────────────────────────────────────────
 
 import { mkdtempSync, rmSync } from 'node:fs';

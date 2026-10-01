@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: CLI Manifest Parity Tests
+// ───────────────────────────────────────────────────────────────────
 // TEST: SKILL ADVISOR CLI MANIFEST PARITY
 // The CLI manifest is hand-maintained, not generated. This suite holds it
 // byte-identical to the server TOOL_DEFINITIONS so the documented parity

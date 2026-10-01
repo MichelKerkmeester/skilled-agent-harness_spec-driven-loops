@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Calibrated Overlap Bonus Tests
+// ───────────────────────────────────────────────────────────────────
+
 // TEST: Calibrated Overlap Bonus
 // Feature flag: SPECKIT_CALIBRATED_OVERLAP_BONUS
 // Tests: 0-channel, 1-channel, partial scaling, max scaling, clamp, flag OFF = flat +0.10

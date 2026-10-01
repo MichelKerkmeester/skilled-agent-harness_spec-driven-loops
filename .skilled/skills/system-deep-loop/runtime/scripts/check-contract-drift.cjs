@@ -1,7 +1,11 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Contract Drift Checker                                                   ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Contract Drift Checker
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 const fs = require('node:fs');
@@ -30,6 +34,9 @@ const {
   stripGeneratedHeader,
 } = compiler;
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const EXIT_DRIFT = 2;
 
 const DRIFT_CLASSES = Object.freeze({
@@ -75,6 +82,9 @@ const DECLARED_MODE_PATH_PATTERN = /(?:^|["'`\s:=({\[])((?:\.opencode\/|\.skille
 // and a recorded digest matches a derived source whichever name each was written with.
 const SOURCE_ROOT_PREFIX_PATTERN = /^\.(?:opencode|skilled)\//;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function isSourceRootPath(sourcePath) {
   return SOURCE_ROOT_PREFIX_PATTERN.test(sourcePath);
 }
@@ -423,6 +433,9 @@ function findUnresolvedMarkers(contractText) {
   return issues;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 function driftFailure(command, driftClass, reason, details = {}) {
   return { command, class: driftClass, reason, ...details };
 }
@@ -541,6 +554,9 @@ function checkContracts(options = {}) {
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 function parseArgs(argv) {
   const args = { acceptCompiledDrift: false };
   for (let index = 0; index < argv.length; index += 1) {
@@ -610,6 +626,9 @@ if (require.main === module) {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 module.exports = {
   DRIFT_CLASSES,
   EXIT_DRIFT,

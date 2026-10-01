@@ -6,6 +6,10 @@
 // historical memory trigger_phrases using the live sanitizer plus bounded
 // canonicalization rules for stale residual cleanup.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import * as crypto from 'node:crypto';
 import * as fs from 'node:fs';
 import * as os from 'node:os';
@@ -23,6 +27,10 @@ import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
 import { findRepoRoot } from '@spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 type MigrationMode = 'dry-run' | 'apply';
 type RemovalReason = 'empty_or_invalid' | 'sanitizer' | 'canonical_duplicate' | 'title_overlap';
@@ -99,6 +107,10 @@ interface TriggerResolution {
   preservedUsefulAnchors: string[];
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const SAFETY_FILE_LIMIT = 200;
 const HELP_TEXT = `
 migrate-trigger-phrase-residual — Phase 6 PR-13 residual trigger cleanup
@@ -146,6 +158,10 @@ const GLOBAL_AUTO_MEMORY_ROOT = path.join(
   'memory',
 );
 const TEMP_ROOT = path.resolve(os.tmpdir());
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function normalizePath(filePath: string): string {
   return filePath.replace(/\\/g, '/');
@@ -512,6 +528,10 @@ function writeReport(reportPath: string, report: TriggerPhraseMigrationReport): 
   fs.writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 /** Scan candidate files under the given roots and sanitize/report residual trigger phrases. */
 export async function runTriggerPhraseResidualMigration(options: MigrationCliOptions): Promise<TriggerPhraseMigrationReport> {
   const candidateFiles = listCandidateFiles(options.scanRoots);
@@ -596,6 +616,10 @@ export async function runTriggerPhraseResidualMigration(options: MigrationCliOpt
 
   return report;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 async function main(): Promise<void> {
   const options = parseArgs(process.argv.slice(2));

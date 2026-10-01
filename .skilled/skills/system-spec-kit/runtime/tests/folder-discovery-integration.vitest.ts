@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// 1. TEST — FOLDER DISCOVERY INTEGRATION
+// MODULE: Folder Discovery Integration
 // ───────────────────────────────────────────────────────────────────
 // Tests: ensureDescriptionCache, isCacheStale, discoverSpecFolder,
 // GetSpecsBasePaths, graceful degradation

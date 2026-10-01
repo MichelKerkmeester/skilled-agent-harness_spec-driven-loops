@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: HF local HTTP client provider
+// MODULE: HF Local HTTP Client Provider
 // ───────────────────────────────────────────────────────────────────
 
 import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';

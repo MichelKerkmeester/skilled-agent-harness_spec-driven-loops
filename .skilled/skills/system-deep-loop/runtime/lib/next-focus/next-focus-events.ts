@@ -2,6 +2,10 @@
 // MODULE: Next Focus Events
 // ─────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   CURRENT_ENVELOPE_VERSION,
   EventTypeRegistry,
@@ -42,6 +46,10 @@ import type {
   ScoredNextFocusCandidate,
 } from './next-focus-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const NEXT_FOCUS_SELECTED_EVENT_TYPE = 'deep-loop.next-focus.selected';
 export const NEXT_FOCUS_UNAVAILABLE_EVENT_TYPE = 'deep-loop.next-focus.unavailable';
 export const NEXT_FOCUS_EVENT_VERSION = 1;
@@ -62,6 +70,10 @@ const COMMON_PAYLOAD_FIELDS = [
   'comparator_trace',
 ] as const;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export interface NextFocusEventInput {
   readonly decision: NextFocusDecision;
   readonly streamId: string;
@@ -73,6 +85,10 @@ export interface NextFocusEventInput {
   readonly correlationId: string;
   readonly causationId: string | null;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -290,6 +306,10 @@ async function findExisting(
   if (matches.length > 1) throw conflict(decisionId);
   return matches[0] ?? null;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Return the two closed event definitions used by shadow next-focus recording. */
 export function nextFocusEventDefinitions(): readonly EventTypeDefinition[] {

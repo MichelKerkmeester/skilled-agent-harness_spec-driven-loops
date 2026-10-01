@@ -2,9 +2,6 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Evidence Marker Audit
 // ───────────────────────────────────────────────────────────────────
-// ───────────────────────────────────────────────────────────────────
-// 1. EVIDENCE MARKER AUDIT
-// ───────────────────────────────────────────────────────────────────
 // Audits `[EVIDENCE: ...]` markers across spec folders and distinguishes:
 //   - OK            : marker closed with `]`, depth returned to 0 (content may contain parens)
 //   - MALFORMED     : marker closed with `)` at end-of-line (closer typo — needs rewrap)
@@ -44,13 +41,17 @@
 // never auto-rewritten (manual review required — they may indicate a paste-error or
 // truncated line).
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { promises as fs } from 'node:fs';
 import * as path from 'node:path';
 import { isMainModule } from '../lib/esm-entry.js';
 
-/* ───────────────────────────────────────────────────────────────
-   2. TYPES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Terminal state for one parsed evidence marker. */
 export type MarkerStatus = 'ok' | 'malformed' | 'unclosed';
@@ -94,6 +95,10 @@ interface FenceState {
   readonly backtickCount: number;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function readFenceStateAtLine(content: string, lineStart: number): FenceState | null {
   let cursor = lineStart;
   let indent = 0;
@@ -120,9 +125,9 @@ function readFenceStateAtLine(content: string, lineStart: number): FenceState | 
   return { indent, backtickCount };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. PARSER (state machine)
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. PARSER (STATE MACHINE)
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Walk the file content once, emitting every `[EVIDENCE:...]` marker with its status.
@@ -369,9 +374,9 @@ export function parseMarkers(content: string, filePath: string): Marker[] {
   return markers;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. FILE AUDIT
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. FILE AUDIT
+// ───────────────────────────────────────────────────────────────────
 
 /** Audit one markdown file and return all parsed evidence markers. */
 export async function auditFile(filePath: string): Promise<Marker[]> {
@@ -379,9 +384,9 @@ export async function auditFile(filePath: string): Promise<Marker[]> {
   return parseMarkers(content, filePath);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   5. FOLDER AUDIT (recursive walk)
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. FOLDER AUDIT (RECURSIVE WALK)
+// ───────────────────────────────────────────────────────────────────
 
 async function collectMarkdownFiles(folderPath: string): Promise<string[]> {
   const results: string[] = [];
@@ -450,9 +455,9 @@ export async function auditFolder(
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   6. CLI
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 7. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 async function pathExists(p: string): Promise<boolean> {
   try {
@@ -616,6 +621,10 @@ async function main(): Promise<number> {
   if (!rewrap && (totals.malformed > 0 || totals.unclosed > 0)) return 1;
   return 0;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 8. DIRECT INVOCATION GUARD
+// ───────────────────────────────────────────────────────────────────
 
 // Only run when invoked directly (not when imported by tests).
 // CommonJS-safe guard — works whether this file is built to CJS or run via tsx.

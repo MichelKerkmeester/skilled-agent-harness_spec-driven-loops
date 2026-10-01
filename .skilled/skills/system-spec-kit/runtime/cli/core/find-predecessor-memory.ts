@@ -2,9 +2,17 @@
 // MODULE: Find Predecessor Memory
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import * as path from 'node:path';
 import { open, readdir } from 'node:fs/promises';
 import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const HEADER_READ_BYTES = 2048;
 const GENERIC_TITLE_SIGNAL_WORDS = new Set([
@@ -23,6 +31,10 @@ export const CONTINUATION_SIGNAL_PATTERNS: Array<{ label: string; pattern: RegEx
 ];
 const TITLE_FAMILY_WORD_LIMIT = 6;
 const TITLE_FAMILY_OVERLAP_THRESHOLD = 0.5;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 type CurrentSession = {
   title: string;
@@ -52,6 +64,10 @@ type Candidate = ParsedMemoryHeader & {
   explicitMarkerMatch: boolean;
   titleFamilyOverlap: number;
 };
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function readSupersedes(value: unknown): string[] {
   if (!value || typeof value !== 'object') {
@@ -251,6 +267,10 @@ function compareCandidates(candidate: Candidate, incumbent: Candidate): 'better'
 
   return 'tie';
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Finds the predecessor memory for continuation-style saves without guessing

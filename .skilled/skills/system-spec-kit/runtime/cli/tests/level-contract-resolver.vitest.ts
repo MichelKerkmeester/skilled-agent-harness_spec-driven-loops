@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Level Contract Resolver
+// MODULE: Level Contract Resolver
 // ───────────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';

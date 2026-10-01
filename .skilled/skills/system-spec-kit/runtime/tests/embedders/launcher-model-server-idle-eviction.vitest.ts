@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Model Server Idle Eviction
+// ───────────────────────────────────────────────────────────────────
 import { tmpdir } from 'node:os';
 import { EventEmitter } from 'node:events';
 import { realpathSync, existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';

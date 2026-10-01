@@ -1,11 +1,6 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Runtime Capabilities Resolver (shared backend)                          ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Parameterized capability-matrix resolver shared by every graph-backed    ║
-// ║ deep-loop mode. The per-skill scripts are thin shims that bind a label   ║
-// ║ (used in the not-found error) and a default matrix path, then re-export  ║
-// ║ the same four functions so their CLI and module surface stay identical.  ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Runtime Capabilities Resolver
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 

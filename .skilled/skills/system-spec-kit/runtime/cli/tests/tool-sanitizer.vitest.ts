@@ -1,4 +1,7 @@
-// TEST: Tool Sanitizer shared utilities
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Tool Sanitizer
+// ───────────────────────────────────────────────────────────────────
+
 // Covers sanitizeToolInputPaths, normalizeToolStatus, isApiErrorContent
 import { describe, expect, it } from 'vitest';
 

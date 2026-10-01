@@ -51,7 +51,7 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 | `post-tool-use.mjs` | Normalizes Cursor tool payloads for post-edit, graph-freshness, and dispatch-audit hooks. |
 | `precompact.ts` | `preCompact` adapter. Registered, but no CLI-reachable compaction trigger exists to confirm delivery in any case. |
 | `user-prompt-submit.ts` | Prompt-submit adapter, registered for parity against the undelivered `beforeSubmitPrompt` event. |
-| `completion-evidence-response.mjs` | Advisory completion-evidence check. Delegates policy to `../../lib/hooks/completion-evidence-sentinel.cjs` and never blocks. |
+| `completion-evidence-response.mjs` | Advisory completion-evidence check. Delegates policy to `../lib/completion-evidence-sentinel.cjs` and never blocks. |
 
 The Cursor task-dispatch and MCP-route guards are not part of this package. They live in the repository hooks tree at `.skilled/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` and `.skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs`, and `.cursor/hooks.json` registers them from there.
 
@@ -75,7 +75,6 @@ Cursor's generic `preToolUse` event covers shell and file-write calls, so `spec-
 | `spec-gate-prebind.mjs` | `sessionStart` hook. Validates an explicit folder or opens opt-in top-level enforcement state. | **Active**: process-tested; disabled, child, malformed, and missing-session cases write no state. |
 | `spec-gate-enforce.mjs` | `preToolUse` hook. Maps Cursor's `Shell`/`Write` tool names onto the core's `bash`/`write` vocabulary, then runs `evaluateMutation()`. The first in-gate Write/Edit carries the once-per-session notice in `agent_message` and records the delivery marker; later mutations stay silent. | **Active**: the deny path (`{"permission":"deny"}` + exit 2) was live-verified to block a real `cursor-agent` tool call. |
 | `spec-gate-classify.mjs` | `beforeSubmitPrompt` hook. Opens the session gate and emits nothing; the question is delivered at the first mutation. | **Registered, delivery unconfirmed**: `beforeSubmitPrompt` did not fire under the tested CLI build. |
-| `spec-gate-prebind.test.mjs` | Co-located tests, run with `node --test`. | — |
 
 ---
 

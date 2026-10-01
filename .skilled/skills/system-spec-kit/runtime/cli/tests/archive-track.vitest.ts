@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: archive.sh in Tracks and Phases
+// MODULE: Archive Track And Phase Packets
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';

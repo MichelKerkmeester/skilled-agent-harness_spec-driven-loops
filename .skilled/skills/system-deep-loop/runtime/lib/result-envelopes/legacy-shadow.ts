@@ -2,9 +2,17 @@
 // MODULE: Legacy Fan-Out Shadow Projection
 // ─────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { sha256Bytes } from '../event-envelope/index.js';
 
 import type { JsonObject, JsonValue } from '../event-envelope/index.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** Parse ephemeral stdout with the shipped sweep's text-part and raw fallback rules. */
 export function extractLegacyShadowText(stdout: string | null): string | null {
@@ -103,6 +111,10 @@ export function classifyLegacyFailureShadow(input: Readonly<{
   });
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function firstText(values: readonly unknown[]): string {
   for (const value of values) {
     if (typeof value === 'string' && value.trim() !== '') return value.trim();
@@ -180,6 +192,10 @@ function normalizeResearchCandidate(
     _reconstructed_from_state: true,
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. REGISTRY AND ATTRIBUTION PROJECTIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Preserve the minimal state-log registry facts consumed by the shipped merge. */
 export function reconstructLegacyRegistryShadow(

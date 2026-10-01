@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Upgrade Baseline Recorded Findings
+// MODULE: Upgrade Baseline Recorded Findings
 // ───────────────────────────────────────────────────────────────────
 
 import { afterEach, describe, expect, it } from 'vitest';

@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: CLI Job Semantics Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { existsSync, readFileSync } from 'node:fs';
 
 import { afterEach, describe, expect, it } from 'vitest';

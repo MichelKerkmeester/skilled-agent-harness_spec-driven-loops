@@ -2,6 +2,9 @@
 // MODULE: Result, Salvage, and Recovery Event Contracts
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import {
   CURRENT_ENVELOPE_VERSION,
   canonicalBytes,
@@ -43,6 +46,9 @@ import type {
   SalvageFragmentPayload,
 } from './types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 export const LEAF_RESULT_RECORDED_EVENT_NAME = 'orchestration.leaf_result_recorded';
 export const LEAF_RESULT_RECORDED_EVENT_TYPE = 'orchestration.leaf.result-recorded';
 export const LEAF_RESULT_RECORDED_EVENT_VERSION = 1;
@@ -137,6 +143,9 @@ const REFERENCE_PATTERN = /^(?:artifact|event|ledger):\/\/[A-Za-z0-9][A-Za-z0-9.
 const SECRET_KEY_PATTERN = /(?:^|_)(?:access_token|api_key|authorization|credential|password|prompt|raw_output|refresh_token|secret|stderr|stdout)(?:$|_)/i;
 const SECRET_VALUE_PATTERN = /(?:authorization\s*[:=]|bearer\s+|api[_-]?key\s*[:=]|password\s*[:=]|secret\s*[:=]|(?:sk|ghp|xox[baprs])-[A-Za-z0-9_-]{8,})/i;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function isRecord(value: unknown): value is Record<string, JsonValue> {
   return value !== null && !Array.isArray(value) && typeof value === 'object';
 }
@@ -280,6 +289,9 @@ export function calculateRecoveryDigest(payload: Readonly<JsonObject>): string {
   return sha256Bytes(canonicalBytes(recoveryDigestInput(payload)));
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 export function isLeafResultPayload(payload: Readonly<JsonObject>): payload is LeafResultPayload {
   const value = payload as Record<string, JsonValue>;
   if (!exactFields(value, RESULT_FIELD_SET)) return false;
@@ -442,6 +454,9 @@ function definition(
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 export function resultEnvelopeEventDefinitions(): readonly EventTypeDefinition[] {
   return Object.freeze([
     definition(LEAF_RESULT_RECORDED_EVENT_TYPE, LEAF_RESULT_FIELDS, isLeafResultPayload),

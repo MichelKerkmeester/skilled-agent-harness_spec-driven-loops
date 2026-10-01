@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: OpenCode Plugins Folder Purity
+// ───────────────────────────────────────────────────────────────────
+
 import { readdir } from 'node:fs/promises';
 import { dirname, extname, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';

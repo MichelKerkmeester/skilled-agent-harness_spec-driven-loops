@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// 1. ALIGNMENT VALIDATOR DRIFT TESTS (ESM)
+// MODULE: Alignment Validator Drift Tests
 // ───────────────────────────────────────────────────────────────────
 // PURPOSE: Validate telemetry schema/docs drift detection behavior
 //

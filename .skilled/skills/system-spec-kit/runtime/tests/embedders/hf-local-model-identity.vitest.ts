@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Provider Model Identity Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { HfLocalProvider, __hfLocalProviderTestables } from '@spec-kit/shared/embeddings/providers/hf-local.js';

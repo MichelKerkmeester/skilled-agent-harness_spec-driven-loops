@@ -2,6 +2,10 @@
 // MODULE: Deep AI Council Sealed Artifacts
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   SealedArtifactError,
   SealedArtifactErrorCodes,
@@ -30,6 +34,10 @@ import type {
   DeepAiCouncilVerifiedSealedArtifact,
 } from './deep-ai-council-sealed-artifact-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const BINDING_FIELDS = new Set([
   'bindingVersion',
   'artifactKind',
@@ -55,6 +63,10 @@ const MATERIAL_FIELDS = new Set([
 const REGISTERED_KINDS: ReadonlySet<string> = new Set(
   DEEP_AI_COUNCIL_ARTIFACT_KIND_REGISTRY.map((entry) => entry.artifactKind),
 );
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   if (value === null || Array.isArray(value) || typeof value !== 'object') return false;
@@ -159,6 +171,10 @@ function assertReadExpectations(
     }
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Validate the closed event-to-seal binding without resolving artifact bytes. */
 export function parseDeepAiCouncilSealedArtifactBinding(

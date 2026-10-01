@@ -2,6 +2,10 @@
 // MODULE: Write-Set Conflict Graph Artifact
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   WriteSetGraphErrorCodes,
   WriteSetGraphValidationError,
@@ -24,12 +28,20 @@ import type {
   WriteSetConflictGraph,
 } from './types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const WRITE_SET_CONFLICT_ARTIFACT_SCHEMA_VERSION =
   'write-set-conflict-artifact/v1' as const;
 
 export const PairClassificationFailureCodes = {
   GRAPH_NOT_READY: 'GRAPH_NOT_READY',
 } as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type PairClassificationFailureCode =
   typeof PairClassificationFailureCodes[keyof typeof PairClassificationFailureCodes];
@@ -58,6 +70,10 @@ export interface WriteSetConflictArtifact {
 }
 
 type ArtifactPayload = Omit<WriteSetConflictArtifact, 'artifact_digest'>;
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function uniqueSorted(values: readonly string[]): readonly string[] {
   return [...new Set(values)].sort(compareStableText);
@@ -112,6 +128,10 @@ function classifyPair(
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 function artifactPayload(graph: WriteSetConflictGraph): ArtifactPayload {
   const workstreams = [...graph.nodes]
     .map((node) => node.id)
@@ -149,6 +169,10 @@ function artifactPayload(graph: WriteSetConflictGraph): ArtifactPayload {
     pair_classifications: pairClassifications,
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export function createWriteSetConflictArtifact(
   graph: WriteSetConflictGraph,

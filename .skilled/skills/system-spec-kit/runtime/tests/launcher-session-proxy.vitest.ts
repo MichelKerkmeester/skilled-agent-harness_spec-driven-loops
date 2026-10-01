@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Launcher Session Proxy Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { EventEmitter } from 'node:events';
 import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';

@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Upgrade Legacy Spec Folders
+// MODULE: Upgrade Legacy Spec Folders
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';

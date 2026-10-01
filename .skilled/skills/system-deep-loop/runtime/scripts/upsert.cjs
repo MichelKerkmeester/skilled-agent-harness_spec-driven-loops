@@ -1,13 +1,8 @@
 #!/usr/bin/env node
 
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime — Upsert Entrypoint                                    ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Input:  CLI args (--spec-folder, --loop-type, --session-id, --nodes,     ║
-// ║         --edges, or --events).                                           ║
-// ║ Output: JSON to stdout.                                                  ║
-// ║ Exit:   0=ok, 1=script error, 2=DB error, 3=input validation error.     ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep-Loop Runtime Upsert Entrypoint
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 

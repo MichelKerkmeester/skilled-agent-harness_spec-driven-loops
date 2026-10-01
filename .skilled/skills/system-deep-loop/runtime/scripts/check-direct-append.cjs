@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime — Direct-Append Detection                              ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Input:  CLI args (--mode, --artifact-root, --artifact-id, --legacy-file).║
-// ║ Output: JSON to stdout.                                                  ║
-// ║ Exit:   0=ok or not enforced, 1=script error, 2=direct append detected.   ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Direct Append Detection
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 

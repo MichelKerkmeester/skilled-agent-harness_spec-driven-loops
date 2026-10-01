@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Graph-Aware Stop Evaluation
+// ───────────────────────────────────────────────────────────────────
+
 // TEST: graph-aware stop evaluation
 //
 // Validates that the reducer's graph_convergence event ingestion + dashboard

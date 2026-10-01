@@ -2,6 +2,10 @@
 // MODULE: advisor_status Handler
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import Database from 'better-sqlite3';
@@ -28,11 +32,19 @@ import type {
   AdvisorStatusOutput,
 } from '../schemas/advisor-tool-schemas.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS AND CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
 
 const SKILL_ROOT = join('.skilled', 'skills');
 const DEFAULT_MAX_METADATA_FILES = 5_000;
 type SemanticLaneHealth = NonNullable<AdvisorStatusOutput['semanticLaneHealth']>;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function isFreshness(value: string): value is AdvisorFreshness {
   return value === 'live' || value === 'stale' || value === 'absent' || value === 'unavailable';
@@ -222,6 +234,10 @@ function scanSkillMetadataFiles(
   return { count, maxMtimeMs: newest, truncated };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 /** Read advisor freshness state.
  *
  * Diagnostic-only: this function reports stale, absent, or unavailable advisor
@@ -336,6 +352,10 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
     return AdvisorStatusOutputSchema.parse(output);
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Handle the advisor_status command request. */
 export async function handleAdvisorStatus(args: unknown): Promise<HandlerResponse> {

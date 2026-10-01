@@ -7,6 +7,9 @@
 // ───────────────────────────────────────────────────────────────────
 // Extracts structured conversation data — exchanges, tool calls, phases, and flowcharts
 
+// ───────────────────────────────────────────────────────────────────
+// 2. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import { CONFIG } from '../config/index.js';
 import { formatTimestamp, truncateToolOutput, summarizeExchange } from '../utils/message-utils.js';
 import { detectToolCall, isProseContext } from '../utils/tool-detection.js';
@@ -30,9 +33,9 @@ export type {
   ConversationData,
 };
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. INTERFACES
+// ───────────────────────────────────────────────────────────────────
 
 interface TempConversationMessage {
   tempId: string;
@@ -44,9 +47,9 @@ type PendingExchangeInput = Parameters<typeof classifyConversationExchanges>[0][
   tempMessageIds: string[];
 };
 
-/* ───────────────────────────────────────────────────────────────
-   2. CONVERSATION EXTRACTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. CONVERSATION EXTRACTION
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Build conversation messages from structured JSON payload when no transcript-based
@@ -393,9 +396,9 @@ async function extractConversations(
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   extractConversations,

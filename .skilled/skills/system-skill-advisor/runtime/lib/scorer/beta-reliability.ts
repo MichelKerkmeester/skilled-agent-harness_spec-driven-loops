@@ -1,6 +1,6 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Beta-Posterior Reliability Primitive + Advisor Adapter
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // A shared, flood-immune reliability primitive for the shadow learning loop.
 // Raw acceptance frequency lets a handful of all-accepted samples look identical
 // to ten thousand, so a bounded Beta posterior `(a0+s)/(a0+b0+s+f)` is used
@@ -14,14 +14,18 @@
 // that throws on fractional inputs) lets both consumers share one primitive
 // through thin adapters without a divergent fork.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { createHash } from 'node:crypto';
 
 import type { ScorerLane } from './types.js';
 
-// ───────────────────────────────────────────────────────────────
-// 1. NUMERIC HELPERS (the shared symmetric clamp is intentionally NOT reused —
+// ───────────────────────────────────────────────────────────────────
+// 2. NUMERIC HELPERS (the shared symmetric clamp is intentionally NOT reused —
 //    these locals keep the asymmetric path independent of the estimator's clamp)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 
 function round4(value: number): number {
   return Number(value.toFixed(4));
@@ -43,9 +47,9 @@ function clampSym(value: number, maxAbs: number): number {
   return Math.max(-maxAbs, Math.min(maxAbs, value));
 }
 
-// ───────────────────────────────────────────────────────────────
-// 2. BETA POSTERIOR PRIMITIVE (shared f64)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 3. BETA POSTERIOR PRIMITIVE (shared f64)
+// ───────────────────────────────────────────────────────────────────
 
 export interface BetaPrior {
   readonly alpha: number;
@@ -115,9 +119,9 @@ export function maxAchievablePosterior(prior: BetaPrior, maxSuccesses: number): 
   return betaPosteriorMean(prior, { successes: maxSuccesses, failures: 0 });
 }
 
-// ───────────────────────────────────────────────────────────────
-// 3. ADVISOR ADAPTER — posterior → weight delta (NOT a multiplier)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 4. ADVISOR ADAPTER — posterior → weight delta (NOT a multiplier)
+// ───────────────────────────────────────────────────────────────────
 
 export interface PosteriorToDeltaOptions {
   readonly maxAbs: number;
@@ -137,9 +141,9 @@ export function posteriorToWeightDelta(posterior: number, options: PosteriorToDe
   return round4(clampSym(delta, options.maxAbs));
 }
 
-// ───────────────────────────────────────────────────────────────
-// 4. ASYMMETRIC, SIGN-LOCKED DELTA (corrections sink ≥ acceptances raise)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 5. ASYMMETRIC, SIGN-LOCKED DELTA (corrections sink ≥ acceptances raise)
+// ───────────────────────────────────────────────────────────────────
 
 export interface AsymmetricDeltaInput {
   /** Pressure pulling the value up (e.g. acceptance rate), in [0,1]. */
@@ -168,9 +172,9 @@ export function asymmetricSinkDelta(input: AsymmetricDeltaInput): number {
   return round4(clampSym(net, input.maxAbs));
 }
 
-// ───────────────────────────────────────────────────────────────
-// 5. TWO-GATE PROMOTION (k≥2 distinct AND posterior≥threshold, non-trading)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 6. TWO-GATE PROMOTION (k≥2 distinct AND posterior≥threshold, non-trading)
+// ───────────────────────────────────────────────────────────────────
 
 export interface TwoGatePolicy {
   /** Minimum distinct attesters required (the k-floor). */
@@ -243,9 +247,9 @@ export function evaluateTwoGate(input: TwoGateInput, policy: TwoGatePolicy): Two
   return { promote: true, reason: 'two_gate_satisfied' };
 }
 
-// ───────────────────────────────────────────────────────────────
-// 6. HELD-OUT ATTESTATION (distinct-source corroboration)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 7. HELD-OUT ATTESTATION (distinct-source corroboration)
+// ───────────────────────────────────────────────────────────────────
 
 export interface Attestation {
   /** Distinct-source dimension (e.g. query-class / runtime / snapshot). */
@@ -315,9 +319,9 @@ export function evaluateHeldOutAttestation(input: HeldOutInput): HeldOutVerdict 
   };
 }
 
-// ───────────────────────────────────────────────────────────────
-// 7. CONTENT-ADDRESSED, ORDER-INDEPENDENT FOLD
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 8. CONTENT-ADDRESSED, ORDER-INDEPENDENT FOLD
+// ───────────────────────────────────────────────────────────────────
 
 export interface ContentAddressedEvent {
   /** Stable content hash of the outcome-determining fields (NO timestamps). */
@@ -373,9 +377,9 @@ export function foldContentAddressed(events: readonly ContentAddressedEvent[]): 
   return { evidence: { successes, failures }, distinctEvents: seen.size };
 }
 
-// ───────────────────────────────────────────────────────────────
-// 8. DECAY-DRIVEN UN-PROMOTION (reversible, audit-tagged, shadow-only)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 9. DECAY-DRIVEN UN-PROMOTION (reversible, audit-tagged, shadow-only)
+// ───────────────────────────────────────────────────────────────────
 
 export type ShadowAuditTag =
   | 'promoted'

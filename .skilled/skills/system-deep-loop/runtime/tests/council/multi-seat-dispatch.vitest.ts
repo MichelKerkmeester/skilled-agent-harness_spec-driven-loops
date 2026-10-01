@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Council Multi-Seat Dispatch Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { createRequire } from 'node:module';
 
 import { describe, expect, it } from 'vitest';

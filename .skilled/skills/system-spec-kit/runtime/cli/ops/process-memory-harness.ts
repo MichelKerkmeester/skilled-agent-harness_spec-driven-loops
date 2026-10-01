@@ -2,9 +2,15 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Process Memory Harness
 // ───────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import { execFileSync } from 'node:child_process';
 import { isMainModule } from '../lib/esm-entry.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 /** Coarse ownership bucket a process falls into before fine-grained classification. */
 export type ProcessRole = 'current-session' | 'project-daemon' | 'expected-daemon' | 'external-tool' | 'zombie' | 'unknown';
 
@@ -95,6 +101,9 @@ export interface HarnessSnapshot {
 /** Alias kept for {@link process-sweep.ts} consumers that read a snapshot as inventory. */
 export type Inventory = HarnessSnapshot;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 // No project daemon is registered here. A rule earns a row only once a daemon
 // exists that this repository both starts and can prove it owns; callers that
 // need one for a bounded scope pass their own set through `options.rules`.
@@ -118,6 +127,9 @@ const KNOWN_PROJECT_OWNER_MARKERS = [
   'ownerToken=',
 ];
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 /** Mask API keys, tokens, secrets, and owner-token values in a command line before logging it. */
 export function redactSensitiveCommand(command: string): string {
   return command
@@ -154,6 +166,9 @@ function bytesForPages(pageCount: number, pageSizeBytes: number | null): number 
   return pageCount * pageSizeBytes;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 /** Parse `ps -axo pid,ppid,stat,rss,command` output into process rows, redacting secrets. */
 export function parsePsOutput(output: string): ProcessRow[] {
   const rows: ProcessRow[] = [];
@@ -549,6 +564,9 @@ export function collectInventory(): Inventory {
   return runSnapshot();
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 function showHelp(): void {
   console.log(`process-memory-harness - dry-run process and host-memory evidence collector
 

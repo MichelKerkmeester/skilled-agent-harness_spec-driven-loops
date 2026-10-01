@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: SessionStart Hook
+// MODULE: SessionStart Hook
 // ───────────────────────────────────────────────────────────────────
 import { spawnSync } from 'node:child_process';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';

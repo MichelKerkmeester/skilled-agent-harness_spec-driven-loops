@@ -1,6 +1,6 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ CANONICAL_SAVE_DESCRIPTION_GRAPH_FRESHNESS                               ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Canonical Save Description Graph Freshness
+// ───────────────────────────────────────────────────────────────────
 // Description and graph timestamps must stay within the slack window.
 
 'use strict';

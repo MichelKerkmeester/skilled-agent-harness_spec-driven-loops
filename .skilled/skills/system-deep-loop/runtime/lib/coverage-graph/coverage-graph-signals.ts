@@ -1,5 +1,9 @@
 // MODULE: Coverage Graph Signals
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import Database from 'better-sqlite3';
 import type {
   Namespace,
@@ -17,7 +21,9 @@ import {
   getStats,
 } from './coverage-graph-db.js';
 
-// ───── TYPE DEFINITIONS ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Shared convergence profile schema:
@@ -98,7 +104,9 @@ export interface SignalSnapshot {
   edgeCount: number;
 }
 
-// ───── CONSTANTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 type ResearchSignalNodeLike = {
   id: string;
@@ -150,7 +158,9 @@ const OBSERVATION_COUNT_METADATA_KEYS = [
   'count',
 ];
 
-// ───── HELPERS ─────
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function buildNamespacePredicate(alias: string, ns: Namespace): SqlFragment {
   const prefix = alias ? `${alias}.` : '';
@@ -508,7 +518,9 @@ function computeHotspotSaturation(d: Database.Database, ns: Namespace): number {
   return hotspotFiles.length > 0 ? saturated / hotspotFiles.length : 1.0;
 }
 
-// ───── CORE LOGIC ─────
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Compute degree, depth, and weight signals for all nodes in a namespace.
@@ -897,7 +909,9 @@ export function computeReviewSignals(ns: Namespace): ReviewConvergenceSignals {
   };
 }
 
-// ───── CONTEXT SIGNALS ─────
+// ───────────────────────────────────────────────────────────────────
+// 6. CONTEXT SIGNALS
+// ───────────────────────────────────────────────────────────────────
 
 // Findings below this relevance are noise and excluded from "kept" coverage, so
 // small-model over-collection cannot masquerade as new context and block saturation.
@@ -995,7 +1009,9 @@ export function computeContextSignals(ns: Namespace): ContextConvergenceSignals 
   return computeContextSignalsFromData(getNodes(ns), getEdges(ns));
 }
 
-// ───── EXPORTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 7. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Compute all convergence signals for a namespace.

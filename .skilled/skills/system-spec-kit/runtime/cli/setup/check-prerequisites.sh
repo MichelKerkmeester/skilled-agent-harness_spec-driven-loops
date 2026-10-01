@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SPECKIT: CHECK PREREQUISITES
+# COMPONENT: CHECK PREREQUISITES
 # ───────────────────────────────────────────────────────────────
 # Validates spec folder exists with required files before implementation.
 

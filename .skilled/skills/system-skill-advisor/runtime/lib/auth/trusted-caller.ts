@@ -2,7 +2,7 @@
 // MODULE: Trusted Caller Guard
 // ───────────────────────────────────────────────────────────────
 
-import { getCallerContext, type CallerContext } from '../context/caller-context.js';
+import { getCallerContext, type CallerContext } from '../caller-context.js';
 
 export interface TrustedCallerRejection {
   readonly ok: false;

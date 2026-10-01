@@ -9,7 +9,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import sentinelCore from '../../lib/hooks/completion-evidence-sentinel.cjs';
+import sentinelCore from '../lib/completion-evidence-sentinel.cjs';
 import { isHookEnabled } from '../../../../../hooks/shared/hook-flags.mjs';
 
 function readLastSpecFolder(projectDir, sessionId) {

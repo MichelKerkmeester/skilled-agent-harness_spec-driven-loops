@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SPECKIT: PROGRESSIVE VALIDATE
+# COMPONENT: PROGRESSIVE VALIDATE
 # ───────────────────────────────────────────────────────────────
 # Progressive validation pipeline for spec documents.
 # Wraps validate.sh with a 4-level pipeline:

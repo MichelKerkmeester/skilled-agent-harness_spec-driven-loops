@@ -9,6 +9,10 @@
 // factory can bind this store to production roots; tests use isolated
 // temporary roots to prove the crash-safe behavior independently.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   closeSync,
   existsSync,
@@ -29,17 +33,33 @@ import type { JsonObject } from '../event-envelope/index.js';
 import type { AuthorityRecord, AuthorityRoute, CutoverCertificateMode } from './types.js';
 import { AuthorityFlipError } from './types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function digest(value: unknown): string {
   return sha256Bytes(canonicalBytes(value as JsonObject));
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 /** A lock older than this, or whose owning process is confirmed dead, is reclaimable. */
 const DEFAULT_STALE_LOCK_TTL_MS = 10 * 60 * 1000;
+
+// ───────────────────────────────────────────────────────────────────
+// 4. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 interface LockHolderRecord {
   readonly pid: number;
   readonly acquiredAt: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function isLockHolderRecord(value: unknown): value is LockHolderRecord {
   return typeof value === 'object' && value !== null
@@ -75,6 +95,10 @@ function defaultRecord(mode: CutoverCertificateMode, now: string): AuthorityReco
   return Object.freeze({ ...core, recordDigest: digest(core) });
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export interface AuthorityCompareAndSwapInput {
   readonly mode: CutoverCertificateMode;
   readonly expectedState: 'cutover_ready';
@@ -96,6 +120,10 @@ export interface AuthorityCompareAndSwapInput {
 export interface AuthorityPendingTransition extends AuthorityCompareAndSwapInput {
   readonly preparedAt: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 7. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * The only writer identities a durable authority record may ever carry. Both
@@ -123,6 +151,10 @@ function isValidPendingTransition(value: unknown): value is AuthorityPendingTran
     && typeof record.at === 'string'
     && typeof record.preparedAt === 'string';
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 8. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** File-scoped, lock-guarded, mode-keyed authority CAS store. */
 export class AuthorityRegistry {

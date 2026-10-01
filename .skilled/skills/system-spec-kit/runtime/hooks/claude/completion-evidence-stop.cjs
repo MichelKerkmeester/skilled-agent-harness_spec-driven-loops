@@ -30,7 +30,7 @@ const { readFileSync } = require('node:fs');
 const { join } = require('node:path');
 const { tmpdir } = require('node:os');
 
-const sentinelCore = require('../../lib/hooks/completion-evidence-sentinel.cjs');
+const sentinelCore = require('../lib/completion-evidence-sentinel.cjs');
 
 // Concern-generic kill-switch guard (fails open to enabled when the guard is
 // missing). The legacy sentinelCore.KILL_SWITCH_ENV check below remains as an

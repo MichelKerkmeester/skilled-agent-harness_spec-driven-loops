@@ -1,10 +1,18 @@
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Advisor Lane Ablation
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 
 import { scoreAdvisorPrompt } from './fusion.js';
 import type { AdvisorProjection, ScorerLane } from './types.js';
 import { SCORER_LANES } from './weights-config.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export interface AblationCase {
   readonly prompt: string;
@@ -56,6 +64,10 @@ export interface SweepReport {
   readonly perCase: readonly SweepCaseResult[];
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function evaluate(args: {
   cases: readonly AblationCase[];
   workspaceRoot: string;
@@ -82,6 +94,10 @@ function evaluate(args: {
     unknown,
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function runLaneAblation(args: {
   cases: readonly AblationCase[];

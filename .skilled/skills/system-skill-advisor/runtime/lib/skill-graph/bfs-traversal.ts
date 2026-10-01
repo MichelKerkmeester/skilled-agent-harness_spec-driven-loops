@@ -1,8 +1,16 @@
-// -------------------------------------------------------------------
-// MODULE: Skill Graph BFS Traversal
-// -------------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
+// MODULE: SKILL GRAPH BFS TRAVERSAL
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const MAX_SKILL_GRAPH_TRAVERSAL_DEPTH = 8;
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Edge-plus-node relation yielded by a skill graph adjacency reader. */
 export interface SkillGraphTraversalRelation<TNode, TEdge> {
@@ -46,12 +54,20 @@ export interface SkillGraphBfsResult<TEdge> {
   readonly truncated: boolean;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 /** Clamp traversal depth to the advisor's bounded traversal policy. */
 export function clampSkillGraphTraversalDepth(depth: number, fallback: number = 1): number {
   return Number.isFinite(depth)
     ? Math.max(0, Math.min(Math.trunc(depth), MAX_SKILL_GRAPH_TRAVERSAL_DEPTH))
     : fallback;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** Run breadth-first traversal with shared visited and depth-cap semantics. */
 export function runSkillGraphBfs<TNode, TEdge>(

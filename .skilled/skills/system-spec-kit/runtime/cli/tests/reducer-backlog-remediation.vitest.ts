@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Reducer Backlog Remediation Tests
+// ───────────────────────────────────────────────────────────────────
+
 // Coverage for the 5 reducer behavioral changes:
 //   LG-0001 dashboard pause/stuck surfacing
 //   LG-0005 carry scopeProof + affectedSurfaceHints

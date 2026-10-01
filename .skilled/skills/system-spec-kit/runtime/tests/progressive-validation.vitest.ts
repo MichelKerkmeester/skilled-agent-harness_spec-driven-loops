@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Progressive Validation Pipeline
+// ───────────────────────────────────────────────────────────────────
 // TEST: Progressive Validation Pipeline
 // Tests for progressive-validate.sh -- a 4-level validation pipeline:
 // Level 1: Detect   (delegate to validate.sh)

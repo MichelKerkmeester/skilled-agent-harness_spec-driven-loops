@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
-// 1. COLLECT SESSION DATA
+// 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 // Orchestrates session data collection — gathers observations, files, decisions, and context
 
@@ -72,9 +72,9 @@ export type {
   SessionData,
 };
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Aggregates preflight and postflight comparison results. */
 export interface PreflightPostflightResult {
@@ -129,9 +129,9 @@ interface CanonicalSourceEntry {
 /** Full collected session payload used by downstream extractors. */
 export interface CollectedDataFull extends CollectedDataBase {}
 
-/* ───────────────────────────────────────────────────────────────
-   2. PREFLIGHT/POSTFLIGHT UTILITIES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. PREFLIGHT/POSTFLIGHT UTILITIES
+// ───────────────────────────────────────────────────────────────────
 
 function getScoreAssessment(score: number | null | undefined, metric: string): string {
   if (score === null || score === undefined || isNaN(score)) {
@@ -342,9 +342,9 @@ function generateLearningSummary(
   return summary;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. CONTINUE SESSION DATA
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. CONTINUE SESSION DATA
+// ───────────────────────────────────────────────────────────────────
 
 function isCompletedNextStep(step: unknown): boolean {
   const text = typeof step === 'string'
@@ -1030,27 +1030,27 @@ function buildContinueSessionData(params: ContinueSessionParams): ContinueSessio
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. LAZY-LOADED DEPENDENCIES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. LAZY-LOADED DEPENDENCIES
+// ───────────────────────────────────────────────────────────────────
 
 import * as simFactoryModule from '../lib/simulation-factory.js';
 function getSimFactory(): typeof import('../lib/simulation-factory.js') {
   return simFactoryModule;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   5. AUTO-SAVE DETECTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. AUTO-SAVE DETECTION
+// ───────────────────────────────────────────────────────────────────
 
 /** Auto-save detection based on message count threshold. */
 function shouldAutoSave(messageCount: number): boolean {
   return messageCount > 0 && messageCount % CONFIG.MESSAGE_COUNT_TRIGGER === 0;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   6. SESSION DATA COLLECTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 7. SESSION DATA COLLECTION
+// ───────────────────────────────────────────────────────────────────
 
 // Single helper for spec-folder resolution — replaces redundant resolution points.
 // Returns both the relative folder name AND the matched specs root.
@@ -1620,9 +1620,9 @@ async function collectSessionData(
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   7. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 8. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   collectSessionData,

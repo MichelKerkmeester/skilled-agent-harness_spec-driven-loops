@@ -1,10 +1,18 @@
-// ───────────────────────────────────────────────────────────────
-// MODULE: Advisor Daemon Lease
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// MODULE: ADVISOR DAEMON LEASE
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 
 import Database from 'better-sqlite3';
 import { chmodSync, existsSync, mkdirSync, realpathSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export interface LeaseOptions {
   readonly workspaceRoot: string;
@@ -49,6 +57,10 @@ export interface SkillGraphLease {
   close: () => void;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const DEFAULT_STALE_AFTER_MS = 30_000;
 const DEFAULT_HEARTBEAT_MS = 5_000;
 const LEASE_DB_FILENAME = 'skill-graph-daemon-lease.sqlite';
@@ -63,6 +75,10 @@ const LEGACY_LEASE_RELATIVE_PATH = join(
 interface OpenLeaseDatabaseOptions {
   readonly readonly?: boolean;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function canonicalizePath(pathValue: string): string {
   const resolvedPath = resolve(pathValue);
@@ -132,6 +148,10 @@ function ensureSchema(db: Database.Database): void {
     );
   `);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function openLeaseDatabase(
   workspaceRoot: string,
@@ -389,6 +409,10 @@ export function acquireSkillGraphLease(options: LeaseOptions): SkillGraphLease {
     close,
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export const __testables = {
   defaultLeaseDbPath,

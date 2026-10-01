@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: File Capture Structured Mode Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const execSyncMock = vi.hoisted(() => vi.fn(() => ' M scripts/core/workflow.ts\n?? scripts/tests/new-capture.vitest.ts\n'));

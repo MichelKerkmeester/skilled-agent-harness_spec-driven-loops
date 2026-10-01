@@ -2,8 +2,16 @@
 // MODULE: Is Phase Parent
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import * as fs from 'fs';
 import * as path from 'path';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const PHASE_CHILD_REGEX = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
 
@@ -24,6 +32,10 @@ const DERIVED_CHILD_REGEX = /^[0-9]{3}(?:[-_].+)?$/;
 export const PHASE_PARENT_WARNING_THRESHOLD = 20;
 export const PHASE_PARENT_ERROR_THRESHOLD = 40;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 /** Advisory status bucket for a phase-parent folder's direct child count. */
 export type PhaseParentHealthStatus = 'ok' | 'warning' | 'error' | 'not_phase_parent';
 
@@ -33,6 +45,10 @@ export interface PhaseParentHealth {
   status: PhaseParentHealthStatus;
   recommendation: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. GENERATOR HARDENING
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Return true when a folder has at least one direct phase child with spec metadata.
@@ -50,6 +66,10 @@ function isGeneratorHardeningEnabled(): boolean {
   if (value === undefined || value === '') return true;
   return !FALSY_OPT_OUT.has(value);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function isPhaseParent(specFolderAbsPath: string): boolean {
   let entries: string[];
@@ -82,6 +102,10 @@ export function isPhaseParent(specFolderAbsPath: string): boolean {
 
   return false;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. MANIFEST HEALTH AND DRIFT
+// ───────────────────────────────────────────────────────────────────
 
 // Counts ALL direct NNN-named children regardless of whether
 // each has spec.md/description.json — this reflects manifest size (visual
@@ -160,6 +184,10 @@ export function assessPhaseParentHealth(specFolderAbsPath: string): PhaseParentH
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 7. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
+
 // CLI entrypoint so shell rules can shell-out without a separate
 // JS wrapper. Usage: `node runtime/cli/dist/spec/is-phase-parent.js health <folder>`
 // emits one line: `<status>\t<childCount>\t<recommendation>` (tab-separated).
@@ -188,6 +216,10 @@ function runCli(): void {
     process.exit(0);
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 8. CLI BOOTSTRAP
+// ───────────────────────────────────────────────────────────────────
 
 // Run CLI only when executed directly, never on import.
 const invokedDirectly =

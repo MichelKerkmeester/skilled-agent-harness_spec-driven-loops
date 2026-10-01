@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: system-spec-kit runtime alignment (investigation)"
-description: "Investigation done, build not started: the system-spec-kit runtime has 254 files without a header among other sk-code-opencode drift, and the folder-merge list is fact-checked."
+title: "Implementation Summary: system-spec-kit runtime alignment"
+description: "The spec-kit runtime and shared package now meet sk-code-opencode: headers, numbered sections, code READMEs, no double-underscore folders, every test under a tests/ tree, and the completion sentinel moved into hooks/lib."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -11,22 +11,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/046-align-runtime-code-with-sk-code-opencode"
-    last_updated_at: "2026-09-30T05:43:46Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Measured drift, ran DeepSeek layout reads and SWE-2 MAX merge fact-check"
-    next_safe_action: "Build the shared prerequisites in deep-loop child 029, then run the loop"
+    last_updated_at: "2026-09-30T22:06:54Z"
+    last_updated_by: "generate-context"
+    recent_action: "Merged to main with the checker at 0 findings and the scoped suite at 2985/0"
+    next_safe_action: "Verify nothing remains; the packet is closed"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-spec-kit/vitest.config.ts"
+      - ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs"
+      - ".skilled/skills/system-spec-kit/ARCHITECTURE.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:324bb93f86052472af1703d4cbe334aaf23c8285b20e5b527f0fcd0ed673bc5e"
       session_id: "scaffold-046-align-runtime-code-with-sk-code-opencode"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-# Implementation Summary: system-spec-kit runtime alignment (investigation)
+# Implementation Summary: system-spec-kit runtime alignment
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
@@ -39,7 +42,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 046-align-runtime-code-with-sk-code-opencode |
-| **Completed** | Not complete: investigation only, 2026-09-30 |
+| **Completed** | 2026-10-01, merged to main as `46fc86c8e8` |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,19 +51,25 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No runtime code has changed yet. What exists is the measured size of the drift and a fact-checked list of the folder merges, so the loop can start from numbers rather than impressions.
+The whole system-spec-kit skill, `shared/` included, now passes the sk-code-opencode checker with its three strict flags on. Its test code all lives under a `tests/` tree.
 
-### Investigation
+### Comment structure and READMEs
 
-The system-spec-kit runtime has 254 files without a header, 37 in-scope files without numbered sections, 35 files mixing divider formats, 2 code folders without a README. The sk-code-opencode checker misses all of it in its default mode. Of the proposed folder merges, all 4 DeepSeek merge proposals survive, but `lib/hooks` reaches a plugin outside the skill and about 12 docs.
+The loop kept 253 of 254 header edits and 64 of 64 section edits in the runtime, then 14 headers, 8 section edits and 10 READMEs across `shared/`, the new `tests/hooks/` and three script folders main added. Seven shell scripts moved from `# SPECKIT:` to `# COMPONENT:`.
+
+### Folder changes
+
+`tests/__helpers__/` became `tests/helpers/` and `tests/embedders/__fixtures__/` became `fixtures/`. The Hermes test moved into `cli/tests/`, and the `tests/deep-loop/` and `tests/graph/` tests moved up into `tests/`. Golden snapshots moved to `cli/tests/snapshots/` through `resolveSnapshotPath`. The completion-evidence sentinel moved from `lib/hooks/` to `hooks/lib/` with its 5 adapters, its test, the Pi fallback and the OpenCode plugin repointed. Fifteen `shared/` tests and seven hook and validation tests that sat beside their source moved into `tests/` trees. The unused `lib/test-helpers/` was deleted.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md` | Created | Measured drift, scope and fact-checked merge table |
-| `scratch/investigation/devin-swe2max-merge-factcheck.md` | Created | SWE-2 MAX importer-level verdict on every merge proposal |
-| `scratch/investigation/devin-swe2max-merge-factcheck.brief.txt` | Created | The exact brief sent, so the check can be rerun |
+| `runtime/**`, `shared/**` | Modified | Headers, sections, READMEs, moves |
+| `vitest.config.ts` | Modified | `resolveSnapshotPath` to `snapshots/` |
+| `shared/package.json`, `shared/tsconfig.json` | Modified | Test glob and exclude point at `tests/` |
+| `ARCHITECTURE.md` | Modified | §2 tree rewritten from the real layout |
+| `.opencode/plugins/system-completion-sentinel.js` | Modified | Sentinel path |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -68,7 +77,7 @@ The system-spec-kit runtime has 254 files without a header, 37 in-scope files wi
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-A census script counted headers, numbered sections, divider shapes and README coverage. DeepSeek V4.1 Flash at `high`, through cli-pi on `opencode-go`, judged the folder layout with read-only tools. SWE-2 MAX, through cli-devin in `auto` mode, then checked every merge claim against the real importers. The census script and the DeepSeek reports live in `specs/system-deep-loop/036-deep-loop-innovation/029-align-runtime-code-with-sk-code-opencode/scratch/investigation/`.
+The deep-loop packet's driver ran with a test gate scoped to spec-kit's own `root` and `cli` vitest projects, because `test:runtime` also runs deep-loop's suites and overran its bound. `ALIGN_SCAN` widened the scan to the skill root once `shared/` came into scope. Opus did each move alone, with a before-and-after run of the affected tests.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -78,9 +87,10 @@ A census script counted headers, numbered sections, divider shapes and README co
 
 | Decision | Why |
 |----------|-----|
-| Test files get the header but not numbered sections | Operator decision 2026-09-30; roughly halves the loop |
-| No merge moves without a SWE-2 MAX CONFIRMED verdict | DeepSeek's layout claims were wrong or overstated in checked cases |
-| Checker flags are the loop's done signal | The default checker reports 0 findings, so it cannot tell the loop when to stop |
+| Bring `shared/` into scope | The request names system-skill code, and the runtime-rooted census never scanned `shared/` |
+| Move tests that sat beside their source | The shared style guide says a test never sits beside the file it covers |
+| Set `resolveSnapshotPath` at the root of the config | Vitest ignored it per project and wrote 24 new snapshots |
+| Relabel `# SPECKIT:` headers to `# COMPONENT:` | The checker accepts only COMPONENT and MODULE; the shell guide's example now uses COMPONENT too |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -90,9 +100,12 @@ A census script counted headers, numbered sections, divider shapes and README co
 
 | Check | Result |
 |-------|--------|
-| `verify_alignment_drift.py` default mode | 0 findings, which shows the gap, not alignment |
-| Merge claims | Fact-checked by SWE-2 MAX; the riskiest claim re-read by hand |
-| Runtime tests | Not run yet; the baseline is the first build task |
+| Checker, three flags, skill root | Findings 0 on main |
+| Typecheck | Exit 0 |
+| Vitest `root` + `cli` | 2847 passed and 0 failed through every step (baseline 2847/0); 2985 passed and 0 failed after merging main |
+| Shared tests | 18/18 before and after the move |
+| Moved node:test files | 167 passes before and after, file by file |
+| Snapshot move | One broken line fails the golden test; the restored file passes 12/12 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -100,8 +113,6 @@ A census script counted headers, numbered sections, divider shapes and README co
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The section count is a regex heuristic.** A file whose dividers use an unusual numbering shape may be counted as missing; the checker flag replaces the heuristic.
-2. **One DeepSeek claim was wrong here.** DeepSeek reported `runtime/shared` as a duplicated build tree; it is a tracked symlink to `../shared/dist`.
+1. **`profile.test.ts` had been passing on its fallback.** Its source-file candidates never resolved; after the move they point at the real file, so its source checks now run, and they pass.
+2. **`runtime/stress-test/` stays a separate tree.** It is a dedicated stress suite rather than a test beside its source.
 <!-- /ANCHOR:limitations -->
-
----

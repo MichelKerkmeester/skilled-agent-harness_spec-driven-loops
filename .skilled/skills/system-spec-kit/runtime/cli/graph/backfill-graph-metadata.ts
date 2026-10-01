@@ -20,6 +20,10 @@
 // and z_archive/ is included unless --active-only is passed.
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -40,6 +44,10 @@ import {
 import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
 import { findRepoRoot } from '@spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
 const SPEC_FOLDER_RE = /^\d{3}(?:[-_].+)?$/;
@@ -47,6 +55,10 @@ const EXCLUDED_DIRS = new Set(['memory', 'scratch', 'node_modules', '.git', 'z-f
 const ARCHIVE_SEGMENT_RE = /(^|\/)(z_archive|z_future)(\/|$)/;
 const BACKFILL_PRUNE_REPORT_FILE = '.backfill-graph-metadata-prune-report.json';
 const PRUNE_REPORT_VERSION = 1;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type BackfillScope = 'scoped' | 'all';
 
@@ -113,6 +125,10 @@ export type BackfillPlan =
 export type BackfillExecutionResult =
   | { ok: true; summary: BackfillSummary }
   | { ok: false; error: string };
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function sortPruneCandidates(candidates: PruneCandidate[]): PruneCandidate[] {
   return [...candidates].sort((left, right) => {
@@ -304,6 +320,10 @@ function resolveScopedTarget(target: string): { ok: true; specFolder: string } |
   }
   return { ok: true, specFolder: absTarget };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Parse argv into a validated backfill plan.
@@ -726,6 +746,10 @@ export function runBackfill(options: BackfillOptions): BackfillSummary {
   }
   return result.summary;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 function run(): void {
   const plan = planBackfill(process.argv.slice(2));

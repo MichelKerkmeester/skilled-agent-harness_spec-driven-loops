@@ -1,13 +1,8 @@
 #!/usr/bin/env node
 
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime — Convergence Entrypoint                               ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Input:  CLI args (--spec-folder, --loop-type, --session-id, optional     ║
-// ║         --iteration, --persist-snapshot).                                ║
-// ║ Output: JSON to stdout.                                                  ║
-// ║ Exit:   0=ok, 1=script error, 2=DB error, 3=input validation error.     ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep-Loop Convergence Entrypoint
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 

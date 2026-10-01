@@ -19,6 +19,7 @@ Current state:
 
 - `spec-gate/` is the Gate-3 policy core: `classifyIntent()` and `evaluateMutation()`, plus gate-state persistence, the warning log and the stale-state sweep.
 - `workspace/` resolves the repository root that `spec-gate-core.mjs` anchors its state directory to.
+- `completion-evidence-sentinel.cjs` is the completion-evidence policy core. When a turn ends with a completion claim it checks recorded artifacts only, through `check-completion.sh --json` or an `implementation-summary.md` stat, and returns an advisory decision. It never runs a test, a build or `validate.sh`, never writes stdout or stderr itself, keeps the dedup state every adapter shares, and fails open.
 - `hook-adapter-shared.mjs` is a small stdin-and-JSON helper pair used directly by the classify and enforce adapters that do not need the full spec-gate core themselves.
 - Everything here is direct-run `.mjs` with no build step; only the `claude/`, `codex/`, `cursor/`, `devin/` and `pi/` adapters that call in are TypeScript compiled to `dist/`.
 
@@ -28,11 +29,11 @@ Current state:
 
 ```text
 lib/
+├── completion-evidence-sentinel.cjs  # Completion-evidence policy core behind every Stop-equivalent adapter
 ├── hook-adapter-shared.mjs   # readStdin() + parseJsonFailOpen() for classify/enforce adapters
 ├── spec-gate/                # Gate-3 policy core (see spec-gate/README.md)
 │   ├── README.md
-│   ├── spec-gate-core.mjs
-│   └── spec-gate-core.test.mjs
+│   └── spec-gate-core.mjs
 └── workspace/                # Repository-root resolution (see workspace/README.md)
     └── repo-root.mjs
 ```
@@ -43,8 +44,9 @@ lib/
 
 | File or directory | Responsibility |
 |---|---|
+| `completion-evidence-sentinel.cjs` | Exports `detectCompletionClaim`, `evaluateCompletionEvidence`, `resolveSentinelPaths`, `appendAdvisoryLog` and `sweepStaleSentinelState`. Called by the Stop adapters of `claude/`, `codex/` and `devin/`, Cursor's `completion-evidence-response.mjs`, Pi's `completion-evidence.ts` and the OpenCode plugin `.skilled/plugins/system-completion-sentinel.js`. Covered by `tests/completion-evidence-sentinel.vitest.ts` and `tests/hook-completion-evidence-stop.vitest.ts`. |
 | `hook-adapter-shared.mjs` | `readStdin()` collects and decodes a hook's stdin payload; `parseJsonFailOpen(raw)` parses it and returns `null` on any failure instead of throwing. Imported by `claude/spec-gate-classify.mjs`, `codex/spec-gate-classify.mjs`, and the `spec-gate-enforce.mjs` of `claude/`, `codex/`, `cursor/` and `devin/`. |
-| `spec-gate/` | The runtime-neutral Gate-3 policy core plus its co-located test suite. See [`spec-gate/README.md`](./spec-gate/README.md). |
+| `spec-gate/` | The runtime-neutral Gate-3 policy core; its test suite is `../../tests/hooks/spec-gate-core.test.mjs`. See [`spec-gate/README.md`](./spec-gate/README.md). |
 | `workspace/` | Repository-root resolution used to anchor gate state to the real repo root regardless of the caller's working directory. See [`workspace/README.md`](./workspace/README.md). |
 
 ---
@@ -66,8 +68,9 @@ Run from `.skilled/skills/system-spec-kit/runtime`.
 
 ```bash
 node --check hooks/lib/hook-adapter-shared.mjs
+node --check hooks/lib/completion-evidence-sentinel.cjs
 node --check hooks/lib/workspace/repo-root.mjs
-node --test hooks/lib/spec-gate/spec-gate-core.test.mjs
+node --test tests/hooks/spec-gate-core.test.mjs
 ```
 
 Expected result: both files parse with no syntax errors, and the spec-gate core test suite passes under `node --test`. See [`spec-gate/README.md`](./spec-gate/README.md) for the full spec-gate validation matrix.

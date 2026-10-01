@@ -1,5 +1,9 @@
 // MODULE: Agent Improvement Artifact Material
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { canonicalBytes } from '../event-envelope/index.js';
 import {
   ArtifactCanonicalizerRegistry,
@@ -54,6 +58,10 @@ import type {
   AgentIrInheritanceEdgeReference,
   AgentIrLocusReference,
 } from '../agent-improvement-ledger-schema/index.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const AGENT_IMPROVEMENT_ARTIFACT_SCHEMA_VERSION =
   'agent-improvement-artifact@1';
@@ -204,11 +212,19 @@ const NAMED_REFERENCE_KINDS = Object.freeze({
   canaryEpoch: DeepImprovementCommonArtifactKinds.CANARY_EPOCH,
 } as const satisfies Readonly<Record<string, AgentImprovementDependencyKind>>);
 
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export interface AgentImprovementNamedReferenceExpectation {
   readonly field: string;
   readonly reference: SealedArtifactReference;
   readonly expectedKind: AgentImprovementDependencyKind;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function invalidMaterial(artifactKind: string, field: string): never {
   throw new SealedArtifactError(
@@ -1143,6 +1159,10 @@ function namedReference(
   return Object.freeze({ field, reference, expectedKind });
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 export function agentImprovementNamedReferenceExpectations(
   artifactKind: AgentImprovementArtifactKind,
   material: AgentImprovementArtifactMaterial,
@@ -1316,6 +1336,10 @@ function canonicalizeAgentImprovementMaterial(
   }
   return Uint8Array.from(canonicalBytes({ artifactKind, material }));
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export function createAgentImprovementArtifactCanonicalizerRegistry(): ArtifactCanonicalizerRegistry {
   const commonRegistry = createDeepImprovementCommonArtifactCanonicalizerRegistry();

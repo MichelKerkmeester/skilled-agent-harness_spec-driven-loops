@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SPECKIT: CALCULATE COMPLETENESS
+# COMPONENT: CALCULATE COMPLETENESS
 # ───────────────────────────────────────────────────────────────
 #
 # Calculate placeholder replacement progress in spec folders.

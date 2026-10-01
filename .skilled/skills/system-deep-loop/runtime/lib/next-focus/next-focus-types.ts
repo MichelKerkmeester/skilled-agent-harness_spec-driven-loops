@@ -2,9 +2,17 @@
 // MODULE: Next Focus Types
 // ──────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import type { PivotCandidate, PivotCandidateRejection } from '../deep-loop/pivot-candidates.js';
 import type { CoverageGap } from '../coverage-graph/coverage-graph-query.js';
 import type { DurableAppendReceipt } from '../authorized-ledger/index.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Region kinds eligible for the shadow next-focus frontier. */
 export type NextFocusRegionKind =

@@ -2,6 +2,10 @@
 // MODULE: Skill Advisor Affordance Normalizer
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export type AffordanceRelation =
   | 'depends_on'
   | 'enhances'
@@ -51,7 +55,15 @@ export interface NormalizedAffordance {
   readonly evidenceLabel: string;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 2. AFFORDANCE TRIGGER FIELDS
+// ───────────────────────────────────────────────────────────────────
+
 export const AFFORDANCE_TRIGGER_FIELDS = ['name', 'triggers', 'category'] as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. COUNTERS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Debug counters for affordance-input drop categories. Operators
@@ -97,6 +109,10 @@ export function resetAffordanceNormalizerCounters(): void {
   affordanceNormalizerCounters.dropped_empty = 0;
   affordanceNormalizerCounters.dropped_unknown_skill = 0;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const MAX_PHRASE_LENGTH = 80;
 const MAX_TRIGGERS_PER_AFFORDANCE = 12;
@@ -149,6 +165,10 @@ const INSTRUCTION_PATTERN =
 const EMAIL_PATTERN = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi;
 const URL_PATTERN = /\bhttps?:\/\/\S+|\bwww\.\S+/gi;
 const TOKEN_PATTERN = /\b(?:bearer|token|secret|apikey|api_key)\s*[:=]\s*\S+/gi;
+
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function unique(values: readonly string[]): string[] {
   return [...new Set(values)];
@@ -256,6 +276,10 @@ function triggerPhrases(input: AffordanceInput): string[] {
   return unique(triggerValues.filter((entry): entry is string => Boolean(entry)))
     .slice(0, MAX_TRIGGERS_PER_AFFORDANCE);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function normalize(toolDescriptions: readonly AffordanceInput[]): NormalizedAffordance[] {
   return toolDescriptions

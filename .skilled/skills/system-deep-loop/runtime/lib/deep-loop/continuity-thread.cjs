@@ -1,13 +1,25 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Continuity Threading Helpers                                             ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Continuity Threading Helpers
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 
 const crypto = require('node:crypto');
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const DEFAULT_TERMINAL_NEXT_FOCUS = '[All tracked questions are resolved]';
 const MAX_DERIVED_FOCUS_LENGTH = 220;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function normalizeText(value) {
   return String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -56,6 +68,10 @@ function truncateFocus(value) {
 function getLatestByRun(items) {
   return [...items].sort((left, right) => getRunNumber(left) - getRunNumber(right)).at(-1) || null;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function buildCarriedForwardOpenQuestions({
   iterationFiles = [],
@@ -146,6 +162,10 @@ function deriveNextFocusFromContinuity({
 
   return machineQuestions[0] || terminalSentinel;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 module.exports = {
   buildCarriedForwardOpenQuestions,

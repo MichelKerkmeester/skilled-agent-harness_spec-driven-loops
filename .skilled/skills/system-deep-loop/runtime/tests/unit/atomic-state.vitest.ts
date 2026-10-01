@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Atomic State Unit Tests
+// ───────────────────────────────────────────────────────────────────
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { spawn } from 'node:child_process';

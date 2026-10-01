@@ -1,12 +1,7 @@
 #!/usr/bin/env node
-
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime — Append-Site Declaration Coverage                     ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Input:  CLI args (--dir).                                                ║
-// ║ Output: JSON to stdout.                                                  ║
-// ║ Exit:   0=clean, 1=script error, 2=conformance violation.                ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Append-Site Declaration Coverage
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 
@@ -20,9 +15,15 @@
 // justified. Whether a declared exception deserves to exist is a human review
 // decision, not something this checker can decide.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 const fs = require('fs');
 const path = require('path');
 
+// ───────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function emit(obj) {
   process.stdout.write(JSON.stringify(obj) + '\n');
 }
@@ -52,6 +53,9 @@ function parseArgs(argv) {
   return out;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 // Inspect a single YAML file's lines and return its findings.
 function inspectFile(file, lines) {
   const findings = {
@@ -252,4 +256,7 @@ function main() {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 main();

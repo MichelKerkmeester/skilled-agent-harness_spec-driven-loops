@@ -2,6 +2,9 @@
 // MODULE: Deep Improvement Common Sealed Artifact Adapter
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import {
   SealedArtifactError,
   SealedArtifactErrorCodes,
@@ -41,6 +44,9 @@ import type {
   DeepImprovementVerifiedSealedArtifact,
 } from './deep-improvement-common-sealed-artifact-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const BINDING_FIELDS = new Set([
   'bindingVersion',
   'artifactKind',
@@ -59,12 +65,18 @@ const KNOWN_ACCESS_ROLES: ReadonlySet<string> = new Set([
 ]);
 const MOST_RESTRICTIVE_ACCESS_ROLE: DeepImprovementArtifactAccessRole = 'candidate';
 
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 interface EmbeddedReferenceExpectation {
   readonly field: string;
   readonly reference: SealedArtifactReference;
   readonly expectedArtifactKind: string;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function isRecord(value: unknown): value is Record<string, unknown> {
   if (value === null || Array.isArray(value) || typeof value !== 'object') return false;
   const prototype = Object.getPrototypeOf(value);
@@ -513,6 +525,9 @@ function assertPromotionAdmissible(material: DeepImprovementPromotionEvidenceMat
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 /** Validate the closed event-to-seal binding without resolving artifact bytes. */
 export function parseDeepImprovementCommonSealedArtifactBinding<TKind extends DeepImprovementCommonArtifactKind = DeepImprovementCommonArtifactKind>(
   input: unknown,

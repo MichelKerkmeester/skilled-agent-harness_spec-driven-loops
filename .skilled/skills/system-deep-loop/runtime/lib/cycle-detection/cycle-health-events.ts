@@ -2,6 +2,10 @@
 // MODULE: Cycle Health Events
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   AuthorizationReasonCodes,
   AuthorizationVerdicts,
@@ -52,6 +56,10 @@ import type {
   CycleStoppingClockInput,
 } from './cycle-detection-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const CYCLE_SUSPECTED_EVENT_TYPE = 'deep-loop.cycle.suspected';
 export const CYCLE_CONFIRMED_EVENT_TYPE = 'deep-loop.cycle.confirmed';
 export const CYCLE_CLEARED_EVENT_TYPE = 'deep-loop.cycle.cleared';
@@ -82,6 +90,10 @@ const REQUIRED_FIELDS = [
   'trace',
   'evidence_digest',
 ] as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function digest(value: unknown): string {
   return sha256Bytes(canonicalBytes(value));
@@ -340,6 +352,10 @@ function eventConflict(eventId: string): CycleDetectionError {
     { eventId },
   );
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Return the closed versioned health-event definitions. */
 export function cycleHealthEventDefinitions(): readonly EventTypeDefinition[] {

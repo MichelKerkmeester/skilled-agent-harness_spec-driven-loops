@@ -2,6 +2,10 @@
 // MODULE: Model Benchmark Reducer
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   DEEP_IMPROVEMENT_COMMON_FOLD_BRANCH,
   DEEP_IMPROVEMENT_COMMON_REDUCER_SURFACE,
@@ -71,6 +75,10 @@ import type {
   ModelBenchmarkVariantProjection,
 } from './model-benchmark-projection-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const MODEL_BENCHMARK_PROJECTION_SCHEMA_VERSION =
   'model-benchmark-projection@1' as const;
 export const MODEL_BENCHMARK_REDUCER_VERSION =
@@ -131,6 +139,10 @@ const PERSISTED_FIELDS = Object.freeze([
   'streamFrontiers',
   'seenEvents',
 ] as const);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function compareString(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
@@ -562,6 +574,10 @@ function assertEventReferences(
       break;
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function commonVetoes(state: ModelBenchmarkProjectionState): string[] {
   const status = state.common.modeStatus.statuses.find(
@@ -1694,6 +1710,10 @@ function applyEvent(
   assertModelBenchmarkProjectionState(next);
   return immutableModelBenchmarkProjectionClone(next);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export const MODEL_BENCHMARK_REDUCER_SET:
 ModeReducerSet<ModelBenchmarkModeContractState> = Object.freeze({

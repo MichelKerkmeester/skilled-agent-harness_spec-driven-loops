@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// 1. TEST: SCRIPTS MODULES COMPREHENSIVE VERIFICATION
+// MODULE: Scripts Modules Verification
 // ───────────────────────────────────────────────────────────────────
 'use strict';
 

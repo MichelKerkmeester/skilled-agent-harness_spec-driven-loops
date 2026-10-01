@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Collect Session Data Tests
+// ───────────────────────────────────────────────────────────────────
 // TEST: collect-session-data — basic unit tests for session status, completion, and collection
 import { describe, expect, it } from 'vitest';
 

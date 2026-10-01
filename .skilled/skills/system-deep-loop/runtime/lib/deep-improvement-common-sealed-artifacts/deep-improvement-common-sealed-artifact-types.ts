@@ -2,6 +2,10 @@
 // MODULE: Deep Improvement Common Sealed Artifact Types
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import type {
   CanaryEpochId,
   CanarySuiteSealedData,
@@ -22,6 +26,10 @@ import type {
   SealedArtifactReference,
 } from '../sealed-reference-artifacts/index.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const DeepImprovementCommonArtifactKinds = Object.freeze({
   EVALUATOR_CAPSULE: 'deep-improvement-common-evaluator-capsule',
   CANDIDATE_INPUT: 'deep-improvement-common-candidate-input',
@@ -30,6 +38,10 @@ export const DeepImprovementCommonArtifactKinds = Object.freeze({
   CANARY_EPOCH: 'deep-improvement-common-canary-epoch',
   PROMOTION_EVIDENCE: 'deep-improvement-common-promotion-evidence',
 } as const);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type DeepImprovementCommonArtifactKind =
   typeof DeepImprovementCommonArtifactKinds[
@@ -311,6 +323,10 @@ export interface DeepImprovementArtifactReadPolicy {
   readonly now?: Date | (() => Date);
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. READ FAILURE TAXONOMY
+// ───────────────────────────────────────────────────────────────────
+
 export const DeepImprovementArtifactReadFailureCodes = Object.freeze({
   ACCESS_DENIED: 'ACCESS_DENIED',
   DEPENDENCY_MISMATCH: 'DEPENDENCY_MISMATCH',
@@ -324,6 +340,10 @@ export type DeepImprovementArtifactReadFailureCode =
   typeof DeepImprovementArtifactReadFailureCodes[
     keyof typeof DeepImprovementArtifactReadFailureCodes
   ];
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export class DeepImprovementArtifactReadError extends Error {
   public readonly code: DeepImprovementArtifactReadFailureCode;
@@ -341,6 +361,10 @@ export class DeepImprovementArtifactReadError extends Error {
     Object.setPrototypeOf(this, new.target.prototype);
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. PUBLIC CONTRACT TYPES
+// ───────────────────────────────────────────────────────────────────
 
 export interface DeepImprovementCandidateFacingView {
   readonly viewVersion: 1;

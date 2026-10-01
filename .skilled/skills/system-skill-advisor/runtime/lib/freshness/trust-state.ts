@@ -31,6 +31,9 @@
 // consumers should depend on `SkillGraphTrustState` from this module
 // rather than carving out their own narrower unions.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import { isSpeckitMetricsEnabled, speckitMetrics } from '../metrics.js';
 // SkillGraphTrustState now derives from a canonical tuple in
 // trust-state-values.ts. The local re-export keeps every existing consumer
@@ -41,6 +44,9 @@ import {
   type SkillGraphTrustState,
 } from './trust-state-values.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 export type GraphFreshness = 'fresh' | 'stale' | 'empty' | 'error';
 export type StructuralReadiness = 'ready' | 'stale' | 'missing';
 
@@ -51,6 +57,9 @@ export {
 };
 export type StartupGraphState = 'ready' | 'stale' | 'empty' | 'missing' | 'error';
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 let lastObservedTrustState: SkillGraphTrustState | null = null;
 
 function recordTrustStateTransition(next: SkillGraphTrustState): void {
@@ -65,6 +74,9 @@ function recordTrustStateTransition(next: SkillGraphTrustState): void {
   lastObservedTrustState = next;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. STATE CONTRACTS
+// ───────────────────────────────────────────────────────────────────
 /**
  * Canonical alias used by callers that previously imported a custom
  * `TrustState` type. Use `SkillGraphTrustState` for new code.
@@ -93,6 +105,9 @@ export interface TrustStateInput {
   readonly lastLiveAt?: string | null;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 export function createTrustState(input: TrustStateInput): TrustStateSnapshot {
   const checkedAt = (input.now ?? new Date()).toISOString();
   const snapshot = computeTrustState(input, checkedAt);

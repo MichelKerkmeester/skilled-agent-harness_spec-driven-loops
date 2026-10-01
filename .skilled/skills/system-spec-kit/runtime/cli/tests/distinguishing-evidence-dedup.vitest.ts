@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Distinguishing Evidence Dedup Test
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it } from 'vitest';
 
 import { buildDistinctiveEvidence } from '../extractors/collect-session-data';

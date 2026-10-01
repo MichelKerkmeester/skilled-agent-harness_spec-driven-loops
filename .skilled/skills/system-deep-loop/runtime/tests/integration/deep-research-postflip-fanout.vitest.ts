@@ -37,7 +37,7 @@ import { AuthorityRegistry } from '../../lib/per-mode-authority-flip/index.js';
 import type { EventTypeRegistry, EventWritePreflight } from '../../lib/event-envelope/index.js';
 import type { ModeAppendReceipt } from '../../lib/mode-append-gateway/index.js';
 import type { AuthorityRecord } from '../../lib/per-mode-authority-flip/index.js';
-import type { ResolvedCutoverBinding } from '../../lib/cutover-binding/index.js';
+import type { ResolvedCutoverBinding } from '../../lib/mode-append-gateway/index.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. TYPES AND CONSTANTS

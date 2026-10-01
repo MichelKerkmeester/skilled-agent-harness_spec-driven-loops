@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SCRIPT: verify-zombie-soak.sh
+# COMPONENT: VERIFY ZOMBIE SOAK
 # ───────────────────────────────────────────────────────────────
 # Verifies that each MCP launcher maintains a single live process after
 # the launcher binaries have been live for ≥ 24 hours under normal
