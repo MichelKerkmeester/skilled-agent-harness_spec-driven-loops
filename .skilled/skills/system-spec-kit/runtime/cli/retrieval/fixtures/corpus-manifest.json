@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6f288c33d78639eb1e6d9e8c2ef64792076b8c514a6abb40b393c053d94cbfca",
+  "corpusHash": "fcf1fc47e2175e7345f43c7ba876e859912a358a10bba6f0a100847b5827930a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23747,
+  "includedPathCount": 23756,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2608,6 +2608,7 @@
     ".skilled/skills/sk-code/changelog/v4.2.1.0.md",
     ".skilled/skills/sk-code/changelog/v4.2.2.0.md",
     ".skilled/skills/sk-code/changelog/v4.2.3.0.md",
+    ".skilled/skills/sk-code/changelog/v4.2.4.0.md",
     ".skilled/skills/sk-code/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-code/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md",
@@ -2668,6 +2669,7 @@
     ".skilled/skills/sk-code/sk-code-obsidian/assets/screenshot-coverage-checklist.md",
     ".skilled/skills/sk-code/sk-code-obsidian/assets/verification-checklist.md",
     ".skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.0.0.md",
+    ".skilled/skills/sk-code/sk-code-obsidian/changelog/v0.1.1.0.md",
     ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/large-prompt-stress.md",
     ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/multi-step-dispatch.md",
     ".skilled/skills/sk-code/sk-code-obsidian/manual-testing-playbook/cross-cli-dispatch/short-prompt-baseline.md",
@@ -2746,6 +2748,7 @@
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.0.0.5.md",
     ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.0.1.0.md",
+    ".skilled/skills/sk-code/sk-code-opencode/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-opencode/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -6034,6 +6037,7 @@
     ".skilled/skills/sk-doc/changelog/v2.2.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.2.4.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.2.5.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
@@ -6367,6 +6371,7 @@
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.2.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-readme/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/self-explanatory-folder-stays-unchanged.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/artifact-routing/skill-readme.md",
     ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/evidence-and-shape/code-folder-navigation-shape.md",
@@ -6790,6 +6795,7 @@
     ".skilled/skills/system-deep-loop/changelog/v2.2.4.0.md",
     ".skilled/skills/system-deep-loop/changelog/v3.0.0.0.md",
     ".skilled/skills/system-deep-loop/changelog/v3.0.1.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v3.0.2.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md",
@@ -7421,6 +7427,7 @@
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.7.0.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.8.0.0.md",
     ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.0.0.md",
+    ".skilled/skills/system-deep-loop/runtime/changelog/v1.9.1.0.md",
     ".skilled/skills/system-deep-loop/runtime/database/README.md",
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/council/adjudicator-verdict-scoring.md",
     ".skilled/skills/system-deep-loop/runtime/feature-catalog/council/cost-guards.md",
@@ -7630,6 +7637,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.12.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.13.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.14.0.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.14.1.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -8041,6 +8049,7 @@
     ".skilled/skills/system-spec-kit/changelog/v4.4.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.5.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v4.6.0.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v4.6.1.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/resource-map-template.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
@@ -23777,7 +23786,7 @@
     "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "17db491a937fbd00084ad689b6904ed3d21405d5502819e6e2ae136c0903f98b",
+  "manifestHash": "77b5d9e2faf996e55bc1489ff5ec4a570c2b45c7cc88110df48601386e0aebeb",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
