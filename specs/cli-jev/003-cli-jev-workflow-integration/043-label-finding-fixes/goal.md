@@ -60,8 +60,8 @@ Frozen choices. Changing one is an amendment.
 - [x] `npx vitest run tests/unit/score-stop-rater.vitest.ts`, run from `.skilled/skills/system-deep-loop/runtime`, passes more than 36 tests, with cases for `sources` and `evidence` arrays, two line ranges of one file and `antiConvergence.convergenceMode: "off"`
 - [x] `node --test .skilled/hooks/goal/lib/goal-core.test.cjs` passes at least 78 tests with 0 failing, and every other `*.test.cjs` and `*.test.mjs` file under `.skilled/hooks/goal/` passes with 0 failing
 - [x] `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs` passes with stub-`jev` cases for each `jev arm skipped:` line, a keep verdict and a flips kill verdict, and a stub `jev` first on `PATH` logs no call on a run without `--jev`
-- [ ] The DeepSeek V4.1 Flash review of the 027, 003 and 006 changes leaves no open P0 or P1
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and on `specs/cli-jev/003-cli-jev-workflow-integration`
+- [x] The DeepSeek V4.1 Flash review of the 027, 003 and 006 changes leaves no open P0 or P1
+- [x] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and on `specs/cli-jev/003-cli-jev-workflow-integration`
 <!-- /ANCHOR:completion -->
 
 ---
