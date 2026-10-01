@@ -32,6 +32,10 @@ const JEV_MIN_F1_GAIN = 0.2;
 const JEV_MIN_PRECISION = 0.8;
 const JEV_MAX_FLIP_RATE = 0.1;
 const JEV_TOKEN_CHAR_DIVISOR = 4;
+const DEEM_MODEL = 'deem-0.8-v1';
+const DEEM_HEALTH_TIMEOUT_MS = 2000;
+const DEEM_TIMEOUT_MS = 60000;
+const DEEM_P50_MS = 60.5;
 const JEV_QUESTIONS = [
   {
     rule: 'rule4',
@@ -128,14 +132,23 @@ function which(name, env) {
   return null;
 }
 
-function spawnCall(file, args, stdinText, env) {
+function deemCommand(env) {
+  const onPath = which('cli-deem', env);
+  if (onPath !== null) return [onPath];
+  return [
+    process.execPath,
+    path.join(getDefaultWorkspaceRoot(), '.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs')
+  ];
+}
+
+function spawnCall(file, args, stdinText, env, timeoutMs = JEV_TIMEOUT_MS) {
   const started = Date.now();
   const result = spawnSync(file, args, {
     env,
     encoding: 'utf8',
     input: stdinText,
     maxBuffer: JEV_MAX_BUFFER_BYTES,
-    timeout: JEV_TIMEOUT_MS
+    timeout: timeoutMs
   });
 
   return {
@@ -208,6 +221,88 @@ function runJevGate(env, out, callLog) {
   return { passed: true, path: jevPath, provider };
 }
 
+function readDeemHealth(cmd, env) {
+  const result = spawnSync(cmd[0], [...cmd.slice(1), 'health'], {
+    env,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+    maxBuffer: JEV_MAX_BUFFER_BYTES,
+    timeout: DEEM_HEALTH_TIMEOUT_MS
+  });
+  const stdoutText = (result.stdout ?? '').trim();
+  let errorText = (result.stderr ?? '').trim();
+  try {
+    const parsedError = JSON.parse(errorText)?.error;
+    if (typeof parsedError === 'string') errorText = parsedError;
+  } catch {
+    // Keep the trimmed stderr when it is not a JSON error body.
+  }
+
+  if (result.error || result.status === 4) {
+    return { ok: false, reason: 'not reachable', found: errorText };
+  }
+  if (result.status === 3) {
+    let reason = 'bad health response';
+    if (typeof errorText === 'string' && errorText.includes('stub')) reason = 'stub backend';
+    else if (typeof errorText === 'string' && errorText.includes('refused model')) reason = 'model';
+    return { ok: false, reason, found: errorText };
+  }
+  if (result.status !== 0) {
+    return { ok: false, reason: 'bad health response', found: `exit ${result.status}: ${errorText}` };
+  }
+
+  let body;
+  try {
+    body = JSON.parse(stdoutText);
+  } catch {
+    return { ok: false, reason: 'bad health response', found: stdoutText };
+  }
+
+  const backend = body?.backend;
+  if (typeof backend === 'string' && backend.includes('stub')) {
+    return { ok: false, reason: 'stub backend', found: backend };
+  }
+  if (backend !== 'torch' && !(typeof backend === 'string' && backend.startsWith('ensemble:'))) {
+    return { ok: false, reason: 'bad health response', found: String(backend) };
+  }
+
+  const model = body?.model;
+  if (model !== DEEM_MODEL) return { ok: false, reason: 'model', found: model };
+
+  const modelCommit = body?.model_commit;
+  const sourceCommit = body?.source_commit;
+  if (
+    body?.ok !== true ||
+    typeof modelCommit !== 'string' || modelCommit === '' ||
+    typeof sourceCommit !== 'string' || sourceCommit === ''
+  ) {
+    return { ok: false, reason: 'bad health response', found: stdoutText };
+  }
+
+  return { ok: true, backend, model, modelCommit, sourceCommit };
+}
+
+function deemGate(env, out) {
+  const cmd = deemCommand(env);
+  const health = readDeemHealth(cmd, env);
+  if (health.ok) {
+    out(
+      'deem: health backend=' + health.backend +
+      ' model=' + health.model +
+      ' model_commit=' + health.modelCommit +
+      ' source_commit=' + health.sourceCommit
+    );
+    return { passed: true, cmd, ...health };
+  }
+
+  const reason = 'deem arm skipped: ' + health.reason;
+  out(reason);
+  if (health.reason === 'model' || health.reason === 'bad health response') {
+    out('deem: found=' + JSON.stringify(health.found));
+  }
+  return { passed: false, cmd, reason, found: health.found };
+}
+
 function parseNoul(stdout) {
   let parsed;
   try {
@@ -257,6 +352,13 @@ function jevVerdict(jevMetrics, lintMetrics, flipRate) {
   };
 }
 
+// A rule keeps or kills only when nine tenths of the asked rows carry a score.
+function coverageStop(measured, asked) {
+  return 10 * measured < 9 * asked
+    ? { verdict: 'stop (coverage)', reason: 'coverage', M: measured, K: asked }
+    : null;
+}
+
 /**
  * Rerun each question so its mean score and answer stability are both measured.
  * @param {Array<{ row: object, record: object }>} joined Joined labeled criteria.
@@ -290,6 +392,7 @@ function runJevArm(joined, criteria, lintScore, gate, env, callLog, out) {
   const rowScores = [];
   let flips = 0;
   let modelCalls = 0;
+  let unmeasuredCalls = 0;
 
   for (let rowIndex = 0; rowIndex < joined.length; rowIndex += 1) {
     const { row, record } = joined[rowIndex];
@@ -300,6 +403,7 @@ function runJevArm(joined, criteria, lintScore, gate, env, callLog, out) {
     for (const question of JEV_QUESTIONS) {
       const args = ['noul', '--provider', gate.provider, '-q', question.prompt];
       const probabilities = [];
+      let unmeasuredStatus = null;
 
       for (let rerun = 0; rerun < JEV_RERUNS; rerun += 1) {
         const call = spawnCall(gate.path, args, stdinText, env);
@@ -311,7 +415,7 @@ function runJevArm(joined, criteria, lintScore, gate, env, callLog, out) {
           question: question.rule,
           rerun: rerun + 1,
           probability,
-          status: call.code === 3 ? 'key_rejected' : probability === null ? 'unmeasured' : 'measured'
+          status: call.code === 3 ? 'key_rejected' : call.timedOut ? 'unmeasured_timeout' : probability === null ? 'unmeasured' : 'measured'
         });
 
         if (call.code === 3) {
@@ -319,17 +423,24 @@ function runJevArm(joined, criteria, lintScore, gate, env, callLog, out) {
           out('jev arm stopped: ' + reason);
           return { status: 'stopped', reason, provider: gate.provider, jevVersion: JEV_VERSION, modelCalls };
         }
-        if (call.code !== 0) {
+        if (call.code !== 0 && call.code !== 1 && !call.timedOut) {
           const reason = 'call failed';
           out('jev arm stopped: ' + reason);
           return { status: 'stopped', reason, provider: gate.provider, jevVersion: JEV_VERSION, modelCalls };
         }
+        // A question decides only when every rerun measures, so one failed or
+        // unreadable call leaves it unmeasured and ends its reruns.
         if (probability === null) {
-          const reason = 'invalid response';
-          out('jev arm stopped: ' + reason);
-          return { status: 'stopped', reason, provider: gate.provider, jevVersion: JEV_VERSION, modelCalls };
+          unmeasuredStatus = call.timedOut ? 'unmeasured_timeout' : 'unmeasured';
+          break;
         }
         probabilities.push(probability);
+      }
+
+      if (unmeasuredStatus !== null) {
+        rowScore[question.rule] = { meanProbability: null, predictedViolation: null, status: unmeasuredStatus };
+        unmeasuredCalls += 1;
+        continue;
       }
 
       const flags = probabilities.map((probability) => probability < JEV_FLAG_THRESHOLD);
@@ -349,7 +460,7 @@ function runJevArm(joined, criteria, lintScore, gate, env, callLog, out) {
   const rule5 = ruleMetrics(pairs.rule5);
   const flipRate = totalQuestions === 0 ? null : flips / totalQuestions;
   const jevColumn = {
-    status: 'completed',
+    status: unmeasuredCalls === 0 ? 'completed' : 'partial',
     provider: gate.provider,
     jevVersion: JEV_VERSION,
     labeled: joined.length,
@@ -358,7 +469,8 @@ function runJevArm(joined, criteria, lintScore, gate, env, callLog, out) {
     rule5,
     flips: { count: flips, total: totalQuestions, rate: flipRate },
     plannedCalls,
-    modelCalls
+    modelCalls,
+    unmeasuredCalls
   };
 
   out(formatMetricsLine('rule4', rule4));
@@ -370,21 +482,254 @@ function runJevArm(joined, criteria, lintScore, gate, env, callLog, out) {
     ['rule4', rule4, lintScore.rule4],
     ['rule5', rule5, lintScore.rule5]
   ]) {
-    const decision = jevVerdict(metrics, lintMetrics, flipRate);
-    verdicts[name] = decision;
-    out(
-      'verdict jev ' + name + ': ' + decision.verdict + ' (' + decision.reason +
-      '; tp=' + metrics.tp +
+    const identity =
+      'tp=' + metrics.tp +
       ' fp=' + metrics.fp +
       ' fn=' + metrics.fn +
       ' tn=' + metrics.tn +
       '; flips=' + flips + '/' + totalQuestions +
-      '; jev_version=' + JEV_VERSION + ' provider=' + gate.provider + ')'
+      '; jev_version=' + JEV_VERSION + ' provider=' + gate.provider;
+    const coverage = coverageStop(pairs[name].length, joined.length);
+    if (coverage !== null) {
+      verdicts[name] = coverage;
+      out(
+        'verdict jev ' + name + ': ' + coverage.verdict +
+        ' M=' + coverage.M + ' K=' + coverage.K +
+        ' (' + identity + ')'
+      );
+      continue;
+    }
+    const decision = jevVerdict(metrics, lintMetrics, flipRate);
+    verdicts[name] = decision;
+    out(
+      'verdict jev ' + name + ': ' + decision.verdict + ' (' + decision.reason +
+      '; ' + identity + ')'
     );
   }
 
   jevColumn.verdicts = verdicts;
   return jevColumn;
+}
+
+function logDeemCall(callLog, gate, args, call, details = {}) {
+  callLog.append({
+    backend: 'deem',
+    phase: 'noul',
+    executable: gate.cmd[0],
+    args,
+    exitCode: call.code,
+    timedOut: call.timedOut,
+    wallMs: call.wallMs,
+    modelId: gate.model,
+    modelCommit: gate.modelCommit,
+    sourceCommit: gate.sourceCommit,
+    ...details
+  });
+}
+
+function deemVerdict(deemMetrics, lintMetrics) {
+  const reasons = [];
+  if (
+    deemMetrics.f1 === null ||
+    !lintMetrics ||
+    lintMetrics.f1 === null ||
+    deemMetrics.f1 < lintMetrics.f1 + JEV_MIN_F1_GAIN
+  ) {
+    reasons.push('F1 gain below ' + JEV_MIN_F1_GAIN);
+  }
+  if (deemMetrics.precision === null || deemMetrics.precision < JEV_MIN_PRECISION) {
+    reasons.push('precision below ' + JEV_MIN_PRECISION);
+  }
+
+  return {
+    verdict: reasons.length === 0 ? 'keep' : 'kill',
+    reason: reasons.length === 0 ? 'all keep thresholds met' : reasons.join(', ')
+  };
+}
+
+function formatDeemMetricsLine(name, metrics) {
+  return 'column deem ' + name +
+    ': tp=' + metrics.tp +
+    ' fp=' + metrics.fp +
+    ' fn=' + metrics.fn +
+    ' tn=' + metrics.tn +
+    ' precision=' + formatNumber(metrics.precision) +
+    ' recall=' + formatNumber(metrics.recall) +
+    ' f1=' + formatNumber(metrics.f1);
+}
+
+function runDeemArm(joined, criteria, lintScore, gate, env, callLog, out) {
+  const plannedCalls = joined.length * JEV_QUESTIONS.length;
+  out(
+    'deem: nothing leaves the machine; planned calls: ' + plannedCalls +
+    '; estimated wall time: ' + (plannedCalls * DEEM_P50_MS / 1000).toFixed(1) +
+    ' s at ' + DEEM_P50_MS + ' ms per call'
+  );
+
+  const pairs = { rule4: [], rule5: [] };
+  const rowScores = [];
+  let modelCalls = 0;
+  let unmeasuredCalls = 0;
+  let completedRows = 0;
+
+  const stop = (line) => {
+    out(line);
+    out('deem: partial rows=' + completedRows);
+    return {
+      status: 'stopped',
+      reason: line,
+      backend: 'deem',
+      modelId: gate.model,
+      modelCommit: gate.modelCommit,
+      sourceCommit: gate.sourceCommit,
+      plannedCalls,
+      modelCalls,
+      partialRows: completedRows,
+      rows: rowScores
+    };
+  };
+
+  for (let rowIndex = 0; rowIndex < joined.length; rowIndex += 1) {
+    const { row, record } = joined[rowIndex];
+    const criterion = criteria[rowIndex];
+    const stdinText = JSON.stringify({ criterion });
+    const rowScore = { id: record.id };
+
+    for (const question of JEV_QUESTIONS) {
+      const args = [...gate.cmd.slice(1), 'noul', '-q', question.prompt];
+      let call = spawnCall(gate.cmd[0], args, stdinText, env, DEEM_TIMEOUT_MS);
+      let attempt = 1;
+      modelCalls += 1;
+
+      if (!call.timedOut && call.code === 4) {
+        logDeemCall(callLog, gate, args, call, {
+          rowId: record.id,
+          rowIndex: rowIndex + 1,
+          question: question.rule,
+          rerun: 0,
+          attempt,
+          probability: null,
+          flag: null,
+          status: 'unmeasured'
+        });
+        const health = readDeemHealth(gate.cmd, env);
+        if (!health.ok) return stop('deem arm stopped: server gone');
+        if (health.modelCommit !== gate.modelCommit || health.sourceCommit !== gate.sourceCommit) {
+          return stop('deem arm stopped: model commit changed mid-run');
+        }
+
+        call = spawnCall(gate.cmd[0], args, stdinText, env, DEEM_TIMEOUT_MS);
+        attempt = 2;
+        modelCalls += 1;
+      }
+
+      let probability = null;
+      let flag = null;
+      let status = 'unmeasured';
+      let stopLine = null;
+      if (call.timedOut) {
+        status = 'unmeasured_timeout';
+      } else if (call.code === 0) {
+        probability = parseNoul(call.stdout);
+        if (probability === null) {
+          status = 'unmeasured';
+        } else {
+          status = 'measured';
+          flag = probability < JEV_FLAG_THRESHOLD;
+        }
+      } else if (call.code === 1) {
+        status = 'unmeasured';
+      } else if (call.code === 2) {
+        stopLine = 'deem arm stopped: usage error';
+      } else if (call.code === 3) {
+        stopLine = 'deem arm stopped: backend refused';
+      } else if (call.code === 130) {
+        stopLine = 'deem arm stopped: interrupted';
+      } else if (call.code !== 4) {
+        stopLine = 'deem arm stopped: call failed';
+      }
+
+      logDeemCall(callLog, gate, args, call, {
+        rowId: record.id,
+        rowIndex: rowIndex + 1,
+        question: question.rule,
+        rerun: 0,
+        attempt,
+        probability,
+        flag,
+        status
+      });
+      if (stopLine !== null) return stop(stopLine);
+
+      if (status === 'measured') {
+        const predictedViolation = flag === true;
+        rowScore[question.rule] = { probability, predictedViolation };
+        pairs[question.rule].push({
+          predicted: predictedViolation,
+          actual: row[question.label] === false
+        });
+      } else {
+        rowScore[question.rule] = { probability: null, predictedViolation: null, status };
+        unmeasuredCalls += 1;
+      }
+    }
+
+    rowScores.push(rowScore);
+    completedRows += 1;
+  }
+
+  const rule4 = ruleMetrics(pairs.rule4);
+  const rule5 = ruleMetrics(pairs.rule5);
+  out(formatDeemMetricsLine('rule4', rule4));
+  out(formatDeemMetricsLine('rule5', rule5));
+
+  const verdicts = {};
+  for (const [name, metrics, lintMetrics] of [
+    ['rule4', rule4, lintScore.rule4],
+    ['rule5', rule5, lintScore.rule5]
+  ]) {
+    const identity =
+      'tp=' + metrics.tp +
+      ' fp=' + metrics.fp +
+      ' fn=' + metrics.fn +
+      ' tn=' + metrics.tn +
+      '; model=' + gate.model +
+      ' backend=' + gate.backend +
+      ' model_commit=' + gate.modelCommit +
+      ' source_commit=' + gate.sourceCommit;
+    const coverage = coverageStop(pairs[name].length, joined.length);
+    if (coverage !== null) {
+      verdicts[name] = coverage;
+      out(
+        'verdict deem ' + name + ': ' + coverage.verdict +
+        ' M=' + coverage.M + ' K=' + coverage.K +
+        ' (' + identity + ')'
+      );
+      continue;
+    }
+    const decision = deemVerdict(metrics, lintMetrics);
+    verdicts[name] = decision;
+    out(
+      'verdict deem ' + name + ': ' + decision.verdict + ' (' + decision.reason +
+      '; ' + identity + ')'
+    );
+  }
+
+  return {
+    status: unmeasuredCalls === 0 ? 'completed' : 'partial',
+    backend: gate.backend,
+    modelId: gate.model,
+    modelCommit: gate.modelCommit,
+    sourceCommit: gate.sourceCommit,
+    labeled: joined.length,
+    rows: rowScores,
+    rule4,
+    rule5,
+    plannedCalls,
+    modelCalls,
+    unmeasuredCalls,
+    verdicts
+  };
 }
 
 function lintColumn(score) {
@@ -604,18 +949,18 @@ function formatScore(result) {
 
 /**
  * Parse the command line: the labels file to score, an optional saved lint
- * report and workspace root, and the optional Jev output directory. An option
- * this parser does not know is a hard error rather than a guess.
+ * report and workspace root, and the optional model output directory. An
+ * option this parser does not know is a hard error rather than a guess.
  *
  * @param {string[]} argv - Arguments after the script name.
- * @returns {object} Parsed paths, with `jev` and `out` when the Jev arm is enabled.
+ * @returns {object} Parsed paths, with backend flags and `out` when an arm is enabled.
  */
 function parseScoreArguments(argv) {
-  let hasJevFlag = false;
+  let hasModelFlag = false;
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
-    if (argument === '--jev') {
-      hasJevFlag = true;
+    if (argument === '--jev' || argument === '--deem') {
+      hasModelFlag = true;
       break;
     }
     if (argument === '--labels' || argument === '--lint' || argument === '--root' || argument === '--out') {
@@ -628,6 +973,7 @@ function parseScoreArguments(argv) {
     lint: null,
     root: null,
     jev: false,
+    deem: false,
     out: null,
     outRequested: false,
     outMissing: false
@@ -637,8 +983,10 @@ function parseScoreArguments(argv) {
     const argument = argv[index];
     if (argument === '--jev') {
       options.jev = true;
+    } else if (argument === '--deem') {
+      options.deem = true;
     } else if (argument === '--out') {
-      if (!hasJevFlag) throw new Error('unknown option: --out');
+      if (!hasModelFlag) throw new Error('unknown option: --out');
       options.outRequested = true;
       const value = argv[index + 1];
       if (!value) {
@@ -659,17 +1007,18 @@ function parseScoreArguments(argv) {
     }
   }
 
-  if (!options.jev && options.outRequested) throw new Error('unknown option: --out');
-  if (options.jev && (options.out === null || options.outMissing)) {
-    throw new Error('--jev requires --out <dir>');
+  if (!options.jev && !options.deem && options.outRequested) throw new Error('unknown option: --out');
+  if ((options.jev || options.deem) && (options.out === null || options.outMissing)) {
+    throw new Error((options.deem ? '--deem' : '--jev') + ' requires --out <dir>');
   }
   if (options.labels === null) throw new Error('--labels is required');
-  if (options.jev) {
+  if (options.jev || options.deem) {
     return {
       labels: options.labels,
       lint: options.lint,
       root: options.root,
-      jev: true,
+      jev: options.jev,
+      deem: options.deem,
       out: options.out
     };
   }
@@ -725,33 +1074,45 @@ function main(argv) {
   const score = scoreLabels(parsed.rows, records);
   for (const line of formatScore(score)) console.log(line);
 
-  if (options.jev) {
+  if (options.jev || options.deem) {
     const callLog = createCallLog(options.out);
-    const gate = runJevGate(process.env, console.log, callLog);
-    let jev;
+    const columns = { lint: lintColumn(score) };
 
-    if (!gate.passed) {
-      jev = {
-        status: 'skipped',
-        reason: gate.reason,
-        path: gate.path,
-        provider: gate.provider,
-        jevVersion: JEV_VERSION
-      };
-    } else {
-      const joined = joinedLabeledRows(parsed.rows, records, score);
-      const root = options.root || getDefaultWorkspaceRoot();
-      const criteria = joined.map(({ record }) => getCriterionText(record, root));
-      jev = runJevArm(joined, criteria, score, gate, process.env, callLog, console.log);
+    if (options.jev) {
+      const gate = runJevGate(process.env, console.log, callLog);
+      if (!gate.passed) {
+        columns.jev = {
+          status: 'skipped',
+          reason: gate.reason,
+          path: gate.path,
+          provider: gate.provider,
+          jevVersion: JEV_VERSION
+        };
+      } else {
+        const joined = joinedLabeledRows(parsed.rows, records, score);
+        const root = options.root || getDefaultWorkspaceRoot();
+        const criteria = joined.map(({ record }) => getCriterionText(record, root));
+        columns.jev = runJevArm(joined, criteria, score, gate, process.env, callLog, console.log);
+      }
     }
 
-    const report = {
-      columns: {
-        lint: lintColumn(score),
-        jev
+    if (options.deem) {
+      const gate = deemGate(process.env, console.log);
+      if (!gate.passed) {
+        columns.deem = {
+          status: 'skipped',
+          reason: gate.reason,
+          found: gate.found ?? null
+        };
+      } else {
+        const joined = joinedLabeledRows(parsed.rows, records, score);
+        const root = options.root || getDefaultWorkspaceRoot();
+        const criteria = joined.map(({ record }) => getCriterionText(record, root));
+        columns.deem = runDeemArm(joined, criteria, score, gate, process.env, callLog, console.log);
       }
-    };
-    fs.writeFileSync(path.join(options.out, 'report.json'), JSON.stringify(report, null, 2) + '\n');
+    }
+
+    fs.writeFileSync(path.join(options.out, 'report.json'), JSON.stringify({ columns }, null, 2) + '\n');
   }
 
   return 0;

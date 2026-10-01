@@ -46,8 +46,8 @@ contextType: "implementation"
 
 - [x] T004 027 gold and lineage filter (`score-stop-rater.cjs`, its vitest file, its catalog entry), Luna 6 max. Evidence: commit `55c33b363e`, suite 41 pass and 0 failing, census `sampled 25` with `no gold 72`
 - [x] T005 [P] 003 evidence clamp (`goal-core.cjs`, `goal-core.test.cjs`, `score-verifier-labeled-set.test.cjs`, the goal README), SWE 2 max. Evidence: commit `5543f6861e`, goal-core 78 pass and the five other goal suites at their baselines, 0 failing
-- [ ] T006 006 Jev arm (`score-goal-lint.cjs`, `score-goal-lint.test.cjs`), Luna 6 max, brief `006a.md`. Check: the suite passes with the stub-`jev` cases, and the three neighboring suites pass unchanged
-- [ ] T007 006 Deem arm (the same two files), after T006. Check: the four `deem arm skipped:` lines against a stub `cli-deem` and no server start
+- [x] T006 006 Jev arm (`score-goal-lint.cjs`, `score-goal-lint.test.cjs`), Luna 6 max, brief `006a.md`. Evidence: commit `a5b3c462f3`, score-goal-lint 14 pass (8 before), the three neighboring suites unchanged at 12, 16 and 4, the default run byte-identical to HEAD
+- [x] T007 006 Deem arm (the same two files), after T006. Evidence: score-goal-lint 21 pass with the stub `cli-deem` cases, plus a coverage stop for both backends after a 0-row `kill` showed up on the local server
 <!-- /ANCHOR:phase-2 -->
 
 ---
