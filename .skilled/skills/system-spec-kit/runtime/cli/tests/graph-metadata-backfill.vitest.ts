@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Graph Metadata Backfill
+// ───────────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';

@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime — Projection Contract Coverage                          ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Input:  CLI args (--dir).                                                ║
-// ║ Output: JSON to stdout.                                                  ║
-// ║ Exit:   0=clean, 1=script error, 2=conformance violation.                ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Projection Contract Coverage
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 
@@ -28,8 +24,16 @@
 // row: a parser that quietly drops rows would under-report the very gap this
 // guard exists to find.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const MANIFEST_REL = path.join('lib', 'legacy-projections', 'legacy-projection-manifest.ts');
 const RESEARCH_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-research-contract.ts');
@@ -135,6 +139,10 @@ const MODE_OWNER_PREFIXES = Object.freeze([
 // constant, surfacing as MODE_OWNED_COUNT_MISMATCH rather than being absorbed
 // into a single uncovered number that still happens to add up.
 const MODE_OWNED_EXPECTED_COUNT = 8;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function isModeOwned(legacyWriter) {
   return MODE_OWNER_PREFIXES.some((prefix) => legacyWriter.startsWith(prefix));
@@ -261,6 +269,10 @@ function contractExportsFactory(contractText, factoryName) {
   ];
   return forms.some((re) => re.test(contractText));
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function evaluate(entries, contractTexts) {
   const violations = [];
@@ -396,6 +408,10 @@ function evaluate(entries, contractTexts) {
     },
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 function main() {
   try {

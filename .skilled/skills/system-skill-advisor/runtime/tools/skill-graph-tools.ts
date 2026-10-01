@@ -10,7 +10,7 @@ import {
   handleSkillGraphPropagateEnhances,
 } from '../handlers/skill-graph/index.js';
 
-import type { CallerContext } from '../lib/context/caller-context.js';
+import type { CallerContext } from '../lib/caller-context.js';
 import type { ToolDefinition } from './types.js';
 
 type MCPResponse = {

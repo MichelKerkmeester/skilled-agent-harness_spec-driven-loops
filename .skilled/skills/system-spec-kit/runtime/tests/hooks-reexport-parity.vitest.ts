@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Hook Re-export Parity Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, expectTypeOf, it } from 'vitest';
 
 import * as claudeShared from '../hooks/claude/shared.js';

@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Path Containment Tests
+// ───────────────────────────────────────────────────────────────────
+
 // TEST: shared write-boundary containment
 //
 // Covers the one helper every CLI write boundary relies on: a target inside

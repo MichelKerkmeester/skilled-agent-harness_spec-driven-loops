@@ -2,6 +2,10 @@
 // MODULE: advisor_validate Handler
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { existsSync, readFileSync, realpathSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { dirname, resolve } from 'node:path';
@@ -37,6 +41,10 @@ import type {
   AdvisorValidateInput,
   AdvisorValidateOutput,
 } from '../schemas/advisor-tool-schemas.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
 
@@ -92,6 +100,10 @@ interface OutcomeTotals {
 
 type AdvisorValidateThresholdSemantics = AdvisorValidateOutput['thresholdSemantics'];
 type AdvisorValidateTelemetry = AdvisorValidateOutput['telemetry'];
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const FULL_CORPUS_THRESHOLD = 0.75;
 const HOLDOUT_THRESHOLD = 0.725;
@@ -188,6 +200,10 @@ const VALIDATION_THRESHOLD_SEMANTICS: AdvisorValidateThresholdSemantics = {
     confidenceOnly: false,
   },
 };
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function matchesOutcomeScope(
   record: { skillLabel: string; correctedSkillLabel?: string | null },
@@ -619,6 +635,10 @@ function buildTelemetrySummary(args: AdvisorValidateInput, workspaceRoot: string
     },
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export async function validateAdvisor(input: AdvisorValidateInput = { confirmHeavyRun: true }): Promise<AdvisorValidateOutput> {
   const args = AdvisorValidateInputSchema.parse(input);

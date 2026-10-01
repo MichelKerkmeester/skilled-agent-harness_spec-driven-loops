@@ -31,8 +31,7 @@ Current state:
 
 ```text
 predicates/
-+-- boolean-expr.ts
-`-- boolean-expr.test.ts
+`-- boolean-expr.ts
 ```
 
 ---
@@ -42,7 +41,6 @@ predicates/
 | Filename | Responsibility |
 | -------- | -------------- |
 | `boolean-expr.ts` | Defines predicate types, parsers, object validation, evaluation and prose-bleed detection |
-| `boolean-expr.test.ts` | Covers string parsing, object validation, unified `when:` parsing and evaluator behavior |
 
 ---
 

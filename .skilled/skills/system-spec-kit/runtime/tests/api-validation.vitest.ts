@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: API Key Validation Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { validateApiKey } from '@spec-kit/shared/embeddings/factory';
 

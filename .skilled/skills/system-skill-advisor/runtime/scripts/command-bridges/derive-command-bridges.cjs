@@ -1,11 +1,19 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ derive-command-bridges — Build the shadow command bridge projection      ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Derive Command Bridges
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 const { existsSync, readFileSync, readdirSync, writeFileSync } = require('node:fs');
 const { join, relative, resolve, sep } = require('node:path');
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const COMMAND_BRIDGES_DIR = __dirname;
 const REPO_ROOT = resolve(COMMAND_BRIDGES_DIR, '../../../../../..');
@@ -32,6 +40,10 @@ const TS_GENERATED_START = '// BEGIN GENERATED COMMAND BRIDGES';
 const TS_GENERATED_END = '// END GENERATED COMMAND BRIDGES';
 const PY_GENERATED_START = '# BEGIN GENERATED COMMAND BRIDGES';
 const PY_GENERATED_END = '# END GENERATED COMMAND BRIDGES';
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function readJson(filePath) {
   try {
@@ -366,6 +378,10 @@ function generatedSources(entries, pythonOwnerNormalization) {
     },
   ];
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function main() {
   const checkOnly = process.argv.includes('--check');

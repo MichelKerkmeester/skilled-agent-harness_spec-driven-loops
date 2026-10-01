@@ -2,6 +2,10 @@
 // MODULE: Authorized Result, Salvage, and Recovery Recording
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   LINEAGE_DISPATCH_RESOLVED_EVENT_TYPE,
   asDispatchReceiptPayload,
@@ -42,10 +46,18 @@ import type {
   RecordSalvageFragmentInput,
 } from './types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 interface ReceiptRecord {
   readonly payload: DispatchReceiptPayload;
   readonly verified: VerifiedLedgerEvent;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function conflict(message: string, details: Record<string, string | number | boolean | null>): never {
   throw new ResultEnvelopeError(ResultEnvelopeErrorCodes.CONFLICT, message, details);
@@ -122,6 +134,10 @@ function pairedEvents(
     return envelope.payload.dispatch_receipt_id === receiptId;
   });
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export async function recordLeafResult(
   input: RecordLeafResultInput,
@@ -303,6 +319,10 @@ export async function recordLeafRecovery(
   }
   return recorded(await input.writer.append(candidateEvent), candidateEvent);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export function resultPayloadFromVerified(event: VerifiedLedgerEvent): JsonObject {
   return asLeafResultPayload(event.event.effective.envelope.payload);

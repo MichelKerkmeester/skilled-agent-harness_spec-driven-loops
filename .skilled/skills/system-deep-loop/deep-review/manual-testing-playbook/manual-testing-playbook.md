@@ -635,7 +635,7 @@ Automated coverage for `deep-review` lives in the deep-loop runtime test tree an
 | `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` | Review-depth convergence integration |
 | `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-graph.vitest.ts` | Review-depth graph integration |
 | `.skilled/skills/system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts` | Review-depth validator integration |
-| `.skilled/skills/system-spec-kit/runtime/tests/deep-loop/review-depth-reducer.vitest.ts` | Review-depth reducer contract |
+| `.skilled/skills/system-spec-kit/runtime/tests/review-depth-reducer.vitest.ts` | Review-depth reducer contract |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts` | Auto-restart contract |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-contract-parity.vitest.ts` | Command/runtime contract parity |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-reducer-schema.vitest.ts` | Reducer schema contract |

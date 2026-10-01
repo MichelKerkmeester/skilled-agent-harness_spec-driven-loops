@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// BOUNDARY TESTS — memorySequence in loadPerFolderDescription
+// MODULE: Memory Sequence Boundary Tests
 // ───────────────────────────────────────────────────────────────────
 // Replaces tautological JS-runtime-only tests with tests that exercise
 // actual implementation functions with boundary values.

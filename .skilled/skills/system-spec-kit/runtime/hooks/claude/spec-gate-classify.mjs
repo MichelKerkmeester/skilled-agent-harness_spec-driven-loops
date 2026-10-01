@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Spec Gate Prompt Classifier
+// ───────────────────────────────────────────────────────────────────
 import * as guardCore from '../lib/spec-gate/spec-gate-core.mjs';
 import { parseJsonFailOpen, readStdin } from '../lib/hook-adapter-shared.mjs';
 

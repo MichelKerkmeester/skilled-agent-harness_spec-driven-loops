@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Canonical Dispatch Receipts
+// MODULE: Canonical Dispatch Receipts
 // ───────────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';

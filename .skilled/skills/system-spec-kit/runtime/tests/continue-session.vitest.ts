@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Continue Session Data Tests
+// ───────────────────────────────────────────────────────────────────
+
 // CONTINUE_SESSION coverage:
 // Uses collect-session-data extractor
 // Retains DB-dependent placeholders

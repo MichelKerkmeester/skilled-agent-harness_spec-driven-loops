@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Generate Context Save Lock
+// ───────────────────────────────────────────────────────────────────
+
 // TEST: Generate Context Canonical Save Lock
 // Verifies long-running saves keep single-writer ownership while abandoned locks recover.
 import { spawn } from 'node:child_process';

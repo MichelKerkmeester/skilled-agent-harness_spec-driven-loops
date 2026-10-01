@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# ====================================================================
-# check-skill-doc-frontmatter.sh — canonical frontmatter contract
-#                                  guard for skill reference/asset docs
-# ====================================================================
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: CHECK SKILL DOC FRONTMATTER
+# ───────────────────────────────────────────────────────────────
+# Canonical frontmatter contract guard for skill reference and asset docs.
 # Validates the doc-frontmatter contract the skill advisor harvests
 # (SPECKIT_ADVISOR_DOC_TRIGGERS): title, description, trigger_phrases
 # (3-8), importance_tier and contextType on every doc under

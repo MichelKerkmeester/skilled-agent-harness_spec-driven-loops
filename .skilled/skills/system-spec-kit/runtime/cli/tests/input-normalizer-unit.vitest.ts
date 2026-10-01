@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Input Normalizer Unit Tests
+// ───────────────────────────────────────────────────────────────────
 // TCOV-001: Focused unit tests for normalizeFileEntryLike via normalizeInputData
 import { describe, expect, it, vi } from 'vitest';
 import { normalizeInputData, validateInputData } from '../utils/input-normalizer';

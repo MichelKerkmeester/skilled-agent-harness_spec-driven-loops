@@ -1,12 +1,11 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Loop Lifecycle Taxonomy (shared backend contract)                       ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ One canonical contract for loop active states, legal transitions, and    ║
-// ║ terminal outcomes. stopReasons (WHY a session ended) and sessionOutcomes ║
-// ║ (WHAT happened to the candidate) remain orthogonal and must never be     ║
-// ║ overloaded into one another. Consumers import these instead of           ║
-// ║ redefining them, so accepted values and validation strings stay aligned. ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Loop Lifecycle Taxonomy
+// ───────────────────────────────────────────────────────────────────
+// One canonical contract for loop active states, legal transitions, and
+// terminal outcomes. stopReasons (WHY a session ended) and sessionOutcomes
+// (WHAT happened to the candidate) remain orthogonal and must never be
+// overloaded into one another. Consumers import these instead of
+// redefining them, so accepted values and validation strings stay aligned.
 
 'use strict';
 

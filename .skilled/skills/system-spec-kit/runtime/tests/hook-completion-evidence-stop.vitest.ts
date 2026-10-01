@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Claude Stop Hook Transport
+// ───────────────────────────────────────────────────────────────────
+
 // TEST: Claude Stop hook transport (completion-evidence-stop.cjs)
 // Covers the stdin/exit-code contract this standalone .cjs entrypoint owns,
 // as distinct from completion-evidence-sentinel.vitest.ts which covers the

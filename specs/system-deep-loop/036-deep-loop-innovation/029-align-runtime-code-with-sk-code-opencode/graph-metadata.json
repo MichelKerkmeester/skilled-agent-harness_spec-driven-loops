@@ -39,22 +39,28 @@
       "sk-create-readme"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "scratch/investigation/devin-swe2max-merge-factcheck.md",
-      "scratch/investigation/devin-swe2max-merge-factcheck.brief.txt",
+      "scratch/align-loop.sh",
+      "scratch/align_loop_checks.py",
+      "scratch/repoint_imports.py",
       ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/verify_alignment_drift.py",
       ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
+      ".skilled/skills/system-deep-loop/ARCHITECTURE.md",
+      "scratch/investigation/devin-swe2max-merge-factcheck.md",
       ".skilled/skills/sk-code/sk-code-opencode/assets/scripts/test_verify_alignment_drift.py",
       ".skilled/skills/sk-code/sk-code-opencode/references/shared/code-organization/directory-and-test-conventions.md",
       ".skilled/skills/sk-code/sk-code-obsidian/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
-      "scratch/investigation/census.py"
+      "scratch/loop-state/system-deep-loop-header.log",
+      "scratch/loop-state/system-deep-loop-sections.done",
+      "scratch/loop-state/system-deep-loop-readme.log",
+      ".skilled/scripts/run-node-tests.mjs"
     ],
     "entities": [
       {
@@ -88,15 +94,21 @@
         "source": "derived"
       },
       {
-        "name": "devin-swe2max-merge-factcheck.md",
-        "kind": "doc",
-        "path": "scratch/investigation/devin-swe2max-merge-factcheck.md",
+        "name": "align-loop.sh",
+        "kind": "script",
+        "path": "scratch/align-loop.sh",
         "source": "derived"
       },
       {
-        "name": "devin-swe2max-merge-factcheck.brief.txt",
+        "name": "align_loop_checks.py",
         "kind": "file",
-        "path": "scratch/investigation/devin-swe2max-merge-factcheck.brief.txt",
+        "path": "scratch/align_loop_checks.py",
+        "source": "derived"
+      },
+      {
+        "name": "repoint_imports.py",
+        "kind": "file",
+        "path": "scratch/repoint_imports.py",
         "source": "derived"
       },
       {
@@ -109,6 +121,18 @@
         "name": "code-style-guide.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/shared/references/universal/code-style-guide.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "devin-swe2max-merge-factcheck.md",
+        "kind": "doc",
+        "path": "scratch/investigation/devin-swe2max-merge-factcheck.md",
         "source": "derived"
       },
       {
@@ -130,9 +154,27 @@
         "source": "derived"
       },
       {
-        "name": "census.py",
+        "name": "system-deep-loop-header.log",
         "kind": "file",
-        "path": "scratch/investigation/census.py",
+        "path": "scratch/loop-state/system-deep-loop-header.log",
+        "source": "derived"
+      },
+      {
+        "name": "system-deep-loop-sections.done",
+        "kind": "file",
+        "path": "scratch/loop-state/system-deep-loop-sections.done",
+        "source": "derived"
+      },
+      {
+        "name": "system-deep-loop-readme.log",
+        "kind": "file",
+        "path": "scratch/loop-state/system-deep-loop-readme.log",
+        "source": "derived"
+      },
+      {
+        "name": "run-node-tests.mjs",
+        "kind": "file",
+        "path": ".skilled/scripts/run-node-tests.mjs",
         "source": "derived"
       },
       {
@@ -164,48 +206,12 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement Code",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Prerequisites",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Orchestrator",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Code under `.skilled/skills/system-deep-loop/runtime/` does not follow the sk-code-opencode comment and structure rules in `sk-code-opencode/references/typescript/style-guide/overview-strict-and-naming.md` §2 and §4",
     "created_at": "2026-09-30T05:43:46Z",
-    "last_save_at": "2026-09-30T07:46:01.760Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-09-30T22:06:48.496Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -214,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6b7f65542ef0fabce1d6fb905ab1ffff20223404220a33f090bf1c9164446c6",
+    "source_fingerprint": "sha256:3646cc31320748173b0d17dddcae8345b9a3344b51f90e003159fae4751d62e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5e662a01bedd2122c8563f5e1c8aeca6d5ab77f2e7616f09f32cdd9779225142",
-      "plan.md": "0abf019805145522bfda190fd7a1261b860df0bbb14acf75780fdc03fb60389e",
-      "tasks.md": "ec3a82476cbf34691c15bcd58156258a420fa8bd1db5da4ebb8122e4e5837e2f",
-      "implementation-summary.md": "4183ded66e2d80aaef5f1caf375368d4925626eb699e8ab51416692636ebf24e"
+      "spec.md": "145e4f70495b87177fdef412633d343f68a6b8b25917665878fb8ff08e9a6881",
+      "plan.md": "4681a61bfec39fb90e1bbfad97ec896e408f543d5d9f1ca1a81e3d52a0be43f5",
+      "tasks.md": "5e27b9b16a75067c3055f39387e67fc6143c1e7253acffa97df61b860f421ebe",
+      "implementation-summary.md": "bc19d3e6596486521788044f1d0aa7699fc7862ebd2441d434e615a06d426c7a"
     },
     "last_active_at": null
   }

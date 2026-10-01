@@ -4,6 +4,10 @@
 // ───────────────────────────────────────────────────────────────────
 // Aggregates smart-router compliance JSONL into a markdown report.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
@@ -12,6 +16,10 @@ import type {
   ComplianceRecord,
 } from './smart-router-telemetry.js';
 import { isMainModule } from '../lib/esm-entry.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export interface AnalyzerOptions {
   readonly workspaceRoot?: string;
@@ -39,6 +47,10 @@ export interface TelemetryAnalysis {
   readonly noData: boolean;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const DEFAULT_INPUT_PATH = '.skilled/skills/.state/smart-router-telemetry/compliance.jsonl';
 const DEFAULT_OUTPUT_DIR = '.skilled/skills/system-spec-kit/runtime/cli/observability';
 const IS_CLI_ENTRY = isMainModule(import.meta.url);
@@ -50,6 +62,10 @@ const CLASSES: ComplianceClass[] = [
   'missing_expected',
   'unknown_unparsed',
 ];
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function locateWorkspaceRoot(startDir = process.cwd()): string {
   let current = path.resolve(startDir);
@@ -159,6 +175,10 @@ function collapsePromptRecords(records: readonly ComplianceRecord[]): Compliance
     };
   });
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function analyzeTelemetryRecords(args: {
   readonly records: readonly ComplianceRecord[];
@@ -329,6 +349,10 @@ export function writeTelemetryAnalysisReport(analysis: TelemetryAnalysis, option
   fs.writeFileSync(outputPath, formatTelemetryAnalysisReport(analysis), 'utf8');
   return outputPath;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 function argValue(args: readonly string[], name: string): string | undefined {
   const index = args.indexOf(name);

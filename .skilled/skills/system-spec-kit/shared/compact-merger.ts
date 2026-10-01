@@ -2,7 +2,15 @@
 // MODULE: Compact Merger
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { allocateBudget, createDefaultSources, type AllocationResult } from './budget-allocator.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 type SharedPayloadSourceKind = 'memory' | 'code-graph' | 'semantic' | 'session';
 
@@ -40,12 +48,20 @@ export interface SharedPayloadEnvelope {
   selection?: PreMergeSelectionMetadata;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. ENVELOPE HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function createCompactPayloadEnvelope(input: SharedPayloadEnvelope): SharedPayloadEnvelope {
   return {
     ...input,
     sections: input.sections.filter((section) => section.content.trim().length > 0),
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. MERGE CONTRACT TYPES
+// ───────────────────────────────────────────────────────────────────
 
 export interface MergeInput {
   codeGraph: string;
@@ -79,6 +95,10 @@ export interface MergedBrief {
     selection?: PreMergeSelectionMetadata;
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. TOKEN AND DEDUP HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function estimateTokens(text: string): number {
   return Math.ceil(text.length / 4);
@@ -134,6 +154,10 @@ function deduplicateFilePaths(sections: MergedBrief['sections']): number {
 
   return removedCount;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export function mergeCompactBrief(
   input: MergeInput,

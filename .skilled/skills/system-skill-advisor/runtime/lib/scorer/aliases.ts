@@ -2,6 +2,9 @@
 // MODULE: Advisor Skill Alias Groups
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 export const BASE_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   'create:agent': ['command-create-agent', '/create:agent', 'create:agent'],
   'create:manual-testing-playbook': [
@@ -76,6 +79,9 @@ const ALIAS_TO_CANONICAL = new Map<string, string>(
   ]),
 );
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 export function canonicalSkillId(skillId: string): string {
   return ALIAS_TO_CANONICAL.get(skillId) ?? skillId;
 }
@@ -88,9 +94,9 @@ export function skillInAliasSet(actual: string, expected: readonly string[]): bo
   return expected.some((candidate) => skillMatchesAlias(actual, candidate));
 }
 
-// ───────────────────────────────────────────────────────────────
-// MODULE: Merged Deep-Loop Identity + Mode Layer
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 3. MERGED DEEP-LOOP IDENTITY + MODE LAYER
+// ───────────────────────────────────────────────────────────────────
 //
 // The active legacy deep-loop modes (deep-research, deep-review,
 // deep-ai-council, deep-improvement) are folded into one public skill,

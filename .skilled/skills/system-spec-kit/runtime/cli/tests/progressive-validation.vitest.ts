@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Progressive Validation Tests
+// ───────────────────────────────────────────────────────────────────
+
 // TEST: Progressive Validation Pipeline
 // Validates progressive-validate.sh stage behavior and compatibility
 // Against validate.sh baselines, auto-fix reporting, and JSON contract outputs.

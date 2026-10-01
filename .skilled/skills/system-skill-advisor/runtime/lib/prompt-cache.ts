@@ -2,16 +2,25 @@
 // MODULE: Skill Advisor Exact Prompt Cache
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import { createHmac, createHash } from 'node:crypto';
 import { performance } from 'node:perf_hooks';
 import { isSpeckitMetricsEnabled, speckitMetrics } from './metrics.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT, resolvedConfidenceThreshold, resolvedUncertaintyThreshold } from './compat/contract.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 export const ADVISOR_PROMPT_CACHE_TTL_MS = 5 * 60 * 1000;
 export const ADVISOR_PROMPT_CACHE_DEFAULT_MAX_TOKENS = 80;
 export const ADVISOR_PROMPT_CACHE_MAX_TOKENS = 120;
 export const MAX_CACHE_ENTRIES = 1000;
 
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 export interface AdvisorThresholds {
   readonly confidenceThreshold?: number;
   readonly uncertaintyThreshold?: number;
@@ -39,6 +48,9 @@ export interface AdvisorPromptCacheEntry<T> {
   readonly expiresAtMs: number;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 const SESSION_LAUNCH_TIME = performance.timeOrigin.toFixed(3);
 const DEFAULT_SECRET = createHash('sha256')
   .update(`${process.pid}:${SESSION_LAUNCH_TIME}:${Math.random()}`)
@@ -81,6 +93,9 @@ export function createAdvisorPromptCacheKey(
   return createHmac('sha256', secret).update(payload).digest('hex');
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 /** In-memory exact cache for advisor briefs scoped to one host process. */
 export class AdvisorPromptCache<T> {
   private readonly entries = new Map<string, AdvisorPromptCacheEntry<T>>();
@@ -190,4 +205,7 @@ export class AdvisorPromptCache<T> {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 export const advisorPromptCache = new AdvisorPromptCache<unknown>();

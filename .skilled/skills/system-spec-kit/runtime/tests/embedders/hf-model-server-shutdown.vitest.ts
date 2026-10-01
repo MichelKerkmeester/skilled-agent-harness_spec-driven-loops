@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: hf-model-server busy-shutdown failsafe timing (live subprocess)
+// MODULE: HF Model Server Shutdown Timing
 // ───────────────────────────────────────────────────────────────────
 // Spawns the real hf-model-server.cjs shutdown wiring (via the fixture
 // harness, which injects only a fake/delay-controllable loadModel — the
@@ -25,7 +25,7 @@ import { dirname, resolve } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const harnessPath = resolve(here, '__fixtures__', 'hf-model-server-shutdown-harness.cjs');
+const harnessPath = resolve(here, 'fixtures', 'hf-model-server-shutdown-harness.cjs');
 
 // The pre-fix fixed failsafe. Busy-shutdown assertions below probe a point
 // past this value to prove the process is still alive there (which the

@@ -1,11 +1,12 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime — Fan-Out Lineage Salvage                              ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Recovers missing iteration files from captured subprocess stdout when    ║
-// ║ a CLI executor fails to write outputs (sandbox write restrictions, etc). ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Fan-Out Lineage Salvage
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -16,10 +17,18 @@ if (process.env.DEEP_LOOP_TSX_LOADED !== '1') {
 
 const { mergeJsonlUnderLock } = require('../lib/deep-loop/jsonl-repair.ts');
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const STATE_LOG_BY_LOOP_TYPE = {
   research: 'deep-research-state.jsonl',
   review: 'deep-review-state.jsonl',
 };
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Parse opencode --format json text parts from subprocess stdout.
@@ -56,6 +65,10 @@ function extractTextFromOpencodeJson(stdout) {
   const raw = stdout.trim();
   return raw.length > 50 ? raw.slice(0, 50_000) : null;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * After a lineage subprocess exits, recover any missing or empty iteration
@@ -168,5 +181,9 @@ function runSalvageSweep(lineageDir, loopType, savedStdout) {
 
   return { salvaged, failed };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 module.exports = { runSalvageSweep, extractTextFromOpencodeJson };

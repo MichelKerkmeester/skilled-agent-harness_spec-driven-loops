@@ -25,7 +25,7 @@ import {
   LocksAndFencingErrorCodes,
   appendAuthorizedThroughFence,
 } from '../locks-and-fencing/index.js';
-import { resolveCutoverBinding } from '../cutover-binding/index.js';
+import { resolveCutoverBinding } from './resolve-cutover-binding.js';
 import { resolveAuthorityRoot } from '../authority-root/index.js';
 import { admitCanonicalWrite } from '../deep-research-authority/index.js';
 import {
@@ -66,7 +66,7 @@ import type {
   LegacyProjectionContract,
   LegacyProjectionRefreshBoundary,
 } from '../legacy-projections/index.js';
-import type { CutoverBindingEnvironment, ResolvedCutoverBinding } from '../cutover-binding/index.js';
+import type { CutoverBindingEnvironment, ResolvedCutoverBinding } from './resolve-cutover-binding.js';
 import type {
   AuthoritySelectorResult,
   CutoverCertificateMode,

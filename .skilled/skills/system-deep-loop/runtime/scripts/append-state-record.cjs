@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep-Loop State Record Append
+// ───────────────────────────────────────────────────────────────────
+
 'use strict';
 
 // Deterministic append of one JSONL state record read from stdin.

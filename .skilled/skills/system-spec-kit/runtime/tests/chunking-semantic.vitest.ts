@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Semantic Chunk Budget Tests
+// ───────────────────────────────────────────────────────────────────
 // TEST: semanticChunk budget bounding + Unicode-safe truncation
 // Verifies the chunker never returns text longer than maxLength (UTF-16 units),
 // honors the budget guard on the critical-section loop, and does not split

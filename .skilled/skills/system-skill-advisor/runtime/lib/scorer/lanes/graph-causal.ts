@@ -2,8 +2,16 @@
 // MODULE: Graph Causal Lane
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import type { NormalizedAffordance } from '../../affordance-normalizer.js';
 import type { AdvisorProjection, LaneMatch } from '../types.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export interface GraphCausalOptions {
   readonly maxDepth?: number;
@@ -25,6 +33,10 @@ interface GraphCausalScoreEntry {
   readonly conflictEvidence: readonly string[];
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const EDGE_MULTIPLIER: Readonly<Record<string, number>> = {
   enhances: 0.55,
   siblings: 0.35,
@@ -32,6 +44,10 @@ const EDGE_MULTIPLIER: Readonly<Record<string, number>> = {
   prerequisite_for: 0.30,
   conflicts_with: -0.35,
 };
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function buildGraphCausalScores(
   seedMatches: readonly LaneMatch[],
@@ -148,6 +164,10 @@ function toLaneMatches(
       evidence: value[evidenceKey].slice(0, 6),
     }));
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export function scoreGraphCausalLaneSplit(
   seedMatches: readonly LaneMatch[],

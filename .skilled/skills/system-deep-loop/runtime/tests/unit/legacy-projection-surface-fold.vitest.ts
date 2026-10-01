@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Legacy Projection Surface Fold
+// ───────────────────────────────────────────────────────────────────
+
 // Proves the surface-fold helper composes multiple single-artifact contracts
 // from one census surface: a mixed jsonl+md surface, and a per-iteration delta
 // fan-out that partitions the same events into one jsonl artifact per

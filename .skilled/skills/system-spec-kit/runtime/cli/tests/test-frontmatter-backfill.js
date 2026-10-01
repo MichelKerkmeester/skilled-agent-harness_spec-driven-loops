@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Frontmatter Backfill Tests
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 import { createRequire } from 'node:module';

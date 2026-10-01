@@ -15,6 +15,10 @@
 //   and the caller must refuse THAT write instead of persisting raw
 //   text. Clean input never errors — it passes through unchanged.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 /** Raised when the scrubber itself fails; callers must refuse the write. */
 export class SecretScrubberError extends Error {
   constructor(message: string, options?: { cause?: unknown }) {
@@ -40,6 +44,10 @@ export interface SecretPattern {
    */
   replacement?: string;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Ordered scrub patterns — most specific first so narrower kinds win
@@ -130,6 +138,10 @@ const SECRET_PATTERNS: SecretPattern[] = [
   },
 ];
 
+// ───────────────────────────────────────────────────────────────────
+// 3. RESULT TYPES
+// ───────────────────────────────────────────────────────────────────
+
 export interface ScrubResult {
   /** The scrubbed text with secrets replaced by typed markers. */
   text: string;
@@ -145,9 +157,9 @@ export interface RedactionStats {
   lastRedactionAt: string | null;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   MODULE STATE — process-lifetime redaction telemetry
-----------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. MODULE STATE
+// ───────────────────────────────────────────────────────────────────
 
 let totalRedactions = 0;
 let byKind: Record<string, number> = {};
@@ -169,9 +181,9 @@ export function resetRedactionStats(): void {
   lastRedactionAt = null;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   SCRUBBING
-----------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. SCRUBBING
+// ───────────────────────────────────────────────────────────────────
 
 const activePatterns: SecretPattern[] = SECRET_PATTERNS;
 
@@ -238,7 +250,7 @@ function applyReplacementTemplate(pattern: SecretPattern, match: string): string
   return match.replace(single, pattern.replacement ?? `[REDACTED:${pattern.kind}]`);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   TEST SURFACE
-----------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. TEST SURFACE
+// ───────────────────────────────────────────────────────────────────
 

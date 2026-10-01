@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Hook State Management
+// MODULE: Hook State Management
 // ───────────────────────────────────────────────────────────────────
 
 import { createHash } from 'node:crypto';

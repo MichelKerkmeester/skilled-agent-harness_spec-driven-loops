@@ -11,9 +11,15 @@
 // material out of this module is what lets the containment guarantee hold by
 // construction — there is simply no path from these primitives to a child.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { createHmac, timingSafeEqual } from 'node:crypto';
 
-// ───── KEY DERIVATION ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. KEY DERIVATION
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Derive a per-dispatch signing key from the run-master secret and dispatchId.
@@ -33,7 +39,9 @@ export function deriveReceiptKey(runMasterSecret: string, dispatchId: string): s
   return hmac.digest('hex');
 }
 
-// ───── CANONICAL SERIALIZATION ─────
+// ───────────────────────────────────────────────────────────────────
+// 3. CANONICAL SERIALIZATION
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Serialize a value to canonical JSON: object keys sorted recursively, arrays
@@ -66,7 +74,9 @@ function receiptPayload(record: object): Record<string, unknown> {
   return rest;
 }
 
-// ───── SIGN / VERIFY ─────
+// ───────────────────────────────────────────────────────────────────
+// 4. SIGN / VERIFY
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Sign a receipt record, returning the hex HMAC-SHA256 over its canonical JSON.

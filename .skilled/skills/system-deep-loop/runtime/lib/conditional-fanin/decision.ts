@@ -2,6 +2,10 @@
 // MODULE: Conditional Fan-In Decision
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   canonicalBytes,
   sha256Bytes,
@@ -24,12 +28,20 @@ import type {
 } from './types.js';
 import type { LeafResultPayload } from '../result-envelopes/index.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const TRIGGER_PRECEDENCE: readonly FanInPrimaryTrigger[] = Object.freeze([
   'fail-closed-anomaly',
   'budget-floor',
   'sufficiency',
   'all-eligible-terminal',
 ]);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function classificationFor(trigger: FanInPrimaryTrigger): FanInClassification {
   switch (trigger) {
@@ -43,6 +55,10 @@ function classificationFor(trigger: FanInPrimaryTrigger): FanInClassification {
       return 'all-eligible-terminal';
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function evaluateAwaitPredicate(view: FanInDecisionView): AwaitPredicateResult {
   const sufficiency = evaluateSufficiency(view.acceptedResults, view.policy);

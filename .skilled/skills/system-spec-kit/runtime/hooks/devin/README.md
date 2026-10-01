@@ -38,7 +38,7 @@ These adapters are built, typechecked (`tsc --noEmit`, 0 errors), compiled, dire
 | `session-start.ts` | `SessionStart` adapter. Delegates to `session-prime.js` and emits the returned context. |
 | `user-prompt-submit.ts` | `UserPromptSubmit` adapter. Delegates to `user-prompt-submit.js` and normalizes its JSON response into the Devin envelope. |
 | `session-stop.ts` | `Stop` adapter. Delegates to the compiled `../claude/session-stop.js` via the same `shared.ts` pattern above -- no core change needed, `DevinHookEvent` already included `'Stop'`. |
-| `completion-evidence-stop.cjs` | `Stop` adapter, plain directly-runnable `.cjs` (no build step). Reads the Stop payload, resolves the active packet from the shared `lastSpecFolder` state file, and delegates policy to `../../lib/hooks/completion-evidence-sentinel.cjs`. Advisory only -- never emits a block/continue decision. |
+| `completion-evidence-stop.cjs` | `Stop` adapter, plain directly-runnable `.cjs` (no build step). Reads the Stop payload, resolves the active packet from the shared `lastSpecFolder` state file, and delegates policy to `../lib/completion-evidence-sentinel.cjs`. Advisory only -- never emits a block/continue decision. |
 | `post-compaction.cjs` | `PostCompaction` adapter -- **bespoke, not a port**. Devin fires `PostCompaction` *after* compaction with only `session_id` + a possibly-null `summary`, unlike Claude's before-compaction `PreCompact`. Implements a 4-step recovery chain: retain `summary` first, rehydrate spec-folder continuity from the shared `lastSpecFolder` state, provenance/length sanitization (4096-byte cap + control-char strip), then emits `additionalContext` directly. |
 
 ---
@@ -59,7 +59,6 @@ This folder also holds the Devin CLI side of the Gate-3 spec-folder discipline (
 | `spec-gate-classify.mjs` | `UserPromptSubmit` hook. Runs `classifyIntent()` and opens the session gate. Emits **nothing**: the question is delivered at the first mutation. | **Live**, gate opens on the turn; delivery now happens at enforce time. |
 | `spec-gate-enforce.mjs` | `PreToolUse(^exec$\|^edit$)` hook. Calls `evaluateMutation()` directly; deny emits `permissionDecision: "deny"`, and the first in-gate advise adds the once-per-session mutation notice (marker recorded post-envelope). | **Live for observed tool paths**: deny branch unobserved end to end. |
 | `permission-request-policy.mjs` | `PermissionRequest` hook. Combines the spec-gate mutation policy with the dispatch hard-rule engine (`.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs`) to answer Devin permission prompts for write tools. | Registered; `PermissionRequest` unobserved in the live probe. |
-| `spec-gate-devin.test.mjs`, `permission-request-policy.test.mjs` | Co-located tests, run with `node --test`. | — |
 
 `.devin/hooks.v1.json` wires `spec-gate-classify.mjs` to `UserPromptSubmit`, `spec-gate-enforce.mjs` to `PreToolUse` (`^exec$`, `^edit$` matchers), and `permission-request-policy.mjs` to `PermissionRequest`.
 

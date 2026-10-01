@@ -2,6 +2,10 @@
 // MODULE: Path Coverage Reducer
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   canonicalBytes,
   canonicalJson,
@@ -22,7 +26,15 @@ import type {
   SemanticEvidenceGrowthRecord,
 } from './types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const SHA256_PATTERN = /^[a-f0-9]{64}$/;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function compareText(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
@@ -200,6 +212,10 @@ function finalizeProjection(
   };
   return canonicalFreeze({ ...core, projectionHash: projectionHash(core) });
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** Create the replay base state for every path in a frozen universe. */
 export function createEmptyPathCoverageProjection(

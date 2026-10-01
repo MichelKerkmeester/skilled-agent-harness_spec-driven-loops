@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Research Projections Contract
+// ───────────────────────────────────────────────────────────────────
+
 // Proves the deep-research-projections projection surface folds ledger
 // events into the ledger-derivable findings registry whose JSON shape
 // matches the exact records the source/evidence/claim/supersession stems

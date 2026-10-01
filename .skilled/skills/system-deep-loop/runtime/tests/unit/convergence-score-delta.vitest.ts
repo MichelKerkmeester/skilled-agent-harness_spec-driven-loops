@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Convergence Score Delta Tests
+// ───────────────────────────────────────────────────────────────────
 import { describe, expect, it } from 'vitest';
 
 import { createRequire } from 'node:module';

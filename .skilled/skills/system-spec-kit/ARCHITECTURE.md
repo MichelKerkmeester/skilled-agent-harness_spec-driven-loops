@@ -74,18 +74,22 @@ The package's operator-facing recovery surface is `/speckit:resume`. The recover
 
 ```text
 system-spec-kit/
-├── runtime/cli/                # CLI generation, validation, retrieval index, sync
-├── runtime/             # Spec-kit engine, consumed as a library
-│   ├── api/                # Public barrel for the scripts workspace
-│   ├── handlers/           # Spec-document discovery and the save-path folder mutex
-│   ├── lib/                # Validation, graph metadata, description, continuity, resume
-│   ├── hooks/              # Per-runtime hook adapters and the shared spec-gate core
+├── runtime/                # Spec-kit engine plus the CLI workspace
+│   ├── api/                # Public barrel for the CLI workspace
+│   ├── cli/                # CLI generation, validation, retrieval index, sync
+│   │   ├── hermes/         # Hermes prompt and skill-copy generators
+│   │   └── tests/          # CLI suites and golden snapshots (tests/snapshots/)
 │   ├── core/               # Runtime path and config resolution
 │   ├── data/               # Committed trigger index the Gate 1 lookup reads
-│   ├── runtime/cli/            # Build finalizer, metadata repair, test runners
-│   ├── tests/              # Vitest coverage
+│   ├── handlers/           # Spec-document discovery and the save-path folder mutex
+│   ├── hooks/              # Per-runtime hook adapters
+│   │   └── lib/            # Spec-gate core and completion-evidence sentinel
+│   ├── lib/                # Validation, graph metadata, description, continuity, resume
+│   ├── scripts/            # Build finalizer and sharded test runners
+│   ├── tests/              # Vitest suites, plus node:test hook suites in tests/hooks/
 │   └── stress-test/        # Opt-in load and contention suites
-├── shared/                 # Neutral modules importable by scripts + engine
+├── shared/                 # Neutral modules importable by the CLI and the engine
+│   └── tests/              # node:test suites for the shared modules
 ├── templates/              # Level contract and document templates
 ├── references/             # Workflow contracts and playbooks
 └── feature-catalog/        # Capability inventory
@@ -137,7 +141,7 @@ The engine is composed of focused subsystems that share a public barrel and a fi
 
 **Discovery and continuity.** `handlers/spec-doc-discovery.ts` walks the filesystem for canonical spec documents and detects a folder's level; `lib/discovery/` re-exports it as a seam so `lib/` code depends inward rather than reaching sideways. `lib/continuity/` owns the bounded continuity record and `lib/resume/` builds the ladder a resume walks.
 
-**Hook adapters.** `hooks/{claude,codex,cursor,devin,pi}/` translate each runtime's payload onto shared implementations and emit that runtime's own envelope shape. Policy stays in `hooks/lib/spec-gate/spec-gate-core.mjs`, so the core never changes for a new runtime, and `lib/hooks/completion-evidence-sentinel.cjs` holds the runtime-neutral completion-evidence decision.
+**Hook adapters.** `hooks/{claude,codex,cursor,devin,pi}/` translate each runtime's payload onto shared implementations and emit that runtime's own envelope shape. Policy stays in `hooks/lib/spec-gate/spec-gate-core.mjs`, so the core never changes for a new runtime, and `hooks/lib/completion-evidence-sentinel.cjs` holds the runtime-neutral completion-evidence decision.
 
 **Public surface.** `api/index.ts` is the supported import surface. Every export has a named caller in the scripts workspace.
 
@@ -167,7 +171,7 @@ Spec-kit ships a runtime hook surface that wires into each AI client's session l
 
 **Hook matrix.** Claude Code injects prompt-time briefs directly. OpenCode supports native `SessionStart` and `UserPromptSubmit` hooks when `[features].opencode_hooks = true` in `~/opencode.json` and `~/.opencode/hooks.json` is wired. OpenCode delivers context through local plugins under `.opencode/plugins/`.
 
-**Plugin bridges and local plugins.** Bridge-backed OpenCode plugin entrypoints live under `.skilled/plugins/` and import thin helpers that call into `runtime/lib/hooks/` or sibling daemon surfaces. Standalone local plugins such as `.skilled/plugins/opencode-goal.js` stay in the same plugin directory but own their state and hooks directly instead of using a daemon bridge.
+**Plugin bridges and local plugins.** Bridge-backed OpenCode plugin entrypoints live under `.skilled/plugins/` and import thin helpers that call into `runtime/hooks/lib/` or sibling daemon surfaces. Standalone local plugins such as `.skilled/plugins/opencode-goal.js` stay in the same plugin directory but own their state and hooks directly instead of using a daemon bridge.
 
 **Payload shape.** Hooks share the same compact JSON payload (`bootstrap.json` style) across runtimes so callers can rely on consistent fields regardless of transport.
 

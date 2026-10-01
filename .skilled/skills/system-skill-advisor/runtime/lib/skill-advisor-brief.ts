@@ -2,6 +2,9 @@
 // MODULE: Skill Advisor Brief Producer
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import { performance } from 'node:perf_hooks';
 import {
   createSharedPayloadEnvelope,
@@ -61,6 +64,10 @@ export {
   isAdvisorRuntime,
   type AdvisorRuntime,
 };
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 export type AdvisorHookStatus = AdvisorEnvelopeStatus;
 export type AdvisorHookFreshness = AdvisorEnvelopeFreshness;
 
@@ -108,6 +115,9 @@ interface CachedAdvisorHookResult extends AdvisorHookResult {
   readonly brief: string;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const DEFAULT_TOKEN_CAP = 80;
 const HARD_TOKEN_CAP = 120;
 export const DEFAULT_ADVISOR_CONFIDENCE_THRESHOLD = resolvedConfidenceThreshold();
@@ -121,6 +131,9 @@ const DEFAULT_METRICS: AdvisorHookMetrics = {
   tokenCap: DEFAULT_TOKEN_CAP,
 };
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 export interface ResolvedAdvisorThresholdConfig {
   readonly confidenceThreshold: number;
   readonly uncertaintyThreshold: number;
@@ -424,6 +437,9 @@ export function skippedAdvisorResultFor(prompt: string): AdvisorHookResult | nul
   });
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 /** Build the typed skill-advisor result consumed by all runtime hook renderers. */
 export async function buildSkillAdvisorBrief(
   prompt: string,

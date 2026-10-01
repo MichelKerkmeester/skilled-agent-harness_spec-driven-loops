@@ -2,6 +2,10 @@
 // MODULE: Claim Continuity Service
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   AppendOnlyLedger,
   TransitionAuthorizationGateway,
@@ -83,6 +87,10 @@ import type {
   RecordClaimMatchInput,
 } from './claim-continuity-types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export interface ClaimContinuityRuntimeOptions {
   readonly rootDirectory: string;
   readonly ledgerId?: string;
@@ -100,6 +108,10 @@ export interface ClaimContinuityRuntime {
   readonly policy: PolicyReference;
   readonly authority: 'legacy';
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function semanticEventId(kind: string, value: JsonObject): string {
   return `claim-${kind}-${sha256Bytes(canonicalBytes(value))}`;
@@ -138,6 +150,10 @@ function withoutEventMetadata(record: ClaimMatchRecord): JsonObject {
   delete copy.ledger_sequence;
   return copy as JsonObject;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** Authorized dark service; legacy readers and writers remain outside this boundary. */
 export class ClaimContinuityService {
@@ -746,6 +762,10 @@ export class ClaimContinuityService {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 /** Pin actor, capability, and evidence to the prepared request so unverified identity cannot authorize. */
 function pinRequestIdentity(
   context: Readonly<{ evaluationInput: PolicyEvaluationInput }>,
@@ -756,6 +776,10 @@ function pinRequestIdentity(
     evidenceDigest: context.evaluationInput.evidenceDigest,
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Assemble an isolated dark runtime alongside, never inside, the identity runtime. */
 export function createClaimContinuityRuntime(

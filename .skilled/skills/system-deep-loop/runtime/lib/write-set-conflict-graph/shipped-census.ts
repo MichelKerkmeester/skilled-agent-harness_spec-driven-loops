@@ -2,6 +2,10 @@
 // MODULE: Shipped Mode Resource Census
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { ResourceKinds } from './types.js';
 
 import type {
@@ -13,6 +17,10 @@ import type {
   ResourceMutability,
 } from './types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const SHIPPED_MODE_CENSUS_VERSION = 'shipped-mode-census/v1' as const;
 
 const MODE_INTERFACE_CONTRACT =
@@ -21,6 +29,10 @@ const MODE_INTERFACE_CONTRACT =
 const CLOSURE_CONTRACT =
   '.opencode/specs/system-deep-loop/036-deep-loop-innovation/'
   + '012-shared-mode-contracts-and-fixtures/002-cross-mode-closures/spec.md';
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function resource(
   identity: string,
@@ -69,6 +81,10 @@ function declaration(
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. PATH CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const researchReducer =
   '.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs';
 const researchPivot =
@@ -107,6 +123,10 @@ const skillRunner =
   '.skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs';
 const skillAblation =
   '.skilled/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/d4-ablation.cjs';
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
   declaration(
@@ -578,6 +598,10 @@ export const SHIPPED_MODE_CENSUS: readonly ModeResourceDeclaration[] = [
     ['004-deep-improvement-common'],
   ),
 ] as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export function shippedModeCensus(): readonly ModeResourceDeclaration[] {
   return SHIPPED_MODE_CENSUS;

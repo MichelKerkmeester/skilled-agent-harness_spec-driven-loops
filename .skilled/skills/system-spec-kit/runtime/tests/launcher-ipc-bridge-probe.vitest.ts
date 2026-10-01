@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Launcher IPC Bridge Probe
+// ───────────────────────────────────────────────────────────────────
 import { EventEmitter } from 'node:events';
 import net from 'node:net';
 import { mkdirSync, mkdtempSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';

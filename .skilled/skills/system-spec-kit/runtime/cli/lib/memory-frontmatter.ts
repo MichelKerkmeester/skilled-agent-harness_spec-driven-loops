@@ -3,7 +3,15 @@
 // ───────────────────────────────────────────────────────────────────
 // Shared helpers for memory-specific frontmatter quality.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { extractTriggerPhrases } from './trigger-extractor.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const GENERIC_MEMORY_DESCRIPTION = 'Session context memory template for Spec Kit indexing.';
 export const LEGACY_GENERIC_MEMORY_TRIGGER_PHRASES = [
@@ -14,6 +22,10 @@ export const LEGACY_GENERIC_MEMORY_TRIGGER_PHRASES = [
 
 const GENERIC_MEMORY_DESCRIPTION_NORMALIZED = GENERIC_MEMORY_DESCRIPTION.toLowerCase();
 const TITLE_CLEANUP_RE = /\s+/g;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function stripMarkdownNoise(value: string): string {
   return value
@@ -55,6 +67,10 @@ function buildSpecTokens(specFolder: string): string[] {
     .map((token) => token.trim().toLowerCase())
     .filter((token) => token.length >= 3);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Check whether the full trigger-phrase list is exactly the legacy generic placeholder set. */
 export function hasLegacyGenericTriggerPhrases(triggerPhrases: string[]): boolean {

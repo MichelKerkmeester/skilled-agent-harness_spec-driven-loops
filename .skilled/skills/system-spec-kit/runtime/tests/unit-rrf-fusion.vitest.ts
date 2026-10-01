@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: RRF Fusion Unit Tests
+// ───────────────────────────────────────────────────────────────────
+
 // TEST: RRF Fusion (C138-P3) — Cross-Variant Multi-Query Fusion
 // Converted from: unit-rrf-fusion.test.ts (custom runner)
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';

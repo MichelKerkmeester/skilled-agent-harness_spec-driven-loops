@@ -2,12 +2,20 @@
 // MODULE: Advisor Daemon Lifecycle
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { resolve } from 'node:path';
 import { acquireSkillGraphLease } from './lease.js';
 import { createSkillGraphWatcher, type SkillGraphWatcher, type SkillGraphWatcherOptions } from './watcher.js';
 import { publishSkillGraphGeneration, readSkillGraphGeneration } from '../freshness/generation.js';
 import { createTrustState, type TrustStateSnapshot } from '../freshness/trust-state.js';
 import type { DaemonStatus } from '../../schemas/daemon-status.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export interface SkillGraphDaemonOptions extends Omit<SkillGraphWatcherOptions, 'workspaceRoot'> {
   readonly workspaceRoot: string;
@@ -24,6 +32,10 @@ export interface SkillGraphDaemon {
   status: () => DaemonStatus;
   shutdown: (reason?: string) => Promise<void>;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export async function startSkillGraphDaemon(options: SkillGraphDaemonOptions): Promise<SkillGraphDaemon> {
   const workspaceRoot = resolve(options.workspaceRoot);

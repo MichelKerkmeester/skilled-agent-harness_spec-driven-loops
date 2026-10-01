@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Executor Provenance Mismatch
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 
 import { mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';

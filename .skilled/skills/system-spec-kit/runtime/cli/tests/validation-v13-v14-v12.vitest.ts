@@ -1,7 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: V13, V14, V12 Validation Rules (lib/validate-memory-quality.ts)
-// Through: YAML syntax, content density
-// status/percentage contradiction, and topical coherence path normalization.
+// MODULE: Memory Quality Validation Tests
 // ───────────────────────────────────────────────────────────────────
 
 import { afterEach, describe, expect, it } from 'vitest';

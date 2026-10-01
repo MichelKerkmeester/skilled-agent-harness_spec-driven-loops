@@ -1,7 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Single-Writer Orphan Supervision Cluster
+// ───────────────────────────────────────────────────────────────────
 import { tmpdir } from 'node:os';
-// ───────────────────────────────────────────────────────────────────
-// HARNESS A: single-writer / no-orphan supervision cluster
-// ───────────────────────────────────────────────────────────────────
 // Deterministic regression coverage for the coordinated single-writer / durability cluster,
 // Family 1 (respawn lock) + Family 2 (root reaping), all in model-server-supervision.cjs:
 //

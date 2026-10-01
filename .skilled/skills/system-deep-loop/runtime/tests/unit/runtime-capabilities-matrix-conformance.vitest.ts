@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Runtime Capabilities Matrix Conformance
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it } from 'vitest';
 
 import { createRequire } from 'node:module';

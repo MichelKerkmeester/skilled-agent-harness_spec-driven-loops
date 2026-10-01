@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Loop Lock CLI Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { spawnSync } from 'node:child_process';

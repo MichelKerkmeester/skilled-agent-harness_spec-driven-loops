@@ -2,6 +2,10 @@
 // MODULE: Graph Resource Canonicalization
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { posix } from 'node:path';
 
 import { compareStableText, stableDigest } from './stable-digest.js';
@@ -16,6 +20,10 @@ import type {
   ResourceKind,
   ResourceMutability,
 } from './types.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const DEFAULT_ALIAS_GROUPS: readonly AliasGroup[] = [
   {
@@ -46,6 +54,10 @@ const knownMutabilities = new Set<string>([
 ]);
 const pathKinds = new Set(['artifact', 'file', 'fixture', 'generated-output', 'state']);
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function asciiCaseFold(value: string): string {
   return value.replace(/[A-Z]/g, (character) => character.toLowerCase());
 }
@@ -67,6 +79,10 @@ export function normalizeComparablePath(identity: string): string | undefined {
   return `${namespace}:${asciiCaseFold(canonicalPath)}`;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 interface AliasIndex {
   readonly resolved: ReadonlyMap<string, string>;
   readonly ambiguous: ReadonlySet<string>;
@@ -76,6 +92,10 @@ export interface CanonicalizationResult {
   readonly resource: CanonicalResource;
   readonly issues: readonly GraphValidationIssue[];
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 export function normalizeResourceIdentity(identity: string): string {
   const trimmed = identity.trim().replaceAll('\\', '/');
@@ -137,6 +157,10 @@ function issue(
 function unknownCanonicalId(nodeId: string, identity: string): string {
   return `unknown:${stableDigest({ nodeId, identity }).slice('sha256:'.length, 20)}`;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function canonicalizeResource(
   input: ResourceInput,

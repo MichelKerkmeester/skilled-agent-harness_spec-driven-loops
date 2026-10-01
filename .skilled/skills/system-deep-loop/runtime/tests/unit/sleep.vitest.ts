@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Sleep Timing Unit Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { abortableSleep, composeAbortSignals, SLEEP_CHUNK_MS } from '../../lib/deep-loop/sleep.js';

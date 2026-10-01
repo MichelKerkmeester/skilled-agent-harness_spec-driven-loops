@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Prompt Pack Renderer Tests
+// ───────────────────────────────────────────────────────────────────
 import { describe, expect, it } from 'vitest';
 
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';

@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Fanout Pool Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { createRequire } from 'node:module';
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';

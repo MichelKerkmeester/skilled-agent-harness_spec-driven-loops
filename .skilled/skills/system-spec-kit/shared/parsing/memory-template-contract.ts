@@ -2,13 +2,25 @@
 // MODULE: Memory Template Contract
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { parseFrontmatter } from '../frontmatter/parse-frontmatter.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const RAW_MUSTACHE_RE = /\{\{[^}]+\}\}/;
 // Deprecated legacy generated-memory banner detection retained for historical saves
 // created before the v3.4.0.0 template retirement.
 const LEGACY_TEMPLATE_BANNER_RE = /^\s*<!-- TEMPLATE:\s*[^\n]+ - DO NOT EDIT GENERATED FILES -->/m;
 const FRONTMATTER_KEY_RE = /^([A-Za-z_][A-Za-z0-9_-]*)\s*:\s*(.*)$/;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type MemoryTemplateViolationCode =
   | 'missing_frontmatter'
@@ -42,6 +54,10 @@ export interface MemoryTemplateSectionRule {
   required: 'mandatory' | 'conditional';
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. SECTION RULES
+// ───────────────────────────────────────────────────────────────────
+
 const SECTION_RULES: MemoryTemplateSectionRule[] = [
   { sectionId: 'preflight', commentId: 'preflight', headingPattern: /^##\s+PREFLIGHT BASELINE\s*$/i, required: 'conditional' },
   { sectionId: 'continue-session', commentId: 'continue-session', headingPattern: /^##\s+CONTINUE SESSION\s*$/i, required: 'mandatory' },
@@ -55,6 +71,10 @@ const SECTION_RULES: MemoryTemplateSectionRule[] = [
   { sectionId: 'postflight-learning-delta', commentId: 'postflight', headingPattern: /^##\s+POSTFLIGHT LEARNING DELTA\s*$/i, required: 'conditional' },
   { sectionId: 'memory-metadata', commentId: 'metadata', headingPattern: /^##\s+MEMORY METADATA\s*$/i, required: 'mandatory' },
 ];
+
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 interface ParsedFrontmatterSection {
   key: string;
@@ -225,6 +245,10 @@ function countAnchorClosers(content: string, commentId: string): number {
   return matches?.length ?? 0;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 export function validateMemoryTemplateContract(content: string): MemoryTemplateContractResult {
   const violations: MemoryTemplateViolation[] = [];
   const missingAnchors: string[] = [];
@@ -359,6 +383,10 @@ export function validateMemoryTemplateContract(content: string): MemoryTemplateC
     unexpectedTemplateArtifacts: Array.from(new Set(unexpectedTemplateArtifacts)),
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 7. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export function getMemoryTemplateSectionRules(): MemoryTemplateSectionRule[] {
   return SECTION_RULES.map((rule) => ({ ...rule }));

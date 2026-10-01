@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Folder Discovery Threshold Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it, afterEach, vi } from 'vitest';
 import {
   DEFAULT_PER_TOKEN_SIMILARITY_THRESHOLD,

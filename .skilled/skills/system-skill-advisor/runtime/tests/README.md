@@ -57,10 +57,10 @@ Dependency direction: test suites -> fixtures -> advisor runtime modules
 
 ```text
 tests/
-+-- __shared__/              # Shared test helpers
 +-- cache/                   # Cache behavior coverage
 +-- compat/                  # Compatibility contract checks
 +-- fixtures/                # Prompt, graph and routing fixtures
++-- helpers/                 # Test-only helpers (env snapshot and restore)
 +-- handlers/                # Handler tests
 +-- hooks/                   # Hook integration tests
 +-- legacy/                  # Legacy compatibility coverage

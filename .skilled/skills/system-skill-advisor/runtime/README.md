@@ -23,7 +23,7 @@ Current state:
 - `skill-advisor-cli.ts` (with `skill-advisor-cli-manifest.ts`) is the daemon-backed CLI over the same 9 commands, fronted by the `.skilled/bin/skill-advisor.cjs` shim: the single front door. Calls are sent untrusted by default; `--trusted` / `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` marks maintainer mutations (`advisor_rebuild`, `skill_graph_scan`, apply-mode `skill_graph_propagate_enhances`), and the gate fails closed with a usage error (exit `64`) otherwise. Shared exit taxonomy `0`/`1`/`64`/`69`/`75`; `--warm-only` probes and exits `75` instead of cold-spawning the daemon.
 - `tools/` defines command descriptors and dispatches calls. `tools/index.ts` registers `TOOL_DEFINITIONS` with 4 advisor commands plus the spread of skill-graph commands.
 - `handlers/` owns orchestration for advisor tools (recommend, rebuild, status, validate) and skill-graph subhandlers (scan, query, status, validate, propagate_enhances).
-- `lib/` carries runtime helpers across active subdirectories including `scorer/`, `daemon/`, `freshness/`, `lifecycle/`, `derived/`, `compat/`, `auth/`, `corpus/`, `cross-skill-edges/`, `context/`, `shadow/`, `skill-graph/`, `embedders/`, `ipc/`, `shared/` and `utils/`, plus several flat modules.
+- `lib/` carries runtime helpers across active subdirectories including `scorer/`, `daemon/`, `freshness/`, `lifecycle/`, `derived/`, `compat/`, `auth/`, `cross-skill-edges/`, `shadow/`, `skill-graph/`, `embedders/`, `ipc/`, `shared/` and `utils/`, plus several flat modules.
 - `database/skill-graph.sqlite` stores skill metadata, relationships and derived signals. Schema initialization and prepared queries live in `lib/skill-graph/skill-graph-db.ts` and `lib/skill-graph/skill-graph-queries.ts`.
 - Packet 013/009/011 moved the skill graph DB/query library and startup lifecycle under this package. Extraction is complete.
 
@@ -146,9 +146,7 @@ runtime/
 |   +-- derived/                   # Derived-metadata extraction and provenance
 |   +-- compat/                    # Daemon probe and redirect metadata
 |   +-- auth/                      # Trusted caller checks
-|   +-- corpus/                    # df-idf corpus utilities
 |   +-- cross-skill-edges/         # Inbound enhance-edge propagation
-|   +-- context/                   # Caller context helpers
 |   +-- shadow/                    # Shadow delta sink
 |   +-- utils/                     # Internal utilities
 |   +-- *.ts                       # Flat runtime modules (metrics, prompt-cache, render, etc.)
@@ -178,7 +176,7 @@ runtime/
 |   +-- latency-bench.ts
 |   `-- README.md
 +-- tests/                         # Vitest and Python coverage
-|   +-- __shared__/
+|   +-- fixtures/
 |   +-- handlers/
 |   +-- scorer/
 |   +-- schemas/

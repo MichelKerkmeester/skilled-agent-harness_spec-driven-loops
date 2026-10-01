@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Semantic Signal Golden Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it } from 'vitest';
 
 import { extractTriggerPhrases as sharedExtractTriggerPhrases } from '@spec-kit/shared/trigger-extractor';

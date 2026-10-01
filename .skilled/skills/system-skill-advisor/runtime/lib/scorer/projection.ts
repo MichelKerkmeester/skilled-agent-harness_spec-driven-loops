@@ -2,6 +2,10 @@
 // MODULE: Advisor Skill Projection
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { basename, dirname, extname, isAbsolute, join, resolve } from 'node:path';
 
@@ -25,6 +29,10 @@ import type {
   SkillProjection,
 } from './types.js';
 import { phraseVariants, unique } from './text.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 interface SkillNodeRow {
   readonly id: string;
@@ -54,6 +62,10 @@ export interface CommandBridgeProjection extends SkillProjection {
   readonly inventoryId?: string;
   readonly routingEnabled?: boolean;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const advisorDbDirOverride = process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
 const SKILL_GRAPH_DB = advisorDbDirOverride
@@ -653,6 +665,10 @@ export const GENERATED_COMMAND_BRIDGES: readonly CommandBridgeProjection[] = [
 
 export const COMMAND_BRIDGES: readonly CommandBridgeProjection[] = GENERATED_COMMAND_BRIDGES;
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function scoringCommandBridges(
   bridges: readonly CommandBridgeProjection[],
 ): CommandBridgeProjection[] {
@@ -707,6 +723,10 @@ function lifecycleStatus(raw: unknown, sourcePath: string): SkillLifecycleStatus
   const pathStatus = lifecycleStatusForPath(sourcePath);
   return pathStatus === 'archived' || pathStatus === 'future' ? pathStatus : 'active';
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function projectionFromRow(row: SkillNodeRow): SkillProjection {
   const derived = sanitizeDerivedMetadata(jsonObject(row.derived), row.source_path) ?? {};
@@ -772,6 +792,10 @@ function isoTimestampOrNull(value: unknown): string | null {
   return Number.isNaN(Date.parse(value)) ? null : value;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 interface SkillDocRow {
   readonly skill_id: string;
   readonly doc_path: string;
@@ -805,9 +829,17 @@ interface ActiveEmbeddingPointer {
   readonly provider: string | null;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 7. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const ACTIVE_EMBEDDER_NAME_KEY = 'active_embedder_name';
 const ACTIVE_EMBEDDER_DIM_KEY = 'active_embedder_dim';
 const ACTIVE_EMBEDDER_PROVIDER_KEY = 'active_embedder_provider';
+
+// ───────────────────────────────────────────────────────────────────
+// 8. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function sqliteTableExists(db: Database.Database, tableName: string): boolean {
   const row = db.prepare(`
@@ -1062,6 +1094,10 @@ function buildEmbeddingStalenessVerdict(
   return { ...base, stale: false };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 9. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 export function readAdvisorEmbeddingStaleness(db: Database.Database): AdvisorEmbeddingStalenessVerdict {
   try {
     const activePointer = readActiveEmbeddingPointer(db);
@@ -1221,6 +1257,10 @@ function loadFilesystemProjection(workspaceRoot: string): AdvisorProjection {
     source: 'filesystem',
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 10. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 // Previously a bare `catch {}` swallowed every SQLite read error
 // and silently fell back to the filesystem projection, hiding corrupt-DB and

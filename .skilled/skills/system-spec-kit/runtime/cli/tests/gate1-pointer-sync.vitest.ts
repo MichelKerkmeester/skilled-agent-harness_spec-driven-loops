@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Gate 1 pointer synchronizer
+// MODULE: Gate 1 Pointer Synchronizer
 // ───────────────────────────────────────────────────────────────────
 // The generator must write the pointer blocks from the root AGENTS.md line,
 // report a clean tree under --check, and report drift when a target's block

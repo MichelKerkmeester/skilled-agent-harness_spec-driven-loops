@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Post Dispatch Validation Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it, vi } from 'vitest';
 
 import { mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';

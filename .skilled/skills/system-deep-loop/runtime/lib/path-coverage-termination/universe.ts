@@ -2,6 +2,10 @@
 // MODULE: Frozen Coverage Universe
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   canonicalBytes,
   canonicalJson,
@@ -21,9 +25,17 @@ import type {
   ModeCoverageProfile,
 } from './types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const SHA256_PATTERN = /^[a-f0-9]{64}$/;
 const STABLE_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:@/-]{0,511}$/;
 const COVERAGE_GRAPH_PROJECTION_VERSION = `coverage-graph-schema@${COVERAGE_GRAPH_SCHEMA_VERSION}`;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function compareText(left: string, right: string): number {
   return left < right ? -1 : left > right ? 1 : 0;
@@ -162,6 +174,10 @@ function normalizedDimensions(
   });
   return Object.freeze(Object.fromEntries(entries));
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function compileInternal(
   input: CompileCoverageUniverseInput,

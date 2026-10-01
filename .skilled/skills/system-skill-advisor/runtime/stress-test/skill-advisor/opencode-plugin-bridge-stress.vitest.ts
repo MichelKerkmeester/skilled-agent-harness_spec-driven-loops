@@ -7,7 +7,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 // Snapshot/restore env mutations so test failures do not leak
 // SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED across tests.
-import { snapshotEnv } from '../../lib/test-helpers/env-snapshot.js';
+import { snapshotEnv } from '../../tests/helpers/env-snapshot.js';
 
 const mockedBridge = vi.hoisted(() => ({
   spawn: vi.fn(),

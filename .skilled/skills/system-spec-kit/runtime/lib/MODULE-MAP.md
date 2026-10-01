@@ -102,18 +102,6 @@ The inventory is derived from the files in each folder and from the import edges
   - `lib/validation/orchestrator.ts`, `lib/validation/generated-metadata-integrity.ts`
   - `lib/resume/resume-ladder.ts`
 
-### `hooks/`
-
-- Purpose: Owns the runtime-neutral completion-evidence policy every runtime adapter shares. It checks recorded artifacts only, never executes a test or a build, and never writes to stdout or stderr.
-- Key files:
-  - `completion-evidence-sentinel.cjs` — the transport-free decision plus the shared dedup fingerprint store.
-- Primary consumers:
-  - `hooks/claude/completion-evidence-stop.cjs`
-  - `hooks/codex/completion-evidence-stop.cjs`
-  - `hooks/devin/completion-evidence-stop.cjs`
-  - `hooks/cursor/completion-evidence-response.mjs`
-  - `hooks/pi/completion-evidence.ts`
-
 ### `parsing/`
 
 - Purpose: Owns markdown content normalization — stripping frontmatter, anchors, table syntax, fence markers and checkbox notation so downstream consumers read content rather than structural noise.
@@ -158,14 +146,6 @@ The inventory is derived from the files in each folder and from the import edges
 - Primary consumers:
   - `lib/validation/orchestrator.ts`
   - `lib/validation/spec-doc-structure.ts`
-
-### `test-helpers/`
-
-- Purpose: Owns test-only helpers kept out of the production modules they support.
-- Key files:
-  - `env-snapshot.ts` — snapshots `process.env` keys and returns a `restore()` that runs even when assertions fail.
-- Primary consumers:
-  - Test suites only; no production module imports this folder.
 
 ### `utils/`
 
@@ -223,7 +203,6 @@ Foundation modules:
 - `spec`
 - `templates`
 - `discovery`
-- `test-helpers`
 
 Target rule:
 
@@ -268,23 +247,11 @@ Target rule by module:
   - May import: `utils`
   - Must not import: any domain module
 
-### 3.4 Support Modules
-
-Support modules:
-
-- `hooks`
-
-Target rule:
-
-- `hooks` is runtime-neutral policy. It must stay transport-free: no stdout, no stderr, no test or build execution.
-- Must not import a domain module.
-
-### 3.5 Forbidden Global Directions
+### 3.4 Forbidden Global Directions
 
 - `lib/* → api/*`
 - `lib/* → handlers/*` outside the `discovery/` seam
 - root modules importing domain modules
-- `hooks → any domain module`
 
 ---
 

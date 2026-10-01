@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/046-align-runtime-code-with-sk-code-opencode",
   "description": "Align runtime code with sk-code-opencode: section comments, folder depth, code READMEs, ARCHITECTURE.md (system-spec-kit)",
   "keywords": [
@@ -14,13 +15,14 @@
     "architecture",
     "system-spec-kit"
   ],
-  "lastUpdated": "2026-09-30T05:43:46.510Z",
+  "lastUpdated": "2026-09-30T22:06:54.610Z",
   "specId": "046",
   "folderSlug": "align-runtime-code-with-sk-code-opencode",
   "parentChain": [
     "system-speckit"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "30-09-26_23-06__spec-kit-runtime-and-shared-package-aligned-with.md"
+  ]
 }

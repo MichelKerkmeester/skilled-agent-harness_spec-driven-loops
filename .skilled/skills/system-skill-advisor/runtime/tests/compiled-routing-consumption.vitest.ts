@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Compiled Routing Consumption
+// ───────────────────────────────────────────────────────────────────
+
 // Effective-consumption invariants for compiled routing:
 //   - the OpenCode plugin renders the served compiled outcome into the injected
 //     system-context

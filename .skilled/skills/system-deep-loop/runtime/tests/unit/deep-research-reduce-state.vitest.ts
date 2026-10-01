@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Research Reduce State Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { createRequire } from 'node:module';
 import { appendFileSync, mkdirSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';

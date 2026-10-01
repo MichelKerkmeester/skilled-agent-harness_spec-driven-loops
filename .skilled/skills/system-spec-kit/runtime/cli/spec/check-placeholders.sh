@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SPECKIT: CHECK PLACEHOLDERS
+# COMPONENT: CHECK PLACEHOLDERS
 # ───────────────────────────────────────────────────────────────
 # Scan spec folder .md files for remaining bracket placeholder
 # Patterns after upgrade-level.sh + auto-populate.

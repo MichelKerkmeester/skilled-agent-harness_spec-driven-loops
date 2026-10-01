@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Root resolvers agree on the same trees
+// MODULE: Root Resolvers Agree
 // ───────────────────────────────────────────────────────────────────
 // Three root resolvers survive in the package, one per runtime boundary: the
 // shipped-as-source repository resolver, the compiled package resolver, and the

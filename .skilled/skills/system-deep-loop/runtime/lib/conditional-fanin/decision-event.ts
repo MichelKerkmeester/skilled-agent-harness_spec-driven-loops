@@ -2,6 +2,10 @@
 // MODULE: Conditional Fan-In Decision Event
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   AuthorizationVerdicts,
 } from '../authorized-ledger/index.js';
@@ -28,6 +32,10 @@ import type {
 } from '../event-envelope/index.js';
 import type { FinalizedFanInDecision } from './types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const FANIN_DECISION_FINALIZED_EVENT_TYPE = 'fanout.fanin.decision-finalized';
 export const FANIN_DECISION_FINALIZED_EVENT_VERSION = 1;
 export const FANIN_DECISION_FINALIZED_EVENT_NAME = 'fan-in-decision-finalized';
@@ -47,6 +55,10 @@ const REQUIRED_FIELDS = Object.freeze([
   'decision',
 ] as const);
 
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 export interface FanInDecisionFinalizedPayload extends JsonObject {
   readonly event_name: typeof FANIN_DECISION_FINALIZED_EVENT_NAME;
   readonly decision_version: 1;
@@ -62,9 +74,17 @@ export interface FanInDecisionFinalizedPayload extends JsonObject {
   readonly decision: JsonObject;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function isObject(value: unknown): value is JsonObject {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function validateFanInDecisionFinalizedPayload(
   payload: Readonly<JsonObject>,
@@ -148,6 +168,10 @@ export function fanInDecisionPayload(
   return Object.freeze(payload);
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. EVENT PREPARATION
+// ───────────────────────────────────────────────────────────────────
+
 export interface PrepareFanInDecisionEventInput {
   readonly decision: FinalizedFanInDecision;
   readonly streamId: string;
@@ -181,6 +205,10 @@ export function prepareFanInDecisionEvent(
     payload: fanInDecisionPayload(input.decision),
   }, input.registry);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 7. EVENT COMMIT
+// ───────────────────────────────────────────────────────────────────
 
 export interface CommitFanInDecisionInput extends PrepareFanInDecisionEventInput {
   readonly ledger: AppendOnlyLedger;

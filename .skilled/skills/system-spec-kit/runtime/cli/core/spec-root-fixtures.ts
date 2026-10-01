@@ -2,6 +2,10 @@
 // MODULE: Spec Root Fixtures
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -10,6 +14,10 @@ import type {
   CollisionClass,
   PhysicalRoot,
 } from './spec-root-collision-classifier.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Identifier for one root-state validation cell. */
 export type RootFixtureId =
@@ -48,6 +56,10 @@ export interface MaterializedRootFixture {
   readonly physicalRoots: PhysicalRoot[];
   cleanup(): void;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 /** Expected outcomes for the complete root-resolution validation matrix. */
 export const R_FIXTURES = [
@@ -132,11 +144,19 @@ const RELATIVE_PACKET_ID = 'system-speckit/001-root-fixture';
 const OTHER_PACKET_ID = 'system-speckit/002-other-fixture';
 const PACKET_CONTENT = '# Root fixture\n\nStable fixture content.\n';
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function createPacket(rootPath: string, packetId: string, content: string): void {
   const packetPath = path.join(rootPath, packetId);
   fs.mkdirSync(packetPath, { recursive: true });
   fs.writeFileSync(path.join(packetPath, 'spec.md'), content, 'utf8');
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /** Materializes one root state entirely beneath a new operating-system temp directory. */
 export function materializeRootFixture(

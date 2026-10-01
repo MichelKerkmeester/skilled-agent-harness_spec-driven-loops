@@ -1,9 +1,17 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Skill Advisor CLI Manifest
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 
 import { ADVISOR_RUNTIME_VALUES } from './lib/advisor-runtime-values.js';
 import type { ToolDefinition } from './tools/types.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export interface SkillAdvisorCliToolDefinition extends ToolDefinition {
   readonly command: string;
@@ -12,6 +20,10 @@ export interface SkillAdvisorCliToolDefinition extends ToolDefinition {
   readonly aliases: readonly string[];
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
+
 function toCamelCommand(name: string): string {
   return name.replace(/_([a-z0-9])/g, (_match, char: string) => char.toUpperCase());
 }
@@ -19,6 +31,10 @@ function toCamelCommand(name: string): string {
 function toKebabCommand(name: string): string {
   return name.replace(/_/g, '-');
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const SKILL_ADVISOR_TOOL_DEFINITIONS: readonly ToolDefinition[] = [
   {
@@ -160,6 +176,10 @@ const SKILL_ADVISOR_TOOL_DEFINITIONS: readonly ToolDefinition[] = [
     },
   },
 ];
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export const SKILL_ADVISOR_CLI_TOOL_MANIFEST: readonly SkillAdvisorCliToolDefinition[] = SKILL_ADVISOR_TOOL_DEFINITIONS.map((tool) => {
   const kebabCommand = toKebabCommand(tool.name);

@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Scaffold Golden Snapshots
+// MODULE: Scaffold Golden Snapshots
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';

@@ -160,7 +160,7 @@ Capture, for every step in the Commands sequence above:
 - Core module under test: `.skilled/skills/system-spec-kit/runtime/cli/lib/completion-state.cjs` (no colocated suite; the plugin test exercises it)
 - Shelled scripts merged by the core: `.skilled/skills/system-spec-kit/runtime/cli/spec/check-completion.sh`, `.skilled/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh`
 - Plugin entrypoint registry (confirms adapter role and kill-switch env): `.skilled/plugins/README.md` §3
-- Related-but-distinct sibling consumer (out of scope here, sharing infrastructure only): `.skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs`, `.skilled/plugins/system-completion-sentinel.js`, `.skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs`
+- Related-but-distinct sibling consumer (out of scope here, sharing infrastructure only): `.skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs`, `.skilled/plugins/system-completion-sentinel.js`, `.skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs`
 
 Provenance: .skilled/plugins/tests/system-speckit-completion.test.cjs
 

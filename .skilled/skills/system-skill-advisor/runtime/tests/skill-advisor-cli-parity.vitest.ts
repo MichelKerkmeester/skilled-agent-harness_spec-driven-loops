@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: CLI Parity Tests
+// ───────────────────────────────────────────────────────────────────
 import { copyFileSync, existsSync } from 'node:fs';
 import { spawnSync, type SpawnSyncReturns } from 'node:child_process';
 import { join } from 'node:path';

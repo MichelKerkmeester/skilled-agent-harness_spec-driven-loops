@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: hooks/shared-provenance helpers
+// MODULE: Shared Provenance Helpers
 // ───────────────────────────────────────────────────────────────────
 // Verifies that the 3 provenance helpers behave identically after
 // extraction from hooks/claude/shared.ts into hooks/shared-provenance.ts.

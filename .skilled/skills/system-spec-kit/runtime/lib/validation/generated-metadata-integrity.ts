@@ -7,6 +7,10 @@
 // completion gate rather than a shallow shell-shape warning. Severity resolution is left
 // to the caller so the same check backs both the report-mode rollout and the enforced run.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -15,11 +19,19 @@ import { perFolderDescriptionSchema } from '../description/description-schema.js
 import { SOURCE_FINGERPRINT_DOCSET, computeSourceFingerprintForFolder, parseCompletionPct, hasOpenTaskItems } from '../graph/graph-metadata-parser.js';
 import { isGeneratorHardeningEnabled } from '../config/capability-flags.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 /** Validation rule id reported for the generated-metadata integrity gate. */
 export const GENERATED_METADATA_INTEGRITY_RULE = 'GENERATED_METADATA_INTEGRITY' as const;
 
 /** Violation code for a derived.status:'complete' folder whose completion evidence disagrees. */
 export const STATUS_COMPLETE_EVIDENCE_MISMATCH_CODE = 'STATUS_COMPLETE_EVIDENCE_MISMATCH' as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** Which of a spec folder's two generated JSON files a violation belongs to. */
 export type GeneratedMetadataFile = 'graph-metadata.json' | 'description.json';
@@ -46,6 +58,10 @@ export interface ResolvedIntegrityStatus {
   message: string;
   details: string[];
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Whether a stored spec-folder identity is in the canonical specs-root-relative shape.
@@ -87,6 +103,10 @@ function readJsonFile(filePath: string): { ok: true; value: unknown } | { ok: fa
     return { ok: false, reason: 'unparseable' };
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function validateGraphMetadataFile(filePath: string, violations: GeneratedMetadataViolation[]): void {
   const read = readJsonFile(filePath);
@@ -305,6 +325,10 @@ function validateDescriptionFile(filePath: string, violations: GeneratedMetadata
     });
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Validate the generated JSON files in a spec folder against the shared contract.

@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: research.md.tmpl Level Gating
+// MODULE: Research Template Level Gating
 // ───────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';

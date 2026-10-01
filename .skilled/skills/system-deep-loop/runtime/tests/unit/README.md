@@ -107,6 +107,7 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `render-command-contract.vitest.ts` | Executable checks for the render command contract runtime contract. |
 | `replay-fingerprint.vitest.ts` | Executable checks for the replay fingerprint runtime contract. |
 | `result-envelopes.vitest.ts` | Executable checks for the result envelopes runtime contract. |
+| `runtime-bootstrap.test.cjs` | `node:test` suite for `scripts/runtime-bootstrap.cjs`: `tsxChildEnv` drops `NODE_PRESERVE_SYMLINKS` and never mutates `process.env`, `resolveContainmentRepoRoot` honors its precedence order and symlink redirection, and every tsx re-exec entry point builds its child env through `tsxChildEnv`. A regression here reintroduces the `ERR_MODULE_NOT_FOUND` that stalls every executor at iteration 1. |
 | `run-now-yaml-control.vitest.ts` | Executable checks for the run now yaml control runtime contract. |
 | `runtime-capabilities-matrix-conformance.vitest.ts` | Executable checks for the runtime capabilities matrix conformance runtime contract. |
 | `runtime-capabilities.vitest.ts` | Executable checks for the runtime capabilities runtime contract. |
@@ -132,6 +133,7 @@ The table is the complete direct-file inventory. Test names are the public navig
 | Surface | Entry |
 |---|---|
 | Unit command | `tests/unit` under the runtime Vitest configuration |
+| Node test | `runtime-bootstrap.test.cjs`, outside Vitest's `*.{vitest,test}.ts` include and run by `node .skilled/scripts/run-node-tests.mjs` |
 | Test files | Every direct file listed in the FILES table |
 | Covered implementation | Runtime modules under [the runtime library](../../lib/README.md) |
 
@@ -149,6 +151,7 @@ Unit tests protect the smallest contracts in the runtime spine: parsing, event e
 
 ```bash
 .skilled/skills/system-deep-loop/runtime/node_modules/.bin/vitest run --config .skilled/skills/system-deep-loop/runtime/vitest.config.ts tests/unit
+node --test .skilled/skills/system-deep-loop/runtime/tests/unit/runtime-bootstrap.test.cjs
 ```
 
 ---

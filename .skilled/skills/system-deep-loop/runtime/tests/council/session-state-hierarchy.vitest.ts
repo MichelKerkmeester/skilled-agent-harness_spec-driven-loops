@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Council Session State Hierarchy
+// ───────────────────────────────────────────────────────────────────
+
 import { createRequire } from 'node:module';
 
 import { describe, expect, it } from 'vitest';

@@ -2,6 +2,10 @@
 // MODULE: advisor_recommend Handler
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { execFileSync } from 'node:child_process';
 import { readFileSync, realpathSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -36,12 +40,20 @@ import {
 } from '../lib/compiled-routing-flag.js';
 import type { AdvisorScoringOptions } from '../lib/scorer/types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
 type AdvisorStatus = ReturnType<typeof readAdvisorStatus>;
 type ScoredRecommendation = ReturnType<typeof scoreAdvisorPrompt>['recommendations'][number];
 type PublicRecommendationStatus = NonNullable<AdvisorRecommendOutput['recommendations'][number]['status']>;
 type PublicThresholds = AdvisorRecommendOutput['effectiveThresholds'];
 type ShadowRecommendation = NonNullable<AdvisorRecommendOutput['_shadow']>['recommendations'][number];
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 // Emit-only, stderr, debug-gated compiled-routing diagnostic. Never written to
 // stdout or the tool response, and never changes the recommendation outcome.
@@ -478,6 +490,10 @@ function outputAbstainReasons(
   ];
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 async function computeRecommendationOutput(input: AdvisorRecommendInput): Promise<AdvisorRecommendOutput> {
   // Canonicalize via realpath after the schema allowlist check.
   const workspaceRoot = input.workspaceRoot
@@ -598,6 +614,10 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     ? parsed
     : enrichCompiledRoutes(parsed, input.prompt, workspaceRoot);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export async function handleAdvisorRecommend(args: unknown): Promise<HandlerResponse> {
   const input = AdvisorRecommendInputSchema.parse(args);

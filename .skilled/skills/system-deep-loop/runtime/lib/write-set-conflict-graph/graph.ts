@@ -2,6 +2,10 @@
 // MODULE: Write-Set Conflict Graph Derivation
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { posix } from 'node:path';
 
 import {
@@ -41,6 +45,10 @@ import type {
   WriteSetConflictGraph,
 } from './types.js';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 export const GRAPH_CONTRACT_SOURCE_PATHS = [
   '.opencode/specs/system-deep-loop/036-deep-loop-innovation/'
     + '012-shared-mode-contracts-and-fixtures/spec.md',
@@ -64,6 +72,11 @@ const REQUIRED_DEPENDENCIES = new Map<string, readonly string[]>([
 ]);
 const RESEARCH_NODE_ID = '001-deep-research';
 const COUNCIL_NODE_ID = '003-deep-ai-council';
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
+
 interface MutableEdge {
   from: string;
   to: string;
@@ -74,6 +87,10 @@ interface MutableEdge {
   reason: string;
   evidence: Map<string, ResourceEvidence>;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function compareText(left: string, right: string): number {
   return compareStableText(left, right);
@@ -749,6 +766,10 @@ function deduplicateIssues(issues: readonly GraphValidationIssue[]): readonly Gr
     return codeOrder !== 0 ? codeOrder : compareText(left.message, right.message);
   });
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 export function deriveWriteSetConflictGraph(input: GraphBuildInput): WriteSetConflictGraph {
   validateManifestNodeSet(input.manifestWorkstreams);

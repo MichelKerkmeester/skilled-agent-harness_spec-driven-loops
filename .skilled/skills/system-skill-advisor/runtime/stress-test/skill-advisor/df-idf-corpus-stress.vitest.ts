@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: DF-IDF Corpus Stress Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -8,7 +12,7 @@ import {
   computeCorpusStats,
   createDebouncedCorpusUpdater,
   type CorpusDocument,
-} from '../../lib/corpus/df-idf.js';
+} from '../../lib/df-idf.js';
 
 describe('sa-013 — DF-IDF corpus stats', () => {
   let tmpDir: string;

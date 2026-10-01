@@ -2,6 +2,10 @@
 // MODULE: Deterministic Conflict Graph Scheduler
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { compareStableText } from './stable-digest.js';
 
 import type {
@@ -12,6 +16,10 @@ import type {
   LaneDecision,
   ScheduleLane,
 } from './types.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function compareText(left: string, right: string): number {
   return compareStableText(left, right);
@@ -124,6 +132,10 @@ function fallbackSchedule(
     )),
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 3. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export function createDeterministicSchedule(
   nodes: readonly GraphNode[],

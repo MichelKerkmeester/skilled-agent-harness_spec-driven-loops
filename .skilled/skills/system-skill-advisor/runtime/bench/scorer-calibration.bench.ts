@@ -2,6 +2,10 @@
 // MODULE: Advisor Scorer Calibration Bench
 // ───────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────
+
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
@@ -16,6 +20,10 @@ import { loadAdvisorProjection } from '../lib/scorer/projection.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 
 process.env.SPECKIT_METRICS_ENABLED = 'true';
+
+// ───────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────
 
 interface CorpusRow {
   readonly id: string;
@@ -67,10 +75,18 @@ interface CalibrationReport {
   readonly passed: boolean;
 }
 
+// ───────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────
+
 const SPECKIT_BENCH_CORPUS_PATH = '.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl';
 const BASELINE_FILENAME = 'scorer-calibration-baseline.json';
 const BUCKET_COUNT = 10;
 const BENCH_TIMEOUT_MS = process.env.CI ? 300_000 : 180_000;
+
+// ───────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────
 
 function workspaceRoot(): string {
   const start = dirname(fileURLToPath(import.meta.url));
@@ -172,6 +188,10 @@ function createBaseline(args: {
   };
 }
 
+// ───────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────
+
 export function runScorerCalibrationBench(root = workspaceRoot()): CalibrationReport {
   const corpusPath = resolve(root, SPECKIT_BENCH_CORPUS_PATH);
   const rows = readCorpus(corpusPath);
@@ -241,6 +261,10 @@ export function runScorerCalibrationBench(root = workspaceRoot()): CalibrationRe
 
   return { baseline, predictions, brierDeltaPct, eceDeltaPct, passed };
 }
+
+// ───────────────────────────────────────────────────────────────
+// 6. TEST SUITE
+// ───────────────────────────────────────────────────────────────
 
 describe('scorer calibration bench', () => {
   it('keeps Brier score and ECE within baseline tolerance', () => {

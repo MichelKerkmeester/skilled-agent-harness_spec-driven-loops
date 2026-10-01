@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Skill Graph BFS Traversal
+// ───────────────────────────────────────────────────────────────────
+
 import { describe, expect, it } from 'vitest';
 import { clampSkillGraphTraversalDepth, runSkillGraphBfs } from '../lib/skill-graph/bfs-traversal.js';
 

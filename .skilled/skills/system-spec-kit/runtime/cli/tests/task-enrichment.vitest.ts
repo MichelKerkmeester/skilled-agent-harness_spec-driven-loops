@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Task Enrichment Guardrails
+// ───────────────────────────────────────────────────────────────────
 // TEST: Task Enrichment Guardrails
 // Ensures stateless-only enrichment for generic task labels
 import fs from 'node:fs';

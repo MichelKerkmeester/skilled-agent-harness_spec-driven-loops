@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime — Ledger Stem Producer Census                           ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Input:  CLI args (--repo-root).                                          ║
-// ║ Output: JSON to stdout.                                                  ║
-// ║ Exit:   0=clean, 1=script error, 2=census violation.                     ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Ledger Stem Producer Census
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 
@@ -19,8 +15,16 @@
 // names. Prose mentions of a stem are not emitters, so the scan matches the
 // structured `stem` key a producer writes, not the bare dotted token.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 const fs = require('node:fs');
 const path = require('node:path');
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const RUNTIME_REL = path.join('.skilled', 'skills', 'system-deep-loop', 'runtime');
 const REVIEW_TYPES_REL = path.join(
@@ -77,6 +81,10 @@ const EMITTED_STEM_PATTERN = /(?:^|[^A-Za-z0-9_])stem\\?['"]?\s*:\s*\\?['"]([A-Z
 // true, that a prose mention is never an emitter -- a doc string naming an event in
 // backticks would otherwise credit a stem no call site can reach.
 const INTERPOLATED_STEM_PATTERN = /(?:^|[^A-Za-z0-9_])stem\\?['"]?\s*:\s*`([A-Za-z0-9_]+)\.\$\{/g;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 // The two shapes that name the event at a call site feeding an interpolated stem:
 // `record("name"` and a structured `event: 'name'` key. A bare backticked mention
@@ -247,6 +255,10 @@ function resolveInterpolatedEmitters(interpolated, registered, stemPrefix) {
   return resolved;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 function evaluateMode(spec, repoRoot, emitters, missingFiles, interpolated = []) {
   const violations = [];
   const typesPath = path.join(repoRoot, spec.typesRel);
@@ -406,6 +418,10 @@ function main(argv = process.argv.slice(2)) {
   return ok ? 0 : 2;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
+
 if (require.main === module) {
   let status;
   try {
@@ -415,6 +431,10 @@ if (require.main === module) {
   }
   process.exit(status);
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 module.exports = {
   PRODUCER_SURFACE,

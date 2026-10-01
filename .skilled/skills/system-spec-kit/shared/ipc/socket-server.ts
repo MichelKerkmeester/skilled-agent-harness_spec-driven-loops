@@ -6,12 +6,20 @@
 // PATHS; only the bind/reclaim/serve LOGIC lives here so the security
 // and race-safety contract stays identical across services.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import net from 'node:net';
 import os from 'node:os';
 import path from 'node:path';
 
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 // Fallback socket directory for a caller that supplies neither an explicit directory nor
@@ -28,6 +36,10 @@ const DEFAULT_DAEMON_SOCKET_DIR = '/tmp/system-skill-advisor';
 // so the cap must exceed any realistic session fleet.
 const DEFAULT_MAX_SECONDARY_CLIENTS = 64;
 const TCP_EADDRINUSE_RETRY_DELAYS_MS = [100, 250, 500, 1000, 1500] as const;
+
+// ───────────────────────────────────────────────────────────────────
+// 3. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 interface IpcBridgeStats {
   socket_path: string | null;
@@ -68,12 +80,20 @@ interface IpcSocketServerHandle {
   readonly close: () => Promise<void>;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. MODULE STATE
+// ───────────────────────────────────────────────────────────────────
+
 let activeServer: net.Server | null = null;
 let activeSocketPath: string | null = null;
 const activeSockets = new Set<net.Socket>();
 const activeTransports = new Map<net.Socket, StdioServerTransport>();
 let totalSecondaryMessagesIn = 0;
 let totalSecondaryMessagesOut = 0;
+
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function countJsonRpcFrames(chunk: unknown): number {
   const text = Buffer.isBuffer(chunk) ? chunk.toString('utf8') : String(chunk ?? '');
@@ -392,6 +412,11 @@ function serveFrameHandlerConnection(
     }
   });
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<IpcSocketServerHandle> {
   if (activeServer) {
     await disposeActiveServer();
@@ -585,6 +610,10 @@ async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<Ip
     },
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 7. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   canUnlinkExistingSocket,

@@ -2,6 +2,10 @@
 // MODULE: Deep Improvement Common Artifact Material
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { canonicalBytes } from '../event-envelope/index.js';
 import {
   DeepImprovementCommonEventStems,
@@ -49,6 +53,10 @@ import type { DeepImprovementCommonEventStem } from '../deep-improvement-common-
 import {
   parseSealedArtifactReference,
 } from '../sealed-reference-artifacts/index.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const DEEP_IMPROVEMENT_COMMON_ARTIFACT_SCHEMA_VERSION =
   'deep-improvement-common-artifact@1';
@@ -157,6 +165,10 @@ const KIND_SET: ReadonlySet<string> = new Set(
   DEEP_IMPROVEMENT_COMMON_ARTIFACT_KIND_REGISTRY.map((entry) => entry.artifactKind),
 );
 const EVENT_STEM_SET: ReadonlySet<string> = new Set(DeepImprovementCommonEventStems);
+
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function invalidMaterial(artifactKind: string, field: string): never {
   throw new SealedArtifactError(
@@ -682,6 +694,10 @@ function requireLeakagePolicy(
   });
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 function parseEvaluatorCapsule(
   artifactKind: typeof DeepImprovementCommonArtifactKinds.EVALUATOR_CAPSULE,
   input: unknown,
@@ -1179,6 +1195,10 @@ function canonicalizeDeepImprovementMaterial(
   }
   return Uint8Array.from(canonicalBytes({ artifactKind, material }));
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export function createDeepImprovementCommonArtifactCanonicalizerRegistry():
   ArtifactCanonicalizerRegistry {

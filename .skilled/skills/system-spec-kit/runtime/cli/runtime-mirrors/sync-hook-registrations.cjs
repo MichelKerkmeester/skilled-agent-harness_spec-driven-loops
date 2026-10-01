@@ -15,14 +15,23 @@
 // Exit: 0 in sync (or written), 1 drift or a missing Pi symlink under --check,
 //       2 usage or a registry the renderer cannot honour.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 const fs = require('node:fs');
 const path = require('node:path');
 const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const TAG = '[hook-registration-sync]';
 const REGISTRY_PATH = path.join(__dirname, 'hook-registry.json');
 const JSON_RUNTIMES = ['claude', 'codex', 'cursor', 'devin'];
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function parseArgs(argv) {
   const options = { check: false, root: null };
   for (let index = 0; index < argv.length; index += 1) {
@@ -39,7 +48,9 @@ function loadRegistry(registryPath = REGISTRY_PATH) {
   return JSON.parse(fs.readFileSync(registryPath, 'utf8'));
 }
 
-// ── wrapper grammar ─────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 4. WRAPPER GRAMMAR
+// ───────────────────────────────────────────────────────────────────
 
 function driftEnvelope(event, message) {
   const json = JSON.stringify({ hookSpecificOutput: { hookEventName: event, additionalContext: message, mkHookDrift: true } });
@@ -85,7 +96,9 @@ function renderCursorCommand(runtimeConfig, binding) {
   return `${base} || { printf "%s\\n" "mk-hook-drift host=cursor event=${binding.event} adapter=${adapter}" >&2; printf %s '${envelope}'; }`;
 }
 
-// ── per-runtime shapes ──────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 5. PER-RUNTIME SHAPES
+// ───────────────────────────────────────────────────────────────────
 
 /** Bindings of one runtime, ordered by the runtime's event order, then group, then slot. */
 function bindingsFor(registry, runtime) {
@@ -186,7 +199,9 @@ function renderRuntimeFile(registry, runtime, current) {
   }
 }
 
-// ── Pi verification ─────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 6. PI VERIFICATION
+// ───────────────────────────────────────────────────────────────────
 
 /** Every Pi extension the registry names must be a symlink that resolves to a file. */
 function verifyPiExtensions(registry, repoRoot) {
@@ -204,7 +219,9 @@ function verifyPiExtensions(registry, repoRoot) {
   return { checked: expected.size, problems };
 }
 
-// ── entry ───────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 7. ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 function main(argv) {
   const options = parseArgs(argv);
@@ -248,4 +265,7 @@ if (require.main === module) {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 8. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 module.exports = { JSON_RUNTIMES, loadRegistry, renderRuntimeFile, renderProjectDirCommand, renderCursorCommand, verifyPiExtensions, main };

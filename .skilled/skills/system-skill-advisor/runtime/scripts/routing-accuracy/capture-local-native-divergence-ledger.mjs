@@ -12,17 +12,29 @@
 //   node capture-local-native-divergence-ledger.mjs --write
 //   node capture-local-native-divergence-ledger.mjs --write --summary
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const HERE = dirname(fileURLToPath(import.meta.url));
 const LEDGER_PATH = resolve(HERE, '../../tests/parity/fixtures/local-native-approved-divergences.json');
 const LABELED_CORPUS_PATH = resolve(HERE, 'labeled-prompts.jsonl');
 const HARDER_CORPUS_PATH = resolve(HERE, '../../tests/scorer/fixtures/harder-intent-prompt-corpus.ts');
 const DIST = resolve(HERE, '../../dist/runtime');
+
+// ───────────────────────────────────────────────────────────────────
+// 3. ENVIRONMENT SETUP
+// ───────────────────────────────────────────────────────────────────
 
 // The source tree sits under .skilled or .opencode, and a checkout may link one name to
 // the other, so the sentinel counts under either name.
@@ -48,6 +60,10 @@ delete process.env.SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON;
 delete process.env.SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW;
 
 const { scoreAdvisorPrompt } = await import(join(DIST, 'lib/scorer/fusion.js'));
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function sha256(value) {
   return createHash('sha256').update(value, 'utf8').digest('hex');
@@ -117,6 +133,10 @@ function migrationReason(row, previous) {
   return 'current-state capture after the merged skill inventory and command-bridge reconciliation';
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
+
 const labeled = readJsonl(LABELED_CORPUS_PATH).map((row) => ({
   id: row.id,
   corpus: 'labeled',
@@ -179,6 +199,10 @@ const changed = entries
     return previous && (previous.promptHash !== entry.promptHash || previous.localTop !== entry.localTop || previous.nativeTop !== entry.nativeTop);
   })
   .map((entry) => entry.id);
+
+// ───────────────────────────────────────────────────────────────────
+// 6. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 const output = JSON.stringify({ schemaVersion: 1, entries }, null, 2) + '\n';
 console.log(JSON.stringify({

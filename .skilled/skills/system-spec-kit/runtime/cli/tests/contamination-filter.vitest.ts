@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Contamination Filter Tests
+// ───────────────────────────────────────────────────────────────────
+
 // TEST: Contamination Filter — severity tracking and SEVERITY_RANK export
 import { describe, expect, it } from 'vitest';
 

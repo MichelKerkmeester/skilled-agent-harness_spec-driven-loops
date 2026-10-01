@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Template Version Parity
+// ───────────────────────────────────────────────────────────────────
+
 // The manifest declares a version per template and every template declares
 // its own in its SPECKIT_TEMPLATE_SOURCE marker. The two had drifted apart for
 // five templates before anything compared them, and the staleness checker

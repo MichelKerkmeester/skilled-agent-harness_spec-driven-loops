@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Artifact Root Re-export Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { createRequire } from 'node:module';

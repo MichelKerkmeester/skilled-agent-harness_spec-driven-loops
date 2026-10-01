@@ -1,0 +1,10 @@
+.skilled/skills/system-spec-kit/runtime/cli/hermes
+.skilled/skills/system-spec-kit/runtime/hooks/opencode
+.skilled/skills/system-spec-kit/shared/workspace
+.skilled/skills/system-spec-kit/shared/tests
+.skilled/skills/system-spec-kit/shared/frontmatter
+.skilled/skills/system-spec-kit/shared/scripts
+.skilled/skills/system-spec-kit/runtime/tests/hooks
+.skilled/skills/system-spec-kit/runtime/scripts/compaction-recall
+.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit
+.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check

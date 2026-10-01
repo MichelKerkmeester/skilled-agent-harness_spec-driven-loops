@@ -1,14 +1,6 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ TEST: hf-model-server perimeter guards                                     ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Covers perimeter guard regressions:                                         ║
-// ║   tcp:// bind must enforce loopback (or require auth).                     ║
-// ║   Direct-startup EADDRINUSE unlink must assert socket-dir                  ║
-// ║                    ownership AND refuse to unlink a live-resident socket.  ║
-// ║                                                                            ║
-// ║ Deterministic: injects connect/fs/getuid/env + a fake http-like server.   ║
-// ║ No real sockets, no real filesystem ownership, no sleeps.                  ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: HF Model Server Perimeter Guards
+// ───────────────────────────────────────────────────────────────────
 
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';

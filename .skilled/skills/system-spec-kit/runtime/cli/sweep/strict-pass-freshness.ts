@@ -2,11 +2,17 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Strict Pass Freshness Sweep
 // ───────────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 type Format = 'json' | 'text';
 
 interface Options {
@@ -46,6 +52,9 @@ interface Baseline {
   skipped: Set<string>;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 // Trees the sweep will not descend into. Beyond the obvious build and VCS
 // directories, archived and scratch-backup packets are frozen copies kept for
 // history: they are never going to be brought back up to current template
@@ -61,6 +70,9 @@ const validateScript = process.env.SPECKIT_VALIDATE_SCRIPT
   ? path.resolve(process.env.SPECKIT_VALIDATE_SCRIPT)
   : path.join(skillRoot, 'runtime', 'cli', 'spec', 'validate.sh');
 
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function parseArgs(argv: string[]): Options {
   const options: Options = { roots: [], baseline: null, format: 'json' };
   for (let index = 0; index < argv.length; index += 1) {
@@ -215,6 +227,9 @@ function readBaseline(baselinePath: string | null): Baseline {
   };
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. VALIDATOR OUTPUT PARSING
+// ───────────────────────────────────────────────────────────────────
 // The validator emits two shapes depending on the schema a packet resolves to:
 // older packets report under `entries`, newer ones under `results`. Reading only
 // one silently yields no rules for half the fleet, which looks like "no detail
@@ -252,6 +267,9 @@ function extractFailedRules(parsed: ValidateOutput): string[] {
   return [...[...errorRules].sort(), ...[...warnRules].sort().filter((r) => !errorRules.has(r))];
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 function runValidate(folder: string, baseline: Baseline): SweepResult {
   const relativeFolder = path.relative(repoRoot, folder) || '.';
   const result = spawnSync('bash', [validateScript, folder, '--strict', '--json', '--no-recursive'], {
@@ -350,6 +368,9 @@ function main(): void {
   process.exit(regressions.length > 0 || newFailures.length > 0 || errors.length > 0 ? 1 : 0);
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 7. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 try {
   main();
 } catch (error: unknown) {

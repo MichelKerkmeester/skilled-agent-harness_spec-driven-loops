@@ -1,13 +1,12 @@
 ---
 title: "Implementation Plan: Align runtime code with sk-code-opencode: section comments, folder depth, code READMEs, ARCHITECTURE.md (system-skill-advisor)"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Run the deep-loop packet's DeepSeek loop driver over the skill-advisor runtime in header, sections and readme modes, then land the fact-checked folder merges, the cosine-test move, the search-quality deletion and the double-underscore renames one at a time with tests after each."
 trigger_phrases:
-  - "implementation plan"
-  - "technical approach"
-  - "architecture decisions"
-  - "testing strategy"
+  - "skill advisor runtime alignment"
+  - "advisor folder merges"
+  - "advisor alignment loop"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Align runtime code with sk-code-opencode: section comments, folder depth, code READMEs, ARCHITECTURE.md (system-skill-advisor)
@@ -23,13 +22,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | TypeScript runtime; bash loop driver and Python checks borrowed from the deep-loop packet |
+| **Framework** | Node.js, vitest |
+| **Storage** | None; loop state is a plain-text done list in the deep-loop packet's `scratch/loop-state/` |
+| **Testing** | `npm run typecheck` per 25 kept edits, the full vitest suite (about two minutes) per mode and after each merge |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The prerequisites (checker flags, ARCHITECTURE template, loop driver) were built and proven in the deep-loop packet. This packet reuses the driver unchanged on `.skilled/skills/system-skill-advisor/runtime`, then applies the merges the SWE-2 MAX fact-check confirmed. Loop edits are comment-only by construction; the merges move files and rewrite importers, so each one is followed by the typecheck, the full suite and an `rg` for the old path.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,13 +37,13 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable (census counts and the 963 passed / 8 failed baseline)
+- [x] Dependencies identified (the deep-loop packet's driver and checker flags)
 
 ### Definition of Done
 - [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
+- [ ] vitest at the baseline, plus the moved cosine test running
 - [ ] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
@@ -54,14 +53,17 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Orchestrator plus cheap leaf workers, as in the deep-loop packet. DeepSeek V4.1 Flash at `high` through cli-pi does the per-file comment edits and the two READMEs; Opus does the merges, renames and the ARCHITECTURE refresh.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Loop driver**: `align-loop.sh system-skill-advisor <header|sections|readme>` in the deep-loop packet's `scratch/`.
+- **Comment-only proof**: `align_loop_checks.py comment-only` compares the file with comments and whitespace stripped, and rejects added tool directives.
+- **Merge table**: `scratch/investigation/devin-swe2max-merge-factcheck.md`, with CONFIRMED and REJECTED rows.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+1. The driver lists targets from the checker, dispatches one brief per target, and keeps an edit only when it is comment-only, touches nothing outside the target, and the checker no longer flags the target.
+2. A rejected edit is restored from the pre-dispatch snapshot, so an earlier mode's uncommitted edit survives.
+3. After the loops, each merge runs alone: `git mv`, importer rewrite, README fold-in, typecheck, full suite, `rg` for the old path.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,20 +71,17 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| Runtime source files | Executed code | Comment-only edits | Comment-only proof per file, typecheck per batch |
+| `lib/context/`, `lib/corpus/`, `lib/routing/`, `tests/utils/` | Import paths | Merge up one level, rewrite importers | `rg` for the old path returns nothing; suite at baseline |
+| `lib/routing/` config lookup | `CONFIG_DIR_CANDIDATES` resolves relative to the module | Rewrite for the new depth | A test that the route denylist still loads |
+| `tests/__fixtures__/`, `tests/__shared__/` | Test fixtures | Rename into `tests/fixtures/` | Referencing files repointed; suite at baseline |
+| `lib/scorer/lanes/__tests__/semantic-shadow-cosine.vitest.ts` | Test outside the vitest include | Move to `tests/scorer/` | vitest now collects and passes it |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Consumers of each moved folder: `rg -n '<folder-name>' .skilled/skills/system-skill-advisor` over code, configs and `.md` links, recorded in the merge fact-check.
 <!-- /ANCHOR:affected-surfaces -->
-
 
 ---
 
@@ -99,9 +98,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | Whole advisor runtime | `npx vitest run` from `runtime/` |
+| Static | Types | `npm run typecheck` |
+| Style | Headers, sections, folders | `verify_alignment_drift.py --check-exact-headers --check-sections --check-folders` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +110,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Deep-loop packet driver and checker flags | Internal | Green | Loop cannot run |
+| `pi` with the `opencode-go` credential | External | Green | Fall back to the cline provider |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,12 +119,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: a merge leaves the suite below baseline and the cause is not a known flake.
+- **Procedure**: `git checkout` or `git mv` back the merge's paths; loop edits revert per file from their snapshots in the deep-loop packet's `scratch/loop-state/runs/`.
 <!-- /ANCHOR:rollback -->
-
----
-
 
 ---
 
@@ -132,17 +129,14 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Setup) ──────┐
-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
-Phase 1.5 (Config) ───┘
+Deep-loop prerequisites ──► Loops (header, sections, readme) ──► Merges ──► ARCHITECTURE refresh ──► Verify
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
-| Verify | Core | None |
+| Loops | Deep-loop packet driver | Merges |
+| Merges | Loops, fact-check | ARCHITECTURE refresh |
+| Verify | All | None |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -152,10 +146,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Loops | Low per target | 77 DeepSeek briefs (33 header, 42 sections, 2 README) |
+| Merges | Med | Seven Opus steps, one suite run each |
+| Verification | Low | Checker, typecheck, suite |
+| **Total** | | **Dominated by the merges** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,20 +158,17 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] vitest baseline recorded before the first edit (963 passed / 8 failed)
+- [x] Checker default-mode output captured before the flag change
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Stop the driver.
+2. `git checkout -- .skilled/skills/system-skill-advisor/runtime` for uncommitted work, or `git revert` the commit.
+3. Rerun vitest and confirm the baseline count.
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
-

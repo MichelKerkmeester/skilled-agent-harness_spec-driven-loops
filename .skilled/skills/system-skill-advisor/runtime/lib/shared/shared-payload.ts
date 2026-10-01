@@ -1,6 +1,6 @@
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // MODULE: Shared Payload Contract (local duplicate)
-// ---------------------------------------------------------------
+// ───────────────────────────────────────────────────────────────────
 // Duplicated from system-spec-kit/runtime/lib/context/shared-payload.ts
 // for full skill isolation.
 // Drift is watched by .github/workflows/isolation-check.yml's
@@ -10,9 +10,10 @@
 
 import { canonicalFold, type UnicodeRuntimeFingerprint } from './unicode-normalization.js';
 
-// ───────────────────────────────────────────────────────────────
-// Inlined helpers (originally from system-spec-kit utils)
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 1. INLINED HELPERS
+// ───────────────────────────────────────────────────────────────────
+// Originally from system-spec-kit utils; copied so this skill imports nothing from it.
 
 function assertNever(unexpectedValue: never, context?: string): never {
   throw new Error(
@@ -42,7 +43,9 @@ function sanitizeSkillLabel(skillLabel: string | null | undefined): string | nul
   return singleLine;
 }
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
+// 2. VALUE SETS AND TYPES
+// ───────────────────────────────────────────────────────────────────
 
 export const SHARED_PAYLOAD_KIND_VALUES = [
   'startup',
@@ -54,7 +57,7 @@ export const SHARED_PAYLOAD_KIND_VALUES = [
 
 export type SharedPayloadKind = (typeof SHARED_PAYLOAD_KIND_VALUES)[number];
 
-// ───────────────────────────────────────────────────────────────
+// ───────────────────────────────────────────────────────────────────
 // Trust-state vocabulary expansion.
 // Canonical axes keep 'live' and 'stale' for existing-but-freshness
 // semantics and add 'absent' (does not exist for this scope) and
@@ -358,6 +361,10 @@ export class StructuralTrustPayloadError extends Error {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. GUARDS AND ASSERTIONS
+// ───────────────────────────────────────────────────────────────────
+
 function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0;
 }
@@ -539,6 +546,10 @@ function assertAdvisorSkillLabel(value: unknown): string | null {
   }
   return sanitized;
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 4. VALIDATORS AND BUILDERS
+// ───────────────────────────────────────────────────────────────────
 
 export function validateAdvisorEnvelopeMetadata(value: unknown): AdvisorEnvelopeMetadata {
   if (!isRecord(value)) {

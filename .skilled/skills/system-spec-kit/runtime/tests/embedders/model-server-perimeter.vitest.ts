@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Model Server Perimeter Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { tmpdir } from 'node:os';
 import { EventEmitter } from 'node:events';
 import { realpathSync, existsSync, mkdtempSync, rmSync, symlinkSync, unlinkSync, writeFileSync } from 'node:fs';

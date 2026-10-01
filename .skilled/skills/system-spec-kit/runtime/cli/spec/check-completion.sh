@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# SPECKIT: CHECK COMPLETION
+# COMPONENT: CHECK COMPLETION
 # ───────────────────────────────────────────────────────────────
 
 set -euo pipefail

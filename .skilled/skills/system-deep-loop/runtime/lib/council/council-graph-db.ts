@@ -3,12 +3,18 @@
 // Runtime-owned SQLite projection for AI Council graph state. This is a
 // derived index: packet-local ai-council artifacts remain source-of-truth.
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import { mkdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { DatabaseSync, type SQLInputValue } from 'node:sqlite';
 import { fileURLToPath } from 'node:url';
 
-// ───── TYPE DEFINITIONS ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export type CouncilNodeKind =
   | 'SESSION'
@@ -75,7 +81,9 @@ export interface CouncilNamespace {
   sessionId?: string;
 }
 
-// ───── CONSTANTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 export const SCHEMA_VERSION = 1;
 export const DB_FILENAME = 'council-graph.sqlite';
@@ -178,7 +186,9 @@ const SCHEMA_SQL = `
   CREATE INDEX IF NOT EXISTS idx_council_snapshots_session ON council_snapshots(spec_folder, session_id);
 `;
 
-// ───── DATABASE LIFECYCLE ─────
+// ───────────────────────────────────────────────────────────────────
+// 4. DATABASE LIFECYCLE
+// ───────────────────────────────────────────────────────────────────
 
 interface CouncilStatement {
   get(...params: unknown[]): unknown;
@@ -306,7 +316,9 @@ export function getDbPath(): string | null {
   return dbPath;
 }
 
-// ───── HELPERS ─────
+// ───────────────────────────────────────────────────────────────────
+// 5. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function prepareStatement(sql: string): CouncilStatement {
   const currentDb = getDb();
@@ -378,7 +390,9 @@ function rowToSnapshot(row: Record<string, unknown>): CouncilSnapshot {
   };
 }
 
-// ───── EXPORTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Clamp relation weight to the valid range [0.0, 2.0].

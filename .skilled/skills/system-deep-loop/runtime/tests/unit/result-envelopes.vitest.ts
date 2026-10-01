@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Result Envelope Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
 import {

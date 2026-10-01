@@ -1,5 +1,5 @@
 // ───────────────────────────────────────────────────────────────────
-// TEST: Workflow Invariance
+// MODULE: Workflow Invariance
 // ───────────────────────────────────────────────────────────────────
 
 import { execFileSync } from 'node:child_process';

@@ -1,3 +1,6 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Status Script Integration Tests
+// ───────────────────────────────────────────────────────────────────
 import { afterEach, describe, expect, it } from 'vitest';
 
 import { SCHEMA_VERSION as COVERAGE_GRAPH_SCHEMA_VERSION } from '../../lib/coverage-graph/coverage-graph-db.js';

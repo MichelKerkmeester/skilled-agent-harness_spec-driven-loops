@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
-// 1. DIRECTORY SETUP
+// 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 // Validates that the target spec folder exists and is usable
 
@@ -15,9 +15,9 @@ import * as path from 'path';
 import { structuredLog, sanitizePath } from '../utils/index.js';
 import { CONFIG, findActiveSpecsDir, getSpecsDirectories, SPEC_FOLDER_PATTERN } from '../core/index.js';
 
-/* ───────────────────────────────────────────────────────────────
-   1. DIRECTORY SETUP
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. DIRECTORY SETUP
+// ───────────────────────────────────────────────────────────────────
 
 async function ensureSpecFolderExists(specFolder: string): Promise<string> {
   let sanitizedPath: string;
@@ -85,9 +85,9 @@ async function ensureSpecFolderExists(specFolder: string): Promise<string> {
   return sanitizedPath;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   ensureSpecFolderExists,

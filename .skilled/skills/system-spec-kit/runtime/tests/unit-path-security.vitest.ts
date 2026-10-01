@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Path Security Tests
+// ───────────────────────────────────────────────────────────────────
+
 // Converted from: unit-path-security.test.ts (custom runner)
 // TEST: PATH SECURITY
 // path-security.ts — realpathSync symlink traversal fix

@@ -2,6 +2,10 @@
 // MODULE: Spec Doc Structure Validation
 // ───────────────────────────────────────────────────────────────────
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
@@ -9,6 +13,10 @@ import { fileURLToPath } from 'node:url';
 
 import { isMainModule } from '../esm-entry.js';
 import { resolveGoalDurableBudget, resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
+
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 /** The five structural rules {@link runSpecDocStructureRule} can evaluate. */
 export type SpecDocRuleName =
@@ -104,6 +112,10 @@ interface FrontmatterExtraction {
   fingerprint: string | null;
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
+
 const DEFAULT_FRONTMATTER_ALLOWLIST = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   '../../cli/lib/frontmatter-grandfather-allowlist.json',
@@ -171,6 +183,10 @@ const ROUTE_CATEGORY_ALIASES: Record<string, string> = {
   metadata_only: 'metadata_only',
   drop: 'drop',
 };
+
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function normalizeRuleName(raw: string | undefined): SpecDocRuleName {
   const normalized = (raw ?? '')
@@ -682,6 +698,10 @@ function createResult(rule: SpecDocRuleName, diagnostics: RuleDiagnostic[], pass
     diagnostics,
   };
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 function validateFrontmatterMemoryBlock(folder: string, level: string): RuleResult {
   const diagnostics: RuleDiagnostic[] = [];
@@ -1383,6 +1403,10 @@ function validatePostSaveFingerprint(folder: string, postSavePlan: PostSavePlan 
   );
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
+
 /** Evaluate one named structural rule against a spec folder and return its result. */
 export function runSpecDocStructureRule(options: SpecDocRuleOptions): RuleResult {
   switch (options.rule) {
@@ -1400,6 +1424,10 @@ export function runSpecDocStructureRule(options: SpecDocRuleOptions): RuleResult
       return createResult(options.rule, [], `${options.rule} skipped`);
   }
 }
+
+// ───────────────────────────────────────────────────────────────────
+// 7. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 
 function emitTsv(result: RuleResult): void {
   process.stdout.write(`rule\t${result.rule}\n`);

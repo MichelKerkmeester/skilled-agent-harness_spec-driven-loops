@@ -1,5 +1,9 @@
 // MODULE: Council Graph Query Helpers
 
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+
 import {
   getEdges,
   getEdgesFrom,
@@ -12,7 +16,9 @@ import {
   type CouncilNode,
 } from './council-graph-db.js';
 
-// ───── TYPE DEFINITIONS ─────
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 export interface PromptSafeNode {
   id: string;
@@ -57,7 +63,9 @@ export interface EvidenceChainStep {
   direction?: 'incoming' | 'outgoing';
 }
 
-// ───── CONSTANTS ─────
+// ───────────────────────────────────────────────────────────────────
+// 3. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 
 const SAFE_METADATA_KEYS = new Set([
   'confidence',
@@ -69,7 +77,9 @@ const SAFE_METADATA_KEYS = new Set([
 ]);
 const MAX_METADATA_STRING_LENGTH = 80;
 
-// ───── HELPERS ─────
+// ───────────────────────────────────────────────────────────────────
+// 4. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Return a prompt-safe node shape with allowlisted metadata only.
@@ -135,7 +145,9 @@ export function sanitizeMetadata(metadata: Record<string, unknown> | undefined):
   return Object.keys(safe).length > 0 ? safe : undefined;
 }
 
-// ───── CORE LOGIC ─────
+// ───────────────────────────────────────────────────────────────────
+// 5. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Find disagreement nodes that have not been resolved.

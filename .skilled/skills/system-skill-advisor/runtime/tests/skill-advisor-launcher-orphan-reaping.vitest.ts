@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Skill Advisor Launcher Orphan Reaping
+// ───────────────────────────────────────────────────────────────────
+
 import { spawn, type ChildProcess, type ChildProcessByStdio } from 'node:child_process';
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import net from 'node:net';

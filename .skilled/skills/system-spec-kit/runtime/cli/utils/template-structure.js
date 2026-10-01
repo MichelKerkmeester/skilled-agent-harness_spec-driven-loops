@@ -1,12 +1,19 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Template Structure Utilities
 // ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'node:url';
 
+// ───────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ───────────────────────────────────────────────────────────────────
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -99,6 +106,9 @@ const STATIC_PHASE_CHILD_ADDENDUM = {
   allowedAnchors: ['phase-context'],
 };
 
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 function normalizeLevel(level) {
   const raw = String(level || '').trim();
   if (raw === '') {
@@ -730,6 +740,9 @@ function insertUniqueAnchorsAfter(anchorIds, additions, afterAnchorId) {
   ];
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 function loadTemplateContractForDocument(level, basename, documentPath, templatesRoot = getTemplatesRoot()) {
   const baseContract = loadTemplateContract(level, basename, templatesRoot);
   if (!baseContract.supported || !documentPath) {
@@ -910,6 +923,9 @@ function printCompareResult(result, scope) {
   }
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 5. CLI ENTRY
+// ───────────────────────────────────────────────────────────────────
 function runCli(argv) {
   try {
     const [command, level, basename, documentPath, scope = 'all'] = argv;
@@ -962,6 +978,9 @@ if (process.argv[1] === __filename) {
   process.exitCode = runCli(process.argv.slice(2));
 }
 
+// ───────────────────────────────────────────────────────────────────
+// 6. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 export {
   compareDocumentToTemplate,
   extractH2Headers,

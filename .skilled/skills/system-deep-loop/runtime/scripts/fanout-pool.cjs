@@ -1,17 +1,6 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Deep-Loop Runtime — Fan-Out Worker Pool                                   ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ Concurrency-capped fan-out primitive for the opt-in multi-executor        ║
-// ║ ("fan-out") layer above the single-executor deep-loop. Generalizes the    ║
-// ║ council parallel dispatcher (lib/council/multi-seat-dispatch.cjs) by      ║
-// ║ adding a concurrency cap so N executor lineages run with at most K in      ║
-// ║ flight, plus a status-ledger writer following the proven                  ║
-// ║ orchestration-status.log ledger pattern.                                   ║
-// ║                                                                           ║
-// ║ Design: pure pool primitive (worker is INJECTED) + ledger helpers, fully  ║
-// ║ unit-tested. The real spawn worker and the CLI entry that wires it        ║
-// ║ (arg parse, JSON-out, exit codes) live in fanout-run.cjs.                ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep-Loop Fan-Out Worker Pool
+// ───────────────────────────────────────────────────────────────────
 
 'use strict';
 

@@ -1,3 +1,7 @@
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Session Stop Hook Tests
+// ───────────────────────────────────────────────────────────────────
+
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs, { appendFileSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';

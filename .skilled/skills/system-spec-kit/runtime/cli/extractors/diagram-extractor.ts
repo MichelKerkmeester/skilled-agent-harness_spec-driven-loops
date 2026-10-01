@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
-// 1. DIAGRAM EXTRACTOR
+// 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 // Extracts and generates ASCII flowcharts and diagrams from conversation data
 
@@ -27,9 +27,9 @@ import type {
   DiagramData,
 } from '../types/session-types.js';
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. TYPE DEFINITIONS
+// ───────────────────────────────────────────────────────────────────
 
 // Re-export canonical types for backward compatibility
 export type {
@@ -41,9 +41,9 @@ export type {
   DiagramData,
 };
 
-/* ───────────────────────────────────────────────────────────────
-   2. PHASE EXTRACTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 function extractPhasesFromData(collectedData: CollectedDataSubset<'observations' | 'userPrompts'> | null): PhaseEntry[] {
   if (!collectedData || !collectedData.observations || collectedData.observations.length === 0) {
@@ -117,9 +117,9 @@ function extractPhasesFromData(collectedData: CollectedDataSubset<'observations'
   }));
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. DIAGRAM EXTRACTION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ───────────────────────────────────────────────────────────────────
 
 async function extractDiagrams(
   collectedData: CollectedDataSubset<'observations' | 'userPrompts'> | null
@@ -223,9 +223,9 @@ async function extractDiagrams(
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   extractPhasesFromData,

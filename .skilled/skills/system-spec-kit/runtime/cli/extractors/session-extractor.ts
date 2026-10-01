@@ -36,9 +36,9 @@ export type {
   UserPrompt,
 };
 
-/* ───────────────────────────────────────────────────────────────
-   1. INTERFACES
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 2. INTERFACES
+// ───────────────────────────────────────────────────────────────────
 
 /** High-level characteristics inferred from the session. */
 export interface SessionCharacteristics {
@@ -77,9 +77,9 @@ export interface ProjectStateParams {
   explicitProjectPhase?: string | null;
 }
 
-/* ───────────────────────────────────────────────────────────────
-   2. SESSION ID & CHANNEL
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 3. SESSION ID & CHANNEL
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Generate a unique session identifier using CSPRNG.
@@ -107,9 +107,9 @@ function getChannel(): string {
   }
 }
 
-/* ───────────────────────────────────────────────────────────────
-   3. CONTEXT TYPE & IMPORTANCE
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 4. CONTEXT TYPE & IMPORTANCE
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Classify the session context type based on tool usage ratios and decision count.
@@ -175,9 +175,9 @@ function resolveImportanceTier(
   return detectImportanceTier(filesModified, contextType);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   4. PROJECT PHASE & STATE
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 5. PROJECT PHASE & STATE
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Infer the current project phase from tool ratios and observation types.
@@ -382,9 +382,9 @@ function buildFileProgress(specFiles: SpecFileEntry[] | undefined): FileProgress
   return specFiles.map((file) => ({ FILE_NAME: file.FILE_NAME, FILE_STATUS: 'EXISTS' }));
 }
 
-/* ───────────────────────────────────────────────────────────────
-   5. TOOL COUNTING & DURATION
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 6. TOOL COUNTING & DURATION
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Count tool invocations by type from observation facts.
@@ -453,9 +453,9 @@ function calculateExpiryEpoch(importanceTier: string, createdAtEpoch: number): n
   return createdAtEpoch + (90 * 24 * 60 * 60); // 90 days default
 }
 
-/* ───────────────────────────────────────────────────────────────
-   6. RELATED DOCS & KEY TOPICS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 7. RELATED DOCS & KEY TOPICS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Discover related documentation files in the spec folder and its parent.
@@ -561,9 +561,9 @@ function extractKeyTopics(summary: string | undefined, decisions: DecisionForTop
   }).slice(0, 10);
 }
 
-/* ───────────────────────────────────────────────────────────────
-   7. COMPOSITE HELPERS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 8. COMPOSITE HELPERS
+// ───────────────────────────────────────────────────────────────────
 
 /**
  * Derive high-level session characteristics by combining tool counts, context type, and importance tier.
@@ -631,9 +631,9 @@ function buildProjectStateSnapshot(params: ProjectStateParams): ProjectStateSnap
   };
 }
 
-/* ───────────────────────────────────────────────────────────────
-   8. EXPORTS
-------------------------------------------------------------------*/
+// ───────────────────────────────────────────────────────────────────
+// 9. EXPORTS
+// ───────────────────────────────────────────────────────────────────
 
 export {
   generateSessionId,

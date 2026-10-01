@@ -59,8 +59,7 @@ OpenCode discovers plugins solely from `.opencode/plugins/`, so `system-spec-gat
 ```text
 lib/spec-gate/
 +-- README.md              # this reference (symlinked from .skilled/hooks/spec-gate/README.md)
-+-- spec-gate-core.mjs     # the policy core
-`-- spec-gate-core.test.mjs
+`-- spec-gate-core.mjs     # the policy core
 
 <runtime>/spec-gate-classify.mjs   # claude, codex, cursor, devin
 <runtime>/spec-gate-enforce.mjs    # claude, codex, cursor, devin
@@ -80,7 +79,7 @@ The hooks-tree index at `.skilled/hooks/spec-gate/` mirrors these per runtime vi
 | File | Responsibility |
 |---|---|
 | `spec-gate-core.mjs` | The policy core: `classifyIntent()`, `evaluateMutation()`, gate-state read/write/evict, the warning log, archive pruning, the throttled stale-state sweep, shadow-delivery observation, prompt sanitization, session-key resolution, and the persisted mutation-time delivery marker (`shouldDeliverGate3Deferral`, `recordGate3NoticeDelivered`, `bindGate3Answer`, `rearmGate3NoticeDelivery`). Never writes stdout/stderr. |
-| `spec-gate-core.test.mjs` | `node --test` corpus covering the golden classify/enforce loop, fail-open paths, `answerParse()`, the once-per-session delivery contract, and programmatic answer binding. Run with `--experimental-test-module-mocks` for the ESM-mock cases. |
+| `../../../tests/hooks/spec-gate-core.test.mjs` | `node --test` corpus covering the golden classify/enforce loop, fail-open paths, `answerParse()`, the once-per-session delivery contract, and programmatic answer binding. Run with `--experimental-test-module-mocks` for the ESM-mock cases. |
 | `<runtime>/spec-gate-classify.mjs` | Thin stdin adapters that read the user-turn payload and call `classifyIntent` to open or resolve the gate. Classify emits **nothing**: the question belongs at the first mutation. Fail open to exit 0. |
 | `<runtime>/spec-gate-enforce.mjs` | Thin stdin adapters that read the tool-call payload, call `runEnforceGate`, emit deny/advise/allow, and record the delivery marker through `result.observe()` once the advise envelope is on the wire. Fail open to exit 0. |
 | `cursor/spec-gate-prebind.mjs` | Cursor-only `sessionStart` adapter. Satisfies the gate immediately when `SYSTEM_SPEC_FOLDER` names a valid spec folder (source `flags`), or opens it when `SYSTEM_SPEC_GATE_ENFORCE=1`. Disabled/child/malformed cases write no state. |
@@ -128,16 +127,16 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 ## 8. VALIDATION
 
 ```bash
-node --test .skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.test.mjs
+node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs
 ```
 
 Expected result: all core tests pass (golden classify/enforce loop, fail-open paths, `answerParse()`, the once-per-session delivery contract, programmatic answer binding). Run with `--experimental-test-module-mocks` for the ESM-mock cases.
 
 ```bash
-node --test .skilled/skills/system-spec-kit/runtime/hooks/claude/spec-gate-claude.test.mjs
-node --test .skilled/skills/system-spec-kit/runtime/hooks/codex/spec-gate-codex.test.mjs
-node --test .skilled/skills/system-spec-kit/runtime/hooks/devin/spec-gate-devin.test.mjs
-node --test .skilled/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs
+node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-claude.test.mjs
+node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-codex.test.mjs
+node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-devin.test.mjs
+node --test .skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-prebind.test.mjs
 ```
 
 Expected result: all per-runtime adapter tests pass.
