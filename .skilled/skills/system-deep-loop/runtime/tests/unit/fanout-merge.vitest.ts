@@ -1103,8 +1103,8 @@ describe('fanout-merge.cjs — script', () => {
     );
 
     // Run merge
-    const { execSync } = require('node:child_process');
-    execSync(`node "${fanoutMergeScript}" --loop-type review --artifact-dir "${baseDir}"`, { encoding: 'utf8' });
+    const { execFileSync } = require('node:child_process');
+    execFileSync('node', [fanoutMergeScript, '--loop-type', 'review', '--artifact-dir', baseDir], { encoding: 'utf8' });
 
     // Merged registry should exist at base dir
     const mergedPath = join(baseDir, 'deep-review-findings-registry.json');
@@ -1137,8 +1137,8 @@ describe('fanout-merge.cjs — script', () => {
       'utf8',
     );
 
-    const { execSync } = require('node:child_process');
-    execSync(`node "${fanoutMergeScript}" --loop-type research --artifact-dir "${baseDir}" --enable-near-duplicate-dedup`, { encoding: 'utf8' });
+    const { execFileSync } = require('node:child_process');
+    execFileSync('node', [fanoutMergeScript, '--loop-type', 'research', '--artifact-dir', baseDir, '--enable-near-duplicate-dedup'], { encoding: 'utf8' });
 
     const merged = JSON.parse(readFileSync(join(baseDir, 'deep-research-findings-registry.json'), 'utf8'));
     expect(merged.keyFindings).toHaveLength(1);
