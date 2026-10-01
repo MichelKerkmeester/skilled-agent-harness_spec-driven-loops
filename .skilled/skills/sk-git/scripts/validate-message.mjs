@@ -146,8 +146,17 @@ function revListMode(repoRoot, opts) {
   const args = opts.revList.split(/\s+/).filter(Boolean);
   const shas = git(repoRoot, ['rev-list', '--reverse', ...args]).split('\n').filter(Boolean);
   const contextFor = rangeContext(repoRoot, shas, opts.excludeRefs);
+  // One git call for every message: a process per commit made a 500-commit push take seconds.
+  const messages = new Map();
+  if (shas.length) {
+    const raw = git(repoRoot, ['log', '--format=%H%x00%B%x1e', ...args]);
+    for (const record of raw.split('\x1e')) {
+      const at = record.indexOf('\x00');
+      if (at !== -1) messages.set(record.slice(0, at).trim(), record.slice(at + 1).replace(/^\n/, ''));
+    }
+  }
   const results = shas.map((sha) => {
-    const message = git(repoRoot, ['log', '-1', '--format=%B', sha]);
+    const message = messages.get(sha) ?? git(repoRoot, ['log', '-1', '--format=%B', sha]);
     const subjectLine = message.split('\n')[0];
     return { subject: `commit ${sha.slice(0, 10)} "${subjectLine}"`, sha, ...validateCommit(message, loaded.contract, { ...contextFor(sha), alreadyClean: true }) };
   });

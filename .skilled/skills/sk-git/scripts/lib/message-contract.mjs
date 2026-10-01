@@ -675,6 +675,16 @@ export function rangeContext(repoRoot, shas, excludeRefs = []) {
   const inRange = new Set(shas);
   const tip = shas[shas.length - 1];
   const inTree = (sha, rel) => gitOrNull(repoRoot, ['cat-file', '-e', `${sha}:${rel}`]) !== null;
+  // Most packets exist at the tip, so one directory listing of the tip answers nearly every
+  // lookup; a per-commit cat-file runs only for a path the tip does not hold.
+  let tipDirs = null;
+  const atTip = (rel) => {
+    if (!tip) return false;
+    if (!tipDirs) {
+      tipDirs = new Set((gitOrNull(repoRoot, ['ls-tree', '-r', '-d', '--name-only', tip]) || '').split('\n').filter(Boolean));
+    }
+    return tipDirs.has(rel.replace(/\/+$/, ''));
+  };
   let idOwners = null;
   const owners = () => {
     if (idOwners) return idOwners;
@@ -697,7 +707,7 @@ export function rangeContext(repoRoot, shas, excludeRefs = []) {
   };
   const seenInRange = new Map();
   return (sha) => ({
-    specExists: (rel) => inTree(sha, rel) || (tip !== sha && inTree(tip, rel)),
+    specExists: (rel) => atTip(rel) || inTree(sha, rel),
     commitIdOwner: (id) => {
       const earlier = seenInRange.get(id);
       if (earlier && earlier !== sha) return earlier.slice(0, 10);
