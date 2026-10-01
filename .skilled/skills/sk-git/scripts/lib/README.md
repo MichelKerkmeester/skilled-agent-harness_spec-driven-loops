@@ -58,6 +58,8 @@ The governing principle is **discriminator, not verb**. A command name alone is 
 | `git-rule-checks.mjs` | Exports `GIT_SHAPE`, `parseGitCommand`, `GIT_CHECKS`, and `GIT_CHECK_IDS`. Parses direct git invocations and provides all 17 repository-aware checks. |
 | `git-context.mjs` | Exports `createGitContext`. Runs bounded git subprocesses only when a check asks for an accessor and memoizes each answer for one advisory event. |
 | `git-rule-checks.test.mjs` | Exercises the parser, fail-open evaluator contract, and all checks against real temporary repositories. |
+| `message-contract.mjs` | Exports `loadContract`, `validateCommit`, `validatePrBody`, `validateBranch`, `templateDriftErrors` and the range and working-tree contexts. Reads a repository's "Enforced rules" blocks; a repository without them is not checked, and a broken block throws `ContractError` so gates block instead of passing. |
+| `message-contract.test.mjs` | Proves the shipped templates match their prose, each rule fires on its own case, another repository's template replaces these rules, and the agent gate reads heredoc messages and PR bodies. |
 | `advisory-noise-audit.mjs` | Replays an ordinary-command sample, reports per-rule and aggregate fire rates, then probes a control group to distinguish quiet rules from dead rules. |
 
 ---

@@ -9,7 +9,7 @@ trigger_phrases:
   - "gh pr create body"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.11
+version: 1.2.0.0
 ---
 
 # Pull Request Template - PR Description Standard
@@ -536,8 +536,49 @@ call_tool_chain(`github.github_create_pull_request({
 
 ---
 
-## 17. RELATED RESOURCES
+## 17. ENFORCED RULES
+
+The JSON block below is what the agent gate checks before `gh pr create` or
+`gh pr edit` runs, and what the CI check holds every PR description to. Editing
+the block changes what both enforce. Another repository gets its own rules by
+carrying its own copy of this template, in `.sk-git/` at its root or in the
+directory git config `skgit.contractDir` names. A repository with no rules block
+is not checked.
+
+| Rule id | What it checks |
+|---------|----------------|
+| `pr.empty` | The description is not empty |
+| `pr.section-missing` | Each required `## Summary` and `## Test Plan` heading is present |
+| `pr.section-empty` | Each required section has content under it |
+| `pr.placeholder` | No line is still an unfilled `<placeholder>` from this template |
+| `pr.attribution` | No AI-tool attribution line, the same policy commits follow |
+
+Headings and placeholders inside fenced code blocks are quoted examples and are
+not checked.
+
+```json
+{
+  "kind": "pr",
+  "version": 1,
+  "requiredSections": ["Summary", "Test Plan"],
+  "sectionHeadingLevel": 2,
+  "requireSectionContent": true,
+  "placeholderPattern": "^\\s*(?:[-*]\\s+)?(?:\\[[ xX]\\]\\s+)?<[^>\\n]+>\\s*$|#<[a-z-]+>",
+  "forbiddenPatterns": [
+    {
+      "id": "pr.attribution",
+      "pattern": "Generated with \\[Claude Code\\]|^Co-Authored-By:|^Claude-Session:|claude\\.ai/code/session",
+      "message": "AI-tool attribution is not allowed in PR descriptions; remove the generated-with, co-author or session line."
+    }
+  ]
+}
+```
+
+---
+
+## 18. RELATED RESOURCES
 
 - [GitHub PR Best Practices](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests) - Official GitHub documentation on pull request collaboration
 - [Conventional Commits](https://www.conventionalcommits.org/) - Specification for commit message formatting
 - [GitHub CLI Manual](https://cli.github.com/manual/gh_pr_create) - Command reference for creating PRs via CLI
+- [../scripts/validate-message.mjs](../scripts/validate-message.mjs) - The validator the agent gate and CI call

@@ -43,7 +43,7 @@ setup_repo() {
   git -C "$TMP" config user.name test
   echo seed > "$TMP/seed.txt"
   git -C "$TMP" add seed.txt
-  SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git -C "$TMP" commit -qm "chore(sk-git): seed the fixture"
+  git -C "$TMP" commit -qm "chore(sk-git): seed the fixture"
   mkdir -p "$TMP/.opencode/skills/sk-git"
   cp -R "$ALLOCATOR_DIR" "$TMP/.opencode/skills/sk-git/scripts"
 }

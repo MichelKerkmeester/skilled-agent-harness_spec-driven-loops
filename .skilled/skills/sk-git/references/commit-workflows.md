@@ -169,9 +169,10 @@ construction, body contract, and the deterministic self-check) is canonical
 in [`../SKILL.md`](../SKILL.md) under "Commit Message Logic (Human-Clear and
 AI-Deterministic)." Worked, repository-specific examples live in
 [`../assets/commit-message-template.md`](../assets/commit-message-template.md).
-Structure is enforced by
-[`../../../scripts/git-hooks/commit-msg`](../../../scripts/git-hooks/commit-msg)
-(bypass: `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...`).
+Structure is enforced from the "Enforced rules" block in that template by
+[`../scripts/validate-message.mjs`](../scripts/validate-message.mjs), which the
+`commit-msg` and `pre-push` hooks, the agent gate and CI all call. There is no
+bypass switch.
 
 Quick summary: `type(scope)[!]: imperative summary`, both type and scope
 required, scope is a stable subsystem name (never a numeric packet id),
