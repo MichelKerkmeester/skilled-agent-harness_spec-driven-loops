@@ -1,0 +1,11 @@
+OK   cli-classifier               declared= 49 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0
+OK   cli-external-orchestration   declared= 58 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0
+OK   mcp-tooling                  declared= 75 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  1 probe-error=  0
+OK   sk-code                      declared= 36 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0
+OK   sk-design                    declared= 76 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  5 probe-error=  0
+OK   sk-doc                       declared=181 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  2 probe-error=  0
+OK   system-deep-loop             declared= 25 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  2 probe-error=  0
+
+checked=7 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=10, probe-error=0
+advisor generation: 84
+RESULT: PASSED

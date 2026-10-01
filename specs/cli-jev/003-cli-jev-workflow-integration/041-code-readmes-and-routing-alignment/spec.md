@@ -99,7 +99,7 @@ Give every code folder this packet created or filled the README its canon requir
 - Part B, the rename cleanup: class `cli-jev-aliases`, no current-state sentence that says a mode runs over a folder named after itself, and the thirteen targeted phrases in the two dispatch classes.
 - Part B, the three pre-release version bumps with one changelog entry each, and the routing-artifact parity that `parent-skill-check.cjs` rules 13a and 13b check.
 - Part B, the compiled-route manifest and Hermes mirror refreshed through their own tools.
-- The probe: the ten-prompt compiled-route comparison against the baseline, recorded under `scratch/build/`, plus the phase's own record.
+- The probe: the ten-prompt compiled-route comparison against the baseline, recorded under `scratch/evidence/`, plus the phase's own record.
 
 ### Out of Scope
 
@@ -170,9 +170,9 @@ Give every code folder this packet created or filled the README its canon requir
 
 | ID | Requirement |
 |----|-------------|
-| REQ-010 | **The baseline and the README commands are recorded before the first routing write.** The ten-prompt probe's before decisions sit in `scratch/build/probe-before.txt`, taken before the hub routing artifacts were written, and the eleven documented test commands ran from the repository root. The session kept no separate design note: section 10's questions were settled in the phase docs and the build record rather than in a note under `scratch/`, and this closure pass states that plainly |
+| REQ-010 | **The baseline and the README commands are recorded before the first routing write.** The ten-prompt probe's before decisions sit in `scratch/evidence/probe-before.txt`, taken before the hub routing artifacts were written, and the eleven documented test commands ran from the repository root. The session kept no separate design note: section 10's questions were settled in the phase docs and the build record rather than in a note under `scratch/`, and this closure pass states that plainly |
 | REQ-011 | **Executors follow parent D5, cross-family review.** DeepSeek V4.1 Flash on `cli-pi` writes the READMEs, the `ROUTER.md` promotion, both mode section 2s and the registry and changelog edits. A cross-family reviewer on `cli-devin` or `cli-codex` reviews read-only, and the writer reviews any reviewer fix. No Claude leaf writes or reviews. P0 and P1 findings are fixed and rechecked, P2 findings are recorded |
-| REQ-012 | **The probe and every gate result are recorded from the final state.** The ten-prompt probe's before and after decisions, the eleven `validate_document.py` results, the eleven test commands' results, `parent-skill-check.cjs`, `validate_skill_package.py` on all three packages, the compiled-route guard, the Hermes check and `validate.sh --strict` are recorded under `scratch/build/` and named in `implementation-summary.md` and `goal.md`'s log |
+| REQ-012 | **The probe and every gate result are recorded from the final state.** The ten-prompt probe's before and after decisions, the eleven `validate_document.py` results, the eleven test commands' results, `parent-skill-check.cjs`, `validate_skill_package.py` on all three packages, the compiled-route guard, the Hermes check and `validate.sh --strict` are recorded under `scratch/evidence/` and named in `implementation-summary.md` and `goal.md`'s log |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
