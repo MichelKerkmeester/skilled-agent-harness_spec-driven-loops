@@ -55,7 +55,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Document the 006 arms in the sk-create-goal docs that describe the scorer. Check: `validate_document.py` exits 0 on each changed doc
+- [x] T008 Document the 006 arms in the sk-create-goal docs that describe the scorer. Evidence: commit `eb4eb71881`, SWE 2 max, the session fixed three lines after it. `validate_document.py` 0 issues on the sk-create-goal README, scripts README, catalog entry and changelog v1.4.0.0. `sync-skills-hermes.cjs --check` PASS 72. sk-doc's activation manifest re-minted with `compiled-route-manifest.cjs refresh` and `compiled-route-status.cjs --hub sk-doc` fresh
 - [ ] T009 One DeepSeek V4.1 Flash review of the three fixes. Check: P0 and P1 fixed, P2 recorded in `goal.md`
 - [ ] T010 Closure: `repair-derived.cjs --apply`, `validate.sh --strict` on this phase and the parent, `check-goal.cjs` on both. Check: `RESULT: PASSED` on each
 <!-- /ANCHOR:phase-3 -->
