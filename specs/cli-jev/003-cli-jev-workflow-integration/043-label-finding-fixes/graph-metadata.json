@@ -57,7 +57,8 @@
       ".opencode/plugins/opencode-goal.js",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs",
       ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs",
-      "build/fix/006a.md"
+      "build/fix/006a.md",
+      "build/fix/006c.md"
     ],
     "entities": [
       {
@@ -163,6 +164,12 @@
         "source": "derived"
       },
       {
+        "name": "006c.md",
+        "kind": "doc",
+        "path": "build/fix/006c.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -197,17 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 042 labeled every fillable gate and found three tool defects",
     "created_at": "2026-10-01T18:41:49Z",
-    "last_save_at": "2026-10-01T18:49:06.724Z",
+    "last_save_at": "2026-10-01T19:35:38.939Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +219,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a258de04381007fb5c59d9ec8312670b13fc48ad5b9a95f4cd351034794e2b9",
+    "source_fingerprint": "sha256:528b744ddc95d301bad6f23486817e2fb5798c24ac1f0f8820820233d97953ef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "447d41dc03c001a4fdec63938cdc858b3a87ea7cb18a47cf70e694cd28157aa1",
       "plan.md": "1905a61a5a9691552e12b76e7622b0c8c4cb6874e20b153200538ffa5265fd5b",
-      "tasks.md": "5aab15453b1afe756d003ccef957f20f9379198dabda48165e837717df06f810",
+      "tasks.md": "8c0b7831f2e886c86276332b26031634e853388ac5ac7c6076ac7056691e7c97",
       "implementation-summary.md": "968605d9f220582c1c0f714e6d3a01cf3d478fccf99b673fc818408fc2aecad5"
     },
     "last_active_at": null
