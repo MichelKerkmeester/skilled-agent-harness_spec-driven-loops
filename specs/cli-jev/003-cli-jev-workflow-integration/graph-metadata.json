@@ -43,7 +43,8 @@
     "cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport",
     "cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration",
     "cli-jev/003-cli-jev-workflow-integration/039-hub-cleanup",
-    "cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar"
+    "cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar",
+    "cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -212,17 +213,17 @@
     ],
     "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-09-30T19:50:49.568Z",
+    "last_save_at": "2026-10-01T07:47:58.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:30c547b0a976b7dd116a670cb06b6b1b1556ade8867f3ed3773f429c27172f35",
+    "source_fingerprint": "sha256:55affd1455535816e09a151ef94a45438ed89539f9fbe4959e73c9be86fbc325",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1279214eb61d23fbec2a3ce4ff13fbffca9ef4ccf0021be5beb8433ac3e30340"
+      "spec.md": "c3d24a1f5b8e7bbeb94150c5053d448bb38df9cb702f3e04298237ea006f8957"
     },
     "last_active_child_id": "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
     "last_active_at": "2026-09-27T09:37:40.643Z"

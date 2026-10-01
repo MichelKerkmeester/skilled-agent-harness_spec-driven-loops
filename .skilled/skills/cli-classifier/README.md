@@ -31,7 +31,7 @@ Every feature that wants a typed judgment needs the same two things: a way to le
 
 ### What It Does
 
-`cli-classifier` is one public advisor identity over two `packetKind: "transport"` packets. The hub holds no packet-local logic. `mode-registry.json` resolves the mode. `leaf-manifest.json` inventories the leaves each mode can load. Mode `cli-jev` runs over the packet folder `cli-jev` and bridges the `jev` CLI and MCP surface. Mode `cli-deem` asks the local Deem server. Either returns a probability, one option key, an ordered level or a batch of keyed answers, and neither writes into this workspace.
+`cli-classifier` is one public advisor identity over two `packetKind: "transport"` packets. The hub holds no packet-local logic. `mode-registry.json` resolves the mode. `leaf-manifest.json` inventories the leaves each mode can load. Mode `cli-jev` bridges the `jev` CLI and MCP surface. Mode `cli-deem` asks the local Deem server. Either returns a probability, one option key, an ordered level or a batch of keyed answers, and neither writes into this workspace.
 
 ### Why It Matters
 
@@ -69,7 +69,7 @@ The hub registers two modes. The registry lists them and the router picks one, o
 | [`SKILL.md`](./SKILL.md) | The hub's routing contract and rules | The entry point an agent loads |
 | [`mode-registry.json`](./mode-registry.json) | The single source of truth for every mode | Resolve which packet owns a request |
 | [`hub-router.json`](./hub-router.json) | Router policy, signals and vocabulary classes | See which phrases pick `cli-jev` or `cli-deem` |
-| [`ROUTER.md`](./ROUTER.md) | The stage-two control document, `stage1-only` | Promote it only with a concrete leaf map |
+| [`ROUTER.md`](./ROUTER.md) | The stage-two surface router, `router_state: active` | Keep its `INTENT_SIGNALS` and `RESOURCE_MAP` keys equal, every path a `leaf-manifest.json` leaf, and its keywords equal to both mode routers |
 | [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of routed leaves | Find the references a mode loads |
 | [`benchmark/injection-screen/`](./benchmark/injection-screen/) | The offline injection screen scorer and its tests | Its default run makes zero model calls. `--jev` and `--deem` each add one backend behind that backend's own gate |
 
@@ -79,10 +79,11 @@ The manifest regenerates when packets change, so read it as a snapshot.
 
 ## 5. CHANGELOG
 
-Releases live in `changelog/` with one file per release, named `v[version].md`. The two `v0.x` entries are the Jev hub's own releases from before it became mode `cli-jev` here.
+Releases live in `changelog/` with one file per release, named `v[version].md`. `v0.1.0.0` and `v0.2.0.0` are the Jev hub's own releases from before it became mode `cli-jev` here.
 
 | Release | Entry |
 |---|---|
+| v0.6.0.0 | [`changelog/v0.6.0.0.md`](./changelog/v0.6.0.0.md) |
 | v0.5.0.0 | [`changelog/v0.5.0.0.md`](./changelog/v0.5.0.0.md) |
 | v0.4.0.0 | [`changelog/v0.4.0.0.md`](./changelog/v0.4.0.0.md) |
 | v0.3.0.0 | [`changelog/v0.3.0.0.md`](./changelog/v0.3.0.0.md) |

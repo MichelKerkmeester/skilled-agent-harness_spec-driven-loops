@@ -2,7 +2,7 @@
 name: cli-classifier
 description: "Routes classifier judgment requests to the cli-jev (hosted Jev) or cli-deem (local Deem) transport through mode-registry.json. Holds no packet-local logic."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.5.0.0
+version: 0.6.0.0
 ---
 
 <!-- Keywords: cli-classifier, cli-jev, cli-usage, cli-deem, jev, typed judgment, jev-mcp, local classifier, deem, deem model, deem judgment, deem health, noul, choice, score, local deem server -->
@@ -42,12 +42,15 @@ Routing is registry-driven. `mode-registry.json` lists every packet. `hub-router
 > ```
 > Follow the returned decision: `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `cli-classifier`. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide. That is the explicit kill-switch.
 
+### Surface Router — per-intent leaf sets
+
+Stage 2 of routing lives in the hub root's `ROUTER.md`, next to `SKILL.md` and `README.md`, and now ships `router_state: active`. It maps a request's judgment, question-shaping, provider, MCP, provenance and lifecycle intents to the exact packet-local leaf resources that mode loads. The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode.
+
 ### Two-Axis Model
 
 - `packetKind: "transport"` marks a bridge to an external tool. It selects a value and never mutates this workspace.
 - A transport declares `mutatesWorkspace: false`, forbids `Write`, `Edit` and `Task` and is registered under the `transport-axis` extension.
 - The advisor resolves the hub identity and stays blind to the transports (`routingClass: "metadata"`). The hub owns the resolution.
-- Mode `cli-jev` runs over the packet folder `cli-jev`, as mode `research` of `system-deep-loop` runs over `deep-research`.
 
 ### Routing Rule
 
@@ -77,7 +80,7 @@ cli-classifier/
   README.md
   mode-registry.json
   hub-router.json
-  ROUTER.md                     # stage-two control, stage1-only
+  ROUTER.md                     # stage-two surface router, active
   description.json
   graph-metadata.json
   leaf-manifest.json
@@ -107,7 +110,7 @@ cli-classifier/
 
 - `mode-registry.json` owns `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, packet folder identity, aliases and `advisorRouting`. Its `transport-axis` extension lists the transports.
 - `hub-router.json` owns `routerPolicy`, `routerSignals`, `vocabularyClasses` and outcomes.
-- `ROUTER.md` is the stage-two control document, `router_state: stage1-only` until an author promotes it with a concrete leaf map.
+- `ROUTER.md` is the stage-two surface router, `router_state: active`: seven intents map to packet-local leaves from `leaf-manifest.json`.
 - `description.json` owns hub-doctor metadata.
 - `graph-metadata.json` is the one skill-graph identity node for the hub.
 
@@ -155,7 +158,7 @@ cli-classifier/
 - Mode `cli-jev`: [`cli-jev/SKILL.md`](./cli-jev/SKILL.md), [`cli-jev/references/cli-reference.md`](./cli-jev/references/cli-reference.md), [`cli-jev/references/providers-and-models.md`](./cli-jev/references/providers-and-models.md), [`cli-jev/references/integration-patterns.md`](./cli-jev/references/integration-patterns.md), [`cli-jev/references/mcp-server.md`](./cli-jev/references/mcp-server.md).
 - Mode `cli-deem`: [`cli-deem/SKILL.md`](./cli-deem/SKILL.md), [`cli-deem/references/wire-contract.md`](./cli-deem/references/wire-contract.md), [`cli-deem/references/deem-ctl-lifecycle.md`](./cli-deem/references/deem-ctl-lifecycle.md), [`cli-deem/references/model-pin.md`](./cli-deem/references/model-pin.md).
 - Hub metadata: [`description.json`](./description.json), [`graph-metadata.json`](./graph-metadata.json), [`leaf-manifest.json`](./leaf-manifest.json).
-- Hub changelog: [`changelog/v0.4.0.0.md`](./changelog/v0.4.0.0.md).
+- Hub changelog: [`changelog/v0.6.0.0.md`](./changelog/v0.6.0.0.md).
 
 ---
 

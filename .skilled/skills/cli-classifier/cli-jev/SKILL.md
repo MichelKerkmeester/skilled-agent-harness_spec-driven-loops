@@ -2,7 +2,7 @@
 name: cli-jev
 description: "TypeSafe Jev CLI transport for typed judgments: noul probabilities, choice selections, ordered scores, and batched run requests."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 0.1.3.0
+version: 0.1.4.0
 ---
 
 <!-- Keywords: cli-usage, cli-jev, jev cli, typesafe jev, jev judgment, noul, choice judgment, score judgment, jev run, jev-mcp, typed judgment, classification instead of prose, probability, yes-no judgment, ordered score, batched questions -->
@@ -69,6 +69,164 @@ jev auth status                      # {"ok": true, "stored": true, "store": "..
 possible, and it never prints the key. Use `jev auth test` when the key must be proven accepted: it
 sends a minimal request and reports `{"ok": true, "valid": true, "model": "..."}`.
 
+### Phase Detection
+
+```text
+JEV TASK
+    |
+    +- STEP 0: Detect the intent: JEV_JUDGMENT, JEV_QUESTION, JEV_PROVIDER or JEV_MCP
+    +- STEP 1: Score intents (top-2 when ambiguity is small)
+    +- Phase 1: Availability (command -v jev and jev auth status before the first judgment)
+    +- Phase 2: Judgment (one typed subcommand: noul, choice, score or run)
+    +- Phase 3: Verification (read the exit code before trusting the payload)
+```
+
+### Resource Domains
+
+The router discovers markdown resources recursively from `references/` and `assets/` and then applies
+intent scoring from `INTENT_MODEL`.
+
+```text
+references/   one document per routed intent
+assets/       the question-shaping card
+```
+
+- `references/` holds the CLI contract, the integration patterns, the provider setup and the MCP
+  server, selected by intent.
+- `assets/` holds the question-shaping card, loaded when the question itself needs drafting.
+- `feature-catalog/` and `manual-testing-playbook/` hold the capability index and the deterministic
+  scenarios, read only on explicit request.
+
+### Resource Loading Levels
+
+| Level | When to Load | Resources |
+| ----------- | ------------------------ | ---------------------------- |
+| ALWAYS | Every skill invocation | `references/cli-reference.md`, `references/integration-patterns.md` |
+| CONDITIONAL | If intent signals match | `references/providers-and-models.md`, `references/mcp-server.md`, `assets/question-shaping-card.md` |
+| ON_DEMAND | Only on explicit request | `feature-catalog/feature-catalog.md`, `manual-testing-playbook/manual-testing-playbook.md` |
+
+### Smart Router Pseudocode
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCES = ["references/cli-reference.md", "references/integration-patterns.md"]
+
+INTENT_MODEL = {
+    "JEV_JUDGMENT": {"keywords": [("ask jev", 4), ("jev judgment", 4), ("jev noul", 4), ("jev choice", 4), ("jev score", 4), ("jev urgency check", 4), ("jev yes or no", 4), ("jev probability", 4), ("cli-jev", 4), ("cli-usage", 4)]},
+    "JEV_QUESTION": {"keywords": [("jev pick one", 3), ("jev options", 3), ("jev question", 3), ("shape a jev question", 3), ("jev batch", 3), ("jev run", 3), ("several jev questions", 3), ("jev question card", 3)]},
+    "JEV_PROVIDER": {"keywords": [("jev provider", 3), ("jev model id", 3), ("jev model", 3), ("jev openrouter", 3), ("jev official provider", 3), ("jev auth status", 3), ("jev auth", 3)]},
+    "JEV_MCP": {"keywords": [("jev mcp", 3), ("jev mcp host", 3), ("jev mcp server", 3), ("expose jev", 3)]},
+}
+
+RESOURCE_MAP = {
+    "JEV_JUDGMENT": ["references/cli-reference.md", "references/integration-patterns.md"],
+    "JEV_QUESTION": ["references/cli-reference.md", "assets/question-shaping-card.md"],
+    "JEV_PROVIDER": ["references/providers-and-models.md"],
+    "JEV_MCP": ["references/mcp-server.md"],
+}
+
+LOAD_LEVELS = {
+    "JEV_JUDGMENT": "ALWAYS",
+    "JEV_QUESTION": "CONDITIONAL",
+    "JEV_PROVIDER": "CONDITIONAL",
+    "JEV_MCP": "CONDITIONAL",
+}
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm whether the request is a judgment, a question to shape, a provider question or an MCP host question",
+    "Confirm which judgment type is needed: noul, choice, score or run",
+    "Confirm the question and the state the judgment is scored against",
+    "Confirm a credential resolves for the selected provider before a judgment is expected",
+]
+
+AMBIGUITY_DELTA = 1
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def get_routing_key(task, intents: list[str]) -> str:
+    override = str(getattr(task, "routing_key", "")).strip().lower()
+    if override:
+        return override
+    return (intents[0] if intents else "unknown").lower()
+
+def classify_intents(user_request, task=None):
+    text = (user_request or "").lower()
+    scores = {intent: 0 for intent in INTENT_MODEL}
+    for intent, cfg in INTENT_MODEL.items():
+        for keyword, weight in cfg["keywords"]:
+            if keyword in text:
+                scores[intent] += weight
+
+    ranked = sorted(scores.items(), key=lambda pair: pair[1], reverse=True)
+    primary, primary_score = ranked[0]
+    if primary_score == 0:
+        return ("JEV_JUDGMENT", None, scores)
+
+    secondary, secondary_score = ranked[1]
+    if secondary_score > 0 and (primary_score - secondary_score) <= AMBIGUITY_DELTA:
+        return (primary, secondary, scores)
+    return (primary, None, scores)
+
+def route_jev_resources(user_request, task=None):
+    inventory = discover_markdown_resources()
+    primary, secondary, scores = classify_intents(user_request, task)
+    intents = [primary] + ([secondary] if secondary else [])
+    routing_key = get_routing_key(task, intents)
+    loaded, seen = [], set()
+
+    def load_if_available(relative_path: str):
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
+
+    for relative_path in DEFAULT_RESOURCES:
+        load_if_available(relative_path)
+
+    if max(scores.values() or [0]) < 0.5:
+        return {
+            "routing_key": routing_key,
+            "intents": intents,
+            "intent_scores": scores,
+            "load_level": "UNKNOWN_FALLBACK",
+            "needs_disambiguation": True,
+            "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST,
+            "resources": loaded,
+        }
+
+    for intent in intents:
+        for relative_path in RESOURCE_MAP.get(intent, []):
+            load_if_available(relative_path)
+
+    return {
+        "routing_key": routing_key,
+        "intents": intents,
+        "intent_scores": scores,
+        "load_level": LOAD_LEVELS.get(primary, "CONDITIONAL"),
+        "resources": loaded,
+    }
+```
+
+---
+
+## 3. HOW IT WORKS
+
 ### Transport Guard
 
 Jev does not dispatch itself. Two bounds apply unchanged by this packet:
@@ -123,28 +281,6 @@ The `env` object reaches the `jev` child only.
 
 A Pi answer carries the same standing as a CLI answer: evidence about the caller's options, never
 permission to act.
-
-### Resource Loading Levels
-
-- **First slice** (always, on activation): `references/cli-reference.md` +
-  `references/integration-patterns.md`.
-- **On demand**: `references/providers-and-models.md` when the provider or model matters,
-  `references/mcp-server.md` when an MCP host is the caller, `assets/question-shaping-card.md` when
-  the question itself needs drafting.
-
-### Smart Router
-
-| Request shape | Loads |
-|---|---|
-| "ask jev whether this is urgent" | `references/cli-reference.md` + `references/integration-patterns.md` |
-| "which of these two queues" / "pick one" | the first slice + `assets/question-shaping-card.md` |
-| "which provider / which model id" | `references/providers-and-models.md` |
-| "expose jev judgments to my MCP host" | `references/mcp-server.md` |
-| "batch several questions over one state" | `references/cli-reference.md` (`run` section) + `assets/question-shaping-card.md` |
-
----
-
-## 3. HOW IT WORKS
 
 ### Execution Ownership
 
@@ -294,8 +430,8 @@ another packet.
 in `mode-registry.json` as `packetKind: "transport"` under the `transport-axis` extension,
 `mutatesWorkspace: false`, forbidding `Write`, `Edit` and `Task`, and it routes by hub membership
 like every other mode. `hub-router.json` carries its intent signal and `leaf-manifest.json` its
-leaf set; the hub's `ROUTER.md` is the stage-two control map, declared `stage1-only` and empty until
-stage two.
+leaf set; the hub's `ROUTER.md` is the stage-two surface router, `router_state: active`, and maps
+this mode's judgment, question, provider and MCP intents to its leaves.
 
 ### Not a Deep-Loop Executor
 

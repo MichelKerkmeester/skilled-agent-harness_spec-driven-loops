@@ -1,5 +1,5 @@
 {
-  "manifestHash": "fb3a816fda0cd99f4e2ea19792cc94add965c95279119c7158d702479603e488",
+  "manifestHash": "cc7bbcef6132d289377876481ec05d934b5a55ec8fcea9102dc3e877d7e9bd12",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16211,6 +16211,9 @@
     "check goal script": [
       "check-goal script"
     ],
+    "check goal tests": [
+      "check-goal tests"
+    ],
     "check graph metadata last active": [
       "check-graph-metadata last-active"
     ],
@@ -17088,6 +17091,9 @@
     "classifier rpc summary": [
       "classifier RPC summary"
     ],
+    "classifier surface router": [
+      "classifier surface router"
+    ],
     "classifier tasks": [
       "classifier tasks"
     ],
@@ -17496,6 +17502,9 @@
     "cli classifier 0 5 0 0": [
       "cli-classifier 0.5.0.0"
     ],
+    "cli classifier 0 6 0 0": [
+      "cli-classifier 0.6.0.0"
+    ],
     "cli classifier benchmark": [
       "cli-classifier benchmark"
     ],
@@ -17574,6 +17583,9 @@
     "cli classifier root router": [
       "cli-classifier root router"
     ],
+    "cli classifier shared scripts": [
+      "cli-classifier shared scripts"
+    ],
     "cli classifier two modes": [
       "cli-classifier two modes"
     ],
@@ -17585,6 +17597,9 @@
     ],
     "cli classifier v0 5 0 0": [
       "cli-classifier v0.5.0.0"
+    ],
+    "cli classifier v0 6 0 0": [
+      "cli-classifier v0.6.0.0"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -18129,6 +18144,9 @@
     "cli deem 0 1 0 0": [
       "cli-deem 0.1.0.0"
     ],
+    "cli deem 0 1 1 0": [
+      "cli-deem 0.1.1.0"
+    ],
     "cli deem build result": [
       "cli-deem build result"
     ],
@@ -18154,7 +18172,8 @@
       "cli-deem completion criteria"
     ],
     "cli deem fake server tests": [
-      "cli-deem fake server tests"
+      "cli-deem fake server tests",
+      "cli-deem fake-server tests"
     ],
     "cli deem feature catalog": [
       "cli-deem feature catalog"
@@ -18186,6 +18205,12 @@
     "cli deem score": [
       "cli-deem score"
     ],
+    "cli deem script tests": [
+      "cli-deem script tests"
+    ],
+    "cli deem scripts": [
+      "cli-deem scripts"
+    ],
     "cli deem status": [
       "cli-deem status"
     ],
@@ -18194,6 +18219,9 @@
     ],
     "cli deem v0 1 0 0": [
       "cli-deem v0.1.0.0"
+    ],
+    "cli deem v0 1 1 0": [
+      "cli-deem v0.1.1.0"
     ],
     "cli deem verification tasks": [
       "cli-deem verification tasks"
@@ -18747,6 +18775,9 @@
     "cli jev 0 1 3 0": [
       "cli-jev 0.1.3.0"
     ],
+    "cli jev 0 1 4 0": [
+      "cli-jev 0.1.4.0"
+    ],
     "cli jev 0 2 0 0": [
       "cli-jev 0.2.0.0"
     ],
@@ -18911,6 +18942,9 @@
     ],
     "cli jev v0 1 3 0": [
       "cli-jev v0.1.3.0"
+    ],
+    "cli jev v0 1 4 0": [
+      "cli-jev v0.1.4.0"
     ],
     "cli jev v0 2 0 0": [
       "cli-jev v0.2.0.0"
@@ -19734,6 +19768,9 @@
     ],
     "cli unknown fallback": [
       "cli unknown fallback"
+    ],
+    "cli usage aliases rename": [
+      "cli-usage-aliases rename"
     ],
     "cli usage mode": [
       "cli-usage mode"
@@ -20675,6 +20712,9 @@
     ],
     "code folder readme template": [
       "code folder readme template"
+    ],
+    "code folder readmes": [
+      "code folder readmes"
     ],
     "code folder readmes proof of concept": [
       "code-folder readmes proof-of-concept"
@@ -21811,14 +21851,32 @@
     "code readme freshness": [
       "code readme freshness"
     ],
+    "code readmes acceptance criteria": [
+      "code readmes acceptance criteria"
+    ],
     "code readmes cleanup plan": [
       "code-readmes cleanup plan"
     ],
     "code readmes cleanup tasks": [
       "code-readmes cleanup tasks"
     ],
+    "code readmes completion criteria": [
+      "code readmes completion criteria"
+    ],
+    "code readmes goal": [
+      "code readmes goal"
+    ],
     "code readmes one per folder": [
       "code readmes one per folder"
+    ],
+    "code readmes plan": [
+      "code readmes plan"
+    ],
+    "code readmes tasks": [
+      "code readmes tasks"
+    ],
+    "code readmes waiver adr": [
+      "code readmes waiver adr"
     ],
     "code remediation plan": [
       "code remediation plan"
@@ -23268,6 +23326,15 @@
     ],
     "compiled route obsidian proof": [
       "compiled-route obsidian proof"
+    ],
+    "compiled route probe": [
+      "compiled route probe"
+    ],
+    "compiled route probe checklist": [
+      "compiled route probe checklist"
+    ],
+    "compiled route probe criteria": [
+      "compiled route probe criteria"
     ],
     "compiled route re mint": [
       "compiled route re-mint"
@@ -26070,6 +26137,9 @@
     "create goal routing republish": [
       "create-goal routing republish"
     ],
+    "create goal script tests": [
+      "create-goal script tests"
+    ],
     "create health md chart": [
       "create health md chart"
     ],
@@ -26228,6 +26298,9 @@
     ],
     "create with human voice": [
       "create with human voice"
+    ],
+    "create with human voice script tests": [
+      "create-with-human-voice script tests"
     ],
     "create workspace tag": [
       "create workspace tag"
@@ -28378,11 +28451,17 @@
     "deem classifier research plan": [
       "deem classifier research plan"
     ],
+    "deem client entrypoint": [
+      "deem client entrypoint"
+    ],
     "deem client goal binding": [
       "deem client goal binding"
     ],
     "deem client results": [
       "deem client results"
+    ],
+    "deem client tests": [
+      "deem client tests"
     ],
     "deem commit pair": [
       "deem commit pair"
@@ -28501,6 +28580,9 @@
     "deem research round 3 results": [
       "deem research round 3 results"
     ],
+    "deem resource loading": [
+      "deem resource loading"
+    ],
     "deem routing control": [
       "deem routing control"
     ],
@@ -28509,6 +28591,9 @@
     ],
     "deem search narrowing goal": [
       "deem search narrowing goal"
+    ],
+    "deem smart routing template": [
+      "deem smart routing template"
     ],
     "deem spec track narrowing": [
       "deem spec track narrowing"
@@ -44099,6 +44184,9 @@
     "goal template parity test": [
       "goal template parity test"
     ],
+    "goal template parity tests": [
+      "goal template parity tests"
+    ],
     "goal template placeholder check": [
       "goal template placeholder check"
     ],
@@ -46912,6 +47000,9 @@
     "hvr scan script": [
       "hvr scan script"
     ],
+    "hvr scanner masking tests": [
+      "hvr scanner masking tests"
+    ],
     "hvr scoring arithmetic": [
       "hvr scoring arithmetic"
     ],
@@ -47947,6 +48038,9 @@
     "injection screen build order": [
       "injection screen build order"
     ],
+    "injection screen fixture tests": [
+      "injection screen fixture tests"
+    ],
     "injection screen keep rule": [
       "injection screen keep rule"
     ],
@@ -47970,6 +48064,9 @@
     ],
     "injection screen tasks": [
       "injection screen tasks"
+    ],
+    "injection screen tests": [
+      "injection screen tests"
     ],
     "injection screen verdict": [
       "injection screen verdict"
@@ -49027,6 +49124,9 @@
     "jev research verification": [
       "jev research verification"
     ],
+    "jev resource loading table": [
+      "jev resource loading table"
+    ],
     "jev round 2 synthesis": [
       "jev round 2 synthesis"
     ],
@@ -49047,6 +49147,9 @@
     ],
     "jev skills and workflows research": [
       "jev skills and workflows research"
+    ],
+    "jev smart routing template": [
+      "jev smart routing template"
     ],
     "jev spec track narrowing": [
       "jev spec track narrowing"
@@ -49101,6 +49204,9 @@
     ],
     "jev transport switch tasks": [
       "jev transport switch tasks"
+    ],
+    "jev transport tests": [
+      "jev transport tests"
     ],
     "jev triage": [
       "jev triage"
@@ -57320,6 +57426,9 @@
     "missing active vector success": [
       "missing active vector success"
     ],
+    "missing code readme": [
+      "missing code readme"
+    ],
     "missing code readme runtime modules": [
       "missing code readme runtime modules"
     ],
@@ -58042,6 +58151,9 @@
     ],
     "mode scaffold verification": [
       "mode scaffold verification"
+    ],
+    "mode section 2 smart router": [
+      "mode section 2 smart router"
     ],
     "mode state write path": [
       "mode state write path"
@@ -66437,6 +66549,9 @@
     "pi transport acceptance criteria": [
       "pi transport acceptance criteria"
     ],
+    "pi transport census tests": [
+      "pi transport census tests"
+    ],
     "pi transport closure gate": [
       "pi transport closure gate"
     ],
@@ -66469,6 +66584,9 @@
     ],
     "pi transport testing strategy": [
       "pi transport testing strategy"
+    ],
+    "pi transport tests": [
+      "pi transport tests"
     ],
     "pi transport verdict": [
       "pi transport verdict"
@@ -69924,6 +70042,9 @@
     ],
     "reader needed lens measurement": [
       "reader-needed lens measurement"
+    ],
+    "reader needed lens tests": [
+      "reader-needed lens tests"
     ],
     "reader needed lens verdict": [
       "reader-needed lens verdict"
@@ -76480,6 +76601,12 @@
     "route validate tasks": [
       "route-validate tasks"
     ],
+    "router active criteria": [
+      "router active criteria"
+    ],
+    "router active promotion": [
+      "router active promotion"
+    ],
     "router alignment": [
       "router alignment"
     ],
@@ -76534,6 +76661,9 @@
     "router presentation split": [
       "router presentation split"
     ],
+    "router promotion checklist": [
+      "router promotion checklist"
+    ],
     "router read recount": [
       "router read recount"
     ],
@@ -76561,6 +76691,9 @@
     "router split tasks": [
       "router split tasks"
     ],
+    "router state active": [
+      "router state active"
+    ],
     "router template": [
       "router template"
     ],
@@ -76569,6 +76702,9 @@
     ],
     "router trigger row": [
       "router trigger row"
+    ],
+    "router vocabulary classes": [
+      "router vocabulary classes"
     ],
     "router walk": [
       "router walk"
@@ -76593,6 +76729,18 @@
     ],
     "routing alias tasks": [
       "routing alias tasks"
+    ],
+    "routing alignment closure gate": [
+      "routing alignment closure gate"
+    ],
+    "routing alignment goal": [
+      "routing alignment goal"
+    ],
+    "routing alignment plan": [
+      "routing alignment plan"
+    ],
+    "routing alignment tasks": [
+      "routing alignment tasks"
     ],
     "routing baseline recapture": [
       "routing-baseline-recapture"
@@ -78583,6 +78731,9 @@
     "score injection screen tasks": [
       "score-injection-screen tasks"
     ],
+    "score injection screen tests": [
+      "score-injection-screen tests"
+    ],
     "score jev tiebreak": [
       "score-jev-tiebreak"
     ],
@@ -78615,6 +78766,9 @@
     ],
     "score pi transport": [
       "score-pi-transport"
+    ],
+    "score pi transport tests": [
+      "score-pi-transport tests"
     ],
     "score residue flagger": [
       "score-residue-flagger"
@@ -79423,6 +79577,9 @@
     ],
     "secrets and privacy review": [
       "secrets and privacy review"
+    ],
+    "section 2 reshape checklist": [
+      "section 2 reshape checklist"
     ],
     "section 6 heading fix": [
       "Section 6 Heading Fix"
@@ -80942,6 +81099,9 @@
     ],
     "shared scripts": [
       "shared scripts"
+    ],
+    "shared scripts tests": [
+      "shared scripts tests"
     ],
     "shared service event parity": [
       "shared service event parity"
@@ -86989,6 +87149,9 @@
     ],
     "smart router rewritten": [
       "smart router rewritten"
+    ],
+    "smart router section 2 reshape": [
+      "smart router section 2 reshape"
     ],
     "smart router telemetry": [
       "smart router telemetry"

@@ -1,6 +1,6 @@
 {
   "skill": "cli-classifier",
-  "version": "0.5.0.0",
+  "version": "0.6.0.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -16,7 +16,7 @@
   "routerSignals": {
     "cli-jev": {
       "weight": 4,
-      "classes": ["cli-usage-aliases", "jev-dispatch"],
+      "classes": ["cli-jev-aliases", "jev-dispatch"],
       "resources": ["cli-jev/SKILL.md"]
     },
     "cli-deem": {
@@ -26,7 +26,7 @@
     }
   },
   "vocabularyClasses": {
-    "cli-usage-aliases": {
+    "cli-jev-aliases": {
       "keywords": [
         "jev cli",
         "jev judgment",
@@ -52,7 +52,12 @@
         "ask jev",
         "use jev",
         "with jev",
-        "through jev"
+        "through jev",
+        "does jev use",
+        "jev provider",
+        "jev model",
+        "jev auth",
+        "jev question"
       ]
     },
     "cli-deem-aliases": {
@@ -78,7 +83,15 @@
         "through deem",
         "deem model",
         "deem server",
-        "deem classifier"
+        "deem classifier",
+        "roll deem back",
+        "deem commit",
+        "update deem",
+        "restart deem",
+        "start deem",
+        "stop deem",
+        "deem is down",
+        "deem-ctl"
       ]
     }
   }
