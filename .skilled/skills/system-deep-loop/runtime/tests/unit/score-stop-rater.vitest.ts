@@ -151,9 +151,9 @@ function fiveLineageRepo(): string {
       config: {},
       records: [iteration(1, 0.04), iteration(2, 0.04), iteration(3, 0.04)],
       deltas: {
-        'iter-001.jsonl': [{ type: 'finding', source: `src-${index}-a` }],
-        'iter-002.jsonl': [{ type: 'finding', source: `src-${index}-a` }],
-        'iter-003.jsonl': [{ type: 'finding', source: `src-${index}-a` }],
+        'iter-001.jsonl': [{ type: 'finding', source: `src/${index}-a.md` }],
+        'iter-002.jsonl': [{ type: 'finding', source: `src/${index}-a.md` }],
+        'iter-003.jsonl': [{ type: 'finding', source: `src/${index}-a.md` }],
       },
     });
   }
@@ -182,7 +182,7 @@ describe('score-stop-rater walker', () => {
     makeLineage(repo, 'lineage-a', {
       config: {},
       records: [iteration(1, 0.5)],
-      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src-a' }] },
+      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src/a.md' }] },
     });
     commitAll(repo);
     const { code, lines, errs } = await runMain([], repo);
@@ -199,7 +199,7 @@ describe('score-stop-rater walker', () => {
     makeLineage(repo, 'lineage-a', {
       config: { stopPolicy: 'max-iterations' },
       records: [iteration(1, 0.5)],
-      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src-a' }] },
+      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src/a.md' }] },
     });
     commitAll(repo);
     const { code, lines } = await runMain([], repo);
@@ -214,12 +214,12 @@ describe('score-stop-rater walker', () => {
     makeLineage(repo, 'lineage-off', {
       config: { convergenceMode: 'off' },
       records: [iteration(1, 0.5)],
-      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src-a' }] },
+      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src/a.md' }] },
     });
     makeLineage(repo, 'lineage-floor', {
       config: { minIterations: 5, maxIterations: 3 },
       records: [iteration(1, 0.5)],
-      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src-b' }] },
+      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src/b.md' }] },
     });
     commitAll(repo);
     const { code, lines } = await runMain([], repo);
@@ -234,7 +234,7 @@ describe('score-stop-rater walker', () => {
     makeLineage(repo, 'lineage-a', {
       config: { antiConvergence: { convergenceMode: 'off' } },
       records: [iteration(1, 0.5)],
-      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src-a' }] },
+      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src/a.md' }] },
     });
     commitAll(repo);
     const { code, lines } = await runMain([], repo);
@@ -251,7 +251,7 @@ describe('score-stop-rater walker', () => {
       makeLineage(repo, name, {
         config: {},
         records: [iteration(1, 0.5)],
-        deltas: { 'iter-001.jsonl': [{ type: 'finding', source: `src-${name}` }] },
+        deltas: { 'iter-001.jsonl': [{ type: 'finding', source: `src/${name}.md` }] },
       });
     }
     commitAll(repo);
@@ -270,9 +270,9 @@ describe('score-stop-rater gold', () => {
   it('gold picks the last first-appearance source', () => {
     const dir = tempDir('stop-rater-gold-');
     fs.mkdirSync(path.join(dir, 'deltas'));
-    fs.writeFileSync(path.join(dir, 'deltas', 'iter-001.jsonl'), JSON.stringify({ type: 'finding', source: 'A' }) + '\n', 'utf8');
-    fs.writeFileSync(path.join(dir, 'deltas', 'iter-002.jsonl'), JSON.stringify({ type: 'finding', source: 'B' }) + '\n', 'utf8');
-    fs.writeFileSync(path.join(dir, 'deltas', 'iter-003.jsonl'), JSON.stringify({ type: 'finding', source: 'A' }) + '\n', 'utf8');
+    fs.writeFileSync(path.join(dir, 'deltas', 'iter-001.jsonl'), JSON.stringify({ type: 'finding', source: 'A.md' }) + '\n', 'utf8');
+    fs.writeFileSync(path.join(dir, 'deltas', 'iter-002.jsonl'), JSON.stringify({ type: 'finding', source: 'B.md' }) + '\n', 'utf8');
+    fs.writeFileSync(path.join(dir, 'deltas', 'iter-003.jsonl'), JSON.stringify({ type: 'finding', source: 'A.md' }) + '\n', 'utf8');
     const files = rater.deltaIterationFiles(dir);
     const result = rater.deriveGold(files);
     expect(result.gold).toBe(2);
@@ -342,6 +342,20 @@ describe('score-stop-rater gold', () => {
     })).toEqual([]);
   });
 
+  it.each([
+    { evidence: 'file:.devin/SYNC.md:20', expected: ['.devin/SYNC.md'] },
+    { evidence: 'iteration 4 F10; iteration 1', expected: [] },
+    { evidence: 'AGENTS.md:59-86, 175-196', expected: ['AGENTS.md'] },
+    { evidence: 'AGENTS.md:247 (measured)', expected: ['AGENTS.md'] },
+    { evidence: '[SOURCE: a/b.md:3]', expected: ['a/b.md'] },
+    { evidence: 'Glob:x/*.json', expected: [] },
+    { evidence: 'iteration 4 F10', expected: [] },
+    { evidence: 'a/b.md:3:4', expected: ['a/b.md'] },
+    { evidence: 'a/b.md#L3-L5', expected: ['a/b.md'] },
+  ])('findingSources parses evidence "$evidence"', ({ evidence, expected }) => {
+    expect(rater.findingSources({ evidence: [evidence] })).toEqual(expected);
+  });
+
   it('gold drops a lineage with no source', async () => {
     const repo = gitRepo();
     makeLineage(repo, 'lineage-a', {
@@ -364,12 +378,12 @@ describe('score-stop-rater inert window', () => {
     makeLineage(repo, 'aaa-plain', {
       config: {},
       records: [iteration(1, 0.5)],
-      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src-plain' }] },
+      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src/plain.md' }] },
     });
     makeLineage(repo, 'zzz-inert', {
       config: {},
       records: [iteration(1, 0.95), iteration(2, 0.95), iteration(3, 0.95)],
-      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src-inert' }] },
+      deltas: { 'iter-001.jsonl': [{ type: 'finding', source: 'src/inert.md' }] },
     });
     commitAll(repo);
     const { code, lines } = await runMain([], repo);
@@ -389,9 +403,9 @@ describe('score-stop-rater methods', () => {
       config: {},
       records: [iteration(1, 1.0), iteration(2, 0.5), iteration(3, 0.2)],
       deltas: {
-        'iter-001.jsonl': [{ type: 'finding', source: 'A' }],
-        'iter-002.jsonl': [{ type: 'finding', source: 'B' }],
-        'iter-003.jsonl': [{ type: 'finding', source: 'A' }],
+        'iter-001.jsonl': [{ type: 'finding', source: 'A.md' }],
+        'iter-002.jsonl': [{ type: 'finding', source: 'B.md' }],
+        'iter-003.jsonl': [{ type: 'finding', source: 'A.md' }],
       },
     });
     const lineage = path.join(dir, 'lineage-a');
@@ -440,14 +454,14 @@ describe('score-stop-rater methods', () => {
 
   it('sources stop lands on its gold', async () => {
     const repo = gitRepo();
-    const repeated = Array.from({ length: 99 }, () => ({ type: 'finding', source: 'src-known' }));
+    const repeated = Array.from({ length: 99 }, () => ({ type: 'finding', source: 'src/known.md' }));
     makeLineage(repo, 'lineage-a', {
       config: {},
       records: [iteration(1, 1.0), iteration(2, 1.0), iteration(3, 0.5)],
       deltas: {
         'iter-001.jsonl': [{ type: 'finding', label: 'no source' }],
         'iter-002.jsonl': [{ type: 'finding', label: 'no source' }],
-        'iter-003.jsonl': [...repeated, { type: 'finding', source: 'src-new' }],
+        'iter-003.jsonl': [...repeated, { type: 'finding', source: 'src/new.md' }],
       },
     });
     const lineage = path.join(repo, 'lineage-a');
@@ -473,9 +487,9 @@ describe('score-stop-rater methods', () => {
       config: {},
       records: [iteration(1, 0.04), iteration(2, 0.04), iteration(3, 0.04)],
       deltas: {
-        'iter-001.jsonl': [{ type: 'finding', source: 'src-a' }],
-        'iter-002.jsonl': [{ type: 'finding', source: 'src-b' }],
-        'iter-003.jsonl': [{ type: 'finding', source: 'src-c' }],
+        'iter-001.jsonl': [{ type: 'finding', source: 'src/a.md' }],
+        'iter-002.jsonl': [{ type: 'finding', source: 'src/b.md' }],
+        'iter-003.jsonl': [{ type: 'finding', source: 'src/c.md' }],
       },
     });
     commitAll(repo);
@@ -500,9 +514,9 @@ describe('score-stop-rater baseline and gate', () => {
         config: {},
         records: [iteration(1, 0.04), iteration(2, 0.04), iteration(3, 0.04)],
         deltas: {
-          'iter-001.jsonl': [{ type: 'finding', source: `src-${index}-a` }],
-          'iter-002.jsonl': [{ type: 'finding', source: `src-${index}-b` }],
-          'iter-003.jsonl': [{ type: 'finding', source: `src-${index}-c` }],
+          'iter-001.jsonl': [{ type: 'finding', source: `src/${index}-a.md` }],
+          'iter-002.jsonl': [{ type: 'finding', source: `src/${index}-b.md` }],
+          'iter-003.jsonl': [{ type: 'finding', source: `src/${index}-c.md` }],
         },
       });
     }
@@ -521,9 +535,9 @@ describe('score-stop-rater baseline and gate', () => {
         config: {},
         records: [iteration(1, 0.04), iteration(2, 0.04), iteration(3, 0.04)],
         deltas: {
-          'iter-001.jsonl': [{ type: 'finding', source: `src-${index}-a` }],
-          'iter-002.jsonl': [{ type: 'finding', source: `src-${index}-b` }],
-          'iter-003.jsonl': [{ type: 'finding', source: `src-${index}-c` }],
+          'iter-001.jsonl': [{ type: 'finding', source: `src/${index}-a.md` }],
+          'iter-002.jsonl': [{ type: 'finding', source: `src/${index}-b.md` }],
+          'iter-003.jsonl': [{ type: 'finding', source: `src/${index}-c.md` }],
         },
       });
     }
@@ -562,9 +576,9 @@ describe('score-stop-rater baseline and gate', () => {
         config: {},
         records: [iteration(1, 0.04), iteration(2, 0.04), iteration(3, 0.04)],
         deltas: {
-          'iter-001.jsonl': [{ type: 'finding', source: `src-${index}-a` }],
-          'iter-002.jsonl': [{ type: 'finding', source: `src-${index}-b` }],
-          'iter-003.jsonl': [{ type: 'finding', source: `src-${index}-c` }],
+          'iter-001.jsonl': [{ type: 'finding', source: `src/${index}-a.md` }],
+          'iter-002.jsonl': [{ type: 'finding', source: `src/${index}-b.md` }],
+          'iter-003.jsonl': [{ type: 'finding', source: `src/${index}-c.md` }],
         },
       });
     }
@@ -784,21 +798,21 @@ describe('score-stop-rater jev gate', () => {
       config: {},
       records: [iteration(1, 0.5), iteration(2, 0.5)],
       deltas: {
-        'iter-001.jsonl': [{ type: 'finding', source: 'src-a' }],
-        'iter-002.jsonl': [{ type: 'finding', source: 'src-b' }],
+        'iter-001.jsonl': [{ type: 'finding', source: 'src/a.md' }],
+        'iter-002.jsonl': [{ type: 'finding', source: 'src/b.md' }],
       },
     });
     makeLineage(repo, 'lineage-unpublished', {
       config: {},
       records: [iteration(1, 0.5), iteration(2, 0.5)],
       deltas: {
-        'iter-001.jsonl': [{ type: 'finding', source: 'src-c' }],
+        'iter-001.jsonl': [{ type: 'finding', source: 'src/c.md' }],
       },
     });
     commitAll(repo);
     fs.writeFileSync(
       path.join(repo, 'lineage-unpublished', 'deltas', 'iter-002.jsonl'),
-      JSON.stringify({ type: 'finding', source: 'src-d' }) + '\n',
+      JSON.stringify({ type: 'finding', source: 'src/d.md' }) + '\n',
       'utf8',
     );
     expect(rater.existsAtOriginMain(repo, 'lineage-published/deltas/iter-002.jsonl')).toBe(true);
@@ -826,10 +840,10 @@ describe('score-stop-rater jev arm', () => {
         config: { convergenceThreshold: 0.05, minIterations: 3 },
         records: [iteration(1, 0.5), iteration(2, 0.5), iteration(3, 0.5), iteration(4, 0.5)],
         deltas: {
-          'iter-001.jsonl': [{ type: 'finding', label: `finding ${index} one`, source: `src-${index}-a` }],
-          'iter-002.jsonl': [{ type: 'finding', label: `finding ${index} two`, source: `src-${index}-b` }],
-          'iter-003.jsonl': [{ type: 'finding', label: `finding ${index} one`, source: `src-${index}-a` }],
-          'iter-004.jsonl': [{ type: 'finding', label: `finding ${index} two`, source: `src-${index}-b` }],
+          'iter-001.jsonl': [{ type: 'finding', label: `finding ${index} one`, source: `src/${index}-a.md` }],
+          'iter-002.jsonl': [{ type: 'finding', label: `finding ${index} two`, source: `src/${index}-b.md` }],
+          'iter-003.jsonl': [{ type: 'finding', label: `finding ${index} one`, source: `src/${index}-a.md` }],
+          'iter-004.jsonl': [{ type: 'finding', label: `finding ${index} two`, source: `src/${index}-b.md` }],
         },
       });
     }
@@ -1054,9 +1068,9 @@ exit 0`);
         config: {},
         records: [iteration(1, 0.04), iteration(2, 0.04), iteration(3, 0.04)],
         deltas: {
-          'iter-001.jsonl': [{ type: 'finding', label: 'x'.repeat(25000), source: `src-${index}-a` }],
-          'iter-002.jsonl': [{ type: 'finding', source: `src-${index}-a` }],
-          'iter-003.jsonl': [{ type: 'finding', source: `src-${index}-a` }],
+          'iter-001.jsonl': [{ type: 'finding', label: 'x'.repeat(25000), source: `src/${index}-a.md` }],
+          'iter-002.jsonl': [{ type: 'finding', source: `src/${index}-a.md` }],
+          'iter-003.jsonl': [{ type: 'finding', source: `src/${index}-a.md` }],
         },
       });
     }
