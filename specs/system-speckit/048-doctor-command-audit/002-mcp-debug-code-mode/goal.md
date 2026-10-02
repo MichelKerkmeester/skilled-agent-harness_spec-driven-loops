@@ -77,11 +77,23 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Phase opened | Done | Scaffolded on 2026-10-02 |
+| Audit inventory | Done | `scratch/reality-check.md` marks every named path, command, flag and variable present, moved or missing |
+| Read-only run | Done | `scratch/doctor-run.log`: exit 2, pass 8, fail 3 |
+| Verdict | Done | `scratch/proposal.md`: "Verdict: fix." |
+| Fix applied | Done | Debug asset rewritten; shared script, library, router, presentation and catalog rows updated in the worktree diff |
+| Post-fix verification | Done | pass 11, warn 2, fail 3; `bash -n` SYNTAX_OK; `route-validate.sh` exit 0 |
+| Docs closed | Done | `acceptance-criteria.md` 5 of 5 Met; `spec.md` status Complete |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Deviation: the proposal's build-fingerprint file and `validate_config.py` changes were rejected | Both would change the inspected Code Mode subsystem; build currentness uses an mtime comparison inside the doctor instead |
+| Finding: `.skilled/.gitignore` line 2 ignores `package.json` | The Code Mode server manifest is never committed; a fresh clone or worktree cannot build Code Mode |
+| Finding: `scripts/install.sh` never runs a build | It cannot produce `dist/index.js` by itself |
+| Finding: `validate_config.py` shape gap | Checks only the MCP-specific nested shape and does not apply the manual-name prefix to credential keys |
+| Finding: the `magicpath` manual | A CLI manual in `.utcp_config.json` without its required `config` field |
+| Note: Codex registration is WARN "unvalidated" | Python 3.9 has no `tomllib`; the row is never reported as PASS |
+| Note: no live tool probe | The debug target only probes from a connected Code Mode session; this phase ran the script directly |
 <!-- /ANCHOR:log -->

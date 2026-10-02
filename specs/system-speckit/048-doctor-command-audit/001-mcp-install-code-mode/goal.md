@@ -77,11 +77,22 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Phase opened | Done | this file |
+| Inventory of every path, command, flag and variable named by the route and install YAML | Done | `scratch/reality-check.md` |
+| One read-only health run on this checkout | Done | `scratch/doctor-run.log` — exit 2, pass 8 / warn 0 / fail 3 |
+| Verdict and target behavior | Done | `scratch/proposal.md` — verdict `fix` |
+| Verdict applied to both workflow YAMLs, the presentation, the router, the doctor scripts and the catalog/contract consumers | Done | `implementation-summary.md` Files Changed |
+| Post-change verification | Done | `bash -n` `SYNTAX_OK`; health run exit 2, pass 11 / warn 2 / fail 3; `route-validate.sh` exit 0; strict validation `PASSED` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| The debug proposal's build-state file and `validate_config.py` change were rejected | Both modify the Code Mode subsystem the doctor inspects; build currentness uses an mtime comparison inside the doctor instead |
+| `--server` removed from both sub-actions | Code Mode is the only server, so the flag has no target |
+| `.skilled/.gitignore` ignores `mcp-server/package.json` | A fresh clone or worktree cannot build Code Mode; the main checkout holds the manifest only as an untracked local file |
+| `scripts/install.sh` never runs a build | It cannot produce `dist/index.js` by itself |
+| `validate_config.py` under-validates credential keys | It checks only the MCP-specific nested shape and does not apply the manual-name prefix |
+| `magicpath` manual in `.utcp_config.json` | A CLI manual without the required `config` field |
+| Health run exit 2 is expected on this worktree | `package.json`, `dist/index.js` and `node_modules` are absent; the doctor reports each by name |
 <!-- /ANCHOR:log -->

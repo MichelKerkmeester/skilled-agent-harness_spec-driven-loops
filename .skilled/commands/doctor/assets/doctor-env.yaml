@@ -1,0 +1,156 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: ENVIRONMENT SWITCHES WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+role: Careful operator inspecting documented environment switches
+purpose: Build a live inventory, report source presence safely, and optionally save a selected preference after explicit approval.
+action: parse_reference -> classify -> inspect_sources -> select -> explain -> collect_preference -> preview -> confirm -> write -> reread -> status
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_read_then_confirmed_mutation
+  compliance: MANDATORY
+  execution: interactive
+  approvals: explicit_yes_for_each_file_write
+  dry_run: complete_every_step_except_writing
+  mutation_scope:
+    - ".skilled/hooks/hook-flags.env"
+    - ".claude/settings.local.json"
+  never_write:
+    - ".env"
+    - ".skilled/hooks/hook-flags.env.example"
+    - ".env.example"
+    - "any shell profile"
+    - "any file outside the approved destination selected by the operator"
+  never_commit: true
+
+# ─────────────────────────────────────────────────────────────────
+# AUTHORITATIVE INVENTORY SOURCE
+# ─────────────────────────────────────────────────────────────────
+inventory_source:
+  file: ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+  source_of_truth: "This file is the only source for the inventory. Do not copy its switch list into this workflow or another file."
+  read_each_invocation: true
+  supported_headers:
+    modern: "| Variable | Default | Type | Description | Source |"
+    legacy: "| flag name | default state (ON/OFF) | governing env var | which automation it gates | runtime read site |"
+  extraction: |
+    Read the complete reference at invocation time. Walk the document in order and retain the current Markdown heading path for each table row. Parse only tables whose header matches one of the two supported shapes, case-insensitively after trimming cell whitespace. Skip separator rows and rows with the wrong number of cells.
+    For a modern row, map the five cells directly to variable name(s), default, type, description, and documented source. For a legacy row, map flag name to variable name(s), default state to default, type to boolean, which automation it gates to description, and combine governing env var plus runtime read site as documented source.
+    Extract every shell-style variable identifier from the variable-name cell. A cell may name multiple switches separated by a slash or comma. Preserve the row's heading path and metadata for each extracted name. Deduplicate by exact variable name while retaining all documented occurrences. Report the count of unique variables after expansion and deduplication.
+    If a supported header or nonempty data row is malformed, or duplicate occurrences give one variable conflicting type/default metadata, stop with the presentation contract's safe parse error. Never guess missing metadata or silently omit a malformed switch row. A clean reference with no supported data rows is also a parse error.
+  output_fields:
+    - heading path
+    - variable name
+    - default
+    - type
+    - description
+    - documented source
+    - classification
+    - read-only source presence
+  secret_metadata: |
+    Classify before displaying defaults or reading any current values. If the name ends in a KEY, TOKEN, PASSWORD, SECRET or CREDENTIALS segment, or the description says the value is an API key, an access token, a password, a credential or a secret, classify it as secret. A TOKEN segment followed by THRESHOLD, FLOOR, BUDGET, LIMIT, COUNT, CHARS or VISIBLE counts text tokens, not a credential, so that segment alone does not make the variable secret. Match case-insensitively; treat underscores, hyphens, and spaces as separators in names so compounds such as API_KEY and ACCESS_TOKEN match. When uncertain, classify as secret. For secret rows replace the displayed default with [redacted] and never retrieve or display any current value.
+  per_invocation_metadata: |
+    After secret classification, classify a variable as per-invocation when its section heading is section 5 GIT-HOOK MARKER, or its description/source says it applies to one command, one invocation, one run, a single commit, or a single push. All variables in section 5 are per-invocation, including thresholds. Classify every remaining variable as preference.
+  count_policy: "Count unique variable names after multi-name expansion and deduplication; display the count before the tables."
+
+# ─────────────────────────────────────────────────────────────────
+# READ-ONLY SOURCE INSPECTION
+# ─────────────────────────────────────────────────────────────────
+source_inspection:
+  sources:
+    - id: process
+      path: "current process environment"
+      reader: "the Bash process environment inherited by the command"
+    - id: hook_flags
+      path: ".skilled/hooks/hook-flags.env"
+      reader: ".skilled/hooks/shared/hook-flags.{cjs,mjs,ts,sh} and validation readers"
+    - id: dotenv
+      path: ".env"
+      reader: "Code Mode only; other readers see it only when the shell/runtime exports the variable"
+    - id: claude_local
+      path: ".claude/settings.local.json"
+      reader: "Claude Code env block only"
+  safety_rules: |
+    Inspect read-only. Never source or execute any configuration file, use shell tracing, dump a file, print all process variables, or include configuration contents in an error. Use an ephemeral read-only Bash/Node probe that reports only variable names and set/unset for the full inventory. For a selected preference only, a second single-variable probe may return that preference's current value from each source. Validate the identifier before probing. Serialize returned values with escaping so newlines/control characters cannot create extra output lines. Never retrieve a secret value for display or return it; presence-only checks remain required for secret rows.
+    A key explicitly present with an empty value counts as set. Respect the hook-flags reader's syntax when checking that file, and inspect only the env object in Claude settings JSON. If a source is missing, report unset. If parsing fails, report the source as unreadable without showing file content and block writes to that source.
+    For each variable show set/unset for process, hook-flags.env, .env, and the Claude Code env block. These are presence indicators only, including for nonsecret variables. For a selected preference, additionally show the value per source where set, its documented default, type, description, and documented source. Escape displayed values as single-line text.
+    Process environment values override hook-flags.env in readers that implement that precedence. Report the locations independently; do not claim a saved file value takes effect while an overriding process value is set. A variable in .env is loaded by Code Mode only; do not imply that another reader loads it.
+  forbidden_output:
+    - "secret values or secret defaults"
+    - "unselected preference values"
+    - "contents of any source file"
+    - "configuration parse errors containing a value"
+    - "shell commands that expose values in their output"
+
+# ─────────────────────────────────────────────────────────────────
+# ARGUMENTS AND SELECTION
+# ─────────────────────────────────────────────────────────────────
+selection:
+  accepted_arguments:
+    selector: "none, list, one section heading, or one exact variable name"
+    flag: "--dry-run"
+  rules: |
+    Reject unknown flags, repeated selectors, and extra positional arguments using the presentation error. Match variable names case-insensitively but display their documented spelling. Match a section against the full heading path or one unambiguous heading label; if it matches multiple sections, show the selection menu and ask the operator to choose one. A selector that matches nothing is an error. With no selector, ask for one section or variable using the presentation menu.
+    The list argument prints the count, complete deduplicated inventory table, and complete source-presence table; then return STATUS=OK without preference prompts or writes. It also works with --dry-run.
+    For a selected section, process each variable in document order. For a selected variable, process that one variable. Show the metadata and source-presence row before handling it.
+  interactive_selection: "Use the presentation asset's selector menu and accept one listed section/variable, list, or cancel."
+
+# ─────────────────────────────────────────────────────────────────
+# CLASS-SPECIFIC HANDLING
+# ─────────────────────────────────────────────────────────────────
+secret_handling:
+  behavior: |
+    State the variable name and identify every source where it is set or unset. Do not ask for its value, retrieve its value, print it, repeat it, or write it. Explain that .env is the location used by Code Mode for provider secrets and that other readers need a shell/runtime export. Do not write .env. If it is also per-invocation, include only the redacted one-command form defined by the presentation contract.
+per_invocation_handling:
+  behavior: |
+    Show the one-command usage form from the presentation contract, using the variable's documented one-command context where available. Never ask for a value, save the switch, or write it to any file. For a secret per-invocation variable, keep the value placeholder redacted.
+preference_handling:
+  behavior: |
+    Show the selected variable's current value by source where set, default, type, description, and documented source. Ask for the desired value and validate it against the documented type and any explicit allowed values in the reference. Do not invent enum values or silently coerce input. If the type or allowed values are ambiguous, explain the ambiguity and make no write for that variable.
+    Then ask for a destination. hook-flags.env is eligible only when the reference and its actual reader confirm this variable is one of the hook kill-switches or validation off-switches consumed from that file. Verify eligibility from the existing hook examples/readers; do not treat a similarly named variable as eligible. The Claude settings destination applies only to Claude Code. The shell-profile option prints an export line for the operator to copy; this command never writes a shell profile. Never offer .env as a preference destination.
+    If process environment already sets the variable, explain that it can override the selected file destination in the current process. Generate the exact target line with safe quoting: NAME=value for hook-flags.env, one valid JSON string-valued env property inside the Claude settings env object, or export NAME=value for display only. Treat process environment values as strings even when the documented preference type is boolean or numeric. Do not add unrelated lines or rewrite unrelated configuration.
+    Show destination, exact lines, and whether the destination file already exists. For a missing hook-flags.env, preview the initialization from .skilled/hooks/hook-flags.env.example and the resulting selected assignment. Secret assignments in the template must remain blank/redacted; never display or copy a secret value. Ask for the explicit confirmation defined by the presentation asset. Only an unambiguous yes authorizes a file write. A no, cancel, ambiguous response, or interruption makes no write and returns the cancelled status. In dry-run, show the identical destination and exact proposed lines, skip confirmation for a real write, make no write, and continue to STATUS=OK with a dry-run note.
+    After an approved hook-flags.env write, read that file again and show only the changed assignment line. After an approved Claude settings write, parse the JSON again and show only the changed env property line. Do not echo other file contents. If the write or re-read fails, stop with a sanitized failure status and no values in the error. For the shell-profile option, print only the exact export line and confirm that no file was written.
+  type_validation:
+    boolean: "Accept only documented spellings or canonical true/false, yes/no, on/off, or 1/0 when compatible with the documented default and reader. Preserve the chosen documented spelling."
+    integer: "Require a whole-number value; enforce documented bounds only when the reference states them."
+    number: "Require a finite numeric value; enforce documented bounds only when stated."
+    enum: "Accept only a choice explicitly listed in the reference."
+    string_or_path: "Accept one line of text; reject control characters and preserve the exact entered content."
+    unknown: "Ask once for clarification of the type's valid form; if it remains unclear, do not write and return STATUS=FAIL with a sanitized type error."
+  confirmation_policy: "Explicit yes required immediately before each file mutation. A prior yes does not authorize another variable or another destination."
+  cancellation_policy: "Any operator cancellation before a write returns STATUS=CANCELLED ACTION=cancelled and performs no additional mutation."
+
+# ─────────────────────────────────────────────────────────────────
+# DESTINATION MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  hook_flags:
+    allowed: ".skilled/hooks/hook-flags.env"
+    initialize_when_missing: "Only after explicit yes, from .skilled/hooks/hook-flags.env.example; then set the selected eligible nonsecret switch."
+    preserve: "All unrelated existing lines and settings."
+  claude_local:
+    allowed: ".claude/settings.local.json"
+    allowed_property: "Top-level env object only."
+    preserve: "All unrelated JSON properties and env entries."
+  shell_profile:
+    allowed: "No file target."
+    operation: "Print one safely quoted export line for the operator to copy."
+  forbidden:
+    - ".env"
+    - ".skilled/hooks/hook-flags.env.example"
+    - ".env.example"
+    - "shell profiles"
+    - "all other files"
+
+# ─────────────────────────────────────────────────────────────────
+# COMPLETION
+# ─────────────────────────────────────────────────────────────────
+completion:
+  success: "STATUS=OK"
+  cancelled: "STATUS=CANCELLED ACTION=cancelled"
+  failure: "STATUS=FAIL ERROR=\"sanitized description\""
+  final_status: |
+    Return exactly one final status. Use STATUS=OK after all selected work is inspected and every approved write has been re-read, or after a dry run/list-only run. Use STATUS=CANCELLED ACTION=cancelled when the operator cancels before a write. Use STATUS=FAIL ERROR=\"...\" for a parse, validation, read, write, or verification failure. Never include a secret or configuration value in the status.

@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,9 +47,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".cursor/mcp.json",
+      ".pi/mcp.json",
+      ".devin/mcp_config.json",
       ".skilled/commands/doctor/assets/doctor-mcp-install.yaml",
-      ".skilled/commands/doctor/_routes.yaml",
-      ".skilled/commands/doctor/mcp.md"
+      ".skilled/commands/doctor/assets/doctor-mcp-debug.yaml",
+      ".skilled/commands/doctor/assets/doctor-mcp-presentation.txt",
+      ".skilled/commands/doctor/mcp.md",
+      ".skilled/commands/doctor/scripts/mcp-doctor.sh",
+      ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh",
+      ".skilled/commands/README.txt",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      "scratch/doctor-run.log"
     ],
     "entities": [
       {
@@ -89,21 +100,75 @@
         "source": "derived"
       },
       {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_config.json",
+        "kind": "config",
+        "path": ".devin/mcp_config.json",
+        "source": "derived"
+      },
+      {
         "name": "doctor-mcp-install.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/assets/doctor-mcp-install.yaml",
         "source": "derived"
       },
       {
-        "name": "_routes.yaml",
+        "name": "doctor-mcp-debug.yaml",
         "kind": "config",
-        "path": ".skilled/commands/doctor/_routes.yaml",
+        "path": ".skilled/commands/doctor/assets/doctor-mcp-debug.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-mcp-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-mcp-presentation.txt",
         "source": "derived"
       },
       {
         "name": "mcp.md",
         "kind": "doc",
         "path": ".skilled/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor-lib.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
         "source": "derived"
       },
       {
@@ -141,65 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:mcp install` installs MCP servers and registers them in each runtime config",
     "created_at": "2026-10-02T16:10:10Z",
-    "last_save_at": "2026-10-02T16:16:00.739Z",
+    "last_save_at": "2026-10-02T20:24:24.012Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f1e1344263686c819940bce3fdc03a313724e33ef67df8181b8146953bd413d",
+    "source_fingerprint": "sha256:f3b41d03f115334435dc020784e6ed8de6b20e418b288c5c1d63815db2665a22",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d23502c15b64fa4814e3c518400c3886c9e8014446077e47767467911d37afbf",
-      "plan.md": "b7e99da1f333f71fa98c689affee6794322b4b751f31df8d49fc2ffd4b0c0d3e",
-      "tasks.md": "c72c523aa5510ced8c67e99fb08a6380aa0782649ed88133b44ac686487e8dd9",
-      "implementation-summary.md": "62a79d66a7a27a9f6b121f5a56f7dd797ed78820e95d252d0806f63873fb0715"
+      "spec.md": "7be24ed37b8aec1ba753a131c6ad44ee06ec765a02032c92651245c7f95b3cb2",
+      "plan.md": "c40dd2033053a41d5dee23c8ee99e35a27ec037baf298e9ff760983696b6fe95",
+      "tasks.md": "87128bc2ab23e87817f1b2356ea264cca297d49d36d995345c290af2ccc4615c",
+      "implementation-summary.md": "7ffb0f0cca66fa38b9da5ec1fd727cb45e58a7167b70430fda4897614ca51914"
     },
     "last_active_at": null
   }

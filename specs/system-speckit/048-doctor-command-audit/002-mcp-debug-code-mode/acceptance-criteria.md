@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-mcp-debug-code-mode"
+    packet_pointer: "system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode"
     last_updated_at: "2026-10-02T16:10:13Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-02
 <!-- /ANCHOR:metadata -->
 
@@ -51,11 +51,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given this checkout, When the phase closes, Then `scratch/reality-check.md` lists every path, script, command, flag and environment variable that the `/doctor:mcp debug` route and `doctor-mcp-debug.yaml` name, each marked present, moved or missing with the command that showed it. | `scratch/reality-check.md` | Unmet | - |
-| AC-002 | REQ-002 | Given this checkout, When the phase closes, Then `/doctor:mcp debug` runs once on this checkout in its read-only or dry-run form, or against a disposable copy of any database it would change, and its output is saved to `scratch/doctor-run.log`. | `scratch/doctor-run.log` | Unmet | - |
-| AC-003 | REQ-003 | Given this checkout, When the phase closes, Then `implementation-summary.md` records one verdict, keep, fix or retire, with the evidence behind it. | `implementation-summary.md` verdict section | Unmet | - |
-| AC-004 | REQ-004 | Given this checkout, When the phase closes, Then after the verdict is applied, `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0. | `bash .skilled/commands/doctor/scripts/route-validate.sh` exit status | Unmet | - |
-| AC-005 | REQ-005 | Given this checkout, When the phase closes, Then after the change, `doctor-mcp-debug.yaml` diagnoses only MCP Code Mode and `.utcp_config.json`, covering how Code Mode is installed, how it is registered in each runtime config, and how a UTCP manual is added to `.utcp_config.json`; `scratch/reality-check.md` lists every other server the workflow named before. | the workflow asset after the change, and `scratch/reality-check.md` | Unmet | - |
+| AC-001 | REQ-001 | Given this checkout, When the phase closes, Then `scratch/reality-check.md` lists every path, script, command, flag and environment variable that the `/doctor:mcp debug` route and `doctor-mcp-debug.yaml` name, each marked present, moved or missing with the command that showed it. | `scratch/reality-check.md:1`; each row cites `test -e`, `nl -ba` or a read-only JSON inspection | Met | - |
+| AC-002 | REQ-002 | Given this checkout, When the phase closes, Then `/doctor:mcp debug` runs once on this checkout in its read-only or dry-run form, or against a disposable copy of any database it would change, and its output is saved to `scratch/doctor-run.log`. | `scratch/doctor-run.log:1` and `scratch/doctor-run.log:21` (exit 2; pass 8, fail 3); post-fix rerun (exit 2; pass 11, warn 2, fail 3) | Met | - |
+| AC-003 | REQ-003 | Given this checkout, When the phase closes, Then `implementation-summary.md` records one verdict, keep, fix or retire, with the evidence behind it. | `implementation-summary.md:58`; `scratch/proposal.md:3` ("## Verdict: fix") | Met | - |
+| AC-004 | REQ-004 | Given this checkout, When the phase closes, Then after the verdict is applied, `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0. | `implementation-summary.md:115`; `bash .skilled/commands/doctor/scripts/route-validate.sh`: exit 0, "OK: route-validate — 10 routes validated, 2 warnings" | Met | - |
+| AC-005 | REQ-005 | Given this checkout, When the phase closes, Then after the change, `doctor-mcp-debug.yaml` diagnoses only MCP Code Mode and `.utcp_config.json`, covering how Code Mode is installed, how it is registered in each runtime config, and how a UTCP manual is added to `.utcp_config.json`; `scratch/reality-check.md` lists every other server the workflow named before. | rewritten `.skilled/commands/doctor/assets/doctor-mcp-debug.yaml:1`; grep for `figma`, `chrome`, `click-up`, `skill-advisor`, `code-graph`, `.venv` and `vscode` on both MCP YAMLs clean (exit 1); post-fix `utcp_manuals` PASS: 14 manuals have a valid name and call_template_type; `scratch/reality-check.md:100` ("Other names outside Code Mode") | Met | - |
 
 ### Status values
 
@@ -80,7 +80,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Open. Written when the phase closes.
+All five criteria are Met with observed evidence: the audit inventory, the recorded read-only run, the fix verdict, route validation exiting 0, and the rewritten debug asset checked clean of every other server it used to name. The four subsystem defects found during the audit stay recorded in `implementation-summary.md` rather than fixed here, by the phase decision that the doctor never changes the subsystem it inspects.
 <!-- /ANCHOR:closure -->

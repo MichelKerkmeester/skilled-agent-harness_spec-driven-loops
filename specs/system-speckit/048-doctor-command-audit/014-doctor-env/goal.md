@@ -76,11 +76,19 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Phase opened | Done | Packet scaffolded on 2026-10-02 with the goal, spec and criteria authored |
+| Command assets built | Done | `.skilled/commands/doctor/env.md`, `assets/doctor-env.yaml` and `assets/doctor-env-presentation.txt` exist and document validation returned VALID with 0 issues |
+| Family wiring done | Done | `.claude` symlink points at the router; README doctor count 3 to 4; family contract entry added; Codex, Pi, Hermes and Cursor mirrors in sync |
+| Review fixes applied | Done | Source git-hook marker examples use `=1`; next-step text names concrete commands; token-count thresholds classify as preferences; skill_agent comment under the frontmatter; README pipes escaped |
+| Verification run | Done | Catalog mirror check STATUS=OK with 35 of 35 commands, route validation exit 0, mirror checks in sync, and one run recorded in `scratch/doctor-env-run.md` |
+| Acceptance criteria | Done | Every row Met with the observed evidence |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Deviation | Codex mirror generation hit EPERM in the builder's sandbox, so the orchestrator ran `node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs`, which wrote 1 of 33 prompts and left `--check` reporting 33 in sync |
+| Deviation | The recorded run used orchestrator Bash and Node probes rather than a live slash-command session, so the interactive menu was not exercised end to end |
+| Deviation | The first secret-classification draft hid four token-count thresholds; the review refined the rule so `TOKEN` followed by a threshold, floor, budget, limit, count, chars or visible word is a count |
+| Finding (recorded, not fixed) | ENV-REFERENCE.md states 144 unique variables while its tables hold 158, because the 14 git-hook marker rows added to section 5 did not update the stated count. Recorded in `scratch/doctor-env-run.md` and left unfixed as out of scope |
 <!-- /ANCHOR:log -->

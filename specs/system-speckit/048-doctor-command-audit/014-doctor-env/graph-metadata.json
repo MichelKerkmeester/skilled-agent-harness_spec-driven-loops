@@ -39,7 +39,7 @@
       "testing"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,7 +47,19 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md"
+      ".skilled/commands/doctor/env.md",
+      ".skilled/commands/doctor/assets/doctor-env.yaml",
+      ".skilled/commands/doctor/assets/doctor-env-presentation.txt",
+      ".claude/commands/doctor/env.md",
+      ".skilled/commands/README.txt",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".codex/prompts/doctor-env.md",
+      ".pi/prompts/doctor-env.md",
+      ".hermes/prompts/doctor-env.md",
+      ".cursor/commands/doctor-env.md",
+      "scratch/doctor-env-run.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/commands/doctor/mcp.md"
     ],
     "entities": [
       {
@@ -87,9 +99,57 @@
         "source": "derived"
       },
       {
+        "name": "env.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/env.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-env.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-env.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-env-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-env-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-env.md",
+        "kind": "doc",
+        "path": ".codex/prompts/doctor-env.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-env-run.md",
+        "kind": "doc",
+        "path": "scratch/doctor-env-run.md",
+        "source": "derived"
+      },
+      {
         "name": "ENV-REFERENCE.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/mcp.md",
         "source": "derived"
       },
       {
@@ -141,63 +201,15 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Every switch that turns a hook, gate or runtime feature off, or changes its default, is an environment variable or git config key documented in `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`, a 472-line reference",
     "created_at": "2026-10-02T16:10:28Z",
-    "last_save_at": "2026-10-02T16:16:02.736Z",
+    "last_save_at": "2026-10-02T20:23:51.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b2edff1d8e2bf4726096d9abce218418d0232cbb79e46e64001b511d268f0af",
+    "source_fingerprint": "sha256:ac10fa9dfe6302ba670fab60357b685dce20d438d0adf95a3d9d8056ee111ab3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d5f07597a26ffd7b04b3ef182874981674875ea779c3f2dad80a29e6d2c6ff8c",
-      "plan.md": "7852e193adbbdf3450ef2d41bda52668241b542b3711e21a5143f92bb00f73ad",
-      "tasks.md": "37f8d6c923f66d5945c60c678a54f3f2f7bb84afb66528a5452e168d7cee5494",
-      "implementation-summary.md": "841a591f347ade9ccbdec2e80b9a827107ac1f14558048ce28046381892ec758"
+      "spec.md": "ecf4f245343fe2e34e2cd95af66eba2d5ca842d1097ec7891efadf46ff00b273",
+      "plan.md": "5758a68169947fba4527376991dd7c435aaccf932ecd330abf039dacdc00fc8c",
+      "tasks.md": "9d04cf5da4f05861d946324db95d374359d37e0f7f48cbe452d6dc90a760fa16",
+      "implementation-summary.md": "9fcce4978580aa62b01ba3da47d0340495ac0114affd537ef300dc57eca8bff8"
     },
     "last_active_at": null
   }
