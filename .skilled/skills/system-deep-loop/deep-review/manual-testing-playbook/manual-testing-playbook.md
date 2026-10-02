@@ -170,12 +170,12 @@ Expected signals: Default values of 7 and 0.10 appear consistently across all so
 ### DRV-069 | Residue flagger measurement
 
 #### Description
-Verify that `.skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs` holds its zero-call default and skips a stub backend behind `--deem`.
+Verify that `.skilled/skills/system-deep-loop/deep-review/scripts/score-residue-flagger.cjs` holds its zero-call default and skips a stub backend behind `--jev`.
 
 #### Scenario Contract
-Prompt: `Run the residue flagger measurement with the logging stubs first on PATH and report whether the default pass makes zero calls and the stub Deem backend is skipped cleanly.`
+Prompt: `Run the residue flagger measurement with the logging stubs first on PATH and report whether the default pass makes zero calls and the stub Jev backend is skipped cleanly.`
 
-Expected signals: The default run prints the census and the fixed `margin:`, `keep rule:` and `instruction` lines before `stop: fewer than 100 labeled rows`, makes zero backend calls and writes no file, `--jev` and `--deem` each require `--out <dir>` or exit 2 before any call, and the `--deem` run adds `deem arm skipped: stub backend` and exits 0.
+Expected signals: The default run prints the census and the fixed `margin:`, `keep rule:` and `instruction` lines before `stop: fewer than 100 labeled rows`, makes zero backend calls and writes no file, `--jev` requires `--out <dir>` or exits 2 before any call, and the `--jev` run adds the `jev: path=` identity line and `jev arm skipped: no credential` and exits 0.
 
 #### Test Execution
 > **Feature File:** [DRV-069](../manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md)

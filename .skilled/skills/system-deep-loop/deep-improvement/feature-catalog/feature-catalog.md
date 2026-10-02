@@ -279,11 +279,11 @@ See [`scoring-system/dimensional-progress.md`](../feature-catalog/scoring-system
 
 #### Description
 
-Measures offline how well the deterministic hallucination check and a Deem or Jev grader agree with operator labels on benchmark outputs.
+Measures offline how well the deterministic hallucination check and a Jev grader agree with operator labels on benchmark outputs.
 
 #### How It Works
 
-`scripts/model-benchmark/scorer/score-d4-agreement.cjs --outputs <dir>` matches benchmark outputs to their fixtures, counts the operator's labels and prints the `hallucination-flag` baseline with a fixed keep rule, with no model call by default. `--deem` and `--jev` each add a model arm that runs only after its own checks pass and once 30 outputs carry labels, at least 5 in each class, and a finished arm prints one `verdict` line.
+`scripts/model-benchmark/scorer/score-d4-agreement.cjs --outputs <dir>` matches benchmark outputs to their fixtures, counts the operator's labels and prints the `hallucination-flag` baseline with a fixed keep rule, with no model call by default. `--jev` adds a model arm that runs only after its own checks pass and once 30 outputs carry labels, at least 5 in each class, and a finished arm prints one `verdict` line.
 
 #### Source Files
 
@@ -381,11 +381,11 @@ See [`model-benchmark-mode/score-delta-benchmark-gates.md`](../feature-catalog/m
 
 #### Description
 
-Measures offline how well a Deem or Jev grader resolves the reviewer outputs the deterministic verdict pattern misses, against operator labels.
+Measures offline how well a Jev grader resolves the reviewer outputs the deterministic verdict pattern misses, against operator labels.
 
 #### How It Works
 
-`scripts/model-benchmark/lib/score-verdict-fallback.cjs --profile <path-or-id>`, `reviewer-regression.json` by default, counts each recorded reviewer output as a hit when the deterministic pattern reads a verdict from it and a miss when it does not, adds the operator's labeled misses from `--outputs <file>` and the verdict-method counts of each `--reports <dir>`, and prints the two zero-call baselines with a fixed keep rule. `--jev` and `--deem` each add an arm behind its own gate, and neither arm runs before 12 labeled regex-miss outputs carry at least one label of each kind and the baseline leaves headroom. A run with either switch writes `<out>/report.json`, and a run past the gate also appends `<out>/calls.jsonl`.
+`scripts/model-benchmark/lib/score-verdict-fallback.cjs --profile <path-or-id>`, `reviewer-regression.json` by default, counts each recorded reviewer output as a hit when the deterministic pattern reads a verdict from it and a miss when it does not, adds the operator's labeled misses from `--outputs <file>` and the verdict-method counts of each `--reports <dir>`, and prints the two zero-call baselines with a fixed keep rule. `--jev` adds an arm behind its own gate, and the arm does not run before 12 labeled regex-miss outputs carry at least one label of each kind and the baseline leaves headroom. A run with the switch writes `<out>/report.json`, and a run past the gate also appends `<out>/calls.jsonl`.
 
 #### Source Files
 
