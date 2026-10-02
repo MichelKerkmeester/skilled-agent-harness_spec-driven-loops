@@ -1,10 +1,21 @@
+---
+title: "Security Policy"
+description: "How to privately report a vulnerability in Skilled, what is in scope, which shipped defaults carry risk and how to run the framework safely."
+trigger_phrases:
+  - "security policy"
+  - "report a vulnerability"
+  - "skilled security defaults"
+  - "bypassPermissions and dangerous dispatch modes"
+  - "repository security safeguards"
+---
+
 # Security Policy
 
-Skilled installs hooks, runs shell commands and reads environment variables inside AI coding assistants, so a flaw here can reach the machine it runs on. Reports are welcome and handled privately.
+> Skilled installs hooks, runs shell commands and reads environment variables inside AI coding assistants, so a flaw here can reach the machine it runs on. Reports are welcome and handled privately.
 
 ---
 
-## 1. 📖 OVERVIEW
+## 1. OVERVIEW
 
 Skilled is a set of files your AI coding assistant loads and runs. Hooks fire when a session starts, on every prompt, before and after tool calls and when the session ends. Skills tell the agent which shell commands to run, and some of those commands start other AI CLIs that write to your files without asking first. All of it runs under your own user account, with your environment variables and credentials.
 
@@ -12,7 +23,7 @@ This policy has two kinds of reader. If you found a vulnerability, sections 2 to
 
 ---
 
-## 2. 🔒 REPORTING A VULNERABILITY
+## 2. REPORTING A VULNERABILITY
 
 Report it through GitHub's private vulnerability reporting: open the repository's **Security** tab and choose **Report a vulnerability**. Do not open a public issue or pull request for a security problem.
 
@@ -30,19 +41,19 @@ Skill names that begin with `sk-`, such as `sk-doc` or `sk-git`, are not API key
 
 ---
 
-## 3. 🕑 WHAT HAPPENS NEXT
+## 3. WHAT HAPPENS NEXT
 
 Every report is acknowledged. Once the problem is confirmed, the fix lands on `main` and the advisory is published with credit to the reporter, unless you ask to stay anonymous.
 
 ---
 
-## 4. 📦 SUPPORTED VERSIONS
+## 4. SUPPORTED VERSIONS
 
 Only the latest release on `main` receives security fixes.
 
 ---
 
-## 5. 🎯 SCOPE
+## 5. SCOPE
 
 In scope is everything this repository ships: `.skilled/` skills, commands, agents, hooks and scripts, and the runtime configuration under `.claude/`, `.codex/`, `.opencode/` and the other runtime folders.
 
@@ -63,7 +74,7 @@ Some spec packets keep copies of third-party repositories as research material u
 
 ---
 
-## 6. ⚠️ WHAT CAN GO WRONG
+## 6. WHAT CAN GO WRONG
 
 Each risk below names the file that sets the behavior, so you can check it yourself.
 
@@ -97,7 +108,7 @@ Git ignores `.env` and `.env.*` (`.env.example` excepted), `*.key`, `*.pem`, `*.
 
 ---
 
-## 7. 🛡️ RUNNING SKILLED SAFELY
+## 7. RUNNING SKILLED SAFELY
 
 ### Read What Runs
 
@@ -147,7 +158,7 @@ bash .skilled/scripts/install-git-hooks.sh --uninstall
 
 ---
 
-## 8. 🧱 HOW THE REPOSITORY GUARDS ITSELF
+## 8. HOW THE REPOSITORY GUARDS ITSELF
 
 | Safeguard | What it does | Where |
 |---|---|---|
@@ -164,7 +175,7 @@ bash .skilled/scripts/install-git-hooks.sh --uninstall
 
 ---
 
-## 9. 📚 RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 
 - **[README: Git Hooks](README.md#git-hooks)** - what each git hook blocks and how to remove them
 - **[README: Off Switches](README.md#off-switches)** - every hook and validation switch in one place
