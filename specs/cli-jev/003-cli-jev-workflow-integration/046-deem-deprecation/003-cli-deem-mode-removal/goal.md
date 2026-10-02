@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal"
-    last_updated_at: "2026-10-02T10:45:00Z"
+    last_updated_at: "2026-10-02T13:40:00Z"
     last_updated_by: "orchestrating-session"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Closed the phase"
+    next_safe_action: "None, the phase is complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-046-003-cli-deem-mode-removal"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -57,11 +57,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `.skilled/skills/cli-classifier/cli-deem/` and `.hermes/skills/cli-deem/` do not exist, and `sync-skills-hermes.cjs --check` exits 0
-- [ ] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier` exits 0, and `mode-registry.json` lists exactly one mode, `cli-jev`
-- [ ] `compiled-route-status.cjs --hub cli-classifier --no-probe` reports `compiled-serving`, and the cli-classifier compiled-routing harness passes with 0 failing
-- [ ] `git grep -n cli-deem -- .skilled/skills/system-skill-advisor .skilled/skills/cli-external-orchestration .skilled/bin ':!*/changelog/*'` prints nothing, and the advisor suite passes with 0 failing
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this folder
+- [x] `.skilled/skills/cli-classifier/cli-deem/` and `.hermes/skills/cli-deem/` do not exist, and `sync-skills-hermes.cjs --check` exits 0
+- [x] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier` exits 0, and `mode-registry.json` lists exactly one mode, `cli-jev`
+- [x] `compiled-route-status.cjs --hub cli-classifier --no-probe` reports `compiled-serving`, and the cli-classifier compiled-routing harness passes with 0 failing
+- [x] `git grep -n cli-deem -- .skilled/skills/system-skill-advisor .skilled/skills/cli-external-orchestration .skilled/bin ':!*/changelog/*'` prints nothing, and the advisor suite passes with 0 failing
+- [x] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this folder
 <!-- /ANCHOR:completion -->
 
 ---
@@ -78,10 +78,20 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planned | Done | Scoped 2026-10-02 from the operator's request to remove Deem and keep Jev |
+| Removal | Done | Luna 6 max, commit `326997828a`: packet and Hermes copy deleted, hub 0.7.0.0 with one mode, routing re-minted |
+| Advisor graph | Done | Regenerated with `skill_graph_compiler.py --export-json` in `a7b60bf56e` |
+| Checks | Done | Hub check exit 0, `compiled-serving` and `fresh`, harness built, mirror in sync, grep empty, Jev prompt routes `single` to `cli-jev` |
+| Review | Done | DeepSeek V4.1 Flash max: no P0 or P1, five P2 below |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Canary fixture | `deem-choice-single` deleted. `deem-verb-narrowness` became `classifier-verb-narrowness` on `judge this plan acceptable and ship it`, same expectation |
+| P2 hand-minified graph | Fixed: `a7b60bf56e` uses the canonical exporter. A rerun differs only in `generated_at` |
+| P2 stale `derived.last_updated_at` | Fixed in `b2fd4237f2`. Routing stays `compiled-serving` |
+| P2 doc versions | Kept: README and playbook 0.4.0.0, catalog 0.3.0.0, routing files 0.7.0.0. Sibling hubs carry independent doc versions and the doctor version checks pass |
+| P2 Hermes mirrors naming Deem | Fixed by phase 004's sweep, mirror `--check` passes |
+| P2 dangling generated paths | Phase 004's: README baselines regenerated in `5c6e7ac7cc`, the trigger index rebuilt at its close |
+| Advisor suite | Two runs under load averages above 20 failed only the freshness bench and native-scorer p95 budgets. Both passed in isolation, and a full run at load 5 to 7 passed 1055 with 0 failed |
 <!-- /ANCHOR:log -->
