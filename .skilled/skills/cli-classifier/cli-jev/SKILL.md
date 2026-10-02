@@ -2,7 +2,7 @@
 name: cli-jev
 description: "TypeSafe Jev CLI transport for typed judgments: noul probabilities, choice selections, ordered scores, and batched run requests."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 0.1.4.0
+version: 0.1.5.0
 ---
 
 <!-- Keywords: cli-usage, cli-jev, jev cli, typesafe jev, jev judgment, noul, choice judgment, score judgment, jev run, jev-mcp, typed judgment, classification instead of prose, probability, yes-no judgment, ordered score, batched questions -->
