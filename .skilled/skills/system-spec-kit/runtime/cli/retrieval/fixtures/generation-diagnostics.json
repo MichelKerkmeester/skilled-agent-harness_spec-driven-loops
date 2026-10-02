@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 57,
-    "missing-frontmatter": 6621,
-    "ok": 12622,
+    "missing-frontmatter": 6633,
+    "ok": 12643,
     "valid-empty-list": 3519
   },
-  "documentsScanned": 22819,
+  "documentsScanned": 22852,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "28c8845d6d8d3e2cd7ff155accbaa0f444cdf2cf2b6bbbe315ee699658d4388d",
+  "manifestHash": "6c0344fd7582f89d7247d6f9815da371d30c5ce4390b4bc316c110a744984d7c",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -42,7 +42,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 32938,
+      "ok": 32984,
       "prose-sentence": 25,
       "single-token": 237,
       "stop-word-only": 2
@@ -38155,6 +38155,78 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-git/032-template-driven-message-enforcement/review/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
@@ -67026,6 +67098,18 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/032-template-driven-message-enforcement/002-git-hook-review-residuals/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-git/032-template-driven-message-enforcement/scratch",
       "reason": "excluded directory"
     },
@@ -67567,6 +67651,10 @@
     },
     {
       "path": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/038-review-gateway-iteration-record/scratch",
       "reason": "excluded directory"
     },
     {

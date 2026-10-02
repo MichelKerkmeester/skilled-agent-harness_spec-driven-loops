@@ -1,5 +1,5 @@
 {
-  "corpusHash": "aa3d01985688a1f24b6af16129bc527b6f7ba6d22092b85b15d650bf457230e2",
+  "corpusHash": "f4cc8a2774b0c9151f9bdead96787406f4c39b39ee5f0c1e4f6095a1665770e1",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22819,
+  "includedPathCount": 22852,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11321,6 +11321,34 @@
     "specs/sk-git/031-fix-broad-staging-in-examples/plan.md",
     "specs/sk-git/031-fix-broad-staging-in-examples/spec.md",
     "specs/sk-git/031-fix-broad-staging-in-examples/tasks.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/acceptance-criteria.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/implementation-summary.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/plan.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/deep-review-dashboard.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/deep-review-strategy.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-001.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-002.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-003.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-004.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/iterations/iteration-005.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-1.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-2.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-3.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-4.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/prompts/iteration-5.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/review/review-report.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/spec.md",
+    "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/tasks.md",
+    "specs/sk-git/032-template-driven-message-enforcement/002-git-hook-review-residuals/acceptance-criteria.md",
+    "specs/sk-git/032-template-driven-message-enforcement/002-git-hook-review-residuals/implementation-summary.md",
+    "specs/sk-git/032-template-driven-message-enforcement/002-git-hook-review-residuals/plan.md",
+    "specs/sk-git/032-template-driven-message-enforcement/002-git-hook-review-residuals/spec.md",
+    "specs/sk-git/032-template-driven-message-enforcement/002-git-hook-review-residuals/tasks.md",
+    "specs/sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/acceptance-criteria.md",
+    "specs/sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/implementation-summary.md",
+    "specs/sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/plan.md",
+    "specs/sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/spec.md",
+    "specs/sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/tasks.md",
     "specs/sk-git/032-template-driven-message-enforcement/acceptance-criteria.md",
     "specs/sk-git/032-template-driven-message-enforcement/decision-record.md",
     "specs/sk-git/032-template-driven-message-enforcement/implementation-summary.md",
@@ -13274,6 +13302,11 @@
     "specs/system-deep-loop/037-graph-engineering/research/research.md",
     "specs/system-deep-loop/037-graph-engineering/research/resource-map.md",
     "specs/system-deep-loop/037-graph-engineering/spec.md",
+    "specs/system-deep-loop/038-review-gateway-iteration-record/acceptance-criteria.md",
+    "specs/system-deep-loop/038-review-gateway-iteration-record/implementation-summary.md",
+    "specs/system-deep-loop/038-review-gateway-iteration-record/plan.md",
+    "specs/system-deep-loop/038-review-gateway-iteration-record/spec.md",
+    "specs/system-deep-loop/038-review-gateway-iteration-record/tasks.md",
     "specs/system-deep-loop/039-review-state-init-and-dispatch/implementation-summary.md",
     "specs/system-deep-loop/039-review-state-init-and-dispatch/plan.md",
     "specs/system-deep-loop/039-review-state-init-and-dispatch/spec.md",
@@ -22849,7 +22882,7 @@
     "specs/system-speckit/047-plugin-scanner-readiness/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "28c8845d6d8d3e2cd7ff155accbaa0f444cdf2cf2b6bbbe315ee699658d4388d",
+  "manifestHash": "6c0344fd7582f89d7247d6f9815da371d30c5ce4390b4bc316c110a744984d7c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25076,6 +25109,18 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/032-template-driven-message-enforcement/002-git-hook-review-residuals/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-git/032-template-driven-message-enforcement/scratch",
       "reason": "excluded directory"
     },
@@ -25617,6 +25662,10 @@
     },
     {
       "path": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/038-review-gateway-iteration-record/scratch",
       "reason": "excluded directory"
     },
     {
