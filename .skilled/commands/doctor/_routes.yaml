@@ -237,3 +237,22 @@ standalone:
       - "rebuild all spec-kit databases"
       - "doctor rebuild"
       - "doctor full sync"
+  - command: /doctor:update
+    file: .skilled/commands/doctor/update.md
+    yaml: doctor-update-check.yaml
+    mutating: mutates
+    actions:
+      check:
+        yaml: doctor-update-check.yaml
+        mutating: read-only
+      align:
+        yaml: doctor-update-align.yaml
+        mutating: add-only
+      apply:
+        yaml: doctor-update-apply.yaml
+        mutating: mutates
+    trigger_phrases:
+      - "spec-kit version migration"
+      - "doctor update"
+      - "update skills to latest release"
+      - "release update"

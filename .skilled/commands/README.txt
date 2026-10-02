@@ -43,7 +43,7 @@ Commands are organized into six groups plus root-level utilities:
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 13 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
 | **deep** | `commands/deep/` | 5 | Deep research, review, AI council and improvement loops |
-| **doctor** | `commands/doctor/` | 4 | MCP, Spec Kit, update, environment-switch, and subsystem diagnostics |
+| **doctor** | `commands/doctor/` | 5 | MCP, Spec Kit, release updates, environment-switch, and subsystem diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 6 | Spec folder workflows (plan, implement, resume, complete), continuity write (save) and lexical retrieval (search) |
@@ -151,7 +151,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 
 ### Doctor Commands
 
-Four command files cover the diagnostic surface. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
+Five command files cover the diagnostic surface. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
@@ -159,6 +159,7 @@ Four command files cover the diagnostic surface. Backed by `_routes.yaml`, `mcp-
 | MCP Debug | `/doctor:mcp debug [--fix]` | Diagnose Code Mode build, UTCP configuration, credentials, and runtime registration |
 | MCP Install | `/doctor:mcp install [--runtime <name>]` | Install Code Mode and configure its UTCP file and selected runtime |
 | Rebuild | `/doctor:rebuild [--migrate] [--force]` | Dependency-safe multi-subsystem rebuild orchestrator (trigger index, skill-graph, advisor) |
+| Update | `/doctor:update [check|align|apply]` | Release-aware spec-kit updater with read-only check, decision alignment, and gated apply workflows |
 | Environment Switches | `/doctor:env [list \| <section> \| <VARIABLE>] [--dry-run]` | Inspect documented environment switches and optionally save a confirmed preference |
 
 ### Deep Commands

@@ -1,0 +1,203 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: UPDATE APPLY WORKFLOW (MUTATING)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator applying an approved spec-kit release plan
+purpose: Preview selected release writes, request one startup approval, apply the plan, verify follow-up checks and retain a rollback path.
+action: preflight -> release.apply.dry_run -> startup.approval -> release.apply -> post_apply.battery -> rebuild.prompt -> state.log
+
+operating_mode:
+  workflow: sequential_orchestrator
+  compliance: MANDATORY
+  execution: interactive
+  approvals: one_startup_approval_plus_repair_approvals
+  tracking: action_by_action
+  validation: post_apply_battery
+  state_dir: ".skilled/release/runs"
+  state_log: ".skilled/release/runs/.doctor-update.last-run.json"
+
+apply_orchestrator_invariant: |
+  Show the engine's complete apply dry-run plan before requesting the one startup
+  approval. No approval means no release-managed write. A dry-run invocation
+  stops with STATUS=DRY_RUN. After approval, invoke the engine once and let it
+  write rollback.json before any target file, update base and divergence data,
+  and release its own lock in its finally path. Verify the lock is absent after
+  the engine returns. Every terminal path records state. Rollback first uses
+  the engine rollback command; only paths it reports skipped may be passed to
+  an approved `git restore` recovery step.
+
+upstream_assets:
+  engine: ".skilled/commands/doctor/scripts/release-update.cjs"
+  presentation: ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
+  pass_policy:
+    startup_approval_required: true
+    dry_run_writes_nothing: true
+    engine_lock: ".skilled/release/.apply.lock"
+    rollback_record: "<runDir>/rollback.json"
+
+user_inputs:
+  action: "apply"
+  decisions: "[DECISIONS] optional path to a run's decisions.json"
+  dry_run: "[DRY_RUN] boolean"
+  release: "[RELEASE] optional tag"
+  scope: "[SCOPE] optional all or comma-separated unit names"
+
+field_handling:
+  defaults:
+    decisions_empty: "use latest alignment run with no file decisions, as the engine defines"
+    dry_run_empty: false
+    release_empty: engine_default_from_plan
+    scope_empty: all
+  engine_mapping:
+    dry_run: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json --dry-run [--decisions <path>] [--release <tag>] [--scope <value>]"
+    apply: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json [--decisions <path>] [--release <tag>] [--scope <value>]"
+    rollback: "node .skilled/commands/doctor/scripts/release-update.cjs rollback --repo . --run <runDir> --json"
+  engine_plan_fields: [command, dryRun, writes, skippedUnits, appliedUnits, followUps]
+  engine_apply_fields: [command, runDir, release, written, added, deleted, skippedUnits, appliedUnits, followUps]
+  follow_up_fields: [regenerateHubs, reinstallHooks, runtimeMirrors, rebuildDatabases]
+
+mutation_boundaries:
+  allowed_targets:
+    - "Only release-managed paths listed in the engine's approved apply plan"
+    - ".skilled/release/base.json"
+    - ".skilled/release/divergence.json"
+    - ".skilled/release/.apply.lock"
+    - "<runDir>/rollback.json"
+    - ".skilled/release/runs/.doctor-update.last-run.json"
+    - "Exact documented write counterparts in the post-apply battery, only after separate approval"
+    - "Exact planned paths reported skipped by engine rollback, only for the approved git restore recovery step"
+  forbidden_targets:
+    - "any release-managed checkout path absent from the engine plan"
+    - "any path outside the engine plan, its selected run directory, the release ledgers, lock and state log, except an approved documented post-apply write counterpart"
+    - "all unrelated user changes and any pre-existing lock owned by another process"
+  validator:
+    name: canonical_path_validator
+    rule: "Resolve every engine plan, run, state-log, battery and restore path to a canonical repository path; allow release writes only when the exact path appears in the engine plan; require run artifacts below .skilled/release/runs and gitignored; pass git restore only exact engine-reported skipped paths."
+
+state_log_schema:
+  command: "/doctor:update apply"
+  start: "ISO-8601"
+  end: "ISO-8601"
+  duration_seconds: "number"
+  run_dir: "string|null"
+  release: "string|null"
+  dry_run: "boolean"
+  startup_approved: "boolean"
+  writes: "array of paths"
+  battery: "map of check name to pass|fail|not_run"
+  reindex: "rebuilt|skipped|failed|not_applicable"
+  rollback: "not_needed|completed|partial|failed"
+  final_status: "dry_run|applied|partial|failed|rolled_back|declined"
+
+workflow:
+  phase_1_preflight:
+    approval: none
+    checks:
+      - "Confirm current directory is inside the intended git repository and the engine exists."
+      - "Resolve the selected run from --decisions or the engine's latest-run rule; confirm its plan belongs to this repository and matches any supplied release."
+      - "If no alignment run exists, stop without running apply and direct the operator to create one with /doctor:update align. The current engine requires an alignment run even when only update or new units need writes."
+      - "Confirm .skilled/release/.apply.lock does not exist. If present, refuse and do not remove it."
+      - "Confirm the run directory and state-log target pass the canonical path validator and are gitignored."
+    clean_targets: "The engine's apply --dry-run is authoritative for selected target cleanliness, drift, marker/hash validity and lock absence. A refusal stops before startup approval and before release-managed writes."
+    on_failure: "Write the terminal state log if the validated run root is available, leave any pre-existing lock untouched, show the failure and stop."
+
+  phase_2_engine_dry_run:
+    approval: none
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json --dry-run [--decisions <path>] [--release <tag>] [--scope <value>]"
+    flag_rule: "Include only bound optional flags. This command writes no release files, rollback record or lock."
+    checks:
+      - "Parse the complete writes, skippedUnits, appliedUnits and followUps arrays."
+      - "Confirm every write path is allowed by the canonical path validator."
+      - "Show the full plan, including added, replaced and deleted paths, skipped units and follow-up checks."
+    terminal_dry_run: "If the user supplied --dry-run, write the state log and stop with STATUS=DRY_RUN. Do not ask for startup approval or call apply without --dry-run."
+    on_failure: "Write the state log, show the engine refusal and stop without mutation."
+
+  phase_3_startup_approval:
+    approval: "Ask once for approval to apply the exact displayed plan. Do not continue until the operator approves."
+    no_approval: "Write only the terminal state log, perform no release-managed write, do not call engine apply without --dry-run, and stop with STATUS=DECLINED."
+    changed_plan: "If the plan changes before approval is recorded, discard the approval, rerun dry-run and present the new plan."
+
+  phase_4_engine_apply:
+    approval: "Requires the one startup approval. No further startup approval is requested for the exact displayed plan."
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json [--decisions <path>] [--release <tag>] [--scope <value>]"
+    engine_guarantees:
+      - "Acquire .skilled/release/.apply.lock and refuse if it already exists."
+      - "Write <runDir>/rollback.json before the first target file write."
+      - "Apply only engine-planned writes, then update base.json and divergence.json."
+      - "Release the lock in the engine finally path on every exit after acquisition."
+    postconditions:
+      - "Read the full JSON and record written, added, deleted, skippedUnits, appliedUnits and followUps."
+      - "Confirm .skilled/release/.apply.lock is absent after the engine exits; never remove a lock that was not acquired by this invocation."
+      - "Confirm rollback.json exists in the selected run directory before proceeding to the battery."
+    on_failure: "Record the engine result and confirm the engine-owned lock is absent. If rollback.json exists, offer engine rollback. If no rollback record exists, report that rollback is unavailable and stop. Never remove a lock not owned by this invocation."
+
+  phase_5_post_apply_battery:
+    approval: none
+    checks:
+      - name: leaf_manifests
+        when: "For every hub listed in followUps.regenerateHubs."
+        command: "node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check <hub-dir>"
+        repair: "With approval, rerun the same command using --write <hub-dir>."
+      - name: skill_derived_metadata
+        when: "Always."
+        command: "node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --all --dry-run"
+        pass_rule: "Read JSON output fields changed and errored. Pass only when changed is 0 and errored is 0; record stale derived data as a failure even if this script exits 0."
+        repair: "With approval, run node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --all --write, then rerun the dry-run check."
+      - name: route_validation
+        when: "Always."
+        command: "bash .skilled/commands/doctor/scripts/route-validate.sh"
+        repair: "This validator has no write mode. Show the failing routes and offer engine rollback; do not invent a validator flag."
+      - name: command_catalog_mirror
+        when: "Always."
+        command: "node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs"
+        repair: "This checker has no write mode. Show the mismatch and offer engine rollback; do not invent a checker flag."
+      - name: runtime_mirrors
+        when: "Always."
+        command: "node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check"
+        repair: "With approval, run node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs with no arguments, then rerun --check."
+      - name: codex_prompts
+        when: "Always."
+        command: "node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check"
+        repair: "With approval, run node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs with no arguments, then rerun --check."
+      - name: pi_prompts
+        when: "Always."
+        command: "node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check"
+        repair: "With approval, run node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs with no arguments, then rerun --check."
+      - name: hermes_prompts
+        when: "Always."
+        command: "node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs --check"
+        repair: "With approval, run node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-prompts-hermes.cjs with no arguments, then rerun --check."
+      - name: hook_installers
+        when: "Only when followUps.reinstallHooks is true."
+        commands:
+          - "node .skilled/bin/install-codex-hooks.mjs --check --allow-worktree"
+          - "bash .skilled/scripts/install-git-hooks.sh --status"
+        repair:
+          - "With approval, run node .skilled/bin/install-codex-hooks.mjs --allow-worktree, then rerun its --check."
+          - "With approval, run bash .skilled/scripts/install-git-hooks.sh, then rerun --status."
+    result_rule: "Run every applicable check, capture output and exit code, and record each pass or fail. For every failure offer its documented write counterpart with approval when one exists, or engine rollback. If a repair is approved, rerun that check."
+    failure_recovery:
+      rollback_command: "node .skilled/commands/doctor/scripts/release-update.cjs rollback --repo . --run <runDir> --json"
+      rollback_order: "Run engine rollback first. Read restored and skipped arrays. For any skipped path, explain that git restore will discard its current contents and request approval, then run git restore -- <exact-skipped-paths> only for approved paths reported by engine rollback."
+      rollback_validation: "Verify the engine rollback output, report every restored and skipped path, and confirm .skilled/release/.apply.lock is absent. Do not claim complete rollback when any path remains skipped or failed."
+
+  phase_6_rebuild_prompt:
+    approval: "Prompt to run /doctor:rebuild after the battery."
+    outcomes:
+      rebuilt: "Run /doctor:rebuild and record reindex=rebuilt only after its successful completion is observed."
+      skipped: "Record reindex=skipped and show the stale-index warning."
+      failed: "Record reindex=failed, show the stale-index warning and report the failure."
+    stale_index_rule: "Skipped or failed database rebuild must never be reported as a silent success."
+
+  phase_7_state_log:
+    approval: none
+    write: ".skilled/release/runs/.doctor-update.last-run.json"
+    fields: [command, start, end, duration_seconds, run_dir, release, dry_run, startup_approved, writes, battery, reindex, rollback, final_status]
+    terminal_rule: "Write the state log on every terminal path, including preflight failure, dry-run, declined approval, engine failure, battery failure, rollback, rebuild skipped or failed, and success. Confirm any engine-acquired lock was released before ending."
+
+terminal_statuses:
+  - "STATUS=DRY_RUN"
+  - "STATUS=DECLINED"
+  - "STATUS=APPLIED"
+  - "STATUS=PARTIAL"
+  - "STATUS=ROLLED_BACK"
+  - "STATUS=FAILED"

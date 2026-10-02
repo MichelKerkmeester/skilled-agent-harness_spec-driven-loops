@@ -1,0 +1,321 @@
+# /doctor:update Presentation Contract
+
+This file is the single source of truth for user-facing wording and layout in `/doctor:update check`, `align` and `apply`. The router owns argument parsing and action routing. Each workflow YAML owns execution behavior.
+
+## 1. Action and Flag Errors
+
+### Unknown action
+
+```text
+ERROR: /doctor:update does not recognize action "[action]".
+Choose check, align or apply.
+No workflow was started.
+```
+
+### Cross-action or unknown flag
+
+```text
+ERROR: [flag] is not valid for /doctor:update [action].
+Accepted flags: [flags for this action]
+No workflow was loaded and no engine command was run.
+```
+
+Accepted flags by action:
+
+| Action | Flags |
+|--------|-------|
+| check | `--json`, `--release=<tag>`, `--scope=all|<unit,...>`, `--offline` |
+| align | `--release=<tag>`, `--scope=all|<unit,...>`, `--offline`, `--dry-run` |
+| apply | `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit,...>` |
+
+Bare `/doctor:update` runs `check`. There are no `:auto` or `:confirm` suffixes.
+
+## 2. Check Dashboard
+
+Render the engine report using this layout. Use `UNKNOWN` when upstream latest or the overall report status is unknown. Never treat unavailable upstream data as proof that the checkout is current.
+
+When the operator passes `--json`, return the engine report as one JSON document and omit the prose dashboard and next steps.
+
+```text
+Spec-kit Release Check
+
+Release position: [ahead|behind|even|unknown] [release tag or UNKNOWN]
+Upstream latest: [tag or UNKNOWN]
+Checkout: [head]  Ahead: [count]  Behind: [count]  Dirty: [yes|no]
+Report status: [status]
+
+Quiet units: [current count] current, [local count] local (no action)
+
+| Status | Unit | Kind | File changes | Changelog highlights |
+|--------|------|------|--------------|----------------------|
+| [update|new|customized|conflict|removed|blocked|unknown] | [unit] | [kind] | [class counts] | [highlights or none found] |
+
+Next steps
+[action-specific next step]
+```
+
+Show a row for each unit that is not `current` or `local`, grouped by status. Combine `current` and `local` into the quiet line and include both counts. Include counts for statuses with no matching unit as zero in the summary when the engine report provides status counts. Preserve an unexpected unit status visibly as `unknown`. Show available changelog highlights from the selected release and unit. If upstream latest is unavailable, display `UNKNOWN` and its engine error when present.
+
+### Check next steps
+
+Use the applicable line or lines:
+
+```text
+Customized or conflict units need decisions: /doctor:update align [same release and scope flags]
+Removed units need a decision review: /doctor:update align [same release and scope flags]
+Only update or new units need writes: /doctor:update apply [same release and scope flags]
+Removed, blocked or unknown units need review before applying: inspect the status details, then choose align or apply as appropriate.
+Database regeneration after an update: /doctor:rebuild
+No selected units need an update.
+```
+
+When offering apply without a decisions file, add this note if no earlier alignment run is known:
+
+```text
+The engine needs an alignment run to hold its apply plan. If none exists, /doctor:update apply will stop and direct you to run /doctor:update align first.
+```
+
+If the report is unknown, end with:
+
+```text
+Upstream status is UNKNOWN. The report cannot confirm that this checkout is current.
+```
+
+## 3. Align Evidence Cards and Decision Batches
+
+Present one consolidated batch per `customized`, `conflict` or `removed` unit. Show each non-same file's complete evidence card before asking for the batch response.
+
+````text
+ALIGNMENT REVIEW
+Release: [release]
+Run directory: [runDir]
+
+Unit: [unit]  Status: [customized|conflict|removed]
+Files needing review: [count]
+
+Evidence card [number] of [count]
+Path: [file path]
+Class: [class]  Conflict type: [kind or none]
+Base blob / mode: [blob or absent] / [mode or absent]
+Local blob / mode: [blob or absent] / [mode or absent]
+Release blob / mode: [blob or absent] / [mode or absent]
+Merge summary: [summary]
+Changelog rationale: [rationale]
+Recommended decision: [decision or review]
+Accepted for this file: [engine-eligible answers for this file]
+
+Base-to-release diff
+```diff
+[complete evidence diff]
+```
+
+Base-to-local diff
+```diff
+[complete evidence diff]
+```
+```
+
+For `merge` or `use-proposal`, show the entire proposal before asking for that answer:
+
+````text
+Proposed text for [file path]
+```text
+[complete proposal text]
+```
+````
+
+If the proposal contains conflict markers, ask:
+
+```text
+The proposal still has conflict markers. Reply with the complete resolved file text.
+It will replace only [runDir]/proposals/[relative path] inside this run directory. The decision is recorded after the resolved proposal passes marker validation.
+```
+
+Write the supplied resolved content to exactly that proposal path with a quoted Bash heredoc using a delimiter absent from the supplied content. Do not show or run `Edit`. Re-read the full proposal and confirm all markers are gone before offering `merge` or `use-proposal`.
+
+After all evidence cards for one unit, ask:
+
+```text
+Decision batch for [unit]
+For each file, reply with one accepted decision:
+  adopt-release  take the release version when the engine allows it
+  keep-local     preserve the checkout version
+  merge          accept the resolved proposal for a mergeable conflict
+  use-proposal   accept the resolved proposal after conflict markers are removed
+Or reply defer to defer this entire unit.
+
+Answers: [file path] = [decision]; [file path] = [decision]; ...
+```
+
+Accept only `adopt-release`, `keep-local`, `merge`, `use-proposal` for eligible files, or `defer` for the whole unit. The engine may reject a decision that does not match the file class. Do not infer an answer from silence or from the recommendation. Record every file answer through the engine `decide` command, including an answer matching a prefilled suggestion. Record `defer` through `decide --unit <unit> --defer`.
+
+### Align summary
+
+```text
+Alignment decisions recorded
+Release: [release]
+Run directory: [runDir]
+Decisions: [count]
+Deferred units: [list or none]
+Unresolved files: [list or none]
+State log: [runDir]/.doctor-update.last-run.json, or none for dry-run or preflight failure
+
+Apply a completed decision set:
+  /doctor:update apply --decisions=[runDir]/decisions.json
+```
+
+When a dry-run plan was requested, use:
+
+```text
+STATUS=DRY_RUN
+No run directory or decisions file was written. No apply handoff is available yet.
+```
+
+## 4. Apply Plan and Startup Approval
+
+Show the engine dry-run plan before asking for approval:
+
+```text
+Release Apply Plan
+Release: [release]
+Run directory: [runDir]
+
+| Operation | Path | Unit |
+|-----------|------|------|
+| [add|replace|delete] | [path] | [unit or release metadata] |
+
+Applied units: [list or none]
+Skipped units: [unit and reason, or none]
+Follow-up checks: [regenerate hubs, hooks, runtime mirrors, databases]
+Targets modified since alignment: [none or engine refusal]
+```
+
+If the dry-run plan is valid, ask once:
+
+```text
+Apply exactly this release plan to the checkout?
+Reply yes to approve the planned writes, or no to leave release-managed files unchanged.
+```
+
+Only an unambiguous `yes` approves. On `no`, cancellation, ambiguity or interruption, do not run engine apply without `--dry-run`. Write the terminal state log and report `STATUS=DECLINED`. If the operator supplied `--dry-run`, do not ask this prompt; stop after the plan with `STATUS=DRY_RUN`.
+
+## 5. Post-Apply Battery and Recovery
+
+Show every applicable check and its observed result:
+
+```text
+Post-apply checks
+
+| Check | Result | Detail |
+|-------|--------|--------|
+| Leaf manifests | [PASS|FAIL|not applicable] | [output tail] |
+| Skill-derived metadata | [PASS|FAIL] | [changed count, error count, exit code] |
+| Route validation | [PASS|FAIL] | [output tail] |
+| Command catalog mirror | [PASS|FAIL] | [output tail] |
+| Runtime mirrors | [PASS|FAIL] | [output tail] |
+| Codex prompts | [PASS|FAIL] | [output tail] |
+| Pi prompts | [PASS|FAIL] | [output tail] |
+| Hermes prompts | [PASS|FAIL] | [output tail] |
+| Hook installers | [PASS|FAIL|not applicable] | [output tail] |
+```
+
+For a failing check with a documented write counterpart, ask:
+
+```text
+[check] failed: [short evidence]
+1) Run the documented repair command, then rerun this check
+2) Roll back the release update
+X) Stop and leave the applied release in place
+Reply 1, 2 or X:
+```
+
+Run the write counterpart only after an unambiguous `1`. Route validation and the command catalog checker have no write mode; for those failures, explain the mismatch and offer rollback or stop. Do not invent a checker write flag.
+
+Rollback uses the engine first:
+
+```text
+Rollback release update from [runDir] using the engine rollback record?
+Reply yes to restore paths that still match the applied release, or no to leave the checkout as-is.
+```
+
+If engine rollback reports skipped paths, show each exact path and ask before running `git restore`:
+
+```text
+The engine skipped these paths because their contents changed after apply:
+[exact skipped paths]
+
+git restore will discard their current contents and restore the index version.
+Reply yes to restore only these paths, or no to leave them unchanged:
+```
+
+Run `git restore -- [exact engine-reported skipped paths]` only after an unambiguous yes. Report each restored and skipped path. Never call a partial rollback complete.
+
+## 6. Database Rebuild Prompt
+
+After the battery, ask:
+
+```text
+The release update completed its post-apply checks.
+Run /doctor:rebuild now to refresh spec-kit databases?
+Reply yes to run it, or no to skip.
+```
+
+Record `reindex=rebuilt` only after successful completion is observed. If skipped, show:
+
+```text
+Database rebuild skipped. The spec-kit database index may be stale.
+Run /doctor:rebuild when you are ready.
+```
+
+If rebuild fails, record `reindex=failed`, show the observed error and the same stale-index warning. Never present skipped or failed reindexing as full success.
+
+## 7. Result Templates
+
+### Check
+
+```text
+Doctor Update Check
+Release: [release or UNKNOWN]
+Upstream latest: [tag or UNKNOWN]
+Unit counts: [status counts]
+STATUS=[OK|UNKNOWN|FAILED]
+```
+
+### Align
+
+```text
+Doctor Update Align
+Release: [release]
+Run directory: [runDir or none for dry-run]
+Decisions recorded: [count]
+Deferred units: [list or none]
+State log: [runDir]/.doctor-update.last-run.json, or none for dry-run or preflight failure
+STATUS=[ALIGNED|DEFERRED|DRY_RUN|FAILED]
+```
+
+### Apply
+
+```text
+Doctor Update Apply
+Release: [release]
+Run directory: [runDir]
+Written: [count]
+Added: [count]  Deleted: [count]
+Skipped units: [list or none]
+Post-apply checks: [pass count] passed, [fail count] failed
+Database reindex: [rebuilt|skipped|failed|not applicable]
+Rollback: [not needed|completed|partial|failed]
+State log: .skilled/release/runs/.doctor-update.last-run.json
+STATUS=[APPLIED|PARTIAL|ROLLED_BACK|DECLINED|DRY_RUN|FAILED]
+```
+
+### Failure
+
+```text
+STATUS=FAILED ERROR="[sanitized error]"
+Action: [check|align|apply]
+State record: [validated path or not persisted for this action]
+Next: [safe next step]
+```
+
+End interactive presentations with: `What would you like to do next?`
