@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5157ea87cf4a789454e374b160e76b0fb402ca0b7cf15ae5d119e5b39efa7867",
+  "manifestHash": "0ae822c7a3427ff2d9e5a1d600dfaba74042d35197920a4c2e43a103b0ac0949",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -79198,14 +79198,14 @@
     "scorer coverage": [
       "scorer coverage"
     ],
-    "scorer deem removal": [
-      "scorer --deem removal"
+    "scorer deem flag removal": [
+      "scorer deem flag removal"
     ],
-    "scorer deem removal plan": [
-      "scorer --deem removal plan"
+    "scorer deem flag removal plan": [
+      "scorer deem flag removal plan"
     ],
-    "scorer deem removal tasks": [
-      "scorer --deem removal tasks"
+    "scorer deem flag removal tasks": [
+      "scorer deem flag removal tasks"
     ],
     "scorer freeze renewal": [
       "scorer freeze renewal"
