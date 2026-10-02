@@ -41,6 +41,8 @@ setup_fixture() {
   rm -rf "$TMP"; mkdir -p "$TMP"
   git -C "$TMP" init -q
   git -C "$TMP" config core.hooksPath /dev/null
+  # The hooks run tree scripts only for their own checkout or a repo that opts in locally.
+  git -C "$TMP" config skilled.trustRepoHooks true
   git -C "$TMP" config user.email t@example.com
   git -C "$TMP" config user.name test
   mkdir -p "$TMP/.opencode/skills/$HUB" "$TMP/.opencode/bin/lib" \
@@ -55,6 +57,8 @@ setup_fixture() {
   cat > "$TMP/.opencode/bin/lib/compiled-route-layout.cjs" <<'MODULE'
 const path = require('path');
 module.exports = {
+  AUTHORED_PROGRAM_DIR: process.env.STUB_AUTHORED_DIR
+    || 'specs/sk-doc/019-skill-routing-refactor/015-router-unification-program',
   activationRootFor: (runtimeRoot) =>
     path.join(runtimeRoot, '013-live-activation', 'activation'),
 };
@@ -161,6 +165,8 @@ setup_spec_fixture() {
   rm -rf "$TMP"; mkdir -p "$TMP"
   git -C "$TMP" init -q
   git -C "$TMP" config core.hooksPath /dev/null
+  # The hooks run tree scripts only for their own checkout or a repo that opts in locally.
+  git -C "$TMP" config skilled.trustRepoHooks true
   git -C "$TMP" config user.email t@example.com
   git -C "$TMP" config user.name test
   mkdir -p "$TMP/$PKT/scratch" "$TMP/$CHILD" "$TMP/specs/hooks/002-parent" \
@@ -329,6 +335,8 @@ setup_gate_fixture() { # setup_gate_fixture [toolchain]
   rm -rf "$TMP"; mkdir -p "$TMP"
   git -C "$TMP" init -q
   git -C "$TMP" config core.hooksPath /dev/null
+  # The hooks run tree scripts only for their own checkout or a repo that opts in locally.
+  git -C "$TMP" config skilled.trustRepoHooks true
   git -C "$TMP" config user.email t@example.com
   git -C "$TMP" config user.name test
   echo "seed" > "$TMP/seed.txt"
@@ -363,7 +371,7 @@ else
 fi
 
 # ── 22. a dirty .skilled mirror output blocks a commit that stages a .skilled source ──
-setup_gate_fixture
+setup_gate_fixture toolchain
 stage_new ".skilled/commands/README.txt" "catalog"
 git -C "$TMP" commit -qm catalog
 echo "catalog regenerated" > "$TMP/.skilled/commands/README.txt"
@@ -546,6 +554,16 @@ stage_new ".opencode/agents/probe.md" "agent"
 run_legacy; RC=$?
 check "the helper leaves a repository without the toolchain committable" 0 "$RC"
 
+# ── 39b. the helper checks the staged blob, not the working tree ──
+setup_gate_fixture
+mkdir -p "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts"
+ln -s "$REPO_ROOT/.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh" \
+  "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+stage_new "a.js" "// see ADR-12"
+printf '%s\n' "// the durable reason" > "$TMP/a.js"
+run_legacy; RC=$?
+check "the helper blocks a violation fixed only in the working tree" 1 "$RC" "a.js:1:"
+
 # ══ block messages name their bypass ════════════════════════════════════════
 # A caller with no one at the keyboard can only escape a block the message
 # explains. The agent mirror gate has no switch of its own, so its message names
@@ -584,6 +602,92 @@ SYSTEM_HOOKS_DISABLED=0 SYSTEM_GIT_COMMIT_HOOKS_DISABLED=0 run_hook; RC=$?
 check "an agent mirror desync names the chain's off switch" 1 "$RC" "SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit"
 SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 run_hook; RC=$?
 check "the chain's off switch lets that commit through" 0 "$RC"
+
+# ── 43. a repository without the toolchain is never held to its mirrors ──
+setup_gate_fixture
+stage_new ".claude/commands/a.md" "a"
+stage_new ".claude/commands/b.md" "b"
+git -C "$TMP" commit -qm mirrors
+echo "a edited" > "$TMP/.claude/commands/a.md"
+echo "b edited" > "$TMP/.claude/commands/b.md"
+git -C "$TMP" add .claude/commands/a.md
+SPECKIT_SKIP_MIRROR_PARITY=0 run_hook; RC=$?
+check "a partial stage of .claude files passes outside the toolchain" 0 "$RC"
+if grep -qF "gate:mirror-parity" "$TMP/out.log"; then
+  echo "FAIL  the mirror-parity gate spoke outside the toolchain"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  the mirror-parity gate stays silent outside the toolchain"; PASS=$((PASS + 1))
+fi
+
+# ── 44. the staged blob is checked, not the working tree, and odd names are not skipped ──
+REAL_CHECKER="$REPO_ROOT/.skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+plant_real_comment_checker() {
+  mkdir -p "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts"
+  ln -s "$REAL_CHECKER" "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+}
+setup_gate_fixture
+plant_real_comment_checker
+stage_new "a.js" "// see ADR-12"
+printf '%s\n' "// the durable reason" > "$TMP/a.js"
+SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
+check "a violation fixed only in the working tree still blocks" 1 "$RC" "a.js:1:"
+setup_gate_fixture
+plant_real_comment_checker
+stage_new "café.js" "// see ADR-12"
+SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
+check "a staged name with non-ASCII bytes is checked" 1 "$RC" "café.js:1:"
+
+# ── 45. every staged file goes to one checker run ──
+setup_gate_fixture
+mkdir -p "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts"
+printf '#!/usr/bin/env bash\necho run >> "%s/checker-runs.log"\nexit 0\n' "$TMP" \
+  > "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+chmod +x "$TMP/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+stage_new "one.js" "x"
+stage_new "two.js" "y"
+stage_new "dir with space/three.js" "z"
+SPECKIT_SKIP_COMMENT_HYGIENE=0 run_hook; RC=$?
+check "three staged files pass a clean checker" 0 "$RC"
+if [[ "$(wc -l < "$TMP/checker-runs.log" | tr -d ' ')" == "1" ]]; then
+  echo "PASS  the checker ran once for three files"; PASS=$((PASS + 1))
+else
+  echo "FAIL  the checker did not run exactly once"; FAIL=$((FAIL + 1))
+fi
+
+# ── 46. a repository without the toolchain hears nothing about its agent folders ──
+setup_gate_fixture
+stage_new ".claude/agents/probe.md" "agent"
+run_hook; RC=$?
+check "a staged .claude agent passes outside the toolchain" 0 "$RC"
+if grep -qF "mirror-sync checker unavailable" "$TMP/out.log"; then
+  echo "FAIL  the agent mirror warning printed outside the toolchain"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  the agent mirror warning stays silent outside the toolchain"; PASS=$((PASS + 1))
+fi
+
+# ── 47. the helper blocks when its comment checker crashes ──
+setup_gate_fixture
+plant_failing_comment_checker 3
+stage_new "notes.md" "note"
+run_legacy; RC=$?
+check "the helper blocks a crashed comment checker" 1 "$RC" "comment hygiene checker failed (exit 3)"
+
+# ── 48. the authored manifest follows the layout module, not a path in the hook ──
+setup_fixture
+mkdir -p "$TMP/specs/moved/program/013-live-activation/activation/$HUB"
+echo '{"pin":0}' > "$TMP/specs/moved/program/013-live-activation/activation/$HUB/manifest.json"
+git -C "$TMP" rm -rq "specs/sk-doc"
+git -C "$TMP" add -A specs >/dev/null
+git -C "$TMP" commit -qm "move the program packet"
+echo "edited" > "$TMP/.opencode/skills/$HUB/SKILL.md"
+git -C "$TMP" add ".opencode/skills/$HUB/SKILL.md"
+STUB_AUTHORED_DIR="specs/moved/program" run_hook; RC=$?
+check "a moved program packet re-mints without a hook edit" 0 "$RC" "re-minted $HUB"
+if git -C "$TMP" diff --cached --name-only | grep -qx "specs/moved/program/013-live-activation/activation/$HUB/manifest.json"; then
+  echo "PASS  the authored manifest at the moved path reached the index"; PASS=$((PASS + 1))
+else
+  echo "FAIL  the authored manifest at the moved path was not staged"; FAIL=$((FAIL + 1))
+fi
 
 echo ""
 echo "pre-commit gates: $PASS passed, $FAIL failed"

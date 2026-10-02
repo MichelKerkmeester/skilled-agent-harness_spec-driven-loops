@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment",
+  "description": "The hook changes in phases 1 and 2 left their docs behind",
+  "keywords": [
+    "hook",
+    "changes",
+    "phases",
+    "left",
+    "docs",
+    "behind"
+  ],
+  "lastUpdated": "2026-10-02T17:35:45.410Z",
+  "specId": "003",
+  "folderSlug": "hook-docs-and-standards-alignment",
+  "parentChain": [
+    "sk-git",
+    "032-template-driven-message-enforcement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

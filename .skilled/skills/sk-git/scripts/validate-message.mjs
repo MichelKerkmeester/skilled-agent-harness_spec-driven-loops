@@ -22,6 +22,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import fs from 'node:fs';
+import v8 from 'node:v8';
 import { execFileSync } from 'node:child_process';
 
 import {
@@ -36,6 +37,12 @@ import {
   validatePrBody,
   worktreeContext,
 } from './lib/message-contract.mjs';
+
+// Contract patterns come from a file a person edits, and a pattern such as ^(a+)+$ backtracks
+// without bound. After excessive backtracking V8 can hand a match to its linear-time engine, so a
+// bad pattern costs milliseconds instead of hanging every commit. It is set here, in the process
+// the hooks start, and not in the library, which host processes import.
+v8.setFlagsFromString('--enable-experimental-regexp-engine-on-excessive-backtracks');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. ARGUMENTS
@@ -133,7 +140,11 @@ function commitMode(repoRoot, opts) {
     const configured = git(repoRoot, ['config', '--get', 'core.commentChar']).trim();
     if (configured && configured !== 'auto') commentChar = configured;
   } catch { /* unset: git's default applies */ }
-  const result = validateCommit(readInput(opts.commit), loaded.contract, { ...worktreeContext(repoRoot), stage: opts.stage, commentChar });
+  let cleanup = '';
+  try {
+    cleanup = git(repoRoot, ['config', '--get', 'commit.cleanup']).trim();
+  } catch { /* unset: git's default applies */ }
+  const result = validateCommit(readInput(opts.commit), loaded.contract, { ...worktreeContext(repoRoot), stage: opts.stage, commentChar, cleanup });
   return report('commit message', [{ subject: 'commit message', ...result }], loaded, opts);
 }
 

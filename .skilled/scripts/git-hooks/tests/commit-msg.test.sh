@@ -154,7 +154,8 @@ chore(sk-git): carry an id on another branch
 
 Commit-Id: 0009121
 MSG
-git -C "$TMP" commit -qF "$TMP/carried-message.txt"
+# A different commit: its own author date, as two separate commits have.
+GIT_AUTHOR_DATE='2001-02-03T04:05:06Z' git -C "$TMP" commit -qF "$TMP/carried-message.txt"
 git -C "$TMP" checkout -q "$BASE"
 stage_four
 cat > "$TMP/message.txt" <<'MSG'
@@ -165,6 +166,32 @@ Commit-Id: 0009121
 MSG
 run_hook; RC=$?
 check "a Commit-Id used on another branch is blocked" 1 "$RC" "already belongs"
+
+# ── 7b. a rebased copy of one's own commit is not a collision ───────────────
+# A rebase and an amend keep the author and the author date, so the pre-rebase
+# copy still on another ref is this commit, not a different one with its id.
+setup_repo
+BASE="$(git -C "$TMP" rev-parse --abbrev-ref HEAD)"
+git -C "$TMP" checkout -q -b feat
+printf 'feature\n' > "$TMP/feature.txt"
+git -C "$TMP" add feature.txt
+cat > "$TMP/message.txt" <<'MSG'
+feat(sk-git): add a thing
+
+This explains why the thing was added.
+
+Commit-Id: 0009141
+MSG
+git -C "$TMP" commit -qF "$TMP/message.txt"
+git -C "$TMP" branch pre-rebase
+git -C "$TMP" checkout -q "$BASE"
+printf 'moved\n' > "$TMP/moved.txt"
+git -C "$TMP" add moved.txt
+git -C "$TMP" commit -qm "chore(sk-git): move the base"
+git -C "$TMP" checkout -q feat
+git -C "$TMP" rebase -q "$BASE"
+GIT_AUTHOR_DATE="$(git -C "$TMP" log -1 --format=%ad --date=raw HEAD)" run_hook; RC=$?
+check "an amend of a rebased commit keeps its own Commit-Id" 0 "$RC"
 
 # ── 8. the amend case: an id only HEAD carries is not a collision ───────────
 setup_repo
@@ -300,7 +327,7 @@ check "prose mentioning the vendor passes" 0 "$RC"
 
 # ── 17. the early checks block with a reason ────────────────────────────────
 setup_repo
-printf '# only a comment\n' > "$TMP/message.txt"
+printf '# only a comment\n#\n' > "$TMP/message.txt"
 run_hook; RC=$?
 check "an empty message is blocked" 1 "$RC" "message.empty"
 
@@ -486,6 +513,39 @@ else
   echo "PASS  a foreign repository's validator never runs"; PASS=$((PASS + 1))
 fi
 rm -rf "$HOOKREPO" "$WT" "$FOREIGN"
+# ── 26. the node-free rules probe agrees with the validator ─────────────────
+# shellcheck source=/dev/null
+. "$REPO_ROOT/.opencode/scripts/git-hooks/lib/message-contract-gate.sh"
+probe_check() { # probe_check <label> <expected: declared|none>
+  local got=none
+  mcg_repo_declares_rules "$TMP" commit-message-template.md && got=declared
+  if [[ "$got" == "$2" ]]; then
+    echo "PASS  $1"; PASS=$((PASS + 1))
+  else
+    echo "FAIL  $1: expected $2, got $got"; FAIL=$((FAIL + 1))
+  fi
+}
+setup_repo
+git -C "$TMP" config --unset skgit.contractDir
+mkdir -p "$TMP/.sk-git"
+printf '##\tEnforced rules\n' > "$TMP/.sk-git/commit-message-template.md"
+probe_check "a tab after the heading hashes declares rules" declared
+
+setup_repo
+git -C "$TMP" config --unset skgit.contractDir
+mkdir -p "$TMP/.sk-git"
+printf '## Unenforced rules\n' > "$TMP/.sk-git/commit-message-template.md"
+probe_check "the words inside a longer word declare nothing" none
+
+setup_repo
+git -C "$TMP" config --unset skgit.contractDir
+mkdir -p "$TMP/.sk-git" "$TMP/.skilled/skills/sk-git/assets"
+printf '## Enforced rules\n' > "$TMP/.skilled/skills/sk-git/assets/commit-message-template.md"
+probe_check "an existing .sk-git without the template shadows the skill assets" none
+
+setup_repo
+git -C "$TMP" config skgit.contractDir "$TMP/missing-dir"
+probe_check "a contractDir that points nowhere counts as declared" declared
 
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"

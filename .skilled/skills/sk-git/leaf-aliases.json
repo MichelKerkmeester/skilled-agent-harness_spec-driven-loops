@@ -91,6 +91,11 @@
   },
   {
     "workflowMode": "sk-git",
+    "leafResourceId": "manual-testing-playbook/commit-formation/scope-alias-length-target-breaking-sections.md",
+    "diskPath": "manual-testing-playbook/commit-formation/scope-alias-length-target-breaking-sections.md"
+  },
+  {
+    "workflowMode": "sk-git",
     "leafResourceId": "manual-testing-playbook/commit-formation/scope-inference-skill-folder.md",
     "diskPath": "manual-testing-playbook/commit-formation/scope-inference-skill-folder.md"
   },

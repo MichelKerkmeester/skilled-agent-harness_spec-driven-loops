@@ -281,7 +281,14 @@ function gitOrNull(repoRoot, args) {
  * sk-git skill assets. Returns null when none exists, which means no enforcement.
  */
 export function resolveContractDir(repoRoot) {
-  const configured = (gitOrNull(repoRoot, ['config', '--get', 'skgit.contractDir']) || '').trim();
+  // Only a setting stored in a config file counts. A `git -c` flag or a GIT_CONFIG_* variable
+  // reports scope "command", and honoring it would let one invocation switch the rules off.
+  const scoped = gitOrNull(repoRoot, ['config', '--show-scope', '--get-all', 'skgit.contractDir']) || '';
+  const configured = scoped.split('\n')
+    .filter((line) => line && !line.startsWith('command\t'))
+    .map((line) => line.slice(line.indexOf('\t') + 1).trim())
+    .filter(Boolean)
+    .pop() || '';
   if (configured) {
     const dir = path.resolve(repoRoot, configured);
     // An explicit setting that points nowhere is a broken install, not an opt-out.
@@ -320,13 +327,22 @@ export function loadContract(repoRoot, kind) {
 // 6. COMMIT VALIDATION
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** git stripspace --strip-comments, including the `commit -v` scissors region. */
-export function stripCommitMessage(raw, commentChar = '#') {
+/**
+ * Clean a pending commit message the way git will before storing it. git drops comment lines
+ * only when it opened an editor, whose hint block always carries a line holding just the comment
+ * character, or when commit.cleanup is `strip`. A message given with -m or -F keeps lines that
+ * start with the comment character, so they are kept here too. `cleanup` is commit.cleanup.
+ */
+export function stripCommitMessage(raw, commentChar = '#', cleanup = '') {
   const scissors = `${commentChar} ------------------------ >8 ------------------------`;
+  const lines = String(raw).replace(/\r\n/g, '\n').split('\n');
+  const keepAll = cleanup === 'whitespace' || cleanup === 'verbatim';
+  const stripComments = cleanup === 'strip'
+    || ((cleanup === '' || cleanup === 'default') && lines.some((line) => line === commentChar || line === scissors));
   const out = [];
-  for (const line of String(raw).replace(/\r\n/g, '\n').split('\n')) {
-    if (line === scissors) break;
-    if (line.startsWith(commentChar)) continue;
+  for (const line of lines) {
+    if (line === scissors && !keepAll) break;
+    if (stripComments && line.startsWith(commentChar)) continue;
     const trimmed = line.replace(/\s+$/, '');
     if (trimmed === '' && (out.length === 0 || out[out.length - 1] === '')) continue;
     out.push(trimmed);
@@ -399,6 +415,7 @@ export function commitRuleIds(contract) {
  * `commitIdOwner(id)` each return null when they cannot tell, and the rule is then skipped
  * rather than guessed. `ctx.stage === 'pre-stamp'` validates a message before the
  * prepare-commit-msg hook has run, so the lines that hook removes are removed here too.
+ * `ctx.cleanup` is the repository's commit.cleanup setting, which decides whether comment lines go.
  */
 export function validateCommit(raw, contract, ctx = {}) {
   const errors = [];
@@ -406,11 +423,15 @@ export function validateCommit(raw, contract, ctx = {}) {
   const err = (id, message) => errors.push({ id, message });
   const warn = (id, message) => warnings.push({ id, message });
 
-  let message = ctx.alreadyClean ? String(raw).replace(/\s+$/, '') : stripCommitMessage(raw, ctx.commentChar);
+  let message = ctx.alreadyClean ? String(raw).replace(/\s+$/, '') : stripCommitMessage(raw, ctx.commentChar, ctx.cleanup);
   if (message.length > MAX_INPUT_CHARS) message = message.slice(0, MAX_INPUT_CHARS);
 
   if (ctx.stage === 'pre-stamp' && contract.attribution) {
-    message = message.split('\n').filter((line) => !isForbiddenAttribution(line, contract.attribution)).join('\n');
+    // The stamper removes only the forbidden keys, and never the subject line. A trailer that
+    // merely names the vendor survives it, so it is left here for the rule below to report.
+    const keys = contract.attribution.forbiddenKeys || [];
+    const keyRe = keys.length ? new RegExp(`^(?:${keyAlternation(keys)}):`) : null;
+    message = message.split('\n').filter((line, i) => i === 0 || !keyRe || !keyRe.test(line)).join('\n');
     message = stripCommitMessage(message);
   }
 
@@ -738,17 +759,32 @@ export function lengthLiteralErrors(markdown, contract) {
 // 10. REPOSITORY CONTEXT
 // ─────────────────────────────────────────────────────────────────────────────
 
+// A copy of a commit keeps its author and author date; these two fields identify one.
+const AUTHOR_FORMAT = '%ae%x09%at';
+
+// The author the commit being written will carry, as `email<TAB>seconds`, or null. git exports
+// the original author date during an amend and a rebase, and `git var` reports it.
+function pendingAuthor(repoRoot) {
+  const ident = gitOrNull(repoRoot, ['var', 'GIT_AUTHOR_IDENT']) || '';
+  const m = ident.match(/<([^>]*)>\s+(\d+)/);
+  return m ? `${m[1]}\t${m[2]}` : null;
+}
+
 /**
  * Context for a message about to be committed in a working tree: packets are looked up on disk
- * and a Commit-Id collides when any commit except HEAD carries it. HEAD is excluded so an amend
- * keeps its own id.
+ * and a Commit-Id collides when a commit other than HEAD carries it and is not a copy of the one
+ * being written. HEAD is excluded so an amend keeps its own id, and a copy left behind by a
+ * rebase is recognised by its author and author date.
  */
 export function worktreeContext(repoRoot) {
   return {
     specExists: (rel) => fs.existsSync(path.join(repoRoot, rel)),
     commitIdOwner: (id) => {
-      const out = gitOrNull(repoRoot, ['log', '--all', '--not', 'HEAD', '-E', `--grep=^Commit-Id: ${escapeRegex(id)}$`, '--format=%h']);
-      return out && out.trim() ? out.trim().split('\n')[0] : null;
+      const out = gitOrNull(repoRoot, ['log', '--all', '--not', 'HEAD', '-E', `--grep=^Commit-Id: ${escapeRegex(id)}$`, `--format=%h%x09${AUTHOR_FORMAT}`]);
+      if (!out || !out.trim()) return null;
+      const mine = pendingAuthor(repoRoot);
+      const other = out.trim().split('\n').find((row) => row.slice(row.indexOf('\t') + 1) !== mine);
+      return other ? other.split('\t')[0] : null;
     },
   };
 }
@@ -758,9 +794,9 @@ export function worktreeContext(repoRoot) {
  * when the commit's own tree or the tip of the range holds it: code commits routinely land before
  * the commit that adds their packet docs, and both arrive in the same push. A repository that keeps
  * its packets out of git, through an ignore rule, has them in no tree at all, so a folder on disk
- * also counts, as it does when the commit is written. An id collides with
- * any remote commit outside the checked range. `excludeRefs` drops the ref being overwritten, so a
- * rebased branch is not compared with the pre-rebase copies of its own commits.
+ * also counts, as it does when the commit is written. An id collides with any remote commit outside
+ * the checked range unless that commit has the same author and author date, which marks it as an
+ * earlier copy left behind by a rebase or an amend. `excludeRefs` drops the ref being overwritten.
  */
 export function rangeContext(repoRoot, shas, excludeRefs = []) {
   const inRange = new Set(shas);
@@ -786,15 +822,22 @@ export function rangeContext(repoRoot, shas, excludeRefs = []) {
     // excludeRefs drops.
     const args = ['log', '--exclude=*/HEAD'];
     for (const ref of excludeRefs) args.push(`--exclude=${ref.replace(/^refs\/remotes\//, '')}`);
-    args.push('--remotes', '--format=%H%x09%(trailers:key=Commit-Id,valueonly=true,separator=%x2C)');
+    args.push('--remotes', `--format=%H%x09${AUTHOR_FORMAT}%x09%(trailers:key=Commit-Id,valueonly=true,separator=%x2C)`);
     for (const row of (gitOrNull(repoRoot, args) || '').split('\n')) {
-      const [sha, ids] = row.split('\t');
+      const [sha, email, date, ids] = row.split('\t');
       if (!sha || !ids || inRange.has(sha)) continue;
       for (const id of ids.split(',').map((v) => v.trim()).filter(Boolean)) {
-        if (!idOwners.has(id)) idOwners.set(id, sha.slice(0, 10));
+        if (!idOwners.has(id)) idOwners.set(id, []);
+        idOwners.get(id).push({ sha, author: `${email}\t${date}` });
       }
     }
     return idOwners;
+  };
+  // The author is read only for a commit whose id some remote commit also carries.
+  const authors = new Map();
+  const authorOf = (sha) => {
+    if (!authors.has(sha)) authors.set(sha, (gitOrNull(repoRoot, ['log', '-1', `--format=${AUTHOR_FORMAT}`, sha]) || '').trim() || null);
+    return authors.get(sha);
   };
   const seenInRange = new Map();
   return (sha) => ({
@@ -803,7 +846,11 @@ export function rangeContext(repoRoot, shas, excludeRefs = []) {
       const earlier = seenInRange.get(id);
       if (earlier && earlier !== sha) return earlier.slice(0, 10);
       seenInRange.set(id, sha);
-      return owners().get(id) || null;
+      const found = owners().get(id);
+      if (!found) return null;
+      const mine = authorOf(sha);
+      const other = found.find((owner) => owner.author !== mine);
+      return other ? other.sha.slice(0, 10) : null;
     },
   });
 }

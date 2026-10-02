@@ -88,12 +88,12 @@ Flags can be set as environment variables **or** in a config file: copy `.skille
 | `SYSTEM_DIST_FRESHNESS_DISABLED` | unset (enabled) | truthy disable flag | Disables dist-freshness checks. No aliases. | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`, `.skilled/plugins/system-dist-freshness-guard.js` |
 | `SYSTEM_SESSION_CLEANUP_DISABLED` | unset (enabled) | truthy disable flag | Disables session cleanup and teardown. No aliases. | `.skilled/scripts/session-cleanup.sh`, `.skilled/plugins/session-cleanup.js` |
 | `SYSTEM_HOOK_INSTALL_DISABLED` | unset (enabled) | truthy disable flag | Disables Codex hook installation and check mode. No aliases. | `.skilled/bin/install-codex-hooks.mjs`, `hooks/pi/session-start-advisories.ts` |
-| `SYSTEM_GIT_COMMIT_HOOKS_DISABLED` | unset (enabled) | truthy disable flag | Emergency-off switch for the pre-commit chain. No aliases. Unset keeps the mass-deletion and comment-hygiene gates active. | `.skilled/scripts/git-hooks/pre-commit`, `.skilled/hooks/git/pre-commit` |
+| `SYSTEM_GIT_COMMIT_HOOKS_DISABLED` | unset (enabled) | truthy disable flag | Emergency-off switch for the pre-commit chain. No aliases. Unset keeps every pre-commit gate active; the mass-deletion gate belongs to pre-push and has its own switch. | `.skilled/scripts/git-hooks/pre-commit`, `.skilled/hooks/git/pre-commit` |
 | `SYSTEM_LIVE_SYNC_DISABLED` | unset (enabled) | truthy disable flag | Master switch for the whole live-sync loop: post-commit autosync publish, SessionStart primary reconcile, IDE follower auto-start, and self-heal hook auto-install. No aliases. | `.skilled/scripts/git-hooks/post-commit`, `.skilled/bin/check-git-hooks.sh`, `.skilled/bin/git-primary-reconcile.sh`, `.skilled/bin/git-live-follow.sh` |
 | `SYSTEM_PRIMARY_RECONCILE_DISABLED` | unset (enabled) | truthy disable flag | Disables SessionStart reconciliation of the clean primary live checkout only. Publish, follower, and self-heal legs keep running. No aliases. | `.skilled/bin/git-primary-reconcile.sh` |
 | `SYSTEM_LIVE_FOLLOW_DISABLED` | unset (enabled) | truthy disable flag | Disables the IDE checkout follower auto-start only. The publish and self-heal legs keep running. No aliases. | `.skilled/bin/git-live-follow.sh` |
-| `SPECKIT_AUTOSYNC` | unset (defaults to 1 in wrapper sessions) | truthy flag | Per-launch publish opt-out for the live-sync loop. Wrapper sessions export 1 unless a pre-set 0 overrides it. | `.skilled/bin/worktree-session.sh`, `.skilled/scripts/git-hooks/post-commit` |
-| `SPECKIT_LIVE_BRANCH` | (unset) | string | The live branch a wrapper session publishes its commits to, resolved from the primary checkout. | `.skilled/bin/worktree-session.sh` |
+| `SPECKIT_AUTOSYNC` | unset (defaults to 1 in wrapper sessions) | truthy flag | Per-launch publish opt-out for the live-sync loop. Wrapper sessions export 1 unless a pre-set 0 overrides it. With `SPECKIT_LIVE_BRANCH` it also lets pre-push update that exact branch without approval; creating it still needs approval. | `.skilled/bin/worktree-session.sh`, `.skilled/scripts/git-hooks/post-commit` |
+| `SPECKIT_LIVE_BRANCH` | (unset) | string | The live branch a wrapper session publishes its commits to, resolved from the primary checkout. Pre-push lets an update to exactly this branch through the remote gate when `SPECKIT_AUTOSYNC=1`. | `.skilled/bin/worktree-session.sh` |
 
 `SYSTEM_SPEC_GATE_ENFORCE` is an opt-in control for denial, not a kill-switch. **`SPECKIT_DIST_AUTO_REBUILD` is not a disable flag**: it controls rebuild behavior after a freshness check and does not stop the check from running.
 
@@ -212,8 +212,24 @@ Retention, sweep, and warning-log tuning (`SYSTEM_SPEC_GATE_ACTIVE_RETENTION_DAY
 
 ## 5. GIT-HOOK MARKER
 
+Per-invocation switches the git hooks read. Each lets one command through one gate; none of them changes the commit, PR or branch rules, which have no bypass.
+
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
+| `SPECKIT_SKIP_COMMENT_HYGIENE` | unset | `=1` | Skips the pre-commit comment-hygiene gate for this commit. | `.skilled/scripts/git-hooks/pre-commit` |
+| `SPECKIT_SKIP_MIRROR_PARITY` | unset | `=1` | Skips the pre-commit mirror-parity gate for this commit. | `.skilled/scripts/git-hooks/pre-commit` |
+| `SPECKIT_SKIP_CARD_SYNC` | unset | `=1` | Skips the pre-commit prompt-quality-card sync gate for this commit. | `.skilled/scripts/git-hooks/pre-commit` |
+| `SPECKIT_SKIP_MCP_MUTATION_CLASS` | unset | `=1` | Skips the pre-commit MCP mutation-class gate for this commit. | `.skilled/scripts/git-hooks/pre-commit` |
+| `SPECKIT_SKIP_ROUTE_REMINT` | unset | `=1` | Skips the pre-commit compiled-routing re-mint for this commit. | `.skilled/scripts/git-hooks/pre-commit` |
+| `SPECKIT_SKIP_SPEC_REMINT` | unset | `=1` | Skips the pre-commit spec derived-metadata re-mint for this commit. | `.skilled/scripts/git-hooks/pre-commit` |
+| `SPECKIT_SKIP_PREPARE_COMMIT_MSG` | unset | `=1` | Skips Commit-Id stamping and attribution-line removal for this commit. | `.skilled/scripts/git-hooks/prepare-commit-msg` |
+| `SPECKIT_COMMIT_SPEC` | unset | `<track>/<packet>[/<phase>]` | Appends a `Spec:` trailer naming that packet when the message has none. | `.skilled/scripts/git-hooks/prepare-commit-msg` |
+| `SPECKIT_SKIP_PREPUSH_SKILL_GATE` | unset | `=1` | Skips the pre-push skill-root metadata warning. | `.skilled/scripts/git-hooks/pre-push` |
+| `SPECKIT_SKIP_PREPUSH_ROUTE_GATE` | unset | `=1` | Skips the pre-push compiled-route guard and routing-commit parity. | `.skilled/scripts/git-hooks/pre-push` |
+| `SPECKIT_SKIP_PREPUSH_TRACK_GATE` | unset | `=1` | Skips the pre-push track-root consistency gate. | `.skilled/scripts/git-hooks/pre-push` |
+| `SPECKIT_ALLOW_MASS_DELETION` | unset | `=1` | Approves one push that deletes more tracked files than the threshold. | `.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh` |
+| `SPECKIT_MASS_DELETION_THRESHOLD` | `100` | integer | The most tracked-file deletions a push may carry before it blocks. | `.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh` |
+| `SPECKIT_ALLOW_REMOTE_PUSH` | unset | `=1` or `=<branch>` | Approves one push to a branch outside the remote allowlist. `=1` approves an update only; creating a branch needs `=<branch>`, naming it. | `.skilled/scripts/git-hooks/pre-push` |
 
 ---
 

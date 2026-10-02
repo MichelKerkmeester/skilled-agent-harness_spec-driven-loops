@@ -204,7 +204,7 @@ Each rule has an id, and every block message names the id it failed:
 | `body.breaking-sections` | Error: a breaking body is missing one of the configured section labels |
 | `trailer.final-paragraph` | `Spec:` and `Commit-Id:` sit in the last paragraph with no prose beside them |
 | `trailer.commit-id-format` | `Commit-Id:` holds exactly seven digits |
-| `trailer.commit-id-unique` | No other commit already carries the same `Commit-Id:` |
+| `trailer.commit-id-unique` | No other commit already carries the same `Commit-Id:`. A commit with the same author email and author date is an earlier copy of this one, left by a rebase, and does not count |
 | `trailer.spec-prefix` | `Spec:` omits the `specs/` prefix, so `git log --grep='^Spec: <track>/<packet>'` finds it |
 | `trailer.spec-exists` | `Spec:` names a packet folder that exists under `specs/` |
 | `attribution.forbidden` | No `Co-Authored-By:`, `Claude-Session:` or vendor-naming trailer |
