@@ -34,7 +34,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Baseline the parent-hub check, routing status, harness and advisor suite
+- [x] T001 Baseline the parent-hub check, routing status, harness and advisor suite. Evidence: `../001-removal-plan/inventory.md` section 3, the check exits 0 on the two-mode hub
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -42,9 +42,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Luna: delete the packet and reduce the hub files to one mode, with a new minor version and changelog entry
-- [ ] T003 Luna: update the compiled-routing fixtures, harness, advisor graph and orchestration metadata
-- [ ] T004 Regenerate the Hermes mirror and re-mint routing
+- [x] T002 Luna: delete the packet and reduce the hub files to one mode, with a new minor version and changelog entry. Evidence: commit `326997828a`, 57 files, hub 0.7.0.0, `changelog/v0.7.0.0.md`
+- [x] T003 Luna: update the compiled-routing fixtures, harness, advisor graph and orchestration metadata. Evidence: canary case `deem-choice-single` deleted, `deem-verb-narrowness` renamed `classifier-verb-narrowness` on a `judge` prompt, graph regenerated in `a7b60bf56e`
+- [x] T004 Regenerate the Hermes mirror and re-mint routing. Evidence: `.hermes/skills/cli-deem/` gone, manifest hash `4d5aad95` in both activation copies
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,10 +52,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Run the parent-hub check, routing status, harness, advisor suite and mirror check. Check: each passes
-- [ ] T006 Route one classifier prompt through `compiled-route.cjs`. Check: `cli-jev`
-- [ ] T007 Cross-family review. Check: P0 and P1 fixed, P2 in `goal.md`
-- [ ] T008 Closure: `repair-derived.cjs --apply`, `validate.sh --strict` and `check-goal.cjs`. Check: `RESULT: PASSED` on each
+- [x] T005 Run the parent-hub check, routing status, harness, advisor suite and mirror check. Check: each passes. Evidence: check exit 0 with 0 warnings, status `compiled-serving` and `fresh`, harness `status: built` exit 0, mirror `PASS: 71 Hermes skill copies in sync`, advisor suite in `implementation-summary.md`
+- [x] T006 Route one classifier prompt through `compiled-route.cjs`. Check: `cli-jev`. Evidence: "use jev to judge whether this diff matches the spec" returns `route`, `single`, target `cli-jev`
+- [x] T007 Cross-family review. Check: P0 and P1 fixed, P2 in `goal.md`. Evidence: DeepSeek V4.1 Flash max reviewed Luna's commit, no P0 or P1, five P2 in `goal.md`
+- [x] T008 Closure: `repair-derived.cjs --apply`, `validate.sh --strict` and `check-goal.cjs`. Check: `RESULT: PASSED` on each
 <!-- /ANCHOR:phase-3 -->
 
 ---

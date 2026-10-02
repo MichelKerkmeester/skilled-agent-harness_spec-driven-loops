@@ -39,14 +39,15 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/cli-classifier/changelog/v0.7.0.0.md"
     ],
     "entities": [
       {
@@ -83,6 +84,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.7.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/changelog/v0.7.0.0.md",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The hub registers `cli-deem` beside `cli-jev` in its registry, router, leaf manifest and docs, and the compiled routing, advisor graph and Hermes mirror all carry it",
     "created_at": "2026-10-02T07:54:42Z",
-    "last_save_at": "2026-10-02T08:02:06.856Z",
+    "last_save_at": "2026-10-02T15:51:20.428Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc59d0ab86c9790d5d6e0f43fc55a434d528dfb4f65da2eb9f602be527999ef4",
+    "source_fingerprint": "sha256:6e1ba5f8efbd4155b370eff10a9c2bf65c9bb1b51ba694160f26f89f2fef0329",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f2b7719aaab8c32b86c9117eb4424da5d9ad9d0def841542797e5c04ce9dce36",
+      "spec.md": "c994688dba25eb5ff9890698be22d172f6fd4d1b7cdb10cf445b7ae117b1644a",
       "plan.md": "d837f77378166a4dee86ac210c244ee0428ab5977cb409411bc34a2e568b4312",
-      "tasks.md": "bba61543fab7d0d277c38f9e5a504b9209d1aa9c84b7959b846f31afd42c5e09",
-      "implementation-summary.md": "2429bf586749aee2317eee0234112f0b0543ac48fc17381b4ecb1caf8560390c"
+      "tasks.md": "59f1da58a27dffb6702d011a018ef17618e0e1c924acbb910296528f96d8a3dd",
+      "implementation-summary.md": "d8747a6aaa96c6ca8fd54d22216f7acff817a6b60a737ca9d17d523f5412806f"
     },
     "last_active_at": null
   }
