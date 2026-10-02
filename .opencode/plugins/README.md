@@ -15,7 +15,7 @@ trigger_phrases:
 
 `.opencode/plugins/` contains the JavaScript modules OpenCode discovers as local plugins. Each module exposes a default plugin factory that registers tools, hook handlers, or lifecycle handlers with the host. OpenCode loads plugins by a flat glob over this folder (it does not recurse), so every loadable plugin lives directly here; the `lib/` and `tests/` subfolders are not plugin sources.
 
-The directory inventory is authoritative for the auto-loaded plugin surface. Shared policy cores stay under their owning skill (`system-spec-kit`, `system-skill-advisor`, `sk-git`, `sk-code`, `sk-communication`, `sk-vision`, `system-completion`, `system-deep-loop`); the files here are **transport adapters** that translate OpenCode events into those cores and keep terminal output out of the TUI. The single shared boundary every plugin honors: **never write to stdout or stderr**, OpenCode overlays those onto the TUI prompt line and corrupts the interactive session. Findings are injected via `experimental.chat.system.transform`, returned from tool handlers, or persisted to bounded workspace logs.
+The directory inventory is authoritative for the auto-loaded plugin surface. Shared policy cores stay under their owning skill (`system-spec-kit`, `system-skill-advisor`, `sk-git`, `sk-code`, `sk-vision`, `system-completion`, `system-deep-loop`); the files here are **transport adapters** that translate OpenCode events into those cores and keep terminal output out of the TUI. The single shared boundary every plugin honors: **never write to stdout or stderr**, OpenCode overlays those onto the TUI prompt line and corrupts the interactive session. Findings are injected via `experimental.chat.system.transform`, returned from tool handlers, or persisted to bounded workspace logs.
 
 Every plugin except `sk-git-message-gate.js` honors a per-concern kill-switch via the shared `hook-flags.cjs` resolver (`isHookEnabled('<concern>')`), plus the master `SYSTEM_HOOKS_DISABLED`. A disabled plugin is a genuine full no-op, not just a no-emit no-op. The message gate has no switch because the commit, PR and branch rules carry no bypass on any surface. All advisory checks fail open; rejection is opt-in per each plugin's own contract.
 
@@ -31,7 +31,6 @@ Every plugin except `sk-git-message-gate.js` honors a per-concern kill-switch vi
 | `opencode-goal.js` | `goal` | `event` (`session.created`/`status`/`idle`/`deleted`), `experimental.chat.system.transform`, `tool` (goal tools) | Binds a session to a packet `goal.md` and injects the objective slice built from it (via `../hooks/goal/lib/goal-slice.cjs`), or holds a text goal. Largest plugin; owns goal state machine, supervisor, continuation, capabilities, and the goal tool surface including `bind`, `resent` and `packet`. |
 | `session-cleanup.js` | `session-cleanup` | `event` (`session.created`/`deleted`), `experimental.chat.system.transform` | Performs bounded session and host cleanup. Startup guards + teardown cleanup; reaps MCP helper processes via `session-cleanup.sh`. |
 | `sk-code-post-edit-quality.js` | `post-edit-quality` | `tool.execute.before`, `tool.execute.after`, `experimental.chat.system.transform` | Runs bounded post-edit quality checks. `tool.execute.before` stashes the edited path keyed by callID (after has no file path); `tool.execute.after` runs the router core; findings drained on the next transform and recorded to a workspace log. |
-| `sk-communication-projection.js` | `sk-communication-projection` | `chat.message` | Projects assistant text through the `chat.message` hook, gated by enablement and a kill-switch, with byte-exact restore. Owns its own `isHookEnabled` (not the shared resolver) and `SK_COMMUNICATION_PROJECTION_DISABLED`. |
 | `sk-git-message-gate.js` | `git-message-gate` (no kill switch) | `tool.execute.before` for `bash` | Refuses a `git commit` message, `gh pr` description or new branch name that breaks the repository's own sk-git templates by throwing; allows what the shared gate cannot read. The one plugin with no kill switch, because the commit and push rules carry no bypass on any surface. |
 | `sk-git-preflight-advisory.js` | `git-preflight` | `tool.execute.before` for `bash`, `experimental.chat.system.transform` | Advises on Git command scope before execution. Buffers at most 20 advisory events and drains them on the next transform; never prints. |
 | `sk-vision.js` | `sk-vision` | `tool` (13 `sk_vision_*` tools) | Symlink → `../skills/sk-vision/vision-runtime/dist/plugin.js`. Local vision adapter: OCR, inspect, detect, pixel analysis. Auto-inspect uses a 2s grace and never awaits full GPU. |
@@ -57,7 +56,6 @@ plugins/
 +-- opencode-goal.js
 +-- session-cleanup.js
 +-- sk-code-post-edit-quality.js
-+-- sk-communication-projection.js
 +-- sk-git-message-gate.js
 +-- sk-git-preflight-advisory.js
 +-- sk-vision.js                           # symlink -> ../skills/sk-vision/vision-runtime/dist/plugin.js
@@ -97,7 +95,7 @@ Every plugin is enabled by default. Truthy disable values are `1`, `true`, `yes`
 |---|---|
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables every plugin in this folder along with every other repo hook. |
 | Per-concern `SYSTEM_<CONCERN>_DISABLED=1` | Each plugin's canonical kill-switch (e.g. `SYSTEM_SPEC_GATE_DISABLED`, `SYSTEM_SKILL_ADVISOR_DISABLED`). See each plugin's own README for its full env family. **The goal plugin is the exception: its canonical switch is `OPENCODE_GOAL_DISABLED`, and the name this rule would derive does not exist.** |
-| Legacy / plugin-specific aliases | Several plugins carry additional aliases (e.g. `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, `OPENCODE_GOAL_PLUGIN_DISABLED`, `SK_COMMUNICATION_PROJECTION_DISABLED`, `SK_CODE_POST_EDIT_QUALITY_DISABLED`). See each plugin's own README. |
+| Legacy / plugin-specific aliases | Several plugins carry additional aliases (e.g. `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, `OPENCODE_GOAL_PLUGIN_DISABLED`, `SK_CODE_POST_EDIT_QUALITY_DISABLED`). See each plugin's own README. |
 
 Optional tuning: `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000; owned by `system-skill-advisor`), `SYSTEM_OPENCODE_TRANSFORM_DEDUP=1` (opt-in transform dedup for the advisor plugin), plus per-plugin cache/budget/timeout envs documented in each plugin's README.
 
@@ -124,7 +122,6 @@ Plugin factories register some subset of:
 - `tool.execute.before`: pre-tool evaluation (spec-gate enforce, git message gate, git-preflight, mcp-route-guard, post-edit-quality path stash, deep-loop guard).
 - `tool.execute.after`: post-tool evaluation (cli-dispatch-audit, post-edit-quality run).
 - `experimental.chat.system.transform`: per-turn system-context injection (advisor, memory, spec-gate classify, goal, post-edit-quality drain, dist-freshness).
-- `chat.message`: assistant message projection (sk-communication-projection).
 - `event`: lifecycle handlers (`session.created`/`status`/`idle`/`deleted`/`resumed`/`compacted`/`compact`, `server.instance.disposed`/`global.disposed`).
 
 ---
