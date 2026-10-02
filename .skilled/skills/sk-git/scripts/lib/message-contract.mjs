@@ -504,8 +504,13 @@ export function validateCommit(raw, contract, ctx = {}) {
         continue;
       }
       if (t.spec.mustExist && typeof ctx.specExists === 'function') {
-        const rel = path.posix.join(t.spec.root || '', value);
-        if (ctx.specExists(rel) === false) err('trailer.spec-exists', `${key} '${value}' does not name an existing packet folder (${rel}).`);
+        const root = t.spec.root || '';
+        const rel = path.posix.join(root, value);
+        if (rel === '..' || rel.startsWith('../') || path.posix.isAbsolute(value) || (root && rel !== root && !rel.startsWith(`${path.posix.normalize(root)}/`))) {
+          err('trailer.spec-exists', `${key} '${value}' leaves the packet root ${root || '.'}/.`);
+        } else if (ctx.specExists(rel) === false) {
+          err('trailer.spec-exists', `${key} '${value}' does not name an existing packet folder (${rel}).`);
+        }
       }
     }
   }

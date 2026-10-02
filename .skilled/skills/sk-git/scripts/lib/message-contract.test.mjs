@@ -105,6 +105,8 @@ test('body, trailer and attribution rules each fire on their own case', () => {
   assert.ok(v('feat(sk-git): add a thing\n\nWhy.\n\nSpec: specs/sk-git/001-x').includes('trailer.spec-prefix'));
   assert.ok(v('feat(sk-git): add a thing\n\nWhy.\n\nSpec: sk-git/001-x', { specExists: () => false }).includes('trailer.spec-exists'));
   assert.deepEqual(v('feat(sk-git): add a thing\n\nWhy.\n\nSpec: sk-git/001-x', { specExists: () => true }), []);
+  assert.ok(v('feat(sk-git): add a thing\n\nWhy.\n\nSpec: ../README.md', { specExists: () => true }).includes('trailer.spec-exists'));
+  assert.ok(v('feat(sk-git): add a thing\n\nWhy.\n\nSpec: sk-git/../../README.md', { specExists: () => true }).includes('trailer.spec-exists'));
   assert.ok(v('feat(sk-git): add a thing\n\nWhy.\n\nCo-Authored-By: A <a@b.c>').includes('attribution.forbidden'));
   assert.ok(v('feat(sk-git)!: drop a thing\n\nWhy.').includes('breaking.footer'));
   assert.deepEqual(v('feat(sk-git): add a thing\n\nThe Anthropic client moved.'), [], 'prose naming the vendor is not attribution');
