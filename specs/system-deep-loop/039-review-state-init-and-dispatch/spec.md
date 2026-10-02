@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-02 |
 | **Branch** | `worktrees/081-review-run-open-through-gateway` (review fix), `worktrees/080-hook-bootstrap-and-dispatch-fixes` (preamble) |
 <!-- /ANCHOR:metadata -->
@@ -53,7 +53,7 @@ A workflow-opened deep-review run records its iterations through the gateway wit
 - One retry line in the child-dispatch preamble block, and the reason for it.
 
 ### Out of Scope
-- The iteration record's shape at the gateway. Packet `system-deep-loop/038-review-gateway-iteration-record` owns it, and this change merges after it.
+- The iteration record's shape at the gateway. Packet `system-deep-loop/038-review-gateway-iteration-record` owns it; this change merged after it landed.
 - Runs opened before this change. Their directly written config row still blocks projection; a restart opens them cleanly.
 - The research workflow, which opens its run the same way. It needs its own check, because the research gateway has a legacy upcaster review does not.
 

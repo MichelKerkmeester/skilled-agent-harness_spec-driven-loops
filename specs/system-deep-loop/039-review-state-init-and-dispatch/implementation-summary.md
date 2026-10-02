@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "system-deep-loop/039-review-state-init-and-dispatch"
     last_updated_at: "2026-10-02T16:37:15Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Preamble retry line shipped; review fix built in worktree 081, merge held for packet 038"
-    next_safe_action: "After packet 038 lands, rebase worktree 081 onto main, rerun the deep-loop suite, merge"
+    recent_action: "Review fix rebased onto packet 038 and verified; preamble retry line shipped earlier"
+    next_safe_action: "None; the packet is complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "system-deep-loop-039-review-state-init-and-dispatch"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 039-review-state-init-and-dispatch |
-| **Completed** | In progress (preamble shipped 2026-10-02) |
+| **Completed** | 2026-10-02 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -64,6 +64,7 @@ Dispatched CLI children get one more line in their preamble: a failed edit match
 | `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Modified | Same for the confirm variant |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts` | Modified | `run_initialized` declared spoken |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-run-open.vitest.ts` | Created | End-to-end test of the shipped init step |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/stop-policy-yaml-parity.vitest.ts`, `render-command-contract.vitest.ts`, `check-ledger-stem-producers.vitest.ts` | Modified | Follow the new init step and the spoken census row |
 | `.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md` | Modified | Retry line and its reason |
 <!-- /ANCHOR:what-built -->
 
@@ -72,7 +73,7 @@ Dispatched CLI children get one more line in their preamble: a failed edit match
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The preamble change ships from worktree 080. The review fix is built in worktree 081 and merges only after packet 038 lands, because both edit the review stem census.
+The preamble change shipped from worktree 080. The review fix was built in worktree 081 and merged after packet 038 landed, because both edit the review stem census. The one conflict, in the census test's counts, combined both sides.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -94,7 +95,10 @@ The preamble change ships from worktree 080. The review fix is built in worktree
 
 | Check | Result |
 |-------|--------|
-| `deep-review-run-open.vitest.ts` | PASS 3/3: both shipped init steps, then a gateway append, exit 0; control case still exits 2 |
+| `deep-review-run-open.vitest.ts` | PASS 3/3: both shipped init steps, then the worker's iteration record, exit 0 and the row equals the record; control case still exits 2 |
+| Deep-loop runtime suite after the rebase | 2855 passed, 5 failed; the 5 are check-contract-drift and render-command-contract, which fail identically on main |
+| Runtime typecheck | exit 0 |
+| Updated tests | The stop-policy and confirm-parity checks read the config file and the run-open event instead of the removed flat row; the census test counts 69 registered, 14 spoken, 55 reserved |
 | `check-ledger-stem-producers.cjs` | exit 0, `run_initialized` spoken by both workflows |
 | `validate_document.py` on the preamble | Same single pre-existing error as main (no overview section) |
 <!-- /ANCHOR:verification -->
