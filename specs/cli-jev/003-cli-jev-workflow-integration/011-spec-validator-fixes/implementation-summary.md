@@ -133,6 +133,7 @@ Every check ran from the worktree root on 2026-09-27. The orchestrator ran them 
 | Stderr, orchestrator at HEAD `baf2876802` | 0 bytes from `check-goal.cjs` on the folder and on its `goal.md` for the parent and all 18 children of `003-cli-jev-workflow-integration`, from `node --test` (`tests 20`, `fail 0`), from the `check-ac-coverage.sh` suite (`45 passed, 0 failed`) and from `validate.sh --strict` on four packets. Every exit code was 0 |
 | Owner-contract read, post-build | No contradiction with the build. `system-spec-kit/SKILL.md:456`, `validation-rules.md:95` and `:101`, `sk-create-goal/SKILL.md:109`, `scripts/README.md:54` and `:70`, and the `sk-code` shell and Node guides. Detail in `tasks.md` T002 |
 | Read-only rechecks while closing these docs | `check-goal.cjs` on 006's `goal.md` and on its folder each print `RESULT: PASSED (5/5 checks)`, exit 0, and their `diff` is empty. 006's `spec.md` prints `packet path is not a directory`, exit 2. `bash -n` and `node --check` exit 0 on the five changed code and test files. The test file diff adds 112 lines and removes none |
+| gawk portability of the AC coverage rule | Reproduced the CI failure in `ubuntu:24.04` with gawk (`41 passed, 4 failed`, `Invalid range end`); after the fix `check-ac-coverage.sh` prints `45 passed, 0 failed` under BSD awk, gawk and mawk |
 <!-- /ANCHOR:verification -->
 
 ---
