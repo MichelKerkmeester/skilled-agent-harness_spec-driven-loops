@@ -197,6 +197,18 @@ export function sha256Bytes(bytes: CanonicalBytes | Uint8Array): string {
   return createHash('sha256').update(Uint8Array.from(bytes)).digest('hex');
 }
 
+/**
+ * Compare two byte sequences element by element. Serializing them as canonical JSON to compare
+ * them counts one JSON node per byte, so an event above the node limit could never compare equal.
+ */
+export function canonicalBytesEqual(left: ArrayLike<unknown>, right: ArrayLike<unknown>): boolean {
+  if (left.length !== right.length) return false;
+  for (let index = 0; index < left.length; index += 1) {
+    if (left[index] !== right[index]) return false;
+  }
+  return true;
+}
+
 /** Clone and recursively freeze a validated JSON value. */
 export function immutableJsonClone<T extends JsonValue>(value: T): T {
   const clone = JSON.parse(canonicalJson(value)) as T;

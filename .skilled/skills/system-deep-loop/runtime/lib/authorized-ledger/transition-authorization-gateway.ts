@@ -7,7 +7,7 @@ import { randomUUID } from 'node:crypto';
 import {
   CURRENT_ENVELOPE_VERSION,
   canonicalBytes,
-  canonicalJson,
+  canonicalBytesEqual,
   prepareEventWrite,
   readEvent,
   sha256Bytes,
@@ -145,7 +145,7 @@ function isEventPreflight(value: unknown): value is EventWritePreflight {
     return false;
   }
   const canonical = canonicalBytes(value.envelope);
-  return canonicalJson(canonical) === canonicalJson(value.canonicalBytes)
+  return canonicalBytesEqual(canonical, value.canonicalBytes)
     && sha256Bytes(canonical) === value.canonicalDigest
     && value.identity.eventId === value.envelope.event_id
     && value.identity.eventType === value.envelope.event_type

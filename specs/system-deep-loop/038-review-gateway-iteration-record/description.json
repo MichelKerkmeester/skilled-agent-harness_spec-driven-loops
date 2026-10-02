@@ -1,0 +1,26 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/038-review-gateway-iteration-record",
+  "description": "`.skilled/agents/deep-review.md` (Step 9), `deep-review/assets/prompt-pack-iteration.md.tmpl` and `deep-review-auto.yaml` all tell the iteration",
+  "keywords": [
+    "skilled",
+    "agents",
+    "deep-review",
+    "step",
+    "assets",
+    "prompt-pack-iteration",
+    "tmpl",
+    "deep-review-auto",
+    "yaml",
+    "tell",
+    "iteration"
+  ],
+  "lastUpdated": "2026-10-02T17:03:42.977Z",
+  "specId": "038",
+  "folderSlug": "review-gateway-iteration-record",
+  "parentChain": [
+    "system-deep-loop"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
