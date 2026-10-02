@@ -103,24 +103,27 @@ Wrapper sessions inherit `SPECKIT_AUTOSYNC=1` while committing, so commit-time g
 | Lifecycle | Gate | Runs for wrapper autosync work | Exact live-branch behavior | Blocking and visibility |
 |-----------|------|-------------------------------|----------------------------|-------------------------|
 | Pre-commit | Shared hook flags | Yes, before the commit | May disable the commit-hook family; a broken resolver warns and leaves gates enabled | Never blocks by itself |
-| Pre-commit | Mass-deletion ceiling | Yes, before the commit | No exemption | Real violations block loudly and append `mass-deletion-guard.log` |
-| Pre-commit | Doc model references | Yes, when its validator exists | Advisory only | Warns, then later gates still run |
 | Pre-commit | Comment hygiene | Yes | No exemption | Blocks with `[gate:comment-hygiene]` and repair guidance |
+| Pre-commit | Mirror parity | When a mirror source or a generated mirror is staged, in the toolchain repository | No exemption | Blocks with `[gate:mirror-parity]` when a generated mirror has unstaged changes; warns only when the dirty mirror is unrelated to the commit |
 | Pre-commit | Agent mirror sync | When agent mirrors are staged | No exemption | Blocks with `[gate:agent-mirror-sync]` and repair guidance |
 | Pre-commit | Prompt card sync | When prompt-knowledge files are staged | No exemption | Blocks with `[gate:prompt-card-sync]` and repair guidance |
 | Pre-commit | MCP mutation class | When matching doctor/install files are staged | No exemption | Blocks with `[gate:mcp-mutation-class]` and repair guidance |
 | Pre-commit | Routing manifest re-mint | When a hub `SKILL.md`, `hub-router.json` or `mode-registry.json` is staged | No exemption | Re-mints the hub and stages both manifests, then blocks with `[gate:route-remint]` only when it cannot: a partly staged input, a pathspec-narrowed commit, a missing file, or a mint failure |
+| Pre-commit | Spec metadata re-mint | When a document under `specs/` is staged | No exemption | Re-derives and stages the packet's `description.json` and `graph-metadata.json`, then blocks with `[gate:spec-remint]` only when it cannot: a pathspec-narrowed commit, a packet with documents staged and unstaged at once, a missing tool, or a failed re-derive |
+| Commit-msg | Message contract | Yes | No exemption | Blocks a message that breaks the rules the repository's own commit template declares, naming each rule id |
 | Post-commit | Memory drift marker | Yes, before publish | Best-effort; a broken helper warns and autosync continues | Never blocks the commit or publish |
 | Post-commit | Live-sync flags and linked-worktree check | Yes | Publishes only when live-sync is enabled and the commit is in a linked worktree | A broken flag resolver warns and keeps the default-on publish behavior |
 | Pre-push | Mass-deletion ceiling | Yes, for updates to every branch | No exemption | Blocks real violations with `[gate:mass-deletion]`; hook and sync logs both persist the reason |
-| Pre-push | New-branch naming | Yes | Exact `$SPECKIT_LIVE_BRANCH` autosync is exempt, including first publication; another destination is not | Other invalid new branches block with `[gate:naming]` |
-| Pre-push | Remote permission | Yes | Exact `$SPECKIT_LIVE_BRANCH` autosync is exempt; another destination is not | Other non-allowlisted pushes block with `[gate:remote-permission]` |
-| Pre-push | Skill-root metadata | When the pushed per-ref range changes `.skilled/skills` | No safety exemption and no hook-side regeneration | Blocks with `[gate:skill-root-metadata]`, the exact `--fix` command, and a durable sync-log record |
-| Pre-push | Discovered tests | Yes when the runner exists | Report-only by default; no autosync exemption when enforcement is enabled | Enforced failures block with `[gate:test-suites]` and a durable sync-log record |
+| Pre-push | Message contract | Yes | No exemption and no bypass | Blocks with `[gate:message-contract]` when a commit the push adds, or a new branch name, breaks the repository's templates; catches `--no-verify` commits |
+| Pre-push | Remote branch creation | Yes | No exemption: a new branch on origin needs the allowlist or `SPECKIT_ALLOW_REMOTE_PUSH=<branch>` | Blocks with `[gate:remote-create]`; a bare `SPECKIT_ALLOW_REMOTE_PUSH=1` approves updates, never creation |
+| Pre-push | Remote permission | Yes | Exact `$SPECKIT_LIVE_BRANCH` autosync updates are exempt, and release branches (`skilled/v*`) are never gated; another destination is not | Other non-allowlisted pushes block with `[gate:remote-permission]` |
+| Pre-push | Skill-root metadata | When the pushed per-ref range changes `.skilled/skills` | Warn only | Prints `[gate:skill-root-metadata]` and the `--fix` command, and never blocks |
+| Pre-push | Compiled routing | Yes | No exemption | Blocks with `[gate:compiled-routing]` when the route guard fails, and with `[gate:routing-commit-parity]` when a pushed commit that is HEAD lacks the routing bytes the guard approved |
+| Pre-push | Track roots | Yes | No exemption | Blocks with `[gate:track-roots]` when a pushed tip's track roots do not list exactly the packets they hold |
 
-The skill-root gate deliberately does not run `--fix` from `pre-push`. The commit already exists at that point. Regenerating only the working tree would make a re-check green while the stale committed bytes still reach the remote. The safe path is a loud block, run the exact repair command, then include the generated projection in a new commit so normal autosync can publish it.
+The skill-root gate does not run `--fix` from `pre-push`, because the commit already exists at that point: regenerating only the working tree would make a re-check green while the stale committed bytes still reach the remote. It warns instead and names the repair command; include the generated projection in a new commit so normal autosync can publish it.
 
-The naming and remote-permission helpers are one shared dependency. If that helper is absent or malformed, those two gates warn and fail open, but mass-deletion, skill metadata, and tests continue independently. A broken optional helper can no longer suppress unrelated push gates.
+The remote-permission and remote-create gates read the allowlist through one helper. When it is missing in a checkout that ships the toolchain, a push needs explicit approval rather than passing; when it fails to load, the permission gates warn and step aside. Either way mass deletion, message contract, skill metadata, routing and track-root checks still run independently, so a broken helper cannot suppress unrelated push gates.
 
 ---
 

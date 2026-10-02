@@ -15,7 +15,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 
 import {
   ContractError,
@@ -23,6 +23,8 @@ import {
   extractContract,
   loadContract,
   rangeContext,
+  resolveContractDir,
+  stripCommitMessage,
   templateDriftErrors,
   validateBranch,
   validateCommit,
@@ -113,10 +115,24 @@ test('the pre-stamp stage drops attribution the stamper would strip', () => {
   assert.deepEqual(ids(validateCommit(msg, COMMIT, { stage: 'pre-stamp' })), []);
 });
 
+test('the pre-stamp stage keeps a trailer that only names the vendor, for the rule to report', () => {
+  const msg = 'feat(sk-git): add a thing\n\nWhy.\n\nGenerated-By: Anthropic Claude';
+  assert.ok(ids(validateCommit(msg, COMMIT, { stage: 'pre-stamp' })).includes('attribution.forbidden'));
+});
+
 test('warnings never block', () => {
   const result = validateCommit('feat(sk-git): finish wave 3 cleanup work\n\nWhy.', COMMIT);
   assert.deepEqual(ids(result), []);
   assert.deepEqual(result.warnings.map((w) => w.id), ['subject.process-language']);
+});
+
+test('comment lines go only where git drops them', () => {
+  const typed = 'feat(sk-git): add a thing\n\n#42 was the cause of this.';
+  assert.equal(stripCommitMessage(typed), typed, 'a -m message keeps its # lines');
+  const edited = `${typed}\n\n# Please enter the commit message for your changes.\n#\n# On branch main`;
+  assert.equal(stripCommitMessage(edited), 'feat(sk-git): add a thing', 'an editor session drops them');
+  assert.equal(stripCommitMessage(typed, '#', 'strip'), 'feat(sk-git): add a thing', 'commit.cleanup=strip drops them');
+  assert.deepEqual(ids(validateCommit(typed, COMMIT)), [], 'a # body line under -m is a body');
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -183,6 +199,24 @@ test('skgit.contractDir pointing nowhere is an error, not an opt-out', () => {
   assert.throws(() => loadContract(dir, 'commit'), ContractError);
 });
 
+test('a command-scope skgit.contractDir cannot switch the rules off', () => {
+  const dir = tempRepo(true);
+  const empty = fs.mkdtempSync(path.join(os.tmpdir(), 'message-contract-empty-'));
+  const saved = { ...process.env };
+  try {
+    process.env.GIT_CONFIG_COUNT = '1';
+    process.env.GIT_CONFIG_KEY_0 = 'skgit.contractDir';
+    process.env.GIT_CONFIG_VALUE_0 = empty;
+    assert.equal(loadContract(dir, 'commit').source, 'git config skgit.contractDir');
+    assert.equal(resolveContractDir(dir).dir, ASSETS);
+  } finally {
+    for (const key of ['GIT_CONFIG_COUNT', 'GIT_CONFIG_KEY_0', 'GIT_CONFIG_VALUE_0']) {
+      if (saved[key] === undefined) delete process.env[key];
+      else process.env[key] = saved[key];
+    }
+  }
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 7. AGENT GATE
 // ─────────────────────────────────────────────────────────────────────────────
@@ -225,4 +259,33 @@ test('the gate allows what it cannot read, leaving it to the hooks and CI', () =
   assert.equal(evaluateCommand('git commit -m "$MSG"', dir), null, 'variable message');
   assert.equal(evaluateCommand('gh pr create --fill', dir), null, 'generated body');
   assert.equal(evaluateCommand('git commit -m "update"', tempRepo(false)), null, 'no contract');
+});
+
+test('a backtracking contract pattern cannot hang the validator', () => {
+  const dir = tempRepo(false);
+  fs.mkdirSync(path.join(dir, '.sk-git'));
+  fs.writeFileSync(
+    path.join(dir, '.sk-git', TEMPLATE_FILES.commit),
+    '## Enforced rules\n\n```json\n{ "kind": "commit", "subject": { "types": ["feat"], "scopePattern": "^(a+)+$" } }\n```\n',
+  );
+  const message = path.join(dir, 'message.txt');
+  fs.writeFileSync(message, `feat(${'a'.repeat(34)}b): add a thing\n`);
+  const cli = path.resolve(HERE, '../validate-message.mjs');
+  const started = Date.now();
+  const run = spawnSync(process.execPath, [cli, '--repo', dir, '--commit', message], {
+    encoding: 'utf8',
+    timeout: 20_000,
+  });
+  assert.equal(run.signal, null, 'the validator was killed by the timeout');
+  assert.ok(Date.now() - started < 10_000, `took ${Date.now() - started} ms`);
+  assert.equal(run.status, 1, run.stderr);
+});
+
+test('the stamper drops exactly the attribution keys the commit template forbids', () => {
+  const hook = fs.readFileSync(path.resolve(HERE, '../../../../scripts/git-hooks/prepare-commit-msg'), 'utf8');
+  const line = hook.split('\n').find((l) => l.startsWith('FORBIDDEN_KEY_RE='));
+  assert.ok(line, 'prepare-commit-msg defines FORBIDDEN_KEY_RE');
+  const match = line.match(/^FORBIDDEN_KEY_RE='\^\(([^)]*)\):'$/);
+  assert.ok(match, `unexpected FORBIDDEN_KEY_RE shape: ${line}`);
+  assert.deepEqual(match[1].split('|').sort(), [...COMMIT.attribution.forbiddenKeys].sort());
 });

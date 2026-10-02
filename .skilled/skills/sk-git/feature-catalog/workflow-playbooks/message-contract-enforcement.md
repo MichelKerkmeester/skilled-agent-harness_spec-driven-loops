@@ -45,7 +45,7 @@ Exit 0 means the input passes or the repository declares no rules for that kind.
 
 ### Range Checks
 
-In range mode the validator reads every message with one `git log` call. A `Spec:` trailer passes when the packet exists in the pushed tip or in the commit's own tree, so a later commit that moves a packet does not fail an earlier one. The `Commit-Id` uniqueness scan ignores `*/HEAD` and the ref being overwritten, so a rebased branch is not compared with its own old copies.
+In range mode the validator reads every message with one `git log` call. A `Spec:` trailer passes when the packet exists in the pushed tip or in the commit's own tree, so a later commit that moves a packet does not fail an earlier one. The `Commit-Id` uniqueness scan ignores `*/HEAD` and the ref being overwritten, so a rebased branch is not compared with its own old copies. An owner with the same author email and author date as the candidate is that commit's rebased or amended copy, not a collision, at commit time and at push time alike.
 
 ### Drift Guard
 
