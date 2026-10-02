@@ -1,6 +1,6 @@
 ---
 title: "Fan-out pair replay"
-description: "Replays the fan-out merge's own near-line and cross-body pair decisions with dedup on and off and scores a --jev or --deem backend against the operator's labels through the Keep Rule."
+description: "Replays the fan-out merge's own near-line and cross-body pair decisions with dedup on and off and scores a --jev backend against the operator's labels through the Keep Rule."
 trigger_phrases:
   - "fan-out pair replay"
   - "score-fanout-pairs.cjs"
@@ -29,7 +29,7 @@ body key and carry a title overlap in `[0.05, 0.30)`, `cross-body` pairs differ 
 body and reach a title or text overlap of `0.5` or more. A pair is `undecidable` when
 the merge drops either finding on its own before comparing (a review finding that is
 not active, or a finding with no id or title), since a one-finding result then says
-nothing about the pair. Behind `--jev` or `--deem` the script scores one backend's
+nothing about the pair. Behind `--jev` the script scores one backend's
 same-or-different judgment against the operator's labels. The default run makes no
 model call and writes no file.
 
@@ -65,25 +65,23 @@ and exits 2, and a pair key the census no longer sees is dropped and counted in 
 report. The label gate then prints one line: `stop: fewer than 40 labeled pairs`,
 `stop: fewer than 10 labeled cross-body pairs`, `no headroom` when the merge's own
 decisions are already right on more than nine pairs in ten, or
-`planned calls: jev <n>, deem <n>`. A gate stop is a completed run at exit 0.
+`planned calls: jev <n>`. A gate stop is a completed run at exit 0.
 
-Behind `--jev` or `--deem`, one arm scores that backend on the labeled pairs, and a
+Behind `--jev`, one arm scores that backend on the labeled pairs, and a
 model arm without its required `--out <dir>` prints
-`<switch> needs --out <dir> so every call is recorded` and exits 2. With both switches
-the Jev gate and arm run first, then the Deem gate and arm, each on its own gate and
-regardless of the other's outcome, and a failing gate prints one skip line and never
-runs the other backend in its place: `jev arm skipped: jev not on PATH`,
-`jev arm skipped: version`, `jev arm skipped: no credential`, `deem arm skipped: <reason>`
-such as `stub backend`, or `<backend> arm skipped: label gate` and
-`<backend> arm skipped: no headroom` below the label gate. Each pair is asked
-`Do these two findings describe the same problem?` three times as AB, BA and AB on Jev
-and twice as AB and BA on Deem, every call recorded in `<out>/calls.jsonl` and the run
+`<switch> needs --out <dir> so every call is recorded` and exits 2. A failing
+gate prints one skip line and never runs a backend in its place:
+`jev arm skipped: jev not on PATH`, `jev arm skipped: version`,
+`jev arm skipped: no credential`, or `jev arm skipped: label gate` and
+`jev arm skipped: no headroom` below the label gate. Each pair is asked
+`Do these two findings describe the same problem?` three times as AB, BA and AB on Jev,
+every call recorded in `<out>/calls.jsonl` and the run
 in `<out>/report.json`. The Keep Rule then decides in order: coverage `10*M >= 9*K`
 else `stop (coverage)`, kill when the exact `P(X>=L)` is below 0.05, margin
 `10*(A-B) >= M` else `stop (margin)`, the sign test `P(X>=W)` below 0.05 with `p = 1`
 when `W+L = 0` else `stop (sign test)`, flips `10*F <= C` else `stop (flips)`, else
 `keep`, and every verdict line it builds carries `reader=none named`. The usage line is
-`usage: score-fanout-pairs.cjs [--out <dir>] [--labels <file>] [--write-pair-sheet <path>] [--jev] [--deem]`,
+`usage: score-fanout-pairs.cjs [--out <dir>] [--labels <file>] [--write-pair-sheet <path>] [--jev]`,
 and the script exits 0 on every completed run including a gate stop, 2 on a bad
 invocation or unreadable input, and 1 on an unexpected throw.
 
@@ -95,13 +93,13 @@ invocation or unreadable input, and 1 on an unexpected throw.
 
 | File | Role |
 |---|---|
-| `scripts/score-fanout-pairs.cjs` | `walkRuns`, `selectCandidates`, `classifyPair`, `mergeDecision`, `readBaseline`, `writePairSheet`, `parseLabels`, `gateState`, `runJevArm`, `runDeemArm`, `decideVerdict`, `main()` (guarded behind `require.main === module`). It calls the merge's own functions from `fanout-merge.cjs`, which stays unchanged |
+| `scripts/score-fanout-pairs.cjs` | `walkRuns`, `selectCandidates`, `classifyPair`, `mergeDecision`, `readBaseline`, `writePairSheet`, `parseLabels`, `gateState`, `runJevArm`, `decideVerdict`, `main()` (guarded behind `require.main === module`). It calls the merge's own functions from `fanout-merge.cjs`, which stays unchanged |
 
 ### Validation
 
 | File | Role |
 |---|---|
-| `tests/unit/score-fanout-pairs.vitest.ts` | 42 tests: the walker (3), the selection (7), the merge oracle (6), parity (2), the sheet, labels and gate (7), the Jev gate and arm (5), the Deem gate and arm (5), and the keep rule and report (7), on temp fixture registries with stub `jev` and `cli-deem` binaries first on PATH |
+| `tests/unit/score-fanout-pairs.vitest.ts` | 36 tests: the walker (3), the selection (7), the merge oracle (6), parity (2), the sheet, labels and gate (7), the Jev gate and arm (5), and the keep rule and report (6), on temp fixture registries with a stub `jev` binary first on PATH |
 
 ---
 
