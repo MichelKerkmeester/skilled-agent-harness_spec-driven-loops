@@ -220,7 +220,8 @@ _ac_count_requirement_table() {
                 in_table = 0
                 next
             }
-            if (!in_table || row ~ /^\|[[:space:]-|:]+$/) next
+            # A hyphen right after a class reads as a range to gawk, which aborts on it; at the end it is literal everywhere.
+            if (!in_table || row ~ /^\|[[:space:]|:-]+$/) next
             criterion = trim($4)
             normalized = lower(criterion)
             if (criterion != "" && normalized != "n/a" && normalized != "na" && normalized !~ /^\[how to verify/) count++
