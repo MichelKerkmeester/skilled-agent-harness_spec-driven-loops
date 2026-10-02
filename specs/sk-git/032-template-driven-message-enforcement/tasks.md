@@ -135,7 +135,7 @@ The original packet tasks remain as recorded. The 2026-10-02 follow-up closes th
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria closed (Met or validly Superseded) [PARTIAL: acceptance-criteria.md reports 15 Met rows, AC-007 Superseded by ADR-004 and AC-017 Unmet until the workflow runs on the pushed change.]
+- [x] CHK-020 [P0] All acceptance criteria closed (Met or validly Superseded) [EVIDENCE: acceptance-criteria.md reports 16 Met rows and AC-007 Superseded by ADR-004.]
 - [x] CHK-021 [P0] Manual testing complete [EVIDENCE: template check exited 0; the replay and targeted missing-Verification test produced the expected findings.]
 - [x] CHK-022 [P1] Edge cases tested [EVIDENCE: unit suite passes 27/27, including alias, 80/81 length, breaking-section, config-shape and Spec-path cases; hook suite passes 32/32.]
 - [x] CHK-023 [P1] Error scenarios validated [EVIDENCE: tests confirm malformed contracts, scope aliases and missing breaking sections are blocked with rule ids.]
@@ -272,7 +272,7 @@ The original packet tasks remain as recorded. The 2026-10-02 follow-up closes th
 - [x] T026 Extend `scripts/lib/message-contract.mjs` to reject configured scope aliases, warn above 80 subject characters and require `Context`, `Changes` and `Verification` on breaking commits while preserving the 100-character hard error. [EVIDENCE: message-contract.test.mjs 24/24]
 - [x] T027 Replace the `fix(spec-kit)` template example with a canonical scope and align scope and subject guidance in `SKILL.md`. [EVIDENCE: commit-message-template.md:132]
 - [x] T028 Add unit and commit-hook tests for alias rejection, canonical scopes, the 80/100-character boundaries and each missing breaking section. [EVIDENCE: commit-msg.test.sh PASS=31]
-- [ ] T029 Add the message-contract unit-test command to `.github/workflows/message-contract.yml` and confirm a workflow run executes it. [PARTIAL: step added at message-contract.yml:42 and passes locally; the workflow run waits on the push]
+- [x] T029 Add the message-contract unit-test command to `.github/workflows/message-contract.yml` and confirm a workflow run executes it. [EVIDENCE: workflow run 37013431668 on 88cf1b5f36 concluded success, with the "Test message contract rules" step passing]
 - [x] T030 Replay `f8519088b9..03afeb4552` with `validate-message.mjs --rev-list` and confirm the three new rule ids account for the four recorded deviations. [EVIDENCE: replay flags exactly the three expected rule ids]
 
 ## Follow-Up Tasks: Deep Review Advisories

@@ -14,14 +14,14 @@ _memory:
     last_updated_at: "2026-10-01T19:05:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed AC-006: first CI run passed and the check is required by ruleset 24326453"
-    next_safe_action: "Push the change, confirm the message-contract workflow run, then mark AC-017 Met"
+    next_safe_action: "None; the packet is complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-git-032-template-driven-message-enforcement"
       parent_session_id: null
-    completion_pct: 94
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** sk-git/032-template-driven-message-enforcement
 **Level:** 3
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-10-01
 <!-- /ANCHOR:metadata -->
 
@@ -70,7 +70,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-014 | REQ-014 | Given subjects at 80, 81 and 100 characters and a subject above 100, When validation runs, Then lengths above 80 through 100 warn with `subject.length-target`, while lengths above 100 remain blocked | .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs:139; an 81-character subject yields only the `subject.length-target` warning and 80 yields none, `node --test` 24 pass 0 fail; maxLength 100 stays an error; replay warns on the 82-character subject of 4754d270ab | Met | - |
 | AC-015 | REQ-015 | Given a breaking commit missing any of `Context`, `Changes` or `Verification`, When validation runs, Then it is blocked with `body.breaking-sections`; a breaking commit with all three sections passes this rule | .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs:161; "breaking commits require every declared section" passes; a breaking message with Context and Changes but no Verification is blocked by `validate-message.mjs --commit` with "Missing: Verification" (exit 1) | Met | - |
 | AC-016 | REQ-016 | Given the commit template and `SKILL.md`, When their scope guidance and examples are reviewed, Then they use `system-spec-kit`, `system-skill-advisor`, `system-deep-loop` and `repo-rules` as canonical scopes | .skilled/skills/sk-git/assets/commit-message-template.md:132; the example reads `fix(system-spec-kit):`; the scopeAliases block at .skilled/skills/sk-git/assets/commit-message-template.md:228 maps spec-kit, skill-advisor, deep-loop and rules to their canonical scopes; `--check-template --kind commit` exits 0 | Met | - |
-| AC-017 | REQ-017 | Given the unit and hook tests pass locally, When the message-contract workflow runs for the implementing change, Then CI executes the unit suite and reports success | .github/workflows/message-contract.yml:42; the step runs `node --test .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs`, which passes locally (24/24). The workflow run on the pushed change has not happened yet | Unmet | - |
+| AC-017 | REQ-017 | Given the unit and hook tests pass locally, When the message-contract workflow runs for the implementing change, Then CI executes the unit suite and reports success | .github/workflows/message-contract.yml:42; the step runs `node --test .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs`, which passes locally (27/27); workflow run 37013431668 on 88cf1b5f36 concluded success, with the "Test message contract rules" step passing | Met | - |
 
 ### Status values
 
@@ -95,7 +95,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Of the 16 active criteria, 15 are Met. AC-007 remains Superseded by ADR-004 because three verdict changes were intentional. Follow-up criteria AC-013 through AC-016 are Met. AC-017 stays Unmet until the message-contract workflow runs on the pushed change.
+All 16 active criteria are Met. AC-007 remains Superseded by ADR-004 because three verdict changes were intentional. Follow-up criteria AC-013 through AC-017 are Met; AC-017 closed on the CI run for the pushed change.
 <!-- /ANCHOR:closure -->
