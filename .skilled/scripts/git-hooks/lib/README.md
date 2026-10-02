@@ -36,7 +36,7 @@ The helpers protect recoverable autostashes and report mass deletions without si
 |---|---|---|
 | `autostash-orphan-guard.sh` | `autostash_orphan_guard()` protects matching stash commits from garbage collection and makes unapplied work visible. It always returns successfully. | [`post-merge`](../post-merge) and [`post-rewrite`](../post-rewrite) |
 | `mass-deletion-guard.sh` | Returns a verdict when a diff deletes more tracked files than `SPECKIT_MASS_DELETION_THRESHOLD` (default 100). It never exits or blocks on its own, fails open on any substitution error, and `SPECKIT_ALLOW_MASS_DELETION=1` authorizes one operation. | [`pre-push`](../pre-push) |
-| `message-contract-gate.sh` | `mcg_resolve_dir`, `mcg_validator_path`, `mcg_repo_declares_rules` and `mcg_unavailable_reason` find the validator beside the real hook and tell a repository that declares rules from one that does not. They never exit or block. | [`commit-msg`](../commit-msg) and [`pre-push`](../pre-push) |
+| `message-contract-gate.sh` | `mcg_resolve_dir`, `mcg_validator_path`, `mcg_repo_declares_rules` and `mcg_unavailable_reason` find the validator beside the real hook (or in a linked worktree of the hook's own repository) and tell a repository that declares rules from one that does not. They never exit or block. | [`commit-msg`](../commit-msg) and [`pre-push`](../pre-push) |
 
 `post-merge` calls the autostash guard after a merge, and `post-rewrite` calls it for amend and rebase rewrites. `pre-push` sources the mass-deletion guard, and both `commit-msg` and `pre-push` source the message-contract helpers.
 

@@ -9,7 +9,8 @@
 # committed to. Editing the template changes what is enforced here.
 #
 # The hook is symlinked machine-wide through the global hooksPath, so the
-# validator is found next to this script, never inside the target repository.
+# validator is found next to this script, never inside the target repository,
+# unless the target is a linked worktree of the hook's own repository.
 # A repository whose templates declare no rules block is not checked.
 #
 # There is no bypass switch. `git commit --no-verify` skips every hook, which no
@@ -54,7 +55,7 @@ if [[ ! -f "$HOOK_DIR/lib/message-contract-gate.sh" ]]; then
 fi
 # shellcheck source=lib/message-contract-gate.sh
 . "$HOOK_DIR/lib/message-contract-gate.sh"
-VALIDATOR="$(mcg_validator_path "$HOOK_DIR")"
+VALIDATOR="$(mcg_validator_path "$HOOK_DIR" "$REPO_ROOT")"
 
 # Without node or the validator the rules cannot be read. That only matters in a
 # repository that declares rules, so the block is limited to those.
