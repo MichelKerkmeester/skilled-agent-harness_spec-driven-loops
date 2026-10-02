@@ -39,7 +39,7 @@
       "architecture"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,8 +47,14 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/reality-check.md",
+      "scratch/doctor-run.log",
+      "scratch/proposal.md",
+      ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
-      ".skilled/commands/doctor/_routes.yaml"
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      ".skilled/commands/doctor/scripts/route-validate.py",
+      ".skilled/bin/install-codex-hooks.mjs"
     ],
     "entities": [
       {
@@ -88,15 +94,51 @@
         "source": "derived"
       },
       {
-        "name": "doctor-runtime-mirrors.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
+        "source": "derived"
+      },
+      {
+        "name": "proposal.md",
+        "kind": "doc",
+        "path": "scratch/proposal.md",
         "source": "derived"
       },
       {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-mirrors.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "install-codex-hooks.mjs",
+        "kind": "file",
+        "path": ".skilled/bin/install-codex-hooks.mjs",
         "source": "derived"
       },
       {
@@ -148,57 +190,21 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Audit",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Read",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit runtime-mirrors` checks that each runtime mirror agrees with its source",
     "created_at": "2026-10-02T16:10:21Z",
-    "last_save_at": "2026-10-02T16:16:02.013Z",
+    "last_save_at": "2026-10-02T21:05:27.182Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:520e4eedf3e50a12f6300f6e654886969bdd48f142de30a9aaec5b6d8e0a2d13",
+    "source_fingerprint": "sha256:db8eb9fd56ea34a53a1bb4d6cb6013a0c94303f388213ea8ad32e09488ceae0b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dea6c918fa14abaf64ef1751a573cc3eb92eb3661dfad3f6df7816393fefca8c",
-      "plan.md": "c90b2ac7192b18ea4b7bb8ecea6fc62e8ae20ad05099212bbe358030df9865a9",
-      "tasks.md": "7cc0962098b1672ecb36c62d528ff72a391c2a2cd64c817f519fddeb7aa51538",
-      "implementation-summary.md": "45d6cbe99635dc52fe6fc5b947fcbcdd3c940c31256a6cb5ba75aab528b2ec6e"
+      "spec.md": "f67bcb954563ac46a08bbbb680183369492121709876c5b4fc986ad692e25afc",
+      "plan.md": "d0b189098a1eb1d8c1c7ee341ae8f081265907585ec216941499bd0339f9f613",
+      "tasks.md": "2843f6c2877082b52a8a654c37cf9960817758858d08ead3fd682d88731e6ef0",
+      "implementation-summary.md": "c68f0115b8759d8ba3ad58d2e1bd483be4ed9cb32441e8ed08a03783f07a5f48"
     },
     "last_active_at": null
   }

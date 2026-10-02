@@ -95,8 +95,8 @@ EOF
   cat > "$TMPDIR_FIX/missing-script.yaml" <<'EOF'
 schema_version: 1
 routes:
-  - target: embeddings
-    yaml: doctor-embeddings.yaml
+  - target: deep-loop
+    yaml: doctor-deep-loop.yaml
     setup_vars: [execution_mode]
     allowed_flags: []
     mutating: read-only
@@ -112,7 +112,7 @@ EOF
 schema_version: 1
 routes:
   - target: totally-different-target
-    yaml: doctor-embeddings.yaml
+    yaml: doctor-deep-loop.yaml
     setup_vars: [execution_mode]
     allowed_flags: []
     mutating: read-only
@@ -136,7 +136,7 @@ routes:
 EOF
 
   # NOTE: fixtures 4-6 are single-route manifests, so each also trips assertion J
-  # (target-set parity against the real 10-route speckit.md/presentation) in
+  # (target-set parity against the real 9-route speckit.md/presentation) in
   # addition to the assertion it targets — that is expected; self-test only
   # requires a non-zero exit, matching the isolation level of fixtures 1-3.
   for fixture in missing-key missing-asset duplicate-target missing-script target-set-mismatch read-only-with-write; do

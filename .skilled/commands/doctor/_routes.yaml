@@ -26,14 +26,14 @@
 #
 # Skill-advisor recommendation tools are registered through system-skill-advisor.
 # To add a new target: append a route here, then re-run route-validate.sh.
-# To remove a target: delete the route AND its corresponding assets/doctor_<target>.yaml.
+# To remove a target: delete the route AND its corresponding assets/doctor-<target>.yaml.
 # ─────────────────────────────────────────────────────────────────
 schema_version: 1
 routes:
   - target: speckit-retrieval
     yaml: doctor-speckit-retrieval.yaml
-    setup_vars: [execution_mode, intent, incremental]
-    allowed_flags: ["--incremental=true|false"]
+    setup_vars: [execution_mode, intent]
+    allowed_flags: []
     mutating: add-only
     gate3_location: "<packet_scratch>/doctor-speckit-retrieval-report.<timestamp>.md + <packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json"
     mcp_tools: []   # file-and-script diagnostic; no MCP calls and no background service
@@ -46,31 +46,17 @@ routes:
       - "retrieval conventions doctor"
       - "ripgrep recipe check"
 
-  - target: embeddings
-    yaml: doctor-embeddings.yaml
-    setup_vars: [execution_mode]
-    allowed_flags: []
-    mutating: read-only
-    gate3_location: "n/a (read-only provider and model-server status)"
-    cli_commands:
-      - 'node .skilled/bin/skill-advisor.cjs advisor_status --format json'   # the shared HF model-server's surviving owner
-    trigger_phrases:
-      - "embedding provider status"
-      - "hf-local model-server health"
-      - "advisor embedder status"
-
-
   - target: deep-loop
     yaml: doctor-deep-loop.yaml
     setup_vars: [execution_mode, intent, scope]
     allowed_flags: ["--scope=research|review|council|both|all"]
     mutating: add-only
-    gate3_location: "<packet_scratch>/doctor-deep-loop-state.<timestamp>.json"
+    gate3_location: "<active-spec-folder>/scratch/doctor-deep-loop-state.<timestamp>.json"
     mcp_tools: []
     script_invocations:
       - 'node .skilled/skills/system-deep-loop/runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
-      - 'node .skilled/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --query-type "{query_type}"'
-      - 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
+      - 'node .skilled/skills/system-deep-loop/runtime/scripts/query.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --query-type "{query_type}" --limit 50'
+      - 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --iteration "{latest_iteration}" --persist-snapshot false'
     trigger_phrases:
       - "deep-loop coverage"
       - "deep-loop graph rebuild"
@@ -82,18 +68,19 @@ routes:
     setup_vars: [execution_mode, scope, skip_tests, dry_run]
     allowed_flags: ["--skip-tests", "--dry-run", "--scope=all|explicit|derived|lexical"]
     mutating: mutates
-    gate3_location: "lib/scorer/lanes/*.ts + .skilled/skills/*/graph-metadata.json"
+    gate3_location: ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts + .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/lexical.ts + .skilled/skills/*/graph-metadata.json"
     cli_commands:
-      - 'node .skilled/bin/skill-advisor.cjs advisor_recommend --format json'
-      - 'node .skilled/bin/skill-advisor.cjs advisor_status --format json'
-      - 'node .skilled/bin/skill-advisor.cjs advisor_validate --format json'
-      - 'node .skilled/bin/skill-advisor.cjs advisor_rebuild --format json'
-      - 'node .skilled/bin/skill-advisor.cjs skill_graph_scan --format json'
-      - 'node .skilled/bin/skill-advisor.cjs skill_graph_validate --format json'
-      - 'node .skilled/bin/skill-advisor.cjs skill_graph_query --format json'
-      - 'node .skilled/bin/skill-advisor.cjs skill_graph_status --format json'
+      - 'node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "<prompt>" --format json --warm-only'
+      - 'node .skilled/bin/skill-advisor.cjs advisor_status --format json --warm-only'
+      - 'node .skilled/bin/skill-advisor.cjs advisor_validate --confirm-heavy-run true --format json'
+      - 'node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_validate --format json --warm-only'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_query --queryType <depends_on|dependents|enhances|enhanced_by|family_members|conflicts|transitive_path|hub_skills|orphans|subgraph> --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_status --format json --warm-only'
+    mcp_tools: []   # CLI front door only, no MCP calls
     script_invocations:
-      - 'Warm-only: probe the existing system-skill-advisor IPC socket first; only when it answers, run node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
+      - 'Warm-only: probe the existing system-skill-advisor IPC socket first. Only when it answers, run node .skilled/bin/skill-advisor.cjs skill_graph_status --format json --warm-only. The flag guarantees no daemon start. Exit 75 means backend unavailable and retryable.'
     trigger_phrases:
       - "skill advisor scoring"
       - "skill advisor rebuild"
@@ -108,6 +95,7 @@ routes:
     gate3_location: "n/a (read-only audit; no spec folder required)"
     mcp_tools: []   # script-only audit; no MCP calls
     script_invocations:
+      - 'python3 .skilled/commands/doctor/scripts/audit_descriptions.py --repo-root "$PWD"  # description-budget audit. The workflow adds --json, --top-n, --fail-over, and --project-ceiling from the resolved flags'
       - 'Warm-only: probe the existing system-skill-advisor IPC socket first; only when it answers, run node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --timeout-ms 500 --warm-only (the flag guarantees no daemon start; exit 75 = backend unavailable, retryable)'
     trigger_phrases:
       - "skill budget audit"
@@ -153,7 +141,7 @@ routes:
 
   - target: router-reach
     yaml: doctor-router-reach.yaml
-    setup_vars: [execution_mode, hub]
+    setup_vars: [execution_mode, hub, concurrency]
     allowed_flags: ["--hub=<skill-id>", "--concurrency=<n>"]
     mutating: read-only
     gate3_location: "n/a (read-only routing diagnostic; probes the live advisor for every declared phrase and reports, writes nothing)"
@@ -169,13 +157,13 @@ routes:
 
   - target: fable-mode
     yaml: doctor-fable-mode.yaml
-    setup_vars: [execution_mode, target_dir]
+    setup_vars: [execution_mode, target_dir, baseline]
     allowed_flags: ["--dir=<path>", "--baseline=<path>"]
     mutating: read-only
     gate3_location: "n/a (read-only behavioral-metric diagnostic; reads deep-loop state + iteration markdown + baseline snapshot, writes no files)"
     mcp_tools: []   # script-only behavioral-metric read; no MCP calls
     script_invocations:
-      - 'node .skilled/commands/doctor/scripts/fable-mode-check.cjs --dir "{target_dir}"'
+      - 'node .skilled/commands/doctor/scripts/fable-mode-check.cjs --dir "{target_dir}" --baseline "{baseline}"'
     trigger_phrases:
       - "fable-5 behavioral metrics"
       - "fable mode efficiency check"
@@ -193,9 +181,11 @@ routes:
       - 'node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check'
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check'
       - 'node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs'
       - 'node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs'
-      - 'node .skilled/bin/install-codex-hooks.mjs --check'
+      - 'node .skilled/bin/install-codex-hooks.mjs --check --allow-worktree'
     trigger_phrases:
       - "runtime mirror drift"
       - "agent command mirror parity"

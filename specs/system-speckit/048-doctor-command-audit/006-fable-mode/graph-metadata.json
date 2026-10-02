@@ -39,7 +39,7 @@
       "architecture"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,8 +47,13 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/fable-mode-check.cjs",
       ".skilled/commands/doctor/assets/doctor-fable-mode.yaml",
-      ".skilled/commands/doctor/_routes.yaml"
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      "scratch/doctor-run.log",
+      "scratch/reality-check.md",
+      "scratch/proposal.md"
     ],
     "entities": [
       {
@@ -88,6 +93,12 @@
         "source": "derived"
       },
       {
+        "name": "fable-mode-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/fable-mode-check.cjs",
+        "source": "derived"
+      },
+      {
         "name": "doctor-fable-mode.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/assets/doctor-fable-mode.yaml",
@@ -97,6 +108,30 @@
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
+        "source": "derived"
+      },
+      {
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "proposal.md",
+        "kind": "doc",
+        "path": "scratch/proposal.md",
         "source": "derived"
       },
       {
@@ -148,7 +183,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Audit",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -158,47 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit fable-mode` checks the fable-mode configuration",
     "created_at": "2026-10-02T16:10:17Z",
-    "last_save_at": "2026-10-02T16:16:01.561Z",
+    "last_save_at": "2026-10-02T20:58:01.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d9abc748cca9cf1d3e020165ddbebb3ce5de07c1b3ab6346d775d8994507215",
+    "source_fingerprint": "sha256:27977c89d774738ddc353b76ddd5a3228ce53b42fd2dd9846e44483ee1746167",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "afad2ba1629ca375d377f1e33576a945027284b2c764faa78a2c75c59f9a3288",
-      "plan.md": "157bd432deb82ff727bf93457d5cd4bd2658ba55c32d364b74ce6a01f6d2cad4",
-      "tasks.md": "29865315354fdd9a3321aad3a5af1fdd574fa718221424463e9d87590c03a968",
-      "implementation-summary.md": "0494a809fa21bed74d259e07ab6fecf8420286bb35e925482f38c729db878b22"
+      "spec.md": "efae50045d2cbc54a7083c63482693633fbefdb3b0484ec0af0528c8f7605c88",
+      "plan.md": "088cafe940e5238b7dd91653cc7db72fdae7bdb52b00be9aa9a164858c26e4a5",
+      "tasks.md": "67d4b5638baedcbf72fec9a1d9e081184069efb7d4d3ed0ac1a2267c58d2d9ab",
+      "implementation-summary.md": "62d3f6c3aaf9558088f6a009995dc60f37ecfc2d55070361fcfebb68f5b962d1"
     },
     "last_active_at": null
   }

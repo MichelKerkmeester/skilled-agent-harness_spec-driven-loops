@@ -46,7 +46,6 @@ These existing YAML assets are referenced only. The router must not modify them.
 | Target | Workflow |
 |--------|----------|
 | `speckit-retrieval` | `.skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml` |
-| `embeddings` | `.skilled/commands/doctor/assets/doctor-embeddings.yaml` |
 | `deep-loop` | `.skilled/commands/doctor/assets/doctor-deep-loop.yaml` |
 | `skill-advisor` | `.skilled/commands/doctor/assets/doctor-skill-advisor.yaml` |
 | `skill-budget` | `.skilled/commands/doctor/assets/doctor-skill-budget.yaml` |
@@ -83,5 +82,4 @@ The following content lives only in `.skilled/commands/doctor/assets/doctor-spec
 
 ## 6. WORKFLOW SUMMARY
 
-The router resolves a subsystem `target` against `_routes.yaml`, binds that target's workflow YAML plus its setup variables, allowed flags, and mutation class, then loads and executes the resolved `doctor_<target>.yaml` step by step under an always-interactive mode. `list`, `?`, or `--list` render the subsystem manifest instead of dispatching. All visible wording is owned by the presentation contract; subsystem-specific behavior lives in each target workflow.
-
+The router resolves a subsystem `target` against `_routes.yaml`, binds that target's workflow YAML plus its setup variables, allowed flags, and mutation class, then loads and executes the resolved `doctor-<target>.yaml` step by step under an always-interactive mode. `list`, `?`, or `--list` render the subsystem manifest instead of dispatching. All visible wording is owned by the presentation contract; subsystem-specific behavior lives in each target workflow.

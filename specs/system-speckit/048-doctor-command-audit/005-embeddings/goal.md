@@ -75,11 +75,23 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Phase opened | Done | this file |
+| Inventory of every path, script, command, flag and variable named by the route and workflow | Done | `scratch/reality-check.md` |
+| One read-only run on this checkout | Done | `scratch/doctor-run.log` — route form exit 64, workflow form exit 75 (sandbox EPERM), help exit 0, validator exit 0 |
+| Verdict and target behavior | Done | `scratch/proposal.md` — verdict `retire` |
+| Verdict applied to the route, workflow asset, router row, presentation rows and validator fixtures | Done | `implementation-summary.md` Files Changed; `route-validate.sh` reports 9 routes |
+| Live documentation references removed or corrected | Done | `README.md`, `.skilled/commands/speckit/README.txt`, the doctor-commands playbook README and `.skilled/commands/README.txt` |
+| Post-retirement verification | Done | `route-validate.sh` exit 0 (9 routes, 2 warnings); `YAML_OK`; catalog mirror `STATUS=OK`; mutation guard `GUARD PASS`; strict packet validation `RESULT: PASSED` |
+| Documentation closure | Done | `spec.md` Complete; `acceptance-criteria.md` all rows Met; plan, tasks and summary filled |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Live documentation references were removed even though the phase decision scoped a retirement to the route and its workflow asset | READMEs and playbooks would otherwise advertise `/doctor embeddings` after the command was gone |
+| The advisor status API has no joined embedding provider or model-server status fields | Provider details and model health are separate surfaces; recorded as a subsystem finding, not fixed |
+| The model-server health payload does not match the object the retired workflow expected | `/api/health` uses state, model, dim, device, load timing and error, not the workflow's full modelServer object; recorded, not fixed |
+| Live provider and model-server health is UNKNOWN | The workflow-shaped call was blocked by a sandbox IPC EPERM, exit 75; this is not evidence of unhealth |
+| The presentation's generic `/doctor` forms have no matching root command files | A separate doctor-surface observation; the nested router exists and is the one in use |
+| The three `parent-skill-check-*.test.cjs` failures are the pre-batch baseline | Their fixtures cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` in this worktree; not a regression |
 <!-- /ANCHOR:log -->

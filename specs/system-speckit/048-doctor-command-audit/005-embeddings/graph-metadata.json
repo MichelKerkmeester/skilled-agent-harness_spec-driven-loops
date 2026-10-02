@@ -39,7 +39,7 @@
       "architecture"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,8 +47,16 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/commands/doctor/assets/doctor-embeddings.yaml",
-      ".skilled/commands/doctor/_routes.yaml"
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/speckit.md",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      ".skilled/commands/doctor/scripts/route-validate.sh",
+      ".skilled/commands/speckit/README.txt",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+      ".skilled/commands/README.txt",
+      "scratch/doctor-run.log",
+      "scratch/reality-check.md",
+      "scratch/proposal.md"
     ],
     "entities": [
       {
@@ -88,15 +96,57 @@
         "source": "derived"
       },
       {
-        "name": "doctor-embeddings.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-embeddings.yaml",
-        "source": "derived"
-      },
-      {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/route-validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
+        "source": "derived"
+      },
+      {
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "proposal.md",
+        "kind": "doc",
+        "path": "scratch/proposal.md",
         "source": "derived"
       },
       {
@@ -148,57 +198,15 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Audit",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit embeddings` reports the embedding provider and the shared model-server status",
     "created_at": "2026-10-02T16:10:16Z",
-    "last_save_at": "2026-10-02T16:16:01.411Z",
+    "last_save_at": "2026-10-02T20:59:55.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bcf39aaacbf8adb908764c418a5838b2f9149acea0dc73bf7a46246b7a2a7084",
+    "source_fingerprint": "sha256:6fbcd63753ed4ce816dc1109506bd7783a620708c8d88fd179632c4f88c1265f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c6caf696bee74e635048c2101da8f411de45ff910b250abebbfe5ae1726a0e67",
-      "plan.md": "11169fcf3722bc72163921332a211a2c5fa56abc4f2a1f9676e2d4eab8f6e8cb",
-      "tasks.md": "9a78df04baf9955b0fee975b3bc552cb0986daafd7a08de2d4240bf160f82073",
-      "implementation-summary.md": "fd40742f4b419e5b0880ff01c94f45ac3fe463be3849dc199b349e42c48bd74a"
+      "spec.md": "8a83bf90a56d2298b89ed19459c2a810e423b9fe3d1ede0fe55e9229573d7d42",
+      "plan.md": "8a718dd6ba1e672df742935fd5ab37a9c495b8620b6992f346483dfb90b5f4ce",
+      "tasks.md": "0d58bacaac8f3390bb033cde1bd4f951b718ac20792ac744796fab5f009358e2",
+      "implementation-summary.md": "85b05e18ce6c60f2146ec1c62d8ef98fe1940130a1a6de7acc30a39c1b39f85b"
     },
     "last_active_at": null
   }

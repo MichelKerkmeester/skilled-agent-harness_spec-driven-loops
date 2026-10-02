@@ -39,15 +39,15 @@ upstream_assets:
 # INPUTS
 # ─────────────────────────────────────────────────────────────────
 inputs:
-  target_dir: "Deep-loop artifact dir (a lineage dir or a dir containing lineages/). Defaults to the 002 research corpus when omitted; pass as the first positional argument or via --dir."
-  baseline: "Optional baseline snapshot path (--baseline). Defaults to the committed fable-baseline.json."
+  target_dir: "Required deep-loop artifact directory (one lineage directory or a directory containing lineages/); pass with --dir."
+  baseline: "Optional baseline snapshot path (--baseline); defaults to the committed fable-baseline.json."
 
 # ─────────────────────────────────────────────────────────────────
 # EXECUTION
 # ─────────────────────────────────────────────────────────────────
 execution:
   steps:
-    - "Execute upstream_assets.audit_script via Bash with target_dir as --dir (or the first positional argument)."
+    - "Execute upstream_assets.audit_script via Bash with target_dir as --dir and baseline as --baseline; when baseline is empty, use upstream_assets.baseline_snapshot."
     - "Render the five behavioral metrics and the per-metric delta against the baseline."
     - "Report STATUS from the script exit code; never write."
 

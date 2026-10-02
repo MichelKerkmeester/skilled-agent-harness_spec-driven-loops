@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: Diagnostic Operator reporting whether every runtime config dir still mirrors its canonical source
 purpose: Detect drift across the agent, command, prompt and hook mirrors that .claude, .codex, .cursor and .devin derive from .skilled, plus adapter-path resolution drift in the Claude, Codex, Cursor and Devin hook fallback chains
-action: Run the five mirror checkers plus the hook-adapter fallback health check -> aggregate their verdicts -> report per-surface drift
+action: Run every upstream-assets checker plus the hook-adapter fallback health checks -> aggregate their verdicts -> report per-surface drift
 skill_owner: ".skilled/skills/system-spec-kit/runtime/cli/"
 
 # ─────────────────────────────────────────────────────────────────
@@ -25,7 +25,7 @@ mutation_boundaries:
   allowed_targets: []
   forbidden_targets:
     - "**/*"
-  invariant: "Every checker below is invoked in its check-only form. This route MUST NOT run any generator in write mode, create or delete a symlink, or install a hook config. Repair is an explicit operator action, never a side effect of a diagnostic."
+  invariant: "Every upstream_assets checker is invoked in its check-only form. This route MUST NOT run any generator in write mode, create or delete a symlink, or install a hook config. Repair is an explicit operator action, never a side effect of a diagnostic."
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -35,6 +35,7 @@ upstream_assets:
   codex_agents: ".skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs"
   codex_prompts: ".skilled/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs"
   agent_roster: ".skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs"
+  command_catalog: ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs"
   codex_hooks_installer: ".skilled/bin/install-codex-hooks.mjs"
   pi_agents: ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs"
   pi_prompts: ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs"
@@ -132,7 +133,8 @@ execution:
     - "Run upstream_assets.codex_agents with --check. Covers the generated .codex/agents/*.toml. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.codex_prompts with --check. Covers the generated .codex/prompts/*.md stubs. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.agent_roster. Covers roster coverage across all five surfaces and rejects a real file where a symlink belongs. Exit 0 = in sync, 1 = drift, 2 = canonical dir missing."
-    - "Run upstream_assets.codex_hooks_installer with --check. Covers the user-global ~/.codex/hooks.json against the repo's .codex/hooks.json, including orphaned entries whose .skilled adapter no longer exists on disk. Exit 0 = in sync, 1 = drift."
+    - "Run upstream_assets.command_catalog. Compare command frontmatter with the root and family indexes and hub metadata. Exit 0 = in sync, 1 = drift, 2 = checker error."
+    - "Run upstream_assets.codex_hooks_installer with --check --allow-worktree. Covers the user-global ~/.codex/hooks.json against the repo's .codex/hooks.json, including orphaned entries whose .skilled adapter no longer exists on disk. Explicit OK output = in sync; a drift report = drift; refusal, error, or missing affirmative output = error."
     - "Run upstream_assets.pi_agents with --check. Covers the generated .pi/agents/*.md. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.pi_prompts with --check. Covers the generated .pi/prompts/*.md stubs. Exit 0 = in sync, 1 = drift."
     - "For each row in hook_adapter_fallback_health_checks, run its file_exists check (a plain path-existence read, no execution of the adapter or the shell command that wraps it). Collect every row whose path does not resolve as a degraded hook adapter, keyed by host:event:path."
@@ -150,6 +152,7 @@ output: |
     codex hooks      -> node .skilled/bin/install-codex-hooks.mjs
     pi agents        -> node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs
     pi prompts       -> node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs
+    command catalog  -> update the root and family indexes, group counts, and hub metadata from command frontmatter
   The agent roster check has no generator; its drift is repaired by the runtime-mirrors generator or by hand
   for the authored surfaces (.skilled/agents, .codex/agents).
   Hook CONFIG STRUCTURE is deliberately out of scope for mirroring: the four runtimes use incompatible event
@@ -162,3 +165,4 @@ output: |
   read raw JSON. Repair is adapter-specific: rebuild the runtime (npm --prefix
   .skilled/skills/system-spec-kit/runtime run build) for a dist/hooks/* path, or restore/recreate the named
   script for a .skilled/bin or .skilled/hooks path.
+  STATUS=ERROR when a checker refuses to run, returns an error, or omits an affirmative result.

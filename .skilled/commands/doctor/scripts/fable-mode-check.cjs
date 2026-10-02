@@ -10,14 +10,21 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { discoverLineages, measureLineage, aggregate } = require('../../../skills/system-spec-kit/runtime/cli/metrics/fable-metrics.cjs');
 
-const DEFAULT_TARGET = path.resolve(__dirname, '../../../specs/skilled-agent-orchestration/144-operate-like-fable-5/002-fable-mode-efficiency-research/research');
 const DEFAULT_BASELINE = path.resolve(__dirname, '../../../skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json');
 
 function flag(name) { const i = process.argv.indexOf(name); return i !== -1 ? process.argv[i + 1] : null; }
 
 function main() {
-  const positional = process.argv.slice(2).find((a) => a[0] !== '-');
-  const target = path.resolve(flag('--dir') || positional || DEFAULT_TARGET);
+  const args = process.argv.slice(2);
+  const positional = args.find((arg, index) => (
+    arg[0] !== '-' && args[index - 1] !== '--dir' && args[index - 1] !== '--baseline'
+  ));
+  const targetArg = flag('--dir') || positional;
+  if (!targetArg) {
+    console.error('STATUS=ERROR fable-mode: pass --dir <path>');
+    process.exit(2);
+  }
+  const target = path.resolve(targetArg);
   const baselinePath = path.resolve(flag('--baseline') || DEFAULT_BASELINE);
 
   if (!fs.existsSync(target)) {

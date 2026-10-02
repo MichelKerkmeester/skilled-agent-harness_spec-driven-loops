@@ -60,6 +60,7 @@ upstream_assets:
 user_inputs:
   execution_mode: "INTERACTIVE"
   hub: "optional single hub id; omitted means the whole fleet"
+  concurrency: "optional positive probe concurrency; omitted means the script default"
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -68,6 +69,10 @@ field_handling:
   validation:
     execution_mode_must_be: INTERACTIVE
     hub_must_be: "a directory under .skilled/skills/ carrying both ROUTER.md and mode-registry.json, or unset"
+    concurrency_must_be: "a positive integer, or unset"
+  command_mapping:
+    hub: "pass as --hub <id> when supplied"
+    concurrency: "pass as --concurrency <n> when supplied"
 
 # ─────────────────────────────────────────────────────────────────
 # MUTATION BOUNDARIES
@@ -86,7 +91,7 @@ workflow:
   phase_0_diagnose:
     purpose: "Probe every declared phrase against the live advisor."
     activities:
-      - "Execute upstream_assets.diagnostic_script via Bash, adding --hub when the operator named one."
+      - "Execute upstream_assets.diagnostic_script via Bash, adding --hub <id> when supplied and --concurrency <n> when supplied; otherwise use the script default."
       - "Capture stdout and exit code. The run probes concurrently and takes minutes, not seconds."
     outputs:
       - reach_report
