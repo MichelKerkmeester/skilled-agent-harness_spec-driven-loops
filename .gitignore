@@ -252,6 +252,8 @@ sweep-reports/
 # Per-run temp workspaces
 # ───────────────────────────────────────────
 **/tests/.tmp-*/
+# Release-update runs are local evidence, not repository state.
+.skilled/release/runs/
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Logs
