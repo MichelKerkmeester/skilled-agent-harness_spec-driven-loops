@@ -706,8 +706,9 @@ export function deemGate(ctx) {
 // locally, the question is fixed, and only ids, counts and hashes leave it.
 
 /**
- * The noul score from one judgment call. A body that does not parse, a missing
- * noul, or a number outside [0, 1] is an unmeasured call, not a crash.
+ * The noul score from one judgment call: the answer sits under `answers.answer`.
+ * A body that does not parse, a missing noul, or a number outside [0, 1] is an
+ * unmeasured call, not a crash.
  * @param {string} stdout Raw stdout of one call.
  * @returns {number | null} Score in [0, 1], or null when unmeasured.
  */
@@ -718,7 +719,7 @@ function parseNoul(stdout) {
   } catch {
     return null;
   }
-  const noul = parsed?.noul;
+  const noul = parsed?.answers?.answer?.noul;
   if (typeof noul !== 'number' || !Number.isFinite(noul) || noul < 0 || noul > 1) return null;
   return noul;
 }

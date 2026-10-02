@@ -80,6 +80,7 @@ and findings belong here.
 | Cause found | Done | Two direct calls to the local server on 2026-10-02 returned `{"type":"noul","noul":0.9627,...}` and `{"type":"score","score":0.5808,"legend":{...},"probabilities":{"0":...}}`. `cli-deem.mjs:524` reads `answer.value` and its score path reads `answer.level`, so every real `noul` and `score` call exits 1. Its test fake answers in the shape the client expects, so the suite passed |
 | Reach | Done | Every scorer reads `answers.answer.<field>` except 027's stop rater (`parsed?.score`, lines 1057 and 1345) and 026's Deem parser (`parsed?.noul`, line 721). Real `jev` prints the envelope too (`jev_cli/__init__.py` prints the whole result unless `--value`) |
 | Baselines | Done | cli-deem 34 pass, 027 vitest 59, 026 vitest 23, all 0 failing |
+| Scorer depth fix | Done | SWE 2 max, brief `044b.md`, 281 s: 027's two arms and 026's `parseNoul` read `answers.answer`, and their stubs print the envelope with an old-shape case that stays unmeasured. The session added one change: 027's Jev arm took only an integer score, but Jev answers an expected level as a float (its reference fake answers `n - 1.3`, and Deem answered 0.58), so the arm now rounds a float in range like its Deem arm. A float-answer test fails on the old check and passes now. 027 vitest 61, 026 vitest 24, 0 failing, census exit 0 and unchanged |
 
 ### Deviations and findings
 

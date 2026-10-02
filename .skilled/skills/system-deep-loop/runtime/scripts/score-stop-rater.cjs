@@ -1054,13 +1054,15 @@ async function runJevArm(plan, gate, ctx) {
           } catch {
             // A body that does not parse is a failed measurement, not a crash.
           }
-          const value = parsed?.score;
-          if (Number.isInteger(value) && value >= 0 && value < LEVEL_RATIOS.length) {
-            level = value;
+          // Jev answers score as an expected level, a float, so it rounds like the Deem arm.
+          const value = parsed?.answers?.answer?.score;
+          if (typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= LEVEL_RATIOS.length - 1) {
+            const position = Math.round(value);
+            level = position;
             status = 'measured';
-            const probabilities = parsed?.probabilities;
+            const probabilities = parsed?.answers?.answer?.probabilities;
             if (probabilities !== null && typeof probabilities === 'object') {
-              probability = probabilities[String(value)] ?? probabilities[LEVEL_LABELS[value]] ?? null;
+              probability = probabilities[String(position)] ?? probabilities[LEVEL_LABELS[position]] ?? null;
             }
           }
         } else if (call.code === 2) {
@@ -1342,12 +1344,12 @@ async function runDeemArm(plan, gate, ctx) {
         } catch {
           // A body that does not parse is a failed measurement, not a crash.
         }
-        const value = parsed?.score;
+        const value = parsed?.answers?.answer?.score;
         if (typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= LEVEL_RATIOS.length - 1) {
           const position = Math.round(value);
           level = position;
           status = 'measured';
-          const probabilities = parsed?.probabilities;
+          const probabilities = parsed?.answers?.answer?.probabilities;
           if (probabilities !== null && typeof probabilities === 'object') {
             probability = probabilities[String(position)] ?? probabilities[LEVEL_LABELS[position]] ?? null;
           }
