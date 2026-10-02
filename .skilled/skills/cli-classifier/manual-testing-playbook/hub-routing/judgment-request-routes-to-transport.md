@@ -25,7 +25,7 @@ This document captures the realistic routing contract, observed behavior, execut
 
 ## 1. OVERVIEW
 
-The `jev judgment` phrase is a `cli-jev-aliases` signal, so the `cli-classifier` hub resolves `workflowMode: cli-jev` and selects the `cli-jev` transport packet. The prompt names no Deem phrase, so the answer is one dominant route rather than an ordered bundle with `cli-deem` or a deferred disambiguation.
+The `jev judgment` phrase is a `cli-jev-aliases` signal, so the `cli-classifier` hub resolves `workflowMode: cli-jev` and selects the `cli-jev` transport packet. This is the hub's only mode today; a future classifier gets a new mode and packet under the same parent.
 
 ### Why This Matters
 
@@ -87,7 +87,7 @@ for p in "ask jev for a probability that this plan ships on time" "score these t
 | File | Role |
 |---|---|
 | [hub-router.json](../../hub-router.json) | The vocabulary classes the judgment signals match |
-| [mode-registry.json](../../mode-registry.json) | The two registered modes and their packet kind |
+| [mode-registry.json](../../mode-registry.json) | The registered mode and its packet kind |
 | [SKILL.md](../../SKILL.md) | The hub's routing contract |
 
 ---

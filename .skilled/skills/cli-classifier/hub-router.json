@@ -1,13 +1,13 @@
 {
   "skill": "cli-classifier",
-  "version": "0.6.0.0",
+  "version": "0.7.0.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["cli-jev", "cli-deem"],
+    "tieBreak": ["cli-jev"],
     "outcomes": {
-      "single": "one dominant judgment intent routes to its transport: a Jev request to cli-jev, a Deem request to cli-deem",
-      "orderedBundle": "a request that names both backends by their aliases, such as a jev judgment checked against a deem judgment, routes to both transports in tieBreak order, cli-jev first",
+      "single": "a dominant Jev judgment intent routes to the cli-jev transport",
+      "orderedBundle": "the hub currently registers one mode; a future classifier can join as a new mode with explicit bundle rules",
       "defer": "unclear or contradictory intent asks for disambiguation"
     },
     "defaultResource": ["ROUTER.md", "mode-registry.json"],
@@ -18,11 +18,6 @@
       "weight": 4,
       "classes": ["cli-jev-aliases", "jev-dispatch"],
       "resources": ["cli-jev/SKILL.md"]
-    },
-    "cli-deem": {
-      "weight": 4,
-      "classes": ["cli-deem-aliases", "deem-dispatch"],
-      "resources": ["cli-deem/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -58,40 +53,6 @@
         "jev model",
         "jev auth",
         "jev question"
-      ]
-    },
-    "cli-deem-aliases": {
-      "keywords": [
-        "cli-deem",
-        "cli deem",
-        "deem cli",
-        "deem client",
-        "deem judgment",
-        "local deem",
-        "deem health"
-      ]
-    },
-    "deem-dispatch": {
-      "keywords": [
-        "deem noul",
-        "deem choice",
-        "deem score",
-        "deem run",
-        "ask deem",
-        "use deem",
-        "with deem",
-        "through deem",
-        "deem model",
-        "deem server",
-        "deem classifier",
-        "roll deem back",
-        "deem commit",
-        "update deem",
-        "restart deem",
-        "start deem",
-        "stop deem",
-        "deem is down",
-        "deem-ctl"
       ]
     }
   }

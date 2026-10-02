@@ -10,14 +10,14 @@
       {
         "target": "system-spec-kit",
         "weight": 0.3,
-        "context": "Supplies local typed judgments to the spec-kit goal verifier and compaction arms, each dormant until cli-deem health passes"
+        "context": "Supplies typed classifier judgments to the spec-kit goal verifier and compaction arms through the configured transport"
       }
     ],
     "siblings": [
       {
         "target": "cli-external-orchestration",
         "weight": 0.4,
-        "context": "Supplies typed judgment transports, hosted Jev and local Deem, beside the external executor dispatch hub"
+        "context": "Supplies the hosted Jev judgment transport beside the external executor dispatch hub"
       }
     ],
     "conflicts_with": [],
@@ -25,8 +25,6 @@
   },
   "domains": [
     "classifier",
-    "deem",
-    "local inference",
     "cli",
     "delegation",
     "judgment"
@@ -41,17 +39,7 @@
     "jev noul",
     "jev score",
     "jev run",
-    "jev-mcp",
-    "cli-deem",
-    "deem judgment",
-    "local deem",
-    "local classifier",
-    "ask deem for a probability",
-    "use deem choice",
-    "score levels with deem",
-    "deem health check",
-    "is deem up",
-    "deem run"
+    "jev-mcp"
   ],
   "derived": {
     "trigger_phrases": [
@@ -63,20 +51,9 @@
       "jev cli transport",
       "jev probability",
       "jev choice",
-      "jev score",
-      "cli-deem",
-      "deem judgment",
-      "local deem",
-      "local classifier",
-      "deem health",
-      "deem choice",
-      "deem score"
+      "jev score"
     ],
     "key_topics": [
-      "deem",
-      "local classifier",
-      "deem judgment",
-      "deem health",
       "commit pair",
       "typed answer",
       "judgment",
@@ -90,20 +67,13 @@
       "ask jev for a probability",
       "pick one option with jev",
       "order levels with jev",
-      "batch typed questions through jev",
-      "ask deem for a probability",
-      "pick one option with deem",
-      "order levels with deem",
-      "batch typed questions through deem",
-      "check whether deem is up"
+      "batch typed questions through jev"
     ],
     "source_docs": [
       "SKILL.md",
       "README.md",
       "mode-registry.json",
       "hub-router.json",
-      "cli-deem/SKILL.md",
-      "cli-deem/README.md",
       "cli-jev/SKILL.md",
       "cli-jev/README.md"
     ],
@@ -114,10 +84,7 @@
       ".skilled/skills/cli-classifier/hub-router.json",
       ".skilled/skills/cli-classifier/graph-metadata.json",
       ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
-      ".skilled/skills/cli-classifier/cli-jev/references/cli-reference.md",
-      ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
-      ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
-      ".skilled/skills/cli-classifier/cli-deem/references/wire-contract.md"
+      ".skilled/skills/cli-classifier/cli-jev/references/cli-reference.md"
     ],
     "entities": [
       {
@@ -137,27 +104,9 @@
         "kind": "reference",
         "path": ".skilled/skills/cli-classifier/cli-jev/references/cli-reference.md",
         "source": "derived"
-      },
-      {
-        "name": "cli-deem",
-        "kind": "skill",
-        "path": ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli-deem-client",
-        "kind": "script",
-        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "deem-wire-contract",
-        "kind": "reference",
-        "path": ".skilled/skills/cli-classifier/cli-deem/references/wire-contract.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "cli-classifier is the single public skill identity for classifier models that return typed judgments, a hub with two transport packets. The hub routes a judgment request through mode-registry.json and hub-router.json to mode cli-jev, which runs over the cli-jev packet and bridges the hosted jev CLI and MCP surface, or to mode cli-deem, one Node file that checks the local Deem server with health and asks it for a value. Either transport returns a probability, one option key, an ordered level position or a batch of keyed answers, and the two never fail over to each other silently. Write, Edit and Task are forbidden and mutatesWorkspace is false, so a transport selects while a workflow acts. The advisor sees one hub and resolves the transport by hub membership, because every transport is routingClass metadata.",
+    "causal_summary": "cli-classifier is the single public skill identity for typed classifier judgments, with the hosted Jev transport as its only mode today. The hub routes through mode-registry.json and hub-router.json to cli-jev, which bridges the Jev CLI and MCP surface and returns a probability, option key, ordered position or batch of keyed answers. Future classifier backends join as new modes with their own packets. Write, Edit and Task are forbidden and mutatesWorkspace is false, so a transport selects while a workflow acts. The advisor sees one hub and resolves transports by hub membership because each transport uses routingClass metadata.",
     "created_at": "2026-09-28T12:00:00Z",
     "last_updated_at": "2026-09-29T09:00:00Z"
   }
