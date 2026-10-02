@@ -428,7 +428,7 @@ Adds `scripts/score-stop-rater.cjs`, an offline replay of the recorded deep-rese
 #### Scenario Contract
 Prompt: `Run the offline stop-rater replay with logging stubs first on PATH and confirm the default run makes zero model calls, the label gate stops the arm, a stub backend is skipped by name, and the suite passes.`
 
-Expected signals: No stub call in the default run, `stop: fewer than 5 confirmed lineages` before any backend check, `jev arm skipped: no credential` past the label gate, `git status --porcelain` unchanged, and 56 passing tests.
+Expected signals: No stub call in the default run, `stop: fewer than 5 confirmed lineages` before any backend check, `jev arm skipped: no credential` past the label gate, `git status --porcelain` unchanged, and 58 passing tests.
 
 #### Test Execution
 > **Feature File:** [DLR-056](../manual-testing-playbook/scoring/stop-rater-replay.md)
@@ -458,7 +458,7 @@ Adds `scripts/score-severity-replay.cjs`, an offline replay that reads every tra
 #### Scenario Contract
 Prompt: `Run the offline severity replay with logging stubs first on PATH and confirm the default run makes zero model calls and writes no file, the label gate stops the arm by name, --jev without --out refuses with exit 2 before any census line, no stub is called, and the suite passes.`
 
-Expected signals: The default run prints the census and ends with `stop: fewer than 20 labeled P0 negatives` with no stub call, `jev arm skipped: label gate` prints when the arm is requested and only `report.json` is written under `--out <dir>`, `--jev needs --out <dir> so every call is recorded` lands on stderr with exit 2 before any census line, `git status` outside `specs/` is unchanged, and 25 passing tests.
+Expected signals: The default run prints the census and ends with `stop: fewer than 20 labeled P0 negatives` with no stub call, `jev arm skipped: label gate` prints when the arm is requested and only `report.json` is written under `--out <dir>`, `--jev needs --out <dir> so every call is recorded` lands on stderr with exit 2 before any census line, `git status` outside `specs/` is unchanged, and 28 passing tests.
 
 #### Test Execution
 > **Feature File:** [DLR-058](../manual-testing-playbook/scoring/severity-replay.md)
@@ -817,7 +817,7 @@ Adds `scripts/score-fanout-pairs.cjs`, an offline replay that reads the recorded
 #### Scenario Contract
 Prompt: `Run the fan-out pair replay census and confirm it stops at the label gate without calling a backend, then show the test suite skipping a stub Jev backend.`
 
-Expected signals: The census prefixes `runs:`, `pairs:`, `class near-line:`, `class cross-body:` and `merge decisions:` print on stdout with exit 0 and no stub call, the run ends `stop: fewer than 40 labeled pairs`, the suite asserts `jev arm skipped: no credential` in `jev gate skips on exit 3`, `git status --porcelain` is unchanged, and 36 passing tests.
+Expected signals: The census prefixes `runs:`, `pairs:`, `class near-line:`, `class cross-body:` and `merge decisions:` print on stdout with exit 0 and no stub call, the run ends `stop: fewer than 40 labeled pairs`, the suite asserts `jev arm skipped: no credential` in `jev gate skips on exit 3`, `git status --porcelain` is unchanged, and 37 passing tests.
 
 #### Test Execution
 > **Feature File:** [DLR-059](../manual-testing-playbook/fanout/fanout-pair-replay.md)

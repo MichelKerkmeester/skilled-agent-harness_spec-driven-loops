@@ -453,6 +453,42 @@ test('the Jev arm reports columns, flips and a keep verdict when its answers mat
   }
 });
 
+test('a stored Jev column from another identity prints a requalify notice before the verdict', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'score-goal-lint-requalify-'));
+
+  try {
+    const fixture = makeJevFixture(dir);
+    const answers = [];
+    for (const row of fixture.labels) {
+      for (const label of ['rule4_ok', 'rule5_ok']) {
+        const probability = row[label] === false ? '0.1' : '0.9';
+        answers.push(probability, probability, probability);
+      }
+    }
+    const stub = makeStubJev(dir, { answers });
+    const out = path.join(dir, 'jev-out');
+    fs.mkdirSync(out, { recursive: true });
+    fs.writeFileSync(
+      path.join(out, 'report.json'),
+      JSON.stringify({ columns: { jev: { provider: 'earlier-run', jevVersion: '0.6.2' } } })
+    );
+    const result = runFixture(fixture, ['--jev', '--out', out], stub.env);
+
+    assert.equal(result.status, 0, result.stderr + result.stdout);
+    const lines = result.stdout.split(/\r?\n/u);
+    const requalified = lines.indexOf('requalify: jev identity changed');
+    const verdict = lines.findIndex((line) => line.startsWith('verdict jev '));
+    assert.ok(requalified !== -1);
+    assert.ok(verdict !== -1);
+    assert.ok(requalified < verdict);
+
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    assert.equal(report.columns.jev.requalified, 'jev identity changed');
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test('more than ten percent aggregate flips kills both Jev rule verdicts', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'score-goal-lint-flips-'));
 

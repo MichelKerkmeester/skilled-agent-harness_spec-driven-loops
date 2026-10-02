@@ -84,7 +84,7 @@ planned calls: jev 718
 - Step 6 writes five rows to `/tmp/dlr-056/reads.jsonl`.
 - Step 7 prints `exit=0` and the diff shows two added lines, `jev: path=/tmp/dlr-056/bin/jev provider=official` and `jev arm skipped: no credential`. `/tmp/dlr-056/jev.log` holds `--version` and `auth status --provider official`, and `/tmp/dlr-056/out-skip` holds only `report.json`.
 - Step 8 prints nothing from the diff, because the working tree is unchanged.
-- Step 9 prints `exit=0` with 54 passing tests and 0 failing.
+- Step 9 prints `exit=0` with 58 passing tests and 0 failing.
 
 ### Evidence
 

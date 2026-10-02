@@ -25,7 +25,7 @@ The replay must stay offline on every run, the label gate must stop a run before
 - Objective: Confirm the severity replay prints the census with no model call, writes the label sheet outside the repository, stops at the label gate below 20 labeled P0 negatives with one stop line and its arm skip line, and passes the suite.
 - Layer partition: scoring runtime.
 - Real user request: `Run the severity replay with logging stubs first on PATH and confirm the census prints with no model call, the label sheet lands outside the repository, the label gate stops below 20 labeled P0 negatives and skips its arm, no stub is called, and the suite passes.`
-- Expected signals: the census block on every run, `label sheet: /tmp/dlr-058/labels.jsonl rows=<n>` outside the repository, `stop: fewer than 20 labeled P0 negatives` with `jev arm skipped: label gate` and exit 0 on the label-gate stop, no stub log after any run, `report.json` as the only file in the `--out` directory, an unchanged `git status --porcelain`, and 25 passing tests.
+- Expected signals: the census block on every run, `label sheet: /tmp/dlr-058/labels.jsonl rows=<n>` outside the repository, `stop: fewer than 20 labeled P0 negatives` with `jev arm skipped: label gate` and exit 0 on the label-gate stop, no stub log after any run, `report.json` as the only file in the `--out` directory, an unchanged `git status --porcelain`, and 28 passing tests.
 - Pass/fail: PASS if every run prints its expected lines with the stated exit code and no stub log holds a choice call. FAIL if a census line is missing, the label-gate stop spawns a stub or prints an arm line beside its skip line, a stub log holds a call, an `--out` directory holds a `calls.jsonl`, the working tree changes, or a test fails.
 
 ---
@@ -104,7 +104,7 @@ jev arm skipped: label gate
 
 - Step 8 prints `report.json` for the out directory and reports that `/tmp/dlr-058/jev.log` does not exist, because no run has called a stub.
 - Step 9 prints nothing from the diff, because the working tree is unchanged.
-- Step 10 exits 0 with 25 passing tests and 0 failing.
+- Step 10 exits 0 with 28 passing tests and 0 failing.
 
 ### Evidence
 

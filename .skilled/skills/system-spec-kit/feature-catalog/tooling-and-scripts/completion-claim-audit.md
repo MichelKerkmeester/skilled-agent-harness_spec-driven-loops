@@ -54,7 +54,7 @@ Before it prints a line, the run checks its census whole: every string in it mus
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts` | Vitest | Fourteen cases over synthetic rows and labels, with a stub `jev` binary first on the path |
+| `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts` | Vitest | Twenty-two cases over synthetic rows and labels, with a stub `jev` binary first on the path |
 | `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/census-happy.jsonl` | Fixture | One turn per claim word plus two holding the word past the trailing slice |
 
 ---

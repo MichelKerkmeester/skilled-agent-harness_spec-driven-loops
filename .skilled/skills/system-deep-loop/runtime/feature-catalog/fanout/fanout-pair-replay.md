@@ -99,7 +99,7 @@ invocation or unreadable input, and 1 on an unexpected throw.
 
 | File | Role |
 |---|---|
-| `tests/unit/score-fanout-pairs.vitest.ts` | 36 tests: the walker (3), the selection (7), the merge oracle (6), parity (2), the sheet, labels and gate (7), the Jev gate and arm (5), and the keep rule and report (6), on temp fixture registries with a stub `jev` binary first on PATH |
+| `tests/unit/score-fanout-pairs.vitest.ts` | 37 tests: the walker (3), the selection (7), the merge oracle (6), parity (2), the sheet, labels and gate (7), the Jev gate and arm (5), and the keep rule and report (7), on temp fixture registries with a stub `jev` binary first on PATH |
 
 ---
 
