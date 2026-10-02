@@ -152,7 +152,8 @@ function fiveLineageRepo(oversizeFirst = false): string {
 
 function writeGoldReads(repo: string, differAt: number | null): string {
   const rows = [0, 1, 2, 3, 4].map((index) => {
-    const { gold } = rater.deriveGold(rater.deltaIterationFiles(path.join(repo, `lineage-${index}`)));
+    const lineageDir = path.join(repo, `lineage-${index}`);
+    const { gold } = rater.deriveGold(rater.deltaIterationFiles(lineageDir), lineageDir, repo);
     return {
       lineage: `lineage-${index}`,
       gold_iteration: index === differAt ? gold + 1 : gold,
@@ -256,6 +257,229 @@ describe('score-stop-rater walker', () => {
 });
 
 describe('score-stop-rater gold', () => {
+  it('gold ignores an anchored evidence citation to a file in its lineage directory', () => {
+    const repo = tempDir('stop-rater-gold-relative-own-');
+    const lineagePath = 'specs/research/lineages/sol';
+    makeLineage(repo, lineagePath, {
+      config: {},
+      deltas: {
+        'iter-001.jsonl': [{
+          type: 'finding',
+          evidence: ['iterations/iteration-001.md:A7'],
+        }],
+      },
+    });
+    const lineageDir = path.join(repo, lineagePath);
+    fs.mkdirSync(path.join(lineageDir, 'iterations'), { recursive: true });
+    fs.writeFileSync(path.join(lineageDir, 'iterations', 'iteration-001.md'), 'run note\n', 'utf8');
+
+    const result = rater.deriveGold(rater.deltaIterationFiles(lineageDir), lineageDir, repo);
+    expect(result.gold).toBeNull();
+    expect(result.cited.get(1)).toBe(0);
+  });
+
+  it('gold strips colon and hash anchors before checking existing lineage files', () => {
+    const repo = tempDir('stop-rater-gold-anchors-');
+    const lineagePath = 'specs/research/lineages/sol';
+    makeLineage(repo, lineagePath, {
+      config: {},
+      deltas: {
+        'iter-001.jsonl': [{
+          type: 'finding',
+          evidence: [
+            'references/colon-anchor.md:A7',
+            'references/hash-anchor.md#details',
+          ],
+        }],
+      },
+    });
+    const lineageDir = path.join(repo, lineagePath);
+    const referencesDir = path.join(lineageDir, 'references');
+    fs.mkdirSync(referencesDir, { recursive: true });
+    fs.writeFileSync(path.join(referencesDir, 'colon-anchor.md'), 'lineage note\n', 'utf8');
+    fs.writeFileSync(path.join(referencesDir, 'hash-anchor.md'), 'lineage note\n', 'utf8');
+
+    const result = rater.deriveGold(rater.deltaIterationFiles(lineageDir), lineageDir, repo);
+    expect(result.gold).toBeNull();
+    expect(result.cited.get(1)).toBe(0);
+  });
+
+  it('gold ignores absent lineage artifact sources', () => {
+    const repo = tempDir('stop-rater-gold-missing-own-');
+    const lineagePath = 'specs/research/lineages/sol';
+    makeLineage(repo, lineagePath, {
+      config: {},
+      deltas: {
+        'iter-001.jsonl': [{
+          type: 'finding',
+          evidence: [
+            'iterations/iteration-009.md',
+            'deltas/iter-009.jsonl',
+            'logs/run-009.log',
+            'prompts/prompt-009.md',
+            'deep-research-obsolete.jsonl',
+          ],
+        }],
+      },
+    });
+    const lineageDir = path.join(repo, lineagePath);
+
+    const result = rater.deriveGold(rater.deltaIterationFiles(lineageDir), lineageDir, repo);
+    expect(result.gold).toBeNull();
+    expect(result.cited.get(1)).toBe(0);
+  });
+
+  it('gold ignores a bare iteration file name', () => {
+    const repo = tempDir('stop-rater-gold-bare-iteration-');
+    const lineagePath = 'specs/research/lineages/sol';
+    makeLineage(repo, lineagePath, {
+      config: {},
+      deltas: {
+        'iter-001.jsonl': [{ type: 'finding', source: 'iteration-003.md' }],
+      },
+    });
+    const lineageDir = path.join(repo, lineagePath);
+    fs.mkdirSync(path.join(lineageDir, 'iterations'), { recursive: true });
+    fs.writeFileSync(path.join(lineageDir, 'iterations', 'iteration-003.md'), 'run note\n', 'utf8');
+
+    const result = rater.deriveGold(rater.deltaIterationFiles(lineageDir), lineageDir, repo);
+    expect(result.gold).toBeNull();
+    expect(result.cited.get(1)).toBe(0);
+  });
+
+  it('gold ignores an anchored repo-relative citation to its lineage directory', () => {
+    const repo = tempDir('stop-rater-gold-repo-relative-own-');
+    const lineagePath = 'specs/research/lineages/sol';
+    makeLineage(repo, lineagePath, {
+      config: {},
+      deltas: {
+        'iter-001.jsonl': [{
+          type: 'finding',
+          source: `${lineagePath}/config.json:A7`,
+        }],
+      },
+    });
+    const lineageDir = path.join(repo, lineagePath);
+    fs.writeFileSync(path.join(lineageDir, 'config.json'), 'lineage config\n', 'utf8');
+
+    const result = rater.deriveGold(rater.deltaIterationFiles(lineageDir), lineageDir, repo);
+    expect(result.gold).toBeNull();
+    expect(result.cited.get(1)).toBe(0);
+  });
+
+  it('gold ignores a dot-prefixed citation to its lineage directory', () => {
+    const repo = tempDir('stop-rater-gold-dot-relative-own-');
+    const lineagePath = 'specs/research/lineages/sol';
+    makeLineage(repo, lineagePath, {
+      config: {},
+      deltas: {
+        'iter-001.jsonl': [{
+          type: 'finding',
+          source: `./${lineagePath}/config.json:A7`,
+        }],
+      },
+    });
+    const lineageDir = path.join(repo, lineagePath);
+    fs.writeFileSync(path.join(lineageDir, 'config.json'), 'lineage config\n', 'utf8');
+
+    const result = rater.deriveGold(rater.deltaIterationFiles(lineageDir), lineageDir, repo);
+    expect(result.gold).toBeNull();
+    expect(result.cited.get(1)).toBe(0);
+  });
+
+  it('gold ignores an absolute citation to a file inside its lineage directory', () => {
+    const repo = tempDir('stop-rater-gold-absolute-own-');
+    const lineagePath = 'specs/research/lineages/sol';
+    makeLineage(repo, lineagePath, {
+      config: {},
+      deltas: {
+        'iter-001.jsonl': [{
+          type: 'finding',
+          source: path.join(repo, lineagePath, 'config.json'),
+        }],
+      },
+    });
+    const lineageDir = path.join(repo, lineagePath);
+    fs.writeFileSync(path.join(lineageDir, 'config.json'), 'lineage config\n', 'utf8');
+
+    const result = rater.deriveGold(rater.deltaIterationFiles(lineageDir), lineageDir, repo);
+    expect(result.gold).toBeNull();
+    expect(result.cited.get(1)).toBe(0);
+  });
+
+  it('gold counts a missing repo path outside the lineage despite its artifact name', () => {
+    const repo = tempDir('stop-rater-gold-repo-missing-');
+    const lineagePath = 'specs/research/lineages/sol';
+    makeLineage(repo, lineagePath, {
+      config: {},
+      deltas: {
+        'iter-001.jsonl': [{ type: 'finding', source: 'specs/x/packet/deep-research-notes.md' }],
+      },
+    });
+    const lineageDir = path.join(repo, lineagePath);
+
+    const result = rater.deriveGold(rater.deltaIterationFiles(lineageDir), lineageDir, repo);
+    expect(result.gold).toBe(1);
+    expect(result.cited.get(1)).toBe(1);
+    expect(result.firstAppearance.get(1)).toBe(1);
+  });
+
+  it('gold still counts an outside source', () => {
+    const repo = tempDir('stop-rater-gold-outside-');
+    const lineagePath = 'specs/research/lineages/sol';
+    makeLineage(repo, lineagePath, {
+      config: {},
+      deltas: {
+        'iter-001.jsonl': [{ type: 'finding', source: 'sources/outside-paper.md' }],
+      },
+    });
+    fs.mkdirSync(path.join(repo, 'sources'), { recursive: true });
+    fs.writeFileSync(path.join(repo, 'sources', 'outside-paper.md'), 'outside evidence\n', 'utf8');
+    const lineageDir = path.join(repo, lineagePath);
+
+    const result = rater.deriveGold(rater.deltaIterationFiles(lineageDir), lineageDir, repo);
+    expect(result.gold).toBe(1);
+    expect(result.cited.get(1)).toBe(1);
+    expect(result.firstAppearance.get(1)).toBe(1);
+  });
+
+  it('gold counts an existing repo path that looks like a lineage artifact', () => {
+    const repo = tempDir('stop-rater-gold-repo-path-');
+    const lineagePath = 'specs/research/lineages/sol';
+    makeLineage(repo, lineagePath, {
+      config: {},
+      deltas: {
+        'iter-001.jsonl': [{ type: 'finding', source: 'assets/deep-research-auto.yaml' }],
+      },
+    });
+    const lineageDir = path.join(repo, lineagePath);
+    fs.mkdirSync(path.join(repo, 'assets'), { recursive: true });
+    fs.writeFileSync(path.join(repo, 'assets', 'deep-research-auto.yaml'), 'repo asset\n', 'utf8');
+
+    const result = rater.deriveGold(rater.deltaIterationFiles(lineageDir), lineageDir, repo);
+    expect(result.gold).toBe(1);
+    expect(result.cited.get(1)).toBe(1);
+    expect(result.firstAppearance.get(1)).toBe(1);
+  });
+
+  it('gold counts an absent repo-relative packet spec outside the lineage', () => {
+    const repo = tempDir('stop-rater-gold-packet-spec-');
+    const lineagePath = 'specs/research/lineages/sol';
+    const packetSpecPath = 'specs/research/packet/spec.md';
+    makeLineage(repo, lineagePath, {
+      config: {},
+      deltas: {
+        'iter-001.jsonl': [{ type: 'finding', source: packetSpecPath }],
+      },
+    });
+    const lineageDir = path.join(repo, lineagePath);
+
+    const result = rater.deriveGold(rater.deltaIterationFiles(lineageDir), lineageDir, repo);
+    expect(result.gold).toBe(1);
+    expect(result.cited.get(1)).toBe(1);
+    expect(result.firstAppearance.get(1)).toBe(1);
+  });
+
   it('gold picks the last first-appearance source', () => {
     const dir = tempDir('stop-rater-gold-');
     fs.mkdirSync(path.join(dir, 'deltas'));
@@ -263,7 +487,7 @@ describe('score-stop-rater gold', () => {
     fs.writeFileSync(path.join(dir, 'deltas', 'iter-002.jsonl'), JSON.stringify({ type: 'finding', source: 'B.md' }) + '\n', 'utf8');
     fs.writeFileSync(path.join(dir, 'deltas', 'iter-003.jsonl'), JSON.stringify({ type: 'finding', source: 'A.md' }) + '\n', 'utf8');
     const files = rater.deltaIterationFiles(dir);
-    const result = rater.deriveGold(files);
+    const result = rater.deriveGold(files, dir, path.dirname(dir));
     expect(result.gold).toBe(2);
   });
 
@@ -280,7 +504,7 @@ describe('score-stop-rater gold', () => {
       JSON.stringify({ type: 'finding', evidence: ['b.md'] }) + '\n',
       'utf8',
     );
-    const result = rater.deriveGold(rater.deltaIterationFiles(dir));
+    const result = rater.deriveGold(rater.deltaIterationFiles(dir), dir, path.dirname(dir));
     expect(result.gold).toBe(2);
     expect(result.cited.get(1)).toBe(1);
     expect(result.cited.get(2)).toBe(1);
@@ -301,7 +525,7 @@ describe('score-stop-rater gold', () => {
       JSON.stringify({ type: 'finding', source: 'a.md:9-12' }) + '\n',
       'utf8',
     );
-    const result = rater.deriveGold(rater.deltaIterationFiles(dir));
+    const result = rater.deriveGold(rater.deltaIterationFiles(dir), dir, path.dirname(dir));
     expect(result.gold).toBe(1);
   });
 
@@ -313,7 +537,7 @@ describe('score-stop-rater gold', () => {
       JSON.stringify({ type: 'finding', source: 'Glob:x/*.json' }) + '\n',
       'utf8',
     );
-    const result = rater.deriveGold(rater.deltaIterationFiles(dir));
+    const result = rater.deriveGold(rater.deltaIterationFiles(dir), dir, path.dirname(dir));
     expect(result.gold).toBeNull();
     expect(result.cited.get(1)).toBe(0);
   });
@@ -432,7 +656,7 @@ describe('score-stop-rater methods', () => {
       },
     });
     const lineage = path.join(dir, 'lineage-a');
-    const { gold } = rater.deriveGold(rater.deltaIterationFiles(lineage));
+    const { gold } = rater.deriveGold(rater.deltaIterationFiles(lineage), lineage, dir);
     const { iterations } = rater.readStateRecords(path.join(lineage, 'deep-research-state.jsonl'));
     const recorded = iterations[iterations.length - 1].n;
     expect(gold).toBe(2);
@@ -489,7 +713,7 @@ describe('score-stop-rater methods', () => {
     });
     const lineage = path.join(repo, 'lineage-a');
     const deltas = rater.deltaIterationFiles(lineage);
-    const { gold, cited, firstAppearance } = rater.deriveGold(deltas);
+    const { gold, cited, firstAppearance } = rater.deriveGold(deltas, lineage, repo);
     const sourceSeries = deltas.map((entry: { n: number }) => {
       const citedCount = cited.get(entry.n) ?? 0;
       return { n: entry.n, ratio: citedCount > 0 ? (firstAppearance.get(entry.n) ?? 0) / citedCount : 0 };
@@ -605,11 +829,19 @@ describe('score-stop-rater baseline and gate', () => {
     }
     commitAll(repo);
     const { log, env } = stubBackends();
-    const rows = Array.from({ length: 10 }, (_, index) => ({
-      lineage: `lineage-${index}`,
-      gold_iteration: rater.deriveGold(rater.deltaIterationFiles(path.join(repo, `lineage-${index}`))).gold,
-      labeler: 'operator',
-    }));
+    const rows = Array.from({ length: 10 }, (_, index) => {
+      const lineageDir = path.join(repo, `lineage-${index}`);
+      const { gold } = rater.deriveGold(
+        rater.deltaIterationFiles(lineageDir),
+        lineageDir,
+        repo,
+      );
+      return {
+        lineage: `lineage-${index}`,
+        gold_iteration: gold,
+        labeler: 'operator',
+      };
+    });
     const readsFile = path.join(tempDir('stop-rater-reads-'), 'gold-reads.jsonl');
     fs.writeFileSync(readsFile, rows.map((row) => JSON.stringify(row)).join('\n') + '\n', 'utf8');
     const lines: string[] = [];

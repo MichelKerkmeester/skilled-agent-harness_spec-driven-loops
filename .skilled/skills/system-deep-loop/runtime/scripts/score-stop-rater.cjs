@@ -231,18 +231,78 @@ function findingSources(record, tracked) {
 }
 
 /**
+ * Whether a finding source names a file the lineage owns. A lineage's own
+ * files are its run artifacts, so citing one is not outside evidence and the
+ * gold derivation does not count it. The source is first cleaned of a
+ * trailing `#`-fragment or `:<anchor>` and of a leading `./`. A URL never
+ * names an owned file. An absolute path is read relative to the repository
+ * root. A path anchored at the repository root (its first segment is an
+ * entry there, or the path is tracked) is owned only when it is the lineage
+ * directory or lives inside it; any other repo-root path counts even when
+ * the file is absent. Everything else reads relative to the lineage
+ * directory, where an existing file, an artifact directory name, a
+ * `deep-research-` basename, or an iteration file name is owned.
+ *
+ * @param {string} source - Normalized source reference from a finding
+ * @param {{ absoluteRepoRoot: string, absoluteLineageDir: string, tracked?: Set<string> }} ctx
+ *   Repository root, lineage directory, and optional repo-relative tracked paths
+ * @returns {boolean} True when the source names one of the lineage's own files
+ */
+function isLineageOwnSource(source, ctx) {
+  const cleaned = source.replace(/(?:#.*|:[^/\\]*)$/, '').replace(/^\.\//, '');
+  if (/^[A-Za-z][A-Za-z\d+.-]*:\/\//.test(cleaned)) {
+    return false;
+  }
+
+  const asRepoRelative = path.isAbsolute(cleaned)
+    ? path.relative(ctx.absoluteRepoRoot, cleaned)
+    : cleaned;
+  const repoRelative = asRepoRelative.split(path.sep).join('/');
+  const lineageRelative = path
+    .relative(ctx.absoluteRepoRoot, ctx.absoluteLineageDir)
+    .split(path.sep)
+    .join('/');
+  const firstSegment = repoRelative.split('/')[0];
+  const isRepoAnchored = (ctx.tracked instanceof Set && ctx.tracked.has(repoRelative)) ||
+    fs.existsSync(path.join(ctx.absoluteRepoRoot, firstSegment));
+  if (isRepoAnchored) {
+    return repoRelative === lineageRelative || repoRelative.startsWith(`${lineageRelative}/`);
+  }
+
+  const absoluteSource = path.resolve(ctx.absoluteLineageDir, cleaned);
+  const relativeSource = path.relative(ctx.absoluteLineageDir, absoluteSource);
+  const isInsideLineage = relativeSource !== '' &&
+    relativeSource !== '..' &&
+    !relativeSource.startsWith(`..${path.sep}`) &&
+    !path.isAbsolute(relativeSource);
+  const basename = path.basename(cleaned);
+  return (isInsideLineage && fs.existsSync(absoluteSource)) ||
+    ['iterations', 'deltas', 'logs', 'prompts'].includes(firstSegment) ||
+    basename.startsWith('deep-research-') ||
+    /^iteration-\d+\.md$/.test(basename);
+}
+
+/**
  * Derive a lineage's gold iteration from its delta files. Sources are
  * normalized file references from a finding's `source`, `sources`, or
  * `evidence`; gold is the last iteration that introduces at least one source
- * seen nowhere earlier, else null.
+ * seen nowhere earlier, else null. Sources naming files inside the lineage's
+ * own directory are excluded from both citation and first-appearance counts.
  *
  * @param {Array<{ n: number, file: string }>} files - Delta files in iteration order
+ * @param {string} lineageDir - Absolute or repo-root-relative lineage directory
+ * @param {string} repoRoot - Repository root used to resolve repo-relative paths
  * @param {Set<string>} [tracked] - Optional repo-relative tracked paths
  * @returns {{ gold: number|null, cited: Map<number, number>, firstAppearance: Map<number, number> }}
  *   Gold iteration, plus per-iteration citation and first-appearance counts
  * @throws {Error} When a delta file cannot be read
  */
-function deriveGold(files, tracked) {
+function deriveGold(files, lineageDir, repoRoot, tracked) {
+  const ctx = {
+    absoluteRepoRoot: path.resolve(repoRoot),
+    absoluteLineageDir: path.resolve(repoRoot, lineageDir),
+    tracked,
+  };
   const cited = new Map();
   const firstAppearance = new Map();
   const seen = new Set();
@@ -265,7 +325,8 @@ function deriveGold(files, tracked) {
       if (record === null || typeof record !== 'object' || record.type !== 'finding') {
         continue;
       }
-      const sources = findingSources(record, tracked);
+      const sources = findingSources(record, tracked)
+        .filter((source) => !isLineageOwnSource(source, ctx));
       if (sources.length === 0) {
         continue;
       }
@@ -1342,7 +1403,8 @@ function writeReport(outDir, report) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Parse the switches, walk the tracked lineages, print the census lines, stop
+ * Parse the switches, walk the tracked lineages, derive gold without counting
+ * each lineage's own files as outside evidence, print the census lines, stop
  * at the label gate when a switch asked for an arm the operator's reads do
  * not yet confirm, run the requested backend gate and arm, and write the report
  * when `--out` names a directory.
@@ -1442,7 +1504,12 @@ async function main(argv, deps = {}) {
         continue;
       }
       kept += 1;
-      const { gold, cited, firstAppearance } = deriveGold(deltas, trackedPaths);
+      const { gold, cited, firstAppearance } = deriveGold(
+        deltas,
+        lineageDir,
+        repoRoot,
+        trackedPaths,
+      );
       const records = [];
       for (const line of fs.readFileSync(path.join(repoRoot, stateFile), 'utf8').split('\n')) {
         const trimmed = line.trim();
