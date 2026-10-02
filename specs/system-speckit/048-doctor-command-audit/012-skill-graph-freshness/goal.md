@@ -75,11 +75,22 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
-
+| Phase opened | Done | Route, workflow, router, presentation and script read line by line on this checkout; `scratch/reality-check.md` |
+| Read-only run | Done | The exact route command twice, exit 0, all five sets `none`; foreign-database and absent-database probes; independent recomputation; `scratch/doctor-run.log` |
+| Verdict | Done | `keep`, with the evidence table and the four findings; `scratch/proposal.md:9` |
+| Verdict applied | Done | No production file changed — the route entry, the workflow asset, the script and the presentation row stay as they are |
+| Batch gates | Done | `route-validate.sh` exit 0 with 9 routes and 2 warnings after the batch; YAML parse, catalog mirror check, MCP guard and doctor script tests at baseline |
+| Documentation closed | Done | `spec.md` Complete; every acceptance row Met; packet validated with `validate.sh --strict` |
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Shared batch | The verdict was applied with the other `/doctor:speckit` targets by GPT-6 Luna (cli-codex, max, fast); this target needed no edit, and the batch's startup menu rows 12 and 13 and route count do not touch its row |
+| Finding: stale compiled JSON | The compiled `skill-graph.json` predates one of its sources and neither the panel nor the subsystem's freshness model reports it; recorded, not fixed |
+| Finding: untracked SQLite artifact | A fresh checkout silently degrades the three-way diff to a two-way diff with no degraded marker; recorded, not fixed |
+| Finding: inert exclusion | No `z_archive` tier exists under the skills tree, so the disk scan's exclusion does nothing; recorded, not fixed |
+| Finding: namespace collision | `sk-code` is both a family name and its sole skill id; recorded, not fixed |
+| Finding: baseline tests | Three `parent-skill-check-*.test.cjs` files fail in this worktree exactly as the pre-batch baseline; not a regression |
+| Not exercised | The family-mismatch and null-stamp sets and the corrupt-database catch were read, not run |
+| Derived metadata refresh | Closing the documents staled the generated `source_fingerprint`; the validator's own remediation, `repair-derived.cjs --apply`, re-derived it in this folder |
 <!-- /ANCHOR:log -->

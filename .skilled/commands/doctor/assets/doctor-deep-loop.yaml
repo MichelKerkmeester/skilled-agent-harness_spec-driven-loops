@@ -27,8 +27,8 @@ deep_loop_doctor_invariant: |
   folders and ai-council artifacts that back them. The workflow itself writes
   only its packet-local state log. The status and convergence scripts it calls
   may create a missing coverage database and append observability events. It
-  never calls deep_loop_graph_upsert; rebuilds are owned by /doctor:update
-  (coverage graph) and replay-graph-from-artifacts.cjs (council).
+  never calls deep_loop_graph_upsert; the coverage graph is created by the deep-loop
+  scripts on first use (no rebuild entry point) and the council graph by replay-graph-from-artifacts.cjs.
   Lazy-init is surfaced only as a recommendation when a graph is empty and its
   source inventory (iteration folders or ai-council artifacts) is readable.
 
@@ -202,10 +202,10 @@ workflow:
   phase_2_recommendation:
     purpose: "Translate drift signals into a safe operator action."
     rules:
-      - "If empty_graph=true and lazy_init_available=true -> recommend a coverage-graph rebuild via /doctor:update."
-      - "If missing_convergence_signal > 0 -> recommend a coverage-graph rebuild via /doctor:update."
-      - "If stale_graph=true or orphan_nodes > 0 -> recommend a coverage-graph rebuild via /doctor:update."
-      - "If council graph drift is detected (empty/stale council graph while ai-council artifacts exist) -> recommend a council graph replay via ai-council replay-graph-from-artifacts.cjs (the council graph is not rebuilt by /doctor:update)."
+      - "If empty_graph=true and lazy_init_available=true -> recommend a coverage-graph rebuild via /doctor:rebuild."
+      - "If missing_convergence_signal > 0 -> recommend a coverage-graph rebuild via /doctor:rebuild."
+      - "If stale_graph=true or orphan_nodes > 0 -> recommend a coverage-graph rebuild via /doctor:rebuild."
+      - "If council graph drift is detected (empty/stale council graph while ai-council artifacts exist) -> recommend a council graph replay via ai-council replay-graph-from-artifacts.cjs (the council graph is not rebuilt by /doctor:rebuild)."
       - "If no drift -> status=OK, no action needed."
     outputs:
       - status: OK|EMPTY|STALE|ATTENTION|MISSING|CANCELLED|FAIL

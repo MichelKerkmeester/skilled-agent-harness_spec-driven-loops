@@ -75,11 +75,22 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Phase opened | Done | Packet scaffolded on 2026-10-02 with the goal, spec and criteria authored |
+| Surface inventory | Done | `scratch/reality-check.md` covers the route entry, workflow, router, presentation and environment variables, checked at HEAD `83616db9ba` |
+| Doctor run | Done | `scratch/doctor-run.log` records the read-only run: CLI health exit 0; the audit exits 0 for the default, `--json`, `--top-n=5` and `--project-ceiling` forms; `--fail-over=5600` exits 1 with the documented FAIL; direct execution exits 126 |
+| Verdict recorded | Done | `scratch/proposal.md` records `fix` with two mismatches and the evidence behind them |
+| Fixes applied | Done | The route entry records `python3 .skilled/commands/doctor/scripts/audit_descriptions.py --repo-root "$PWD"`; the workflow names `python3` in its audit activity (`.skilled/commands/doctor/_routes.yaml`, `.skilled/commands/doctor/assets/doctor-skill-budget.yaml`) |
+| Verification re-run | Done | `route-validate.sh` exit 0 with `OK: route-validate — 9 routes validated, 2 warnings`; YAML parse `YAML_OK`; catalog mirror `STATUS=OK`; MCP mutation guard `GUARD PASS` |
+| Acceptance criteria | Done | Every row Met with the observed evidence |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Deviation | The two fixes were applied in the shared `/doctor:speckit` batch with the other targets by GPT-6 Luna (cli-codex), because they share `_routes.yaml`, `speckit.md` and the presentation asset; the orchestrator reviewed the diff and reran the gates |
+| Deviation | The recorded run used orchestrator Bash and Python probes rather than a live interactive slash-command session, so the menu rendering was not exercised end to end |
+| Finding (recorded, not fixed) | The project description budget is over its soft ceiling: 6,774 chars against 5,600, headroom −1,174, seven items OVER-SOFT, none over the 1,536 hard cap |
+| Finding (recorded, not fixed) | `.skilled/commands/goal-opencode.md` and `.skilled/commands/vision.md` have no `.claude/commands` counterpart, so 135 of the 6,774 chars are authored-surface, not Claude-visible |
+| Finding (recorded, not fixed) | `frontmatter-templates.md` and `common-pitfalls.md` recommend `/doctor skill-budget :auto`, which the doctor rejects |
+| Note | The three `parent-skill-check-*.test.cjs` fixtures fail in this worktree exactly as at baseline because they cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js`; not a regression |
 <!-- /ANCHOR:log -->

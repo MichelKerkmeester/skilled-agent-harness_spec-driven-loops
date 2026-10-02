@@ -1,13 +1,13 @@
-# /doctor:update Presentation Contract
+# /doctor:rebuild Presentation Contract
 
-This file is the single source of truth for user-facing presentation in `/doctor:update`: startup confirmation, mid-run prompts, cross-subsystem dashboards, validation displays, status outputs, restart-required messages, related commands, and next-step text. The command router owns flag parsing and asset routing only. The workflow YAML owns execution behavior.
+This file is the single source of truth for user-facing presentation in `/doctor:rebuild`: startup confirmation, mid-run prompts, cross-subsystem dashboards, validation displays, status outputs, restart-required messages, related commands, and next-step text. The command router owns flag parsing and asset routing only. The workflow YAML owns execution behavior.
 
 ## 1. Startup Confirmation
 
-Ask this prompt before any mutating phase unless `--force=true`. Lightweight read-only status probes are allowed only after flag parsing.
+Ask this prompt before any mutating phase unless `--force`. Lightweight read-only status probes are allowed only after flag parsing.
 
 ```text
-/doctor:update rebuilds ALL spec-kit databases in dependency order with
+/doctor:rebuild rebuilds ALL spec-kit databases in dependency order with
 snapshots + auto-rollback on regression. ETA 8-25 min.
 
 Mid-run prompts:
@@ -26,7 +26,7 @@ Use these prompts verbatim. Do not paraphrase, summarize, or split them into mul
 
 ### Q-LONG - Long-Pole ETA Prompt
 
-When: before the trigger-index regeneration over the spec-doc and skill-doc corpus. Suppressed if `--force=true`.
+When: before the trigger-index regeneration over the spec-doc and skill-doc corpus. Suppressed if `--force`.
 
 ```text
 LONG-POLE: trigger-index regeneration over the spec-doc and skill-doc corpus.
@@ -42,25 +42,21 @@ LONG-POLE: trigger-index regeneration over the spec-doc and skill-doc corpus.
 
 Accept `1`, `A`, `Y`, or `Proceed` as proceed. Accept `2` or `Skip` as skipped and marked stale. Accept `X`, `N`, or `Cancel` as rollback plus `STATUS=CANCELLED`. Empty input re-asks once; second empty input returns `STATUS=CANCELLED`.
 
-### Q-PROBE - Active-MCP-Client Prompt
+### Q-PROBE - Skill-Advisor Daemon Notice
 
-When: Phase 2 detects one or more other MCP clients holding open a database this run rebuilds. Always fires; `--force` reduces it to a single confirmation rather than per-client prompts.
+When: Phase 2 runs the read-only skill-advisor daemon check. The rebuild does not block on the result.
 
 ```text
-Active MCP client(s) detected:
-   [comma-separated client_id list]
+Skill-advisor daemon: [live|not running]
 
-The rebuild will cancel their open transactions and stale their cache until reconnect.
-
-   1) Proceed anyway
-   X) Cancel  (rerun when clients are idle)
+The rebuild proceeds either way. A live daemon reconnects after the rebuild and re-reads the rebuilt databases.
 ```
 
-Accept `1`, `A`, `Y`, or `Proceed` as proceed. Accept `X`, `N`, or `Cancel` as `STATUS=CANCELLED`. Empty input re-asks once; second empty input returns `STATUS=CANCELLED`.
+No response is required.
 
 ### Q-LEGACY - Per-File Legacy Cleanup Prompt
 
-When: Phase 9 processes each file listed in the migration manifest's legacy cleanup targets and `--cleanup-legacy=true`.
+When: Phase 9 processes each file listed in the migration manifest's legacy cleanup targets and `--cleanup-legacy`.
 
 ```text
 Legacy file: [absolute path]
@@ -77,7 +73,7 @@ Accept `Y` or `Delete` as delete. Accept `N`, `Keep`, `Skip`, or empty as keep. 
 
 ### Q-FAIL - Step-Failure Recovery Prompt
 
-When: a step fails its first run and the 5-second-backoff retry. Suppressed if `--force=true`; force mode auto-rolls back.
+When: a step fails its first run and the 5-second-backoff retry. Suppressed if `--force`; force mode auto-rolls back.
 
 ```text
 Step "[step_name]" failed after retry.
@@ -100,9 +96,9 @@ Accept `1`, `A`, `Y`, or `Rollback` as rollback plus `STATUS=ROLLED_BACK`. Accep
 Render after flag parsing and before YAML load.
 
 ```text
-DOCTOR UPDATE SETUP
-Workflow: .skilled/commands/doctor/assets/doctor-update.yaml
-Presentation: .skilled/commands/doctor/assets/doctor-update-presentation.txt
+DOCTOR REBUILD SETUP
+Workflow: .skilled/commands/doctor/assets/doctor-rebuild.yaml
+Presentation: .skilled/commands/doctor/assets/doctor-rebuild-presentation.txt
 Mode: INTERACTIVE
 Flags: force=[true|false] no_snapshot=[true|false] cleanup_legacy=[true|false] migrate=[true|false] keep_snapshots=[true|false] resume_bootstrap=[true|false]
 Snapshots: [enabled|disabled]
@@ -129,13 +125,13 @@ Cross-Subsystem Health Dashboard
 ### Final Status
 
 ```text
-Doctor Update Result
+Doctor Rebuild Result
 
 Final status: STATUS=[OK|FAIL|ROLLED_BACK|CANCELLED|RESTART_REQUIRED]
-State log: .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.last-run.json
+State log: .skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.last-run.json
 Snapshots: [kept|cleaned|skipped]
 Touched subsystems: [list]
-Validation: [gold-battery and schema summary]
+Validation: [check results summary]
 ```
 
 ### Restart Required
@@ -145,14 +141,14 @@ STATUS=RESTART_REQUIRED
 
 Runtime bootstrap completed before database rebuild started.
 Restart OpenCode so MCP tools register, then rerun:
-  /doctor:update --resume-bootstrap
+  /doctor:rebuild --resume-bootstrap
 ```
 
 ### Failure
 
 ```text
 STATUS=FAIL ERROR="[message]"
-State log: .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.last-run.json
+State log: .skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.last-run.json
 Failed phase: [phase]
 Next: inspect the state log and rerun with the safest applicable flag set.
 ```
@@ -161,9 +157,9 @@ Next: inspect the state log and rerun with the safest applicable flag set.
 
 ```text
 STATUS=ROLLED_BACK
-Reason: [step failure|gold-battery regression|operator choice]
+Reason: [step failure|validation regression|operator choice]
 Restored snapshots: [list]
-State log: .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.last-run.json
+State log: .skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.last-run.json
 ```
 
 ## 6. Related Commands Display

@@ -225,16 +225,15 @@ mcp_subroutes:
 # ─────────────────────────────────────────────────────────────────
 # ORCHESTRATOR (NOT routed through /doctor — kept here for reference)
 # ─────────────────────────────────────────────────────────────────
-# /doctor:update is a STANDALONE command at .skilled/commands/doctor/update.md.
+# /doctor:rebuild is a STANDALONE command at .skilled/commands/doctor/rebuild.md.
 # It does NOT route through /doctor. This block exists for advisor visibility.
 # ─────────────────────────────────────────────────────────────────
 standalone:
-  - command: /doctor:update
-    file: .skilled/commands/doctor/update.md
-    yaml: doctor-update.yaml
+  - command: /doctor:rebuild
+    file: .skilled/commands/doctor/rebuild.md
+    yaml: doctor-rebuild.yaml
     mutating: mutates
     trigger_phrases:
-      - "spec-kit version migration"
-      - "doctor update orchestrator"
       - "rebuild all spec-kit databases"
+      - "doctor rebuild"
       - "doctor full sync"

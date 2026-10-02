@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 11: skill-budget"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Audit /doctor:speckit skill-budget against this checkout, decide keep, fix or retire from observed evidence, and apply the verdict: record the audit-script invocation in the route entry and name python3 as the interpreter in the workflow."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown docs, YAML route manifest and workflow, Python 3 audit script |
+| **Framework** | The doctor route manifest and workflow-asset pattern |
+| **Storage** | None. The audit reads frontmatter and prints a report; nothing is written. |
+| **Testing** | The recorded read-only run, route-validate.sh, a YAML parse, the catalog mirror check and the MCP mutation guard |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The phase audits first and applies second. Every path, script, flag and environment variable the route and workflow name is checked against this checkout, then /doctor:speckit skill-budget runs once in its read-only form. The evidence yields one verdict, fix, and the two mismatches it found are corrected in the route entry and the workflow text.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,17 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Audit-then-apply over a data-driven doctor target: inventory every named surface, run the target once read-only, decide one verdict from the evidence, then apply the smallest edits that make the manifest and workflow match the checkout.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Route entry** (`.skilled/commands/doctor/_routes.yaml`): the manifest's record of the target, its flags, its mutation class and the scripts it runs.
+- **Workflow asset** (`.skilled/commands/doctor/assets/doctor-skill-budget.yaml`): the ordered activities, command mapping and output contract the router loads.
+- **Audit script** (`.skilled/commands/doctor/scripts/audit_descriptions.py`): the read-only Python report over skill, command and agent description lengths.
+- **Router and presentation** (`.skilled/commands/doctor/speckit.md`, `.skilled/commands/doctor/assets/doctor-speckit-presentation.txt`): the menu, the valid-targets table and the text shown to the operator.
+- **Manifest validator** (`.skilled/commands/doctor/scripts/route-validate.sh`): the gate that checks the route entries, their scripts and their parity with the router and presentation.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The router resolves skill-budget and loads the workflow asset. The workflow probes the advisor CLI warm-only, builds the audit command from the mapped flags, runs the Python script and captures its report and exit code. The operator reads the report; the route manifest and workflow text carry the fix this phase applied.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -69,18 +72,19 @@ contextType: "general"
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
+Surfaces this phase touches, and the check that covered each.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| Route entry (`.skilled/commands/doctor/_routes.yaml`) | Records the target's scripts and flags | Updated: the audit-script invocation is recorded | `route-validate.sh` exit 0; `PASS: I1` now covers `audit_descriptions.py` |
+| Workflow asset (`.skilled/commands/doctor/assets/doctor-skill-budget.yaml`) | Tells the executor how to run the audit | Updated: the audit activity names `python3` | YAML parses; `python3 .skilled/commands/doctor/scripts/audit_descriptions.py --repo-root .` exits 0 while direct execution exits 126 |
+| Router, presentation and scripts README | Describe and index the target | Unchanged | `PASS: J1` parity; `scripts/README.md:105` already documents the `python3` form |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: `rg -n "audit_descriptions" .skilled/commands/doctor` shows the workflow and the route entry name the script; no other doctor workflow runs it, so the interpreter fix has one producer.
+- Consumers of changed symbols: `rg -n "audit_descriptions|audit_script" .skilled/commands/doctor` shows the route entry, the workflow, `scripts/README.md` and route-validate's I1 check as consumers; all were re-checked.
+- Matrix axes: invocation form (direct path, `python3 <script>`), output mode (human report, `--json`) and fail-over (off, on). The recorded run covers the rows in `scratch/doctor-run.log` STEPs 1-6.
+- Algorithm invariant: no write path exists — the script has no write calls and the workflow issues no mutation. Adversarial cases: direct execution exits 126, the `python3` form exits 0, and `--fail-over=5600` exits 1 with the documented FAIL line.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -99,9 +103,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Unit | The audit script's flags and constants against their source of truth | `python3 … --help` and the `quick_validate` import probe (log STEP 7) |
+| Integration | Route entry, workflow, router and presentation parity | `bash .skilled/commands/doctor/scripts/route-validate.sh`, a YAML parse over every doctor asset |
+| Manual | One read-only `/doctor:speckit skill-budget` run | Orchestrator Bash probes recorded in `scratch/doctor-run.log` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +115,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| `python3` (interpreter for the audit script) | External | Green | The script is mode 644, so the workflow must name the interpreter or the run exits 126 |
+| `.skilled/commands/doctor/_routes.yaml` and `route-validate.sh` | Internal | Green | The route change is checked by the manifest validator |
+| skill-advisor CLI warm-only probe | Internal | Green | A retryable exit 75 does not block the budget audit |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +125,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: `route-validate.sh` fails after the edits, or the audit script stops resolving from the route entry.
+- **Procedure**: Revert the two text edits (`git checkout -- .skilled/commands/doctor/_routes.yaml .skilled/commands/doctor/assets/doctor-skill-budget.yaml`) and rerun `route-validate.sh`.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -132,17 +138,14 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Setup) ──────┐
-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
-Phase 1.5 (Config) ───┘
+Phase 1 (Setup) ──────► Phase 2 (Implementation) ──────► Phase 3 (Verify)
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
-| Verify | Core | None |
+| Setup | None | Implementation, Verify |
+| Implementation | Setup | Verify |
+| Verify | Setup, Implementation | None |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -152,10 +155,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Setup | Low | Under an hour: read the route, workflow and router surfaces |
+| Core Implementation | Med | One session: inventory, recorded run, verdict and the two text fixes |
+| Verification | Low | Under an hour: route, YAML, mirror and guard checks |
+| **Total** | | **About two sessions across one day** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,19 +167,19 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] No data changes; nothing to back up
+- [x] No feature flag; the target is read-only
+- [x] `route-validate.sh` is the observable gate and runs before closure
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Stop: no runtime action to disable; the target is read-only.
+2. Revert the two text edits with `git checkout -- .skilled/commands/doctor/_routes.yaml .skilled/commands/doctor/assets/doctor-skill-budget.yaml`.
+3. Rerun `bash .skilled/commands/doctor/scripts/route-validate.sh` and expect the pre-change `OK` line.
+4. No user-facing surface changed; no notification required.
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A — no data is written.
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---
