@@ -1,0 +1,1536 @@
+{
+  "sessionId": "dr-githooks-20261002T103712Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "RUNNING",
+  "openFindings": [
+    {
+      "findingId": "R2-P0-001",
+      "severity": "P0",
+      "title": "Machine-wide hooks source and execute repository-controlled code from the repository being committed to",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/pre-commit",
+      "line": 30,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P0-001",
+      "severity": "P0",
+      "title": "machine-wide hooks source repository-controlled code (reconfirmed, not falsified)",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/pre-commit",
+      "line": 30,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Subject line deleted when it matches a forbidden attribution key",
+      "file": ".skilled/scripts/git-hooks/prepare-commit-msg",
+      "line": 189,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "subject deleted when it matches a forbidden attribution key (reconfirmed)",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/prepare-commit-msg",
+      "line": 189,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Clean/continued cherry-pick keeps the copied Commit-Id",
+      "file": ".skilled/scripts/git-hooks/prepare-commit-msg",
+      "line": 83,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "cherry-pick keeps copied Commit-Id; source=[message] re-measured (reconfirmed)",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/prepare-commit-msg",
+      "line": 83,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-003",
+      "severity": "P1",
+      "title": "Comment stripping ignores commit.cleanup",
+      "file": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+      "line": 279,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-003",
+      "severity": "P1",
+      "title": "comment stripping ignores commit.cleanup (reconfirmed)",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+      "line": 279,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-004",
+      "severity": "P1",
+      "title": "Comment-hygiene gate validates working tree, not staged blob",
+      "file": ".skilled/scripts/git-hooks/pre-commit",
+      "line": 79,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-004",
+      "severity": "P1",
+      "title": "comment-hygiene gate validates worktree, not staged blob (reconfirmed)",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/pre-commit",
+      "line": 79,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-005",
+      "severity": "P1",
+      "title": "URL new-branch push re-checks published history",
+      "file": ".skilled/scripts/git-hooks/pre-push",
+      "line": 203,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-005",
+      "severity": "P1",
+      "title": "URL new-branch push re-checks published history (reconfirmed)",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/pre-push",
+      "line": 203,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-006",
+      "severity": "P2",
+      "title": "Validator failure reported as rule violation",
+      "file": ".skilled/scripts/git-hooks/pre-push",
+      "line": 207,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-007",
+      "severity": "P2",
+      "title": "Rebase copies flagged as Commit-Id collisions",
+      "file": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+      "line": 658,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-008",
+      "severity": "P2",
+      "title": "Command-scope contractDir disables commit-time enforcement",
+      "file": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+      "line": 239,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "Contract-supplied regexes run without timeout; a hostile template can hang the validator",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+      "line": 31,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Acceptance criteria name git config skgit.messageContract, implementation reads skgit.contractDir",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-git/032-template-driven-message-enforcement/acceptance-criteria.md",
+      "line": 59,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "All acceptance evidence pins 38b2135472 but four reviewed-file commits postdate it; nothing re-verified at reviewed HEAD",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-git/032-template-driven-message-enforcement/acceptance-criteria.md",
+      "line": 55,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-003",
+      "severity": "P2",
+      "title": "Feature catalog promises rebase-safe Commit-Id uniqueness the reviewed code lacks (contradicts active R1-P2-007)",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/feature-catalog/workflow-playbooks/message-contract-enforcement.md",
+      "line": 48,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-004",
+      "severity": "P2",
+      "title": "CI reference says mass-deletion ceiling runs at pre-commit; only pre-push runs it",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/references/continuous-integration.md",
+      "line": 106,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-005",
+      "severity": "P2",
+      "title": "Packet completion state is internally contradictory at the reviewed revision",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-git/032-template-driven-message-enforcement/acceptance-criteria.md",
+      "line": 44,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Legacy pre-commit copy already diverges from the installed hook: a checker crash passes silently",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/git/pre-commit",
+      "line": 44,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "Attribution policy lives twice: stamper hardcodes vendor rules while the validator reads the template attribution block",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/prepare-commit-msg",
+      "line": 107,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-003",
+      "severity": "P2",
+      "title": "Installer usage header describes a removed gate, omits the spec-remint gate, and repeats a pre-push clause",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/install-git-hooks.sh",
+      "line": 11,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-004",
+      "severity": "P2",
+      "title": "Pre-push header documents removed naming/test gates and omits mass-deletion and routing gates and their bypasses",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/pre-push",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-005",
+      "severity": "P2",
+      "title": "Machine-wide hook hardcodes the authored manifest path of one spec packet; archiving it blocks routing commits",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/pre-commit",
+      "line": 351,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-006",
+      "severity": "P2",
+      "title": "Source-root selection prologue is copied into eight in-scope scripts (nine repo-wide) with only a comment asserting the invariant",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/pre-commit",
+      "line": 16,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-001",
+      "severity": "P2",
+      "title": "node-free declares-rules probe diverges from the validator heading parser and resolution order",
+      "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/lib/message-contract-gate.sh",
+      "line": 47,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 2,
+    "P1": 10,
+    "P2": 16
+  },
+  "openFindingsCount": 28,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.98,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "completion_state_inconsistency",
+      "contract_mismatch",
+      "doc_code_drift",
+      "duplicated_implementation_drift",
+      "error_handling",
+      "gate_bypass",
+      "hardcoded_path_coupling",
+      "input_validation",
+      "policy_duplication",
+      "prologue_duplication",
+      "stale_documentation",
+      "stale_evidence",
+      "state_transition",
+      "trust_boundary"
+    ],
+    "ruledOut": [
+      "arithmetic_overflow",
+      "cli_contract_parity",
+      "dead_surface",
+      "directory_shadowing",
+      "gate_bypass",
+      "path_traversal",
+      "record_separator_parsing",
+      "secrets_exposure",
+      "shell_injection",
+      "stdin_consumption"
+    ],
+    "deferred": [
+      "playbook_traceability"
+    ],
+    "blocked": [],
+    "byBugClass": {
+      "input_validation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          5
+        ]
+      },
+      "state_transition": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "error_handling": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "contract_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "gate_bypass": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          5
+        ]
+      },
+      "path_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "shell_injection": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "arithmetic_overflow": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "trust_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          5
+        ]
+      },
+      "secrets_exposure": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "completion_state_inconsistency": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cli_contract_parity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook_traceability": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3,
+          5
+        ]
+      },
+      "duplicated_implementation_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "policy_duplication": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_documentation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "hardcoded_path_coupling": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "prologue_duplication": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dead_surface": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "record_separator_parsing": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "stdin_consumption": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "directory_shadowing": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 3,
+      "id": "SL-025",
+      "dimension": "traceability",
+      "targetRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/manual-testing-playbook/commit-formation/template-rules-block-commits.md"
+      ],
+      "bugClass": "playbook_traceability",
+      "disposition": "deferred",
+      "rationale": "budget exhaustion before scenario line audit",
+      "evidenceRefs": [
+        "manual-testing-playbook/commit-formation/template-rules-block-commits.md"
+      ],
+      "reason": "deferred to a follow-up iteration or maintainability pass"
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-010",
+      "dimension": "correctness",
+      "targetRefs": [
+        "mass-deletion-guard.sh"
+      ],
+      "bugClass": "arithmetic_overflow",
+      "disposition": "ruled_out",
+      "rationale": "defensive coding verified",
+      "evidenceRefs": [
+        "mass-deletion-guard.sh:33-39"
+      ],
+      "reason": "no coercible path found; every oddity fails open"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-011",
+      "dimension": "correctness",
+      "targetRefs": [
+        "message-contract.mjs",
+        "message-contract-gate.sh"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "traversal has no sink inside the target",
+      "evidenceRefs": [
+        "message-contract.mjs:241-244"
+      ],
+      "reason": "resolution is bounded and read-only"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-012",
+      "dimension": "correctness",
+      "targetRefs": [
+        "install-git-hooks.sh"
+      ],
+      "bugClass": "gate_bypass",
+      "disposition": "ruled_out",
+      "rationale": "no overwrite path for foreign hooks",
+      "evidenceRefs": [
+        "install-git-hooks.sh:83-94"
+      ],
+      "reason": "ownership check covers both install and uninstall paths"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-015",
+      "dimension": "security",
+      "targetRefs": [
+        "validate-message.mjs",
+        "message-contract.mjs"
+      ],
+      "bugClass": "shell_injection",
+      "disposition": "ruled_out",
+      "rationale": "argv arrays preclude interpolation",
+      "evidenceRefs": [
+        "validate-message.mjs:77"
+      ],
+      "reason": "no shell sink at the JS layer; distinct from the swept stamped-trailer shell path"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-016",
+      "dimension": "security",
+      "targetRefs": [
+        "message-contract.mjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "traversal cannot reach content",
+      "evidenceRefs": [
+        "message-contract.mjs:486-487"
+      ],
+      "reason": "existence-only probe with no read or write sink; distinct from the swept contractDir path"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-017",
+      "dimension": "security",
+      "targetRefs": [
+        "autostash-orphan-guard.sh",
+        "mass-deletion-guard.sh"
+      ],
+      "bugClass": "secrets_exposure",
+      "disposition": "ruled_out",
+      "rationale": "log content is non-sensitive git metadata",
+      "evidenceRefs": [
+        "autostash-orphan-guard.sh:42-45"
+      ],
+      "reason": "no secret material is read or written"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-023",
+      "dimension": "traceability",
+      "targetRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-git/032-template-driven-message-enforcement/spec.md:92",
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/scripts/validate-message.mjs:6-13,46"
+      ],
+      "bugClass": "cli_contract_parity",
+      "disposition": "ruled_out",
+      "rationale": "spec surface matches; only tasks.md shorthand is stale",
+      "evidenceRefs": [
+        "validate-message.mjs:6-13,46"
+      ],
+      "reason": "spec.md:92 flag list matches the parser exactly"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-032",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh"
+      ],
+      "bugClass": "dead_surface",
+      "disposition": "ruled_out",
+      "rationale": "no hook path reads the staged helper or commit mode after the guard moved to pre-push only",
+      "evidenceRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh:41-44"
+      ],
+      "reason": "test-exercised dead surface with no live behavioral impact; cleanup-only, not filed as a finding"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-047",
+      "dimension": "correctness",
+      "targetRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/scripts/validate-message.mjs"
+      ],
+      "bugClass": "record_separator_parsing",
+      "disposition": "ruled_out",
+      "rationale": "cannot cause a violating commit to pass",
+      "evidenceRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/scripts/validate-message.mjs:156"
+      ],
+      "reason": "fallback reread at line 156 supplies the true message for any SHA missing from the map"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-048",
+      "dimension": "correctness",
+      "targetRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/post-rewrite",
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/lib/autostash-orphan-guard.sh"
+      ],
+      "bugClass": "stdin_consumption",
+      "disposition": "ruled_out",
+      "rationale": "no data-loss or wedge path",
+      "evidenceRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/post-rewrite:6-7"
+      ],
+      "reason": "stdin is deliberately unused and git ignores SIGPIPE around the write"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-049",
+      "dimension": "correctness",
+      "targetRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/scripts/lib/message-contract.mjs"
+      ],
+      "bugClass": "directory_shadowing",
+      "disposition": "ruled_out",
+      "rationale": "not live in the reviewed checkout; folded into R5-P2-001 as resolution-order note",
+      "evidenceRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/assets/commit-message-template.md"
+      ],
+      "reason": "requires an operator-created directory that does not exist in the target checkout"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-010",
+      "dimension": "correctness",
+      "targetRefs": [
+        "mass-deletion-guard.sh"
+      ],
+      "bugClass": "arithmetic_overflow",
+      "disposition": "ruled_out",
+      "rationale": "defensive coding verified",
+      "evidenceRefs": [
+        "mass-deletion-guard.sh:33-39"
+      ],
+      "proof": "no coercible path found; every oddity fails open"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-011",
+      "dimension": "correctness",
+      "targetRefs": [
+        "message-contract.mjs",
+        "message-contract-gate.sh"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "traversal has no sink inside the target",
+      "evidenceRefs": [
+        "message-contract.mjs:241-244"
+      ],
+      "proof": "resolution is bounded and read-only"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-012",
+      "dimension": "correctness",
+      "targetRefs": [
+        "install-git-hooks.sh"
+      ],
+      "bugClass": "gate_bypass",
+      "disposition": "ruled_out",
+      "rationale": "no overwrite path for foreign hooks",
+      "evidenceRefs": [
+        "install-git-hooks.sh:83-94"
+      ],
+      "proof": "ownership check covers both install and uninstall paths"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-015",
+      "dimension": "security",
+      "targetRefs": [
+        "validate-message.mjs",
+        "message-contract.mjs"
+      ],
+      "bugClass": "shell_injection",
+      "disposition": "ruled_out",
+      "rationale": "argv arrays preclude interpolation",
+      "evidenceRefs": [
+        "validate-message.mjs:77"
+      ],
+      "proof": "no shell sink at the JS layer; distinct from the swept stamped-trailer shell path"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-016",
+      "dimension": "security",
+      "targetRefs": [
+        "message-contract.mjs"
+      ],
+      "bugClass": "path_traversal",
+      "disposition": "ruled_out",
+      "rationale": "traversal cannot reach content",
+      "evidenceRefs": [
+        "message-contract.mjs:486-487"
+      ],
+      "proof": "existence-only probe with no read or write sink; distinct from the swept contractDir path"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-017",
+      "dimension": "security",
+      "targetRefs": [
+        "autostash-orphan-guard.sh",
+        "mass-deletion-guard.sh"
+      ],
+      "bugClass": "secrets_exposure",
+      "disposition": "ruled_out",
+      "rationale": "log content is non-sensitive git metadata",
+      "evidenceRefs": [
+        "autostash-orphan-guard.sh:42-45"
+      ],
+      "proof": "no secret material is read or written"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-023",
+      "dimension": "traceability",
+      "targetRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/sk-git/032-template-driven-message-enforcement/spec.md:92",
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/scripts/validate-message.mjs:6-13,46"
+      ],
+      "bugClass": "cli_contract_parity",
+      "disposition": "ruled_out",
+      "rationale": "spec surface matches; only tasks.md shorthand is stale",
+      "evidenceRefs": [
+        "validate-message.mjs:6-13,46"
+      ],
+      "proof": "spec.md:92 flag list matches the parser exactly"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-024",
+      "dimension": "traceability",
+      "targetRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/hooks/git/README.md:52"
+      ],
+      "bugClass": "runtime_parity",
+      "disposition": "not_applicable",
+      "rationale": "the cross-runtime agent gate is a different, out-of-target surface",
+      "evidenceRefs": [
+        "hooks/git/README.md:52"
+      ],
+      "proof": "native hook concern has no per-runtime adapters by design"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-032",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh"
+      ],
+      "bugClass": "dead_surface",
+      "disposition": "ruled_out",
+      "rationale": "no hook path reads the staged helper or commit mode after the guard moved to pre-push only",
+      "evidenceRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh:41-44"
+      ],
+      "proof": "test-exercised dead surface with no live behavioral impact; cleanup-only, not filed as a finding"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-047",
+      "dimension": "correctness",
+      "targetRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/scripts/validate-message.mjs"
+      ],
+      "bugClass": "record_separator_parsing",
+      "disposition": "ruled_out",
+      "rationale": "cannot cause a violating commit to pass",
+      "evidenceRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/scripts/validate-message.mjs:156"
+      ],
+      "proof": "fallback reread at line 156 supplies the true message for any SHA missing from the map"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-048",
+      "dimension": "correctness",
+      "targetRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/post-rewrite",
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/lib/autostash-orphan-guard.sh"
+      ],
+      "bugClass": "stdin_consumption",
+      "disposition": "ruled_out",
+      "rationale": "no data-loss or wedge path",
+      "evidenceRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/scripts/git-hooks/post-rewrite:6-7"
+      ],
+      "proof": "stdin is deliberately unused and git ignores SIGPIPE around the write"
+    },
+    {
+      "iteration": 5,
+      "id": "SL-049",
+      "dimension": "correctness",
+      "targetRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/scripts/lib/message-contract.mjs"
+      ],
+      "bugClass": "directory_shadowing",
+      "disposition": "ruled_out",
+      "rationale": "not live in the reviewed checkout; folded into R5-P2-001 as resolution-order note",
+      "evidenceRefs": [
+        "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.skilled/skills/sk-git/assets/commit-message-template.md"
+      ],
+      "proof": "requires an operator-created directory that does not exist in the target checkout"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "trust_boundary",
+      "contract_mismatch",
+      "state_transition",
+      "gate_bypass",
+      "input_validation",
+      "dead_surface"
+    ],
+    "covered": [
+      "trust_boundary",
+      "contract_mismatch",
+      "state_transition",
+      "gate_bypass",
+      "input_validation"
+    ],
+    "ruledOut": [
+      "record_separator_parsing",
+      "stdin_consumption",
+      "directory_shadowing"
+    ],
+    "deferred": [
+      "playbook_traceability"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

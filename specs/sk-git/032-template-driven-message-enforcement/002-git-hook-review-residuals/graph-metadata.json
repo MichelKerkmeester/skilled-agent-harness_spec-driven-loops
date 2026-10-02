@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/032-template-driven-message-enforcement/002-git-hook-review-residuals",
+  "spec_folder": "sk-git/032-template-driven-message-enforcement/002-git-hook-review-residuals",
+  "parent_id": "sk-git/032-template-driven-message-enforcement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "git hook review residuals",
+      "rules probe validator parity",
+      "contract regex backtracking",
+      "authored routing manifest path",
+      "git hook residuals plan",
+      "rules probe parity plan",
+      "git hook residual tasks",
+      "rules probe parity tasks",
+      "git hook residuals acceptance",
+      "rules probe parity acceptance",
+      "git hook residuals summary",
+      "rules probe parity shipped"
+    ],
+    "key_topics": [
+      "git",
+      "hook",
+      "review",
+      "residuals",
+      "rules",
+      "probe",
+      "validator",
+      "parity",
+      "contract",
+      "regex",
+      "backtracking",
+      "authored"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/lib/compiled-route-layout.cjs",
+      ".skilled/bin/compiled-route-guard.cjs",
+      ".skilled/bin/compiled-route-sync.cjs",
+      ".skilled/scripts/git-hooks/lib/message-contract-gate.sh",
+      ".skilled/skills/sk-git/scripts/validate-message.mjs",
+      ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+      ".skilled/skills/sk-git/scripts/lib/message-contract.test.mjs",
+      ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/message-contract-enforcement.md",
+      ".skilled/skills/sk-git/references/continuous-integration.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-layout.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-route-layout.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract-gate.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/lib/message-contract-gate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validate-message.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/validate-message.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "git-message-gate.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/message-contract.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract-enforcement.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/feature-catalog/workflow-playbooks/message-contract-enforcement.md",
+        "source": "derived"
+      },
+      {
+        "name": "continuous-integration.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/references/continuous-integration.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shell",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The legacy pre-commit treats a crashed comment checker as a pass",
+    "created_at": "2026-10-02T13:02:07Z",
+    "last_save_at": "2026-10-02T13:47:28.919Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4bdb22d1d2d1430df940c2c6e0d2a500e3ac10dd8d956bceae4cdcf43cf978e6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fe59179a62f6122aae3b7b474dcd9591865ab9d0476b23305d54b335c71fb6ff",
+      "plan.md": "b82db084557caa1250c0fd161bac51656a72417bfcbf6c16719c9166f2f25da9",
+      "tasks.md": "7c3f25fa7a4405687594aa0ecb8ed0776cba01177f8926adbf44096ed07efce1",
+      "implementation-summary.md": "4be6dccc690571195a03325b95fb76ebfa0238f18764862f6f94a1caaf403b32"
+    },
+    "last_active_at": null
+  }
+}
