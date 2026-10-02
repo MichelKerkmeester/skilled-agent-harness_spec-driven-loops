@@ -1,0 +1,88 @@
+---
+title: "Goal: Phase 45: deem-live-runs"
+description: "Run every scorer's Deem arm once against the local Deem server and record each result, and close the three Deem findings phase 044 recorded."
+trigger_phrases:
+  - "deem live runs"
+  - "deem arm results"
+  - "local deem measurement"
+  - "cli-deem open findings"
+importance_tier: "important"
+contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "cli-jev/003-cli-jev-workflow-integration/045-deem-live-runs"
+    last_updated_at: "2026-10-02T07:13:44Z"
+    last_updated_by: "orchestrating-session"
+    recent_action: "Authored the durable directive"
+    next_safe_action: "Execute against the completion criteria"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "spec-cli-jev-003-045-deem-live-runs"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
+# Goal: Phase 45: deem-live-runs
+
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+<!-- GOAL_AUTHORING: .skilled/skills/sk-doc/sk-create-goal/SKILL.md -->
+
+---
+
+<!-- ANCHOR:directive -->
+## 1. DURABLE DIRECTIVE
+
+**Objective:** Measure every scorer's Deem arm on the local Deem server now that the client reads real answers, and close the open Deem findings.
+
+### Decisions
+
+Frozen choices. Changing one is an amendment.
+
+| ID | Decision |
+|----|----------|
+| D1 | The operator's "Do all deem things needed / open" (2026-10-02) is the yes for live `--deem` runs. Deem runs on the local server only, so nothing leaves the machine. No `--jev` run is part of this phase |
+| D2 | Each scorer runs once, sequentially, with its recorded label file and `--out` under `~/.skilled/.labels/runs/045-deem-20261002/`. A gate stop or a missing input is a result to record, not a failure to work around |
+| D3 | The three Deem findings phase 044 recorded are fixed: the wire contract's HTTP 400 claim, the `temperature` fixture field and the client's score-level and choice-option counts |
+| D4 | SWE 2 max on cli-devin writes the fixes. The session runs the scorers, verifies and commits. One DeepSeek V4.1 Flash review: fix P0 and P1, record P2. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
+
+<!-- /ANCHOR:directive -->
+
+---
+
+
+<!-- ANCHOR:completion -->
+## 3. COMPLETION CRITERIA
+
+- [ ] Every scorer with a `--deem` switch, 20 in all, has a `<id>.stdout.txt`, `<id>.stderr.txt` and exit status under `~/.skilled/.labels/runs/045-deem-20261002/`, and `goal.md`'s log records each one's result line
+- [ ] No Deem run reports a `cli-deem` answer-shape error, such as `unexpected response`, in its call log or stderr
+- [ ] `node --test .skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs` passes more than 39 tests with 0 failing, with cases for 1 and 11 score levels and 1 choice option exiting 2
+- [ ] The DeepSeek V4.1 Flash review of these changes leaves no open P0 or P1
+- [ ] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and on `specs/cli-jev/003-cli-jev-workflow-integration`
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:log -->
+## 4. LOG
+
+Everything below is VOLATILE. It is not part of the directive, it is not copied
+into the objective, and it is expected to grow. Progress, evidence, deviations
+and findings belong here.
+
+### Progress
+
+| Item | State | Evidence |
+|------|-------|----------|
+| Inventory | Done | 19 JS and TS scorers take `--deem`, plus 034's Python lens. 042's `gates.md` records each label file. Gates open for 006, 023, 029, 030, 031, 032 and 035 |
+| P2 fixes | In Progress | Brief `build/fix/045a.md` to SWE 2 max |
+
+### Deviations and findings
+
+| Item | Note |
+|------|------|
+| The HTTP 400 premise | The wire contract says Deem answers `criteria` with HTTP 400. On 2026-10-02 the local server answered a `choice` with a `criteria` map and a `score` with a `criteria` list with HTTP 200, in Jev's own field names |
+<!-- /ANCHOR:log -->

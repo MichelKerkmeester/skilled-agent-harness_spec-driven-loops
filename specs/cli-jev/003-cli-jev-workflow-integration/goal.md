@@ -46,7 +46,7 @@ _memory:
 |----|----------|
 | D1 | Jev first, else Deem, dormant unless `jev auth status --provider <p>` or Deem's health check passes. Jev gets no secret |
 | D2 | Hub `cli-classifier` holds `cli-jev` and local `cli-deem` |
-| D3 | Released 019 to 044, disjoint in parallel |
+| D3 | Released 019 to 045, disjoint in parallel |
 | D4 | 003, 006 and 019 to 035 stop at their label gate. Only operator-confirmed or -delegated labels count |
 | D5 | Session orchestrates, verifies, commits. Workers: DeepSeek V4.1 Flash (cli-pi), SWE 2 max (cli-devin), Luna 6 max (cli-codex). No MiMo or Claude leaves bar a delegated arbiter. Cross-family review: fix P0 and P1, record P2 |
 | D6 | Docs via sk-doc, code via sk-code |
@@ -62,50 +62,51 @@ Decisions outrank child goals.
 
 | # | Goal |
 |---|------|
-| 001 | `001-deep-research/goal.md` |
-| 002 | `002-advisor-jev-tiebreak-arm/goal.md` |
-| 003 | `003-goal-verifier-jev-shadow/goal.md` |
-| 004 | `004-deep-research-expansion/goal.md` |
-| 005 | `005-compaction-recall-harness/goal.md` |
-| 006 | `006-goal-criteria-lint/goal.md` |
-| 007 | `007-classifier-deep-research/goal.md` |
-| 008 | `008-cli-classifier-hub/goal.md` |
-| 009 | `009-cli-jev-hub-move/goal.md` |
-| 010 | `010-trigger-index-search-fixes/goal.md` |
-| 011 | `011-spec-validator-fixes/goal.md` |
-| 012 | `012-sk-doc-validator-and-reference-fixes/goal.md` |
-| 013 | `013-sk-prompt-framework-docs/goal.md` |
-| 014 | `014-sk-design-doc-and-routing-check/goal.md` |
-| 015 | `015-fanout-merge-and-steering-fixes/goal.md` |
-| 016 | `016-deem-local-hardening/goal.md` |
-| 017 | `017-deem-search-narrowing-arm/goal.md` |
-| 018 | `018-worktree-provision-shared-link/goal.md` |
-| 019 | `019-advisor-suggested-order/goal.md` |
-| 020 | `020-routing-clarify-default/goal.md` |
-| 021 | `021-stage2-leaf-route-replay/goal.md` |
-| 022 | `022-alignment-folder-suggestion/goal.md` |
-| 023 | `023-reply-harness-blinded-judge/goal.md` |
-| 024 | `024-hallucination-grader/goal.md` |
-| 025 | `025-reviewer-verdict-fallback/goal.md` |
-| 026 | `026-completion-claim-audit/goal.md` |
-| 027 | `027-stop-second-rater/goal.md` |
-| 028 | `028-confirm-mode-stop-hint/goal.md` |
-| 029 | `029-p0-reread-order/goal.md` |
-| 030 | `030-fanout-merge-shadow-record/goal.md` |
-| 031 | `031-debug-next-check/goal.md` |
-| 032 | `032-citation-drift-scan/goal.md` |
-| 033 | `033-validator-residue-flagger/goal.md` |
-| 034 | `034-hvr-reader-needed-lens/goal.md` |
-| 035 | `035-fetched-text-injection-screen/goal.md` |
-| 036 | `036-sk-code-and-sk-doc-alignment/goal.md` |
-| 037 | `037-pi-native-classifier-transport/goal.md` |
-| 038 | `038-pi-classifier-transport-integration/goal.md` |
-| 039 | `039-hub-cleanup/goal.md` |
-| 040 | `040-hard-rules-sidecar/goal.md` |
-| 041 | `041-code-readmes-and-routing-alignment/goal.md` |
-| 042 | `042-label-drafting-and-confirmation/goal.md` |
-| 043 | `043-label-finding-fixes/goal.md` |
-| 044 | `044-deem-answer-shape-fix/goal.md` |
+| 1 | `001-deep-research/goal.md` |
+| 2 | `002-advisor-jev-tiebreak-arm/goal.md` |
+| 3 | `003-goal-verifier-jev-shadow/goal.md` |
+| 4 | `004-deep-research-expansion/goal.md` |
+| 5 | `005-compaction-recall-harness/goal.md` |
+| 6 | `006-goal-criteria-lint/goal.md` |
+| 7 | `007-classifier-deep-research/goal.md` |
+| 8 | `008-cli-classifier-hub/goal.md` |
+| 9 | `009-cli-jev-hub-move/goal.md` |
+| 10 | `010-trigger-index-search-fixes/goal.md` |
+| 11 | `011-spec-validator-fixes/goal.md` |
+| 12 | `012-sk-doc-validator-and-reference-fixes/goal.md` |
+| 13 | `013-sk-prompt-framework-docs/goal.md` |
+| 14 | `014-sk-design-doc-and-routing-check/goal.md` |
+| 15 | `015-fanout-merge-and-steering-fixes/goal.md` |
+| 16 | `016-deem-local-hardening/goal.md` |
+| 17 | `017-deem-search-narrowing-arm/goal.md` |
+| 18 | `018-worktree-provision-shared-link/goal.md` |
+| 19 | `019-advisor-suggested-order/goal.md` |
+| 20 | `020-routing-clarify-default/goal.md` |
+| 21 | `021-stage2-leaf-route-replay/goal.md` |
+| 22 | `022-alignment-folder-suggestion/goal.md` |
+| 23 | `023-reply-harness-blinded-judge/goal.md` |
+| 24 | `024-hallucination-grader/goal.md` |
+| 25 | `025-reviewer-verdict-fallback/goal.md` |
+| 26 | `026-completion-claim-audit/goal.md` |
+| 27 | `027-stop-second-rater/goal.md` |
+| 28 | `028-confirm-mode-stop-hint/goal.md` |
+| 29 | `029-p0-reread-order/goal.md` |
+| 30 | `030-fanout-merge-shadow-record/goal.md` |
+| 31 | `031-debug-next-check/goal.md` |
+| 32 | `032-citation-drift-scan/goal.md` |
+| 33 | `033-validator-residue-flagger/goal.md` |
+| 34 | `034-hvr-reader-needed-lens/goal.md` |
+| 35 | `035-fetched-text-injection-screen/goal.md` |
+| 36 | `036-sk-code-and-sk-doc-alignment/goal.md` |
+| 37 | `037-pi-native-classifier-transport/goal.md` |
+| 38 | `038-pi-classifier-transport-integration/goal.md` |
+| 39 | `039-hub-cleanup/goal.md` |
+| 40 | `040-hard-rules-sidecar/goal.md` |
+| 41 | `041-code-readmes-and-routing-alignment/goal.md` |
+| 42 | `042-label-drafting-and-confirmation/goal.md` |
+| 43 | `043-label-finding-fixes/goal.md` |
+| 44 | `044-deem-answer-shape-fix/goal.md` |
+| 45 | `045-deem-live-runs/goal.md` |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -113,11 +114,11 @@ Decisions outrank child goals.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 044 are Complete
+- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 045 are Complete
 - [x] 019 to 035 are Complete, each at its verdict line or label gate
 - [x] `validate_document.py` exits 0 on each changed skill doc
 - [x] No open P0 or P1, and no changed suite fails beyond its baseline
-- [x] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
+- [ ] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -263,4 +264,5 @@ and findings belong here.
 | 043 Complete, all criteria met (2026-10-01) | 043 shipped the three label-finding fixes and closed three DeepSeek V4.1 Flash review rounds (commits `55c33b363e` to `1f5d472ef7`, P2s in 043's log). Every child criterion 1 names reads Complete, and 042's acceptance status was corrected from In Progress to match its Met rows. `validate.sh --strict --recursive` printed `RESULT: PASSED` with 0 errors and 0 warnings on all 44 folders, and `check-goal.cjs` passed 5/5 on each. Nothing is pushed or merged |
 | Directive amendment: bind 044 (2026-10-02) | Source: the operator's "Fix", after the session found that `cli-deem` reads `noul` and `score` answers in shapes the local Deem server never sends, and that 027's and 026's scorers read judgment output above `answers.answer`. D3 now releases 019 to 044, the binding gains 044, and criteria 1 and 5 are open again until 044 closes. To fit 4,000 characters (`budget-and-handoff.md` section 3, steps 5 and 6): D3 drops "ones", D5 puts each CLI in brackets, the binding line reads "child goals", criterion 2 reads "each at its verdict line or label gate", criterion 3 "each changed skill doc" and criterion 4 "changed suite". `goal.cjs packet` reads 3,999, `packet_budget=ok` |
 | 044 Complete, all criteria met again (2026-10-02) | 044 fixed the answer-shape mismatches (commits `e783935de9` to `5d5eee4d67`, P2s in 044's log). `cli-deem` now gets a number from the local Deem server for `noul` and `score`, and 027's and 026's model arms read `answers.answer`. No scorer has yet measured a real answer: that needs the operator's yes for a live run. `validate.sh --strict --recursive` printed `RESULT: PASSED` with 0 errors and 0 warnings on all 45 folders, and `check-goal.cjs` passed 5/5 on each. Nothing is pushed or merged |
+| Directive amendment: bind 045 (2026-10-02) | Source: the operator's "Do all deem things needed / open". D3 now releases 019 to 045, the binding gains 045, and criteria 1 and 5 are open again until 045 closes. The new row put the slice 38 characters over 4,000. `check-goal.cjs` reads only a binding row's second cell, so the first cell, a display index, now reads `1` to `45` instead of `001` to `045`, which frees 54 characters with no wording cut. `goal.cjs packet` reads 3,984, `packet_budget=ok`. Every phase adds about 45 characters, so the next one may need the split `budget-and-handoff.md` section 3 names |
 <!-- /ANCHOR:log -->
