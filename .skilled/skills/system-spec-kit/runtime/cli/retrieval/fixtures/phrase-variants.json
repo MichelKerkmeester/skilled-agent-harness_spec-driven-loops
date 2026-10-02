@@ -1,5 +1,5 @@
 {
-  "manifestHash": "28c8845d6d8d3e2cd7ff155accbaa0f444cdf2cf2b6bbbe315ee699658d4388d",
+  "manifestHash": "6c0344fd7582f89d7247d6f9815da371d30c5ce4390b4bc316c110a744984d7c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10646,6 +10646,9 @@
     "append mode event cjs": [
       "append-mode-event.cjs"
     ],
+    "append mode event review iteration": [
+      "append-mode-event review iteration"
+    ],
     "append only council audit history": [
       "append-only council audit history"
     ],
@@ -11864,6 +11867,9 @@
     ],
     "authored packet byte identical": [
       "authored packet byte-identical"
+    ],
+    "authored routing manifest path": [
+      "authored routing manifest path"
     ],
     "authored write surface quality": [
       "authored write surface quality"
@@ -14352,6 +14358,9 @@
     "canon refactor tasks": [
       "canon refactor tasks"
     ],
+    "canonical bytes comparison fix": [
+      "canonical bytes comparison fix"
+    ],
     "canonical card cross link": [
       "canonical card cross-link"
     ],
@@ -16511,6 +16520,9 @@
     ],
     "checktriggerindexfreshness step eleven": [
       "checkTriggerIndexFreshness step eleven"
+    ],
+    "cherry pick commit id remint": [
+      "cherry-pick commit-id remint"
     ],
     "child changelog creation": [
       "child changelog creation"
@@ -22945,6 +22957,12 @@
     "commit id ordinal decision": [
       "commit-id ordinal decision"
     ],
+    "commit id rebase collision": [
+      "commit-id rebase collision"
+    ],
+    "commit id rebase copy": [
+      "commit-id rebase copy"
+    ],
     "commit id scheme": [
       "commit id scheme"
     ],
@@ -24815,6 +24833,12 @@
     ],
     "contract reconciliation tasks": [
       "contract reconciliation tasks"
+    ],
+    "contract regex backtracking": [
+      "contract regex backtracking"
+    ],
+    "contract regex backtracking fixed": [
+      "contract regex backtracking fixed"
     ],
     "contract set corpus shape": [
       "contract set corpus shape"
@@ -31735,6 +31759,9 @@
     "deep review iteration commit": [
       "deep-review iteration commit"
     ],
+    "deep review iteration recorded": [
+      "deep_review.iteration_recorded"
+    ],
     "deep review leaf agent": [
       "deep-review leaf agent"
     ],
@@ -32254,6 +32281,9 @@
     ],
     "deepseek direct ownership reclaim": [
       "deepseek direct ownership reclaim"
+    ],
+    "deepseek dispatch units": [
+      "deepseek dispatch units"
     ],
     "deepseek draft gpt review tasks": [
       "deepseek draft gpt review tasks"
@@ -37429,6 +37459,9 @@
     "env reference feedback flags": [
       "ENV_REFERENCE feedback flags"
     ],
+    "env reference hook switches": [
+      "env reference hook switches"
+    ],
     "env reference launcher flags": [
       "ENV_REFERENCE launcher flags"
     ],
@@ -37446,6 +37479,12 @@
     ],
     "env reference remediation tasks": [
       "ENV_REFERENCE remediation tasks"
+    ],
+    "env reference switch acceptance": [
+      "env reference switch acceptance"
+    ],
+    "env reference switch plan": [
+      "env reference switch plan"
     ],
     "env snapshot restore": [
       "env snapshot restore"
@@ -43089,6 +43128,12 @@
     "git hook fail open": [
       "git hook fail open"
     ],
+    "git hook fix plan": [
+      "git hook fix plan"
+    ],
+    "git hook fix tasks": [
+      "git hook fix tasks"
+    ],
     "git hook gate hardening": [
       "git hook gate hardening"
     ],
@@ -43100,6 +43145,27 @@
     ],
     "git hook reset local head": [
       "git hook reset local head"
+    ],
+    "git hook residual tasks": [
+      "git hook residual tasks"
+    ],
+    "git hook residuals acceptance": [
+      "git hook residuals acceptance"
+    ],
+    "git hook residuals plan": [
+      "git hook residuals plan"
+    ],
+    "git hook residuals summary": [
+      "git hook residuals summary"
+    ],
+    "git hook review fixes": [
+      "git hook review fixes"
+    ],
+    "git hook review fixes summary": [
+      "git hook review fixes summary"
+    ],
+    "git hook review residuals": [
+      "git hook review residuals"
     ],
     "git hook verification": [
       "git hook verification"
@@ -46387,6 +46453,21 @@
     "hook doc reconciliation": [
       "hook doc reconciliation"
     ],
+    "hook docs alignment": [
+      "hook docs alignment"
+    ],
+    "hook docs alignment acceptance": [
+      "hook docs alignment acceptance"
+    ],
+    "hook docs alignment plan": [
+      "hook docs alignment plan"
+    ],
+    "hook docs alignment summary": [
+      "hook docs alignment summary"
+    ],
+    "hook docs alignment tasks": [
+      "hook docs alignment tasks"
+    ],
     "hook docs relocation": [
       "hook docs relocation"
     ],
@@ -46602,6 +46683,12 @@
     ],
     "hook to projection integration contract": [
       "hook to projection integration contract"
+    ],
+    "hook trust block": [
+      "hook trust block"
+    ],
+    "hook trust block shipped": [
+      "hook trust block shipped"
     ],
     "hook usefulness validation": [
       "hook usefulness validation"
@@ -48751,6 +48838,9 @@
     ],
     "iteration record verification evidence": [
       "iteration record verification evidence"
+    ],
+    "iteration recorded stem plan": [
+      "iteration_recorded stem plan"
     ],
     "iteration state record contract": [
       "iteration state record contract"
@@ -67899,6 +67989,12 @@
     "pre push naming gate residue": [
       "pre-push naming gate residue"
     ],
+    "pre push range already on remote": [
+      "pre-push range already on remote"
+    ],
+    "pre push range fix": [
+      "pre-push range fix"
+    ],
     "pre push test failures": [
       "pre-push test failures"
     ],
@@ -75646,6 +75742,21 @@
     "review folders under spec tree root": [
       "review folders under spec-tree root"
     ],
+    "review gateway iteration acceptance": [
+      "review gateway iteration acceptance"
+    ],
+    "review gateway iteration plan": [
+      "review gateway iteration plan"
+    ],
+    "review gateway iteration record": [
+      "review gateway iteration record"
+    ],
+    "review gateway iteration summary": [
+      "review gateway iteration summary"
+    ],
+    "review gateway iteration tasks": [
+      "review gateway iteration tasks"
+    ],
     "review graph events": [
       "review graph events"
     ],
@@ -76999,6 +77110,21 @@
     ],
     "rules content relocation": [
       "rules content relocation"
+    ],
+    "rules probe parity acceptance": [
+      "rules probe parity acceptance"
+    ],
+    "rules probe parity plan": [
+      "rules probe parity plan"
+    ],
+    "rules probe parity shipped": [
+      "rules probe parity shipped"
+    ],
+    "rules probe parity tasks": [
+      "rules probe parity tasks"
+    ],
+    "rules probe validator parity": [
+      "rules probe validator parity"
     ],
     "rules rehome steps": [
       "rules rehome steps"
@@ -88949,6 +89075,9 @@
     "spec track classifier baseline": [
       "spec track classifier baseline"
     ],
+    "spec trailer containment": [
+      "spec trailer containment"
+    ],
     "spec trailer key": [
       "spec trailer key"
     ],
@@ -89804,6 +89933,9 @@
     ],
     "stage3 rerank flag gate": [
       "stage3-rerank flag gate"
+    ],
+    "staged blob read failure": [
+      "staged blob read failure"
     ],
     "staged deny pattern assertion": [
       "staged deny pattern assertion"
@@ -96048,6 +96180,9 @@
     "unreachable validation path deleted": [
       "unreachable validation path deleted"
     ],
+    "unrecognized event format review": [
+      "unrecognized event format review"
+    ],
     "unregister an obsidian vault": [
       "unregister an Obsidian vault"
     ],
@@ -96113,6 +96248,9 @@
     ],
     "untrusted output boundary source kind render escaper": [
       "untrusted output boundary source_kind render escaper"
+    ],
+    "untrusted repo hook source root": [
+      "untrusted repo hook source root"
     ],
     "unused mcp response type removed": [
       "unused mcp response type removed"
