@@ -89,22 +89,6 @@ function makeStubs(opts = {}) {
       ...choice,
       '  *) exit 2 ;;',
       'esac'
-    ].join('\n') + '\n',
-    'cli-deem': [
-      '#!/bin/sh',
-      `printf '%s %s\\n' "cli-deem" "$*" >> "$STUB_LOG"`,
-      'case "$1" in',
-      '  health)',
-      '    case "${STUB_HEALTH:-ok}" in',
-      '      ok) echo \'{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"mc1","source_commit":"sc1"}\' ;;',
-      '      stub) echo \'{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"mc1","source_commit":"sc1"}\' ;;',
-      '      down) echo \'{"error":"unreachable"}\' >&2; exit 4 ;;',
-      '      model) echo \'{"ok":true,"backend":"torch","model":"deem-9b-v1","model_commit":"mc1","source_commit":"sc1"}\' ;;',
-      '      bad) echo \'not json\' ;;',
-      '    esac ;;',
-      ...choice,
-      '  *) exit 2 ;;',
-      'esac'
     ].join('\n') + '\n'
   };
 
@@ -113,7 +97,7 @@ function makeStubs(opts = {}) {
     fs.writeFileSync(file, scripts[name]);
     fs.chmodSync(file, 0o755);
   };
-  write('cli-deem');
+
   if (opts.jev !== false) write('jev');
 
   return { dir, log };
@@ -374,46 +358,9 @@ test('scoreColumn counts measured, unstable and flips', () => {
 
   assert.deepEqual(counts, { K: 3, M: 2, A: 1, B: 1, W: 1, L: 1, F: 3, unstable: 1, abstained: 0 });
   assert.equal(
-    S.verdictLine('deem', counts, { outcome: 'stop', reason: 'coverage', p: 0.5 }, 'model=x'),
-    'verdict deem: stop (coverage) K=3 M=2 A=1 B=1 W=1 L=1 F=3 p=0.5000 model=x'
+    S.verdictLine('jev', counts, { outcome: 'stop', reason: 'coverage', p: 0.5 }, 'model=x'),
+    'verdict jev: stop (coverage) K=3 M=2 A=1 B=1 W=1 L=1 F=3 p=0.5000 model=x'
   );
-});
-
-test('--deem without --out exits 2 before any output', () => {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
-  try {
-    const file = writeRowsFile(dir, Array(30).fill('second'));
-    const result = runScript(['--score', file, '--deem']);
-
-    assert.equal(result.status, 2);
-    assert.equal(result.stdout, '');
-    assert.ok(result.stderr.includes('error: --jev and --deem need --out <dir>'));
-  } finally {
-    fs.rmSync(dir, { recursive: true, force: true });
-  }
-});
-
-test('a stub or unreachable deem backend skips the arm and leaves the rest byte-identical', () => {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
-  const stubs = makeStubs();
-  try {
-    const file = writeRowsFile(dir, Array(30).fill('second'));
-    const out = path.join(dir, 'out');
-    const base = runWithStubs(stubs, ['--score', file]);
-    assert.equal(base.status, 0);
-
-    const stub = runWithStubs(stubs, ['--score', file, '--deem', '--out', out], { STUB_HEALTH: 'stub' });
-    assert.equal(stub.status, 0);
-    assert.ok(stub.stdout.includes('deem arm skipped: stub backend'));
-    assert.equal(withoutLines(stub.stdout, ['deem arm skipped: stub backend']), base.stdout);
-
-    const down = runWithStubs(stubs, ['--score', file, '--deem', '--out', out], { STUB_HEALTH: 'down' });
-    assert.equal(down.status, 0);
-    assert.ok(down.stdout.includes('deem arm skipped: not reachable'));
-  } finally {
-    fs.rmSync(dir, { recursive: true, force: true });
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
 });
 
 test('a jev without a credential prints its identity and one skip line', () => {
@@ -458,115 +405,6 @@ test('jev off PATH and a wrong jev version each skip', () => {
   }
 });
 
-test('a deem stub that answers the label keeps', { timeout: 120000 }, () => {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
-  const stubs = makeStubs();
-  try {
-    const file = writeRowsFile(dir, Array(30).fill('second'));
-    const out = path.join(dir, 'out');
-    const result = runWithStubs(stubs, ['--score', file, '--deem', '--out', out]);
-
-    assert.equal(result.status, 0);
-    assert.ok(result.stdout.includes('deem: nothing leaves the machine planned_calls=90 est_wall_s=5.9'));
-    assert.ok(result.stdout.includes('verdict deem: keep K=30 M=30 A=30 B=0 W=30 L=0 F=0 p=9.313e-10 model=deem-0.8-v1 model_commit=mc1 source_commit=sc1'));
-    assert.equal(fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8').trim().split('\n').length, 90);
-    assert.equal(JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8')).columns.deem.outcome, 'keep');
-  } finally {
-    fs.rmSync(dir, { recursive: true, force: true });
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
-test('a deem stub that answers the first alternative stops on margin', { timeout: 120000 }, () => {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
-  const stubs = makeStubs();
-  try {
-    const file = writeRowsFile(dir, Array(30).fill('second'));
-    const result = runWithStubs(stubs, ['--score', file, '--deem', '--out', path.join(dir, 'out')], { STUB_PICK: 'first' });
-
-    assert.equal(result.status, 0);
-    assert.ok(result.stdout.includes('verdict deem: stop (margin) K=30 M=30 A=0 B=0 W=0 L=0 F=0'));
-  } finally {
-    fs.rmSync(dir, { recursive: true, force: true });
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
-test('a deem stub that loses to the baseline kills', { timeout: 120000 }, () => {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
-  const stubs = makeStubs();
-  try {
-    const rows = [];
-    for (let i = 0; i < 20; i += 1) {
-      rows.push({
-        id: 'r' + i,
-        hub: 'cli-external-orchestration',
-        source: 'canary',
-        prompt: 'row ' + i + ' pick=cli-codex first=cli-claude-code',
-        alternatives: ['cli-claude-code', 'cli-codex'],
-        gold: null,
-        label: 'cli-claude-code'
-      });
-    }
-    for (let i = 20; i < 30; i += 1) {
-      rows.push({
-        id: 'r' + i,
-        hub: 'cli-external-orchestration',
-        source: 'canary',
-        prompt: 'row ' + i + ' pick=cli-claude-code first=cli-claude-code',
-        alternatives: ['cli-claude-code', 'cli-codex'],
-        gold: null,
-        label: 'cli-codex'
-      });
-    }
-    const file = path.join(dir, 'rows.jsonl');
-    fs.writeFileSync(file, rows.map((row) => JSON.stringify(row)).join('\n') + '\n');
-
-    const result = runWithStubs(stubs, ['--score', file, '--deem', '--out', path.join(dir, 'out')]);
-
-    assert.equal(result.status, 0);
-    assert.ok(result.stdout.includes('verdict deem: kill K=30 M=30 A=0 B=20 W=0 L=20 F=0'));
-  } finally {
-    fs.rmSync(dir, { recursive: true, force: true });
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
-test('four failing deem calls in thirty rows stop on coverage', { timeout: 120000 }, () => {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
-  const stubs = makeStubs();
-  try {
-    const file = writeRowsFile(dir, Array(30).fill('second'));
-    const rows = fs.readFileSync(file, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
-    for (let i = 0; i < 4; i += 1) rows[i].prompt += ' fail';
-    fs.writeFileSync(file, rows.map((row) => JSON.stringify(row)).join('\n') + '\n');
-
-    const result = runWithStubs(stubs, ['--score', file, '--deem', '--out', path.join(dir, 'out')]);
-
-    assert.equal(result.status, 0);
-    assert.ok(result.stdout.includes('verdict deem: stop (coverage) K=30 M=26'));
-  } finally {
-    fs.rmSync(dir, { recursive: true, force: true });
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
-test('the label gate blocks the deem arm before any call', () => {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
-  const stubs = makeStubs();
-  try {
-    const file = writeRowsFile(dir, Array(29).fill('second'));
-    const result = runWithStubs(stubs, ['--score', file, '--deem', '--out', path.join(dir, 'out')]);
-
-    assert.equal(result.status, 0);
-    assert.ok(result.stdout.includes('stop: fewer than 30 labeled rows (29 labeled)'));
-    assert.ok(!fs.existsSync(stubs.log) || fs.readFileSync(stubs.log, 'utf8') === '');
-  } finally {
-    fs.rmSync(dir, { recursive: true, force: true });
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
 test('a jev stub that answers the label keeps', { timeout: 120000 }, () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   const stubs = makeStubs();
@@ -586,23 +424,6 @@ test('a jev stub that answers the label keeps', { timeout: 120000 }, () => {
   }
 });
 
-test('with both switches the jev verdict prints before the deem verdict', { timeout: 120000 }, () => {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
-  const stubs = makeStubs();
-  try {
-    const file = writeRowsFile(dir, Array(30).fill('second'));
-    const result = runWithStubs(stubs, ['--score', file, '--jev', '--deem', '--out', path.join(dir, 'out')]);
-
-    assert.equal(result.status, 0);
-    assert.ok(result.stdout.includes('verdict jev:'));
-    assert.ok(result.stdout.includes('verdict deem:'));
-    assert.ok(result.stdout.indexOf('verdict jev:') < result.stdout.indexOf('verdict deem:'));
-  } finally {
-    fs.rmSync(dir, { recursive: true, force: true });
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
 test('a rejected key stops the jev arm with no verdict', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   const stubs = makeStubs();
@@ -614,31 +435,6 @@ test('a rejected key stops the jev arm with no verdict', () => {
     assert.ok(result.stdout.includes('jev arm stopped: key rejected'));
     assert.ok(result.stdout.includes('jev: partial_rows=0'));
     assert.ok(!result.stdout.includes('verdict jev:'));
-  } finally {
-    fs.rmSync(dir, { recursive: true, force: true });
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
-test('a deem stub with another model or an unreadable health answer skips with a details line', () => {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
-  const stubs = makeStubs();
-  try {
-    const rows = writeRowsFile(dir, Array(30).fill('second'));
-    const base = runWithStubs(stubs, ['--score', rows]);
-    assert.equal(base.status, 0);
-
-    const model = runWithStubs(stubs, ['--score', rows, '--deem', '--out', path.join(dir, 'out-model')], { STUB_HEALTH: 'model' });
-    assert.equal(model.status, 0);
-    assert.ok(model.stdout.includes('deem arm skipped: model'));
-    assert.ok(model.stdout.includes('deem: found="deem-9b-v1"'));
-    assert.equal(withoutLines(model.stdout, ['deem arm skipped: model', 'deem: found="deem-9b-v1"']), base.stdout);
-
-    const bad = runWithStubs(stubs, ['--score', rows, '--deem', '--out', path.join(dir, 'out-bad')], { STUB_HEALTH: 'bad' });
-    assert.equal(bad.status, 0);
-    assert.ok(bad.stdout.includes('deem arm skipped: bad health response'));
-    assert.ok(bad.stdout.includes('deem: found="not json"'));
-    assert.equal(withoutLines(bad.stdout, ['deem arm skipped: bad health response', 'deem: found="not json"']), base.stdout);
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
     fs.rmSync(stubs.dir, { recursive: true, force: true });
