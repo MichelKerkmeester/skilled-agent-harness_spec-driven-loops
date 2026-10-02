@@ -39,16 +39,28 @@
       "testing"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
-      ".skilled/commands/doctor/assets/doctor-update.yaml",
-      ".skilled/commands/doctor/_routes.yaml"
+      "research/research.md",
+      "scratch/reality-check.md",
+      "scratch/doctor-run.log",
+      "scratch/design.md",
+      ".skilled/commands/doctor/scripts/release-update.cjs",
+      ".skilled/commands/doctor/update.md",
+      ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+      ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/README.txt"
     ],
     "entities": [
       {
@@ -82,21 +94,93 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "doctor-update.yaml",
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": "scratch/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/release-update.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-check.yaml",
         "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-update.yaml",
+        "path": ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-align.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
         "source": "derived"
       },
       {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
         "source": "derived"
       },
       {
@@ -122,84 +206,12 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "`/doctor:update` rebuilds the spec-kit runtime databases in dependency order",
+    "causal_summary": "`/doctor:update` was a database rebuild",
     "created_at": "2026-10-02T16:10:13Z",
-    "last_save_at": "2026-10-02T16:16:01.091Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-10-02T23:22:09.781Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -207,15 +219,19 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:62eb7fdaa5880df4aaa086e01e36e2ccc9bcfec4e934f5110c96d952e13c5e7e",
+    "source_fingerprint": "sha256:fdc7751cbd1e513f5006153d78e79b59a61ea21498b3c09b674445773558cdd6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b7d6b1757c090b96c7577353bcaeb9a43feb2a3e1c61cb56437f0302366b9ea8",
-      "plan.md": "3abc764b3b060a23040160a75e35149cbb7fa7b997ac2a61ca8a16acae8e3efc",
-      "tasks.md": "285282de6f796bc111d85c7979654ff1899408dd85389b3358f2aa85d007e50d",
-      "implementation-summary.md": "1c0c398c672948293095d824b0a337e1d9c0cde6fb8daa84afacbee643354b5f"
+      "spec.md": "82c12a2c2d97f802d1e00cb43a6d0a6831fb56856810418e2e09369d64bc8014",
+      "plan.md": "85277519f5fc3c032eb42fb7969a7255ab25ee37cb0502bfafd88139526d8efe",
+      "tasks.md": "28ca1e8b1f96931a481028624750ed5c66da458561872b0bf0e86c43ca249a14",
+      "decision-record.md": "d15f90ded7024ef2560253bbdfbfd78798068b80ef58fd3296714cb4e67ffaa1",
+      "implementation-summary.md": "2e128e20ae0ed24120e71127619aaca7340ab56278fa84eeadffaf9f0eccca0a",
+      "research/research.md": "d609708f8552bde5e29460b5dceee485eb41353ad26d490612ac2a59f6cb3e8b"
     },
     "last_active_at": null
   }

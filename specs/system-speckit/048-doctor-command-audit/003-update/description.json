@@ -11,13 +11,15 @@
     "dependency",
     "order"
   ],
-  "lastUpdated": "2026-10-02T16:13:28.631Z",
+  "lastUpdated": "2026-10-02T21:03:18.862Z",
   "specId": "003",
   "folderSlug": "update",
   "parentChain": [
     "system-speckit",
     "048-doctor-command-audit"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-10-26_22-03__deep-research-10-iterations-cli-pi-opencode-go.md"
+  ]
 }
