@@ -116,7 +116,7 @@ CONTRACT_GATE_BROKEN=""
 if [[ -f "$HOOK_DIR/lib/message-contract-gate.sh" ]]; then
   # shellcheck source=lib/message-contract-gate.sh
   . "$HOOK_DIR/lib/message-contract-gate.sh"
-  CONTRACT_VALIDATOR="$(mcg_validator_path "$HOOK_DIR")"
+  CONTRACT_VALIDATOR="$(mcg_validator_path "$HOOK_DIR" "$REPO_ROOT")"
   _unavailable="$(mcg_unavailable_reason "$CONTRACT_VALIDATOR")"
   if [[ -z "$_unavailable" ]]; then
     CONTRACT_GATE_READY=1

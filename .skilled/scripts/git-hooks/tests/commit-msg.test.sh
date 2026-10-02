@@ -458,6 +458,35 @@ else
   FAIL=$((FAIL + 1))
 fi
 
+# ── a linked worktree of the hook's repository uses its own validator ────────
+# The global hooks live in one checkout, so a worktree that adds a rule would
+# otherwise be judged by the checkout's older validator. A foreign repository
+# that ships a validator at the same path must never have it run.
+HOOKREPO="$TMP-hookrepo"; WT="$TMP-worktree"; FOREIGN="$TMP-foreign"
+rm -rf "$HOOKREPO" "$WT" "$FOREIGN"
+mkdir -p "$HOOKREPO/.skilled/scripts" "$HOOKREPO/.skilled/skills/sk-git"
+cp -R "$REPO_ROOT/.skilled/scripts/git-hooks" "$HOOKREPO/.skilled/scripts/"
+cp -R "$REPO_ROOT/.skilled/skills/sk-git/scripts" "$HOOKREPO/.skilled/skills/sk-git/"
+git -C "$HOOKREPO" init -q
+git -C "$HOOKREPO" -c user.email=t@example.com -c user.name=test add -A
+git -C "$HOOKREPO" -c user.email=t@example.com -c user.name=test -c core.hooksPath=/dev/null commit -qm "chore(sk-git): seed the hook repository"
+git -C "$HOOKREPO" worktree add -q "$WT" -b fixture-worktree
+STUB='console.log("LOCAL VALIDATOR RAN"); process.exit(0);'
+printf '%s\n' "$STUB" > "$WT/.skilled/skills/sk-git/scripts/validate-message.mjs"
+mkdir -p "$FOREIGN/.skilled/skills/sk-git/scripts"
+git -C "$FOREIGN" init -q
+printf '%s\n' "$STUB" > "$FOREIGN/.skilled/skills/sk-git/scripts/validate-message.mjs"
+printf 'feat(sk-git): add a thing\n\nWhy it changed.\n' > "$TMP/message.txt"
+( cd "$WT" && bash "$HOOKREPO/.skilled/scripts/git-hooks/commit-msg" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
+check "a linked worktree of the hook's repository runs its own validator" 0 "$RC" "LOCAL VALIDATOR RAN"
+( cd "$FOREIGN" && bash "$HOOKREPO/.skilled/scripts/git-hooks/commit-msg" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
+if grep -q "LOCAL VALIDATOR RAN" "$TMP/out.log"; then
+  echo "FAIL  a foreign repository's validator ran"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  a foreign repository's validator never runs"; PASS=$((PASS + 1))
+fi
+rm -rf "$HOOKREPO" "$WT" "$FOREIGN"
+
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"
 [[ "$FAIL" -eq 0 ]]
