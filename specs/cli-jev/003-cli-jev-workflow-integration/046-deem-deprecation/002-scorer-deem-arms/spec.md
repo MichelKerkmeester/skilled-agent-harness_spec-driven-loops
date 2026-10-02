@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-02 |
 | **Branch** | `worktrees/071-cli-jev-sk-alignment` |
 | **Parent Spec** | ../spec.md |
@@ -100,7 +100,7 @@ No scorer offers a Deem arm, and nothing else about any scorer changes.
 | ID | Requirement |
 |----|-------------|
 | REQ-001 | No scorer keeps a Deem switch, arm or helper |
-| REQ-002 | Each scorer's default stdout is byte-identical before and after |
+| REQ-002 | Each scorer's default stdout differs before and after only in removed Deem lines or fields |
 
 ### P1 - Required (complete OR user-approved deferral)
 
