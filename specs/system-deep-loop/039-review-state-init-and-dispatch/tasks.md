@@ -58,6 +58,7 @@ contextType: "implementation"
 - [x] T008 End-to-end test of each shipped init step followed by the worker's own iteration record through the gateway (deep-review-run-open.vitest.ts) [EVIDENCE: 3/3 pass; the projected row equals the record]
 - [x] T009 Control case: a directly written config row still fails projection [EVIDENCE: same test]
 - [x] T010 Full deep-loop suite after the rebase onto 038, compared with the main baseline [EVIDENCE: 2855 passed, 5 failed, all 5 in check-contract-drift and render-command-contract, which fail identically on main; typecheck exit 0]
+- [x] T011 Recompile the stale deep/ai-council, deep/research and deep/review contracts so the drift and render tests pass (compiled/*.contract.md) [EVIDENCE: compile-command-contracts.cjs --write per command changed only recorded source digests; check-contract-drift.cjs OK commands=3; deep-loop suite 2872 passed, 0 failed]
 <!-- /ANCHOR:phase-3 -->
 
 ---

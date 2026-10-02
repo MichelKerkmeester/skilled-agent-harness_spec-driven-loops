@@ -98,6 +98,7 @@ The preamble change shipped from worktree 080. The review fix was built in workt
 | `deep-review-run-open.vitest.ts` | PASS 3/3: both shipped init steps, then the worker's iteration record, exit 0 and the row equals the record; control case still exits 2 |
 | Deep-loop runtime suite after the rebase | 2855 passed, 5 failed; the 5 are check-contract-drift and render-command-contract, which fail identically on main |
 | Runtime typecheck | exit 0 |
+| Stale compiled contracts recompiled | Only recorded source digests changed in the three compiled contracts; `check-contract-drift.cjs` reports OK for 3 commands; the deep-loop suite then runs 2872 passed, 0 failed, so the `deep-loop-runtime.yml` CI workflow that failed on main can pass |
 | Updated tests | The stop-policy and confirm-parity checks read the config file and the run-open event instead of the removed flat row; the census test counts 69 registered, 14 spoken, 55 reserved |
 | `check-ledger-stem-producers.cjs` | exit 0, `run_initialized` spoken by both workflows |
 | `validate_document.py` on the preamble | Same single pre-existing error as main (no overview section) |
