@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c44666216d18f11a71cbaf37dff90e17b9fb56e14ac2c0c731a27f873d884eff",
+  "manifestHash": "0be5136dd32ef3d54c3928229d6a66a45bdc2aa748e0bc28b50b58de8752169d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -18156,6 +18156,9 @@
     "cli deem 0 1 1 0": [
       "cli-deem 0.1.1.0"
     ],
+    "cli deem 0 1 2 0": [
+      "cli-deem 0.1.2.0"
+    ],
     "cli deem build result": [
       "cli-deem build result"
     ],
@@ -18196,6 +18199,9 @@
     "cli deem noul": [
       "cli-deem noul"
     ],
+    "cli deem noul value": [
+      "cli-deem noul value"
+    ],
     "cli deem playbook": [
       "cli-deem playbook"
     ],
@@ -18226,11 +18232,20 @@
     "cli deem testing playbook": [
       "cli deem testing playbook"
     ],
+    "cli deem translate fix plan": [
+      "cli-deem translate fix plan"
+    ],
+    "cli deem translate fix tasks": [
+      "cli-deem translate fix tasks"
+    ],
     "cli deem v0 1 0 0": [
       "cli-deem v0.1.0.0"
     ],
     "cli deem v0 1 1 0": [
       "cli-deem v0.1.1.0"
+    ],
+    "cli deem v0 1 2 0": [
+      "cli-deem v0.1.2.0"
     ],
     "cli deem verification tasks": [
       "cli-deem verification tasks"
@@ -28448,6 +28463,18 @@
     "deem answer fields": [
       "deem answer fields"
     ],
+    "deem answer shape": [
+      "deem answer shape"
+    ],
+    "deem answer shape fix": [
+      "deem answer shape fix"
+    ],
+    "deem answer shape plan": [
+      "deem answer shape plan"
+    ],
+    "deem answer shape tasks": [
+      "deem answer shape tasks"
+    ],
     "deem availability": [
       "deem availability"
     ],
@@ -28562,6 +28589,9 @@
     "deem node client": [
       "deem node client"
     ],
+    "deem noul score passthrough": [
+      "deem noul score passthrough"
+    ],
     "deem option cap": [
       "deem option cap"
     ],
@@ -28600,6 +28630,15 @@
     ],
     "deem routing control": [
       "deem routing control"
+    ],
+    "deem score level": [
+      "deem score level"
+    ],
+    "deem score shape plan": [
+      "deem score shape plan"
+    ],
+    "deem score shape tasks": [
+      "deem score shape tasks"
     ],
     "deem search narrowing arm": [
       "deem search narrowing arm"
@@ -49480,6 +49519,15 @@
     ],
     "judge module tasks": [
       "judge module tasks"
+    ],
+    "judgment envelope depth": [
+      "judgment envelope depth"
+    ],
+    "judgment envelope depth plan": [
+      "judgment envelope depth plan"
+    ],
+    "judgment envelope depth tasks": [
+      "judgment envelope depth tasks"
     ],
     "judgment transport": [
       "judgment transport"
