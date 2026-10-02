@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/045-deem-live-runs",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/045-deem-live-runs",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deem live runs",
+      "deem arm results",
+      "local deem measurement",
+      "cli-deem open findings",
+      "deem live runs plan",
+      "deem arm results plan",
+      "local deem measurement plan",
+      "cli-deem findings plan",
+      "deem live runs tasks",
+      "deem arm results tasks",
+      "local deem measurement tasks",
+      "cli-deem findings tasks"
+    ],
+    "key_topics": [
+      "deem",
+      "live",
+      "runs",
+      "arm",
+      "results",
+      "local",
+      "measurement",
+      "cli-deem",
+      "open",
+      "findings",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
+      ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
+      "build/fix/045a.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-deem.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-deem.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "045a.md",
+        "kind": "doc",
+        "path": "build/fix/045a.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Until phase 044 every `noul` and `score` call through `cli-deem` exited 1, so no scorer's Deem arm has a measured result, and the one local run of 006's arm failed all 196 calls",
+    "created_at": "2026-10-02T07:13:43Z",
+    "last_save_at": "2026-10-02T07:18:56.910Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:75e8dbaced17b11729ea84693a345a5c3f00c2d2ba243aae4d9435e0c2d41536",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f79b8228d5338014562bc29fd8d72b3bb5f11a4b7e97bbc0d2c9fae58fa81455",
+      "plan.md": "3c7d2ac042fa10d89a586d7a052894855612705b97ac23826015ce7507d3a974",
+      "tasks.md": "775fd658377356ac6933f8fc58718ac65b94205a345f33f985596b21c70c5dc4",
+      "implementation-summary.md": "682b0c9b939c447213bb34f7458dca8cc28ce6b50e0cb3796bcac3202be43742"
+    },
+    "last_active_at": null
+  }
+}
