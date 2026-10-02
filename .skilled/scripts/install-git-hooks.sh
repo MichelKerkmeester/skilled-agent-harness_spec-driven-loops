@@ -185,6 +185,7 @@ done
 echo ""
 echo "Hooks installed. Test: 'git commit --allow-empty -m \"chore(repo): test hook installation\" -m \"Check that the installed hooks run.\"' should run silently unless a gate has something to report."
 echo "Commit-message, PR and branch rules come from this repository's sk-git templates and have no bypass; --status shows which apply."
+echo "Other clones run their own hook scripts only after 'git config --local skilled.trustRepoHooks true'; 'git -c' and GIT_CONFIG_* do not grant trust."
 echo "Bypass routing re-mint: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..."
 echo "Note: the target is resolved by Git (git rev-parse --git-path hooks), so a"
 echo "repo-local or global core.hooksPath override, and per-worktree hook dirs in"

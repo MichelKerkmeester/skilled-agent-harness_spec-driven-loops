@@ -94,10 +94,16 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; t
   # path with spaces or non-ASCII bytes is checked rather than skipped, and every file
   # goes to one checker run, which reports each finding as <path>:<line>.
   HYGIENE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/comment-hygiene.XXXXXX")"
+  trap 'rm -rf "$HYGIENE_DIR"' EXIT
   HYGIENE_FILES=()
   while IFS= read -r -d '' file; do
     mkdir -p "$HYGIENE_DIR/$(dirname "$file")"
-    git show ":$file" > "$HYGIENE_DIR/$file" 2>/dev/null || continue
+    if ! git show ":$file" > "$HYGIENE_DIR/$file" 2>/dev/null; then
+      # A submodule entry has no blob to read. Any other unreadable file must not pass unchecked.
+      [[ "$(git ls-files -s -- "$file" | cut -c1-6)" == "160000" ]] && continue
+      echo "BLOCKED [gate:comment-hygiene]: could not read the staged content of $file" >&2
+      exit 1
+    fi
     HYGIENE_FILES+=("$file")
   done < <(git diff --cached --name-only -z --diff-filter=ACM)
   CHECKER_OUTPUT=""
