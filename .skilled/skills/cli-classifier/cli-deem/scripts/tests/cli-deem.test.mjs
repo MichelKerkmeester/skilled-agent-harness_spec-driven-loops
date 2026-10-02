@@ -944,6 +944,35 @@ test('run passes through real noul and score answer shapes', { timeout: 20000 },
   }
 });
 
+test('run bounds a score by its criteria list, the field the server reads first', { timeout: 20000 }, async () => {
+  const answer = {
+    type: 'score',
+    score: 1.4853757273262016,
+    legend: { 0: 'no user impact', 1: 'degraded', 2: 'outage' },
+    probabilities: { 0: 0.164, 1: 0.186, 2: 0.65 },
+  };
+  const fake = await startFake((_req, res) => {
+    replyJson(res, 200, { model: 'deem-0.8-v1', answers: { sev: answer } });
+  });
+  try {
+    const result = await runCli(
+      ['run', '-'],
+      {
+        url: fake.url,
+        home: os.tmpdir(),
+        input: JSON.stringify({
+          state: 's',
+          questions: { sev: { type: 'score', instructions: 'How severe?', criteria: ['no user impact', 'degraded', 'outage'] } },
+        }),
+      },
+    );
+    assert.equal(result.code, 0, result.stderr);
+    assert.deepEqual(JSON.parse(result.stdout).answers.sev, JSON.parse(JSON.stringify(answer)));
+  } finally {
+    await fake.close();
+  }
+});
+
 test('run rejects --value before any request', { timeout: 20000 }, async () => {
   const fake = await startFake((_req, res) => {
     replyJson(res, 200, { model: 'deem-0.8-v1', answers: {} });
