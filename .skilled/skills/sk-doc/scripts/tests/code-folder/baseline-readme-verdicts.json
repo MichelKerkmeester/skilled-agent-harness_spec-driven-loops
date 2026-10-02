@@ -1,5 +1,5 @@
 {
-  "count": 1116,
+  "count": 1121,
   "mode": "readme",
   "results": [
     {
@@ -690,6 +690,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/benchmark/injection-screen/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -700,7 +710,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/cli-classifier/benchmark/reports/README.md",
+      "file": ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -710,7 +720,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/cli-classifier/cli-deem/README.md",
+      "file": ".skilled/skills/cli-classifier/benchmark/reports/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -751,6 +761,26 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/cli-classifier/shared/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/shared/scripts/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/cli-classifier/shared/scripts/tests/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -6777,6 +6807,16 @@
     {
       "auto_fixable_count": 0,
       "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
       "document_type": "unknown",
       "file": ".skilled/skills/sk-doc/sk-create-goal/scripts/tests/fixtures/README.md",
       "return_code": 0,
@@ -6970,6 +7010,16 @@
           "type": "non_sequential_numbering"
         }
       ]
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
     },
     {
       "auto_fixable_count": 0,
