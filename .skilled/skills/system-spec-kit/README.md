@@ -307,7 +307,7 @@ clean no-hit.
 
 `runtime/cli/retrieval/score-track-narrowing.mjs` measures offline whether a classifier that names
 the spec track would beat those two lanes. Its default run makes no model call and writes no file;
-`--deem` and `--jev` each add a model column behind that backend's own check. It changes no lookup,
+`--jev` adds a model column behind that backend's own check. It changes no lookup,
 index or recipe.
 
 `runtime/scripts/compaction-recall/score-compaction-recall.mjs` measures what a host compaction
@@ -319,12 +319,12 @@ changes no hook, setting or transcript.
 `runtime/cli/evals/score-alignment-suggestion.ts` measures offline whether a classifier picking one
 of the folders the validator lists when a save scores below 50 would beat the plain baseline. Its
 default run makes no model call and changes no save. `--score` runs alone and stops at the label
-gate: with fewer than 30 labeled rows it prints one stop line and exits 0. `--jev` and `--deem`
-each add a verdict column behind that backend's own check.
+gate: with fewer than 30 labeled rows it prints one stop line and exits 0. `--jev` adds
+a verdict column behind that backend's own check.
 
 `runtime/scripts/completion-claim-audit/score-completion-claims.mjs` scores the completion-claim
 detector against operator-labeled turns. Its default run makes no model call and writes no file.
-`--deem` and `--jev` each run that backend's arm behind its own check, and the Jev arm needs
+`--jev` runs that backend's arm behind its own check, and the Jev arm needs
 `--accept-payload` because its payload is the operator's session text.
 
 `runtime/scripts/debug-next-check/score-debug-next-check.mjs` measures offline whether a model
@@ -332,7 +332,7 @@ choice of the cheapest next check for a debug hypothesis beats the best constant
 operator-labeled rows. Its default run makes no model call and writes no file. With `--fixture`
 the run stops at the label gate: with fewer than 30 labeled rows it prints one stop line and
 exits 0. Behind the payload gate only rows marked `jev_ok` may leave the machine, and the Jev arm
-skips when none is marked. `--jev` and `--deem` each add a verdict column behind that backend's
+skips when none is marked. `--jev` adds a verdict column behind that backend's
 own check. It changes no debug step.
 
 ---

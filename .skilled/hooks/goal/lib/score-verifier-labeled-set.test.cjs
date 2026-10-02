@@ -4,7 +4,7 @@
 // ║ PURPOSE: Unit coverage for the row loader, label and verdict             ║
 // ║          normalization, reason categories and the report and decision    ║
 // ║          lines, plus CLI coverage that spawns the scorer on synthetic    ║
-// ║          sets in temp dirs with stub jev and cli-deem binaries on PATH.  ║
+// ║          sets in temp dirs with a stub jev binary on PATH.                   ║
 // ║          No test reads a real session.                                   ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
@@ -208,9 +208,9 @@ test('main rejects flags it does not own', () => {
     const jev = run(['--set', file, '--jev']);
     assert.equal(jev.status, 2);
     assert.ok(jev.stderr.includes('error: unknown flag --jev'));
-    const deem = run(['--set', file, '--deem']);
-    assert.equal(deem.status, 2);
-    assert.ok(deem.stderr.includes('error: unknown flag --deem'));
+    const bogus = run(['--set', file, '--bogus']);
+    assert.equal(bogus.status, 2);
+    assert.ok(bogus.stderr.includes('error: unknown flag --bogus'));
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
   }
@@ -222,7 +222,7 @@ test('main scores the set through the plugin arms and writes the zero-call repor
   const out = path.join(dir, 'out');
   try {
     fs.mkdirSync(stub);
-    for (const name of ['jev', 'cli-deem']) {
+    for (const name of ['jev']) {
       fs.writeFileSync(
         path.join(stub, name),
         `#!/bin/sh\necho "$*" >> "$(dirname "$0")/${name}.log"\n`,
@@ -253,7 +253,6 @@ test('main scores the set through the plugin arms and writes the zero-call repor
       ) > -1,
     );
     assert.equal(fs.existsSync(path.join(stub, 'jev.log')), false);
-    assert.equal(fs.existsSync(path.join(stub, 'cli-deem.log')), false);
     assert.equal(fs.readFileSync(path.join(out, 'zero-call-report.txt'), 'utf8'), result.stdout);
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
@@ -308,7 +307,6 @@ test('gate lines when a miss survives both the tail window and the wrapper rule'
   assert.deepEqual(scorer.decisionLines(rows, results), [
     'better: arm=heuristic false_met=0 false_not_met_rate=0.20',
     'gate: tail_window leaves 2 false not_met rows outside the wrapper rule',
-    'gate: deem arm condition holds',
     'gate: jev arm also needs the three redaction cases and a recorded per-call latency, checked by hand',
   ]);
 });
