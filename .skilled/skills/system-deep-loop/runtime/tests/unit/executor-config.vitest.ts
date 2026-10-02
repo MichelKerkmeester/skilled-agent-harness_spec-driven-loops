@@ -956,8 +956,9 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
 });
 
 describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
-  it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash and GLM variants and the DevPass GLM-5.3-Flash literal', () => {
+  it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash and GLM variants, the DevPass GLM-5.3-Flash literal, and the provider-qualified DeepSeek routes for opencode-go and Cline', () => {
     expect([...PI_SUPPORTED_MODELS].sort()).toEqual([
+      'cline-pass/deepseek-v4.1-flash',
       'deepseek-v4.1-flash',
       'deepseek/deepseek-v4-flash-vision-exp',
       'glm-5.3-flash',
@@ -966,6 +967,7 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
       'mimo-v2.6-flash',
       'mimo-v2.6-pro',
       'minimax-m3',
+      'opencode-go/deepseek-v4.1-flash',
       'qwen3.8-max',
       'z-ai/glm-5.3-flash',
     ]);
@@ -1058,6 +1060,10 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
     expect(pinReasoningEffortForModel('deepseek-v4-flash', null)).toBe('max');
     expect(pinReasoningEffortForModel('deepseek-v4-flash', undefined)).toBe('max');
     expect(pinReasoningEffortForModel('deepseek/deepseek-v4-flash-latest', 'low')).toBe('max');
+    // Cline serves DeepSeek V4.1 Flash with no max tier, so its provider-qualified literal pins
+    // to xhigh while the opencode-go literal of the same model still pins to its max tier.
+    expect(pinReasoningEffortForModel('cline-pass/deepseek-v4.1-flash', 'low')).toBe('xhigh');
+    expect(pinReasoningEffortForModel('opencode-go/deepseek-v4.1-flash', 'low')).toBe('max');
     expect(pinReasoningEffortForModel('minimax-m3', 'high')).toBe('high');
     expect(pinReasoningEffortForModel('minimax-m3', null)).toBe(null);
   });

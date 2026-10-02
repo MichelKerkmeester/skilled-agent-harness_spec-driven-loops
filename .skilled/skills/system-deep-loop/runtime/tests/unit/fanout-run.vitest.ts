@@ -1881,8 +1881,11 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const providerByModel: Record<string, string> = {
       // DevPass routes DeepSeek Flash under its bare literal → llmgateway/deepseek-v4.1-flash;
-      // opencode-go fronts DeepSeek Flash too but is direct-dispatch only.
+      // opencode-go and Cline front the same model through their own provider-qualified
+      // literals, each of which carries an exact selector rather than composing one.
       'deepseek-v4.1-flash': 'llmgateway',
+      'opencode-go/deepseek-v4.1-flash': 'opencode-go',
+      'cline-pass/deepseek-v4.1-flash': 'cline-pass',
       'minimax-m3': 'minimax',
       'gpt-6-luna': 'openai-codex',
       'gpt-6-sol': 'openai-codex',
@@ -1899,6 +1902,12 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       // literal maps to one provider, so that route is direct-dispatch only.
       'glm-5.3-flash': 'llmgateway',
     };
+    // A provider-qualified literal already names its route, so its dispatch selector is the
+    // exact id Pi lists for that provider instead of `${provider}/${model}`.
+    const selectorByModel: Record<string, string> = {
+      'opencode-go/deepseek-v4.1-flash': 'opencode-go/deepseek-v4.1-flash',
+      'cline-pass/deepseek-v4.1-flash': 'cline-pass/cline-pass/deepseek-v4.1-flash',
+    };
     for (const [model, provider] of Object.entries(providerByModel)) {
       const command = buildLineageCommand(
         { kind: 'cli-pi', model },
@@ -1910,14 +1919,40 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       expect(command.command).toBe('pi');
       // DeepSeek Flash (the bare 4.1 literal, provider-prefixed, or the -latest / -vision-exp
       // variants) and GLM-5.3-Flash (bare opencode-go or vendor-prefixed OpenRouter literal) are
-      // pinned to the max thinking tier, so they always carry --thinking max even when the lineage
-      // names no reasoningEffort; the other picker ids carry no --thinking here.
+      // pinned to their route's top thinking tier, so they always carry --thinking even when the
+      // lineage names no reasoningEffort; Cline has no max tier and tops out at xhigh, so its
+      // provider-qualified literal pins there instead. The other picker ids carry no --thinking here.
       const isFlashPinned = /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|deepseek-v4\.1-flash|glm-5\.3-flash)$/.test(model);
+      const modelSelector = selectorByModel[model] ?? `${provider}/${model}`;
+      const pinnedThinking = model.startsWith('cline-pass/') ? 'xhigh' : 'max';
       const expectedArgs = isFlashPinned
-        ? ['-p', '--offline', '--model', `${provider}/${model}`, '--thinking', 'max', 'bounded prompt']
-        : ['-p', '--offline', '--model', `${provider}/${model}`, 'bounded prompt'];
+        ? ['-p', '--offline', '--model', modelSelector, '--thinking', pinnedThinking, 'bounded prompt']
+        : ['-p', '--offline', '--model', modelSelector, 'bounded prompt'];
       expect(command.args).toEqual(expectedArgs);
       expect(command.effectiveConfig.model).toBe(model);
+    }
+  });
+
+  it('dispatches the provider-qualified DeepSeek routes through their exact Pi selectors, each at its own top tier', () => {
+    const binDir = makeTempDir('fanout-run-pi-qualified-selector-');
+    writeStubBinary(binDir, 'pi');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    // opencode-go lists the model bare; Cline lists it under a cline-pass/ id, which gives the
+    // three-segment selector. Each route pins to its own top tier: opencode-go carries max,
+    // while Cline serves no max tier and tops out at xhigh.
+    const selectorByModel: Record<string, { selector: string; thinking: string }> = {
+      'opencode-go/deepseek-v4.1-flash': { selector: 'opencode-go/deepseek-v4.1-flash', thinking: 'max' },
+      'cline-pass/deepseek-v4.1-flash': { selector: 'cline-pass/cline-pass/deepseek-v4.1-flash', thinking: 'xhigh' },
+    };
+    for (const [model, { selector, thinking }] of Object.entries(selectorByModel)) {
+      const command = buildLineageCommand(
+        { kind: 'cli-pi', model },
+        'bounded prompt',
+        'workspace-write',
+        'default',
+        opts,
+      ) as { args: string[] };
+      expect(command.args).toEqual(['-p', '--offline', '--model', selector, '--thinking', thinking, 'bounded prompt']);
     }
   });
 
