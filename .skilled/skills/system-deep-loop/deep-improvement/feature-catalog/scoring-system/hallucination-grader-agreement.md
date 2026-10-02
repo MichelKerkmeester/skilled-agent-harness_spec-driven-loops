@@ -1,6 +1,6 @@
 ---
 title: "Hallucination grader agreement"
-description: "Measures offline how well the deterministic hallucination check and a Deem or Jev grader agree with operator labels on benchmark outputs."
+description: "Measures offline how well the deterministic hallucination check and a Jev grader agree with operator labels on benchmark outputs."
 trigger_phrases:
   - "hallucination grader agreement"
   - "score-d4-agreement.cjs"
@@ -15,7 +15,7 @@ version: 1.18.0.0
 
 ## 1. OVERVIEW
 
-Measures offline how well the deterministic hallucination check and a Deem or Jev grader agree with operator labels on benchmark outputs.
+Measures offline how well the deterministic hallucination check and a Jev grader agree with operator labels on benchmark outputs.
 
 The 5-dimension scorer takes D4, the hallucination dimension, from its grader, and the runner's default `noop` grader returns a fixed 1.0. This script tests whether any grader earns that slot before one is wired in. It never changes a benchmark score, and by default it makes no model call and writes no file.
 
@@ -31,13 +31,13 @@ It then runs the unchanged `deterministic/hallucination-flag.cjs` on each labele
 
 ### Label Gate and Keep Rule
 
-The script prints the question every grader answers, the 0.10 margin, the keep rule and the power note, so a verdict can be rechecked by hand. Below 30 labeled outputs, or below 5 in either class, it prints a `stop:` line and asks no grader a question. When the baseline is already right on more than 90 percent of the labels it prints `no headroom`. Otherwise it prints the planned calls for each arm.
+The script prints the question every grader answers, the 0.10 margin, the keep rule and the power note, so a verdict can be rechecked by hand. Below 30 labeled outputs, or below 5 in either class, it prints a `stop:` line and asks no grader a question. When the baseline is already right on more than 90 percent of the labels it prints `no headroom`. Otherwise it prints the planned calls for the Jev arm.
 
-### Deem and Jev Arms
+### Jev Arm
 
-`--deem` checks `cli-deem health`, then asks the local Deem server one `noul` question per labeled output, so nothing leaves the machine. `--jev` checks the Jev client's version and credential, then asks each question three times so unstable answers count as flips. It sends the outputs and the fixture task text off the machine, so an untracked output also needs `--accept-payload`.
+`--jev` checks the Jev client's version and credential, then asks each question three times so unstable answers count as flips. It sends the outputs and the fixture task text off the machine, so an untracked output also needs `--accept-payload`.
 
-Each switch needs `--out <dir>`. It prints the planned calls before the first one, records every call in `calls.jsonl` and writes `report.json`. A failed check or a closed label gate prints a `<backend> arm skipped:` line instead. A finished arm prints one `verdict <backend>:` line with `keep`, `kill` or `stop` and its reason. An answer that is not a number from 0 to 1 counts as unmeasured and never as a score.
+`--jev` needs `--out <dir>`. It prints the planned calls before the first one, records every call in `calls.jsonl` and writes `report.json`. A failed check or a closed label gate prints a `jev arm skipped:` line instead. A finished arm prints one `verdict jev:` line with `keep`, `kill` or `stop` and its reason. An answer that is not a number from 0 to 1 counts as unmeasured and never as a score.
 
 ---
 
@@ -47,14 +47,14 @@ Each switch needs `--out <dir>`. It prints the planned calls before the first on
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs` | Script | Runs the census, the deterministic baseline, the label gate and the opt-in Deem and Jev arms. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs` | Script | Runs the census, the deterministic baseline, the label gate and the opt-in Jev arm. |
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/deterministic/hallucination-flag.cjs` | Script | The unchanged deterministic check behind the baseline. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts` | Vitest | Covers the census, labels, baseline, keep rule, both gates and both arms against stub `cli-deem` and `jev` binaries. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts` | Vitest | Covers the census, labels, baseline, keep rule, the label gate and the Jev arm against a stub `jev` binary. |
 | `.skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/five-d-scorer/unknown-grader-and-d4-census.md` | Manual playbook | Checks the unknown-grader exit, the zero-call census and a stub-backend skip. |
 
 ---
