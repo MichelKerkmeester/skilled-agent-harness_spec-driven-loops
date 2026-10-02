@@ -856,6 +856,81 @@ describe('gateway-recorded rows survive a later projection refresh', () => {
     expect(rows.filter((row) => row.event === 'run_now_accepted')).toHaveLength(1);
     expect(rows.some((row) => row.event === 'question_registered')).toBe(true);
   });
+
+  it('records a bare review iteration record and projects it back unchanged', () => {
+    const runDir = createTempDir('review-iteration-record');
+    const reviewStatePath = join(runDir, 'review', 'deep-review-state.jsonl');
+    const record = {
+      type: 'iteration',
+      iteration: 1,
+      mode: 'review',
+      target_agent: 'deep-review',
+      agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=review target_agent=deep-review',
+      run: 1,
+      status: 'complete',
+      focus: 'correctness',
+      dimensions: ['correctness'],
+      filesReviewed: ['scripts/git-hooks/pre-push:203'],
+      findingsCount: 1,
+      findingsSummary: { P0: 0, P1: 1, P2: 0 },
+      findingsNew: ['R1-P1-001'],
+      findingDetails: [{ id: 'R1-P1-001', severity: 'P1', title: 'range re-checks published commits' }],
+      traceabilityChecks: {},
+      newFindingsRatio: 1,
+      sessionId: 'session-review-iteration',
+      generation: 1,
+      lineageMode: 'new',
+      timestamp: '2026-10-02T10:40:00Z',
+      durationMs: 120000,
+    };
+
+    const first = appendReviewEvent(runDir, 'iteration-1.json', record);
+    expect(first.exitCode, first.stderr).toBe(0);
+    expect(first.json.ok).toBe(true);
+    expect(first.json.projectionRefreshed).toBe(true);
+    expect((first.json.receipt as Record<string, unknown>).eventType)
+      .toBe('deep-review.ledger.iteration-recorded');
+
+    const second = appendReviewEvent(runDir, 'iteration-2.json', { ...record, iteration: 2, run: 2 });
+    expect(second.exitCode, second.stderr).toBe(0);
+
+    const rows = readProjectedRows(reviewStatePath);
+    expect(rows).toHaveLength(2);
+    expect(rows[0]).toEqual(record);
+    expect(rows[1]).toMatchObject({ type: 'iteration', iteration: 2, run: 2 });
+  });
+
+  it('records a review iteration record larger than ten kilobytes', () => {
+    const runDir = createTempDir('review-iteration-large');
+    const reviewStatePath = join(runDir, 'review', 'deep-review-state.jsonl');
+    const record = {
+      type: 'iteration',
+      iteration: 1,
+      mode: 'review',
+      status: 'complete',
+      sessionId: 'session-review-large',
+      timestamp: '2026-10-02T10:40:00Z',
+      findingDetails: Array.from({ length: 60 }, (_, i) => ({
+        id: `R1-P2-${String(i).padStart(3, '0')}`,
+        severity: 'P2',
+        title: `finding ${i} `.repeat(20),
+      })),
+    };
+    expect(JSON.stringify(record).length).toBeGreaterThan(10_000);
+    const result = appendReviewEvent(runDir, 'iteration-large.json', record);
+    expect(result.exitCode, result.stderr).toBe(0);
+    expect(result.json.projectionRefreshed).toBe(true);
+    expect(readProjectedRows(reviewStatePath)[0]).toEqual(record);
+  });
+
+  it('still refuses a review row that is not an iteration record', () => {
+    const runDir = createTempDir('review-config-row');
+    const result = appendReviewEvent(runDir, 'config.json', { type: 'config', mode: 'review' });
+    expect(result.exitCode).toBe(1);
+    expect(String(result.json.reason))
+      .toBe('Unrecognized event format: expected object with stem or event_type');
+  });
 });
 
 describe('legacy spec-protocol rows append through the research gateway', () => {

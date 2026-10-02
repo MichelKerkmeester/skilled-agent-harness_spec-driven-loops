@@ -590,6 +590,16 @@ function dataFor<TStem extends DeepReviewEventStem>(
       generation: 1,
       lineageMode: 'fresh',
     },
+    'deep_review.iteration_recorded': {
+      record: {
+        type: 'iteration',
+        iteration: 1,
+        mode: 'review',
+        status: 'complete',
+        findingsSummary: { P0: 0, P1: 1, P2: 0 },
+        sessionId: 'session-1',
+      },
+    },
   };
   return data[stem] as DeepReviewPayloadMap[TStem];
 }

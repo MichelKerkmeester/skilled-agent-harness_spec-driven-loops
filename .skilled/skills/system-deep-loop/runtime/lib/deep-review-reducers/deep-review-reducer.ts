@@ -140,6 +140,7 @@ export const DEEP_REVIEW_EVENT_ROUTING = Object.freeze({
   'deep_review.synthesis_complete': Object.freeze(['reviewLoop', 'status']),
   'deep_review.claim_adjudication': Object.freeze(['reviewLoop', 'status']),
   'deep_review.iteration_error': Object.freeze(['reviewLoop', 'status']),
+  'deep_review.iteration_recorded': Object.freeze(['reviewLoop', 'status']),
 } as const satisfies Readonly<Record<DeepReviewEventStem, readonly ProjectionPlane[]>>);
 
 function stemsForPlane(plane: ProjectionPlane): readonly DeepReviewEventStem[] {
@@ -682,6 +683,7 @@ function foldReviewLoopEvent(
     case 'deep_review.synthesis_complete':
     case 'deep_review.claim_adjudication':
     case 'deep_review.iteration_error':
+    case 'deep_review.iteration_recorded':
       return reviewLoop;
     case 'deep_review.convergence_evaluated':
     case 'deep_review.graph_convergence_evaluated':
@@ -1401,6 +1403,7 @@ function artifactFromEvent(
     case 'deep_review.synthesis_complete':
     case 'deep_review.claim_adjudication':
     case 'deep_review.iteration_error':
+    case 'deep_review.iteration_recorded':
       return null;
   }
   return assertNeverStem((event as DeepReviewLedgerEvent).payload.stem as never);
@@ -1609,6 +1612,7 @@ function transitionForEvent(
     case 'deep_review.synthesis_complete':
     case 'deep_review.claim_adjudication':
     case 'deep_review.iteration_error':
+    case 'deep_review.iteration_recorded':
       return null;
     case 'deep_review.continuity_save_failed':
       return { ...base, state: 'blocked', blockingReason: 'continuity-save-failed' };
