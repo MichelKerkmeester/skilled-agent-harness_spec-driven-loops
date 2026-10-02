@@ -299,7 +299,6 @@ The retired continuity server exposed 41 tools across seven layers. They are rep
 | Continuity frontmatter writing | `generate-context.js`, keeping atomic same-directory update and lock semantics | `/speckit:save` |
 | Index maintenance | `generate-trigger-index.mjs` | (script) |
 | Index and convention health | Trigger-index and retrieval-convention diagnostics | `/doctor speckit-retrieval` |
-| Embedder and model-server status | The skill advisor, which owns the shared model server | `/doctor embeddings` |
 
 ### Declared Losses
 

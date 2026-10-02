@@ -530,7 +530,7 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 - Recovery is the continuity ladder that `/speckit:resume` owns, not a session lookup
 - `/speckit:search` runs the two lexical lanes
 - `/doctor speckit-retrieval` checks that the index and the recipes are still healthy
-- Embeddings live with the shared model server for the skill advisor, reachable through `/doctor embeddings`
+- The skill advisor owns the shared model server and embedding provider
 
 ---
 
@@ -1196,11 +1196,11 @@ Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no ta
 
 **`/doctor <target>` (router)**
 
-- Single entry point for 10 targets: `speckit-retrieval` (checks the trigger index, its lookup and the ripgrep recipes), `embeddings`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `router-reach`, `fable-mode`, `runtime-mirrors`
+- Single entry point for 9 targets: `speckit-retrieval` (checks the trigger index, its lookup and the ripgrep recipes), `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `router-reach`, `fable-mode`, `runtime-mirrors`
 - Argv-positional dispatch via `.skilled/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
 - Each target loads its own self-contained YAML workflow under `assets/doctor-<target>.yaml`
 - Interactive menu when no target supplied. Tier 2 per-target prompt when a required flag is missing
-- Examples: `/doctor skill-advisor --dry-run`, `/doctor embeddings`, `/doctor fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
+- Examples: `/doctor skill-advisor --dry-run`, `/doctor router-reach`, `/doctor fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
 - `--target=<name>` is preserved as a compatibility alias for flag-only invocation
 
 **`/doctor:mcp install|debug`** - MCP infrastructure repair

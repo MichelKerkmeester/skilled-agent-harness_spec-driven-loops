@@ -50,18 +50,11 @@ speckit_retrieval_doctor_philosophy:
 user_inputs:
   execution_mode: "[EXECUTION_MODE] - INTERACTIVE (this YAML)"
   intent: "[INTENT] - DIAGNOSE (this YAML)"
-  incremental: "[INCREMENTAL] - true|false (informational; no regeneration in this command)"
 
 # ─────────────────────────────────────────────────────────────────
 # MUTATION BOUNDARIES (READ-ONLY)
 # ─────────────────────────────────────────────────────────────────
 
-field_handling:
-  defaults:
-    incremental_empty: "false"
-  incremental_policy:
-    true: "diagnostic input only; recommend an incremental regeneration when medium staleness is detected"
-    false: "diagnostic input only; recommend a full regeneration when high-severity staleness is detected"
 mutation_boundaries:
   allowed_targets:
     - "<packet_scratch>/doctor-speckit-retrieval-report.*.md"  # the diagnostic report only
@@ -75,7 +68,7 @@ mutation_boundaries:
     - ".skilled/skills/**/graph-metadata.json"
     - ".skilled/agents/**/*.md"
     - ".skilled/commands/doctor/*.md"
-    - ".skilled/commands/doctor/assets/doctor_*.yaml"
+    - ".skilled/commands/doctor/assets/doctor-*.yaml"
   enforcement: "This command is READ-ONLY by contract. No mutation phases exist in this YAML. Any attempted write halts with STATUS=FAIL and ERROR='confirm-mode-mutation-violation'."
   validator:
     name: validate_targets
@@ -124,7 +117,7 @@ staleness_signals:
     severity: high
     note: "An exit of 1 is a clean no-hit and is never a staleness signal. Conflating the two is the failure this row exists to prevent."
   ripgrep_ambient_config:
-    detection: "The section 2.2 recipe run once without --no-config returns a different path set than the same recipe with it, meaning RIPGREP_CONFIG_PATH is injecting arguments; phase 0 runs both"
+    detection: "The section 2.2 recipe run once without --no-config returns a different path set than the same recipe with it, meaning RIPGREP_CONFIG_PATH is injecting arguments; the workflow runs both"
     severity: high
   trigger_phrase_drift:
     detection: "Frontmatter trigger_phrases changed in a source file since the index was generated"
@@ -133,7 +126,7 @@ staleness_signals:
     detection: "Unmatched or orphan <!-- ANCHOR:id --> / <!-- /ANCHOR:id --> pairs in the up-to-five sampled packets; phase 1 counts them per sample"
     severity: low
   corpus_pollution:
-    detection: "The phraseQuality bucket of the committed generation-diagnostics.json counts every negative class the phrase judge reports (single-token, numeric-only, generic-workflow-word, stop-word-only, prose-sentence, editor-fallback and folder-token-fallback) per retrieval-conventions.md section 8; any non-zero bucket is the signal, read from the committed artifact rather than sampled from stale packets"
+    detection: "The phraseQuality bucket in committed generation-diagnostics.json reports editor-fallback, generic-workflow-word, numeric-only, prose-sentence, single-token, and stop-word-only counts; any non-zero count is the signal. Folder-token-fallback requires packet tokens that this aggregate does not receive and is checked by the per-document frontmatter validator."
     severity: medium
   schema_version_mismatch:
     detection: "The index schema version does not match the version the lookup script expects"
@@ -141,7 +134,7 @@ staleness_signals:
   gate1_instruction_parity:
     detection: "One of the five runtimes has no path to the Gate 1 lookup instruction: the root AGENTS.md line is missing, a generated pointer block in .codex/AGENTS.md or .cursor/rules/skill-routing.md is absent or differs from that line (sync-gate1-pointers.cjs --check exits 1), or Pi's context-file loading no longer lists AGENTS.md"
     severity: medium
-    note: "Claude reads the root AGENTS.md through the CLAUDE.md symlink and Pi loads it from the working directory, so those two inherit; Codex and the Cursor rule that Cursor and Devin share carry generated pointer blocks. Reach is per runtime: a pointer, a verified inheritance or a session-start injection each count as a path."
+    note: "Claude reads the root AGENTS.md directly and Pi loads it from the working directory; Codex and the Cursor rule shared by Cursor and Devin carry generated pointer blocks. Reach is per runtime: a pointer, direct load, verified inheritance, or session-start injection each count as a path."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -156,10 +149,10 @@ workflow:
       - "Run the lookup once per prompt in .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/prompt-set.json; any exit of 2 or higher is the lookup_exit_error signal"
       - "Bash: compare the manifestHash field of .skilled/skills/system-spec-kit/runtime/data/trigger-index.json with the manifestHash fields of .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json, generation-diagnostics.json and phrase-variants.json; any unequal value is the committed_pair_mismatch signal, since one generator run writes all four"
       - "Optional, when the operator asks about latency: node .skilled/skills/system-spec-kit/runtime/cli/retrieval/measure-cold-lookup.mjs --json --out <packet scratch path>; exit 1 means the cold-start budget was exceeded. Never write the committed fixtures/latency-report.json from a diagnostic run"
-      - "Run the path-only recipe from retrieval-conventions.md section 2.2 for a known phrase, with the exact flags that section lists (--no-config --hidden and the five exclusion globs); record exit status and path count"
+      - "Run the path-only recipe from retrieval-conventions.md section 2.2 for a known phrase with --no-config --hidden --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**'; record exit status and path count"
       - "Run the same recipe once more without --no-config; a different path set is the ripgrep_ambient_config signal"
       - "Re-run that recipe with the roots set to a path that does not exist; confirm exit 2 with stderr, proving the wrapper can tell a broken invocation from a clean miss"
-      - "Gate 1 reach, per runtime: Bash: grep -c lookup-trigger-index.mjs AGENTS.md (claude, via the CLAUDE.md symlink; pi, which loads AGENTS.md from the working directory per its resource loader); node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check (codex through .codex/AGENTS.md; cursor and devin through .cursor/rules/skill-routing.md). Any missing count or a non-zero exit is the gate1_instruction_parity signal"
+      - "Gate 1 reach, per runtime: verify the root AGENTS.md instruction Claude reads directly and Pi loads from the working directory; run node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check for Codex through .codex/AGENTS.md and Cursor and Devin through .cursor/rules/skill-routing.md. Any missing instruction path or a non-zero exit is the gate1_instruction_parity signal"
       - "Interactive gate: before_phase_1_analysis"
     outputs:
       - index_present: true|false
@@ -186,7 +179,7 @@ workflow:
       - "Sample up to 5 packets flagged as staleness candidates"
       - "For each sample, read its frontmatter trigger_phrases and compare against the phrases the index holds for that path (read-only)"
       - "For each sample, count <!-- ANCHOR:id --> openers against <!-- /ANCHOR:id --> closers; an unmatched pair is the anchor_marker_drift signal"
-      - "Read the phraseQuality bucket of .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json; report every non-zero negative class with its phrase and owning-document counts as the corpus_pollution signal, whether or not any packet is stale"
+      - "Read the phraseQuality bucket of .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json; report every non-zero aggregate class as corpus_pollution, whether or not any source document is stale. Folder-token-fallback needs packet tokens and remains covered by per-document frontmatter validation."
       - "Aggregate signals into a staleness_classes count map"
       - "Interactive gate: before_phase_2_recommendation"
     outputs:
@@ -206,7 +199,7 @@ workflow:
     purpose: Translate staleness signals into recommended action
     rules:
       - "If severity_max == high (schema mismatch, lookup error, or ambient config) → recommend a full regeneration via /doctor:update"
-      - "If severity_max == medium (index older than corpus, manifest hash mismatch, or corpus pollution) → recommend an incremental regeneration via /doctor:update, or a corpus fix first when the signal is pollution: the phrases never rank, so the cost is precision and parse time, not a wrong answer"
+      - "If severity_max == medium (index older than corpus, manifest hash mismatch, or corpus pollution) → recommend full-corpus regeneration via /doctor:update, or a corpus fix first when the signal is pollution: the phrases never rank, so the cost is precision and parse time, not a wrong answer"
       - "If severity_max == low (trigger phrase OR anchor drift) → recommend monitoring; rerun in 1-2 weeks"
       - "If no staleness → status=OK, no action needed"
       - "A lookup exit of 1 with a healthy index is a correct empty answer, not a finding. Never recommend a regeneration to make a no-hit disappear."

@@ -39,7 +39,7 @@
       "architecture"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,8 +47,12 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/doctor-run.log",
       ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
-      ".skilled/commands/doctor/_routes.yaml"
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      "scratch/proposal.md",
+      "scratch/reality-check.md"
     ],
     "entities": [
       {
@@ -88,6 +92,12 @@
         "source": "derived"
       },
       {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
+        "source": "derived"
+      },
+      {
         "name": "doctor-deep-loop.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
@@ -97,6 +107,24 @@
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "proposal.md",
+        "kind": "doc",
+        "path": "scratch/proposal.md",
+        "source": "derived"
+      },
+      {
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
         "source": "derived"
       },
       {
@@ -148,7 +176,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -160,45 +194,15 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit deep-loop` checks deep-loop state, coverage graphs and convergence",
     "created_at": "2026-10-02T16:10:14Z",
-    "last_save_at": "2026-10-02T16:16:01.255Z",
+    "last_save_at": "2026-10-02T21:05:14.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6649e8e7fd6ee84bbfb03237a4aa70ac9f7cf7268284e31bf9cd26168466c464",
+    "source_fingerprint": "sha256:58640dd51e5d884ccfb55b5fe205df8594c23c642062f3a8d312ba97b538f0c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1fb13db158a568f6e8016b48d9610e64e66ef192b37891602d83dc8381b2d362",
-      "plan.md": "1ddebdf3b9c67a1a67c596c2f2f54b565d5e27c220c77ace2b6767de4de622c6",
-      "tasks.md": "12443dd3a0db2e21be56c69e1026fc8797018559cc3051e548d984cb6f870ee3",
-      "implementation-summary.md": "c42edbf3a349777c86e5ee7f3da53208076945438fc96222cfea99862bdf27b7"
+      "spec.md": "4493ebd1ce410538355383e451d76dd4a90d342541bcc13b4260a11f2b144759",
+      "plan.md": "9be0233f74b8b05d320959b3412a447ac5c3cd7eb69d8269d4e89f396b510a8f",
+      "tasks.md": "d4b7184326b3d9fe0e32f02253a4c2daf90000780e55ed066257f384dae5126d",
+      "implementation-summary.md": "359e095fd205019db8ec6bc5b4479df734db399f0b429f9262488c4016a2b21a"
     },
     "last_active_at": null
   }

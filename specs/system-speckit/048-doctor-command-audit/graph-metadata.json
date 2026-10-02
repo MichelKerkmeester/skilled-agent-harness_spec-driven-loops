@@ -172,7 +172,7 @@
     ],
     "causal_summary": "The doctor commands are the operator's way to check and repair the system: `/doctor:mcp` (install, debug), `/doctor:update`, and ten `/doctor:speckit` targets",
     "created_at": "2026-10-02T16:10:09Z",
-    "last_save_at": "2026-10-02T16:15:54.537Z",
+    "last_save_at": "2026-10-02T21:03:18.889Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -184,6 +184,7 @@
     "source_doc_hashes": {
       "spec.md": "45410129ae2d92192d8c17f7622726ded82041f7332e5c9e8a108af809cf9f6a"
     },
-    "last_active_at": null
+    "last_active_at": "2026-10-02T21:03:18.889Z",
+    "last_active_child_id": "system-speckit/048-doctor-command-audit/003-update"
   }
 }

@@ -75,11 +75,24 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Phase opened | Done | Scaffolded on 2026-10-02 |
+| Audit inventory | Done | `scratch/reality-check.md` marks every named path, script, command, flag, database and variable present, moved or missing |
+| Safe run receipts | Done | `scratch/doctor-run.log`: invalid-loop-type probes exit 3, council replay `--dry-run` exits 1, three `NOT RUN` entries |
+| Verdict | Done | `scratch/proposal.md`: `Verdict: fix` |
+| Fix applied | Done | Workflow, route entry and presentation corrected in the worktree diff |
+| Post-change gates | Done | `route-validate.sh` exit 0 (9 routes, 2 warnings); `YAML_OK`; catalog mirror `STATUS=OK`; guard `GUARD PASS`; route contract test passes |
+| Docs closed | Done | `acceptance-criteria.md` 4 of 4 Met; `spec.md` status Complete |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Deviation: proposal edit 1, a `--read-only` flag on `status.cjs`, `query.cjs`, `convergence.cjs` and the database adapters, was not applied | The orchestrator overrode it because it changes the inspected subsystem; it is a recorded finding |
+| Deviation: proposal edit 3 was reworded during application | The workflow now states it writes only its packet-local state log and that the called status and convergence scripts may create a missing coverage database and append observability events |
+| Finding: the runtime's database access is not read-only | Coverage `getDb()` can create storage, apply schema and migrate the schema version; the council getter initializes its database and schema; status and convergence append observability events |
+| Finding: no read-only or dry-run flag on the three graph scripts | The `rg` search returned no matches, so a doctor run cannot promise it leaves no runtime state behind |
+| Finding: the coverage database is absent and the council database contents are unknown | `deep-loop-graph.sqlite` is not in this checkout; `sqlite3 -readonly` failed to open `council-graph.sqlite` with `unable to open database file (14)` |
+| Finding: the valid read-only runtime path is unverified | The CLI probes stopped at `INPUT_VALIDATION` before opening a database; the normal status/query/convergence calls were not run |
+| Note: the route validator warnings are informational | `--scope` collides with skill-advisor and `--dir` with fable-mode; both are allowed |
+| Note: three `parent-skill-check-*.test.cjs` files fail as the pre-batch baseline | Their fixtures cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` in this worktree; not a regression |
 <!-- /ANCHOR:log -->

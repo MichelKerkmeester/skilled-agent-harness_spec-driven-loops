@@ -75,11 +75,26 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Phase opened | Done | Packet scaffolded on 2026-10-02 with the goal, spec and criteria authored |
+| Inventory complete | Done | `scratch/reality-check.md` marks every named item present, moved or missing with the command that showed it |
+| Read-only run recorded | Done | `scratch/doctor-run.log` holds one pass that stops at every write and lists the skipped steps with their reasons |
+| Verdict decided | Done | `scratch/proposal.md` — verdict fix, with the evidence for keeping and the three drift groups |
+| Repairs applied | Done | Workflow, route and presentation updated; no `system_skill_advisor.` reference remains in the edited doctor files |
+| Verification rerun | Done | `route-validate.sh` exit 0; YAML_OK; catalog mirror STATUS=OK; mutation-class guard PASS; no regression in the doctor script tests |
+| Acceptance criteria | Done | Every row Met with the observed evidence |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Deviation | The shared batch was applied by GPT-6 Luna (cli-codex) because the doctor targets share their route manifest, router and presentation; the orchestrator reviewed the diff and reran the gates |
+| Deviation | The recorded run was read-only and stopped at every write, so the mutating path and the advisor test suite were not executed; the command lines were checked individually instead |
+| Deviation | The phrase-boost range `[-1.0, 2.0]` is a deliberate envelope around the observed -0.6 to 1.8, recorded as an operator judgment call rather than a measured bound |
+| Finding (recorded, not fixed) | The skill graph reads as live while every one of its 14 tracked skills is stale: `staleness` compares content hashes and `freshness` compares mtimes |
+| Finding (recorded, not fixed) | `advisor_status.skillCount` reports 20 by counting metadata files recursively, while the checkout has 14 skill folders |
+| Finding (recorded, not fixed) | Changes made outside the CLI process do not move the freshness verdict, so a database indexed later than its sources reads as live |
+| Finding (recorded, not fixed) | `PHRASE_BOOSTS` amounts are unbounded and undeclared, running from -0.6 to 1.8 with no constant, schema or doc stating a range |
+| Finding (recorded, not fixed) | The advisor scorer reference cites moved line ranges for `explicit.ts` (`:8-90` and `:92-186` against the actual `:27-107` and `:109-240`) |
+| Finding (recorded, not fixed) | `advisor_rebuild` and `skill_graph_scan` require `--trusted`, which the subsystem docs never state at CLI level |
+| Finding (recorded, not fixed) | Frontmatter trigger phrases exist for 1 of 14 skills; the rest live in `graph-metadata.json` and body `Keywords:` comments |
 <!-- /ANCHOR:log -->

@@ -75,11 +75,22 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Phase opened | Done | Route, workflow, presentation contract and checker inventory read on this checkout; `scratch/reality-check.md` |
+| Read-only run | Done | The full checker set and all 64 adapter path tests ran read-only; results in `scratch/doctor-run.log` |
+| Verdict | Done | `fix` — route and workflow disagreed on the checker set, and the result contract had no error state; `scratch/proposal.md:3-7` |
+| Fix applied | Done | Route lists both Pi checks and `--allow-worktree`; workflow runs the command-catalog checker and defines `STATUS=ERROR`; startup menu shows 12 |
+| Verified | Done | `route-validate.sh` exit 0 — 9 routes validated, 2 warnings; `command-catalog-mirror-check.cjs` `STATUS=OK`; `check-mcp-mutation-class.sh` `GUARD PASS` |
+| Documentation closed | Done | `spec.md` Complete; every acceptance row Met; `validate.sh --strict` rerun |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Deviation: shared batch | The verdict was applied in one batch with the other `/doctor:speckit` targets because they share the route manifest, the router text and the presentation contract; the orchestrator reviewed the diff and reran the gates. Delivery is a working-tree change, not a commit |
+| Deviation: repairs skipped | The audit is read-only, so the write-producing repair commands and the package build were listed and skipped (`scratch/doctor-run.log:457-487`) |
+| Finding: user-global Codex hook parity unverified | The check refused at the linked-worktree guard before comparing `~/.codex/hooks.json`, which exists; the route now passes `--allow-worktree` so a rooted run can compare it |
+| Finding: no mirror or catalog defect confirmed | Every completed check reported in sync: 172 mirrors across 8 trees, roster 12/12 on five surfaces, all 64 adapter paths present (`scratch/doctor-run.log`) |
+| Finding: route and workflow divergence | The route omitted both Pi checks and the workflow omitted the command-catalog checker; fixed by aligning both sides to the declared inventory |
+| Finding: presentation menu gap | The accepted-answer table mapped 12 and 13 while the visible menu ended at 11. The batch fixed it by showing both in the menu and updating the help prompt |
+| Finding: test fixtures | Three `parent-skill-check-*.test.cjs` files fail in this worktree exactly as the pre-batch baseline; not a regression |
 <!-- /ANCHOR:log -->

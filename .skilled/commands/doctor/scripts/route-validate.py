@@ -159,15 +159,22 @@ def parse_speckit_targets(router_path: Path) -> set[str]:
 
 
 def parse_presentation_targets(presentation_path: Path) -> dict[str, set[str]]:
-    """Extract the three target-name displays from doctor_speckit_presentation.txt:
-    the numbered menu (via its Accepted-answers `target = \`name\`` rows), the
-    "Valid targets:" comma list, and the subsystem manifest table rows."""
+    """Read target displays and use only answer rows for visible startup-menu numbers."""
     empty = {"menu": set(), "valid_targets": set(), "subsystem": set()}
     if not presentation_path.exists():
         return empty
     text = presentation_path.read_text(encoding="utf-8")
 
-    menu_targets = set(re.findall(r"target = `([a-z0-9-]+)`", text))
+    startup = re.search(r"```text(.*?)```", text, re.DOTALL)
+    visible_answers = set(
+        re.findall(r"^\s*(\d+)\)", startup.group(1) if startup else "", re.MULTILINE)
+    )
+    answer_targets = re.findall(
+        r"^\|\s*`(\d+)`\s*\|\s*target = `([a-z0-9-]+)`\s*\|",
+        text,
+        re.MULTILINE,
+    )
+    menu_targets = {target for number, target in answer_targets if number in visible_answers}
 
     valid_targets: set[str] = set()
     valid_match = re.search(r"Valid targets:\s*(.+)", text)

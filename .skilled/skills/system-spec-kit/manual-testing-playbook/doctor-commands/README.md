@@ -21,7 +21,7 @@ Manual testing scenarios for the spec-kit `/doctor` command surface.
 
 The `/doctor memory` and `/doctor causal-graph` scenarios were removed with the memory server they diagnosed; their former IDs (DOC-323 to DOC-330) are retired and must not be reused. `/doctor:mcp` infra scenarios are not built.
 
-The live `/doctor <target>` route manifest also includes `/doctor embeddings`, `/doctor skill-advisor`, `/doctor skill-budget`, `/doctor parent-skill`, and `/doctor fable-mode`.
+The live `/doctor <target>` route manifest also includes `/doctor skill-advisor`, `/doctor skill-budget`, `/doctor parent-skill`, and `/doctor fable-mode`.
 
 After the 013 Phase 5 hard cutover, `/doctor:<name>` invocations were consolidated into `/doctor <target>` argv-positional dispatch. `/doctor:update` and `/doctor:mcp <install|debug>` remain standalone companion commands.
 

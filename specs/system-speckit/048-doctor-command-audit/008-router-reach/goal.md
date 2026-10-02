@@ -75,11 +75,21 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Phase opened | Done | Route, workflow and script inventoried on this checkout; `scratch/reality-check.md` |
+| Read-only run | Done | Full-fleet probe `RESULT: FAILED` from a degraded advisor response (14 wrong-hub, 18 outranked, 221 no-reach, 0 probe-error); `route-validate.sh` exit 0; `scratch/doctor-run.log` |
+| Verdict | Done | `fix`, with the three gaps and their evidence; `scratch/proposal.md` |
+| Fix applied | Done | Probe fails closed; `--concurrency` wired through the route and workflow; startup menu shows 12 and 13; validator reads the visible menu |
+| Verified | Done | Live probe `--hub sk-doc --limit 5` → `RESULT: PASSED`, advisor generation 3; `route-validate.sh` exit 0 with 9 routes validated |
+| Documentation closed | Done | `spec.md` Complete; every acceptance row Met; `validate.sh --strict` rerun |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Degraded fleet run | The audit's full-fleet run used a degraded local-scorer response inside a sandbox, so its 14 wrong-hub and 18 outranked counts are recorded as unverified against a live advisor |
+| Finding: false no-reach | The pre-fix probe accepted a degraded envelope and reported 221 no-reach rows; fixed by failing closed on a degraded, not-live or generation-less response |
+| Finding: invisible answer | The accepted-answer table assigned 13 to router-reach while the startup menu ended at 11; fixed by showing 12 and 13 in the menu and help block |
+| Finding: validator blind spot | The route validator built its menu set from accepted-answer rows rather than the visible startup menu; fixed to read the displayed numbers |
+| Finding: subsystem routing | Wrong-hub and outranked phrases (for example `jev mcp server` to `mcp-code-mode`, `notion mcp` above `mcp-tooling`) are recorded for the subsystem owner, not fixed here |
+| Finding: test fixtures | Three `parent-skill-check-*.test.cjs` files fail in this worktree exactly as the pre-batch baseline; not a regression |
 <!-- /ANCHOR:log -->

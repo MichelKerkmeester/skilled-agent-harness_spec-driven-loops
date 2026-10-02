@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-router-reach"
+    packet_pointer: "system-speckit/048-doctor-command-audit/008-router-reach"
     last_updated_at: "2026-10-02T16:10:21Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** system-speckit/048-doctor-command-audit/008-router-reach
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-02
 <!-- /ANCHOR:metadata -->
 
@@ -51,10 +51,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given this checkout, When the phase closes, Then `scratch/reality-check.md` lists every path, script, command, flag and environment variable that the `/doctor:speckit router-reach` route and `doctor-router-reach.yaml` name, each marked present, moved or missing with the command that showed it. | `scratch/reality-check.md` | Unmet | - |
-| AC-002 | REQ-002 | Given this checkout, When the phase closes, Then `/doctor:speckit router-reach` runs once on this checkout in its read-only or dry-run form, or against a disposable copy of any database it would change, and its output is saved to `scratch/doctor-run.log`. | `scratch/doctor-run.log` | Unmet | - |
-| AC-003 | REQ-003 | Given this checkout, When the phase closes, Then `implementation-summary.md` records one verdict, keep, fix or retire, with the evidence behind it. | `implementation-summary.md` verdict section | Unmet | - |
-| AC-004 | REQ-004 | Given this checkout, When the phase closes, Then after the verdict is applied, `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0. | `bash .skilled/commands/doctor/scripts/route-validate.sh` exit status | Unmet | - |
+| AC-001 | REQ-001 | Given this checkout, When the phase closes, Then `scratch/reality-check.md` lists every path, script, command, flag and environment variable that the `/doctor:speckit router-reach` route and `doctor-router-reach.yaml` name, each marked present, moved or missing with the command that showed it. | `scratch/reality-check.md:11` — the inventory table marks every named item present, not a path, or not declared, with the command that showed each one | Met | - |
+| AC-002 | REQ-002 | Given this checkout, When the phase closes, Then `/doctor:speckit router-reach` runs once on this checkout in its read-only or dry-run form, or against a disposable copy of any database it would change, and its output is saved to `scratch/doctor-run.log`. | `scratch/doctor-run.log:39` — the full-fleet read-only run, its exit code 1 and its summary at line 303; the advisor response-shape probe at line 11 | Met | - |
+| AC-003 | REQ-003 | Given this checkout, When the phase closes, Then `implementation-summary.md` records one verdict, keep, fix or retire, with the evidence behind it. | `implementation-summary.md` opens its What Was Built section with `Verdict: fix.`; the recorded verdict and its evidence are in `scratch/proposal.md:5` | Met | - |
+| AC-004 | REQ-004 | Given this checkout, When the phase closes, Then after the verdict is applied, `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0. | `bash .skilled/commands/doctor/scripts/route-validate.sh` exit 0 — `OK: route-validate — 9 routes validated, 2 warnings`, rerun after the fix; the earlier run is at `scratch/doctor-run.log:316` | Met | - |
 
 ### Status values
 
@@ -79,7 +79,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Open. Written when the phase closes.
+All four criteria are Met. The verdict is `fix` and it is applied: the probe fails closed on a degraded advisor response, `--concurrency` reaches the script, the startup menu shows router reach, and the route validator reads that visible menu. `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 with 9 routes validated, and the live probe on one hub ends `RESULT: PASSED` with advisor generation 3. Evidence lives in `scratch/reality-check.md`, `scratch/doctor-run.log`, `scratch/proposal.md` and `implementation-summary.md`. Closed 2026-10-02.
 <!-- /ANCHOR:closure -->

@@ -75,11 +75,20 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Phase opened | Done | Scaffolded on 2026-10-02 |
+| Audit inventory | Done | `scratch/reality-check.md` marks every path, script, command, flag and variable named by the route and workflow present, moved or missing |
+| Read-only run | Done | `scratch/doctor-run.log`: exit 2, `target not found` for the script's missing default target |
+| Verdict | Done | `scratch/proposal.md`: "Verdict: fix." |
+| Fix applied | Done | Script, route entry, workflow asset and presentation updated in the worktree diff; the default target is gone, the baseline override is forwarded, and the directory prompt is added |
+| Post-fix verification | Done | No-argument run exits 2 with `pass --dir <path>`; `node --check` NODE_CHECK_OK; YAML_OK; `route-validate.sh` exit 0, 9 routes validated, 2 warnings; catalog mirror STATUS=OK; mutation-class GUARD PASS |
+| Docs closed | Done | `acceptance-criteria.md` 4 of 4 Met; `spec.md` status Complete |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| No deviations | Every proposed edit was applied as written; the orchestrator reran the gates after the batch |
+| Finding: the baseline snapshot's source corpus path is missing | `fable-baseline.json:2` records an absolute path that no longer exists; `ls -ld` exits 1 and a directory-name search finds no match. The aggregate metrics at `fable-baseline.json:90-98` remain readable, but the raw corpus cannot reproduce them here |
+| Note: the fix shipped in a batch with the other `/doctor:speckit` targets | The batch shares `_routes.yaml`, `speckit.md` and the presentation file; its results are reported per target |
+| Note: three parent-skill-check tests fail at baseline | Their fixtures cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` in this worktree; not a regression |
 <!-- /ANCHOR:log -->

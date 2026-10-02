@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-fable-mode"
+    packet_pointer: "system-speckit/048-doctor-command-audit/006-fable-mode"
     last_updated_at: "2026-10-02T16:10:18Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** system-speckit/048-doctor-command-audit/006-fable-mode
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-02
 <!-- /ANCHOR:metadata -->
 
@@ -51,10 +51,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given this checkout, When the phase closes, Then `scratch/reality-check.md` lists every path, script, command, flag and environment variable that the `/doctor:speckit fable-mode` route and `doctor-fable-mode.yaml` name, each marked present, moved or missing with the command that showed it. | `scratch/reality-check.md` | Unmet | - |
-| AC-002 | REQ-002 | Given this checkout, When the phase closes, Then `/doctor:speckit fable-mode` runs once on this checkout in its read-only or dry-run form, or against a disposable copy of any database it would change, and its output is saved to `scratch/doctor-run.log`. | `scratch/doctor-run.log` | Unmet | - |
-| AC-003 | REQ-003 | Given this checkout, When the phase closes, Then `implementation-summary.md` records one verdict, keep, fix or retire, with the evidence behind it. | `implementation-summary.md` verdict section | Unmet | - |
-| AC-004 | REQ-004 | Given this checkout, When the phase closes, Then after the verdict is applied, `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0. | `bash .skilled/commands/doctor/scripts/route-validate.sh` exit status | Unmet | - |
+| AC-001 | REQ-001 | Given this checkout, When the phase closes, Then `scratch/reality-check.md` lists every path, script, command, flag and environment variable that the `/doctor:speckit fable-mode` route and `doctor-fable-mode.yaml` name, each marked present, moved or missing with the command that showed it. | `scratch/reality-check.md:1`; each row cites `rg --files`, `ls -l`, `find`, `nl -ba` or a read-only script run | Met | - |
+| AC-002 | REQ-002 | Given this checkout, When the phase closes, Then `/doctor:speckit fable-mode` runs once on this checkout in its read-only or dry-run form, or against a disposable copy of any database it would change, and its output is saved to `scratch/doctor-run.log`. | `scratch/doctor-run.log:16` (target not found) and `scratch/doctor-run.log:19` (exit code 2) | Met | - |
+| AC-003 | REQ-003 | Given this checkout, When the phase closes, Then `implementation-summary.md` records one verdict, keep, fix or retire, with the evidence behind it. | `implementation-summary.md` "Verdict: fix." with the verification table; `scratch/proposal.md:3` | Met | - |
+| AC-004 | REQ-004 | Given this checkout, When the phase closes, Then after the verdict is applied, `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0. | `bash .skilled/commands/doctor/scripts/route-validate.sh`: exit 0, "OK: route-validate — 9 routes validated, 2 warnings"; recorded at `implementation-summary.md:109` | Met | - |
 
 ### Status values
 
@@ -79,7 +79,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Open. Written when the phase closes.
+All four criteria are Met with observed evidence: the audit inventory, the recorded read-only run, the fix verdict with its evidence, and route validation exiting 0 from the final state. The one subsystem defect found during the audit — the baseline snapshot records a source corpus path that is absent from this checkout — stays recorded in `implementation-summary.md` rather than fixed here, by the phase decision that the doctor never changes the subsystem it inspects.
 <!-- /ANCHOR:closure -->

@@ -19,15 +19,13 @@
  *
  * Usage:
  *   node parent-skill-check.cjs [parent-skill-dir]
- *   PARENT_HUB_CHECK_STRICT=0 node parent-skill-check.cjs [dir]   # 5-11 as WARN (WIP opt-out)
+ *   PARENT_HUB_CHECK_STRICT=0 node parent-skill-check.cjs [dir]   # advisory findings as WARN
  *
- * The canon checks 5-9 (hub-router validity, registry/directory reverse
- * consistency, changelog shape, description.json, playbook + benchmark
- * baseline), check 10 (leaf-manifest contract guards, opt-in once a hub
- * commits a manifest), and check 11 (skill-root metadata class contract)
- * FAIL by default now that every hub carries the canon fields;
- * PARENT_HUB_CHECK_STRICT=0 downgrades them to advisory WARN for a
- * work-in-progress hub still being scaffolded.
+ * The audit checks hub-router and registry consistency, changelog shape,
+ * required hub metadata, playbook and benchmark baseline, leaf-manifest
+ * freshness and reachability, skill-root metadata class, and routing-version
+ * consistency. PARENT_HUB_CHECK_STRICT=0 downgrades advisory findings only;
+ * hard failures remain failures.
  *
  * Exit codes:
  *   0  — every hard invariant passed (warnings allowed)
@@ -99,10 +97,8 @@ const GLOBAL_MAP_OWNER = 'system-deep-loop';
 
 const DEFAULT_TARGET = '.skilled/skills/system-deep-loop';
 
-// Canon checks are FAIL by default now that every parent hub carries the canon
-// fields (packetKind, toolSurface, grandfatheredFolderMismatch, hub-router,
-// description.json, playbook, benchmark). PARENT_HUB_CHECK_STRICT=0 opts a
-// work-in-progress hub back to advisory WARN while it is being scaffolded.
+// Advisory hub-canon findings are FAIL by default. The strict opt-out changes
+// only their severity; hard failures remain failures.
 const STRICT_HUB_CANON = process.env.PARENT_HUB_CHECK_STRICT !== '0';
 
 const IS_TTY = Boolean(process.stdout.isTTY);
@@ -251,7 +247,7 @@ function main() {
 
   info(`Parent skill: ${argTarget}`);
   info(`Resolved:     ${target}`);
-  info(`Mode 5-9:     ${STRICT_HUB_CANON ? 'canon (FAIL)' : 'WIP opt-out (WARN)'}`);
+  info(`Advisory findings: ${STRICT_HUB_CANON ? 'FAIL' : 'WARN'}. Hard failures always FAIL.`);
   console.log('');
 
   if (!fs.existsSync(target) || !fs.statSync(target).isDirectory()) {
