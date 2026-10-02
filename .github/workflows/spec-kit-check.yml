@@ -78,10 +78,6 @@ jobs:
           # The runtime project imports the OpenCode plugin entrypoints, which depend
           # on the plugin SDK declared in .skilled/package.json.
           npm --prefix .skilled ci
-          # The plugins-purity suite imports every plugin entrypoint; the communication
-          # projection plugin imports its package's compiled output, which that
-          # package builds on install through its prepare script.
-          npm --prefix .opencode/skills/sk-communication/cli-communication-projection ci
           # The skill-advisor plugin imports the advisor server's compiled output in the
           # same way; its build also compiles the shared package it depends on.
           npm --prefix .opencode/skills/system-skill-advisor/runtime ci

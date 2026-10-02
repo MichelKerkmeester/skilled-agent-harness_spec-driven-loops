@@ -17,7 +17,7 @@
 {"id":"specs/hooks/016-cache-optimizer-absorbs-deep-pi/003-port-retry-loop-guard/goal.md:83","text_sha12":"f7f357c57ade","rubric":null,"rule4_ok":null,"rule5_ok":null,"labeler":null}
 {"id":"specs/hooks/016-cache-optimizer-absorbs-deep-pi/005-remove-deep-pi/goal.md:84","text_sha12":"616ed430ea94","rubric":null,"rule4_ok":null,"rule5_ok":null,"labeler":null}
 {"id":"specs/hooks/016-cache-optimizer-absorbs-deep-pi/goal.md:96","text_sha12":"4602062d4404","rubric":null,"rule4_ok":null,"rule5_ok":null,"labeler":null}
-{"id":"specs/sk-communication/006-sk-communication-clarity/goal.md:98","text_sha12":"6885048ad68f","rubric":null,"rule4_ok":null,"rule5_ok":null,"labeler":null}
+{"id":"specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research/goal.md:75","text_sha12":"82bffc50b0ce","rubric":null,"rule4_ok":null,"rule5_ok":null,"labeler":null}
 {"id":"specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research/goal.md:77","text_sha12":"1f719d6d192c","rubric":null,"rule4_ok":null,"rule5_ok":null,"labeler":null}
 {"id":"specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/007-fidelity-and-library-research/goal.md:80","text_sha12":"1fa72c817192","rubric":null,"rule4_ok":null,"rule5_ok":null,"labeler":null}
 {"id":"specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/009-chart-visual-overhaul/002-chrome-rollout/goal.md:79","text_sha12":"9f4604b1be0b","rubric":null,"rule4_ok":null,"rule5_ok":null,"labeler":null}

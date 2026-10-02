@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/007-sk-communication-removal/001-skill-and-command-removal",
+  "spec_folder": "sk-communication/007-sk-communication-removal/001-skill-and-command-removal",
+  "parent_id": "sk-communication/007-sk-communication-removal",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill and command removal",
+      "sk-communication removal",
+      "rewrite command removal",
+      "communication projection plugin removal",
+      "implementation plan",
+      "skill removal approach",
+      "rewrite command removal checks",
+      "mirror sync verification",
+      "skill removal tasks",
+      "rewrite command removal tasks",
+      "runtime mirror checks",
+      "phase 1 verification checklist"
+    ],
+    "key_topics": [
+      "skill",
+      "command",
+      "removal",
+      "sk-communication",
+      "rewrite",
+      "communication",
+      "projection",
+      "plugin",
+      "implementation",
+      "plan",
+      "approach",
+      "checks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/config/route-exclusions.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "route-exclusions.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/config/route-exclusions.json",
+        "source": "derived"
+      },
+      {
+        "name": "route-exclusions.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/route-exclusions.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Remove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Canonical",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The communication projection feature has several linked runtime surfaces: a skill package, two operator commands, mirrors for supported runtimes and an OpenCode plugin",
+    "created_at": "2026-10-02T04:49:06Z",
+    "last_save_at": "2026-10-02T06:11:13.445Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ee9f74a908d914e15cf7bc3d6ed37989a56d749ee30fc99fd796f65e47bc76d7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9d4fb9d4731f332f6d050080a8fb6bbe88477b0e1ef223457023b659b3816ba4",
+      "plan.md": "d4dbeeeec63c074b69dd5cbb977dcf82c7b0e68816c206a8799c24b58ff42a52",
+      "tasks.md": "88123f2e92aea1b522acecbca57f3f9d770f70fa86fbb16abf651be871a0d86f",
+      "implementation-summary.md": "c46973bc7946b7008624503b0c8311941bf715a42157b34e6f00a79a5d3d74b0"
+    },
+    "last_active_at": null
+  }
+}

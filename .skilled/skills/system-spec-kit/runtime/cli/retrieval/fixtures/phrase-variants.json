@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cc7bbcef6132d289377876481ec05d934b5a55ec8fcea9102dc3e877d7e9bd12",
+  "manifestHash": "4189be609616caf4b8d34e6abbfeb5278dc2a689a71f0b4452c63081ee4dd506",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8761,6 +8761,9 @@
     "advisor latency delta": [
       "advisor latency delta"
     ],
+    "advisor launcher fresh clone": [
+      "advisor launcher fresh clone"
+    ],
     "advisor launcher supervisor": [
       "advisor launcher supervisor"
     ],
@@ -8983,6 +8986,9 @@
     ],
     "advisor route exclusion": [
       "advisor route exclusion"
+    ],
+    "advisor route exclusion test": [
+      "advisor route exclusion test"
     ],
     "advisor routes council prompts to skill": [
       "advisor routes council prompts to skill"
@@ -9797,9 +9803,6 @@
     ],
     "agent mode subagent": [
       "agent mode subagent"
-    ],
-    "agent output plain english": [
-      "agent output plain english"
     ],
     "agent parallelization thresholds": [
       "agent parallelization thresholds"
@@ -11649,9 +11652,6 @@
     "atomic projection bundle plan": [
       "atomic projection bundle plan"
     ],
-    "atomic projection render": [
-      "atomic projection render"
-    ],
     "atomic projection verifier evidence": [
       "atomic projection verifier evidence"
     ],
@@ -12167,6 +12167,9 @@
     ],
     "awaited asynchronous metrics persistence": [
       "awaited asynchronous metrics persistence"
+    ],
+    "awesome ai plugins listing": [
+      "awesome-ai-plugins listing"
     ],
     "b1 b2 b3 b4 b5 b6 batch remediation": [
       "B1 B2 B3 B4 B5 B6 batch remediation"
@@ -13128,9 +13131,6 @@
     "blast radius traversal helper": [
       "blast radius traversal helper"
     ],
-    "blind non inferiority evaluation": [
-      "Blind non-inferiority evaluation"
-    ],
     "blind scoring": [
       "blind scoring"
     ],
@@ -13163,6 +13163,9 @@
     ],
     "block convergence critical disagreement": [
       "block convergence critical disagreement"
+    ],
+    "block misaligned commit messages": [
+      "block misaligned commit messages"
     ],
     "block task sequencing": [
       "block task sequencing"
@@ -13457,9 +13460,6 @@
     ],
     "bounded compiled routing summary": [
       "bounded compiled routing summary"
-    ],
-    "bounded context selection": [
-      "Bounded context selection"
     ],
     "bounded context snapshot": [
       "bounded context snapshot"
@@ -14316,6 +14316,9 @@
     "cannot find module spec kit shared": [
       "cannot find module spec-kit shared"
     ],
+    "cannot find name process spec kit shared": [
+      "cannot find name process spec-kit shared"
+    ],
     "cannot rebase unstaged changes": [
       "cannot rebase unstaged changes"
     ],
@@ -14553,9 +14556,6 @@
     ],
     "capability and privacy gating": [
       "capability-and-privacy-gating"
-    ],
-    "capability aware presentation": [
-      "Capability-aware presentation"
     ],
     "capability discrimination layer": [
       "capability-discrimination layer"
@@ -22940,11 +22940,20 @@
     "commit identifier minting": [
       "commit identifier minting"
     ],
+    "commit message contract json": [
+      "commit message contract json"
+    ],
+    "commit message gate": [
+      "commit message gate"
+    ],
     "commit message template": [
       "commit message template"
     ],
     "commit msg body gate": [
       "commit-msg body gate"
+    ],
+    "commit msg validator port": [
+      "commit-msg validator port"
     ],
     "commit msg whitelist": [
       "commit-msg whitelist"
@@ -23021,20 +23030,11 @@
     "communication projection architecture": [
       "communication projection architecture"
     ],
-    "communication projection capabilities": [
-      "communication projection capabilities"
-    ],
     "communication projection default off": [
       "communication projection default off"
     ],
     "communication projection dist missing": [
       "communication projection dist missing"
-    ],
-    "communication projection doctor": [
-      "communication projection doctor"
-    ],
-    "communication projection feature inventory": [
-      "communication projection feature inventory"
     ],
     "communication projection findings": [
       "communication projection findings"
@@ -23048,20 +23048,20 @@
     "communication projection packaging": [
       "communication projection packaging"
     ],
+    "communication projection plugin removal": [
+      "communication projection plugin removal"
+    ],
     "communication projection prepare script": [
       "communication projection prepare script"
-    ],
-    "communication projection release gate": [
-      "communication projection release gate"
     ],
     "communication projection runtime": [
       "communication projection runtime"
     ],
-    "communication projection runtime adapters": [
-      "communication projection runtime adapters"
+    "communication prose guidance": [
+      "communication prose guidance"
     ],
-    "communication projection skill guide": [
-      "communication projection skill guide"
+    "communication prose tasks": [
+      "communication prose tasks"
     ],
     "communication quality": [
       "communication quality"
@@ -23075,8 +23075,23 @@
     "communication rewrite research status": [
       "communication rewrite research status"
     ],
+    "communication rule closure gate": [
+      "communication rule closure gate"
+    ],
+    "communication rule implementation plan": [
+      "communication rule implementation plan"
+    ],
     "communication rule iteration": [
       "communication rule iteration"
+    ],
+    "communication rule upgrade": [
+      "communication rule upgrade"
+    ],
+    "communication rule upgrade tasks": [
+      "communication rule upgrade tasks"
+    ],
+    "communication skill removal": [
+      "communication skill removal"
     ],
     "communication source classification": [
       "communication source classification"
@@ -23248,9 +23263,6 @@
     ],
     "compat suite verification": [
       "compat suite verification"
-    ],
-    "compatibility doctor": [
-      "Compatibility doctor"
     ],
     "compatibility doctor pre projection gate": [
       "compatibility doctor pre-projection gate"
@@ -23461,9 +23473,6 @@
     ],
     "compiledroute enrichment": [
       "compiledRoute enrichment"
-    ],
-    "complete message assembly": [
-      "complete message assembly"
     ],
     "complete recall at 3": [
       "complete recall at 3"
@@ -24365,9 +24374,6 @@
     "content filter settings": [
       "content filter settings"
     ],
-    "content free observability": [
-      "Content-free observability"
-    ],
     "content hash drift": [
       "content hash drift"
     ],
@@ -25119,9 +25125,6 @@
     ],
     "copilot writer wiring": [
       "copilot writer wiring"
-    ],
-    "copy editing declared and recorded honestly": [
-      "Copy Editing Declared and Recorded Honestly"
     ],
     "copy editing instruction": [
       "copy editing instruction"
@@ -26308,17 +26311,8 @@
     "createclassifyframe code index": [
       "createClassifyFrame code-index"
     ],
-    "createexternalclimodelrecord": [
-      "createExternalCliModelRecord"
-    ],
-    "createexternalclitransport": [
-      "createExternalCliTransport"
-    ],
     "createsessionproxy backend only daemon": [
       "createSessionProxy backend-only daemon"
-    ],
-    "createtelemetryexport": [
-      "createTelemetryExport"
     ],
     "creation standards": [
       "creation standards"
@@ -28181,9 +28175,6 @@
     "debug workflow doctrine": [
       "debug workflow doctrine"
     ],
-    "deciderender": [
-      "decideRender"
-    ],
     "decision": [
       "decision"
     ],
@@ -28418,9 +28409,6 @@
     "deem 0 8 v1 label": [
       "deem-0.8-v1 label"
     ],
-    "deem 0 8b latency memory": [
-      "deem 0.8b latency memory"
-    ],
     "deem access log": [
       "deem access log"
     ],
@@ -28522,12 +28510,6 @@
     ],
     "deem local hardening": [
       "deem local hardening"
-    ],
-    "deem local measurements": [
-      "deem local measurements"
-    ],
-    "deem local server": [
-      "deem local server"
     ],
     "deem manual testing": [
       "deem manual testing"
@@ -37063,6 +37045,9 @@
     "enforced model scope": [
       "enforced model scope"
     ],
+    "enforced rules block": [
+      "enforced rules block"
+    ],
     "enforcement approval prompts": [
       "enforcement approval prompts"
     ],
@@ -37657,12 +37642,6 @@
     "evaluate tool permissions": [
       "evaluate tool permissions"
     ],
-    "evaluatereleasegate": [
-      "evaluateReleaseGate"
-    ],
-    "evaluatereleasereadiness": [
-      "evaluateReleaseReadiness"
-    ],
     "evaluation and observability": [
       "evaluation-and-observability"
     ],
@@ -37919,12 +37898,6 @@
     "ex 037 ex 042 scenario plan": [
       "EX-037 EX-042 scenario plan"
     ],
-    "exact original assembly fallback": [
-      "exact-original assembly fallback"
-    ],
-    "exact original fidelity fallback": [
-      "exact-original fidelity fallback"
-    ],
     "exact sha acceptance gate plan": [
       "exact-SHA acceptance gate plan"
     ],
@@ -37988,11 +37961,11 @@
     "exclusion retirement": [
       "exclusion retirement"
     ],
+    "execfilesync migration": [
+      "execfilesync migration"
+    ],
     "execute cdp with parameters": [
       "execute cdp with parameters"
-    ],
-    "execute provider route": [
-      "execute provider route"
     ],
     "execute the specs flip": [
       "execute the specs flip"
@@ -38005,9 +37978,6 @@
     ],
     "executepipeline flag toggle harness": [
       "executePipeline flag toggle harness"
-    ],
-    "executeproviderroute": [
-      "executeProviderRoute"
     ],
     "execution evidence over prose review": [
       "execution evidence over prose review"
@@ -38273,9 +38243,6 @@
     "explain visually command shipped": [
       "explain-visually command shipped"
     ],
-    "explanation lane removed": [
-      "explanation lane removed"
-    ],
     "explicit any ledger closure": [
       "explicit-any ledger closure"
     ],
@@ -38371,9 +38338,6 @@
     ],
     "external authorization authenticity": [
       "external authorization authenticity"
-    ],
-    "external cli agent provider": [
-      "External CLI agent provider"
     ],
     "external cli delegation": [
       "external cli delegation"
@@ -42353,9 +42317,6 @@
     "full project green": [
       "full project green"
     ],
-    "full projection safe native tiers": [
-      "full-projection safe-native tiers"
-    ],
     "full repo json migration": [
       "full repo json migration"
     ],
@@ -42891,9 +42852,6 @@
     "generation counter": [
       "generation counter"
     ],
-    "generation keyed message assembly": [
-      "Generation-keyed message assembly"
-    ],
     "generation lock": [
       "generation lock"
     ],
@@ -43220,6 +43178,9 @@
     ],
     "github bodies omit h1": [
       "github bodies omit h1"
+    ],
+    "github issue 27 missing package json": [
+      "github issue 27 missing package.json"
     ],
     "github issue management tools": [
       "github issue management tools"
@@ -46315,6 +46276,9 @@
     "hls js video streaming": [
       "hls js video streaming"
     ],
+    "hol plugin scanner": [
+      "hol plugin scanner"
+    ],
     "home config cutover": [
       "home config cutover"
     ],
@@ -46882,9 +46846,6 @@
     "human facing skill readme": [
       "human facing skill readme"
     ],
-    "human projection quality gate": [
-      "human projection quality gate"
-    ],
     "human voice": [
       "human voice"
     ],
@@ -46911,6 +46872,9 @@
     ],
     "human voice rules": [
       "human voice rules"
+    ],
+    "human voice rules authority": [
+      "human voice rules authority"
     ],
     "human voice rules workflow": [
       "human voice rules workflow"
@@ -49412,9 +49376,6 @@
     "judge agreement completion criteria": [
       "judge-agreement completion criteria"
     ],
-    "judge agreement mjs": [
-      "judge-agreement.mjs"
-    ],
     "judge agreement plan": [
       "judge-agreement plan"
     ],
@@ -49579,9 +49540,6 @@
     ],
     "l9 sweep disposition": [
       "L9 sweep disposition"
-    ],
-    "label gate": [
-      "label gate"
     ],
     "label task with tag": [
       "label task with tag"
@@ -51539,6 +51497,9 @@
     "live reelection validation tasks": [
       "live reelection validation tasks"
     ],
+    "live reference verification": [
+      "live reference verification"
+    ],
     "live review iteration format": [
       "live review iteration format"
     ],
@@ -51988,9 +51949,6 @@
     ],
     "local rest api reference folder": [
       "local rest api reference folder"
-    ],
-    "local versus hosted provider": [
-      "local versus hosted provider"
     ],
     "local vision": [
       "local vision"
@@ -53091,17 +53049,11 @@
     "marquee autoplay control": [
       "marquee autoplay control"
     ],
-    "masked paired review": [
-      "masked paired review"
-    ],
     "masked reply baseline plan": [
       "masked reply baseline plan"
     ],
     "masked reply grading": [
       "masked reply grading"
-    ],
-    "masked reply label gate": [
-      "masked reply label gate"
     ],
     "mass deletion guard blocked commit": [
       "mass deletion guard blocked commit"
@@ -56970,6 +56922,21 @@
     "mermaid import": [
       "Mermaid import"
     ],
+    "message contract": [
+      "message contract"
+    ],
+    "message contract decision record": [
+      "message contract decision record"
+    ],
+    "message contract enforcement": [
+      "message contract enforcement"
+    ],
+    "message contract implementation plan": [
+      "message contract implementation plan"
+    ],
+    "message contract shipped": [
+      "message contract shipped"
+    ],
     "message identity resolver": [
       "message identity resolver"
     ],
@@ -56981,9 +56948,6 @@
     ],
     "message sequence diagram": [
       "message sequence diagram"
-    ],
-    "messageassembler": [
-      "MessageAssembler"
     ],
     "meta bind task timer reference": [
       "meta bind task timer reference"
@@ -57386,6 +57350,9 @@
     ],
     "mirror signal matching": [
       "mirror signal matching"
+    ],
+    "mirror sync verification": [
+      "mirror sync verification"
     ],
     "mirror sync verify ordering": [
       "mirror sync verify ordering"
@@ -57995,9 +57962,6 @@
     ],
     "modality and depth dials sk communication": [
       "modality and depth dials sk-communication"
-    ],
-    "modality depth dials": [
-      "modality depth dials"
     ],
     "mode": [
       "mode"
@@ -61055,9 +61019,6 @@
     "offline certificate verifier tasks": [
       "offline certificate verifier tasks"
     ],
-    "offline check for model judges": [
-      "offline check for model judges"
-    ],
     "offline cli smoke": [
       "offline CLI smoke"
     ],
@@ -61075,9 +61036,6 @@
     ],
     "offline jev and deem tie break eval": [
       "offline jev and deem tie-break eval"
-    ],
-    "offline judge agreement": [
-      "Offline judge agreement"
     ],
     "offline listing": [
       "offline listing"
@@ -61240,9 +61198,6 @@
     ],
     "ollama jina bug fix circuit breaker": [
       "ollama jina bug fix circuit breaker"
-    ],
-    "ollama llama cpp opencode go adapters": [
-      "Ollama llama.cpp OpenCode Go adapters"
     ],
     "ollama merge closure gate": [
       "ollama merge closure gate"
@@ -61567,6 +61522,12 @@
     ],
     "opencode full runtime dispatch": [
       "opencode full runtime dispatch"
+    ],
+    "opencode git message gate": [
+      "opencode git message gate"
+    ],
+    "opencode git preflight": [
+      "opencode git preflight"
     ],
     "opencode go cache compat": [
       "opencode-go cache compat"
@@ -62582,9 +62543,6 @@
     ],
     "original only fail closed gate": [
       "original-only fail-closed gate"
-    ],
-    "original only rollback plan": [
-      "original-only rollback plan"
     ],
     "orphan census zero": [
       "orphan census zero"
@@ -65104,6 +65062,12 @@
     "phase 053 tasks": [
       "phase 053 tasks"
     ],
+    "phase 1 acceptance criteria": [
+      "phase 1 acceptance criteria"
+    ],
+    "phase 1 verification checklist": [
+      "phase 1 verification checklist"
+    ],
     "phase 10 observations": [
       "phase 10 observations"
     ],
@@ -65221,6 +65185,9 @@
     "phase 19 tasks": [
       "phase 19 tasks"
     ],
+    "phase 2 acceptance criteria": [
+      "phase 2 acceptance criteria"
+    ],
     "phase 2 budget check": [
       "phase 2 budget check"
     ],
@@ -65232,6 +65199,9 @@
     ],
     "phase 2 rerank bench refinement": [
       "phase 2 rerank bench refinement"
+    ],
+    "phase 2 verification checklist": [
+      "phase 2 verification checklist"
     ],
     "phase 20 closure gate": [
       "phase 20 closure gate"
@@ -66161,6 +66131,9 @@
     "pi git advisory": [
       "pi git advisory"
     ],
+    "pi git message gate": [
+      "pi git message gate"
+    ],
     "pi git preflight": [
       "pi git preflight"
     ],
@@ -66753,8 +66726,20 @@
     "plain cross digest closure boundary": [
       "plain cross-digest closure boundary"
     ],
-    "plain english projection inventory": [
-      "plain-English projection inventory"
+    "plain language re render checks": [
+      "plain-language re-render checks"
+    ],
+    "plain language re render rule": [
+      "plain-language re-render rule"
+    ],
+    "plain language reply instruction": [
+      "plain-language reply instruction"
+    ],
+    "plain language reply rule verification": [
+      "plain-language reply rule verification"
+    ],
+    "plain language reply rules": [
+      "plain-language reply rules"
     ],
     "plain language routing aliases": [
       "plain-language routing aliases"
@@ -67248,6 +67233,15 @@
     "plugin roster makemd beancount": [
       "plugin roster makemd beancount"
     ],
+    "plugin scanner readiness": [
+      "plugin scanner readiness"
+    ],
+    "plugin scanner readiness plan": [
+      "plugin scanner readiness plan"
+    ],
+    "plugin scanner readiness tasks": [
+      "plugin scanner readiness tasks"
+    ],
     "plugin transform dedup lifecycle": [
       "plugin transform dedup lifecycle"
     ],
@@ -67731,6 +67725,12 @@
     "ppid orphan reap": [
       "ppid orphan reap"
     ],
+    "pr body ci check": [
+      "pr body ci check"
+    ],
+    "pr description validation": [
+      "pr description validation"
+    ],
     "pr state dedup gate": [
       "pr state dedup gate"
     ],
@@ -68196,15 +68196,6 @@
     "privacy fact freshness gate": [
       "privacy-fact freshness gate"
     ],
-    "privacy first provider routing": [
-      "Privacy-first provider routing"
-    ],
-    "privacy route selection": [
-      "privacy route selection"
-    ],
-    "privacy safe projection telemetry": [
-      "privacy-safe projection telemetry"
-    ],
     "private procedure card structure": [
       "private procedure card structure"
     ],
@@ -68564,9 +68555,6 @@
     ],
     "projection operator ux": [
       "projection operator UX"
-    ],
-    "projection per machine opt in": [
-      "projection per-machine opt-in"
     ],
     "projection quality": [
       "projection quality"
@@ -68974,14 +68962,8 @@
     "prose wall rewrite": [
       "prose wall rewrite"
     ],
-    "protected markdown spans": [
-      "protected Markdown spans"
-    ],
     "protected marker inflation": [
       "protected marker inflation"
-    ],
-    "protected span fidelity validation": [
-      "Protected-span fidelity validation"
     ],
     "protected spans fidelity and render": [
       "protected spans, fidelity, and render"
@@ -69085,9 +69067,6 @@
     "provider adapter redesign plan": [
       "provider adapter redesign plan"
     ],
-    "provider adapters and execution": [
-      "Provider adapters and execution"
-    ],
     "provider adapters and privacy": [
       "provider-adapters-and-privacy"
     ],
@@ -69120,9 +69099,6 @@
     ],
     "provider privacy handover": [
       "provider privacy handover"
-    ],
-    "provider route readiness check": [
-      "provider route readiness check"
     ],
     "provider singleton invalidation": [
       "provider singleton invalidation"
@@ -70964,9 +70940,6 @@
     "redact council graph metadata": [
       "redact council graph metadata"
     ],
-    "redaction canary scanning": [
-      "redaction canary scanning"
-    ],
     "reddit audit plan": [
       "reddit audit plan"
     ],
@@ -72593,9 +72566,6 @@
     "release readiness aggregate": [
       "release-readiness aggregate"
     ],
-    "release readiness and rollback": [
-      "Release readiness and rollback"
-    ],
     "release readiness audit 008": [
       "release readiness audit 008"
     ],
@@ -73269,9 +73239,6 @@
     "reply harness rerun": [
       "reply harness rerun"
     ],
-    "reply judge keep rule": [
-      "reply judge keep rule"
-    ],
     "reply scoring harness": [
       "reply scoring harness"
     ],
@@ -73289,6 +73256,9 @@
     ],
     "repo agnostic": [
       "repo agnostic"
+    ],
+    "repo agnostic commit message hook": [
+      "repo-agnostic commit message hook"
     ],
     "repo convention audit": [
       "repo convention audit"
@@ -73569,6 +73539,9 @@
     ],
     "require critique before convergence": [
       "require critique before convergence"
+    ],
+    "required ci message check": [
+      "required ci message check"
     ],
     "required core docs spec": [
       "required core docs spec"
@@ -76049,8 +76022,14 @@
     "rewrite command namespace": [
       "rewrite command namespace"
     ],
-    "rewrite context freshness": [
-      "rewrite context freshness"
+    "rewrite command removal": [
+      "rewrite command removal"
+    ],
+    "rewrite command removal checks": [
+      "rewrite command removal checks"
+    ],
+    "rewrite command removal tasks": [
+      "rewrite command removal tasks"
     ],
     "rewrite explain visually depth modality": [
       "rewrite explain-visually depth modality"
@@ -76955,6 +76934,9 @@
     "rule that binds on a read only turn": [
       "rule that binds on a read-only turn"
     ],
+    "rule upgrade verification": [
+      "rule upgrade verification"
+    ],
     "rule version provenance": [
       "rule_version provenance"
     ],
@@ -77125,9 +77107,6 @@
     ],
     "runbootftsintegritycheck reap": [
       "runBootFtsIntegrityCheck reap"
-    ],
-    "runcompatibilitydoctor": [
-      "runCompatibilityDoctor"
     ],
     "runnable commands and repaired cross references": [
       "Runnable commands and repaired cross-references"
@@ -77486,8 +77465,14 @@
     "runtime mirror": [
       "runtime mirror"
     ],
+    "runtime mirror acceptance": [
+      "runtime mirror acceptance"
+    ],
     "runtime mirror and mcp config": [
       "runtime mirror and mcp config"
+    ],
+    "runtime mirror checks": [
+      "runtime mirror checks"
     ],
     "runtime mirror drift": [
       "runtime mirror drift"
@@ -77680,9 +77665,6 @@
     ],
     "runtime wrapper projection": [
       "runtime wrapper projection"
-    ],
-    "runtimecapabilitymatrix": [
-      "RuntimeCapabilityMatrix"
     ],
     "rust adapter boundary review": [
       "rust adapter boundary review"
@@ -79644,9 +79626,6 @@
     "segment group plus to star": [
       "segment group plus to star"
     ],
-    "select bounded context": [
-      "select bounded context"
-    ],
     "select bridge pattern": [
       "select bridge pattern"
     ],
@@ -79659,9 +79638,6 @@
     "selectable maintainer mode": [
       "selectable maintainer mode"
     ],
-    "selectboundedcontext": [
-      "selectBoundedContext"
-    ],
     "selection magicpath": [
       "selection magicpath"
     ],
@@ -79673,9 +79649,6 @@
     ],
     "selector shared socket tasks": [
       "selector shared socket tasks"
-    ],
-    "selectprivacyroute": [
-      "selectPrivacyRoute"
     ],
     "self assessed quality hint": [
       "self_assessed_quality hint"
@@ -79922,6 +79895,9 @@
     ],
     "sent goal carries only its directive": [
       "sent goal carries only its directive"
+    ],
+    "sentence level communication guidance": [
+      "sentence-level communication guidance"
     ],
     "sentence relation rule": [
       "sentence relation rule"
@@ -81448,9 +81424,6 @@
     "sidecar process ownership lifecycle": [
       "sidecar process ownership lifecycle"
     ],
-    "sidecar projection presentation": [
-      "sidecar projection presentation"
-    ],
     "sidecar provider dispose on swap": [
       "sidecar provider dispose on swap"
     ],
@@ -81786,9 +81759,6 @@
     ],
     "six primitive spine ratification evidence": [
       "six-primitive spine ratification evidence"
-    ],
-    "six runtime adapter matrix": [
-      "Six-runtime adapter matrix"
     ],
     "six runtime surfaces": [
       "six runtime surfaces"
@@ -82738,35 +82708,8 @@
     "sk code workflow subskill research plan": [
       "sk-code workflow subskill research plan"
     ],
-    "sk communication 1 0 0 0": [
-      "sk-communication 1.0.0.0"
-    ],
-    "sk communication 1 1 0 0": [
-      "sk-communication 1.1.0.0"
-    ],
-    "sk communication 1 2 0 0": [
-      "sk-communication 1.2.0.0"
-    ],
-    "sk communication 1 3 0 0": [
-      "sk-communication 1.3.0.0"
-    ],
-    "sk communication 1 4 0 0": [
-      "sk-communication 1.4.0.0"
-    ],
     "sk communication assessment": [
       "sk-communication assessment"
-    ],
-    "sk communication benchmark": [
-      "sk-communication benchmark"
-    ],
-    "sk communication benchmark artifacts": [
-      "sk-communication benchmark artifacts"
-    ],
-    "sk communication benchmark index": [
-      "sk-communication benchmark index"
-    ],
-    "sk communication benchmark reports": [
-      "sk-communication benchmark reports"
     ],
     "sk communication changelog retrofit": [
       "sk-communication changelog retrofit"
@@ -82831,14 +82774,11 @@
     "sk communication creation wiring docs and operator rollout changelog": [
       "sk communication creation wiring docs and operator rollout changelog"
     ],
-    "sk communication feature catalog": [
-      "sk-communication feature catalog"
-    ],
     "sk communication improvements": [
       "sk-communication improvements"
     ],
-    "sk communication readme": [
-      "sk-communication readme"
+    "sk communication removal": [
+      "sk-communication removal"
     ],
     "sk communication research": [
       "sk-communication research"
@@ -82857,21 +82797,6 @@
     ],
     "sk communication upgrade": [
       "sk-communication upgrade"
-    ],
-    "sk communication v1 0 0 0": [
-      "sk-communication v1.0.0.0"
-    ],
-    "sk communication v1 1 0 0": [
-      "sk-communication v1.1.0.0"
-    ],
-    "sk communication v1 2 0 0": [
-      "sk-communication v1.2.0.0"
-    ],
-    "sk communication v1 3 0 0": [
-      "sk-communication v1.3.0.0"
-    ],
-    "sk communication v1 4 0 0": [
-      "sk-communication v1.4.0.0"
     ],
     "sk create agent 1 0 0 0": [
       "sk-create-agent 1.0.0.0"
@@ -84112,6 +84037,9 @@
     "sk git 1 7 0 0": [
       "sk-git 1.7.0.0"
     ],
+    "sk git 1 8 0 0": [
+      "sk-git 1.8.0.0"
+    ],
     "sk git benchmark": [
       "sk-git benchmark"
     ],
@@ -84244,11 +84172,17 @@
     "sk git v1 7 0 0": [
       "sk-git v1.7.0.0"
     ],
+    "sk git v1 8 0 0": [
+      "sk-git v1.8.0.0"
+    ],
     "sk git workflow support": [
       "sk-git workflow support"
     ],
     "sk git worktree convention": [
       "sk-git worktree convention"
+    ],
+    "sk prefix secret false positive": [
+      "sk- prefix secret false positive"
     ],
     "sk prompt 1 0 0 0": [
       "sk-prompt 1.0.0.0"
@@ -85234,6 +85168,9 @@
     "skill advisor benchmarks": [
       "skill advisor benchmarks"
     ],
+    "skill advisor bootstrap build failure": [
+      "skill advisor bootstrap build failure"
+    ],
     "skill advisor box header": [
       "skill advisor box header"
     ],
@@ -85722,6 +85659,9 @@
     ],
     "skill anchored doc version": [
       "skill anchored doc version"
+    ],
+    "skill and command removal": [
+      "skill and command removal"
     ],
     "skill and repo readmes cleanup plan": [
       "skill-and-repo-readmes cleanup plan"
@@ -86531,6 +86471,15 @@
     "skill references assets and skillmd cleanup tasks": [
       "skill-references-assets-and-skillmd cleanup tasks"
     ],
+    "skill removal approach": [
+      "skill removal approach"
+    ],
+    "skill removal closure gate": [
+      "skill removal closure gate"
+    ],
+    "skill removal tasks": [
+      "skill removal tasks"
+    ],
     "skill rename to deep improvement": [
       "Skill Rename to deep-improvement"
     ],
@@ -86966,6 +86915,9 @@
     ],
     "skilled v4 0 0 2": [
       "skilled v4.0.0.2"
+    ],
+    "skilled v4 0 0 3": [
+      "skilled v4.0.0.3"
     ],
     "skilled verification phase goal": [
       "skilled verification phase goal"
@@ -93308,6 +93260,9 @@
     "template byte budget": [
       "template byte budget"
     ],
+    "template carries the contract": [
+      "template carries the contract"
+    ],
     "template cleanup": [
       "template cleanup"
     ],
@@ -93400,6 +93355,18 @@
     ],
     "template default text in finished packets": [
       "template default text in finished packets"
+    ],
+    "template driven commit enforcement": [
+      "template-driven commit enforcement"
+    ],
+    "template driven enforcement evidence": [
+      "template-driven enforcement evidence"
+    ],
+    "template driven message checks": [
+      "template-driven message checks"
+    ],
+    "template driven message enforcement": [
+      "template-driven message enforcement"
     ],
     "template duplication analysis": [
       "template duplication analysis"
@@ -93700,6 +93667,9 @@
     ],
     "temporal recall task breakdown": [
       "temporal recall task breakdown"
+    ],
+    "temporary git index scan": [
+      "temporary git index scan"
     ],
     "ten agent specialization": [
       "ten agent specialization"
@@ -96090,6 +96060,9 @@
     "untouched scaffold zero errors": [
       "untouched scaffold zero errors"
     ],
+    "untrack packet context": [
+      "untrack packet context"
+    ],
     "untrusted output boundary source kind render escaper": [
       "untrusted output boundary source_kind render escaper"
     ],
@@ -96654,6 +96627,9 @@
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
     ],
+    "v4 0 0 3 release notes": [
+      "v4.0.0.3 release notes"
+    ],
     "v4 changelog": [
       "v4 changelog"
     ],
@@ -96865,6 +96841,9 @@
     "validate memory quality v8 false positive": [
       "validate memory quality V8 false positive"
     ],
+    "validate message mjs": [
+      "validate-message.mjs"
+    ],
     "validate obsidian plugin reduction": [
       "validate obsidian plugin reduction"
     ],
@@ -96942,9 +96921,6 @@
     ],
     "validateplaceholders tasks": [
       "validatePlaceholders tasks"
-    ],
-    "validateprojectioncandidate": [
-      "validateProjectionCandidate"
     ],
     "validation and memory remediation": [
       "validation and memory remediation"
@@ -97836,12 +97812,6 @@
     ],
     "visual explanation lane sk communication": [
       "visual explanation lane sk-communication"
-    ],
-    "visual explanation references removed": [
-      "visual explanation references removed"
-    ],
-    "visual explanations lane": [
-      "visual explanations lane"
     ],
     "vitest": [
       "vitest"
