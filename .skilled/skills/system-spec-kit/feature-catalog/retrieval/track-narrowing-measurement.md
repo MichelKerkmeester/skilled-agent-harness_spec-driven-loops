@@ -33,7 +33,7 @@ With no switch the script makes no model call and writes no file. It prints the 
 
 ### Model Columns
 
-`--deem` asks the local Deem server and `--jev` asks one Jev provider the same `choice` question over the tracks plus `none`, in three option orders for every row. Each arm runs only behind its backend's own check: the Deem health line, or the pinned Jev version and its credential status. A run with either switch needs `--out <dir>`, where it writes `calls.jsonl` with one record per call and `report.json`. The keep rule asks, in order, for coverage of nine rows in ten, a margin of one measured row in ten over the baseline, a one-sided sign test below 0.05 and at most one call in ten that differs from its row's most common pick. Each verdict line names the model it measured, and a later run into the same directory prints a requalify line when that model changed.
+`--jev` asks one Jev provider the `choice` question over the tracks plus `none`, in three option orders for every row. The arm runs only behind its own check: the pinned Jev version and its credential status. A run with the switch needs `--out <dir>`, where it writes `calls.jsonl` with one record per call and `report.json`. The keep rule asks, in order, for coverage of nine rows in ten, a margin of one measured row in ten over the baseline, a one-sided sign test below 0.05 and at most one call in ten that differs from its row's most common pick. Each verdict line names the model it measured, and a later run into the same directory prints a requalify line when that model changed.
 
 ---
 
@@ -52,8 +52,8 @@ With no switch the script makes no model call and writes no file. It prints the 
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts` | Vitest | The test-set filter, both baselines, the keep rule, and the Deem and Jev gates and arms on stub binaries |
-| `.skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md` | Manual playbook | Runs the zero-call default and the stub-backend skip |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts` | Vitest | The test-set filter, both baselines, the keep rule, and the Jev gate and arm on stub binaries |
+| `.skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/track-narrowing-measurement.md` | Manual playbook | Runs the zero-call default and the Jev gate skip |
 
 ---
 

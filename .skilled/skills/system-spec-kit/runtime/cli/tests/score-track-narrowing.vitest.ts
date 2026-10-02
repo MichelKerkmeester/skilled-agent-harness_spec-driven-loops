@@ -248,8 +248,8 @@ describe('score-track-narrowing test set', () => {
     expect(classifyDescription('[TODO] fill this in later', 'x', [])).toBe('placeholder');
     expect(classifyDescription('Phase 3: build the thing now', 'x', [])).toBe('placeholder');
     expect(classifyDescription(
-      'Deem search narrowing arm build',
-      '017-deem-search-narrowing-arm-build',
+      'Placeholder description equals folder build',
+      '017-placeholder-description-equals-folder-build',
       [],
     )).toBe('placeholder');
     expect(classifyDescription('four tokens only here', 'x', [])).toBe('placeholder');
@@ -483,8 +483,8 @@ describe('score-track-narrowing paraphrase probes', () => {
       ['probe:c2', 'alpha-track'],
     ]))).toBe(1);
     expect(probeHits(withGold, new Map([['probe:c1', null]]))).toBe(0);
-    expect(probeLine(withGold, [['lookup', 0], ['ripgrep', 1], ['deem', 1]])).toBe(
-      'paraphrase probes: total=2 gold-less=1 lookup=0/1 ripgrep=1/1 deem=1/1',
+    expect(probeLine(withGold, [['lookup', 0], ['ripgrep', 1], ['jev', 1]])).toBe(
+      'paraphrase probes: total=2 gold-less=1 lookup=0/1 ripgrep=1/1 jev=1/1',
     );
 
     const shipped = loadProbes(DEFAULT_PROBES_PATH);
@@ -513,7 +513,7 @@ describe('score-track-narrowing verdict', () => {
     const baselinePicks = new Map<string, string | null>(
       baseline.map((pick, index): [string, string | null] => [`r${index}`, pick]),
     );
-    return summarizeColumn('deem', rows, records, baselinePicks, 'model=deem-0.8-v1');
+    return summarizeColumn('jev', rows, records, baselinePicks, 'model=stub-model');
   }
 
   it('prints keep on stub answers that clear all four conditions', () => {
@@ -532,7 +532,7 @@ describe('score-track-narrowing verdict', () => {
     expect(summary.outcome).toBe('keep');
     expect(summary.p).toBe(0.015625);
     expect(summary.line).toBe(
-      'verdict deem: keep K=6 M=6 A=6 B=0 W=6 L=0 F=0 p=0.01563 model=deem-0.8-v1',
+      'verdict jev: keep K=6 M=6 A=6 B=0 W=6 L=0 F=0 p=0.01563 model=stub-model',
     );
   });
 
@@ -554,7 +554,7 @@ describe('score-track-narrowing verdict', () => {
     expect(summary.L).toBe(0);
     expect(summary.reason).toBe('margin');
     expect(summary.line.startsWith(
-      'verdict deem: stop (margin) K=20 M=20 A=11 B=10 W=1 L=0 F=0 p=',
+      'verdict jev: stop (margin) K=20 M=20 A=11 B=10 W=1 L=0 F=0 p=',
     )).toBe(true);
   });
 
@@ -572,7 +572,7 @@ describe('score-track-narrowing verdict', () => {
     expect(summary.unmeasured).toBe(2);
     expect(summary.A).toBe(8);
     expect(summary.reason).toBe('coverage');
-    expect(summary.line.startsWith('verdict deem: stop (coverage) K=10 M=8')).toBe(true);
+    expect(summary.line.startsWith('verdict jev: stop (coverage) K=10 M=8')).toBe(true);
   });
 
   it('stops on the sign test and on flips, and counts unstable and none as wrong', () => {
@@ -618,7 +618,7 @@ describe('score-track-narrowing verdict', () => {
       ['b', 'b', 'b', 'b', 'b', 'b'],
     );
     expect(columnLine(summary, { p50: 12, p95: null })).toBe(
-      'column deem: rows=6 measured=6 unmeasured=0 unstable=0 abstained=0 '
+      'column jev: rows=6 measured=6 unmeasured=0 unstable=0 abstained=0 '
       + 'flip_rate=0.0000 latency_p50_ms=12 latency_p95_ms=none',
     );
   });
@@ -632,7 +632,7 @@ describe('score-track-narrowing entry point', () => {
   it('default run prints the zero-call report, spawns no model binary and writes no file', async () => {
     const root = tempDir('score-track-narrowing-');
     const { indexPath, probesPath } = smallCorpus(root);
-    const stubs = stubDir({ 'cli-deem': 'exit 0', jev: 'exit 0' });
+    const stubs = stubDir({ jev: 'exit 0' });
     const before = listFiles(root);
 
     const r = await runMain([], {
@@ -696,7 +696,7 @@ describe('score-track-narrowing entry point', () => {
   it('returns 2 on an unknown flag and on an unreadable probe file', async () => {
     const root = tempDir('score-track-narrowing-');
     const { indexPath, probesPath } = smallCorpus(root);
-    const stubs = stubDir({ 'cli-deem': 'exit 0', jev: 'exit 0' });
+    const stubs = stubDir({ jev: 'exit 0' });
     const deps = {
       repoRoot: root,
       indexPath,
@@ -713,105 +713,6 @@ describe('score-track-narrowing entry point', () => {
     expect(missing.errs).toHaveLength(1);
   });
 });
-
-// ───────────────────────────────────────────────────────────────────
-// 10. DEEM GATE
-// ───────────────────────────────────────────────────────────────────
-
-describe('score-track-narrowing deem gate', () => {
-  const HEALTHY = `if [ "$1" = health ]; then echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}'; exit 0; fi; exit 2`;
-
-  it('skips a stub backend with the rest of the output byte-identical', async () => {
-    const root = tempDir('score-track-narrowing-');
-    const { indexPath, probesPath } = smallCorpus(root);
-    const stubs = stubDir({
-      'cli-deem': `echo '{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}'`,
-    });
-    const deps = {
-      repoRoot: root,
-      indexPath,
-      probesPath,
-      hubNames: [],
-      env: { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` },
-    };
-
-    const base = await runMain([], deps);
-    const run = await runMain(['--deem', '--out', tempDir('stn-out-')], deps);
-    const logs = fs.readFileSync(path.join(stubs, 'cli-deem.log'), 'utf8').split('\n').filter(Boolean);
-
-    expect(run.code).toBe(0);
-    expect(run.lines).toContain('deem arm skipped: stub backend');
-    expect(run.lines.filter((line) => line !== 'deem arm skipped: stub backend')).toEqual(base.lines);
-    expect(logs).toEqual(['health']);
-  });
-
-  it('skips an unreachable server, a wrong model and a body that is not json', async () => {
-    const root = tempDir('score-track-narrowing-');
-    const { indexPath, probesPath } = smallCorpus(root);
-    const unreachable = stubDir({
-      'cli-deem': `echo '{"ok":false,"error":"Deem unreachable: ECONNREFUSED"}' >&2; exit 4`,
-    });
-    const wrongModel = stubDir({
-      'cli-deem': `echo '{"ok":true,"backend":"torch","model":"deem-1.5","model_commit":"m1","source_commit":"s1"}'`,
-    });
-    const notJson = stubDir({ 'cli-deem': `echo 'not json'` });
-    const depsFor = (stubs: string) => ({
-      repoRoot: root,
-      indexPath,
-      probesPath,
-      hubNames: [],
-      env: { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` },
-    });
-
-    const base = await runMain([], depsFor(unreachable));
-
-    const unreachableRun = await runMain(['--deem', '--out', tempDir('stn-out-')], depsFor(unreachable));
-    expect(unreachableRun.code).toBe(0);
-    expect(unreachableRun.lines.filter((line) => !base.lines.includes(line))).toEqual([
-      'deem arm skipped: not reachable',
-    ]);
-
-    const wrongModelRun = await runMain(['--deem', '--out', tempDir('stn-out-')], depsFor(wrongModel));
-    expect(wrongModelRun.code).toBe(0);
-    expect(wrongModelRun.lines.filter((line) => !base.lines.includes(line))).toEqual([
-      'deem arm skipped: model',
-      'deem: found="deem-1.5"',
-    ]);
-
-    const notJsonRun = await runMain(['--deem', '--out', tempDir('stn-out-')], depsFor(notJson));
-    expect(notJsonRun.code).toBe(0);
-    expect(notJsonRun.lines.filter((line) => !base.lines.includes(line))).toEqual([
-      'deem arm skipped: bad health response',
-      'deem: found="not json"',
-    ]);
-  });
-
-  it('refuses --deem without --out before any output or call', async () => {
-    const root = tempDir('score-track-narrowing-');
-    const { indexPath, probesPath } = smallCorpus(root);
-    const stubs = stubDir({ 'cli-deem': HEALTHY });
-    const deps = {
-      repoRoot: root,
-      indexPath,
-      probesPath,
-      hubNames: [],
-      env: { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` },
-    };
-
-    for (const argv of [['--deem'], ['--deem', '--out', '']]) {
-      const run = await runMain(argv, deps);
-
-      expect(run.code).toBe(2);
-      expect(run.errs).toEqual(['--deem needs --out <dir> so every call is recorded']);
-      expect(run.lines).toEqual([]);
-      expect(fs.existsSync(path.join(stubs, 'cli-deem.log'))).toBe(false);
-    }
-  });
-});
-
-// ───────────────────────────────────────────────────────────────────
-// 11. DEEM ARM
-// ───────────────────────────────────────────────────────────────────
 
 function keepCorpus(root: string, marker = ''): { indexPath: string; probesPath: string } {
   track(root, 'alpha-track', 'Alpha fixture track for the measurement');
@@ -835,226 +736,8 @@ function keepCorpus(root: string, marker = ''): { indexPath: string; probesPath:
   };
 }
 
-const DEEM = `if [ "$1" = health ]; then n=$(cat "$D/n" 2>/dev/null || echo 0); n=$((n+1)); echo $n > "$D/n"; mc=m1; if [ -f "$D/newpair" ] && [ $n -gt 1 ]; then mc=m2; fi; echo "{\\"ok\\":true,\\"backend\\":\\"torch\\",\\"model\\":\\"deem-0.8-v1\\",\\"model_commit\\":\\"$mc\\",\\"source_commit\\":\\"s1\\"}"; exit 0; fi
-p=$(cat); case "$p" in *exit1*) exit 1;; *exit3*) exit 3;; *exit4*) exit 4;; *quartz*) k=alpha-track;; *ember*) k=beta;; *) k=none;; esac
-echo "{\\"model\\":\\"deem-0.8-v1\\",\\"answers\\":{\\"answer\\":{\\"choice\\":\\"$k\\",\\"probabilities\\":{\\"$k\\":0.8,\\"none\\":0.05}}}}"`;
-
-describe('score-track-narrowing deem arm', () => {
-  it('asks three rotations per row and prints keep when the stub is right and both baselines abstain', async () => {
-    const root = tempDir('score-track-narrowing-');
-    const { indexPath, probesPath } = keepCorpus(root);
-    const stubs = stubDir({ 'cli-deem': DEEM });
-    const out = tempDir('stn-out-');
-
-    const r = await runMain(['--deem', '--out', out], {
-      repoRoot: root,
-      indexPath,
-      probesPath,
-      hubNames: [],
-      env: { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` },
-    });
-
-    expect(r.code).toBe(0);
-    expect(r.lines).toContain('deem: nothing leaves the machine; planned calls: 18; estimated wall time: 1.2 s at 65.6 ms per call, the 2-option p50 from deem-local.md');
-    const columnIndex = r.lines.findIndex((line) => line.startsWith('column deem: rows=6 measured=6 unmeasured=0 unstable=0 abstained=0 flip_rate=0.0000 '));
-    const verdictIndex = r.lines.indexOf('verdict deem: keep K=6 M=6 A=6 B=0 W=6 L=0 F=0 p=0.01563 model=deem-0.8-v1 model_commit=m1 source_commit=s1');
-    expect(columnIndex).toBeGreaterThan(-1);
-    expect(verdictIndex).toBeGreaterThan(columnIndex);
-    expect(verdictIndex).toBeLessThan(r.lines.length - 1);
-
-    const records = fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8')
-      .split('\n')
-      .filter(Boolean)
-      .map((line) => JSON.parse(line));
-    expect(records).toHaveLength(18);
-    for (const record of records) {
-      expect(typeof record.wallMs).toBe('number');
-      expect(record.exitCode).toBe(0);
-      expect(record.modelId).toBe('deem-0.8-v1');
-      expect(record.modelCommit).toBe('m1');
-      expect(record.sourceCommit).toBe('s1');
-      expect(record.status).toBe('measured');
-      expect([0, 1, 2]).toContain(record.order);
-    }
-
-    const logs = fs.readFileSync(path.join(stubs, 'cli-deem.log'), 'utf8').split('\n').filter(Boolean);
-    expect(logs[0]).toBe('health');
-    const choiceLines = logs.filter((line) => line.startsWith('choice '));
-    expect(choiceLines).toHaveLength(18);
-    for (const line of logs) {
-      expect(line.includes('--provider')).toBe(false);
-    }
-    for (const line of choiceLines) {
-      expect(line.startsWith('choice -q Which spec track is this text about? -o ')).toBe(true);
-    }
-    expect(choiceLines[0].startsWith('choice -q Which spec track is this text about? -o alpha-track=')).toBe(true);
-    expect(choiceLines[1].startsWith('choice -q Which spec track is this text about? -o beta=')).toBe(true);
-    expect(choiceLines[2].startsWith('choice -q Which spec track is this text about? -o none=')).toBe(true);
-  });
-
-  it('stops when the commit pair changes after exit 4, or when the backend refuses', async () => {
-    const root = tempDir('score-track-narrowing-');
-    const { indexPath, probesPath } = keepCorpus(root, 'exit4');
-    const stubs = stubDir({ 'cli-deem': DEEM });
-    fs.writeFileSync(path.join(stubs, 'newpair'), '');
-
-    const r = await runMain(['--deem', '--out', tempDir('stn-out-')], {
-      repoRoot: root,
-      indexPath,
-      probesPath,
-      hubNames: [],
-      env: { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` },
-    });
-    const index = buildTestSet(root, { hubNames: [] }).rows
-      .findIndex((row) => row.question.includes('exit4'));
-
-    expect(r.lines).toContain('deem arm stopped: model commit changed mid-run');
-    expect(r.lines).toContain(`deem: partial rows=${index}`);
-    expect(r.lines.some((line) => line.startsWith('verdict deem:'))).toBe(false);
-
-    const refuseRoot = tempDir('score-track-narrowing-');
-    const refuse = keepCorpus(refuseRoot, 'exit3');
-    const refuseStubs = stubDir({ 'cli-deem': DEEM });
-    const refused = await runMain(['--deem', '--out', tempDir('stn-out-')], {
-      repoRoot: refuseRoot,
-      indexPath: refuse.indexPath,
-      probesPath: refuse.probesPath,
-      hubNames: [],
-      env: { ...process.env, PATH: `${refuseStubs}${path.delimiter}${process.env.PATH}` },
-    });
-
-    expect(refused.lines).toContain('deem arm stopped: backend refused');
-    expect(refused.lines.some((line) => line.startsWith('verdict deem:'))).toBe(false);
-  });
-
-  it('marks exit-1 calls unmeasured and stops on coverage', async () => {
-    const root = tempDir('score-track-narrowing-');
-    const { indexPath, probesPath } = keepCorpus(root, 'exit1');
-    const stubs = stubDir({ 'cli-deem': DEEM });
-
-    const r = await runMain(['--deem', '--out', tempDir('stn-out-')], {
-      repoRoot: root,
-      indexPath,
-      probesPath,
-      hubNames: [],
-      env: { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` },
-    });
-
-    expect(r.lines.some((line) => line.startsWith('column deem: rows=6 measured=5 unmeasured=1 '))).toBe(true);
-    expect(r.lines.some((line) => line.startsWith('verdict deem: stop (coverage) K=6 M=5 '))).toBe(true);
-  });
-
-  it('writes report.json whose deem column matches the stdout verdict', async () => {
-    const root = tempDir('score-track-narrowing-');
-    const { indexPath, probesPath } = keepCorpus(root);
-    write(root, 'probes.json', JSON.stringify({
-      paraphrase: {
-        rows: [
-          { caseId: 'c1', locale: 'latin', variant: 'exact', query: 'unrelated phrase words' },
-          { caseId: 'c1', locale: 'latin', variant: 'paraphrase', query: 'ember words drifting away' },
-        ],
-      },
-    }));
-    const stubs = stubDir({ 'cli-deem': DEEM });
-    const out = tempDir('stn-out-');
-
-    const r = await runMain(['--deem', '--out', out], {
-      repoRoot: root,
-      indexPath,
-      probesPath,
-      hubNames: [],
-      env: { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` },
-    });
-
-    expect(r.code).toBe(0);
-    expect(r.lines[r.lines.length - 1]).toBe(
-      'paraphrase probes: total=1 gold-less=0 lookup=0/1 ripgrep=1/1 deem=1/1',
-    );
-
-    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
-    const verdictLine = r.lines.find((line) => line.startsWith('verdict deem:'));
-    expect(verdictLine).toBeDefined();
-    expect(report.columns.deem.line).toBe(verdictLine);
-    expect(report.columns.deem).toMatchObject({
-      verdict: 'keep',
-      reason: null,
-      K: 6,
-      M: 6,
-      A: 6,
-      B: 0,
-      W: 6,
-      L: 0,
-      F: 0,
-      p: 0.015625,
-      modelId: 'deem-0.8-v1',
-      modelCommit: 'm1',
-      sourceCommit: 's1',
-    });
-    expect(report.options).toBe(3);
-    const optionLine = r.lines.find((line) => line.startsWith('options: ')) ?? '';
-    expect(report.optionSetSha256).toBe(optionLine.split('sha256=')[1]?.split(' ')[0]);
-    expect(report.probes.hits).toEqual({ lookup: 0, ripgrep: 1, deem: 1 });
-  });
-
-  it('prints requalify before the verdict when the stored commit pair differs', async () => {
-    const root = tempDir('score-track-narrowing-');
-    const { indexPath, probesPath } = keepCorpus(root);
-    const stubs = stubDir({ 'cli-deem': DEEM });
-    const deps = {
-      repoRoot: root,
-      indexPath,
-      probesPath,
-      hubNames: [],
-      env: { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` },
-    };
-
-    const out = tempDir('stn-out-');
-    write(out, 'report.json', JSON.stringify({
-      columns: { deem: { modelCommit: 'old', sourceCommit: 's1' } },
-    }));
-    const r = await runMain(['--deem', '--out', out], deps);
-
-    expect(r.code).toBe(0);
-    const verdictIndex = r.lines.findIndex((line) => line.startsWith('verdict deem:'));
-    expect(verdictIndex).toBeGreaterThan(0);
-    expect(r.lines[verdictIndex - 1]).toBe('requalify: model commit changed');
-
-    const nextOut = tempDir('stn-out-');
-    write(nextOut, 'report.json', JSON.stringify({
-      columns: { deem: { modelCommit: 'm1', sourceCommit: 's1' } },
-    }));
-    const second = await runMain(['--deem', '--out', nextOut], deps);
-
-    expect(second.code).toBe(0);
-    expect(second.lines.some((line) => line.startsWith('requalify:'))).toBe(false);
-  });
-
-  it('records a skipped arm and writes no call log', async () => {
-    const root = tempDir('score-track-narrowing-');
-    const { indexPath, probesPath } = smallCorpus(root);
-    const stubs = stubDir({
-      'cli-deem': `echo '{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}'`,
-    });
-    const out = tempDir('stn-out-');
-
-    const r = await runMain(['--deem', '--out', out], {
-      repoRoot: root,
-      indexPath,
-      probesPath,
-      hubNames: [],
-      env: { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` },
-    });
-
-    expect(r.code).toBe(0);
-    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
-    expect(report.skipped.deem).toBe('deem arm skipped: stub backend');
-    expect(report.columns.deem).toBeUndefined();
-    expect(fs.existsSync(path.join(out, 'calls.jsonl'))).toBe(false);
-  });
-});
-
 // ───────────────────────────────────────────────────────────────────
-// 12. JEV GATE
+// 10. JEV GATE
 // ───────────────────────────────────────────────────────────────────
 
 describe('score-track-narrowing jev gate', () => {
@@ -1132,12 +815,12 @@ describe('score-track-narrowing jev gate', () => {
 });
 
 // ───────────────────────────────────────────────────────────────────
-// 13. JEV ARM
+// 11. JEV ARM
 // ───────────────────────────────────────────────────────────────────
 
 const JEV = `case "$1" in --version) echo 'jev 0.6.2'; exit 0;; auth) [ "$2" = test ] && echo '{"ok":true,"valid":true,"model":"stub-model"}'; exit 0;; esac
 p=$(cat); case "$p" in *exit1*) exit 1;; *exit3*) exit 3;; *exit4*) exit 4;; *quartz*) k=alpha-track;; *ember*) k=beta;; *) k=none;; esac
-echo "{\\"model\\":\\"deem-0.8-v1\\",\\"answers\\":{\\"answer\\":{\\"choice\\":\\"$k\\",\\"probabilities\\":{\\"$k\\":0.8,\\"none\\":0.05}}}}"`;
+echo "{\\"model\\":\\"stub-model\\",\\"answers\\":{\\"answer\\":{\\"choice\\":\\"$k\\",\\"probabilities\\":{\\"$k\\":0.8,\\"none\\":0.05}}}}"`;
 
 describe('score-track-narrowing jev arm', () => {
   it('runs every jev call under one provider and prints keep on stub answers', async () => {

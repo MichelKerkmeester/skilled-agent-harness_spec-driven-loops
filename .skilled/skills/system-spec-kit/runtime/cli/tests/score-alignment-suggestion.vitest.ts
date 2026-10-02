@@ -6,7 +6,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, join, resolve } from 'node:path';
-import { binomTail, buildSyntheticTree, chooseBaseline, countVerdict, decideVerdict, deemGate, formatPathLines, jevGate, main, modalPick, parseRows, replayPath, scanText, scanTranscriptFile, summarizeEvents, verdictLine } from '../evals/score-alignment-suggestion';
+import { binomTail, buildSyntheticTree, chooseBaseline, countVerdict, decideVerdict, formatPathLines, jevGate, main, modalPick, parseRows, replayPath, scanText, scanTranscriptFile, summarizeEvents, verdictLine } from '../evals/score-alignment-suggestion';
 
 const tempDirs: string[] = [];
 
@@ -152,7 +152,7 @@ describe('census', () => {
       '   Warning: Moderate alignment (60%) - proceeding with caution',
     ].join('\n'));
 
-    for (const name of ['jev', 'cli-deem']) {
+    for (const name of ['jev']) {
       const stub = join(stubDir, name);
       writeFileSync(stub, `#!/bin/sh\necho "$*" >> "$(dirname "$0")/${name}.log"\nexit 0\n`);
       chmodSync(stub, 0o755);
@@ -175,7 +175,6 @@ describe('census', () => {
     expect(out).toContain('replay data: validateFolderAlignment root=synthetic numbered_folders=3 decision=low alternatives listed: 2');
     expect(out).toContain('transcript events: not measured');
     expect(existsSync(join(stubDir, 'jev.log'))).toBe(false);
-    expect(existsSync(join(stubDir, 'cli-deem.log'))).toBe(false);
     const report = JSON.parse(readFileSync(join(reportDir, 'report.json'), 'utf8')) as { committed: { events: number } };
     expect(report.committed.events).toBe(2);
   });
@@ -363,7 +362,7 @@ describe('scorer and gate', () => {
       { label: '' },
     ]);
 
-    for (const name of ['jev', 'cli-deem']) {
+    for (const name of ['jev']) {
       const stub = join(stubDir, name);
       writeFileSync(stub, `#!/bin/sh\necho "$*" >> "$(dirname "$0")/${name}.log"\nexit 0\n`);
       chmodSync(stub, 0o755);
@@ -371,7 +370,7 @@ describe('scorer and gate', () => {
 
     const out: string[] = [];
     const err: string[] = [];
-    const code = await main(['--score', f, '--deem', '--out', outDir], {
+    const code = await main(['--score', f, '--jev', '--out', outDir], {
       out: (line) => out.push(line),
       err: (line) => err.push(line),
       env: { ...process.env, PATH: stubDir + delimiter + process.env.PATH },
@@ -383,7 +382,6 @@ describe('scorer and gate', () => {
       'stop: fewer than 30 labeled rows (29 labeled)',
     ]);
     expect(existsSync(join(stubDir, 'jev.log'))).toBe(false);
-    expect(existsSync(join(stubDir, 'cli-deem.log'))).toBe(false);
   });
 
   it('passes the gate at 30 labeled rows', async () => {
@@ -501,8 +499,8 @@ describe('keep rule', () => {
 
     expect(decideVerdict(c).verdict).toBe('keep');
     expect(decideVerdict(c).p).toBeCloseTo(1 / 1024, 12);
-    expect(verdictLine('deem', c, decideVerdict(c), 'target', 'model=deem-0.8-v1 model_commit=m1 source_commit=s1')).toBe(
-      'verdict deem: keep K=30 M=30 A=30 B=20 W=10 L=0 F=0 p=0.0010 baseline=target model=deem-0.8-v1 model_commit=m1 source_commit=s1'
+    expect(verdictLine('jev', c, decideVerdict(c), 'target', 'jev_version=jev 0.6.2 provider=official model=m')).toBe(
+      'verdict jev: keep K=30 M=30 A=30 B=20 W=10 L=0 F=0 p=0.0010 baseline=target jev_version=jev 0.6.2 provider=official model=m'
     );
   });
 
@@ -545,26 +543,9 @@ case "$1" in
 esac
 exit 1
 `;
-  const cliDeem = `#!/bin/sh
-echo "$*" >> "$(dirname "$0")/cli-deem.log"
-case "$1" in
-  health)
-    case "\${STUB_DEEM_HEALTH:-ok}" in
-      ok) echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}'; exit 0 ;;
-      unreachable) exit 4 ;;
-      stub) echo '{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}'; exit 0 ;;
-      model) echo '{"ok":true,"backend":"torch","model":"other-model","model_commit":"m1","source_commit":"s1"}'; exit 0 ;;
-      bad) echo 'not json'; exit 0 ;;
-    esac ;;
-  choice) read -r state; case "$state" in pick:*) k="\${state#pick:}"; printf '{"answers":{"answer":{"choice":"%s","probabilities":{"%s":0.9}}}}\\n' "$k" "$k"; exit 0 ;; esac; exit 1 ;;
-esac
-exit 1
-`;
 
   writeFileSync(join(dir, 'jev'), jev);
   chmodSync(join(dir, 'jev'), 0o755);
-  writeFileSync(join(dir, 'cli-deem'), cliDeem);
-  chmodSync(join(dir, 'cli-deem'), 0o755);
   return dir;
 }
 
@@ -622,127 +603,9 @@ describe('backend gates', () => {
     expect(out).toEqual([`jev: path=${found} provider=official`, ...suffix(stub)]);
   });
 
-  it('the deem gate passes a healthy stub', () => {
-    const stub = makeBackendStubs();
-    const out: string[] = [];
-    const env = { ...process.env, PATH: stub + delimiter + process.env.PATH, STUB_DEEM_HEALTH: 'ok' };
-    const result = deemGate({ out: (line) => out.push(line), env });
-
-    expect(result.passed).toBe(true);
-    expect(out).toEqual(['deem: health backend=torch model=deem-0.8-v1 model_commit=m1 source_commit=s1']);
-  });
-
-  it.each([
-    { health: 'unreachable', expected: ['deem arm skipped: not reachable'] },
-    { health: 'stub', expected: ['deem arm skipped: stub backend'] },
-    { health: 'model', expected: ['deem arm skipped: model', 'deem: found="other-model"'] },
-    { health: 'bad', expected: ['deem arm skipped: bad health response', 'deem: found="not json"'] },
-  ])('the deem gate skips on $health', ({ health, expected }) => {
-    const stub = makeBackendStubs();
-    const out: string[] = [];
-    const env = { ...process.env, PATH: stub + delimiter + process.env.PATH, STUB_DEEM_HEALTH: health };
-    const result = deemGate({ out: (line) => out.push(line), env });
-
-    expect(result.passed).toBe(false);
-    expect(out).toEqual(expected);
-  });
 });
 
 describe('model arms', () => {
-  it('a Deem column that answers each label keeps', async () => {
-    const rowsDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
-    const outDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
-    tempDirs.push(rowsDir, outDir);
-    const stub = makeBackendStubs();
-
-    const f = writeRows(rowsDir, [
-      ...Array.from({ length: 20 }, () => ({ label: '001-a', state: 'pick:001-a' })),
-      ...Array.from({ length: 10 }, () => ({ label: '002-b', state: 'pick:002-b' })),
-    ]);
-
-    const out: string[] = [];
-    const err: string[] = [];
-    const code = await main(['--score', f, '--deem', '--out', outDir], {
-      out: (line) => out.push(line),
-      err: (line) => err.push(line),
-      env: { ...process.env, PATH: stub + delimiter + process.env.PATH },
-      describe: (folder) => folder,
-    });
-
-    expect(code).toBe(0);
-    expect(out).toContain('deem: nothing leaves the machine planned_calls=90 est_wall_s=5.9');
-    expect(out[out.length - 1]).toBe(
-      'verdict deem: keep K=30 M=30 A=30 B=20 W=10 L=0 F=0 p=0.0010 baseline=target model=deem-0.8-v1 model_commit=m1 source_commit=s1'
-    );
-    const calls = readFileSync(join(outDir, 'calls.jsonl'), 'utf8').trim().split(/\n/);
-    expect(calls).toHaveLength(90);
-    expect(calls.some((line) => line.includes('pick:'))).toBe(false);
-    const report = JSON.parse(readFileSync(join(outDir, 'report.json'), 'utf8')) as { columns: { deem: { verdict: string } } };
-    expect(report.columns.deem.verdict).toBe('keep');
-  });
-
-  it('a Deem column that always answers the target stops on margin', async () => {
-    const rowsDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
-    const outDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
-    tempDirs.push(rowsDir, outDir);
-    const stub = makeBackendStubs();
-
-    const f = writeRows(rowsDir, [
-      ...Array.from({ length: 27 }, () => ({ label: '001-a', state: 'pick:001-a' })),
-      ...Array.from({ length: 3 }, () => ({ label: '002-b', state: 'pick:001-a' })),
-    ]);
-
-    const out: string[] = [];
-    const err: string[] = [];
-    const code = await main(['--score', f, '--deem', '--out', outDir], {
-      out: (line) => out.push(line),
-      err: (line) => err.push(line),
-      env: { ...process.env, PATH: stub + delimiter + process.env.PATH },
-      describe: (folder) => folder,
-    });
-
-    expect(code).toBe(0);
-    expect(out[out.length - 1].startsWith('verdict deem: stop (margin) K=30 M=30 A=27 B=27 W=0 L=0 F=0 p=1.0000 baseline=target')).toBe(true);
-  });
-
-  it('a Jev payload skip leaves the Deem output byte-identical', async () => {
-    const rowsDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
-    const outDir1 = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
-    const outDir2 = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
-    tempDirs.push(rowsDir, outDir1, outDir2);
-    const stub = makeBackendStubs();
-
-    const f = writeRows(rowsDir, [
-      ...Array.from({ length: 20 }, () => ({ label: '001-a', state: 'pick:001-a' })),
-      ...Array.from({ length: 10 }, () => ({ label: '002-b', state: 'pick:002-b' })),
-    ]);
-
-    const env = { ...process.env, PATH: stub + delimiter + process.env.PATH };
-    const firstOut: string[] = [];
-    const firstErr: string[] = [];
-    const firstCode = await main(['--score', f, '--deem', '--out', outDir1], {
-      out: (line) => firstOut.push(line),
-      err: (line) => firstErr.push(line),
-      env,
-      describe: (folder) => folder,
-    });
-    const secondOut: string[] = [];
-    const secondErr: string[] = [];
-    const secondCode = await main(['--score', f, '--jev', '--deem', '--out', outDir2], {
-      out: (line) => secondOut.push(line),
-      err: (line) => secondErr.push(line),
-      env,
-      describe: (folder) => folder,
-    });
-
-    expect(firstCode).toBe(0);
-    expect(secondCode).toBe(0);
-    expect(secondOut).toContain('jev arm skipped: payload not accepted');
-    expect(secondOut.filter((line) => !line.startsWith('jev'))).toEqual(firstOut);
-    const jevLog = readFileSync(join(stub, 'jev.log'), 'utf8').trim().split(/\n/);
-    expect(jevLog.some((line) => line.startsWith('choice'))).toBe(false);
-  });
-
   it('a Jev column with an accepted payload reports its cost and verdict', async () => {
     const rowsDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
     const outDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
