@@ -37,23 +37,35 @@ if [[ ! -x "$CHECKER_PATH" ]]; then
   exit 0
 fi
 
-VIOLATIONS=0
-while IFS= read -r file; do
-  full_path="$REPO_ROOT/$file"
-  if [[ -f "$full_path" ]]; then
-    CHECKER_RC=0
-    "$CHECKER_PATH" "$full_path" 2>/dev/null || CHECKER_RC=$?
-    if [[ $CHECKER_RC -eq 1 ]]; then
-      VIOLATIONS=$((VIOLATIONS + 1))
-    fi
-  fi
-done < <(git diff --cached --name-only --diff-filter=ACM)
+# The staged blobs go to one checker run, with NUL-separated names, so a fix left
+# unstaged cannot hide a violation and a path with non-ASCII bytes is not skipped.
+HYGIENE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/comment-hygiene.XXXXXX")"
+HYGIENE_FILES=()
+while IFS= read -r -d '' file; do
+  mkdir -p "$HYGIENE_DIR/$(dirname "$file")"
+  git show ":$file" > "$HYGIENE_DIR/$file" 2>/dev/null || continue
+  HYGIENE_FILES+=("$file")
+done < <(git diff --cached --name-only -z --diff-filter=ACM)
+CHECKER_RC=0
+if [[ "${#HYGIENE_FILES[@]}" -gt 0 ]]; then
+  (cd "$HYGIENE_DIR" && "$CHECKER_PATH" "${HYGIENE_FILES[@]}" 2>/dev/null) || CHECKER_RC=$?
+fi
+rm -rf "$HYGIENE_DIR"
 
-if [[ $VIOLATIONS -gt 0 ]]; then
+if [[ $CHECKER_RC -eq 1 ]]; then
   echo ""
-  echo "BLOCKED: $VIOLATIONS file(s) contain ephemeral-artifact pointers in code comments."
+  echo "BLOCKED: staged files contain ephemeral-artifact pointers in code comments."
   echo "See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4"
   echo "Fix: replace the pointer with the durable WHY. Escape: add '// hygiene-ok' to exempt a line."
+  exit 1
+fi
+
+# Exit 2 means no staged file was checkable. Anything above it is the checker itself
+# failing, and a check that did not run is not a clean commit.
+if [[ $CHECKER_RC -gt 2 ]]; then
+  echo "" >&2
+  echo "BLOCKED: the comment hygiene checker failed (exit $CHECKER_RC): $CHECKER_PATH" >&2
+  echo "Fix the checker, then commit again." >&2
   exit 1
 fi
 

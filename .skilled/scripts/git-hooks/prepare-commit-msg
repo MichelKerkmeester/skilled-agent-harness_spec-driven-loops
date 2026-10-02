@@ -56,6 +56,26 @@ _in_toolchain_repo() {
   [[ -n "$REPO_ROOT" && -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]]
 }
 # <<< source-root selection
+# >>> hook trust (identical in every global hook script)
+# These scripts are installed once for every repository on the machine, and the block
+# above picks the source tree from the repository the hook fires in. A cloned repository
+# controls that tree, so its scripts run only when it shares a git common dir with the
+# checkout these hooks live in (that checkout or one of its worktrees), or when its local
+# config sets skilled.trustRepoHooks=true. Local config is never cloned, and command-line
+# or environment config does not count, so a repository cannot opt itself in. An
+# untrusted repository is treated as one without the toolchain.
+_trust_self="${BASH_SOURCE[0]}"
+while [[ -L "$_trust_self" ]]; do
+  _trust_link="$(readlink "$_trust_self")"
+  case "$_trust_link" in /*) _trust_self="$_trust_link" ;; *) _trust_self="$(dirname "$_trust_self")/$_trust_link" ;; esac
+done
+_hook_common="$(cd "$(dirname "$_trust_self")" 2>/dev/null && env -u GIT_DIR -u GIT_WORK_TREE -u GIT_COMMON_DIR -u GIT_INDEX_FILE git rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)"
+_repo_common="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)"
+if [[ -n "$REPO_ROOT" && ( -z "$_hook_common" || "$_hook_common" != "$_repo_common" ) ]] \
+  && [[ "$(git config --local --bool skilled.trustRepoHooks 2>/dev/null || true)" != "true" ]]; then
+  SOURCE_ROOT="$REPO_ROOT/.skilled-untrusted"
+fi
+# <<< hook trust
 
 ALLOCATOR="$SOURCE_ROOT/skills/sk-git/scripts/commit-id-naming.sh"
 if [[ ! -f "$ALLOCATOR" ]]; then
@@ -65,27 +85,25 @@ if [[ ! -f "$ALLOCATOR" ]]; then
   exit 0
 fi
 
-# Git generates merge and squash messages itself; they stay untouched.
+# A cherry-pick copies an id that already belongs to the picked commit. git keeps
+# CHERRY_PICK_HEAD while a pick is pending, and passes source "message" for a clean
+# pick and "merge" when a conflicted pick is continued, so it is checked first.
+CHERRY_PICK=0
+if git rev-parse -q --verify CHERRY_PICK_HEAD >/dev/null 2>&1; then
+  CHERRY_PICK=1
+fi
+
+# Git generates merge and squash messages itself; they stay untouched. A continued
+# cherry-pick also arrives as "merge" and is re-addressed below.
 case "$SOURCE" in
   merge|squash)
-    exit 0
+    (( CHERRY_PICK == 1 )) || exit 0
     ;;
 esac
 
 # ───────────────────────────────────────────────────────────────
 # 2. MESSAGE ANALYSIS
 # ───────────────────────────────────────────────────────────────
-
-# A cherry-pick copies an id that already belongs to the picked commit. Git
-# marks the operation with CHERRY_PICK_HEAD while the picked message is the
-# pending one.
-CHERRY_PICK=0
-if [[ "$SOURCE" = "commit" ]]; then
-  CHERRY_PICK_HEAD_PATH="$(git rev-parse --git-path CHERRY_PICK_HEAD 2>/dev/null || true)"
-  if [[ -n "$CHERRY_PICK_HEAD_PATH" && -f "$CHERRY_PICK_HEAD_PATH" ]]; then
-    CHERRY_PICK=1
-  fi
-fi
 
 # Trailing comment lines move below the trailer block. core.commentChar can
 # replace the default '#', and 'auto' lets git pick one, where '#' stays safe.
@@ -96,41 +114,24 @@ case "$COMMENT_CHAR" in
     ;;
 esac
 
+# git drops comment lines only when it opened an editor, whose hint block always
+# carries a line holding just the comment character, or when commit.cleanup is
+# strip. A -m or -F message keeps them, so there they are body text, not comments.
+CLEANUP="$(git config --get commit.cleanup 2>/dev/null || true)"
+
 # `git commit -v` appends the diff below a scissors line. That region is git's
 # scratch space, so it must stay below the stamped paragraph; appending past it
 # would let the cleanup step discard the keys together with the diff.
 SCISSORS_LINE="$COMMENT_CHAR ------------------------ >8 ------------------------"
 
-# Attribution a runtime can append to the pending message. The hook drops
-# these lines before it stamps, so no commit object receives one. Only
-# trailer-shaped lines count: a prose mention of the vendor stays prose.
+# Attribution keys a runtime can append to the pending message. The hook drops
+# these lines before it stamps, so no commit object receives one, and says so.
+# Nothing else is removed: any other line naming the vendor stays, and the
+# commit-msg validator reports it with a reason the author can act on.
+# The list mirrors attribution.forbiddenKeys in the sk-git commit template. The
+# hook stays node-free, so it cannot read the template; message-contract.test.mjs
+# fails when the two lists differ.
 FORBIDDEN_KEY_RE='^(Co-Authored-By|Claude-Session):'
-TRAILER_SHAPE_RE='^[A-Za-z][A-Za-z0-9-]*:[[:space:]]+[^[:space:]]'
-
-
-# Case-insensitive vendor match: bash 3.2 has no lowercase expansion.
-line_mentions_anthropic() {
-  local line="$1"
-  shopt -s nocasematch
-  if [[ "$line" == *anthropic* ]]; then
-    shopt -u nocasematch
-    return 0
-  fi
-  shopt -u nocasematch
-  return 1
-}
-
-
-line_is_forbidden_attribution() {
-  local line="$1"
-  if [[ "$line" =~ $FORBIDDEN_KEY_RE ]]; then
-    return 0
-  fi
-  if [[ ! "$line" =~ $TRAILER_SHAPE_RE ]]; then
-    return 1
-  fi
-  line_mentions_anthropic "$line"
-}
 
 LINES=()
 while IFS= read -r line || [[ -n "$line" ]]; do
@@ -148,8 +149,25 @@ while (( index < LINE_COUNT )); do
   index=$((index + 1))
 done
 
+STRIP_COMMENTS=0
+case "$CLEANUP" in
+  strip)
+    STRIP_COMMENTS=1
+    ;;
+  ""|default)
+    index=0
+    while (( index < LINE_COUNT )); do
+      if [[ "${LINES[$index]}" = "$COMMENT_CHAR" || "${LINES[$index]}" = "$SCISSORS_LINE" ]]; then
+        STRIP_COMMENTS=1
+        break
+      fi
+      index=$((index + 1))
+    done
+    ;;
+esac
+
 COMMENT_START="$TAIL_START"
-while (( COMMENT_START > 0 )); do
+while (( STRIP_COMMENTS == 1 && COMMENT_START > 0 )); do
   previous=$((COMMENT_START - 1))
   if [[ "${LINES[$previous]}" = "$COMMENT_CHAR"* ]]; then
     COMMENT_START="$previous"
@@ -186,8 +204,10 @@ while (( index < REAL_END )); do
     index=$((index + 1))
     continue
   fi
-  if line_is_forbidden_attribution "$line"; then
+  # The subject line is never attribution, whatever it starts with.
+  if (( index > 0 )) && [[ "$line" =~ $FORBIDDEN_KEY_RE ]]; then
     FORBIDDEN_FOUND=1
+    printf 'prepare-commit-msg: removed attribution line: %s\n' "$line" >&2
     index=$((index + 1))
     continue
   fi

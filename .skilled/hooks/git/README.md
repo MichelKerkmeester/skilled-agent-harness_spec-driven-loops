@@ -15,7 +15,7 @@ trigger_phrases:
 
 `.skilled/hooks/git/` contains a standalone, opt-in Git hook surface: `install-hooks.sh` symlinks `pre-commit` into Git's resolved hooks directory, and `pre-commit` runs the comment-hygiene and agent-mirror-sync gates for staged changes. The hook is opt-in: a clone does nothing until the installer is run.
 
-This folder is the standalone/legacy surface. The repository's primary Git hook installer is `.skilled/scripts/install-git-hooks.sh`, which installs a broader set of hooks (`commit-msg`, `pre-commit`, `post-commit`, `post-merge`, `post-rewrite`, `pre-push`) from `.skilled/scripts/git-hooks/`. The primary `pre-commit` chains into this folder's `pre-commit` as its comment-hygiene sub-gate, and also runs mass-deletion, doc-model-refs, mirror-parity, prompt-card-sync, MCP mutation-class, compiled-routing re-mint, and tool-ownership gates. Run `install-hooks.sh` here directly only to install or test the hygiene gate standalone, without the other gates.
+This folder is the standalone/legacy surface. The repository's primary Git hook installer is `.skilled/scripts/install-git-hooks.sh`, which installs a broader set of hooks (`prepare-commit-msg`, `commit-msg`, `pre-commit`, `post-commit`, `post-merge`, `post-rewrite`, `pre-push`) from `.skilled/scripts/git-hooks/`. That `pre-commit` carries its own comment-hygiene gate, does not call this folder's `pre-commit`, and also runs agent-mirror sync, mirror parity, prompt-card sync, MCP mutation-class, compiled-routing re-mint and spec derived-metadata re-mint. Run `install-hooks.sh` here directly only to install or test the hygiene helper standalone, without the other gates.
 
 ---
 
@@ -132,7 +132,7 @@ Expected result: the hook exits 0 immediately, regardless of staged content.
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in, with the full kill-switch index and coverage matrix.
 - [`../shared/README.md`](../shared/README.md): the `hook-flags.sh` POSIX mirror this hook sources.
 - [`../../scripts/install-git-hooks.sh`](../../scripts/install-git-hooks.sh): the primary Git hook installer (broader hook set).
-- [`../../scripts/git-hooks/pre-commit`](../../scripts/git-hooks/pre-commit): the primary pre-commit hook (chains into this folder's hook as its comment-hygiene sub-gate).
+- [`../../scripts/git-hooks/pre-commit`](../../scripts/git-hooks/pre-commit): the primary pre-commit hook, which carries its own comment-hygiene gate rather than calling this folder's hook.
 - [`../../skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`](../../skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh): the comment-hygiene checker.
 - [`../../skills/sk-code/shared/references/universal/code-style-guide.md`](../../skills/sk-code/shared/references/universal/code-style-guide.md): the comment-hygiene standard (§4).
 - [`../../skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs`](../../skills/system-deep-loop/deep-improvement/scripts/check-agent-mirror-sync.cjs): the agent mirror-sync checker.

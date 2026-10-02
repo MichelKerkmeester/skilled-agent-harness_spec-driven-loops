@@ -25,6 +25,26 @@ _in_toolchain_repo() {
   [[ -n "$REPO_ROOT" && -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]]
 }
 # <<< source-root selection
+# >>> hook trust (identical in every global hook script)
+# These scripts are installed once for every repository on the machine, and the block
+# above picks the source tree from the repository the hook fires in. A cloned repository
+# controls that tree, so its scripts run only when it shares a git common dir with the
+# checkout these hooks live in (that checkout or one of its worktrees), or when its local
+# config sets skilled.trustRepoHooks=true. Local config is never cloned, and command-line
+# or environment config does not count, so a repository cannot opt itself in. An
+# untrusted repository is treated as one without the toolchain.
+_trust_self="${BASH_SOURCE[0]}"
+while [[ -L "$_trust_self" ]]; do
+  _trust_link="$(readlink "$_trust_self")"
+  case "$_trust_link" in /*) _trust_self="$_trust_link" ;; *) _trust_self="$(dirname "$_trust_self")/$_trust_link" ;; esac
+done
+_hook_common="$(cd "$(dirname "$_trust_self")" 2>/dev/null && env -u GIT_DIR -u GIT_WORK_TREE -u GIT_COMMON_DIR -u GIT_INDEX_FILE git rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)"
+_repo_common="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)"
+if [[ -n "$REPO_ROOT" && ( -z "$_hook_common" || "$_hook_common" != "$_repo_common" ) ]] \
+  && [[ "$(git config --local --bool skilled.trustRepoHooks 2>/dev/null || true)" != "true" ]]; then
+  SOURCE_ROOT="$REPO_ROOT/.skilled-untrusted"
+fi
+# <<< hook trust
 
 # shared hook kill-switch (master + per-concern); fail-open if guard absent
 if [ -n "$REPO_ROOT" ] && [ -r "$SOURCE_ROOT/hooks/shared/hook-flags.sh" ]; then
@@ -69,38 +89,42 @@ if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && ! -x "$COMMENT_CHECKER" ]] 
   exit 1
 fi
 if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; then
-
-  VIOLATIONS=0
-  while IFS= read -r file; do
-    full_path="$REPO_ROOT/$file"
-    [[ -f "$full_path" ]] || continue
-    CHECKER_OUTPUT=""
-    CHECKER_RC=0
-    CHECKER_OUTPUT="$("$COMMENT_CHECKER" "$full_path" 2>&1)" || CHECKER_RC=$?
-    case "$CHECKER_RC" in
-      0|2)
-        ;;
-      1)
-        printf '%s\n' "$CHECKER_OUTPUT"
-        VIOLATIONS=$((VIOLATIONS + 1))
-        ;;
-      *)
-        echo "BLOCKED [gate:comment-hygiene]: checker failed for $file (exit $CHECKER_RC)." >&2
-        printf '%s\n' "$CHECKER_OUTPUT" >&2
-        echo "Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ..." >&2
-        exit 1
-        ;;
-    esac
-  done < <(git diff --cached --name-only --diff-filter=ACM)
-
-  if [[ "$VIOLATIONS" -gt 0 ]]; then
-    echo ""
-    echo "BLOCKED [gate:comment-hygiene]: $VIOLATIONS file(s) contain ephemeral-artifact pointers in code comments."
-    echo "See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4"
-    echo "Fix: replace the pointer with the durable WHY. Escape: add '// hygiene-ok' to exempt a line."
-    echo "Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ..."
-    exit 1
+  # The staged blobs are what gets committed, so they are what is checked: a fix left
+  # unstaged must not hide the violation going in. Names are read NUL-separated, so a
+  # path with spaces or non-ASCII bytes is checked rather than skipped, and every file
+  # goes to one checker run, which reports each finding as <path>:<line>.
+  HYGIENE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/comment-hygiene.XXXXXX")"
+  HYGIENE_FILES=()
+  while IFS= read -r -d '' file; do
+    mkdir -p "$HYGIENE_DIR/$(dirname "$file")"
+    git show ":$file" > "$HYGIENE_DIR/$file" 2>/dev/null || continue
+    HYGIENE_FILES+=("$file")
+  done < <(git diff --cached --name-only -z --diff-filter=ACM)
+  CHECKER_OUTPUT=""
+  CHECKER_RC=0
+  if [[ "${#HYGIENE_FILES[@]}" -gt 0 ]]; then
+    CHECKER_OUTPUT="$(cd "$HYGIENE_DIR" && "$COMMENT_CHECKER" "${HYGIENE_FILES[@]}" 2>&1)" || CHECKER_RC=$?
   fi
+  rm -rf "$HYGIENE_DIR"
+  case "$CHECKER_RC" in
+    0|2)
+      ;;
+    1)
+      printf '%s\n' "$CHECKER_OUTPUT"
+      echo ""
+      echo "BLOCKED [gate:comment-hygiene]: staged files contain ephemeral-artifact pointers in code comments."
+      echo "See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4"
+      echo "Fix: replace the pointer with the durable WHY. Escape: add '// hygiene-ok' to exempt a line."
+      echo "Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ..."
+      exit 1
+      ;;
+    *)
+      echo "BLOCKED [gate:comment-hygiene]: the checker failed (exit $CHECKER_RC)." >&2
+      printf '%s\n' "$CHECKER_OUTPUT" >&2
+      echo "Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ..." >&2
+      exit 1
+      ;;
+  esac
 fi
 
 # --- Agent mirror-sync gate (blocking) ---
@@ -120,7 +144,10 @@ if [[ "${#STAGED_AGENTS[@]}" -gt 0 ]]; then
     echo "Bypass: SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1 git commit ... (this gate has no switch of its own, so that one turns off every pre-commit gate)" >&2
     exit 1
   elif ! command -v node >/dev/null 2>&1 || [[ ! -f "$MIRROR_CHECKER" ]]; then
-    echo "WARNING: node or agent mirror-sync checker unavailable — skipping mirror gate" >&2
+    # Another repository's agent folders are its own; only the toolchain hears about it.
+    if _in_toolchain_repo; then
+      echo "WARNING: node or agent mirror-sync checker unavailable — skipping mirror gate" >&2
+    fi
   elif ! node "$MIRROR_CHECKER" "${STAGED_AGENTS[@]}"; then
     echo ""
     echo "BLOCKED [gate:agent-mirror-sync]: staged agent files desync the .opencode / .claude mirrors."
@@ -142,7 +169,9 @@ fi
 # second half is the one CI cannot see, and the one that shipped a stale mirror
 # fifteen pushes in a row while the working tree passed the same check locally.
 # Bypass: SPECKIT_SKIP_MIRROR_PARITY=1 git commit ...
-if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && command -v node >/dev/null 2>&1; then
+# The mirrors are this toolchain's own generated trees; another repository's .claude or
+# .cursor folder is its own business, so the gate runs only where the toolchain ships.
+if [[ "${SPECKIT_SKIP_MIRROR_PARITY:-0}" != "1" ]] && _in_toolchain_repo && command -v node >/dev/null 2>&1; then
   # One command file fans out to three mirrors: the codex prompt, and the .claude and
   # .cursor command copies those runtimes discover by convention. Missing a tree here
   # lets its regenerated copy sit unstaged and pass, which is the failure this gate
@@ -347,8 +376,18 @@ if [[ "${SPECKIT_SKIP_ROUTE_REMINT:-0}" != "1" ]] && command -v node >/dev/null 
     exit 1
   fi
   # The authored copy mirrors the runtime tree under the router program packet, so it
-  # takes the same layout-relative suffix rather than a second hardcoded path.
-  ROUTE_AUTHORED="$REPO_ROOT/specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/${ROUTE_RUNTIME#"$ROUTE_SOURCE/bin/lib/compiled-routing/"}"
+  # takes the same layout-relative suffix. The packet's own path comes from the layout
+  # module, so a hook installed machine-wide names no spec packet itself.
+  if ! ROUTE_AUTHORED_DIR="$(node -e '
+      process.stdout.write(require(process.argv[1]).AUTHORED_PROGRAM_DIR);
+    ' "$ROUTE_LAYOUT" 2>&1)" || [[ -z "$ROUTE_AUTHORED_DIR" ]]; then
+    echo "" >&2
+    echo "BLOCKED [gate:route-remint]: could not read the authored program dir from compiled-route-layout.cjs:" >&2
+    printf '%s\n' "$ROUTE_AUTHORED_DIR" | sed 's/^/  /' >&2
+    echo "Bypass: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..." >&2
+    exit 1
+  fi
+  ROUTE_AUTHORED="$REPO_ROOT/$ROUTE_AUTHORED_DIR/${ROUTE_RUNTIME#"$ROUTE_SOURCE/bin/lib/compiled-routing/"}"
   for ROUTE_HUB in $ROUTE_HUBS; do
     # mode-registry.json and hub-router.json are read directly by the hash. Every
     # SKILL.md under the hub reaches it through the leaves the registry declares.
