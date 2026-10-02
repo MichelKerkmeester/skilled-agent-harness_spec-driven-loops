@@ -38,19 +38,19 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Find where a classifier saves the main AI work, and build every released phase.
+**Objective:** Find where a classifier saves main AI work and build every released phase.
 
 ### Decisions
 
 | ID | Decision |
-|----|----------|
+|----|---|
 | D1 | Jev only, dormant unless `jev auth status --provider <p>` passes. Jev gets no secret |
-| D2 | `cli-classifier` stays a parent hub for `cli-jev` and future classifiers |
-| D3 | Released 019 to 046, disjoint in parallel |
-| D4 | 003, 006 and 019 to 035 stop at their label gate. Only operator-confirmed or -delegated labels count |
-| D5 | Session verifies, commits. Workers: Luna 6 max fast (cli-codex), DeepSeek V4.1 Flash max (cli-pi: Cline, OpenCode Go). No MiMo or Claude leaves bar a delegated arbiter. Cross-family review: fix P0 and P1, record P2 |
+| D2 | `cli-classifier` stays a parent hub for future classifiers |
+| D3 | Run 019 to 047 in parallel when disjoint |
+| D4 | 003, 006, 019 to 035 stop at their label gate. Only operator-confirmed or -delegated labels count |
+| D5 | Session verifies, commits. Workers: Luna 6 max fast (cli-codex), DeepSeek V4.1 Flash max (cli-pi: Cline, OpenCode Go). No MiMo or Claude leaves except the arbiter. Cross-family review: fix P0 and P1, record P2 |
 | D6 | Docs via sk-doc, code via sk-code |
-| D7 | Stop only for an install yes or missing credential. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
+| D7 | Stop only for an install yes or missing key. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -61,7 +61,7 @@ _memory:
 Decisions outrank child goals.
 
 | # | Goal |
-|---|------|
+|---|---|
 | 1 | `001-deep-research/goal.md` |
 | 2 | `002-advisor-jev-tiebreak-arm/goal.md` |
 | 3 | `003-goal-verifier-jev-shadow/goal.md` |
@@ -108,6 +108,7 @@ Decisions outrank child goals.
 | 44 | `044-deem-answer-shape-fix/goal.md` |
 | 45 | `045-deem-live-runs/goal.md` |
 | 46 | `046-deem-deprecation/goal.md` |
+| 47 | `047-measure-every-jev-feature/goal.md` |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -115,7 +116,7 @@ Decisions outrank child goals.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 046 are Complete
+- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 047 are Complete
 - [x] 019 to 035 are Complete, each at its verdict line or label gate
 - [x] `validate_document.py` exits 0 on each changed skill doc
 - [x] No open P0 or P1, and no changed suite fails beyond its baseline
@@ -268,4 +269,5 @@ and findings belong here.
 | Directive amendment: bind 045 (2026-10-02) | Source: the operator's "Do all deem things needed / open". D3 now releases 019 to 045, the binding gains 045, and criteria 1 and 5 are open again until 045 closes. The new row put the slice 38 characters over 4,000. `check-goal.cjs` reads only a binding row's second cell, so the first cell, a display index, now reads `1` to `45` instead of `001` to `045`, which frees 54 characters with no wording cut. `goal.cjs packet` reads 3,984, `packet_budget=ok`. Every phase adds about 45 characters, so the next one may need the split `budget-and-handoff.md` section 3 names |
 | Directive amendment: retire Deem, bind 046 (2026-10-02) | Source: the operator's "Stop and deprecate deem completely", "lets deperecate deem cli completely and only keep cli jev", "Cli classifier still needs to stay a parent hun tho", "In case we want to support future classifiers" and "Use luna max 6 fast cli codex and deepseek v4.1 flash max cli pi opencode go and cline provider as needed". D1 is now Jev only. D2 keeps `cli-classifier` a parent hub for `cli-jev` and future classifiers. D3 releases 019 to 046, the binding gains 046 and criterion 1 reads 036 to 046. D5 names Luna 6 max fast and DeepSeek V4.1 Flash max, and SWE leaves. 045 closed with its last 18 runs and review superseded by its ADR-001, after 002 and 006 both answered `kill`. 046 has four phases, each with its own goal: 001 inventory and decisions, 002 scorer arms, 003 the mode and hub, 004 sweep and verification. Durable slice 3996 characters after trimming D2 and D5 wording |
 | 046 Complete, all criteria met again (2026-10-02) | 046 removed `cli-deem` and every scorer's Deem arm, and `cli-classifier` serves `cli-jev` alone as a parent hub (commits `b946a35518` to `5655e1e388`, P2s in the logs of 046's children). From the final state: 24 inventory suites 0 fail, changed scorer suites 446 of 446, advisor suite 1055 passed with 0 failed, `validate.sh --strict --recursive` passes on this parent, its 46 children and 046's 4 nested children, and `check-goal.cjs` passes on all 51 goals |
+| 047 opened (2026-10-02) | The operator asked for every Jev feature to be measured. Phase 047 added with its goal and bound as row 47, criterion 1 reopened. Recursive strict validation printed `RESULT: PASSED` 48 times with 0 failed, and `check-goal.cjs` passed on all 52 goals. To fit the 4,000-character budget, D2, D3, D5 and D7 lost a few words each with no choice changed |
 <!-- /ANCHOR:log -->
