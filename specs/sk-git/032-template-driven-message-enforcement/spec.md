@@ -267,3 +267,27 @@ Answered 2026-10-01 by the operator:
 - **Prior work**: `specs/sk-git/028-crawlable-commit-history` (grammar, trailers, search surface), `specs/sk-git/030-commit-body-always-required`
 
 ---
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, verification, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-git-hook-review-fixes/ | Fix the nineteen git hook review findings (untrusted source root, pre-push range, Commit-Id rules, foreign-repo gates, doc drift) | Complete |
+| 2 | 002-git-hook-review-residuals/ | Fix the ten P2 findings a five-iteration deep review left (checker crash, hardcoded routing path, rules probe parity, regex backtracking, attribution key drift, doc drift) | Complete |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-git-hook-review-fixes | 002-git-hook-review-residuals | Phase 1 fixes verified; a deep review of the live hooks reports what is left | `001-git-hook-review-fixes/review/review-report.md` |
+<!-- /ANCHOR:phase-map -->
