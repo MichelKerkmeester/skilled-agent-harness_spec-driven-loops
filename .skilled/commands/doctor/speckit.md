@@ -34,7 +34,7 @@ Load the presentation contract before showing startup questions, setup dashboard
 - Unknown or cross-target flags fail before YAML load.
 - The YAML start condition is: target bound, workflow asset exists, presentation asset loaded, and every target setup variable resolved.
 - If any referenced asset is missing, stop and report the missing path.
-- Companion commands are not routed through this file: `/doctor:update` and `/doctor:mcp install|debug` have their own routers.
+- Companion commands are not routed through this file: `/doctor:rebuild` and `/doctor:mcp install|debug` have their own routers.
 - The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
 
 ---

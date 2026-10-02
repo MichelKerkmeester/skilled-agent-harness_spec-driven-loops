@@ -9,10 +9,10 @@ skill-graph.json
 .system-skill-advisor-launcher.lockdir/
 .skill-advisor-owner.json
 
-# /doctor:update orchestrator state. It lives here rather than beside the spec-kit
-# mcp-server because this directory is the one /doctor:update already mutates and
+# /doctor:rebuild orchestrator state. It lives here rather than beside the spec-kit
+# mcp-server because this directory is the one /doctor:rebuild already mutates and
 # keeps under version-control hygiene.
-.doctor-update.*
+.doctor-rebuild.*
 
 # Runtime-quarantined SQLite copies (auto-recovery output). Never commit.
 *.corrupt

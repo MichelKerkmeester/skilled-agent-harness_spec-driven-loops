@@ -16,9 +16,9 @@ version: 1.6.0.12
 
 ## 1. OVERVIEW
 
-`/doctor <target>` is the single entry point for per-subsystem maintenance diagnostics in the spec-kit ecosystem. It dispatches to one of nine subsystem YAML workflows (speckit-retrieval, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors) by reading the canonical route manifest `.skilled/commands/doctor/_routes.yaml`. Two companion commands round out the surface: `/doctor:mcp <install|debug>` for MCP-server infrastructure repair, and `/doctor:update` for the cross-subsystem rebuild orchestrator.
+`/doctor <target>` is the single entry point for per-subsystem maintenance diagnostics in the spec-kit ecosystem. It dispatches to one of nine subsystem YAML workflows (speckit-retrieval, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors) by reading the canonical route manifest `.skilled/commands/doctor/_routes.yaml`. Two companion commands round out the surface: `/doctor:mcp <install|debug>` for MCP-server infrastructure repair, and `/doctor:rebuild` for the cross-subsystem rebuild orchestrator.
 
-The router shipped as a hard cutover in `010-doctor-update-orchestrator` phases 004 + 005, replacing 10 standalone `/doctor:<name>` commands with 3 markdown files (`doctor.md`, `doctor/mcp.md`, `doctor/update.md`). Each subsystem keeps its existing YAML workflow under `assets/doctor_<target>.yaml` — only the markdown command surface was consolidated.
+The router shipped as a hard cutover in `010-doctor-update-orchestrator` phases 004 + 005, replacing 10 standalone `/doctor:<name>` commands with 3 markdown files (`doctor.md`, `doctor/mcp.md`, `doctor/rebuild.md`). Each subsystem keeps its existing YAML workflow under `assets/doctor_<target>.yaml` — only the markdown command surface was consolidated.
 
 ---
 
@@ -30,7 +30,7 @@ Manual slash command. `/doctor` with no arguments shows an interactive subsystem
 
 ### Class
 
-Manual. The router is operator-driven; no automation triggers it. `/doctor:update` (the orchestrator) and `/doctor:mcp` (MCP infra repair) are also operator-driven companions.
+Manual. The router is operator-driven; no automation triggers it. `/doctor:rebuild` (the orchestrator) and `/doctor:mcp` (MCP infra repair) are also operator-driven companions.
 
 ### Routing Contract
 
@@ -54,7 +54,7 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 |------|------|
 | `.skilled/commands/doctor/speckit.md` | Router entry point: target resolution, per-target flag parser, YAML handoff |
 | `.skilled/commands/doctor/mcp.md` | MCP infrastructure command: `install` / `debug` sub-action dispatch |
-| `.skilled/commands/doctor/update.md` | Multi-subsystem orchestrator (unchanged from 013) |
+| `.skilled/commands/doctor/rebuild.md` | Multi-subsystem rebuild orchestrator |
 | `.skilled/commands/doctor/_routes.yaml` | Canonical route manifest (7 routes + 2 MCP sub-routes) |
 | `.skilled/commands/doctor/scripts/route-validate.sh` | CI assertion bash wrapper |
 | `.skilled/commands/doctor/scripts/route-validate.py` | Python core asserting manifest consistency |
@@ -64,7 +64,7 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 
 | Path | Role |
 |------|------|
-| `.claude/commands/doctor/speckit.md` + `.claude/commands/doctor/{mcp,update}.md` | Auto-synced from `.skilled` (APFS clone) |
+| `.claude/commands/doctor/speckit.md` + `.claude/commands/doctor/{mcp,rebuild}.md` | Auto-synced from `.skilled` (APFS clone) |
 | `.skilled/prompts` | Symlink to `.skilled/commands` |
 
 ### Specification
@@ -95,6 +95,6 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 
 - `_routes.yaml` is the single source of truth for routing metadata.
 - The router's frontmatter `allowed-tools` is the UNION of all per-target tool sets (unavoidable; the OpenCode runner does not support lazy authorization per-route).
-- `/doctor:update` and `/doctor:mcp` are intentional colon-form survivors of the consolidation.
+- `/doctor:rebuild` and `/doctor:mcp` are intentional colon-form survivors of the consolidation.
 - `route-validate.sh` exits 0 on a clean manifest and non-zero on any structural violation.
 

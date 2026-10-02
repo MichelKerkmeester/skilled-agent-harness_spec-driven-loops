@@ -39,7 +39,7 @@
       "architecture"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,7 +48,17 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/commands/doctor/assets/doctor-skill-budget.yaml",
-      ".skilled/commands/doctor/_routes.yaml"
+      "scratch/doctor-run.log",
+      ".skilled/commands/doctor/scripts/audit_descriptions.py",
+      ".skilled/commands/doctor/_routes.yaml",
+      "scripts/README.md",
+      "scratch/reality-check.md",
+      "scratch/proposal.md",
+      ".skilled/commands/goal-opencode.md",
+      ".skilled/commands/vision.md",
+      ".skilled/commands/doctor/speckit.md",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      ".skilled/commands/doctor/scripts/route-validate.sh"
     ],
     "entities": [
       {
@@ -94,9 +104,69 @@
         "source": "derived"
       },
       {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
+        "source": "derived"
+      },
+      {
+        "name": "audit_descriptions.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/audit_descriptions.py",
+        "source": "derived"
+      },
+      {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "proposal.md",
+        "kind": "doc",
+        "path": "scratch/proposal.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode.md",
+        "kind": "doc",
+        "path": ".skilled/commands/goal-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "vision.md",
+        "kind": "doc",
+        "path": ".skilled/commands/vision.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/route-validate.sh",
         "source": "derived"
       },
       {
@@ -134,71 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit skill-budget` reports skill description budgets",
     "created_at": "2026-10-02T16:10:24Z",
-    "last_save_at": "2026-10-02T16:16:02.299Z",
+    "last_save_at": "2026-10-02T21:12:49.978Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3d0d00e35452d51f5fd1cef69e76e0f473d023e7f507aebebab767f1d8f5fe5",
+    "source_fingerprint": "sha256:8808a373a278c6b81339a3cf42e654f25f19ebcff5ffc7257413f7b4629603ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a65edbd2d355a338fd096163d908dc773d8fdc4d0bda81f6544b52c649a3e8f5",
-      "plan.md": "a7061193add6f2ed50fddf1ea597c6ec28ed41456e4e352b78daf94a08f3b455",
-      "tasks.md": "a8b32a277b25eda68deea1e1a020400bd3d21b3421736c1e044c358d29c698c0",
-      "implementation-summary.md": "1713e410d6f2417676f6fbd8e16d7a180ed63aec78de1a23d41dd8f754334bef"
+      "spec.md": "71404044b58622106e6b02059cb95bc2c8ca666272376ecf179bb5e3ff809494",
+      "plan.md": "b35609b94b0f76475990e50bbe2e6d4f476f2c4dfa3397f6746ca343575ee155",
+      "tasks.md": "cc622bc41c6b8a590dcee82f969bd71b9b44630fcc9333ebcdce10f44e114013",
+      "implementation-summary.md": "714f6895b002156299c64d823431e7d59796075a9a2dee5dd09b318eb8510397"
     },
     "last_active_at": null
   }

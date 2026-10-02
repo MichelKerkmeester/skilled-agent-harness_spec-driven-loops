@@ -39,7 +39,7 @@
       "architecture"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,7 +48,13 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/commands/doctor/assets/doctor-parent-skill.yaml",
-      ".skilled/commands/doctor/_routes.yaml"
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      "scratch/doctor-run.log",
+      "scratch/proposal.md",
+      ".skilled/commands/doctor/_routes.yaml",
+      "scratch/reality-check.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
     ],
     "entities": [
       {
@@ -94,9 +100,45 @@
         "source": "derived"
       },
       {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
+        "source": "derived"
+      },
+      {
+        "name": "proposal.md",
+        "kind": "doc",
+        "path": "scratch/proposal.md",
+        "source": "derived"
+      },
+      {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "ci-skill-root-metadata.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
         "source": "derived"
       },
       {
@@ -148,57 +190,21 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Audit",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Other",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit parent-skill` checks parent-hub skill structure",
     "created_at": "2026-10-02T16:10:19Z",
-    "last_save_at": "2026-10-02T16:16:01.719Z",
+    "last_save_at": "2026-10-02T21:09:12.906Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1660ce85a2558c1bfaa22171c010a11cbbe29f231ffcfde807abb1c9dc99f33a",
+    "source_fingerprint": "sha256:1d1fba238131c223b69340a9b38abb6d7c90771d8154bdf996b42e9b5d080dab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea30ef821851bc8a9fdd8efaddb76fee53b0f0fdb02cce9053aeaea4e27c7813",
-      "plan.md": "948d10082393166e63b6f47450fcdc645f5f02b2565d65c2d1cb2220b9951427",
-      "tasks.md": "e56c3dfd23c4a31284a6b8727a41f67d05bca874efc80c6b03e5fdbed91e26a2",
-      "implementation-summary.md": "673a86b8d6a8ed6547f6ffc575076c8aa3c383e8eacf2aba6b52ec401e4f5e35"
+      "spec.md": "5f3f936cae2e551cfe2698b113d6b7f5bb7dd4b493dc5ced9ad8c259f665b37f",
+      "plan.md": "2145a4e479624a97c2cf3f583e867d8702827c5d9dc2d21902fc2d8f87de89da",
+      "tasks.md": "25b317dc3642fec7ba556a32ff9407e3012ae5189f4423bd62500b2e4409c2af",
+      "implementation-summary.md": "8800ee6581a767418cb08793db6a411b5ccf47f1fb22095dee3c110bc738dd43"
     },
     "last_active_at": null
   }

@@ -39,7 +39,7 @@
       "architecture"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,8 +47,18 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",
+      "scratch/reality-check.md",
+      "scratch/doctor-run.log",
+      "scratch/proposal.md",
+      ".skilled/skills/cli-classifier/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/database/.gitignore",
+      ".skilled/skills/sk-code/graph-metadata.json",
       ".skilled/commands/doctor/assets/doctor-skill-graph-freshness.yaml",
-      ".skilled/commands/doctor/_routes.yaml"
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt"
     ],
     "entities": [
       {
@@ -88,6 +98,54 @@
         "source": "derived"
       },
       {
+        "name": "skill-graph-freshness.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.sqlite",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite",
+        "source": "derived"
+      },
+      {
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
+        "source": "derived"
+      },
+      {
+        "name": "proposal.md",
+        "kind": "doc",
+        "path": "scratch/proposal.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-classifier/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/database/.gitignore",
+        "source": "derived"
+      },
+      {
         "name": "doctor-skill-graph-freshness.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/assets/doctor-skill-graph-freshness.yaml",
@@ -97,6 +155,12 @@
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
         "source": "derived"
       },
       {
@@ -140,65 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit skill-graph-freshness` checks whether the skill graph is current",
     "created_at": "2026-10-02T16:10:25Z",
-    "last_save_at": "2026-10-02T16:16:02.443Z",
+    "last_save_at": "2026-10-02T21:14:37.806Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ea282d21cbff3f3aac0fe265f0f4bd5751bc801023deec3f766e86d649e9441",
+    "source_fingerprint": "sha256:fdaeec5678a12ff5044b4dbc03495b8226ba9eb09538b474b276afade7142cca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7611a68fc69cb971695f06f4c686a27d0a0c40abf63a670a076cbfc47aea8b84",
-      "plan.md": "eef64d339e59794d4b82ef2c026935664ab4fac5b18ab0693a1949ab599507c1",
-      "tasks.md": "61839fa3a8a4b903ef83a56ee0592f74a4f765b219f644a2a91f60b811f2e0b9",
-      "implementation-summary.md": "e91d8e06fdaea4778aa66e1c25dbb3a1e3bd1ab438bec33a4d4f478b830e398a"
+      "spec.md": "b69a13c92d594033c9eef5bd7319d7336aa5e35c1dddd428e848a92da5bca9bd",
+      "plan.md": "9280b57a9076e5893b442619a8b06400b444884b7a4983b128db80c5a1d56aa6",
+      "tasks.md": "702e7d80544dbfa09390182fe3ffd8e1c03c6ee869e29a5529419dbd4385ebef",
+      "implementation-summary.md": "5034cba795e950c9dacf9bdd150e5c7085ac18c73a81ac1c65e28257eb18f1ac"
     },
     "last_active_at": null
   }

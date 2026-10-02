@@ -34,7 +34,7 @@ Load the presentation contract before showing startup questions, setup dashboard
 - `install` accepts `--runtime <name>`; `debug` accepts `--fix`.
 - If any referenced asset is missing, stop and report the missing path.
 - This command installs and diagnoses Code Mode, its `.utcp_config.json` manuals, credential references, and runtime registrations.
-- Subsystem diagnostics stay under `/doctor <target>` and `/doctor:update`.
+- Subsystem diagnostics stay under `/doctor:speckit <target>` and `/doctor:rebuild`.
 - The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
 
 ---
@@ -70,4 +70,4 @@ The following content lives only in `.skilled/commands/doctor/assets/doctor-mcp-
 
 ## 6. WORKFLOW SUMMARY
 
-The bound sub-action workflow (`doctor-mcp-install.yaml` for `install`, `doctor-mcp-debug.yaml` for `debug`) drives Code Mode assessment, installation or repair, and verification, rendering every user-facing string through the presentation contract. The health script runs with `--json` and preserves its structured output. Each repair requires explicit approval, including when `--fix` is set. The workflow reports credential reference presence without requesting or writing credential values. Subsystem diagnostics route through `/doctor <target>` and `/doctor:update`.
+The bound sub-action workflow (`doctor-mcp-install.yaml` for `install`, `doctor-mcp-debug.yaml` for `debug`) drives Code Mode assessment, installation or repair, and verification, rendering every user-facing string through the presentation contract. The health script runs with `--json` and preserves its structured output. Each repair requires explicit approval, including when `--fix` is set. The workflow reports credential reference presence without requesting or writing credential values. Subsystem diagnostics route through `/doctor:speckit <target>` and `/doctor:rebuild`.

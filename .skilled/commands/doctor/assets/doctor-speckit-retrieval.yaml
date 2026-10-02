@@ -22,7 +22,7 @@ speckit_retrieval_doctor_invariant: |
   This doctor is read-only by contract and needs no background service. It treats the
   generated trigger index at .skilled/skills/system-spec-kit/runtime/data/trigger-index.json as
   the artifact it diagnoses but never regenerates. Regeneration is owned by the
-  /doctor:update orchestrator, which runs the generator over the whole corpus in one pass.
+  /doctor:rebuild orchestrator, which runs the generator over the whole corpus in one pass.
 
 upstream_assets:
   contract: "local command design contract"
@@ -39,7 +39,7 @@ upstream_assets:
     cold_lookup_p95_budget_ms: 200  # the budget the latency report was accepted under
     index_regenerates_byte_identical: true  # two generator runs must hash the same
 speckit_retrieval_doctor_philosophy:
-  principle: "Detect index staleness before it breaks Gate 1 lookups; this command never mutates — regeneration runs through /doctor:update"
+  principle: "Detect index staleness before it breaks Gate 1 lookups; this command never mutates — regeneration runs through /doctor:rebuild"
   approach: "Read the index and its manifest → run the lookup and a ripgrep recipe → classify staleness → emit recommendations"
   mandate: "This command is read-only by contract."
   honest_loss: "The retired continuity database offered semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal. None of them has a replacement here. This doctor diagnoses a lexical index and a lexical scan, and it reports a miss as a miss."
@@ -198,8 +198,8 @@ workflow:
   phase_2_recommendation:
     purpose: Translate staleness signals into recommended action
     rules:
-      - "If severity_max == high (schema mismatch, lookup error, or ambient config) → recommend a full regeneration via /doctor:update"
-      - "If severity_max == medium (index older than corpus, manifest hash mismatch, or corpus pollution) → recommend full-corpus regeneration via /doctor:update, or a corpus fix first when the signal is pollution: the phrases never rank, so the cost is precision and parse time, not a wrong answer"
+      - "If severity_max == high (schema mismatch, lookup error, or ambient config) → recommend a full regeneration via /doctor:rebuild"
+      - "If severity_max == medium (index older than corpus, manifest hash mismatch, or corpus pollution) → recommend full-corpus regeneration via /doctor:rebuild, or a corpus fix first when the signal is pollution: the phrases never rank, so the cost is precision and parse time, not a wrong answer"
       - "If severity_max == low (trigger phrase OR anchor drift) → recommend monitoring; rerun in 1-2 weeks"
       - "If no staleness → status=OK, no action needed"
       - "A lookup exit of 1 with a healthy index is a correct empty answer, not a finding. Never recommend a regeneration to make a no-hit disappear."
@@ -248,6 +248,6 @@ output_contract:
 # ─────────────────────────────────────────────────────────────────
 halt_conditions:
   - "Phase 0 lookup exits 2 or higher → STATUS=FAIL with stderr attached"
-  - "Trigger index missing entirely → STATUS=MISSING (not FAIL); recommend /doctor:update to generate it"
+  - "Trigger index missing entirely → STATUS=MISSING (not FAIL); recommend /doctor:rebuild to generate it"
   - "Any phase emits a write attempt outside the packet scratch → STATUS=FAIL with ERROR='confirm-mode-mutation-violation'"
   - "User answers `n` at any interactive gate → STATUS=CANCELLED and emit state log"

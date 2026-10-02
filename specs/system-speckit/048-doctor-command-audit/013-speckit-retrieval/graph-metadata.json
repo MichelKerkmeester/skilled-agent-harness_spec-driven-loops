@@ -39,7 +39,7 @@
       "architecture"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,8 +47,14 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/doctor-run.log",
+      ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
-      ".skilled/commands/doctor/_routes.yaml"
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      ".skilled/commands/doctor/speckit.md",
+      "scratch/reality-check.md",
+      "scratch/proposal.md",
+      "references/retrieval/retrieval-conventions.md"
     ],
     "entities": [
       {
@@ -88,15 +94,51 @@
         "source": "derived"
       },
       {
-        "name": "doctor-speckit-retrieval.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
         "source": "derived"
       },
       {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-retrieval.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "proposal.md",
+        "kind": "doc",
+        "path": "scratch/proposal.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": "references/retrieval/retrieval-conventions.md",
         "source": "derived"
       },
       {
@@ -148,57 +190,21 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components",
+        "name": "Pattern Audit",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:speckit speckit-retrieval` checks the trigger index and the ripgrep retrieval recipes",
     "created_at": "2026-10-02T16:10:27Z",
-    "last_save_at": "2026-10-02T16:16:02.578Z",
+    "last_save_at": "2026-10-02T21:17:28.359Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6017ac2dbe3e052717f373c00f0adeb23db8d16eeb2236ee512fd7118e7b9ce0",
+    "source_fingerprint": "sha256:62aab57dc150bd8098d950a58a6ef0951c2b8a9e7df621233fde9c0013d138b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a61dbe7bf10351076190a7c91ae1eb6d4bc2cc9f5d11b34a5f7d9a44e21148e1",
-      "plan.md": "6a007738e8c98b51d9d29f311cdb2c0e61f9568cc61df9a80cbe1215a4396f1b",
-      "tasks.md": "b86a5ce5e1d0784073acaf460b4cee4fb2d414de1e8c942aeb7eb4f32eb41113",
-      "implementation-summary.md": "e20143524ad0cc2b32df27359448bf4029e152bea9b7a654be88148547cffa9e"
+      "spec.md": "40b06ac7f712a9b95a25e99436f51ac24e855cafc0d4d4ffd71aaba4d3cf0af1",
+      "plan.md": "fdf8bde2cacd4eeaa026ed6b2a86c97f48038326eceaeb89ac4b9120a9232995",
+      "tasks.md": "3dd7ce6b977d7274b3b301d750f36921a923fe7c22b6c94d6d3116530410acf0",
+      "implementation-summary.md": "0c910f8aa5d548ebd7764c324f450f5ce925df308885182bfca1c28241588633"
     },
     "last_active_at": null
   }

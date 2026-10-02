@@ -104,7 +104,7 @@ command/
 ├── doctor/                   # MCP server diagnostic and install commands
 │   ├── mcp.md                # Diagnose/install MCP infrastructure
 │   ├── speckit.md            # Spec Kit diagnostics
-│   ├── update.md             # Dependency-ordered subsystem alignment
+│   ├── rebuild.md            # Dependency-safe database rebuild
 │   ├── assets/               # YAML workflow definitions
 │   └── scripts/              # Diagnostic scripts
 ├── design/                    # Design extraction commands
@@ -158,7 +158,7 @@ Four command files cover the diagnostic surface. Backed by `_routes.yaml`, `mcp-
 | Doctor Router | `/doctor <target> [flags]` (backed by `doctor/speckit.md`) | Single entry point for 9 subsystems (`speckit-retrieval`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `router-reach`, `fable-mode`, `runtime-mirrors`); argv-positional dispatch via `_routes.yaml` |
 | MCP Debug | `/doctor:mcp debug [--fix]` | Diagnose Code Mode build, UTCP configuration, credentials, and runtime registration |
 | MCP Install | `/doctor:mcp install [--runtime <name>]` | Install Code Mode and configure its UTCP file and selected runtime |
-| Update | `/doctor:update [--migrate] [--force]` | Dependency-safe multi-subsystem rebuild orchestrator (trigger index, skill-graph, advisor, deep-loop) |
+| Rebuild | `/doctor:rebuild [--migrate] [--force]` | Dependency-safe multi-subsystem rebuild orchestrator (trigger index, skill-graph, advisor) |
 | Environment Switches | `/doctor:env [list \| <section> \| <VARIABLE>] [--dry-run]` | Inspect documented environment switches and optionally save a confirmed preference |
 
 ### Deep Commands

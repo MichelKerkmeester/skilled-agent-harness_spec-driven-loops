@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 13: speckit-retrieval"
-description: "[2-3 sentences: what this implements and the technical approach]"
+description: "Audits /doctor:speckit speckit-retrieval against this checkout, applies the smallest fix for every claim that no longer matches, and records subsystem defects as findings rather than fixes."
 trigger_phrases:
   - "implementation plan"
   - "technical approach"
@@ -23,13 +23,13 @@ contextType: "general"
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown, shell and YAML; the target is one workflow asset |
+| **Framework** | The `/doctor` router: route manifest, router doc and shared presentation contract |
+| **Storage** | None written by the phase; the audited target reads the committed trigger index |
+| **Testing** | Read-only command runs, each recorded with its exit status in `scratch/doctor-run.log` |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+The phase read the route, the workflow asset, the presentation and the router in full, then ran every step they name in read-only form and saved the raw output in `scratch/doctor-run.log`. The evidence produced a `fix` verdict: the doctor's central lane works on this checkout, but six claims no longer match the system, one of them recommending a regeneration mode that does not exist. The fixes were applied as the smallest edit that removes each mismatch, and `route-validate.sh` re-proved parity across the route manifest, the router table and the presentation.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -38,14 +38,14 @@ contextType: "general"
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented in `spec.md` §2 and §3
+- [x] Success criteria measurable: the route validator's exit status and the acceptance rows
+- [x] Dependencies identified: a provisioned worktree with Node and ripgrep
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met: AC-001 through AC-004 are Met
+- [x] Tests passing: `route-validate.sh` exits 0 and the phase validator reports `RESULT: PASSED`
+- [x] Docs updated: spec, plan, tasks, acceptance criteria, summary and goal log
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,14 +54,15 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Audit-then-apply: evidence first, then the smallest edit that removes each mismatch
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Route entry**: the `speckit-retrieval` block in `_routes.yaml` declares the setup variables, flag schema and mutation class the router binds
+- **Workflow asset**: `doctor-speckit-retrieval.yaml` holds the staleness signals, the read-only steps and the recommendation rules
+- **Presentation contract**: `doctor-speckit-presentation.txt` owns every visible string, including the setup prompts the router asks
 
 ### Data Flow
-[Brief description of how data moves through the system]
+The router resolves the target from `_routes.yaml` and runs the workflow asset phase by phase, reading the committed trigger index and the retrieval conventions. The audit inverted that order: it read the route, asset and presentation first, then ran each named step read-only, aggregated the signals into a verdict, and applied the fixes before re-running the parity gate.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -73,14 +74,17 @@ Use this section when `research_intent=fix_bug`, when planning from a deep-revie
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
+| `_routes.yaml` | Declares the route's setup variables, allowed flags and mutation class | Update: dropped `incremental`, fixed the asset-glob note | `route-validate.sh` B1 and J1 pass; no `--incremental` hit remains |
+| `doctor-speckit-retrieval.yaml` | Holds the signals, the read-only steps and the recommendation rules | Update: removed the dead input and the incremental recommendation; corrected the Claude note, the class list, the glob count and the forbidden glob | Re-read of the diff; `route-validate.sh` D1 pass; `rg` probes clean |
+| `doctor-speckit-presentation.txt` | Shared contract for every visible `/doctor:speckit` string | Update: removed the regeneration-mode prompt and the orphaned `--scope` prompt | `route-validate.sh` J1 parity pass |
+| `speckit.md` | Router doc that names the resolved asset | Update: `doctor_<target>.yaml` to `doctor-<target>.yaml` | `route-validate.sh` J1 pass |
+| Scripts and fixtures the target names | Supply the index, the lookups and the recipes the doctor reads | Unchanged: all present on this checkout | `scratch/reality-check.md` §1 to §3, each row with the command that showed it |
 
 Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
+- Same-class producers: `rg -n -- "--incremental" .skilled` returned the route and the validator's own copy, with no consuming script; `rg -n "doctor_\*"` returned only `doctor-update.yaml`, which the release-aware update redesign owns.
+- Consumers of changed symbols: after the batch, `rg -n "incremental|doctor_\*|CLAUDE\.md"` over the four edited files returned no hits.
+- Matrix axes: each named item is scored present, moved, missing or stale claim; each command's exit class is 0, 1 or 2+; each signal carries severity high, medium or low.
+- Algorithm invariant: the forbidden-glob guard must match the real asset names (`doctor-*.yaml`, 14 files), and the manifest, router table and presentation must stay in J1 parity after every edit.
 <!-- /ANCHOR:affected-surfaces -->
 
 
@@ -89,7 +93,7 @@ Required inventories:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
+Follow the ordered tasks in `tasks.md`. It owns the Audit, Apply and Verify phase checkboxes and task state.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -99,9 +103,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Command probes | Every script, fixture and recipe the workflow names | `bash`, `node`, `rg` |
+| Parity checks | Route manifest, router table and presentation displays | `route-validate.sh` |
+| Manual | The workflow's phases run end to end in read-only order | `scratch/doctor-run.log` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -111,7 +115,9 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Provisioned worktree with the named scripts runnable | Internal | Green | The audit cannot run; a missing script becomes a finding |
+| Node v26.8.2 and ripgrep 15.2.0 | Host | Green | The lookup and recipe probes cannot be re-proved |
+| `_routes.yaml` and `route-validate.sh` | Internal | Green | Route edits cannot be checked for parity |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -119,8 +125,8 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: An applied edit breaks route parity or the doctor's own output
+- **Procedure**: `git checkout --` the four edited doctor files, then rerun `route-validate.sh`. The audit artifacts in `scratch/` are untracked and unaffected.
 <!-- /ANCHOR:rollback -->
 
 ---
@@ -132,17 +138,17 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 ## L2: PHASE DEPENDENCIES
 
 ```
-Phase 1 (Setup) ──────┐
-                      ├──► Phase 2 (Core) ──► Phase 3 (Verify)
-Phase 1.5 (Config) ───┘
+Phase 1 (Audit) ──────┐
+                      ├──► Phase 2 (Apply) ──► Phase 3 (Verify)
+Phase 1.5 (Evidence) ─┘
 ```
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | None | Core, Config |
-| Config | Setup | Core |
-| Core | Setup, Config | Verify |
-| Verify | Core | None |
+| Audit | None | Apply, Evidence |
+| Evidence log | Audit | Apply |
+| Apply | Audit, Evidence log | Verify |
+| Verify | Apply | None |
 <!-- /ANCHOR:phase-deps -->
 
 ---
@@ -152,10 +158,10 @@ Phase 1.5 (Config) ───┘
 
 | Phase | Complexity | Estimated Effort |
 |-------|------------|------------------|
-| Setup | [Low/Med/High] | [e.g., 1-2 hours] |
-| Core Implementation | [Low/Med/High] | [e.g., 4-8 hours] |
-| Verification | [Low/Med/High] | [e.g., 1-2 hours] |
-| **Total** | | **[e.g., 6-12 hours]** |
+| Audit | Med | 1-2 hours |
+| Apply | Low | Under an hour as part of the shared batch |
+| Verification | Low | Under an hour |
+| **Total** | | **2-4 hours** |
 <!-- /ANCHOR:effort -->
 
 ---
@@ -164,19 +170,18 @@ Phase 1.5 (Config) ───┘
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Backup: every edited file is tracked by git; the audit artifacts are untracked scratch
+- [x] Feature flag: not applicable; the fix ships as text in doctor assets
+- [x] Monitoring: `route-validate.sh` is the check that catches a broken route
 
 ### Rollback Procedure
-1. [Immediate action - e.g., disable feature flag]
-2. [Revert code - e.g., git revert or redeploy previous version]
-3. [Verify rollback - e.g., smoke test critical paths]
-4. [Notify stakeholders - if user-facing]
+1. Restore the four edited doctor files from git
+2. Rerun `bash .skilled/commands/doctor/scripts/route-validate.sh`
+3. Confirm a clean exit with J1 parity across the manifest, router table and presentation
 
 ### Data Reversal
-- **Has data migrations?** [Yes/No]
-- **Reversal procedure**: [Steps or "N/A"]
+- **Has data migrations?** No
+- **Reversal procedure**: N/A
 <!-- /ANCHOR:enhanced-rollback -->
 
 ---

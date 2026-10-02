@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────────────────────
-# DOCTOR: UPDATE WORKFLOW (CONFIRM - PER-PHASE PROMPT)
+# DOCTOR: REBUILD WORKFLOW (CONFIRM - PER-PHASE PROMPT)
 # ─────────────────────────────────────────────────────────────────
-role: Expert Operator running unified spec-kit update in interactive confirm mode
+role: Expert Operator running the spec-kit database rebuild in interactive confirm mode
 purpose: Execute dependency-safe database rebuild with explicit approval at every phase boundary.
 action: flock -> prompt -> probe -> prompt -> migrate -> prompt -> snapshot -> dashboard -> dependency.order -> post.run.validation -> state.log
 
@@ -14,25 +14,25 @@ operating_mode:
   execution: interactive
   approvals: per_phase_boundary
   tracking: phase_by_phase
-  validation: post_run_gold_battery
-  # All .doctor-update.* runtime state lives in the advisor's database directory: it is
+  validation: post_run_validation
+  # All .doctor-rebuild.* runtime state lives in the advisor's database directory: it is
   # tracked, gitignore-managed, and already a mutation target of this command. The
   # spec-kit runtime/database directory that used to hold it left with its server.
   state_dir: ".skilled/skills/system-skill-advisor/runtime/database"
-  state_log: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.last-run.json"
+  state_log: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.last-run.json"
 
 
 # ─────────────────────────────────────────────────────────────────
 # UPDATE ORCHESTRATOR INVARIANT
 # ─────────────────────────────────────────────────────────────────
-update_orchestrator_invariant: |
-  The update orchestrator is a single-instance, flock-protected database rebuild
+rebuild_orchestrator_invariant: |
+  The rebuild orchestrator is a single-instance, flock-protected database rebuild
   chain. It executes the dependency DAG in order, snapshots every in-scope DB
   before mutation unless explicitly waived, and restores failed plus downstream
   DBs on retry exhaustion. SIGINT follows ADR-001/ADR-007: set cancel, allow a
   ~5 sec SQLite settle window, restore the in-flight snapshot, log, and exit 130.
   Every abort path — build failure, snapshot failure, dependency failure, SIGINT,
-  validation regression — MUST `rm -f .doctor-update.flock` before exit to prevent
+  validation regression — MUST `rm -f .doctor-rebuild.flock` before exit to prevent
   indefinite-lock leak (council Issue 2 sub-finding).
 
 # ─────────────────────────────────────────────────────────────────
@@ -93,7 +93,7 @@ field_handling:
     true: "skip snapshot cleanup older than 30 days"
     false: "cleanup snapshots older than 30 days during final phase"
   resume_bootstrap_policy:
-    true: "verify .doctor-update.bootstrap.json completed before continuing after a fresh OpenCode restart"
+    true: "verify .doctor-rebuild.bootstrap.json completed before continuing after a fresh OpenCode restart"
     false: "run non-MCP runtime bootstrap and stop with restart_required if bootstrap changed tool-registration inputs"
 
 # ─────────────────────────────────────────────────────────────────
@@ -102,22 +102,26 @@ field_handling:
 mutation_boundaries:
   allowed_targets:
     - ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite"  # standalone advisor routing graph DB
-    - ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite.pre-doctor-update.*.bak"
+    - ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite.pre-doctor-rebuild.*.bak"
+    - ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite.post-doctor-rebuild.*.bak"
     - ".skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
-    - ".skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak"
-    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.flock"  # single-instance lock
-    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.lock"
-    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.last-run.json"  # orchestrator state log
-    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.bootstrap.json"  # pre-MCP bootstrap state
-    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.bootstrap.lockdir"  # pre-MCP bootstrap lock
-    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.*.log"  # per-phase orchestrator logs
-    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.config-instructions"  # manual remediation notes
+    - ".skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite.pre-doctor-rebuild.*.bak"
+    - ".skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite.post-doctor-rebuild.*.bak"
+    - ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json.pre-doctor-rebuild.*.bak"  # trigger-index snapshot before regeneration
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.flock"  # single-instance lock
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.lock"
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.last-run.json"  # orchestrator state log
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.bootstrap.json"  # pre-MCP bootstrap state
+    - "/tmp/doctor-runtime-bootstrap.lock"  # pre-MCP bootstrap lock
+    - "${TMPDIR:-/tmp}/doctor-runtime-bootstrap-actions.*"  # pre-MCP bootstrap action file
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.*.log"  # per-phase orchestrator logs
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.config-instructions"  # manual remediation notes
     - ".opencode/skill"  # compatibility symlink only
     - ".opencode/skill_legacy_backup_*"  # legacy layout backup before symlink bridge
     - ".skilled/skills/system-spec-kit/runtime/dist/**"  # generated MCP runtime output
     - ".skilled/skills/system-spec-kit/runtime/cli/dist/**"  # generated migration helper output
   forbidden_targets:
-    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor:update
+    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor:rebuild
     - "<active-spec-folder>/description.json"  # spec metadata belongs to memory-save tooling
     - "<active-spec-folder>/graph-metadata.json"  # graph metadata not an orchestrator DB target
     - ".skilled/skills/**/SKILL.md"  # never edit skill bodies
@@ -125,7 +129,7 @@ mutation_boundaries:
     - ".skilled/skills/system-spec-kit/runtime/**/*.ts"
     - ".skilled/agents/**/*.md"
     - ".skilled/commands/doctor/*.md"
-    - ".skilled/commands/doctor/assets/doctor_*.yaml"
+    - ".skilled/commands/doctor/assets/doctor-*.yaml"
     - "**/migration-manifest.json"
     - "direct SQL outside VACUUM INTO snapshot and snapshot restore"
   validator:
@@ -136,7 +140,7 @@ mutation_boundaries:
 # STATE LOG SCHEMA
 # ─────────────────────────────────────────────────────────────────
 state_log_schema:
-  command: "/doctor:update"
+  command: "/doctor:rebuild"
   mode: "confirm"
   start: "ISO-8601"
   end: "ISO-8601"
@@ -162,7 +166,8 @@ interactive_prompts:
 # DEPENDENCY ORDER
 # ─────────────────────────────────────────────────────────────────
 dependency:
-  order: ["trigger-index", "skill-graph", "advisor", "deep-loop-graph"]
+  # deep-loop-graph is created by the deep-loop scripts on first use; it has no rebuild entry point.
+  order: ["trigger-index", "skill-graph", "advisor"]
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -176,35 +181,35 @@ workflow:
     command_preflight:
       script: ".skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh"
       command: "bash .skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh --root . --json"
-      state_log: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.bootstrap.json"
+      state_log: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.bootstrap.json"
       no_mcp_tools_allowed: true
     resume_rule:
       if_resume_bootstrap_true: "require bootstrap state status=complete and generated artifacts present; continue to phase_1_flock_acquire"
-      if_resume_bootstrap_false_and_restart_required_true: "write .doctor-update.last-run.json with final_status=restart_required, release any bootstrap lock, stop before database flock"
-      restart_message: "BOOTSTRAP_COMPLETE_RESTART_REQUIRED: restart OpenCode so MCP tools register, then rerun /doctor:update --resume-bootstrap"
+      if_resume_bootstrap_false_and_restart_required_true: "write .doctor-rebuild.last-run.json with final_status=restart_required, release any bootstrap lock, stop before database flock"
+      restart_message: "BOOTSTRAP_COMPLETE_RESTART_REQUIRED: restart OpenCode so MCP tools register, then rerun /doctor:rebuild --resume-bootstrap"
       max_reentry_count: 1
     required_artifacts:
       - ".skilled/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js"
       - ".skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js"
     failure:
-      emit_error: "runtime bootstrap failed before MCP registration; inspect .doctor-update.bootstrap.json"
+      emit_error: "runtime bootstrap failed before MCP registration; inspect .doctor-rebuild.bootstrap.json"
       final_status: "failed"
       exit_code: 1
 
   phase_1_flock_acquire:
     council_line: 1
     approval: "prompt before acquiring lock"
-    flock: "ACQUIRE flock at .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.flock; refuse if held"
-    pid_file: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.lock"
+    flock: "ACQUIRE flock at .skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.flock; refuse if held"
+    pid_file: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.lock"
     stale_lock_rule: "refuse if PID-file stale-locked >2h"
     refusal_message: "holding PID + start timestamp"
     flock_release_invariant: "On ANY abort path from this phase forward (failure, SIGINT, exception), release the flock file BEFORE exit. Each downstream phase inherits this invariant."
 
-  phase_2_probe_mcp_activity:
+  phase_2_probe_daemon_status:
     council_line: 2
-    approval: "prompt before probing active clients"
-    probe: "PROBE other MCP-client activity"
-    active_behavior: "if active, warn and prompt; --force marks force-ok"
+    approval: "auto-acknowledge; read-only status probe"
+    probe: 'node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --warm-only'
+    active_behavior: "report whether a skill-advisor daemon is live; never block the rebuild on this check"
 
   phase_8_migration_phase_0:
     council_line: 8
@@ -219,7 +224,7 @@ workflow:
           (find specs -mindepth 2 -name 'spec.md' | first-match dirname has no description.json)
         ]
       )
-      ELSE refuse to proceed when version detection ambiguous and neither --migrate nor --no-migrate flag was passed.
+      ELSE refuse to proceed when version detection is ambiguous and --migrate was not passed.
     file_system_signals:
       signal_a:
         check: "[ -d .opencode/skill ] && [ ! -L .opencode/skill ]"
@@ -232,7 +237,7 @@ workflow:
         meaning: "legacy memory/ folders inside any spec packet (v3.3 continuity surface)"
       signal_d:
         check: |
-          if [ -d .opencode/specs ]; then
+          if [ -d specs ]; then
             # FIX-12: removed `head -1` (was limiting check to FIRST folder only).
             # Now iterates ALL spec.md until grep -q hits the first "missing" emission and short-circuits.
             find specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null \
@@ -246,7 +251,7 @@ workflow:
         meaning: "spec folders exist but lack description.json (v3.4-required metadata not backfilled from v3.3)"
     auto_migrate_threshold: 2
     rationale: "package.json version field is a build-time placeholder ('0.0.0' in release tarballs), so version detection MUST use file-system signals instead. Council FIX-03."
-    migration: "run migration-manifest.json Phase 0 before snapshots"
+    migration: "refuse migration until one concrete, existing manifest path is configured and validated; never select an arbitrary migration-manifest.json"
     gap_detected: "refuse to proceed if manifest gap detected"
     directory_layout_bridge:
       precondition: "both .opencode/skill/ and .skilled/skills/ directories exist (legacy v3.3 layout + current v3.4 layout)"
@@ -258,9 +263,9 @@ workflow:
         ln -sf skills .opencode/skill
       on_symlink_failure:
         action: "write per-file remediation instructions"
-        instruction_file: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.config-instructions"
+        instruction_file: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.config-instructions"
         content_template: |
-          # /doctor:update remediation: directory rename
+          # /doctor:rebuild remediation: directory rename
           # Run these commands manually to update v3.3 -> v3.4 paths:
           sed -i.bak 's|\.opencode/skill/|.skilled/skills/|g' .mcp.json opencode.json 2>/dev/null
           # Then manually verify .mcp.json and opencode.json are correct.
@@ -277,8 +282,8 @@ workflow:
           # the memory index scope. Per the archive-retention fix (commit b062b12b4), z_archive content IS
           # indexed into the memory DB and deprioritized via ARCHIVE_MULTIPLIERS 0.1; only
           # graph-metadata backfill's path-validator skips it.
-          node .skilled/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js --active-only 2>&1 \
-            | tee .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.backfill-graph.log
+          node .skilled/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js --all --active-only 2>&1 \
+            | tee .skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.backfill-graph.log
         timeout_seconds: 300
         on_failure: "warn but proceed (Phase 5.2 indexing will be partial); record failure in state log"
       step_b_description_backfill:
@@ -300,7 +305,7 @@ workflow:
             fi
           done < <(find specs -mindepth 2 -maxdepth 5 -name 'spec.md' 2>/dev/null)
           echo "{\"missing\":$missing_count,\"created\":$created_count,\"failed\":$failed_count}" \
-            > .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.backfill-description.log
+            > .skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.backfill-description.log
         timeout_seconds: 600
         on_failure: "warn per-folder; aggregate failed_count for state log"
       report_to_dashboard: "Phase 4 dashboard adds row 'spec-metadata-backfill: created=N, failed=M' when this sub-action runs"
@@ -310,19 +315,19 @@ workflow:
       detection: |
         find specs -mindepth 2 -maxdepth 6 -path '*/memory/*.md' \
           -not -path '*/scratch/*' -not -path '*/z_archive/*' 2>/dev/null \
-          | tee .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.legacy-memory-files.log \
+          | tee .skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.legacy-memory-files.log \
           | wc -l
       action_on_findings:
         do_not_auto_migrate: "respecting manifest M-3.3.0.0-001 'review first' policy"
-        write_summary_log: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-update.legacy-memory-files.log"
+        write_summary_log: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.legacy-memory-files.log"
         recommend_to_user: |
           # Emit at end of Phase 8:
           if [ "$LEGACY_MEMORY_COUNT" -gt 0 ]; then
             echo ""
-            echo "/doctor:update detected $LEGACY_MEMORY_COUNT legacy memory/*.md files in spec packets."
+            echo "/doctor:rebuild detected $LEGACY_MEMORY_COUNT legacy memory/*.md files in spec packets."
             echo "These are v3.3 continuity artifacts that were superseded by _memory.continuity frontmatter in v3.4."
             echo ""
-            echo "RECOMMENDED MANUAL STEP: review the files listed in .doctor-update.legacy-memory-files.log,"
+            echo "RECOMMENDED MANUAL STEP: review the files listed in .doctor-rebuild.legacy-memory-files.log,"
             echo "then run \`/speckit:save\` for each affected packet to migrate continuity into the v3.4 frontmatter format."
             echo ""
           fi
@@ -331,15 +336,17 @@ workflow:
     council_line: 3
     approval: "prompt before snapshot; include disk use estimate"
     condition: "unless --no-snapshot"
-    snapshot: "SNAPSHOT every *.sqlite via VACUUM INTO"
-    filename: "<name>.pre-doctor-update.<version>.<timestamp>.bak"
+    snapshot: "SNAPSHOT the declared graph database targets via VACUUM INTO when present"
+    filename: "<name>.pre-doctor-rebuild.<version>.<timestamp>.bak"
     disk_free: "refuse if disk free < 2x DB total"
     post_snapshot_hook: |
       # Preserve original mtime on snapshot copies so age-based recovery decisions stay accurate.
       # VACUUM INTO creates a new file with current mtime by default; reset to source mtime.
-      for src in mcp-server/database/*.sqlite mcp-server/database/*.db; do
+      for src in \
+        .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite \
+        .skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite; do
         [ -f "$src" ] || continue
-        for bak in "$src".pre-doctor-update.*.bak; do
+        for bak in "$src".pre-doctor-rebuild.*.bak; do
           [ -f "$bak" ] || continue
           touch -r "$src" "$bak"
         done
@@ -357,7 +364,7 @@ workflow:
   phase_5_dependency_order_execute:
     council_line: 4
     approval: "prompt before each dependency step"
-    dependency.order: ["trigger-index", "skill-graph", "advisor", "deep-loop-graph"]
+    dependency.order: ["trigger-index", "skill-graph", "advisor"]
     test_failure_injection:
       env_var: "SPECKIT_FAIL_STEP"
       scope: "disposable workspace tests only"
@@ -366,10 +373,17 @@ workflow:
       state_log_requirement: "Record injected_failure=true, failed_step=<step>, and final_status=rolled_back when rollback is selected."
     execute:
       trigger-index:
+        snapshot: |
+          cp -p .skilled/skills/system-spec-kit/runtime/data/trigger-index.json \
+            ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json.pre-doctor-rebuild.$(date -u +%Y%m%dT%H%M%SZ).bak"
         action: "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs  # full regeneration; the generator reads frontmatter and writes the index file, with no daemon and no incremental mode"
-      skill-graph: "system_skill_advisor.skill_graph_scan({})"
-      advisor: "system_skill_advisor.advisor_rebuild({ force: true }) + system_skill_advisor.advisor_validate({})"
-      deep-loop-graph: "deep_loop_graph_upsert(...)"
+        rollback: "restore the trigger-index backup captured above"
+      skill-graph: |
+        node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json
+      advisor: |
+        node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --json '{"force":true}' --format json
+        node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true}' --format json
+      # deep-loop-graph is created by the deep-loop scripts on first use; it has no rebuild entry point.
     failure:
       council_line: 5
       retry: "one retry with 5-sec backoff"
@@ -380,14 +394,17 @@ workflow:
     approval: "auto-acknowledge unless --keep-snapshots is set"
     optional: true
     detect_command: |
-      comm -13 \
-        <(ls mcp-server/database/*.pre-doctor-update.*.bak 2>/dev/null | sed 's/\.pre-doctor-update\..*\.bak$//' | sort -u) \
-        <(ls mcp-server/database/*.sqlite mcp-server/database/*.db 2>/dev/null | sort -u)
+      for db in \
+        .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite \
+        .skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite; do
+        [ -f "$db" ] || continue
+        ls "$db".pre-doctor-rebuild.*.bak >/dev/null 2>&1 || printf '%s\n' "$db"
+      done
     checkpoint_action: |
-      # For each newly-created DB, take a "post-bootstrap" checkpoint snapshot.
-      for new_db in $(comm -13 ...); do
-        sqlite3 "$new_db" ".backup '${new_db}.post-doctor-update.${VERSION}.${TIMESTAMP}.bak'" 2>/dev/null \
-          || cp -p "$new_db" "${new_db}.post-doctor-update.${VERSION}.${TIMESTAMP}.bak"
+      # For each newly-created DB reported by detect_command, take a "post-bootstrap" checkpoint snapshot.
+      for new_db in $(<newly-created DBs from detect_command>); do
+        sqlite3 "$new_db" ".backup '${new_db}.post-doctor-rebuild.${VERSION}.${TIMESTAMP}.bak'" 2>/dev/null \
+          || cp -p "$new_db" "${new_db}.post-doctor-rebuild.${VERSION}.${TIMESTAMP}.bak"
       done
     rationale: "Phase 3 snapshots only EXISTING DBs. On fresh install, all DBs are created during Phase 5, leaving no rollback target if Phase 7 validation fails. Phase 5.5 fills this gap. Council FIX-06."
 
@@ -400,8 +417,15 @@ workflow:
     council_line: 7
     approval: "prompt before accepting validation results when any warning exists"
     post.run.validation:
-      - "existence + schema-version + row-count delta within bounds"
-      - "gold-battery sanity check per DB"
+      - check: 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check'
+        pass: "exit 0"
+        fail: "non-zero exit"
+      - check: 'node .skilled/bin/skill-advisor.cjs skill_graph_validate --format json'
+        pass: "status ok"
+        fail: "any other status"
+      - check: 'node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --warm-only'
+        pass: "freshness live"
+        fail: "stale, absent, or unavailable"
     regression: "prompt"
 
   phase_9_legacy_cleanup:
@@ -412,7 +436,7 @@ workflow:
 
   phase_10_state_log_unlock_cleanup:
     council_line: 10
-    state.log: "write .doctor-update.last-run.json with timestamps, durations, snapshot paths"
+    state.log: "write .doctor-rebuild.last-run.json with timestamps, durations, snapshot paths"
     release_flock: true
     cleanup: "prompt before deleting snapshots >30 days unless --keep-snapshots"
 

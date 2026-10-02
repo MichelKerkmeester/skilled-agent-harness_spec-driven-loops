@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Prepare the system-spec-kit runtime before /doctor:update asks OpenCode for MCP tools.
+# Prepare the system-spec-kit runtime before /doctor:rebuild asks OpenCode for MCP tools.
 set -euo pipefail
 
 ROOT=""
@@ -25,7 +25,7 @@ Usage: bash .skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh [--root
 
 Migrates a legacy .opencode/skill directory into .skilled/skills when present,
 installs system-spec-kit workspace dependencies, and builds the MCP server and
-script runtimes needed by /doctor:update.
+script runtimes needed by /doctor:rebuild.
 HELP
       exit 0
       ;;
@@ -45,11 +45,11 @@ OPENCODE_DIR="$ROOT/.opencode"
 SKILLS_DIR="$OPENCODE_DIR/skills"
 LEGACY_SKILL_DIR="$OPENCODE_DIR/skill"
 KIT_DIR="$SKILLS_DIR/system-spec-kit"
-# Runtime state for /doctor:update. It lives in the advisor's database directory
+# Runtime state for /doctor:rebuild. It lives in the advisor's database directory
 # because that one is tracked and gitignore-managed; the spec-kit runtime/database
 # directory that used to hold it left with its server and is absent on a fresh clone.
 DB_DIR="$SKILLS_DIR/system-skill-advisor/runtime/database"
-STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
+STATE_FILE="$DB_DIR/.doctor-rebuild.bootstrap.json"
 LOCK_FILE="/tmp/doctor-runtime-bootstrap.lock"
 GRAPH_BACKFILL_DIST="$KIT_DIR/runtime/cli/dist/graph/backfill-graph-metadata.js"
 DESCRIPTION_DIST="$KIT_DIR/runtime/cli/dist/spec-folder/generate-description.js"
@@ -80,7 +80,7 @@ const actions = fs.existsSync(process.env.ACTIONS_FILE)
   : [];
 
 const payload = {
-  command: '/doctor:update',
+  command: '/doctor:rebuild',
   phase: 'runtime-bootstrap',
   start: process.env.STARTED_AT,
   end: process.env.ENDED_AT,
@@ -150,7 +150,7 @@ fi
 
 KIT_DIR="$SKILLS_DIR/system-spec-kit"
 DB_DIR="$SKILLS_DIR/system-skill-advisor/runtime/database"
-STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
+STATE_FILE="$DB_DIR/.doctor-rebuild.bootstrap.json"
 GRAPH_BACKFILL_DIST="$KIT_DIR/runtime/cli/dist/graph/backfill-graph-metadata.js"
 DESCRIPTION_DIST="$KIT_DIR/runtime/cli/dist/spec-folder/generate-description.js"
 

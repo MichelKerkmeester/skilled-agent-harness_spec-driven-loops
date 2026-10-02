@@ -28,7 +28,7 @@ Accepted answers:
 
 | Answer | Result |
 |--------|--------|
-| `1` | Abort `/doctor`; display `Switch to /doctor:update --migrate for upgrade migration. Exiting /doctor.` |
+| `1` | Abort `/doctor`; display `Switch to /doctor:rebuild --migrate for upgrade migration. Exiting /doctor.` |
 | `2` | target = `speckit-retrieval` |
 | `6` | target = `deep-loop` |
 | `7` | target = `skill-advisor` |
@@ -38,7 +38,7 @@ Accepted answers:
 | `11` | target = `fable-mode` |
 | `12` | target = `runtime-mirrors` |
 | `13` | target = `router-reach` |
-| `0` | Abort `/doctor`; display `Switch to /doctor:update for full sweep. Exiting /doctor.` |
+| `0` | Abort `/doctor`; display `Switch to /doctor:rebuild for full sweep. Exiting /doctor.` |
 | `H` | Show the help block, then ask the startup prompt again |
 | `X`, empty, `cancel` | `STATUS=CANCEL` |
 
@@ -107,7 +107,7 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 
 Ask only prompts needed for unresolved setup variables. Do not split a required setup question into multiple visible turns.
 
-The speckit-retrieval target never regenerates the index itself and asks for no regeneration mode; it names `/doctor:update`, which republishes the whole corpus in one pass.
+The speckit-retrieval target never regenerates the index itself and asks for no regeneration mode; it names `/doctor:rebuild`, which republishes the whole corpus in one pass.
 
 ### Deep-Loop Scope
 
@@ -203,7 +203,7 @@ STATUS=FAIL ERROR="[message]"
 
 | Situation | Suggested Action |
 |-----------|------------------|
-| Need dependency-safe full rebuild | Use `/doctor:update` |
+| Need dependency-safe full rebuild | Use `/doctor:rebuild` |
 | MCP servers are broken | Use `/doctor:mcp debug --fix` |
 | Fresh-install MCP servers | Use `/doctor:mcp install` |
 | Cross-target flag rejected | Use the suggested target from the error |

@@ -75,11 +75,26 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Phase opened | Done | Route block, workflow asset, presentation and router read in full; scope fixed on `/doctor:speckit speckit-retrieval` |
+| Inventory | Done | `scratch/reality-check.md` scores every named path, script, command, flag and environment variable with the command that showed it |
+| Read-only run | Done | `scratch/doctor-run.log`: 23 prompt-set lookups exit 0 or 1; a missing index exits 2; the recipe returns 15 paths; cold-lookup p95 104.256 ms of 200 ms |
+| Verdict | Done | `scratch/proposal.md`: **fix** — every dependency exists and the central lane works, six claims no longer match the system |
+| Fixes applied | Done | Batch-edited manifest, asset, presentation and router; `route-validate.sh` exits 0 with 9 routes validated, 2 warnings |
+| Verification | Done | `validate.sh --strict` reports `RESULT: PASSED`; AC-001 through AC-004 are Met |
+| Phase closed | Done | `spec.md` status Complete, acceptance closure written, findings recorded in the summary |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Deviation | The fixes were applied as one batch across the `/doctor:speckit` targets because they share `_routes.yaml`, `speckit.md` and the presentation; the review command is the batch diff, not a per-phase one |
+| Deviation | The optional evidence-backed staleness probe in `scratch/proposal.md` was not applied; it is an addition, not a mismatch repair |
+| Deviation | `doctor-update.yaml` still carries the dead `doctor_*.yaml` pattern; the release-aware update redesign owns that file |
+| Finding | The committed trigger index is stale: 86 documents differ and the corpus hash moved on (`generate-trigger-index.mjs --check --json`, exit 1) |
+| Finding | `folder-token-fallback` is unreachable at generation, so one phrase gets two labels depending on the reader (`generate-trigger-index.mjs:260` against `check-grep-convention-helper.mjs:187`) |
+| Finding | Staleness detection can only be mtime-based; the index stores paths without per-path content hashes |
+| Finding | `retrieval-conventions.md` §9 names an `.opencode/specs` symlink that does not exist |
+| Finding | `runtime/cli/retrieval/README.md:94` still repeats the deleted CLAUDE.md symlink claim |
+| Finding | The acceptance packet the doctor names as its bar points at paths that moved to `runtime/cli/retrieval/` and `runtime/data/` |
+| Finding | Informational: the conventions pin ripgrep 14.1.1 while this host runs 15.2.0; the §2.5 hazard was re-tested and still holds |
 <!-- /ANCHOR:log -->

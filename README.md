@@ -714,7 +714,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 ├── compat/     stable compatibility entry for compiled consumers and the Python shim
 ├── config/     route exclusions
 ├── data/       the default prompt policy that skips casual prompts
-├── database/   SQLite skill graph and doctor-update state
+├── database/   SQLite skill graph and doctor-rebuild state
 ├── handlers/   the nine command handlers
 ├── lib/        scorer, normalizer, freshness, cache
 ├── schemas/    JSON + Zod schemas
@@ -1208,12 +1208,12 @@ Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no ta
 - `install`. Fresh install or reinstall of the Code Mode MCP server from its install guide. Handles old-conflicting-with-new (clean reinstall with venv/node_modules removal)
 - `debug`. Diagnoses Code Mode with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
 
-**`/doctor:update`** - multi-subsystem orchestrator
+**`/doctor:rebuild`** - multi-subsystem rebuild orchestrator
 
-- Dependency-safe rebuild across trigger index → skill-graph → advisor → deep-loop
-- One lock (`system-skill-advisor/runtime/database/.doctor-update.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-update.last-run.json`)
+- Dependency-safe rebuild across trigger index → skill-graph → advisor
+- One lock (`system-skill-advisor/runtime/database/.doctor-rebuild.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-rebuild.last-run.json`)
 - Tier-aware mid-run prompts: SHORT steps auto-acknowledge. The LONG-POLE trigger-index regeneration gets an explicit ETA prompt (Q-LONG, 1-5 min)
-- Additional gates: Q-PROBE (active MCP clients warning, NOT suppressed by `--force`), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
+- Additional gates: Q-PROBE (skill-advisor daemon notice, informational), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
 - Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle packet schema migration. Wall-clock 8-25 min
 
 The 13 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.

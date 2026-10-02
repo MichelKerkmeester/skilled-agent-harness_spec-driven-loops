@@ -75,11 +75,20 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | |
+| Phase opened | Done | this file |
+| Inventory of every path, script, command, flag and variable named by the route and `doctor-parent-skill.yaml` | Done | `scratch/reality-check.md` — no moved or missing path observed |
+| One read-only run of the route's two script invocations plus the route validator | Done | `scratch/doctor-run.log` — fleet gate exit 0 (14/14 roots), parent audit exit 0 (all hard invariants passed, 0 warnings), route validator exit 0 |
+| Verdict and target behavior | Done | `scratch/proposal.md` — verdict `fix`, four minimal edits |
+| Verdict applied | Done | `implementation-summary.md` Files Changed — workflow invariant, phase-0 order, checker documentation, presentation row |
+| Post-change verification | Done | `route-validate.sh` exit 0 (9 routes, 2 warnings); `YAML_OK`; post-batch fleet gate and parent audit both exit 0 with 0 warnings |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| No subsystem defect found | Proposal FINDINGS: none observed in `.skilled/skills/system-deep-loop`; the fleet gate reports 14 roots passed, 0 failed and the parent audit reports 0 warnings |
+| Applied in a shared batch | The `/doctor:speckit` targets share `_routes.yaml`, `speckit.md` and the presentation file; this target's workflow invariant, checker documentation and presentation row changed, while the route entry was inspected and left as it was |
+| Three `parent-skill-check-*.test.cjs` suites fail in this worktree | Baseline condition: their temporary fixtures cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` here. Unchanged by this batch and not a regression |
+| The route validator does not check workflow activities | Its script-existence assertion covers `script_invocations` paths and the read-only policy, so its pass does not by itself prove phase 0 invokes every route script |
+| The recorded run predates the label edit | `scratch/doctor-run.log:24` shows the earlier `Mode 5-9: canon (FAIL)` label; the edit is descriptive, so the recorded results stand |
 <!-- /ANCHOR:log -->
