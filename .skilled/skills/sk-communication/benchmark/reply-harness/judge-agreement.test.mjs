@@ -741,3 +741,69 @@ test('the jev arm reruns every score three times and stops on the flips', async 
     fs.rmSync(fixture.root, { recursive: true, force: true });
   }
 });
+
+test('the jev arm measures every reply and dimension and the report keeps the column', async () => {
+  const fixture = makeFixture();
+  try {
+    makeStubBin(fixture.root);
+    const { labelsPath, answersPath } = scenario(fixture, (g) => g);
+    const outDir = path.join(fixture.root, 'out');
+    const { code, lines } = await run(
+      [
+        '--masked', fixture.maskedDirs[0],
+        '--masked', fixture.maskedDirs[1],
+        '--replies', fixture.repliesDirs[0],
+        '--replies', fixture.repliesDirs[1],
+        '--replies', fixture.repliesDirs[2],
+        '--labels', labelsPath,
+        '--jev',
+        '--accept-payload',
+        '--out', outDir,
+      ],
+      stubEnv(fixture.root, { STUB_ANSWERS: answersPath }),
+    );
+    assert.equal(code, 0);
+    assert.ok(lines.at(-1).startsWith('verdict jev: keep K=21 M=21 A=147 B=63 W=21 L=0 F=0'));
+    assert.ok(lines.at(-1).endsWith('jev_version=0.6.2 provider=official model=stub-model'));
+    const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').split('\n').filter((line) => line.length > 0);
+    assert.equal(calls.length, 442);
+    for (const line of calls) {
+      const record = JSON.parse(line);
+      assert.equal(typeof record.wallMs, 'number');
+      assert.equal(typeof record.exitCode, 'number');
+      assert.equal(record.backend, 'jev');
+      assert.equal(record.status, 'measured');
+    }
+    const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
+    assert.equal(report.columns.jev.verdict, 'keep');
+  } finally {
+    fs.rmSync(fixture.root, { recursive: true, force: true });
+  }
+});
+
+test('the jev arm reports a coverage stop when every score call exits 1', async () => {
+  const fixture = makeFixture();
+  try {
+    makeStubBin(fixture.root);
+    const { labelsPath, answersPath } = scenario(fixture, (g) => g);
+    const outDir = path.join(fixture.root, 'out');
+    const { code, lines } = await run(
+      [
+        '--masked', fixture.maskedDirs[0],
+        '--masked', fixture.maskedDirs[1],
+        '--replies', fixture.repliesDirs[0],
+        '--replies', fixture.repliesDirs[1],
+        '--replies', fixture.repliesDirs[2],
+        '--labels', labelsPath,
+        '--jev',
+        '--accept-payload',
+        '--out', outDir,
+      ],
+      stubEnv(fixture.root, { STUB_ANSWERS: answersPath, STUB_SCORE_EXIT: '1' }),
+    );
+    assert.equal(code, 0);
+    assert.ok(lines.at(-1).startsWith('verdict jev: stop (coverage) K=21 M=0'));
+  } finally {
+    fs.rmSync(fixture.root, { recursive: true, force: true });
+  }
+});

@@ -138,6 +138,11 @@ function keepSchedule(): string {
   return verdictLabels().map((label) => (label === 'run_test' ? 'run_test' : 'read_code')).join(',');
 }
 
+/** Picks a wrong key on every row while the baseline is right on twelve. */
+function killSchedule(): string {
+  return verdictLabels().map((label) => (label === 'read_code' ? 'run_test' : 'read_code')).join(',');
+}
+
 /** Lines one stub appended, one per invocation. */
 function stubLines(stubDir: string, name: string): string[] {
   const logPath = join(stubDir, `${name}.log`);
@@ -528,6 +533,62 @@ describe('score-debug-next-check', () => {
       'verdict jev: stop (coverage) K=30 M=0 A=0 B=0 W=0 L=0 F=0 p=1.000'
       + ' baseline=read_code jev_version=0.6.2 provider=official model=stub-model',
     );
+  });
+
+  it('verdict keep', () => {
+    const out = tempDir('debug-next-check-out-');
+    const run = runScript(
+      ['--fixture', writeFixture(verdictRows()), '--jev', '--out', out],
+      makePickStubs(),
+      { STUB_PICKS: keepSchedule() },
+    );
+
+    expect(run.code).toBe(0);
+    expect(run.lines.some((line) => line.startsWith('verdict jev: keep K=30 M=30 A=20 B=12 W=8 L=0 F=0 p='))).toBe(true);
+  });
+
+  it('verdict kill', () => {
+    const out = tempDir('debug-next-check-out-');
+    const run = runScript(
+      ['--fixture', writeFixture(verdictRows()), '--jev', '--out', out],
+      makePickStubs(),
+      { STUB_PICKS: killSchedule() },
+    );
+
+    expect(run.code).toBe(0);
+    expect(run.lines.some((line) => line.startsWith('verdict jev: kill K=30 M=30 A=0 B=12 W=0 L=12 F=0 p='))).toBe(true);
+  });
+
+  it('a changed Jev identity requalifies before the verdict', () => {
+    const out = tempDir('debug-next-check-out-');
+    writeFileSync(
+      join(out, 'report.json'),
+      `${JSON.stringify({ columns: { jev: { provider: 'openrouter', model: 'stub-model' } } })}\n`,
+    );
+    const run = runScript(
+      ['--fixture', writeFixture(verdictRows()), '--jev', '--out', out],
+      makePickStubs(),
+      { STUB_PICKS: keepSchedule() },
+    );
+
+    expect(run.code).toBe(0);
+    const requalifyAt = run.lines.indexOf('requalify: model changed');
+    const verdictAt = run.lines.findIndex((line) => line.startsWith('verdict jev:'));
+    expect(requalifyAt).toBeGreaterThan(-1);
+    expect(verdictAt).toBeGreaterThan(requalifyAt);
+  });
+
+  it('an unstable Jev row counts as a miss and adds its missing votes to flips', () => {
+    const out = tempDir('debug-next-check-out-');
+    const run = runScript(
+      ['--fixture', writeFixture(verdictRows()), '--jev', '--out', out],
+      makePickStubs(),
+      { STUB_PICKS: 'run_test', STUB_UNSTABLE_ROW: '0' },
+    );
+
+    expect(run.code).toBe(0);
+    expect(run.lines.some((line) => /^column jev: rows=30 measured=30 unmeasured=0 unstable=1 withheld=0 latency_p50_ms=\d+ latency_p95_ms=\d+$/.test(line))).toBe(true);
+    expect(run.lines.some((line) => /^verdict jev: .* F=2 /.test(line))).toBe(true);
   });
 
   it('report line', () => {

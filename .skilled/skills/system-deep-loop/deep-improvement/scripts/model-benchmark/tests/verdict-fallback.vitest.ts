@@ -745,6 +745,28 @@ echo '{"answers":{"answer":{"choice":"'$pick'"}}}'`;
     ]);
   });
 
+  it('report requalifies a changed Jev identity before its verdict', async () => {
+    const outputs = writeOutputs(armRows(['111', '111', '111', '111', '111', '222', '222', '222', '222', '333', '333', '333']));
+    const stubs = stubDir({ jev: JEV });
+    const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    delete env.JEV_PROVIDER;
+    const out = tempDir('vf-out-');
+    fs.writeFileSync(
+      path.join(out, 'report.json'),
+      JSON.stringify({ columns: { jev: { provider: 'openrouter', model: 'stub-model' } } }),
+      'utf8',
+    );
+
+    const { code, lines } = await runMain(['--outputs', outputs, '--jev', '--accept-payload', '--out', out], env);
+
+    expect(code).toBe(0);
+    const requalifyIndex = lines.indexOf('requalify: model changed');
+    expect(requalifyIndex).toBeGreaterThanOrEqual(0);
+    expect(lines[requalifyIndex + 1]).toMatch(/^verdict jev: keep /);
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    expect(report.requalify.jev).toBe('requalify: model changed');
+  });
+
   it('verdict: stop (flips)', async () => {
     const run = await runArm(['112', '112', '112', '112', '112', '221', '221', '221', '221', '331', '331', '331']);
 

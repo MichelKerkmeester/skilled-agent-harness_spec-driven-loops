@@ -203,6 +203,23 @@ test('parseArgs reads both census flags and refuses an unknown flag or a missing
   assert.equal(S.parseArgs(['--rows-out']).error, 'missing value for --rows-out');
 });
 
+test('the Jev arm refuses to run without an output directory', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const file = writeRowsFile(dir, Array(30).fill('second'));
+    const result = runWithStubs(stubs, ['--score', file, '--jev']);
+
+    assert.equal(result.status, 2);
+    assert.equal(result.stdout, '');
+    assert.ok(result.stderr.includes('error: --jev needs --out <dir>'));
+    assert.equal(fs.existsSync(stubs.log), false);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
 test('hubForSkill maps a hub id and a mode packet and nothing else', () => {
   const registries = { 'hub-a': { modes: new Set(['m1']), packets: new Map([['m1', 'pkt-1']]) } };
 
@@ -266,6 +283,22 @@ test('the gate stops at 29 labeled rows', () => {
     assert.ok(!result.stdout.includes('margin:'));
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('the Jev arm stops at the label gate without invoking the stub', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const file = writeRowsFile(dir, Array(29).fill('second'));
+    const result = runWithStubs(stubs, ['--score', file, '--jev', '--out', path.join(dir, 'out')]);
+
+    assert.equal(result.status, 0);
+    assert.ok(result.stdout.includes('stop: fewer than 30 labeled rows (29 labeled)'));
+    assert.ok(!fs.existsSync(stubs.log) || fs.readFileSync(stubs.log, 'utf8') === '');
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
   }
 });
 
@@ -418,6 +451,25 @@ test('a jev stub that answers the label keeps', { timeout: 120000 }, () => {
     assert.ok(result.stdout.includes('jev: auth_test provider=official model=stub-jev-model'));
     assert.ok(result.stdout.includes('verdict jev: keep K=30 M=30 A=30 B=0 W=30 L=0 F=0 p=9.313e-10 jev_version=0.6.2 provider=official model=stub-jev-model'));
     assert.equal(fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8').trim().split('\n').length, 91);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
+test('four failing jev calls in thirty rows stop on coverage', { timeout: 120000 }, () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const file = writeRowsFile(dir, Array(30).fill('second'));
+    const rows = fs.readFileSync(file, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    for (let i = 0; i < 4; i += 1) rows[i].prompt += ' fail';
+    fs.writeFileSync(file, rows.map((row) => JSON.stringify(row)).join('\n') + '\n');
+
+    const result = runWithStubs(stubs, ['--score', file, '--jev', '--out', path.join(dir, 'out')]);
+
+    assert.equal(result.status, 0);
+    assert.ok(result.stdout.includes('verdict jev: stop (coverage) K=30 M=26'));
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
     fs.rmSync(stubs.dir, { recursive: true, force: true });

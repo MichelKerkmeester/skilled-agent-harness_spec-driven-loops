@@ -753,4 +753,36 @@ describe('score-fanout-pairs keep rule and report', () => {
     expect(lines).toEqual([]);
     expect(fs.existsSync(path.join(stub, 'jev.log'))).toBe(false);
   });
+
+  it('writes one Jev report and one call record per arm request', async () => {
+    const stub = stubDir({ jev: JEV_STUB });
+    const root = tempDir('fanout-pairs-jev-report-');
+    const outDir = path.join(tempDir('fanout-pairs-jev-out-'), 'run');
+    const sheetPath = labeledFixture(root, 40, 10);
+    const labelRows = fs.readFileSync(sheetPath, 'utf8').trim().split('\n').map((line, index) => ({
+      ...JSON.parse(line) as Record<string, any>,
+      label: index < 9 || index >= 25 ? 'different' : 'same',
+    }));
+    fs.writeFileSync(sheetPath, `${labelRows.map((row) => JSON.stringify(row)).join('\n')}\n`, 'utf8');
+    const tracked = Array.from({ length: 40 }, (_, index) => [
+      `pair-${index + 1}/research/lineages/la/findings-registry.json`,
+      `pair-${index + 1}/research/lineages/lb/findings-registry.json`,
+    ]).flat();
+
+    const { code } = await runMain(
+      ['--jev', '--out', outDir, '--labels', sheetPath],
+      stubEnv(stub),
+      { root, listTracked: () => tracked, git: () => ({ status: 0, error: null }) },
+    );
+
+    expect(code).toBe(0);
+    const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8')) as Record<string, any>;
+    expect(report.columns.jev.line.startsWith('verdict jev: ')).toBe(true);
+    expect(report.columns.jev.line).toContain('reader=none named');
+    const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n')
+      .map((line) => JSON.parse(line) as Record<string, any>);
+    expect(calls).toHaveLength(121);
+    expect(calls.filter((call) => call.pair_key === null)).toHaveLength(1);
+    expect(calls.filter((call) => call.pair_key !== null)).toHaveLength(120);
+  }, 30000);
 });

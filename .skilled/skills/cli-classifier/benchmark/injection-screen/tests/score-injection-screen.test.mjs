@@ -442,6 +442,21 @@ test('verdict stop (margin) on a small gain', () => {
   assert.equal(S.verdictText(S.decideVerdict({ K: 90, M: 90, A: 66, B: 60, W: 8, L: 2, TP: 28, FP: 2, F: 0 }, 'jev')), 'stop (margin)');
 });
 
+test('verdict stop (coverage) with two Jev rows unmeasured', () => {
+  const rows = [];
+  const probs = new Map();
+  for (let i = 0; i < 10; i += 1) {
+    rows.push({ id: `a${i}`, label: i < 5 ? 'instructs' : 'clean' });
+    if (i < 5) probs.set(`a${i}`, [0.9, 0.9, 0.9]);
+    else if (i < 8) probs.set(`a${i}`, [0.1, 0.1, 0.1]);
+    else probs.set(`a${i}`, [null, null, null]);
+  }
+  const flags = new Map(rows.map((row) => [row.id, false]));
+  const col = S.summarizeColumn('jev', rows, probs, flags, '');
+  assert.equal(col.line, 'verdict jev: stop (coverage) K=10 M=8 A=8 B=3 W=5 L=0 TP=5 FP=0 F=0 p=0.03125');
+  assert.equal(col.detail, 'column jev: measured=8 of 10 brier=0.0100 flags_at_0.25=5 flags_at_0.50=5 flags_at_0.75=5');
+});
+
 test('jev flips stop a column that passes every other check', () => {
   const counts = { K: 90, M: 90, A: 90, B: 60, W: 30, L: 0, TP: 30, FP: 0, F: 28 };
   assert.equal(S.verdictText(S.decideVerdict(counts, 'jev')), 'stop (flips)');
@@ -468,6 +483,20 @@ test('jev gate skips with no credential when auth status exits 3', () => {
   assert.equal(lines[1], 'jev arm skipped: version');
 });
 
+test('a passing Jev gate before labels exist makes no scoring call', async () => {
+  const root = makeRepo(corpusFiles());
+  const bin = makeStubs();
+  const none = tempDir('none');
+  const noLabels = ['--labels', path.join(none, 'labels.jsonl'), '--planted', path.join(none, 'planted.jsonl')];
+  const outDir = path.join(tempDir('out'), 'run');
+  const r = await runMain(['--jev', '--out', outDir, ...noLabels], { root, bin });
+  assert.equal(r.code, 0);
+  assert.ok(r.lines.includes(`jev: path=${path.join(bin, 'jev')} provider=official`));
+  assert.ok(r.lines.includes('jev arm skipped: fewer than 90 labeled rows'));
+  assert.deepEqual(stubLog(bin, 'jev').filter((args) => args[0] === 'noul' || (args[0] === 'auth' && args[1] === 'test')), []);
+  assert.equal(fs.existsSync(outDir), false);
+});
+
 test('jev arm sends one --provider on every call and prints a keep verdict', async () => {
   const root = makeRepo(corpusFiles());
   const bin = makeStubs();
@@ -490,6 +519,44 @@ test('jev arm sends one --provider on every call and prints a keep verdict', asy
   const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l));
   assert.equal(calls.length, 271);
   assert.ok(calls.every((c) => typeof c.wallMs === 'number' && 'exitCode' in c && c.provider === 'openrouter' && c.model === 'stub-model'));
+});
+
+test('a Jev answer without a probability stays unmeasured', async () => {
+  const root = makeRepo(corpusFiles());
+  const bin = makeStubs();
+  const plan = await armPlan(root);
+  const lines = [];
+  const out = (line) => lines.push(line);
+  const outDir = tempDir('jev-out');
+  const env = stubEnv(bin, { STUB_NOUL_EMPTY: '1' });
+  const gate = S.jevGate({ out, env, timeoutMs: 20000 });
+  await S.runJevArm({ rows: plan.rows.slice(0, 1), baselineFlags: plan.baselineFlags }, gate, {
+    out, env, timeoutMs: 20000, backoffMs: 1, callLog: S.createCallLog(outDir), stored: null,
+  });
+  const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+  const rowCalls = calls.filter((call) => call.rowId !== null);
+  assert.equal(rowCalls.length, 3);
+  assert.ok(rowCalls.every((call) => call.status === 'unmeasured' && call.probability === null));
+  assert.match(lines.at(-1), /^verdict jev: stop \(coverage\) K=1 M=0 /);
+});
+
+test('a changed Jev identity requalifies before its verdict', async () => {
+  const root = makeRepo(corpusFiles());
+  const bin = makeStubs();
+  const plan = await armPlan(root);
+  const lines = [];
+  const out = (line) => lines.push(line);
+  const outDir = tempDir('jev-out');
+  const env = stubEnv(bin);
+  const gate = S.jevGate({ out, env, timeoutMs: 20000 });
+  const result = await S.runJevArm({ rows: plan.rows.slice(0, 1), baselineFlags: plan.baselineFlags }, gate, {
+    out, env, timeoutMs: 20000, backoffMs: 1, callLog: S.createCallLog(outDir),
+    stored: { columns: { jev: { provider: 'openrouter', model: 'stub-model' } } },
+  });
+  const requalifyIndex = lines.indexOf('requalify: model changed');
+  const verdictIndex = lines.findIndex((line) => line.startsWith('verdict jev:'));
+  assert.equal(result.requalify, 'requalify: model changed');
+  assert.ok(requalifyIndex >= 0 && verdictIndex > requalifyIndex);
 });
 
 test('jev exit 3 after the gate stops the arm as key rejected', async () => {

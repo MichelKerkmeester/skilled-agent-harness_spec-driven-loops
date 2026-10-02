@@ -548,6 +548,23 @@ describe('score-suggested-order jev arm', () => {
     const column = lines().find((line) => line.startsWith('column jev:'));
     expect(column).toContain('measured=2');
   }, 60_000);
+
+  it('records a Jev answer without full key coverage as unmeasured', async () => {
+    const { outDir, gate, ctx, lines } = jevRun();
+    const rows = [
+      ...Array.from({ length: 5 }, (_, index) => jevRow(`p${index + 1}`, `p${index + 1}`)),
+      jevRow('partial', 'partial six'),
+    ];
+    const census = { rows, isMatch: strict, describe: (s: string) => `desc ${s}` };
+    await runArm('jev', census, gate, ctx);
+    const partial = readCalls(outDir).filter((call) => call.row_id === 'partial');
+    expect(partial).toHaveLength(3);
+    for (const call of partial) {
+      expect(call.status).toBe('unmeasured');
+      expect(call.probabilities).not.toHaveProperty('none');
+    }
+    expect(lines().find((line) => line.startsWith('column jev:'))).toContain('rows=6 measured=5');
+  }, 60_000);
 });
 
 async function linesOf(args: string[], deps: object) {

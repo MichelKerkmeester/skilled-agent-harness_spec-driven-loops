@@ -133,14 +133,14 @@ async function runWithEnv(
   return { code, lines, errs };
 }
 
-function fiveLineageRepo(): string {
+function fiveLineageRepo(oversizeFirst = false): string {
   const repo = gitRepo();
   for (let index = 0; index < 5; index += 1) {
     makeLineage(repo, `lineage-${index}`, {
       config: {},
       records: [iteration(1, 0.04), iteration(2, 0.04), iteration(3, 0.04)],
       deltas: {
-        'iter-001.jsonl': [{ type: 'finding', source: `src/${index}-a.md` }],
+        'iter-001.jsonl': [{ type: 'finding', ...(oversizeFirst && index === 0 ? { label: 'x'.repeat(25000) } : {}), source: `src/${index}-a.md` }],
         'iter-002.jsonl': [{ type: 'finding', source: `src/${index}-a.md` }],
         'iter-003.jsonl': [{ type: 'finding', source: `src/${index}-a.md` }],
       },
@@ -884,7 +884,11 @@ case "$1" in
     case $((N % 3)) in
       1) L=${levels[0]};; 2) L=${levels[1]};; 0) L=${levels[2]};;
     esac
-    echo "{\\"answers\\":{\\"answer\\":{\\"type\\":\\"score\\",\\"score\\":$L,\\"probabilities\\":{\\"0\\":0.5,\\"4\\":0.5}}}}"
+    if [ "$STUB_TOP_LEVEL_SCORE" = "1" ]; then
+      echo "{\\"score\\":$L,\\"probabilities\\":{\\"0\\":0.5,\\"4\\":0.5}}"
+    else
+      echo "{\\"answers\\":{\\"answer\\":{\\"type\\":\\"score\\",\\"score\\":$L,\\"probabilities\\":{\\"0\\":0.5,\\"4\\":0.5}}}}"
+    fi
     exit 0;;
 esac
 exit 0
@@ -931,6 +935,50 @@ exit 0
     expect(verdict.startsWith('verdict jev: keep')).toBe(true);
     expect(verdict).toContain('F=0');
     expect(fs.readFileSync(log, 'utf8').trim().split('\n')).toHaveLength(60);
+  });
+
+  it('oversized Jev states are withheld without score calls', async () => {
+    const repo = fiveLineageRepo(true);
+    const readsFile = writeGoldReads(repo, null);
+    const { log, env } = jevArmStub([0, 0, 0]);
+    const outDir = tempDir('stop-rater-out-');
+    const { code, lines, errs } = await runArm(
+      ['--jev', '--out', outDir, '--gold-reads', readsFile],
+      repo,
+      env,
+    );
+    expect(code).toBe(0);
+    expect(errs).toEqual([]);
+    const records = JSON.parse(`[${fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').join(',')}]`) as Array<Record<string, unknown>>;
+    const withheld = records.filter((record) => record.status === 'unmeasured_oversize');
+    expect(withheld).toHaveLength(3);
+    for (const record of withheld) {
+      expect(record.exitCode).toBeNull();
+      expect(record.wallMs).toBe(0);
+    }
+    expect(fs.readFileSync(log, 'utf8').trim().split('\n')).toHaveLength(36);
+  });
+
+  it('a top-level Jev score stays unmeasured', async () => {
+    const repo = fiveLineageRepo();
+    const readsFile = writeGoldReads(repo, null);
+    const { env } = jevArmStub([0, 0, 0]);
+    env.STUB_TOP_LEVEL_SCORE = '1';
+    const outDir = tempDir('stop-rater-out-');
+    const { code, lines, errs } = await runArm(
+      ['--jev', '--out', outDir, '--gold-reads', readsFile],
+      repo,
+      env,
+    );
+    expect(code).toBe(0);
+    expect(errs).toEqual([]);
+    const records = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((line) => JSON.parse(line) as Record<string, unknown>);
+    const scoreCalls = records.filter((record) => typeof record.lineage === 'string');
+    expect(scoreCalls).toHaveLength(45);
+    expect(scoreCalls.every((record) => record.status === 'unmeasured' && record.level === null)).toBe(true);
+    const verdict = lines.find((entry) => entry.startsWith('verdict jev: ')) as string;
+    expect(verdict.startsWith('verdict jev: stop (coverage)')).toBe(true);
+    expect(verdict).toContain('M=0');
   });
 
   it('jev arm rounds a float score, the shape real jev prints', async () => {

@@ -535,6 +535,59 @@ describe('score-severity-replay jev gate and arm', () => {
     }
   });
 
+  it('a Jev report requalifies a changed model before the verdict', async () => {
+    const stubs = stubDir({ jev: JEV_CHOICE_AND_FUNNEL });
+    const env = armEnv(stubs);
+    const lines: string[] = [];
+    const out = tempDir('severity-replay-jev-requalify-');
+    const plan = planOf(Array.from({ length: 6 }, (_, index) => ({ findingId: `N-${index}`, label: 'P1' })));
+    const fake = fakeGit('');
+    const gate = replay.jevGate({ out: (line: string) => lines.push(line), env, timeoutMs: 5000 });
+
+    const result = await replay.runJevArm(plan, gate, {
+      out: (line: string) => lines.push(line),
+      env,
+      timeoutMs: 5000,
+      backoffMs: 1,
+      callLog: replay.createCallLog(out),
+      stored: { columns: { jev: { provider: 'openrouter', model: 'stub-model' } } },
+      git: fake.git,
+      root: '/repo',
+    });
+
+    expect(result.requalify).toBe('requalify: model changed');
+    const requalifyIndex = lines.indexOf('requalify: model changed');
+    expect(requalifyIndex).toBeGreaterThanOrEqual(0);
+    expect(lines[requalifyIndex + 1]).toMatch(/^verdict jev: keep /);
+  });
+
+  it('a Jev calls log the row digest without the finding id', async () => {
+    const stubs = stubDir({ jev: JEV_CHOICE_AND_FUNNEL });
+    const env = armEnv(stubs);
+    const lines: string[] = [];
+    const out = tempDir('severity-replay-jev-digest-');
+    const plan = planOf([{ findingId: 'P2-001', label: 'P1' }]);
+    const fake = fakeGit('');
+    const gate = replay.jevGate({ out: (line: string) => lines.push(line), env, timeoutMs: 5000 });
+
+    await replay.runJevArm(plan, gate, {
+      out: (line: string) => lines.push(line),
+      env,
+      timeoutMs: 5000,
+      backoffMs: 1,
+      callLog: replay.createCallLog(out),
+      stored: null,
+      git: fake.git,
+      root: '/repo',
+    });
+
+    const expected = createHash('sha256').update(`${plan.rows[0].registry}#P2-001`).digest('hex').slice(0, 16);
+    const calls = readCalls(out).filter((call: any) => call.call !== 'auth_test');
+    expect(calls).toHaveLength(4);
+    for (const call of calls) expect(call.row).toBe(expected);
+    expect(fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8')).not.toContain('P2-001');
+  });
+
   it('an unpublished row is withheld from Jev', async () => {
     const stubs = stubDir({ jev: JEV_CHOICE_AND_FUNNEL });
     const env = armEnv(stubs);
@@ -712,6 +765,36 @@ describe('score-severity-replay main', () => {
     expect(lines).toContain(replay.POWER_LINE);
     expect(lines[lines.length - 1]).toBe('stop: fewer than 20 labeled P0 negatives');
     expect(fs.readdirSync(stubs).filter((name) => name.endsWith('.log'))).toEqual([]);
+  });
+
+  it('a Jev report records the gate and its finished column', async () => {
+    const root = fixtureRoot(20);
+    const out = tempDir('severity-replay-main-jev-report-');
+    const labels = labelSheet(Array.from({ length: 20 }, (_, index) => ({ findingId: `A-${String(index).padStart(3, '0')}`, label: 'P1' })));
+    const stubs = stubDir({ jev: `case "$1" in
+  --version) echo 'jev 0.6.2'; exit 0;;
+  auth) if [ "$2" = status ]; then exit 0; fi; if [ "$2" = test ]; then echo '{"model":"stub-model"}'; exit 0; fi;;
+  choice) echo '{"answers":{"answer":{"choice":"P1","probabilities":{"P0":0.1,"P1":0.8,"P2":0.05,"not_a_finding":0.05}}}}'; exit 0;;
+  noul) echo '{"answers":{"answer":{"noul":0.1}}}'; exit 0;;
+esac
+exit 0` });
+
+    const { code, lines, errs } = await runMain(
+      ['--jev', '--out', out, '--labels', labels],
+      stubEnv(stubs),
+      fakeGit(root, [REGISTRY]),
+    );
+
+    expect(code).toBe(0);
+    expect(errs).toEqual([]);
+    expect(lines).toContain('gate: open K=20 negatives=20');
+    expect(lines).toContain('verdict jev: keep K=20 M=20 A=20 B=0 W=20 L=0 F=0 p=9.537e-7 jev_version=0.6.2 provider=official model=stub-model');
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    expect(report.gate).toBe('gate: open K=20 negatives=20');
+    expect(report.labels.K).toBe(20);
+    expect(report.columns.jev.verdict).toBe('keep');
+    expect(report.columns.jev.K).toBe(20);
+    expect(report.columns.jev.M).toBe(20);
   });
 
   it('19 negatives spawn no backend', async () => {
