@@ -71,6 +71,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-015 | REQ-015 | Given a breaking commit missing any of `Context`, `Changes` or `Verification`, When validation runs, Then it is blocked with `body.breaking-sections`; a breaking commit with all three sections passes this rule | .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs:161; "breaking commits require every declared section" passes; a breaking message with Context and Changes but no Verification is blocked by `validate-message.mjs --commit` with "Missing: Verification" (exit 1) | Met | - |
 | AC-016 | REQ-016 | Given the commit template and `SKILL.md`, When their scope guidance and examples are reviewed, Then they use `system-spec-kit`, `system-skill-advisor`, `system-deep-loop` and `repo-rules` as canonical scopes | .skilled/skills/sk-git/assets/commit-message-template.md:132; the example reads `fix(system-spec-kit):`; the scopeAliases block at .skilled/skills/sk-git/assets/commit-message-template.md:228 maps spec-kit, skill-advisor, deep-loop and rules to their canonical scopes; `--check-template --kind commit` exits 0 | Met | - |
 | AC-017 | REQ-017 | Given the unit and hook tests pass locally, When the message-contract workflow runs for the implementing change, Then CI executes the unit suite and reports success | .github/workflows/message-contract.yml:42; the step runs `node --test .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs`, which passes locally (27/27); workflow run 37013431668 on 88cf1b5f36 concluded success, with the "Test message contract rules" step passing | Met | - |
+| AC-018 | REQ-018 | Given the global hooks live in the main checkout, When a linked worktree of the same repository commits, Then the worktree's own validator runs; a foreign repository with a validator at the same path never has it run | .skilled/scripts/git-hooks/lib/message-contract-gate.sh `mcg_validator_path`; commit-msg.test.sh "a linked worktree of the hook's repository runs its own validator" and "a foreign repository's validator never runs" (PASS=34 FAIL=0); pre-push.test.sh 43/43, pre-push-message-contract.test.sh 10/10 | Met | - |
 
 ### Status values
 
@@ -97,5 +98,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-All 16 active criteria are Met. AC-007 remains Superseded by ADR-004 because three verdict changes were intentional. Follow-up criteria AC-013 through AC-017 are Met; AC-017 closed on the CI run for the pushed change.
+All 17 active criteria are Met. AC-007 remains Superseded by ADR-004 because three verdict changes were intentional. Follow-up criteria AC-013 through AC-018 are Met; AC-017 closed on the CI run for the pushed change.
 <!-- /ANCHOR:closure -->
