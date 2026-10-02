@@ -2,8 +2,8 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Citation Drift Scan Tests
 // ───────────────────────────────────────────────────────────────────
-// Fixture repositories in the OS temp directory with stub jev and cli-deem
-// binaries first on PATH; no test reaches a real backend.
+// Fixture repositories in the OS temp directory with a stub jev binary first on
+// PATH; no test reaches a real backend.
 
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
@@ -23,7 +23,7 @@ function cleanEnv() {
   for (const key of [
     'GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_OBJECT_DIRECTORY',
     'GIT_ALTERNATE_OBJECT_DIRECTORIES', 'GIT_NAMESPACE', 'GIT_CEILING_DIRECTORIES',
-    'JEV_PROVIDER', 'CLI_DEEM_URL',
+    'JEV_PROVIDER',
   ]) {
     delete env[key];
   }
@@ -50,8 +50,8 @@ const runGit = (root, ...args) =>
 // Ten numbered lines: a cited line fits and a line past the end does not.
 const TEN_LINES = Array.from({ length: 10 }, (_, index) => `line ${index + 1}\n`).join('');
 
-// Test double for the stub jev and cli-deem binaries: it logs one line per call
-// and answers the Deem health shape and both noul shapes.
+// Test double for the stub jev binary: it logs one line per call and answers
+// the version, auth and noul shapes.
 function stubMain() {
   const fs = require('node:fs');
   const path = require('node:path');
@@ -59,24 +59,9 @@ function stubMain() {
   const args = process.argv.slice(2);
   const env = process.env;
   const logPath = env.STUB_LOG;
-  const prior = logPath && fs.existsSync(logPath) ? fs.readFileSync(logPath, 'utf8').split('\n') : [];
   if (logPath) fs.appendFileSync(logPath, `${name}\t${args.join(' ')}\n`);
 
-  if (name === 'cli-deem' && args[0] === 'health') {
-    if (env.STUB_DEEM_HEALTH === 'stub') {
-      process.stderr.write('{"ok":false,"error":"refused backend: ensemble:stub"}\n');
-      process.exit(3);
-    }
-    // A second health check answers with another pair when the test asks for
-    // one, as a server that loaded new weights between calls would.
-    const recheck = prior.filter((line) => line.startsWith('cli-deem\thealth')).length > 0;
-    const modelCommit = recheck && env.STUB_DEEM_RECHECK_COMMIT ? env.STUB_DEEM_RECHECK_COMMIT : 'stubmodel';
-    const sourceCommit = recheck && env.STUB_DEEM_RECHECK_SOURCE ? env.STUB_DEEM_RECHECK_SOURCE : 'stubsource';
-    process.stdout.write(`${JSON.stringify({ ok: true, backend: 'torch', model: 'deem-0.8-v1', model_commit: modelCommit, source_commit: sourceCommit })}\n`);
-  } else if (name === 'cli-deem' && args[0] === 'noul') {
-    if (env.STUB_DEEM_NOUL_EXIT) process.exit(Number(env.STUB_DEEM_NOUL_EXIT));
-    process.stdout.write('{"model":"deem-0.8-v1","answers":{"answer":{"noul":0.9}}}\n');
-  } else if (name === 'jev' && args[0] === '--version') {
+  if (name === 'jev' && args[0] === '--version') {
     process.stdout.write(`${env.STUB_JEV_VERSION || 'jev 0.6.2'}\n`);
   } else if (name === 'jev' && args[0] === 'auth' && args[1] === 'status') {
     process.exit(Number(env.STUB_AUTH_STATUS_EXIT || 0));
@@ -128,7 +113,7 @@ const makeFixture = ({ deadMissing = false, deadPastEnd = false, dotEnv = false,
 
   const bin = path.join(root, 'bin');
   fs.mkdirSync(bin);
-  for (const name of ['cli-deem', 'jev']) fs.writeFileSync(path.join(bin, name), STUB_SOURCE, { mode: 0o755 });
+  for (const name of ['jev']) fs.writeFileSync(path.join(bin, name), STUB_SOURCE, { mode: 0o755 });
 
   runGit(root, 'init', '-q');
   runGit(root, 'add', '-A');
@@ -605,64 +590,55 @@ test('default zero calls', async () => {
 });
 
 test('verdict keep', () => {
-  const counts = { backend: 'deem', K: 20, M: 20, A: 140, B: 60, W: 20, L: 0, TP: 20, FP: 0, F: 0 };
+  const counts = { backend: 'jev', K: 20, M: 20, A: 140, B: 60, W: 20, L: 0, TP: 20, FP: 0, F: 0 };
   const decision = decideVerdict(counts);
   assert.equal(decision.verdict, 'keep');
-  const line = verdictLine({ ...counts, ...decision }, 'abc123abc123', 'model=deem-0.8-v1 model_commit=aaa source_commit=bbb');
-  assert.ok(line.startsWith('verdict deem: keep K=20 M=20 A=140 B=60 W=20 L=0 TP=20 FP=0 F=n/a p='));
-  assert.ok(line.endsWith('labels_sha256=abc123abc123 model=deem-0.8-v1 model_commit=aaa source_commit=bbb'));
+  const line = verdictLine({ ...counts, ...decision }, 'abc123abc123', 'jev_version=0.6.2 provider=official model=stub-model');
+  assert.ok(line.startsWith('verdict jev: keep K=20 M=20 A=140 B=60 W=20 L=0 TP=20 FP=0 F=0 p='));
+  assert.ok(line.endsWith('labels_sha256=abc123abc123 jev_version=0.6.2 provider=official model=stub-model'));
 });
 
 test('verdict kill precision', () => {
-  const counts = { backend: 'deem', K: 20, M: 20, A: 140, B: 60, W: 20, L: 0, TP: 1, FP: 4, F: 0 };
+  const counts = { backend: 'jev', K: 20, M: 20, A: 140, B: 60, W: 20, L: 0, TP: 1, FP: 4, F: 0 };
   const decision = decideVerdict(counts);
   assert.equal(decision.verdict, 'kill (precision)');
-  assert.ok(verdictLine({ ...counts, ...decision }, 'abc123abc123', '').startsWith('verdict deem: kill (precision) '));
+  assert.ok(verdictLine({ ...counts, ...decision }, 'abc123abc123', '').startsWith('verdict jev: kill (precision) '));
 });
 
 test('verdict stop coverage', () => {
-  const counts = { backend: 'deem', K: 10, M: 8, A: 70, B: 30, W: 8, L: 0, TP: 8, FP: 0, F: 0 };
+  const counts = { backend: 'jev', K: 10, M: 8, A: 70, B: 30, W: 8, L: 0, TP: 8, FP: 0, F: 0 };
   const decision = decideVerdict(counts);
   assert.equal(decision.verdict, 'stop (coverage)');
-  assert.ok(verdictLine({ ...counts, ...decision }, 'abc123abc123', '').startsWith('verdict deem: stop (coverage) '));
+  assert.ok(verdictLine({ ...counts, ...decision }, 'abc123abc123', '').startsWith('verdict jev: stop (coverage) '));
 });
 
 test('verdict stop margin', () => {
-  const counts = { backend: 'deem', K: 20, M: 20, A: 60, B: 60, W: 0, L: 0, TP: 20, FP: 0, F: 0 };
+  const counts = { backend: 'jev', K: 20, M: 20, A: 60, B: 60, W: 0, L: 0, TP: 20, FP: 0, F: 0 };
   const decision = decideVerdict(counts);
   assert.equal(decision.verdict, 'stop (margin)');
-  assert.ok(verdictLine({ ...counts, ...decision }, 'abc123abc123', '').startsWith('verdict deem: stop (margin) '));
+  assert.ok(verdictLine({ ...counts, ...decision }, 'abc123abc123', '').startsWith('verdict jev: stop (margin) '));
 });
 
 test('verdict requalify', () => {
-  const stored = { columns: { deem: { modelCommit: 'aaa000000000', sourceCommit: 'bbb000000000' } } };
   const summary = {
-    backend: 'deem', verdict: 'keep', K: 20, M: 20, A: 140, B: 60, W: 20, L: 0, TP: 20, FP: 0, F: 0, p: 0.5,
-    model: 'deem-0.8-v1', modelCommit: 'ccc111111111', sourceCommit: 'bbb000000000', stored,
-  };
-  const lines = verdictLine(summary, 'abc123abc123', 'model=deem-0.8-v1 model_commit=ccc111111111 source_commit=bbb000000000').split('\n');
-  assert.equal(lines[0], 'requalify: model commit changed');
-  assert.ok(lines[1].startsWith('verdict deem: keep '));
-
-  const jevSummary = {
     backend: 'jev', verdict: 'keep', K: 20, M: 20, A: 140, B: 60, W: 20, L: 0, TP: 20, FP: 0, F: 0, p: 0.5,
     provider: 'official', model: 'gpt-x', stored: { columns: { jev: { provider: 'other', model: 'gpt-x' } } },
   };
-  const jevLines = verdictLine(jevSummary, 'abc123abc123', 'jev_version=0.6.2 provider=official model=gpt-x').split('\n');
-  assert.equal(jevLines[0], 'requalify: model changed');
-  assert.ok(jevLines[1].startsWith('verdict jev: keep '));
+  const lines = verdictLine(summary, 'abc123abc123', 'jev_version=0.6.2 provider=official model=gpt-x').split('\n');
+  assert.equal(lines[0], 'requalify: model changed');
+  assert.ok(lines[1].startsWith('verdict jev: keep '));
 });
 
-// The gate fixture holds no stub binaries, so a run that must answer the Deem
-// protocol gets them on its own PATH entry.
+// The gate fixture holds no stub binaries, so a run that must answer the
+// backend protocol gets them on its own PATH entry.
 const addStubBin = (root) => {
   const bin = path.join(root, 'bin');
   fs.mkdirSync(bin, { recursive: true });
-  for (const name of ['cli-deem', 'jev']) fs.writeFileSync(path.join(bin, name), STUB_SOURCE, { mode: 0o755 });
+  for (const name of ['jev']) fs.writeFileSync(path.join(bin, name), STUB_SOURCE, { mode: 0o755 });
   return bin;
 };
 
-const deemEnv = (root, extra = {}) => ({
+const armEnv = (root, extra = {}) => ({
   ...cleanEnv(),
   PATH: `${path.join(root, 'bin')}${path.delimiter}${process.env.PATH ?? ''}`,
   STUB_LOG: path.join(root, 'stub.log'),
@@ -682,134 +658,14 @@ const runWithEnv = async (argv, repoRoot, env) => {
   return { code, lines, errors };
 };
 
-test('deem gate pass', async () => {
-  const { root, commit } = makeGateFixture();
-  const labelsPath = path.join(os.tmpdir(), `cite-drift-deem-gate-${process.pid}.jsonl`);
-  const outDir = path.join(root, 'out');
-  try {
-    addStubBin(root);
-    const env = deemEnv(root);
-    writeGateLabels(labelsPath, gateRows(commit, 30, 10));
-    const base = await runGate(root, labelsPath);
-    const run = await runWithEnv(['--labels', labelsPath, '--deem', '--out', outDir], root, env);
-    assert.equal(run.code, 0);
-    assert.deepEqual(run.errors, []);
-    assert.deepEqual(run.lines.slice(0, base.lines.length), base.lines);
-    assert.equal(run.lines[base.lines.length], 'deem: health backend=torch model=deem-0.8-v1 model_commit=stubmodel source_commit=stubsource');
-    assert.ok(run.lines.includes('deem: nothing leaves the machine; planned calls: 40; estimated wall time: 2.4 s at 60.5 ms per call, the noul p50 in deem-local.md'));
-    assert.ok(run.lines.some((line) => line.startsWith('column deem: rows=40 measured=40 unmeasured=0 latency_p50_ms=')));
-    assert.ok(run.lines.includes('brier deem: 0.2100'));
-    assert.ok(run.lines.includes('flips: not applicable (deem noul)'));
-    assert.ok(run.lines.some((line) => line.startsWith('verdict deem: kill (precision) K=40 M=40 A=30 B=30 W=0 L=0 TP=0 FP=0 F=n/a p=')));
-
-    const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((line) => JSON.parse(line));
-    assert.equal(calls.length, 40);
-    for (const call of calls) {
-      assert.deepEqual(Object.keys(call).sort(), ['backend', 'exitCode', 'flag', 'modelCommit', 'modelId', 'probability', 'rerun', 'rowId', 'sourceCommit', 'status', 'wallMs']);
-      assert.equal(call.backend, 'deem');
-      assert.equal(call.status, 'measured');
-      assert.equal(call.exitCode, 0);
-      assert.equal(call.probability, 0.9);
-      assert.equal(call.flag, false);
-      assert.equal(call.modelId, 'deem-0.8-v1');
-      assert.equal(call.modelCommit, 'stubmodel');
-      assert.equal(call.sourceCommit, 'stubsource');
-    }
-
-    const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
-    assert.deepEqual(Object.keys(report).sort(), [
-      'baselineMethod', 'census', 'columns', 'commit', 'comparators', 'headroom',
-      'keepRule', 'labels', 'margin', 'skipped', 'stopped', 'winnable',
-    ]);
-    assert.deepEqual(Object.keys(report.labels).sort(), ['labeled', 'path', 'rows', 'sha256']);
-    assert.equal(report.labels.path, labelsPath);
-    assert.equal(report.labels.rows, 40);
-    assert.equal(report.labels.labeled, 40);
-    assert.equal(report.commit, commit);
-    assert.equal(report.baselineMethod, 'flag-nothing');
-    assert.equal(report.headroom, true);
-    assert.equal(report.winnable, 10);
-    assert.ok(report.columns.deem.line.startsWith('verdict deem: '));
-    assert.deepEqual(report.stopped, {});
-    assert.deepEqual(report.skipped, {});
-
-    const log = readStubLog(root);
-    assert.equal(log.filter((line) => line.startsWith('cli-deem\thealth')).length, 1);
-    assert.equal(log.filter((line) => line.startsWith('cli-deem\tnoul')).length, 40);
-  } finally {
-    cleanup(root);
-    fs.rmSync(labelsPath, { force: true });
-  }
-});
-
-test('deem stub backend', async () => {
-  const { root, commit } = makeGateFixture();
-  const labelsPath = path.join(os.tmpdir(), `cite-drift-deem-stub-${process.pid}.jsonl`);
-  const outDir = path.join(root, 'out');
-  try {
-    addStubBin(root);
-    const env = deemEnv(root, { STUB_DEEM_HEALTH: 'stub' });
-    writeGateLabels(labelsPath, gateRows(commit, 30, 10));
-    const base = await runGate(root, labelsPath);
-    const run = await runWithEnv(['--labels', labelsPath, '--deem', '--out', outDir], root, env);
-    assert.equal(run.code, 0);
-    assert.deepEqual(run.errors, []);
-    assert.deepEqual(run.lines, [...base.lines, 'deem arm skipped: stub backend']);
-    assert.equal(readStubLog(root).length, 1);
-
-    const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
-    assert.equal(report.skipped.deem, 'deem arm skipped: stub backend');
-    assert.deepEqual(report.columns, {});
-    assert.deepEqual(report.stopped, {});
-  } finally {
-    cleanup(root);
-    fs.rmSync(labelsPath, { force: true });
-  }
-});
-
-test('deem exit 4 changed pair', async () => {
-  const { root, commit } = makeGateFixture();
-  const labelsPath = path.join(os.tmpdir(), `cite-drift-deem-exit4-${process.pid}.jsonl`);
-  const outDir = path.join(root, 'out');
-  try {
-    addStubBin(root);
-    const env = deemEnv(root, {
-      STUB_DEEM_NOUL_EXIT: '4',
-      STUB_DEEM_RECHECK_COMMIT: 'stubmodel2',
-      STUB_DEEM_RECHECK_SOURCE: 'stubsource2',
-    });
-    writeGateLabels(labelsPath, gateRows(commit, 30, 10));
-    const run = await runWithEnv(['--labels', labelsPath, '--deem', '--out', outDir], root, env);
-    assert.equal(run.code, 0);
-    assert.deepEqual(run.errors, []);
-    assert.ok(run.lines.includes('deem arm stopped: model commit changed mid-run'));
-    assert.ok(run.lines.includes('deem: partial rows=0'));
-    assert.ok(!run.lines.some((line) => line.startsWith('verdict deem:')));
-
-    const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((line) => JSON.parse(line));
-    assert.equal(calls.length, 1);
-    assert.equal(calls[0].exitCode, 4);
-    assert.equal(calls[0].status, 'unmeasured');
-    assert.equal(calls[0].modelCommit, 'stubmodel');
-
-    const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
-    assert.deepEqual(report.stopped.deem, { line: 'deem arm stopped: model commit changed mid-run', partialRows: 0 });
-    assert.deepEqual(report.columns, {});
-    assert.equal(readStubLog(root).filter((line) => line.startsWith('cli-deem\thealth')).length, 2);
-  } finally {
-    cleanup(root);
-    fs.rmSync(labelsPath, { force: true });
-  }
-});
-
 test('--out required', async () => {
   const { root } = makeFixture();
   try {
-    const env = deemEnv(root);
+    const env = armEnv(root);
     const run = await runWithEnv(['--jev'], root, env);
     assert.equal(run.code, 2);
     assert.deepEqual(run.lines, []);
-    assert.match(run.errors.join('\n'), /--out/);
+    assert.deepEqual(run.errors, ['--jev needs --out <dir> so every call is recorded']);
     assert.ok(!fs.existsSync(path.join(root, 'stub.log')));
     assert.ok(!fs.existsSync(path.join(root, 'out')));
   } finally {
@@ -823,7 +679,7 @@ test('jev gate pass', async () => {
   const outDir = path.join(root, 'out');
   try {
     addStubBin(root);
-    const env = deemEnv(root);
+    const env = armEnv(root);
     writeGateLabels(labelsPath, gateRows(commit, 30, 10));
     const base = await runGate(root, labelsPath);
     const run = await runWithEnv(['--labels', labelsPath, '--jev', '--out', outDir], root, env);
@@ -880,7 +736,7 @@ test('jev no credential', async () => {
   const outDir = path.join(root, 'out');
   try {
     addStubBin(root);
-    const env = deemEnv(root, { STUB_AUTH_STATUS_EXIT: '3' });
+    const env = armEnv(root, { STUB_AUTH_STATUS_EXIT: '3' });
     writeGateLabels(labelsPath, gateRows(commit, 30, 10));
     const base = await runGate(root, labelsPath);
     const run = await runWithEnv(['--labels', labelsPath, '--jev', '--out', outDir], root, env);
@@ -910,7 +766,7 @@ test('jev one provider', async () => {
   const { root, commit } = makeGateFixture();
   try {
     addStubBin(root);
-    const env = deemEnv(root);
+    const env = armEnv(root);
     const gate = jevGate({ out: () => {}, env, timeoutMs: 90000 });
     assert.equal(gate.passed, true);
     assert.equal(gate.provider, 'official');
@@ -956,7 +812,7 @@ test('jev exit 3 after gate', async () => {
   const outDir = path.join(root, 'out');
   try {
     addStubBin(root);
-    const env = deemEnv(root, { STUB_JEV_NOUL_EXIT: '3' });
+    const env = armEnv(root, { STUB_JEV_NOUL_EXIT: '3' });
     writeGateLabels(labelsPath, gateRows(commit, 30, 10));
     const base = await runGate(root, labelsPath);
     const run = await runWithEnv(['--labels', labelsPath, '--jev', '--out', outDir], root, env);

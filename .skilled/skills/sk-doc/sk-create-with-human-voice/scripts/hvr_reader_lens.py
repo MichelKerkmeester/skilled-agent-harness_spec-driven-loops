@@ -15,12 +15,11 @@ Usage:
   python3 hvr_reader_lens.py                     # census, questions, baselines
   python3 hvr_reader_lens.py --draw --seed <n>   # write the labels file
   python3 hvr_reader_lens.py --jev --out <dir>   # measure the Jev backend
-  python3 hvr_reader_lens.py --deem --out <dir>  # measure the Deem backend
   python3 hvr_reader_lens.py --labels <path>     # point at another labels file
 
 The default run makes no model call, writes no file and holds no credential.
-Jev and Deem each need --out <dir> so every call can be recorded, and a run
-refuses that switch without it before any call is made.
+Jev needs --out <dir> so every call can be recorded, and a run refuses that
+switch without it before any call is made.
 
 Exit status: 0 when the run printed its lines, 2 on a bad invocation, an
 unreadable input or a thin parse, refused before any call.
@@ -1171,286 +1170,11 @@ def read_stored_report(out_dir: str | Path | None) -> dict | None:
 
 
 # ───────────────────────────────────────────────────────────────
-# 8. DEEM ARM
+# 8. JEV ARM
 # ───────────────────────────────────────────────────────────────
 
-# A served Deem repeats itself exactly, so a result stands on the commit pair
-# it was measured against, never on a rerun; the health check reads that pair
-# before any row is asked and every record keeps it.
-DEEM_MODEL = "deem-0.8-v1"
 # A ``noul`` probability at or above this counts as a flag.
 FLAG_AT = 0.5
-DEEM_P50_MS = 60.5
-HEALTH_TIMEOUT_MS = 2000
-
-# The client checkout beside the classifier skill, used when nothing of that
-# name is installed on PATH; node runs it, since the client is a Node script.
-REPO_CLI_DEEM = SCRIPT_DIR.parents[2] / "cli-classifier" / "cli-deem" / "scripts" / "cli-deem.mjs"
-
-
-def deem_command(env: dict) -> list[str]:
-    """Resolve the command that runs one Deem call.
-
-    The installed client wins so an operator's own copy is measured, and the
-    checkout beside the classifier skill is the fallback.
-
-    Args:
-        env: Environment whose ``PATH`` is searched.
-
-    Returns:
-        The command and its leading arguments, without the subcommand.
-    """
-    on_path = which("cli-deem", env)
-    if on_path is not None:
-        return [on_path]
-    return ["node", str(REPO_CLI_DEEM)]
-
-
-def read_deem_health(cmd: list[str], env: dict) -> dict:
-    """Run one health check and name why a failed check cannot be measured.
-
-    A client that does not answer inside ``HEALTH_TIMEOUT_MS``, a missing
-    binary and a server that reports itself gone are one reason: nothing is
-    listening. A stub backend, a model other than ``DEEM_MODEL`` and an
-    unreadable body are named on their own, so the skip line says what was
-    found rather than a generic failure.
-
-    Args:
-        cmd: Command from ``deem_command``.
-        env: Environment for the call.
-
-    Returns:
-        ``{"ok": True, "backend", "model", "modelCommit", "sourceCommit"}``
-        on a healthy answer, else ``{"ok": False, "reason", "found"}``.
-    """
-    result = spawn_call(cmd[0], [*cmd[1:], "health"], "", env, HEALTH_TIMEOUT_MS)
-    error_text = result["stderr"].strip()
-    try:
-        parsed_error = json.loads(error_text)
-    except json.JSONDecodeError:
-        parsed_error = None
-    if isinstance(parsed_error, dict) and "error" in parsed_error:
-        error_text = parsed_error["error"]
-    if result["timed_out"] or result["code"] in (4, 127):
-        return {"ok": False, "reason": "not reachable", "found": error_text}
-    if result["code"] == 3:
-        reason = "bad health response"
-        if isinstance(error_text, str) and "stub" in error_text:
-            reason = "stub backend"
-        elif isinstance(error_text, str) and "refused model" in error_text:
-            reason = "model"
-        return {"ok": False, "reason": reason, "found": error_text}
-    if result["code"] == 0:
-        text = result["stdout"].strip()
-        try:
-            body = json.loads(text)
-        except json.JSONDecodeError:
-            body = None
-        if not isinstance(body, dict):
-            return {"ok": False, "reason": "bad health response", "found": text}
-        backend = body.get("backend")
-        if isinstance(backend, str) and "stub" in backend:
-            return {"ok": False, "reason": "stub backend", "found": backend}
-        if not (
-            backend == "torch"
-            or (isinstance(backend, str) and backend.startswith("ensemble:"))
-        ):
-            return {"ok": False, "reason": "bad health response", "found": str(backend)}
-        model = body.get("model")
-        if model != DEEM_MODEL:
-            return {"ok": False, "reason": "model", "found": str(model)}
-        model_commit = body.get("model_commit")
-        source_commit = body.get("source_commit")
-        if (
-            body.get("ok") is not True
-            or not isinstance(model_commit, str)
-            or model_commit == ""
-            or not isinstance(source_commit, str)
-            or source_commit == ""
-        ):
-            return {"ok": False, "reason": "bad health response", "found": text}
-        return {
-            "ok": True,
-            "backend": backend,
-            "model": model,
-            "modelCommit": model_commit,
-            "sourceCommit": source_commit,
-        }
-    return {
-        "ok": False,
-        "reason": "bad health response",
-        "found": f"exit {result['code']}: {error_text}",
-    }
-
-
-def deem_gate(ctx: dict) -> dict:
-    """Run the health check and print the line a passer or skipper earns.
-
-    The gate starts no server and passes no key: the local client answers for
-    itself, and a skip leaves the rest of the run untouched.
-
-    Args:
-        ctx: ``{"out": <line writer>, "env": <environment>}``.
-
-    Returns:
-        ``{"passed": True, "cmd", "backend", "model", "modelCommit",
-        "sourceCommit"}`` when the check passed; else ``{"passed": False,
-        "cmd", "reason"}`` with the skip line already printed. A ``model`` or
-        ``bad health response`` failure adds a line naming what was found.
-    """
-    cmd = deem_command(ctx["env"])
-    health = read_deem_health(cmd, ctx["env"])
-    if health["ok"]:
-        ctx["out"](
-            f"deem: health backend={health['backend']} model={health['model']} "
-            f"model_commit={health['modelCommit']} source_commit={health['sourceCommit']}"
-        )
-        return {"passed": True, "cmd": cmd, **health}
-    skip_line = f"deem arm skipped: {health['reason']}"
-    ctx["out"](skip_line)
-    if health["reason"] in ("model", "bad health response"):
-        ctx["out"](f"deem: found={json.dumps(health['found'])}")
-    return {"passed": False, "cmd": cmd, "reason": skip_line}
-
-
-def run_deem_arm(plan: dict, gate: dict, ctx: dict) -> dict:
-    """Ask the local Deem model once per drawn row and print its column.
-
-    One ``noul`` call per row carries the row's own question, and stdin is
-    closed after the write, because the client reads it to EOF. Exit 4 gets
-    one retry behind a fresh health check, because a dropped connection is
-    not a judgment; any other refusing exit stops the arm with the rows that
-    finished and prints no column. Every spawn gets one ``calls.jsonl``
-    record naming the commit pair it ran against.
-
-    Args:
-        plan: ``{"rows": [...], "baseline": ..., "phrases": ...}``; each
-            row carries ``id``, ``category``, ``label``, ``text`` and
-            ``question``.
-        gate: A passing ``deem_gate`` result.
-        ctx: ``{"out", "env", "timeoutMs", "callLog", "stored"}``;
-            ``stored`` is an earlier run's report, read only to compare the
-            pair.
-
-    Returns:
-        ``{"stopped": <line>, "partialRows": <n>}`` on a stop, else the
-        column summary and the requalify line when a stored pair differs.
-    """
-    rows = plan["rows"]
-    ctx["out"](
-        f"deem: nothing leaves the machine; planned calls: {len(rows)}; "
-        f"estimated wall time: {len(rows) * DEEM_P50_MS / 1000:.1f} s at "
-        f"{DEEM_P50_MS} ms per call, the noul p50 from deem-local.md"
-    )
-    probs = {}
-    finished = 0
-
-    def record(row: dict, attempt: int, result: dict, probability, status: str) -> dict:
-        return {
-            "backend": "deem",
-            "kind": "noul",
-            "rowId": row["id"],
-            "category": row["category"],
-            "rerun": 0,
-            "attempt": attempt,
-            "wallMs": result["wall_ms"],
-            "exitCode": result["code"],
-            "probability": probability,
-            "flag": None if probability is None else probability >= FLAG_AT,
-            "status": status,
-            "modelId": gate["model"],
-            "modelCommit": gate["modelCommit"],
-            "sourceCommit": gate["sourceCommit"],
-        }
-
-    def stop(line: str) -> dict:
-        ctx["out"](line)
-        ctx["out"](f"deem: partial rows={finished}")
-        return {"stopped": line, "partialRows": finished}
-
-    for row in rows:
-        call_args = [*gate["cmd"][1:], "noul", "-q", row["question"]]
-        attempt = 1
-        result = spawn_call(
-            gate["cmd"][0], call_args, row["text"], ctx["env"], ctx["timeoutMs"]
-        )
-        if not result["timed_out"] and result["code"] == 4:
-            ctx["callLog"]["append"](record(row, attempt, result, None, "unmeasured"))
-            health = read_deem_health(gate["cmd"], ctx["env"])
-            if not health["ok"]:
-                return stop("deem arm stopped: server gone")
-            if (
-                health["modelCommit"] != gate["modelCommit"]
-                or health["sourceCommit"] != gate["sourceCommit"]
-            ):
-                return stop("deem arm stopped: model commit changed mid-run")
-            attempt = 2
-            result = spawn_call(
-                gate["cmd"][0], call_args, row["text"], ctx["env"], ctx["timeoutMs"]
-            )
-        probability = None
-        status = "unmeasured"
-        stop_line = None
-        if result["timed_out"]:
-            status = "unmeasured_timeout"
-        elif result["code"] == 0:
-            try:
-                parsed = json.loads(result["stdout"])
-            except json.JSONDecodeError:
-                parsed = None
-            answer = None
-            if isinstance(parsed, dict):
-                answer = parsed.get("answers", {}).get("answer", {}).get("noul")
-            if (
-                isinstance(answer, (int, float))
-                and not isinstance(answer, bool)
-                and 0 <= answer <= 1
-            ):
-                probability = float(answer)
-                status = "measured"
-        elif result["code"] == 2:
-            stop_line = "deem arm stopped: usage error"
-        elif result["code"] == 3:
-            stop_line = "deem arm stopped: backend refused"
-        elif result["code"] == 130:
-            stop_line = "deem arm stopped: interrupted"
-        ctx["callLog"]["append"](record(row, attempt, result, probability, status))
-        if stop_line is not None:
-            return stop(stop_line)
-        probs[row["id"]] = [probability]
-        finished += 1
-
-    column = summarize_column("deem", rows, probs, plan["baseline"], plan["phrases"])
-    ctx["out"](column["detail"])
-    for category in CATEGORIES:
-        entry = column["categories"][category]
-        ctx["out"](
-            f"category {category}: {entry['outcome']} K={entry['K']} "
-            f"M={entry['M']} A={entry['A']} B={entry['B']} W={entry['W']} "
-            f"L={entry['L']} TP={entry['TP']} FP={entry['FP']} F={entry['F']} "
-            f"p={entry['p']}"
-        )
-    for category in CATEGORIES:
-        brier = column["categories"][category]["brier"]
-        shown = "none" if brier is None else f"{brier:.4f}"
-        ctx["out"](f"brier ({category}): {shown}")
-    ctx["out"]("flips: not applicable (deem noul)")
-    stored = ((ctx.get("stored") or {}).get("columns") or {}).get("deem")
-    requalify = None
-    if stored is not None and (
-        stored.get("modelCommit") != gate["modelCommit"]
-        or stored.get("sourceCommit") != gate["sourceCommit"]
-    ):
-        requalify = "requalify: model commit changed"
-        ctx["out"](requalify)
-    ctx["out"](column["line"])
-    return {"column": column, "requalify": requalify}
-
-
-# ───────────────────────────────────────────────────────────────
-# 9. JEV ARM
-# ───────────────────────────────────────────────────────────────
-
 # The gate pins one version: the answer shape, the exit classes and the
 # provider flag are read from that build, so any other build is unmeasured
 # until its contract is read again rather than trusted to behave the same.
@@ -1681,7 +1405,7 @@ def run_jev_arm(plan: dict, gate: dict, ctx: dict) -> dict:
 
 
 # ───────────────────────────────────────────────────────────────
-# 10. VERDICT
+# 9. VERDICT
 # ───────────────────────────────────────────────────────────────
 
 # The three fixed instructions, one per category, printed verbatim with their
@@ -1761,7 +1485,7 @@ def _category_condition(entry: dict, backend: str) -> str | None:
 
     Args:
         entry: One category's counts, as ``decide_verdict`` receives them.
-        backend: ``jev`` or ``deem``.
+        backend: ``jev``.
 
     Returns:
         The failing condition's name, or None when the category passes.
@@ -1793,7 +1517,7 @@ def decide_verdict(counts: dict, backend: str) -> dict:
         counts: ``{<category>: <counts>}``, each entry carrying ``K``, ``M``,
             ``A``, ``B``, ``W``, ``L``, ``TP``, ``FP``, ``F`` and an optional
             ``headroom`` naming the zero-call refusal.
-        backend: ``jev`` or ``deem``.
+        backend: ``jev``.
 
     Returns:
         ``{"outcome": "keep"|"kill"|"stop", "reason": <str|None>,
@@ -1850,7 +1574,7 @@ def summarize_column(
     reruns; it is reported and never decides.
 
     Args:
-        backend: ``jev`` or ``deem``.
+        backend: ``jev``.
         rows: Plan rows, each carrying ``id``, ``category``, ``label`` and
             ``text``.
         probs: ``{<row id>: [<probability or None>, ...]}``, one entry per
@@ -1869,7 +1593,7 @@ def summarize_column(
         line. The detail's latency fields read ``none``: this summary sees
         probabilities, and the wall times live in the run's call records.
     """
-    expected = JEV_RERUNS if backend == "jev" else 1
+    expected = JEV_RERUNS
     categories = {}
     totals = {
         "K": 0, "M": 0, "A": 0, "B": 0, "W": 0, "L": 0, "TP": 0, "FP": 0, "F": 0,
@@ -2051,7 +1775,7 @@ def build_report(input: dict) -> dict:
 
 
 # ───────────────────────────────────────────────────────────────
-# 11. RUN
+# 10. RUN
 # ───────────────────────────────────────────────────────────────
 
 
@@ -2078,14 +1802,13 @@ def main(argv: list[str] | None = None, deps: dict | None = None) -> int:
     parser.add_argument("--seed", help="the draw seed, a non-negative integer")
     parser.add_argument("--labels", help="path of the labels file")
     parser.add_argument("--jev", action="store_true", help="measure the Jev backend")
-    parser.add_argument("--deem", action="store_true", help="measure the Deem backend")
     parser.add_argument("--out", help="directory that holds report.json and calls.jsonl")
     try:
         values = parser.parse_args(argv)
     except SystemExit as stop:
         return int(stop.code) if isinstance(stop.code, int) else 2
-    if (values.jev or values.deem) and not values.out:
-        err("--jev and --deem need --out <dir> so every call is recorded")
+    if values.jev and not values.out:
+        err("--jev needs --out <dir> so every call is recorded")
         return 2
     repo_root = deps.get("repo_root") or DEFAULT_REPO_ROOT
     scanner = deps.get("scanner") or SCANNER
@@ -2097,7 +1820,6 @@ def main(argv: list[str] | None = None, deps: dict | None = None) -> int:
         # a measurement this mode never makes.
         if (
             getattr(values, "jev", False)
-            or getattr(values, "deem", False)
             or getattr(values, "out", None) not in (None, "")
         ):
             err("--draw takes only --seed and --labels")
@@ -2201,58 +1923,40 @@ def main(argv: list[str] | None = None, deps: dict | None = None) -> int:
     stopped = {}
     requalify = {}
     if not categories_stopped:
-        stored = read_stored_report(values.out) if (values.jev or values.deem) else None
+        stored = read_stored_report(values.out) if values.jev else None
         call_log = create_call_log(values.out)
-        for backend in ("jev", "deem"):
-            if backend == "jev" and not values.jev:
-                continue
-            if backend == "deem" and not values.deem:
-                continue
-            if backend == "jev":
-                check = jev_gate({"out": out, "env": env, "timeoutMs": timeout_ms})
-            else:
-                check = deem_gate({"out": out, "env": env})
+        if values.jev:
+            check = jev_gate({"out": out, "env": env, "timeoutMs": timeout_ms})
             if not check["passed"]:
-                skipped[backend] = check["reason"]
-                continue
-            if not gate["complete"]:
-                line = f"{backend} arm skipped: fewer than 150 labeled rows"
+                skipped["jev"] = check["reason"]
+            elif not gate["complete"]:
+                line = "jev arm skipped: fewer than 150 labeled rows"
                 out(line)
-                skipped[backend] = line
-                continue
-            plan = {"rows": rows, "baseline": summary, "phrases": phrases}
-            ctx = {
-                "out": out,
-                "env": env,
-                "timeoutMs": timeout_ms,
-                "backoffMs": backoff_ms,
-                "callLog": call_log,
-                "stored": stored,
-            }
-            if backend == "jev":
+                skipped["jev"] = line
+            else:
+                plan = {"rows": rows, "baseline": summary, "phrases": phrases}
+                ctx = {
+                    "out": out,
+                    "env": env,
+                    "timeoutMs": timeout_ms,
+                    "backoffMs": backoff_ms,
+                    "callLog": call_log,
+                    "stored": stored,
+                }
                 arm = run_jev_arm(plan, check, ctx)
-            else:
-                arm = run_deem_arm(plan, check, ctx)
-            if "stopped" in arm:
-                stopped[backend] = {
-                    "line": arm["stopped"],
-                    "partialRows": arm["partialRows"],
-                }
-                continue
-            column = dict(arm["column"])
-            if backend == "jev":
-                column["identity"] = {
-                    "jevVersion": JEV_VERSION,
-                    "provider": check["provider"],
-                }
-            else:
-                column["identity"] = {
-                    "modelId": check["model"],
-                    "modelCommit": check["modelCommit"],
-                    "sourceCommit": check["sourceCommit"],
-                }
-            columns[backend] = column
-            requalify[backend] = arm["requalify"]
+                if "stopped" in arm:
+                    stopped["jev"] = {
+                        "line": arm["stopped"],
+                        "partialRows": arm["partialRows"],
+                    }
+                else:
+                    column = dict(arm["column"])
+                    column["identity"] = {
+                        "jevVersion": JEV_VERSION,
+                        "provider": check["provider"],
+                    }
+                    columns["jev"] = column
+                    requalify["jev"] = arm["requalify"]
 
     if values.out and (columns or stopped or categories_stopped):
         headroom = {}

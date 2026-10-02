@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Plain-runner tests for the reader-needed lens.
 
-Every case runs against a throwaway git repository and stub jev and cli-deem
-binaries first on PATH, so no case reaches a live backend. The runner prints one
-PASS or FAIL line per case and ends with ALL PASS or the failure count.
+Every case runs against a throwaway git repository and a stub jev binary first
+on PATH, so no case reaches a live backend. The runner prints one PASS or FAIL
+line per case and ends with ALL PASS or the failure count.
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ def clean_env() -> dict:
         "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES",
         "GIT_CONFIG", "GIT_CONFIG_GLOBAL", "GIT_CONFIG_SYSTEM", "GIT_CONFIG_COUNT",
         "GIT_NAMESPACE", "GIT_CEILING_DIRECTORIES",
-        "JEV_PROVIDER", "CLI_DEEM_URL",
+        "JEV_PROVIDER",
     ):
         env.pop(key, None)
     return env
@@ -132,59 +132,11 @@ else:
     raise SystemExit(2)
 '''
 
-DEEM_STUB = r'''#!/usr/bin/env python3
-"""Stub cli-deem: logs its argv, then answers health and noul offline."""
-
-import json
-import os
-import sys
-from pathlib import Path
-
-SCRIPT_DIR = Path(__file__).resolve().parent
-ARGS = sys.argv[1:]
-with (SCRIPT_DIR / 'cli-deem.log').open('a', encoding='utf-8') as handle:
-    handle.write(json.dumps(ARGS) + '\n')
-
-
-def answer_noul() -> None:
-    text = sys.stdin.read().lower()
-    if os.environ.get('STUB_NOUL_EXIT'):
-        raise SystemExit(int(os.environ['STUB_NOUL_EXIT']))
-    if os.environ.get('STUB_NOUL_EMPTY') == '1':
-        print('{"answers":{"answer":{}}}')
-        return
-    tell = 'marks a pivotal moment in' in text or 'from startups to' in text
-    print(json.dumps({'answers': {'answer': {'noul': 0.9 if tell else 0.1}}}, separators=(',', ':')))
-
-
-if ARGS[:1] == ['health']:
-    count_file = SCRIPT_DIR / 'health.count'
-    seen = int(count_file.read_text(encoding='utf-8')) if count_file.exists() else 0
-    count_file.write_text(str(seen + 1), encoding='utf-8')
-    commits = os.environ.get('STUB_MODEL_COMMITS', 'aaa').split(',')
-    model_commit = commits[min(seen, len(commits) - 1)]
-    backend = os.environ.get('STUB_DEEM_BACKEND', 'torch')
-    if backend == 'stub':
-        sys.stderr.write('{"ok":false,"error":"refused backend: stub"}\n')
-        raise SystemExit(3)
-    print(json.dumps({
-        'ok': True,
-        'backend': backend,
-        'model': 'deem-0.8-v1',
-        'model_commit': model_commit,
-        'source_commit': 'bbb',
-    }, separators=(',', ':')))
-elif ARGS[:1] == ['noul']:
-    answer_noul()
-else:
-    raise SystemExit(2)
-'''
-
 
 def make_stubs() -> Path:
-    """Write the stub jev and cli-deem binaries into a fresh temp directory."""
+    """Write the stub jev binary into a fresh temp directory."""
     bin_dir = temp_dir("bin")
-    for name, source in (("jev", JEV_STUB), ("cli-deem", DEEM_STUB)):
+    for name, source in (("jev", JEV_STUB),):
         target = bin_dir / name
         target.write_text(source, encoding="utf-8")
         target.chmod(0o755)
@@ -829,7 +781,7 @@ def run() -> int:
     # read as a score of 0.
     call_bin = make_stubs()
     empty_call = S.spawn_call(
-        str(call_bin / "cli-deem"),
+        str(call_bin / "jev"),
         ["noul", "-q", "Does this text tell?"],
         "The guide states each step once.",
         stub_env(call_bin, {"STUB_NOUL_EMPTY": "1"}),
@@ -840,7 +792,7 @@ def run() -> int:
     call_log = S.create_call_log(calls_dir)
     call_log["append"](
         {
-            "backend": "deem",
+            "backend": "jev",
             "kind": "noul",
             "rowId": "r001",
             "category": "synonym-cycling",
@@ -851,9 +803,9 @@ def run() -> int:
             "probability": None,
             "flag": None,
             "status": "unmeasured",
-            "modelId": "deem-0.8-v1",
-            "modelCommit": "aaa",
-            "sourceCommit": "bbb",
+            "jevVersion": "0.6.2",
+            "provider": "official",
+            "model": "stub-model",
         }
     )
     recorded_calls = S.read_jsonl(calls_dir / "calls.jsonl")
@@ -867,128 +819,20 @@ def run() -> int:
         and recorded_calls[0]["flag"] is None,
     )
 
-    torch_bin = make_stubs()
-    torch_env = stub_env(torch_bin)
-    torch_lines: list[str] = []
-    torch_gate = S.deem_gate({"out": torch_lines.append, "env": torch_env})
-    check(
-        "deem gate passes a torch health",
-        torch_gate["passed"] is True
-        and S.deem_command(torch_env) == [str(torch_bin / "cli-deem")]
-        and torch_lines == [
-            "deem: health backend=torch model=deem-0.8-v1 "
-            "model_commit=aaa source_commit=bbb"
-        ],
-    )
-
-    fallback_cmd = S.deem_command({"PATH": str(temp_dir("no-deem-bin"))})
-    check(
-        "deem command falls back to the classifier checkout under node",
-        fallback_cmd[0] == "node"
-        and Path(fallback_cmd[1]).is_file()
-        and Path(fallback_cmd[1]).name == "cli-deem.mjs",
-    )
-
-    stub_backend_bin = make_stubs()
-    stub_backend_lines: list[str] = []
-    stub_backend_gate = S.deem_gate(
-        {
-            "out": stub_backend_lines.append,
-            "env": stub_env(stub_backend_bin, {"STUB_DEEM_BACKEND": "stub"}),
-        }
-    )
-    stub_backend_log = stub_log(stub_backend_bin, "cli-deem")
-    stub_backend_run = run_main(
-        ["--deem", "--out", str(temp_dir("deem-skip"))],
-        {
-            "root": draw_root,
-            "scanner": draw_scanner,
-            "bin": stub_backend_bin,
-            "env": {"STUB_DEEM_BACKEND": "stub"},
-        },
-    )
-    check(
-        "deem gate skips a stub backend",
-        stub_backend_gate["passed"] is False
-        and stub_backend_lines == ["deem arm skipped: stub backend"]
-        and stub_backend_log == [["health"]]
-        and stub_backend_run["code"] == 0
-        and "deem arm skipped: stub backend" in stub_backend_run["lines"],
-    )
-
-    changed_bin = make_stubs()
-    changed_env = stub_env(
-        changed_bin, {"STUB_MODEL_COMMITS": "aaa,ccc", "STUB_NOUL_EXIT": "4"}
-    )
-    changed_lines: list[str] = []
-    changed_gate = S.deem_gate({"out": changed_lines.append, "env": changed_env})
-    changed_out = temp_dir("deem-changed")
-    changed_plan = {
-        "rows": [
-            {
-                "id": "r001",
-                "category": "significance-inflation",
-                "label": "yes",
-                "text": SIGNIFICANCE_TELL,
-                "question": "Does this passage declare that something is important?",
-            }
-        ],
-        "baseline": {"categories": {}},
-        "phrases": phrases,
-    }
-    changed_arm = S.run_deem_arm(
-        changed_plan,
-        changed_gate,
-        {
-            "out": changed_lines.append,
-            "env": changed_env,
-            "timeoutMs": 20000,
-            "callLog": S.create_call_log(changed_out),
-            "stored": None,
-        },
-    )
-    check(
-        "deem exit 4 with a changed commit pair stops the arm",
-        changed_arm == {
-            "stopped": "deem arm stopped: model commit changed mid-run",
-            "partialRows": 0,
-        }
-        and changed_lines[-2:] == [
-            "deem arm stopped: model commit changed mid-run",
-            "deem: partial rows=0",
-        ]
-        and not any(line.startswith("verdict") for line in changed_lines)
-        and len(S.read_jsonl(changed_out / "calls.jsonl")) == 1,
-    )
-
     no_out_bin = make_stubs()
-    no_out_runs = [
-        run_main(
-            ["--jev"],
-            {"root": draw_root, "scanner": draw_scanner, "bin": no_out_bin},
-        ),
-        run_main(
-            ["--deem"],
-            {"root": draw_root, "scanner": draw_scanner, "bin": no_out_bin},
-        ),
-    ]
+    no_out_run = run_main(
+        ["--jev"],
+        {"root": draw_root, "scanner": draw_scanner, "bin": no_out_bin},
+    )
     check(
-        "--out is required for both switches",
-        [result["code"] for result in no_out_runs] == [2, 2]
-        and all(result["lines"] == [] for result in no_out_runs)
-        and all(
-            result["errs"]
-            == ["--jev and --deem need --out <dir> so every call is recorded"]
-            for result in no_out_runs
-        )
-        and stub_log(no_out_bin, "jev") == []
-        and stub_log(no_out_bin, "cli-deem") == [],
+        "--out is required for the Jev switch",
+        no_out_run["code"] == 2
+        and no_out_run["lines"] == []
+        and no_out_run["errs"]
+        == ["--jev needs --out <dir> so every call is recorded"]
+        and stub_log(no_out_bin, "jev") == [],
     )
 
-    verdict_bin = make_stubs()
-    verdict_env = stub_env(verdict_bin)
-    verdict_lines: list[str] = []
-    verdict_gate = S.deem_gate({"out": verdict_lines.append, "env": verdict_env})
     verdict_questions = {
         "synonym-cycling": (
             "Does this passage refer to the same thing by three or more different words?"
@@ -1030,65 +874,6 @@ def run() -> int:
             }
             for row in verdict_rows
         ]
-    )
-    verdict_out = temp_dir("deem-verdict")
-    verdict_arm = S.run_deem_arm(
-        {"rows": verdict_rows, "baseline": verdict_baseline, "phrases": phrases},
-        verdict_gate,
-        {
-            "out": verdict_lines.append,
-            "env": verdict_env,
-            "timeoutMs": 20000,
-            "callLog": S.create_call_log(verdict_out),
-            "stored": None,
-        },
-    )
-    verdict_records = S.read_jsonl(verdict_out / "calls.jsonl")
-    check(
-        "deem arm prints a verdict and records every call",
-        any(line.startswith("verdict deem:") for line in verdict_lines)
-        and "flips: not applicable (deem noul)" in verdict_lines
-        and verdict_arm["column"]["line"] in verdict_lines
-        and len(verdict_records) == 150
-        and all(record["status"] == "measured" for record in verdict_records)
-        and all(
-            {"wallMs", "exitCode", "modelId", "modelCommit", "sourceCommit"}
-            <= set(record)
-            for record in verdict_records
-        ),
-    )
-
-    requal_bin = make_stubs()
-    requal_env = stub_env(requal_bin)
-    requal_lines: list[str] = []
-    requal_gate = S.deem_gate({"out": requal_lines.append, "env": requal_env})
-    requal_out = temp_dir("deem-requalify")
-    requal_arm = S.run_deem_arm(
-        {"rows": verdict_rows, "baseline": verdict_baseline, "phrases": phrases},
-        requal_gate,
-        {
-            "out": requal_lines.append,
-            "env": requal_env,
-            "timeoutMs": 20000,
-            "callLog": S.create_call_log(requal_out),
-            "stored": {
-                "columns": {"deem": {"modelCommit": "old", "sourceCommit": "old"}}
-            },
-        },
-    )
-    requal_index = next(
-        (
-            index
-            for index, line in enumerate(requal_lines)
-            if line.startswith("verdict deem:")
-        ),
-        None,
-    )
-    check(
-        "a stored commit pair that differs prints requalify",
-        requal_arm["requalify"] == "requalify: model commit changed"
-        and requal_index is not None
-        and requal_lines[requal_index - 1] == "requalify: model commit changed",
     )
 
     jev_bin = make_stubs()
@@ -1270,7 +1055,7 @@ def run() -> int:
 
     coverage_counts = {category: verdict_entry() for category in S.CATEGORIES}
     coverage_counts[S.CATEGORIES[0]] = verdict_entry(M=8)
-    coverage_verdict = S.decide_verdict(coverage_counts, "deem")
+    coverage_verdict = S.decide_verdict(coverage_counts, "jev")
     check(
         "verdict stop (coverage)",
         coverage_verdict["outcome"] == "stop"
@@ -1284,7 +1069,7 @@ def run() -> int:
             S.CATEGORIES[1]: verdict_entry(A=5, B=5),
             S.CATEGORIES[2]: verdict_entry(W=0, L=0),
         },
-        "deem",
+        "jev",
     )
     check(
         "verdict stop (categories)",
@@ -1301,74 +1086,53 @@ def run() -> int:
         and S.sign_test_p(0, 0) == {"p": 1, "below": False},
     )
 
-    # Both switches in one call: each backend runs behind its own gate and the
-    # Jev column prints first, whatever the other column's outcome. The labels
-    # are mixed against the comparators so the zero-call run keeps the headroom
-    # both arms need before they may start.
-    both_bin = make_stubs()
-    both_labels = temp_dir("both-labels") / "labels.jsonl"
+    # One switch in one call: the Jev arm runs behind its own gate and prints
+    # its column. The labels are mixed against the comparators so the zero-call
+    # run keeps the headroom the arm needs before it may start.
+    arm_bin = make_stubs()
+    arm_labels = temp_dir("arm-labels") / "labels.jsonl"
     run_main(
-        ["--draw", "--seed", "7", "--labels", str(both_labels)],
+        ["--draw", "--seed", "7", "--labels", str(arm_labels)],
         {"root": draw_root, "scanner": draw_scanner},
     )
-    both_rows = S.read_jsonl(both_labels)
-    both_tracked = S.tracked_files(draw_root)
-    for row in both_rows:
-        text = S.read_section(draw_root, row, both_tracked)
+    arm_rows = S.read_jsonl(arm_labels)
+    arm_tracked = S.tracked_files(draw_root)
+    for row in arm_rows:
+        text = S.read_section(draw_root, row, arm_tracked)
         if row["category"] == "synonym-cycling":
             row["label"] = (
                 "yes" if SIGNIFICANCE_TELL in text or FALSE_RANGE_TELL in text else "no"
             )
         else:
             row["label"] = "no" if row["candidate"] else "yes"
-    S.write_jsonl(both_labels, both_rows)
-    both_out = temp_dir("both-out")
-    both_run = run_main(
-        ["--jev", "--deem", "--out", str(both_out), "--labels", str(both_labels)],
-        {"root": draw_root, "scanner": draw_scanner, "bin": both_bin},
+    S.write_jsonl(arm_labels, arm_rows)
+    arm_out = temp_dir("arm-out")
+    arm_run = run_main(
+        ["--jev", "--out", str(arm_out), "--labels", str(arm_labels)],
+        {"root": draw_root, "scanner": draw_scanner, "bin": arm_bin},
     )
-    both_lines = both_run["lines"]
+    arm_lines = arm_run["lines"]
     jev_verdict_at = next(
-        (index for index, line in enumerate(both_lines) if line.startswith("verdict jev:")),
-        None,
-    )
-    deem_verdict_at = next(
-        (index for index, line in enumerate(both_lines) if line.startswith("verdict deem:")),
+        (index for index, line in enumerate(arm_lines) if line.startswith("verdict jev:")),
         None,
     )
     check(
-        "both switches print Jev first",
-        both_run["code"] == 0
+        "the Jev switch prints its column",
+        arm_run["code"] == 0
         and jev_verdict_at is not None
-        and deem_verdict_at is not None
-        and jev_verdict_at < deem_verdict_at
         and sum(
-            1 for line in both_lines[:jev_verdict_at] if line.startswith("category ")
-        )
-        == 3
-        and sum(
-            1
-            for line in both_lines[jev_verdict_at:deem_verdict_at]
-            if line.startswith("category ")
+            1 for line in arm_lines[:jev_verdict_at] if line.startswith("category ")
         )
         == 3,
     )
 
-    both_report = json.loads((both_out / "report.json").read_text(encoding="utf-8"))
+    arm_report = json.loads((arm_out / "report.json").read_text(encoding="utf-8"))
     check(
-        "report.json holds each column's verdict line, categories and identity",
-        both_report["columns"]["jev"]["line"] == both_lines[jev_verdict_at]
-        and both_report["columns"]["deem"]["line"] == both_lines[deem_verdict_at]
-        and all(
-            set(both_report["columns"][backend]["categories"]) == set(S.CATEGORIES)
-            for backend in ("jev", "deem")
-        )
-        and both_report["columns"]["jev"]["jevVersion"] == S.JEV_VERSION
-        and "provider" in both_report["columns"]["jev"]
-        and all(
-            key in both_report["columns"]["deem"]
-            for key in ("modelId", "modelCommit", "sourceCommit")
-        ),
+        "report.json holds the column's verdict line, categories and identity",
+        arm_report["columns"]["jev"]["line"] == arm_lines[jev_verdict_at]
+        and set(arm_report["columns"]["jev"]["categories"]) == set(S.CATEGORIES)
+        and arm_report["columns"]["jev"]["jevVersion"] == S.JEV_VERSION
+        and "provider" in arm_report["columns"]["jev"],
     )
 
     idle_bin = make_stubs()
@@ -1382,7 +1146,7 @@ def run() -> int:
         "default run calls no stub and writes no file",
         idle_run["code"] == 0
         and stub_log(idle_bin, "jev") == []
-        and stub_log(idle_bin, "cli-deem") == []
+
         and not (idle_dir / "report.json").exists()
         and not (idle_dir / "calls.jsonl").exists()
         and not idle_labels.exists()

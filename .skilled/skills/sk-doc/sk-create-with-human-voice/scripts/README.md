@@ -21,9 +21,9 @@ The mechanical pass of the voice workflow, the tests that pin its masking contra
 | File | Purpose |
 |---|---|
 | [`hvr_scan.py`](hvr_scan.py) | Scans prose for the deterministic Human Voice Rules findings. Parses its term lists out of `../references/hvr-rules.md` at run time and holds no copy of them |
-| [`hvr_reader_lens.py`](hvr_reader_lens.py) | Measures how well a classifier spots the Human Voice Rules tells a reader has to settle. The default run is a zero-call census. `--draw --seed <n>` writes the 150-row sample with every label empty to `hvr-reader-lens-labels.jsonl` by default, the label gate stops the run while fewer than 150 rows carry a label, and `--jev` or `--deem` with `--out <dir>` measures a backend |
+| [`hvr_reader_lens.py`](hvr_reader_lens.py) | Measures how well a classifier spots the Human Voice Rules tells a reader has to settle. The default run is a zero-call census. `--draw --seed <n>` writes the 150-row sample with every label empty to `hvr-reader-lens-labels.jsonl` by default, the label gate stops the run while fewer than 150 rows carry a label, and `--jev` with `--out <dir>` measures the backend |
 | [`tests/test_hvr_scan.py`](tests/test_hvr_scan.py) | Pins the masking contract: which fences a template payload reads as prose, which it still masks, how an inline span that wraps two lines is treated and the two control numbers |
-| [`tests/test_hvr_reader_lens.py`](tests/test_hvr_reader_lens.py) | Pins the lens contract with 41 checks against a throwaway git repository and stub `jev` and `cli-deem` binaries first on PATH, so no check reaches a live backend. One `PASS` line per check and `ALL PASS` at the end |
+| [`tests/test_hvr_reader_lens.py`](tests/test_hvr_reader_lens.py) | Pins the lens contract with 36 checks against a throwaway git repository and a stub `jev` binary first on PATH, so no check reaches a live backend. One `PASS` line per check and `ALL PASS` at the end |
 | [`tests/fixtures/voice-dirty.md`](tests/fixtures/voice-dirty.md) | Carries one finding of each mechanical class, plus the same violations inside a fenced block and an inline code span that must not be reported |
 | [`tests/fixtures/voice-clean.md`](tests/fixtures/voice-clean.md) | Carries none |
 | [`tests/fixtures/voice-two-senses.md`](tests/fixtures/voice-two-senses.md) | One blocked term twice, once in the sense the standard permits and once in the sense it blocks. `HVT-002` |
@@ -52,7 +52,6 @@ or parsed and the run refuses to report a clean scan.
 python3 hvr_reader_lens.py                     # census, questions, baselines
 python3 hvr_reader_lens.py --draw --seed <n>   # write the labels file
 python3 hvr_reader_lens.py --jev --out <dir>   # measure the Jev backend
-python3 hvr_reader_lens.py --deem --out <dir>  # measure the Deem backend
 python3 hvr_reader_lens.py --labels <path>     # point at another labels file
 ```
 
