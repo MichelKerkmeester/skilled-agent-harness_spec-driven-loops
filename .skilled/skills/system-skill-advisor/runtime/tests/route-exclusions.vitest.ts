@@ -52,22 +52,24 @@ describe('route-exclusions loader', () => {
     }
   });
 
-  it('excludes sk-communication by committed default and leaves other skills routable', () => {
-    expect(isRouteExcludedSkillId('sk-communication')).toBe(true);
-    expect(getRouteExcludedSkillIds().has('sk-communication')).toBe(true);
+  it('uses the empty committed default and leaves skills routable', () => {
+    expect(getRouteExcludedSkillIds().size).toBe(0);
     // A representative active skill is untouched by the denylist.
     expect(isRouteExcludedSkillId('sk-code')).toBe(false);
     expect(isRouteExcludedSkillId('sk-design')).toBe(false);
   });
 
   it('drops an excluded id at the path-based route-policy seam and keeps others', () => {
+    const dir = scratchDir();
+    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-example'] }), 'utf8');
+    process.env.SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR = dir;
+    resetRouteExclusionsCache();
     const entries = [
       { sourcePath: '.skilled/skills/sk-code/graph-metadata.json', skillId: 'sk-code' },
-      { sourcePath: '.skilled/skills/sk-communication/graph-metadata.json', skillId: 'sk-communication' },
+      { sourcePath: '.skilled/skills/sk-example/graph-metadata.json', skillId: 'sk-example' },
       { sourcePath: '.skilled/skills/z_archive/old/graph-metadata.json', skillId: 'old' },
     ];
-    // sk-communication is dropped by the exclusion; z_archive is dropped by
-    // lifecycle; only the active, non-excluded sk-code survives.
+    // The explicit exclusion and lifecycle filter remove their respective entries.
     expect(filterDefaultRoutable(entries).map((entry) => entry.skillId)).toEqual(['sk-code']);
   });
 
@@ -84,8 +86,8 @@ describe('route-exclusions loader', () => {
 
   it('reads the committed list from a directory when no local override exists', () => {
     const dir = scratchDir();
-    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-communication'] }), 'utf8');
-    expect([...loadRouteExclusionsFromDir(dir)]).toEqual(['sk-communication']);
+    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-example'] }), 'utf8');
+    expect([...loadRouteExclusionsFromDir(dir)]).toEqual(['sk-example']);
   });
 
   it('does not throw and yields an empty set for malformed JSON', () => {
@@ -99,34 +101,34 @@ describe('route-exclusions loader', () => {
     const dir = scratchDir();
     writeFileSync(
       join(dir, COMMITTED_FILE),
-      JSON.stringify({ excludedSkillIds: ['sk-communication', '', 42, null, 'sk-x'] }),
+      JSON.stringify({ excludedSkillIds: ['sk-example', '', 42, null, 'sk-example-two'] }),
       'utf8',
     );
-    expect([...loadRouteExclusionsFromDir(dir)].sort()).toEqual(['sk-communication', 'sk-x']);
+    expect([...loadRouteExclusionsFromDir(dir)].sort()).toEqual(['sk-example', 'sk-example-two']);
   });
 
   it('lets a present local override fully replace the committed list', () => {
     const dir = scratchDir();
-    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-communication'] }), 'utf8');
-    writeFileSync(join(dir, LOCAL_FILE), JSON.stringify({ excludedSkillIds: ['sk-other'] }), 'utf8');
+    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-example-committed'] }), 'utf8');
+    writeFileSync(join(dir, LOCAL_FILE), JSON.stringify({ excludedSkillIds: ['sk-example-local'] }), 'utf8');
     const resolved = loadRouteExclusionsFromDir(dir);
-    expect(resolved.has('sk-other')).toBe(true);
-    expect(resolved.has('sk-communication')).toBe(false);
+    expect(resolved.has('sk-example-local')).toBe(true);
+    expect(resolved.has('sk-example-committed')).toBe(false);
   });
 
   it('lets an empty local override re-enable every skill despite a committed list', () => {
     const dir = scratchDir();
-    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-communication'] }), 'utf8');
+    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-example-committed'] }), 'utf8');
     writeFileSync(join(dir, LOCAL_FILE), JSON.stringify({ excludedSkillIds: [] }), 'utf8');
     expect(loadRouteExclusionsFromDir(dir).size).toBe(0);
   });
 
   it('honors the env-directory override through the cached runtime accessor', () => {
     const dir = scratchDir();
-    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-env'] }), 'utf8');
+    writeFileSync(join(dir, COMMITTED_FILE), JSON.stringify({ excludedSkillIds: ['sk-example-env'] }), 'utf8');
     process.env.SPECKIT_ADVISOR_ROUTE_EXCLUSIONS_DIR = dir;
     resetRouteExclusionsCache();
-    expect(isRouteExcludedSkillId('sk-env')).toBe(true);
-    expect(isRouteExcludedSkillId('sk-communication')).toBe(false);
+    expect(isRouteExcludedSkillId('sk-example-env')).toBe(true);
+    expect(isRouteExcludedSkillId('sk-code')).toBe(false);
   });
 });

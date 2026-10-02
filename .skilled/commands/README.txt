@@ -1,6 +1,6 @@
 ---
 title: "OpenCode Commands"
-description: "OpenCode slash commands: component creation, deep loops, prompts, continuity, rewrites and spec kit workflows."
+description: "OpenCode slash commands: component creation, deep loops, prompts, continuity and spec kit workflows."
 trigger_phrases:
   - "opencode commands"
   - "slash commands"
@@ -37,7 +37,7 @@ trigger_phrases:
 
 Commands are invoked as slash commands (e.g., `/create:feature-catalog`, `/deep:review`, `/prompt:improve`, `/speckit:save`, `/speckit:plan`). Each command is a markdown file with YAML frontmatter that defines its description, argument hints, and allowed tools.
 
-Commands are organized into five groups plus root-level utilities:
+Commands are organized into six groups plus root-level utilities:
 
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
@@ -46,7 +46,6 @@ Commands are organized into five groups plus root-level utilities:
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
-| **rewrite** | `commands/rewrite/` | 2 | Re-express an existing reply in plain English |
 | **speckit** | `commands/speckit/` | 6 | Spec folder workflows (plan, implement, resume, complete), continuity write (save) and lexical retrieval (search) |
 | **root** | `commands/` | 3 | Standalone `/agent-router`, `/goal-opencode` and `/vision` utilities |
 
@@ -113,9 +112,6 @@ command/
 │   ├── chart.md              # Author a standalone HTML data chart
 │   ├── diagram.md            # Create an HTML/SVG diagram or a validated ASCII flowchart
 │   └── assets/                # Auto/confirm/presentation workflow assets
-├── rewrite/                  # Plain-English and visual re-expression commands
-│   ├── response.md           # Rewrite the active AI's last reply in plain English
-│   └── response-by-external-agent.md   # Same, via an external CLI agent or local LLM
 └── speckit/                  # Spec folder workflow, continuity write and retrieval commands
     ├── complete.md           # Full end-to-end workflow
     ├── implement.md          # Execute pre-planned work
@@ -197,15 +193,6 @@ Root commands have no group prefix.
 | Goal (OpenCode) | `/goal-opencode <condition>` | Set/show/pause/clear/complete a durable session-completion goal via the `opencode-goal` plugin |
 | Vision | `/vision [question about your most recent image]` | On-device scene read, caption and OCR of your most recent image; omit the question for a full read |
 
-### Rewrite Commands
-
-Re-express something that already exists — the active AI's last reply, or a named topic — without changing files.
-
-| Command | Invocation | Purpose |
-|---------|------------|---------|
-| Response | `/rewrite:response [--show-original]` | Rewrite the active AI's most recent reply into plain English in-context |
-| Response by External Agent | `/rewrite:response-by-external-agent [cli-<skill>\|native\|local] [target-text]` | Same projection, run through an external CLI agent or a local LLM |
-
 ### Spec Kit Commands
 
 Structured workflows for the spec folder development lifecycle, plus packet continuity write and lexical retrieval.
@@ -226,7 +213,7 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 <!-- ANCHOR:instructions -->
 ## 5. INSTRUCTIONS
 
-1. Choose the command group that matches your intent: `create`, `deep`, `design`, `doctor`, `prompt`, `rewrite`, or `speckit`.
+1. Choose the command group that matches your intent: `create`, `deep`, `design`, `doctor`, `prompt` or `speckit`.
 2. Use the canonical slash-command form `/<group>:<command>` unless the command is a root utility such as `/agent-router` or `/goal-opencode`.
 3. Prefer the unified commands over historical split commands.
 4. When a command supports `:auto` and `:confirm`, pick the mode that matches how much checkpointing you want.

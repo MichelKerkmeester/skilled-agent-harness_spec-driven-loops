@@ -22,7 +22,7 @@ Built for Claude Code, Codex, Opencode, Pi Agent, Devin, Cursor and Hermes CLI
 - **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
 - **Autonomous Deep Loops** - research, review and improvement loops that run unattended and stop only when their own evidence says done
 - **12 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
-- **15 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
+- **14 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
 
 ---
 
@@ -77,7 +77,7 @@ The framework extends each runtime through plugins, hooks and extensions rather 
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches, alongside `pi-fast-mode-w-subagent-support` for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories - thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
-Behind them: 15 on-demand skills, 36 command entry points and the Code Mode MCP server, each detailed in its own section below.
+Behind them: 14 on-demand skills, 34 command entry points and the Code Mode MCP server, each detailed in its own section below.
 
 ---
 
@@ -121,7 +121,7 @@ From request to documented result:
                  ▼                             ▼
          ┌───────────────┐          ┌──────────────────┐
          │ AGENT NETWORK │          │  SKILLS LIBRARY  │
-         │ 12 specialized│          │ 15 domain skills │
+         │ 12 specialized│          │ 14 domain skills │
          │ agents with   │◄────────►│ auto-loaded by   │
          │ routing logic │          │ task keywords    │
          └───────┬───────┘          └────────┬─────────┘
@@ -763,7 +763,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 
 ## 8. 🧰 SKILL LIBRARY
 
-15 skills in `.skilled/skills/`. Gate 2 loads 14 of them on demand when the advisor matches a task (confidence >= 0.8 means the skill must be loaded). `sk-communication` stays off advisor routing and loads by hand.
+14 skills in `.skilled/skills/`. Gate 2 loads them on demand when the advisor matches a task (confidence >= 0.8 means the skill must be loaded). By default, no skills are excluded from advisor routing.
 
 #### SYSTEM
 
@@ -899,14 +899,6 @@ One advisor identity routing to nine modes through `mode-registry.json`: five wo
 - **Owns the canonical CLI prompt-quality card** that every `cli-*` executor's local card delegates to for framework selection and the CLEAR pre-dispatch check
 
 &nbsp;
-#### COMMUNICATION
-
-**`sk-communication`**
-
-- **CLI output in plain English.** Projects terse CLI and agent output into careful prose across six runtimes while leaving the canonical byte stream unchanged
-- **Fails safe:** every unsafe or failed path returns the exact original output
-
-&nbsp;
 #### OTHER
 
 **`sk-vision`**
@@ -1019,8 +1011,8 @@ JavaScript entrypoints under `.skilled/plugins/`, discovered by a flat glob over
 - **Gate enforcement:** `system-spec-gate.js`, `system-completion-sentinel.js`, `system-speckit-completion.js`
 - **Advisor and routing:** `system-skill-advisor.js` for the prompt-time brief, `mcp-route-guard.js` (advises when a native MCP call should use Code Mode)
 - **Quality and guards:** `sk-code-post-edit-quality.js`, `sk-git-preflight-advisory.js`, `system-deep-loop-guard.js`, `system-dist-freshness-guard.js`, `codex-hooks-watchdog.js`, `cli-dispatch-audit.js`
-- **Lifecycle and surfaces:** `opencode-goal.js`, `session-cleanup.js`, `sk-vision.js`, `sk-communication-projection.js`
-- Twelve plugins honor a per-concern kill-switch via `hook-flags.cjs` plus the master `SYSTEM_HOOKS_DISABLED`. The Spec Kit completion, sk-communication projection and sk-vision plugins carry their own switch. None writes to stdout, and the goal and vision plugins write to stderr only when their debug variable is set
+- **Lifecycle and surfaces:** `opencode-goal.js`, `session-cleanup.js`, `sk-vision.js`
+- Twelve plugins honor a per-concern kill-switch via `hook-flags.cjs` plus the master `SYSTEM_HOOKS_DISABLED`. The Spec Kit completion and sk-vision plugins carry their own switch. None writes to stdout, and the goal and vision plugins write to stderr only when their debug variable is set
 
 &nbsp;
 #### Pi Extensions
@@ -1056,7 +1048,7 @@ Other entries in `.pi/extensions/`:
 
 ## 11. ⌨️ COMMAND LIBRARY
 
-36 command entry points across 7 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md`, and most are backed by a YAML execution spec. Command families keep that workflow routing separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
+34 command entry points across 6 command groups plus 3 root utilities. Each command is a Markdown entry point under `.skilled/commands/**/*.md`, and most are backed by a YAML execution spec. Command families keep that workflow routing separate from their Markdown presentation contracts, so the rendered dashboards stay stable while the underlying workflow evolves.
 
 #### SPEC KIT
 
@@ -1366,10 +1358,6 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 
 - Local OCR and image inspection through a private Moondream runtime. Works for any project
 
-**`sk-communication`** - ✅ codebase-agnostic
-
-- Plain-English projection of CLI output across six runtimes. Works for any project
-
 **`cli-external-orchestration`** - ✅ codebase-agnostic
 
 - Parent hub for external CLI dispatch: routes to `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes`. Stack-independent
@@ -1453,7 +1441,7 @@ Nothing to configure.
 
 &nbsp;
 
-**Q: Do I need all 15 skills installed to use the framework?**
+**Q: Do I need all 14 skills installed to use the framework?**
 
 No. Skills are loaded on demand by Gate 2, so you only need the ones relevant to your work.
 
