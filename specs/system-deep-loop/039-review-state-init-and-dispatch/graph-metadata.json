@@ -48,6 +48,8 @@
       ".skilled/commands/deep/assets/deep-review-auto.yaml",
       ".skilled/commands/deep/assets/deep-review-confirm.yaml",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-run-open.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-policy-yaml-parity.vitest.ts",
       ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md"
     ],
     "entities": [
@@ -94,6 +96,18 @@
         "source": "derived"
       },
       {
+        "name": "deep-review-run-open.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-run-open.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stop-policy-yaml-parity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-policy-yaml-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "child-dispatch-preamble.md",
         "kind": "doc",
         "path": ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md",
@@ -101,12 +115,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -131,6 +139,12 @@
       },
       {
         "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -182,23 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Both deep-review workflows open a run by writing a config row straight into `deep-review-state.jsonl`, and no ledger event records it",
     "created_at": "2026-10-02T16:37:15Z",
-    "last_save_at": "2026-10-02T17:06:41.763Z",
+    "last_save_at": "2026-10-02T18:57:59.060Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +209,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c6e3d859f69c6c6ac59cdc216c6a2c4c9dc16c2d5bc05fc0ad5f59d144f02c79",
+    "source_fingerprint": "sha256:53151a0473522eee90eb38f820a7d27b0a3828ca61d9792138dc87b8c098fd87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3f62386370cdcd29ce37f27419491e37f952bd135121156886c1118d5ec6de58",
+      "spec.md": "672533664e5f0d9294854e7417b358b1900f74f6082ade0407dcabf51c96f9cb",
       "plan.md": "42c01949c96d76ed9df54aab71e3504a4e019c3bf44ce335f1ea6c15626d85d0",
-      "tasks.md": "eaca4310e976203016839fb05beb5de141a085dec87e6961213115333fc09293",
-      "implementation-summary.md": "de1fcf662a6fa011ea723b66d7dc91e1bdaec64c1daba76448841838af47f6e4"
+      "tasks.md": "af09998c15159b6c6ee13eeb2e9a8b3877b376ee757357738c67a30597142745",
+      "implementation-summary.md": "bb8035ae510f64abce9f25bec78079f30d7e058a11f9518d78039f453cb8ef46"
     },
     "last_active_at": null
   }

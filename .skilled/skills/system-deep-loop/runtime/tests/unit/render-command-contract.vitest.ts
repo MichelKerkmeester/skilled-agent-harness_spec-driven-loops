@@ -261,7 +261,9 @@ const PARITY_PAIRS = [
     confirm: '.skilled/commands/deep/assets/deep-review-confirm.yaml',
     gatewaySteps: ['step_evaluate_results', 'step_post_iteration_claim_adjudication', 'step_convergence_report'],
     configBindings: ['stopPolicy: "{stop_policy}"'],
-    recordBindings: ['"emit":{resource_map_emit}'],
+    // Review opens its run as a gateway event built from the config file, so the
+    // record step binds the event stem and the config it reads, not a flat row.
+    recordBindings: ['stem: "deep_review.run_initialized"', '"{state_paths.config}"'],
   },
   {
     command: 'deep/research',
