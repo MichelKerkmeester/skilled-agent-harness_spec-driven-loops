@@ -34,7 +34,7 @@ sk-git's commit standard covers far more than formatting: a fixed subject gramma
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-01 |
 | **Branch** | `worktrees/073-message-contract-enforcement` |
 <!-- /ANCHOR:metadata -->
