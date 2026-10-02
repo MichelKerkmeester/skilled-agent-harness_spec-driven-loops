@@ -95,7 +95,7 @@ node .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs --
 node .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs --score <file>
 ```
 
-`--score` refuses to judge below 30 labeled rows and prints `stop: fewer than 30 labeled rows`. Past that gate, `--jev` or `--deem` with `--out <dir>` asks the classifier three times per row in rotated option order and prints one verdict per backend against the router's first alternative. A `keep` serves nothing, because the front door still prints no default.
+`--score` refuses to judge below 30 labeled rows and prints `stop: fewer than 30 labeled rows`. Past that gate, `--jev` with `--out <dir>` asks the classifier three times per row in rotated option order and prints one verdict against the router's first alternative. A `keep` serves nothing, because the front door still prints no default.
 
 ### Replaying Stage-Two Leaf Routes
 
@@ -103,10 +103,10 @@ When a hub's `ROUTER.md` keyword block scores a request, the winning intents pic
 
 ```bash
 node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --report <dir> --transcripts <dir> --prose <file>
-node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --jev --deem --out <dir>
+node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --jev --out <dir>
 ```
 
-Both tie-break arms stay dormant behind their gates. `--jev` or `--deem` with `--out <dir>` runs the matching gate and, when it passes, asks the classifier three times per tied row in rotated option order and prints one `verdict` line per backend. A `keep` serves nothing, because no router, map, manifest or playbook is touched.
+The tie-break arm stays dormant behind its gate. `--jev` with `--out <dir>` runs its gate and, when it passes, asks the classifier three times per tied row in rotated option order and prints one `verdict` line. A `keep` serves nothing, because no router, map, manifest or playbook is touched.
 
 ---
 

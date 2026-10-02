@@ -138,13 +138,13 @@ node .skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs --labels 
 
 It prints precision, recall and F1 per rule and the labeled violation rate with a Wilson 95% interval. [`goal-criteria-labels.jsonl`](./scripts/goal-criteria-labels.jsonl) holds 100 drawn criterion lines. An operator-delegated arbiter labeled 98 of them under rubric `mimo-02-strict-v1` and left 2 stale rows null.
 
-Two switches add a model arm, and each one needs `--out <dir>`:
+One switch adds a model arm, and it needs `--out <dir>`:
 
 ```bash
 node .skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs --labels .skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl --jev --out /tmp/goal-lint-jev
 ```
 
-`--jev` asks two questions per labeled criterion through the Jev CLI, three reruns each. `--deem` asks the same questions once through the local Deem backend. An arm that cannot reach its backend is skipped with a reason and the score still prints. Each arm prints a per-rule column and a keep-or-kill verdict and writes `calls.jsonl` and `report.json` under `--out`. A rule keeps its model column only on an F1 gain of at least 0.2 over the lint, precision of at least 0.8 and, for Jev, flips of at most 0.10. A rule with fewer than nine in ten rows measured prints `stop (coverage)` instead of a verdict. Without either switch the output is unchanged and nothing is written.
+`--jev` asks two questions per labeled criterion through the Jev CLI, three reruns each. An arm that cannot reach its backend is skipped with a reason and the score still prints. The arm prints a per-rule column and a keep-or-kill verdict and writes `calls.jsonl` and `report.json` under `--out`. A rule keeps its model column only on an F1 gain of at least 0.2 over the lint, precision of at least 0.8 and flips of at most 0.10. A rule with fewer than nine in ten rows measured prints `stop (coverage)` instead of a verdict. Without the switch the output is unchanged and nothing is written.
 
 ---
 
