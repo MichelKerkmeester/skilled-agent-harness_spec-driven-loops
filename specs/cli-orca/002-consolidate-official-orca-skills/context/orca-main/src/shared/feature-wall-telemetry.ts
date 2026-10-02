@@ -1,1 +1,0 @@
-export const FEATURE_WALL_MAX_DWELL_MS = 86_400_000

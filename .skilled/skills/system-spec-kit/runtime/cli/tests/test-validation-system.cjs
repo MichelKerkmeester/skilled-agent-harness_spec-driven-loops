@@ -19,7 +19,7 @@
 
 const path = require('path');
 const fs = require('fs');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 
 /* ─────────────────────────────────────────────────────────────
    1. CONFIGURATION
@@ -136,20 +136,18 @@ function runValidator(folderPath, options = {}) {
     return { exitCode: -1, stdout: '', stderr: 'Validator script not found' };
   }
 
-  let flags = '';
-  if (json) flags += ' --json';
-  if (strict) flags += ' --strict';
-  if (quiet) flags += ' --quiet';
-  if (verbose) flags += ' --verbose';
-
-  const envStr = Object.entries(envVars).map(([k, v]) => `${k}=${v}`).join(' ');
-  const cmd = `${envStr ? envStr + ' ' : ''}bash "${VALIDATOR_SCRIPT}" "${folderPath}"${flags}`;
+  const args = [VALIDATOR_SCRIPT, folderPath];
+  if (json) args.push('--json');
+  if (strict) args.push('--strict');
+  if (quiet) args.push('--quiet');
+  if (verbose) args.push('--verbose');
 
   try {
-    const stdout = execSync(cmd, {
+    const stdout = execFileSync('bash', args, {
       encoding: 'utf8',
       timeout: 30000,
       cwd: SCRIPTS_DIR,
+      env: { ...process.env, ...envVars },
     });
     return { exitCode: 0, stdout, stderr: '' };
   } catch (error) {

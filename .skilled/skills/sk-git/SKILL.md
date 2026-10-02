@@ -3,7 +3,7 @@ name: sk-git
 description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, and finish; single-skill workflow guidance with no spec."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.7.0.0
+version: 1.8.0.0
 ---
 
 <!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, worktree-branch, branch-naming-allocator, skilled-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review, gitkraken, gitlens, gitlens-launchpad, gitlens-commit-composer, cross-platform-pr, multi-provider-issue -->
@@ -309,16 +309,19 @@ Setup (worktree created) → Work → Complete (committed, tests passing) → ba
 
 Use this logic whenever an AI writes or rewrites a commit message: the subject explains the
 outcome in `git log --oneline`, and the body explains the reason without packet knowledge or
-jargon. The `commit-msg` hook enforces structure, not clarity — see
-[git-hooks/commit-msg](../../scripts/git-hooks/commit-msg); bypass with
-`SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...` only when the hook is genuinely wrong, never
-to skip writing a real message.
+jargon. The hooks enforce structure, not clarity. The structure they enforce is the "Enforced
+rules" JSON block in [commit-message-template.md](assets/commit-message-template.md) §7, read by
+[validate-message.mjs](scripts/validate-message.mjs) at commit time, at push time, in the agent
+gate and in CI. PR descriptions follow the block in [pr-template.md](assets/pr-template.md) and
+new branch names the block in [worktree-checklist.md](assets/worktree-checklist.md). Each repository
+supplies its own copies (`.sk-git/` or git config `skgit.contractDir`); a repository with no rules
+block is not checked. There is no bypass: when a rule is wrong, change the template.
 
 #### 1. Classify Special Git Messages
 
 Preserve Git-generated subjects unchanged when they begin with `Merge `, `Revert "`, `fixup! `,
 `squash! `, or `amend! `. Intentional checkpoints are not exempt: write them as
-`chore(wip): checkpoint <specific state>`, or use the documented bypass when required.
+`chore(wip): checkpoint <specific state>`.
 
 #### 2. Authored Subject Contract
 
@@ -335,7 +338,7 @@ Hard requirements:
 - Summary starts with a lowercase imperative verb, names the changed behavior or artifact (not
   the work process), ends without punctuation, has no repeated spaces, and is specific enough to
   distinguish this commit from adjacent work.
-- Subject should be at most 80 characters and must not exceed 100.
+- Subject has an 80-character target (`subject.length-target`, warning) and a 100-character hard limit (`subject.max-length`).
 - A `!` requires a `BREAKING CHANGE:` footer.
 
 Do not use vague summaries like `update`, `changes`, `cleanup`, or `work in progress`.
@@ -379,6 +382,8 @@ First match, by logical owner:
 9. A dominant top-level component -> its lowercase name.
 10. Inseparable cross-repository change -> `repo`.
 
+Use the full skill folder name as the canonical scope. For example, `.skilled/skills/system-spec-kit/...` uses `system-spec-kit`; files in `.skilled/repo-rules/` use `repo-rules`. The template's `subject.scope-alias` rule rejects short forms listed in its `scopeAliases` map.
+
 If two independent owners remain, split the commit instead of inventing a combined scope.
 
 #### 5. Summary Construction
@@ -403,11 +408,11 @@ do not count as a body. Only the Git-generated subjects in §1 are exempt.
 
 Use the full structure below when any condition applies:
 
-- The change fixes a regression, failure, race, security issue, or data risk, or it is breaking or has migration requirements.
+- The change fixes a regression, failure, race, security issue, or data risk, or it is breaking or has migration requirements. A breaking commit MUST carry the `Context`, `Changes` and `Verification` sections below; they are required, not preferred.
 - The reason or tradeoff is not obvious from the subject.
 - The commit spans code plus generated metadata or multiple repository areas.
 
-Preferred structure:
+Required structure for breaking commits; recommended for the other cases above:
 
 ```text
 Context: <plain-language problem or reason>
@@ -426,7 +431,7 @@ Refs: <issue, PR or URL>
 
 The trailer paragraph is the commit's final paragraph, contiguous and separated from the prose
 above it by a blank line. The `Commit-Id:` ordinal is stamped by the `prepare-commit-msg` hook
-and never typed by hand. An amend keeps its id, unless the message is replaced with `-m`, which mints a fresh one. A cherry-pick re-mints a fresh one.
+and never typed by hand. An amend keeps its id, unless the message is replaced with `-m`, which mints a fresh one. A cherry-pick re-mints a fresh one. A rebase keeps the id, and the commit it replaced is recognised as a copy by its author email and author date.
 
 Use only sections that carry useful information, explain internal terms on first use, and state
 in verification what actually ran and its result.
@@ -447,7 +452,7 @@ produce the same subject again.
 6. **Create PRs without description** - Always include context, changes, and testing notes
 7. **Merge without CI passing** - Wait for all checks to complete
 8. **Rebase public/shared branches** - Only rebase local, unpushed commits
-9. **Bypass a git hook with `--no-verify`** - Never skip commit-msg, pre-commit, or pre-push validation this way; if a hook is genuinely wrong, fix it or use its documented override (e.g. `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1`), not a blanket bypass
+9. **Bypass a git hook with `--no-verify`** - Never skip commit-msg, pre-commit, or pre-push validation this way; if a message rule is genuinely wrong, change the rules block in the template; `--no-verify` only defers the block to pre-push and CI
 10. **Amend a commit that has already been pushed or merged** - Rewriting published history breaks other clones and any autosynced live branch; commit a new change (or `git revert`) instead once it's left the local repo
 11. **Hand-write or edit a `Commit-Id:` value** - The `prepare-commit-msg` hook stamps the ordinal from the allocator. A typed or edited id collides with history, so the commit-msg hook refuses it
 

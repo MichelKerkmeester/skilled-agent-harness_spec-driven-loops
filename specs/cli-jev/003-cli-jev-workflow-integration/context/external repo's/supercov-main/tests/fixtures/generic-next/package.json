@@ -1,9 +1,0 @@
-{
-  "name": "supercov-generic-next-fixture",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "next build",
-    "test": "node --test"
-  }
-}

@@ -481,6 +481,64 @@
       }
     },
     {
+      "id": "git-message-gate",
+      "concern": "Refuse a commit message, PR description or branch name that breaks the repository's own templates",
+      "bindings": {
+        "claude": [
+          {
+            "event": "PreToolUse",
+            "group": 0,
+            "slot": 3,
+            "matcher": "Bash",
+            "runner": "node",
+            "script": ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "codex": [
+          {
+            "event": "PreToolUse",
+            "group": 0,
+            "slot": 2,
+            "matcher": "exec",
+            "runner": "node",
+            "script": ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+            "timeout": 5,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "preToolUse",
+            "group": 0,
+            "slot": 4,
+            "matcher": "Shell",
+            "runner": "node",
+            "script": ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "devin": [
+          {
+            "event": "PreToolUse",
+            "group": 0,
+            "slot": 3,
+            "matcher": "^exec$",
+            "runner": "node",
+            "script": ".skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs",
+            "timeout": 5,
+            "fallback": "envelope",
+            "message": ""
+          }
+        ]
+      },
+      "pi": {
+        "extension": "git-message-gate.ts"
+      }
+    },
+    {
       "id": "git-primary-reconcile",
       "concern": "Reconcile clean local drift with the live branch in the background",
       "bindings": {

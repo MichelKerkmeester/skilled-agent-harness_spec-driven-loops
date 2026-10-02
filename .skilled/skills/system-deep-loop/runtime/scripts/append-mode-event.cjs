@@ -437,6 +437,27 @@ async function main() {
     }, rawEvent);
     eventRecord = adapter.prepareEvent(preparedInput, registry);
     legacyWarnings = upcast.warnings;
+  } else if (
+    normalizedMode === 'deep-review'
+    && rawEvent
+    && typeof rawEvent === 'object'
+    && !Array.isArray(rawEvent)
+    && rawEvent.type === 'iteration'
+  ) {
+    // The review agent, its iteration prompt and its workflow all hand the gateway the canonical
+    // iteration record itself. Its optional fields vary with review depth and executor, so it
+    // travels whole under one stem, and the state projection writes it back as the same row.
+    const sessionId = typeof rawEvent.sessionId === 'string' && rawEvent.sessionId
+      ? rawEvent.sessionId
+      : 'run-cli';
+    const preparedInput = buildPreparedInput({
+      stem: 'deep_review.iteration_recorded',
+      scope: { runId: sessionId, sessionId },
+      data: { record: rawEvent },
+      prevEventHash: currentHead.recordHash,
+      replay: defaultReplay,
+    }, rawEvent);
+    eventRecord = adapter.prepareEvent(preparedInput, registry);
   } else {
     throw new Error('Unrecognized event format: expected object with stem or event_type');
   }

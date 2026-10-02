@@ -1,0 +1,29 @@
+{
+  "level": "2",
+  "specFolder": "sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes",
+  "description": "The hooks are installed machine-wide through `core.hooksPath`, but they choose their source root from a file inside whatever repository they fire in,",
+  "keywords": [
+    "hooks",
+    "installed",
+    "machine-wide",
+    "core",
+    "hookspath",
+    "choose",
+    "source",
+    "root",
+    "file",
+    "inside",
+    "whatever",
+    "repository",
+    "fire"
+  ],
+  "lastUpdated": "2026-10-02T17:35:45.390Z",
+  "specId": "001",
+  "folderSlug": "git-hook-review-fixes",
+  "parentChain": [
+    "sk-git",
+    "032-template-driven-message-enforcement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

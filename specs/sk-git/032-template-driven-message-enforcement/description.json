@@ -1,0 +1,27 @@
+{
+  "level": "3",
+  "specFolder": "sk-git/032-template-driven-message-enforcement",
+  "description": "The sk-git commit contract is written three times: as prose in `SKILL.md` and `assets/commit-message-template.md`, and as hardcoded regexes in",
+  "keywords": [
+    "sk-git",
+    "commit",
+    "contract",
+    "written",
+    "three",
+    "times",
+    "prose",
+    "skill",
+    "assets",
+    "commit-message-template",
+    "hardcoded",
+    "regexes"
+  ],
+  "lastUpdated": "2026-10-02T17:36:00.724Z",
+  "specId": "032",
+  "folderSlug": "template-driven-message-enforcement",
+  "parentChain": [
+    "sk-git"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

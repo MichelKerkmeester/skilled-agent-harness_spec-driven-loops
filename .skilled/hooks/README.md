@@ -29,7 +29,7 @@ A fifth folder, [`git/`](./git/README.md), holds the git commit-hooks installer 
 
 Beyond those real-code cores, this tree is now the **full browsable index of every repo-authored hook**. Skill-owned hooks whose logic is genuinely their skill's engine still keep their **code** in the owning skill, but each is **symlinked in** here under `<concern>/<runtime>/` (the symlink is the index entry, the code stays local): so one directory shows every hook the repo installs, organized by concern and runtime.
 
-Every concern honors the master `SYSTEM_HOOKS_DISABLED` switch and its canonical `SYSTEM_<CONCERN>_DISABLED` switch. The default is enabled; truthy disable values are `1`, `true`, `yes`, and `on` (case-insensitive). See the kill-switch index below for the complete concern and alias inventory.
+Every concern except `git-message-gate` honors the master `SYSTEM_HOOKS_DISABLED` switch and its canonical `SYSTEM_<CONCERN>_DISABLED` switch. The message gate has none on purpose: the commit, PR and branch rules carry no bypass on any surface, and the place to change them is the rules block in the sk-git templates. The default is enabled; truthy disable values are `1`, `true`, `yes`, and `on` (case-insensitive). See the kill-switch index below for the complete concern and alias inventory.
 
 ### Kill-switch index
 
@@ -147,7 +147,7 @@ hooks/
     `-- opencode/ opencode-goal.js (browsability symlink -> ../../../plugins/)
 ```
 
-**Skill-owned concerns are indexed here too**: the tree above shows only the concerns whose *real code* lives in this hub. Every skill-owned concern is additionally present as per-runtime symlinks under `<concern>/<runtime>/` (real code stays in the owning skill; see "Full index + kill-switches" above): `skill-advisor/`, `spec-gate/`, `session-lifecycle/`, `completion/`, `directive-lifecycle/`, `git-preflight/`, `dist-freshness/`, `codex-watchdog/`, and `permission-policy/`.
+**Skill-owned concerns are indexed here too**: the tree above shows only the concerns whose *real code* lives in this hub. Every skill-owned concern is additionally present as per-runtime symlinks under `<concern>/<runtime>/` (real code stays in the owning skill; see "Full index + kill-switches" above): `skill-advisor/`, `spec-gate/`, `session-lifecycle/`, `completion/`, `directive-lifecycle/`, `git-preflight/`, `git-message-gate/`, `dist-freshness/`, `codex-watchdog/`, and `permission-policy/`.
 
 Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch/pi/`, `mcp-route-guard/pi/`, `post-edit-quality/pi/`, `task-dispatch/pi/`, `goal/pi/`), Pi auto-discovers `.pi/extensions/`, but its loader follows symlinks and resolves each extension's relative imports against the *symlink* path (probe-verified against the installed loader), so `.pi/extensions/` holds relative symlinks back to the real files and every import stays written for the `.pi/extensions/` base. OpenCode (`.opencode/plugins/*.js`) remains the one runtime whose adapter files genuinely cannot live here: its plugins are real modules in a fixed folder OpenCode's loader scans by a flat glob, so only their `require()`/`import` path to these cores changed. For browsability, each concern's `opencode/` subfolder holds a *relative symlink back into* `.skilled/plugins/`, the reverse of Pi's direction: nothing loads through the OpenCode symlink (verified: the loader globs only `.opencode/plugins/`, not the tree), it is a documentation mirror so the tree shows OpenCode beside the other runtimes. Cursor's multiplexed `post-tool-use.mjs` proxy is indexed under both `dispatch/cursor/` and `post-edit-quality/cursor/` because one live adapter serves both concerns.
 
@@ -238,6 +238,7 @@ For the *why* behind each absence, why a runtime has no adapter for a concern, s
 | `directive-lifecycle` | ✓ covered |, by-design: embedded in the shared `user-prompt-submit` lifecycle |, by-design: embedded in the shared `user-prompt-submit` lifecycle |, by-design: embedded in the shared `user-prompt-submit` lifecycle |, by-design: embedded in `system-skill-advisor` lifecycle state |, by-design: embedded in `prompt-advisor.ts` directive de-dup |
 | `dispatch` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `dist-freshness` |, by-design: OpenCode plugin owns source/dist freshness projection |, by-design: OpenCode plugin owns source/dist freshness projection |, by-design: OpenCode plugin owns source/dist freshness projection |, by-design: OpenCode plugin owns source/dist freshness projection | ✓ covered |, by-design: OpenCode plugin owns source/dist freshness projection |
+| `git-message-gate` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `git-preflight` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `goal` |, by-design: native host goal command; the packet goal reaches it through the speckit workflows |, by-design: native host goal command; same | ✓ covered (injection + packet read) | ✓ covered (injection only) | ✓ covered | ✓ covered |
 | `mcp-route-guard` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |

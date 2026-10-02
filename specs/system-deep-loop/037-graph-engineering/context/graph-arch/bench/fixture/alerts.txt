@@ -1,2 +1,0 @@
-09:15 PAGE checkout SLO burn rate critical (/charge)
-09:20 WARN payments-svc error budget 40% consumed

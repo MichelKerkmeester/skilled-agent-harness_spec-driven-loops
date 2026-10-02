@@ -13,7 +13,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const __dirname = path.dirname(__filename);
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..', '..', '..');
 const DIST_LIB = path.join(ROOT, 'runtime', 'cli', 'dist', 'lib', 'frontmatter-migration.js');
@@ -130,13 +130,15 @@ function run() {
     const reportApply = path.join(tmpRoot, 'apply-report.json');
     const reportDry = path.join(tmpRoot, 'dry-report.json');
 
-    execSync(
-      `node "${DIST_CLI}" --apply --roots "${specsRoot}" --skip-templates --include-archive --report "${reportApply}"`,
+    execFileSync(
+      'node',
+      [DIST_CLI, '--apply', '--roots', specsRoot, '--skip-templates', '--include-archive', '--report', reportApply],
       { stdio: 'pipe' }
     );
 
-    execSync(
-      `node "${DIST_CLI}" --dry-run --roots "${specsRoot}" --skip-templates --include-archive --report "${reportDry}"`,
+    execFileSync(
+      'node',
+      [DIST_CLI, '--dry-run', '--roots', specsRoot, '--skip-templates', '--include-archive', '--report', reportDry],
       { stdio: 'pipe' }
     );
 
@@ -230,8 +232,9 @@ triggerPhrases: ["alpha, beta", "gamma"]
     const reportPath = path.join(tmpRoot, 'malformed-report.json');
     let exitedNonZero = false;
     try {
-      execSync(
-        `node "${DIST_CLI}" --dry-run --roots "${specsRoot}" --skip-templates --report "${reportPath}"`,
+      execFileSync(
+        'node',
+        [DIST_CLI, '--dry-run', '--roots', specsRoot, '--skip-templates', '--report', reportPath],
         { stdio: 'pipe' }
       );
     } catch (error) {
@@ -267,8 +270,9 @@ triggerPhrases: ["alpha, beta", "gamma"]
     fs.writeFileSync(path.join(specDir, 'spec.md'), '# Template Coverage\n', 'utf-8');
 
     const reportPath = path.join(tmpRoot, 'template-coverage-report.json');
-    execSync(
-      `node "${DIST_CLI}" --dry-run --roots "${specsRoot}" --report "${reportPath}"`,
+    execFileSync(
+      'node',
+      [DIST_CLI, '--dry-run', '--roots', specsRoot, '--report', reportPath],
       { stdio: 'pipe' }
     );
 

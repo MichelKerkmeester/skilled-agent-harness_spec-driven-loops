@@ -537,6 +537,13 @@ export interface IterationErrorRecordedData extends JsonObject {
   readonly lineageMode: string;
 }
 
+// A review iteration record reaches the gateway whole. Its optional fields vary with the review
+// depth and the executor, so it travels under one key and the state projection unwraps it into
+// the same `type: "iteration"` row the reducer counts.
+export interface IterationRecordedData extends JsonObject {
+  readonly record: JsonObject;
+}
+
 export const DeepReviewEventStems = Object.freeze([
   'deep_review.run_initialized',
   'deep_review.run_resumed',
@@ -570,6 +577,7 @@ export const DeepReviewEventStems = Object.freeze([
   'deep_review.synthesis_complete',
   'deep_review.claim_adjudication',
   'deep_review.iteration_error',
+  'deep_review.iteration_recorded',
 ] as const);
 
 export type DeepReviewEventStem = typeof DeepReviewEventStems[number];
@@ -616,6 +624,7 @@ export const DEEP_REVIEW_STEM_PRODUCERS = Object.freeze({
   'deep_review.synthesis_complete': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs'] },
   'deep_review.claim_adjudication': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
   'deep_review.iteration_error': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
+  'deep_review.iteration_recorded': { status: 'spoken', producers: ['.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs'] },
 } as const satisfies Readonly<Record<DeepReviewEventStem, DeepReviewStemProducerStatus>>);
 
 export const DeepReviewWireEventTypes = Object.freeze({
@@ -651,6 +660,7 @@ export const DeepReviewWireEventTypes = Object.freeze({
   'deep_review.synthesis_complete': 'deep-review.ledger.synthesis-complete',
   'deep_review.claim_adjudication': 'deep-review.ledger.claim-adjudication',
   'deep_review.iteration_error': 'deep-review.ledger.iteration-error',
+  'deep_review.iteration_recorded': 'deep-review.ledger.iteration-recorded',
 } as const satisfies Readonly<Record<DeepReviewEventStem, string>>);
 
 export type DeepReviewWireEventType =
@@ -689,6 +699,7 @@ export interface DeepReviewPayloadMap {
   readonly 'deep_review.synthesis_complete': SynthesisCompleteData;
   readonly 'deep_review.claim_adjudication': ClaimAdjudicationData;
   readonly 'deep_review.iteration_error': IterationErrorRecordedData;
+  readonly 'deep_review.iteration_recorded': IterationRecordedData;
 }
 
 export interface DeepReviewScopeMap {
@@ -724,6 +735,7 @@ export interface DeepReviewScopeMap {
   readonly 'deep_review.synthesis_complete': DeepReviewBaseScope;
   readonly 'deep_review.claim_adjudication': DeepReviewBaseScope;
   readonly 'deep_review.iteration_error': DeepReviewBaseScope;
+  readonly 'deep_review.iteration_recorded': DeepReviewBaseScope;
 }
 
 export interface DeepReviewLedgerPayload<

@@ -241,7 +241,6 @@ is what changes, never the checks.
 |---|---|
 | `sk-create-quality-control` | Its HVR review step. The audit owns structure, DQI and validators, this mode owns the voice finding it reports |
 | Every `sk-create-*` sibling | The voice pass over the prose their templates produce |
-| `sk-communication` | Voice guidance by route rather than by a second copy |
 
 ---
 

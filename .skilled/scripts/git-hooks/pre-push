@@ -1,30 +1,43 @@
 #!/usr/bin/env bash
-# Pre-push hook — independent safety and consistency gates run before origin:
+# Pre-push hook — independent safety and consistency gates run before a push:
 #
-#                         grammar (updates to an existing remote branch are
-#                         always naming-exempt — migration tolerance for a
-#                         name that predates or falls outside the grammar).
-#   2. Permission gate:   ANY push (new branch OR update) to a branch outside
-#                         the remote allowlist needs an explicit ask-first
-#                         confirmation for THIS push specifically — a prior
-#                         approval for an earlier push does not carry forward.
-#
-#   3. Skill metadata:    skill changes must keep root metadata projections fresh.
-#   4. Test suites:       discovered suites report failures, or block when enforced.
-#   5. Track roots:       each pushed commit's track roots must list exactly the
-#                         packets they hold (SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 skips).
+#   Mass deletion:     blocks a push that deletes more tracked files than
+#                      SPECKIT_MASS_DELETION_THRESHOLD (default 100);
+#                      SPECKIT_ALLOW_MASS_DELETION=1 authorizes one push.
+#   Permission:        ANY push (new branch OR update) to a branch outside
+#                      the remote allowlist needs an explicit ask-first
+#                      confirmation for THIS push specifically — a prior
+#                      approval for an earlier push does not carry forward.
+#                      Release branches (skilled/v*) are exempt, and the
+#                      live-branch autosync publish (SPECKIT_AUTOSYNC=1 with
+#                      SPECKIT_LIVE_BRANCH=<branch>) passes for updates to
+#                      that one branch.
+#   Skill metadata:    warns when skill changes leave root metadata stale;
+#                      never blocks (SPECKIT_SKIP_PREPUSH_SKILL_GATE=1 skips).
+#   Compiled routing:  the route guard must pass, and a pushed commit that is
+#                      HEAD must carry the routing bytes the guard approved
+#                      (SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 skips both).
+#   Track roots:       each pushed ref's tip must have track roots that list
+#                      exactly the packets they hold
+#                      (SPECKIT_SKIP_PREPUSH_TRACK_GATE=1 skips).
+#   Message contract:  every commit the push adds and every new branch name
+#                      must meet the rules the repository's own templates
+#                      declare. This is what catches a commit made with
+#                      --no-verify, and it has no bypass.
 #
 # The gates are independently bypassable; skipping one never skips another.
+# The hooks are installed machine-wide. Scripts from a repository's own tree run
+# only in the checkout the hooks live in (or one of its worktrees), or where the
+# repository's local config sets skilled.trustRepoHooks=true.
 #
 # Protocol: git feeds "<local ref> <local sha> <remote ref> <remote sha>"
 # lines on stdin, one per ref being pushed. A remote sha of all-zeros means
-# the push CREATES a new remote branch — only the naming gate cares about
-# that distinction; the permission gate applies either way.
+# the push CREATES a new remote branch.
 #
 # Bypass permission only: SPECKIT_ALLOW_REMOTE_PUSH=1 git push ...
-# Allowlist file:         .opencode/skills/sk-git/scripts/remote-branch-allowlist.txt
-# Install: bash .opencode/scripts/install-git-hooks.sh
-# Uninstall: rm .git/hooks/pre-push
+# Allowlist file:         .skilled/skills/sk-git/scripts/remote-branch-allowlist.txt
+# Install:   bash .skilled/scripts/install-git-hooks.sh
+# Uninstall: bash .skilled/scripts/install-git-hooks.sh --uninstall
 
 set -euo pipefail
 
@@ -45,6 +58,26 @@ _in_toolchain_repo() {
   [[ -n "$REPO_ROOT" && -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]]
 }
 # <<< source-root selection
+# >>> hook trust (identical in every global hook script)
+# These scripts are installed once for every repository on the machine, and the block
+# above picks the source tree from the repository the hook fires in. A cloned repository
+# controls that tree, so its scripts run only when it shares a git common dir with the
+# checkout these hooks live in (that checkout or one of its worktrees), or when its local
+# config sets skilled.trustRepoHooks=true. Local config is never cloned, and command-line
+# or environment config does not count, so a repository cannot opt itself in. An
+# untrusted repository is treated as one without the toolchain.
+_trust_self="${BASH_SOURCE[0]}"
+while [[ -L "$_trust_self" ]]; do
+  _trust_link="$(readlink "$_trust_self")"
+  case "$_trust_link" in /*) _trust_self="$_trust_link" ;; *) _trust_self="$(dirname "$_trust_self")/$_trust_link" ;; esac
+done
+_hook_common="$(cd "$(dirname "$_trust_self")" 2>/dev/null && env -u GIT_DIR -u GIT_WORK_TREE -u GIT_COMMON_DIR -u GIT_INDEX_FILE git rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)"
+_repo_common="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)"
+if [[ -n "$REPO_ROOT" && ( -z "$_hook_common" || "$_hook_common" != "$_repo_common" ) ]] \
+  && [[ "$(git config --local --bool skilled.trustRepoHooks 2>/dev/null || true)" != "true" ]]; then
+  SOURCE_ROOT="$REPO_ROOT/.skilled-untrusted"
+fi
+# <<< hook trust
 
 # Mass-deletion guard: source if present. The gate inside the loop checks that
 # its function actually loaded before using it, so a lib that fails to load means
@@ -72,12 +105,11 @@ NAMING="$SOURCE_ROOT/skills/sk-git/scripts/worktree-naming.sh"
 NAMING_AVAILABLE=1
 NAMING_MISSING=0
 if [[ ! -f "$NAMING" ]]; then
+  # Without the script the remote allowlist cannot be read, so the permission gate
+  # below asks for approval rather than disappearing. A repository without the
+  # toolchain has no allowlist to read and gets no new output from these hooks.
   if _in_toolchain_repo; then
-    # Without the script the remote allowlist cannot be read, so the permission gate
-    # below asks for approval rather than disappearing.
     NAMING_MISSING=1
-  else
-    echo "⚠️  pre-push: worktree-naming.sh not found at $NAMING — skipping the remote-push-permission gate." >&2
   fi
   NAMING_AVAILABLE=0
 else
@@ -97,6 +129,32 @@ else
 fi
 
 
+
+# --- Message contract: the rules come from the pushed repository's templates, ---
+# --- the validator from beside this hook ---
+REMOTE_NAME="${1:-origin}"
+_self="${BASH_SOURCE[0]}"
+while [[ -L "$_self" ]]; do
+  _link="$(readlink "$_self")"
+  case "$_link" in /*) _self="$_link" ;; *) _self="$(dirname "$_self")/$_link" ;; esac
+done
+HOOK_DIR="$(cd "$(dirname "$_self")" && pwd -P)"
+CONTRACT_GATE_READY=0
+CONTRACT_GATE_BROKEN=""
+if [[ -f "$HOOK_DIR/lib/message-contract-gate.sh" ]]; then
+  # shellcheck source=lib/message-contract-gate.sh
+  . "$HOOK_DIR/lib/message-contract-gate.sh"
+  CONTRACT_VALIDATOR="$(mcg_validator_path "$HOOK_DIR" "$REPO_ROOT")"
+  _unavailable="$(mcg_unavailable_reason "$CONTRACT_VALIDATOR")"
+  if [[ -z "$_unavailable" ]]; then
+    CONTRACT_GATE_READY=1
+  elif mcg_repo_declares_rules "$REPO_ROOT" commit-message-template.md \
+       || mcg_repo_declares_rules "$REPO_ROOT" worktree-checklist.md; then
+    CONTRACT_GATE_BROKEN="$_unavailable"
+  fi
+elif _in_toolchain_repo; then
+  CONTRACT_GATE_BROKEN="the hook helpers are missing at $HOOK_DIR/lib"
+fi
 
 REJECTED=0
 AUTOSYNC_LIVE_PUSH=0
@@ -157,6 +215,46 @@ while read -r _ local_sha remote_ref remote_sha; do
   fi
 
   PUSHED_SHAS="${PUSHED_SHAS} ${local_sha}"
+
+  # ── Gate 6: message contract — every branch, releases and main included ──
+  # A deletion pushes no commits. Only what this push adds is checked: commits that
+  # no remote-tracking ref holds, of any remote, since the target may be a URL or a
+  # remote never fetched, and for an update nothing the old remote tip holds. An old
+  # tip missing from the local object store (a force-push over unfetched work) cannot
+  # be excluded, so the remote-tracking refs bound the range alone. The ref being
+  # overwritten is excluded from the Commit-Id check so a rebase is not compared
+  # with itself.
+  if [[ ! "$local_sha" =~ ^0+$ ]]; then
+    if [[ -n "$CONTRACT_GATE_BROKEN" ]]; then
+      echo "BLOCKED [gate:message-contract]: this repository declares message rules, but $CONTRACT_GATE_BROKEN." >&2
+      REJECTED=1
+      continue
+    fi
+    if [[ "$CONTRACT_GATE_READY" -eq 1 ]]; then
+      _range="$local_sha --not --remotes"
+      if [[ "$is_new" -eq 0 ]] && git -C "$REPO_ROOT" cat-file -e "${remote_sha}^{commit}" 2>/dev/null; then
+        _range="$local_sha --not $remote_sha --remotes"
+      fi
+      _contract_rc=0
+      node "$CONTRACT_VALIDATOR" --repo "$REPO_ROOT" --rev-list "$_range" \
+        --exclude-ref "refs/remotes/$REMOTE_NAME/$branch_name" || _contract_rc=$?
+      if [[ "$_contract_rc" -eq 1 ]]; then
+        echo "BLOCKED [gate:message-contract]: commits pushed to '$branch_name' break the commit rules above." >&2
+        echo "   Reword them (git rebase -i, then reword) and push again." >&2
+        REJECTED=1
+        continue
+      elif [[ "$_contract_rc" -ne 0 ]]; then
+        echo "BLOCKED [gate:message-contract]: the message validator could not check the commits pushed to '$branch_name' (exit $_contract_rc); its error is above." >&2
+        REJECTED=1
+        continue
+      fi
+      if [[ "$is_new" -eq 1 ]] && ! node "$CONTRACT_VALIDATOR" --repo "$REPO_ROOT" --branch "$branch_name"; then
+        echo "BLOCKED [gate:message-contract]: new branch '$branch_name' breaks the naming rules above." >&2
+        REJECTED=1
+        continue
+      fi
+    fi
+  fi
 
   # Release branches are the one namespace the naming/permission gates never touch.
   case "$branch_name" in
@@ -247,9 +345,10 @@ fi
 # origin. It exists because both live regressions to date were pushes that grew
 # a skill's doc corpus without regenerating its generated files — CI on the
 # release line only catches that after the fact, while this catches it before.
-# The gate is dependency-free and finishes in about a second, so it runs
-# blocking (unlike the report-only test gate below); a stale result is fixed
-# with `ci-skill-root-metadata.cjs --fix`, not bypassed.
+# The gate is dependency-free and finishes in about a second. It warns and never
+# blocks: CI enforces the same check on main and skilled/v*, and the hook cannot
+# regenerate bytes for a commit that already exists. A stale result is fixed with
+# `ci-skill-root-metadata.cjs --fix`.
 #
 # The gate reads the working tree, which on a normal push from a clean worktree
 # is exactly what is being pushed. A deliberately partial push from a dirty
@@ -269,8 +368,8 @@ if [[ "${SPECKIT_SKIP_PREPUSH_SKILL_GATE:-0}" != "1" ]]; then
       {
         echo ""
         if [[ "$AUTOSYNC_LIVE_PUSH" -eq 1 ]]; then
-          echo "AUTOSYNC BLOCKED [gate:skill-root-metadata]: generated or authored skill metadata is stale."
-          echo "The hook cannot safely regenerate committed bytes after the commit already exists."
+          echo "WARNING [gate:skill-root-metadata]: this live-branch publish carries stale skill metadata."
+          echo "Not blocking: the hook cannot regenerate committed bytes, and CI enforces this on main and skilled/v*."
         else
           echo "WARNING [gate:skill-root-metadata]: skill-root metadata is stale for skills being pushed."
           echo "Not blocking: CI enforces this on every push to main and skilled/v*."
@@ -349,7 +448,12 @@ if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
     '.skilled/skills/*/ROUTER.md'
     '.skilled/skills/*/SKILL.md'
   )
+  # The comparison checks the guard's own verdict, so it runs only where the guard ran,
+  # and only for the pushed commit the working tree belongs to: any other commit would be
+  # compared with a tree it never had.
+  HEAD_SHA="$(git -C "$REPO_ROOT" rev-parse -q --verify HEAD 2>/dev/null || true)"
   for pushed_sha in $PUSHED_SHAS; do
+    [[ -f "$ROUTE_GUARD" && -n "$HEAD_SHA" && "$pushed_sha" == "$HEAD_SHA" ]] || continue
     git -C "$REPO_ROOT" cat-file -e "${pushed_sha}^{commit}" 2>/dev/null || continue
     if ! git -C "$REPO_ROOT" diff --quiet "$pushed_sha" -- "${ROUTING_BYTES[@]}" 2>/dev/null; then
       {

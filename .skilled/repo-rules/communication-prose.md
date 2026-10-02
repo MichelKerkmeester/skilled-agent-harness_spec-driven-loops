@@ -13,11 +13,14 @@ trigger_phrases:
   - "relation between sentences"
   - "moving parts"
   - "mechanism visibility"
+  - "reads like terminal output"
+  - "robotic wording"
+  - "too terse to understand"
   - "concise is not compressed"
   - "connective tissue"
 importance_tier: important
 contextType: reference
-version: 1.1.1.0
+version: 1.1.1.1
 ---
 
 # Rule: Communication prose
@@ -85,6 +88,14 @@ Three new terms in one paragraph is a paragraph nobody finishes.
 The failure this prevents: the reader stops reading and starts decoding, and stops
 noticing whether they agree.
 
+Do not ship replies in terse machine register. Replace arrows or symbols standing in for
+verbs with action words. For stacked noun phrases, say who does what, using the
+[HVR nominalization guidance](../skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md#nominalization-and-stacked-compression).
+Explain each ID, abbreviation or status code in plain words. Say what each bare count
+or label measures and what it means. Turn sentence fragments into complete sentences
+with a subject and verb. The failure this prevents: readers have to guess at the action,
+referent or result.
+
 ---
 
 ## 3. PUNCTUATION THE READER TRIPS ON
@@ -139,6 +150,9 @@ reply telegraphic, the reader rebuilds the argument the reply no longer states.
 
 - [ ] Every sentence carries one idea, and no sentence stacks clauses a reader has to unpick.
 - [ ] Every paragraph stands on its own, and the rhythm varies rather than marching.
+- [ ] Replies use action words for arrows and symbols, say who does what, explain IDs,
+  abbreviations and status codes, state what bare counts and labels mean, and turn
+  fragments into full sentences.
 - [ ] Each sentence says how it attaches to the one before, rather than sitting beside it.
 - [ ] Where a sentence explains how something works, it names the moving part.
 - [ ] Plain words, with exact names kept only for the things that have them.

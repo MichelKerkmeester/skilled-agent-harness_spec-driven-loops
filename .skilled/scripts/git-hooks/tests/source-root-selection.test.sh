@@ -95,6 +95,63 @@ mkdir -p "$T/foreign"
 chk "$(select_in "$T/foreign")" ".opencode foreign" "a repository without the toolchain is not treated as one"
 chk "$(select_in "")" ".opencode foreign" "outside any repository nothing is treated as the toolchain"
 
+# ── 4. every global hook carries the same trust block ──
+TRUSTING="pre-commit prepare-commit-msg post-commit post-merge post-rewrite pre-push"
+trust_block_of() { # trust_block_of <file>: print the trust block, markers included
+  awk 'index($0, "# >>> hook trust") == 1 { on = 1 } on { print } index($0, "# <<< hook trust") == 1 { on = 0 }' "$1"
+}
+trust_ref="$(trust_block_of "$SOURCE/scripts/git-hooks/pre-commit")"
+chk "$([[ -n "$trust_ref" ]] && echo yes || echo no)" "yes" "pre-commit yields a non-empty trust block"
+for name in $TRUSTING; do
+  file="$SOURCE/scripts/git-hooks/$name"
+  chk "$(grep -c '^# >>> hook trust' "$file")" "1" "$name carries the trust block once"
+  chk "$([[ "$(trust_block_of "$file")" == "$trust_ref" ]] && echo same || echo differs)" "same" "$name matches the reference trust block"
+done
+
+# ── 5. the trust block keeps a repository's own tree only when it is trusted ──
+# A probe script stands in for a hook: it lives in its own checkout ("home"), is
+# reached through a symlink the way core.hooksPath reaches the real hooks, and
+# prints the source root the trust block leaves.
+git init -q "$T/home"
+git -C "$T/home" -c user.email=t@example.com -c user.name=test commit -q --allow-empty -m init
+{
+  printf '%s\n' 'REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"'
+  printf '%s\n' 'SOURCE_ROOT="$REPO_ROOT/.skilled"'
+  printf '%s\n' "$trust_ref"
+  printf '%s\n' 'printf "%s\n" "${SOURCE_ROOT##*/}"'
+} > "$T/home/probe.sh"
+git -C "$T/home" worktree add -q "$T/home-wt" 2>/dev/null
+mkdir -p "$T/linked"; ln -s "$T/home/probe.sh" "$T/linked/probe.sh"
+git init -q "$T/clone"
+probe() { # probe <cwd> [env-assignment...]: print the source root the probe keeps
+  local dir="$1"; shift
+  ( cd "$dir" && env "$@" bash "$T/linked/probe.sh" )
+}
+chk "$(probe "$T/home")" ".skilled" "the hooks' own checkout is trusted"
+chk "$(probe "$T/home-wt")" ".skilled" "a worktree of the hooks' checkout is trusted"
+chk "$(probe "$T/clone")" ".skilled-untrusted" "another repository is not trusted"
+chk "$(probe "$T/clone" GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=skilled.trustRepoHooks GIT_CONFIG_VALUE_0=true)" \
+  ".skilled-untrusted" "an environment-scope opt-in does not count"
+git -C "$T/clone" config skilled.trustRepoHooks true
+chk "$(probe "$T/clone")" ".skilled" "a local-config opt-in is trusted"
+
+# ── 6. a cloned repository's planted guard library never runs ──
+# End to end through the real post-commit hook: the clone carries the toolchain
+# sentinel and a guard library that leaves a marker file when sourced.
+git init -q "$T/victim"
+sentinel "$T/victim/.skilled"
+mkdir -p "$T/victim/.skilled/scripts/git-hooks/lib"
+printf 'autostash_orphan_guard() { : > "%s"; }\n' "$T/planted-ran" \
+  > "$T/victim/.skilled/scripts/git-hooks/lib/autostash-orphan-guard.sh"
+printf 'x\n' > "$T/victim/file.txt"
+git -C "$T/victim" add file.txt
+git -C "$T/victim" -c core.hooksPath=/dev/null -c user.email=t@example.com -c user.name=test commit -q -m seed
+( cd "$T/victim" && bash "$SOURCE/scripts/git-hooks/post-commit" ) >/dev/null 2>&1
+chk "$([[ -e "$T/planted-ran" ]] && echo ran || echo blocked)" "blocked" "an untrusted clone's planted guard library does not run"
+git -C "$T/victim" config skilled.trustRepoHooks true
+( cd "$T/victim" && bash "$SOURCE/scripts/git-hooks/post-commit" ) >/dev/null 2>&1
+chk "$([[ -e "$T/planted-ran" ]] && echo ran || echo blocked)" "ran" "the same library runs once the repository opts in"
+
 echo ""
 echo "--- source-root-selection: $pass passed, $fail failed ---"
 [[ "$fail" -eq 0 ]]

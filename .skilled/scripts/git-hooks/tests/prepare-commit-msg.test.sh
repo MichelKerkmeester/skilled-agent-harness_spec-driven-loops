@@ -39,11 +39,13 @@ setup_repo() {
   mkdir -p "$TMP"
   git -C "$TMP" init -q
   git -C "$TMP" config core.hooksPath /dev/null
+  # The hooks run tree scripts only for their own checkout or a repo that opts in locally.
+  git -C "$TMP" config skilled.trustRepoHooks true
   git -C "$TMP" config user.email t@example.com
   git -C "$TMP" config user.name test
   echo seed > "$TMP/seed.txt"
   git -C "$TMP" add seed.txt
-  SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git -C "$TMP" commit -qm "chore(sk-git): seed the fixture"
+  git -C "$TMP" commit -qm "chore(sk-git): seed the fixture"
   mkdir -p "$TMP/.opencode/skills/sk-git"
   cp -R "$ALLOCATOR_DIR" "$TMP/.opencode/skills/sk-git/scripts"
 }
@@ -163,18 +165,38 @@ check_rc "amend exits 0" 0 "$RC"
 check_count "amend keeps its id" '^Commit-Id: 0009001$' 1 "$TMP/message.txt"
 check_count "amend adds no second id" '^Commit-Id:' 1 "$TMP/message.txt"
 
-# ── 5. a cherry-pick re-mints and drops the copied id ───────────────────────
+# ── 5. a real cherry-pick, clean or continued after a conflict, re-mints ────
+# git passes source "message" for a clean pick and "merge" when a conflicted
+# pick is continued; both must drop the copied id and stamp a fresh one.
 setup_repo
-cat > "$TMP/message.txt" <<'MSG'
-feat(sk-git): re-mint a picked commit
-
-Commit-Id: 0009123
-MSG
-touch "$TMP/.git/CHERRY_PICK_HEAD"
-run_hook commit "$(git -C "$TMP" rev-parse HEAD)"; RC=$?
-check_rc "cherry-pick exits 0" 0 "$RC"
-check_count "cherry-pick stamps one fresh id" '^Commit-Id: [0-9]{7}$' 1 "$TMP/message.txt"
-check_absent "cherry-pick drops the copied id" '0009123' "$TMP/message.txt"
+mkdir -p "$TMP/hooks"
+ln -s "$HOOK" "$TMP/hooks/prepare-commit-msg"
+BASE="$(git -C "$TMP" rev-parse --abbrev-ref HEAD)"
+git -C "$TMP" checkout -q -b picked
+echo picked > "$TMP/picked.txt"
+git -C "$TMP" add picked.txt
+git -C "$TMP" commit -q -m "feat(sk-git): re-mint a picked commit" -m "Commit-Id: 0009123"
+echo one > "$TMP/clash.txt"
+git -C "$TMP" add clash.txt
+git -C "$TMP" commit -q -m "feat(sk-git): clash on a file" -m "Commit-Id: 0009124"
+git -C "$TMP" checkout -q "$BASE"
+echo two > "$TMP/clash.txt"
+git -C "$TMP" add clash.txt
+git -C "$TMP" commit -q -m "chore(sk-git): hold the other side"
+git -C "$TMP" config core.hooksPath "$TMP/hooks"
+git -C "$TMP" cherry-pick picked~1 >"$TMP/out.log" 2>&1; RC=$?
+check_rc "a clean cherry-pick exits 0" 0 "$RC"
+git -C "$TMP" log -1 --format=%B > "$TMP/message.txt"
+check_count "a clean cherry-pick stamps one fresh id" '^Commit-Id: [0-9]{7}$' 1 "$TMP/message.txt"
+check_absent "a clean cherry-pick drops the copied id" '0009123' "$TMP/message.txt"
+git -C "$TMP" cherry-pick picked >"$TMP/out.log" 2>&1
+echo one > "$TMP/clash.txt"
+git -C "$TMP" add clash.txt
+GIT_EDITOR=true git -C "$TMP" cherry-pick --continue >"$TMP/out.log" 2>&1; RC=$?
+check_rc "a continued cherry-pick exits 0" 0 "$RC"
+git -C "$TMP" log -1 --format=%B > "$TMP/message.txt"
+check_count "a continued cherry-pick stamps one fresh id" '^Commit-Id: [0-9]{7}$' 1 "$TMP/message.txt"
+check_absent "a continued cherry-pick drops the copied id" '0009124' "$TMP/message.txt"
 
 # ── 6. a merge source is left untouched ─────────────────────────────────────
 setup_repo
@@ -210,6 +232,7 @@ This body explains the comment case.
 
 # Please enter the commit message for your changes.
 # Lines starting with '#' will be ignored.
+#
 MSG
 run_hook message; RC=$?
 check_rc "comment case exits 0" 0 "$RC"
@@ -224,6 +247,7 @@ feat(sk-git): keep a configured comment char
 This body explains the commentChar case.
 
 ; Please enter the commit message for your changes.
+;
 MSG
 run_hook message; RC=$?
 check_rc "commentChar case exits 0" 0 "$RC"
@@ -331,13 +355,36 @@ run_hook message; RC=$?
 check_rc "attribution strip exits 0" 0 "$RC"
 check_absent "Co-Authored-By is stripped" 'Co-Authored-By' "$TMP/message.txt"
 check_absent "Claude-Session is stripped" 'Claude-Session' "$TMP/message.txt"
-check_absent "Anthropic trailer is stripped" 'Anthropic' "$TMP/message.txt"
+  check_count "a trailer that only names the vendor is kept for the validator" '^Generated-By: Anthropic Claude$' 1 "$TMP/message.txt"
+  check_count "each removed line is reported" 'removed attribution line' 2 "$TMP/out.log"
 check_count "the prose body survives the strip" '^This body explains why the attribution never lands\.$' 1 "$TMP/message.txt"
 check_count "one id is stamped after the strip" '^Commit-Id: [0-9]{7}$' 1 "$TMP/message.txt"
 cp "$TMP/message.txt" "$TMP/after-strip.txt"
 run_hook message; RC=$?
 check_rc "a second run still exits 0" 0 "$RC"
 check_same "a second run changes nothing" "$TMP/after-strip.txt" "$TMP/message.txt"
+
+# ── 15b. a subject or prose line naming the vendor is never removed ─────────
+setup_repo
+cat > "$TMP/message.txt" <<'MSG'
+docs: list the anthropic models we support
+
+Context: the Anthropic API renamed two models.
+
+Second paragraph stays.
+MSG
+run_hook message; RC=$?
+check_rc "a vendor-naming message exits 0" 0 "$RC"
+check_count "a subject naming the vendor is kept" '^docs: list the anthropic models we support$' 1 "$TMP/message.txt"
+check_count "a Context line naming the vendor is kept" '^Context: the Anthropic API renamed two models\.$' 1 "$TMP/message.txt"
+check_absent "nothing is reported as removed" 'removed attribution line' "$TMP/out.log"
+
+# ── 15c. a -m body line starting with # stays above the stamped id ──────────
+setup_repo
+printf 'feat(sk-git): keep a hash line\n\nThe fix for this.\n#43 was the cause.\n' > "$TMP/message.txt"
+run_hook message; RC=$?
+check_rc "a hash body line exits 0" 0 "$RC"
+check_before "the hash line stays in the body, above the id" '^#43 was the cause\.$' '^Commit-Id:' "$TMP/message.txt"
 
 # ── 16. a missing allocator warns where the toolchain ships, and never blocks ──
 setup_repo

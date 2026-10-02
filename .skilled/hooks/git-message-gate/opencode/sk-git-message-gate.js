@@ -1,0 +1,1 @@
+../../../plugins/sk-git-message-gate.js

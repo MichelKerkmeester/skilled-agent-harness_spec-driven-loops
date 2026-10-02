@@ -128,7 +128,7 @@ SCRATCH="$(mktemp -d)"
 git -C "$SCRATCH" init -q -b sandbox-shared-checkout
 git -C "$SCRATCH" config user.email guard@fixture.local
 git -C "$SCRATCH" config user.name "guard fixture"
-SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git -C "$SCRATCH" commit -q --allow-empty -m "chore(sandbox): init deterministic guard fixture"
+git -C "$SCRATCH" commit -q --allow-empty -m "chore(sandbox): init deterministic guard fixture"
 
 cat > /tmp/live-session-cleanup.mjs <<'EOF'
 import { pathToFileURL } from 'node:url';

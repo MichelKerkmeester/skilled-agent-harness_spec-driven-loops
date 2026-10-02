@@ -479,6 +479,9 @@ const DATA_FIELD_RULES = Object.freeze({
     generation: 'uint32',
     lineageMode: 'code',
   },
+  'deep_review.iteration_recorded': {
+    record: 'json',
+  },
 } as const satisfies Readonly<
   Record<DeepReviewEventStem, Readonly<Record<string, DataFieldRule>>>
 >);
@@ -547,6 +550,7 @@ const SCOPE_FIELDS = Object.freeze({
   'deep_review.synthesis_complete': ['runId', 'sessionId'],
   'deep_review.claim_adjudication': ['runId', 'sessionId'],
   'deep_review.iteration_error': ['runId', 'sessionId'],
+  'deep_review.iteration_recorded': ['runId', 'sessionId'],
 } as const satisfies Readonly<Record<DeepReviewEventStem, readonly string[]>>);
 
 const HASH_PATTERN = /^[a-f0-9]{64}$/;

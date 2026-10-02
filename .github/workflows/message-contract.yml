@@ -1,0 +1,93 @@
+name: Message Contract
+# Every local gate (commit-msg, pre-push, the agent gate) can be skipped by a
+# machine without the hooks or by --no-verify. This check cannot: it holds each
+# pushed commit, each new branch name and each PR description to the rules the
+# repository's own sk-git templates declare. Make it a required status check in
+# the branch ruleset so a failure blocks the merge.
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  message-contract:
+    name: Commit messages, branch names and PR description follow the templates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+
+      - name: Locate the validator
+        run: |
+          set -euo pipefail
+          VALIDATOR=".skilled/skills/sk-git/scripts/validate-message.mjs"
+          # Fail closed: a change that deletes or moves the validator must not
+          # silently disable its own gate.
+          if [ ! -f "$VALIDATOR" ]; then
+            echo "::error::Message validator not found at $VALIDATOR; failing closed."
+            exit 1
+          fi
+          echo "VALIDATOR=$VALIDATOR" >> "$GITHUB_ENV"
+          node "$VALIDATOR" --explain
+
+      - name: Test message contract rules
+        run: node --test .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs
+
+      - name: Check pushed commits and a new branch name
+        if: github.event_name == 'push'
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+          BRANCH: ${{ github.ref_name }}
+          CREATED: ${{ github.event.created }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          # A new branch, or a force push whose old tip is gone, is checked from
+          # where it leaves the default branch.
+          if [[ "$BEFORE" =~ ^0+$ ]] || ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            RANGE="origin/$DEFAULT_BRANCH..$AFTER"
+          else
+            RANGE="$BEFORE..$AFTER"
+          fi
+          node "$VALIDATOR" --rev-list "$RANGE" --exclude-ref "origin/$BRANCH"
+          if [[ "$CREATED" == "true" ]]; then
+            node "$VALIDATOR" --branch "$BRANCH"
+          fi
+
+      - name: Check PR commits, branch name and description
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+          THIS_REPO: ${{ github.repository }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+        run: |
+          set -euo pipefail
+          STATUS=0
+          node "$VALIDATOR" --rev-list "$BASE_SHA..$HEAD_SHA" --exclude-ref "origin/$HEAD_REF" || STATUS=1
+          # The naming contract governs this repository's own branches; a fork
+          # names its branches however it likes.
+          if [[ "$HEAD_REPO" == "$THIS_REPO" ]]; then
+            node "$VALIDATOR" --branch "$HEAD_REF" || STATUS=1
+          fi
+          # Dependabot writes its own release-notes description and cannot follow
+          # the PR template; its commits and branch name are still checked above.
+          if [[ "$PR_AUTHOR" != "dependabot[bot]" ]]; then
+            # The body travels through the environment, never through the shell
+            # source, so its text can never run as a command.
+            printf '%s' "$PR_BODY" > "$RUNNER_TEMP/pr-body.md"
+            node "$VALIDATOR" --pr-body "$RUNNER_TEMP/pr-body.md" || STATUS=1
+          fi
+          exit "$STATUS"

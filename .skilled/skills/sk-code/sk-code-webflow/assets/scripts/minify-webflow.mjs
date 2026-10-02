@@ -16,7 +16,7 @@
 // and prevents the "is this minified or not?" ambiguity that the old
 // dual-output convention created. See: to_min_path() helper below.
 
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import { readdirSync, statSync, existsSync, readFileSync, mkdirSync, writeFileSync } from 'fs';
 import { join, dirname, relative } from 'path';
 import { createHash } from 'crypto';
@@ -100,8 +100,9 @@ function minify_file(relative_path) {
   const source_size = statSync(source_path).size;
 
   try {
-    // Run terser
-    execSync(`npx terser "${source_path}" --compress --mangle -o "${output_path}"`, {
+    // Run terser. Arguments go straight to the process with no shell, so a
+    // quote or space in a file name cannot change the command.
+    execFileSync('npx', ['terser', source_path, '--compress', '--mangle', '-o', output_path], {
       stdio: 'pipe',
     });
 

@@ -26,7 +26,7 @@ This feature belongs to the script entry points group and is catalogued as F055 
 
 ## 2. HOW IT WORKS
 
-The append gateway is the sanctioned way every canonical record reaches a mode's state log. It authorizes a mode event against the mode's durable authority record, appends it to the typed ledger behind a fence, returns a receipt, and refreshes the legacy projection so existing consumers keep reading the same file. This path writes no authority record — authority is moved separately by the flip — so the gateway behaves identically before a cutover and after modes reach `new_authoritative_final`; each append authorizes against whatever durable record the mode already holds.
+The append gateway is the sanctioned way every canonical record reaches a mode's state log. It authorizes a mode event against the mode's durable authority record, appends it to the typed ledger behind a fence, returns a receipt, and refreshes the legacy projection so existing consumers keep reading the same file. This path writes no authority record — authority is moved separately by the flip — so the gateway behaves identically before a cutover and after modes reach `new_authoritative_final`; each append authorizes against whatever durable record the mode already holds. In review mode it also takes the bare canonical iteration record a review worker hands over (`"type":"iteration"`, no `stem`), records it whole under `deep_review.iteration_recorded`, and the refreshed state log carries it back as the same row.
 
 The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 

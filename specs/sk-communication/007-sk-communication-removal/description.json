@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-communication/007-sk-communication-removal",
+  "description": "Delete the sk-communication skill, its /rewrite commands, plugin and every live reference, and upgrade the communication repo rules to replace it",
+  "keywords": [
+    "delete",
+    "sk-communication",
+    "skill",
+    "rewrite",
+    "commands",
+    "plugin",
+    "every",
+    "live",
+    "reference",
+    "upgrade",
+    "communication",
+    "repo",
+    "rules",
+    "replace"
+  ],
+  "lastUpdated": "2026-10-02T04:49:06.776Z",
+  "specId": "007",
+  "folderSlug": "sk-communication-removal",
+  "parentChain": [
+    "sk-communication"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -37,7 +37,9 @@ const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..', '..');
 
 /** The fleet's expected class map. A change here is a deliberate act. */
 const EXPECTED_CLASSES = {
+  'cli-classifier': contract.CLASS_HUB,
   'cli-external-orchestration': contract.CLASS_HUB,
+  'cli-orca': contract.CLASS_STANDALONE,
   'mcp-code-mode': contract.CLASS_STANDALONE,
   'mcp-tooling': contract.CLASS_HUB,
   'sk-code': contract.CLASS_HUB,
@@ -51,7 +53,6 @@ const EXPECTED_CLASSES = {
   'system-deep-loop': contract.CLASS_HUB,
   'system-skill-advisor': contract.CLASS_STANDALONE,
   'system-spec-kit': contract.CLASS_STANDALONE,
-  'sk-communication': contract.CLASS_STANDALONE,
   'sk-vision': contract.CLASS_STANDALONE,
 };
 

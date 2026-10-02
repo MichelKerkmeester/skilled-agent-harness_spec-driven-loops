@@ -1,7 +1,0 @@
-__pycache__/
-*.pyc
-.venv*/
-target/
-target-native/
-.pytest_cache/
-*.gguf

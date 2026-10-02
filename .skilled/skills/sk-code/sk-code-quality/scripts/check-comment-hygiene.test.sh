@@ -59,6 +59,25 @@ run_case 0 "durable_phase_label" "js" "// Phase 2 protocol stage"
 run_case 0 "string_literal" "js" "const pointer = \"spec 019\";"
 run_case 0 "url_literal" "js" "// See https://example.test/spec 019"
 
+# Several files in one run: any violation decides the exit, and each file is reported.
+printf '%s\n' "// RC-2 x" > "$TMP_DIR/multi_bad.js"
+printf '%s\n' "// a normal comment" > "$TMP_DIR/multi_good.js"
+printf '%s\n' "plain" > "$TMP_DIR/multi_skip.txt"
+set +e
+multi_output="$(python3 "$CHECKER" "$TMP_DIR/multi_good.js" "$TMP_DIR/multi_bad.js" "$TMP_DIR/multi_skip.txt" 2>&1)"
+multi_exit=$?
+python3 "$CHECKER" "$TMP_DIR/multi_good.js" "$TMP_DIR/multi_skip.txt" >/dev/null 2>&1
+clean_exit=$?
+python3 "$CHECKER" "$TMP_DIR/multi_skip.txt" "$TMP_DIR/multi_skip.txt" >/dev/null 2>&1
+skip_exit=$?
+set -e
+if [[ "$multi_exit" -eq 1 && "$multi_output" == *"multi_bad.js:1:"* && "$clean_exit" -eq 0 && "$skip_exit" -eq 2 ]]; then
+  printf 'PASS multi_file\n'
+else
+  printf 'FAIL multi_file: exits %s/%s/%s\n%s\n' "$multi_exit" "$clean_exit" "$skip_exit" "$multi_output" >&2
+  failures=$((failures + 1))
+fi
+
 if [[ "$failures" -gt 0 ]]; then
   printf '%s comment hygiene test case(s) failed\n' "$failures" >&2
   exit 1
