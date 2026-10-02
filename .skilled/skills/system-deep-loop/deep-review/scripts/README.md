@@ -22,7 +22,7 @@ trigger_phrases:
 |---|---|
 | `divergent-review-pivot.ts` | Implements the divergent review pivot entrypoint. |
 | `render-contract-snapshot.cjs` | Renders the review contract snapshot. |
-| `score-residue-flagger.cjs` | Counts review finding rows per severity and dimension, makes no model call unless `--jev` or `--deem` is set, and draws label rows into `residue-flagger-labels.jsonl`. |
+| `score-residue-flagger.cjs` | Counts review finding rows per severity and dimension, makes no model call unless `--jev` is set, and draws label rows into `residue-flagger-labels.jsonl`. |
 | `runtime-capabilities.cjs` | Reports runtime capabilities used by the review workflow. |
 | `tests/` | Holds review-specific test sources. |
 

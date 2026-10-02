@@ -1,6 +1,6 @@
 ---
 title: "Reviewer verdict fallback"
-description: "Measures offline how well a Deem or Jev grader resolves the reviewer outputs the deterministic verdict pattern misses, against operator labels."
+description: "Measures offline how well a Jev grader resolves the reviewer outputs the deterministic verdict pattern misses, against operator labels."
 trigger_phrases:
   - "reviewer verdict fallback"
   - "score-verdict-fallback.cjs"
@@ -15,9 +15,9 @@ version: 1.19.0.0
 
 ## 1. OVERVIEW
 
-Measures offline how well a Deem or Jev grader resolves the reviewer outputs the deterministic verdict pattern misses, against operator labels.
+Measures offline how well a Jev grader resolves the reviewer outputs the deterministic verdict pattern misses, against operator labels.
 
-The reviewer scorer takes its verdict from a one-line pattern and falls back to its `llm` grader when the pattern finds none. This script measures whether a Deem or Jev answer to one fixed question earns that fallback before one is wired in. It writes nothing outside the operator's `--out` directory, and by default it makes no model call and writes no file.
+The reviewer scorer takes its verdict from a one-line pattern and falls back to its `llm` grader when the pattern finds none. This script measures whether a Jev answer to one fixed question earns that fallback before one is wired in. It writes nothing outside the operator's `--out` directory, and by default it makes no model call and writes no file.
 
 ---
 
@@ -31,13 +31,13 @@ The baseline for the labeled misses is the stronger of two zero-call rules: the 
 
 ### Label Gate and Keep Rule
 
-The script prints the question every grader answers, `Which verdict does this reviewer output give?`, the three answer options and their digest, the three option orders, the 0.10 margin, the keep rule and the power note, so a printed verdict can be rechecked by hand. Below 12 labeled regex-miss outputs, or with no labeled output in one of the three classes, it prints a `stop:` line and asks no grader a question. When the baseline is already right on more than 90 percent of the labeled misses it prints `no headroom`. Otherwise it prints the planned calls for each arm.
+The script prints the question every grader answers, `Which verdict does this reviewer output give?`, the three answer options and their digest, the three option orders, the 0.10 margin, the keep rule and the power note, so a printed verdict can be rechecked by hand. Below 12 labeled regex-miss outputs, or with no labeled output in one of the three classes, it prints a `stop:` line and asks no grader a question. When the baseline is already right on more than 90 percent of the labeled misses it prints `no headroom`. Otherwise it prints the planned calls for the Jev arm.
 
-### Deem and Jev Arms
+### Jev Arm
 
-`--deem` checks `cli-deem health`, then asks the local Deem server the question once per labeled miss and option order, so nothing leaves the machine. `--jev` checks the Jev client's version and credential, then asks the same questions through the client. That sends the reviewer outputs off the machine, so an untracked outputs file also needs `--accept-payload`. Each labeled miss is asked in all three option orders, so unstable answers count as flips. With both switches the Jev gate and arm run first, then the Deem gate and arm, each on its own gate.
+`--jev` checks the Jev client's version and credential, then asks the question once per labeled miss and option order through the client. That sends the reviewer outputs off the machine, so an untracked outputs file also needs `--accept-payload`. Each labeled miss is asked in all three option orders, so unstable answers count as flips.
 
-Each switch needs `--out <dir>`. The arm prints its planned calls before the first one, records every call in `calls.jsonl` and writes `report.json`. A failed check or a closed label gate prints a `<backend> arm skipped:` line instead and makes no call. A finished arm prints one `verdict <backend>:` line with `keep`, `kill` or `stop` and its reason. An answer that is not one of the three keys counts as unmeasured and never as a pick.
+`--jev` needs `--out <dir>`. The arm prints its planned calls before the first one, records every call in `calls.jsonl` and writes `report.json`. A failed check or a closed label gate prints a `jev arm skipped:` line instead and makes no call. A finished arm prints one `verdict jev:` line with `keep`, `kill` or `stop` and its reason. An answer that is not one of the three keys counts as unmeasured and never as a pick.
 
 ---
 
@@ -47,13 +47,13 @@ Each switch needs `--out <dir>`. The arm prints its planned calls before the fir
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` | Script | Runs the fixture and outputs census, the two baselines, the label gate and the opt-in Deem and Jev arms. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` | Script | Runs the fixture and outputs census, the two baselines, the label gate and the opt-in Jev arm. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts` | Vitest | Covers the census, the labels, the baselines, the keep rule, both gates and both arms against stub `cli-deem` and `jev` binaries. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts` | Vitest | Covers the census, the labels, the baselines, the keep rule, the label gate and the Jev arm against a stub `jev` binary. |
 | `.skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/` | Manual playbook | Scenario `MB-052` checks the census on the fixtures and a stub-backend skip. |
 
 ---

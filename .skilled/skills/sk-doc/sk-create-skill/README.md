@@ -95,7 +95,7 @@ node .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs --
 node .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs --score <file>
 ```
 
-`--score` refuses to judge below 30 labeled rows and prints `stop: fewer than 30 labeled rows`. Past that gate, `--jev` or `--deem` with `--out <dir>` asks the classifier three times per row in rotated option order and prints one verdict per backend against the router's first alternative. A `keep` serves nothing, because the front door still prints no default.
+`--score` refuses to judge below 30 labeled rows and prints `stop: fewer than 30 labeled rows`. Past that gate, `--jev` with `--out <dir>` asks the classifier three times per row in rotated option order and prints one verdict against the router's first alternative. A `keep` serves nothing, because the front door still prints no default.
 
 ### Replaying Stage-Two Leaf Routes
 
@@ -103,10 +103,10 @@ When a hub's `ROUTER.md` keyword block scores a request, the winning intents pic
 
 ```bash
 node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --report <dir> --transcripts <dir> --prose <file>
-node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --jev --deem --out <dir>
+node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --jev --out <dir>
 ```
 
-Both tie-break arms stay dormant behind their gates. `--jev` or `--deem` with `--out <dir>` runs the matching gate and, when it passes, asks the classifier three times per tied row in rotated option order and prints one `verdict` line per backend. A `keep` serves nothing, because no router, map, manifest or playbook is touched.
+The tie-break arm stays dormant behind its gate. `--jev` with `--out <dir>` runs its gate and, when it passes, asks the classifier three times per tied row in rotated option order and prints one `verdict` line. A `keep` serves nothing, because no router, map, manifest or playbook is touched.
 
 ---
 
@@ -167,8 +167,8 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 | Package completion | `python3 scripts/validate_skill_package.py <path>` | Ends with `package_skill.py --check: PASS (exit 0)`. Parent hubs also report legacy or compiled-ready state |
 | Strict contract check | `python3 scripts/validate_skill_package.py <path> --strict` | Promotes noncanonical generated paths from advisory to blocking |
 | Structure extraction | `python3 ../shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |
-| Clarify census and scorer | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | `pass 28` and `fail 0` |
-| Leaf-route replay | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | `pass 33` and `fail 0` |
+| Clarify census and scorer | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | `pass 22` and `fail 0` |
+| Leaf-route replay | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | `pass 31` and `fail 0` |
 
 ---
 

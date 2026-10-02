@@ -2,7 +2,7 @@
 name: sk-create-with-human-voice
 description: Apply the Human Voice Rules to prose, or score prose against them, with a scope gate first and a re-scan after the rewrite.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 <!-- Keywords: create-with-human-voice, /create:with-human-voice, human voice rules, apply human voice, rewrite in human voice, make this sound human, sounds ai-generated, reads like ai wrote it, remove ai tells, ai writing tells, voice pass, hvr_scan -->
@@ -56,7 +56,7 @@ route here: `apply`, which edits, and `score`, which reports and does not.
 - `references/scoring-and-verification.md` - pass order, precedence arithmetic, bands, and the re-scan.
 - `assets/voice-report-template.md` - the shape of the result.
 - `scripts/hvr_scan.py` - the mechanical pass. Parses the standard at run time.
-- `scripts/hvr_reader_lens.py` - the offline reader-needed lens, making zero model calls on its default run and measuring a backend only when `--jev` or `--deem` is set with `--out <dir>`, leaving `hvr_scan.py` unchanged.
+- `scripts/hvr_reader_lens.py` - the offline reader-needed lens, making zero model calls on its default run and measuring the backend only when `--jev` is set with `--out <dir>`, leaving `hvr_scan.py` unchanged.
 - `references/hvr-rules.md` - the base, what a reply loads. Referenced, never copied.
 - `references/hvr-publish-supplement.md` - the supplement, what a published document adds. Loaded after the base when a document is scored or published.
 

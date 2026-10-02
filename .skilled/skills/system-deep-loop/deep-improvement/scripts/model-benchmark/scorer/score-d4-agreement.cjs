@@ -6,7 +6,7 @@
 'use strict';
 
 /**
- * Measure offline whether a Jev or Deem noul that flags invented flags, files
+ * Measure offline whether a Jev noul that flags invented flags, files
  * or functions agrees with the operator's labels more often than the
  * deterministic hallucination-flag check. The default run makes no model call
  * and writes no file, and the script holds and reads no credential.
@@ -27,7 +27,7 @@ const { parseArgs } = require('node:util');
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The one judgment question a noul answers; both arms ask exactly this.
+// The one judgment question a noul answers; the arm asks exactly this.
 const QUESTION = 'Does this output name a command-line flag, file or function that the task does not provide?';
 // The margin the keep rule demands between the column and the baseline.
 const MARGIN_LINE = 'margin: 0.10';
@@ -46,7 +46,7 @@ const DEFAULT_FIXTURES_DIR = path.resolve(__dirname, '../../../assets/model-benc
 // The deterministic check the baseline column runs.
 const HALLUCINATION_CHECK = path.join(__dirname, 'deterministic', 'hallucination-flag.cjs');
 // The usage line printed whenever the run cannot start.
-const USAGE = 'usage: score-d4-agreement.cjs --outputs <dir> [--fixtures <dir>] [--labels <file>] [--jev] [--deem] [--out <dir>] [--accept-payload]';
+const USAGE = 'usage: score-d4-agreement.cjs --outputs <dir> [--fixtures <dir>] [--labels <file>] [--jev] [--out <dir>] [--accept-payload]';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. CENSUS
@@ -290,17 +290,17 @@ function binomialTail(successes, trials) {
  * flips check binds only the rerun-sampled backend, since a single call
  * cannot flip.
  *
- * @param {{ backend: string, K: number, M: number, A: number, B: number, W: number, L: number, F: number }} counts - Column counts
+ * @param {{ K: number, M: number, A: number, B: number, W: number, L: number, F: number }} counts - Column counts
  * @returns {{ outcome: 'keep'|'kill'|'stop', reason: 'coverage'|'margin'|'sign test'|'flips'|null, pWin: number, pLoss: number }} Verdict with both exact tails
  */
-function decideVerdict({ backend, K, M, A, B, W, L, F }) {
+function decideVerdict({ K, M, A, B, W, L, F }) {
   const win = binomialTail(W, W + L);
   const loss = binomialTail(L, W + L);
   if (!(10 * M >= 9 * K)) return { outcome: 'stop', reason: 'coverage', pWin: win.p, pLoss: loss.p };
   if (20n * loss.num < loss.den) return { outcome: 'kill', reason: null, pWin: win.p, pLoss: loss.p };
   if (!(10 * (A - B) >= M)) return { outcome: 'stop', reason: 'margin', pWin: win.p, pLoss: loss.p };
   if (!(20n * win.num < win.den)) return { outcome: 'stop', reason: 'sign test', pWin: win.p, pLoss: loss.p };
-  if (backend === 'jev' && !(10 * F <= 3 * M)) return { outcome: 'stop', reason: 'flips', pWin: win.p, pLoss: loss.p };
+  if (!(10 * F <= 3 * M)) return { outcome: 'stop', reason: 'flips', pWin: win.p, pLoss: loss.p };
   return { outcome: 'keep', reason: null, pWin: win.p, pLoss: loss.p };
 }
 
@@ -319,7 +319,7 @@ function formatP(p) {
  * class named at least twice, and the reruns that dissent from it add to the
  * flip count, so an unstable call is never hidden.
  *
- * @param {'jev'|'deem'} backend - Backend name, printed on the verdict line
+ * @param {'jev'} backend - Backend name, printed on the verdict line
  * @param {Array<{ file: string, label: 'yes'|'no' }>} rows - Labeled rows, in file order
  * @param {Map<string, Array<number|null>>} answers - Output file name -> submitted answers
  * @param {Map<string, 'yes'|'no'>} baselineCalls - Output file name -> baseline call
@@ -328,7 +328,7 @@ function formatP(p) {
  * @returns {{ backend: string, K: number, M: number, unmeasured: number, A: number, B: number, W: number, L: number, F: number|null, pWin: number, pLoss: number, outcome: string, reason: string|null, line: string }} Column summary
  */
 function summarizeColumn(backend, rows, answers, baselineCalls, labelsSha, suffix) {
-  const expected = backend === 'jev' ? JEV_RERUNS : 1;
+  const expected = JEV_RERUNS;
   const K = rows.length;
   let M = 0;
   let A = 0;
@@ -341,14 +341,9 @@ function summarizeColumn(backend, rows, answers, baselineCalls, labelsSha, suffi
     if (!Array.isArray(values) || values.length !== expected) continue;
     if (!values.every((value) => Number.isFinite(value) && value >= 0 && value <= 1)) continue;
     M += 1;
-    let call;
-    if (backend === 'jev') {
-      const yesVotes = values.filter((value) => value >= 0.5).length;
-      call = yesVotes >= 2 ? 'yes' : 'no';
-      F += expected - (yesVotes >= 2 ? yesVotes : expected - yesVotes);
-    } else {
-      call = values[0] >= 0.5 ? 'yes' : 'no';
-    }
+    const yesVotes = values.filter((value) => value >= 0.5).length;
+    const call = yesVotes >= 2 ? 'yes' : 'no';
+    F += expected - (yesVotes >= 2 ? yesVotes : expected - yesVotes);
     const columnRight = call === row.label;
     const baselineRight = baselineCalls.get(row.file) === row.label;
     if (columnRight) A += 1;
@@ -356,25 +351,17 @@ function summarizeColumn(backend, rows, answers, baselineCalls, labelsSha, suffi
     if (columnRight && !baselineRight) W += 1;
     if (baselineRight && !columnRight) L += 1;
   }
-  const verdict = decideVerdict({ backend, K, M, A, B, W, L, F });
+  const verdict = decideVerdict({ K, M, A, B, W, L, F });
   const outcomeText = verdict.reason === null ? verdict.outcome : `stop (${verdict.reason})`;
-  let line = `verdict ${backend}: ${outcomeText} K=${K} M=${M} A=${A} B=${B} W=${W} L=${L} F=${backend === 'jev' ? F : 'n/a'} p_win=${formatP(verdict.pWin)} p_loss=${formatP(verdict.pLoss)} labels_sha256=${labelsSha}`;
+  let line = `verdict ${backend}: ${outcomeText} K=${K} M=${M} A=${A} B=${B} W=${W} L=${L} F=${F} p_win=${formatP(verdict.pWin)} p_loss=${formatP(verdict.pLoss)} labels_sha256=${labelsSha}`;
   if (typeof suffix === 'string' && suffix.length > 0) line += ` ${suffix}`;
-  return { backend, K, M, unmeasured: K - M, A, B, W, L, F: backend === 'jev' ? F : null, pWin: verdict.pWin, pLoss: verdict.pLoss, outcome: verdict.outcome, reason: verdict.reason, line };
+  return { backend, K, M, unmeasured: K - M, A, B, W, L, F, pWin: verdict.pWin, pLoss: verdict.pLoss, outcome: verdict.outcome, reason: verdict.reason, line };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 7. DEEM GATE
+// 7. EXECUTABLE LOOKUP
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The model the Deem arm requires; any other is a failed health check.
-const DEEM_MODEL = 'deem-0.8-v1';
-// The noul p50 in deem-local.md, used for the wall-time estimate.
-const DEEM_P50_MS = 60.5;
-// Process cap; cli-deem applies its own 2,000 ms HTTP timeout.
-const HEALTH_TIMEOUT_MS = 10000;
-// Repo copy of the cli-deem entry point, run under node when none is on PATH.
-const REPO_CLI_DEEM = path.resolve(__dirname, '../../../../../cli-classifier/cli-deem/scripts/cli-deem.mjs');
 
 /**
  * First executable file of this name on PATH, or null when none is executable.
@@ -401,104 +388,6 @@ function which(name, env) {
   return null;
 }
 
-/**
- * cli-deem on PATH when that file is executable, otherwise the repo copy under node.
- *
- * @param {{ PATH?: string }} env Environment whose PATH is searched.
- * @returns {string[]} Command and leading arguments for one call.
- */
-function deemCommand(env) {
-  const onPath = which('cli-deem', env);
-  if (onPath !== null) return [onPath];
-  return [process.execPath, REPO_CLI_DEEM];
-}
-
-/**
- * One health check. An unreachable binary, a stub backend, or a wrong model
- * is a failed check the caller prints as a skip.
- *
- * @param {string[]} cmd Command from deemCommand.
- * @param {Record<string, string | undefined>} env Environment for the call.
- * @returns {{ ok: true, backend: string, model: string, modelCommit: string, sourceCommit: string } | { ok: false, reason: string, found: unknown }}
- */
-function readDeemHealth(cmd, env) {
-  const result = spawnSync(cmd[0], [...cmd.slice(1), 'health'], {
-    env,
-    encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'pipe'],
-    timeout: HEALTH_TIMEOUT_MS,
-  });
-  let errorText = (result.stderr ?? '').trim();
-  try {
-    errorText = JSON.parse(errorText).error;
-  } catch {
-    // Leave the trimmed stderr when it is not JSON.
-  }
-
-  if (result.error || result.status === 4) {
-    return { ok: false, reason: 'not reachable', found: errorText };
-  }
-  if (result.status === 3) {
-    let reason = 'bad health response';
-    if (typeof errorText === 'string' && errorText.includes('stub')) reason = 'stub backend';
-    else if (typeof errorText === 'string' && errorText.includes('refused model')) reason = 'model';
-    return { ok: false, reason, found: errorText };
-  }
-  if (result.status === 0) {
-    const stdoutText = (result.stdout ?? '').trim();
-    let body;
-    try {
-      body = JSON.parse(stdoutText);
-    } catch {
-      return { ok: false, reason: 'bad health response', found: stdoutText };
-    }
-    const backend = body?.backend;
-    if (typeof backend === 'string' && backend.includes('stub')) {
-      return { ok: false, reason: 'stub backend', found: backend };
-    }
-    if (backend !== 'torch' && !(typeof backend === 'string' && backend.startsWith('ensemble:'))) {
-      return { ok: false, reason: 'bad health response', found: String(backend) };
-    }
-    const model = body?.model;
-    if (model !== DEEM_MODEL) {
-      return { ok: false, reason: 'model', found: String(model) };
-    }
-    const modelCommit = body?.model_commit;
-    const sourceCommit = body?.source_commit;
-    if (
-      body?.ok !== true
-      || typeof modelCommit !== 'string'
-      || modelCommit === ''
-      || typeof sourceCommit !== 'string'
-      || sourceCommit === ''
-    ) {
-      return { ok: false, reason: 'bad health response', found: stdoutText };
-    }
-    return { ok: true, backend, model, modelCommit, sourceCommit };
-  }
-  return { ok: false, reason: 'bad health response', found: `exit ${result.status}: ${errorText}` };
-}
-
-/**
- * Prints the health line, or a skip line when the check fails.
- *
- * @param {{ out: (line: string) => void, env: Record<string, string | undefined> }} ctx Line writer and environment.
- * @returns {{ passed: boolean, cmd: string[], reason?: string }} True when the health check passed; a failed check carries the skip line it printed.
- */
-function deemGate(ctx) {
-  const cmd = deemCommand(ctx.env);
-  const health = readDeemHealth(cmd, ctx.env);
-  if (health.ok) {
-    ctx.out(`deem: health backend=${health.backend} model=${health.model} model_commit=${health.modelCommit} source_commit=${health.sourceCommit}`);
-    return { passed: true, cmd, ...health };
-  }
-  const skipLine = `deem arm skipped: ${health.reason}`;
-  ctx.out(skipLine);
-  if (health.reason === 'model' || health.reason === 'bad health response') {
-    ctx.out(`deem: found=${JSON.stringify(health.found)}`);
-  }
-  return { passed: false, cmd, reason: skipLine };
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 8. JEV GATE
@@ -720,13 +609,12 @@ function readStoredReport(outDir) {
  *   baseline: { method: 'check'|'majority', majorityClass: 'yes'|'no', checkRight: number, majorityRight: number, right: number },
  *   gateLine: string,
  *   labelsSha: string | null,
- *   jev?: object,
- *   deem?: object
+ *   jev?: object
  * }} parts
  * @returns {object} Report object ready for JSON.stringify.
  */
 function buildReport(parts) {
-  const { census, labeled, baseline, gateLine, labelsSha, jev, deem } = parts;
+  const { census, labeled, baseline, gateLine, labelsSha, jev } = parts;
   const report = {
     question: QUESTION,
     labelsSha256: labelsSha,
@@ -746,7 +634,7 @@ function buildReport(parts) {
     requalify: {},
   };
 
-  for (const [backend, arm] of [['jev', jev], ['deem', deem]]) {
+  for (const [backend, arm] of [['jev', jev]]) {
     if (!arm) continue;
     if (typeof arm.skipped === 'string') {
       report.skipped[backend] = arm.skipped;
@@ -774,11 +662,7 @@ function buildReport(parts) {
       unmeasured: column.unmeasured,
       latency: column.latency,
     };
-    if (backend === 'deem') {
-      report.columns[backend].modelId = column.modelId;
-      report.columns[backend].modelCommit = column.modelCommit;
-      report.columns[backend].sourceCommit = column.sourceCommit;
-    }
+
     if (backend === 'jev') {
       report.columns[backend].jevVersion = column.jevVersion;
       report.columns[backend].provider = column.provider;
@@ -790,152 +674,6 @@ function buildReport(parts) {
   return report;
 }
 
-/**
- * The Deem arm: one local noul per labeled row, one answer per call. A
- * measured call is exit 0 with a finite noul in [0, 1]; exit 0 without one is
- * a failed measurement. An exit-4 call rechecks the server health and retries
- * once, and a stop line ends the arm with the row count it finished. Nothing
- * leaves the machine, so no payload accept applies.
- *
- * @param {{
- *   rows: Array<{ file: string, label: 'yes'|'no', state: string }>,
- *   baselineCalls: Map<string, 'yes'|'no'>,
- *   labelsSha: string
- * }} plan Labeled rows with their state text, the baseline calls and the label
- *   digest.
- * @param {{ cmd: string[], model: string, modelCommit: string, sourceCommit: string }} gate
- *   Passing gate result: the command and the health identity.
- * @param {{
- *   out: (line: string) => void,
- *   env: Record<string, string | undefined>,
- *   timeoutMs: number,
- *   callLog: { append: (record: object) => void },
- *   stored: object | null
- * }} ctx Line writer, environment, per-call timeout, call log and the stored
- *   report.
- * @returns {{ column: object, requalify: string | null } | { stopped: string, partialRows: number }}
- *   The finished column or the stop line with the rows finished.
- */
-async function runDeemArm(plan, gate, ctx) {
-  ctx.out(`deem: nothing leaves the machine; planned calls: ${plan.rows.length}; estimated wall time: ${(plan.rows.length * DEEM_P50_MS / 1000).toFixed(1)} s at ${DEEM_P50_MS} ms per call, the noul p50 from deem-local.md`);
-
-  const answers = new Map();
-  const wallTimes = [];
-  let finished = 0;
-
-  /**
-   * One calls.jsonl record. A spawn that led to a stop or a retry carries no
-   * judgment, so its noul and status stay empty.
-   */
-  function record(row, attempt, r, noul, status) {
-    return {
-      backend: 'deem',
-      output: row.file,
-      rerun: 1,
-      attempt,
-      wallMs: r.wallMs,
-      exitCode: r.code,
-      noul,
-      status,
-      modelId: gate.model,
-      modelCommit: gate.modelCommit,
-      sourceCommit: gate.sourceCommit,
-    };
-  }
-
-  function stop(line) {
-    ctx.out(line);
-    ctx.out(`deem: partial rows=${finished}`);
-    return { stopped: line, partialRows: finished };
-  }
-
-  for (const row of plan.rows) {
-    const callArgs = [...gate.cmd.slice(1), 'noul', '-q', QUESTION];
-    let attempt = 1;
-    let r = await spawnCall(gate.cmd[0], callArgs, row.state, ctx.env, ctx.timeoutMs);
-    wallTimes.push(r.wallMs);
-
-    if (!r.timedOut && r.code === 4) {
-      ctx.callLog.append(record(row, attempt, r, null, 'unmeasured'));
-      const health = readDeemHealth(gate.cmd, ctx.env);
-      if (!health.ok) return stop('deem arm stopped: server gone');
-      if (health.modelCommit !== gate.modelCommit || health.sourceCommit !== gate.sourceCommit) {
-        return stop('deem arm stopped: model commit changed mid-run');
-      }
-      attempt = 2;
-      r = await spawnCall(gate.cmd[0], callArgs, row.state, ctx.env, ctx.timeoutMs);
-      wallTimes.push(r.wallMs);
-    }
-
-    let noul = null;
-    let status = 'unmeasured';
-    let stopLine = null;
-    if (r.timedOut) {
-      status = 'unmeasured_timeout';
-    } else if (r.code === 0) {
-      let parsed;
-      try {
-        parsed = JSON.parse(r.stdout);
-      } catch {
-        // A body that does not parse is a failed measurement, not a crash.
-      }
-      const value = parsed?.answers?.answer?.noul;
-      if (Number.isFinite(value) && value >= 0 && value <= 1) {
-        noul = value;
-        status = 'measured';
-      } else {
-        status = 'failed';
-      }
-    } else if (r.code === 2) {
-      stopLine = 'deem arm stopped: usage error';
-    } else if (r.code === 3) {
-      stopLine = 'deem arm stopped: backend refused';
-    } else if (r.code === 130) {
-      stopLine = 'deem arm stopped: interrupted';
-    }
-
-    ctx.callLog.append(record(row, attempt, r, noul, status));
-    if (stopLine !== null) return stop(stopLine);
-    answers.set(row.file, [noul]);
-    finished += 1;
-  }
-
-  const column = summarizeColumn(
-    'deem',
-    plan.rows,
-    answers,
-    plan.baselineCalls,
-    plan.labelsSha,
-    `model=${gate.model} model_commit=${gate.modelCommit} source_commit=${gate.sourceCommit}`,
-  );
-  const latency = {
-    p50: nearestRank(wallTimes, 0.5),
-    p95: nearestRank(wallTimes, 0.95),
-  };
-  ctx.out(`column deem: K=${column.K} measured=${column.M} unmeasured=${column.unmeasured} latency_p50_ms=${latency.p50 ?? 'none'} latency_p95_ms=${latency.p95 ?? 'none'}`);
-  ctx.out('flips: n/a (commit pair)');
-  const storedDeem = ctx.stored?.columns?.deem;
-  let requalify = null;
-  if (
-    storedDeem
-    && (storedDeem.modelCommit !== gate.modelCommit || storedDeem.sourceCommit !== gate.sourceCommit)
-  ) {
-    requalify = 'requalify: model commit changed';
-    ctx.out(requalify);
-  }
-  ctx.out(column.line);
-
-  return {
-    column: {
-      ...column,
-      latency,
-      modelId: gate.model,
-      modelCommit: gate.modelCommit,
-      sourceCommit: gate.sourceCommit,
-    },
-    requalify,
-  };
-}
 
 /**
  * The Jev arm: one auth test, then JEV_RERUNS hosted noul calls per labeled
@@ -1157,7 +895,7 @@ async function main(argv, deps = {}) {
         fixtures: { type: 'string' },
         labels: { type: 'string' },
         out: { type: 'string' },
-        deem: { type: 'boolean' },
+
         jev: { type: 'boolean' },
         'accept-payload': { type: 'boolean' },
       },
@@ -1171,10 +909,8 @@ async function main(argv, deps = {}) {
     err(USAGE);
     return 2;
   }
-  if ((values.deem === true || values.jev === true) && (typeof values.out !== 'string' || values.out === '')) {
-    err(values.deem === true
-      ? '--deem needs --out <dir> so every call is recorded'
-      : '--jev needs --out <dir> so every call is recorded');
+  if (values.jev === true && (typeof values.out !== 'string' || values.out === '')) {
+    err('--jev needs --out <dir> so every call is recorded');
     return 2;
   }
 
@@ -1257,11 +993,11 @@ async function main(argv, deps = {}) {
     gateLine = 'no headroom';
   } else {
     gate = 'open';
-    gateLine = `planned calls: jev ${3 * K + 1}, deem ${K}`;
+    gateLine = `planned calls: jev ${3 * K + 1}`;
   }
   out(gateLine);
 
-  const stored = values.deem === true || values.jev === true ? readStoredReport(values.out) : null;
+  const stored = values.jev === true ? readStoredReport(values.out) : null;
   const callLog = createCallLog(values.out);
   const plan = gate === 'open' ? { rows: rows.map((row) => ({ file: row.file, label: row.label, state: buildState(row.fixture, fs.readFileSync(row.outputPath, 'utf8')) })), baselineCalls: baseline.calls, labelsSha } : null;
 
@@ -1278,20 +1014,7 @@ async function main(argv, deps = {}) {
       jevResult = await runJevArm(plan, jevCheck, { out, env, timeoutMs, backoffMs, callLog, stored });
     }
   }
-  let deemResult;
-  if (values.deem === true) {
-    const deemCheck = deemGate({ out, env });
-    if (!deemCheck.passed) {
-      deemResult = { skipped: deemCheck.reason };
-    } else if (gate !== 'open') {
-      const line = gate === 'headroom' ? 'deem arm skipped: no headroom' : 'deem arm skipped: label gate';
-      out(line);
-      deemResult = { skipped: line };
-    } else {
-      deemResult = await runDeemArm(plan, deemCheck, { out, env, timeoutMs, callLog, stored });
-    }
-  }
-  if (values.deem === true || values.jev === true) {
+  if (values.jev === true) {
     const report = buildReport({
       census: { outputs: outputs.length, matched: matched.length, unmatched: unmatched.length, fixtures: fixtures.total, allowlist: fixtures.withAllowlist },
       labeled: { K, yes, no, dropped: labels.size - K },
@@ -1299,7 +1022,6 @@ async function main(argv, deps = {}) {
       gateLine,
       labelsSha,
       jev: jevResult,
-      deem: deemResult,
     });
     fs.mkdirSync(values.out, { recursive: true });
     fs.writeFileSync(path.join(values.out, 'report.json'), JSON.stringify(report, null, 2) + '\n');
@@ -1311,7 +1033,7 @@ async function main(argv, deps = {}) {
 // 11. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { QUESTION, MARGIN_LINE, KEEP_RULE_LINE, POWER_LINE, LABEL_GATE, CLASS_GATE, JEV_RERUNS, DEFAULT_FIXTURES_DIR, HALLUCINATION_CHECK, USAGE, DEEM_MODEL, DEEM_P50_MS, JEV_VERSION, listOutputs, loadFixtures, matchOutputs, parseLabels, sha256Hex, buildState, deterministicCall, chooseBaseline, binomialTail, decideVerdict, formatP, summarizeColumn, which, deemCommand, readDeemHealth, deemGate, trackedFiles, jevGate, nearestRank, spawnCall, createCallLog, readStoredReport, buildReport, runDeemArm, runJevArm, main };
+module.exports = { QUESTION, MARGIN_LINE, KEEP_RULE_LINE, POWER_LINE, LABEL_GATE, CLASS_GATE, JEV_RERUNS, DEFAULT_FIXTURES_DIR, HALLUCINATION_CHECK, USAGE, JEV_VERSION, listOutputs, loadFixtures, matchOutputs, parseLabels, sha256Hex, buildState, deterministicCall, chooseBaseline, binomialTail, decideVerdict, formatP, summarizeColumn, which, trackedFiles, jevGate, nearestRank, spawnCall, createCallLog, readStoredReport, buildReport, runJevArm, main };
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 12. CLI ENTRYPOINT

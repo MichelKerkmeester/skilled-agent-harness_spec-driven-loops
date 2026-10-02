@@ -33,8 +33,8 @@ const SKIP_SUFFIX = 'column skipped: rater report has none';
 const REQUALIFY_LINE = 'requalify: rater changed';
 // The two zero-call columns every report carries.
 const DEFAULT_COLUMNS = ['legacy', 'sources'];
-// The two model columns a run adds on request.
-const MODEL_COLUMNS = ['jev', 'deem'];
+// The one model column a run adds on request.
+const MODEL_COLUMNS = ['jev'];
 // The leading hex characters of a report digest printed on a verdict line.
 const SHA_CHARS = 12;
 // The coverage floor: measured lineages as a share of the census.
@@ -54,7 +54,7 @@ const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, kill p_loss < 0.05, pre
 // live gate to fill with the iteration it is shown at.
 const KEEP_HINT_TEMPLATE = '**Stop hint**: <column> replay says this loop found its last new cited source by iteration <t>';
 // The usage line for the one supported invocation.
-const USAGE = 'node .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs --rater-report <dir> [--jev] [--deem] [--out <dir>]';
+const USAGE = 'node .skilled/skills/system-deep-loop/runtime/scripts/score-stop-hint.cjs --rater-report <dir> [--jev] [--out <dir>]';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. RATER REPORT
@@ -198,7 +198,7 @@ function columnLine(counts) {
  * rather than letting a missing column read as a column of zero hints.
  *
  * @param {object} report - Parsed rater report
- * @param {{ jev?: boolean, deem?: boolean }} [options] - Model columns the run asked for
+ * @param {{ jev?: boolean }} [options] - Model columns the run asked for
  * @returns {Array<{ column: string, skip: boolean, skipLine: string|null }>} Columns in print order, each with its skip verdict
  */
 function selectColumns(report, options = {}) {
@@ -281,9 +281,6 @@ function raterSuffix(report, column) {
   if (recorded === null || typeof recorded !== 'object') return '';
   if (column === 'jev') {
     return `jev_version=${recorded.jevVersion} provider=${recorded.provider} model=${recorded.model}`;
-  }
-  if (column === 'deem') {
-    return `model=${recorded.modelId} model_commit=${recorded.modelCommit} source_commit=${recorded.sourceCommit}`;
   }
   return '';
 }
@@ -412,7 +409,6 @@ async function main(argv, deps = {}) {
       options: {
         'rater-report': { type: 'string' },
         jev: { type: 'boolean' },
-        deem: { type: 'boolean' },
         out: { type: 'string' },
       },
     }));
@@ -460,7 +456,7 @@ async function main(argv, deps = {}) {
   const reportSkipped = {};
   const reportRequalify = {};
 
-  for (const selection of selectColumns(loaded.report, { jev: values.jev === true, deem: values.deem === true })) {
+  for (const selection of selectColumns(loaded.report, { jev: values.jev === true })) {
     if (selection.skip) {
       out(selection.skipLine);
       reportSkipped[selection.column] = selection.skipLine;

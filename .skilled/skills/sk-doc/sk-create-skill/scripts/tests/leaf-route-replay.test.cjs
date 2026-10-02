@@ -185,22 +185,6 @@ function makeStubs(opts = {}) {
       ...choice,
       '  *) exit 2 ;;',
       'esac'
-    ].join('\n') + '\n',
-    'cli-deem': [
-      '#!/bin/sh',
-      `printf '%s %s\\n' "cli-deem" "$*" >> "$STUB_LOG"`,
-      'case "$1" in',
-      '  health)',
-      '    case "${STUB_HEALTH:-ok}" in',
-      '      ok) echo \'{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"mc1","source_commit":"sc1"}\' ;;',
-      '      stub) echo \'{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"mc1","source_commit":"sc1"}\' ;;',
-      '      down) echo \'{"error":"unreachable"}\' >&2; exit 4 ;;',
-      '      model) echo \'{"ok":true,"backend":"torch","model":"deem-9b-v1","model_commit":"mc1","source_commit":"sc1"}\' ;;',
-      '      bad) echo \'not json\' ;;',
-      '    esac ;;',
-      ...choice,
-      '  *) exit 2 ;;',
-      'esac'
     ].join('\n') + '\n'
   };
 
@@ -209,7 +193,7 @@ function makeStubs(opts = {}) {
     fs.writeFileSync(file, scripts[name]);
     fs.chmodSync(file, 0o755);
   };
-  write('cli-deem');
+
   if (opts.jev !== false) write('jev');
 
   return { dir, log };
@@ -384,80 +368,6 @@ test('replayVerdict stops on coverage', () => {
   );
 });
 
-test('a stub deem backend skips', () => {
-  const stubs = makeStubs();
-  const sinks = captureSinks();
-  try {
-    const result = S.deemGate({
-      out: sinks.out,
-      env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_HEALTH: 'stub' },
-      repoRoot: stubs.dir
-    });
-
-    assert.equal(result.passed, false);
-    assert.deepEqual(result.cmd, [path.join(stubs.dir, 'cli-deem')]);
-    assert.deepEqual(sinks.stdout, ['deem arm skipped: stub backend']);
-  } finally {
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
-test('an unreachable deem health skips', () => {
-  const stubs = makeStubs();
-  const sinks = captureSinks();
-  try {
-    const result = S.deemGate({
-      out: sinks.out,
-      env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_HEALTH: 'down' },
-      repoRoot: stubs.dir
-    });
-
-    assert.equal(result.passed, false);
-    assert.deepEqual(sinks.stdout, ['deem arm skipped: not reachable']);
-    assert.deepEqual(fs.readFileSync(stubs.log, 'utf8').trim().split('\n'), ['cli-deem health']);
-  } finally {
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
-test('a different deem model skips and names it', () => {
-  const stubs = makeStubs();
-  const sinks = captureSinks();
-  try {
-    const result = S.deemGate({
-      out: sinks.out,
-      env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_HEALTH: 'model' },
-      repoRoot: stubs.dir
-    });
-
-    assert.equal(result.passed, false);
-    assert.ok(sinks.stdout.includes('deem arm skipped: model'));
-    assert.ok(sinks.stdout.some((line) => line.startsWith('deem: found=') && line.includes('deem-9b-v1')));
-    assert.deepEqual(fs.readFileSync(stubs.log, 'utf8').trim().split('\n'), ['cli-deem health']);
-  } finally {
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
-test('a bad deem health response skips', () => {
-  const stubs = makeStubs();
-  const sinks = captureSinks();
-  try {
-    const result = S.deemGate({
-      out: sinks.out,
-      env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_HEALTH: 'bad' },
-      repoRoot: stubs.dir
-    });
-
-    assert.equal(result.passed, false);
-    assert.ok(sinks.stdout.includes('deem arm skipped: bad health response'));
-    assert.ok(sinks.stdout.some((line) => line.startsWith('deem: found=')));
-    assert.deepEqual(fs.readFileSync(stubs.log, 'utf8').trim().split('\n'), ['cli-deem health']);
-  } finally {
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
 test('a jev without a credential skips', () => {
   const stubs = makeStubs();
   const sinks = captureSinks();
@@ -516,11 +426,21 @@ test('jev off PATH and wrong version skip', () => {
 
 test('a switch without --out exits 2', async () => {
   const sinks = captureSinks();
-  const code = await S.main(['--deem'], { out: sinks.out, err: sinks.err });
+  const code = await S.main(['--jev'], { out: sinks.out, err: sinks.err });
 
   assert.equal(code, 2);
   assert.deepEqual(sinks.stdout, []);
-  assert.equal(sinks.stderr[0], 'error: --jev and --deem need --out <dir>');
+  assert.equal(sinks.stderr[0], 'error: --jev needs --out <dir>');
+});
+
+test('an unknown argument exits 2', async () => {
+  const sinks = captureSinks();
+  const unknownFlag = '--bogus';
+  const code = await S.main([unknownFlag], { out: sinks.out, err: sinks.err });
+
+  assert.equal(code, 2);
+  assert.deepEqual(sinks.stdout, []);
+  assert.equal(sinks.stderr[0], 'error: unknown argument ' + unknownFlag);
 });
 
 test('without the flag the reads line prints not measured', async () => {
@@ -644,7 +564,7 @@ test('no headroom at 4 improvable rows', { timeout: 120000 }, async () => {
   const stubs = makeStubs();
   const sinks = captureSinks();
   try {
-    const code = await S.main(['--jev', '--deem', '--out', path.join(repoRoot, 'out')], {
+    const code = await S.main(['--jev', '--out', path.join(repoRoot, 'out')], {
       out: sinks.out,
       err: sinks.err,
       repoRoot,
@@ -654,7 +574,7 @@ test('no headroom at 4 improvable rows', { timeout: 120000 }, async () => {
     assert.equal(code, 0);
     assert.ok(sinks.stdout.includes('tied: K=5'));
     assert.ok(sinks.stdout.includes('no headroom'));
-    assert.ok(!sinks.stdout.some((line) => line.startsWith('jev arm skipped') || line.startsWith('deem arm skipped')));
+    assert.ok(!sinks.stdout.some((line) => line.startsWith('jev arm skipped')));
     assert.ok(!fs.existsSync(stubs.log) || fs.readFileSync(stubs.log, 'utf8') === '');
   } finally {
     fs.rmSync(repoRoot, { recursive: true, force: true });
@@ -684,49 +604,6 @@ test('headroom at 5 improvable rows', { timeout: 120000 }, async () => {
   }
 });
 
-test('a deem stub answering the gold intent keeps', { timeout: 120000 }, async () => {
-  const repoRoot = tiedRepoRoot();
-  const stubs = makeStubs();
-  const sinks = captureSinks();
-  const out = path.join(repoRoot, 'out');
-  try {
-    const code = await S.main(['--deem', '--out', out], {
-      out: sinks.out,
-      err: sinks.err,
-      repoRoot,
-      env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_CHOICE: 'ALPHA' }
-    });
-
-    assert.equal(code, 0);
-    assert.ok(sinks.stdout.some((line) => line.startsWith('verdict deem: keep K=5 M=5')));
-    assert.equal(fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8').trim().split('\n').length, 15);
-    assert.equal(JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8')).columns.deem.outcome, 'keep');
-  } finally {
-    fs.rmSync(repoRoot, { recursive: true, force: true });
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
-test('a deem stub abstaining stops on margin', { timeout: 120000 }, async () => {
-  const repoRoot = tiedRepoRoot();
-  const stubs = makeStubs();
-  const sinks = captureSinks();
-  try {
-    const code = await S.main(['--deem', '--out', path.join(repoRoot, 'out')], {
-      out: sinks.out,
-      err: sinks.err,
-      repoRoot,
-      env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_CHOICE: 'none_of_these' }
-    });
-
-    assert.equal(code, 0);
-    assert.ok(sinks.stdout.some((line) => line.startsWith('verdict deem: stop (margin)')));
-  } finally {
-    fs.rmSync(repoRoot, { recursive: true, force: true });
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
 test('a stopped jev arm prints partial', { timeout: 120000 }, async () => {
   const repoRoot = tiedRepoRoot();
   const stubs = makeStubs();
@@ -743,27 +620,6 @@ test('a stopped jev arm prints partial', { timeout: 120000 }, async () => {
     assert.ok(sinks.stdout.includes('jev arm stopped: key rejected'));
     assert.ok(sinks.stdout.includes('jev: partial_rows=0'));
     assert.ok(!sinks.stdout.some((line) => line.startsWith('verdict jev:')));
-  } finally {
-    fs.rmSync(repoRoot, { recursive: true, force: true });
-    fs.rmSync(stubs.dir, { recursive: true, force: true });
-  }
-});
-
-test('--jev --deem with a jev lacking a credential still runs the deem gate', { timeout: 120000 }, async () => {
-  const repoRoot = tiedRepoRoot();
-  const stubs = makeStubs();
-  const sinks = captureSinks();
-  try {
-    const code = await S.main(['--jev', '--deem', '--out', path.join(repoRoot, 'out')], {
-      out: sinks.out,
-      err: sinks.err,
-      repoRoot,
-      env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_AUTH_EXIT: '3', STUB_HEALTH: 'stub' }
-    });
-
-    assert.equal(code, 0);
-    assert.ok(sinks.stdout.includes('jev arm skipped: no credential'));
-    assert.ok(sinks.stdout.includes('deem arm skipped: stub backend'));
   } finally {
     fs.rmSync(repoRoot, { recursive: true, force: true });
     fs.rmSync(stubs.dir, { recursive: true, force: true });

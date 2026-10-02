@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Compaction Recall Census Tests
 // ───────────────────────────────────────────────────────────────────
-// Synthetic fixtures only; every census run has stub jev and cli-deem binaries first on PATH.
+// Synthetic fixtures only; every census run has a stub jev binary first on PATH.
 
 import { spawnSync } from 'node:child_process';
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, utimesSync, writeFileSync } from 'node:fs';
@@ -21,7 +21,7 @@ function fixture(name: string): string {
 
 function makeStubs(): string {
   const stubDir = mkdtempSync(join(tmpdir(), 'compaction-recall-stub-'));
-  for (const name of ['jev', 'cli-deem']) {
+  for (const name of ['jev']) {
     writeFileSync(
       join(stubDir, name),
       `#!/bin/sh\necho "$*" >> "$(dirname "$0")/${name}.log"\nexit 0\n`,
@@ -321,13 +321,12 @@ describe('score-compaction-recall', () => {
     expect(hasFreeText({ rows: [{ file: 'a.jsonl', trigger: 'auto' }] }, { basenames: new Set(['a.jsonl']), uuids: new Set() })).toBe(false);
   });
 
-  it('the stub jev and cli-deem logs stay empty', () => {
+  it('the stub jev log stays empty', () => {
     const stub = makeStubs();
     runCensus(['--transcripts', FIXTURES], stub);
     runCensus(['--transcripts', FIXTURES, '--replay'], stub);
 
     expect(existsSync(join(stub, 'jev.log'))).toBe(false);
-    expect(existsSync(join(stub, 'cli-deem.log'))).toBe(false);
     expect(readFileSync(SCRIPT, 'utf8')).not.toMatch(/child_process|spawnSync|spawn\(|execFile|execSync/);
   });
 

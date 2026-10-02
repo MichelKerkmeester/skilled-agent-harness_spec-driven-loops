@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix",
+  "description": "Phase 44: deem-answer-shape-fix",
+  "keywords": [
+    "phase",
+    "deem-answer-shape-fix"
+  ],
+  "lastUpdated": "2026-10-02T06:02:32.528Z",
+  "specId": "044",
+  "folderSlug": "deem-answer-shape-fix",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

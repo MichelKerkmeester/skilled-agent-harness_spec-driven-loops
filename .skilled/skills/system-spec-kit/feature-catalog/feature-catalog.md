@@ -123,11 +123,11 @@ See [`tooling-and-scripts/compaction-recall-census.md`](tooling-and-scripts/comp
 
 #### Description
 
-Scores, with zero model calls by default, how the completion-claim detector agrees with operator-labeled turns, then judges each labeled turn behind `--deem` or `--jev` and reports one keep, kill or stop decision per backend.
+Scores, with zero model calls by default, how the completion-claim detector agrees with operator-labeled turns, then judges each labeled turn behind `--jev` and reports one keep, kill or stop decision.
 
 #### Current Reality
 
-`.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` makes zero model calls by default and writes no file. Its census reads only the rows named with `--rows` and the labels named with `--labels`, and no row text reaches stdout or the report. Each judgment arm runs only behind `--deem` or `--jev` with `--out <dir>` outside the repository, and no run has printed a `verdict` line.
+`.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` makes zero model calls by default and writes no file. Its census reads only the rows named with `--rows` and the labels named with `--labels`, and no row text reaches stdout or the report. Each judgment arm runs only behind its own switch, `--jev`, with `--out <dir>` outside the repository, and no run has printed a `verdict` line.
 
 #### Source Files
 
@@ -139,7 +139,7 @@ See [`tooling-and-scripts/completion-claim-audit.md`](tooling-and-scripts/comple
 
 #### Description
 
-Scores, with zero model calls by default, how often each constant next-check answer is right on operator-labeled debug rows and whether that leaves headroom, then judges the labeled rows behind `--jev` or `--deem` and reports one keep, kill or stop decision per backend.
+Scores, with zero model calls by default, how often each constant next-check answer is right on operator-labeled debug rows and whether that leaves headroom, then judges the labeled rows behind `--jev` and reports one keep, kill or stop decision.
 
 #### Current Reality
 
@@ -159,7 +159,7 @@ Measures, with zero model calls on the default run, whether a classifier picking
 
 #### Current Reality
 
-`.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts` runs offline: its default run makes zero model calls and starts neither `jev` nor `cli-deem`. Today it stops at its label gate because no operator labels exist yet.
+`.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts` runs offline: its default run makes zero model calls and never starts `jev`. Today it stops at its label gate because no operator labels exist yet.
 
 #### Source Files
 
@@ -811,7 +811,7 @@ Measures offline whether one classifier choice that names a packet's spec track 
 
 #### Current Reality
 
-`.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs` makes no model call by default. `--deem` and `--jev` each add a model column behind that backend's own check, and the script changes no lookup, index or recipe.
+`.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs` makes no model call by default. `--jev` adds a model column behind that backend's own check, and the script changes no lookup, index or recipe.
 
 #### Source Files
 

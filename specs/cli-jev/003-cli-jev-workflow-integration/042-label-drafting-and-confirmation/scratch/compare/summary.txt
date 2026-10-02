@@ -1,0 +1,12 @@
+027: rows=5 agreed-kept=4 split-settled=1
+023: rows=168 agreed-flipped=6 agreed-kept=95 split-settled=67
+030: rows=60 agreed-kept=57 split-settled=3
+034-a: rows=100 agreed-kept=94 single-draft=1 split-settled=5
+034-b: rows=50 agreed-kept=49 single-draft=1
+003: rows=50 agreed-kept=47 single-draft=1 split-settled=2
+026: rows=50 agreed-flipped=1 agreed-kept=48 single-draft=1
+029: rows=95 agreed-flipped=1 agreed-kept=85 single-draft=1 split-settled=8
+032: rows=40 agreed-flipped=1 agreed-kept=28 split-settled=11
+006: rows=98 agreed-flipped=2 agreed-kept=69 single-draft=5 split-settled=22 draft-ids-not-in-labels=4
+035: rows=60 agreed-kept=59 single-draft=1
+031: rows=36 agreed-kept=12 single-draft=1 split-settled=23

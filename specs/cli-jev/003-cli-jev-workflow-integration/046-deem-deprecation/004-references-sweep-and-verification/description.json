@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification",
+  "description": "Phase 4: references-sweep-and-verification",
+  "keywords": [
+    "phase",
+    "references-sweep-and-verification"
+  ],
+  "lastUpdated": "2026-10-02T07:54:44.747Z",
+  "specId": "004",
+  "folderSlug": "references-sweep-and-verification",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "046-deem-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

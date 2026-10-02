@@ -1,0 +1,40 @@
+{"row":"R01","verdict":"supports","reason":"It contains `flowchart`, the keyword cited as a substring of `flowcharts`."}
+{"row":"R02","verdict":"contradicts","reason":"This window lists resource references and success criteria, not the generated-fence contract."}
+{"row":"R03","verdict":"contradicts","reason":"It shows dashboard awareness and a tool inventory, not output verification."}
+{"row":"R04","verdict":"contradicts","reason":"This front-matter window does not show the quoted decision or amendment wording."}
+{"row":"R05","verdict":"contradicts","reason":"It lists skill-use triggers, but says nothing about a command-owned workflow being mandatory."}
+{"row":"R06","verdict":"partial","reason":"It shows lifecycle modes and resource-map state, but not the packet-local state location or sentinel."}
+{"row":"R07","verdict":"supports","reason":"It frames packet paths, kinds, and contents before returning a SHA-256 digest."}
+{"row":"R08","verdict":"partial","reason":"It shows skill-embedding preparation and loading, but not prompt cosine scoring or live-fusion status."}
+{"row":"R09","verdict":"contradicts","reason":"It shows path constants rather than the cited advisor script lines or their evidence."}
+{"row":"R10","verdict":"partial","reason":"It shows orchestrator-owned dashboard generation, but not that progressive research output remains separate."}
+{"row":"R11","verdict":"supports","reason":"It contains the quoted D3 decision about findings-only output and the file boundary."}
+{"row":"R12","verdict":"contradicts","reason":"This window shows the objective and decisions, not the cited progress-log row."}
+{"row":"R13","verdict":"supports","reason":"The cited lines state the build command and exit code, matching this evidence pointer."}
+{"row":"R14","verdict":"contradicts","reason":"It lists vocabulary keywords but does not show the default-mode setting or routing behavior."}
+{"row":"R15","verdict":"contradicts","reason":"This front-matter window does not contain the cited objective sentence."}
+{"row":"R16","verdict":"supports","reason":"It contains the quoted D3 decision about findings-only output and the file boundary."}
+{"row":"R17","verdict":"contradicts","reason":"The window contains a diagram pointing to Spec Kit and does not name cli-orca."}
+{"row":"R18","verdict":"supports","reason":"It shows the criterion requiring 10 iteration records."}
+{"row":"R19","verdict":"partial","reason":"It shows the CLI entry point dispatching `runOperation`, but not activation-manifest generation."}
+{"row":"R20","verdict":"partial","reason":"It shows the collision classifier and a canonical-only case, but not the other states or rejection rules."}
+{"row":"R21","verdict":"partial","reason":"It shows document-trigger phrase scoring, but not the claimed generated trigger sources or weights."}
+{"row":"R22","verdict":"partial","reason":"It mentions arc-pie omissions, but not the unit-grid or unit-ring substitution described."}
+{"row":"R23","verdict":"contradicts","reason":"This front-matter window does not show the quoted D3 decision."}
+{"row":"R24","verdict":"partial","reason":"It shows quarantine restoration and canonical and legacy roots, but not the claimed migration and deferral behavior."}
+{"row":"R25","verdict":"supports","reason":"The header identifies a dist-freshness utility and its source-versus-dist staleness purpose."}
+{"row":"R26","verdict":"partial","reason":"It discusses Webflow marker guards, but does not list the cited detection markers verbatim."}
+{"row":"R27","verdict":"partial","reason":"It shows rebuild response fields and diagnostics, but not skip conditions, indexing, or generation publication."}
+{"row":"R28","verdict":"partial","reason":"It shows token hashing for fixture vectors, but not the 0.2 threshold or VITEST fallback condition."}
+{"row":"R29","verdict":"partial","reason":"It shows a compiled object containing modes, but not how mode keywords come from hub-router classes."}
+{"row":"R30","verdict":"contradicts","reason":"The window shows an empty line followed by `orchestration.runStop`, not stale stop-gate snapshot logic."}
+{"row":"R31","verdict":"supports","reason":"The docstring identifies the Skill Advisor and its request-analysis purpose."}
+{"row":"R32","verdict":"partial","reason":"The file header names helper functions, but this window does not show the cited implementations."}
+{"row":"R33","verdict":"supports","reason":"It states the expected `sk-design-md-generator` ranking and route in the scenario criteria."}
+{"row":"R34","verdict":"partial","reason":"It shows other scoring constants, including a 0.8 threshold, but not the claimed 0.72 and 0.82 floors or dispersion guard."}
+{"row":"R35","verdict":"contradicts","reason":"This window describes cursor workspace isolation and symlink checks, not an output-size cap."}
+{"row":"R36","verdict":"supports","reason":"It explicitly says no-signal outcomes fall to the default mode."}
+{"row":"R37","verdict":"contradicts","reason":"The window discusses plugins and extensions without naming cli-orca."}
+{"row":"R38","verdict":"partial","reason":"It shows convergence-report fields and framework integrations, but not exhausted-approach rules."}
+{"row":"R39","verdict":"partial","reason":"It shows official Orca skill awareness, but does not name the standalone `cli-orca` skill in the cited text."}
+{"row":"R40","verdict":"partial","reason":"It exposes a `divergentCount` field, but not the deterministic manifest-building or counting logic."}

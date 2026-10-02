@@ -98,7 +98,7 @@ Baseline numbers (remediation SHA `97a318d83`):
 | Lane contribution attribution | [scorer-fusion/attribution.md](./scorer-fusion/attribution.md) |
 | Lane-by-lane ablation protocol | [scorer-fusion/ablation.md](./scorer-fusion/ablation.md) |
 | Lane weights configuration | [scorer-fusion/weights-config.md](../feature-catalog/scorer-fusion/weights-config.md) |
-| Offline Jev and Deem tie-break eval | [scorer-fusion/tie-break-eval.md](./scorer-fusion/tie-break-eval.md) |
+| Offline Jev tie-break eval | [scorer-fusion/tie-break-eval.md](./scorer-fusion/tie-break-eval.md) |
 | Offline suggested-order eval | [scorer-fusion/suggested-order-eval.md](./scorer-fusion/suggested-order-eval.md) |
 
 ---

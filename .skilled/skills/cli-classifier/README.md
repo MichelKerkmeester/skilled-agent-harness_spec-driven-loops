@@ -1,6 +1,6 @@
 ---
 title: "cli-classifier"
-description: "The hub for classifier models that return typed judgments. It routes a request to the cli-jev transport (hosted Jev) or the cli-deem transport (local Deem) through mode-registry.json."
+description: "The hub for typed classifier judgments. It holds cli-jev for hosted Jev today; future classifiers join as new modes with their own packets."
 trigger_phrases:
   - "cli-classifier hub"
   - "local classifier hub"
@@ -10,9 +10,9 @@ version: 0.4.0.0
 
 # cli-classifier
 
-> One skill identity for asking a classifier for a typed answer, from the hosted Jev service or from the Deem model on this machine.
+> One skill identity for typed classifier judgments. The hub holds `cli-jev` for hosted Jev today; a future classifier joins as a new mode with its own packet.
 
-Every feature that wants a typed judgment needs the same two things: a way to learn whether the backend is usable and a client that speaks its wire. This hub gives both backends one home. Jev answers through the `jev` CLI with a stored key. Deem answers in about 60 ms from a loopback server with no key and no quota.
+Each transport defines how to check its backend and return a typed judgment. The current mode, `cli-jev`, answers through the `jev` CLI with a stored key. The parent hub stays ready for another classifier mode without changing its public identity.
 
 ---
 
@@ -20,10 +20,10 @@ Every feature that wants a typed judgment needs the same two things: a way to le
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Typed judgments from the hosted Jev service or from the locally served Deem model |
-| **Invoke with** | A request that names Jev, Deem, `cli-jev` or `cli-deem`. The advisor resolves the hub |
-| **Routes to** | Mode `cli-jev` (packet `cli-jev`) or mode `cli-deem`, through `mode-registry.json` and `hub-router.json` |
-| **Produces** | One typed value from the chosen transport, with an exit code that names the outcome |
+| **Use it for** | Typed judgments from the hosted Jev service; future classifiers can have their own modes |
+| **Invoke with** | A request that names Jev, `cli-jev` or its `cli-usage` alias. The advisor resolves the hub |
+| **Routes to** | The current mode `cli-jev` (packet `cli-jev`), through `mode-registry.json` and `hub-router.json` |
+| **Produces** | One typed Jev value, with an exit code that names the outcome |
 
 ---
 
@@ -31,19 +31,19 @@ Every feature that wants a typed judgment needs the same two things: a way to le
 
 ### What It Does
 
-`cli-classifier` is one public advisor identity over two `packetKind: "transport"` packets. The hub holds no packet-local logic. `mode-registry.json` resolves the mode. `leaf-manifest.json` inventories the leaves each mode can load. Mode `cli-jev` bridges the `jev` CLI and MCP surface. Mode `cli-deem` asks the local Deem server. Either returns a probability, one option key, an ordered level or a batch of keyed answers, and neither writes into this workspace.
+`cli-classifier` is one public advisor identity over its registered transport packets. Today, its only `packetKind: "transport"` mode is `cli-jev`, which bridges the `jev` CLI and MCP surface. The hub holds no packet-local logic. `mode-registry.json` resolves the mode, and `leaf-manifest.json` inventories its leaves. A future classifier backend joins as a new mode with a packet of its own.
 
 ### Why It Matters
 
-- **A caller names its backend:** the two transports answer the same judgment types and never fail over to each other silently.
-- **One availability rule per backend:** `command -v jev` gates Jev, and `cli-deem health` gates Deem with one exit code.
-- **Nothing leaves the machine for Deem:** its client sends no key and talks only to a loopback address, `127.0.0.1:8300` by default.
+- **A caller names Jev:** the transport returns the requested judgment type and never changes backends silently.
+- **One availability rule:** `command -v jev` gates the hosted CLI with one exit code.
+- **One stable hub identity:** a future classifier can arrive as a new mode while callers continue to address `cli-classifier`.
 
 ```text
-request that names Jev or Deem
+request that names Jev
    |
    v
-advisor  -->  cli-classifier  -->  hub-router.json  -->  cli-jev  or  cli-deem
+advisor  -->  cli-classifier  -->  hub-router.json  -->  cli-jev
                                                            |
                                                            v
                                           one typed answer and an exit code
@@ -53,12 +53,11 @@ advisor  -->  cli-classifier  -->  hub-router.json  -->  cli-jev  or  cli-deem
 
 ## 3. MODES AND PACKETS
 
-The hub registers two modes. The registry lists them and the router picks one, or both in tie-break order when a request names both backends.
+The hub registers one mode today. A future classifier is added as a new mode and packet, and the root hub router remains the selection point.
 
 | Mode | Packet | Kind | Use it for | Pointer |
 |---|---|---|---|---|
 | `cli-jev` | `cli-jev/` | transport | Hosted Jev judgments through the `jev` CLI and its MCP surface | [`README.md`](./cli-jev/README.md) |
-| `cli-deem` | `cli-deem/` | transport | The Deem availability check and typed judgments from the local Deem model | [`README.md`](./cli-deem/README.md) |
 
 ---
 
@@ -68,10 +67,10 @@ The hub registers two modes. The registry lists them and the router picks one, o
 |---|---|---|
 | [`SKILL.md`](./SKILL.md) | The hub's routing contract and rules | The entry point an agent loads |
 | [`mode-registry.json`](./mode-registry.json) | The single source of truth for every mode | Resolve which packet owns a request |
-| [`hub-router.json`](./hub-router.json) | Router policy, signals and vocabulary classes | See which phrases pick `cli-jev` or `cli-deem` |
+| [`hub-router.json`](./hub-router.json) | Router policy, signals and vocabulary classes | See which phrases pick the current `cli-jev` mode |
 | [`ROUTER.md`](./ROUTER.md) | The stage-two surface router, `router_state: active` | Keep its `INTENT_SIGNALS` and `RESOURCE_MAP` keys equal, every path a `leaf-manifest.json` leaf, and its keywords equal to both mode routers |
 | [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of routed leaves | Find the references a mode loads |
-| [`benchmark/injection-screen/`](./benchmark/injection-screen/) | The offline injection screen scorer and its tests | Its default run makes zero model calls. `--jev` and `--deem` each add one backend behind that backend's own gate |
+| [`benchmark/injection-screen/`](./benchmark/injection-screen/) | The offline injection screen scorer and its tests | Its default run makes zero model calls. `--jev` adds the hosted classifier behind its gate |
 
 The manifest regenerates when packets change, so read it as a snapshot.
 
@@ -83,6 +82,7 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 
 | Release | Entry |
 |---|---|
+| v0.7.0.0 | [`changelog/v0.7.0.0.md`](./changelog/v0.7.0.0.md) |
 | v0.6.0.0 | [`changelog/v0.6.0.0.md`](./changelog/v0.6.0.0.md) |
 | v0.5.0.0 | [`changelog/v0.5.0.0.md`](./changelog/v0.5.0.0.md) |
 | v0.4.0.0 | [`changelog/v0.4.0.0.md`](./changelog/v0.4.0.0.md) |
@@ -99,4 +99,4 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 | Hub contract | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier` | exit 0 |
 | Compiled route | `node .skilled/bin/compiled-route.cjs --hub cli-classifier --prompt "use jev choice to pick a queue"` | a single `cli-jev` target |
 | README structure | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/cli-classifier/README.md --type readme` | zero issues |
-| Client tests | `node --test .skilled/skills/cli-classifier/cli-deem/scripts/tests/` | exit 0 |
+| Jev transport tests | `node --test .skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs` | exit 0 |
