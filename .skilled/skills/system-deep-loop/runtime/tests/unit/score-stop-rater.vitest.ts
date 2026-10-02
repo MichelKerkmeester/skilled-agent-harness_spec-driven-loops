@@ -905,7 +905,7 @@ case "$1" in
     case $((N % 3)) in
       1) L=${levels[0]};; 2) L=${levels[1]};; 0) L=${levels[2]};;
     esac
-    echo "{\\"score\\":$L,\\"probabilities\\":{\\"0\\":0.5,\\"4\\":0.5}}"
+    echo "{\\"answers\\":{\\"answer\\":{\\"type\\":\\"score\\",\\"score\\":$L,\\"probabilities\\":{\\"0\\":0.5,\\"4\\":0.5}}}}"
     exit 0;;
 esac
 exit 0
@@ -954,6 +954,22 @@ exit 0
     expect(fs.readFileSync(log, 'utf8').trim().split('\n')).toHaveLength(60);
   });
 
+  it('jev arm rounds a float score, the shape real jev prints', async () => {
+    const repo = rateableRepo();
+    const readsFile = writeGoldReads(repo, null);
+    const { env } = jevArmStub([0.3, 0.2, 0.4]);
+    const { code, lines, errs } = await runArm(
+      ['--jev', '--out', tempDir('stop-rater-out-'), '--gold-reads', readsFile],
+      repo,
+      env,
+    );
+    expect(code).toBe(0);
+    expect(errs).toEqual([]);
+    const verdict = lines.find((entry) => entry.startsWith('verdict jev: ')) as string;
+    expect(verdict).toBeDefined();
+    expect(verdict.startsWith('verdict jev: keep')).toBe(true);
+  });
+
   it('jev arm stops on flips', async () => {
     const repo = rateableRepo();
     const readsFile = writeGoldReads(repo, null);
@@ -997,7 +1013,7 @@ describe('score-stop-rater deem gate', () => {
     echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"abc123","source_commit":"def456"}'
     exit 0;;
   score)
-    echo '{"score":0,"probabilities":{"0":0.9,"4":0.1}}'
+    echo '{"answers":{"answer":{"type":"score","score":0,"probabilities":{"0":0.9,"4":0.1}}}}'
     exit 0;;
 esac
 exit 0`);
@@ -1115,7 +1131,7 @@ exit 0`);
     echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"abc123","source_commit":"def456"}'
     exit 0;;
   score)
-    echo '{"score":0,"probabilities":{"0":0.9}}'
+    echo '{"answers":{"answer":{"type":"score","score":0,"probabilities":{"0":0.9}}}}'
     exit 0;;
 esac
 exit 0`);
@@ -1136,6 +1152,39 @@ exit 0`);
     for (const record of records) expect(record.status).toBe('unmeasured_oversize');
     expect(fs.readFileSync(log, 'utf8')).not.toContain('score');
     expect(lines.some((entry) => entry.startsWith('deem: nothing leaves the machine'))).toBe(true);
+  });
+
+  it('deem arm counts a top-level score body as unmeasured', async () => {
+    const repo = fiveLineageRepo();
+    const readsFile = writeGoldReads(repo, null);
+    const { env } = deemStub(`case "$1" in
+  health)
+    echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"abc123","source_commit":"def456"}'
+    exit 0;;
+  score)
+    echo '{"score":0,"probabilities":{"0":0.9,"4":0.1}}'
+    exit 0;;
+esac
+exit 0`);
+    const outDir = tempDir('stop-rater-out-');
+    const { code, lines, errs } = await runWithEnv(
+      ['--deem', '--out', outDir, '--gold-reads', readsFile],
+      repo,
+      env,
+    );
+    expect(code).toBe(0);
+    expect(errs).toEqual([]);
+    const records = fs
+      .readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line)) as Array<Record<string, unknown>>;
+    expect(records).toHaveLength(15);
+    for (const record of records) expect(record.status).toBe('unmeasured');
+    const verdict = lines.find((entry) => entry.startsWith('verdict deem: ')) as string;
+    expect(verdict).toBeDefined();
+    expect(verdict.startsWith('verdict deem: stop (coverage)')).toBe(true);
+    expect(verdict).toContain('M=0');
   });
 });
 
@@ -1251,7 +1300,7 @@ describe('score-stop-rater verdict', () => {
     echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"abc123","source_commit":"def456"}'
     exit 0;;
   score)
-    echo '{"score":0,"probabilities":{"0":0.9,"4":0.1}}'
+    echo '{"answers":{"answer":{"type":"score","score":0,"probabilities":{"0":0.9,"4":0.1}}}}'
     exit 0;;
 esac
 exit 0`);

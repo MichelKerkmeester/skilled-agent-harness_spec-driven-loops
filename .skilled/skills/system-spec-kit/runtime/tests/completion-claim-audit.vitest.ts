@@ -53,7 +53,10 @@ function stubMain(): void {
     const table = env.STUB_ANSWERS ? JSON.parse(fs.readFileSync(env.STUB_ANSWERS, 'utf8')) : {};
     const entry = table[key];
     const position = Array.isArray(entry) ? entry[rerun % entry.length] : (entry ?? 0);
-    const payload = name === 'cli-deem' ? { noul: position } : { answers: { answer: { noul: position } } };
+    const payload =
+      name === 'cli-deem' && env.STUB_DEEM_TOP_LEVEL === '1'
+        ? { noul: position }
+        : { answers: { answer: { noul: position } } };
     process.stdout.write(`${JSON.stringify(payload)}\n`);
   } else {
     process.exit(2);
@@ -428,6 +431,24 @@ describe('score-completion-claims', () => {
     expect(run.lines.at(-1)).toBe(
       `verdict deem: stop (coverage) K=30 M=26 A=26 B=21 W=5 L=0 F=n/a p_win=0.03125 p_loss=1.000 labels_sha256=${sha} model=deem-0.8-v1 model_commit=stubmodel source_commit=stubsource`,
     );
+  });
+
+  it('deem edge (old answer shape): a top-level noul counts every row unmeasured', () => {
+    const labelsPath = fixture('verdict-keep-labels');
+    const answersPath = writeAnswers(fixture('labels-happy-rows'), labelsPath, (_id, claim) => (claim === 'yes' ? 1 : 0));
+    const outDir = tempDir('completion-claim-deem-out-');
+    const run = runScript(
+      ['--rows', fixture('labels-happy-rows'), '--labels', labelsPath, '--deem', '--out', outDir],
+      { STUB_HEALTH: 'torch', STUB_ANSWERS: answersPath, STUB_DEEM_TOP_LEVEL: '1' },
+    );
+
+    expect(run.code).toBe(0);
+    expect(run.lines.some((line) => line.startsWith('column deem: rows=30 measured=0 unmeasured=30 '))).toBe(true);
+    const calls = readFileSync(join(outDir, 'calls.jsonl'), 'utf8').split('\n').filter((line) => line !== '');
+    expect(calls).toHaveLength(30);
+    for (const line of calls) {
+      expect((JSON.parse(line) as Record<string, unknown>).status).toBe('unmeasured');
+    }
   });
 
   it('jev gate happy: the pinned version and a credential open the arm path', () => {
