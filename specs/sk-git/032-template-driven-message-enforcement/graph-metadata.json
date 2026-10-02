@@ -55,12 +55,12 @@
       ".opencode/plugins/sk-git-message-gate.js",
       ".hermes/plugins/repo-guards/__init__.py",
       "tests/README.md",
+      "review/review-report.md",
       ".skilled/skills/sk-git/assets/commit-message-template.md",
       ".skilled/skills/sk-git/assets/pr-template.md",
       ".skilled/skills/sk-git/scripts/lib/message-contract.test.mjs",
       ".skilled/skills/sk-git/assets/worktree-checklist.md",
-      ".skilled/scripts/git-hooks/tests/commit-msg.test.sh",
-      ".skilled/scripts/git-hooks/tests/pre-push-message-contract.test.sh"
+      ".skilled/scripts/git-hooks/tests/commit-msg.test.sh"
     ],
     "entities": [
       {
@@ -148,6 +148,12 @@
         "source": "derived"
       },
       {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "commit-message-template.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-git/assets/commit-message-template.md",
@@ -178,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "pre-push-message-contract.test.sh",
-        "kind": "script",
-        "path": ".skilled/scripts/git-hooks/tests/pre-push-message-contract.test.sh",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,7 +202,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement The",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The sk-git commit contract is written three times: as prose in `SKILL.md` and `assets/commit-message-template.md`, and as hardcoded regexes in `.skilled/scripts/git-hooks/commit-msg`",
     "created_at": "2026-10-01T17:03:25Z",
-    "last_save_at": "2026-10-01T18:59:48.571Z",
+    "last_save_at": "2026-10-02T13:04:18.320Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:842d1db27a896a6830d22292d35333e2bb6f222614c318a05190f4648dbdcb03",
+    "source_fingerprint": "sha256:dae6af0ae554bff92df329d61588d619a3e9642f68091963b220acb082385c72",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "97619f1552b64cb3e57a571ee644fa8e720c3793f16f9aa0a7b2c3f20b20842d",
-      "plan.md": "ab992415b37712cc5a96daa9a0c45419fa39ae2371ac5818828b506cb4e1fa53",
-      "tasks.md": "77fbbdbe6edc6b973b53b329a892a8f75173175963cb40f2ae37cba5a922dbf6",
-      "decision-record.md": "98fc00ee8299999cac07b7954adc7632df53d3ce35e62251424f81d5f7cc6f41",
-      "implementation-summary.md": "f7e595c5e645f17383b3dee12680b6f740a0350e5d398c6b5fb367382bf5da6d"
+      "spec.md": "0be2d8ab276ba1640f6cf3761fe2095d011da02bf816debb4dafc018e4ea8689",
+      "plan.md": "12863fcd40232389cddc3c61a2d34e28e7132585e4384e6ac73d908474932459",
+      "tasks.md": "6989a6bdf39efa5e401d0e20c2eaad3f53c74ae21c238ad86f61b6859c857a24",
+      "decision-record.md": "30569418c2e34a16b3e7e0fef73d2e546c3eaad54c5d3d03eb01f3070872e228",
+      "implementation-summary.md": "95b2e98e65426f6a49d245dc427e44ef840902b29315f3f61428dedf310f285c"
     },
     "last_active_at": null
   }

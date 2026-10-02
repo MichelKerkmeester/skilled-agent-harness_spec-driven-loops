@@ -1,6 +1,6 @@
 ---
 title: "Decision Record: Template-driven, repo-agnostic enforcement of commit messages and PR descriptions"
-description: "Four decisions: the template carries the contract, one Node validator serves every gate, 100% enforcement means a required server-side check, and three hook verdicts change on purpose."
+description: "Six decisions: the template carries the contract, one Node validator serves every gate, CI is the required server-side check, three hook verdicts change on purpose, canonical scope aliases are errors and 80 characters is a warning target."
 trigger_phrases:
   - "message contract decision record"
   - "template carries the contract"
@@ -416,5 +416,203 @@ AC-007 asked the new validator to give the old hook's verdict on every existing 
 **How to roll back**: Revert the commit that changed the test file and the commit-msg shim together.
 <!-- /ANCHOR:adr-004-impl -->
 <!-- /ANCHOR:adr-004 -->
+
+---
+
+<!-- ANCHOR:adr-005 -->
+## ADR-005: Canonical scope names and alias errors
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-10-02 |
+| **Deciders** | Operator |
+
+---
+
+<!-- ANCHOR:adr-005-context -->
+### Context
+
+Two scope deviations reached `main`: `spec-kit` was used for system-spec-kit paths, and `rules` was used where the canonical scope is `repo-rules`. The template example `fix(spec-kit)` also contradicts the canonical scope wording in `SKILL.md`.
+
+### Constraints
+
+- Canonical scopes are `system-spec-kit`, `system-skill-advisor`, `system-deep-loop` and `repo-rules`.
+- Scope behavior is declared in the template contract.
+- `commit-msg` cannot see the full path set during `--amend`, so path-based inference cannot determine a stable scope.
+<!-- /ANCHOR:adr-005-context -->
+
+---
+
+<!-- ANCHOR:adr-005-decision -->
+### Decision
+
+**We chose**: Keep the full skill names and `repo-rules` canonical. Declare scope aliases in `subject.scopeAliases` and reject a configured alias with the `subject.scope-alias` error. Update the template example to use a canonical scope. Do not infer scopes from changed paths.
+
+**How it works**: The template supplies the alias contract, and the shared validator reports the rule id when a commit uses one of those aliases. This remains deterministic for `--amend` because it does not depend on the complete changed-path set.
+<!-- /ANCHOR:adr-005-decision -->
+
+---
+
+<!-- ANCHOR:adr-005-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Template-declared aliases are errors** | One contract governs every gate; the author receives the canonical name | Commits using old aliases need a scope correction | 9/10 |
+| Infer scope from changed paths | Can identify a dominant directory for simple commits | `commit-msg` cannot see the complete path set during `--amend` | 2/10 |
+| Accept both short and canonical forms | Avoids changing existing habits | Preserves multiple names for the same subsystem and leaves the template example inconsistent | 3/10 |
+
+**Why this one**: It preserves one canonical scope per subsystem and works with the data available to the commit hook.
+<!-- /ANCHOR:adr-005-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-005-consequences -->
+### Consequences
+
+**What improves**:
+- Commits use stable, searchable scope names that match the skill folders and repo-rules area.
+- The template example and `SKILL.md` can state the same canonical scopes.
+
+**What it costs**:
+- A commit using a configured alias is rejected until its scope is corrected. The error names the rule and canonical scope.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| The configured alias set misses a short form | M | Unit and hook tests cover the observed aliases, and the replay checks the missed commits |
+<!-- /ANCHOR:adr-005-consequences -->
+
+---
+
+<!-- ANCHOR:adr-005-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Two scope deviations reached `main`; the operator selected canonical scopes |
+| 2 | **Beyond Local Maxima?** | PASS | Path-based inference was considered and rejected because `--amend` lacks the full path set |
+| 3 | **Sufficient?** | PASS | The template contract and shared validator can reject configured aliases at every gate |
+| 4 | **Fits Goal?** | PASS | Canonical scope names align commit subjects with the named skill and rules areas |
+| 5 | **Open Horizons?** | PASS | A repository can declare its own canonical scopes and aliases in its template |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-005-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-005-impl -->
+### Implementation
+
+**What changes**:
+- Add `subject.scopeAliases` and `subject.scope-alias` behavior to the template and validator.
+- Correct the commit example, align `SKILL.md`, and add unit and hook coverage.
+
+**How to roll back**: Revert the alias rule, validator behavior, tests and related wording together.
+<!-- /ANCHOR:adr-005-impl -->
+<!-- /ANCHOR:adr-005 -->
+
+---
+
+<!-- ANCHOR:adr-006 -->
+## ADR-006: Warn above the 80-character target; block above 100
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-10-02 |
+| **Deciders** | Operator |
+
+---
+
+<!-- ANCHOR:adr-006-context -->
+### Context
+
+An 82-character subject reached `main` without a warning. The subject standard has an 80-character target and a 100-character hard limit. The operator chose to keep the target advisory and preserve the existing hard limit.
+
+### Constraints
+
+- Subjects longer than 80 characters produce a warning.
+- Subjects longer than 100 characters remain blocked.
+- The warning uses the `subject.length-target` rule id.
+<!-- /ANCHOR:adr-006-context -->
+
+---
+
+<!-- ANCHOR:adr-006-decision -->
+### Decision
+
+**We chose**: Add `subject.warnLength` as a warning threshold at 80 characters. Keep the existing 100-character maximum as a hard error.
+
+**How it works**: The shared validator emits `subject.length-target` when a subject exceeds 80 characters and retains the hard-error rule when it exceeds 100.
+<!-- /ANCHOR:adr-006-decision -->
+
+---
+
+<!-- ANCHOR:adr-006-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Warn above 80; block above 100** | Preserves the target as useful guidance and the hard maximum as a clear boundary | A warning can still be missed by a reader | 9/10 |
+| Block above 80 | Enforces shorter subjects consistently | Turns a target into a new rejection rule and blocks the observed 82-character case | 3/10 |
+| Remove the 80-character target | Avoids warning noise | Loses an agreed subject-length guideline | 2/10 |
+
+**Why this one**: It preserves the operator's distinction between the recommended length and the maximum allowed length.
+<!-- /ANCHOR:adr-006-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-006-consequences -->
+### Consequences
+
+**What improves**:
+- Subjects above the target are visible as warnings while remaining eligible below the hard limit.
+- The 100-character maximum continues to block overlong subjects.
+
+**What it costs**:
+- The 80-character warning does not block a commit and may need reader attention.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| The warning is overlooked | L | Keep the rule id and target explicit in validator output; warning surfacing in the agent gate remains out of scope |
+<!-- /ANCHOR:adr-006-consequences -->
+
+---
+
+<!-- ANCHOR:adr-006-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The 82-character subject exceeded the target without any warning |
+| 2 | **Beyond Local Maxima?** | PASS | Blocking at 80 was considered; the operator kept 80 advisory and 100 as the hard limit |
+| 3 | **Sufficient?** | PASS | One warning threshold and the existing maximum distinguish guidance from rejection |
+| 4 | **Fits Goal?** | PASS | The template contract carries both subject-length boundaries to every validator gate |
+| 5 | **Open Horizons?** | PASS | Repositories can set the target in their own template contract |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-006-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-006-impl -->
+### Implementation
+
+**What changes**:
+- Add `subject.warnLength` and the `subject.length-target` warning to the contract and validator.
+- Add tests for the warning boundary and the unchanged 100-character hard error.
+
+**How to roll back**: Revert the warning threshold, validator behavior and matching tests together; retain the 100-character hard error.
+<!-- /ANCHOR:adr-006-impl -->
+<!-- /ANCHOR:adr-006 -->
 
 ---
