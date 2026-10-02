@@ -39,6 +39,8 @@ The contract is repository-agnostic. A repository that carries its own copy of a
 | Agent gate (`git-message-gate.mjs`, in all seven runtimes) | Before an agent runs `git commit -m/-F`, `gh pr create/edit --body`, or a branch-creating command | The message, PR body or branch name in the command, before it runs |
 | `message-contract` CI workflow | Push and pull request | The pushed commits, the PR body and the branch name |
 
+Dependabot gets two narrow allowances, both written down where they apply: its `dependabot/` branches are an allowed pattern in the branch rules block, and CI skips the description check for a PR it opened, because it writes its own release-notes description. Its commits are checked like any other.
+
 Exit 0 means the input passes or the repository declares no rules for that kind. Exit 1 is a violation, and the message names each failed rule id. Exit 2 is a broken contract or a usage error, which the gates block on.
 
 ### Range Checks
