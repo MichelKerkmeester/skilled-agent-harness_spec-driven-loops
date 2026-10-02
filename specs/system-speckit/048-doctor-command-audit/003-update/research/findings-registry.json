@@ -1,0 +1,1307 @@
+{
+  "sessionId": "2026-10-02T20:15:14.286Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-how-can-the-updater-determine-which-release-the-operator-s-checkout-is-on-git",
+      "inboxId": null,
+      "text": "Q1: How can the updater determine which release the operator's checkout is on (git tags, `.skilled/changelog/` versions, skill `version` frontmatter, skill changelogs) and find the latest upstream release, and how is the delta between the two computed from repository evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-q2-how-should-the-updater-detect-that-a-skill-is-customized-or-overridden-locall",
+      "inboxId": null,
+      "text": "Q2: How should the updater detect that a skill is customized or overridden locally (three-way merge against the release base, provenance markers, content hashes, git history), and which of those signals does this repository already produce or could produce cheaply?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-q3-for-a-customized-skill-such-as-sk-git-or-sk-code-how-should-the-updater-build",
+      "inboxId": null,
+      "text": "Q3: For a customized skill such as sk-git or sk-code, how should the updater build an alignment proposal against the latest release that keeps the repo's override specifics, and how is that proposal presented, approved and applied in a guided, evidence-backed way?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-q4-should-this-be-one-command-or-several-for-example-check-apply-align-and-what-",
+      "inboxId": null,
+      "text": "Q4: Should this be one command or several (for example check, apply, align), and what happens to today's database-rebuild behaviour of /doctor:update (kept, moved, renamed or retired)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-q5-what-does-each-resulting-command-look-like-under-the-sk-create-command-contra",
+      "inboxId": null,
+      "text": "Q5: What does each resulting command look like under the sk-create-command contract (thin router, `-presentation.txt`, workflow YAML with approval gates, rollback and dry-run), and how does it reuse the existing install and sync scripts?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-q1-how-can-the-updater-determine-which-release-the-operator-s-checkout-is-on-git",
+      "inboxId": null,
+      "text": "Q1: How can the updater determine which release the operator's checkout is on (git tags, `.skilled/changelog/` versions, skill `version` frontmatter, skill changelogs) and find the latest upstream release, and how is the delta between the two computed from repository evidence?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-q2-how-should-the-updater-detect-that-a-skill-is-customized-or-overridden-locall",
+      "inboxId": null,
+      "text": "Q2: How should the updater detect that a skill is customized or overridden locally (three-way merge against the release base, provenance markers, content hashes, git history), and which of those signals does this repository already produce or could produce cheaply?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-q3-for-a-customized-skill-such-as-sk-git-or-sk-code-how-should-the-updater-build",
+      "inboxId": null,
+      "text": "Q3: For a customized skill such as sk-git or sk-code, how should the updater build an alignment proposal against the latest release that keeps the repo's override specifics, and how is that proposal presented, approved and applied in a guided, evidence-backed way?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-should-this-be-one-command-or-several-for-example-check-apply-align-and-what-",
+      "inboxId": null,
+      "text": "Q4: Should this be one command or several (for example check, apply, align), and what happens to today's database-rebuild behaviour of /doctor:update (kept, moved, renamed or retired)?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-what-does-each-resulting-command-look-like-under-the-sk-create-command-contra",
+      "inboxId": null,
+      "text": "Q5: What does each resulting command look like under the sk-create-command contract (thin router, `-presentation.txt`, workflow YAML with approval gates, rollback and dry-run), and how does it reuse the existing install and sync scripts?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q1a: fallback path when the operator checkout has no git metadata or no gh auth — which signal degrades first and what conclusion is still safe?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: each command's shape under the sk-create-command contract and reuse of install/sync scripts.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3: how to build and present an alignment proposal for a customized skill while keeping its override specifics.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1b: are composite child skills (sk-code-*, sk-doc-*) independent update units with their own versions, or updated only through the parent?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: one command or several; what happens to today's database-rebuild behaviour of /doctor:update.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 (next focus): which customization/override signals does this repository produce, or can produce cheaply (three-way merge against the release base, provenance markers, hashes, git history)?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1c: is the system-skill-advisor frontmatter/changelog mismatch accepted practice or drift — is reconciliation an error or a warning?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: one command or several; what happens to today's database-rebuild behaviour of `/doctor:update`.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q2 (next focus): which customization/override signals does this repository produce or could produce cheaply (three-way merge against the release base, provenance markers, hashes, git history)?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1a (carried): fallback path when the operator checkout has no git metadata or no gh auth.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q1b (carried): whether composite child skills are independent update units — note that this iteration's 59-file scan confirms children do carry their own `version` frontmatter and changelog directories, which strengthens the case for treating them as independently versioned units (to be decided under Q1b).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4: one command or several, and what happens to today's database-rebuild behaviour of `/doctor:update`.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5: each command's shape under the sk-create-command contract and reuse of install/sync scripts. Q1b adds a sub-item: whether hub-projection regeneration belongs in the same apply transaction as the child update.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q5a**: exact flag surface (`--dry-run` default? `--accept <proposal>`?), and whether align ever applies or always hands off to apply.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1**: release detection (local tag / changelog / frontmatter version vs latest upstream) — consumed by the proposed `/doctor:check`; needs the degradation path from Q1a.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q4**: final disposition of DB rebuild — evidence now favors retain-as-route or apply's final phase; needs a decision record.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1c**: system-skill-advisor frontmatter/changelog mismatch — error or warning (carried).",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q2**: customization/override detection signals (three-way merge against release base, provenance markers, hashes, git history) — next focus.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3**: alignment-proposal mechanics for customized skills; the align route shape is sketched (proposals only, hand application to apply) but merge machinery is ungrounded.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3b (new)**: whether the divergence ledger ships as a git-tracked file (audit, merge conflict risk) or a gitignored run-state file (clean tree, weaker audit).",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q4**: final disposition of the DB rebuild — needs a decision record.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q5a**: exact flag surface (`--dry-run` default? `--accept <proposal>?`) and whether align ever applies or always hands off to apply.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3a (new)**: exact hash input of `provenance_fingerprint` (`lib/derived/provenance.ts`) and whether it covers raw SKILL.md bytes closely enough to serve as a pre-filter.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1 / Q1a**: release detection (local tag / changelog version / frontmatter version vs latest upstream) and the degradation path when git metadata or `gh` auth is absent — now the blocking dependency, because Q3's base resolution needs per-file bytes at the detected release.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3b**: divergence ledger git-tracked vs gitignored — decision needed.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1c**: system-skill-advisor frontmatter/changelog mismatch — error or warning.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q5a**: exact flag surface and whether align ever applies.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3a**: exact hash input of `provenance_fingerprint` (`lib/derived/provenance.ts`) — cheap close-out.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1b**: composite child skills as independent update units; prior evidence says children carry their own frontmatter and changelogs — decision needed.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q4**: final disposition of the DB rebuild — decision record.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q5**: each resulting command's shape under the sk-create-command contract and reuse of the",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1 / Q1a**: release detection and the no-git/no-`gh` degradation path (carried); note the",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q4a** (new): rename mechanics and reference sweep for the rebuilt command (implementation-level).",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1b**: composite child skills as independent update units — decision needed.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q5a**: exact flag surface (`--dry-run` default? `--accept <proposal>?`) and whether align ever",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1 / Q1a**: release detection and the no-git/no-`gh` degradation path (carried;",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q5**: remaining shape work — EXECUTION TARGETS rows, YAML phase structure per action, the",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3a**: exact hash input of `provenance_fingerprint` — cheap close-out.",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3b**: divergence ledger git-tracked vs gitignored (F-008-4 folds it into align's write class).",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q4a**: rename mechanics and reference sweep for the rebuilt command (implementation-level).",
+      "addedAtIteration": 8,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1c:** system-skill-advisor frontmatter/changelog mismatch severity (carried).",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3b:** divergence ledger git-tracked vs gitignored (carried).",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3a:** exact hash input of `provenance_fingerprint` (carried, cheap close-out).",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q5 (residual):** EXECUTION TARGETS rows and per-action YAML phase structure for the new commands; `_routes.yaml` registration shape for a 3-command family (three `standalone:` entries vs a new family block).",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q4 (residual):** whether the rebuilt family replaces `/doctor:update` outright or ships it as a deprecated alias for one release. The sweep is identical either way; only whether `update.md` survives changes.",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1 / Q1a:** release detection and the no-git/no-`gh` degradation path (carried).",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1b:** composite child skills as independent update units (carried).",
+      "addedAtIteration": 9,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1 / Q1a:** release detection (git tag vs `.skilled/changelog/` version vs frontmatter versions) and the no-git/no-`gh` degradation path — carried; still the blocking dependency for `/doctor:check`'s data path.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q4 (residual):** whether the rebuilt family replaces `/doctor:update` outright or ships a deprecated alias for one release; DB-rebuild disposition decision record.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3a:** exact `provenance_fingerprint` hash input — cheap close-out.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q3b:** divergence ledger git-tracked vs gitignored.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q1c:** system-skill-advisor frontmatter/changelog mismatch severity — error or warning.",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "**Q5 (residual):** EXECUTION TARGETS rows and per-action YAML phase structure for the new commands; `_routes.yaml` registration shape for a 3-command family (iteration 004 sketched both; iteration 009 fixed the registration surface).",
+      "addedAtIteration": 10,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q1: How can the updater determine which release the operator's checkout is on (git tags, `.skilled/changelog/` versions, skill `version` frontmatter, skill changelogs) and find the latest upstream release, and how is the delta between the two computed from repository evidence?",
+    "Q2: How should the updater detect that a skill is customized or overridden locally (three-way merge against the release base, provenance markers, content hashes, git history), and which of those signals does this repository already produce or could produce cheaply?",
+    "Q3: For a customized skill such as sk-git or sk-code, how should the updater build an alignment proposal against the latest release that keeps the repo's override specifics, and how is that proposal presented, approved and applied in a guided, evidence-backed way?",
+    "Q4: Should this be one command or several (for example check, apply, align), and what happens to today's database-rebuild behaviour of /doctor:update (kept, moved, renamed or retired)?",
+    "Q5: What does each resulting command look like under the sk-create-command contract (thin router, `-presentation.txt`, workflow YAML with approval gates, rollback and dry-run), and how does it reuse the existing install and sync scripts?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-19-opencode-sync-md-runtime-surfaces-are-relative-per-entry-symlinks-onto-skilled-d",
+      "text": ".opencode/SYNC.md: runtime surfaces are relative per-entry symlinks onto .skilled/; drift is impossible for linked entries because a symlink has no content of its own.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-20-skilled-bin-holds-git-sync-sh-publishes-committed-session-work-to-the-shared-liv",
+      "text": ".skilled/bin holds git-sync.sh (publishes committed session work to the shared live branch — a session workflow, not a release updater) and no fetch/tag-compare/apply tooling. .skilled/scripts holds git-hooks installation, launch agents, an orphan sweeper and cleanup. The new command must implement detection itself from git primitives plus gh.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-14-skilled-changelog-skill-is-a-discovery-index-not-a-copy-single-package-skills-ar",
+      "text": ".skilled/changelog/<skill>/ is a discovery index, not a copy: single-package skills are a symlink onto the canonical changelog (sk-git -> ../skills/sk-git/changelog); composite skills hold per-entry relative symlinks (for example .skilled/changelog/sk-code/code-review -> ../../skills/sk-code/sk-code-review/changelog; parent -> ../../skills/sk-code/changelog).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-23-ahead-behind-dirty-must-be-reported-separately-this-checkout-is-259-commits-ahea",
+      "text": "Ahead/behind/dirty must be reported separately: this checkout is 259 commits ahead of the latest release and dirty, while a consumer checkout may instead be behind.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-12-all-14-top-level-skills-carry-version-x-y-z-w-frontmatter-examples-sk-code-2-2-4",
+      "text": "All 14 top-level skills carry version: X.Y.Z.W frontmatter (examples: sk-code 2.2.4.0, sk-git 1.8.0.0, sk-doc 2.2.5.0, system-spec-kit 2.6.1.0).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-13-canonical-history-skilled-skills-skill-changelog-vx-y-z-w-md",
+      "text": "Canonical history: .skilled/skills/<skill>/changelog/vX.Y.Z.W.md.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-21-changed-files-and-commits-between-two-refs-for-one-component-git-diff-stat-base-",
+      "text": "Changed files and commits between two refs for one component: git diff --stat <base>..<target> -- .skilled/skills/<skill>/ and git log <base>..<target> -- .skilled/skills/<skill>/.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-15-composite-skills-nest-child-skill-md-files-with-their-own-version-and-changelog-",
+      "text": "Composite skills nest child SKILL.md files with their own version and changelog (sk-code-review, sk-create-agent and so on); an updater comparing only top-level SKILL.md files would miss child drift.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-consequence-latest-upstream-release-must-be-read-from-github-releases-or-tags-un",
+      "text": "Consequence: latest upstream release must be read from GitHub releases or tags; untagged changelog entries are an upcoming hint only. Docs must never be the authority for release identity.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-framework-changelog-one-file-per-release-at-skilled-changelog-skilled-vx-y-z-w-m",
+      "text": "Framework changelog: one file per release at .skilled/changelog/skilled/vX.Y.Z.W.md; an entry's version IS the git tag and GitHub release of the same number (README section 1).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-live-state-gh-release-list-v4-0-0-2-latest-2026-09-28-v4-0-0-1-2026-09-25-v4-0-0",
+      "text": "Live state: gh release list → v4.0.0.2 (Latest, 2026-09-28), v4.0.0.1 (2026-09-25), v4.0.0.0, v4.0.0.0-beta.1 (Pre-release), v3.6.0.0. Local git tag top: v4.0.0.2. Remote tag top: v4.0.0.2.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-naive-remote-tag-sorting-is-unsafe-git-ls-remote-tags-origin-includes-peeled-ref",
+      "text": "Naive remote-tag sorting is unsafe: git ls-remote --tags origin includes peeled ^{} refs and one non-version tag (v047-cli-opencode-shipped), and prereleases exist (v4.0.0.0-beta.1). Latest-release resolution must filter non-version and peeled refs and decide prerelease handling explicitly.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-no-manifest-carries-the-version-skilled-package-json-has-no-version-field-releas",
+      "text": "No manifest carries the version: .skilled/package.json has no \"version\" field; release identity lives only in git refs, changelog files and SKILL.md frontmatter.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-public-release-md-section-4-phase-5-states-plainly-that-tags-alone-do-not-appear",
+      "text": "PUBLIC-RELEASE.md section 4 Phase 5 states plainly that tags alone do not appear as releases; gh release create is what makes a release operator-visible.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-18-public-release-md-sections-1-4-and-6-consumer-projects-link-opencode-to-the-publ",
+      "text": "PUBLIC-RELEASE.md sections 1, 4 and 6: consumer projects link .opencode to the Public clone; edits in .skilled/ affect all linked projects instantly; the old sync step is eliminated.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-publication-is-explicit-and-approval-gated-git-tag-a-tag-then-git-push-origin-ta",
+      "text": "Publication is explicit and approval-gated: git tag -a <tag> then git push origin <tag> then gh release create <tag> --title ... --notes-file ... (.skilled/commands/create/assets/create-changelog-confirm.yaml around lines 590-645; create-changelog-auto.yaml around lines 656-692). Tag collision is pre-checked with git tag --list. Publishing never happens silently: only when --release was explicitly requested and approved.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-16-scan-result-13-of-14-top-level-skills-have-skill-md-version-equal-to-their-newes",
+      "text": "Scan result: 13 of 14 top-level skills have SKILL.md version equal to their newest changelog entry. system-skill-advisor is the exception: frontmatter 0.14.1.0 vs newest changelog v0.9.0.0.md.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-scheme-major-minor-series-patch-4-part-bump-mapping-major-major-minor-minor-patc",
+      "text": "Scheme: MAJOR.MINOR.SERIES.PATCH (4-part). Bump mapping: major→MAJOR, minor→MINOR, patch→SERIES, build→PATCH (.skilled/changelog/skilled/README.md section 3).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-the-same-readme-claims-the-entry-for-the-upcoming-release-lives-here-too-before-",
+      "text": "The same README claims \"The entry for the upcoming release lives here too, before its tag exists. Today that is v4.0.0.2.md\" — stale, since v4.0.0.2 is published. PUBLIC-RELEASE.md section 5 (CURRENT RELEASE) still names v4.0.0.1.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-17-the-updater-should-surface-an-inconsistent-version-evidence-state-for-such-compo",
+      "text": "The updater should surface an inconsistent-version-evidence state for such components rather than pick a winner silently.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-the-working-tree-carries-skilled-changelog-skilled-v4-0-0-3-md-but-no-v4-0-0-3-t",
+      "text": "The working tree carries .skilled/changelog/skilled/v4.0.0.3.md, but no v4.0.0.3 tag exists locally or remotely and gh release list has nothing above v4.0.0.2. git ls-tree v4.0.0.2 for .skilled/changelog/skilled/ ends at v4.0.0.2.md.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-this-worktree-v4-0-0-2-259-g83616db9ba2-dirty-last-reachable-tag-v4-0-0-2-259-co",
+      "text": "This worktree: v4.0.0.2-259-g83616db9ba2-dirty → last reachable tag v4.0.0.2, 259 commits ahead, exact SHA, dirty tree.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-22-version-comparison-git-show-ref-skill-md-frontmatter-changelog-filename-sets-are",
+      "text": "Version comparison: git show <ref>:.../SKILL.md frontmatter; changelog filename sets are sortable 4-part versions and give the release sequence.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-16-classification-protocol-for-divergence-if-skill-md-the-declared-release-authorit",
+      "text": "**Classification protocol for divergence:** if SKILL.md (the declared release authority) is ahead of its newest changelog entry, or a follower artifact splits from it, report the component as **blocked-by-reconciliation** (error-level), not merely as a caveat — mirroring doctor check 13b. A WIP/downgraded mode may exist, but it must be explicit (`PARENT_HUB_CHECK_STRICT=0`-style), never silent.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-15-compare-versions-segment-wise-numerically-never-as-strings-the-repo-s-own-checke",
+      "text": "**Compare versions segment-wise numerically, never as strings.** The repo's own checker is the reference implementation; any lexical comparison reproduces iteration-1's false mismatch. This binds the updater's detection of both release tags and per-skill versions.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-18-for-this-checkout-today-system-skill-advisor-is-consistent-and-updatable-there-i",
+      "text": "**For this checkout today**, system-skill-advisor is consistent and updatable; there is no drift to carry into the Q2 detection design.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-17-per-component-evidence-to-read-the-five-routing-artifacts-13a-the-skill-md-versi",
+      "text": "**Per-component evidence to read:** the five routing artifacts (13a), the SKILL.md version, the newest changelog entry, and (optionally) the sk-doc `max(fm,changelog)` anchor for docs.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-skilled-commands-doctor-scripts-parent-skill-check-cjs-check-13-is-titled-releas",
+      "text": "`.skilled/commands/doctor/scripts/parent-skill-check.cjs` check 13 is titled **\"Release-version parity (canon: soft, one authority per hub)\"** (line 1470). Check **13b** compares the SKILL.md four-part version against the newest changelog entry using **segment-wise numeric sort** (lines 1517–1525: `split('.').map(Number)`, four segments), then reports `softFail` at line 1532 when they differ.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-12-skilled-skills-sk-doc-scripts-frontmatter-version-mjs-compute-apply-verify-deriv",
+      "text": "`.skilled/skills/sk-doc/scripts/frontmatter-version.mjs` (compute/apply/verify) derives the doc's version as **`max(frontmatter, newest changelog entry)`** — proven by its test fixture `.skilled/skills/sk-doc/scripts/tests/test-frontmatter-version.mjs:79` (`SKILL.md with a stale 3-part version; changelog is higher -> anchor 2.3.0.0`, `anchorSource = max(fm,changelog)`), and `verify` checks each in-scope file's version equals the computed value.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-14-check-skill-doc-frontmatter-mjs-advisor-runtime-checks-only-title-description-no",
+      "text": "`check-skill-doc-frontmatter.mjs` (advisor runtime) checks only `title`/`description` non-emptiness — no version logic; reconciliation deliberately lives in the doctor and sk-doc surfaces.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-system-skill-advisor-skill-md-carries-version-0-14-1-0-its-changelog-s-numerical",
+      "text": "`system-skill-advisor/SKILL.md` carries `version: 0.14.1.0`; its changelog's numerically newest entry is `v0.14.1.0.md` (whose own frontmatter also carries `version: 0.14.1.0`). **They match.**",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-check-13a-holds-skill-md-as-the-release-authority-and-requires-four-follower-art",
+      "text": "Check 13a holds SKILL.md as the release authority and requires four follower artifacts to carry the same version: `ROUTER.md`, `description.json`, `hub-router.json`, `mode-registry.json` (lines 1494–1507).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-commit-96ee85d5b79-feat-doctor-catch-a-hub-whose-version-outruns-its-own-changel",
+      "text": "Commit `96ee85d5b79` — `feat(doctor): catch a hub whose version outruns its own changelog` — added the check. So a real divergence is treated as a **defect to catch and repair**, not accepted practice. The answer to Q1c's second half: **reconciliation is an error by default; warning only under the documented WIP escape hatch.**",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-corpus-detail-17-advisor-changelog-entries-from-v0-1-0-0-md-to-v0-14-1-0-md-lexi",
+      "text": "Corpus detail: 17 advisor changelog entries from `v0.1.0.0.md` to `v0.14.1.0.md`; lexical tail = `v0.9.0.0.md`, numeric max = `v0.14.1.0.md`.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-evidence-this-is-enforced-in-practice-commit-3b1c934e53-docs-changelog-record-th",
+      "text": "Evidence this is enforced in practice: commit `3b1c934e53` (`docs(changelog): record the runtime alignment in each touched skill`) bumps SKILL.md, ROUTER.md, description.json, hub-router.json, mode-registry.json and the changelog file together, across skills (sk-code, sk-doc, system-deep-loop, system-skill-advisor, …).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-severity-semantics-softfail-msg-strict-hub-canon-fail-warn-msg-lines-135-137-und",
+      "text": "Severity semantics: `softFail(msg)` = `(STRICT_HUB_CANON ? fail : warn)(msg)` (lines 135–137). Under the default canon it is a **hard FAIL** (exit 1); only `PARENT_HUB_CHECK_STRICT=0` — the work-in-progress opt-out documented in the script header — downgrades it to WARN. Exit code is 0 only when no hard invariant failed (lines 1543–1548).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-13-so-the-repo-has-two-independent-enforcement-surfaces-doctor-check-13-sk-doc-vers",
+      "text": "So the repo has two independent enforcement surfaces (doctor check 13, sk-doc version engine) and both make the **newest changelog entry the ground truth** that frontmatter must not contradict.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-the-checker-s-own-comment-lines-1473-1478-records-the-history-that-motivated-it-",
+      "text": "The checker's own comment (lines 1473–1478) records the history that motivated it: *\"Nothing enforced that, and the two drifts it allowed each ran over a fortnight before a human audit caught them: a hub claiming a release with no entry behind it, and a sibling reconciled late in a batch.\"*",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-the-iteration-1-claim-frontmatter-0-14-1-0-vs-newest-changelog-v0-9-0-0-came-fro",
+      "text": "The iteration-1 claim (\"frontmatter 0.14.1.0 vs newest changelog v0.9.0.0\") came from a **lexicographic filename sort**: among `v0.1.0.0 … v0.14.1.0`, the string-last file is `v0.9.0.0.md`. system-skill-advisor is the only top-level skill with a double-digit minor, which is why it was the only skill that appeared mismatched.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-updater-implication-per-skill-current-version-detection-must-read-all-five-artif",
+      "text": "Updater implication: per-skill \"current version\" detection must read all five artifacts and flag intra-skill split versions, not just the SKILL.md/changelog pair.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-with-numeric-segment-wise-sort-all-14-top-level-skills-match-and-so-do-all-59-sk",
+      "text": "With numeric segment-wise sort, **all 14 top-level skills match**, and so do **all 59 `SKILL.md` files** in `.skilled/skills/` (14 top-level + composite/nested children): zero mismatches, zero missing changelog dirs, zero missing `version` frontmatter.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-1a69fb9957-fix-sk-code-stop-the-rule-canary-touched-4-files-all-inside-sk-code-r",
+      "text": "`1a69fb9957` (`fix(sk-code): stop the rule canary...`) touched 4 files, all inside `sk-code-review`, parent `SKILL.md` not touched.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-24841a6882-and-094cdb9f8a-changelog-rewrites-each-touched-29-files-under-sk-code",
+      "text": "`24841a6882` and `094cdb9f8a` (changelog rewrites) each touched 29 files under `sk-code/`, parent `SKILL.md` not touched.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-counter-examples-are-broad-refactors-that-move-hub-and-children-together-c1ee945",
+      "text": "Counter-examples are broad refactors that move hub and children together (`c1ee9456e0` touched 209 sk-code files and the parent, `ec33385ae5` touched 680 files and the parent).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-on-the-sk-doc-side-6cd0da3618-touched-1-file-under-sk-create-command-and-b1f6ffc",
+      "text": "On the sk-doc side, `6cd0da3618` touched 1 file under `sk-create-command` and `b1f6ffc0de` touched 56 files under `sk-doc`, parent `SKILL.md` not touched in either.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-packet-layout-is-uniform-a-direct-child-directory-of-the-hub-holding-skill-md-re",
+      "text": "Packet layout is uniform: a direct child directory of the hub holding `SKILL.md`, `README.md`, `changelog/` plus optional `references/`, `assets/`, `scripts/`, `benchmark/`, `manual-testing-playbook/` (observed for `sk-code-review` and `sk-create-command`).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-the-repository-corpus-is-59-skill-md-files-observed-count-iteration-2-verified-a",
+      "text": "The repository corpus is 59 `SKILL.md` files (observed count). Iteration 2 verified all 59 match their numerically newest changelog entry. With 14 top-level skills, 45 of the 59 versioned components are composite children.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-mutation-boundaries-allowed-targets-absolute-paths-forbidden-targets-and-validat",
+      "text": "`mutation_boundaries`: `allowed_targets` (absolute paths), `forbidden_targets`, and `validator: canonical_path_validator` with the rule \"validate allowed_targets and forbidden_targets before snapshot, mutation, rollback, and state-log write\".",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-operating-mode-workflow-sequential-orchestrator-compliance-mandatory-execution-i",
+      "text": "`operating_mode`: `workflow: sequential_orchestrator`, `compliance: MANDATORY`, `execution: interactive`, `approvals: per_phase_boundary`, `tracking: phase_by_phase`, `validation: post_run_gold_battery`, plus `state_dir` / `state_log` (currently under `.skilled/skills/system-skill-advisor/runtime/database/`).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-7-state-log-schema-then-numbered-phases-with-per-phase-approval-gates-and-exit-tax",
+      "text": "`state_log_schema`, then numbered phases with per-phase approval gates and exit taxonomy.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-upstream-assets-contract-spec-decision-record-checklist-pointers-pass-policy-flo",
+      "text": "`upstream_assets`: contract + spec/decision-record/checklist pointers + `pass_policy` (`flock_required: true`, `full_snapshot_required: true`, `retry_backoff_seconds: 5`, `sigint_settle_seconds: 5`, `snapshot_retention_days: 30`).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-5-user-inputs-and-field-handling-per-flag-defaults-explicit-true-false-policy-sent",
+      "text": "`user_inputs` and `field_handling` (per-flag defaults + explicit true/false policy sentences).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-a-named-invariant-block-flock-protected-single-instance-per-db-snapshot-before-m",
+      "text": "A named invariant block: flock-protected single instance, per-DB snapshot before mutation unless waived, restore failed plus downstream DBs on retry exhaustion, SIGINT settle window, \"Every abort path … MUST `rm -f .doctor-update.flock` before exit\".",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-8-flock-snapshot-covers-skill-writes-and-projection-writes",
+      "text": "flock + snapshot (covers skill writes AND projection writes).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-header-role-purpose-action-single-dependency-step-chain",
+      "text": "Header: `role`, `purpose`, `action` (single dependency/step chain).",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-11-post-verification-battery-every-generator-in-check-mode-all-ci-freshness-gates-r",
+      "text": "Post-verification battery: every generator in `--check` mode, all `ci-*` freshness gates, `route-validate.sh` for `_routes.yaml`, and the SYNC.md §4 symlink integrity loop.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-12-rebuild-the-advisor-skill-graph-today-s-db-rebuild-behavior-so-the-graph-indexes",
+      "text": "Rebuild the advisor skill graph (today's DB-rebuild behavior) so the graph indexes final bytes.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-10-regenerate-projections-deterministically-dry-run-first-then-write-generate-leaf-",
+      "text": "Regenerate projections deterministically, dry-run first, then `--write`: `generate-leaf-manifest.cjs --write`, `regenerate-skill-derived.cjs --write`, `compiled-route-sync.cjs`, `frontmatter-version.mjs apply`.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-13-state-log-release-lock-on-every-terminal-path",
+      "text": "State log; release lock on every terminal path.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-9-write-the-release-delta-for-un-customized-skills",
+      "text": "Write the release delta for un-customized skills.",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-build-lines-756-870-stages-a-new-tree-at-runtimeroot-staging-publicationid-then-",
+      "text": "`build()` (lines 756–870) stages a new tree at `<runtimeRoot>.staging-<publicationId>`, then retains the prior serving root by rename to `<runtimeRoot>.rollback-<publicationId>`, and records in publication state: `priorClosureFingerprint`, `currentClosureFingerprint`, and `baselineExternalManifests` (lines 838–847). Base, ours and theirs are first-class, fingerprint-verified states.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-captureexternalactivationmanifests-lines-455-479-snapshots-every-non-owned-entry",
+      "text": "`captureExternalActivationManifests()` (lines 455–479) snapshots every non-owned entry byte-preserving with a sha256 fingerprint; `baselineExternalFingerprints()` (526–528) records them.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-carryexternalmanifests-sourceroot-targetroot-566-578-is-the-merge-rule-stated-in",
+      "text": "`carryExternalManifests(sourceRoot, targetRoot)` (566–578) is the merge rule, stated in the code comment: entries present in source but absent from target are carried forward; an entry already present in target is left alone — \"the target is the newer side, and this tool never deletes an activation manifest.\"",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-finalize-940-952-and-revert-954-are-symmetrical-and-resumable-resumefinalizeclea",
+      "text": "`finalize()` (940–952) and `revert()` (954+) are symmetrical and resumable (`resumeFinalizeCleanup`, `resumeRevertCleanup`); revert renames the failed tree aside rather than deleting it, with verified restoration of whichever closure can be proven intact.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-17-apply-consumes-accepted-decisions-only-staging-rollback-roots-closure-fingerprin",
+      "text": "Apply: consumes accepted decisions only; staging/rollback roots, closure fingerprints and the optimistic-concurrency guard mirror `compiled-route-sync`; cleanup is resumable; the post-apply battery from iteration 4 runs before the advisor reindex writes fresh fingerprints/lanes.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-16-artifacts-proposal-json-plus-its-presentation-rendering-live-in-the-route-s-run-",
+      "text": "Artifacts: proposal JSON plus its presentation rendering live in the route's run-scoped state dir, never in the skill tree; a divergence ledger records `{path, baseFingerprint, localFingerprint, releaseFingerprint, decision, decidedAt}` so the next run has an explicit base — closing the gap that `provenance_fingerprint` covers only the derived block.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-13-classification-per-file-base-vs-local-vs-release-unchanged-take-release-changed-",
+      "text": "Classification per file, base-vs-local-vs-release: unchanged → take release; changed locally → proposal; local-only → carry forward; locally deleted → respect the deletion. (Generalizes the carryExternal semantics from hub manifests to skill files.)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-15-decision-vocabulary-per-file-adopt-release-keep-local-keep-local-and-record-dive",
+      "text": "Decision vocabulary per file: `adopt-release` | `keep-local` | `keep-local-and-record-divergence`; per skill: `defer`.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-14-evidence-bundle-per-conflicted-file-base-local-release-blob-references-plus-sha2",
+      "text": "Evidence bundle per conflicted file: base/local/release blob references plus sha256 fingerprints plus `git diff` hunks, rendered like sk-git's conflict list. Never auto-write merged text: the repo's precedent carries whole entries and leaves line resolution to the human.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-f-005-1-the-repo-already-ships-a-proven-three-way-reconciliation-transaction-who",
+      "text": "F-005-1 — The repo already ships a proven three-way reconciliation transaction whose merge policy is exactly the one align needs",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-8-f-005-2-provenance-fingerprint-is-a-schema-locked-sha256-of-skill-md-derived-con",
+      "text": "F-005-2 — `provenance_fingerprint` is a schema-locked sha256 of SKILL.md-derived content — a cheap block-level change signal",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-9-f-005-3-sk-git-already-defines-the-guided-evidence-first-conflict-resolution-idi",
+      "text": "F-005-3 — sk-git already defines the guided, evidence-first conflict-resolution idiom align should copy",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-10-f-005-4-release-notes-carry-machine-readable-version-identity-and-a-drift-check-",
+      "text": "F-005-4 — Release notes carry machine-readable version identity and a drift-check idiom align can mirror",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-11-f-005-5-git-history-is-a-live-signal-in-file-provenance-markers-are-a-gap-not-a-",
+      "text": "F-005-5 — Git history is a live signal; in-file provenance markers are a gap, not a resource",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-12-f-005-6-proposed-alignment-mechanics-design-synthesis-grounded-in-f-005-1-5",
+      "text": "F-005-6 — Proposed alignment mechanics (design synthesis grounded in F-005-1..5)",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-test-skilled-bin-tests-compiled-route-manifest-test-cjs-691-three-way-reconcilia",
+      "text": "Test: `.skilled/bin/tests/compiled-route-manifest.test.cjs:691` — \"three-way reconciliation preserves a serving-only external update\" asserts a serving-root edit survives a full `build → finalize` cycle with `reconciled: []` and byte-identical content.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-the-optimistic-concurrency-guard-is-hash-based-writeexternalmanifestatomic-activ",
+      "text": "The optimistic-concurrency guard is hash-based: `writeExternalManifestAtomic(activationRoot, entry, expectedFingerprint)` (530–541) refuses when the current bytes' fingerprint differs from the expected baseline; `validatePublicationBinding()` (580–598) refuses both `finalize` and `revert` when either closure fingerprint has moved since publication.",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-6-7-gh-auth-never-required-f-006-3-only-a-private-upstream-needs-it",
+      "text": "`gh auth` — never required (F-006-3); only a private upstream needs it.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-1-f-006-1-release-identity-is-tag-release-authoritative-changelog-entries-exist-be",
+      "text": "F-006-1 — Release identity is tag/release-authoritative; changelog entries exist before tags do",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-2-f-006-2-local-release-resolution-nearest-annotated-tag-plus-checkout-class",
+      "text": "F-006-2 — Local release resolution: nearest annotated tag plus checkout class",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-3-f-006-3-latest-upstream-detection-works-without-gh-auth-two-anonymous-paths-veri",
+      "text": "F-006-3 — Latest-upstream detection works without `gh` auth; two anonymous paths verified",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-4-f-006-4-no-upstream-update-machinery-exists-the-sync-scripts-are-a-different-axi",
+      "text": "F-006-4 — No upstream-update machinery exists; the sync scripts are a different axis",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-5-f-006-5-version-axes-are-orthogonal-repo-release-vs-per-skill-version",
+      "text": "F-006-5 — Version axes are orthogonal: repo release vs per-skill version",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-6-f-006-6-degradation-ladder-and-the-safe-conclusion-rule-q1a",
+      "text": "F-006-6 — Degradation ladder and the safe-conclusion rule (Q1a)",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-8-git-metadata-no-git-lose-describe-diff-the-frontmatter-changelog-inventory-remai",
+      "text": "Git metadata (no `.git`) — lose `describe`/`diff`; the frontmatter+changelog inventory remains as local truth; release bytes come from the release archive (`codeload` / REST `tarball_url`); the delta is a path+sha256 inventory comparison, the compiled-route-sync fingerprint idiom from iteration 5.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-6-9-network-the-update-check-is-impossible-safe-conclusion-report-the-local-base-sta",
+      "text": "Network — the update check is impossible. Safe conclusion: report the local base state only; upstream is UNKNOWN.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-f-iter007-001-today-s-command-is-the-db-rebuild-with-hard-boundaries-that-exclud",
+      "text": "F-iter007-001 — Today's command IS the DB rebuild, with hard boundaries that exclude skill content",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-f-iter007-002-namespace-collision-the-rebuild-command-already-claims-release-mig",
+      "text": "F-iter007-002 — Namespace collision: the rebuild command already claims release-migration trigger phrases",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-f-iter007-003-cross-route-rebuild-ownership-is-established-and-must-survive",
+      "text": "F-iter007-003 — Cross-route rebuild ownership is established and must survive",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-f-iter007-004-changelog-precedent-the-command-is-kept-by-function-and-alignment-",
+      "text": "F-iter007-004 — Changelog precedent: the command is kept by function, and \"alignment\" terminology is already taken",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-5-f-iter007-005-adjacent-q1-evidence-package-json-is-not-a-version-source",
+      "text": "F-iter007-005 — Adjacent Q1 evidence: package.json is not a version source",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-8-20-accept-proposal-accept-all-no-precedent-and-the-decision-unit-is-per-file-not-on",
+      "text": "`--accept=<proposal>` / `--accept=all`: no precedent, and the decision unit is per-file, not one",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-21-dry-run-as-the-default-or-as-a-third-mode-contradicts-deep-research-md-128-and",
+      "text": "`--dry-run` as the default or as a third mode: contradicts `deep/research.md:128` and",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-23-align-applying-adopted-files-itself-would-duplicate-apply-s-staging-rollback-dri",
+      "text": "`align` applying adopted files itself: would duplicate apply's staging/rollback/drift machinery",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-18-apply-always-asks-the-startup-confirmation-before-the-first-write-mirroring",
+      "text": "`apply` always asks the startup confirmation before the first write, mirroring",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-6-argument-hints-and-modes-md-36-the-canonical-hint-pattern-for-it-is",
+      "text": "`argument-hints-and-modes.md:36` — the canonical hint pattern for it is",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-3-deep-research-md-128-dry-run-is-a-first-class-flag-on-the-confirm-flow-not-a-thi",
+      "text": "`deep/research.md:128` — \"`--dry-run` is a first-class flag on the confirm flow, not a third",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-2-deep-research-md-30-dry-run-is-default-false-unless-dry-run-is-present",
+      "text": "`deep/research.md:30` — `dry_run` is \"default false unless `--dry-run` is present\".",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-5-doctor-env-yaml-93-declares-the-flag-under-accepted-arguments-doctor-env-present",
+      "text": "`doctor-env.yaml:93` declares the flag under `accepted_arguments`; `doctor-env-presentation.txt`",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-4-doctor-env-md-33-a-selector-and-dry-run-are-workflow-inputs-not-execution-modes",
+      "text": "`doctor/env.md:33` — \"A selector and --dry-run are workflow inputs, not execution modes.\"",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-11-manual-testing-playbook-end-to-end-loop-two-phase-promotion-and-rollback-md-45-e",
+      "text": "`manual-testing-playbook/end-to-end-loop/two-phase-promotion-and-rollback.md:45` (E2E-050) pins",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-9-promote-candidate-cjs-680-681-usage-is",
+      "text": "`promote-candidate.cjs:680-681` — usage is",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-10-promotion-gate-contract-md-159-208-the-acceptance-state-is-written-to-an-explici",
+      "text": "`promotion-gate-contract.md:159,208` — the acceptance state is written to an explicit",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-22-a-force-bypass-for-apply-s-drift-refusal-drift-means-the-file-moved-since-accept",
+      "text": "A `--force` bypass for apply's drift refusal: drift means the file moved since acceptance, which is",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-17-carry-over-update-md-31-s-posture-this-command-is-always-interactive-deleted-mod",
+      "text": "Carry over `update.md:31`'s posture: \"This command is always interactive; deleted mode suffixes",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-1-f-008-1-dry-run-is-an-opt-in-preview-flag-with-a-settled-semantic-contract-it-is",
+      "text": "F-008-1 — `--dry-run` is an opt-in preview flag with a settled semantic contract; it is never the default and never an execution mode",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-8-f-008-2-the-repo-already-separates-an-accept-phase-from-a-ship-phase-that-is-exa",
+      "text": "F-008-2 — The repo already separates an `accept` phase from a `ship` phase; that is exactly the align/apply split",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-12-f-008-3-accept-proposal-is-not-this-repo-s-idiom-the-accepted-decision-file-is-t",
+      "text": "F-008-3 — `--accept <proposal>` is not this repo's idiom; the accepted decision file is the consent channel",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-16-f-008-4-q5a-design-record-exact-router-hint-per-route-flag-surface-and-align-s-h",
+      "text": "F-008-4 — Q5a design record: exact router hint, per-route flag surface, and align's handoff rule",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-13-no-command-in-skilled-commands-or-the-sk-doc-contract-uses-a-proposal-id-accept-",
+      "text": "No command in `.skilled/commands` or the sk-doc contract uses a proposal-id accept flag. The only",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-19-rollback-apply-stages-writes-accepted-bytes-and-rolls-back-via-git-the-release-f",
+      "text": "Rollback: `apply` stages, writes accepted bytes, and rolls back via git (the release family's",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-7-route-registry-treatment-routes-yaml-68-69-registers-dry-run-in-setup-vars-and",
+      "text": "Route registry treatment: `_routes.yaml:68-69` registers `dry_run` in `setup_vars` and",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-14-the-repo-s-accept-idiom-is-a-file-not-an-id-acceptance-file-carries-the-accepted",
+      "text": "The repo's accept idiom is a **file**, not an id: `--acceptance-file` carries the accepted snapshot",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-8-15-the-repo-s-command-level-flag-vocabulary-is-booleans-force-no-snapshot",
+      "text": "The repo's command-level flag vocabulary is booleans (`--force`, `--no-snapshot`,",
+      "addedAtIteration": 8,
+      "sources": []
+    },
+    {
+      "id": "finding-9-7-canonical-10-routes-yaml-update-md-the-two-doctor-update-assets-mcp-md-speckit-m",
+      "text": "**Canonical (10):** `_routes.yaml`, `update.md`, the two `doctor-update-*` assets, `mcp.md`, `speckit.md`, `doctor-deep-loop.yaml`, `doctor-speckit-retrieval.yaml`, `doctor-speckit-presentation.txt`, `doctor-runtime-bootstrap.sh`.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-9-contract-fixture-live-sk-doc-sk-create-command-assets-command-contract-json-207-",
+      "text": "**Contract fixture (live):** `sk-doc/sk-create-command/assets/command-contract.json` (`:207` doctor selector `update` → `doctor-update.yaml`; `:226` `input.required` note; `:239` `invocation_aliases` lists `/doctor:update`). This asset validates router shape and is part of the sweep.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-10-generated-retrieval-data-do-not-hand-edit-trigger-index-json-phrase-variants-jso",
+      "text": "**Generated retrieval data (do not hand-edit):** `trigger-index.json`, `phrase-variants.json`, `corpus-manifest.json`, `generation-diagnostics.json` — regenerated artifacts; their hits come from spec-packet titles, not command registration.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-8-index-doc-copies-manual-sweep-skilled-commands-readme-txt-root-readme-md-717-121",
+      "text": "**Index/doc copies (manual sweep):** `.skilled/commands/README.txt`; root `README.md` (`:717`, `:1211`, `:1214`); `system-deep-loop/runtime/references/integration-points.md` (`:160`, `:162` — these carry *line-number anchors* into `update.md`, so a rewrite invalidates them); feature-catalog `doctor-commands/category-overview.md` (`:3`, `:19`, `:27`, `:43`) and `maintenance/doctor-router-and-manifest-dispatch.md`; 9 manual-testing-playbook `doctor-commands/` files plus the playbook index and `manual-testing-playbook.md`; `system-skill-advisor/references/config/db-path-policy.md`.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-5-prose-warning-unless-strict-copied-description-argument-hint-text",
+      "text": "**Prose (warning unless `--strict`):** copied description / argument-hint text.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-4-structural-exit-1-coverage-identity-counts-resolvable-resources-a-command-missin",
+      "text": "**Structural (exit 1):** coverage, identity, counts, resolvable resources — a command missing from an index, an index naming a nonexistent command, a stale group count, a metadata entry pointing at nothing.",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-1-f-iter009-001-canonical-registration-surface-is-three-files-plus-an-asset-pair",
+      "text": "F-iter009-001 — Canonical registration surface is three files plus an asset pair",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-2-f-iter009-002-runtime-mirrors-are-derived-not-hand-maintained-the-walk-is-dynami",
+      "text": "F-iter009-002 — Runtime mirrors are derived, not hand-maintained; the walk is dynamic and excludes non-`.md` command dirs",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-3-f-iter009-003-the-catalog-copy-check-is-the-rename-s-enforcement-gate-and-it-alr",
+      "text": "F-iter009-003 — The catalog-copy check is the rename's enforcement gate, and it already names this failure mode",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-6-f-iter009-004-the-non-spec-reference-set-is-32-files-and-splits-into-four-sweep-",
+      "text": "F-iter009-004 — The non-spec reference set is 32 files and splits into four sweep classes",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-9-11-f-iter009-005-the-four-trigger-phrases-are-the-advisor-visible-surface-and-they-",
+      "text": "F-iter009-005 — The four trigger phrases are the advisor-visible surface, and they partition cleanly",
+      "addedAtIteration": 9,
+      "sources": []
+    },
+    {
+      "id": "finding-10-17-obs-iter010-001-findings-registry-json-has-resolvedquestions-and-re-derives-open",
+      "text": "**obs-iter010-001:** `findings-registry.json` has `resolvedQuestions: []` and re-derives open/carried questions from the iteration narratives' \"Questions Remaining\" sections each run. Nothing in the pipeline consumes a narrative's \"Questions Answered\" section back into the registry, so Q1b — answered in iteration 003 — was carried forward nine more times. This narrative therefore omits Q1b from Questions Remaining; the planner should treat it as resolved by iterations 003 + 010. Reported, not repaired — registry and reducer files are machine-owned.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-11-r1-iterate-units-plan-and-execute-per-hub-child-pair-customization-class-is-a-pr",
+      "text": "**R1 — Iterate units.** Plan and execute per hub/child pair. Customization class is a property of the unit, so a customized `sk-git` or `sk-code-review` blocks only itself.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-12-r2-per-unit-version-truth-a-unit-s-release-identity-is-its-skill-md-version-fron",
+      "text": "**R2 — Per-unit version truth.** A unit's release identity is its `SKILL.md` `version:` frontmatter plus its numerically newest `changelog/` entry. Hub projections pin only the hub version (`mode-registry.json`, `hub-router.json`, `leaf-manifest.json`) and are never a child-version source.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-13-r3-per-unit-delta-scope-path-scoped-git-diff-per-unit-the-child-s-version-change",
+      "text": "**R3 — Per-unit delta scope.** Path-scoped `git diff` per unit; the child's version change is the release stamp for that unit.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-14-r4-structural-coupling-handled-in-the-same-transaction-a-child-update-that-chang",
+      "text": "**R4 — Structural coupling handled in the same transaction.** A child update that changes only content inside an existing leaf is self-contained; one that adds/removes/renames leaves or changes routing vocabulary must regenerate `mode-registry.json`, `hub-router.json` and `leaf-manifest.json` in the same apply transaction (iteration 004 F6), gated post-apply by `generate-leaf-manifest.cjs --check <hub>`.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-15-r5-no-identity-operations-there-is-nothing-per-child-to-register-or-deregister-r",
+      "text": "**R5 — No identity operations.** There is nothing per-child to register or deregister: runtime mirrors are symlinks to `.skilled/skills`, packets carry no `graph-metadata.json`/`description.json`, and advisor identity stays the hub.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-6-094cdb9f8a-docs-changelog-complete-the-search-metadata-on-every-release-and-skil",
+      "text": "`094cdb9f8a` (`docs(changelog): complete the search metadata on every release and skill entry`) — 587 files across skills, parent `SKILL.md` **not** touched.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-3-24841a6882-docs-sk-code-rewrite-the-sk-code-changelogs-29-files-all-under-sk-cod",
+      "text": "`24841a6882` (`docs(sk-code): rewrite the sk-code changelogs...`) — 29 files, all under `sk-code` children, parent `SKILL.md` **not** touched.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-5-4da16a6516-feat-sk-doc-write-shorter-changelog-entries-15-files-under-sk-create-",
+      "text": "`4da16a6516` (`feat(sk-doc): write shorter changelog entries...`) — 15 files under `sk-create-changelog`, parent **not** touched.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-4-b5127d2d34-feat-sk-doc-teach-create-changelog-the-skilled-release-line-17-files-",
+      "text": "`b5127d2d34` (`feat(sk-doc): teach create-changelog the Skilled release line`) — 17 files under `sk-create-changelog`, parent **not** touched.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-8-a-hub-version-change-is-not-evidence-that-any-child-changed-and-a-child-change-i",
+      "text": "A hub version change is not evidence that any child changed, and a child change is not evidence the hub changed. The updater cannot use hub versions as a proxy for child deltas in either direction.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-9-comparison-delta-and-apply-must-be-per-unit-a-customized-child-must-not-block-an",
+      "text": "Comparison, delta and apply must be per unit. A customized child must not block an update of its pristine siblings, and an uncustomized hub must not force child rewrites.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-7-counter-case-confirmed-8e4b86b247-chore-skills-renumber-under-their-new-caps-tou",
+      "text": "Counter-case confirmed: `8e4b86b247` (`chore(skills): renumber ... under their new caps`) touched the parent — broad structural refactors move hub and children together.",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-1-f-iter010-001-the-unit-taxonomy-is-closed-at-exactly-two-levels-14-hubs-and-45-d",
+      "text": "F-iter010-001 — The unit taxonomy is closed at exactly two levels: 14 hubs and 45 direct children",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-2-f-iter010-002-child-scoped-commits-land-without-the-parent-skill-md-and-without-",
+      "text": "F-iter010-002 — Child-scoped commits land without the parent `SKILL.md` and without a hub version bump",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-10-f-iter010-003-decision-children-are-independent-update-units-and-non-independent",
+      "text": "F-iter010-003 — Decision: children are independent *update* units and non-independent *identities*",
+      "addedAtIteration": 10,
+      "sources": []
+    },
+    {
+      "id": "finding-10-16-f-iter010-004-the-hub-projection-sub-item-is-closed-regeneration-belongs-in-the-",
+      "text": "F-iter010-004 — The hub-projection sub-item is closed: regeneration belongs in the same apply transaction",
+      "addedAtIteration": 10,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 10,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 53,
+    "keyFindings": 142,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.45,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/079-doctor-command-audit/specs/system-speckit/048-doctor-command-audit/003-update/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

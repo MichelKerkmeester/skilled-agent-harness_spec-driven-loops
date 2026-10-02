@@ -111,10 +111,21 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded, 14 phases | Done | `create.sh` run in worktree 079 |
+| Thirteen audits closed with a verdict | Done | Eleven fix (003 by redesign), 005 retire, 012 keep; every `implementation-summary.md` states its verdict |
+| `/doctor:mcp` narrowed to Code Mode | Done | Commit `6cd0da3618`; the install and debug YAMLs name no other MCP server |
+| `/doctor:env` built through sk-create-command | Done | Commit `6cd0da3618`; `.claude/commands/doctor/env.md` is a symlink to `.skilled/commands/doctor/env.md` |
+| `/doctor:speckit` targets repaired, embeddings retired | Done | Commit `144e66669c` |
+| Rebuild moved to `/doctor:rebuild`; `/doctor:update` made release-aware | Done | Commits `b0be233a6b`, `b853457597` and `8215a33a7b`; engine tests 16 of 16 pass |
+| Route validation | Done | `route-validate.sh` exit 0, 9 routes validated, 2 warnings |
+| Recursive strict validation | Done | `validate.sh specs/system-speckit/048-doctor-command-audit --recursive --strict`: 15 of 15 folders RESULT: PASSED |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Phase 003 scope widened | The operator asked for a release-aware updater, so phase 003 became a redesign after ten deep-research iterations. Its goal directive was amended to match. |
+| cli-pi routes added | The opencode-go and Cline routes for DeepSeek V4.1 Flash were added to the deep-loop allowlist so `/deep:research` could run on the planned executor (commit `69cb472aba`). |
+| LUNA usage limit | GPT-6 Luna hit its usage limit mid-session. The phase 010–013 audits were rerun on DeepSeek, following D5. |
+| Mutation-class gate coverage | The gate no longer covers the mcp-tooling CLI scripts. This is recorded in phase 001. |
+| Findings left open | Each phase's `implementation-summary.md` lists the subsystem defects it recorded and did not fix, following D4. Phase 003 also records the `/deep:research` workflow defects seen during its run. |
 <!-- /ANCHOR:log -->

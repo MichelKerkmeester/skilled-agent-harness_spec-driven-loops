@@ -50,12 +50,13 @@
       "directive"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/commands/doctor/mcp.md",
+      ".skilled/commands/doctor/env.md",
       "001-mcp-install-code-mode/goal.md",
       "002-mcp-debug-code-mode/goal.md",
       "003-update/goal.md",
@@ -95,6 +96,12 @@
         "name": "mcp.md",
         "kind": "doc",
         "path": ".skilled/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "env.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/env.md",
         "source": "derived"
       },
       {
@@ -146,6 +153,12 @@
         "source": "derived"
       },
       {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "1. DURABLE DIRECTIVE",
         "kind": "heading",
         "path": "goal.md",
@@ -162,29 +175,23 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "3. COMPLETION CRITERIA",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The doctor commands are the operator's way to check and repair the system: `/doctor:mcp` (install, debug), `/doctor:update`, and ten `/doctor:speckit` targets",
     "created_at": "2026-10-02T16:10:09Z",
-    "last_save_at": "2026-10-02T21:03:18.889Z",
+    "last_save_at": "2026-10-02T23:23:32.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:3c10aaf73a155658b7ccdebe90f332a78afaaee428a8d5a0727133366c013805",
+    "source_fingerprint": "sha256:3e47f9ce362854541e4076bd9b1a05c5f2b91f974dd1721325e998616a52e660",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "45410129ae2d92192d8c17f7622726ded82041f7332e5c9e8a108af809cf9f6a"
+      "spec.md": "537f4642191baa6b0a31c4295e3080d42a9014c9c440ec2725e4111a1191bd06"
     },
-    "last_active_at": "2026-10-02T21:03:18.889Z",
-    "last_active_child_id": "system-speckit/048-doctor-command-audit/003-update"
+    "last_active_child_id": "system-speckit/048-doctor-command-audit/003-update",
+    "last_active_at": "2026-10-02T21:03:18.889Z"
   }
 }
