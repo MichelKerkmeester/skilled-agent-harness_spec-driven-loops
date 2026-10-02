@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan"
     last_updated_at: "2026-10-02T10:45:00Z"
     last_updated_by: "orchestrating-session"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Closed the phase with the inventory and four decisions"
+    next_safe_action: "Run phases 002 and 003 from inventory.md"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-046-001-removal-plan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -57,11 +57,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `inventory.md` in this folder has one row per file that `git grep -l -i -P '\bdeem(\b|[-_])' -- ':!specs' ':!*/changelog/*'` prints, and each row names an owner of 002, 003 or 004 and an action
-- [ ] `decision-record.md` in this folder holds ADR-001 to ADR-004, each Accepted: remove rather than mark, `cli-classifier` as a one-mode hub, `--deem` as an unknown flag, and `specs/`, released changelog entries and the Deem server left as they are
-- [ ] `inventory.md` cites the `file:line` of each `parent-skill-check.cjs` and compiled-routing rule that bounds a hub's mode count, and `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier` exits 0 on the unchanged hub
-- [ ] `inventory.md` names every test suite that covers a file in its rows, with the baseline pass and fail count of each
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this folder
+- [x] `inventory.md` in this folder has one row per file that `git grep -l -i -P '\bdeem(\b|[-_])' -- ':!specs' ':!*/changelog/*'` prints, and each row names an owner of 002, 003 or 004 and an action
+- [x] `decision-record.md` in this folder holds ADR-001 to ADR-004, each Accepted: remove rather than mark, `cli-classifier` as a one-mode hub, `--deem` as an unknown flag, and `specs/`, released changelog entries and the Deem server left as they are
+- [x] `inventory.md` cites the `file:line` of each `parent-skill-check.cjs` and compiled-routing rule that bounds a hub's mode count, and `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/cli-classifier` exits 0 on the unchanged hub
+- [x] `inventory.md` names every test suite that covers a file in its rows, with the baseline pass and fail count of each
+- [x] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this folder
 <!-- /ANCHOR:completion -->
 
 ---
@@ -78,10 +78,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planned | Done | Scoped 2026-10-02 from the operator's request to remove Deem and keep Jev |
+| Inventory | Done | 209 files, DeepSeek V4.1 Flash max draft (OpenCode Go after a Cline 429), rows and file list match one for one. By owner 002: 99, 003: 60, 004: 50. By action delete 28, remove 167, rewrite 12, keep 2 |
+| Decisions | Done | ADR-001 to ADR-004 Accepted in `decision-record.md` |
+| Hub rules | Done | `parent-skill-check.cjs:354` and the classifier compiler (`registry-compiler.cjs:153`) need only one mode, and the router clarifies only on a tie between modes (`router.cjs:205`). The check exits 0 on the unchanged hub |
+| Baselines | Done | 25 suites. `score-jev-tiebreak.vitest.ts` 58 pass 1 fail and `test_hvr_reader_lens.py` 1 fail, both Deem tests that 002 removes |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Owner moves | The draft put the injection-screen scorer under 003 by location. The session moved its six own files to 002, since it is a scorer, and moved the playbook fail-closed allowlist to 003, since it must change with the packet's deletion |
 <!-- /ANCHOR:log -->

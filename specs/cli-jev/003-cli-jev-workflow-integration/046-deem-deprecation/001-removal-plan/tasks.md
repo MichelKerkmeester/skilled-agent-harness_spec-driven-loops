@@ -34,8 +34,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Baseline: run the inventory command and save its file list to `scratch/inventory-files.txt`
-- [ ] T002 Run `parent-skill-check.cjs` on the unchanged hub and read the mode-count rules
+- [x] T001 Baseline: run the inventory command and save its file list to `scratch/inventory-files.txt`. Evidence: 209 files
+- [x] T002 Run `parent-skill-check.cjs` on the unchanged hub and read the mode-count rules. Evidence: exit 0, five rules in `inventory.md` section 2
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,9 +43,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Draft `inventory.md` with DeepSeek V4.1 Flash max. Check: one row per listed file
-- [ ] T004 Name each covering suite and run its baseline. Check: pass and fail counts recorded
-- [ ] T005 Write ADR-001 to ADR-004 in `decision-record.md`
+- [x] T003 Draft `inventory.md` with DeepSeek V4.1 Flash max. Check: one row per listed file. Evidence: OpenCode Go after a Cline 429, 829 s, 209 rows in the list's order
+- [x] T004 Name each covering suite and run its baseline. Check: pass and fail counts recorded. Evidence: 25 suites in `inventory.md` section 3, two Deem tests already failing
+- [x] T005 Write ADR-001 to ADR-004 in `decision-record.md`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,8 +53,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Reread every keep row and a sample of each owner's rows. Check: no real reference marked keep
-- [ ] T007 Closure: `repair-derived.cjs --apply`, `validate.sh --strict` and `check-goal.cjs` on this folder. Check: `RESULT: PASSED` on each
+- [x] T006 Reread every keep row and a sample of each owner's rows. Check: no real reference marked keep. Evidence: both keeps hold, injection-screen moved to 002, the playbook allowlist moved to 003
+- [x] T007 Closure: `repair-derived.cjs --apply`, `validate.sh --strict` and `check-goal.cjs` on this folder. Check: `RESULT: PASSED` on each
 <!-- /ANCHOR:phase-3 -->
 
 ---
