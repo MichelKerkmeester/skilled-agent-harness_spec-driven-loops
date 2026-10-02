@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/045-deem-live-runs"
-    last_updated_at: "2026-10-02T07:13:44Z"
+    last_updated_at: "2026-10-02T11:00:00Z"
     last_updated_by: "orchestrating-session"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    recent_action: "Closed the phase as superseded by the Deem removal"
+    next_safe_action: "Work phase 046"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-045-deem-live-runs"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -59,9 +59,9 @@ Frozen choices. Changing one is an amendment.
 
 - [ ] Every scorer with a `--deem` switch, 20 in all, has a `<id>.stdout.txt`, `<id>.stderr.txt` and exit status under `~/.skilled/.labels/runs/045-deem-20261002/`, and `goal.md`'s log records each one's result line
 - [ ] No Deem run reports a `cli-deem` answer-shape error, such as `unexpected response`, in its call log or stderr
-- [ ] `node --test .skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs` passes more than 39 tests with 0 failing, with cases for 1 and 11 score levels and 1 choice option exiting 2
+- [x] `node --test .skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs` passes more than 39 tests with 0 failing, with cases for 1 and 11 score levels and 1 choice option exiting 2
 - [ ] The DeepSeek V4.1 Flash review of these changes leaves no open P0 or P1
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and on `specs/cli-jev/003-cli-jev-workflow-integration`
+- [x] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and on `specs/cli-jev/003-cli-jev-workflow-integration`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -79,6 +79,8 @@ and findings belong here.
 |------|-------|----------|
 | Inventory | Done | 19 JS and TS scorers take `--deem`, plus 034's Python lens. 042's `gates.md` records each label file. Gates open for 006, 023, 029, 030, 031, 032 and 035 |
 | P2 fixes | Done | SWE 2 max, brief `045a.md`, 636 s. The client exits 2 before any request on a score outside 2 to 10 levels (`score needs 2 to 10 -l levels`) and a choice with 1 option (`choice needs at least 2 -o options`). Every fake choice answer uses `x_temperature`. The wire contract and README say the server reads `criteria` first with `options` and `levels` as aliases, and SWE set the caps table to HTTP 422 after reading `deem_server.py`. The session widened two remaining "HTTP 400 exits 1" lines to "an HTTP 4xx such as 422", since any status under 500 but not 200 exits 1. cli-deem 44 pass (39 before), every changed doc validates, Hermes PASS 72 |
+| Runs | Stopped | Two of 20 finished before the operator's "Stop and deprecate deem completely". 002 jev-tiebreak `kill`: Deem won 7 tiebreaks and lost 29, 111 of 111 rows measured, 528 calls. 006 goal-lint `kill` on rule 4 (tp 64, fp 18, fn 14, tn 2) and rule 5 (tp 29, fp 8, fn 46, tn 15). 017 stalled on its file searches and was stopped. Output in `~/.skilled/.labels/runs/045-deem-20261002/` |
+| Closure | Done | Criteria 1, 2 and 4 are superseded by ADR-001 in `decision-record.md`, since phase 046 removes every Deem arm. Criteria 3 and 5 are met |
 
 ### Deviations and findings
 

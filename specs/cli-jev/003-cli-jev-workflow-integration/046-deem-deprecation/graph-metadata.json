@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [
+    "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan",
+    "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/002-scorer-deem-arms",
+    "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal",
+    "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deem deprecation",
+      "remove cli-deem",
+      "jev only classifier",
+      "one-mode classifier hub"
+    ],
+    "key_topics": [
+      "deem",
+      "deprecation",
+      "remove",
+      "cli-deem",
+      "jev",
+      "only",
+      "classifier",
+      "one-mode",
+      "hub",
+      "operator",
+      "chose",
+      "keep"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-removal-plan/goal.md",
+      "002-scorer-deem-arms/goal.md",
+      "003-cli-deem-mode-removal/goal.md",
+      "004-references-sweep-and-verification/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Last Deem",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator chose on 2026-10-02 to keep only Jev as the classifier",
+    "created_at": "2026-10-02T07:54:39Z",
+    "last_save_at": "2026-10-02T08:01:34.869Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:870e174ea2f055f5e00eeb9625f177e925647547c71586477effd6385ed8073a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e0d8739d4135ee7d6abfa74cd3cf8a60b2b6cb5ca9efefe594716949944f5d95"
+    },
+    "last_active_at": null
+  }
+}

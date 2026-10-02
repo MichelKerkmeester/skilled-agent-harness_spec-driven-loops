@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan",
+  "description": "Phase 1: removal-plan",
+  "keywords": [
+    "phase",
+    "removal-plan"
+  ],
+  "lastUpdated": "2026-10-02T07:54:41.709Z",
+  "specId": "001",
+  "folderSlug": "removal-plan",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "046-deem-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

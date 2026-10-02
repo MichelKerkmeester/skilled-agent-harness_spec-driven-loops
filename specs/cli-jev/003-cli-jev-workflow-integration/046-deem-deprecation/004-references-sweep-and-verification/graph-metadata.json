@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-jev/003-cli-jev-workflow-integration/045-deem-live-runs",
-  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/045-deem-live-runs",
-  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,46 +11,42 @@
   },
   "derived": {
     "trigger_phrases": [
-      "deem live runs",
-      "deem arm results",
-      "local deem measurement",
-      "cli-deem open findings",
-      "deem live runs plan",
-      "deem arm results plan",
-      "local deem measurement plan",
-      "cli-deem findings plan",
-      "deem live runs tasks",
-      "deem arm results tasks",
-      "local deem measurement tasks",
-      "cli-deem findings tasks"
+      "deem references sweep",
+      "deem removal verification",
+      "jev only changelog",
+      "deem removal review",
+      "deem references sweep plan",
+      "deem removal verification plan",
+      "jev only changelog plan",
+      "deem removal review plan",
+      "deem references sweep tasks",
+      "deem removal verification tasks",
+      "jev only changelog tasks",
+      "deem removal review tasks"
     ],
     "key_topics": [
       "deem",
-      "live",
-      "runs",
-      "arm",
-      "results",
-      "local",
-      "measurement",
-      "cli-deem",
-      "open",
-      "findings",
+      "references",
+      "sweep",
+      "removal",
+      "verification",
+      "jev",
+      "only",
+      "changelog",
+      "review",
       "plan",
-      "tasks"
+      "tasks",
+      "phases"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
-      ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
-      "build/fix/045a.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -84,33 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli-deem.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "cli-deem.test.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "045a.md",
-        "kind": "doc",
-        "path": "build/fix/045a.md",
         "source": "derived"
       },
       {
@@ -144,7 +116,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Until",
+        "name": "Problem Statement Phases",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -157,6 +129,12 @@
       },
       {
         "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview No",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -180,12 +158,6 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -196,11 +168,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Until phase 044 every `noul` and `score` call through `cli-deem` exited 1, so no scorer's Deem arm has a measured result, and the one local run of 006's arm failed all 196 calls",
-    "created_at": "2026-10-02T07:13:43Z",
-    "last_save_at": "2026-10-02T08:04:07.701Z",
+    "causal_summary": "Phases 002 and 003 remove the code and the hub's mode",
+    "created_at": "2026-10-02T07:54:43Z",
+    "last_save_at": "2026-10-02T08:02:08.370Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,17 +205,15 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e29fd830fec4d05661eee5693cd24945327696e217c979910db893801b3fac74",
+    "source_fingerprint": "sha256:a35f857f1165b1f76991f35f9722ef7402f8651bcd5dcc159330b23b825a04da",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9db6c59d55705b3244828c5704e563ab9de712df4d6110f845f2d234a64a1839",
-      "plan.md": "3c7d2ac042fa10d89a586d7a052894855612705b97ac23826015ce7507d3a974",
-      "tasks.md": "b9bc14cb33e885a0ccf1269e3949baf327481679ee20eed0b65407244412a888",
-      "decision-record.md": "ae7f69eba8b967d1afa4ceec5ba54a17cf971a5bf08192a9b63f97a5c559305e",
-      "implementation-summary.md": "a04caa3ada9707dc699a96f4a48d20d084b882c8ed042e34fc7d0531bb1087d2"
+      "spec.md": "f87001a91e6dfa46ca930a912787f17c3e156a327beb29341ea5d68eccaba0f7",
+      "plan.md": "65087b14c6ec6e9c99e22afcd6f474f83c460794148a15d049d928e2ec639fd1",
+      "tasks.md": "d687e9bbefee7f7ef6e801e57dd48b209b629fc9e48c00ca6ab7db350d2e3828",
+      "implementation-summary.md": "811a3d69099bea0b355840f5e2ecdacd84d9591a4ee40b67fa345196ee091e16"
     },
     "last_active_at": null
   }

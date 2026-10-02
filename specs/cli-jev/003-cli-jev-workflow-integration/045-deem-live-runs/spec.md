@@ -22,13 +22,13 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-02 |
 | **Branch** | `worktrees/071-cli-jev-sk-alignment` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 45 of 45 |
 | **Predecessor** | 044-deem-answer-shape-fix |
-| **Successor** | None |
+| **Successor** | 046-deem-deprecation |
 | **Handoff Criteria** | The five completion criteria in `goal.md` each run from the final state: every Deem scorer has a recorded run, no run shows an answer-shape error, the cli-deem suite passes with the new count cases, the cross-family review leaves no open P0 or P1, and `validate.sh --strict` passes on this phase and the parent. |
 <!-- /ANCHOR:metadata -->
 

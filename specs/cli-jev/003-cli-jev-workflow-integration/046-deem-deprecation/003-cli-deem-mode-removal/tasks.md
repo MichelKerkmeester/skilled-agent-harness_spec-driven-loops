@@ -1,16 +1,16 @@
 ---
-title: "Tasks: Phase 45: deem-live-runs"
-description: "Ordered tasks for the Deem live runs: inventory, the three cli-deem fixes, one run per scorer, the cross-family review and the closure gates."
+title: "Tasks: Phase 3: cli-deem-mode-removal"
+description: "Ordered tasks for phase 3 of the Deem deprecation: setup, implementation and verification."
 trigger_phrases:
-  - "deem live runs tasks"
-  - "deem arm results tasks"
-  - "local deem measurement tasks"
-  - "cli-deem findings tasks"
+  - "delete cli-deem packet tasks"
+  - "one-mode classifier hub tasks"
+  - "cli-classifier routing remint tasks"
+  - "hermes cli-deem removal tasks"
 importance_tier: "important"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: Phase 45: deem-live-runs
+# Tasks: Phase 3: cli-deem-mode-removal
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -34,9 +34,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Inventory every Deem arm and its label file. Evidence: `git grep -l -e "--deem"` lists 19 JS and TS scorers, `hvr_reader_lens.py` adds one, and 042's `gates.md` names each label file
-- [x] T002 Baseline the cli-deem suite. Evidence: 39 pass, 0 failing
-- [x] T003 Write the fix brief (`build/fix/045a.md`, git-ignored) and the run script (`<scratchpad>/w45/run-deem.sh`)
+- [ ] T001 Baseline the parent-hub check, routing status, harness and advisor suite
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,8 +42,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 The three cli-deem findings (`cli-deem.mjs`, `cli-deem.test.mjs`, wire contract, README, DEE-006, changelog v0.1.2.0), SWE 2 max, brief `045a.md`. Check: the suite passes more than 39 tests. Evidence: 44 pass, 0 failing
-- [x] T005 Run all 20 Deem arms once, after T004 lands. Superseded by ADR-001 after 002 and 006 finished, both `kill`. Check: each has stdout, stderr and an exit status under `~/.skilled/.labels/runs/045-deem-20261002/`
+- [ ] T002 Luna: delete the packet and reduce the hub files to one mode, with a new minor version and changelog entry
+- [ ] T003 Luna: update the compiled-routing fixtures, harness, advisor graph and orchestration metadata
+- [ ] T004 Regenerate the Hermes mirror and re-mint routing
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,9 +52,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T006 Read each run's result line into `goal.md`'s log, and check no call log shows an answer-shape error. Check: 20 log entries. Superseded by ADR-001: the 2 finished runs are in the log, and neither shows an answer-shape error
-- [x] T007 One DeepSeek V4.1 Flash review of the fixes and the run record. Check: P0 and P1 fixed, P2 recorded in `goal.md`. Superseded by ADR-001
-- [x] T008 Closure: `repair-derived.cjs --apply`, `validate.sh --strict` on this phase and the parent, `check-goal.cjs` on both. Check: `RESULT: PASSED` on each
+- [ ] T005 Run the parent-hub check, routing status, harness, advisor suite and mirror check. Check: each passes
+- [ ] T006 Route one classifier prompt through `compiled-route.cjs`. Check: `cli-jev`
+- [ ] T007 Cross-family review. Check: P0 and P1 fixed, P2 in `goal.md`
+- [ ] T008 Closure: `repair-derived.cjs --apply`, `validate.sh --strict` and `check-goal.cjs`. Check: `RESULT: PASSED` on each
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -173,14 +173,11 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | [X] | [ ]/[X] |
-| P1 Items | [Y] | [ ]/[Y] |
-| P2 Items | [Z] | [ ]/[Z] |
+| P0 Items | 12 | 0/12 |
+| P1 Items | 14 | 0/14 |
+| P2 Items | 1 | 0/1 |
 
 **Verification Date**: 2026-10-02
 <!-- /ANCHOR:summary -->
 
 ---
-
-
-

@@ -44,11 +44,11 @@ _memory:
 
 | ID | Decision |
 |----|----------|
-| D1 | Jev first, else Deem, dormant unless `jev auth status --provider <p>` or Deem's health check passes. Jev gets no secret |
-| D2 | Hub `cli-classifier` holds `cli-jev` and local `cli-deem` |
-| D3 | Released 019 to 045, disjoint in parallel |
+| D1 | Jev only, dormant unless `jev auth status --provider <p>` passes. Jev gets no secret |
+| D2 | `cli-classifier` stays a parent hub for `cli-jev` and future classifiers |
+| D3 | Released 019 to 046, disjoint in parallel |
 | D4 | 003, 006 and 019 to 035 stop at their label gate. Only operator-confirmed or -delegated labels count |
-| D5 | Session orchestrates, verifies, commits. Workers: DeepSeek V4.1 Flash (cli-pi), SWE 2 max (cli-devin), Luna 6 max (cli-codex). No MiMo or Claude leaves bar a delegated arbiter. Cross-family review: fix P0 and P1, record P2 |
+| D5 | Session verifies, commits. Workers: Luna 6 max fast (cli-codex), DeepSeek V4.1 Flash max (cli-pi: Cline, OpenCode Go). No MiMo or Claude leaves bar a delegated arbiter. Cross-family review: fix P0 and P1, record P2 |
 | D6 | Docs via sk-doc, code via sk-code |
 | D7 | Stop only for an install yes or missing credential. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
@@ -107,6 +107,7 @@ Decisions outrank child goals.
 | 43 | `043-label-finding-fixes/goal.md` |
 | 44 | `044-deem-answer-shape-fix/goal.md` |
 | 45 | `045-deem-live-runs/goal.md` |
+| 46 | `046-deem-deprecation/goal.md` |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -114,7 +115,7 @@ Decisions outrank child goals.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 045 are Complete
+- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 046 are Complete
 - [x] 019 to 035 are Complete, each at its verdict line or label gate
 - [x] `validate_document.py` exits 0 on each changed skill doc
 - [x] No open P0 or P1, and no changed suite fails beyond its baseline
@@ -265,4 +266,5 @@ and findings belong here.
 | Directive amendment: bind 044 (2026-10-02) | Source: the operator's "Fix", after the session found that `cli-deem` reads `noul` and `score` answers in shapes the local Deem server never sends, and that 027's and 026's scorers read judgment output above `answers.answer`. D3 now releases 019 to 044, the binding gains 044, and criteria 1 and 5 are open again until 044 closes. To fit 4,000 characters (`budget-and-handoff.md` section 3, steps 5 and 6): D3 drops "ones", D5 puts each CLI in brackets, the binding line reads "child goals", criterion 2 reads "each at its verdict line or label gate", criterion 3 "each changed skill doc" and criterion 4 "changed suite". `goal.cjs packet` reads 3,999, `packet_budget=ok` |
 | 044 Complete, all criteria met again (2026-10-02) | 044 fixed the answer-shape mismatches (commits `e783935de9` to `5d5eee4d67`, P2s in 044's log). `cli-deem` now gets a number from the local Deem server for `noul` and `score`, and 027's and 026's model arms read `answers.answer`. No scorer has yet measured a real answer: that needs the operator's yes for a live run. `validate.sh --strict --recursive` printed `RESULT: PASSED` with 0 errors and 0 warnings on all 45 folders, and `check-goal.cjs` passed 5/5 on each. Nothing is pushed or merged |
 | Directive amendment: bind 045 (2026-10-02) | Source: the operator's "Do all deem things needed / open". D3 now releases 019 to 045, the binding gains 045, and criteria 1 and 5 are open again until 045 closes. The new row put the slice 38 characters over 4,000. `check-goal.cjs` reads only a binding row's second cell, so the first cell, a display index, now reads `1` to `45` instead of `001` to `045`, which frees 54 characters with no wording cut. `goal.cjs packet` reads 3,984, `packet_budget=ok`. Every phase adds about 45 characters, so the next one may need the split `budget-and-handoff.md` section 3 names |
+| Directive amendment: retire Deem, bind 046 (2026-10-02) | Source: the operator's "Stop and deprecate deem completely", "lets deperecate deem cli completely and only keep cli jev", "Cli classifier still needs to stay a parent hun tho", "In case we want to support future classifiers" and "Use luna max 6 fast cli codex and deepseek v4.1 flash max cli pi opencode go and cline provider as needed". D1 is now Jev only. D2 keeps `cli-classifier` a parent hub for `cli-jev` and future classifiers. D3 releases 019 to 046, the binding gains 046 and criterion 1 reads 036 to 046. D5 names Luna 6 max fast and DeepSeek V4.1 Flash max, and SWE leaves. 045 closed with its last 18 runs and review superseded by its ADR-001, after 002 and 006 both answered `kill`. 046 has four phases, each with its own goal: 001 inventory and decisions, 002 scorer arms, 003 the mode and hub, 004 sweep and verification. Durable slice 3996 characters after trimming D2 and D5 wording |
 <!-- /ANCHOR:log -->
