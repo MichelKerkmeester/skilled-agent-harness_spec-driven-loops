@@ -3,10 +3,10 @@
     "duplicate-phrase": 57,
     "missing-frontmatter": 7373,
     "non-yaml-frontmatter": 2,
-    "ok": 12625,
+    "ok": 12632,
     "valid-empty-list": 3632
   },
-  "documentsScanned": 23689,
+  "documentsScanned": 23696,
   "ignoredMalformedDocuments": 2,
   "ignoredPaths": [
     {
@@ -26,7 +26,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c44666216d18f11a71cbaf37dff90e17b9fb56e14ac2c0c731a27f873d884eff",
+  "manifestHash": "0be5136dd32ef3d54c3928229d6a66a45bdc2aa748e0bc28b50b58de8752169d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -41,7 +41,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 32962,
+      "ok": 32978,
       "prose-sentence": 25,
       "single-token": 250,
       "stop-word-only": 2
@@ -71191,6 +71191,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "18e211ad8aaddc8e4b4669025dc8ed0d0108c8de94df92eca2fbd5471ba6c6bb",
+  "corpusHash": "f6bfe0d529bc0a8ae79719bbc13e8cb59d328a6a81f249cea89485034e4ac225",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23689,
+  "includedPathCount": 23696,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -124,6 +124,7 @@
     ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
     ".skilled/skills/cli-classifier/cli-deem/changelog/v0.1.0.0.md",
     ".skilled/skills/cli-classifier/cli-deem/changelog/v0.1.1.0.md",
+    ".skilled/skills/cli-classifier/cli-deem/changelog/v0.1.2.0.md",
     ".skilled/skills/cli-classifier/cli-deem/feature-catalog/availability-check/health-check.md",
     ".skilled/skills/cli-classifier/cli-deem/feature-catalog/feature-catalog.md",
     ".skilled/skills/cli-classifier/cli-deem/feature-catalog/judgment-subcommands/batched-run.md",
@@ -8968,6 +8969,12 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/plan.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/spec.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix/acceptance-criteria.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/README.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-ask.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/context/external repo's/claude-jev-main/commands/jev-pick.md",
@@ -23719,7 +23726,7 @@
     "specs/system-speckit/046-align-runtime-code-with-sk-code-opencode/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c44666216d18f11a71cbaf37dff90e17b9fb56e14ac2c0c731a27f873d884eff",
+  "manifestHash": "0be5136dd32ef3d54c3928229d6a66a45bdc2aa748e0bc28b50b58de8752169d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24795,6 +24802,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix/scratch",
       "reason": "excluded directory"
     },
     {
