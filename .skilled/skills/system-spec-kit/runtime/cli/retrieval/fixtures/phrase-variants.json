@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6c0344fd7582f89d7247d6f9815da371d30c5ce4390b4bc316c110a744984d7c",
+  "manifestHash": "de4b2afbdd47bac9c1799cbccfbd0453b9a2dd61889ba12a679bdccbb06d4340",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12528,9 +12528,6 @@
     "batched rescue hydration": [
       "batched rescue hydration"
     ],
-    "batched run": [
-      "batched run"
-    ],
     "bayesian scorer": [
       "bayesian scorer"
     ],
@@ -13148,6 +13145,12 @@
     ],
     "blast radius traversal helper": [
       "blast radius traversal helper"
+    ],
+    "blind draft compare": [
+      "blind draft compare"
+    ],
+    "blind label drafts": [
+      "blind label drafts"
     ],
     "blind scoring": [
       "blind scoring"
@@ -16100,6 +16103,9 @@
     "charts dataview excalidraw git outliner minimal": [
       "charts dataview excalidraw git outliner minimal"
     ],
+    "chat label confirmation": [
+      "chat label confirmation"
+    ],
     "chat message display validation": [
       "chat.message display validation"
     ],
@@ -16632,9 +16638,6 @@
     "choice question pi backend": [
       "choice question pi backend"
     ],
-    "choice selection": [
-      "choice selection"
-    ],
     "choice transport fallback": [
       "choice transport fallback"
     ],
@@ -16890,6 +16893,9 @@
     "citation drift scan goal": [
       "citation drift scan goal"
     ],
+    "citation drift scan jev arm": [
+      "citation drift scan Jev arm"
+    ],
     "citation drift scan status": [
       "citation drift scan status"
     ],
@@ -17037,6 +17043,9 @@
     "clarify census verdict": [
       "clarify census verdict"
     ],
+    "clarify default jev arm": [
+      "clarify default Jev arm"
+    ],
     "clarify default measurement": [
       "clarify default measurement"
     ],
@@ -17099,6 +17108,9 @@
     ],
     "classifier intended approach": [
       "classifier intended approach"
+    ],
+    "classifier mode removal": [
+      "classifier mode removal"
     ],
     "classifier replay comparison": [
       "classifier replay comparison"
@@ -17532,6 +17544,9 @@
     "cli classifier 0 6 0 0": [
       "cli-classifier 0.6.0.0"
     ],
+    "cli classifier 0 7 0 0": [
+      "cli-classifier 0.7.0.0"
+    ],
     "cli classifier benchmark": [
       "cli-classifier benchmark"
     ],
@@ -17610,6 +17625,15 @@
     "cli classifier root router": [
       "cli-classifier root router"
     ],
+    "cli classifier routing remint": [
+      "cli-classifier routing remint"
+    ],
+    "cli classifier routing remint plan": [
+      "cli-classifier routing remint plan"
+    ],
+    "cli classifier routing remint tasks": [
+      "cli-classifier routing remint tasks"
+    ],
     "cli classifier shared scripts": [
       "cli-classifier shared scripts"
     ],
@@ -17627,6 +17651,9 @@
     ],
     "cli classifier v0 6 0 0": [
       "cli-classifier v0.6.0.0"
+    ],
+    "cli classifier v0 7 0 0": [
+      "cli-classifier v0.7.0.0"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -18168,20 +18195,8 @@
     "cli decommission orphan removal": [
       "cli decommission orphan removal"
     ],
-    "cli deem 0 1 0 0": [
-      "cli-deem 0.1.0.0"
-    ],
-    "cli deem 0 1 1 0": [
-      "cli-deem 0.1.1.0"
-    ],
     "cli deem build result": [
       "cli-deem build result"
-    ],
-    "cli deem capabilities": [
-      "cli-deem capabilities"
-    ],
-    "cli deem choice": [
-      "cli-deem choice"
     ],
     "cli deem client": [
       "cli-deem client"
@@ -18199,11 +18214,13 @@
       "cli-deem completion criteria"
     ],
     "cli deem fake server tests": [
-      "cli-deem fake server tests",
-      "cli-deem fake-server tests"
+      "cli-deem fake server tests"
     ],
-    "cli deem feature catalog": [
-      "cli-deem feature catalog"
+    "cli deem findings plan": [
+      "cli-deem findings plan"
+    ],
+    "cli deem findings tasks": [
+      "cli-deem findings tasks"
     ],
     "cli deem health": [
       "cli-deem health"
@@ -18211,11 +18228,11 @@
     "cli deem health smoke": [
       "cli-deem health smoke"
     ],
-    "cli deem noul": [
-      "cli-deem noul"
+    "cli deem noul value": [
+      "cli-deem noul value"
     ],
-    "cli deem playbook": [
-      "cli-deem playbook"
+    "cli deem open findings": [
+      "cli-deem open findings"
     ],
     "cli deem playbook goal": [
       "cli deem playbook goal"
@@ -18223,32 +18240,17 @@
     "cli deem playbook plan": [
       "cli deem playbook plan"
     ],
-    "cli deem readme": [
-      "cli-deem readme"
-    ],
-    "cli deem run": [
-      "cli-deem run"
-    ],
-    "cli deem score": [
-      "cli-deem score"
-    ],
-    "cli deem script tests": [
-      "cli-deem script tests"
-    ],
-    "cli deem scripts": [
-      "cli-deem scripts"
-    ],
     "cli deem status": [
       "cli-deem status"
     ],
     "cli deem testing playbook": [
       "cli deem testing playbook"
     ],
-    "cli deem v0 1 0 0": [
-      "cli-deem v0.1.0.0"
+    "cli deem translate fix plan": [
+      "cli-deem translate fix plan"
     ],
-    "cli deem v0 1 1 0": [
-      "cli-deem v0.1.1.0"
+    "cli deem translate fix tasks": [
+      "cli-deem translate fix tasks"
     ],
     "cli deem verification tasks": [
       "cli-deem verification tasks"
@@ -18805,6 +18807,9 @@
     "cli jev 0 1 4 0": [
       "cli-jev 0.1.4.0"
     ],
+    "cli jev 0 1 5 0": [
+      "cli-jev 0.1.5.0"
+    ],
     "cli jev 0 2 0 0": [
       "cli-jev 0.2.0.0"
     ],
@@ -18972,6 +18977,9 @@
     ],
     "cli jev v0 1 4 0": [
       "cli-jev v0.1.4.0"
+    ],
+    "cli jev v0 1 5 0": [
+      "cli-jev v0.1.5.0"
     ],
     "cli jev v0 2 0 0": [
       "cli-jev v0.2.0.0"
@@ -24014,6 +24022,9 @@
     "confirm the target file": [
       "confirm the target file"
     ],
+    "confirmation batch tasks": [
+      "confirmation batch tasks"
+    ],
     "confirmed drift table": [
       "confirmed drift table"
     ],
@@ -26383,6 +26394,9 @@
     "criteria exec hardening gate": [
       "criteria exec hardening gate"
     ],
+    "criteria labels filled": [
+      "criteria labels filled"
+    ],
     "criterion count preserved": [
       "criterion count preserved"
     ],
@@ -28445,9 +28459,6 @@
     "dedup bypass": [
       "dedup bypass"
     ],
-    "deem 0 8 v1 label": [
-      "deem-0.8-v1 label"
-    ],
     "deem access log": [
       "deem access log"
     ],
@@ -28457,14 +28468,38 @@
     "deem access log tasks": [
       "deem access log tasks"
     ],
-    "deem answer fields": [
-      "deem answer fields"
+    "deem answer shape fix": [
+      "deem answer shape fix"
     ],
-    "deem availability": [
-      "deem availability"
+    "deem answer shape plan": [
+      "deem answer shape plan"
     ],
-    "deem batch request": [
-      "deem batch request"
+    "deem answer shape tasks": [
+      "deem answer shape tasks"
+    ],
+    "deem arm removal": [
+      "deem arm removal"
+    ],
+    "deem arm removed": [
+      "deem arm removed"
+    ],
+    "deem arm results": [
+      "deem arm results"
+    ],
+    "deem arm results plan": [
+      "deem arm results plan"
+    ],
+    "deem arm results tasks": [
+      "deem arm results tasks"
+    ],
+    "deem arm tests": [
+      "deem arm tests"
+    ],
+    "deem arm tests plan": [
+      "deem arm tests plan"
+    ],
+    "deem arm tests tasks": [
+      "deem arm tests tasks"
     ],
     "deem check health plan": [
       "deem check health plan"
@@ -28478,20 +28513,11 @@
     "deem classifier research plan": [
       "deem classifier research plan"
     ],
-    "deem client entrypoint": [
-      "deem client entrypoint"
-    ],
     "deem client goal binding": [
       "deem client goal binding"
     ],
     "deem client results": [
       "deem client results"
-    ],
-    "deem client tests": [
-      "deem client tests"
-    ],
-    "deem commit pair": [
-      "deem commit pair"
     ],
     "deem cors decision tasks": [
       "deem cors decision tasks"
@@ -28508,11 +28534,11 @@
     "deem ctl backup tasks": [
       "deem-ctl backup tasks"
     ],
-    "deem ctl lifecycle": [
-      "deem-ctl lifecycle"
-    ],
     "deem ctl versioning": [
       "deem-ctl versioning"
+    ],
+    "deem deprecation": [
+      "deem deprecation"
     ],
     "deem hardening plan": [
       "deem hardening plan"
@@ -28526,20 +28552,26 @@
     "deem hardening tasks": [
       "deem hardening tasks"
     ],
-    "deem health check": [
-      "deem health check"
-    ],
-    "deem health checks": [
-      "deem health checks"
+    "deem history untouched": [
+      "deem history untouched"
     ],
     "deem hub route replay": [
       "deem hub route replay"
     ],
-    "deem judgment checks": [
-      "deem judgment checks"
+    "deem kill verdicts": [
+      "deem kill verdicts"
     ],
-    "deem judgment subcommands": [
-      "deem judgment subcommands"
+    "deem live runs": [
+      "deem live runs"
+    ],
+    "deem live runs plan": [
+      "deem live runs plan"
+    ],
+    "deem live runs superseded": [
+      "deem live runs superseded"
+    ],
+    "deem live runs tasks": [
+      "deem live runs tasks"
     ],
     "deem local backend verdict": [
       "deem local backend verdict"
@@ -28549,12 +28581,6 @@
     ],
     "deem local hardening": [
       "deem local hardening"
-    ],
-    "deem manual testing": [
-      "deem manual testing"
-    ],
-    "deem model pin": [
-      "deem model pin"
     ],
     "deem n orders decision": [
       "deem n orders decision"
@@ -28568,17 +28594,8 @@
     "deem node client": [
       "deem node client"
     ],
-    "deem option cap": [
-      "deem option cap"
-    ],
-    "deem ordered scale": [
-      "deem ordered scale"
-    ],
     "deem phase reconciliation tasks": [
       "deem phase reconciliation tasks"
-    ],
-    "deem pick an option": [
-      "deem pick an option"
     ],
     "deem playbook closure gate": [
       "deem playbook closure gate"
@@ -28589,23 +28606,71 @@
     "deem playbook tasks": [
       "deem playbook tasks"
     ],
-    "deem question cap": [
-      "deem question cap"
+    "deem reference owner": [
+      "deem reference owner"
     ],
-    "deem requalification": [
-      "deem requalification"
+    "deem reference owner plan": [
+      "deem reference owner plan"
     ],
-    "deem request fields": [
-      "deem request fields"
+    "deem reference owner tasks": [
+      "deem reference owner tasks"
+    ],
+    "deem references sweep": [
+      "deem references sweep"
+    ],
+    "deem references sweep plan": [
+      "deem references sweep plan"
+    ],
+    "deem references sweep tasks": [
+      "deem references sweep tasks"
+    ],
+    "deem removal decisions": [
+      "deem removal decisions"
+    ],
+    "deem removal inventory": [
+      "deem removal inventory"
+    ],
+    "deem removal inventory plan": [
+      "deem removal inventory plan"
+    ],
+    "deem removal inventory tasks": [
+      "deem removal inventory tasks"
+    ],
+    "deem removal review": [
+      "deem removal review"
+    ],
+    "deem removal review plan": [
+      "deem removal review plan"
+    ],
+    "deem removal review tasks": [
+      "deem removal review tasks"
+    ],
+    "deem removal verification": [
+      "deem removal verification"
+    ],
+    "deem removal verification plan": [
+      "deem removal verification plan"
+    ],
+    "deem removal verification tasks": [
+      "deem removal verification tasks"
     ],
     "deem research round 3 results": [
       "deem research round 3 results"
     ],
-    "deem resource loading": [
-      "deem resource loading"
+    "deem retired": [
+      "deem retired"
     ],
-    "deem routing control": [
-      "deem routing control"
+    "deem runs stopped": [
+      "deem runs stopped"
+    ],
+    "deem score level": [
+      "deem score level"
+    ],
+    "deem score shape plan": [
+      "deem score shape plan"
+    ],
+    "deem score shape tasks": [
+      "deem score shape tasks"
     ],
     "deem search narrowing arm": [
       "deem search narrowing arm"
@@ -28613,32 +28678,23 @@
     "deem search narrowing goal": [
       "deem search narrowing goal"
     ],
-    "deem smart routing template": [
-      "deem smart routing template"
-    ],
     "deem spec track narrowing": [
       "deem spec track narrowing"
     ],
     "deem spec track pick": [
       "deem spec track pick"
     ],
+    "deem suite baseline": [
+      "deem suite baseline"
+    ],
     "deem tie break verdict": [
       "deem tie-break verdict"
     ],
-    "deem update schedule": [
-      "deem update schedule"
-    ],
-    "deem validation scenarios": [
-      "deem validation scenarios"
+    "deem unknown flag": [
+      "deem unknown flag"
     ],
     "deem whole cluster kill": [
       "deem whole-cluster kill"
-    ],
-    "deem wire contract": [
-      "deem wire contract"
-    ],
-    "deem yes no probability": [
-      "deem yes no probability"
     ],
     "deep": [
       "deep"
@@ -29436,6 +29492,9 @@
     "deep improvement 1 19 0 0": [
       "deep-improvement 1.19.0.0"
     ],
+    "deep improvement 1 19 1 0": [
+      "deep-improvement 1.19.1.0"
+    ],
     "deep improvement 1 2 0 0": [
       "deep-improvement 1.2.0.0"
     ],
@@ -29789,6 +29848,9 @@
     ],
     "deep improvement v1 19 0 0": [
       "deep-improvement v1.19.0.0"
+    ],
+    "deep improvement v1 19 1 0": [
+      "deep-improvement v1.19.1.0"
     ],
     "deep improvement v1 2 0 0": [
       "deep-improvement v1.2.0.0"
@@ -30450,6 +30512,9 @@
     "deep loop runtime 1 9 1 0": [
       "deep-loop-runtime 1.9.1.0"
     ],
+    "deep loop runtime 1 9 2 0": [
+      "deep-loop-runtime 1.9.2.0"
+    ],
     "deep loop runtime alignment": [
       "deep loop runtime alignment"
     ],
@@ -30530,6 +30595,9 @@
     ],
     "deep loop runtime v1 9 1 0": [
       "deep-loop-runtime v1.9.1.0"
+    ],
+    "deep loop runtime v1 9 2 0": [
+      "deep-loop-runtime v1.9.2.0"
     ],
     "deep loop safe now gated split": [
       "deep-loop safe-now gated split"
@@ -31542,6 +31610,9 @@
     "deep review 1 11 1 0": [
       "deep-review 1.11.1.0"
     ],
+    "deep review 1 11 2 0": [
+      "deep-review 1.11.2.0"
+    ],
     "deep review 1 2 0 0": [
       "deep-review 1.2.0.0"
     ],
@@ -32153,6 +32224,9 @@
     "deep review v1 11 1 0": [
       "deep-review v1.11.1.0"
     ],
+    "deep review v1 11 2 0": [
+      "deep-review v1.11.2.0"
+    ],
     "deep review v1 2 0 0": [
       "deep-review v1.2.0.0"
     ],
@@ -32588,6 +32662,9 @@
     "delegate to pi": [
       "delegate to pi"
     ],
+    "delegated label arbiter": [
+      "delegated label arbiter"
+    ],
     "delegated readme refresh": [
       "delegated readme refresh"
     ],
@@ -32614,6 +32691,15 @@
     ],
     "delete checklist item": [
       "delete checklist item"
+    ],
+    "delete cli deem packet": [
+      "delete cli-deem packet"
+    ],
+    "delete cli deem packet plan": [
+      "delete cli-deem packet plan"
+    ],
+    "delete cli deem packet tasks": [
+      "delete cli-deem packet tasks"
     ],
     "delete constitutional folder": [
       "delete constitutional folder"
@@ -35454,6 +35540,9 @@
     "dqi compliance audit": [
       "DQI compliance audit"
     ],
+    "dqi hvr security": [
+      "dqi hvr security"
+    ],
     "dqi score target reference file": [
       "dqi score target reference file"
     ],
@@ -35462,6 +35551,9 @@
     ],
     "dr 001 prefix": [
       "DR-001 prefix"
+    ],
+    "draft compare tasks": [
+      "draft compare tasks"
     ],
     "draw io import": [
       "draw.io import"
@@ -42668,6 +42760,9 @@
     "gate rerun tasks": [
       "gate rerun tasks"
     ],
+    "gate run checklist": [
+      "gate run checklist"
+    ],
     "gate three shared core": [
       "gate three shared core"
     ],
@@ -43893,6 +43988,21 @@
     "goal line length standard": [
       "goal line length standard"
     ],
+    "goal lint jev arm": [
+      "goal lint Jev arm"
+    ],
+    "goal lint model arm": [
+      "goal lint model arm"
+    ],
+    "goal lint model arm built": [
+      "goal lint model arm built"
+    ],
+    "goal lint model arm plan": [
+      "goal lint model arm plan"
+    ],
+    "goal lint model arm tasks": [
+      "goal lint model arm tasks"
+    ],
     "goal log": [
       "goal log"
     ],
@@ -44309,6 +44419,18 @@
     ],
     "goal validator coverage": [
       "goal validator coverage"
+    ],
+    "goal verifier clamp fix": [
+      "goal verifier clamp fix"
+    ],
+    "goal verifier clamp fix plan": [
+      "goal verifier clamp fix plan"
+    ],
+    "goal verifier clamp fix tasks": [
+      "goal verifier clamp fix tasks"
+    ],
+    "goal verifier clamp fixed": [
+      "goal verifier clamp fixed"
     ],
     "goal verifier deem shadow": [
       "goal verifier deem shadow"
@@ -45191,6 +45313,9 @@
     "grok via devin fanout enabled": [
       "grok via devin fanout enabled"
     ],
+    "grounded threat model": [
+      "grounded threat model"
+    ],
     "grounding signal envelope": [
       "grounding signal envelope"
     ],
@@ -45702,9 +45827,6 @@
     "health chart block": [
       "health chart block"
     ],
-    "health check": [
-      "health check"
-    ],
     "health content text audit": [
       "health content_text audit"
     ],
@@ -45863,6 +45985,15 @@
     ],
     "hermes cli": [
       "hermes cli"
+    ],
+    "hermes cli deem removal": [
+      "hermes cli-deem removal"
+    ],
+    "hermes cli deem removal plan": [
+      "hermes cli-deem removal plan"
+    ],
+    "hermes cli deem removal tasks": [
+      "hermes cli-deem removal tasks"
     ],
     "hermes cli executor": [
       "hermes cli executor"
@@ -48620,9 +48751,6 @@
     "irreversible task deletion": [
       "irreversible task deletion"
     ],
-    "is deem up": [
-      "is deem up"
-    ],
     "is hook output visible": [
       "is hook output visible"
     ],
@@ -49115,6 +49243,39 @@
     "jev noul choice score run": [
       "jev noul choice score run"
     ],
+    "jev only changelog": [
+      "jev only changelog"
+    ],
+    "jev only changelog plan": [
+      "jev only changelog plan"
+    ],
+    "jev only changelog tasks": [
+      "jev only changelog tasks"
+    ],
+    "jev only classifier": [
+      "jev only classifier"
+    ],
+    "jev only classifier hub": [
+      "Jev-only classifier hub"
+    ],
+    "jev only classifier mode": [
+      "jev only classifier mode"
+    ],
+    "jev only measurements": [
+      "jev only measurements"
+    ],
+    "jev only routing evals": [
+      "jev only routing evals"
+    ],
+    "jev only scorer": [
+      "jev only scorer"
+    ],
+    "jev only scorer plan": [
+      "jev only scorer plan"
+    ],
+    "jev only scorer tasks": [
+      "jev only scorer tasks"
+    ],
     "jev opt in integration": [
       "jev opt-in integration"
     ],
@@ -49511,6 +49672,15 @@
     "judge module tasks": [
       "judge module tasks"
     ],
+    "judgment envelope depth": [
+      "judgment envelope depth"
+    ],
+    "judgment envelope depth plan": [
+      "judgment envelope depth plan"
+    ],
+    "judgment envelope depth tasks": [
+      "judgment envelope depth tasks"
+    ],
     "judgment transport": [
       "judgment transport"
     ],
@@ -49658,6 +49828,39 @@
     "l9 sweep disposition": [
       "L9 sweep disposition"
     ],
+    "label confirmation method": [
+      "label confirmation method"
+    ],
+    "label drafting confirmation": [
+      "label drafting confirmation"
+    ],
+    "label drafting criteria": [
+      "label drafting criteria"
+    ],
+    "label drafting plan": [
+      "label drafting plan"
+    ],
+    "label drafting summary": [
+      "label drafting summary"
+    ],
+    "label finding fixes": [
+      "label finding fixes"
+    ],
+    "label finding fixes plan": [
+      "label finding fixes plan"
+    ],
+    "label finding fixes summary": [
+      "label finding fixes summary"
+    ],
+    "label finding fixes tasks": [
+      "label finding fixes tasks"
+    ],
+    "label gate criteria": [
+      "label gate criteria"
+    ],
+    "label gates filled": [
+      "label gates filled"
+    ],
     "label task with tag": [
       "label task with tag"
     ],
@@ -49687,6 +49890,15 @@
     ],
     "labeled turn judgment": [
       "labeled turn judgment"
+    ],
+    "labeling card criteria": [
+      "labeling card criteria"
+    ],
+    "labeling card gate": [
+      "labeling card gate"
+    ],
+    "labeling task breakdown": [
+      "labeling task breakdown"
     ],
     "lag ceiling gauge stall detector": [
       "lag-ceiling gauge stall detector"
@@ -50456,6 +50668,9 @@
     ],
     "leaf route replay goal": [
       "leaf route replay goal"
+    ],
+    "leaf route replay jev arm": [
+      "leaf route replay Jev arm"
     ],
     "leaf route replay plan": [
       "leaf route replay plan"
@@ -51908,11 +52123,14 @@
     "local classifier hub": [
       "local classifier hub"
     ],
-    "local deem client": [
-      "local deem client"
+    "local deem measurement": [
+      "local deem measurement"
     ],
-    "local deem judgment": [
-      "local deem judgment"
+    "local deem measurement plan": [
+      "local deem measurement plan"
+    ],
+    "local deem measurement tasks": [
+      "local deem measurement tasks"
     ],
     "local embedder process boundary": [
       "local embedder process boundary"
@@ -58464,6 +58682,9 @@
     "model benchmark routing": [
       "model-benchmark routing"
     ],
+    "model benchmark scorers": [
+      "model benchmark scorers"
+    ],
     "model benchmark scoring evidence binding": [
       "model benchmark scoring evidence binding"
     ],
@@ -61151,8 +61372,8 @@
     "offline hallucination grader test": [
       "offline hallucination grader test"
     ],
-    "offline jev and deem tie break eval": [
-      "offline jev and deem tie-break eval"
+    "offline jev tie break eval": [
+      "offline jev tie-break eval"
     ],
     "offline listing": [
       "offline listing"
@@ -61376,6 +61597,9 @@
     "one catalog for providers and models": [
       "One Catalog for Providers and Models"
     ],
+    "one classifier behind the scans": [
+      "one classifier behind the scans"
+    ],
     "one file per brief loop": [
       "one file per brief loop"
     ],
@@ -61396,6 +61620,24 @@
     ],
     "one line pitch": [
       "one-line pitch"
+    ],
+    "one mode classifier hub": [
+      "one-mode classifier hub"
+    ],
+    "one mode classifier hub plan": [
+      "one-mode classifier hub plan"
+    ],
+    "one mode classifier hub tasks": [
+      "one-mode classifier hub tasks"
+    ],
+    "one mode hub rule": [
+      "one-mode hub rule"
+    ],
+    "one mode hub rule plan": [
+      "one-mode hub rule plan"
+    ],
+    "one mode hub rule tasks": [
+      "one-mode hub rule tasks"
     ],
     "one owning document": [
       "one owning document"
@@ -62094,17 +62336,26 @@
     "operator approval grammar": [
       "operator approval grammar"
     ],
+    "operator confirmed labels": [
+      "operator-confirmed labels"
+    ],
     "operator copy of goal": [
       "operator copy of goal"
     ],
     "operator deferred rss severity": [
       "operator deferred rss severity"
     ],
+    "operator delegated labels": [
+      "operator-delegated labels"
+    ],
     "operator enablement guide": [
       "operator enablement guide"
     ],
     "operator fix deep review findings for doctor update orchestrator changelog": [
       "operator fix deep review findings for doctor update orchestrator changelog"
+    ],
+    "operator label gate": [
+      "operator label gate"
     ],
     "operator owned strategy fields": [
       "operator-owned strategy fields"
@@ -62339,6 +62590,9 @@
     ],
     "opus lens prompting alignment": [
       "opus lens prompting alignment"
+    ],
+    "opus medium arbiter": [
+      "opus medium arbiter"
     ],
     "opus review remediation decisions": [
       "opus review remediation decisions"
@@ -70130,6 +70384,9 @@
     "reader needed lens build order": [
       "reader-needed lens build order"
     ],
+    "reader needed lens jev arm": [
+      "reader-needed lens Jev arm"
+    ],
     "reader needed lens keep rule": [
       "reader-needed lens keep rule"
     ],
@@ -72917,6 +73174,15 @@
     "remote push permission": [
       "remote push permission"
     ],
+    "removal decision record": [
+      "removal decision record"
+    ],
+    "removal decision record plan": [
+      "removal decision record plan"
+    ],
+    "removal decision record tasks": [
+      "removal decision record tasks"
+    ],
     "removal only codex hook installer": [
       "removal-only codex hook installer"
     ],
@@ -72937,6 +73203,9 @@
     ],
     "remove checklist item": [
       "remove checklist item"
+    ],
+    "remove cli deem": [
+      "remove cli-deem"
     ],
     "remove cloud reranker footgun": [
       "remove cloud reranker footgun"
@@ -72985,6 +73254,15 @@
     ],
     "remove repo parent skill": [
       "remove repo parent skill"
+    ],
+    "remove scorer deem arm": [
+      "remove scorer deem arm"
+    ],
+    "remove scorer deem arm plan": [
+      "remove scorer deem arm plan"
+    ],
+    "remove scorer deem arm tasks": [
+      "remove scorer deem arm tasks"
     ],
     "remove sibling refs from spec kit": [
       "remove sibling refs from spec-kit"
@@ -74582,6 +74860,9 @@
     ],
     "residue decommission missed": [
       "residue decommission missed"
+    ],
+    "residue flagger": [
+      "residue flagger"
     ],
     "residue flagger build order": [
       "residue flagger build order"
@@ -76340,9 +76621,6 @@
     "roll back council round": [
       "roll back council round"
     ],
-    "roll back deem": [
-      "roll back deem"
-    ],
     "rollback": [
       "rollback"
     ],
@@ -77288,6 +77566,9 @@
     "runner source embedded": [
       "runner source embedded"
     ],
+    "running skilled safely": [
+      "running skilled safely"
+    ],
     "runs failed emails": [
       "runs failed emails"
     ],
@@ -77734,6 +78015,9 @@
     ],
     "runtime remediation matrix": [
       "runtime remediation matrix"
+    ],
+    "runtime replay scorers": [
+      "runtime replay scorers"
     ],
     "runtime residue removal": [
       "runtime residue removal"
@@ -78908,9 +79192,6 @@
     "score judgment": [
       "score judgment"
     ],
-    "score level": [
-      "score level"
-    ],
     "score levels": [
       "score levels"
     ],
@@ -79081,6 +79362,15 @@
     ],
     "scorer coverage": [
       "scorer coverage"
+    ],
+    "scorer deem flag removal": [
+      "scorer deem flag removal"
+    ],
+    "scorer deem flag removal plan": [
+      "scorer deem flag removal plan"
+    ],
+    "scorer deem flag removal tasks": [
+      "scorer deem flag removal tasks"
     ],
     "scorer freeze renewal": [
       "scorer freeze renewal"
@@ -79770,6 +80060,36 @@
     "security matrix grid": [
       "security matrix grid"
     ],
+    "security md expanded": [
+      "security.md expanded"
+    ],
+    "security md readme rule set": [
+      "security.md readme rule set"
+    ],
+    "security md sk doc": [
+      "security.md sk-doc"
+    ],
+    "security md verification": [
+      "security.md verification"
+    ],
+    "security policy alignment": [
+      "security policy alignment"
+    ],
+    "security policy checklist": [
+      "security policy checklist"
+    ],
+    "security policy plan": [
+      "security policy plan"
+    ],
+    "security policy summary": [
+      "security policy summary"
+    ],
+    "security policy tasks": [
+      "security policy tasks"
+    ],
+    "security policy validation": [
+      "security policy validation"
+    ],
     "security rerun tighter thresholds": [
       "security rerun tighter thresholds"
     ],
@@ -79790,6 +80110,15 @@
     ],
     "security sweep summary": [
       "security sweep summary"
+    ],
+    "security threat model": [
+      "security threat model"
+    ],
+    "security threat model shipped": [
+      "security threat model shipped"
+    ],
+    "security threat model tasks": [
+      "security threat model tasks"
     ],
     "see the page templates on a notion data source": [
       "see the page templates on a Notion data source"
@@ -83251,6 +83580,12 @@
     "sk create goal 1 3 0 0": [
       "sk-create-goal 1.3.0.0"
     ],
+    "sk create goal 1 4 0 0": [
+      "sk-create-goal 1.4.0.0"
+    ],
+    "sk create goal 1 4 1 0": [
+      "sk-create-goal 1.4.1.0"
+    ],
     "sk create goal acceptance criteria": [
       "sk-create-goal acceptance criteria"
     ],
@@ -83319,6 +83654,12 @@
     ],
     "sk create goal v1 3 0 0": [
       "sk-create-goal v1.3.0.0"
+    ],
+    "sk create goal v1 4 0 0": [
+      "sk-create-goal v1.4.0.0"
+    ],
+    "sk create goal v1 4 1 0": [
+      "sk-create-goal v1.4.1.0"
     ],
     "sk create manual testing playbook 1 0 0 0": [
       "sk-create-manual-testing-playbook 1.0.0.0"
@@ -83443,6 +83784,9 @@
     "sk create skill 1 5 0 0": [
       "sk-create-skill 1.5.0.0"
     ],
+    "sk create skill 1 5 1 0": [
+      "sk-create-skill 1.5.1.0"
+    ],
     "sk create skill playbook": [
       "sk-create-skill playbook"
     ],
@@ -83464,6 +83808,9 @@
     "sk create skill v1 5 0 0": [
       "sk-create-skill v1.5.0.0"
     ],
+    "sk create skill v1 5 1 0": [
+      "sk-create-skill v1.5.1.0"
+    ],
     "sk create with human voice 1 0 0 0": [
       "sk-create-with-human-voice 1.0.0.0"
     ],
@@ -83472,6 +83819,9 @@
     ],
     "sk create with human voice 1 2 0 0": [
       "sk-create-with-human-voice 1.2.0.0"
+    ],
+    "sk create with human voice 1 2 1 0": [
+      "sk-create-with-human-voice 1.2.1.0"
     ],
     "sk create with human voice testing": [
       "sk-create-with-human-voice testing"
@@ -83484,6 +83834,9 @@
     ],
     "sk create with human voice v1 2 0 0": [
       "sk-create-with-human-voice v1.2.0.0"
+    ],
+    "sk create with human voice v1 2 1 0": [
+      "sk-create-with-human-voice v1.2.1.0"
     ],
     "sk deep research cli codex dispatch": [
       "sk-deep-research cli-codex dispatch"
@@ -83872,6 +84225,9 @@
     "sk doc 2 2 5 0": [
       "sk-doc 2.2.5.0"
     ],
+    "sk doc 2 2 6 0": [
+      "sk-doc 2.2.6.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -84126,6 +84482,9 @@
     ],
     "sk doc v2 2 5 0": [
       "sk-doc v2.2.5.0"
+    ],
+    "sk doc v2 2 6 0": [
+      "sk-doc v2.2.6.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
@@ -90388,9 +90747,6 @@
     "start sh reaper allowlist": [
       "start.sh reaper allowlist"
     ],
-    "start the deem server": [
-      "start the deem server"
-    ],
     "start timer": [
       "start timer"
     ],
@@ -90802,6 +91158,18 @@
     ],
     "stop preserving bad statuses": [
       "stop preserving bad statuses"
+    ],
+    "stop rater gold fix": [
+      "stop rater gold fix"
+    ],
+    "stop rater gold fix plan": [
+      "stop rater gold fix plan"
+    ],
+    "stop rater gold fix tasks": [
+      "stop rater gold fix tasks"
+    ],
+    "stop rater gold fixed": [
+      "stop rater gold fixed"
     ],
     "stop rater replay": [
       "stop-rater replay"
@@ -92124,6 +92492,9 @@
     "system deep loop 1 5 2 0": [
       "system-deep-loop 1.5.2.0"
     ],
+    "system deep loop 1 5 3 0": [
+      "system-deep-loop 1.5.3.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -92232,6 +92603,9 @@
     "system deep loop v1 5 2 0": [
       "system-deep-loop v1.5.2.0"
     ],
+    "system deep loop v1 5 3 0": [
+      "system-deep-loop v1.5.3.0"
+    ],
     "system deep research bugs": [
       "system deep research bugs"
     ],
@@ -92294,6 +92668,9 @@
     ],
     "system skill advisor 0 14 1 0": [
       "system-skill-advisor 0.14.1.0"
+    ],
+    "system skill advisor 0 14 2 0": [
+      "system-skill-advisor 0.14.2.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -92420,6 +92797,9 @@
     ],
     "system skill advisor v0 14 1 0": [
       "system-skill-advisor v0.14.1.0"
+    ],
+    "system skill advisor v0 14 2 0": [
+      "system-skill-advisor v0.14.2.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -92687,6 +93067,9 @@
     ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
+    ],
+    "system spec kit 2 6 2 0": [
+      "system-spec-kit 2.6.2.0"
     ],
     "system spec kit affected files": [
       "system-spec-kit affected files"
@@ -93053,6 +93436,9 @@
     ],
     "system spec kit v2 6 1 0": [
       "system-spec-kit v2.6.1.0"
+    ],
+    "system spec kit v2 6 2 0": [
+      "system-spec-kit v2.6.2.0"
     ],
     "system spec kit workflows": [
       "system-spec-kit workflows"
@@ -95628,6 +96014,9 @@
     "two data folders collapsed": [
       "two data folders collapsed"
     ],
+    "two draft criteria": [
+      "two draft criteria"
+    ],
     "two executor fan out research": [
       "two executor fan-out research"
     ],
@@ -96290,9 +96679,6 @@
     ],
     "update checklist item": [
       "update checklist item"
-    ],
-    "update deem": [
-      "update deem"
     ],
     "update document": [
       "update document"
@@ -98209,6 +98595,9 @@
     "vulnerability dimension": [
       "vulnerability dimension"
     ],
+    "vulnerability reporting policy": [
+      "vulnerability reporting policy"
+    ],
     "w3 trust tree": [
       "W3 trust tree",
       "w3 trust tree"
@@ -99950,6 +100339,12 @@
     ],
     "zero call compaction census": [
       "zero-call compaction census"
+    ],
+    "zero call gate results": [
+      "zero-call gate results"
+    ],
+    "zero call gate run": [
+      "zero call gate run"
     ],
     "zero calls investigation": [
       "zero calls investigation"
