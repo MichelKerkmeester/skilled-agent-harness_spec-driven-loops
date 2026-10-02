@@ -115,4 +115,5 @@ and findings belong here.
 | Criterion 4 reading | 002's D2 amendment lets each default run lose the Deem fields it printed. Three scorers lost a planned-calls field and nothing else, 16 print the same bytes, and 019 differs only in a timing line that differs between runs of identical code |
 | Generated files | Spec folders keep their Deem history, so the trigger index and the README baseline still hold Deem text taken from them. 004's criterion 1 was amended to allow that, with every match traced |
 | Open P2s | Listed in the logs of 002, 003 and 004. None blocks |
+| Merge with main (2026-10-02) | Main removed the whole sk-communication skill in its own release, so the judge-agreement scorer 002 cleaned, its suite and the v1.4.1.0 entry left with it. Fifteen unpushed commits were reworded to main's newer message contract with their trees unchanged, and the spec docs cite the new hashes |
 <!-- /ANCHOR:log -->
