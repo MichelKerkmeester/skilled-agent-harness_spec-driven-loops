@@ -9,7 +9,7 @@ trigger_phrases:
   - "worktree status report"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 # Worktree Creation Checklist - Branch Isolation Setup
@@ -432,26 +432,28 @@ before `git branch`, `git checkout -b`, `git switch -c` or `git worktree add`
 creates a branch, the `pre-push` hook checks it when a new branch reaches the
 remote, and CI checks it on every push. Updates to a branch that already exists
 on the remote are not re-checked, so a name that predates the grammar can still
-be pushed. Another repository gets its own rules by carrying its own copy of
+be pushed. `dependabot/` is allowed because Dependabot names its own update
+branches and cannot follow the numbered grammar. Another repository gets its own rules by carrying its own copy of
 this file, in `.sk-git/` at its root or in the directory git config
 `skgit.contractDir` names. A repository with no rules block is not checked.
 
 | Rule id | What it checks |
 |---------|----------------|
-| `branch.name` | The branch matches one allowed pattern: `main`, `skilled/vA.B.C.D`, `worktrees/NNN-slug`, `branches/NNN-slug`, `work/<runtime>/<slug>` or `backup/<anything>` |
+| `branch.name` | The branch matches one allowed pattern: `main`, `skilled/vA.B.C.D`, `worktrees/NNN-slug`, `branches/NNN-slug`, `work/<runtime>/<slug>`, `backup/<anything>` or `dependabot/<anything>` |
 | `branch.worktree-pair` | A `worktrees/NNN-slug` branch is checked out in a directory named `NNN-slug` |
 
 ```json
 {
   "kind": "branch",
   "version": 1,
-  "hint": "use main, skilled/vA.B.C.D, worktrees/NNN-slug, branches/NNN-slug, work/<runtime>/<slug> or backup/<name>; create numbered ones with worktree-naming.sh",
+  "hint": "use main, skilled/vA.B.C.D, worktrees/NNN-slug, branches/NNN-slug, work/<runtime>/<slug>, backup/<name> or dependabot/<name>; create numbered ones with worktree-naming.sh",
   "allowedPatterns": [
     "^main$",
     "^skilled/v[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+$",
     "^(worktrees|branches)/(?!000)[0-9]{3}-[a-z0-9]+(-[a-z0-9]+)*$",
     "^work/[a-z0-9][a-z0-9-]*/.+$",
-    "^backup/.+$"
+    "^backup/.+$",
+    "^dependabot/.+$"
   ],
   "worktreePairPattern": "^worktrees/([0-9]{3}-[a-z0-9-]+)$"
 }

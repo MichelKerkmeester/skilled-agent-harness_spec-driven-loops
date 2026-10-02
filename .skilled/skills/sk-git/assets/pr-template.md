@@ -9,7 +9,7 @@ trigger_phrases:
   - "gh pr create body"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.0
+version: 1.3.0.0
 ---
 
 # Pull Request Template - PR Description Standard
@@ -554,7 +554,9 @@ is not checked.
 | `pr.attribution` | No AI-tool attribution line, the same policy commits follow |
 
 Headings and placeholders inside fenced code blocks are quoted examples and are
-not checked.
+not checked. CI skips the description check for a PR opened by Dependabot, which
+writes its own release-notes description; its commits and branch name are still
+checked.
 
 ```json
 {
