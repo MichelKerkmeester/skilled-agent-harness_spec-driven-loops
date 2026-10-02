@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-git/032-template-driven-message-enforcement/002-git-hook-review-residuals",
   "description": "The legacy pre-commit treats a crashed comment checker as a pass",
   "keywords": [
@@ -10,7 +11,7 @@
     "checker",
     "pass"
   ],
-  "lastUpdated": "2026-10-02T13:47:27.663Z",
+  "lastUpdated": "2026-10-02T17:09:27.891Z",
   "specId": "002",
   "folderSlug": "git-hook-review-residuals",
   "parentChain": [
@@ -18,6 +19,5 @@
     "032-template-driven-message-enforcement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

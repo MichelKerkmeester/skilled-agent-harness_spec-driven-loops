@@ -28,7 +28,7 @@ contextType: "implementation"
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 2 |
 | **Predecessor** | 001-git-hook-review-fixes |
-| **Successor** | None |
+| **Successor** | 003-hook-docs-and-standards-alignment |
 | **Handoff Criteria** | Every residual finding is fixed or recorded as not needing a change, the hook suites and node tests pass, and validate.sh --strict passes on this child and the parent. |
 <!-- /ANCHOR:metadata -->
 
