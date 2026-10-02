@@ -203,13 +203,13 @@ describe('check-ledger-stem-producers against the committed tree', () => {
     expect(r.stderr).toBe('');
     expect(r.status, JSON.stringify(r.payload)).toBe(0);
     expect(r.payload.ok).toBe(true);
-    // The measured vocabulary: 33 review + 36 research registrations. Thirteen are
-    // spoken: six written as whole dotted literals, and seven more built as a
+    // The measured vocabulary: 33 review + 36 research registrations. Fourteen are
+    // spoken: seven written as whole dotted literals, and seven more built as a
     // prefix plus an interpolated event name, which an earlier literal-only scan
     // reported as spoken by nobody while passing clean.
     expect(r.payload.registered).toBe(69);
-    expect(r.payload.spoken).toBe(13);
-    expect(r.payload.reserved).toBe(56);
+    expect(r.payload.spoken).toBe(14);
+    expect(r.payload.reserved).toBe(55);
     expect(r.payload.violations).toEqual([]);
     const stems = new Set(r.payload.emitters.map((entry: any) => entry.stem));
     expect([...stems].sort()).toEqual([
@@ -224,6 +224,7 @@ describe('check-ledger-stem-producers against the committed tree', () => {
       'deep_review.iteration_recorded',
       'deep_review.migration',
       'deep_review.recovery_baseline',
+      'deep_review.run_initialized',
       'deep_review.synthesis_complete',
       'deep_review.synthesis_incomplete',
     ]);

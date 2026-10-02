@@ -47,7 +47,7 @@ contextType: "implementation"
 - [x] T004 Replace the direct state-log write with a gateway `run_initialized` call in both review workflows (deep-review-auto.yaml, deep-review-confirm.yaml) [EVIDENCE: worktree 081]
 - [x] T005 Mark `deep_review.run_initialized` spoken in the census (deep-review-ledger-types.ts) [EVIDENCE: check-ledger-stem-producers.cjs exit 0]
 - [x] T006 Add the retry line to the preamble block and explain it (child-dispatch-preamble.md) [EVIDENCE: worktree 080]
-- [ ] T007 Rebase worktree 081 onto main after packet 038 lands and merge
+- [x] T007 Rebase worktree 081 onto main after packet 038 lands and merge [EVIDENCE: rebased onto 7f03334489 after 038 merged; one census-test conflict combined to 69 registered, 14 spoken, 55 reserved]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +55,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 End-to-end test of each shipped init step followed by a gateway append (deep-review-run-open.vitest.ts) [EVIDENCE: 3/3 pass]
+- [x] T008 End-to-end test of each shipped init step followed by the worker's own iteration record through the gateway (deep-review-run-open.vitest.ts) [EVIDENCE: 3/3 pass; the projected row equals the record]
 - [x] T009 Control case: a directly written config row still fails projection [EVIDENCE: same test]
-- [ ] T010 Full deep-loop suite after the rebase onto 038, compared with the main baseline
+- [x] T010 Full deep-loop suite after the rebase onto 038, compared with the main baseline [EVIDENCE: 2855 passed, 5 failed, all 5 in check-contract-drift and render-command-contract, which fail identically on main; typecheck exit 0]
+- [x] T011 Recompile the stale deep/ai-council, deep/research and deep/review contracts so the drift and render tests pass (compiled/*.contract.md) [EVIDENCE: compile-command-contracts.cjs --write per command changed only recorded source digests; check-contract-drift.cjs OK commands=3; deep-loop suite 2872 passed, 0 failed]
 <!-- /ANCHOR:phase-3 -->
 
 ---

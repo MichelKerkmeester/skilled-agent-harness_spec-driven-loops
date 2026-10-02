@@ -58,6 +58,7 @@ contextType: "implementation"
 - [x] T008 Run `validate_document.py`, `extract_structure.py` and `hvr_scan.py` on the final file (SECURITY.md)
 - [x] T009 Confirm with `git diff b0f89ee5f0 -- SECURITY.md` that only the renumbered headings and the first reporter bullet left the original (SECURITY.md)
 - [x] T010 Check every linked path and README anchor resolves, and run the documented `git diff --stat` command once (SECURITY.md)
+- [x] T011 Format as a README: add frontmatter (title, description, trigger phrases), set the intro as a blockquote and remove every emoji from the headings, with no wording change (SECURITY.md) [EVIDENCE: `validate_document.py --type readme` VALID with 0 issues; emoji scan finds none; diff holds only the frontmatter, the blockquote marker and the nine heading lines]
 <!-- /ANCHOR:phase-3 -->
 
 ---
