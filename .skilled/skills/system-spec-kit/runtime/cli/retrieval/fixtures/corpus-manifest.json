@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4776020f53e3d28a100807d7144f5f31bbb4b0eaeb1d16043b81937347e37ea8",
+  "corpusHash": "110d3aede3c88aa589224cb1b72c3c785e51ad0af05727221fb94951c8a7f873",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22897,
+  "includedPathCount": 22903,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8894,6 +8894,12 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/goal.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/acceptance-criteria.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/goal.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/spec.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
@@ -22927,7 +22933,7 @@
     "specs/system-speckit/047-plugin-scanner-readiness/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "70974051b7a9ba65cef46eb78030e729822f22bb34ea3e73800ffb68e3efeddb",
+  "manifestHash": "5026b0ab6a061160444246e93ec2ef2b8f6ca2eb06313103d9ba8fe504dc70ea",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24047,6 +24053,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch",
       "reason": "excluded directory"
     },
     {
