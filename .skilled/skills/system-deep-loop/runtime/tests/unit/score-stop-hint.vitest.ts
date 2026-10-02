@@ -193,22 +193,21 @@ describe('score-stop-hint column selection', () => {
       'column legacy: measured 20 hints 20 right 20 wrong 0 no hint 0 saved 20',
       'column sources: measured 20 hints 20 right 20 wrong 0 no hint 0 saved 20',
     ]);
-    expect(lines.some((line) => line.startsWith('column jev:') || line.startsWith('column deem:'))).toBe(false);
-    expect(lines.some((line) => line.startsWith('verdict jev:') || line.startsWith('verdict deem:'))).toBe(false);
+    expect(lines.some((line) => line.startsWith('column jev:'))).toBe(false);
+    expect(lines.some((line) => line.startsWith('verdict jev:'))).toBe(false);
   });
 
-  it('--jev/--deem skip a report with no rater columns and leave the rest byte-identical', async () => {
+  it('--jev skips a report with no rater columns and leaves the rest byte-identical', async () => {
     const dir = tempDir('stop-hint-skips-');
     writeReport(dir, reportFixture({ columns: {}, stopped: {}, skipped: {} }));
     const base = await runMain(['--rater-report', dir]);
-    const armed = await runMain(['--rater-report', dir, '--jev', '--deem']);
+    const armed = await runMain(['--rater-report', dir, '--jev']);
     expect(armed.code).toBe(0);
     expect(armed.lines).toEqual([
       ...base.lines,
       'jev column skipped: rater report has none',
-      'deem column skipped: rater report has none',
     ]);
-    const withoutSkips = armed.lines.filter((line) => line !== 'jev column skipped: rater report has none' && line !== 'deem column skipped: rater report has none');
+    const withoutSkips = armed.lines.filter((line) => line !== 'jev column skipped: rater report has none');
     expect(withoutSkips).toEqual(base.lines);
   });
 
@@ -225,17 +224,17 @@ describe('score-stop-hint column selection', () => {
     expect(lines[lines.length - 1]).toBe('jev column skipped: rater report has none');
   });
 
-  it('--deem skips a column the rater skipped', async () => {
+  it('--jev skips a column the rater skipped', async () => {
     const dir = tempDir('stop-hint-skipped-');
-    writeReport(dir, reportFixture({ skipped: { deem: 'deem arm skipped: no backend' } }));
-    const { code, lines, errs } = await runMain(['--rater-report', dir, '--deem']);
+    writeReport(dir, reportFixture({ skipped: { jev: 'jev arm skipped: no backend' } }));
+    const { code, lines, errs } = await runMain(['--rater-report', dir, '--jev']);
     expect(code).toBe(0);
     expect(errs).toEqual([]);
     expect(lines.filter((line) => line.startsWith('column '))).toEqual([
       'column legacy: measured 20 hints 20 right 20 wrong 0 no hint 0 saved 20',
       'column sources: measured 20 hints 20 right 20 wrong 0 no hint 0 saved 20',
     ]);
-    expect(lines[lines.length - 1]).toBe('deem column skipped: rater report has none');
+    expect(lines[lines.length - 1]).toBe('jev column skipped: rater report has none');
   });
 });
 
@@ -348,20 +347,20 @@ describe('score-stop-hint requalify', () => {
   it('requalify prints only when the rater identity changed since the stored run', async () => {
     const dir = tempDir('stop-hint-requalify-');
     const outDir = tempDir('stop-hint-requalify-out-');
-    writeReport(dir, reportFixture({ columns: { deem: { modelId: 'deem-0.8-v1', modelCommit: 'oldc', sourceCommit: 'olds' } } }));
-    const first = await runMain(['--rater-report', dir, '--deem', '--out', outDir]);
+    writeReport(dir, reportFixture({ columns: { jev: { jevVersion: 'jev-1.0', provider: 'official', model: 'old-model' } } }));
+    const first = await runMain(['--rater-report', dir, '--jev', '--out', outDir]);
     expect(first.code).toBe(0);
     expect(first.lines).not.toContain('requalify: rater changed');
-    const same = await runMain(['--rater-report', dir, '--deem', '--out', outDir]);
+    const same = await runMain(['--rater-report', dir, '--jev', '--out', outDir]);
     expect(same.code).toBe(0);
     expect(same.lines).not.toContain('requalify: rater changed');
-    writeReport(dir, reportFixture({ columns: { deem: { modelId: 'deem-1.0-v2', modelCommit: 'newc', sourceCommit: 'news' } } }));
-    const changed = await runMain(['--rater-report', dir, '--deem', '--out', outDir]);
+    writeReport(dir, reportFixture({ columns: { jev: { jevVersion: 'jev-1.0', provider: 'official', model: 'new-model' } } }));
+    const changed = await runMain(['--rater-report', dir, '--jev', '--out', outDir]);
     expect(changed.code).toBe(0);
     expect(changed.errs).toEqual([]);
     const requalifyIndex = changed.lines.indexOf('requalify: rater changed');
     expect(requalifyIndex).toBeGreaterThanOrEqual(0);
-    expect(changed.lines[requalifyIndex + 1].startsWith('verdict deem: ')).toBe(true);
+    expect(changed.lines[requalifyIndex + 1].startsWith('verdict jev: ')).toBe(true);
   });
 });
 
@@ -397,21 +396,19 @@ describe('score-stop-hint report and out', () => {
 });
 
 describe('score-stop-hint no-call guard', () => {
-  it('stub jev and cli-deem log nothing in any mode', async () => {
+  it('stub jev logs nothing in any mode', async () => {
     const stubDir = tempDir('stop-hint-stubs-');
     const stubLog = path.join(stubDir, 'backends.log');
-    for (const name of ['jev', 'cli-deem']) {
-      fs.writeFileSync(
-        path.join(stubDir, name),
-        `#!/bin/sh\necho "$0 $*" >> '${stubLog}'\n`,
-        { mode: 0o755 },
-      );
-    }
+    fs.writeFileSync(
+      path.join(stubDir, 'jev'),
+      `#!/bin/sh\necho "$0 $*" >> '${stubLog}'\n`,
+      { mode: 0o755 },
+    );
     const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubDir}${path.delimiter}${process.env.PATH ?? ''}` };
     const dir = tempDir('stop-hint-no-call-');
     writeReport(dir, reportFixture());
     const base = await runMainWithEnv(['--rater-report', dir], env);
-    const armed = await runMainWithEnv(['--rater-report', dir, '--jev', '--deem'], env);
+    const armed = await runMainWithEnv(['--rater-report', dir, '--jev'], env);
     expect(base.code).toBe(0);
     expect(armed.code).toBe(0);
     expect(fs.existsSync(stubLog)).toBe(false);
@@ -419,6 +416,6 @@ describe('score-stop-hint no-call guard', () => {
 
   it('the script holds no spawn of a rater', () => {
     const source = fs.readFileSync(path.join(TEST_DIR, '../../scripts/score-stop-hint.cjs'), 'utf8');
-    expect(source).not.toMatch(/spawn.*(jev|cli-deem)/);
+    expect(source).not.toMatch(/spawn.*jev/);
   });
 });
