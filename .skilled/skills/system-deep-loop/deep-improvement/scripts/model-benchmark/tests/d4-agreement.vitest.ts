@@ -6,8 +6,7 @@
 //   Labels parser (parseLabels, sha256Hex)
 //   Deterministic baseline (buildState, deterministicCall, chooseBaseline)
 //   Keep rule (binomialTail, decideVerdict, summarizeColumn)
-//   Deem gate (deemGate)
-//   Deem arm (runDeemArm)
+
 //   Jev arm (runJevArm)
 //   Jev gate (jevGate, trackedFiles)
 //   Arm helpers and report (spawnCall, buildReport)
@@ -196,7 +195,7 @@ describe('score-d4-agreement baseline', () => {
 
 describe('score-d4-agreement keep rule', () => {
   it('keeps a column whose win tail is below 0.05 and whose loss tail is clean', () => {
-    const verdict = d4.decideVerdict({ backend: 'deem', K: 30, M: 30, A: 30, B: 20, W: 10, L: 0, F: 0 });
+    const verdict = d4.decideVerdict({ K: 30, M: 30, A: 30, B: 20, W: 10, L: 0, F: 0 });
     expect(verdict.outcome).toBe('keep');
     expect(verdict.reason).toBe(null);
     expect(d4.formatP(verdict.pWin)).toBe('0.0009766');
@@ -206,27 +205,26 @@ describe('score-d4-agreement keep rule', () => {
   });
 
   it('kills a column the baseline beats with a clean loss tail', () => {
-    const verdict = d4.decideVerdict({ backend: 'deem', K: 30, M: 30, A: 20, B: 28, W: 0, L: 8, F: 0 });
+    const verdict = d4.decideVerdict({ K: 30, M: 30, A: 20, B: 28, W: 0, L: 8, F: 0 });
     expect(verdict.outcome).toBe('kill');
     expect(verdict.reason).toBe(null);
   });
 
   it('stops a column short of the margin', () => {
-    const verdict = d4.decideVerdict({ backend: 'deem', K: 30, M: 30, A: 24, B: 22, W: 5, L: 3, F: 0 });
+    const verdict = d4.decideVerdict({ K: 30, M: 30, A: 24, B: 22, W: 5, L: 3, F: 0 });
     expect(verdict.outcome).toBe('stop');
     expect(verdict.reason).toBe('margin');
   });
 
   it('stops a column that measured too few rows', () => {
-    const verdict = d4.decideVerdict({ backend: 'deem', K: 30, M: 26, A: 26, B: 10, W: 16, L: 0, F: 0 });
+    const verdict = d4.decideVerdict({ K: 30, M: 26, A: 26, B: 10, W: 16, L: 0, F: 0 });
     expect(verdict.outcome).toBe('stop');
     expect(verdict.reason).toBe('coverage');
   });
 
-  it('stops on flips only for the rerun-sampled backend', () => {
+  it('stops a rerun-sampled column whose reruns disagree', () => {
     const counts = { K: 30, M: 30, A: 30, B: 20, W: 10, L: 0, F: 10 };
     expect(d4.decideVerdict({ backend: 'jev', ...counts }).reason).toBe('flips');
-    expect(d4.decideVerdict({ backend: 'deem', ...counts }).outcome).toBe('keep');
   });
 
   it('summarizes a column from answers, baseline calls and labels', () => {
@@ -262,23 +260,6 @@ describe('score-d4-agreement keep rule', () => {
     expect(jev.line).toBe(
       'verdict jev: stop (coverage) K=3 M=2 A=2 B=1 W=1 L=0 F=1 p_win=0.5000 p_loss=1.000 labels_sha256=abc jev_version=0.6.2 provider=official model=m',
     );
-
-    const deem = d4.summarizeColumn(
-      'deem',
-      rows,
-      new Map([
-        ['a', [0.7]],
-        ['b', [0.2]],
-        ['c', [1.5]],
-      ]),
-      baselineCalls,
-      'abc',
-      '',
-    );
-    expect(deem.M).toBe(2);
-    expect(deem.F).toBe(null);
-    expect(deem.line).toContain(' F=n/a ');
-    expect(deem.line.endsWith('labels_sha256=abc')).toBe(true);
   });
 });
 
@@ -286,7 +267,7 @@ describe('score-d4-agreement zero-call run', () => {
   it('prints the zero-call report and runs no stub', async () => {
     const fixtures = writeFixtures();
     const outputs = writeOutputs(['fx-a.md', 'fx-b.run2.md', 'fx-c.md', 'orphan.md']);
-    const stubs = stubDir({ 'cli-deem': 'exit 0', jev: 'exit 0' });
+    const stubs = stubDir({ jev: 'exit 0' });
     const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
 
     const { code, lines } = await runMain(['--outputs', outputs, '--fixtures', fixtures], env);
@@ -333,16 +314,21 @@ describe('score-d4-agreement zero-call run', () => {
     const open = await runMain(['--outputs', plain.outputs, '--fixtures', plain.fixtures, '--labels', plain.labels]);
     expect(open.code).toBe(0);
     expect(open.lines).toContain('baseline method: check right 20 of 30');
-    expect(open.lines[open.lines.length - 1]).toBe('planned calls: jev 91, deem 30');
+    expect(open.lines[open.lines.length - 1]).toBe('planned calls: jev 91');
   });
 
-  it('refuses a model arm without --out, a missing --outputs and a bad label value', async () => {
+  it('rejects an unknown flag, and refuses a missing --outputs and a bad label value', async () => {
     const outputs = writeOutputs(['fx-a.md']);
 
-    const arm = await runMain(['--outputs', outputs, '--deem']);
+    const rejected = await runMain(['--outputs', outputs, '--bogus']);
+    expect(rejected.code).toBe(2);
+    expect(rejected.lines).toEqual([]);
+    expect(rejected.errs).toEqual(["Unknown option '--bogus'"]);
+
+    const arm = await runMain(['--outputs', outputs, '--jev']);
     expect(arm.code).toBe(2);
     expect(arm.lines).toEqual([]);
-    expect(arm.errs).toEqual(['--deem needs --out <dir> so every call is recorded']);
+    expect(arm.errs).toEqual(['--jev needs --out <dir> so every call is recorded']);
 
     const bare = await runMain([]);
     expect(bare.code).toBe(2);
@@ -356,74 +342,11 @@ describe('score-d4-agreement zero-call run', () => {
   });
 });
 
-describe('score-d4-agreement deem gate', () => {
-  const HEALTHY = 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi';
 
-  it('passes a healthy server and prints the commit pair', async () => {
-    const fixtures = writeFixtures();
-    const outputs = writeOutputs(['fx-a.md', 'orphan.md']);
-    const stubs = stubDir({ 'cli-deem': HEALTHY });
-    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
-    const argv = ['--outputs', outputs, '--fixtures', fixtures];
-    const base = await runMain(argv, env);
-
-    const { code, lines } = await runMain([...argv, '--deem', '--out', tempDir('d4-out-')], env);
-
-    expect(code).toBe(0);
-    expect(lines).toEqual([
-      ...base.lines,
-      'deem: health backend=torch model=deem-0.8-v1 model_commit=m1 source_commit=s1',
-      'deem arm skipped: label gate',
-    ]);
-    expect(fs.readFileSync(path.join(stubs, 'cli-deem.log'), 'utf8').trim().split('\n')).toEqual(['health']);
-  });
-
-  it('skips a stub backend with the rest of the output byte-identical', async () => {
-    const fixtures = writeFixtures();
-    const outputs = writeOutputs(['fx-a.md', 'orphan.md']);
-    const stubs = stubDir({
-      'cli-deem': 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi',
-    });
-    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
-    const argv = ['--outputs', outputs, '--fixtures', fixtures];
-    const base = await runMain(argv, env);
-
-    const { code, lines } = await runMain([...argv, '--deem', '--out', tempDir('d4-out-')], env);
-
-    expect(code).toBe(0);
-    expect(lines).toContain('deem arm skipped: stub backend');
-    expect(lines.filter((line) => line !== 'deem arm skipped: stub backend')).toEqual(base.lines);
-  });
-
-  it('skips an unreachable server, a wrong model and a bad health body', async () => {
-    const fixtures = writeFixtures();
-    const outputs = writeOutputs(['fx-a.md', 'orphan.md']);
-    const argv = ['--outputs', outputs, '--fixtures', fixtures];
-    const cases: Array<[string, string[]]> = [
-      ['exit 4', ['deem arm skipped: not reachable']],
-      [
-        'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"torch","model":"other","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi',
-        ['deem arm skipped: model', 'deem: found="other"'],
-      ],
-      ["echo 'not json'", ['deem arm skipped: bad health response', 'deem: found="not json"']],
-    ];
-
-    for (const [body, expected] of cases) {
-      const stubs = stubDir({ 'cli-deem': body });
-      const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
-      const base = await runMain(argv, env);
-
-      const { code, lines } = await runMain([...argv, '--deem', '--out', tempDir('d4-out-')], env);
-
-      expect(code).toBe(0);
-      expect(lines.slice(base.lines.length)).toEqual(expected);
-    }
-  });
-});
 
 describe('score-d4-agreement jev gate', () => {
   const PASSING_JEV = 'case "$1" in --version) echo \'jev 0.6.2\';; auth) exit 0;; esac';
-  const HEALTHY_DEEM = 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi';
+
 
   function jevEnv(stubs: string): NodeJS.ProcessEnv {
     const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
@@ -481,19 +404,16 @@ describe('score-d4-agreement jev gate', () => {
     }
   });
 
-  it('refuses untracked labeled outputs without --accept-payload and still runs the Deem gate', async () => {
+  it('refuses untracked labeled outputs without --accept-payload', async () => {
     const set = labeledSet(0, 10, 20);
-    const stubs = stubDir({ jev: PASSING_JEV, 'cli-deem': HEALTHY_DEEM });
+    const stubs = stubDir({ jev: PASSING_JEV });
     const env = jevEnv(stubs);
     const argv = ['--outputs', set.outputs, '--fixtures', set.fixtures, '--labels', set.labels];
 
-    const { code, lines } = await runMain([...argv, '--jev', '--deem', '--out', tempDir('d4-out-')], env);
+    const { code, lines } = await runMain([...argv, '--jev', '--out', tempDir('d4-out-')], env);
 
     expect(code).toBe(0);
-    const payloadIndex = lines.indexOf('jev arm skipped: payload not accepted');
-    const healthIndex = lines.indexOf('deem: health backend=torch model=deem-0.8-v1 model_commit=m1 source_commit=s1');
-    expect(payloadIndex).toBeGreaterThanOrEqual(0);
-    expect(healthIndex).toBeGreaterThan(payloadIndex);
+    expect(lines).toContain('jev arm skipped: payload not accepted');
     const log = fs.readFileSync(path.join(stubs, 'jev.log'), 'utf8').trim().split('\n');
     expect(log.some((line) => line.startsWith('noul') || line.startsWith('auth test'))).toBe(false);
   });
@@ -511,137 +431,21 @@ describe('score-d4-agreement report', () => {
     expect(slow.code).toBe(null);
   });
 
-  it('records a skipped arm in report.json and writes no call log', async () => {
-    const fixtures = writeFixtures();
-    const outputs = writeOutputs(['fx-a.md', 'orphan.md']);
-    const stubs = stubDir({
-      'cli-deem': 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi',
-    });
-    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+  it('records a skipped jev arm in report.json and writes no call log', async () => {
+    const set = labeledSet(0, 10, 20);
+    const stubs = stubDir({ jev: 'case "$1" in --version) echo \'jev 0.6.2\';; auth) [ "$2" = status ] && exit 3; exit 0;; esac' });
+    const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    delete env.JEV_PROVIDER;
     const out = tempDir('d4-out-');
 
-    const { code } = await runMain(['--outputs', outputs, '--fixtures', fixtures, '--deem', '--out', out], env);
+    const { code } = await runMain(['--outputs', set.outputs, '--fixtures', set.fixtures, '--labels', set.labels, '--jev', '--out', out], env);
 
     expect(code).toBe(0);
     const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
-    expect(report.skipped.deem).toBe('deem arm skipped: stub backend');
+    expect(report.skipped.jev).toBe('jev arm skipped: no credential');
     expect(report.columns).toEqual({});
-    expect(report.labelsSha256).toBe(null);
-    expect(report.gate).toBe('stop: fewer than 30 labeled outputs');
-    expect(report.census).toEqual({ outputs: 2, matched: 1, unmatched: 1, fixtures: 3, allowlist: 1 });
+    expect(report.gate).toBe('planned calls: jev 91');
     expect(fs.existsSync(path.join(out, 'calls.jsonl'))).toBe(false);
-  });
-});
-
-describe('score-d4-agreement deem arm', () => {
-  const DEEM = `if [ "$1" = health ]; then n=$(cat "$D/n" 2>/dev/null || echo 0); n=$((n+1)); echo $n > "$D/n"; mc=m1; if [ -f "$D/newpair" ] && [ $n -gt 1 ]; then mc=m2; fi; echo "{\\"ok\\":true,\\"backend\\":\\"torch\\",\\"model\\":\\"deem-0.8-v1\\",\\"model_commit\\":\\"$mc\\",\\"source_commit\\":\\"s1\\"}"; exit 0; fi
-p=$(cat); case "$p" in *EXIT4*) exit 4;; *EXIT3*) exit 3;; *BADJSON*) echo 'not json'; exit 0;; *HALLUCINATED*) v=0.9;; *) v=0.1;; esac
-echo "{\\"model\\":\\"deem-0.8-v1\\",\\"answers\\":{\\"answer\\":{\\"noul\\":$v}}}"`;
-
-  function readCalls(out: string): any[] {
-    return fs
-      .readFileSync(path.join(out, 'calls.jsonl'), 'utf8')
-      .trim()
-      .split('\n')
-      .map((line) => JSON.parse(line));
-  }
-
-  it('asks one noul per labeled output and prints keep', async () => {
-    const set = labeledSet(0, 10, 20);
-    const stubs = stubDir({ 'cli-deem': DEEM });
-    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
-    const out = tempDir('d4-out-');
-    const sha = d4.sha256Hex(fs.readFileSync(set.labels));
-
-    const { code, lines } = await runMain(
-      ['--outputs', set.outputs, '--fixtures', set.fixtures, '--labels', set.labels, '--deem', '--out', out],
-      env,
-    );
-
-    expect(code).toBe(0);
-    expect(lines).toContain(
-      'deem: nothing leaves the machine; planned calls: 30; estimated wall time: 1.8 s at 60.5 ms per call, the noul p50 from deem-local.md',
-    );
-    expect(lines).toContain('flips: n/a (commit pair)');
-    expect(lines).toContain(
-      `verdict deem: keep K=30 M=30 A=30 B=20 W=10 L=0 F=n/a p_win=0.0009766 p_loss=1.000 labels_sha256=${sha} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
-    );
-
-    const log = fs.readFileSync(path.join(stubs, 'cli-deem.log'), 'utf8').trim().split('\n');
-    expect(log).toHaveLength(31);
-    expect(log[0]).toBe('health');
-
-    const calls = readCalls(out);
-    expect(calls).toHaveLength(30);
-    for (const call of calls) {
-      expect(call.status).toBe('measured');
-      expect(call.exitCode).toBe(0);
-      expect(typeof call.wallMs).toBe('number');
-      expect(call.modelId).toBe('deem-0.8-v1');
-      expect(call.modelCommit).toBe('m1');
-      expect(call.sourceCommit).toBe('s1');
-    }
-    expect(JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8')).columns.deem.verdict).toBe('keep');
-  });
-
-  it('stops with partial rows and no verdict on a changed commit pair or a refused backend', async () => {
-    const changed = labeledSet(0, 10, 20);
-    const changedStubs = stubDir({ 'cli-deem': DEEM });
-    fs.appendFileSync(path.join(changed.outputs, 'fx-b.run1.md'), 'EXIT4\n');
-    fs.writeFileSync(path.join(changedStubs, 'newpair'), '', 'utf8');
-    const changedOut = tempDir('d4-out-');
-
-    const changedRun = await runMain(
-      ['--outputs', changed.outputs, '--fixtures', changed.fixtures, '--labels', changed.labels, '--deem', '--out', changedOut],
-      { ...process.env, PATH: `${changedStubs}${path.delimiter}${process.env.PATH}` },
-    );
-
-    expect(changedRun.code).toBe(0);
-    expect(changedRun.lines).toContain('deem arm stopped: model commit changed mid-run');
-    expect(changedRun.lines).toContain('deem: partial rows=0');
-    expect(changedRun.lines.some((line) => line.startsWith('verdict deem:'))).toBe(false);
-    const changedReport = JSON.parse(fs.readFileSync(path.join(changedOut, 'report.json'), 'utf8'));
-    expect(changedReport.stopped.deem.partialRows).toBe(0);
-
-    const refused = labeledSet(0, 10, 20);
-    const refusedStubs = stubDir({ 'cli-deem': DEEM });
-    fs.appendFileSync(path.join(refused.outputs, 'fx-b.run1.md'), 'EXIT3\n');
-    const refusedOut = tempDir('d4-out-');
-
-    const refusedRun = await runMain(
-      ['--outputs', refused.outputs, '--fixtures', refused.fixtures, '--labels', refused.labels, '--deem', '--out', refusedOut],
-      { ...process.env, PATH: `${refusedStubs}${path.delimiter}${process.env.PATH}` },
-    );
-
-    expect(refusedRun.code).toBe(0);
-    expect(refusedRun.lines).toContain('deem arm stopped: backend refused');
-    expect(refusedRun.lines).toContain('deem: partial rows=0');
-  });
-
-  it('marks an unparseable answer failed, stops on coverage and requalifies a changed pair', async () => {
-    const set = labeledSet(0, 10, 20);
-    for (let i = 1; i <= 4; i += 1) fs.appendFileSync(path.join(set.outputs, `fx-b.run${i}.md`), 'BADJSON\n');
-    const stubs = stubDir({ 'cli-deem': DEEM });
-    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
-    const out = tempDir('d4-out-');
-    fs.writeFileSync(
-      path.join(out, 'report.json'),
-      JSON.stringify({ columns: { deem: { modelCommit: 'old', sourceCommit: 's1' } } }),
-      'utf8',
-    );
-
-    const { code, lines } = await runMain(
-      ['--outputs', set.outputs, '--fixtures', set.fixtures, '--labels', set.labels, '--deem', '--out', out],
-      env,
-    );
-
-    expect(code).toBe(0);
-    const calls = readCalls(out);
-    expect(calls).toHaveLength(30);
-    expect(calls.filter((call) => call.status === 'failed')).toHaveLength(4);
-    const requalifyIndex = lines.indexOf('requalify: model commit changed');
-    expect(requalifyIndex).toBeGreaterThanOrEqual(0);
-    expect(lines[requalifyIndex + 1].startsWith('verdict deem: stop (coverage) K=30 M=26 ')).toBe(true);
   });
 });
 

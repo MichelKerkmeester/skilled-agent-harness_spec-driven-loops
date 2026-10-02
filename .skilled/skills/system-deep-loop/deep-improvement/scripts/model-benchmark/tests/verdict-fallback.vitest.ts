@@ -6,8 +6,7 @@
 //   Baselines (loosePick, chooseBaseline)
 //   Keep rule (binomialTail, decideVerdict, formatP, modalPick, summarizeColumn)
 //   Zero-call run (main)
-//   Deem gate (which, deemCommand, readDeemHealth, deemGate)
-//   Deem arm (nearestRank, spawnCall, createCallLog, runDeemArm)
+
 // ───────────────────────────────────────────────────────────────────
 
 import path from 'node:path';
@@ -116,7 +115,7 @@ describe('score-verdict-fallback fixtures', () => {
 
   it('a case with no reviewer_output', () => {
     const { profile } = writeFixtures();
-    const stubs = stubDir({ 'cli-deem': 'exit 0', jev: 'exit 0' });
+    const stubs = stubDir({ jev: 'exit 0' });
 
     const census = vf.censusFixtures(vf.loadFixtureCases(profile));
 
@@ -284,12 +283,12 @@ describe('score-verdict-fallback keep rule', () => {
     ]);
 
     const column = vf.summarizeColumn(
-      'deem',
+      'jev',
       ROWS,
       answers,
       baselineCalls,
       LABELS_SHA,
-      'model=deem-0.8-v1 model_commit=m1 source_commit=s1',
+      'jev_version=0.6.2 provider=official model=m',
     );
 
     expect(column.K).toBe(12);
@@ -303,15 +302,16 @@ describe('score-verdict-fallback keep rule', () => {
     expect(column.outcome).toBe('keep');
     expect(column.reason).toBe(null);
     expect(column.line).toBe(
-      `verdict deem: keep K=12 M=12 A=9 B=1 W=9 L=1 F=1 p_win=0.01074 p_loss=0.9990 labels_sha256=${LABELS_SHA} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
+      `verdict jev: keep K=12 M=12 A=9 B=1 W=9 L=1 F=1 p_win=0.01074 p_loss=0.9990 labels_sha256=${LABELS_SHA} jev_version=0.6.2 provider=official model=m`,
     );
     expect(vf.binomialTail(5, 5).num).toBe(1n);
     expect(vf.binomialTail(5, 5).den).toBe(32n);
     expect(vf.formatP(vf.binomialTail(5, 5).p)).toBe('0.03125');
 
-    const bare = vf.summarizeColumn('deem', ROWS, answers, baselineCalls, LABELS_SHA, '');
+    const bare = vf.summarizeColumn('jev', ROWS, answers, baselineCalls, LABELS_SHA, '');
     expect(bare.line.endsWith(`labels_sha256=${LABELS_SHA}`)).toBe(true);
   });
+
 
   it('verdict: kill', () => {
     const answers = new Map<string, Array<string | null>>([
@@ -343,7 +343,7 @@ describe('score-verdict-fallback keep rule', () => {
       ['r12', 'pass'],
     ]);
 
-    const column = vf.summarizeColumn('deem', ROWS, answers, baselineCalls, LABELS_SHA, '');
+    const column = vf.summarizeColumn('jev', ROWS, answers, baselineCalls, LABELS_SHA, '');
 
     expect(column.A).toBe(0);
     expect(column.B).toBe(5);
@@ -352,7 +352,7 @@ describe('score-verdict-fallback keep rule', () => {
     expect(column.outcome).toBe('kill');
     expect(column.reason).toBe(null);
     expect(column.line).toBe(
-      `verdict deem: kill K=12 M=12 A=0 B=5 W=0 L=5 F=0 p_win=1.000 p_loss=0.03125 labels_sha256=${LABELS_SHA}`,
+      `verdict jev: kill K=12 M=12 A=0 B=5 W=0 L=5 F=0 p_win=1.000 p_loss=0.03125 labels_sha256=${LABELS_SHA}`,
     );
   });
 
@@ -375,7 +375,7 @@ describe('score-verdict-fallback keep rule', () => {
       ['r12', 'pass'],
     ]);
 
-    const column = vf.summarizeColumn('deem', ROWS, answers, baselineCalls, LABELS_SHA, '');
+    const column = vf.summarizeColumn('jev', ROWS, answers, baselineCalls, LABELS_SHA, '');
 
     expect(column.A).toBe(5);
     expect(column.B).toBe(4);
@@ -384,7 +384,7 @@ describe('score-verdict-fallback keep rule', () => {
     expect(column.outcome).toBe('stop');
     expect(column.reason).toBe('margin');
     expect(column.line).toBe(
-      `verdict deem: stop (margin) K=12 M=12 A=5 B=4 W=1 L=0 F=0 p_win=0.5000 p_loss=1.000 labels_sha256=${LABELS_SHA}`,
+      `verdict jev: stop (margin) K=12 M=12 A=5 B=4 W=1 L=0 F=0 p_win=0.5000 p_loss=1.000 labels_sha256=${LABELS_SHA}`,
     );
   });
 
@@ -409,7 +409,7 @@ describe('score-verdict-fallback keep rule', () => {
       ['r12', 'fail'],
     ]);
 
-    const column = vf.summarizeColumn('deem', ROWS, answers, baselineCalls, LABELS_SHA, '');
+    const column = vf.summarizeColumn('jev', ROWS, answers, baselineCalls, LABELS_SHA, '');
 
     expect(column.K).toBe(12);
     expect(column.M).toBe(10);
@@ -419,7 +419,7 @@ describe('score-verdict-fallback keep rule', () => {
     expect(column.outcome).toBe('stop');
     expect(column.reason).toBe('coverage');
     expect(column.line).toBe(
-      `verdict deem: stop (coverage) K=12 M=10 A=5 B=0 W=5 L=0 F=0 p_win=0.03125 p_loss=1.000 labels_sha256=${LABELS_SHA}`,
+      `verdict jev: stop (coverage) K=12 M=10 A=5 B=0 W=5 L=0 F=0 p_win=0.03125 p_loss=1.000 labels_sha256=${LABELS_SHA}`,
     );
   });
 
@@ -456,16 +456,6 @@ describe('score-verdict-fallback keep rule', () => {
     expect(vf.modalPick(['pass', 'pass', 'fail'])).toEqual({ pick: 'pass', top: 2 });
     expect(vf.modalPick(['pass', 'fail', 'block'])).toEqual({ pick: null, top: 1 });
     expect(vf.modalPick(['block', 'block', 'block'])).toEqual({ pick: 'block', top: 3 });
-
-    const deem = vf.summarizeColumn('deem', ROWS, answers, baselineCalls, LABELS_SHA, '');
-    expect(deem.A).toBe(12);
-    expect(deem.W).toBe(12);
-    expect(deem.F).toBe(12);
-    expect(deem.outcome).toBe('stop');
-    expect(deem.reason).toBe('flips');
-    expect(deem.line).toBe(
-      `verdict deem: stop (flips) K=12 M=12 A=12 B=0 W=12 L=0 F=12 p_win=0.0002441 p_loss=1.000 labels_sha256=${LABELS_SHA}`,
-    );
 
     const jev = vf.summarizeColumn(
       'jev',
@@ -525,7 +515,7 @@ describe('score-verdict-fallback zero-call run', () => {
       const label = i % 3 === 0 ? 'block' : i % 2 === 0 ? 'fail' : 'pass';
       rows.push({ id: `row-${i}`, output: texts[label], label });
     }
-    const stubs = stubDir({ 'cli-deem': 'exit 0', jev: 'exit 0' });
+    const stubs = stubDir({ jev: 'exit 0' });
     const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
 
     const { code, lines } = await runMain(['--outputs', writeOutputs(rows)], env);
@@ -536,7 +526,7 @@ describe('score-verdict-fallback zero-call run', () => {
   });
 
   it('default run: calls no stub and writes no file', async () => {
-    const stubs = stubDir({ 'cli-deem': 'exit 0', jev: 'exit 0' });
+    const stubs = stubDir({ jev: 'exit 0' });
     const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
     const before = fs.readdirSync(process.cwd()).sort();
 
@@ -551,43 +541,7 @@ describe('score-verdict-fallback zero-call run', () => {
   });
 });
 
-describe('score-verdict-fallback deem gate', () => {
-  const HEALTHY = 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi';
 
-  it('a fake health passes', async () => {
-    const stubs = stubDir({ 'cli-deem': HEALTHY });
-    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
-    const base = await runMain([], env);
-
-    const { code, lines } = await runMain(['--deem', '--out', tempDir('vf-out-')], env);
-
-    expect(code).toBe(0);
-    expect(lines).toEqual([
-      ...base.lines,
-      'deem: health backend=torch model=deem-0.8-v1 model_commit=m1 source_commit=s1',
-      'deem arm skipped: label gate',
-    ]);
-    expect(fs.readFileSync(path.join(stubs, 'cli-deem.log'), 'utf8').trim().split('\n')).toEqual(['health']);
-  });
-
-  it('a stub backend skips byte-identically', async () => {
-    const stubs = stubDir({
-      'cli-deem': 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi',
-    });
-    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
-    const base = await runMain([], env);
-    const out = tempDir('vf-out-');
-
-    const { code, lines } = await runMain(['--deem', '--out', out], env);
-
-    expect(code).toBe(0);
-    expect(lines).toContain('deem arm skipped: stub backend');
-    expect(lines.filter((line) => line !== 'deem arm skipped: stub backend')).toEqual(base.lines);
-
-    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
-    expect(report.skipped.deem).toBe('deem arm skipped: stub backend');
-  });
-});
 
 describe('score-verdict-fallback jev gate', () => {
   const PASSING_JEV = `case "$1" in
@@ -663,186 +617,47 @@ echo '{"answers":{"answer":{"choice":"pass"}}}'`;
 });
 
 describe('score-verdict-fallback arms', () => {
-  it('--deem without --out exits 2 before any call', async () => {
-    const stubs = stubDir({ 'cli-deem': 'exit 0', jev: 'exit 0' });
+  it('rejects an unknown flag without spawning a stub', async () => {
+    const stubs = stubDir({ jev: 'exit 0' });
     const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
 
-    const { code, errs } = await runMain(['--deem'], env);
+    const { code, errs } = await runMain(['--bogus'], env);
 
     expect(code).toBe(2);
-    expect(errs).toEqual(['--deem needs --out <dir> so every call is recorded']);
+    expect(errs).toEqual(["Unknown option '--bogus'"]);
     expect(fs.readdirSync(stubs).filter((name) => name.endsWith('.log'))).toEqual([]);
   });
 
-  it('a skipped arm is recorded, no calls.jsonl', async () => {
-    const stubs = stubDir({
-      'cli-deem': 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi',
-    });
+  it('a jev arm without --out exits 2 before any call', async () => {
+    const stubs = stubDir({ jev: 'exit 0' });
     const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+
+    const { code, errs } = await runMain(['--jev'], env);
+
+    expect(code).toBe(2);
+    expect(errs).toEqual(['--jev needs --out <dir> so every call is recorded']);
+    expect(fs.readdirSync(stubs).filter((name) => name.endsWith('.log'))).toEqual([]);
+  });
+
+  it('a skipped jev arm is recorded, no calls.jsonl', async () => {
+    const stubs = stubDir({ jev: 'case "$1" in --version) echo \'jev 0.6.2\';; auth) [ "$2" = status ] && exit 3; exit 0;; esac' });
+    const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    delete env.JEV_PROVIDER;
     const out = tempDir('vf-out-');
 
-    const { code, lines } = await runMain(['--deem', '--out', out], env);
+    const { code, lines } = await runMain(['--jev', '--out', out], env);
 
     expect(code).toBe(0);
-    expect(lines).toContain('deem arm skipped: stub backend');
+    expect(lines).toContain('jev arm skipped: no credential');
     expect(fs.existsSync(path.join(out, 'calls.jsonl'))).toBe(false);
 
     const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
-    expect(report.skipped.deem).toBe('deem arm skipped: stub backend');
+    expect(report.skipped.jev).toBe('jev arm skipped: no credential');
   });
 });
 
-describe('score-verdict-fallback deem arm', () => {
-  const HEALTHY = 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi';
-  const ANSWER = `p=$(cat)
-plan=$(printf '%s' "$p" | sed -n 's/.*ORDER:\\([0-9][0-9][0-9]\\).*/\\1/p')
-case "$5" in
-  pass=*) idx=1 ;;
-  fail=*) idx=2 ;;
-  block=*) idx=3 ;;
-  *) idx=1 ;;
-esac
-digit=$(printf '%s' "$plan" | cut -c"$idx")
-case "$digit" in
-  1) pick=pass ;;
-  2) pick=fail ;;
-  3) pick=block ;;
-  *) pick=unknown ;;
-esac
-echo '{"answers":{"answer":{"choice":"'$pick'","probabilities":{"'$pick'":0.9}}}}'`;
-  const LABELS = ['pass', 'pass', 'pass', 'pass', 'pass', 'fail', 'fail', 'fail', 'fail', 'block', 'block', 'block'];
 
-  function armRows(digits: string[]): Array<{ id: string; output: string; label: string }> {
-    return digits.map((digit, index) => ({
-      id: `row-${index + 1}`,
-      output: `Reviewer note ${index + 1}. ORDER:${digit}`,
-      label: LABELS[index],
-    }));
-  }
 
-  function readCalls(out: string): any[] {
-    return fs
-      .readFileSync(path.join(out, 'calls.jsonl'), 'utf8')
-      .trim()
-      .split('\n')
-      .map((line) => JSON.parse(line));
-  }
-
-  async function runArm(digits: string[]): Promise<{ code: number; lines: string[]; out: string; stubs: string; sha: string }> {
-    const outputs = writeOutputs(armRows(digits));
-    const stubs = stubDir({ 'cli-deem': `${HEALTHY}\n${ANSWER}` });
-    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
-    const out = tempDir('vf-out-');
-    const sha = vf.sha256Hex(fs.readFileSync(outputs));
-
-    const { code, lines } = await runMain(['--outputs', outputs, '--deem', '--out', out], env);
-
-    return { code, lines, out, stubs, sha };
-  }
-
-  it('verdict: keep', async () => {
-    const run = await runArm(['111', '111', '111', '111', '111', '222', '222', '222', '222', '333', '333', '333']);
-
-    expect(run.code).toBe(0);
-    expect(run.lines).toContain('deem: nothing leaves the machine; planned calls: 36; estimated wall time: 2.4 s at 65.6 ms per call, the choice p50 from deem-local.md');
-    expect(run.lines.some((line) => /^column deem: K=12 measured=12 unmeasured=0 latency_p50_ms=\d+ latency_p95_ms=\d+$/.test(line))).toBe(true);
-    expect(run.lines).toContain(
-      `verdict deem: keep K=12 M=12 A=12 B=5 W=7 L=0 F=0 p_win=0.007813 p_loss=1.000 labels_sha256=${run.sha} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
-    );
-
-    const calls = readCalls(run.out);
-    expect(calls).toHaveLength(36);
-    for (const call of calls) {
-      expect(call.backend).toBe('deem');
-      expect(call.attempt).toBe(1);
-      expect(call.status).toBe('measured');
-      expect(call.exitCode).toBe(0);
-      expect(typeof call.wallMs).toBe('number');
-      expect(call.modelId).toBe('deem-0.8-v1');
-      expect(call.modelCommit).toBe('m1');
-      expect(call.sourceCommit).toBe('s1');
-    }
-    expect(calls.slice(0, 3)).toEqual([
-      { backend: 'deem', output: 'row-1', order: 1, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: 0.9, status: 'measured', modelId: 'deem-0.8-v1', modelCommit: 'm1', sourceCommit: 's1' },
-      { backend: 'deem', output: 'row-1', order: 2, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: 0.9, status: 'measured', modelId: 'deem-0.8-v1', modelCommit: 'm1', sourceCommit: 's1' },
-      { backend: 'deem', output: 'row-1', order: 3, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: 0.9, status: 'measured', modelId: 'deem-0.8-v1', modelCommit: 'm1', sourceCommit: 's1' },
-    ]);
-
-    const log = fs.readFileSync(path.join(run.stubs, 'cli-deem.log'), 'utf8').trim().split('\n');
-    expect(log).toHaveLength(37);
-    expect(log[0]).toBe('health');
-    const firstKeys = log.slice(1).map((line) => /-o ([a-z]+)=/.exec(line)![1]);
-    for (let i = 0; i < firstKeys.length; i += 3) {
-      expect(firstKeys.slice(i, i + 3)).toEqual(['pass', 'fail', 'block']);
-    }
-
-    const report = JSON.parse(fs.readFileSync(path.join(run.out, 'report.json'), 'utf8'));
-    expect(report.columns.deem.verdict).toBe('keep');
-    expect(report.columns.deem.line).toBe(
-      `verdict deem: keep K=12 M=12 A=12 B=5 W=7 L=0 F=0 p_win=0.007813 p_loss=1.000 labels_sha256=${run.sha} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
-    );
-    expect(report.columns.deem.modelCommit).toBe('m1');
-  });
-
-  it('verdict: kill', async () => {
-    const run = await runArm(['222', '222', '222', '222', '222', '111', '111', '111', '111', '111', '111', '111']);
-
-    expect(run.code).toBe(0);
-    expect(run.lines).toContain(
-      `verdict deem: kill K=12 M=12 A=0 B=5 W=0 L=5 F=0 p_win=1.000 p_loss=0.03125 labels_sha256=${run.sha} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
-    );
-    expect(readCalls(run.out)).toHaveLength(36);
-  });
-
-  it('verdict: stop (margin)', async () => {
-    const run = await runArm(['111', '111', '111', '111', '111', '222', '111', '111', '111', '111', '111', '111']);
-
-    expect(run.code).toBe(0);
-    expect(run.lines).toContain(
-      `verdict deem: stop (margin) K=12 M=12 A=6 B=5 W=1 L=0 F=0 p_win=0.5000 p_loss=1.000 labels_sha256=${run.sha} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
-    );
-  });
-
-  it('verdict: stop (coverage)', async () => {
-    const run = await runArm(['111', '111', '111', '111', '111', '222', '222', '222', '222', '333', '110', '110']);
-
-    expect(run.code).toBe(0);
-    expect(run.lines).toContain(
-      `verdict deem: stop (coverage) K=12 M=10 A=10 B=5 W=5 L=0 F=0 p_win=0.03125 p_loss=1.000 labels_sha256=${run.sha} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
-    );
-    expect(readCalls(run.out)).toHaveLength(36);
-  });
-
-  it('verdict: stop (flips)', async () => {
-    const run = await runArm(['112', '112', '112', '112', '112', '221', '221', '221', '221', '331', '331', '331']);
-
-    expect(run.code).toBe(0);
-    expect(run.lines).toContain(
-      `verdict deem: stop (flips) K=12 M=12 A=12 B=5 W=7 L=0 F=12 p_win=0.007813 p_loss=1.000 labels_sha256=${run.sha} model=deem-0.8-v1 model_commit=m1 source_commit=s1`,
-    );
-  });
-
-  it('report: requalify prints before the verdict', async () => {
-    const outputs = writeOutputs(armRows(['111', '111', '111', '111', '111', '222', '222', '222', '222', '333', '333', '333']));
-    const stubs = stubDir({ 'cli-deem': `${HEALTHY}\n${ANSWER}` });
-    const env = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
-    const out = tempDir('vf-out-');
-    fs.writeFileSync(
-      path.join(out, 'report.json'),
-      JSON.stringify({ columns: { deem: { modelCommit: 'old', sourceCommit: 's1' } } }),
-      'utf8',
-    );
-
-    const { code, lines } = await runMain(['--outputs', outputs, '--deem', '--out', out], env);
-
-    expect(code).toBe(0);
-    const requalifyIndex = lines.indexOf('requalify: model commit changed');
-    expect(requalifyIndex).toBeGreaterThanOrEqual(0);
-    expect(lines[requalifyIndex + 1].startsWith('verdict deem: keep ')).toBe(true);
-    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
-    expect(report.requalify.deem).toBe('requalify: model commit changed');
-  });
-});
 
 describe('score-verdict-fallback jev arm', () => {
   const JEV = `case "$1" in
