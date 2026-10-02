@@ -592,7 +592,7 @@ export type DeepReviewStemProducerStatus =
   | { readonly status: 'reserved'; readonly reason: string };
 
 export const DEEP_REVIEW_STEM_PRODUCERS = Object.freeze({
-  'deep_review.run_initialized': { status: 'reserved', reason: 'No writer emits it today: runs open with the flat config row. The run-open step would speak it once initialization records target and policy through the gateway.' },
+  'deep_review.run_initialized': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
   'deep_review.run_resumed': { status: 'reserved', reason: 'No writer emits it today: resume rebuilds the flat config and state in place. The resume step would speak it once a resumed run records its compatibility decision as an event.' },
   'deep_review.run_restarted': { status: 'reserved', reason: 'No writer emits it today: restart rebinds the flat config in place. The restart step would speak it once the archived lineage and restart reason are appended.' },
   'deep_review.scope_resolved': { status: 'reserved', reason: 'No writer emits it today: scope lives in workflow step text. A scope step would speak it once selected and omitted targets are appended with their digests.' },
