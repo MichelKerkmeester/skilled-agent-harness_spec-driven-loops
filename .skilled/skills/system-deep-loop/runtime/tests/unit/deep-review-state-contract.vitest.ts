@@ -96,6 +96,36 @@ describe('deep-review-state projection contract', () => {
     }
   });
 
+  it('unwraps an iteration_recorded event into the iteration row it carries', () => {
+    const contract = createDeepReviewStateProjectionContract();
+    const record = {
+      type: 'iteration',
+      iteration: 2,
+      mode: 'review',
+      status: 'complete',
+      findingsSummary: { P0: 0, P1: 1, P2: 0 },
+      newFindingsRatio: 0.5,
+      timestamp: '2026-10-02T00:00:00Z',
+    };
+    const event = reviewEvent(
+      'deep_review.iteration_recorded',
+      { runId: 'rev-1', sessionId: 's-1' },
+      { record },
+      FIXED_TS,
+    );
+    const state = contract.reduce(contract.base.state, event);
+    const lines = new TextDecoder()
+      .decode(contract.serialize(state))
+      .trimEnd()
+      .split('\n')
+      .map((line) => JSON.parse(line));
+
+    // One row, and it is the record whole: all seven fields survive, with the
+    // record's own timestamp rather than the envelope's occurred_at.
+    expect(lines).toHaveLength(1);
+    expect(lines[0]).toEqual(record);
+  });
+
   it('produces a file the real deep-review reducer reads without corruption and with the folded iterations', () => {
     const specFolder = mkdtempSync(join(tmpdir(), 'review-projection-'));
     scratchDirs.push(specFolder);

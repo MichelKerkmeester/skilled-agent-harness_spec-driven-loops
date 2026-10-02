@@ -210,6 +210,16 @@ export function createDeepReviewStateProjectionContract(
           terminalStatus: typeof data.terminalStatus === 'string' ? data.terminalStatus : 'completed',
           timestamp: occurredAt,
         };
+      } else if (stem === 'deep_review.iteration_recorded') {
+        // The record was handed over whole, so the row is the record itself: the reducer and
+        // the verifier read the same fields the worker wrote.
+        const record = (data.record && typeof data.record === 'object' && !Array.isArray(data.record))
+          ? (data.record as JsonObject)
+          : {};
+        row = {
+          ...record,
+          timestamp: typeof record.timestamp === 'string' ? record.timestamp : occurredAt,
+        };
       } else if (stem) {
         row = {
           type: 'event',

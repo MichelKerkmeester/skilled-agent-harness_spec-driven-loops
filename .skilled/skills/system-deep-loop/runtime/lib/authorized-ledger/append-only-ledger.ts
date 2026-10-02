@@ -4,6 +4,7 @@
 
 import {
   canonicalBytes,
+  canonicalBytesEqual,
   canonicalJson,
   prepareEventWrite,
   readEvent,
@@ -228,7 +229,7 @@ function assertEventPreflight(
   if (
     event.registryDigest !== prepared.registryDigest
     || event.canonicalDigest !== prepared.canonicalDigest
-    || canonicalJson(event.canonicalBytes) !== canonicalJson(prepared.canonicalBytes)
+    || !canonicalBytesEqual(event.canonicalBytes, prepared.canonicalBytes)
   ) {
     throw new AuthorizedLedgerError(
       AuthorizedLedgerErrorCodes.INPUT_INVALID,
