@@ -579,7 +579,8 @@ describe('score-jev-tiebreak jev arm', () => {
       const logLines = readFileSync(join(stub, 'jev.log'), 'utf8')
         .split('\n')
         .filter((line) => line !== '');
-      return { code, lines, calls, logLines };
+      const report = JSON.parse(readFileSync(join(dir, 'report.json'), 'utf8'));
+      return { code, lines, calls, logLines, report };
     } finally {
       rmSync(stub, { recursive: true, force: true });
       rmSync(dir, { recursive: true, force: true });
@@ -635,6 +636,7 @@ describe('score-jev-tiebreak jev arm', () => {
     expect(result.lines).toContain('jev arm stopped: key rejected');
     expect(result.lines).toContain('jev: partial_rows=2');
     expect(result.lines.some((line) => line.startsWith('verdict: '))).toBe(false);
+    expect(result.report.stopped.jev).toBe('jev arm stopped: key rejected');
     const last = result.calls[result.calls.length - 1];
     expect(last).toMatchObject({ kind: 'choice', row_id: 'r2', pass: 1, exit_code: 3, answer: null, status: 'unmeasured' });
   }, 60_000);

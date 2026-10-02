@@ -65,7 +65,7 @@ A passing census is not enough on its own. The evidence must show the label gate
 
 | File | Role |
 |---|---|
-| [Judge agreement script](../../../../../.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs) | Census, baseline, label gate and both judge arms. |
+| [Judge agreement script](../../../../../.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.mjs) | Census, baseline, label gate and the Jev arm. |
 | [Judge agreement tests](../../../../../.skilled/skills/sk-communication/benchmark/reply-harness/judge-agreement.test.mjs) | Default-run and Jev credential-gate evidence on a stub binary. |
 
 ---

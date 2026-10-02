@@ -687,6 +687,16 @@ describe('score-stop-rater label gate', () => {
 });
 
 describe('score-stop-rater report and out', () => {
+  it('refuses the Jev arm without an output directory', async () => {
+    const repo = fiveLineageRepo();
+    const { log, env } = stubBackends();
+    const { code, lines, errs } = await runWithEnv(['--jev'], repo, env);
+    expect(code).toBe(2);
+    expect(lines).toEqual([]);
+    expect(errs).toEqual(['--jev needs --out <dir> so every call is recorded']);
+    expect(fs.existsSync(log)).toBe(false);
+  });
+
   it('default run with --out writes only report.json', async () => {
     const repo = fiveLineageRepo();
     const outDir = tempDir('stop-rater-out-');
@@ -970,6 +980,30 @@ exit 0
     const logged = fs.readFileSync(log, 'utf8').trim().split('\n');
     expect(logged.length).toBeGreaterThan(0);
     for (const line of logged) expect(line).toContain('--provider openrouter');
+  });
+
+  it('requalify prints before the verdict', async () => {
+    const repo = rateableRepo();
+    const readsFile = writeGoldReads(repo, null);
+    const { env } = jevArmStub([0, 0, 0]);
+    const outDir = tempDir('stop-rater-out-');
+    fs.writeFileSync(
+      path.join(outDir, 'report.json'),
+      JSON.stringify({ columns: { jev: { provider: 'openrouter', model: 'stub-model' } } }),
+      'utf8',
+    );
+    const { code, lines, errs } = await runArm(
+      ['--jev', '--out', outDir, '--gold-reads', readsFile],
+      repo,
+      env,
+    );
+    expect(code).toBe(0);
+    expect(errs).toEqual([]);
+    const requalifyIndex = lines.indexOf('requalify: model changed');
+    expect(requalifyIndex).toBeGreaterThanOrEqual(0);
+    expect(lines[requalifyIndex + 1].startsWith('verdict jev: ')).toBe(true);
+    const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
+    expect(report.requalify.jev).toBe('requalify: model changed');
   });
 });
 

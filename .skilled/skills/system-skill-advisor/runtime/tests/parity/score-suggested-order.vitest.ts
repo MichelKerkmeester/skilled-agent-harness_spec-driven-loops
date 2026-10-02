@@ -617,6 +617,11 @@ describe('score-suggested-order gates and arms in main', () => {
 });
 
 describe('score-suggested-order report', () => {
+  it('files a stopped Jev arm under stopped', () => {
+    const report = buildReport(['census: x'], timing, null, { stopped: 'jev arm stopped: key rejected' });
+    expect(report.stopped.jev).toBe('jev arm stopped: key rejected');
+  });
+
   it('builds the report from the census lines, the timing and the arm outcome', () => {
     const walls = Array.from({ length: 60 }, () => 800);
     const rows = [

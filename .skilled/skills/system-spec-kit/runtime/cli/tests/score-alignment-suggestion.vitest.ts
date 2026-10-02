@@ -606,6 +606,40 @@ describe('backend gates', () => {
 });
 
 describe('model arms', () => {
+  it('leaves the census output unchanged when the Jev payload is withheld', async () => {
+    const rowsDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    const outDir1 = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    const outDir2 = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    tempDirs.push(rowsDir, outDir1, outDir2);
+    const stub = makeBackendStubs();
+
+    const f = writeRows(rowsDir, [
+      ...Array.from({ length: 20 }, () => ({ label: '001-a', state: 'pick:001-a' })),
+      ...Array.from({ length: 10 }, () => ({ label: '002-b', state: 'pick:002-b' })),
+    ]);
+
+    const env = { ...process.env, PATH: stub + delimiter + process.env.PATH };
+    const firstOut: string[] = [];
+    const firstCode = await main(['--score', f, '--out', outDir1], {
+      out: (line) => firstOut.push(line),
+      env,
+      describe: (folder) => folder,
+    });
+    const secondOut: string[] = [];
+    const secondCode = await main(['--score', f, '--jev', '--out', outDir2], {
+      out: (line) => secondOut.push(line),
+      env,
+      describe: (folder) => folder,
+    });
+
+    expect(firstCode).toBe(0);
+    expect(secondCode).toBe(0);
+    expect(secondOut).toContain('jev arm skipped: payload not accepted');
+    expect(secondOut.filter((line) => !line.startsWith('jev'))).toEqual(firstOut);
+    const jevLog = readFileSync(join(stub, 'jev.log'), 'utf8').trim().split(/\n/);
+    expect(jevLog.some((line) => line.startsWith('choice'))).toBe(false);
+  });
+
   it('a Jev column with an accepted payload reports its cost and verdict', async () => {
     const rowsDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
     const outDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
