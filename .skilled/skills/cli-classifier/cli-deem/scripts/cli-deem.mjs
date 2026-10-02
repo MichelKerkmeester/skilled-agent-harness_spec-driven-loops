@@ -9,9 +9,10 @@
 // model other than the pin, then prints the checkpoint and source commits.
 // noul, choice, and score POST one question. run POSTs a batch already written
 // in Deem's shape. The client validates and passes through numeric noul and
-// score fields, while mapping choice descriptions back to submitted keys. The
-// batch is counted first, because the server rejects more than 64
-// questions or more than 26 options on a choice.
+// score fields, while mapping choice descriptions back to submitted keys.
+// Counts are checked before any request, because the server rejects a score
+// outside 2 to 10 levels, a choice outside 2 to 26 options and a batch over
+// 64 questions.
 // It never starts or stops the server.
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -35,7 +36,10 @@ const LOOPBACK_HOSTS = ['127.0.0.1', 'localhost', '[::1]'];
 const HEALTH_TIMEOUT_MS = 2000;
 const HOOK_TIMEOUT_MS = 500;
 const DECISION_TIMEOUT_MS = 60000;
+const MIN_OPTIONS = 2;
 const MAX_OPTIONS = 26;
+const MIN_LEVELS = 2;
+const MAX_LEVELS = 10;
 const MAX_QUESTIONS = 64;
 const SUBCOMMANDS = ['health', 'noul', 'choice', 'score', 'run'];
 
@@ -416,7 +420,8 @@ function readState(flag) {
  * @param {string[]} [values.option] - KEY=DESCRIPTION pairs from -o
  * @param {string[]} [values.level] - Ordered level labels from -l
  * @returns {{ question: { type: string, instructions: string, options?: string[], levels?: string[] }, keyByDescription: Map<string, string> | null }}
- * @throws {CliError} When -q is missing or a choice option is not KEY=DESCRIPTION
+ * @throws {CliError} When -q is missing, a choice option is not KEY=DESCRIPTION,
+ *   or an option or level count is out of range
  */
 function buildQuestion(subcommand, values) {
   if (values.question === undefined) {
@@ -460,6 +465,9 @@ function buildQuestion(subcommand, values) {
       options.push(description);
       keyByDescription.set(description, key);
     }
+    if (options.length < MIN_OPTIONS) {
+      throw new CliError(`choice needs at least ${MIN_OPTIONS} -o options`, 2);
+    }
     if (options.length > MAX_OPTIONS) {
       throw new CliError(`choice exceeds the ${MAX_OPTIONS}-option cap (got ${options.length})`, 2);
     }
@@ -472,6 +480,9 @@ function buildQuestion(subcommand, values) {
     const levels = values.level ?? [];
     if (levels.length === 0) {
       throw new CliError('score needs at least one -l DESCRIPTION', 2);
+    }
+    if (levels.length < MIN_LEVELS || levels.length > MAX_LEVELS) {
+      throw new CliError(`score needs ${MIN_LEVELS} to ${MAX_LEVELS} -l levels`, 2);
     }
     return {
       question: { type: 'score', instructions, levels },

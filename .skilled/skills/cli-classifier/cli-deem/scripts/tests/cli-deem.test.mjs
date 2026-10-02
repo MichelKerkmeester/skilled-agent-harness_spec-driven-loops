@@ -445,7 +445,7 @@ const CHOICE_BODY = {
         'Take the safe path': 0.8,
       },
       confidence: 0.6,
-      temperature: 1,
+      x_temperature: 1,
     },
   },
   usage: { questions: 1 },
@@ -730,6 +730,19 @@ function choiceArgs(count) {
   return args;
 }
 
+/**
+ * Build score argv with levels "level 1".."level N".
+ * @param {number} count - How many -l flags to append
+ * @returns {string[]}
+ */
+function scoreArgs(count) {
+  const args = ['score', '-q', 'x', '-s', 'y'];
+  for (let index = 1; index <= count; index += 1) {
+    args.push('-l', `level ${index}`);
+  }
+  return args;
+}
+
 test('choice with 26 options is sent', { timeout: 20000 }, async () => {
   const fake = await startFake((_req, res) => {
     replyJson(res, 200, CHOICE_NAMING_OPTION_ONE);
@@ -843,6 +856,76 @@ test('choice without an option exits 2 before any request', { timeout: 20000 }, 
     );
     assert.equal(result.code, 2);
     assert.equal(fake.requests.length, 0);
+  } finally {
+    await fake.close();
+  }
+});
+
+test('choice with one option exits 2 before any request', { timeout: 20000 }, async () => {
+  const fake = await startFake((_req, res) => {
+    replyJson(res, 200, CHOICE_NAMING_OPTION_ONE);
+  });
+  try {
+    const result = await runCli(choiceArgs(1), { url: fake.url, home: os.tmpdir() });
+    assert.equal(result.code, 2);
+    assert.equal(result.stderr.includes('choice needs at least 2 -o options'), true);
+    assert.equal(fake.requests.length, 0);
+  } finally {
+    await fake.close();
+  }
+});
+
+test('score with one level exits 2 before any request', { timeout: 20000 }, async () => {
+  const fake = await startFake((_req, res) => {
+    replyJson(res, 200, { model: 'deem-0.8-v1', answers: { answer: SCORE_ANSWER } });
+  });
+  try {
+    const result = await runCli(scoreArgs(1), { url: fake.url, home: os.tmpdir() });
+    assert.equal(result.code, 2);
+    assert.equal(result.stderr.includes('score needs 2 to 10 -l levels'), true);
+    assert.equal(fake.requests.length, 0);
+  } finally {
+    await fake.close();
+  }
+});
+
+test('score with eleven levels exits 2 before any request', { timeout: 20000 }, async () => {
+  const fake = await startFake((_req, res) => {
+    replyJson(res, 200, { model: 'deem-0.8-v1', answers: { answer: SCORE_ANSWER } });
+  });
+  try {
+    const result = await runCli(scoreArgs(11), { url: fake.url, home: os.tmpdir() });
+    assert.equal(result.code, 2);
+    assert.equal(result.stderr.includes('score needs 2 to 10 -l levels'), true);
+    assert.equal(fake.requests.length, 0);
+  } finally {
+    await fake.close();
+  }
+});
+
+test('score with two levels is sent', { timeout: 20000 }, async () => {
+  const fake = await startFake((_req, res) => {
+    replyJson(res, 200, { model: 'deem-0.8-v1', answers: { answer: SCORE_ANSWER } });
+  });
+  try {
+    const result = await runCli(scoreArgs(2), { url: fake.url, home: os.tmpdir() });
+    assert.equal(result.code, 0);
+    assert.equal(fake.requests.length, 1);
+    assert.equal(fake.requests[0].body.questions.answer.levels.length, 2);
+  } finally {
+    await fake.close();
+  }
+});
+
+test('score with ten levels is sent', { timeout: 20000 }, async () => {
+  const fake = await startFake((_req, res) => {
+    replyJson(res, 200, { model: 'deem-0.8-v1', answers: { answer: SCORE_ANSWER } });
+  });
+  try {
+    const result = await runCli(scoreArgs(10), { url: fake.url, home: os.tmpdir() });
+    assert.equal(result.code, 0);
+    assert.equal(fake.requests.length, 1);
+    assert.equal(fake.requests[0].body.questions.answer.levels.length, 10);
   } finally {
     await fake.close();
   }

@@ -46,7 +46,7 @@ Every judgment posts one JSON object with a `state` string and a `questions` obj
 | `score` | `{"type":"score","instructions":Q,"levels":[L1,L2]}` | `-q` plus each `-l DESCRIPTION`, lowest level first |
 | `run` | the request file's own `questions` object, unchanged | a file or stdin written in Deem's shape |
 
-The `jev` CLI sends `choice` options and `score` levels as `criteria`, which Deem answers with HTTP 400. That mismatch is the reason this client exists.
+The `jev` CLI sends `choice` options and `score` levels as `criteria`, and the installed server accepts that field. Its `parse_question` reads `criteria` first, a key-to-description map for `choice` and an ordered list for `score`, and treats `options` and `levels` as legacy aliases. On 2026-10-02 a `choice` request with `criteria` `{"pay":"Payment or refund problem","prod":"Product or account problem"}` and a `score` request with `criteria` `["low","medium","high"]` each returned HTTP 200, with `choice` answering the key `pay`. Whether the `jev` CLI works end to end against Deem was not tested. This client sends the `options` and `levels` aliases, which the server accepts.
 
 ---
 
@@ -74,13 +74,14 @@ Deem wraps every answer in an envelope of `id`, `object`, `created`, `model`, `a
 
 ### Caps
 
-The server enforces the option and question caps with HTTP 400. The client counts first and exits 2 with a named message, so an oversized request costs no round trip.
+The server enforces the option, level and question caps with HTTP 422. The client counts first and exits 2 with a named message, so an out-of-range request costs no round trip.
 
 | Cap | Server limit | Client message |
 |---|---|---|
-| Options per `choice` | 26 on the torch backend | `choice exceeds the 26-option cap (got N)` |
+| Options per `choice` | 2 at least, 26 at most on the torch backend | `choice needs at least 2 -o options`, `choice exceeds the 26-option cap (got N)` |
+| Levels per `score` | 2 to 10 | `score needs 2 to 10 -l levels` |
 | Questions per request | 64 | `run exceeds the 64-question cap (got N)` |
-| Duplicate descriptions | refused with HTTP 400 | `duplicate option description: D` |
+| Duplicate descriptions | refused with HTTP 422 | `duplicate option description: D` |
 | Duplicate keys | not visible to the server | `duplicate option key: K` |
 | Request body | 8 MiB, refused with HTTP 413 | not checked by the client. The client exits 1 on the 413 |
 

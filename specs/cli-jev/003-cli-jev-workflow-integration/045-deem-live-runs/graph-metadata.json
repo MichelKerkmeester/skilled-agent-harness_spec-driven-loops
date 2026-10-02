@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Until phase 044 every `noul` and `score` call through `cli-deem` exited 1, so no scorer's Deem arm has a measured result, and the one local run of 006's arm failed all 196 calls",
     "created_at": "2026-10-02T07:13:43Z",
-    "last_save_at": "2026-10-02T07:18:56.910Z",
+    "last_save_at": "2026-10-02T07:25:55.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:75e8dbaced17b11729ea84693a345a5c3f00c2d2ba243aae4d9435e0c2d41536",
+    "source_fingerprint": "sha256:b055b6e4184bef9f96cd81b25e979a3c2b76da08bd4e2892e2ed7e46e0fb693c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f79b8228d5338014562bc29fd8d72b3bb5f11a4b7e97bbc0d2c9fae58fa81455",

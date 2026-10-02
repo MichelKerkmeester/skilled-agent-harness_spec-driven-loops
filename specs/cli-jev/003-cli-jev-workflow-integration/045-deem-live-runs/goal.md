@@ -78,7 +78,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Inventory | Done | 19 JS and TS scorers take `--deem`, plus 034's Python lens. 042's `gates.md` records each label file. Gates open for 006, 023, 029, 030, 031, 032 and 035 |
-| P2 fixes | In Progress | Brief `build/fix/045a.md` to SWE 2 max |
+| P2 fixes | Done | SWE 2 max, brief `045a.md`, 636 s. The client exits 2 before any request on a score outside 2 to 10 levels (`score needs 2 to 10 -l levels`) and a choice with 1 option (`choice needs at least 2 -o options`). Every fake choice answer uses `x_temperature`. The wire contract and README say the server reads `criteria` first with `options` and `levels` as aliases, and SWE set the caps table to HTTP 422 after reading `deem_server.py`. The session widened two remaining "HTTP 400 exits 1" lines to "an HTTP 4xx such as 422", since any status under 500 but not 200 exits 1. cli-deem 44 pass (39 before), every changed doc validates, Hermes PASS 72 |
 
 ### Deviations and findings
 

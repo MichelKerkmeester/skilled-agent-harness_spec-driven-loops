@@ -242,8 +242,8 @@ Default output is one JSON line on stdout. Errors print `{"ok":false,"error":"<m
 | Exit | Meaning | Caller's move |
 |---|---|---|
 | 0 | A judgment or a passing health check | Read the payload. It is a judgment, not a fact |
-| 1 | HTTP 400 or an unexpected response body | Do not retry blindly. Read the error |
-| 2 | Usage or config: a bad flag, more than 26 options, more than 64 questions, a duplicate option description or key, a `CLI_DEEM_URL` off loopback or a missing commit-pair path | Fix the command. Nothing was sent |
+| 1 | An HTTP 4xx such as 422, or an unexpected response body | Do not retry blindly. Read the error |
+| 2 | Usage or config: a bad flag, a `choice` outside 2 to 26 options, a `score` outside 2 to 10 levels, more than 64 questions, a duplicate option description or key, a `CLI_DEEM_URL` off loopback or a missing commit-pair path | Fix the command. Nothing was sent |
 | 3 | Refused backend: the stub or a model id other than `deem-0.8-v1` in the health body or an answer | Treat Deem as unavailable. Another server holds the port |
 | 4 | Unreachable, a timeout or a 5xx | Treat Deem as unavailable for this run |
 | 130 | Interrupted | The operator stopped it |

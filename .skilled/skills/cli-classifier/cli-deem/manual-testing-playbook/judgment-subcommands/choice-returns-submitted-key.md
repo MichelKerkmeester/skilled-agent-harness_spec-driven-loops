@@ -44,7 +44,7 @@ Operators run the exact prompt and command sequence for `DEE-006` and confirm th
 node -e '
 const http = require("node:http");
 const { spawn } = require("node:child_process");
-const body = JSON.stringify({ model: "deem-0.8-v1", answers: { answer: { choice: "Payment or refund problem", probabilities: { "Payment or refund problem": 0.81, "Product or account problem": 0.19 }, confidence: 0.8, temperature: 0 } } });
+const body = JSON.stringify({ model: "deem-0.8-v1", answers: { answer: { choice: "Payment or refund problem", probabilities: { "Payment or refund problem": 0.81, "Product or account problem": 0.19 }, confidence: 0.8, x_temperature: 0 } } });
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(body);
@@ -69,7 +69,7 @@ server.listen(0, "127.0.0.1", () => {
 
 ### Recorded Result
 
-Observed while authoring: exit 0, stderr empty, and stdout was `{"model":"deem-0.8-v1","answers":{"answer":{"choice":"billing","probabilities":{"billing":0.81,"support":0.19},"confidence":0.8,"temperature":0}}}`. Verdict PASS.
+Observed while authoring: exit 0, stderr empty, and stdout was `{"model":"deem-0.8-v1","answers":{"answer":{"choice":"billing","probabilities":{"billing":0.81,"support":0.19},"confidence":0.8,"x_temperature":0}}}`. Verdict PASS.
 
 ### Failure Triage
 
