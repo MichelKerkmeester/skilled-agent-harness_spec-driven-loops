@@ -466,6 +466,27 @@ test('main stops on a label conflict between two rows grading one reply', async 
   }
 });
 
+test('main refuses the Jev arm without an output directory', async () => {
+  const fixture = makeFixture();
+  try {
+    makeStubBin(fixture.root);
+    const { code, lines, errors } = await run(
+      [
+        '--masked', fixture.maskedDirs[0],
+        '--replies', fixture.repliesDirs[0],
+        '--jev',
+      ],
+      stubEnv(fixture.root),
+    );
+    assert.equal(code, 2);
+    assert.deepEqual(lines, []);
+    assert.deepEqual(errors, ['--jev needs --out <dir> so every call is recorded']);
+    assert.deepEqual(readStubLog(fixture.root), []);
+  } finally {
+    fs.rmSync(fixture.root, { recursive: true, force: true });
+  }
+});
+
 test('the script exits 2 with usage on stderr when --replies is missing', () => {
   const fixture = makeFixture();
   try {
@@ -496,6 +517,10 @@ test('modalLevel names the level over half the reruns and the unstable three-way
 });
 
 test('decideVerdict stops at the first failed check in keep-rule order', () => {
+  assert.equal(decideVerdict({ backend: 'jev', K: 20, M: 17, A: 119, B: 51, W: 17, L: 0, F: 0 }).verdict, 'stop (coverage)');
+  assert.equal(decideVerdict({ backend: 'jev', K: 20, M: 20, A: 0, B: 60, W: 0, L: 20, F: 0 }).verdict, 'kill');
+  assert.equal(decideVerdict({ backend: 'jev', K: 20, M: 20, A: 60, B: 60, W: 0, L: 0, F: 0 }).verdict, 'stop (margin)');
+  assert.equal(decideVerdict({ backend: 'jev', K: 20, M: 20, A: 140, B: 60, W: 4, L: 0, F: 0 }).verdict, 'stop (sign test)');
   assert.equal(decideVerdict({ backend: 'jev', K: 20, M: 20, A: 140, B: 60, W: 20, L: 0, F: 100 }).verdict, 'stop (flips)');
   assert.equal(decideVerdict({ backend: 'jev', K: 20, M: 20, A: 140, B: 60, W: 20, L: 0, F: 42 }).verdict, 'keep');
 });
