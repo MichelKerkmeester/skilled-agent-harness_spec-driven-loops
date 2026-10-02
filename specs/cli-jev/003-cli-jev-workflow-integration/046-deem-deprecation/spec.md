@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation"
     last_updated_at: "2026-10-02T10:30:00Z"
     last_updated_by: "orchestrating-session"
-    recent_action: "Planned four phases for the Deem removal"
+    recent_action: "Closed all four phases of the Deem removal"
     next_safe_action: "Run phase 001's inventory and decisions"
     blockers: []
     key_files: []
@@ -38,7 +38,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-02 |
 | **Branch** | `worktrees/071-cli-jev-sk-alignment` |
 | **Parent Spec** | `../spec.md` |
@@ -97,10 +97,10 @@ The operator chose on 2026-10-02 to keep only Jev as the classifier. Deem reache
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-removal-plan/ | Sort every real Deem reference by the phase that removes it, and record the removal decisions | In Progress |
-| 2 | 002-scorer-deem-arms/ | Remove each scorer's `--deem` arm, tests and docs, with default and `--jev` output unchanged | Planned |
-| 3 | 003-cli-deem-mode-removal/ | Delete the `cli-deem` packet and leave `cli-classifier` a valid one-mode hub | Planned |
-| 4 | 004-references-sweep-and-verification/ | Clear the remaining references, add changelog entries, run every gate and the review | Planned |
+| 1 | 001-removal-plan/ | Sort every real Deem reference by the phase that removes it, and record the removal decisions | Complete |
+| 2 | 002-scorer-deem-arms/ | Remove each scorer's `--deem` arm, tests and docs, with default and `--jev` output unchanged | Complete |
+| 3 | 003-cli-deem-mode-removal/ | Delete the `cli-deem` packet and leave `cli-classifier` a valid one-mode hub | Complete |
+| 4 | 004-references-sweep-and-verification/ | Clear the remaining references, add changelog entries, run every gate and the review | Complete |
 
 ### Phase Transition Rules
 

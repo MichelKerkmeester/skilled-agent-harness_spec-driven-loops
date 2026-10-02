@@ -39,7 +39,7 @@
       "phases"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phases 002 and 003 remove the code and the hub's mode",
     "created_at": "2026-10-02T07:54:43Z",
-    "last_save_at": "2026-10-02T08:02:08.370Z",
+    "last_save_at": "2026-10-02T16:17:16.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a35f857f1165b1f76991f35f9722ef7402f8651bcd5dcc159330b23b825a04da",
+    "source_fingerprint": "sha256:56098445a6417943ba070a58837ef9015cb4715aa3e30c1d1435b553b00721cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f87001a91e6dfa46ca930a912787f17c3e156a327beb29341ea5d68eccaba0f7",
+      "spec.md": "03ec37146921df1536965b482bcf27df4a2586462cd11e0a5fd81c24622814e2",
       "plan.md": "65087b14c6ec6e9c99e22afcd6f474f83c460794148a15d049d928e2ec639fd1",
-      "tasks.md": "d687e9bbefee7f7ef6e801e57dd48b209b629fc9e48c00ca6ab7db350d2e3828",
-      "implementation-summary.md": "811a3d69099bea0b355840f5e2ecdacd84d9591a4ee40b67fa345196ee091e16"
+      "tasks.md": "f5b2b4b54f3f6ef687c966ab785d8a55eec975fcb9a7f985a02956704ff9f469",
+      "implementation-summary.md": "92b7f2737ec8416eb519c84dcfb64e6228eae3d5e39b4f75d17070476897faab"
     },
     "last_active_at": null
   }

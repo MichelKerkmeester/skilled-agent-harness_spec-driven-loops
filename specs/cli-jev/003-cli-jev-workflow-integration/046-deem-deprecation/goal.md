@@ -79,11 +79,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `001-removal-plan`, `002-scorer-deem-arms`, `003-cli-deem-mode-removal` and `004-references-sweep-and-verification` each have `spec.md` Status Complete
-- [ ] `.skilled/skills/cli-classifier/cli-deem/` and `.hermes/skills/cli-deem/` do not exist, and `git grep -n -e "--deem" -- ':!specs' ':!*/changelog/*'` prints nothing
-- [ ] The parent-hub check on `.skilled/skills/cli-classifier` passes with `cli-jev` as its only mode, and `compiled-route-status.cjs --hub cli-classifier --no-probe` reports `compiled-serving`
-- [ ] Every test suite that covered a removed `--deem` arm passes with 0 failing, and each scorer's default run prints what it printed before the removal
-- [ ] `validate.sh --strict --recursive` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and each child
+- [x] `001-removal-plan`, `002-scorer-deem-arms`, `003-cli-deem-mode-removal` and `004-references-sweep-and-verification` each have `spec.md` Status Complete
+- [x] `.skilled/skills/cli-classifier/cli-deem/` and `.hermes/skills/cli-deem/` do not exist, and `git grep -n -e "--deem" -- ':!specs' ':!*/changelog/*'` prints nothing
+- [x] The parent-hub check on `.skilled/skills/cli-classifier` passes with `cli-jev` as its only mode, and `compiled-route-status.cjs --hub cli-classifier --no-probe` reports `compiled-serving`
+- [x] Every test suite that covered a removed `--deem` arm passes with 0 failing, and each scorer's default run prints what it printed before the removal
+- [x] `validate.sh --strict --recursive` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and each child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -102,10 +102,17 @@ and findings belong here.
 | Request | Done | The operator, 2026-10-02: "Stop and deprecate deem completely", then "lets deperecate deem cli completely and only keep cli jev", "Cli classifier still needs to stay a parent hun tho" and "In case we want to support future classifiers". Workers named in "Use luna max 6 fast cli codex and deepseek v4.1 flash max cli pi opencode go and cline provider as needed" |
 | Last Deem results | Done | Phase 045's runs stopped at the operator's word after 2 of 20: 002 `kill` (Deem won 7 tiebreaks, lost 29) and 006 `kill` on both rules |
 | Footprint | Done | 252 files outside `specs/` match "deem", many as English words (`deems`, `Deemphasized`, `encodeEmbedding`). Phase 001 sorts the real ones |
+| 001 inventory | Done | 209 files sorted by owner and action, ADR-001 to ADR-004 |
+| 002 scorers | Done | 20 scorers without a Deem arm, `--deem` exits 2 on each, 153 Deem tests removed and 32 plus 6 restored as Jev tests |
+| 003 hub | Done | `cli-deem` packet and Hermes copy deleted, hub 0.7.0.0 with `cli-jev` alone, routing `compiled-serving` |
+| 004 sweep | Done | 135 changed docs valid, 13 changelog entries, index and baselines rebuilt, both greps clean |
+| Suites | Done | 24 inventory suites 0 fail, changed scorer suites 446 of 446, advisor suite 1055 passed with 0 failed |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Criterion 4 reading | 002's D2 amendment lets each default run lose the Deem fields it printed. Three scorers lost a planned-calls field and nothing else, 16 print the same bytes, and 019 differs only in a timing line that differs between runs of identical code |
+| Generated files | Spec folders keep their Deem history, so the trigger index and the README baseline still hold Deem text taken from them. 004's criterion 1 was amended to allow that, with every match traced |
+| Open P2s | Listed in the logs of 002, 003 and 004. None blocks |
 <!-- /ANCHOR:log -->

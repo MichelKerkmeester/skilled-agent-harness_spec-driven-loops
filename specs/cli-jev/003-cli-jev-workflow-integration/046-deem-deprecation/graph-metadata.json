@@ -65,12 +65,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -95,6 +89,12 @@
         "source": "derived"
       },
       {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
@@ -113,6 +113,12 @@
         "source": "derived"
       },
       {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "1. DURABLE DIRECTIVE",
         "kind": "heading",
         "path": "goal.md",
@@ -123,27 +129,21 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "2. BINDING",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The operator chose on 2026-10-02 to keep only Jev as the classifier",
     "created_at": "2026-10-02T07:54:39Z",
-    "last_save_at": "2026-10-02T08:01:34.869Z",
+    "last_save_at": "2026-10-02T16:17:40.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:870e174ea2f055f5e00eeb9625f177e925647547c71586477effd6385ed8073a",
+    "source_fingerprint": "sha256:ed43833890fda0891c669b89563263f37d93593faa6b0f2d8979724474eff7e6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e0d8739d4135ee7d6abfa74cd3cf8a60b2b6cb5ca9efefe594716949944f5d95"
+      "spec.md": "37074c58ab5c8028d3ab2077d100bbc476c3cfdf9716b6ad786741448b49ef88"
     },
     "last_active_at": null
   }
