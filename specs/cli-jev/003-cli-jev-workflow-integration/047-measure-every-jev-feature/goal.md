@@ -63,8 +63,8 @@ Frozen choices. Changing one is an amendment.
 - [x] Each result row quotes a `verdict` or `stop:` line its scorer printed, and no row is a `fewer than N labeled` stop
 - [x] Each result row names its corpus as real or fixture and its labeler as the operator or the delegated arbiter
 - [x] Every changed scorer suite passes, and no P0 or P1 review finding is open
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` on this phase and `check-goal.cjs` passes on its goal
-- [ ] The benefit overview is resent in chat with 22 measured features and 023 marked removed
+- [x] `validate.sh --strict` prints `RESULT: PASSED` on this phase and `check-goal.cjs` passes on its goal
+- [x] The benefit overview is resent in chat with 22 measured features and 023 marked removed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,6 +82,7 @@ and findings belong here.
 |------|-------|----------|
 | Phase opened | Done | Spec, acceptance criteria and goal authored 2026-10-02 |
 | 15 results recorded | Done | `scratch/evidence/results.md`: 15 Done, 0 Pending. Keep: 020, 022, 024, 025, 030. Kill: 006, 027, 028, 033. Stop (margin): 026, 031. Zero-call bound: 003, 005, 021, 034 |
+| Closed (2026-10-02) | Done | Recursive strict 48 PASSED 0 FAILED, `check-goal.cjs` 52 of 52, commits `51b2b3bd51` and `bb58ffd22c` on `worktrees/082-measure-every-jev-feature`. Overview resent in chat. Not merged to main |
 | 027 fix | Done | Four review rounds (DeepSeek, DeepSeek, Luna, Luna). Rounds 1 to 3 found P0 and P1 defects, each fixed, the last by rewriting the filter as one helper. Round 4's P1 (catalog sentence) fixed, `validate_document.py` 0 issues. Suites 97 of 97. 027 and 028 verdicts unchanged across all reruns |
 
 ### Deviations and findings

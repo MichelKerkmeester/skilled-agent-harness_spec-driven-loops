@@ -120,12 +120,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -145,6 +139,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The parent integrated Jev into 23 features",
     "created_at": "2026-10-02T18:40:29Z",
-    "last_save_at": "2026-10-02T20:36:46.091Z",
+    "last_save_at": "2026-10-02T20:39:10.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0642492b2fbde45a7180c6f75039b09ee0719403490c350d1c6980e319411264",
+    "source_fingerprint": "sha256:0a3569118e7e78ad759beb8f53080c2e38c3b00da83a3d09c9b59cd9ba85b0d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d110375b2795f29d1795765bd8e9ae67397e542a1567deaa018e3332924aabc4",
+      "spec.md": "f8f665b87cc68ab1ac58c9004ba9f1d7932297eafd01cbea2494206fd80581f8",
       "plan.md": "152fdc45f2b218e9e4c6beff9c4a5bb949f989605e3af5afb2f1152726c24963",
       "tasks.md": "295db1530eab02adc2666174aba0e4a390528c959f45438aa0bae0c74fa6d257",
-      "implementation-summary.md": "22eb8383592d7576cbb0b4c9debc9c900edfb04e810aa485da1a1d89d272f5fe"
+      "implementation-summary.md": "f5a87552c478aae5e5753fde5b61348bff1166632fa4c4996b6d0a06bc811ced"
     },
     "last_active_at": null
   }
