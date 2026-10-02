@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan"
     last_updated_at: "2026-10-02T10:45:00Z"
     last_updated_by: "orchestrating-session"
-    recent_action: "Planned the phase"
-    next_safe_action: "Run the setup tasks"
+    recent_action: "Closed the phase with the inventory and four decisions"
+    next_safe_action: "Run phases 002 and 003 from inventory.md"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-046-001-removal-plan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-removal-plan |
-| **Completed** | Not started |
+| **Completed** | 2026-10-02 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. The inventory and decisions are next. The plan is in `spec.md`, `plan.md` and `tasks.md`, and the phase works from `../001-removal-plan/inventory.md`.
+`inventory.md` lists the 209 live files that name Deem, each with its owning phase and action, cites the five rules that let `cli-classifier` keep one mode and records 25 suite baselines. `decision-record.md` holds ADR-001 to ADR-004.
 
 ### Phase 1: removal-plan
 
@@ -58,7 +58,9 @@ One inventory and four decisions that phases 002 to 004 work from.
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | Pending | Work has not started |
+| `inventory.md` | Create | Rows, hub rules and suite baselines |
+| `decision-record.md` | Create | ADR-001 to ADR-004 |
+| `scratch/inventory-files.txt` | Create | The command's file list |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -66,7 +68,7 @@ One inventory and four decisions that phases 002 to 004 work from.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not started. Luna 6 max and DeepSeek V4.1 Flash max take the edits, and the session verifies and commits.
+DeepSeek V4.1 Flash max drafted the rows on OpenCode Go after Cline returned a 429. The session checked the rows against the file list, reread the keep and rewrite rows, moved eight owners, read the hub rules and ran the baselines.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -87,7 +89,9 @@ Not started. Luna 6 max and DeepSeek V4.1 Flash max take the edits, and the sess
 | Check | Result |
 |-------|--------|
 | `validate.sh --strict` and `check-goal.cjs` on this folder at planning | `RESULT: PASSED` on both |
-| Work checks | Pending |
+| Rows against `scratch/inventory-files.txt` | 209 of 209, same order |
+| `parent-skill-check.cjs` on the unchanged hub | exit 0, 0 warnings |
+| Suite baselines | 25 run, two Deem tests already failing |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +99,7 @@ Not started. Luna 6 max and DeepSeek V4.1 Flash max take the edits, and the sess
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Not started.** Nothing is verified yet.
+1. **Two baseline failures stay unexplained.** Both are Deem tests that 002 deletes, so neither is chased here.
 <!-- /ANCHOR:limitations -->
 
 ---
