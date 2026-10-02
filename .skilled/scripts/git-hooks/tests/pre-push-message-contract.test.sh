@@ -131,7 +131,8 @@ git -C "$TMP/repo" checkout -q -b branches/002-other
 commit "feat(sk-git): add another thing" "$(printf 'Explains why.\n\nCommit-Id: 0005678')"
 git -C "$TMP/repo" push -q origin branches/002-other
 git -C "$TMP/repo" checkout -q main
-commit "feat(sk-git): add a thing" "$(printf 'Explains why.\n\nCommit-Id: 0005678')"
+# A different commit: its own author date, as two separate commits have.
+GIT_AUTHOR_DATE='2001-02-03T04:05:06Z' commit "feat(sk-git): add a thing" "$(printf 'Explains why.\n\nCommit-Id: 0005678')"
 push_rc main main; RC=$?
 check "a Commit-Id already on another remote branch is blocked" 1 "$RC" "trailer.commit-id-unique"
 
@@ -151,6 +152,67 @@ if grep -qF "gate:message-contract" "$TMP/out.log"; then
 else
   echo "PASS  a branch deletion skips the message gate"; PASS=$((PASS + 1))
 fi
+
+# ── 11. commits merged in from the remote are not re-checked ─────────────────
+# A web-UI edit lands on main without the hooks; merging main into a branch must
+# not make that branch's push answer for it.
+setup
+git -C "$TMP/repo" checkout -q -b branches/003-merge
+git -C "$TMP/repo" push -q origin branches/003-merge
+git -C "$TMP/repo" checkout -q main
+commit "Update README.md"
+git -C "$TMP/repo" push -q origin main
+git -C "$TMP/repo" checkout -q branches/003-merge
+git -C "$TMP/repo" merge -q --no-ff main -m "Merge branch 'main' into branches/003-merge"
+push_rc branches/003-merge branches/003-merge SPECKIT_ALLOW_REMOTE_PUSH=1; RC=$?
+check "a merged-in remote commit is not re-checked" 0 "$RC"
+
+# ── 12. a force-push over a remote tip never fetched checks only new commits ──
+setup
+git clone -q "$TMP/remote.git" "$TMP/other" 2>/dev/null
+git -C "$TMP/other" -c core.hooksPath="$TMP/.nohooks" -c user.email=t@example.com -c user.name=test \
+  commit -q --allow-empty -m "feat(sk-git): work pushed from elsewhere" -m "Pushed by someone else."
+git -C "$TMP/other" -c core.hooksPath="$TMP/.nohooks" push -q origin main
+commit "feat(sk-git): add a thing" "Explains why the thing was added."
+printf 'refs/heads/main %s refs/heads/main %s\n' "$(git -C "$TMP/repo" rev-parse main)" "$(git -C "$TMP/remote.git" rev-parse main)" \
+  | ( cd "$TMP/repo" && bash "$HOOK" origin "$TMP/remote.git" ) >"$TMP/out.log" 2>&1; RC=$?
+check "a force-push over an unfetched remote tip checks only the new commits" 0 "$RC"
+
+# ── 13. a new branch pushed by URL skips what any remote already holds ────────
+setup
+commit "initial import"
+git -C "$TMP/repo" push -q origin main
+git -C "$TMP/repo" checkout -q -b branches/004-url
+commit "feat(sk-git): add a thing" "Explains why the thing was added."
+printf 'refs/heads/branches/004-url %s refs/heads/branches/004-url %s\n' "$(git -C "$TMP/repo" rev-parse HEAD)" "$ZERO_SHA" \
+  | ( cd "$TMP/repo" && env SPECKIT_ALLOW_REMOTE_PUSH=branches/004-url bash "$HOOK" "$TMP/remote.git" "$TMP/remote.git" ) >"$TMP/out.log" 2>&1; RC=$?
+check "a new branch pushed by URL checks only its own commits" 0 "$RC"
+
+# ── 14. a validator that cannot run is not reported as a rule failure ─────────
+setup
+mkdir -p "$TMP/broken"
+printf '## Enforced rules\n\n```json\n{ not json\n```\n' > "$TMP/broken/commit-message-template.md"
+git -C "$TMP/repo" config skgit.contractDir "$TMP/broken"
+commit "feat(sk-git): add a thing" "Explains why the thing was added."
+push_rc main main; RC=$?
+check "a broken contract is reported as a validator failure" 1 "$RC" "could not check"
+
+# ── 15. a rebased branch landed on main is not a collision ───────────────────
+# The pre-rebase copy still sits on origin/branches/005-feat with the same id,
+# author and author date.
+setup
+git -C "$TMP/repo" checkout -q -b branches/005-feat
+commit "feat(sk-git): add a thing" "$(printf 'Explains why.\n\nCommit-Id: 0002222')"
+git -C "$TMP/repo" push -q origin branches/005-feat
+git -C "$TMP/repo" checkout -q main
+commit "feat(sk-git): move main ahead" "Moves main past the branch point."
+git -C "$TMP/repo" push -q origin main
+git -C "$TMP/repo" checkout -q branches/005-feat
+git -C "$TMP/repo" rebase -q main
+git -C "$TMP/repo" checkout -q main
+git -C "$TMP/repo" merge -q --ff-only branches/005-feat
+push_rc main main SPECKIT_ALLOW_REMOTE_PUSH=1; RC=$?
+check "a rebased copy of one's own commit landed on main is not a collision" 0 "$RC"
 
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"
