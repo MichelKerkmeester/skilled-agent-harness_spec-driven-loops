@@ -8,9 +8,9 @@
 // Local Deem client. health reads GET /health, refuses a stub backend or a
 // model other than the pin, then prints the checkpoint and source commits.
 // noul, choice, and score POST one question. run POSTs a batch already written
-// in Deem's shape. Deem answers in its own field names; the client rewrites
-// them so a jev reader sees noul, the submitted choice key, and a zero-based
-// score. The batch is counted first, because the server rejects more than 64
+// in Deem's shape. The client validates and passes through numeric noul and
+// score fields, while mapping choice descriptions back to submitted keys. The
+// batch is counted first, because the server rejects more than 64
 // questions or more than 26 options on a choice.
 // It never starts or stops the server.
 
@@ -509,11 +509,11 @@ async function decide(payload, timeoutMs) {
 }
 
 /**
- * Rewrite one Deem answer into the field names a jev reader expects.
+ * Validate one Deem answer and map choice descriptions to submitted keys.
  * @param {unknown} answer - answers.answer from the response
  * @param {{ type: string, levels?: string[] }} question - Question that was sent
  * @param {Map<string, string> | null} keyByDescription - Choice text to submitted key
- * @returns {object} Translated answer
+ * @returns {object} Validated answer, with choice descriptions mapped when required
  * @throws {CliError} When the answer shape does not match the question
  */
 function translateAnswer(answer, question, keyByDescription) {
@@ -521,12 +521,15 @@ function translateAnswer(answer, question, keyByDescription) {
     throw new CliError('unexpected response: answer is not an object', 1);
   }
   if (question.type === 'noul') {
-    if (typeof answer.value !== 'number') {
-      throw new CliError('unexpected response: noul value is not a number', 1);
+    if (
+      typeof answer.noul !== 'number'
+      || !Number.isFinite(answer.noul)
+      || answer.noul < 0
+      || answer.noul > 1
+    ) {
+      throw new CliError('unexpected response: noul is not a number in [0, 1]', 1);
     }
-    const translated = { ...answer, noul: answer.value };
-    delete translated.value;
-    return translated;
+    return answer;
   }
   if (question.type === 'choice') {
     if (keyByDescription === null) {
@@ -559,27 +562,15 @@ function translateAnswer(answer, question, keyByDescription) {
   }
   if (question.type === 'score') {
     const levels = question.levels ?? [];
-    const index = levels.indexOf(answer.level);
-    if (index === -1) {
-      throw new CliError('unexpected response: score level is absent', 1);
+    if (
+      typeof answer.score !== 'number'
+      || !Number.isFinite(answer.score)
+      || answer.score < 0
+      || answer.score > levels.length - 1
+    ) {
+      throw new CliError('unexpected response: score is not a number in range', 1);
     }
-    const translated = { ...answer, score: index };
-    delete translated.level;
-    if (answer.probabilities !== undefined) {
-      if (!isPlainObject(answer.probabilities)) {
-        throw new CliError('unexpected response: probabilities are not an object', 1);
-      }
-      const probabilities = {};
-      for (const [label, probability] of Object.entries(answer.probabilities)) {
-        const levelIndex = levels.indexOf(label);
-        if (levelIndex === -1) {
-          throw new CliError('unexpected response: probability level is absent', 1);
-        }
-        probabilities[String(levelIndex)] = probability;
-      }
-      translated.probabilities = probabilities;
-    }
-    return translated;
+    return answer;
   }
   throw new CliError(`unexpected response: unsupported type ${question.type}`, 1);
 }
@@ -646,7 +637,7 @@ function questionSpecs(questions) {
 }
 
 /**
- * POST a Deem-shaped batch and print each answer rewritten.
+ * POST a Deem-shaped batch and print each answer after validation.
  * The server rejects more than 64 questions or 26 choice options, so both
  * are counted before the request. --value is refused because a batch has no
  * single primary value. Choice text is left as the server sent it: this

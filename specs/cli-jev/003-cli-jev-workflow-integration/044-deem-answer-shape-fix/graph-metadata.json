@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The local Deem server answers `noul` with `{\"noul\": <number>}` and `score` with a numeric `score`, index-keyed `probabilities` and a `legend`",
     "created_at": "2026-10-02T06:02:31Z",
-    "last_save_at": "2026-10-02T06:10:12.460Z",
+    "last_save_at": "2026-10-02T06:22:11.709Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bba0c09c76d7e24f2979c9af6fc6a9106fa65b18d1956a73e38e715a25c952f0",
+    "source_fingerprint": "sha256:a876f5348aff8adf6209c7d8c65f0590cf69ebdf1a4671ca110bee2025b3b29e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a80424341c5a1467396aa2aed1b302421758e73132e58c4272d482a414c68fe",

@@ -33,6 +33,20 @@ const HEALTHY_BODY = {
   backend: 'torch',
   model: 'deem-0.8-v1',
 };
+const NOUL_ANSWER = {
+  type: 'noul',
+  noul: 0.9627,
+  x_confidence: 0.9253,
+  x_temperature: 1.0,
+};
+const SCORE_ANSWER = {
+  type: 'score',
+  score: 0.5808,
+  legend: { 0: 'low', 1: 'medium', 2: 'high' },
+  probabilities: { 0: 0.6207, 1: 0.1778, 2: 0.2015 },
+  confidence: 0.431,
+  x_temperature: 1.0,
+};
 
 // Same keys the client drops, so git in this process cannot aim the fixture
 // at the caller repository.
@@ -466,22 +480,13 @@ test('choice translates descriptions back to the submitted keys', { timeout: 200
   }
 });
 
-test('score translates a level to its zero-based position', { timeout: 20000 }, async () => {
+test('score validates and passes through the real answer shape', { timeout: 20000 }, async () => {
   const fake = await startFake((_req, res) => {
     replyJson(res, 200, {
       id: 'deem-t',
       object: 'systemone.completion',
       model: 'deem-0.8-v1',
-      answers: {
-        answer: {
-          type: 'score',
-          level: 'medium',
-          probabilities: { low: 0.1, medium: 0.7, high: 0.2 },
-          expected: 1.1,
-          confidence: 0.5,
-          temperature: 1,
-        },
-      },
+      answers: { answer: SCORE_ANSWER },
       usage: { questions: 1 },
     });
   });
@@ -492,10 +497,7 @@ test('score translates a level to its zero-based position', { timeout: 20000 }, 
     );
     assert.equal(result.code, 0);
     const printed = JSON.parse(result.stdout);
-    assert.equal(printed.answers.answer.score, 1);
-    assert.deepEqual(printed.answers.answer.probabilities, { 0: 0.1, 1: 0.7, 2: 0.2 });
-    assert.equal(printed.answers.answer.expected, 1.1);
-    assert.equal(Object.hasOwn(printed.answers.answer, 'level'), false);
+    assert.deepEqual(printed.answers.answer, SCORE_ANSWER);
     assert.equal(fake.requests.length, 1);
     assert.deepEqual(fake.requests[0].body.questions.answer.levels, ['low', 'medium', 'high']);
   } finally {
@@ -503,20 +505,13 @@ test('score translates a level to its zero-based position', { timeout: 20000 }, 
   }
 });
 
-test('noul reads the state from stdin and renames value', { timeout: 20000 }, async () => {
+test('noul passes through real shape and reads stdin state', { timeout: 20000 }, async () => {
   const fake = await startFake((_req, res) => {
     replyJson(res, 200, {
       id: 'deem-t',
       object: 'systemone.completion',
       model: 'deem-0.8-v1',
-      answers: {
-        answer: {
-          type: 'noul',
-          value: 0.73,
-          confidence: 0.46,
-          temperature: 1,
-        },
-      },
+      answers: { answer: NOUL_ANSWER },
       usage: { questions: 1 },
     });
   });
@@ -527,13 +522,106 @@ test('noul reads the state from stdin and renames value', { timeout: 20000 }, as
     );
     assert.equal(result.code, 0);
     const printed = JSON.parse(result.stdout);
-    assert.equal(printed.answers.answer.noul, 0.73);
-    assert.equal(Object.hasOwn(printed.answers.answer, 'value'), false);
+    assert.deepEqual(printed.answers.answer, NOUL_ANSWER);
     assert.equal(fake.requests[0].body.state, 'server down since 9am');
     assert.deepEqual(fake.requests[0].body.questions.answer, {
       type: 'noul',
       instructions: 'Is it urgent?',
     });
+  } finally {
+    await fake.close();
+  }
+});
+
+test('noul rejects the legacy value answer shape', { timeout: 20000 }, async () => {
+  const fake = await startFake((_req, res) => {
+    replyJson(res, 200, {
+      model: 'deem-0.8-v1',
+      answers: { answer: { type: 'noul', value: 0.7 } },
+    });
+  });
+  try {
+    const result = await runCli(
+      ['noul', '-q', 'Is it urgent?', '-s', 'x'],
+      { url: fake.url, home: os.tmpdir() },
+    );
+    assert.equal(result.code, 1);
+    assert.equal(
+      result.stderr.includes('unexpected response: noul is not a number in [0, 1]'),
+      true,
+    );
+  } finally {
+    await fake.close();
+  }
+});
+
+test('noul rejects a number above one', { timeout: 20000 }, async () => {
+  const fake = await startFake((_req, res) => {
+    replyJson(res, 200, {
+      model: 'deem-0.8-v1',
+      answers: { answer: { ...NOUL_ANSWER, noul: 1.5 } },
+    });
+  });
+  try {
+    const result = await runCli(
+      ['noul', '-q', 'Is it urgent?', '-s', 'x'],
+      { url: fake.url, home: os.tmpdir() },
+    );
+    assert.equal(result.code, 1);
+    assert.equal(
+      result.stderr.includes('unexpected response: noul is not a number in [0, 1]'),
+      true,
+    );
+  } finally {
+    await fake.close();
+  }
+});
+
+test('score rejects the legacy level answer shape', { timeout: 20000 }, async () => {
+  const fake = await startFake((_req, res) => {
+    replyJson(res, 200, {
+      model: 'deem-0.8-v1',
+      answers: { answer: { type: 'score', level: 'high' } },
+    });
+  });
+  try {
+    const result = await runCli(
+      [
+        'score', '-q', 'How severe?', '-s', 'x',
+        '-l', 'low', '-l', 'medium', '-l', 'high',
+      ],
+      { url: fake.url, home: os.tmpdir() },
+    );
+    assert.equal(result.code, 1);
+    assert.equal(
+      result.stderr.includes('unexpected response: score is not a number in range'),
+      true,
+    );
+  } finally {
+    await fake.close();
+  }
+});
+
+test('score rejects a number above the final level index', { timeout: 20000 }, async () => {
+  const fake = await startFake((_req, res) => {
+    replyJson(res, 200, {
+      model: 'deem-0.8-v1',
+      answers: { answer: { ...SCORE_ANSWER, score: 3 } },
+    });
+  });
+  try {
+    const result = await runCli(
+      [
+        'score', '-q', 'How severe?', '-s', 'x',
+        '-l', 'low', '-l', 'medium', '-l', 'high',
+      ],
+      { url: fake.url, home: os.tmpdir() },
+    );
+    assert.equal(result.code, 1);
+    assert.equal(
+      result.stderr.includes('unexpected response: score is not a number in range'),
+      true,
+    );
   } finally {
     await fake.close();
   }
@@ -589,7 +677,7 @@ test('systemone refuses a model other than the pin', { timeout: 20000 }, async (
   const fake = await startFake((_req, res) => {
     replyJson(res, 200, {
       model: 'deem-1.5',
-      answers: { answer: { type: 'noul', value: 0.1 } },
+      answers: { answer: NOUL_ANSWER },
     });
   });
   try {
@@ -760,7 +848,13 @@ test('choice without an option exits 2 before any request', { timeout: 20000 }, 
   }
 });
 
-const RUN_MIXED_INPUT = '{"state":"s","questions":{"u":{"type":"noul","instructions":"urgent?"},"s":{"type":"score","instructions":"severity?","levels":["lo","hi"]}}}';
+const RUN_MIXED_INPUT = JSON.stringify({
+  state: 's',
+  questions: {
+    u: { type: 'noul', instructions: 'urgent?' },
+    s: { type: 'score', instructions: 'severity?', levels: ['low', 'medium', 'high'] },
+  },
+});
 
 /**
  * Build a Deem batch of noul questions keyed q1..qN.
@@ -776,19 +870,14 @@ function noulBatchRequest(count) {
 }
 
 /**
- * Fake body that answers every q1..qN noul question with the same value.
+ * Fake body that answers every q1..qN noul question with the real response shape.
  * @param {number} count - How many answers to include
- * @returns {{ model: string, answers: Record<string, { type: string, value: number, confidence: number, temperature: number }> }}
+ * @returns {object} Batch response with real-shaped noul answers
  */
 function noulBatchResponse(count) {
   const answers = {};
   for (let index = 1; index <= count; index += 1) {
-    answers[`q${index}`] = {
-      type: 'noul',
-      value: 0.5,
-      confidence: 0,
-      temperature: 1,
-    };
+    answers[`q${index}`] = { ...NOUL_ANSWER };
   }
   return { model: 'deem-0.8-v1', answers };
 }
@@ -806,7 +895,7 @@ test('run sends a file of 64 noul questions', { timeout: 20000 }, async () => {
     assert.equal(fake.requests.length, 1);
     assert.equal(Object.keys(fake.requests[0].body.questions).length, 64);
     const printed = JSON.parse(result.stdout);
-    assert.equal(printed.answers.q1.noul, 0.5);
+    assert.equal(printed.answers.q1.noul, NOUL_ANSWER.noul);
   } finally {
     await fake.close();
     fs.rmSync(dir, { recursive: true, force: true });
@@ -831,18 +920,13 @@ test('run rejects 65 questions before any request', { timeout: 20000 }, async ()
   }
 });
 
-test('run translates a stdin batch of noul and score', { timeout: 20000 }, async () => {
+test('run passes through real noul and score answer shapes', { timeout: 20000 }, async () => {
   const fake = await startFake((_req, res) => {
     replyJson(res, 200, {
       model: 'deem-0.8-v1',
       answers: {
-        u: { type: 'noul', value: 0.9 },
-        s: {
-          type: 'score',
-          level: 'hi',
-          probabilities: { lo: 0.3, hi: 0.7 },
-          expected: 0.7,
-        },
+        u: NOUL_ANSWER,
+        s: SCORE_ANSWER,
       },
     });
   });
@@ -853,9 +937,8 @@ test('run translates a stdin batch of noul and score', { timeout: 20000 }, async
     );
     assert.equal(result.code, 0);
     const printed = JSON.parse(result.stdout);
-    assert.equal(printed.answers.u.noul, 0.9);
-    assert.equal(printed.answers.s.score, 1);
-    assert.deepEqual(printed.answers.s.probabilities, { 0: 0.3, 1: 0.7 });
+    assert.deepEqual(printed.answers.u, NOUL_ANSWER);
+    assert.deepEqual(printed.answers.s, SCORE_ANSWER);
   } finally {
     await fake.close();
   }
