@@ -1,0 +1,176 @@
+---
+title: "Implementation Summary"
+description: "Commit messages, PR descriptions and new branch names are now checked against rules blocks inside each repository's own sk-git templates, at commit, push, agent and CI time, with no bypass."
+trigger_phrases:
+  - "implementation summary"
+  - "message contract shipped"
+  - "template-driven enforcement evidence"
+  - "continuation notes"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "sk-git/032-template-driven-message-enforcement"
+    last_updated_at: "2026-10-02T10:30:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Enforced scope aliases, 80-char warning, breaking sections"
+    next_safe_action: "None; the packet is complete"
+    blockers: []
+    key_files:
+      - ".skilled/skills/sk-git/scripts/lib/message-contract.mjs"
+      - ".skilled/skills/sk-git/scripts/validate-message.mjs"
+      - ".skilled/skills/sk-git/assets/commit-message-template.md"
+      - ".skilled/scripts/git-hooks/commit-msg"
+      - ".github/workflows/message-contract.yml"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "sk-git-032-template-driven-message-enforcement"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "Creation standards cover PR descriptions and branch and worktree names"
+      - "Local bypasses are removed"
+      - "A repository with no template gets no enforcement"
+      - "Rules sit in a fenced json block in the template body"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+# Implementation Summary
+
+<!-- SPECKIT_LEVEL: 3 -->
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 032-template-driven-message-enforcement |
+| **Completed** | 2026-10-01 |
+| **Level** | 3 |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+The sk-git templates are now the rulebook. Edit `commit-message-template.md` and the commit hook, the push hook, the agent gate and CI all enforce the change, with nothing else to touch. A repository that carries no templates is left alone.
+
+### Template-driven message enforcement
+
+Each of the three templates has an "Enforced rules" section holding a JSON block. `commit-message-template.md` covers the whole commit standard: subject grammar, the mandatory body, the search trailers `Spec:` and `Commit-Id:`, the attribution ban and the breaking footer. `pr-template.md` requires a filled Summary and Test Plan with no placeholders or attribution, and `worktree-checklist.md` holds the branch grammar. Every rule has an id, and the template prose names each id, so a drift check fails the moment prose and rules disagree.
+
+`validate-message.mjs` finds the templates for the repository being checked: the `skgit.contractDir` git config first, then `.sk-git/` at its root, then its own sk-git assets. The `commit-msg` hook is now a thin shim over it. `pre-push` re-checks every pushed commit and each new branch name, which catches a commit made with `--no-verify`. An agent gate refuses a bad `git commit -m`, `gh pr create` body or branch name before the command runs. `message-contract.yml` runs the same checks in CI. The bypass variable is gone.
+
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.skilled/skills/sk-git/scripts/lib/message-contract.mjs` | Created | Resolve, parse and validate the rules blocks |
+| `.skilled/skills/sk-git/scripts/validate-message.mjs` | Created | CLI every gate calls |
+| `.skilled/skills/sk-git/scripts/hooks/git-message-gate.mjs` | Created | Agent PreToolUse gate |
+| `.skilled/skills/sk-git/assets/{commit-message-template,pr-template,worktree-checklist}.md` | Modified | Rules blocks and rule-id tables |
+| `.skilled/scripts/git-hooks/commit-msg` | Modified | Shim over the validator, no bypass |
+| `.skilled/scripts/git-hooks/pre-push` | Modified | Gate 6: message contract over every pushed range |
+| `.skilled/scripts/git-hooks/lib/message-contract-gate.sh` | Created | Validator lookup shared by both hooks |
+| `.github/workflows/message-contract.yml` | Created | Server-side check for pushes and PRs |
+| `hook-registry.json` and the four rendered runtime configs | Modified | Register the agent gate for Claude, Codex, Devin and Cursor |
+| Tests: `commit-msg.test.sh`, `pre-push-message-contract.test.sh`, `message-contract.test.mjs` | Modified / Created | 29, 10 and 17 cases |
+| sk-git `SKILL.md`, references, feature catalog, READMEs, changelog `v1.8.0.0`, `.env.example` | Modified / Created | Document the contract and drop the bypass |
+| sk-git feature catalog entry `workflow-playbooks/message-contract-enforcement.md` and playbook scenario GIT-045 | Created | Catalog the contract and give operators a scratch-repository test of it, registered in `leaf-manifest.json` and `leaf-aliases.json` |
+| `.opencode/plugins/sk-git-message-gate.js`, `sk-git/scripts/hooks/pi/git-message-gate.ts`, `.hermes/plugins/repo-guards/__init__.py` | Created / Modified | The agent gate for OpenCode (throws), Pi (`block: true`) and Hermes (`action: block`), each calling the shared `evaluateCommand`, with a test suite each, the `.pi/extensions` link, the registry's `pi` entry and a `.skilled/hooks/git-message-gate/` index |
+| Playbook scenario GIT-007 | Modified | It asked for the co-author footer the contract refuses; it now checks that the footer is left out and refused |
+| Root `README.md`, `CONTRIBUTING.md`, git-hooks `tests/README.md` | Modified | Describe template-driven rules and drop the bypass wording |
+
+### Follow-up: rules the template did not declare
+
+Four commit-message deviations reached `main` although every message passed the gate: a breaking commit without Context, Changes and Verification sections, an 82-character subject, scope `spec-kit` for `system-spec-kit` paths and scope `repo-rules` against `rules`. The gate enforces only what the template's "Enforced rules" block declares, and none of those rules was there. The template's own example even taught `fix(spec-kit)`.
+
+The contract now carries three more keys. `subject.scopeAliases` rejects a short scope and names the canonical one, `subject.warnLength` warns above 80 characters while 100 stays the hard limit, and `body.breakingSections` blocks a breaking commit unless every listed section is present. The template turns all three on, `SKILL.md` states the canonical scopes and the required sections, and CI now runs the unit tests it never ran before.
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `scripts/lib/message-contract.mjs` | Modified | Allow, shape-check and enforce the three keys with rule ids `subject.scope-alias`, `subject.length-target` and `body.breaking-sections` |
+| `assets/commit-message-template.md` | Modified | Declare the keys, list the rule ids, correct the `fix(spec-kit)` example |
+| `SKILL.md` and its Hermes mirror | Modified | Canonical scopes, the 80-character warning and the required breaking sections |
+| `message-contract.test.mjs`, `commit-msg.test.sh` | Modified | 24 unit tests (from 18) and a hook case that names the canonical scope |
+| `.github/workflows/message-contract.yml` | Modified | Run the unit tests in CI |
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+Built in worktree `worktrees/073-message-contract-enforcement`, because the machine-wide hooks link into the main checkout and a half-built hook there would have blocked every repository and every running session. The new hook ran first against the 22 original test cases with only the contract wired in. It then ran against the last 40 and the last 500 real commits, which surfaced a too-strict packet check and a slow range scan; both were fixed before closing. It was fast-forwarded into `main` at 502e06659c and pushed; the first GitHub run (36910183390) passed, and ruleset 24326453 now requires the check on the default branch.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| The template carries the rules (ADR-001) | The operator wants an edited template to change enforcement, and only this makes the template the source |
+| One Node validator for every gate (ADR-002) | A rule exists once, so the four gates cannot disagree |
+| "100%" means a required CI check (ADR-003) | Every local hook can be skipped; only a required server-side check cannot |
+| Three hook verdicts change on purpose (ADR-004) | The bypass is removed and the `specs/`-prefix rule the template always stated is now enforced |
+| A `Spec:` packet counts when the commit's tree or the pushed tip holds it | Real pushes land code commits before the commit that adds the packet docs; checking each commit alone blocked 7 of the last 40 real commits wrongly |
+| Exclude `*/HEAD` and the overwritten ref from the Commit-Id scan | git matches `--exclude` against short names, and `origin/HEAD` aliases `origin/main`, so a rebase compared itself with its own old copy |
+| The agent gate allows what it cannot read | The hooks and CI stand behind it; blocking unreadable commands would stop real work without adding a guarantee |
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| `commit-msg.test.sh` | PASS 29/29 (22 updated originals plus 7 new) |
+| Parity: original 22 cases through the new hook | 19 identical, 3 deliberate changes (ADR-004) |
+| `pre-push-message-contract.test.sh` (real bare remote) | PASS 10/10 |
+| `pre-push.test.sh` / `prepare-commit-msg.test.sh` | PASS 43/43 / 56/56, same as baseline |
+| `message-contract.test.mjs` | PASS 17/17 |
+| `git-rule-checks`, `git-preflight-advisory` node tests | PASS 26/26, 7/7 |
+| sk-git shell tests (commit-id, stamp-branch, worktree-naming) | PASS 39/39, 24/24, 83/83 |
+| `hook-registration-sync.vitest.ts` | PASS 4/4 after the pinned binding count moved from 81 to 85 |
+| `sync-hook-registrations --check`, `sync-runtime-mirrors --check`, `sync-skills-hermes --check` | PASS |
+| Skill-root metadata gate | PASS 15/15 |
+| sk-doc `validate_document.py` on 10 edited docs, comment hygiene on 9 code files | PASS |
+| Agent gate over real payloads | Claude-shape deny envelope, Cursor-shape deny with exit 2, unrelated and garbage input allowed |
+| Timing | `commit-msg` 0.23 s (target 0.3 s); 500-commit range 0.67 s, down from 21.69 s with identical verdicts (target 5 s) |
+| sk-code-opencode `verify_alignment_drift.py` (headers, sections, folders) over both script roots | 3 errors, all present on `main` (two older guard libraries without headers, `hooks/opencode` without a README); the new files add none |
+| `validate-playbook-package.cjs --package sk-git` / `validate_catalog_package.py --package sk-git --strict` | PASS, 38 scenarios, 0 violations / exit 0 with 13 advisory warnings of the kind every existing entry already carries |
+| OpenCode, Pi and Hermes gate suites | PASS 5/5, 3/3 and 48/48; alignment over the new adapter files 0 errors |
+| GIT-045 and GIT-007 command sequences run in scratch repositories | Every expected signal observed, including `[subject.max-length]` after the edited `maxLength` and `[attribution.forbidden]` on a forced footer |
+| `install-git-hooks-worktree-harness.sh` | FAIL, and it fails the same way before this change: it greps for a `HOOK_SOURCE_DIR` line the installer stopped using |
+| Follow-up: `node --test message-contract.test.mjs` / `commit-msg.test.sh` | PASS 24/24 / PASS=31 FAIL=0 |
+| Follow-up: replay `validate-message.mjs --rev-list "f8519088b9..03afeb4552"` | Flags exactly 4ceef9d5e7 `body.breaking-sections`, 7488e80836 `subject.scope-alias` and 4754d270ab `subject.length-target` (warning) |
+| Follow-up: breaking message with Context and Changes only | Blocked, "Missing: Verification" |
+| Review fixes: 3-iteration deep review (`review/review-report.md`) | PASS with 8 P2 advisories, all fixed by T031 to T035 |
+| Review fixes: `node --test message-contract.test.mjs` / `commit-msg.test.sh` | PASS 27/27 / PASS=32 FAIL=0 |
+| Review fixes: `Spec: ..` through `validate-message.mjs --commit` | Blocked with `trailer.spec-exists`; it passed before the fix |
+| Review fixes: GIT-046 sequence in a scratch repository / `validate-playbook-package.cjs --package sk-git` | Alias blocked, 84-character subject warned and committed, missing Verification blocked, complete breaking commit landed / PASS, 39 scenarios, 0 violations |
+| CI: message-contract workflow run 37013431668 on `88cf1b5f36` | success; the "Test message contract rules" step passed, closing AC-017 |
+| Hook bootstrap: commit-msg.test.sh / pre-push.test.sh / pre-push-message-contract.test.sh | PASS=34 FAIL=0 / 43/43 / 10/10; a linked worktree runs its own validator, a foreign repository never does |
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Admins can bypass the required check.** Ruleset `message-contract-required` lets the admin role bypass it, so the owner's direct pushes to `main` are held by the local pre-push gate rather than by GitHub. Pull requests from anyone else must pass the check.
+2. **The OpenCode, Pi and Hermes gates are proven by unit tests, not a live session.** Each test drives the real plugin or extension entry point against a throwaway repository, but no OpenCode, Pi or Hermes session has run one yet.
+3. **Old history is not re-checked.** The last 500 commits hold 130 that the new rules would block, such as `1430237b9b` (no body) and `8e4b86b247` (`Spec:` without a track). Pushes check only new commits.
+4. **Other repositories need the validator to run CI.** The local hooks work for any repository through the machine-wide install, but a repository's own CI needs a copy of `validate-message.mjs` and its library.
+5. **The CI run of the unit tests is not yet observed.** The workflow step exists and the suite passes locally; the first workflow run happens on the push.
+6. **Judgment rules stay with review.** Whether a reason is obvious from the subject, or whether two owners should be split, cannot be checked from the message.
+<!-- /ANCHOR:limitations -->
+
+---

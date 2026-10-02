@@ -86,7 +86,7 @@ Keep it single if git work stays one job (worktree, commit, finish under one con
 
 ### Most other skills need no adopter action
 
-`sk-doc`, `sk-design`, `sk-prompt`, `sk-communication`, `system-spec-kit`, `system-skill-advisor`, `system-deep-loop`, `mcp-tooling`, and `cli-external-orchestration` are framework internals. They are repo-agnostic. Do not convert them, flatten them, or "upgrade" them to match `sk-code`. Over-migrating those trees is how adopters create rogue advisor identities and routing drift.
+`sk-doc`, `sk-design`, `sk-prompt`, `system-spec-kit`, `system-skill-advisor`, `system-deep-loop`, `mcp-tooling`, and `cli-external-orchestration` are framework internals. They are repo-agnostic. Do not convert them, flatten them, or "upgrade" them to match `sk-code`. Over-migrating those trees is how adopters create rogue advisor identities and routing drift.
 
 ---
 

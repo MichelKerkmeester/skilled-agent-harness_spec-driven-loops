@@ -1,8 +1,0 @@
-// ───────────────────────────────────────────────────────────────────
-// MODULE: Fidelity Public Surface
-// ───────────────────────────────────────────────────────────────────
-
-export * from './protected-spans.js';
-export * from './reject-only-judge.js';
-export * from './types.js';
-export * from './validator.js';

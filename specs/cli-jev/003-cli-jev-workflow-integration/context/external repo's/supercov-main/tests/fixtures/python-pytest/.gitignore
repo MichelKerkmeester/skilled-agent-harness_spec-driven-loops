@@ -1,4 +1,0 @@
-/.coverage*
-/.pytest_cache/
-/**/__pycache__/
-/generated_src/*.py

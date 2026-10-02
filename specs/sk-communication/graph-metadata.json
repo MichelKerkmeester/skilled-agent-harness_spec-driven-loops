@@ -9,7 +9,8 @@
     "sk-communication/003-visual-explanation-lane",
     "sk-communication/004-visual-explanation-output-medium",
     "sk-communication/005-deprecate-visual-explanation-lane",
-    "sk-communication/006-sk-communication-clarity"
+    "sk-communication/006-sk-communication-clarity",
+    "sk-communication/007-sk-communication-removal"
   ],
   "manual": {
     "depends_on": [],

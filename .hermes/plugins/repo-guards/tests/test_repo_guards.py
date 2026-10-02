@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Hermes Repo Guards Plugin Tests
+# ───────────────────────────────────────────────────────────────
 """In-process checks for the repo-guards Hermes plugin: every directive shape it can return."""
 
 from __future__ import annotations
@@ -6,6 +9,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import os
+import subprocess
 import sys
 import tempfile
 import types
@@ -396,10 +400,46 @@ class RepoGuardsTests(unittest.TestCase):
             core.assert_not_called()
 
         # The pre hook keeps only its blocking duties: a git command reaches the dispatch preflight
-        # core and never the advisory core, whose line would otherwise wait on the fail-closed hook.
+        # and the message gate, and never the advisory core, whose line would otherwise wait on the
+        # fail-closed hook.
         with mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}) as core:
             self.assertIsNone(self.plugin.pre_tool_call("terminal", {"command": "git status"}))
-        self.assertEqual([call.args[0] for call in core.call_args_list], [self.plugin.DISPATCH_PREFLIGHT])
+        self.assertEqual(
+            [call.args[0] for call in core.call_args_list],
+            [self.plugin.DISPATCH_PREFLIGHT, self.plugin.GIT_MESSAGE_GATE],
+        )
+
+    def test_message_gate_denial_blocks_the_command(self):
+        denial = {"hookSpecificOutput": {"permissionDecision": "deny", "permissionDecisionReason": "sk-git blocked this commit message"}}
+
+        def fake_core(script, payload, timeout=None):
+            return denial if script == self.plugin.GIT_MESSAGE_GATE else {"hookSpecificOutput": {}}
+
+        with mock.patch.object(self.plugin, "_run_core", side_effect=fake_core):
+            out = self.plugin.pre_tool_call("terminal", {"command": 'git commit -m "Fixed stuff"'})
+        self.assertEqual(out, {"action": "block", "message": "sk-git blocked this commit message"})
+
+        # A command naming neither binary never pays for the gate.
+        with mock.patch.object(self.plugin, "_run_core", return_value={"hookSpecificOutput": {}}) as core:
+            self.assertIsNone(self.plugin.pre_tool_call("terminal", {"command": "ls -la"}))
+        self.assertNotIn(self.plugin.GIT_MESSAGE_GATE, [call.args[0] for call in core.call_args_list])
+
+    def test_message_gate_core_refuses_a_real_nonconforming_commit(self):
+        # Runs the real gate core against a throwaway repository that carries the shipped template.
+        template = self.plugin.REPO_ROOT / ".skilled" / "skills" / "sk-git" / "assets" / "commit-message-template.md"
+        with tempfile.TemporaryDirectory() as repo:
+            subprocess.run(["git", "init", "-q", repo], check=True)
+            os.mkdir(os.path.join(repo, ".sk-git"))
+            Path(repo, ".sk-git", "commit-message-template.md").write_text(template.read_text(encoding="utf-8"), encoding="utf-8")
+            with mock.patch.object(self.plugin.os, "getcwd", return_value=repo):
+                out = self.plugin.pre_tool_call("terminal", {"command": 'git commit -m "Fixed stuff"'})
+                good = self.plugin.pre_tool_call(
+                    "terminal", {"command": 'git commit -m "docs(readme): record the baseline" -m "A body that says why."'}
+                )
+        self.assertEqual(out["action"], "block")
+        self.assertIn("[subject.format]", out["message"])
+        self.assertIsNone(good)
+        self.assertTrue(self.plugin.GIT_MESSAGE_GATE.is_file(), self.plugin.GIT_MESSAGE_GATE)
 
     def test_git_advisory_core_is_wired_to_the_shared_script(self):
         self.assertTrue(self.plugin.GIT_PREFLIGHT_ADVISORY.is_file(), self.plugin.GIT_PREFLIGHT_ADVISORY)

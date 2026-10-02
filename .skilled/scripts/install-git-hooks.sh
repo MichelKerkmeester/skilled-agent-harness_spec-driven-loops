@@ -7,21 +7,20 @@
 #   bash .opencode/scripts/install-git-hooks.sh --status    # report where each hook resolves
 #
 # Hooks installed:
-#   commit-msg  — blocks invalid structure and warns on clarity issues
-#   pre-commit  — runs validate-doc-model-refs.js (advisory) plus blocking gates (comment hygiene, agent-mirror sync, mirror parity, prompt-knowledge card-sync, MCP mutation-class, compiled-routing re-mint, tool ownership map)
+#   prepare-commit-msg — stamps the Commit-Id trailer and strips runtime attribution keys
+#   commit-msg  — blocks a message that breaks the repository's own commit template rules
+#   pre-commit  — blocking gates: comment hygiene, agent-mirror sync, mirror parity, prompt-knowledge card-sync, MCP mutation-class, compiled-routing re-mint, spec derived-metadata re-mint
 #   post-commit — publishes the commit to the live branch in a launch-wrapper session
 #   post-merge  — anchors and surfaces an un-applied --autostash entry after a merge
 #   post-rewrite — anchors and surfaces an un-applied --autostash entry after amend/rebase
-#   pre-push    — blocks a mass deletion, and blocks any push to a branch outside the allowlist unless this push is approved: creating a branch needs it named, updating it accepts a blanket approval; (2) blocks any push (new or update) to a branch outside the remote allowlist (main, skilled/v*, plus .opencode/skills/sk-git/scripts/remote-branch-allowlist.txt) unless explicitly permitted for that push
+#   pre-push    — blocks a mass deletion; a push to a branch outside the remote allowlist (main, skilled/v*, plus .skilled/skills/sk-git/scripts/remote-branch-allowlist.txt) without approval for that push; a failing route guard; drifted track roots; and commits or new branch names that break the repository's message templates
 #
-# Bypass commit-message validator: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...
-# Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ...
 # Bypass routing re-mint: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ...
 # Bypass pre-push remote-permission gate: SPECKIT_ALLOW_REMOTE_PUSH=1 git push ...
 
 set -euo pipefail
 
-REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)"
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 if [ -z "$REPO_ROOT" ]; then
   echo "ERROR: not inside a git working tree" >&2
   exit 1
@@ -138,6 +137,15 @@ if [ "${1:-}" = "--status" ]; then
       printf '    SHADOWED: the installed hook resolves outside this checkout\n'
     fi
   done
+  # The commit, PR and branch rules come from this repository's templates, so
+  # show which ones apply here.
+  validator="$HOOK_SOURCE_DIR/../../skills/sk-git/scripts/validate-message.mjs"
+  printf '\nmessage contract:\n'
+  if command -v node >/dev/null 2>&1 && [[ -f "$validator" ]]; then
+    node "$validator" --repo "$REPO_ROOT" --explain 2>&1 | sed 's/^/  /'
+  else
+    printf '  unavailable: node or %s is missing\n' "$validator"
+  fi
   exit 0
 fi
 
@@ -176,8 +184,8 @@ done
 
 echo ""
 echo "Hooks installed. Test: 'git commit --allow-empty -m \"chore(repo): test hook installation\" -m \"Check that the installed hooks run.\"' should run silently unless a gate has something to report."
-echo "Bypass commit-message validator: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ..."
-echo "Bypass doc validator: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..."
+echo "Commit-message, PR and branch rules come from this repository's sk-git templates and have no bypass; --status shows which apply."
+echo "Other clones run their own hook scripts only after 'git config --local skilled.trustRepoHooks true'; 'git -c' and GIT_CONFIG_* do not grant trust."
 echo "Bypass routing re-mint: SPECKIT_SKIP_ROUTE_REMINT=1 git commit ..."
 echo "Note: the target is resolved by Git (git rev-parse --git-path hooks), so a"
 echo "repo-local or global core.hooksPath override, and per-worktree hook dirs in"

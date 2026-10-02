@@ -26,7 +26,7 @@ The committed file holds a single key:
 
 ```json
 {
-  "excludedSkillIds": ["sk-communication"]
+  "excludedSkillIds": []
 }
 ```
 

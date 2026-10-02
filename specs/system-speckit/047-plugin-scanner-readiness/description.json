@@ -1,0 +1,30 @@
+{
+  "specFolder": "system-speckit/047-plugin-scanner-readiness",
+  "description": "Make the repository pass the HOL plugin scanner: fix flagged code, pin CI actions, add a security policy and untrack vendored packet context",
+  "keywords": [
+    "repository",
+    "pass",
+    "hol",
+    "plugin",
+    "scanner",
+    "flagged",
+    "code",
+    "pin",
+    "actions",
+    "security",
+    "policy",
+    "untrack",
+    "vendored",
+    "packet",
+    "context"
+  ],
+  "lastUpdated": "2026-10-01T18:43:04.283Z",
+  "specId": "047",
+  "folderSlug": "plugin-scanner-readiness",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

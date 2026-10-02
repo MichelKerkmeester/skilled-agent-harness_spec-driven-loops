@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { describe, it, expect } from 'vitest';
-import { execSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { copyFileSync, existsSync, mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
@@ -56,7 +56,7 @@ function makeSyntheticSpecFolder(): { tmp: string; packet: string } {
 }
 
 function validate(packet: string): string {
-  return execSync(`bash "${VALIDATE_SH}" "${packet}" --strict`, {
+  return execFileSync('bash', [VALIDATE_SH, packet, '--strict'], {
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
   });

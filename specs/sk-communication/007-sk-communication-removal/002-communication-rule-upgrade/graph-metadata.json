@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-communication/007-sk-communication-removal/002-communication-rule-upgrade",
+  "spec_folder": "sk-communication/007-sk-communication-removal/002-communication-rule-upgrade",
+  "parent_id": "sk-communication/007-sk-communication-removal",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "communication rule upgrade",
+      "plain-language re-render rule",
+      "communication prose guidance",
+      "human voice rules authority",
+      "communication rule implementation plan",
+      "plain-language reply instruction",
+      "sentence-level communication guidance",
+      "rule upgrade verification",
+      "communication rule upgrade tasks",
+      "plain-language re-render checks",
+      "communication prose tasks",
+      "phase 2 verification checklist"
+    ],
+    "key_topics": [
+      "communication",
+      "rule",
+      "upgrade",
+      "plain-language",
+      "re-render",
+      "prose",
+      "guidance",
+      "human",
+      "voice",
+      "rules",
+      "authority",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
+      ".skilled/repo-rules/communication.md",
+      ".skilled/repo-rules/communication-prose.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-prose.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication-prose.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Update",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Put",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Run Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`communication.md` §4 currently sends a reader who wants plainer wording to the skill and its rewrite command",
+    "created_at": "2026-10-02T04:49:07Z",
+    "last_save_at": "2026-10-02T06:11:13.445Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d2ac8681b12352485bc8f39fc0f5c56b21dcb47b79cbf3da4f58da3ff5426e95",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "aa90205b825d16caa3b1a1da0dba6f29d0cb47d890c0ed7bfc2e9116747f1669",
+      "plan.md": "7c218a1feeb2edc810732e42b8beb98e7b4033a5f832645e86e813e7ae8537a2",
+      "tasks.md": "b3b5bb829a747707d9ccf13491a9274f8641c041fb31aba53f82fd54fda313d8",
+      "implementation-summary.md": "9da8d18b6865f50b6f1399c2ab9a1214a4e912c9d81ff9250e33b305ed1fb4fd"
+    },
+    "last_active_at": null
+  }
+}

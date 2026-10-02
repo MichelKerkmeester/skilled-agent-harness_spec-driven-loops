@@ -17,7 +17,7 @@ Base substrate for the `system-deep-loop` runtime library. Every other `runtime/
 
 | File | Purpose |
 |------|---------|
-| `canonical-json.ts` | `canonicalJson`, `canonicalBytes` and `sha256Bytes`, serializing a bounded JSON value with recursively sorted object keys |
+| `canonical-json.ts` | `canonicalJson`, `canonicalBytes`, `canonicalBytesEqual` and `sha256Bytes`, serializing a bounded JSON value with recursively sorted object keys and comparing two canonical byte sequences directly |
 | `event-envelope-boundary.ts` | `prepareEventWrite` and `readEvent`, validating and canonicalizing an event before append and after read |
 | `event-envelope-errors.ts` | `EventEnvelopeError`, the base typed failure shared by every envelope boundary phase |
 | `event-envelope.ts` | `validateEventEnvelope` and `validateEventTypeNamespace`, validating an exact namespaced event discriminator |

@@ -2,12 +2,12 @@
 """
 Comment hygiene checker — detects ephemeral-artifact pointers in code comment lines.
 
-Usage: check-comment-hygiene.sh <file>
+Usage: check-comment-hygiene.sh <file> [<file>...]
 
 Exit codes:
-  0 — file is clean (no violations found)
-  1 — violations found (reported to stdout as FILEPATH:LINE: excerpt)
-  2 — file skipped (binary, unknown extension, or in excluded dir)
+  0 — every checked file is clean (no violations found)
+  1 — violations found in at least one file (reported to stdout as FILEPATH:LINE: excerpt)
+  2 — every file was skipped (binary, unknown extension, or in excluded dir)
 
 Escape: add "hygiene-ok" anywhere on a comment line to suppress it.
 
@@ -17,23 +17,19 @@ import sys
 import os
 import re
 
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: check-comment-hygiene.sh <file>", file=sys.stderr)
-        sys.exit(2)
-
-    filepath = sys.argv[1]
+def check_file(filepath):
+    """Check one file. Returns 0 (clean), 1 (violations printed) or 2 (skipped)."""
 
     # --- Excluded directories and file patterns ---
     abs_path = os.path.abspath(filepath)
     excluded_dirs = ["/dist/", "/node_modules/", "/.git/"]
     for excl in excluded_dirs:
         if excl in abs_path:
-            sys.exit(2)
+            return 2
 
     basename = os.path.basename(filepath)
     if basename.endswith(".vitest.js"):
-        sys.exit(2)
+        return 2
 
     # --- Language detection from extension ---
     _, ext = os.path.splitext(basename)
@@ -49,7 +45,7 @@ def main():
         lang = "jsonc"
     else:
         # Unknown extension — skip silently
-        sys.exit(2)
+        return 2
 
     # --- Read file ---
     try:
@@ -57,7 +53,7 @@ def main():
             lines = f.readlines()
     except (OSError, IOError) as e:
         print(f"WARNING: cannot read {filepath}: {e}", file=sys.stderr)
-        sys.exit(0)
+        return 0
 
     # --- Comment detection ---
     def find_unquoted_js_line_comment(line: str) -> int:
@@ -210,9 +206,19 @@ def main():
     if violations:
         for v in violations:
             print(v)
-        sys.exit(1)
+        return 1
 
-    sys.exit(0)
+    return 0
+
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: check-comment-hygiene.sh <file> [<file>...]", file=sys.stderr)
+        sys.exit(2)
+    codes = [check_file(path) for path in sys.argv[1:]]
+    if 1 in codes:
+        sys.exit(1)
+    sys.exit(0 if 0 in codes else 2)
 
 
 if __name__ == "__main__":

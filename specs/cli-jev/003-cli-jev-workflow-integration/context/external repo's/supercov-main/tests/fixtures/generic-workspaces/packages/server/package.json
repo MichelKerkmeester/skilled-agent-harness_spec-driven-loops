@@ -1,8 +1,0 @@
-{
-  "name": "@supercov-fixture/server",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "test": "node scripts/runTests.mjs"
-  }
-}

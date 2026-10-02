@@ -1,0 +1,1 @@
+../../../skills/sk-git/scripts/hooks/git-message-gate.mjs

@@ -6,8 +6,8 @@ trigger_phrases:
   - "git workflow capabilities"
   - "worktree naming allocator"
   - "sk-git capability inventory"
-last_updated: "2026-09-11"
-version: 1.1.0.0
+last_updated: "2026-10-01"
+version: 1.2.0.0
 ---
 
 # sk-git: Feature Catalog
@@ -128,11 +128,27 @@ A deterministic commit-message contract (`type(scope)[!]: imperative summary`) p
 
 #### Current Reality
 
-Type and scope selection both follow a fixed first-match priority order; a `commit-msg` hook enforces the structural contract (bypass: `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1`). On a dirty shared tree, the AI stages only its own explicit pathspecs and asserts the staged set against a deny-pattern before committing, rather than using a broad `git add -A`/`git add .`. The trailer paragraph ends every commit and carries `Spec: <track>/<packet>[/<phase>...]` for packet work plus a stamped seven-digit `Commit-Id: NNNNNNN`. The identifier queries live in `references/quick-reference.md`, where one greps the `Spec:` line for a packet and the other greps the `Commit-Id:` line for an ordinal.
+Type and scope selection both follow a fixed first-match priority order; the commit-msg and pre-push hooks, an agent gate and CI enforce the structural contract from the "Enforced rules" block in the commit template, with no bypass. On a dirty shared tree, the AI stages only its own explicit pathspecs and asserts the staged set against a deny-pattern before committing, rather than using a broad `git add -A`/`git add .`. The trailer paragraph ends every commit and carries `Spec: <track>/<packet>[/<phase>...]` for packet work plus a stamped seven-digit `Commit-Id: NNNNNNN`. The identifier queries live in `references/quick-reference.md`, where one greps the `Spec:` line for a packet and the other greps the `Commit-Id:` line for an ordinal.
 
 #### Source Files
 
 See [`workflow-playbooks/conventional-commit-workflows.md`](workflow-playbooks/conventional-commit-workflows.md) for full implementation and test file listings.
+
+---
+
+### Template-driven message contract
+
+#### Description
+
+One validator holds every commit message, PR description and new branch name to the "Enforced rules" block in the repository's own sk-git templates, at four gates with no bypass.
+
+#### Current Reality
+
+`validate-message.mjs` is the only place a rule is evaluated. The commit-msg hook, pre-push gate 6, the agent PreToolUse gate and the `message-contract` CI workflow all call it, so a `--no-verify` commit is still caught at push. The templates are found through git config `skgit.contractDir`, then `.sk-git/`, then the sk-git assets directory; a repository with no rules block is not checked, and a broken block blocks rather than passing.
+
+#### Source Files
+
+See [`workflow-playbooks/message-contract-enforcement.md`](workflow-playbooks/message-contract-enforcement.md) for full implementation and test file listings.
 
 ---
 

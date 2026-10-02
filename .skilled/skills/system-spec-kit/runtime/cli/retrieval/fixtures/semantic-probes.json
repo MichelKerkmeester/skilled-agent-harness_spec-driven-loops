@@ -1015,7 +1015,6 @@
           "plan"
         ],
         "topScoringPaths": [
-          ".opencode/skills/sk-communication/feature-catalog/packaging-and-release/release-readiness-and-rollback.md",
           "specs/hooks/002-injection-bloat-reduction/007-guardrail-controls-and-activation/plan.md",
           "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/004-compiler-n1-shadow/plan.md"
         ],

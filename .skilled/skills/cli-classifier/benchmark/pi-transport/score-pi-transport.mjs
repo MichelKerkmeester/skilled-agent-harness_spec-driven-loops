@@ -52,7 +52,7 @@ const PI_MODEL_ID = 'typesafe/jev-1.13';
 // recorded file's own text shape so a rerun sits beside it under one value.
 const JEV_VERSION = '0.6.2';
 
-// Copied verbatim from the suggested-order eval (`score-suggested-order.mjs:25-26`),
+// Copied verbatim from the suggested-order scorer (`score-suggested-order.mjs:25-26`),
 // which keeps both strings module-private. The classifier must be asked the CLI's
 // own question and offered the CLI's own abstain text, or the two sides are not
 // comparable.

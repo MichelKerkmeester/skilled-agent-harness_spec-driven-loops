@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "sk-communication/007-sk-communication-removal/001-skill-and-command-removal",
+  "description": "Phase 1: skill-and-command-removal",
+  "keywords": [
+    "phase",
+    "skill-and-command-removal"
+  ],
+  "lastUpdated": "2026-10-02T05:40:33.812Z",
+  "specId": "001",
+  "folderSlug": "skill-and-command-removal",
+  "parentChain": [
+    "sk-communication",
+    "007-sk-communication-removal"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "02-10-26_06-38__recorded-phase-1-removal-evidence-focused-advisor.md",
+    "02-10-26_06-40__closed-the-sk-communication-skill-and-command.md"
+  ]
+}

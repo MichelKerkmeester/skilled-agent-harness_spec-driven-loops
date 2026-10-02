@@ -161,10 +161,10 @@ _wn_remote_allowlist_file() {
 # confirmation for THIS push (see .skilled/scripts/git-hooks/pre-push).
 is_remote_push_allowlisted() {
   local branch="$1" file line trimmed
-  # Only `main` is built in. The release line used to match a wildcard, which
-  # quietly approved every branch that looked like a release — including one
-  # created by a typo. Approved release branches are listed in the allowlist
-  # file instead, so approval is a reviewable line rather than a pattern.
+  # Only `main` is built in here. Release branches (`skilled/v*`) never reach this
+  # check: pre-push exempts them from the permission gate before it asks, so they
+  # need no line in the allowlist file. Any other branch is approved only by a line
+  # in that file or by an explicit SPECKIT_ALLOW_REMOTE_PUSH for this push.
   case "$branch" in
     main) return 0 ;;
   esac

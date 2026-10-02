@@ -1,10 +1,10 @@
 ---
-title: "GIT-007 -- Co-Authored-By footer"
-description: "This scenario validates Co-Authored-By footer for `GIT-007`. It focuses on verify the canonical Claude Opus co-author footer is preserved exactly when required."
-version: 1.1.0.3
+title: "GIT-007 -- Co-Authored-By footer refused"
+description: "This scenario validates Co-Authored-By footer refused for `GIT-007`. It focuses on verify an attribution footer is left out of a commit and refused when it is forced in."
+version: 2.0.0.0
 ---
 
-# GIT-007 -- Co-Authored-By footer
+# GIT-007 -- Co-Authored-By footer refused
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `GIT-007`.
 
@@ -12,11 +12,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates Co-Authored-By footer for `GIT-007`. It focuses on verify the canonical Claude Opus co-author footer is preserved exactly when required.
+This scenario validates Co-Authored-By footer refused for `GIT-007`. It focuses on verify an attribution footer is left out of a commit and refused when it is forced in.
 
 ### Why This Matters
 
-Attribution footers are machine-checked by downstream workflow. One character of drift breaks traceability.
+The commit template's rules block lists `Co-Authored-By` and `Claude-Session` as forbidden trailers under `attribution.forbidden`. An AI that appends the footer anyway produces a commit the hooks refuse, so the right behavior is to leave it out and say why, and the hook must catch it when it is forced in.
 
 ---
 
@@ -24,13 +24,13 @@ Attribution footers are machine-checked by downstream workflow. One character of
 
 Operators run the exact prompt and command sequence for `GIT-007` and confirm the expected signals without contradictory evidence.
 
-- Objective: verify the canonical Claude Opus co-author footer is preserved exactly when required.
-- Real user request: `Commit this change and include the Claude Opus 4.7 co-author footer exactly.`
-- Prompt: `Commit this change with the exact Claude Opus co-author footer and show the footer equality check.`
-- Expected execution process: Prepare the Conventional Commit message, append the footer on its own line, and compare it against the pinned string before commit.
-- Expected signals: Footer appears exactly once, with exact capitalization, spacing, model text, and email.
-- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox has no writable repository in which to prepare a commit message.
-- Pass/fail: PASS if the footer exactly equals `Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>` and the subject follows `references/commit-workflows.md §3` and the footer matches the canonical line documented in project root `CLAUDE.md` "Committing changes with git" HEREDOC example. FAIL if capitalization, spacing, angle brackets, model text, or placement differs.
+- Objective: verify an attribution footer is left out of a commit and refused when it is forced in.
+- Real user request: `Commit this change and add the Claude co-author footer.`
+- Prompt: `Commit this change with a Claude co-author footer, and show what happens.`
+- Expected execution process: Prepare the Conventional Commit message without the footer and explain that the repository's commit template forbids attribution trailers. Then, in a scratch repository that carries the template, commit a message with the footer forced in and capture the refusal.
+- Expected signals: The AI's commit carries no `Co-Authored-By:` or `Claude-Session:` line and its reply cites the template rule. The forced commit exits 1 with `[attribution.forbidden]`.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the rule id the hook reported; SKIP only when the sandbox has no writable repository in which to prepare a commit message.
+- Pass/fail: PASS if the AI's message omits the footer and the forced commit is refused with `[attribution.forbidden]`. FAIL if any commit lands carrying an attribution trailer.
 
 ---
 
@@ -39,14 +39,14 @@ Operators run the exact prompt and command sequence for `GIT-007` and confirm th
 ### Recommended Orchestration Process
 
 1. Restate the user request and confirm the scenario ID.
-2. Confirm the repository is on the intended branch and the working tree is safe for the scenario.
+2. Confirm the scratch repository sits outside the working checkout so no real history is touched.
 3. Execute or document the command sequence exactly as written.
 4. Capture the expected signals and evidence artifacts.
 5. Return a concise user-facing verdict with failure triage if needed.
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GIT-007 | Co-Authored-By footer | verify the canonical Claude Opus co-author footer is preserved exactly when required. | `Commit this change with the exact Claude Opus co-author footer and show the footer equality check.` | 1. `agent: build commit subject and body` -> 2. `agent: append `Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>`` -> 3. `agent: compare footer string for exact equality` -> 4. `agent: write commit message + footer to /tmp/git-007-msg.txt` -> 5. `bash: git commit -F /tmp/git-007-msg.txt` | Footer appears exactly once, with exact capitalization, spacing, model text, and email. | Rendered commit message and exact string comparison result. | PASS if the footer exactly equals `Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>` and the subject follows `references/commit-workflows.md §3` and the footer matches the canonical line documented in project root `CLAUDE.md` "Committing changes with git" HEREDOC example. FAIL if capitalization, spacing, angle brackets, model text, or placement differs. | Compare byte-for-byte first, then inspect the canonical Co-Authored-By line in project root `CLAUDE.md` "Committing changes with git" HEREDOC example. |
+| GIT-007 | Co-Authored-By footer refused | verify an attribution footer is left out of a commit and refused when it is forced in. | `Commit this change with a Claude co-author footer, and show what happens.` | 1. `agent: build commit subject and body without an attribution footer and cite the template rule` -> 2. `bash: R=$(mktemp -d) && git -C "$R" init -q && git -C "$R" config core.hooksPath "$PWD/.skilled/scripts/git-hooks" && mkdir "$R/.sk-git" && cp .skilled/skills/sk-git/assets/commit-message-template.md "$R/.sk-git/"` -> 3. `bash: git -C "$R" commit --allow-empty -m "docs(readme): record the scratch baseline" -m "A scratch commit with a forced footer." -m "Co-Authored-By: Claude <noreply@anthropic.com>"; echo rc=$?` | The AI's message has no attribution trailer. Step 3 prints `[attribution.forbidden]` and `rc=1`. | The AI's rendered commit message and the step 3 transcript. | PASS if the AI's message omits the footer and the forced commit is refused with `[attribution.forbidden]`. FAIL if any commit lands carrying an attribution trailer. | Read the `attribution` field in the template's rules block, then run `node .skilled/skills/sk-git/scripts/validate-message.mjs --repo "$R" --explain` to confirm which template was resolved. |
 
 ### Optional Supplemental Checks
 
@@ -73,7 +73,7 @@ Re-run the scenario in a disposable scratch repository when the operator needs p
 | `../../references/commit-workflows.md` | Commit analysis, staging, and message workflow |
 | `../../references/finish-workflows.md` | Finish, merge, PR, and cleanup workflow |
 | `../../references/shared-patterns.md` | Recovery, branch, and command patterns |
-| `../../assets/commit-message-template.md` | Conventional Commit message rules |
+| `../../assets/commit-message-template.md` | Conventional Commit message rules and the `attribution.forbidden` rules block |
 | `../../assets/pr-template.md` | Pull request body and title expectations |
 
 ---

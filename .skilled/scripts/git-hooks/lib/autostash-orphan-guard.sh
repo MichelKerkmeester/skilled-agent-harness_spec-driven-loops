@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Autostash Orphan Guard
+# ───────────────────────────────────────────────────────────────
 # Autostash orphan guard — makes --autostash work unloseable and visible.
 #
 # WHY: `git merge|pull|rebase --autostash` stashes uncommitted changes, runs the

@@ -60,10 +60,10 @@ jobs:
     name: Typecheck, import policy and test suites for the spec-kit packages
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '22'
 
@@ -78,10 +78,6 @@ jobs:
           # The runtime project imports the OpenCode plugin entrypoints, which depend
           # on the plugin SDK declared in .skilled/package.json.
           npm --prefix .skilled ci
-          # The plugins-purity suite imports every plugin entrypoint; the communication
-          # projection plugin imports its package's compiled output, which that
-          # package builds on install through its prepare script.
-          npm --prefix .opencode/skills/sk-communication/cli-communication-projection ci
           # The skill-advisor plugin imports the advisor server's compiled output in the
           # same way; its build also compiles the shared package it depends on.
           npm --prefix .opencode/skills/system-skill-advisor/runtime ci
@@ -133,10 +129,10 @@ jobs:
     name: Runtime mirrors agree with their sources
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '22'
 

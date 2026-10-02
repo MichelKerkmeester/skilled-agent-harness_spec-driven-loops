@@ -3,7 +3,9 @@
 #
 # Runs the real hook file against a throwaway repository so a change to the
 # grammar, the trailer whitelist or the Commit-Id collision check is covered
-# here even when nobody remembers to update this harness. The fixture never
+# here even when nobody remembers to update this harness. The fixture points
+# skgit.contractDir at this checkout's sk-git templates, because the hook
+# enforces whatever rules block the repository being committed to declares. The fixture never
 # touches the real clone's index or the operator's global git config; every
 # commit made inside it runs with core.hooksPath=/dev/null so the fixtures
 # themselves are not re-validated.
@@ -18,6 +20,7 @@ unset GIT_DIR GIT_WORK_TREE GIT_COMMON_DIR GIT_INDEX_FILE GIT_OBJECT_DIRECTORY \
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 REPO_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)"
 HOOK="$REPO_ROOT/.opencode/scripts/git-hooks/commit-msg"
+CONTRACT_DIR="$REPO_ROOT/.opencode/skills/sk-git/assets"
 
 PASS=0; FAIL=0
 export GIT_CONFIG_GLOBAL=/dev/null
@@ -30,13 +33,14 @@ setup_repo() {
   rm -rf "$TMP"; mkdir -p "$TMP"
   git -C "$TMP" init -q
   git -C "$TMP" config core.hooksPath /dev/null
+  git -C "$TMP" config skgit.contractDir "$CONTRACT_DIR"
   git -C "$TMP" config user.email t@example.com
   git -C "$TMP" config user.name test
   echo seed > "$TMP/seed.txt"
   git -C "$TMP" add seed.txt
-  # The bypass plus core.hooksPath=/dev/null keep the fixture's own history out of
-  # the validator, so a fixture commit can never be rejected by the code under test.
-  SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git -C "$TMP" commit -qm "chore(sk-git): seed the fixture"
+  # core.hooksPath=/dev/null keeps the fixture's own history out of the
+  # validator, so a fixture commit can never be rejected by the code under test.
+  git -C "$TMP" commit -qm "chore(sk-git): seed the fixture"
 }
 
 # Four staged paths. The body rule no longer depends on the count, so these
@@ -96,17 +100,18 @@ Spec: specs/example/001-demo
 Commit-Id: 0009113
 MSG
 run_hook; RC=$?
-check "four paths with only trailer keys is blocked" 1 "$RC" "SKILL.md requires a body"
+check "four paths with only trailer keys is blocked" 1 "$RC" "A prose body is required"
 
 # ── 4. one prose line alongside the keys clears the body gate ───────────────
 setup_repo
 stage_four
+mkdir -p "$TMP/specs/example/001-demo"
 cat > "$TMP/message.txt" <<'MSG'
 feat(sk-git): add a thing
 
 This explains why the thing was added.
 
-Spec: specs/example/001-demo
+Spec: example/001-demo
 Commit-Id: 0009114
 MSG
 run_hook; RC=$?
@@ -149,7 +154,8 @@ chore(sk-git): carry an id on another branch
 
 Commit-Id: 0009121
 MSG
-SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git -C "$TMP" commit -qF "$TMP/carried-message.txt"
+# A different commit: its own author date, as two separate commits have.
+GIT_AUTHOR_DATE='2001-02-03T04:05:06Z' git -C "$TMP" commit -qF "$TMP/carried-message.txt"
 git -C "$TMP" checkout -q "$BASE"
 stage_four
 cat > "$TMP/message.txt" <<'MSG'
@@ -161,6 +167,32 @@ MSG
 run_hook; RC=$?
 check "a Commit-Id used on another branch is blocked" 1 "$RC" "already belongs"
 
+# ── 7b. a rebased copy of one's own commit is not a collision ───────────────
+# A rebase and an amend keep the author and the author date, so the pre-rebase
+# copy still on another ref is this commit, not a different one with its id.
+setup_repo
+BASE="$(git -C "$TMP" rev-parse --abbrev-ref HEAD)"
+git -C "$TMP" checkout -q -b feat
+printf 'feature\n' > "$TMP/feature.txt"
+git -C "$TMP" add feature.txt
+cat > "$TMP/message.txt" <<'MSG'
+feat(sk-git): add a thing
+
+This explains why the thing was added.
+
+Commit-Id: 0009141
+MSG
+git -C "$TMP" commit -qF "$TMP/message.txt"
+git -C "$TMP" branch pre-rebase
+git -C "$TMP" checkout -q "$BASE"
+printf 'moved\n' > "$TMP/moved.txt"
+git -C "$TMP" add moved.txt
+git -C "$TMP" commit -qm "chore(sk-git): move the base"
+git -C "$TMP" checkout -q feat
+git -C "$TMP" rebase -q "$BASE"
+GIT_AUTHOR_DATE="$(git -C "$TMP" log -1 --format=%ad --date=raw HEAD)" run_hook; RC=$?
+check "an amend of a rebased commit keeps its own Commit-Id" 0 "$RC"
+
 # ── 8. the amend case: an id only HEAD carries is not a collision ───────────
 setup_repo
 printf 'head\n' > "$TMP/head.txt"
@@ -170,7 +202,7 @@ chore(sk-git): head carries the id
 
 Commit-Id: 0009131
 MSG
-SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git -C "$TMP" commit -qF "$TMP/head-message.txt"
+git -C "$TMP" commit -qF "$TMP/head-message.txt"
 stage_four
 cat > "$TMP/message.txt" <<'MSG'
 feat(sk-git): add a thing
@@ -182,20 +214,22 @@ MSG
 run_hook; RC=$?
 check "an id carried only by HEAD passes" 0 "$RC"
 
-# ── 9. the bypass short-circuits every check ────────────────────────────────
-# Run in a subshell so the bypass variable cannot leak into any later case.
+# ── 9. the old bypass variable no longer skips anything ─────────────────────
+# Run in a subshell so the variable cannot leak into any later case.
 setup_repo
 cat > "$TMP/message.txt" <<'MSG'
 totally invalid message with no grammar at all
 MSG
 ( cd "$TMP" && SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 bash "$HOOK" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
-check "the bypass passes an otherwise blocked message" 0 "$RC"
+check "the removed bypass variable no longer passes a bad message" 1 "$RC" "subject.format"
 
 # ── 10. a long trailer line is machine data, exempt from the body-length check ──
 # A `Spec:` path can exceed 100 characters without being prose the length rule
 # should measure. The line must still classify as a trailer and warn nothing.
 setup_repo
-LONG_TRAILER="Spec: specs/example/$(printf 'a%.0s' {1..90})"
+LONG_PACKET="example/$(printf 'a%.0s' {1..90})"
+mkdir -p "$TMP/specs/$LONG_PACKET"
+LONG_TRAILER="Spec: $LONG_PACKET"
 cat > "$TMP/message.txt" <<MSG
 feat(sk-git): add a thing
 
@@ -291,17 +325,15 @@ MSG
 run_hook; RC=$?
 check "prose mentioning the vendor passes" 0 "$RC"
 
-# ── 17. every block names its bypass, the early ones included ──────────
-# A caller with no one at the keyboard can only escape a block the message
-# explains, so the two checks that run before validation name it too.
+# ── 17. the early checks block with a reason ────────────────────────────────
 setup_repo
-printf '# only a comment\n' > "$TMP/message.txt"
+printf '# only a comment\n#\n' > "$TMP/message.txt"
 run_hook; RC=$?
-check "an empty message names its bypass" 1 "$RC" "Bypass: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1"
+check "an empty message is blocked" 1 "$RC" "message.empty"
 
 setup_repo
 ( cd "$TMP" && bash "$HOOK" "$TMP/no-such-message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
-check "a missing message file names its bypass" 1 "$RC" "Bypass: SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1"
+check "a missing message file is blocked" 1 "$RC" "no readable message file"
 
 # ── 18. one staged path still needs a body ──────────────────────────────────
 # A small commit is searched as often as a large one, so the path count no
@@ -311,7 +343,7 @@ printf 'one\n' > "$TMP/one.txt"
 git -C "$TMP" add one.txt
 printf 'docs(sk-git): add a one-path note\n' > "$TMP/message.txt"
 run_hook; RC=$?
-check "a one-path subject-only message is blocked" 1 "$RC" "SKILL.md requires a body"
+check "a one-path subject-only message is blocked" 1 "$RC" "A prose body is required"
 
 # ── 19. trailers alone are not a body, however few paths ────────────────────
 setup_repo
@@ -323,7 +355,7 @@ docs(sk-git): add a one-path note
 Spec: example/001-demo
 MSG
 run_hook; RC=$?
-check "a one-path message with only a Spec trailer is blocked" 1 "$RC" "SKILL.md requires a body"
+check "a one-path message with only a Spec trailer is blocked" 1 "$RC" "A prose body is required"
 
 # ── 20. subjects Git writes itself stay exempt from the body rule ───────────
 setup_repo
@@ -336,6 +368,184 @@ for subject in 'Merge branch side' 'Revert "docs(sk-git): add a note"' \
 done
 cp "$TMP/generated.log" "$TMP/out.log" 2>/dev/null || : > "$TMP/out.log"
 check "Git-generated subjects pass without a body" 0 "$GENERATED_RC"
+
+# ── 21. Spec carries the packet path below specs/, never the prefix ─────────
+setup_repo
+mkdir -p "$TMP/specs/example/001-demo"
+cat > "$TMP/message.txt" <<'MSG'
+feat(sk-git): add a thing
+
+This explains why the thing was added.
+
+Spec: specs/example/001-demo
+MSG
+run_hook; RC=$?
+check "a Spec with the specs/ prefix is blocked" 1 "$RC" "trailer.spec-prefix"
+
+# ── 22. Spec must name a packet that exists ─────────────────────────────────
+setup_repo
+cat > "$TMP/message.txt" <<'MSG'
+feat(sk-git): add a thing
+
+This explains why the thing was added.
+
+Spec: example/404-missing
+MSG
+run_hook; RC=$?
+check "a Spec naming no packet folder is blocked" 1 "$RC" "trailer.spec-exists"
+
+# '..' resolves to the specs root itself, which exists, so it must be refused by path.
+setup_repo
+cat > "$TMP/message.txt" <<'MSG'
+feat(sk-git): add a thing
+
+This explains why the thing was added.
+
+Spec: ..
+MSG
+run_hook; RC=$?
+check "a Spec that climbs out of specs/ is blocked" 1 "$RC" "trailer.spec-exists"
+
+# ── 23. a repository with no rules block is not checked ─────────────────────
+setup_repo
+git -C "$TMP" config --unset skgit.contractDir
+printf 'totally invalid message\n' > "$TMP/message.txt"
+run_hook; RC=$?
+check "a repository without a contract enforces nothing" 0 "$RC"
+
+# ── 24. a repository's own template replaces these rules ────────────────────
+# Its contract allows only feat and fix, drops the body rule and caps the subject
+# at 50 characters. The same hook must hold it to exactly that.
+setup_repo
+git -C "$TMP" config --unset skgit.contractDir
+mkdir -p "$TMP/.sk-git"
+cat > "$TMP/.sk-git/commit-message-template.md" <<'TPL'
+# Our commit rules
+
+## Enforced rules
+
+```json
+{
+  "kind": "commit",
+  "version": 1,
+  "subject": { "types": ["feat", "fix"], "scopeRequired": false, "maxLength": 50 }
+}
+```
+TPL
+printf 'feat: add a thing\n' > "$TMP/message.txt"
+run_hook; RC=$?
+check "an edited template accepts its own format" 0 "$RC"
+printf 'docs(sk-git): add a thing\n\nWhy it was added.\n' > "$TMP/message.txt"
+run_hook; RC=$?
+check "an edited template rejects a type it does not list" 1 "$RC" "subject.format"
+printf 'feat: %s\n' "$(printf 'x%.0s' {1..60})" > "$TMP/message.txt"
+run_hook; RC=$?
+check "an edited template applies its own length limit" 1 "$RC" "maximum is 50"
+
+# ── 25. a broken rules block blocks rather than passing ─────────────────────
+setup_repo
+git -C "$TMP" config --unset skgit.contractDir
+mkdir -p "$TMP/.sk-git"
+printf '## Enforced rules\n\n```json\n{ "kind": "commit", "subjct": {} }\n```\n' > "$TMP/.sk-git/commit-message-template.md"
+printf 'feat: add a thing\n' > "$TMP/message.txt"
+run_hook; RC=$?
+check "a malformed contract blocks the commit" 1 "$RC" "unknown key"
+
+setup_repo
+mkdir -p "$TMP/custom-contract"
+git -C "$TMP" config skgit.contractDir "$TMP/custom-contract"
+cat > "$TMP/custom-contract/commit-message-template.md" <<'TPL'
+## Enforced rules
+
+```json
+{
+  "kind": "commit",
+  "version": 1,
+  "subject": {
+    "types": ["feat"],
+    "scopeRequired": true,
+    "scopePattern": "^[a-z]+(-[a-z]+)*$",
+    "scopeAliases": { "old-scope": "canonical-scope" }
+  }
+}
+```
+TPL
+cat > "$TMP/message.txt" <<'MSG'
+feat(old-scope): add a thing
+
+Why it changed.
+MSG
+run_hook; RC=$?
+check "a scope alias is blocked by the real hook" 1 "$RC" "subject.scope-alias"
+if grep -q "canonical-scope" "$TMP/out.log"; then
+  echo "PASS  the hook names the canonical scope"
+  PASS=$((PASS + 1))
+else
+  echo "FAIL  the hook did not name the canonical scope"; sed 's/^/        /' "$TMP/out.log" | tail -5
+  FAIL=$((FAIL + 1))
+fi
+
+# ── a linked worktree of the hook's repository uses its own validator ────────
+# The global hooks live in one checkout, so a worktree that adds a rule would
+# otherwise be judged by the checkout's older validator. A foreign repository
+# that ships a validator at the same path must never have it run.
+HOOKREPO="$TMP-hookrepo"; WT="$TMP-worktree"; FOREIGN="$TMP-foreign"
+rm -rf "$HOOKREPO" "$WT" "$FOREIGN"
+mkdir -p "$HOOKREPO/.skilled/scripts" "$HOOKREPO/.skilled/skills/sk-git"
+cp -R "$REPO_ROOT/.skilled/scripts/git-hooks" "$HOOKREPO/.skilled/scripts/"
+cp -R "$REPO_ROOT/.skilled/skills/sk-git/scripts" "$HOOKREPO/.skilled/skills/sk-git/"
+git -C "$HOOKREPO" init -q
+git -C "$HOOKREPO" -c user.email=t@example.com -c user.name=test add -A
+git -C "$HOOKREPO" -c user.email=t@example.com -c user.name=test -c core.hooksPath=/dev/null commit -qm "chore(sk-git): seed the hook repository"
+git -C "$HOOKREPO" worktree add -q "$WT" -b fixture-worktree
+STUB='console.log("LOCAL VALIDATOR RAN"); process.exit(0);'
+printf '%s\n' "$STUB" > "$WT/.skilled/skills/sk-git/scripts/validate-message.mjs"
+mkdir -p "$FOREIGN/.skilled/skills/sk-git/scripts"
+git -C "$FOREIGN" init -q
+printf '%s\n' "$STUB" > "$FOREIGN/.skilled/skills/sk-git/scripts/validate-message.mjs"
+printf 'feat(sk-git): add a thing\n\nWhy it changed.\n' > "$TMP/message.txt"
+( cd "$WT" && bash "$HOOKREPO/.skilled/scripts/git-hooks/commit-msg" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
+check "a linked worktree of the hook's repository runs its own validator" 0 "$RC" "LOCAL VALIDATOR RAN"
+( cd "$FOREIGN" && bash "$HOOKREPO/.skilled/scripts/git-hooks/commit-msg" "$TMP/message.txt" >"$TMP/out.log" 2>&1 ); RC=$?
+if grep -q "LOCAL VALIDATOR RAN" "$TMP/out.log"; then
+  echo "FAIL  a foreign repository's validator ran"; FAIL=$((FAIL + 1))
+else
+  echo "PASS  a foreign repository's validator never runs"; PASS=$((PASS + 1))
+fi
+rm -rf "$HOOKREPO" "$WT" "$FOREIGN"
+# ── 26. the node-free rules probe agrees with the validator ─────────────────
+# shellcheck source=/dev/null
+. "$REPO_ROOT/.opencode/scripts/git-hooks/lib/message-contract-gate.sh"
+probe_check() { # probe_check <label> <expected: declared|none>
+  local got=none
+  mcg_repo_declares_rules "$TMP" commit-message-template.md && got=declared
+  if [[ "$got" == "$2" ]]; then
+    echo "PASS  $1"; PASS=$((PASS + 1))
+  else
+    echo "FAIL  $1: expected $2, got $got"; FAIL=$((FAIL + 1))
+  fi
+}
+setup_repo
+git -C "$TMP" config --unset skgit.contractDir
+mkdir -p "$TMP/.sk-git"
+printf '##\tEnforced rules\n' > "$TMP/.sk-git/commit-message-template.md"
+probe_check "a tab after the heading hashes declares rules" declared
+
+setup_repo
+git -C "$TMP" config --unset skgit.contractDir
+mkdir -p "$TMP/.sk-git"
+printf '## Unenforced rules\n' > "$TMP/.sk-git/commit-message-template.md"
+probe_check "the words inside a longer word declare nothing" none
+
+setup_repo
+git -C "$TMP" config --unset skgit.contractDir
+mkdir -p "$TMP/.sk-git" "$TMP/.skilled/skills/sk-git/assets"
+printf '## Enforced rules\n' > "$TMP/.skilled/skills/sk-git/assets/commit-message-template.md"
+probe_check "an existing .sk-git without the template shadows the skill assets" none
+
+setup_repo
+git -C "$TMP" config skgit.contractDir "$TMP/missing-dir"
+probe_check "a contractDir that points nowhere counts as declared" declared
 
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"

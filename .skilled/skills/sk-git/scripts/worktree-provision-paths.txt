@@ -28,9 +28,6 @@
 # built policy plan directly.
 .skilled/skills/system-skill-advisor/runtime  dist/runtime/lib/policy-plan.js
 
-# The sk-communication projection OpenCode plugin imports this build output.
-.skilled/skills/sk-communication/cli-communication-projection  dist/index.js
-
 # The deep-loop runtime, which the fan-out runner needs.
 .skilled/skills/system-deep-loop/runtime
 

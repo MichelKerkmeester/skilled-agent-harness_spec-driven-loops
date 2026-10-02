@@ -47,6 +47,13 @@ const LAYOUTS = Object.freeze([
 const CURRENT_LAYOUT = LAYOUTS[0];
 const LEGACY_LAYOUT = LAYOUTS[LAYOUTS.length - 1];
 
+// The authored copy of the runtime closure lives in the router program packet, relative to
+// the repository root. It is named once here so the pre-commit hook, the guard and the sync
+// tool all move together when that packet moves.
+const AUTHORED_PROGRAM_DIR = path.join(
+  'specs', 'sk-doc', '019-skill-routing-refactor', '015-router-unification-program',
+);
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. SELECTION
 // ─────────────────────────────────────────────────────────────────────────────
@@ -186,6 +193,7 @@ module.exports = {
   LAYOUTS,
   CURRENT_LAYOUT,
   LEGACY_LAYOUT,
+  AUTHORED_PROGRAM_DIR,
   resolveLayout,
   resolveLayoutOrLegacy,
   resolveRuntimePaths,

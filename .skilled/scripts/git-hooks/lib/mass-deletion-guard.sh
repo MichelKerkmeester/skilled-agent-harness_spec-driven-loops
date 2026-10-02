@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: Mass Deletion Guard
+# ───────────────────────────────────────────────────────────────
 # Shared guard: refuse a commit or push that removes an unusually large number
 # of tracked files unless the operator explicitly authorizes it.
 #

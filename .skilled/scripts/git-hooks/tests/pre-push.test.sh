@@ -32,6 +32,8 @@ git -C "$TMP" init -q
 # pre-commit gates never run against the throwaway init commit below.
 mkdir -p "$TMP/.nohooks"
 git -C "$TMP" config core.hooksPath "$TMP/.nohooks"
+# The hooks run tree scripts only for their own checkout or a repo that opts in locally.
+git -C "$TMP" config skilled.trustRepoHooks true
 git -C "$TMP" config user.email t@t.t
 git -C "$TMP" config user.name t
 git -C "$TMP" commit -q --allow-empty -m init
@@ -207,8 +209,16 @@ expect_hook "a missing skill checker in another repository lets the push through
 expect_quiet "...and says nothing about the checker" "skill-root-metadata"
 
 printf '{"drift":1}\n' > "$TMP/.skilled/skills/demo/hub-router.json"
+expect_hook "drift without a route guard is not this repository's to check" \
+  0 "refs/heads/main $OPENCODE_SHA refs/heads/main $SKILLED_SHA"
+expect_quiet "...and says nothing about routing parity" "routing-commit-parity"
+mkdir -p "$TMP/.opencode/bin"
+printf '%s\n' "process.exit(0);" > "$TMP/.opencode/bin/compiled-route-guard.cjs"
 expect_hook_says "drift in a .skilled routing input blocks the push" \
   1 "routing-commit-parity" "refs/heads/main $OPENCODE_SHA refs/heads/main $SKILLED_SHA"
+expect_hook "a pushed commit other than HEAD is not compared with the working tree" \
+  0 "refs/heads/main $SKILLED_SHA refs/heads/main $BASE_SHA"
+rm -rf "$TMP/.opencode/bin"
 git -C "$TMP" checkout -q -- .skilled/skills/demo/hub-router.json
 
 # ── missing permission, deletion and routing scripts ───────────

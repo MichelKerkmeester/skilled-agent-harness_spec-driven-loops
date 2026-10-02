@@ -1,8 +1,0 @@
-{
-  "name": "supercov-generic-node-fixture",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "test": "node --test --test-concurrency=2"
-  }
-}

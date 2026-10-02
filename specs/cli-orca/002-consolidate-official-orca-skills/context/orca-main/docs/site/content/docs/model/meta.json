@@ -1,5 +1,0 @@
-{
-  "title": "The Orca Model",
-  "defaultOpen": true,
-  "pages": ["worktrees", "tabs-panes-splits", "agents-sessions", "session-restore", "quick-open"]
-}

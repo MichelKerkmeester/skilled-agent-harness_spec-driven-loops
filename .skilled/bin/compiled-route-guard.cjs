@@ -36,10 +36,7 @@ const { checkCanonicalManifestFreshness } = require('./lib/compiled-route-manife
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const RUNTIME_ROOT = path.join(REPO_ROOT, '.skilled', 'bin', 'lib', 'compiled-routing');
-const AUTHORED_ROOT = path.join(
-  REPO_ROOT,
-  'specs/sk-doc/019-skill-routing-refactor/015-router-unification-program',
-);
+const AUTHORED_ROOT = path.join(REPO_ROOT, layout.AUTHORED_PROGRAM_DIR);
 const SKILLS_ROOT = path.join(REPO_ROOT, '.skilled', 'skills');
 
 const HUBS = [

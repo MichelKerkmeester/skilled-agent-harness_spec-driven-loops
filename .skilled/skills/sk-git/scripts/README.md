@@ -29,6 +29,9 @@ Current state:
 scripts/
 +-- worktree-naming.sh             # Allocator, worktree creators and grammar validators
 +-- migrate-legacy-branch-names.sh # One-shot renumberer for the pre-grammar owner-first names
++-- validate-message.mjs           # CLI every message gate calls (commit-msg, pre-push, agent gate, CI)
++-- lib/message-contract.mjs       # Reads a repository's template rules blocks and validates against them
++-- hooks/git-message-gate.mjs     # Agent PreToolUse gate for commit messages, PR bodies and branch names
 `-- tests/                         # Hermetic test harness for the allocator
 ```
 
@@ -40,6 +43,9 @@ scripts/
 |---|---|
 | `worktree-naming.sh` | Per-namespace number allocation under a lock, worktree/dedicated-branch creation and grammar validation |
 | `migrate-legacy-branch-names.sh` | Renumber legacy `OWNER/NNNN-SLUG` worktree pairs into `worktrees/NNN-SLUG` (dry-run by design; see its header) |
+| `validate-message.mjs` | Validate a commit message, a commit range, a PR body or a branch name against the repository's own templates; `--explain` shows which templates apply and `--check-template` proves a template's prose matches its rules block |
+| `lib/message-contract.mjs` | Find a repository's templates (`skgit.contractDir`, `.sk-git/`, then its sk-git assets), parse each "Enforced rules" block and validate against it; no templates means no enforcement |
+| `hooks/git-message-gate.mjs` | Deny an agent's `git commit -m`, `gh pr create`/`edit` or branch-creating command whose text breaks the rules, before it runs |
 | `tests/worktree-naming.test.sh` | Runs the allocator inside a throwaway git repo and asserts grammar, scan, locked allocation, no-skip and the creators |
 
 ---

@@ -1,1 +1,0 @@
-../../../.skilled/commands/rewrite/response-by-external-agent.md
