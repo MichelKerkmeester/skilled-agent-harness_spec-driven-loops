@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/063-security-policy-alignment",
+  "spec_folder": "sk-doc/063-security-policy-alignment",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "security policy alignment",
+      "security.md sk-doc",
+      "security threat model",
+      "running skilled safely",
+      "vulnerability reporting policy",
+      "security policy plan",
+      "security.md readme rule set",
+      "grounded threat model",
+      "dqi hvr security",
+      "security policy tasks",
+      "security.md verification",
+      "security threat model tasks"
+    ],
+    "key_topics": [
+      "security",
+      "policy",
+      "alignment",
+      "sk-doc",
+      "threat",
+      "model",
+      "running",
+      "skilled",
+      "safely",
+      "vulnerability",
+      "reporting",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "SECURITY.md",
+      "specs/sk-doc/graph-metadata.json",
+      ".claude/settings.json",
+      ".skilled/skills/sk-doc/shared/assets/template-rules.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SECURITY.md",
+        "kind": "doc",
+        "path": "SECURITY.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "template-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Commit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Human Voice Rules",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Commit `b0f89ee5f0` (2026-10-01, `chore(repo): stop tracking vendored packet context and add a security policy`) created `SECURITY.md` as a 35-line file",
+    "created_at": "2026-10-02T10:36:56Z",
+    "last_save_at": "2026-10-02T10:44:53.297Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:822ac0d761b846acb201a1b66d63048ac5eb7332af133078ea45ffdddd034ccb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "16a79e5cd8e41605deecb46e70f3df0ca0fe6be9d52de4ed0d2488c2b1106228",
+      "plan.md": "5f31c3ac76d553d98eb3a0f707bd519118b721502ba4bccfb7642aa352ef0dee",
+      "tasks.md": "01b59c092ac238dc022fc363e079d6aa1742461845b561f8852e238398e1fc6d",
+      "implementation-summary.md": "9951610b5a11f778910cf7cede5b8b5f420f34c1572d1e85b8e9297ad9d46bc7"
+    },
+    "last_active_at": null
+  }
+}
