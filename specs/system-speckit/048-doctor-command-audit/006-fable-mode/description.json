@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/048-doctor-command-audit/006-fable-mode",
+  "description": "`/doctor:speckit fable-mode` checks the fable-mode configuration",
+  "keywords": [
+    "doctor",
+    "speckit",
+    "fable-mode",
+    "checks",
+    "configuration"
+  ],
+  "lastUpdated": "2026-10-02T16:13:28.658Z",
+  "specId": "006",
+  "folderSlug": "fable-mode",
+  "parentChain": [
+    "system-speckit",
+    "048-doctor-command-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

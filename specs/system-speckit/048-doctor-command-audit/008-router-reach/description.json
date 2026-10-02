@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/048-doctor-command-audit/008-router-reach",
+  "description": "`/doctor:speckit router-reach` checks that every declared dispatch rule is reachable",
+  "keywords": [
+    "doctor",
+    "speckit",
+    "router-reach",
+    "checks",
+    "every",
+    "declared",
+    "dispatch",
+    "rule",
+    "reachable"
+  ],
+  "lastUpdated": "2026-10-02T16:13:28.675Z",
+  "specId": "008",
+  "folderSlug": "router-reach",
+  "parentChain": [
+    "system-speckit",
+    "048-doctor-command-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/048-doctor-command-audit/011-skill-budget",
+  "description": "`/doctor:speckit skill-budget` reports skill description budgets",
+  "keywords": [
+    "doctor",
+    "speckit",
+    "skill-budget",
+    "reports",
+    "skill",
+    "description",
+    "budgets"
+  ],
+  "lastUpdated": "2026-10-02T16:13:28.706Z",
+  "specId": "011",
+  "folderSlug": "skill-budget",
+  "parentChain": [
+    "system-speckit",
+    "048-doctor-command-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
