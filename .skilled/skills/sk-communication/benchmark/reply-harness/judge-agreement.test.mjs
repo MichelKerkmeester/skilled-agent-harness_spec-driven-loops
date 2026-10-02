@@ -50,7 +50,7 @@ const makeFixture = ({ editOneAfterMasking = false } = {}) => {
   return { root, repliesDirs, maskedDirs };
 };
 
-// Test double for the cli-deem and jev binaries: it logs one line per call and answers from a table.
+// Test double for the jev binary: it logs one line per call and answers from a table.
 function stubMain() {
   const fs = require('node:fs');
   const path = require('node:path');
@@ -64,13 +64,7 @@ function stubMain() {
   const prior = env.STUB_LOG && fs.existsSync(env.STUB_LOG) ? fs.readFileSync(env.STUB_LOG, 'utf8').split('\n') : [];
   const rerun = prior.filter((line) => scoring && line.split('\t')[0] === name && line.split('\t')[2] === key).length;
   if (env.STUB_LOG) fs.appendFileSync(env.STUB_LOG, `${name}\t${args.join(' ')}\t${key}\n`);
-  if (name === 'cli-deem' && args[0] === 'health') {
-    if (env.STUB_HEALTH === 'stub') {
-      process.stderr.write('{"ok":false,"error":"refused backend: ensemble:stub"}\n');
-      process.exit(3);
-    }
-    process.stdout.write('{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"stubmodel","source_commit":"stubsource"}\n');
-  } else if (name === 'jev' && args[0] === '--version') {
+  if (name === 'jev' && args[0] === '--version') {
     process.stdout.write(`${env.STUB_JEV_VERSION || 'jev 0.6.2'}\n`);
   } else if (name === 'jev' && args[0] === 'auth' && args[1] === 'status') {
     process.exit(Number(env.STUB_AUTH_STATUS_EXIT || 0));
@@ -81,7 +75,7 @@ function stubMain() {
     const table = env.STUB_ANSWERS ? JSON.parse(fs.readFileSync(env.STUB_ANSWERS, 'utf8')) : {};
     const entry = table[key];
     const position = Array.isArray(entry) ? entry[rerun % entry.length] : (entry ?? 0);
-    process.stdout.write(`${JSON.stringify({ model: 'deem-0.8-v1', answers: { answer: { score: position } } })}\n`);
+    process.stdout.write(`${JSON.stringify({ model: 'stub-model', answers: { answer: { score: position } } })}\n`);
   } else {
     process.exit(2);
   }
@@ -92,7 +86,7 @@ const STUB_SOURCE = `#!/usr/bin/env node\n(${stubMain.toString()})();\n`;
 const makeStubBin = (root) => {
   const bin = path.join(root, 'bin');
   fs.mkdirSync(bin);
-  for (const name of ['cli-deem', 'jev']) fs.writeFileSync(path.join(bin, name), STUB_SOURCE, { mode: 0o755 });
+  fs.writeFileSync(path.join(bin, 'jev'), STUB_SOURCE, { mode: 0o755 });
   return bin;
 };
 
@@ -309,7 +303,7 @@ test('summaryLines plans the arm calls and reports agreement above the gate', ()
     labeled,
   });
   assert.equal(summary.gate, 'planned');
-  assert.equal(summary.lines.at(-1), 'planned calls: deem=140 jev=421');
+  assert.equal(summary.lines.at(-1), 'planned calls: jev=421');
   assert.ok(summary.lines.includes('baseline agreement: 60/140 = 0.4286'));
   assert.ok(summary.lines.includes('baseline agreement tone: 0/20'));
   assert.equal(summary.lines.at(-2), POWER_LINE);
@@ -329,7 +323,7 @@ test('summaryLines refuses headroom when the baseline already agrees', () => {
   assert.equal(summary.lines.at(-1), 'no headroom');
 });
 
-test('the stub jev answers --version and logs the call, and cli-deem health exits 3', () => {
+test('the stub jev answers --version and logs the call', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'judge-agreement-test-'));
   try {
     makeStubBin(root);
@@ -339,8 +333,6 @@ test('the stub jev answers --version and logs the call, and cli-deem health exit
     const log = readStubLog(root);
     assert.equal(log.length, 1);
     assert.ok(log[0].startsWith('jev\t--version'));
-    const health = spawnSync('cli-deem', ['health'], { env: stubEnv(root, { STUB_HEALTH: 'stub' }), encoding: 'utf8' });
-    assert.equal(health.status, 3);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
@@ -411,78 +403,6 @@ test('main keeps an empty reply out of the baseline and still reports the census
     assert.ok(lines.includes('matched: 21'));
     assert.ok(lines.includes('no baseline: 1'));
     assert.equal(lines.at(-1), 'stop: fewer than 20 labeled replies');
-  } finally {
-    fs.rmSync(fixture.root, { recursive: true, force: true });
-  }
-});
-
-test('main refuses --deem without --out before reading any file', async () => {
-  const fixture = makeFixture();
-  try {
-    makeStubBin(fixture.root);
-    const { code, lines, errors } = await run(
-      [
-        '--masked', fixture.maskedDirs[0],
-        '--masked', fixture.maskedDirs[1],
-        '--replies', fixture.repliesDirs[0],
-        '--replies', fixture.repliesDirs[1],
-        '--replies', fixture.repliesDirs[2],
-        '--deem',
-      ],
-      stubEnv(fixture.root),
-    );
-    assert.equal(code, 2);
-    assert.deepEqual(lines, []);
-    assert.ok(errors.includes('--deem and --jev need --out <dir> so every call is recorded'));
-    assert.deepEqual(readStubLog(fixture.root), []);
-  } finally {
-    fs.rmSync(fixture.root, { recursive: true, force: true });
-  }
-});
-
-test('main prints the deem health line and skips the arm at the label gate', async () => {
-  const fixture = makeFixture();
-  try {
-    makeStubBin(fixture.root);
-    const argv = [
-      '--masked', fixture.maskedDirs[0],
-      '--masked', fixture.maskedDirs[1],
-      '--replies', fixture.repliesDirs[0],
-      '--replies', fixture.repliesDirs[1],
-      '--replies', fixture.repliesDirs[2],
-    ];
-    const base = await run(argv, stubEnv(fixture.root));
-    const { code, lines } = await run([...argv, '--deem', '--out', path.join(fixture.root, 'out')], stubEnv(fixture.root));
-    assert.equal(code, 0);
-    assert.deepEqual(lines, [
-      ...base.lines,
-      'deem: health backend=torch model=deem-0.8-v1 model_commit=stubmodel source_commit=stubsource',
-      'deem arm skipped: label gate',
-    ]);
-    const log = readStubLog(fixture.root);
-    assert.equal(log.length, 1);
-    assert.ok(log[0].startsWith('cli-deem\thealth'));
-  } finally {
-    fs.rmSync(fixture.root, { recursive: true, force: true });
-  }
-});
-
-test('main skips the deem arm when the health check reports a stub backend', async () => {
-  const fixture = makeFixture();
-  try {
-    makeStubBin(fixture.root);
-    const argv = [
-      '--masked', fixture.maskedDirs[0],
-      '--masked', fixture.maskedDirs[1],
-      '--replies', fixture.repliesDirs[0],
-      '--replies', fixture.repliesDirs[1],
-      '--replies', fixture.repliesDirs[2],
-    ];
-    const env = stubEnv(fixture.root, { STUB_HEALTH: 'stub' });
-    const base = await run(argv, env);
-    const { code, lines } = await run([...argv, '--deem', '--out', path.join(fixture.root, 'out')], env);
-    assert.equal(code, 0);
-    assert.deepEqual(lines, [...base.lines, 'deem arm skipped: stub backend']);
   } finally {
     fs.rmSync(fixture.root, { recursive: true, force: true });
   }
@@ -576,13 +496,8 @@ test('modalLevel names the level over half the reruns and the unstable three-way
 });
 
 test('decideVerdict stops at the first failed check in keep-rule order', () => {
-  assert.equal(decideVerdict({ backend: 'deem', K: 20, M: 17, A: 119, B: 51, W: 17, L: 0, F: 0 }).verdict, 'stop (coverage)');
-  assert.equal(decideVerdict({ backend: 'deem', K: 20, M: 20, A: 0, B: 60, W: 0, L: 20, F: 0 }).verdict, 'kill');
-  assert.equal(decideVerdict({ backend: 'deem', K: 20, M: 20, A: 60, B: 60, W: 0, L: 0, F: 0 }).verdict, 'stop (margin)');
-  assert.equal(decideVerdict({ backend: 'deem', K: 20, M: 20, A: 140, B: 60, W: 4, L: 0, F: 0 }).verdict, 'stop (sign test)');
   assert.equal(decideVerdict({ backend: 'jev', K: 20, M: 20, A: 140, B: 60, W: 20, L: 0, F: 100 }).verdict, 'stop (flips)');
   assert.equal(decideVerdict({ backend: 'jev', K: 20, M: 20, A: 140, B: 60, W: 20, L: 0, F: 42 }).verdict, 'keep');
-  assert.equal(decideVerdict({ backend: 'deem', K: 20, M: 20, A: 140, B: 60, W: 20, L: 0, F: 0 }).verdict, 'keep');
 });
 
 test('summarizeColumn counts column and baseline hits and prints the verdict line', () => {
@@ -595,14 +510,14 @@ test('summarizeColumn counts column and baseline hits and prints the verdict lin
     baseline.set(sha, Object.fromEntries(ids.map((id, index) => [id, index < 3 ? 'fully met' : 'absent'])));
     answers.set(sha, Object.fromEntries(ids.map((id) => [id, ['fully met']])));
   }
-  const summary = summarizeColumn({ backend: 'deem', labeled, baseline, answers, dimensionIds: ids, reruns: 1 });
+  const summary = summarizeColumn({ backend: 'jev', labeled, baseline, answers, dimensionIds: ids, reruns: 1 });
   assert.equal(summary.A, 140);
   assert.equal(summary.B, 60);
   assert.equal(summary.W, 20);
   assert.equal(summary.L, 0);
   assert.equal(summary.verdict, 'keep');
   const line = verdictLine(summary, 'abc', 'model=m');
-  assert.ok(line.startsWith('verdict deem: keep K=20 M=20 A=140 B=60 W=20 L=0 F=n/a p_win='));
+  assert.ok(line.startsWith('verdict jev: keep K=20 M=20 A=140 B=60 W=20 L=0 F=0 p_win='));
   assert.ok(line.endsWith(' labels_sha256=abc model=m'));
 });
 
@@ -674,124 +589,6 @@ const scenario = (fixture, pick) => {
 
 const third = (g, b) => [0, 1, 2].find((i) => i !== g && i !== b);
 
-test('the deem arm measures every reply and dimension and the report keeps the column', async () => {
-  const fixture = makeFixture();
-  try {
-    makeStubBin(fixture.root);
-    const { labelsPath, answersPath } = scenario(fixture, (g) => g);
-    const outDir = path.join(fixture.root, 'out');
-    const { code, lines } = await run(
-      [
-        '--masked', fixture.maskedDirs[0],
-        '--masked', fixture.maskedDirs[1],
-        '--replies', fixture.repliesDirs[0],
-        '--replies', fixture.repliesDirs[1],
-        '--replies', fixture.repliesDirs[2],
-        '--labels', labelsPath,
-        '--deem',
-        '--out', outDir,
-      ],
-      stubEnv(fixture.root, { STUB_ANSWERS: answersPath }),
-    );
-    assert.equal(code, 0);
-    const last = lines.at(-1);
-    assert.ok(last.startsWith('verdict deem: keep K=21 M=21 A=147 B=63 W=21 L=0 F=n/a'));
-    assert.ok(last.endsWith('model=deem-0.8-v1 model_commit=stubmodel source_commit=stubsource'));
-    const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').split('\n').filter((line) => line.length > 0);
-    assert.equal(calls.length, 147);
-    for (const line of calls) {
-      const record = JSON.parse(line);
-      assert.equal(typeof record.wallMs, 'number');
-      assert.equal(typeof record.exitCode, 'number');
-      assert.equal(record.modelId, 'deem-0.8-v1');
-      assert.equal(record.modelCommit, 'stubmodel');
-      assert.equal(record.sourceCommit, 'stubsource');
-    }
-    const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
-    assert.equal(report.columns.deem.verdict, 'keep');
-  } finally {
-    fs.rmSync(fixture.root, { recursive: true, force: true });
-  }
-});
-
-test('the deem arm stops on the margin when the column repeats the baseline', async () => {
-  const fixture = makeFixture();
-  try {
-    makeStubBin(fixture.root);
-    const { labelsPath, answersPath } = scenario(fixture, (g, b) => b);
-    const outDir = path.join(fixture.root, 'out');
-    const { code, lines } = await run(
-      [
-        '--masked', fixture.maskedDirs[0],
-        '--masked', fixture.maskedDirs[1],
-        '--replies', fixture.repliesDirs[0],
-        '--replies', fixture.repliesDirs[1],
-        '--replies', fixture.repliesDirs[2],
-        '--labels', labelsPath,
-        '--deem',
-        '--out', outDir,
-      ],
-      stubEnv(fixture.root, { STUB_ANSWERS: answersPath }),
-    );
-    assert.equal(code, 0);
-    assert.ok(lines.at(-1).startsWith('verdict deem: stop (margin) K=21 M=21 A=63 B=63 W=0 L=0'));
-  } finally {
-    fs.rmSync(fixture.root, { recursive: true, force: true });
-  }
-});
-
-test('the deem arm kills a column that matches neither the grades nor the baseline', async () => {
-  const fixture = makeFixture();
-  try {
-    makeStubBin(fixture.root);
-    const { labelsPath, answersPath } = scenario(fixture, third);
-    const outDir = path.join(fixture.root, 'out');
-    const { code, lines } = await run(
-      [
-        '--masked', fixture.maskedDirs[0],
-        '--masked', fixture.maskedDirs[1],
-        '--replies', fixture.repliesDirs[0],
-        '--replies', fixture.repliesDirs[1],
-        '--replies', fixture.repliesDirs[2],
-        '--labels', labelsPath,
-        '--deem',
-        '--out', outDir,
-      ],
-      stubEnv(fixture.root, { STUB_ANSWERS: answersPath }),
-    );
-    assert.equal(code, 0);
-    assert.ok(lines.at(-1).startsWith('verdict deem: kill K=21 M=21 A=0 B=63 W=0 L=21'));
-  } finally {
-    fs.rmSync(fixture.root, { recursive: true, force: true });
-  }
-});
-
-test('the deem arm reports a coverage stop when every score call exits 1', async () => {
-  const fixture = makeFixture();
-  try {
-    makeStubBin(fixture.root);
-    const { labelsPath, answersPath } = scenario(fixture, (g) => g);
-    const outDir = path.join(fixture.root, 'out');
-    const { code, lines } = await run(
-      [
-        '--masked', fixture.maskedDirs[0],
-        '--masked', fixture.maskedDirs[1],
-        '--replies', fixture.repliesDirs[0],
-        '--replies', fixture.repliesDirs[1],
-        '--replies', fixture.repliesDirs[2],
-        '--labels', labelsPath,
-        '--deem',
-        '--out', outDir,
-      ],
-      stubEnv(fixture.root, { STUB_ANSWERS: answersPath, STUB_SCORE_EXIT: '1' }),
-    );
-    assert.equal(code, 0);
-    assert.ok(lines.at(-1).startsWith('verdict deem: stop (coverage) K=21 M=0'));
-  } finally {
-    fs.rmSync(fixture.root, { recursive: true, force: true });
-  }
-});
-
 test('main prints the jev identity line and skips the arm without a credential', async () => {
   const fixture = makeFixture();
   try {
@@ -846,7 +643,7 @@ test('main takes --accept-payload for an untracked masked dir and still stops at
   }
 });
 
-test('main refuses an untracked payload without --accept-payload and still runs the deem arm', async () => {
+test('main refuses an untracked payload without --accept-payload', async () => {
   const fixture = makeFixture();
   try {
     makeStubBin(fixture.root);
@@ -860,14 +657,12 @@ test('main refuses an untracked payload without --accept-payload and still runs 
         '--replies', fixture.repliesDirs[2],
         '--labels', labelsPath,
         '--jev',
-        '--deem',
         '--out', path.join(fixture.root, 'out'),
       ],
       stubEnv(fixture.root, { STUB_ANSWERS: answersPath }),
     );
     assert.equal(code, 0);
     assert.ok(lines.includes('jev arm skipped: payload not accepted'));
-    assert.ok(lines.at(-1).startsWith('verdict deem: keep'));
     assert.ok(readStubLog(fixture.root).every((line) => !line.startsWith('jev\tscore')));
   } finally {
     fs.rmSync(fixture.root, { recursive: true, force: true });

@@ -54,9 +54,6 @@ const MARGIN_LINE = 'margin: 0.10';
 const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, kill p_loss < 0.05, margin 10*(A-B) >= M, sign test p_win < 0.05, flips 10*F <= C (jev only)';
 // The power note fixed as one line: the five-win floor behind a keep.
 const POWER_LINE = 'power: a keep needs at least 5 wins with no loss, since 0.5^5 = 0.03125 < 0.05';
-// The Deem model identity and the two-option p50 the wall-time estimate cites.
-const DEEM_MODEL = 'deem-0.8-v1';
-const DEEM_P50_MS = 65.6;
 // The one jev version the gate accepts.
 const JEV_VERSION = 'jev 0.6.2';
 // The health probe is bounded so an unreachable backend skips fast.
@@ -68,7 +65,7 @@ const BACKOFF_MS = 2000;
 // The reruns each Jev score gets, because the hosted model samples once per call.
 const JEV_RERUNS = 3;
 // The usage line for the one supported invocation.
-const USAGE = 'node .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs [--jev] [--deem] [--out <dir>] [--gold-reads <file>]';
+const USAGE = 'node .skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs [--jev] [--out <dir>] [--gold-reads <file>]';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. CENSUS
@@ -530,7 +527,7 @@ function gateLine(census) {
   if (10 * census.right > 9 * census.sampled) {
     return 'no headroom';
   }
-  return `planned calls: deem ${census.iterations} jev ${3 * census.iterations + 1}`;
+  return `planned calls: jev ${3 * census.iterations + 1}`;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1054,7 +1051,7 @@ async function runJevArm(plan, gate, ctx) {
           } catch {
             // A body that does not parse is a failed measurement, not a crash.
           }
-          // Jev answers score as an expected level, a float, so it rounds like the Deem arm.
+          // Jev answers with a floating-point expected level, so it rounds to the nearest label.
           const value = parsed?.answers?.answer?.score;
           if (typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= LEVEL_RATIOS.length - 1) {
             const position = Math.round(value);
@@ -1120,289 +1117,7 @@ async function runJevArm(plan, gate, ctx) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 11. DEEM GATE AND ARM
-// ─────────────────────────────────────────────────────────────────────────────
-
-// Repo copy of the cli-deem entry point, run under node when none is on PATH.
-const REPO_CLI_DEEM = path.resolve(__dirname, '../../../cli-classifier/cli-deem/scripts/cli-deem.mjs');
-
-/**
- * cli-deem on PATH when that file is executable, otherwise the repo copy run
- * under node.
- *
- * @param {Record<string, string|undefined>} env - Environment whose PATH is searched
- * @returns {string[]} Command and leading arguments for one call
- */
-function deemCommand(env) {
-  const onPath = which('cli-deem', env);
-  if (onPath !== null) {
-    return [onPath];
-  }
-  return [process.execPath, REPO_CLI_DEEM];
-}
-
-/**
- * One health check. An unreachable binary, a stub backend, a wrong model or a
- * malformed body is a failed check the caller prints as a skip.
- *
- * @param {string[]} cmd - Command from deemCommand
- * @param {Record<string, string|undefined>} env - Environment for the call
- * @returns {{ ok: true, backend: string, model: string, modelCommit: string, sourceCommit: string } | { ok: false, reason: string, found: unknown }} The health identity, or the reason the check failed and what it found
- */
-function readDeemHealth(cmd, env) {
-  const result = spawnSync(cmd[0], [...cmd.slice(1), 'health'], {
-    env,
-    encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'pipe'],
-    timeout: HEALTH_TIMEOUT_MS,
-  });
-  let errorText = (result.stderr ?? '').trim();
-  try {
-    errorText = JSON.parse(errorText).error;
-  } catch {
-    // Leave the trimmed stderr when it is not JSON.
-  }
-
-  if (result.error || result.status === 4) {
-    return { ok: false, reason: 'not reachable', found: errorText };
-  }
-  if (result.status === 3) {
-    let reason = 'bad health response';
-    if (typeof errorText === 'string' && errorText.includes('stub')) {
-      reason = 'stub backend';
-    } else if (typeof errorText === 'string' && errorText.includes('refused model')) {
-      reason = 'model';
-    }
-    return { ok: false, reason, found: errorText };
-  }
-  if (result.status === 0) {
-    const stdoutText = (result.stdout ?? '').trim();
-    let body;
-    try {
-      body = JSON.parse(stdoutText);
-    } catch {
-      return { ok: false, reason: 'bad health response', found: stdoutText };
-    }
-    const backend = body?.backend;
-    if (typeof backend === 'string' && backend.includes('stub')) {
-      return { ok: false, reason: 'stub backend', found: backend };
-    }
-    if (backend !== 'torch' && !(typeof backend === 'string' && backend.startsWith('ensemble:'))) {
-      return { ok: false, reason: 'bad health response', found: String(backend) };
-    }
-    const model = body?.model;
-    if (model !== DEEM_MODEL) {
-      return { ok: false, reason: 'model', found: String(model) };
-    }
-    const modelCommit = body?.model_commit;
-    const sourceCommit = body?.source_commit;
-    if (
-      body?.ok !== true
-      || typeof modelCommit !== 'string'
-      || modelCommit === ''
-      || typeof sourceCommit !== 'string'
-      || sourceCommit === ''
-    ) {
-      return { ok: false, reason: 'bad health response', found: stdoutText };
-    }
-    return { ok: true, backend, model, modelCommit, sourceCommit };
-  }
-  return { ok: false, reason: 'bad health response', found: `exit ${result.status}: ${errorText}` };
-}
-
-/**
- * The gate that keeps the Deem arm closed until the local server identifies
- * itself with the pinned model and both build commits. A miss prints its skip
- * line and leaves the census text already written untouched.
- *
- * @param {{ out: (line: string) => void, env: Record<string, string|undefined> }} ctx - Line writer and environment
- * @returns {{ passed: boolean, cmd: string[], reason?: string }} Whether the gate opened, the command it resolved and the skip line when it did not
- */
-function deemGate(ctx) {
-  const cmd = deemCommand(ctx.env);
-  const health = readDeemHealth(cmd, ctx.env);
-  if (health.ok) {
-    ctx.out(`deem: health backend=${health.backend} model=${health.model} model_commit=${health.modelCommit} source_commit=${health.sourceCommit}`);
-    return { passed: true, cmd, ...health };
-  }
-  const skipLine = `deem arm skipped: ${health.reason}`;
-  ctx.out(skipLine);
-  if (health.reason === 'model' || health.reason === 'bad health response') {
-    ctx.out(`deem: found=${JSON.stringify(health.found)}`);
-  }
-  return { passed: false, cmd, reason: skipLine };
-}
-
-/**
- * The Deem arm: the notice, then one score call per evidence iteration, one
- * answer per call. A measured call is exit 0 with a level position and its
- * probability; an exit-4 call rechecks the server pair and retries once, and
- * a stop line ends the arm with the number of lineages it finished. Nothing
- * leaves the machine, so no payload check applies, and a state over the
- * character bound is withheld without a call.
- *
- * @param {{
- *   lineages: Array<{ path: string, gold: number, baselineStop: number|null, vote: object, iterations: Array<{ n: number, state: string }> }>
- * }} plan Sampled lineages, their vote inputs and per-iteration state text
- * @param {{ cmd: string[], model: string, modelCommit: string, sourceCommit: string }} gate Passing Deem gate result
- * @param {{
- *   out: (line: string) => void,
- *   env: Record<string, string|undefined>,
- *   timeoutMs: number,
- *   callLog: { append: (record: object) => void },
- *   baseline: string,
- *   stored: object|null
- * }} ctx Line writer, environment, per-call bound, call log, the baseline method and the earlier run's report
- * @returns {Promise<{ column: object, requalify: string|null, stops: Map<string, number|null> } | { stopped: string, partialLineages: number }>} Finished column with its per-lineage stops, or the stop line with the lineages finished
- */
-async function runDeemArm(plan, gate, ctx) {
-  let planned = 0;
-  for (const lineage of plan.lineages) {
-    for (const iteration of lineage.iterations) {
-      if (iteration.state.length > STATE_MAX_CHARS) {
-        continue;
-      }
-      planned += 1;
-    }
-  }
-  ctx.out(`deem: nothing leaves the machine; planned calls: ${planned}; estimated wall time: ${(planned * DEEM_P50_MS / 1000).toFixed(1)} s at ${DEEM_P50_MS} ms per call, the 2-option p50 from deem-local.md`);
-
-  const answers = new Map();
-  const flips = new Map();
-  const stops = new Map();
-  let finished = 0;
-
-  /**
-   * One calls.jsonl record. A withheld or retried spawn carries no judgment,
-   * so its level and probability stay empty.
-   */
-  function record(lineagePath, iteration, rerun, attempt, call, level, probability, status) {
-    return {
-      lineage: lineagePath,
-      iteration,
-      rerun,
-      attempt,
-      wallMs: call.wallMs,
-      exitCode: call.code,
-      backend: 'deem',
-      level,
-      probability,
-      status,
-      modelId: gate.model,
-      modelCommit: gate.modelCommit,
-      sourceCommit: gate.sourceCommit,
-    };
-  }
-
-  function stop(line) {
-    ctx.out(line);
-    ctx.out(`deem: partial lineages=${finished}`);
-    return { stopped: line, partialLineages: finished };
-  }
-
-  for (const lineage of plan.lineages) {
-    const series = [];
-    let complete = true;
-
-    for (const iteration of lineage.iterations) {
-      if (iteration.state.length > STATE_MAX_CHARS) {
-        ctx.callLog.append(record(lineage.path, iteration.n, null, 1, { wallMs: 0, code: null }, null, null, 'unmeasured_oversize'));
-        complete = false;
-        series.push({ n: iteration.n, ratio: null });
-        continue;
-      }
-
-      const callArgs = [...gate.cmd.slice(1), 'score', '-q', QUESTION];
-      for (const label of LEVEL_LABELS) {
-        callArgs.push('-l', label);
-      }
-      let attempt = 1;
-      let call = await spawnCall(gate.cmd[0], callArgs, iteration.state, ctx.env, ctx.timeoutMs);
-      if (!call.timedOut && call.code === 4) {
-        ctx.callLog.append(record(lineage.path, iteration.n, 1, attempt, call, null, null, 'unmeasured'));
-        const health = readDeemHealth(gate.cmd, ctx.env);
-        if (!health.ok) {
-          return stop('deem arm stopped: server gone');
-        }
-        if (health.modelCommit !== gate.modelCommit || health.sourceCommit !== gate.sourceCommit) {
-          return stop('deem arm stopped: model commit changed mid-run');
-        }
-        attempt = 2;
-        call = await spawnCall(gate.cmd[0], callArgs, iteration.state, ctx.env, ctx.timeoutMs);
-      }
-
-      let level = null;
-      let probability = null;
-      let status = 'unmeasured';
-      let stopLine = null;
-      if (call.timedOut) {
-        status = 'unmeasured_timeout';
-      } else if (call.code === 0) {
-        let parsed;
-        try {
-          parsed = JSON.parse(call.stdout);
-        } catch {
-          // A body that does not parse is a failed measurement, not a crash.
-        }
-        const value = parsed?.answers?.answer?.score;
-        if (typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= LEVEL_RATIOS.length - 1) {
-          const position = Math.round(value);
-          level = position;
-          status = 'measured';
-          const probabilities = parsed?.answers?.answer?.probabilities;
-          if (probabilities !== null && typeof probabilities === 'object') {
-            probability = probabilities[String(position)] ?? probabilities[LEVEL_LABELS[position]] ?? null;
-          }
-        }
-      } else if (call.code === 2) {
-        stopLine = 'deem arm stopped: usage error';
-      } else if (call.code === 3) {
-        stopLine = 'deem arm stopped: backend refused';
-      } else if (call.code === 130) {
-        stopLine = 'deem arm stopped: interrupted';
-      }
-
-      ctx.callLog.append(record(lineage.path, iteration.n, 1, attempt, call, level, probability, status));
-      if (stopLine !== null) {
-        return stop(stopLine);
-      }
-      if (level !== null) {
-        series.push({ n: iteration.n, ratio: LEVEL_RATIOS[level] });
-      } else {
-        complete = false;
-        series.push({ n: iteration.n, ratio: null });
-      }
-    }
-
-    finished += 1;
-    answers.set(lineage.path, series);
-    flips.set(lineage.path, 0);
-    stops.set(lineage.path, complete ? stopFor(series, lineage.vote) : null);
-  }
-
-  // The column is summarized from the raw measurements: one ratio per iteration
-  // and the stop the replayed vote lands on. A single call cannot flip, so the
-  // flip count stays empty for this backend.
-  const summary = summarizeColumn('deem', plan.lineages, answers, flips, stops, ctx.baseline);
-  // A verdict holds for the commit pair it was measured on, so a changed pair
-  // is named before the new line prints.
-  const storedDeem = ctx.stored?.columns?.deem;
-  let requalify = null;
-  if (storedDeem && (storedDeem.modelCommit !== gate.modelCommit || storedDeem.sourceCommit !== gate.sourceCommit)) {
-    requalify = 'requalify: model commit changed';
-    ctx.out(requalify);
-  }
-  const line = verdictLine(summary, `model=${gate.model} model_commit=${gate.modelCommit} source_commit=${gate.sourceCommit}`);
-  ctx.out(line);
-  return {
-    column: { ...summary, line, modelId: gate.model, modelCommit: gate.modelCommit, sourceCommit: gate.sourceCommit },
-    requalify,
-    stops,
-  };
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 12. VERDICT AND REQUALIFY
+// 11. VERDICT AND REQUALIFY
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Counts stay integers and the tails are exact (a BigInt sum over 2^trials),
@@ -1444,7 +1159,7 @@ function decideVerdict({ backend, K, M, A, B, W, L, F, C }) {
   if (20n * loss.num < loss.den) return { outcome: 'kill', reason: null, pWin: win.p, pLoss: loss.p };
   if (!(10 * (A - B) >= M)) return { outcome: 'stop', reason: 'margin', pWin: win.p, pLoss: loss.p };
   if (!(20n * win.num < win.den)) return { outcome: 'stop', reason: 'sign test', pWin: win.p, pLoss: loss.p };
-  if (backend === 'jev' && !(10 * F <= C)) return { outcome: 'stop', reason: 'flips', pWin: win.p, pLoss: loss.p };
+  if (!(10 * F <= C)) return { outcome: 'stop', reason: 'flips', pWin: win.p, pLoss: loss.p };
   return { outcome: 'keep', reason: null, pWin: win.p, pLoss: loss.p };
 }
 
@@ -1463,7 +1178,7 @@ function formatP(p) {
  * zero-call methods are scored on. The flips bound reads the calls behind the
  * measured levels, so a flip rate is never taken over calls with no median.
  *
- * @param {'jev'|'deem'} backend - Backend name, printed on the verdict line
+ * @param {'jev'} backend - Backend name, printed on the verdict line
  * @param {Array<{ path: string, gold: number|null, baselineStop: number|null }>} lineages - Sampled lineages in census order
  * @param {Map<string, Array<{ n: number, ratio: number|null }>>} answers - Lineage path -> its level series
  * @param {Map<string, number>} flips - Lineage path -> answers that dissent from their iteration's median
@@ -1472,7 +1187,7 @@ function formatP(p) {
  * @returns {{ backend: string, K: number, M: number, unmeasured: number, A: number, B: number, W: number, L: number, F: number|null, C: number, pWin: number, pLoss: number, outcome: string, reason: string|null, baseline: string|null }} Column summary
  */
 function summarizeColumn(backend, lineages, answers, flips, stops, baselineMethod) {
-  const callsPerIteration = backend === 'jev' ? JEV_RERUNS : 1;
+  const callsPerIteration = JEV_RERUNS;
   const K = lineages.length;
   let M = 0;
   let A = 0;
@@ -1506,7 +1221,7 @@ function summarizeColumn(backend, lineages, answers, flips, stops, baselineMetho
     B,
     W,
     L,
-    F: backend === 'jev' ? F : null,
+    F,
     C,
     pWin: verdict.pWin,
     pLoss: verdict.pLoss,
@@ -1528,7 +1243,7 @@ function summarizeColumn(backend, lineages, answers, flips, stops, baselineMetho
 function verdictLine(summary, suffix) {
   const outcomeText = summary.reason === null ? summary.outcome : `stop (${summary.reason})`;
   const p = summary.outcome === 'kill' ? summary.pLoss : summary.pWin;
-  const flips = summary.backend === 'jev' ? summary.F : 'n/a';
+  const flips = summary.F;
   let line = `verdict ${summary.backend}: ${outcomeText} K=${summary.K} M=${summary.M} A=${summary.A} B=${summary.B} W=${summary.W} L=${summary.L} F=${flips} p=${formatP(p)} baseline=${summary.baseline}`;
   if (typeof suffix === 'string' && suffix.length > 0) line += ` ${suffix}`;
   return line;
@@ -1552,13 +1267,13 @@ function readStoredReport(outDir) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 13. REPORT
+// 12. REPORT
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * The report one run writes to report.json. The census keeps its counts, the
  * sampled lineages their derived gold, recorded stop and replay stops, the
- * baseline its summary, and the two gates what they decided. Each arm result
+ * baseline its summary and the label gate result. The arm result
  * fills one bucket: a finished column under columns, a stop under stopped, a
  * skip under skipped; a finished column also records the line that explains a
  * re-run.
@@ -1570,11 +1285,10 @@ function readStoredReport(outDir) {
  * @param {{ method: string, right: number }} parts.baseline - Baseline method and how many lineages it read right
  * @param {{ label: object|null, headroom: string }} parts.gate - Label gate result and the headroom line
  * @param {object} [parts.jev] - Jev arm result, when the arm ran or was withheld
- * @param {object} [parts.deem] - Deem arm result, when the arm ran or was withheld
  * @returns {object} Report object ready for JSON.stringify
  */
 function buildReport(parts) {
-  const { generated, census, lineages, baseline, gate, jev, deem } = parts;
+  const { generated, census, lineages, baseline, gate, jev } = parts;
   const report = {
     question: QUESTION,
     generated,
@@ -1588,7 +1302,7 @@ function buildReport(parts) {
     requalify: {},
   };
 
-  for (const [backend, arm] of [['jev', jev], ['deem', deem]]) {
+  for (const [backend, arm] of [['jev', jev]]) {
     if (!arm) continue;
     if (typeof arm.skipped === 'string') {
       report.skipped[backend] = arm.skipped;
@@ -1624,7 +1338,7 @@ function writeReport(outDir, report) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 14. MAIN
+// 13. MAIN
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -1653,7 +1367,6 @@ async function main(argv, deps = {}) {
       allowPositionals: false,
       options: {
         jev: { type: 'boolean' },
-        deem: { type: 'boolean' },
         out: { type: 'string' },
         'gold-reads': { type: 'string' },
       },
@@ -1665,10 +1378,8 @@ async function main(argv, deps = {}) {
 
   // Refuse a model arm before anything else runs: a call whose outcome is never
   // recorded cannot be inspected later, and the operator asked for a directory.
-  if ((values.jev === true || values.deem === true) && (typeof values.out !== 'string' || values.out === '')) {
-    err(values.deem === true
-      ? '--deem needs --out <dir> so every call is recorded'
-      : '--jev needs --out <dir> so every call is recorded');
+  if (values.jev === true && (typeof values.out !== 'string' || values.out === '')) {
+    err('--jev needs --out <dir> so every call is recorded');
     return 2;
   }
 
@@ -1833,7 +1544,7 @@ async function main(argv, deps = {}) {
   // The label gate opens no arm; it keeps one closed until the operator confirms the gold.
   let labelResult = null;
   let labelPassed = false;
-  if (values.jev === true || values.deem === true) {
+  if (values.jev === true) {
     const gate = labelGate({ sampled, reads: goldReads });
     labelResult = { passed: gate.passed, line: gate.line };
     labelPassed = gate.passed;
@@ -1845,12 +1556,11 @@ async function main(argv, deps = {}) {
   // for a column to beat it, so a passed label gate still opens no arm.
   const armsOpen = labelPassed && headroomLine !== 'no headroom';
   const headroomSkip = labelPassed && !armsOpen;
-  // One call log for the whole run, so a run that opens both arms records
-  // every spawn in one file.
+  // The call log records every spawn in one file.
   const callLog = createCallLog(values.out);
   // A stored report is the only record of what an earlier run measured on, so
   // the arms can requalify their verdict when the identity changed since then.
-  const stored = values.jev === true || values.deem === true ? readStoredReport(values.out) : null;
+  const stored = values.jev === true ? readStoredReport(values.out) : null;
   // The Jev gate reads only the client identity and credential, never lineage text.
   let jevResult;
   let jevStops = null;
@@ -1893,47 +1603,6 @@ async function main(argv, deps = {}) {
     }
   }
 
-  // The Deem gate reads only the local server identity, never lineage text.
-  let deemResult;
-  let deemStops = null;
-  if (values.deem === true && headroomSkip) {
-    out('deem arm skipped: no headroom');
-    deemResult = { skipped: 'no headroom' };
-  } else if (values.deem === true && armsOpen) {
-    const deem = deemGate({ out, env });
-    if (!deem.passed) {
-      deemResult = { skipped: deem.reason };
-    } else {
-      const plan = { lineages: [] };
-      try {
-        for (const entry of sampled) {
-          const lineageDir = path.join(repoRoot, entry.path);
-          const config = readConfig(lineageDir) ?? {};
-          const state = readStateRecords(path.join(lineageDir, 'deep-research-state.jsonl'));
-          const files = deltaIterationFiles(lineageDir);
-          plan.lineages.push({
-            path: entry.path,
-            gold: entry.gold,
-            baselineStop: entry.stops[baseline.method],
-            vote: {
-              threshold: Number.isFinite(config.convergenceThreshold) ? config.convergenceThreshold : DEFAULT_CONVERGENCE_THRESHOLD,
-              minIterations: Number.isInteger(config.minIterations) ? config.minIterations : DEFAULT_MIN_ITERATIONS,
-              blocked: state.blocked,
-              coverage: coverageSeries(state.iterations),
-            },
-            iterations: state.iterations
-              .filter((iteration) => iteration.status !== 'thought')
-              .map((iteration) => ({ n: iteration.n, state: buildState(files, iteration.n) })),
-          });
-        }
-      } catch (error) {
-        err(error instanceof Error ? error.message : String(error));
-        return 2;
-      }
-      deemResult = await runDeemArm(plan, deem, { out, env, timeoutMs, callLog, baseline: baseline.method, stored });
-      deemStops = deemResult.stops ?? null;
-    }
-  }
   writeReport(values.out, buildReport({
     generated: new Date().toISOString(),
     census: {
@@ -1954,20 +1623,18 @@ async function main(argv, deps = {}) {
         recorded: entry.stops.recorded,
         legacy: entry.stops.legacy,
         sources: entry.stops.sources,
-        deem: deemStops === null ? null : deemStops.get(entry.path) ?? null,
         jev: jevStops === null ? null : jevStops.get(entry.path) ?? null,
       },
     })),
     baseline,
     gate: { label: labelResult, headroom: headroomLine },
     jev: jevResult,
-    deem: deemResult,
   }));
   return 0;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 15. EXPORTS
+// 14. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
@@ -1983,10 +1650,7 @@ module.exports = {
   MARGIN_LINE,
   KEEP_RULE_LINE,
   POWER_LINE,
-  DEEM_MODEL,
-  DEEM_P50_MS,
   JEV_VERSION,
-  HEALTH_TIMEOUT_MS,
   CALL_TIMEOUT_MS,
   BACKOFF_MS,
   JEV_RERUNS,
@@ -2014,10 +1678,6 @@ module.exports = {
   spawnCall,
   createCallLog,
   runJevArm,
-  deemCommand,
-  readDeemHealth,
-  deemGate,
-  runDeemArm,
   binomialTail,
   decideVerdict,
   formatP,
@@ -2031,7 +1691,7 @@ module.exports = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 16. CLI ENTRYPOINT
+// 15. CLI ENTRYPOINT
 // ─────────────────────────────────────────────────────────────────────────────
 
 if (require.main === module) {
