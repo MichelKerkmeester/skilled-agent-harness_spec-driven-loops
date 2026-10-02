@@ -51,14 +51,13 @@ _memory:
 
 The docs for the git hooks now say what the hooks do. A read-only audit by GPT-6 Luna found that the root README, the remote-branch policy and both hook READMEs still described behavior the earlier phases had changed: pre-push was said to block stale metadata (it warns), to re-check every pushed commit (it checks the ones the push adds), and to let a bare `SPECKIT_ALLOW_REMOTE_PUSH=1` create a branch (creation needs the allowlist or the branch's own name). The standalone hook README described a per-file, fail-open checker. Fourteen switches the hooks read were missing from ENV-REFERENCE.md; all fourteen are now in its section 5, which is also what the planned `/doctor:env` command will read.
 
-Three code gaps against the sk-code-opencode standards are closed. Both pre-commit hooks used to skip a staged file whose content could not be read; they now block, except for a submodule entry, and remove their temp directory on any exit. A `Spec:` trailer such as `../README.md` used to pass the existence check because the path normalized outside `specs/`; it now fails.
+Three code gaps against the sk-code-opencode standards are closed. Both pre-commit hooks used to skip a staged file whose content could not be read; they now block, except for a submodule entry, and remove their temp directory on any exit. A `Spec:` trailer such as `../README.md` used to pass the existence check because the path normalized outside `specs/`. Another session fixed the same gap on main at the same time with a stricter rule, any `..` segment fails, so the merge kept that version and dropped this phase's.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `.skilled/scripts/git-hooks/pre-commit`, `.skilled/hooks/git/pre-commit` | Modified | Unreadable blob blocks; EXIT trap |
-| `.skilled/skills/sk-git/scripts/lib/message-contract.mjs` and its test | Modified | Spec containment |
 | `README.md`, both hook READMEs | Modified | Hook behavior and trust setting |
 | sk-git `SKILL.md`, commit template, remote-branch policy, two catalog entries | Modified | Remote gate, pushed range, Commit-Id copy rule |
 | sk-code-quality scripts README, bin/lib README | Modified | Changed checker and layout export |
@@ -95,8 +94,8 @@ GPT-6 Luna at max effort audited the hook changes read-only through cli-codex. C
 | Check | Result |
 |-------|--------|
 | Hook suites | autostash 9, commit-msg 34, mass-deletion 12, pre-commit 67, pre-push-message-contract 15, pre-push 46, prepare-commit-msg 66, source-root 58; 0 failed |
-| sk-git node tests | message-contract 23, git-rule-checks 26, git-preflight 7; 0 failed |
-| New test against the old validator | 22 pass, 1 fail |
+| sk-git node tests | message-contract 32 (merged tree), git-rule-checks 26, git-preflight 7; 0 failed |
+| New test against the old validator | 22 pass, 1 fail (before the merge kept main's stricter fix and its tests) |
 | Env coverage script | No hook switch missing from ENV-REFERENCE.md (14 before) |
 | Skill-root metadata gate | 15 of 15 pass |
 | Route guard | Exit 0 |

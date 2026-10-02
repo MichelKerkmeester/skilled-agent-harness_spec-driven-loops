@@ -44,9 +44,9 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
       ".skilled/scripts/install-git-hooks.sh",
       "scratch/audit-report.md",
+      ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
       ".skilled/scripts/git-hooks/README.md",
       ".skilled/hooks/git/README.md",
       ".skilled/skills/sk-code/sk-code-quality/scripts/README.md",
@@ -85,12 +85,6 @@
         "source": "derived"
       },
       {
-        "name": "message-contract.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
-        "source": "derived"
-      },
-      {
         "name": "install-git-hooks.sh",
         "kind": "script",
         "path": ".skilled/scripts/install-git-hooks.sh",
@@ -100,6 +94,12 @@
         "name": "audit-report.md",
         "kind": "doc",
         "path": "scratch/audit-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
         "source": "derived"
       },
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The hook changes in phases 1 and 2 left their docs behind",
     "created_at": "2026-10-02T16:34:18Z",
-    "last_save_at": "2026-10-02T17:09:29.234Z",
+    "last_save_at": "2026-10-02T17:39:16.344Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1972a1905f7437b344214ced7f6bc9f572a0d8985c437bfd93025cc465ac71f",
+    "source_fingerprint": "sha256:0fe88faa463deebf7a579fd0b5e75ca95c00838e8b023e990f9777b7a1cac64a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a2581cf94520800b70051e1345ab683f0394c6eeff6cdc5d5c21127311663ea2",
       "plan.md": "1f8ab0f7b59110f79f2b73ab0a95affe6c1a348df62afc353d3da7b2146fb669",
-      "tasks.md": "e7e39919e8df6c011b5374103bf22ba6c641113faa070fb0e8e3fca6f1e20d1f",
-      "implementation-summary.md": "4cf5765350e8b74a138dc2fbae20a77db715231b4f5c0cf7d4a30e7a021e8fcd"
+      "tasks.md": "a54895892800602920ffc4b817af11c75fd31f3af733d8c243fa1f8300178639",
+      "implementation-summary.md": "47160b18ad1da227ac2efe72a9037449b9beab30bfb246ace4faa85bb21c5b08"
     },
     "last_active_at": null
   }
