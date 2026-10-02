@@ -157,6 +157,7 @@ Built in worktree `worktrees/073-message-contract-enforcement`, because the mach
 | Review fixes: `Spec: ..` through `validate-message.mjs --commit` | Blocked with `trailer.spec-exists`; it passed before the fix |
 | Review fixes: GIT-046 sequence in a scratch repository / `validate-playbook-package.cjs --package sk-git` | Alias blocked, 84-character subject warned and committed, missing Verification blocked, complete breaking commit landed / PASS, 39 scenarios, 0 violations |
 | CI: message-contract workflow run 37013431668 on `88cf1b5f36` | success; the "Test message contract rules" step passed, closing AC-017 |
+| Hook bootstrap: commit-msg.test.sh / pre-push.test.sh / pre-push-message-contract.test.sh | PASS=34 FAIL=0 / 43/43 / 10/10; a linked worktree runs its own validator, a foreign repository never does |
 <!-- /ANCHOR:verification -->
 
 ---

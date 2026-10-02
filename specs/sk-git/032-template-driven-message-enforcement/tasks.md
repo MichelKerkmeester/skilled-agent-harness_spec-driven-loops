@@ -285,6 +285,10 @@ These close the eight P2 advisories in `review/review-report.md`.
 - [x] T034 Add playbook scenario GIT-046 for `subject.scope-alias`, `subject.length-target` and `body.breaking-sections`. [EVIDENCE: commit-formation/scope-alias-length-target-breaking-sections.md, sequence run in a scratch repository, validate_document.py 0 issues]
 - [x] T035 Reconcile the completion state and cite one replay range across the packet docs. [EVIDENCE: acceptance-criteria.md Status In Progress, 15 of 16 Met; every replay citation reads f8519088b9..03afeb4552]
 
+## Follow-Up Tasks: Hook Bootstrap
+
+- [x] T036 Let the hooks use a linked worktree's own validator when the worktree belongs to the hook's repository, so adding a template key no longer blocks its own commit. [EVIDENCE: message-contract-gate.sh `mcg_validator_path` compares git common directories; commit-msg.test.sh PASS=34 with the worktree and foreign-repository cases]
+
 ### Planned Verification
 
 Run these commands after implementation. Their outcomes are not recorded as complete here.
