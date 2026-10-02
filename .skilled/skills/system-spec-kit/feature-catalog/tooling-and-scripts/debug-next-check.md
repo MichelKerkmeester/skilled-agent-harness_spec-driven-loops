@@ -1,6 +1,6 @@
 ---
 title: "Debug next check"
-description: "Scores, with zero model calls by default, how often each constant next-check answer is right on operator-labeled debug rows and whether that leaves headroom, then judges the labeled rows behind `--jev` or `--deem` and reports one keep, kill or stop decision per backend."
+description: "Scores, with zero model calls by default, how often each constant next-check answer is right on operator-labeled debug rows and whether that leaves headroom, then judges the labeled rows behind `--jev` and reports one keep, kill or stop decision."
 trigger_phrases:
   - "debug next check"
   - "score-debug-next-check.mjs"
@@ -15,7 +15,7 @@ version: 2.6.0.0
 
 ## 1. OVERVIEW
 
-Scores, with zero model calls by default, how often each constant next-check answer is right on operator-labeled debug rows and whether that leaves headroom, then judges the labeled rows behind `--jev` or `--deem` and reports one keep, kill or stop decision per backend.
+Scores, with zero model calls by default, how often each constant next-check answer is right on operator-labeled debug rows and whether that leaves headroom, then judges the labeled rows behind `--jev` and reports one keep, kill or stop decision.
 
 The census answers two questions before anyone wires a backend pick into the debug next-check choice: does any tracked file outside the spec tree already name `next_check`, and would a backend beat the best constant answer on labeled rows. It reads only the repository's own git state and the operator fixture, makes no model call without its switch and its own gate, and writes nothing outside `--out`.
 
@@ -33,7 +33,7 @@ Every run first lists tracked files outside `specs/` that name `next_check`, lea
 
 ### Judgment Arms
 
-Each arm runs only past the label gate and the headroom check, behind its own switch and its own gate, and with both switches the Jev gate and arm run first, then the Deem gate and arm, each regardless of the other's outcome. A failed gate prints its skip line and never runs the other backend in its place. Jev reads only rows marked `jev_ok: true`: a withheld row leaves three `unmeasured_withheld` records in `calls.jsonl` and is never sent, and with no row accepted the run prints `jev arm skipped: payload not accepted`. The Jev gate checks `jev` on `PATH`, the pinned `jev 0.6.2` and a credential, while the Deem gate reads `cli-deem health` and skips a `stub` backend. Each arm asks `What is the cheapest way to confirm or rule out this hypothesis?` in three option orders per row and takes the modal pick, and Deem plans three calls per row.
+Each arm runs only past the label gate and the headroom check, behind its own switch and its own gate. A failed gate prints its skip line and never runs another backend in its place. Jev reads only rows marked `jev_ok: true`: a withheld row leaves three `unmeasured_withheld` records in `calls.jsonl` and is never sent, and with no row accepted the run prints `jev arm skipped: payload not accepted`. The Jev gate checks `jev` on `PATH`, the pinned `jev 0.6.2` and a credential. The arm asks `What is the cheapest way to confirm or rule out this hypothesis?` in three option orders per row and takes the modal pick.
 
 ### Keep Rule And Verdict
 
@@ -47,13 +47,13 @@ Before the first call the run prints `keep rule: coverage 10*M>=9*K, kill P(X>=L
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` | Script | Runs the seam search and the mined corpus, reads the fixture, prints the constants, the gates and the keep rule, and drives both judgment arms |
+| `.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` | Script | Runs the seam search and the mined corpus, reads the fixture, prints the constants, the gates and the keep rule, and drives the judgment arm |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts` | Vitest | Thirty cases over synthetic fixtures, with stub `jev` and `cli-deem` binaries first on the path |
+| `.skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts` | Vitest | Twenty-three cases over synthetic fixtures, with a stub `jev` binary first on the path |
 
 ---
 
