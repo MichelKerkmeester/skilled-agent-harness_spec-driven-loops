@@ -40,10 +40,16 @@ fi
 # The staged blobs go to one checker run, with NUL-separated names, so a fix left
 # unstaged cannot hide a violation and a path with non-ASCII bytes is not skipped.
 HYGIENE_DIR="$(mktemp -d "${TMPDIR:-/tmp}/comment-hygiene.XXXXXX")"
+trap 'rm -rf "$HYGIENE_DIR"' EXIT
 HYGIENE_FILES=()
 while IFS= read -r -d '' file; do
   mkdir -p "$HYGIENE_DIR/$(dirname "$file")"
-  git show ":$file" > "$HYGIENE_DIR/$file" 2>/dev/null || continue
+  if ! git show ":$file" > "$HYGIENE_DIR/$file" 2>/dev/null; then
+    # A submodule entry has no blob to read. Any other unreadable file must not pass unchecked.
+    [[ "$(git ls-files -s -- "$file" | cut -c1-6)" == "160000" ]] && continue
+    echo "BLOCKED [gate:comment-hygiene]: could not read the staged content of $file" >&2
+    exit 1
+  fi
   HYGIENE_FILES+=("$file")
 done < <(git diff --cached --name-only -z --diff-filter=ACM)
 CHECKER_RC=0
