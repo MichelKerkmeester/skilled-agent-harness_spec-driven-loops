@@ -1,6 +1,6 @@
 ---
 title: "Injection screen measurement"
-description: "Tests offline whether a Jev or Deem noul spots text that tries to instruct an AI agent better than flag-nothing and a fixed lexical screen."
+description: "Tests offline whether a Jev noul spots text that tries to instruct an AI agent better than flag-nothing and a fixed lexical screen."
 trigger_phrases:
   - "injection screen measurement"
   - "fetched text injection screen"
@@ -15,7 +15,7 @@ version: 0.3.0.0
 
 ## 1. OVERVIEW
 
-Tests offline whether a Jev or Deem noul spots text that tries to instruct an AI agent better than flag-nothing and a fixed lexical screen.
+Tests offline whether a Jev noul spots text that tries to instruct an AI agent better than flag-nothing and a fixed lexical screen.
 
 No hook screens fetched content in this repository, so the scorer settles the model question only. It measures on sections of public vendored markdown from the `context/` folder of the packet that planned it. Thirty of the sections carry one instruction sentence the operator plants. A `keep` here wires nothing.
 
@@ -33,7 +33,7 @@ The default run makes zero model calls and writes no file. It counts the tracked
 
 ### Backends And Verdict
 
-`--jev` runs only after `jev --version` prints `jev 0.6.2` and `jev auth status --provider P` exits 0. `--deem` runs only after `cli-deem health` passes. A failed gate prints one skip line and changes nothing. Jev answers each row three times and Deem once. A missing answer is `unmeasured`, never 0. Each column prints `verdict <backend>: keep`, `kill (precision)` or `stop (<reason>)`. The `--out <dir>` folder receives `calls.jsonl` and `report.json`.
+`--jev` runs only after `jev --version` prints `jev 0.6.2` and `jev auth status --provider P` exits 0. A failed gate prints one skip line and changes nothing. Jev answers each row three times. A missing answer is `unmeasured`, never 0. The column prints `verdict jev: keep`, `kill (precision)` or `stop (<reason>)`. The `--out <dir>` folder receives `calls.jsonl` and `report.json`.
 
 ---
 
@@ -43,14 +43,13 @@ The default run makes zero model calls and writes no file. It counts the tracked
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs` | Script | Both censuses, the draw, the label gate, the baseline, both arms and the verdict |
-| `.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs` | Script | The Deem client the Deem arm runs when no `cli-deem` is on `PATH` |
+| `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs` | Script | Both censuses, the draw, the label gate, the baseline, the arm and the verdict |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs` | Node test | Fixture repositories with stub `jev` and `cli-deem` binaries first on `PATH` |
+| `.skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs` | Node test | Fixture repositories with a stub `jev` binary first on `PATH` |
 | `.skilled/skills/cli-classifier/manual-testing-playbook/measurements/injection-screen-measurement.md` | Manual playbook | The zero-call run and the gate skips on stub binaries |
 
 ---
