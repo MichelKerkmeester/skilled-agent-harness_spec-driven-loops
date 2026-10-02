@@ -7,7 +7,6 @@
 //   Label gate (parseGoldReads, labelGate)
 //   Jev gate and published check (which, jevGate, existsAtOriginMain, withheldRecords)
 //   Jev arm (buildState, spawnCall, createCallLog, runJevArm)
-//   Deem gate and arm (deemCommand, readDeemHealth, deemGate, runDeemArm)
 //   Verdict and requalify (binomialTail, formatP, decideVerdict, summarizeColumn, verdictLine, readStoredReport)
 //   Report (buildReport, writeReport)
 //   Census run (main)
@@ -109,22 +108,12 @@ function censusOf(lines: string[]): Record<string, number> {
 function stubBackends(): { log: string; env: NodeJS.ProcessEnv } {
   const stubDir = tempDir('stop-rater-stubs-');
   const log = path.join(stubDir, 'backends.log');
-  for (const name of ['jev', 'cli-deem']) {
-    fs.writeFileSync(
-      path.join(stubDir, name),
-      `#!/bin/sh\necho "$0 $*" >> '${log}'\n`,
-      { mode: 0o755 },
-    );
-  }
+  fs.writeFileSync(
+    path.join(stubDir, 'jev'),
+    `#!/bin/sh\necho "$0 $*" >> '${log}'\n`,
+    { mode: 0o755 },
+  );
   return { log, env: { ...process.env, PATH: `${stubDir}${path.delimiter}${process.env.PATH ?? ''}` } };
-}
-
-function deemStub(body: string): { dir: string; log: string; env: NodeJS.ProcessEnv } {
-  const dir = tempDir('stop-rater-deem-');
-  const log = path.join(dir, 'cli-deem.log');
-  fs.writeFileSync(path.join(dir, 'cli-deem'), `#!/bin/sh\necho "$*" >> '${log}'\n${body}\n`, { mode: 0o755 });
-  const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${dir}${path.delimiter}${process.env.PATH ?? ''}` };
-  return { dir, log, env };
 }
 
 async function runWithEnv(
@@ -578,16 +567,14 @@ describe('score-stop-rater baseline and gate', () => {
     commitAll(repo);
     const stubDir = tempDir('stop-rater-stubs-');
     const stubLog = path.join(stubDir, 'backends.log');
-    for (const name of ['jev', 'cli-deem']) {
-      fs.writeFileSync(
-        path.join(stubDir, name),
-        `#!/bin/sh\necho "$0 $*" >> '${stubLog}'\n`,
-        { mode: 0o755 },
-      );
-    }
+    fs.writeFileSync(
+      path.join(stubDir, 'jev'),
+      `#!/bin/sh\necho "$0 $*" >> '${stubLog}'\n`,
+      { mode: 0o755 },
+    );
     const lines: string[] = [];
     const errs: string[] = [];
-    const code = await rater.main(['--jev', '--deem', '--out', tempDir('stop-rater-out-')], {
+    const code = await rater.main(['--jev', '--out', tempDir('stop-rater-out-')], {
       out: (line: string) => lines.push(line),
       err: (line: string) => errs.push(line),
       repoRoot: repo,
@@ -603,7 +590,7 @@ describe('score-stop-rater baseline and gate', () => {
     expect(fs.existsSync(stubLog)).toBe(false);
   });
 
-  it('no headroom closes both arms after the label gate passes', async () => {
+  it('no headroom closes the jev arm after the label gate passes', async () => {
     const repo = gitRepo();
     for (let index = 0; index < 10; index += 1) {
       makeLineage(repo, `lineage-${index}`, {
@@ -627,7 +614,7 @@ describe('score-stop-rater baseline and gate', () => {
     fs.writeFileSync(readsFile, rows.map((row) => JSON.stringify(row)).join('\n') + '\n', 'utf8');
     const lines: string[] = [];
     const errs: string[] = [];
-    const code = await rater.main(['--jev', '--deem', '--out', tempDir('stop-rater-out-'), '--gold-reads', readsFile], {
+    const code = await rater.main(['--jev', '--out', tempDir('stop-rater-out-'), '--gold-reads', readsFile], {
       out: (line: string) => lines.push(line),
       err: (line: string) => errs.push(line),
       repoRoot: repo,
@@ -640,7 +627,6 @@ describe('score-stop-rater baseline and gate', () => {
     const jevIndex = lines.indexOf('jev arm skipped: no headroom');
     expect(headroomIndex).toBeGreaterThan(-1);
     expect(jevIndex).toBeGreaterThan(headroomIndex);
-    expect(lines.indexOf('deem arm skipped: no headroom')).toBeGreaterThan(jevIndex);
     expect(fs.existsSync(log)).toBe(false);
   });
 });
@@ -651,7 +637,7 @@ describe('score-stop-rater label gate', () => {
     const { log, env } = stubBackends();
     const lines: string[] = [];
     const errs: string[] = [];
-    const code = await rater.main(['--jev', '--deem', '--out', tempDir('stop-rater-out-')], {
+    const code = await rater.main(['--jev', '--out', tempDir('stop-rater-out-')], {
       out: (line: string) => lines.push(line),
       err: (line: string) => errs.push(line),
       repoRoot: repo,
@@ -669,7 +655,7 @@ describe('score-stop-rater label gate', () => {
     const readsFile = writeGoldReads(repo, 4);
     const lines: string[] = [];
     const errs: string[] = [];
-    const code = await rater.main(['--jev', '--deem', '--out', tempDir('stop-rater-out-'), '--gold-reads', readsFile], {
+    const code = await rater.main(['--jev', '--out', tempDir('stop-rater-out-'), '--gold-reads', readsFile], {
       out: (line: string) => lines.push(line),
       err: (line: string) => errs.push(line),
       repoRoot: repo,
@@ -687,7 +673,7 @@ describe('score-stop-rater label gate', () => {
     const readsFile = writeGoldReads(repo, null);
     const lines: string[] = [];
     const errs: string[] = [];
-    const code = await rater.main(['--jev', '--deem', '--out', tempDir('stop-rater-out-'), '--gold-reads', readsFile], {
+    const code = await rater.main(['--jev', '--out', tempDir('stop-rater-out-'), '--gold-reads', readsFile], {
       out: (line: string) => lines.push(line),
       err: (line: string) => errs.push(line),
       repoRoot: repo,
@@ -701,23 +687,6 @@ describe('score-stop-rater label gate', () => {
 });
 
 describe('score-stop-rater report and out', () => {
-  it('out missing refuses a model arm', async () => {
-    const repo = fiveLineageRepo();
-    const { log, env } = stubBackends();
-    const lines: string[] = [];
-    const errs: string[] = [];
-    const code = await rater.main(['--deem'], {
-      out: (line: string) => lines.push(line),
-      err: (line: string) => errs.push(line),
-      repoRoot: repo,
-      env,
-    });
-    expect(code).toBe(2);
-    expect(lines).toEqual([]);
-    expect(errs).toEqual(['--deem needs --out <dir> so every call is recorded']);
-    expect(fs.existsSync(log)).toBe(false);
-  });
-
   it('default run with --out writes only report.json', async () => {
     const repo = fiveLineageRepo();
     const outDir = tempDir('stop-rater-out-');
@@ -1004,190 +973,6 @@ exit 0
   });
 });
 
-describe('score-stop-rater deem gate', () => {
-  it('deem gate passes a fake health', async () => {
-    const repo = fiveLineageRepo();
-    const readsFile = writeGoldReads(repo, null);
-    const { log, env } = deemStub(`case "$1" in
-  health)
-    echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"abc123","source_commit":"def456"}'
-    exit 0;;
-  score)
-    echo '{"answers":{"answer":{"type":"score","score":0,"probabilities":{"0":0.9,"4":0.1}}}}'
-    exit 0;;
-esac
-exit 0`);
-    const outDir = tempDir('stop-rater-out-');
-    const { code, lines, errs } = await runWithEnv(
-      ['--deem', '--out', outDir, '--gold-reads', readsFile],
-      repo,
-      env,
-    );
-    expect(code).toBe(0);
-    expect(errs).toEqual([]);
-    expect(lines).toContain('deem: health backend=torch model=deem-0.8-v1 model_commit=abc123 source_commit=def456');
-    expect(lines).toContain('deem: nothing leaves the machine; planned calls: 15; estimated wall time: 1.0 s at 65.6 ms per call, the 2-option p50 from deem-local.md');
-    expect(lines.some((entry) => entry.startsWith('deem arm skipped:'))).toBe(false);
-    expect(lines.some((entry) => entry.startsWith('verdict deem: '))).toBe(true);
-    const logged = fs.readFileSync(log, 'utf8').trim().split('\n');
-    expect(logged.filter((entry) => entry.startsWith('score'))).toHaveLength(15);
-    const records = fs
-      .readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8')
-      .trim()
-      .split('\n')
-      .map((line) => JSON.parse(line)) as Array<Record<string, unknown>>;
-    expect(records).toHaveLength(15);
-    for (const record of records) {
-      expect(record.backend).toBe('deem');
-      expect(record.modelId).toBe('deem-0.8-v1');
-      expect(record.modelCommit).toBe('abc123');
-      expect(record.sourceCommit).toBe('def456');
-    }
-  });
-
-  it('deem gate skips a stub backend byte-identically', async () => {
-    const repo = fiveLineageRepo();
-    const readsFile = writeGoldReads(repo, null);
-    const { env } = deemStub(`case "$1" in
-  health)
-    echo '{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"abc","source_commit":"def"}'
-    exit 0;;
-esac
-exit 0`);
-    const base = await runMain([], repo);
-    const { code, lines, errs } = await runWithEnv(
-      ['--deem', '--out', tempDir('stop-rater-out-'), '--gold-reads', readsFile],
-      repo,
-      env,
-    );
-    expect(code).toBe(0);
-    expect(errs).toEqual([]);
-    expect(lines.slice(0, base.lines.length)).toEqual(base.lines);
-    expect(lines.slice(base.lines.length)).toEqual(['deem arm skipped: stub backend']);
-  });
-});
-
-describe('score-stop-rater deem arm', () => {
-  it('deem arm stops on a changed pair at exit 4', async () => {
-    const repo = fiveLineageRepo();
-    const readsFile = writeGoldReads(repo, null);
-    const { log, env } = deemStub(`case "$1" in
-  health)
-    D=$(dirname "$0")
-    H=$(cat "$D/health" 2>/dev/null || echo 0)
-    H=$((H + 1))
-    echo "$H" > "$D/health"
-    if [ "$H" -ge 2 ]; then
-      echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"newc","source_commit":"news"}'
-    else
-      echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"oldc","source_commit":"olds"}'
-    fi
-    exit 0;;
-  score)
-    exit 4;;
-esac
-exit 0`);
-    const outDir = tempDir('stop-rater-out-');
-    const { code, lines, errs } = await runWithEnv(
-      ['--deem', '--out', outDir, '--gold-reads', readsFile],
-      repo,
-      env,
-    );
-    expect(code).toBe(0);
-    expect(errs).toEqual([]);
-    expect(lines).toContain('deem arm stopped: model commit changed mid-run');
-    expect(lines).toContain('deem: partial lineages=0');
-    expect(lines.some((entry) => entry.startsWith('verdict deem: '))).toBe(false);
-    const logged = fs.readFileSync(log, 'utf8').trim().split('\n');
-    expect(logged.filter((entry) => entry.startsWith('score'))).toHaveLength(1);
-    const records = fs
-      .readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8')
-      .trim()
-      .split('\n')
-      .map((line) => JSON.parse(line)) as Array<Record<string, unknown>>;
-    expect(records).toHaveLength(1);
-    expect(records[0].exitCode).toBe(4);
-    expect(records[0].status).toBe('unmeasured');
-  });
-
-  it('oversize state is withheld', async () => {
-    const repo = gitRepo();
-    // One repeated source over three iterations leaves the baseline headroom, so the arm opens; the first label rides into every later state.
-    for (let index = 0; index < 5; index += 1) {
-      makeLineage(repo, `lineage-${index}`, {
-        config: {},
-        records: [iteration(1, 0.04), iteration(2, 0.04), iteration(3, 0.04)],
-        deltas: {
-          'iter-001.jsonl': [{ type: 'finding', label: 'x'.repeat(25000), source: `src/${index}-a.md` }],
-          'iter-002.jsonl': [{ type: 'finding', source: `src/${index}-a.md` }],
-          'iter-003.jsonl': [{ type: 'finding', source: `src/${index}-a.md` }],
-        },
-      });
-    }
-    commitAll(repo);
-    const readsFile = writeGoldReads(repo, null);
-    const { log, env } = deemStub(`case "$1" in
-  health)
-    echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"abc123","source_commit":"def456"}'
-    exit 0;;
-  score)
-    echo '{"answers":{"answer":{"type":"score","score":0,"probabilities":{"0":0.9}}}}'
-    exit 0;;
-esac
-exit 0`);
-    const outDir = tempDir('stop-rater-out-');
-    const { code, lines, errs } = await runWithEnv(
-      ['--deem', '--out', outDir, '--gold-reads', readsFile],
-      repo,
-      env,
-    );
-    expect(code).toBe(0);
-    expect(errs).toEqual([]);
-    const records = fs
-      .readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8')
-      .trim()
-      .split('\n')
-      .map((line) => JSON.parse(line)) as Array<Record<string, unknown>>;
-    expect(records).toHaveLength(15);
-    for (const record of records) expect(record.status).toBe('unmeasured_oversize');
-    expect(fs.readFileSync(log, 'utf8')).not.toContain('score');
-    expect(lines.some((entry) => entry.startsWith('deem: nothing leaves the machine'))).toBe(true);
-  });
-
-  it('deem arm counts a top-level score body as unmeasured', async () => {
-    const repo = fiveLineageRepo();
-    const readsFile = writeGoldReads(repo, null);
-    const { env } = deemStub(`case "$1" in
-  health)
-    echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"abc123","source_commit":"def456"}'
-    exit 0;;
-  score)
-    echo '{"score":0,"probabilities":{"0":0.9,"4":0.1}}'
-    exit 0;;
-esac
-exit 0`);
-    const outDir = tempDir('stop-rater-out-');
-    const { code, lines, errs } = await runWithEnv(
-      ['--deem', '--out', outDir, '--gold-reads', readsFile],
-      repo,
-      env,
-    );
-    expect(code).toBe(0);
-    expect(errs).toEqual([]);
-    const records = fs
-      .readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8')
-      .trim()
-      .split('\n')
-      .map((line) => JSON.parse(line)) as Array<Record<string, unknown>>;
-    expect(records).toHaveLength(15);
-    for (const record of records) expect(record.status).toBe('unmeasured');
-    const verdict = lines.find((entry) => entry.startsWith('verdict deem: ')) as string;
-    expect(verdict).toBeDefined();
-    expect(verdict.startsWith('verdict deem: stop (coverage)')).toBe(true);
-    expect(verdict).toContain('M=0');
-  });
-});
-
 describe('score-stop-rater verdict', () => {
   interface ScriptedLineage {
     path: string;
@@ -1198,12 +983,12 @@ describe('score-stop-rater verdict', () => {
     flips?: number;
   }
 
-  function scriptedColumn(backend: 'jev' | 'deem', rows: ScriptedLineage[]): Record<string, any> {
+  function scriptedColumn(rows: ScriptedLineage[]): Record<string, any> {
     const lineages = rows.map((row) => ({ path: row.path, gold: row.gold, baselineStop: row.baselineStop }));
     const answers = new Map(rows.map((row) => [row.path, row.ratios.map((ratio, index) => ({ n: index + 1, ratio }))]));
     const flips = new Map(rows.map((row) => [row.path, row.flips ?? 0]));
     const stops = new Map(rows.map((row) => [row.path, row.stop]));
-    return rater.summarizeColumn(backend, lineages, answers, flips, stops, 'legacy');
+    return rater.summarizeColumn('jev', lineages, answers, flips, stops, 'legacy');
   }
 
   it('verdict keep', () => {
@@ -1214,22 +999,22 @@ describe('score-stop-rater verdict', () => {
       stop: 3,
       ratios: [0.0, 0.0, 0.0, 0.0],
     }));
-    const summary = scriptedColumn('deem', rows);
+    const summary = scriptedColumn(rows);
     expect(summary.K).toBe(5);
     expect(summary.M).toBe(5);
     expect(summary.A).toBe(5);
     expect(summary.B).toBe(0);
     expect(summary.W).toBe(5);
     expect(summary.L).toBe(0);
-    expect(summary.C).toBe(20);
+    expect(summary.C).toBe(60);
     expect(summary.outcome).toBe('keep');
     expect(summary.reason).toBe(null);
-    const line = rater.verdictLine(summary, 'model=deem-0.8-v1 model_commit=abc123 source_commit=def456');
-    expect(line.startsWith('verdict deem: keep')).toBe(true);
-    expect(line).toContain('K=5 M=5 A=5 B=0 W=5 L=0 F=n/a');
+    const line = rater.verdictLine(summary, 'jev_version=0.6.2 provider=official model=stub-model');
+    expect(line.startsWith('verdict jev: keep')).toBe(true);
+    expect(line).toContain('K=5 M=5 A=5 B=0 W=5 L=0 F=0');
     expect(line).toContain('p=0.03125');
     expect(line).toContain('baseline=legacy');
-    expect(line.endsWith('model=deem-0.8-v1 model_commit=abc123 source_commit=def456')).toBe(true);
+    expect(line.endsWith('jev_version=0.6.2 provider=official model=stub-model')).toBe(true);
   });
 
   it('verdict kill', () => {
@@ -1240,7 +1025,7 @@ describe('score-stop-rater verdict', () => {
       stop: 4,
       ratios: [0.0, 0.0, 0.0, 0.0],
     }));
-    const summary = scriptedColumn('deem', rows);
+    const summary = scriptedColumn(rows);
     expect(summary.A).toBe(0);
     expect(summary.B).toBe(5);
     expect(summary.W).toBe(0);
@@ -1248,7 +1033,7 @@ describe('score-stop-rater verdict', () => {
     expect(summary.outcome).toBe('kill');
     expect(summary.reason).toBe(null);
     const line = rater.verdictLine(summary, '');
-    expect(line.startsWith('verdict deem: kill')).toBe(true);
+    expect(line.startsWith('verdict jev: kill')).toBe(true);
     expect(line).toContain('W=0 L=5');
     expect(line).toContain('p=0.03125');
   });
@@ -1261,14 +1046,14 @@ describe('score-stop-rater verdict', () => {
       stop: index < 22 ? 3 : null,
       ratios: [0.0, 0.0, 0.0, 0.0],
     }));
-    const summary = scriptedColumn('deem', rows);
+    const summary = scriptedColumn(rows);
     expect(summary.K).toBe(25);
     expect(summary.M).toBe(22);
     expect(summary.unmeasured).toBe(3);
     expect(summary.outcome).toBe('stop');
     expect(summary.reason).toBe('coverage');
     const line = rater.verdictLine(summary, '');
-    expect(line.startsWith('verdict deem: stop (coverage)')).toBe(true);
+    expect(line.startsWith('verdict jev: stop (coverage)')).toBe(true);
     expect(line).toContain('K=25 M=22');
   });
 
@@ -1280,7 +1065,7 @@ describe('score-stop-rater verdict', () => {
       stop: index < 13 ? 3 : 4,
       ratios: [0.0, 0.0, 0.0, 0.0],
     }));
-    const summary = scriptedColumn('deem', rows);
+    const summary = scriptedColumn(rows);
     expect(summary.M).toBe(25);
     expect(summary.A).toBe(13);
     expect(summary.B).toBe(11);
@@ -1289,38 +1074,7 @@ describe('score-stop-rater verdict', () => {
     expect(summary.outcome).toBe('stop');
     expect(summary.reason).toBe('margin');
     const line = rater.verdictLine(summary, '');
-    expect(line.startsWith('verdict deem: stop (margin)')).toBe(true);
+    expect(line.startsWith('verdict jev: stop (margin)')).toBe(true);
   });
 
-  it('requalify prints before the verdict', async () => {
-    const repo = fiveLineageRepo();
-    const readsFile = writeGoldReads(repo, null);
-    const { env } = deemStub(`case "$1" in
-  health)
-    echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"abc123","source_commit":"def456"}'
-    exit 0;;
-  score)
-    echo '{"answers":{"answer":{"type":"score","score":0,"probabilities":{"0":0.9,"4":0.1}}}}'
-    exit 0;;
-esac
-exit 0`);
-    const outDir = tempDir('stop-rater-out-');
-    fs.writeFileSync(
-      path.join(outDir, 'report.json'),
-      JSON.stringify({ columns: { deem: { modelId: 'deem-0.8-v1', modelCommit: 'oldc', sourceCommit: 'olds' } } }),
-      'utf8',
-    );
-    const { code, lines, errs } = await runWithEnv(
-      ['--deem', '--out', outDir, '--gold-reads', readsFile],
-      repo,
-      env,
-    );
-    expect(code).toBe(0);
-    expect(errs).toEqual([]);
-    const requalifyIndex = lines.indexOf('requalify: model commit changed');
-    expect(requalifyIndex).toBeGreaterThanOrEqual(0);
-    expect(lines[requalifyIndex + 1].startsWith('verdict deem: ')).toBe(true);
-    const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
-    expect(report.requalify.deem).toBe('requalify: model commit changed');
-  });
 });

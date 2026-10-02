@@ -30,7 +30,7 @@ This feature belongs to the scoring group and is catalogued as F056 in the `runt
 
 ### Census and Baseline
 
-The census walks the tracked `deep-research-state.jsonl` lineages and prints the `lineages:`, `gold:`, `reads:`, `method recorded:`, `method legacy:`, `method sources:`, `baseline:` and `question counts:` lines, then `margin: 0.10`, the keep rule line, the power note and the gate line. The gate line is `no headroom` when the baseline is right on more than nine of every ten sampled lineages, and `planned calls: deem <n> jev <3n+1>` otherwise.
+The census walks the tracked `deep-research-state.jsonl` lineages and prints the `lineages:`, `gold:`, `reads:`, `method recorded:`, `method legacy:`, `method sources:`, `baseline:` and `question counts:` lines, then `margin: 0.10`, the keep rule line, the power note and the gate line. The gate line is `no headroom` when the baseline is right on more than nine of every ten sampled lineages, and `planned calls: jev <3n+1>` otherwise.
 
 A lineage's gold iteration is the last iteration whose delta file introduces at least one source seen in no earlier iteration. A source is a file named in a finding's `source` string or its `sources` or `evidence` arrays. Each entry loses a `[SOURCE: ...]` wrapper and a leading `file:`, then is cut at its first line reference, `#L` anchor, comma, semicolon, parenthesis or bracket, so a new range of a file already cited is not new. A cut that holds a space counts whole only when it is a tracked path such as `REPO RULES.md`, else only its first word counts. A tool entry such as `Glob:...` is not a source, and neither is a word with no `/` and no extension holding a letter, such as `iteration 4` or `p=0.05`. A cited URL is a source. A lineage whose `convergenceMode` is `off`, at the top level or under `antiConvergence`, is forced and never sampled. A lineage whose findings carry no source has no gold and never enters the sample. A stop reads the evidence right when it lands at gold or one iteration after it.
 
@@ -47,15 +47,13 @@ keep rule: coverage 10*M >= 9*K, kill p_loss < 0.05, margin 10*(A-B) >= M, sign 
 power: a keep needs at least 5 wins with no loss, since 0.5^5 = 0.03125 < 0.05
 ```
 
-### Deem and Jev Arms
+### Jev Arm
 
-`--jev` and `--deem` each need `--out <dir>` so every call is recorded. Without one the run exits 2 with `--jev needs --out <dir> so every call is recorded` or the `--deem` form before any line prints. With both switches the Jev gate and arm run first, then the Deem gate and arm, each on its own gate and regardless of the other's outcome.
+`--jev` needs `--out <dir>` so every call is recorded. Without one the run exits 2 with `--jev needs --out <dir> so every call is recorded` before any line prints.
 
-The Jev gate accepts the client only at version `jev 0.6.2` with a credential for its provider, `JEV_PROVIDER` or `official`. The arm sends published research delta text off the machine and withholds every lineage whose delta files are not all at `origin/main`, recording each withheld iteration as `unmeasured_unpublished`. It asks each iteration three times so unstable answers count as flips, and the median of the three levels becomes the iteration's ratio.
+The Jev gate accepts the client only at version `jev 0.6.2` with a credential for its provider, `JEV_PROVIDER` or `official`. The arm sends published research delta text off the machine and withholds every lineage whose delta files are not all at `origin/main`, recording each withheld iteration as `unmeasured_unpublished`. It asks each iteration three times so unstable answers count as flips, and the median of the three levels becomes the iteration's ratio. A failed gate prints its skip line and runs no call: `jev arm skipped: jev not on PATH`, `jev arm skipped: version` or `jev arm skipped: no credential`.
 
-The Deem gate accepts only the local server that reports model `deem-0.8-v1` with its model and source commits. The arm asks each iteration once and nothing leaves the machine. A failed gate prints its skip line and runs no call, `jev arm skipped: jev not on PATH`, `jev arm skipped: version`, `jev arm skipped: no credential`, `deem arm skipped: not reachable`, `deem arm skipped: stub backend`, `deem arm skipped: model` or `deem arm skipped: bad health response`.
-
-Every call lands in `<out>/calls.jsonl` with its status and wall time, and a run with `--out` writes `<out>/report.json`. A state over 24,000 characters is withheld as `unmeasured_oversize` with no call. A finished arm prints one `verdict <backend>:` line carrying `keep`, `kill` or `stop`, its reason and its counts, and a model or commit pair that changed since the stored report prints `requalify: model changed` or `requalify: model commit changed` first. An arm that stops mid-run prints its `<backend> arm stopped:` line and `<backend>: partial lineages=<n>` and no verdict.
+Every call lands in `<out>/calls.jsonl` with its status and wall time, and a run with `--out` writes `<out>/report.json`. A state over 24,000 characters is withheld as `unmeasured_oversize` with no call. A finished Jev arm prints one `verdict jev:` line carrying `keep`, `kill` or `stop`, its reason and its counts, and a model or commit pair that changed since the stored report prints `requalify: model changed` or `requalify: model commit changed` first. An arm that stops mid-run prints its `jev arm stopped:` line and `jev: partial lineages=<n>` and no verdict.
 
 The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
@@ -67,13 +65,13 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Layer | Role |
 |---|---|---|
-| `scripts/score-stop-rater.cjs` | Script | Offline replay of recorded stop decisions, the census, the label gate and the opt-in Deem and Jev arms. |
+| `scripts/score-stop-rater.cjs` | Script | Offline replay of recorded stop decisions, the census, the label gate and the opt-in Jev arm. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/score-stop-rater.vitest.ts` | Vitest | Covers the walker, the gold rule, the vote, the label gate and both arms against stub `cli-deem` and `jev` binaries. |
+| `tests/unit/score-stop-rater.vitest.ts` | Vitest | Covers the walker, the gold rule, the vote, the label gate and the Jev arm against a stub `jev` binary. |
 
 ---
 
