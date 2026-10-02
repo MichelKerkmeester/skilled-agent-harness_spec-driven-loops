@@ -37,15 +37,15 @@ The commit and PR templates each gain one fenced `json` block under a marked hea
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Remaining open question in `spec.md` §12 answered by the operator
-- [ ] 028/008 grammar changes frozen, or listed as contract entries to add
+- [x] Remaining open question in `spec.md` §12 answered by the operator [EVIDENCE: spec.md §12 records that no open questions remain and lists the operator's answers.]
+- [x] 028/008 grammar changes frozen, or listed as contract entries to add [EVIDENCE: the follow-up plan lists the rule gaps and the replay identifies the four historical deviations.]
 - [x] Current enforced rules inventoried from `.skilled/scripts/git-hooks/commit-msg`
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` Met or Waived with an ADR
-- [ ] Parity: existing `commit-msg.test.sh` cases give identical verdicts through the new validator
-- [ ] Cross-repo fixtures prove an edited template changes enforcement
-- [ ] `validate.sh --strict` RESULT: PASSED
+- [x] Every row in `acceptance-criteria.md` is Met, or is Waived/Superseded with a valid ADR [EVIDENCE: AC-001–AC-017 are closed; AC-007 is Superseded by ADR-004.]
+- [x] Parity: all original `commit-msg.test.sh` cases have explicit verdicts; the three deliberate changes are documented in ADR-004 [EVIDENCE: acceptance-criteria.md AC-007 records the 19/22 match and the three intentional changes.]
+- [x] Cross-repo fixtures prove an edited template changes enforcement [EVIDENCE: acceptance-criteria.md AC-004 records the fixture result; implementation-summary.md verification records cross-repo coverage.]
+- [x] `validate.sh --strict` RESULT: PASSED [EVIDENCE: final strict validation output recorded after packet edits.]
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -249,5 +249,35 @@ Contract ──► Validator ──► Adapters ──► Verification
 ## L3: ARCHITECTURE DECISION RECORD
 
 Decisions are recorded in full in `decision-record.md`: ADR-001 (the template carries the contract), ADR-002 (one Node validator), ADR-003 (what "100% enforced" means).
+
+---
+
+## FOLLOW-UP PLAN: TEMPLATE RULE COVERAGE (2026-10-02)
+
+This follow-up stays in the existing Level 3 packet. The ordered work below does not create phase child folders.
+
+### Execution Sequence
+
+1. **Align the contract and guidance.** Add `subject.scopeAliases`, `subject.warnLength` and `body.breakingSections` to the commit template's enforced-rules block. Replace the `fix(spec-kit)` example with a canonical scope and align `SKILL.md` wording.
+2. **Add validator behavior.** In `scripts/lib/message-contract.mjs`, report `subject.scope-alias` as an error for a configured alias, `subject.length-target` as a warning above 80 characters, and `body.breaking-sections` as an error when a breaking commit lacks any required section. Keep the existing hard error above 100 characters.
+3. **Cover message and hook behavior.** Add unit and commit-hook cases for each rule, including canonical scopes, alias rejection, the 80-character warning boundary, the 100-character hard limit and a breaking message missing each required section.
+4. **Run unit coverage in CI.** Add the unit-test command to `.github/workflows/message-contract.yml` so a workflow run executes the same suite used locally.
+5. **Replay the missed range.** Run `node .skilled/skills/sk-git/scripts/validate-message.mjs --rev-list f8519088b9..03afeb4552`. The replay must report exactly the three new rule IDs: `subject.scope-alias`, `subject.length-target` and `body.breaking-sections`, covering the four recorded deviations.
+
+### Design Constraints
+
+- Do not infer scope from changed paths. `commit-msg` cannot see the complete path set during `--amend`.
+- Keep the 80-character target at warning severity and the 100-character limit at error severity.
+- Keep warning surfacing in the agent gate and judgment checks about obvious reasons or independent owners with review.
+
+### Planned Verification
+
+```bash
+node --test .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs
+bash .skilled/scripts/git-hooks/tests/commit-msg.test.sh
+node .skilled/skills/sk-git/scripts/validate-message.mjs --rev-list f8519088b9..03afeb4552
+```
+
+The workflow must run the unit suite and report success for the implementing change. The packet's strict validator remains the documentation gate after the follow-up criteria have evidence and their statuses are updated.
 
 ---

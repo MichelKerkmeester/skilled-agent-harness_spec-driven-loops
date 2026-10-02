@@ -14,14 +14,14 @@ _memory:
     last_updated_at: "2026-10-01T19:05:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Closed AC-006: first CI run passed and the check is required by ruleset 24326453"
-    next_safe_action: "None; the packet is complete"
+    next_safe_action: "Push the change, confirm the message-contract workflow run, then mark AC-017 Met"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-git-032-template-driven-message-enforcement"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 94
     open_questions: []
     answered_questions: []
 ---
@@ -66,6 +66,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-010 | REQ-010 | Given a self-check bullet with no matching contract rule id, When the drift test runs, Then it fails | .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs:66; `message-contract.test.mjs` "drift is caught in both directions" (38b2135472) | Met | - |
 | AC-011 | REQ-011 | Given `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1` is set, When a misaligned commit is made, Then it is still blocked; and a `--no-verify` commit is caught by pre-push and CI | .skilled/scripts/git-hooks/tests/commit-msg.test.sh:190; `commit-msg.test.sh` case 9 and pre-push case 4 block with `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1` set; `rg` finds the variable only in those tests, the retired changelog and a spec-kit scratch playbook (38b2135472) | Met | - |
 | AC-012 | REQ-012 | Given a branch named outside the naming contract, When the agent creates it, it is pushed, or CI runs, Then each layer blocks it with the rule id | .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs:138; Branch rules in `message-contract.test.mjs`, agent-gate branch test, pre-push cases 5 and 6 (38b2135472) | Met | - |
+| AC-013 | REQ-013 | Given a canonical scope or a configured scope alias, When the contract validates it, Then canonical scopes pass and aliases fail with `subject.scope-alias`; replay of the missed range reports exactly the three new rule ids for the four recorded deviations | .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs:124; alias fails with `subject.scope-alias` and the canonical scope passes; `node --test` 24 pass 0 fail; .skilled/scripts/git-hooks/tests/commit-msg.test.sh:442 "the hook names the canonical scope" (PASS=31 FAIL=0); replay of `f8519088b9..03afeb4552` flags exactly 4ceef9d5e7 `body.breaking-sections`, 7488e80836 `subject.scope-alias`, 4754d270ab `subject.length-target` | Met | - |
+| AC-014 | REQ-014 | Given subjects at 80, 81 and 100 characters and a subject above 100, When validation runs, Then lengths above 80 through 100 warn with `subject.length-target`, while lengths above 100 remain blocked | .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs:139; an 81-character subject yields only the `subject.length-target` warning and 80 yields none, `node --test` 24 pass 0 fail; maxLength 100 stays an error; replay warns on the 82-character subject of 4754d270ab | Met | - |
+| AC-015 | REQ-015 | Given a breaking commit missing any of `Context`, `Changes` or `Verification`, When validation runs, Then it is blocked with `body.breaking-sections`; a breaking commit with all three sections passes this rule | .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs:161; "breaking commits require every declared section" passes; a breaking message with Context and Changes but no Verification is blocked by `validate-message.mjs --commit` with "Missing: Verification" (exit 1) | Met | - |
+| AC-016 | REQ-016 | Given the commit template and `SKILL.md`, When their scope guidance and examples are reviewed, Then they use `system-spec-kit`, `system-skill-advisor`, `system-deep-loop` and `repo-rules` as canonical scopes | .skilled/skills/sk-git/assets/commit-message-template.md:132; the example reads `fix(system-spec-kit):`; the scopeAliases block at .skilled/skills/sk-git/assets/commit-message-template.md:228 maps spec-kit, skill-advisor, deep-loop and rules to their canonical scopes; `--check-template --kind commit` exits 0 | Met | - |
+| AC-017 | REQ-017 | Given the unit and hook tests pass locally, When the message-contract workflow runs for the implementing change, Then CI executes the unit suite and reports success | .github/workflows/message-contract.yml:42; the step runs `node --test .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs`, which passes locally (24/24). The workflow run on the pushed change has not happened yet | Unmet | - |
 
 ### Status values
 
@@ -90,7 +95,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** Yes
+**Closeable:** No
 
-All twelve criteria are met or superseded. AC-007 is superseded by ADR-004.
+Of the 16 active criteria, 15 are Met. AC-007 remains Superseded by ADR-004 because three verdict changes were intentional. Follow-up criteria AC-013 through AC-016 are Met. AC-017 stays Unmet until the message-contract workflow runs on the pushed change.
 <!-- /ANCHOR:closure -->

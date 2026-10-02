@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-git/032-template-driven-message-enforcement"
-    last_updated_at: "2026-10-01T19:05:00Z"
+    last_updated_at: "2026-10-02T10:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Merged to main, pushed, CI passed and the check is required"
-    next_safe_action: "None; the packet is complete"
+    recent_action: "Enforced scope aliases, 80-char warning, breaking sections"
+    next_safe_action: "Push, then confirm CI runs the unit tests"
     blockers: []
     key_files:
       - ".skilled/skills/sk-git/scripts/lib/message-contract.mjs"
@@ -26,7 +26,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-git-032-template-driven-message-enforcement"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions:
       - "Creation standards cover PR descriptions and branch and worktree names"
@@ -84,6 +84,20 @@ Each of the three templates has an "Enforced rules" section holding a JSON block
 | `.opencode/plugins/sk-git-message-gate.js`, `sk-git/scripts/hooks/pi/git-message-gate.ts`, `.hermes/plugins/repo-guards/__init__.py` | Created / Modified | The agent gate for OpenCode (throws), Pi (`block: true`) and Hermes (`action: block`), each calling the shared `evaluateCommand`, with a test suite each, the `.pi/extensions` link, the registry's `pi` entry and a `.skilled/hooks/git-message-gate/` index |
 | Playbook scenario GIT-007 | Modified | It asked for the co-author footer the contract refuses; it now checks that the footer is left out and refused |
 | Root `README.md`, `CONTRIBUTING.md`, git-hooks `tests/README.md` | Modified | Describe template-driven rules and drop the bypass wording |
+
+### Follow-up: rules the template did not declare
+
+Four commit-message deviations reached `main` although every message passed the gate: a breaking commit without Context, Changes and Verification sections, an 82-character subject, scope `spec-kit` for `system-spec-kit` paths and scope `repo-rules` against `rules`. The gate enforces only what the template's "Enforced rules" block declares, and none of those rules was there. The template's own example even taught `fix(spec-kit)`.
+
+The contract now carries three more keys. `subject.scopeAliases` rejects a short scope and names the canonical one, `subject.warnLength` warns above 80 characters while 100 stays the hard limit, and `body.breakingSections` blocks a breaking commit unless every listed section is present. The template turns all three on, `SKILL.md` states the canonical scopes and the required sections, and CI now runs the unit tests it never ran before.
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `scripts/lib/message-contract.mjs` | Modified | Allow, shape-check and enforce the three keys with rule ids `subject.scope-alias`, `subject.length-target` and `body.breaking-sections` |
+| `assets/commit-message-template.md` | Modified | Declare the keys, list the rule ids, correct the `fix(spec-kit)` example |
+| `SKILL.md` and its Hermes mirror | Modified | Canonical scopes, the 80-character warning and the required breaking sections |
+| `message-contract.test.mjs`, `commit-msg.test.sh` | Modified | 24 unit tests (from 18) and a hook case that names the canonical scope |
+| `.github/workflows/message-contract.yml` | Modified | Run the unit tests in CI |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -135,6 +149,13 @@ Built in worktree `worktrees/073-message-contract-enforcement`, because the mach
 | OpenCode, Pi and Hermes gate suites | PASS 5/5, 3/3 and 48/48; alignment over the new adapter files 0 errors |
 | GIT-045 and GIT-007 command sequences run in scratch repositories | Every expected signal observed, including `[subject.max-length]` after the edited `maxLength` and `[attribution.forbidden]` on a forced footer |
 | `install-git-hooks-worktree-harness.sh` | FAIL, and it fails the same way before this change: it greps for a `HOOK_SOURCE_DIR` line the installer stopped using |
+| Follow-up: `node --test message-contract.test.mjs` / `commit-msg.test.sh` | PASS 24/24 / PASS=31 FAIL=0 |
+| Follow-up: replay `validate-message.mjs --rev-list "f8519088b9..03afeb4552"` | Flags exactly 4ceef9d5e7 `body.breaking-sections`, 7488e80836 `subject.scope-alias` and 4754d270ab `subject.length-target` (warning) |
+| Follow-up: breaking message with Context and Changes only | Blocked, "Missing: Verification" |
+| Review fixes: 3-iteration deep review (`review/review-report.md`) | PASS with 8 P2 advisories, all fixed by T031 to T035 |
+| Review fixes: `node --test message-contract.test.mjs` / `commit-msg.test.sh` | PASS 27/27 / PASS=32 FAIL=0 |
+| Review fixes: `Spec: ..` through `validate-message.mjs --commit` | Blocked with `trailer.spec-exists`; it passed before the fix |
+| Review fixes: GIT-046 sequence in a scratch repository / `validate-playbook-package.cjs --package sk-git` | Alias blocked, 84-character subject warned and committed, missing Verification blocked, complete breaking commit landed / PASS, 39 scenarios, 0 violations |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -146,6 +167,8 @@ Built in worktree `worktrees/073-message-contract-enforcement`, because the mach
 2. **The OpenCode, Pi and Hermes gates are proven by unit tests, not a live session.** Each test drives the real plugin or extension entry point against a throwaway repository, but no OpenCode, Pi or Hermes session has run one yet.
 3. **Old history is not re-checked.** The last 500 commits hold 130 that the new rules would block, such as `1430237b9b` (no body) and `8e4b86b247` (`Spec:` without a track). Pushes check only new commits.
 4. **Other repositories need the validator to run CI.** The local hooks work for any repository through the machine-wide install, but a repository's own CI needs a copy of `validate-message.mjs` and its library.
+5. **The CI run of the unit tests is not yet observed.** The workflow step exists and the suite passes locally; the first workflow run happens on the push.
+6. **Judgment rules stay with review.** Whether a reason is obvious from the subject, or whether two owners should be split, cannot be checked from the message.
 <!-- /ANCHOR:limitations -->
 
 ---

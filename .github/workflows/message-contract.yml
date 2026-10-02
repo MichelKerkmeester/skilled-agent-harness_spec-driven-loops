@@ -38,6 +38,9 @@ jobs:
           echo "VALIDATOR=$VALIDATOR" >> "$GITHUB_ENV"
           node "$VALIDATOR" --explain
 
+      - name: Test message contract rules
+        run: node --test .skilled/skills/sk-git/scripts/lib/message-contract.test.mjs
+
       - name: Check pushed commits and a new branch name
         if: github.event_name == 'push'
         env:

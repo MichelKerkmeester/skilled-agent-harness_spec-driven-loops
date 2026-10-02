@@ -219,7 +219,7 @@ Expected signals: The final branch is `main`; response explains any branch recov
 
 ## 8. COMMIT FORMATION (`GIT-004..GIT-007`)
 
-This category covers 5 scenarios. The linked per-feature files remain the canonical execution contract.
+This category covers 7 scenarios. The linked per-feature files remain the canonical execution contract.
 
 ### GIT-004 | Conventional commit from diff
 
@@ -316,6 +316,22 @@ Expected signals: `--explain` first reports no contract, then the copied templat
 #### Test Execution
 
 > **Feature File:** [GIT-045](commit-formation/template-rules-block-commits.md)
+
+### GIT-046 | Scope aliases, length target and breaking sections
+
+#### Description
+
+Verify the commit-msg gate refuses an alias scope, warns past the subject length target, and requires every breaking-change body section.
+
+#### Scenario Contract
+
+Prompt: `In a scratch repository that uses the sk-git commit template, show that an alias scope is blocked with the canonical scope named, that a subject past the length target commits with a warning, and that a breaking commit is blocked until its body carries every required section.`
+
+Expected signals: The alias scope fails with `[subject.scope-alias]` naming `system-spec-kit`, an 84-character subject commits with a `[subject.length-target]` warning, and a breaking commit missing Verification fails with `[body.breaking-sections]` until all three sections are present.
+
+#### Test Execution
+
+> **Feature File:** [GIT-046](commit-formation/scope-alias-length-target-breaking-sections.md)
 
 ---
 
@@ -850,6 +866,7 @@ The `sk-doc` package validator (`validate-playbook-package.cjs`) is the structur
 | Commit Formation | GIT-007 | `commit-formation/co-authored-by-footer.md` | Yes |
 | Commit Formation | GIT-044 | `commit-formation/find-commits-by-packet-and-id.md` | Yes |
 | Commit Formation | GIT-045 | `commit-formation/template-rules-block-commits.md` | Yes |
+| Commit Formation | GIT-046 | `commit-formation/scope-alias-length-target-breaking-sections.md` | Yes |
 | Safety Refusals | GIT-008 | `safety-refusals/no-verify-bypass-refused.md` | Yes |
 | Safety Refusals | GIT-009 | `safety-refusals/secrets-in-diff-refused.md` | Yes |
 | Safety Refusals | GIT-010 | `safety-refusals/force-push-to-main-refused.md` | Yes |

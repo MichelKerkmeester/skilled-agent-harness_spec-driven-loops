@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 57,
-    "missing-frontmatter": 6615,
-    "ok": 12617,
+    "missing-frontmatter": 6621,
+    "ok": 12618,
     "valid-empty-list": 3519
   },
-  "documentsScanned": 22808,
+  "documentsScanned": 22815,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4189be609616caf4b8d34e6abbfeb5278dc2a689a71f0b4452c63081ee4dd506",
+  "manifestHash": "9a00a6af998c2e8f32c4a6b0786886ec470aead2f85eeb293d2589d0220f7310",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -29589,6 +29589,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-git/manual-testing-playbook/commit-formation/scope-alias-length-target-breaking-sections.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-git/manual-testing-playbook/commit-formation/scope-inference-skill-folder.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -33650,18 +33656,6 @@
       "line": 2,
       "path": ".skilled/skills/system-skill-advisor/runtime/tests/helpers/README.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -38157,6 +38151,48 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-git/028-crawlable-commit-history/007-git-workflow-run-failures/research/dispatch-prompt.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-git/032-template-driven-message-enforcement/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
