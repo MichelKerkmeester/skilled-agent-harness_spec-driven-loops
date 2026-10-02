@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1614c74c442b967ba7d5fd1c8881d3e439a6d3f5daab5cb115dc9df2de91b804",
+  "corpusHash": "1bca07486827dc036f0e7c1ed0732c80651d3cc060affd969d442ab49d5bd851",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22808,
+  "includedPathCount": 22815,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6469,6 +6469,7 @@
     ".skilled/skills/sk-git/manual-testing-playbook/commit-formation/conventional-commit-from-diff.md",
     ".skilled/skills/sk-git/manual-testing-playbook/commit-formation/find-commits-by-packet-and-id.md",
     ".skilled/skills/sk-git/manual-testing-playbook/commit-formation/mixed-concerns-split-or-warn.md",
+    ".skilled/skills/sk-git/manual-testing-playbook/commit-formation/scope-alias-length-target-breaking-sections.md",
     ".skilled/skills/sk-git/manual-testing-playbook/commit-formation/scope-inference-skill-folder.md",
     ".skilled/skills/sk-git/manual-testing-playbook/commit-formation/template-rules-block-commits.md",
     ".skilled/skills/sk-git/manual-testing-playbook/cross-cli-orchestration/cli-opencode-and-cli-copilot-handback.md",
@@ -7749,8 +7750,6 @@
     ".skilled/skills/system-skill-advisor/runtime/tests/python/README.md",
     ".skilled/skills/system-skill-advisor/runtime/tests/schemas/README.md",
     ".skilled/skills/system-skill-advisor/runtime/tests/scorer/README.md",
-    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
-    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
     ".skilled/skills/system-skill-advisor/runtime/tests/skill-graph/README.md",
     ".skilled/skills/system-skill-advisor/runtime/tools/README.md",
     ".skilled/skills/system-skill-advisor/runtime/types/README.md",
@@ -11326,6 +11325,14 @@
     "specs/sk-git/032-template-driven-message-enforcement/decision-record.md",
     "specs/sk-git/032-template-driven-message-enforcement/implementation-summary.md",
     "specs/sk-git/032-template-driven-message-enforcement/plan.md",
+    "specs/sk-git/032-template-driven-message-enforcement/review/deep-review-strategy.md",
+    "specs/sk-git/032-template-driven-message-enforcement/review/iterations/iteration-001.md",
+    "specs/sk-git/032-template-driven-message-enforcement/review/iterations/iteration-002.md",
+    "specs/sk-git/032-template-driven-message-enforcement/review/iterations/iteration-003.md",
+    "specs/sk-git/032-template-driven-message-enforcement/review/prompts/iteration-1.md",
+    "specs/sk-git/032-template-driven-message-enforcement/review/prompts/iteration-2.md",
+    "specs/sk-git/032-template-driven-message-enforcement/review/prompts/iteration-3.md",
+    "specs/sk-git/032-template-driven-message-enforcement/review/review-report.md",
     "specs/sk-git/032-template-driven-message-enforcement/spec.md",
     "specs/sk-git/032-template-driven-message-enforcement/tasks.md",
     "specs/sk-prompt/007-sk-prompt-parent/001-research-and-context/implementation-summary.md",
@@ -22838,7 +22845,7 @@
     "specs/system-speckit/047-plugin-scanner-readiness/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4189be609616caf4b8d34e6abbfeb5278dc2a689a71f0b4452c63081ee4dd506",
+  "manifestHash": "9a00a6af998c2e8f32c4a6b0786886ec470aead2f85eeb293d2589d0220f7310",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

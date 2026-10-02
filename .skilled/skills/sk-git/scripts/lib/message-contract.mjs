@@ -51,12 +51,14 @@ const SHAPES = Object.freeze({
       types: 'string[]',
       scopeRequired: 'boolean',
       scopePattern: 'string',
+      scopeAliases: 'object',
       forbidNumericScope: 'boolean',
       allowBreakingMarker: 'boolean',
       summaryStart: { pattern: 'string', hint: 'string' },
       forbidTrailingPattern: 'string',
       forbidRepeatedSpaces: 'boolean',
       maxLength: 'number',
+      warnLength: 'number',
       vagueSummaries: 'string[]',
       warnPatterns: 'object[]',
     },
@@ -64,6 +66,7 @@ const SHAPES = Object.freeze({
       required: 'boolean',
       blankLineAfterSubject: 'boolean',
       warnLineLength: 'number',
+      breakingSections: 'string[]',
     },
     trailers: {
       looseKeys: 'string[]',
@@ -171,6 +174,16 @@ function checkRegex(source, at, errors) {
   }
 }
 
+// An invalid pattern is reported by checkRegex; treat it as a match here so one bad regex
+// does not also raise a second, misleading alias error.
+function safeRegexTest(source, value) {
+  try {
+    return new RegExp(source).test(value);
+  } catch {
+    return true;
+  }
+}
+
 /** Validate a parsed contract for one kind. Returns a list of problems; empty means usable. */
 export function contractShapeErrors(contract, kind) {
   const errors = [];
@@ -180,6 +193,38 @@ export function contractShapeErrors(contract, kind) {
 
   if (kind === 'commit') {
     const s = contract.subject || {};
+    if (s.scopeAliases && typeof s.scopeAliases === 'object' && !Array.isArray(s.scopeAliases)) {
+      for (const [alias, canonical] of Object.entries(s.scopeAliases)) {
+        if (typeof canonical !== 'string') {
+          errors.push(`"subject.scopeAliases.${alias}" must be string, got ${typeOf(canonical)}`);
+          continue;
+        }
+        // An alias must point at a scope the subject rule accepts, and never at another
+        // alias, or the error tells authors to use a scope that is itself rejected.
+        if (Object.hasOwn(s.scopeAliases, canonical)) {
+          errors.push(`"subject.scopeAliases.${alias}" points at "${canonical}", which is itself an alias`);
+        } else if (typeof s.scopePattern === 'string' && !safeRegexTest(s.scopePattern, canonical)) {
+          errors.push(`"subject.scopeAliases.${alias}" points at "${canonical}", which subject.scopePattern rejects`);
+        }
+      }
+    }
+    if (typeof s.warnLength === 'number' && (!Number.isFinite(s.warnLength) || s.warnLength <= 0)) {
+      errors.push('"subject.warnLength" must be a positive finite number');
+    } else if (typeof s.warnLength === 'number' && typeof s.maxLength === 'number' && s.warnLength >= s.maxLength) {
+      // At or above the hard limit the error always fires first, so the warning could never show.
+      errors.push(`"subject.warnLength" (${s.warnLength}) must be below "subject.maxLength" (${s.maxLength})`);
+    }
+    const b = contract.body || {};
+    if (Array.isArray(b.breakingSections) && b.breakingSections.length === 0) {
+      errors.push('"body.breakingSections" must be a non-empty array of strings');
+    }
+    (Array.isArray(b.breakingSections) ? b.breakingSections : []).forEach((label, i) => {
+      // Labels match as "<label>:" at the start of a body line: an empty label would match any
+      // line starting with ':', and a colon or line break makes the label impossible to write.
+      if (typeof label === 'string' && (label.trim() === '' || /[:\r\n]/.test(label))) {
+        errors.push(`"body.breakingSections[${i}]" must be a non-empty label without ':' or line breaks`);
+      }
+    });
     if (s.scopePattern) checkRegex(s.scopePattern, 'subject.scopePattern', errors);
     if (s.summaryStart?.pattern) checkRegex(s.summaryStart.pattern, 'subject.summaryStart.pattern', errors);
     if (s.forbidTrailingPattern) checkRegex(s.forbidTrailingPattern, 'subject.forbidTrailingPattern', errors);
@@ -325,15 +370,18 @@ export function commitRuleIds(contract) {
   const b = contract.body || {};
   const t = contract.trailers || {};
   if (s.forbidNumericScope) ids.push('subject.scope-numeric');
+  if (Object.keys(s.scopeAliases || {}).length > 0) ids.push('subject.scope-alias');
   if (s.summaryStart) ids.push('subject.summary-start');
   if (s.forbidRepeatedSpaces) ids.push('subject.repeated-spaces');
   if (s.forbidTrailingPattern) ids.push('subject.trailing-punctuation');
   if (s.vagueSummaries?.length) ids.push('subject.vague');
   if (typeof s.maxLength === 'number') ids.push('subject.max-length');
+  if (typeof s.warnLength === 'number') ids.push('subject.length-target');
   for (const w of s.warnPatterns || []) ids.push(w.id);
   if (b.blankLineAfterSubject) ids.push('body.blank-line');
   if (b.required) ids.push('body.required');
   if (typeof b.warnLineLength === 'number') ids.push('body.line-length');
+  if (b.breakingSections?.length) ids.push('body.breaking-sections');
   if (t.machineKeysInFinalParagraph) ids.push('trailer.final-paragraph');
   if (t.commitId) ids.push('trailer.commit-id-format');
   if (t.commitId?.unique) ids.push('trailer.commit-id-unique');
@@ -412,6 +460,9 @@ export function validateCommit(raw, contract, ctx = {}) {
     if (s.forbidNumericScope && scope !== undefined && /^[0-9]+$/.test(scope)) {
       err('subject.scope-numeric', `Scope '${scope}' is numeric-only; use the stable owning subsystem.`);
     }
+    if (scope !== undefined && Object.hasOwn(s.scopeAliases || {}, scope)) {
+      err('subject.scope-alias', `Scope '${scope}' is an alias; use canonical scope '${s.scopeAliases[scope]}'.`);
+    }
     if (s.summaryStart && !new RegExp(s.summaryStart.pattern).test(summary)) {
       err('subject.summary-start', `Summary must start with ${s.summaryStart.hint || `text matching ${s.summaryStart.pattern}`}.`);
     }
@@ -435,6 +486,9 @@ export function validateCommit(raw, contract, ctx = {}) {
   const subjectLength = [...subject].length;
   if (typeof s.maxLength === 'number' && subjectLength > s.maxLength) {
     err('subject.max-length', `Subject is ${subjectLength} characters; maximum is ${s.maxLength}.`);
+  }
+  if (typeof s.warnLength === 'number' && subjectLength > s.warnLength) {
+    warn('subject.length-target', `Subject is ${subjectLength} characters; target is ${s.warnLength} characters.`);
   }
 
   // Body lines: attribution, length, prose, breaking footer, machine trailers.
@@ -483,8 +537,13 @@ export function validateCommit(raw, contract, ctx = {}) {
         continue;
       }
       if (t.spec.mustExist && typeof ctx.specExists === 'function') {
-        const rel = path.posix.join(t.spec.root || '', value);
-        if (ctx.specExists(rel) === false) err('trailer.spec-exists', `${key} '${value}' does not name an existing packet folder (${rel}).`);
+        const root = path.posix.normalize(t.spec.root || '.').replace(/\/+$/, '');
+        const rel = path.posix.join(root, value);
+        // '..' segments can resolve to the root itself or above it, which always exists, so a
+        // trailer naming no packet would pass. The packet must sit strictly below the root.
+        const escapes = value.split('/').includes('..') || (root !== '.' && !rel.startsWith(`${root}/`));
+        if (escapes) err('trailer.spec-exists', `${key} '${value}' must name a packet folder below ${root}/, not a path that leaves it.`);
+        else if (ctx.specExists(rel) === false) err('trailer.spec-exists', `${key} '${value}' does not name an existing packet folder (${rel}).`);
       }
     }
   }
@@ -507,6 +566,18 @@ export function validateCommit(raw, contract, ctx = {}) {
 
   if (breaking && breakingRe && !hasBreakingFooter) {
     err('breaking.footer', "A breaking '!' subject requires a 'BREAKING CHANGE: <description>' footer line.");
+  }
+  if (breaking && b.breakingSections?.length) {
+    const missingSections = b.breakingSections.filter((label) => (
+      !bodyLines.some((line) => line.startsWith(`${label}:`))
+    ));
+    const labels = b.breakingSections.join(', ');
+    if (missingSections.length > 0) {
+      err(
+        'body.breaking-sections',
+        `A breaking '!' subject requires body sections: ${labels}. Missing: ${missingSections.join(', ')}.`,
+      );
+    }
   }
 
   if (b.required && !hasProse) {
@@ -639,6 +710,27 @@ export function templateDriftErrors(markdown, kind, file = '') {
   const problems = [];
   for (const id of ids) if (!named.has(id)) problems.push(`rule \`${id}\` is enforced but the template prose never names it`);
   for (const id of named) if (!ids.has(id)) problems.push(`the template prose names \`${id}\` but the rules block does not enforce it`);
+  if (kind === 'commit') problems.push(...lengthLiteralErrors(prose, contract));
+  return problems;
+}
+
+/**
+ * Prove every subject length a document restates matches the rules block. A number counts when
+ * it reads "N-character" or "N characters" and the next rule id on that line is a length rule,
+ * so prose can keep the readable number without drifting from the enforced value.
+ */
+export function lengthLiteralErrors(markdown, contract) {
+  const s = contract?.subject || {};
+  const configured = { 'subject.max-length': s.maxLength, 'subject.length-target': s.warnLength };
+  const problems = [];
+  for (const line of String(markdown).split('\n')) {
+    for (const m of line.matchAll(/(\d+)[- ]characters?\b[^`]*`(subject\.(?:max-length|length-target))`/g)) {
+      const expected = configured[m[2]];
+      if (typeof expected === 'number' && Number(m[1]) !== expected) {
+        problems.push(`prose states ${m[1]} characters for \`${m[2]}\` but the rules block sets ${expected}`);
+      }
+    }
+  }
   return problems;
 }
 

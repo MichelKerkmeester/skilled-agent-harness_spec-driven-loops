@@ -34,7 +34,7 @@ sk-git's commit standard covers far more than formatting: a fixed subject gramma
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-01 |
 | **Branch** | `worktrees/073-message-contract-enforcement` |
 <!-- /ANCHOR:metadata -->
@@ -265,5 +265,53 @@ Answered 2026-10-01 by the operator:
 - **Verification Checklist**: See `tasks.md`
 - **Decision Records**: See `decision-record.md`
 - **Prior work**: `specs/sk-git/028-crawlable-commit-history` (grammar, trailers, search surface), `specs/sk-git/030-commit-body-always-required`
+
+---
+
+## FOLLOW-UP: TEMPLATE RULE COVERAGE (2026-10-02)
+
+### Trigger and Root Cause
+
+Four message-contract deviations reached `main` in commits `4ceef9d5e7`, `4754d270ab` and `7488e80836`, although `node .skilled/skills/sk-git/scripts/validate-message.mjs --rev-list f8519088b9..03afeb4552` reported zero errors and zero warnings:
+
+- A breaking commit had no `Context`, `Changes` or `Verification` section.
+- An 82-character subject exceeded the 80-character target.
+- The scope `spec-kit` was used for system-spec-kit paths.
+- The scope `rules` was used where the canonical scope is `repo-rules`.
+
+The read-only investigation found that the validator enforces only rules represented in the template's `Enforced rules` JSON block. None of these four checks was represented there. The template example `fix(spec-kit)` also conflicts with scope rule 1 in `.skilled/skills/sk-git/SKILL.md`.
+
+### Operator Decisions
+
+- Canonical scopes are the full skill names `system-spec-kit`, `system-skill-advisor` and `system-deep-loop`, plus `repo-rules`. Configured aliases such as `spec-kit` and `rules` produce an error.
+- A breaking commit requires all three sections: `Context`, `Changes` and `Verification`. Missing any section is an error.
+- More than 80 subject characters produces a warning. More than 100 remains a hard error.
+
+### Follow-Up Requirements
+
+| ID | Requirement |
+|----|-------------|
+| REQ-013 | The commit template declares `subject.scopeAliases`; a configured alias produces the `subject.scope-alias` error and the canonical scopes are the full skill names plus `repo-rules`. |
+| REQ-014 | The commit template declares `subject.warnLength`; subjects over 80 characters produce the `subject.length-target` warning, while subjects over 100 characters remain blocked. |
+| REQ-015 | The commit template declares `body.breakingSections`; a breaking commit missing any of `Context`, `Changes` or `Verification` is blocked with `body.breaking-sections`. |
+| REQ-016 | The template example and `SKILL.md` wording use the canonical scopes and agree with the enforced contract. |
+| REQ-017 | Unit and hook tests cover the new rules, and the message-contract CI workflow runs the unit test suite. |
+
+### Follow-Up Scope
+
+In scope are the three contract keys and validator checks, the canonical-scope example correction, aligned scope wording in `SKILL.md`, unit and commit-hook tests, a CI step for the unit suite, and a `--rev-list` replay of the missed range. The measured impact over the last 300 commits is 26 scope-alias flags, 24 subject-length warnings and one breaking-sections flag since the gate went live.
+
+Path-based scope inference is rejected because `commit-msg` cannot see the full path set during `--amend`. Warning display in the agent gate is out of scope. Judgment checks, including whether a reason is obvious or owners are independent, stay with review.
+
+| File Path | Planned Change |
+|-----------|----------------|
+| `.skilled/skills/sk-git/assets/commit-message-template.md` | Add the three contract keys and replace the noncanonical scope example. |
+| `.skilled/skills/sk-git/scripts/lib/message-contract.mjs` | Enforce the configured scope aliases, subject target warning and breaking-section requirement. |
+| `.skilled/skills/sk-git/scripts/lib/message-contract.test.mjs` | Add unit coverage for each new rule and its boundary cases. |
+| `.skilled/scripts/git-hooks/tests/commit-msg.test.sh` | Add hook-level coverage for the new blocking rules and warning behavior. |
+| `.skilled/skills/sk-git/SKILL.md` | Align commit scope and subject wording with the contract. |
+| `.github/workflows/message-contract.yml` | Run the message-contract unit suite in CI. |
+
+The follow-up remains in this Level 3 packet. Its planning artifacts are `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `decision-record.md`.
 
 ---

@@ -338,7 +338,7 @@ Hard requirements:
 - Summary starts with a lowercase imperative verb, names the changed behavior or artifact (not
   the work process), ends without punctuation, has no repeated spaces, and is specific enough to
   distinguish this commit from adjacent work.
-- Subject should be at most 80 characters and must not exceed 100.
+- Subject has an 80-character target (`subject.length-target`, warning) and a 100-character hard limit (`subject.max-length`).
 - A `!` requires a `BREAKING CHANGE:` footer.
 
 Do not use vague summaries like `update`, `changes`, `cleanup`, or `work in progress`.
@@ -382,6 +382,8 @@ First match, by logical owner:
 9. A dominant top-level component -> its lowercase name.
 10. Inseparable cross-repository change -> `repo`.
 
+Use the full skill folder name as the canonical scope. For example, `.skilled/skills/system-spec-kit/...` uses `system-spec-kit`; files in `.skilled/repo-rules/` use `repo-rules`. The template's `subject.scope-alias` rule rejects short forms listed in its `scopeAliases` map.
+
 If two independent owners remain, split the commit instead of inventing a combined scope.
 
 #### 5. Summary Construction
@@ -406,11 +408,11 @@ do not count as a body. Only the Git-generated subjects in §1 are exempt.
 
 Use the full structure below when any condition applies:
 
-- The change fixes a regression, failure, race, security issue, or data risk, or it is breaking or has migration requirements.
+- The change fixes a regression, failure, race, security issue, or data risk, or it is breaking or has migration requirements. A breaking commit MUST carry the `Context`, `Changes` and `Verification` sections below; they are required, not preferred.
 - The reason or tradeoff is not obvious from the subject.
 - The commit spans code plus generated metadata or multiple repository areas.
 
-Preferred structure:
+Required structure for breaking commits; recommended for the other cases above:
 
 ```text
 Context: <plain-language problem or reason>

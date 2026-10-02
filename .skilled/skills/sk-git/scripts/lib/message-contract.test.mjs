@@ -20,7 +20,10 @@ import { execFileSync } from 'node:child_process';
 import {
   ContractError,
   TEMPLATE_FILES,
+  commitRuleIds,
+  contractShapeErrors,
   extractContract,
+  lengthLiteralErrors,
   loadContract,
   rangeContext,
   templateDriftErrors,
@@ -78,6 +81,26 @@ test('a conforming commit passes and git-generated subjects pass through', () =>
   }
 });
 
+test('optional commit rules stay inactive when their contract keys are absent', () => {
+  const contract = {
+    ...COMMIT,
+    subject: { ...COMMIT.subject },
+    body: { ...COMMIT.body },
+  };
+  delete contract.subject.scopeAliases;
+  delete contract.subject.warnLength;
+  delete contract.body.breakingSections;
+
+  assert.deepEqual(validateCommit('feat(sk-git): add a thing\n\nWhy.', contract), {
+    errors: [],
+    warnings: [],
+    passthrough: false,
+  });
+  for (const id of ['subject.scope-alias', 'subject.length-target', 'body.breaking-sections']) {
+    assert.equal(commitRuleIds(contract).includes(id), false, id);
+  }
+});
+
 test('subject rules each fire on their own case', () => {
   const cases = [
     ['update', 'subject.format'],
@@ -93,6 +116,34 @@ test('subject rules each fire on their own case', () => {
   }
 });
 
+test('scope aliases name the canonical scope and canonical scopes pass', () => {
+  const contract = {
+    ...COMMIT,
+    subject: { ...COMMIT.subject, scopeAliases: { 'old-scope': 'new-scope' } },
+  };
+  const alias = validateCommit('feat(old-scope): add a thing\n\nWhy.', contract);
+  assert.deepEqual(ids(alias), ['subject.scope-alias']);
+  assert.match(alias.errors[0].message, /new-scope/);
+  assert.deepEqual(ids(validateCommit('feat(new-scope): add a thing\n\nWhy.', contract)), []);
+  assert.ok(commitRuleIds(contract).includes('subject.scope-alias'));
+});
+
+test('subject length target warns above its threshold and stays quiet at the threshold', () => {
+  const contract = {
+    ...COMMIT,
+    subject: { ...COMMIT.subject, warnLength: 80 },
+  };
+  const prefix = 'feat(sk-git): ';
+  const subjectOfLength = (length) => `${prefix}${'a'.repeat(length - [...prefix].length)}`;
+  const above = validateCommit(`${subjectOfLength(81)}\n\nWhy.`, contract);
+  assert.deepEqual(ids(above), []);
+  assert.deepEqual(above.warnings.map((warning) => warning.id), ['subject.length-target']);
+  const at = validateCommit(`${subjectOfLength(80)}\n\nWhy.`, contract);
+  assert.deepEqual(ids(at), []);
+  assert.deepEqual(at.warnings, []);
+  assert.ok(commitRuleIds(contract).includes('subject.length-target'));
+});
+
 test('body, trailer and attribution rules each fire on their own case', () => {
   const v = (msg, ctx) => ids(validateCommit(msg, COMMIT, ctx));
   assert.ok(v('feat(sk-git): add a thing\nWhy.').includes('body.blank-line'));
@@ -103,9 +154,38 @@ test('body, trailer and attribution rules each fire on their own case', () => {
   assert.ok(v('feat(sk-git): add a thing\n\nWhy.\n\nSpec: specs/sk-git/001-x').includes('trailer.spec-prefix'));
   assert.ok(v('feat(sk-git): add a thing\n\nWhy.\n\nSpec: sk-git/001-x', { specExists: () => false }).includes('trailer.spec-exists'));
   assert.deepEqual(v('feat(sk-git): add a thing\n\nWhy.\n\nSpec: sk-git/001-x', { specExists: () => true }), []);
+  // '..' resolves to the specs root or above it, which always exists, so existence alone passes it.
+  for (const escape of ['..', 'sk-git/../..', '../specs/sk-git/001-x']) {
+    assert.ok(v(`feat(sk-git): add a thing\n\nWhy.\n\nSpec: ${escape}`, { specExists: () => true }).includes('trailer.spec-exists'), escape);
+  }
   assert.ok(v('feat(sk-git): add a thing\n\nWhy.\n\nCo-Authored-By: A <a@b.c>').includes('attribution.forbidden'));
   assert.ok(v('feat(sk-git)!: drop a thing\n\nWhy.').includes('breaking.footer'));
   assert.deepEqual(v('feat(sk-git): add a thing\n\nThe Anthropic client moved.'), [], 'prose naming the vendor is not attribution');
+});
+
+test('breaking commits require every declared section', () => {
+  const footer = 'BREAKING CHANGE: the interface changed';
+  const missingVerification = validateCommit(
+    `feat(sk-git)!: change the interface\n\nContext: why.\nChanges: what changed.\n${footer}`,
+    COMMIT,
+  );
+  assert.deepEqual(ids(missingVerification), ['body.breaking-sections']);
+  assert.match(missingVerification.errors[0].message, /Missing: Verification\./);
+
+  const missingChangesAndVerification = validateCommit(
+    `feat(sk-git)!: change the interface\n\nContext: why.\n${footer}`,
+    COMMIT,
+  );
+  assert.deepEqual(ids(missingChangesAndVerification), ['body.breaking-sections']);
+  assert.match(missingChangesAndVerification.errors[0].message, /Missing: Changes, Verification\./);
+
+  const allSections = validateCommit(
+    `feat(sk-git)!: change the interface\n\nContext: why.\nChanges: what changed.\nVerification: tested.\n${footer}`,
+    COMMIT,
+  );
+  assert.deepEqual(ids(allSections), []);
+  assert.deepEqual(ids(validateCommit('feat(sk-git): add a thing\n\nWhy.', COMMIT)), []);
+  assert.ok(commitRuleIds(COMMIT).includes('body.breaking-sections'));
 });
 
 test('the pre-stamp stage drops attribution the stamper would strip', () => {
@@ -175,6 +255,62 @@ test('a .sk-git copy is used, and a broken one throws rather than passing', () =
   assert.throws(() => loadContract(dir, 'commit'), ContractError);
   fs.writeFileSync(file, '## Enforced rules\n\n```json\n{ not json\n```\n');
   assert.throws(() => loadContract(dir, 'commit'), ContractError);
+});
+
+test('a non-string scope alias value makes the commit contract invalid', () => {
+  const dir = tempRepo(false);
+  const localContracts = path.join(dir, '.sk-git');
+  fs.mkdirSync(localContracts);
+  const file = path.join(localContracts, TEMPLATE_FILES.commit);
+  const contract = { kind: 'commit', subject: { scopeAliases: { legacy: 42 } } };
+  fs.writeFileSync(file, [
+    '## Enforced rules',
+    '',
+    '```json',
+    JSON.stringify(contract),
+    '```',
+    '',
+  ].join('\n'));
+  assert.throws(() => loadContract(dir, 'commit'), (error) => (
+    error instanceof ContractError && error.message.includes('subject.scopeAliases.legacy')
+  ));
+});
+
+test('subject warning length and breaking sections require valid shapes', () => {
+  assert.ok(contractShapeErrors({ kind: 'commit', subject: { warnLength: 0 } }, 'commit')
+    .some((problem) => problem.includes('subject.warnLength')));
+  assert.ok(contractShapeErrors({ kind: 'commit', body: { breakingSections: [] } }, 'commit')
+    .some((problem) => problem.includes('body.breakingSections')));
+  assert.ok(contractShapeErrors({ kind: 'commit', body: { breakingSections: ['Impact', 42] } }, 'commit')
+    .some((problem) => problem.includes('body.breakingSections')));
+  for (const label of ['', '  ', 'Context:', 'Con\ntext']) {
+    assert.ok(contractShapeErrors({ kind: 'commit', body: { breakingSections: [label] } }, 'commit')
+      .some((problem) => problem.includes('body.breakingSections[0]')), JSON.stringify(label));
+  }
+});
+
+test('a warning length at or above the hard limit makes the commit contract invalid', () => {
+  assert.ok(contractShapeErrors({ kind: 'commit', subject: { maxLength: 100, warnLength: 100 } }, 'commit')
+    .some((problem) => problem.includes('subject.warnLength')));
+  assert.ok(!contractShapeErrors({ kind: 'commit', subject: { maxLength: 100, warnLength: 80 } }, 'commit')
+    .some((problem) => problem.includes('subject.warnLength')));
+});
+
+test('a scope alias must point at a scope the pattern accepts, never at another alias', () => {
+  const subject = (scopeAliases) => ({ kind: 'commit', subject: { scopePattern: '^[a-z][a-z0-9-]*$', scopeAliases } });
+  assert.ok(contractShapeErrors(subject({ legacy: 'Not_Valid' }), 'commit')
+    .some((problem) => problem.includes('subject.scopeAliases.legacy')));
+  assert.ok(contractShapeErrors(subject({ a: 'b', b: 'canonical' }), 'commit')
+    .some((problem) => problem.includes('subject.scopeAliases.a')));
+  assert.deepEqual(contractShapeErrors(subject({ legacy: 'canonical' }), 'commit'), []);
+});
+
+test('restated subject lengths must match the rules block, in the template and in SKILL.md', () => {
+  const contract = extractContract(fs.readFileSync(path.join(ASSETS, TEMPLATE_FILES.commit), 'utf8'));
+  assert.deepEqual(lengthLiteralErrors('Aim for 81 characters (`subject.length-target`).', contract).length, 1);
+  for (const skill of [path.resolve(HERE, '../../SKILL.md'), path.resolve(HERE, '../../../../../.hermes/skills/sk-git/SKILL.md')]) {
+    assert.deepEqual(lengthLiteralErrors(fs.readFileSync(skill, 'utf8'), contract), [], skill);
+  }
 });
 
 test('skgit.contractDir pointing nowhere is an error, not an opt-out', () => {
