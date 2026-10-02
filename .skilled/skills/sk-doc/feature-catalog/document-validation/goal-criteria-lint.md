@@ -29,7 +29,7 @@ Each criterion falls in one class. A bracketed template slot is `placeholder`, a
 
 With `--json` the lint prints each criterion as an `id` of `path:line`, a `text_sha12` (the first 12 hex characters of the line's sha256), its class and the spans each rule flagged. `score-goal-lint.cjs` joins operator labels to those records by `text_sha12`. It prints precision, recall and F1 per rule, the labeled violation rate with a Wilson 95% interval, `stale=` for labels whose line has changed and `unlabeled=` for rows not labeled yet. It refuses a labels file that mixes rubrics. Under a 5% labeled violation rate it prints `r20 model arm not built: labeled_violation_rate<0.05`. `goal-criteria-labels.jsonl` holds the drawn sample: 98 rows labeled under rubric `mimo-02-strict-v1` by an operator-delegated arbiter and 2 stale rows left null.
 
-`--jev` and `--deem` each add a model arm, and each requires `--out <dir>`. The arm asks two noul questions per labeled criterion, three reruns each for Jev and one pass for Deem, and prints a per-rule column plus a keep-or-kill verdict. A rule keeps its model column only on an F1 gain of at least 0.2 over the lint, precision of at least 0.8 and, for Jev, flips of at most 0.10. A rule with fewer than nine in ten rows measured prints `stop (coverage)` instead of a verdict. Every call lands in `calls.jsonl` and the columns land in `report.json` under `--out`. Without a switch the scorer's output is unchanged.
+`--jev` adds a model arm and requires `--out <dir>`. The arm asks two noul questions per labeled criterion, three reruns each, and prints a per-rule column plus a keep-or-kill verdict. A rule keeps its model column only on an F1 gain of at least 0.2 over the lint, precision of at least 0.8 and flips of at most 0.10. A rule with fewer than nine in ten rows measured prints `stop (coverage)` instead of a verdict. Every call lands in `calls.jsonl` and the columns land in `report.json` under `--out`. Without a switch the scorer's output is unchanged.
 
 ---
 
@@ -40,7 +40,7 @@ With `--json` the lint prints each criterion as an `id` of `path:line`, a `text_
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs` | Script | Walks the goals, classifies each criterion and runs rules 4 and 5 |
-| `.skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs` | Script | Scores the lint against labels, prints the stop line and, with `--jev` or `--deem`, runs a model arm that writes `calls.jsonl` and `report.json` under `--out` |
+| `.skilled/skills/sk-doc/sk-create-goal/scripts/score-goal-lint.cjs` | Script | Scores the lint against labels, prints the stop line and, with `--jev`, runs a model arm that writes `calls.jsonl` and `report.json` under `--out` |
 | `.skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl` | Data | The drawn sample, 98 rows labeled under `mimo-02-strict-v1` |
 | `.skilled/hooks/goal/lib/goal-slice.cjs` | Shared | Cuts the durable slice the criteria are read from |
 
@@ -49,7 +49,7 @@ With `--json` the lint prints each criterion as an `id` of `path:line`, a `text_
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/sk-doc/sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs` | Unit | Each rule's pass and fail cases, the line classes, the scratch and archive exclusions, parser parity with the checker and the exit-0 command line |
-| `.skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs` | Unit | Per-rule numbers, the Wilson interval, stale and unlabeled rows, mixed rubrics and the stop line on synthetic labels, plus both model arms on stub CLIs covering gates, verdicts, coverage stops and the `--out` artifacts |
+| `.skilled/skills/sk-doc/sk-create-goal/scripts/tests/score-goal-lint.test.cjs` | Unit | Per-rule numbers, the Wilson interval, stale and unlabeled rows, mixed rubrics and the stop line on synthetic labels, plus the model arm on a stub CLI covering its gate, verdicts, coverage stops and the `--out` artifacts |
 | `.skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md` | Manual playbook | Runs the lint on a scratch packet and confirms the goal check still passes |
 
 ---
