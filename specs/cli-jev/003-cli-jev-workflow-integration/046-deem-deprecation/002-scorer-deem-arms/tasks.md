@@ -34,8 +34,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record each scorer's default stdout before any edit to `scratch/before/`
-- [ ] T002 Baseline each covering suite from 001's inventory
+- [x] T001 Record each scorer's default stdout before any edit to `scratch/before/`. Evidence: replaced by an old-against-new run on one tree, since 017 and 032 read the docs this phase edits. The old copy came from `48ac21c64e`
+- [x] T002 Baseline each covering suite from 001's inventory. Evidence: `../001-removal-plan/inventory.md` section 3
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,9 +43,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 [P] DeepSeek batches of one-arm scorers, one brief per batch. Check: the batch's suites pass
-- [ ] T004 [P] Luna takes 023 and 027. Check: both suites pass and their Jev report fields are unchanged
-- [ ] T005 Remove any shared Deem helper whose last caller is gone
+- [x] T003 [P] DeepSeek batches of one-arm scorers, one brief per batch. Check: the batch's suites pass. Evidence: six batches, commits `5a3e2a39bc`, `6cbd3457b3`, `afe92ea943`, `006cde49f0`, `8e9eb79899` and `fa3cb972ab`
+- [x] T004 [P] Luna takes 023 and 027. Check: both suites pass and their Jev report fields are unchanged. Evidence: commit `eca264fb72`, both suites 0 fail
+- [x] T005 Remove any shared Deem helper whose last caller is gone. Evidence: no shared module held one. Each scorer carried its own, and 019's import of 002's gate left with it in `fa3cb972ab`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,10 +53,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Record each scorer's default stdout after, and diff. Check: every diff empty
-- [ ] T007 Run each scorer with `--deem`. Check: non-zero through the unknown-flag path
-- [ ] T008 Cross-family review. Check: P0 and P1 fixed, P2 in `goal.md`
-- [ ] T009 Closure: `repair-derived.cjs --apply`, `validate.sh --strict` and `check-goal.cjs`. Check: `RESULT: PASSED` on each
+- [x] T006 Record each scorer's default stdout after, and diff. Check: every diff empty. Evidence: `scratch/default-diff.txt`, 16 identical, 3 differ only in a removed Deem planned-calls field, 019 differs only in a timing line
+- [x] T007 Run each scorer with `--deem`. Check: non-zero through the unknown-flag path. Evidence: `scratch/deem-flag.txt`, 20 of 20 exit 2
+- [x] T008 Cross-family review. Check: P0 and P1 fixed, P2 in `goal.md`. Evidence: Luna reviewed the DeepSeek batches and DeepSeek reviewed Luna's. Six P1 fixed in `13991d53f8`, and a later sweep restored 32 more tests in `0cf0eadc93`
+- [x] T009 Closure: `repair-derived.cjs --apply`, `validate.sh --strict` and `check-goal.cjs`. Check: `RESULT: PASSED` on each
 <!-- /ANCHOR:phase-3 -->
 
 ---
