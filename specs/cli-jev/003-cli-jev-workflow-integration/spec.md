@@ -165,6 +165,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 41 | 041-code-readmes-and-routing-alignment/ | Give every code folder this packet created a README, and align the cli-classifier hub's and both modes' smart routing with the sk-create-skill canon, with every correct routing decision unchanged. | Complete |
 | 42 | 042-label-drafting-and-confirmation/ | Fill the eleven label gates today's corpus can fill, run each zero-call gate, and record the blocked five and 028. | Complete |
 | 43 | 043-label-finding-fixes/ | Fix the tool defects 042's labels found: 027's stop-rater gold and lineage filter, 003's goal-core evidence clamp, and 006's model arm. | Complete |
+| 44 | 044-deem-answer-shape-fix/ | Make cli-deem read the answer shapes the real local Deem server sends, and make 027's and 026's scorers read judgment output at the `answers.answer` depth real cli-deem and jev print. | In Progress |
 
 ### Phase Transition Rules
 
@@ -221,6 +222,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 040-hard-rules-sidecar | 041-code-readmes-and-routing-alignment | 040 is Complete and the hub's paths are final | Each README validates and its command passes, `ROUTER.md` is active and `parent-skill-check` passes with 0 warnings, and the routing probe keeps its correct rows |
 | 041-code-readmes-and-routing-alignment | 042-label-drafting-and-confirmation | 041 is Complete, so the label files and scorers are at their final paths | Every fillable feature's zero-call gate prints its line or a recorded stop, and `validate.sh --strict` passes on 042 |
 | 042-label-drafting-and-confirmation | 043-label-finding-fixes | 042 is Complete and its decisions logs record the defects | Each changed suite passes, the cross-family review leaves no open P0 or P1, and `validate.sh --strict` passes on 043 |
+| 043-label-finding-fixes | 044-deem-answer-shape-fix | 043 is Complete and the operator asked for the fix | The cli-deem client gets a number or a known key from the local server for `noul`, `choice` and `score`, each changed suite passes, the cross-family review leaves no open P0 or P1, and `validate.sh --strict` passes on 044 |
 <!-- /ANCHOR:phase-map -->
 
 ---
