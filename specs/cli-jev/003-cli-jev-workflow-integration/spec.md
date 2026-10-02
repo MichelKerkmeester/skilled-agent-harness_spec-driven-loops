@@ -168,7 +168,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 44 | 044-deem-answer-shape-fix/ | Make cli-deem read the answer shapes the real local Deem server sends, and make 027's and 026's scorers read judgment output at the `answers.answer` depth real cli-deem and jev print. | Complete |
 | 45 | 045-deem-live-runs/ | Run every scorer's Deem arm once on the local Deem server and record each result, and close the three Deem findings 044 recorded. Stopped after 2 of 20 when the operator retired Deem. | Complete |
 | 46 | 046-deem-deprecation/ | Remove `cli-deem` and every scorer's Deem arm so `cli-jev` is the only classifier, with `cli-classifier` kept as a parent hub for a future one. Four child phases. | Complete |
-| 47 | 047-measure-every-jev-feature/ | Give each of the 15 features without a Jev measurement a live Jev verdict or a zero-call bound from confirmed labels, then resend the benefit overview. | In Progress |
+| 47 | 047-measure-every-jev-feature/ | Give each of the 15 features without a Jev measurement a live Jev verdict or a zero-call bound from confirmed labels, then resend the benefit overview. | Complete |
 
 ### Phase Transition Rules
 

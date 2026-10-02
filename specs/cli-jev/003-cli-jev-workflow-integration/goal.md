@@ -116,7 +116,7 @@ Decisions outrank child goals.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 047 are Complete
+- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 047 are Complete
 - [x] 019 to 035 are Complete, each at its verdict line or label gate
 - [x] `validate_document.py` exits 0 on each changed skill doc
 - [x] No open P0 or P1, and no changed suite fails beyond its baseline
@@ -270,4 +270,5 @@ and findings belong here.
 | Directive amendment: retire Deem, bind 046 (2026-10-02) | Source: the operator's "Stop and deprecate deem completely", "lets deperecate deem cli completely and only keep cli jev", "Cli classifier still needs to stay a parent hun tho", "In case we want to support future classifiers" and "Use luna max 6 fast cli codex and deepseek v4.1 flash max cli pi opencode go and cline provider as needed". D1 is now Jev only. D2 keeps `cli-classifier` a parent hub for `cli-jev` and future classifiers. D3 releases 019 to 046, the binding gains 046 and criterion 1 reads 036 to 046. D5 names Luna 6 max fast and DeepSeek V4.1 Flash max, and SWE leaves. 045 closed with its last 18 runs and review superseded by its ADR-001, after 002 and 006 both answered `kill`. 046 has four phases, each with its own goal: 001 inventory and decisions, 002 scorer arms, 003 the mode and hub, 004 sweep and verification. Durable slice 3996 characters after trimming D2 and D5 wording |
 | 046 Complete, all criteria met again (2026-10-02) | 046 removed `cli-deem` and every scorer's Deem arm, and `cli-classifier` serves `cli-jev` alone as a parent hub (commits `b946a35518` to `5655e1e388`, P2s in the logs of 046's children). From the final state: 24 inventory suites 0 fail, changed scorer suites 446 of 446, advisor suite 1055 passed with 0 failed, `validate.sh --strict --recursive` passes on this parent, its 46 children and 046's 4 nested children, and `check-goal.cjs` passes on all 51 goals |
 | 047 opened (2026-10-02) | The operator asked for every Jev feature to be measured. Phase 047 added with its goal and bound as row 47, criterion 1 reopened. Recursive strict validation printed `RESULT: PASSED` 48 times with 0 failed, and `check-goal.cjs` passed on all 52 goals. To fit the 4,000-character budget, D2, D3, D5 and D7 lost a few words each with no choice changed |
+| 047 Complete, all criteria met again (2026-10-02) | 047 measured all 15 remaining Jev features: keep 020, 022, 024, 025, 030, kill 006, 027, 028, 033, stop on margin 026, 031, no headroom 003, 005, 021, 034. One scorer fix in 027 (commit `51b2b3bd51`). Recursive strict 48 PASSED 0 FAILED, `check-goal.cjs` 52 of 52. Committed on `worktrees/082-measure-every-jev-feature`, not merged |
 <!-- /ANCHOR:log -->
