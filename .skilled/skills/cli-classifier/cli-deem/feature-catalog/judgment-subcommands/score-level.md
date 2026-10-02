@@ -22,7 +22,7 @@ Each `-l DESCRIPTION` adds one level, lowest first. A reader written for `jev` o
 
 ## 2. HOW IT WORKS
 
-The client sends the levels in flag order as the `levels` list of a `score` question. A `score` with no `-l` exits 2 before sending.
+The client sends the levels in flag order as the `levels` list of a `score` question. The server takes 2 to 10 levels, so a `score` whose `-l` count falls outside that range exits 2 before sending.
 
 Deem answers with `score`, the expected level — a float from `0` to the last level index — plus a `legend` mapping each index to its level text and `probabilities` keyed by index as `"0"`, `"1"` and onward. The client range-checks `score` and passes the answer through unchanged, `confidence` and `x_temperature` included. `--value` prints the score alone.
 

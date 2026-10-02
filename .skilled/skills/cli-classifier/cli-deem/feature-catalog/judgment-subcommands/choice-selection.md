@@ -32,13 +32,14 @@ These refusals exit 2 and send nothing:
 
 | Input | Message |
 |---|---|
+| One option | `choice needs at least 2 -o options` |
 | More than 26 options | `choice exceeds the 26-option cap (got N)` |
 | Two options with one description | `duplicate option description: D` |
 | Two options with one key | `duplicate option key: K` |
 | An `-o` value without `=` | `expected KEY=DESCRIPTION, got: X` |
 | No `-o` at all | `choice needs at least one -o KEY=DESCRIPTION` |
 
-Exactly 26 options are sent. The server's torch backend reads at most 26 options per question.
+Two to 26 options are sent. The server needs at least 2 options on a `choice` and its torch backend reads at most 26 per question.
 
 ### Answer
 
@@ -58,7 +59,7 @@ Deem answers with the chosen description in `choice` and `probabilities` keyed b
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs` | Node test | A choice round trip, the 26 and 27 option cases and the duplicate description and key refusals |
+| `.skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs` | Node test | A choice round trip, the 1, 26 and 27 option cases and the duplicate description and key refusals |
 
 ---
 

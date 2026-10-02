@@ -35,7 +35,7 @@ A classifier that runs locally costs no key and no quota. That only helps when a
 
 ### Why This Skill Exists
 
-Deem's server speaks the same System One protocol as Jev but takes its request fields differently. Pointing the Python `jev` CLI at it fails for `choice` and `score` with HTTP 400, because `jev` sends the options as `criteria` where Deem expects an `options` or `levels` list. Deem's `choice` answer also names the option text where a `jev` reader expects the submitted key. The stub backend also answers `status` `ok` with a flat 0.5 for everything, so a caller that trusted `status` alone would treat noise as a judgment.
+Deem's server speaks the same System One protocol as Jev but names some request fields differently. Its `parse_question` reads `criteria` first, a key-to-description map for `choice` and an ordered list for `score`, and treats `options` and `levels` as legacy aliases. Both shapes returned HTTP 200 when tried against the installed server on 2026-10-02. Whether the Python `jev` CLI works end to end against Deem was not tested. This client sends the `options` and `levels` aliases. What still differs is the answer shape: a `choice` answer names the option text where a `jev` reader expects the submitted key. The stub backend also answers `status` `ok` with a flat 0.5 for everything, so a caller that trusted `status` alone would treat noise as a judgment.
 
 ### Why It Matters
 
@@ -85,7 +85,7 @@ cli-deem health  -->  GET /health, then the commit pair on disk  -->  exit 0, or
    |
    v
 cli-deem noul | choice | score | run
-   |   checks flags and caps (26 options, 64 questions)
+   |   checks flags and caps (2 to 26 options, 2 to 10 levels, 64 questions)
    v
 POST /v1/systemone (Deem's shape, no key)  -->  answer validated; choice mapped to its key  -->  stdout
 ```
@@ -123,7 +123,8 @@ For a hosted judgment with a stored key, use this hub's `cli-jev` mode instead. 
 | `health` exits 3 with `refused backend: stub` | The server runs without a checkpoint | Restart it with `deem-ctl start`, which loads the pinned checkpoint |
 | `health` exits 3 with `refused model: deem-1.5` | A Deem server started without the pinned model id holds the port | Stop it and start the pinned one with `deem-ctl` |
 | `health` exits 2 with `missing checkpoint link` | `~/.local/share/deem/models/current` is gone | Repair the install with `deem-ctl update` or `deem-ctl rollback` |
-| `choice` exits 2 before sending | More than 26 options. Two options that share a description or a key | Cut the options or make each description distinct |
+| `choice` exits 2 before sending | Fewer than 2 or more than 26 options. Two options that share a description or a key | Stay within 2 to 26 options and make each description distinct |
+| `score` exits 2 before sending | Fewer than 2 or more than 10 levels | Give 2 to 10 `-l` levels |
 
 ---
 
