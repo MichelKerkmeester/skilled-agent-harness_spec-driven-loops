@@ -1,11 +1,11 @@
 ---
 id: "DEE-007"
-title: "DEE-007 -- Score returns a zero-based position"
-description: "This scenario validates that score prints the zero-based position of the chosen level and rekeys the probabilities by position, for `DEE-007`."
+title: "DEE-007 -- Score returns the expected level"
+description: "This scenario validates that score prints the expected level and keeps the index-keyed probabilities and the legend, for `DEE-007`."
 version: 0.1.0.0
 ---
 
-# DEE-007 -- Score returns a zero-based position
+# DEE-007 -- Score returns the expected level
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors and metadata for `DEE-007`.
 
@@ -13,11 +13,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-`cli-deem score` sends the levels lowest first and Deem answers with `level`, the label text. The client replaces that field with `score`, the zero-based position of the label in the submitted list, and rekeys the probabilities by position.
+`cli-deem score` sends the levels lowest first and Deem answers with `score`, the expected level — a float from `0` to the last level index — plus a `legend` naming each index and `probabilities` keyed by index. The client range-checks `score` and passes the answer through.
 
 ### Why This Matters
 
-A caller that reads a position must not receive a label, and a caller that averages probabilities needs them keyed by a stable index rather than by presentation text. This scenario proves both translations and the drop of the original `level` field.
+A caller that thresholds on the score needs the number Deem computed, and a caller that reads probabilities needs them keyed by the level index it submitted, not by presentation text. This scenario proves the range check and the pass-through of `score`, `legend` and `probabilities` against a stub whose answer is known.
 
 ---
 
@@ -25,14 +25,14 @@ A caller that reads a position must not receive a label, and a caller that avera
 
 Operators run the exact prompt and command sequence for `DEE-007` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm `score` prints the zero-based position of the chosen level in `score` and rekeys `probabilities` by position.
+- Objective: Confirm `score` prints the expected level in `score` and keeps `probabilities` keyed by level index.
 - Real user request: `Ask Deem how severe this incident is.`
 - Prompt: `Ask Deem how severe this incident is.`
-- Expected execution process: the stub harness in §3 starts a server that answers with a known score body keyed by level text, runs `cli-deem score -q ... -s ... -l ... -l ... -l ...` against it, forwards the client's streams and exits with the client's status. Capture stdout and stderr separately.
-- Expected signals: stdout is one JSON line with `"score":1`, no `level` field and `"probabilities":{"0":0.05,"1":0.75,"2":0.2}`, the exit status is `0`, and stderr is empty.
+- Expected execution process: the stub harness in §3 starts a server that answers with a known score body — a fractional `score`, a `legend` and index-keyed `probabilities` — runs `cli-deem score -q ... -s ... -l ... -l ... -l ...` against it, forwards the client's streams and exits with the client's status. Capture stdout and stderr separately.
+- Expected signals: stdout is one JSON line with `"score":1.15`, a `legend` naming the three levels and `"probabilities":{"0":0.05,"1":0.75,"2":0.2}`, the exit status is `0`, and stderr is empty.
 - Evidence: the command, the stub body, complete stdout, complete stderr and the exit status.
-- Desired user-visible outcome: the operator reads `"score": 1` for the second level and probabilities keyed `"0"`, `"1"` and `"2"`.
-- Pass/fail: PASS when `score` is the zero-based position of the stub's `level`, no `level` field remains, every probability key is a position, the exit status is 0 and stderr is empty. FAIL when `score` carries text, `level` survives, a probability stays keyed by text, or the exit status is not 0. SKIP only when the environment cannot bind an ephemeral loopback port, naming that sandbox blocker.
+- Desired user-visible outcome: the operator reads a `score` float inside the level range, probabilities keyed `"0"`, `"1"` and `"2"` and a `legend` naming each level.
+- Pass/fail: PASS when `score` is a number from `0` to the last level index, `probabilities` stay keyed by index, `legend` names each level, the exit status is 0 and stderr is empty. FAIL when `score` is absent, not a number or out of range, a probability arrives keyed by text, or the exit status is not 0. SKIP only when the environment cannot bind an ephemeral loopback port, naming that sandbox blocker.
 
 ---
 
@@ -44,7 +44,7 @@ Operators run the exact prompt and command sequence for `DEE-007` and confirm th
 node -e '
 const http = require("node:http");
 const { spawn } = require("node:child_process");
-const body = JSON.stringify({ model: "deem-0.8-v1", answers: { answer: { level: "degraded", probabilities: { "no user impact": 0.05, degraded: 0.75, outage: 0.2 }, expected: "degraded", confidence: 0.7, temperature: 0 } } });
+const body = JSON.stringify({ model: "deem-0.8-v1", answers: { answer: { type: "score", score: 1.15, legend: { "0": "no user impact", "1": "degraded", "2": "outage" }, probabilities: { "0": 0.05, "1": 0.75, "2": 0.2 }, confidence: 0.7, x_temperature: 0 } } });
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(body);
@@ -65,17 +65,17 @@ server.listen(0, "127.0.0.1", () => {
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DEE-007 | Score returns a zero-based position | Confirm `score` prints the zero-based position of the chosen level in `score` and rekeys `probabilities` by position | `Ask Deem how severe this incident is.` | 1. `bash: node -e '<inline stub harness>'` -> 2. `bash: the harness runs node .skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs score -q ... -s ... -l ... -l ... -l ...` | stdout one JSON line with `"score":1`, no `level` field and `"probabilities":{"0":0.05,"1":0.75,"2":0.2}`, exit `0`, stderr empty | The command, the stub body, complete stdout, complete stderr and the exit status | PASS when `score` is the zero-based position of the stub's `level`, no `level` field remains, every probability key is a position, the exit status is 0 and stderr is empty. FAIL when `score` carries text, `level` survives, a probability stays keyed by text, or the exit status is not 0. SKIP only when the environment cannot bind an ephemeral loopback port, naming that sandbox blocker | 1. Exit 1 `score level is absent` means the stub's `level` text is not one of the submitted `-l` labels, so compare them byte for byte. 2. A label in `score` means the position lookup ran against the wrong list, so check the level order in the argument list. 3. Probabilities keyed by labels mean the rekey loop did not run, so inspect `translateAnswer` |
+| DEE-007 | Score returns the expected level | Confirm `score` prints the expected level in `score` and keeps `probabilities` keyed by level index | `Ask Deem how severe this incident is.` | 1. `bash: node -e '<inline stub harness>'` -> 2. `bash: the harness runs node .skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs score -q ... -s ... -l ... -l ... -l ...` | stdout one JSON line with `"score":1.15`, a `legend` naming the three levels and `"probabilities":{"0":0.05,"1":0.75,"2":0.2}`, exit `0`, stderr empty | The command, the stub body, complete stdout, complete stderr and the exit status | PASS when `score` is a number from `0` to the last level index, `probabilities` stay keyed by index, `legend` names each level, the exit status is 0 and stderr is empty. FAIL when `score` is absent, not a number or out of range, a probability arrives keyed by text, or the exit status is not 0. SKIP only when the environment cannot bind an ephemeral loopback port, naming that sandbox blocker | 1. Exit 1 `score is not a number in range` means the stub's `score` is missing, not a number or outside the level range, so restore the body named above. 2. A missing `legend` or `probabilities` means the stub body changed, so compare it with the body named above. 3. Exit 3 means the envelope's model was not the pin, so check the stub's `model` field |
 
 ### Recorded Result
 
-Observed while authoring: exit 0, stderr empty, and stdout was `{"model":"deem-0.8-v1","answers":{"answer":{"probabilities":{"0":0.05,"1":0.75,"2":0.2},"expected":"degraded","confidence":0.7,"temperature":0,"score":1}}}`. Verdict PASS.
+Observed while authoring: exit 0, stderr empty, and stdout was `{"model":"deem-0.8-v1","answers":{"answer":{"type":"score","score":1.15,"legend":{"0":"no user impact","1":"degraded","2":"outage"},"probabilities":{"0":0.05,"1":0.75,"2":0.2},"confidence":0.7,"x_temperature":0}}}`. Verdict PASS.
 
 ### Failure Triage
 
-1. Exit 1 with `score level is absent` means the stub's `level` text is not one of the submitted `-l` labels. Compare the strings byte for byte.
-2. A label in `score` means the position lookup ran against the wrong list. Check that the `-l` flags are lowest first.
-3. Probabilities keyed by labels mean the rekey loop did not run. Inspect `translateAnswer` in `scripts/cli-deem.mjs`.
+1. Exit 1 with `score is not a number in range` means the stub's `score` is missing, not a number or outside the level range. Restore the body named above.
+2. A missing `legend` or `probabilities` means the stub body changed. Compare it with the body named above.
+3. Exit 3 means the envelope's `model` was not the pin. Check the stub's `model` field against `deem-0.8-v1`.
 
 ---
 
@@ -92,8 +92,8 @@ Observed while authoring: exit 0, stderr empty, and stdout was `{"model":"deem-0
 
 | File | Role |
 |---|---|
-| [cli-deem.mjs](../../scripts/cli-deem.mjs) | The level order, the position lookup and the probabilities rekey |
-| [cli-deem.test.mjs](../../scripts/tests/cli-deem.test.mjs) | The fake-server case `score translates a level to its zero-based position` |
+| [cli-deem.mjs](../../scripts/cli-deem.mjs) | The levels request and the `score` range check |
+| [cli-deem.test.mjs](../../scripts/tests/cli-deem.test.mjs) | The fake-server case `score validates and passes through the real answer shape` |
 | [wire-contract.md](../../references/wire-contract.md) | The answer field list and what passes through unchanged |
 
 ---

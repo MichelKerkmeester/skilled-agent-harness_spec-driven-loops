@@ -123,7 +123,7 @@ Each fix went to one worker with a short brief: Luna 6 max on cli-codex for 027,
 1. **027's label gate needs three new reads.** The fixed sample holds three lineages with no read, so a `--jev` or `--deem` run stops at the gate until they are labeled.
 2. **The OpenCode plugin still has the clamp defect.** `.opencode/plugins/opencode-goal.js:2215` keeps its own copy, and the 003 scorer still counts `clamp_defects: 11` there.
 3. **The recorded P2s stay open.** `goal.md`'s log lists them. One is that `build-verifier-fixture.cjs` still joins the message first, so labeled rows no longer match what Pi's adapter sends.
-4. **The Deem arm is unmeasured on the local server.** The server answers `noul` with no number, so all 196 calls of the one local run failed. The coverage stop now ends such a run without a verdict.
+4. **The Deem arm is unmeasured on the local server.** All 196 calls of the one local run failed because `cli-deem` read `noul` from a `value` field the server never sends, not because of the server. Phase 044 fixed the client, and a measured run still needs the operator's yes. The coverage stop ends a run like that one without a verdict.
 <!-- /ANCHOR:limitations -->
 
 ---

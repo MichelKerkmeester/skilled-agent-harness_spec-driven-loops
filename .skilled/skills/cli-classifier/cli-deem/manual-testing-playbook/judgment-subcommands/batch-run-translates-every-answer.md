@@ -13,7 +13,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-`cli-deem run` takes a request file or `-` for stdin written in Deem's own shape, counts the questions and options before sending, and rewrites each answer by its type. A batch that lists options without keys keeps Deem's option text, because there is no key to map back to.
+`cli-deem run` takes a request file or `-` for stdin written in Deem's own shape, counts the questions and options before sending, and validates each answer by its type. A batch that lists options without keys keeps Deem's option text, because there is no key to map back to.
 
 ### Why This Matters
 
@@ -31,7 +31,7 @@ Operators run the exact prompt and command sequence for `DEE-008` and confirm th
 - Expected execution process: the stub harness in §3 starts a server that answers with a `noul` value and a `choice` text, then runs `cli-deem run -` with the request piped to stdin, forwards the client's streams and exits with the client's status. Capture stdout and stderr separately.
 - Expected signals: stdout is one JSON line with `"urgency":{"noul":0.62}` and `"queue":{"choice":"Payment or refund problem"}`, the exit status is `0`, and stderr is empty.
 - Evidence: the command, the piped request, the stub body, complete stdout, complete stderr and the exit status.
-- Desired user-visible outcome: the operator reads one answer per question key, with `noul` renamed and the batch `choice` keeping Deem's option text.
+- Desired user-visible outcome: the operator reads one answer per question key, with `noul` passed through and the batch `choice` keeping Deem's option text.
 - Pass/fail: PASS when every request key has one translated answer, `noul` carries the stub's number, the batch `choice` keeps the option text, the exit status is 0 and stderr is empty. FAIL when a key is missing, an answer is untranslated, or the exit status is not 0. SKIP only when the environment cannot bind an ephemeral loopback port, naming that sandbox blocker.
 
 ---
@@ -45,7 +45,7 @@ node -e '
 const http = require("node:http");
 const { spawn } = require("node:child_process");
 const request = { state: "Please restore service today.", questions: { urgency: { type: "noul", instructions: "Does this ask for a reply today?" }, queue: { type: "choice", instructions: "Which team owns this?", options: ["Payment or refund problem", "Product or account problem"] } } };
-const body = JSON.stringify({ model: "deem-0.8-v1", answers: { urgency: { value: 0.62 }, queue: { choice: "Payment or refund problem" } } });
+const body = JSON.stringify({ model: "deem-0.8-v1", answers: { urgency: { noul: 0.62 }, queue: { choice: "Payment or refund problem" } } });
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(body);
@@ -94,8 +94,8 @@ Observed while authoring: exit 0, stderr empty, and stdout was `{"model":"deem-0
 
 | File | Role |
 |---|---|
-| [cli-deem.mjs](../../scripts/cli-deem.mjs) | `questionSpecs`, the two caps and the per-key translation |
-| [cli-deem.test.mjs](../../scripts/tests/cli-deem.test.mjs) | The fake-server cases `run translates a stdin batch of noul and score` and `run sends a file of 64 noul questions` |
+| [cli-deem.mjs](../../scripts/cli-deem.mjs) | `questionSpecs`, the two caps and the per-key validation |
+| [cli-deem.test.mjs](../../scripts/tests/cli-deem.test.mjs) | The fake-server cases `run passes through real noul and score answer shapes` and `run sends a file of 64 noul questions` |
 | [wire-contract.md](../../references/wire-contract.md) | The question and option caps and the batch answer rules |
 
 ---

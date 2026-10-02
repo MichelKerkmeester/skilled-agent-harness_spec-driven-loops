@@ -13,11 +13,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-`cli-deem noul` sends one question as `instructions` and Deem answers with `value`, a probability. The client renames that field to `noul`, the name a reader written for `jev` output already parses. With `--value` it prints only the number.
+`cli-deem noul` sends one question as `instructions` and Deem answers with `noul`, a probability. The client range-checks it in `[0, 1]` and passes the answer through in the field name a reader written for `jev` output already parses. With `--value` it prints only the number.
 
 ### Why This Matters
 
-The point of the client is that a `jev` reader needs no second parser. This scenario proves the rename and the value shape against a stub whose answer is known, so the operator can tell the client's translation from the model's opinion.
+The point of the client is that a `jev` reader needs no second parser. This scenario proves the range check and the pass-through against a stub whose answer is known, so the operator can tell the client's validation from the model's opinion.
 
 ---
 
@@ -44,7 +44,7 @@ Operators run the exact prompt and command sequence for `DEE-005` and confirm th
 node -e '
 const http = require("node:http");
 const { spawn } = require("node:child_process");
-const body = JSON.stringify({ model: "deem-0.8-v1", answers: { answer: { value: 0.87, confidence: 0.9, temperature: 0 } } });
+const body = JSON.stringify({ model: "deem-0.8-v1", answers: { answer: { type: "noul", noul: 0.87, x_confidence: 0.9, x_temperature: 0 } } });
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "application/json" });
   res.end(body);
@@ -65,7 +65,7 @@ server.listen(0, "127.0.0.1", () => {
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DEE-005 | Noul returns a probability | Confirm `noul --value` prints one number in `[0, 1]` and exits 0 | `Ask Deem for a probability that this request needs a reply today.` | 1. `bash: node -e '<inline stub harness>'` -> 2. `bash: the harness runs node .skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs noul -q ... -s ... --value` | stdout `0.87`, exit `0`, stderr empty | The command, the stub body, complete stdout, complete stderr and the exit status | PASS when stdout is one number in `[0, 1]`, the exit status is 0 and stderr is empty. FAIL when stdout is not a number or carries the whole envelope despite `--value`. SKIP only when the environment cannot bind an ephemeral loopback port, naming that sandbox blocker | 1. Exit 1 `noul value is not a number` means the stub body changed, so restore the body named above. 2. A whole envelope on stdout means `--value` was dropped, so check the argument list. 3. Exit 3 means the envelope's model was not the pin, so check the stub's `model` field |
+| DEE-005 | Noul returns a probability | Confirm `noul --value` prints one number in `[0, 1]` and exits 0 | `Ask Deem for a probability that this request needs a reply today.` | 1. `bash: node -e '<inline stub harness>'` -> 2. `bash: the harness runs node .skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs noul -q ... -s ... --value` | stdout `0.87`, exit `0`, stderr empty | The command, the stub body, complete stdout, complete stderr and the exit status | PASS when stdout is one number in `[0, 1]`, the exit status is 0 and stderr is empty. FAIL when stdout is not a number or carries the whole envelope despite `--value`. SKIP only when the environment cannot bind an ephemeral loopback port, naming that sandbox blocker | 1. Exit 1 `noul is not a number in [0, 1]` means the stub body changed, so restore the body named above. 2. A whole envelope on stdout means `--value` was dropped, so check the argument list. 3. Exit 3 means the envelope's model was not the pin, so check the stub's `model` field |
 
 ### Recorded Result
 
@@ -73,7 +73,7 @@ Observed while authoring: stdout was `0.87`, stderr was empty and the exit statu
 
 ### Failure Triage
 
-1. Exit 1 with `noul value is not a number` means the stub body changed. Restore the body named above, where `value` is a number.
+1. Exit 1 with `noul is not a number in [0, 1]` means the stub body changed. Restore the body named above, where `noul` is a number in `[0, 1]`.
 2. A whole envelope on stdout means `--value` was dropped. Check the argument list in the harness.
 3. Exit 3 means the envelope's `model` was not the pin. Check the stub's `model` field against `deem-0.8-v1`.
 
@@ -92,8 +92,8 @@ Observed while authoring: stdout was `0.87`, stderr was empty and the exit statu
 
 | File | Role |
 |---|---|
-| [cli-deem.mjs](../../scripts/cli-deem.mjs) | `buildQuestion`, `judge` and the `value` to `noul` rename |
-| [cli-deem.test.mjs](../../scripts/tests/cli-deem.test.mjs) | The fake-server case `noul reads the state from stdin and renames value` |
+| [cli-deem.mjs](../../scripts/cli-deem.mjs) | `buildQuestion`, `judge` and the `noul` range check |
+| [cli-deem.test.mjs](../../scripts/tests/cli-deem.test.mjs) | The fake-server case `noul passes through real shape and reads stdin state` |
 | [wire-contract.md](../../references/wire-contract.md) | The request field list and the answer field list |
 
 ---

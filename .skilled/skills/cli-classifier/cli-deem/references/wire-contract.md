@@ -52,16 +52,16 @@ The `jev` CLI sends `choice` options and `score` levels as `criteria`, which Dee
 
 ## 3. ANSWER FIELDS
 
-Deem wraps every answer in an envelope of `id`, `object`, `created`, `model`, `answers` and `usage`. The client keeps the envelope and rewrites each answer in `answers`.
+Deem wraps every answer in an envelope of `id`, `object`, `created`, `model`, `answers` and `usage`. The client keeps the envelope, validates each answer in `answers` and rewrites only `choice`.
 
 | Type | Deem answers | The client prints |
 |---|---|---|
-| `noul` | `value` (a probability), `confidence`, `temperature` | `noul` in place of `value`. The other fields pass through |
-| `choice` | `choice` as the option text, `probabilities` keyed by option text, `confidence`, `temperature` | `choice` as the submitted key. `probabilities` is keyed by key |
-| `score` | `level` as the level text, `probabilities` keyed by level text, `expected`, `confidence`, `temperature` | `score` as the zero-based position of `level`. `probabilities` is keyed by position (`"0"`, `"1"`). `level` is dropped. `expected` passes through |
+| `noul` | `noul` (a probability), `x_confidence`, `x_temperature` | `noul` unchanged after a range check in `[0, 1]`. The other fields pass through |
+| `choice` | `choice` as the option text, `probabilities` keyed by option text, `confidence`, `x_temperature` | `choice` as the submitted key. `probabilities` is keyed by key |
+| `score` | `score` as the expected level — a float from `0` to the last level index — `legend` mapping each index to its level text, `probabilities` keyed by index (`"0"`, `"1"`), `confidence`, `x_temperature` | `score` unchanged after a range check. `legend` and `probabilities` pass through |
 
-- **`run` keeps option text.** A request written in Deem's shape lists options without keys, so a `choice` answer in a batch keeps Deem's option text. `noul` and `score` answers are rewritten as above.
-- **`--value`** prints the primary value alone: the `noul` number, the `choice` key or the `score` position. `run` refuses it, because a batch has no single primary value.
+- **`run` keeps option text.** A request written in Deem's shape lists options without keys, so a `choice` answer in a batch keeps Deem's option text. `noul` and `score` answers are validated as above.
+- **`--value`** prints the primary value alone: the `noul` number, the `choice` key or the `score` number. `run` refuses it, because a batch has no single primary value.
 - **Model check.** An answer envelope whose `model` is not `deem-0.8-v1` exits 3, the same refusal `health` applies.
 
 ### Health Body
