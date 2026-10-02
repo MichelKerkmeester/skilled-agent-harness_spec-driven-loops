@@ -561,7 +561,8 @@ function translateAnswer(answer, question, keyByDescription) {
     return translated;
   }
   if (question.type === 'score') {
-    const levels = question.levels ?? [];
+    // The server reads a score's ordered levels from criteria first and levels as the alias.
+    const levels = Array.isArray(question.criteria) ? question.criteria : (question.levels ?? []);
     if (
       typeof answer.score !== 'number'
       || !Number.isFinite(answer.score)
