@@ -1,6 +1,6 @@
 ---
 title: "cli-classifier: Manual Testing Playbook"
-description: "Operator-facing manual validation for cli-classifier hub routing: a Jev request resolves mode cli-jev, a Deem request resolves mode cli-deem, and other requests stay out."
+description: "Operator-facing validation for the cli-classifier hub: Jev requests resolve to cli-jev, the current only mode, while out-of-domain requests stay out."
 version: 0.4.0.0
 ---
 
@@ -15,7 +15,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-The walked tree holds the hub-routing scenarios for `cli-classifier` and one measurement scenario for its offline injection screen scorer. The hub registers two modes, both declared `packetKind: "transport"`: `cli-jev`, which bridges the hosted Jev service, and `cli-deem`, a client for the Deem model served on this machine. The routing questions are small. Does a Jev request resolve `cli-jev`? Does a Deem request resolve `cli-deem`? Do other requests stay out? Each transport's own behavior is covered in its packet: `cli-jev/manual-testing-playbook/` for Jev and `cli-deem/scripts/tests/cli-deem.test.mjs` for Deem. These scenarios do not replace them.
+The walked tree holds the hub-routing scenarios for `cli-classifier` and one measurement scenario for its offline injection screen scorer. The hub currently registers one `packetKind: "transport"` mode: `cli-jev`, which bridges the hosted Jev service. A future classifier can join the parent hub as a new mode with its own packet. The routing questions are small. Does a Jev request resolve `cli-jev`? Do other requests stay out? The transport's own behavior is covered in `cli-jev/manual-testing-playbook/`. These scenarios do not replace it.
 
 The `CJ-` scenarios came from the retired `cli-jev` hub with the Jev transport. Their two recorded runs sit under `benchmark/reports/`.
 
@@ -29,7 +29,7 @@ The `CJ-` scenarios came from the retired `cli-jev` hub with the Jev transport. 
 
 ### Package Boundaries
 
-- The hub-routing scenarios validate routing only. `CC-004` runs the injection screen scorer on stub binaries. No scenario starts the Deem server or sends a judgment to either backend.
+- The hub-routing scenarios validate routing only. `CC-004` runs the injection screen scorer on stub binaries. No scenario sends a judgment to the hosted classifier.
 - The hub serves compiled routes. The front door answers from the policy pinned in `013-live-activation/activation/cli-classifier/manifest.json`, not from the legacy sentinel.
 
 ---
@@ -80,14 +80,6 @@ A scenario is `PASS` only when its preconditions hold, the exact prompts and com
 
 ## 6. HUB ROUTING
 
-### CC-001 | A Deem request resolves mode cli-deem
-
-Verify the advisor ranks `cli-classifier` first for a Deem judgment request and the front door routes a single `cli-deem` target.
-
-Prompt: `ask deem for a probability that this incident is urgent`
-
-> **Feature File:** [CC-001](hub-routing/deem-request-routes-to-transport.md)
-
 ### CC-002 | A Jev request resolves mode cli-jev
 
 Verify a request that names the hosted Jev service ranks `cli-classifier` first and the front door routes a single `cli-jev` target over `cli-jev`.
@@ -128,7 +120,7 @@ Prompt: `cli-usage noul for this question.`
 
 Verify the offline injection screen scorer prints its censuses without calling a backend and that failing gates add only their skip lines.
 
-Prompt: `Run the injection screen scorer with fake jev and cli-deem on my PATH and show me it calls neither`
+Prompt: `Run the injection screen scorer with a fake jev on my PATH and show me it calls nothing`
 
 > **Feature File:** [CC-004](measurements/injection-screen-measurement.md)
 
@@ -154,11 +146,10 @@ Prompt: `Run the Pi classifier transport with a stub jev first on PATH and show 
 
 | Coverage Area | Automated Or Structural Anchor | Scenario IDs |
 |---|---|---|
-| Hub routing contract | [cli-classifier SKILL.md](../SKILL.md) | `CC-001`, `CC-002`, `CC-003`, `CJ-001`, `CJ-002` |
-| Router vocabulary | [hub-router.json](../hub-router.json) | `CC-001`, `CC-002`, `CC-003`, `CJ-001`, `CJ-002` |
+| Hub routing contract | [cli-classifier SKILL.md](../SKILL.md) | `CC-002`, `CC-003`, `CJ-001`, `CJ-002` |
+| Router vocabulary | [hub-router.json](../hub-router.json) | `CC-002`, `CC-003`, `CJ-001`, `CJ-002` |
 | Compiled canary corpus | `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/008-cli-classifier/fixtures/canary-cases.v1.json` | none, replayed by the rollout runner |
 | Jev transport behavior | [cli-jev playbook](../cli-jev/manual-testing-playbook/manual-testing-playbook.md) | none, covered by the `JEV-` scenarios |
-| Deem client behavior | [cli-deem tests](../cli-deem/scripts/tests/cli-deem.test.mjs) | none, covered by `node --test` |
 | Injection screen scorer | [score-injection-screen tests](../benchmark/injection-screen/tests/score-injection-screen.test.mjs) | `CC-004` |
 | Pi transport scorer | [score-pi-transport tests](../benchmark/pi-transport/tests/score-pi-transport.test.mjs) | `CC-005` |
 | Pi classifier transport | [jev-transport tests](../shared/scripts/tests/jev-transport.test.mjs) | `CC-006` |
@@ -169,7 +160,6 @@ Prompt: `Run the Pi classifier transport with a stub jev first on PATH and show 
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
-| CC-001 | A Deem request resolves mode cli-deem | Hub Routing | [CC-001](hub-routing/deem-request-routes-to-transport.md) |
 | CC-002 | A Jev request resolves mode cli-jev | Hub Routing | [CC-002](hub-routing/jev-request-stays-with-cli-jev.md) |
 | CC-003 | An out-of-domain request resolves nothing here | Hub Routing | [CC-003](hub-routing/out-of-domain-resolves-nothing.md) |
 | CJ-001 | A Jev judgment request resolves mode cli-jev | Hub Routing | [CJ-001](hub-routing/judgment-request-routes-to-transport.md) |

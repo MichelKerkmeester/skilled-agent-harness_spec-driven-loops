@@ -6,19 +6,19 @@ trigger_phrases:
   - "cli-classifier hub features"
   - "injection screen measurement"
   - "feature catalog"
-last_updated: "2026-09-29"
+last_updated: "2026-10-02"
 version: 0.3.0.0
 ---
 
 # cli-classifier: Feature Catalog
 
-This document combines the current feature inventory for the `cli-classifier` hub into a single reference. It covers what the hub owns itself. Each transport keeps its own catalog: `cli-jev/feature-catalog/` for Jev and `cli-deem/feature-catalog/` for Deem.
+This document combines the current feature inventory for the `cli-classifier` hub into a single reference. It covers what the hub owns itself. The hub currently holds `cli-jev` as its only transport mode; a future classifier gets a new mode and packet.
 
 ---
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for hub-level features, the ones that belong to neither transport alone. The one section below holds the offline measurements that run both transports under one rule.
+Use this catalog as the canonical inventory for hub-level features, the ones that belong to neither a transport alone nor its packet. The section below holds offline measurement records for the shared routing and classifier surfaces.
 
 ---
 
@@ -28,11 +28,11 @@ Use this catalog as the canonical inventory for hub-level features, the ones tha
 
 #### Description
 
-Tests offline whether a Jev or Deem noul spots text that tries to instruct an AI agent better than flag-nothing and a fixed lexical screen.
+Tests offline whether Jev's `noul` spots text that tries to instruct an AI agent better than flag-nothing and a fixed lexical screen.
 
 #### Current Reality
 
-`score-injection-screen.mjs` prints a fetch census and a corpus census with zero model calls. It then stops at the label gate until the operator labels the drawn rows. `--jev` and `--deem` each run one backend behind that backend's own gate and print one verdict line per backend. No hook uses the result.
+`score-injection-screen.mjs` prints a fetch census and a corpus census with zero model calls. It then stops at the label gate until the operator labels the drawn rows. `--jev` runs the hosted classifier behind its gate and prints one verdict line. No hook uses the result.
 
 #### Source Files
 

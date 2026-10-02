@@ -431,8 +431,7 @@ another packet.
 
 ### Hub Integration
 
-`cli-jev` is the packet of mode `cli-jev` in the `cli-classifier` hub, beside `cli-deem`. It is declared
-in `mode-registry.json` as `packetKind: "transport"` under the `transport-axis` extension,
+`cli-jev` is the packet of mode `cli-jev` in the `cli-classifier` hub and its only registered mode today. A future classifier backend joins the same parent hub as a new mode with its own packet. It is declared in `mode-registry.json` as `packetKind: "transport"` under the `transport-axis` extension,
 `mutatesWorkspace: false`, forbidding `Write`, `Edit` and `Task`, and it routes by hub membership
 like every other mode. `hub-router.json` carries its intent signal and `leaf-manifest.json` its
 leaf set; the hub's `ROUTER.md` is the stage-two surface router, `router_state: active`, and maps
