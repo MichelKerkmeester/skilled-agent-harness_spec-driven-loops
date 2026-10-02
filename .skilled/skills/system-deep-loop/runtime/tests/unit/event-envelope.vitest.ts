@@ -20,6 +20,8 @@ import {
   EventUpcastError,
   EventWriteError,
   RegistryValidationError,
+  canonicalBytes,
+  canonicalBytesEqual,
   canonicalJson,
   prepareEventWrite,
   readEvent,
@@ -726,4 +728,14 @@ describe('dark producer-family fixtures and sibling handoff', () => {
     expect(authorizationInput.authorityEpoch).toBe(1);
     expect(ledgerInput.byteLength).toBeGreaterThan(0);
   });
+});
+
+it('compares canonical bytes of any size directly', () => {
+  const big = canonicalBytes({ note: 'x'.repeat(20_000) });
+  expect(big.length).toBeGreaterThan(20_000);
+  expect(canonicalBytesEqual(big, [...big])).toBe(true);
+  expect(canonicalBytesEqual(big, big.slice(1))).toBe(false);
+  const changed = [...big];
+  changed[changed.length - 2] = 0;
+  expect(canonicalBytesEqual(big, changed)).toBe(false);
 });

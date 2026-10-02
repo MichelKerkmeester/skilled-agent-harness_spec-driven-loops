@@ -11,6 +11,7 @@ export {
   MAX_JSON_DEPTH,
   MAX_JSON_NODES,
   canonicalBytes,
+  canonicalBytesEqual,
   canonicalJson,
   sha256Bytes,
 } from './canonical-json.js';
