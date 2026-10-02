@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -53,6 +53,7 @@
       ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
       ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts",
+      ".hermes/skills/cli-deem/SKILL.md",
       "build/fix/044a.md"
     ],
     "entities": [
@@ -129,6 +130,12 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".hermes/skills/cli-deem/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "044a.md",
         "kind": "doc",
         "path": "build/fix/044a.md",
@@ -136,12 +143,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -171,6 +172,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The local Deem server answers `noul` with `{\"noul\": <number>}` and `score` with a numeric `score`, index-keyed `probabilities` and a `legend`",
     "created_at": "2026-10-02T06:02:31Z",
-    "last_save_at": "2026-10-02T06:59:48.903Z",
+    "last_save_at": "2026-10-02T07:03:22.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c1ac8473350b595e9dd41ecd80092dd3251083c88768cc05e16190a6eecbf0b",
+    "source_fingerprint": "sha256:abb2540f2d390c641e66672100731c6588dbac05ad9ce1c054bc093892e975cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3a80424341c5a1467396aa2aed1b302421758e73132e58c4272d482a414c68fe",
+      "spec.md": "7dff5d3cc0a306dbedb953385a279c99dfb88e4d09535c628c5849c61b14ace0",
       "plan.md": "fca6c8cc3f3cea5b180a4f48346be6b2ce234b5686698bb180d462490069595f",
-      "tasks.md": "f2f8345be0671331aada97f5d7991431641a6d3163cd0050cf9f8edb226e6832",
-      "implementation-summary.md": "15babba6697a8907aa8d424202bb905255a9b32b7c1a64a00302093e103a9393"
+      "tasks.md": "0d2455f65db6cec218670f683817d12cac7dc9d14bec864088a6209241c6eb22",
+      "implementation-summary.md": "8f3273e0844cd36cc974116f2965baa444239deb18c383ab2ea170271e5bcd6c"
     },
     "last_active_at": null
   }

@@ -57,11 +57,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs` passes more than 34 tests with 0 failing, with fake answers in the real shapes and cases where the old `value` and `level` shapes exit 1
-- [ ] `node cli-deem.mjs noul`, `choice` and `score` against the local server at `127.0.0.1:8300` each exit 0 and print a number or a known key
-- [ ] `npx vitest run tests/unit/score-stop-rater.vitest.ts`, run from `.skilled/skills/system-deep-loop/runtime`, and `npx vitest run tests/completion-claim-audit.vitest.ts`, run from `.skilled/skills/system-spec-kit/runtime`, pass more than 59 and 23 tests with 0 failing, and their stubs print the `answers.answer` envelope
-- [ ] The DeepSeek V4.1 Flash review of these changes leaves no open P0 or P1
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and on `specs/cli-jev/003-cli-jev-workflow-integration`
+- [x] `node --test .skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs` passes more than 34 tests with 0 failing, with fake answers in the real shapes and cases where the old `value` and `level` shapes exit 1
+- [x] `node cli-deem.mjs noul`, `choice` and `score` against the local server at `127.0.0.1:8300` each exit 0 and print a number or a known key
+- [x] `npx vitest run tests/unit/score-stop-rater.vitest.ts`, run from `.skilled/skills/system-deep-loop/runtime`, and `npx vitest run tests/completion-claim-audit.vitest.ts`, run from `.skilled/skills/system-spec-kit/runtime`, pass more than 59 and 23 tests with 0 failing, and their stubs print the `answers.answer` envelope
+- [x] The DeepSeek V4.1 Flash review of these changes leaves no open P0 or P1
+- [x] `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` on this phase and on `specs/cli-jev/003-cli-jev-workflow-integration`
 <!-- /ANCHOR:completion -->
 
 ---
