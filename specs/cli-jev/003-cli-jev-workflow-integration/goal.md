@@ -115,11 +115,11 @@ Decisions outrank child goals.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 046 are Complete
+- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 046 are Complete
 - [x] 019 to 035 are Complete, each at its verdict line or label gate
 - [x] `validate_document.py` exits 0 on each changed skill doc
 - [x] No open P0 or P1, and no changed suite fails beyond its baseline
-- [ ] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
+- [x] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -267,4 +267,5 @@ and findings belong here.
 | 044 Complete, all criteria met again (2026-10-02) | 044 fixed the answer-shape mismatches (commits `e783935de9` to `5d5eee4d67`, P2s in 044's log). `cli-deem` now gets a number from the local Deem server for `noul` and `score`, and 027's and 026's model arms read `answers.answer`. No scorer has yet measured a real answer: that needs the operator's yes for a live run. `validate.sh --strict --recursive` printed `RESULT: PASSED` with 0 errors and 0 warnings on all 45 folders, and `check-goal.cjs` passed 5/5 on each. Nothing is pushed or merged |
 | Directive amendment: bind 045 (2026-10-02) | Source: the operator's "Do all deem things needed / open". D3 now releases 019 to 045, the binding gains 045, and criteria 1 and 5 are open again until 045 closes. The new row put the slice 38 characters over 4,000. `check-goal.cjs` reads only a binding row's second cell, so the first cell, a display index, now reads `1` to `45` instead of `001` to `045`, which frees 54 characters with no wording cut. `goal.cjs packet` reads 3,984, `packet_budget=ok`. Every phase adds about 45 characters, so the next one may need the split `budget-and-handoff.md` section 3 names |
 | Directive amendment: retire Deem, bind 046 (2026-10-02) | Source: the operator's "Stop and deprecate deem completely", "lets deperecate deem cli completely and only keep cli jev", "Cli classifier still needs to stay a parent hun tho", "In case we want to support future classifiers" and "Use luna max 6 fast cli codex and deepseek v4.1 flash max cli pi opencode go and cline provider as needed". D1 is now Jev only. D2 keeps `cli-classifier` a parent hub for `cli-jev` and future classifiers. D3 releases 019 to 046, the binding gains 046 and criterion 1 reads 036 to 046. D5 names Luna 6 max fast and DeepSeek V4.1 Flash max, and SWE leaves. 045 closed with its last 18 runs and review superseded by its ADR-001, after 002 and 006 both answered `kill`. 046 has four phases, each with its own goal: 001 inventory and decisions, 002 scorer arms, 003 the mode and hub, 004 sweep and verification. Durable slice 3996 characters after trimming D2 and D5 wording |
+| 046 Complete, all criteria met again (2026-10-02) | 046 removed `cli-deem` and every scorer's Deem arm, and `cli-classifier` serves `cli-jev` alone as a parent hub (commits `48ac21c64e` to `03ffea3267`, P2s in the logs of 046's children). From the final state: 24 inventory suites 0 fail, changed scorer suites 446 of 446, advisor suite 1055 passed with 0 failed, `validate.sh --strict --recursive` passes on this parent, its 46 children and 046's 4 nested children, and `check-goal.cjs` passes on all 51 goals |
 <!-- /ANCHOR:log -->
