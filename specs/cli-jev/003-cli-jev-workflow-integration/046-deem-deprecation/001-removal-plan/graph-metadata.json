@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "cli-jev/003-cli-jev-workflow-integration/045-deem-live-runs",
-  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/045-deem-live-runs",
-  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,30 +11,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "deem live runs",
-      "deem arm results",
-      "local deem measurement",
-      "cli-deem open findings",
-      "deem live runs plan",
-      "deem arm results plan",
-      "local deem measurement plan",
-      "cli-deem findings plan",
-      "deem live runs tasks",
-      "deem arm results tasks",
-      "local deem measurement tasks",
-      "cli-deem findings tasks"
+      "deem removal inventory",
+      "deem reference owner",
+      "removal decision record",
+      "one-mode hub rule",
+      "deem removal inventory plan",
+      "deem reference owner plan",
+      "removal decision record plan",
+      "one-mode hub rule plan",
+      "deem removal inventory tasks",
+      "deem reference owner tasks",
+      "removal decision record tasks",
+      "one-mode hub rule tasks"
     ],
     "key_topics": [
       "deem",
-      "live",
-      "runs",
-      "arm",
-      "results",
-      "local",
-      "measurement",
-      "cli-deem",
-      "open",
-      "findings",
+      "removal",
+      "inventory",
+      "reference",
+      "owner",
+      "decision",
+      "record",
+      "one-mode",
+      "hub",
+      "rule",
       "plan",
       "tasks"
     ],
@@ -46,11 +46,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "decision-record.md",
-      "implementation-summary.md",
-      ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
-      ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
-      "build/fix/045a.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -84,37 +80,19 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "cli-deem.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "cli-deem.test.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "045a.md",
-        "kind": "doc",
-        "path": "build/fix/045a.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -144,12 +122,6 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Until",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -157,6 +129,12 @@
       },
       {
         "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -180,12 +158,6 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -196,11 +168,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Until phase 044 every `noul` and `score` call through `cli-deem` exited 1, so no scorer's Deem arm has a measured result, and the one local run of 006's arm failed all 196 calls",
-    "created_at": "2026-10-02T07:13:43Z",
-    "last_save_at": "2026-10-02T08:04:07.701Z",
+    "causal_summary": "Deem reaches about 209 files outside `specs/`, and many matches are the English word (`deems`, `deemed`)",
+    "created_at": "2026-10-02T07:54:40Z",
+    "last_save_at": "2026-10-02T08:02:03.680Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,17 +205,15 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e29fd830fec4d05661eee5693cd24945327696e217c979910db893801b3fac74",
+    "source_fingerprint": "sha256:07683474b2257f98cb373fcc52738683e44ce90fb2521233d1a6cafad6b911b4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9db6c59d55705b3244828c5704e563ab9de712df4d6110f845f2d234a64a1839",
-      "plan.md": "3c7d2ac042fa10d89a586d7a052894855612705b97ac23826015ce7507d3a974",
-      "tasks.md": "b9bc14cb33e885a0ccf1269e3949baf327481679ee20eed0b65407244412a888",
-      "decision-record.md": "ae7f69eba8b967d1afa4ceec5ba54a17cf971a5bf08192a9b63f97a5c559305e",
-      "implementation-summary.md": "a04caa3ada9707dc699a96f4a48d20d084b882c8ed042e34fc7d0531bb1087d2"
+      "spec.md": "fc7b805945a9b457437c42c3886c7afdb582b07bc37bf8ead2650f3a1f59f295",
+      "plan.md": "9cdbc099366f32f6de024571ce0a9b1e78ee9ba062de59dd1d2d17aa7cb1be1f",
+      "tasks.md": "b77e40dd5d5e86c16e60dfbc5a893b7c691f4bc854e3e51e9e61ce04f9124ea4",
+      "implementation-summary.md": "e6d3cdbdf3ecfe80e186b7b1d4a845e6660bb4dc404acab89cf4f2bee5d220b2"
     },
     "last_active_at": null
   }
