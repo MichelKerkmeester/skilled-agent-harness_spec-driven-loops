@@ -72,6 +72,12 @@ record_skip() {
   DOCTOR_RESULTS+=("SKIP|${server}|${check}|${detail}")
 }
 
+# Keep operator-managed registration visible without changing health counts.
+record_info() {
+  local server="$1" check="$2" detail="${3:-}"
+  DOCTOR_RESULTS+=("INFO|${server}|${check}|${detail}")
+}
+
 # ── 4. JSON HELPERS ──────────────────────────────────────────
 
 # Escape a string for safe JSON embedding
@@ -133,9 +139,9 @@ print_summary() {
     "$YELLOW" "$DOCTOR_WARN_COUNT" "$NC" \
     "$RED" "$DOCTOR_FAIL_COUNT" "$NC"
   if [[ "$exit_code" -eq 0 ]]; then
-    printf '  %bAll MCP servers healthy.%b\n' "$GREEN" "$NC"
+    printf '  %bCode Mode checks healthy.%b\n' "$GREEN" "$NC"
   elif [[ "$exit_code" -eq 1 ]]; then
-    printf '  %bSome warnings detected. MCP servers should work but check above.%b\n' "$YELLOW" "$NC"
+    printf '  %bWarnings detected. Review the Code Mode checks above.%b\n' "$YELLOW" "$NC"
   else
     printf '  %bFailures detected. Run with --fix to attempt auto-repair.%b\n' "$RED" "$NC" >&2
   fi
@@ -201,41 +207,215 @@ node_version_at_least() {
 
 # ── 8. CONFIG FILE CHECKING ──────────────────────────────────
 
-# Check if a config file contains an MCP server entry
-# Args: $1=file path  $2=server key  $3=format
-# Formats: "json-mcp" (opencode.json), "json-mcpServers" (.claude), "json-vscode-mcp" (.vscode)
-# Returns: 0 if server found, 1 if not
-config_has_server() {
-  local file="$1" server_key="$2" format="$3"
+# Keep parser results limited to registration status so unrelated config values stay private.
+CONFIG_CHECK_STATUS=""
+CONFIG_CHECK_DETAIL=""
+config_check_registration() {
+  local file="$1" runtime="$2" parser_result=""
+  CONFIG_CHECK_STATUS="WARN"
+  CONFIG_CHECK_DETAIL="File not present"
+
   if [[ ! -f "$file" ]]; then
-    return 1
+    return 0
   fi
-  case "$format" in
-    json-mcp)
-      node -e "
-        const cfg = JSON.parse(require('fs').readFileSync('$file','utf8'));
-        process.exit(cfg.mcp && cfg.mcp['$server_key'] ? 0 : 1);
-      " 2>/dev/null
+
+  if [[ "$runtime" == "codex" ]]; then
+    if parser_result="$(python3 - "$file" 2>/dev/null <<'PY'
+import pathlib
+import sys
+
+try:
+    import tomllib
+except ImportError:
+    print("unvalidated")
+    raise SystemExit(2)
+
+try:
+    config = tomllib.loads(pathlib.Path(sys.argv[1]).read_text())
+except Exception:
+    print("invalid_toml")
+    raise SystemExit(3)
+
+entry = config.get("mcp_servers", {}).get("code_mode", {})
+env = entry.get("env", {}) if isinstance(entry, dict) else {}
+args = entry.get("args", []) if isinstance(entry, dict) else []
+is_wired = (
+    isinstance(entry, dict)
+    and entry.get("command") == "node"
+    and isinstance(args, list)
+    and any(
+        isinstance(argument, str)
+        and ".skilled/bin/mcp-code-mode-launcher.cjs" in argument
+        for argument in args
+    )
+    and isinstance(env, dict)
+    and env.get("UTCP_CONFIG_FILE") == ".utcp_config.json"
+)
+print("wired" if is_wired else "not_wired")
+PY
+)"; then
+      :
+    else
+      :
+    fi
+  else
+    if parser_result="$(node - "$file" "$runtime" 2>/dev/null <<'NODE'
+const fs = require("fs");
+const [filePath, runtime] = process.argv.slice(2);
+let config;
+
+try {
+  config = JSON.parse(fs.readFileSync(filePath, "utf8"));
+} catch {
+  process.stdout.write("invalid_json");
+  process.exit(3);
+}
+
+const entry = runtime === "opencode"
+  ? config?.mcp?.code_mode
+  : config?.mcpServers?.code_mode;
+const command = entry?.command;
+const args = Array.isArray(entry?.args) ? entry.args : [];
+const commandParts = Array.isArray(command) ? command : [command];
+const environment = entry?.environment ?? entry?.env;
+const commandIsNode = Array.isArray(command)
+  ? command[0] === "node"
+  : command === "node";
+const hasLauncher = [...commandParts, ...args].some(
+  (part) => typeof part === "string"
+    && part.includes(".skilled/bin/mcp-code-mode-launcher.cjs"),
+);
+const isWired = commandIsNode
+  && hasLauncher
+  && environment?.UTCP_CONFIG_FILE === ".utcp_config.json";
+
+process.stdout.write(isWired ? "wired" : "not_wired");
+if (!isWired) process.exit(2);
+NODE
+)"; then
+      :
+    else
+      :
+    fi
+  fi
+
+  case "$parser_result" in
+    wired)
+      CONFIG_CHECK_STATUS="PASS"
+      CONFIG_CHECK_DETAIL="Code Mode launcher and UTCP path verified"
       ;;
-    json-mcpServers)
-      node -e "
-        const cfg = JSON.parse(require('fs').readFileSync('$file','utf8'));
-        process.exit(cfg.mcpServers && cfg.mcpServers['$server_key'] ? 0 : 1);
-      " 2>/dev/null
+    unvalidated)
+      CONFIG_CHECK_STATUS="WARN"
+      CONFIG_CHECK_DETAIL="unvalidated: Python tomllib unavailable"
       ;;
-    json-vscode-mcp)
-      node -e "
-        const cfg = JSON.parse(require('fs').readFileSync('$file','utf8'));
-        const servers = cfg.servers || cfg.mcpServers || {};
-        process.exit(servers['$server_key'] ? 0 : 1);
-      " 2>/dev/null
+    invalid_json)
+      CONFIG_CHECK_STATUS="FAIL"
+      CONFIG_CHECK_DETAIL="Invalid JSON syntax"
       ;;
-    toml)
-      grep -Fq "[mcp_servers.$server_key]" "$file" 2>/dev/null \
-        || grep -Fq "[mcp_servers.\"$server_key\"]" "$file" 2>/dev/null
+    invalid_toml)
+      CONFIG_CHECK_STATUS="FAIL"
+      CONFIG_CHECK_DETAIL="Invalid TOML syntax"
+      ;;
+    not_wired)
+      CONFIG_CHECK_STATUS="WARN"
+      CONFIG_CHECK_DETAIL="Code Mode launcher or UTCP path is missing or incorrect"
       ;;
     *)
-      return 1
+      CONFIG_CHECK_STATUS="WARN"
+      if [[ "$runtime" == "codex" ]]; then
+        CONFIG_CHECK_DETAIL="unvalidated: Python tomllib unavailable"
+      else
+        CONFIG_CHECK_DETAIL="unvalidated: Node.js unavailable"
+      fi
       ;;
   esac
+
+  return 0
+}
+
+# Report credential presence only so diagnostics never disclose environment values.
+inspect_utcp_config() {
+  local config_file="$1" env_file="$2"
+  node - "$config_file" "$env_file" <<'NODE'
+const fs = require("fs");
+const [configPath, envPath] = process.argv.slice(2);
+const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+const manualEntries = config.manual_call_templates;
+const manualIssues = [];
+const credentials = [];
+const envFileValues = new Map();
+
+function hasNonEmptyValue(rawValue) {
+  let value = rawValue.trim();
+  if (value.length === 0 || value.startsWith("#")) return false;
+  if ((value.startsWith("\"") && value.endsWith("\""))
+    || (value.startsWith("'") && value.endsWith("'"))) {
+    value = value.slice(1, -1);
+  } else {
+    value = value.split(/\s+#/, 1)[0];
+  }
+  return value.trim().length > 0;
+}
+
+try {
+  const contents = fs.readFileSync(envPath, "utf8");
+  for (const line of contents.split(/\r?\n/)) {
+    const match = line.match(/^\s*(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*?)\s*$/);
+    if (match && hasNonEmptyValue(match[2])) envFileValues.set(match[1], true);
+  }
+} catch {
+  // A missing or unreadable .env leaves referenced credentials unverified.
+}
+
+function collectReferences(value, references) {
+  if (typeof value === "string") {
+    for (const match of value.matchAll(/\$\{([A-Za-z_][A-Za-z0-9_]*)\}/g)) {
+      references.add(match[1]);
+    }
+    return;
+  }
+  if (Array.isArray(value)) {
+    for (const item of value) collectReferences(item, references);
+    return;
+  }
+  if (value && typeof value === "object") {
+    for (const item of Object.values(value)) collectReferences(item, references);
+  }
+}
+
+if (!Array.isArray(manualEntries)) {
+  manualIssues.push("manual_call_templates is missing or is not an array");
+} else {
+  manualEntries.forEach((manual, index) => {
+    const name = typeof manual?.name === "string" ? manual.name.trim() : "";
+    const hasValidName = /^[$_\p{ID_Start}][$_\u200C\u200D\p{ID_Continue}]*$/u.test(name);
+    const hasCallTemplateType = typeof manual?.call_template_type === "string"
+      && manual.call_template_type.trim().length > 0;
+
+    if (!hasValidName) manualIssues.push(`entry ${index + 1}: missing or invalid name`);
+    if (!hasCallTemplateType) manualIssues.push(`entry ${index + 1}: missing call_template_type`);
+    if (!hasValidName) return;
+
+    const references = new Set();
+    collectReferences(manual, references);
+    for (const reference of references) {
+      const key = `${name}_${reference}`;
+      const processValue = process.env[key];
+      credentials.push({
+        key,
+        present: typeof processValue === "string" && processValue.trim().length > 0
+          || envFileValues.has(key),
+      });
+    }
+  });
+}
+
+credentials.sort((left, right) => left.key.localeCompare(right.key));
+process.stdout.write(JSON.stringify({
+  manualCount: Array.isArray(manualEntries) ? manualEntries.length : 0,
+  manualArrayValid: Array.isArray(manualEntries),
+  manualIssues,
+  credentials,
+}));
+NODE
 }

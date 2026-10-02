@@ -1,6 +1,6 @@
 ---
-description: "Install or repair MCP servers through the install and debug sub-action routes."
-argument-hint: "<install|debug> [--server <name>] [--runtime <name>] [--fix]"
+description: "Install or debug Code Mode, its UTCP configuration, and runtime registration."
+argument-hint: "<install [--runtime <name>]|debug [--fix]>"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
 <!-- skill_agent: system-spec-kit -->
@@ -31,10 +31,10 @@ Load the presentation contract before showing startup questions, setup dashboard
 
 - The sub-action is positional and must be parsed before flags.
 - No mode suffix is supported.
-- `install` and `debug` have overlapping `--server` flag names; keep their schemas separate.
+- `install` accepts `--runtime <name>`; `debug` accepts `--fix`.
 - If any referenced asset is missing, stop and report the missing path.
-- This command repairs MCP infrastructure itself; subsystem database diagnostics stay under `/doctor <target>` and `/doctor:update`.
-- This command's `install` workflow covers the registered MCP servers (the `servers:` block in `doctor-mcp-install.yaml`). The CLI-primary design skills (`mcp-figma`, `mcp-chrome-devtools`, `mcp-click-up`) are not registered servers; each self-diagnoses via its own `scripts/install.sh` and read-only `scripts/doctor.sh`, enumerated under `cli_skill_diagnostics:` in the same YAML. Run those per-skill for CLI readiness.
+- This command installs and diagnoses Code Mode, its `.utcp_config.json` manuals, credential references, and runtime registrations.
+- Subsystem diagnostics stay under `/doctor <target>` and `/doctor:update`.
 - The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
 
 ---
@@ -49,8 +49,8 @@ Load the presentation contract before showing startup questions, setup dashboard
    - `install` -> `.skilled/commands/doctor/assets/doctor-mcp-install.yaml`
    - `debug` -> `.skilled/commands/doctor/assets/doctor-mcp-debug.yaml`
 6. Parse remaining flags using only the selected sub-action schema:
-   - `install`: `--server <name>`, `--runtime <name>`
-   - `debug`: `--fix`, `--server <name>`
+   - `install`: optional `--runtime <name>` from `opencode`, `claude`, `codex`, `cursor`, `pi`, or `devin`
+   - `debug`: optional `--fix`
 7. Reject cross-sub-action flags before YAML load using the presentation contract's error wording.
 8. Load the selected workflow YAML and execute it step by step.
 9. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, and next-step display.
@@ -70,5 +70,4 @@ The following content lives only in `.skilled/commands/doctor/assets/doctor-mcp-
 
 ## 6. WORKFLOW SUMMARY
 
-The bound sub-action workflow (`doctor-mcp-install.yaml` for `install`, `doctor-mcp-debug.yaml` for `debug`) drives MCP-server assessment, installation or repair, and verification, rendering every user-facing string through the presentation contract. `install` covers the registered `servers:` set plus the enumerated CLI-skill self-diagnostics; `debug` repairs a named or failing server. Subsystem database diagnostics route through `/doctor <target>` and `/doctor:update`, never this command.
-
+The bound sub-action workflow (`doctor-mcp-install.yaml` for `install`, `doctor-mcp-debug.yaml` for `debug`) drives Code Mode assessment, installation or repair, and verification, rendering every user-facing string through the presentation contract. The health script runs with `--json` and preserves its structured output. Each repair requires explicit approval, including when `--fix` is set. The workflow reports credential reference presence without requesting or writing credential values. Subsystem diagnostics route through `/doctor <target>` and `/doctor:update`.
