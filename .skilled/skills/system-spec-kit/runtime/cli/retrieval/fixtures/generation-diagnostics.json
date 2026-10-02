@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 57,
-    "missing-frontmatter": 6633,
-    "ok": 12643,
+    "missing-frontmatter": 6621,
+    "ok": 12700,
     "valid-empty-list": 3519
   },
-  "documentsScanned": 22852,
+  "documentsScanned": 22897,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6c0344fd7582f89d7247d6f9815da371d30c5ce4390b4bc316c110a744984d7c",
+  "manifestHash": "16b34caf24764980f1406f9f6aba9731ec81863e3d1f737f5213aeba369191b7",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -42,7 +42,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 32984,
+      "ok": 33116,
       "prose-sentence": 25,
       "single-token": 237,
       "stop-word-only": 2
@@ -66,72 +66,6 @@
       "line": 1,
       "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
       "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-classifier/cli-deem/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-classifier/cli-deem/manual-testing-playbook/availability-gate/health-accepts-pinned-install.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-classifier/cli-deem/manual-testing-playbook/availability-gate/health-refuses-stub-backend.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-classifier/cli-deem/manual-testing-playbook/availability-gate/health-refuses-wrong-model.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-classifier/cli-deem/manual-testing-playbook/availability-gate/refused-port-health-reports-unreachable.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-classifier/cli-deem/manual-testing-playbook/dormant-path/completion-claim-audit-skips-without-deem.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-classifier/cli-deem/manual-testing-playbook/dormant-path/judgment-never-reads-a-refusal-as-a-value.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-classifier/cli-deem/manual-testing-playbook/judgment-subcommands/batch-run-translates-every-answer.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-classifier/cli-deem/manual-testing-playbook/judgment-subcommands/choice-returns-submitted-key.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-classifier/cli-deem/manual-testing-playbook/judgment-subcommands/noul-returns-probability.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-classifier/cli-deem/manual-testing-playbook/judgment-subcommands/score-returns-zero-based-position.md",
-      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -275,12 +209,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/alias-still-resolves.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/cli-classifier/manual-testing-playbook/hub-routing/deem-request-routes-to-transport.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -65958,6 +65886,42 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/045-deem-live-runs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/002-scorer-deem-arms/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/003-cli-deem-mode-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/scratch",
       "reason": "excluded directory"
     },
@@ -67035,6 +66999,10 @@
     },
     {
       "path": "specs/sk-doc/062-doc-validation-off-switches/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/063-security-policy-alignment/scratch",
       "reason": "excluded directory"
     },
     {

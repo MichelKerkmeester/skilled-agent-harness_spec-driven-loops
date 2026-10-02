@@ -1,6 +1,6 @@
 ---
 title: "MB-052 -- Zero-Call Fixture Census and Stub-Backend Skip"
-description: "This scenario validates Zero-Call Fixture Census and Stub-Backend Skip for `MB-052`. It focuses on the zero-call census of the fixture cases and the named skip of a stub Deem backend."
+description: "This scenario validates Zero-Call Fixture Census and Stub-Backend Skip for `MB-052`. It focuses on the zero-call census of the fixture cases and the named skip of a stub Jev backend."
 feature_id: "MB-052"
 category: "Model_Benchmark Mode"
 version: 1.19.0.0
@@ -14,7 +14,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates Zero-Call Fixture Census and Stub-Backend Skip for `MB-052`. It focuses on the zero-call census of the fixture cases and the named skip of a stub Deem backend.
+This scenario validates Zero-Call Fixture Census and Stub-Backend Skip for `MB-052`. It focuses on the zero-call census of the fixture cases and the named skip of a stub Jev backend.
 
 ### Why This Matters
 
@@ -26,13 +26,13 @@ Every shipped fixture case already yields a verdict from the deterministic patte
 
 Operators run the exact prompt and command sequence for `MB-052` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm that the fixture census makes no model call and that a stub Deem backend is skipped by name.
-- Real user request: `Check that the verdict fallback census runs without calling a model and that a stub Deem backend is skipped.`
-- Prompt: `Check that the verdict fallback census runs without calling a model and that a stub Deem backend is skipped.`
-- Expected execution process: Run the census on the shipped fixtures with stub `cli-deem` and `jev` binaries first on `PATH`, once plain and once with `--deem`.
-- Expected signals: The plain census exits 0, prints `fixture cases: 8 hits: 8 misses: 0` and `stop: fewer than 12 labeled regex-miss outputs`, and leaves `/tmp/mb-052/calls.log` absent. The `--deem` run adds only `deem arm skipped: stub backend`.
+- Objective: Confirm that the fixture census makes no model call and that a stub Jev backend is skipped by name.
+- Real user request: `Check that the verdict fallback census runs without calling a model and that a stub Jev backend is skipped.`
+- Prompt: `Check that the verdict fallback census runs without calling a model and that a stub Jev backend is skipped.`
+- Expected execution process: Run the census on the shipped fixtures with a stub `jev` binary first on `PATH`, once plain and once with `--jev --out /tmp/mb-052/jev`.
+- Expected signals: The plain census exits 0, prints `fixture cases: 8 hits: 8 misses: 0` and `stop: fewer than 12 labeled regex-miss outputs`, and leaves `/tmp/mb-052/calls.log` absent. The `--jev` run adds the `jev: path=/tmp/mb-052/bin/jev provider=official` identity line and `jev arm skipped: no credential`.
 - Desired user-visible outcome: A concise operator-facing PASS/FAIL verdict with the decisive lines from each run.
-- Pass/fail: PASS if both runs print their expected lines with the expected exit codes, FAIL if the plain census calls a stub or the `--deem` run asks the stub a question.
+- Pass/fail: PASS if both runs print their expected lines with the expected exit codes, FAIL if the plain census calls a stub or the `--jev` run asks the stub a question.
 
 ---
 
@@ -40,16 +40,16 @@ Operators run the exact prompt and command sequence for `MB-052` and confirm the
 
 ### Prompt
 
-- Prompt: `Check that the verdict fallback census runs without calling a model and that a stub Deem backend is skipped.`
+- Prompt: `Check that the verdict fallback census runs without calling a model and that a stub Jev backend is skipped.`
 
 ### Commands
 
 Run from the repository root.
 
 1. `rm -rf /tmp/mb-052 && mkdir -p /tmp/mb-052/bin`
-2. `printf '#!/bin/sh\necho "cli-deem $*" >> /tmp/mb-052/calls.log\n[ "$1" = health ] && echo "{\\"backend\\":\\"stub\\"}"\nexit 0\n' > /tmp/mb-052/bin/cli-deem && printf '#!/bin/sh\necho "jev $*" >> /tmp/mb-052/calls.log\n[ "$1" = "--version" ] && echo "jev 0.6.2"\n[ "$1" = "auth" ] && exit 3\nexit 0\n' > /tmp/mb-052/bin/jev && chmod +x /tmp/mb-052/bin/*`
+2. `printf '#!/bin/sh\necho "jev $*" >> /tmp/mb-052/calls.log\n[ "$1" = "--version" ] && echo "jev 0.6.2"\n[ "$1" = "auth" ] && exit 3\nexit 0\n' > /tmp/mb-052/bin/jev && chmod +x /tmp/mb-052/bin/jev`
 3. `PATH=/tmp/mb-052/bin:$PATH node .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs > /tmp/mb-052/census.txt; echo "exit=$?"; cat /tmp/mb-052/census.txt; ls /tmp/mb-052/calls.log`
-4. `PATH=/tmp/mb-052/bin:$PATH node .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs --deem --out /tmp/mb-052/deem > /tmp/mb-052/deem.txt; echo "exit=$?"; diff /tmp/mb-052/census.txt /tmp/mb-052/deem.txt; cat /tmp/mb-052/calls.log`
+4. `PATH=/tmp/mb-052/bin:$PATH node .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs --jev --out /tmp/mb-052/jev > /tmp/mb-052/jev.txt; echo "exit=$?"; diff /tmp/mb-052/census.txt /tmp/mb-052/jev.txt; cat /tmp/mb-052/calls.log`
 
 ### Expected
 
@@ -71,11 +71,11 @@ power: a keep needs at least 5 wins with no loss, since 0.5^5 is 0.031
 stop: fewer than 12 labeled regex-miss outputs
 ```
 
-Step 4 prints `exit=0`. The diff shows one added line, `deem arm skipped: stub backend`, and `calls.log` holds exactly one line, `cli-deem health`.
+Step 4 prints `exit=0`. The diff shows two added lines, `jev: path=/tmp/mb-052/bin/jev provider=official` and `jev arm skipped: no credential`, and `calls.log` gains only `jev --version` and `jev auth status --provider official`.
 
 ### Evidence
 
-The terminal transcript of steps 3 and 4, `/tmp/mb-052/census.txt`, `/tmp/mb-052/deem.txt`, `/tmp/mb-052/calls.log` and `/tmp/mb-052/deem/report.json`.
+The terminal transcript of steps 3 and 4, `/tmp/mb-052/census.txt`, `/tmp/mb-052/jev.txt`, `/tmp/mb-052/calls.log` and `/tmp/mb-052/jev/report.json`.
 
 ### Pass / Fail
 
@@ -84,11 +84,11 @@ The terminal transcript of steps 3 and 4, `/tmp/mb-052/census.txt`, `/tmp/mb-052
 
 ### Failure Triage
 
-If step 3 exits 2, read the message on stderr and check the `parseArgs` options in `score-verdict-fallback.cjs`. If step 3 creates `calls.log`, find which code path spawns a backend without `--deem` or `--jev`. If step 4 shows a different skip reason, run `/tmp/mb-052/bin/cli-deem health` by hand and compare its output with the health checks in `score-verdict-fallback.cjs`. If `fixture cases:` is not `8 hits: 8 misses: 0`, count the fixture cases and their recorded outputs again, because the fixture set may have changed.
+If step 3 exits 2, read the message on stderr and check the `parseArgs` options in `score-verdict-fallback.cjs`. If step 3 creates `calls.log`, find which code path spawns a backend without `--jev`. If step 4 shows a different skip reason, run `/tmp/mb-052/bin/jev --version` and `/tmp/mb-052/bin/jev auth status --provider official` by hand and compare their output with the version and credential checks in `score-verdict-fallback.cjs`. If `fixture cases:` is not `8 hits: 8 misses: 0`, count the fixture cases and their recorded outputs again, because the fixture set may have changed.
 
 ### Optional Supplemental Checks
 
-Run step 4 again with `--jev --out /tmp/mb-052/jev` in place of `--deem --out /tmp/mb-052/deem`. The stub `jev` answers `--version` with `jev 0.6.2` and `auth status` with exit 3, so the diff shows two added lines, `jev: path=/tmp/mb-052/bin/jev provider=official` and `jev arm skipped: no credential`, and `calls.log` gains only `jev --version` and `jev auth status --provider official`.
+Run step 4 again with a stub `jev` that exits 3 on `--version` as well: the diff then shows `jev arm skipped: version` and a `jev: found=""` line, and `calls.log` gains only `jev --version`.
 
 ---
 
@@ -105,7 +105,7 @@ Run step 4 again with `--jev --out /tmp/mb-052/jev` in place of `--deem --out /t
 
 | File | Role |
 |---|---|
-| `../../scripts/model-benchmark/lib/score-verdict-fallback.cjs` | Runs the fixture census, the label gate and the opt-in Deem and Jev arms |
+| `../../scripts/model-benchmark/lib/score-verdict-fallback.cjs` | Runs the fixture census, the label gate and the opt-in Jev arm |
 | `../../scripts/model-benchmark/tests/verdict-fallback.vitest.ts` | Automated census, gate and arm coverage against stub binaries |
 
 ---

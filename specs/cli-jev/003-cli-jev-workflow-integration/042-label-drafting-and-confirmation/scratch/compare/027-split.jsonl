@@ -1,0 +1,5 @@
+{"row": "specs/sk-doc/z_archive/019-skill-routing-refactor/001-research/004-system-code-graph-routing-research/research", "luna": 8, "swe": 8, "arbiter": 8, "disposition": "agreed-kept"}
+{"row": "specs/sk-doc/z_archive/019-skill-routing-refactor/021-skill-metadata-json-unification/research/lineages/sol-high-fast", "luna": 5, "swe": 5, "arbiter": 5, "disposition": "agreed-kept"}
+{"row": "specs/sk-doc/z_archive/019-skill-routing-refactor/001-research/006-sk-prompt-routing-research/research", "luna": 5, "swe": 5, "arbiter": 5, "disposition": "agreed-kept"}
+{"row": "specs/sk-doc/z_archive/019-skill-routing-refactor/001-research/005-system-deep-loop-routing-research/research", "luna": 8, "swe": 7, "arbiter": 9, "disposition": "split-settled"}
+{"row": "specs/system-speckit/032-relocate-specs-folder/001-relocation-implications-research/research/lineages/sol", "luna": 5, "swe": 5, "arbiter": 5, "disposition": "agreed-kept"}

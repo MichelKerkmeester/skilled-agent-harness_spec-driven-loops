@@ -5,7 +5,7 @@
 'use strict';
 
 /**
- * Measure offline whether a Jev or Deem severity choice separates real P0
+ * Measure offline whether a Jev severity choice separates real P0
  * review findings from false ones better than the recorded severity. The
  * default run makes no model call and writes no file, and the script holds
  * and reads no credential.
@@ -49,14 +49,8 @@ const PHRASES = [
 const LABEL_GATE = 20;
 // The number of option orders every row is called in.
 const ORDERS = 3;
-// The one Deem model identity the health check accepts.
-const DEEM_MODEL = 'deem-0.8-v1';
-// The Deem p50 the wall-time estimate cites, the 2-option p50 from deem-local.md.
-const DEEM_P50_MS = 65.6;
 // The one jev client version the gate accepts.
 const JEV_VERSION = 'jev 0.6.2';
-// The health probe is bounded so an unreachable backend skips fast.
-const HEALTH_TIMEOUT_MS = 2000;
 // Every measured call is bounded so one hung spawn cannot hang the run.
 const CALL_TIMEOUT_MS = 90000;
 // The single backoff retry a transient jev failure gets.
@@ -68,7 +62,7 @@ const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, kill p_loss < 0.05, mar
 // The power note fixed as one line: the five-win floor behind a keep.
 const POWER_LINE = 'power: a keep needs at least 5 wins with no loss, since 0.5^5 is 0.031';
 // The usage line printed whenever the run cannot start.
-const USAGE = 'usage: score-severity-replay.cjs [--write-label-sheet <path>] [--labels <file>] [--jev] [--deem] [--out <dir>]';
+const USAGE = 'usage: score-severity-replay.cjs [--write-label-sheet <path>] [--labels <file>] [--jev] [--out <dir>]';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. CENSUS
@@ -502,7 +496,7 @@ function modalPick(answers) {
 /**
  * First failed check decides, in this order: coverage, kill, margin, sign
  * test, flips. The exact loss tail kills before the margin is read, the sign
- * test reads the win tail, and the flips check binds both backends because
+ * test reads the win tail, and the flips check binds the backend because
  * every row is judged in three orders. A later check never softens an earlier
  * one.
  *
@@ -541,7 +535,7 @@ function formatP(p) {
  * exactly where the label is `real`. F sums each measured row's non-modal
  * picks, all three of them when no key is modal.
  *
- * @param {'jev' | 'deem'} backend - Backend name, printed on the verdict line
+ * @param {'jev'} backend - Backend name, printed on the verdict line
  * @param {Array<{ registry: string, findingId: string, label: string }>} rows - Labeled rows in registry order
  * @param {Map<string, Array<{ pick: string | null }>>} answers - Row key (rowKey) -> one entry per order
  * @param {(row: object) => boolean} baselineRight - Whether the recorded severity is right on a row
@@ -603,7 +597,7 @@ function summarizeColumn(backend, rows, answers, baselineRight, suffix) {
  * the model put the rows the operator calls real. The ranks are means over the
  * qualifying registries, one decimal.
  *
- * @param {'jev' | 'deem'} backend - Backend name, printed on the line
+ * @param {'jev'} backend - Backend name, printed on the line
  * @param {Array<{ registry: string, findingId: string, label: string }>} rows - Labeled rows in registry order
  * @param {Map<string, Array<{ p0Probability?: number | null }>>} answers - Row key (rowKey) -> one entry per order
  * @returns {string | null} The order line, or null when no registry qualifies
@@ -649,7 +643,7 @@ function orderLine(backend, rows, answers) {
  * answered yes at 0.5 or more. The funnel is a report-only second view, so its
  * line never enters a verdict.
  *
- * @param {'jev' | 'deem'} backend - Backend name, printed on the line
+ * @param {'jev'} backend - Backend name, printed on the line
  * @param {number} asked - Rows the funnel asked about
  * @param {Array<number | null>} values - One noul per asked row, null when unmeasured
  * @returns {string} The funnel line
@@ -670,7 +664,7 @@ function funnelLine(backend, asked, values) {
  * over the negatives that have a modal pick. A negative whose orders name
  * three different keys has no pick and cannot match.
  *
- * @param {'jev' | 'deem'} backend - Backend name, printed on the line
+ * @param {'jev'} backend - Backend name, printed on the line
  * @param {Array<{ registry: string, findingId: string, label: string }>} rows - Labeled rows in registry order
  * @param {Map<string, Array<{ pick: string | null }>>} answers - Row key (rowKey) -> one entry per order
  * @returns {string} The exact line
@@ -704,12 +698,8 @@ function nearestRank(values, q) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 6. DEEM GATE AND ARM
+// 6. ARM HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
-
-// Repo copy of the cli-deem entry point, run under node when none is on PATH,
-// so the arm works from a checkout without the client installed.
-const REPO_CLI_DEEM = path.resolve(__dirname, '../../../cli-classifier/cli-deem/scripts/cli-deem.mjs');
 
 /**
  * First executable file of this name on PATH, or null when none is executable.
@@ -734,110 +724,6 @@ function which(name, env) {
     }
   }
   return null;
-}
-
-/**
- * cli-deem on PATH when that file is executable, otherwise the repo copy under
- * node, so the arm still runs from a checkout without the client installed.
- *
- * @param {{ PATH?: string }} env - Environment whose PATH is searched
- * @returns {string[]} Command and leading arguments for one call
- */
-function deemCommand(env) {
-  const onPath = which('cli-deem', env);
-  if (onPath !== null) return [onPath];
-  return [process.execPath, REPO_CLI_DEEM];
-}
-
-/**
- * One health check. An unreachable binary, a stub backend, or a wrong model
- * is a failed check the caller prints as a skip. A stub backend also answers
- * `ok`, so the backend name is read before the model.
- *
- * @param {string[]} cmd - Command from deemCommand
- * @param {Record<string, string | undefined>} env - Environment for the call
- * @returns {{ ok: true, backend: string, model: string, modelCommit: string, sourceCommit: string } |
- *   { ok: false, reason: string, found: unknown }} Health result
- */
-function readDeemHealth(cmd, env) {
-  const result = spawnSync(cmd[0], [...cmd.slice(1), 'health'], {
-    env,
-    encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'pipe'],
-    timeout: HEALTH_TIMEOUT_MS,
-  });
-  let errorText = (result.stderr ?? '').trim();
-  try {
-    errorText = JSON.parse(errorText).error;
-  } catch {
-    // Leave the trimmed stderr when it is not JSON.
-  }
-
-  if (result.error || result.status === 4) {
-    return { ok: false, reason: 'not reachable', found: errorText };
-  }
-  if (result.status === 3) {
-    let reason = 'bad health response';
-    if (typeof errorText === 'string' && errorText.includes('stub')) reason = 'stub backend';
-    else if (typeof errorText === 'string' && errorText.includes('refused model')) reason = 'model';
-    return { ok: false, reason, found: errorText };
-  }
-  if (result.status === 0) {
-    const stdoutText = (result.stdout ?? '').trim();
-    let body;
-    try {
-      body = JSON.parse(stdoutText);
-    } catch {
-      return { ok: false, reason: 'bad health response', found: stdoutText };
-    }
-    const backend = body?.backend;
-    if (typeof backend === 'string' && backend.includes('stub')) {
-      return { ok: false, reason: 'stub backend', found: backend };
-    }
-    if (backend !== 'torch' && !(typeof backend === 'string' && backend.startsWith('ensemble:'))) {
-      return { ok: false, reason: 'bad health response', found: String(backend) };
-    }
-    const model = body?.model;
-    if (model !== DEEM_MODEL) {
-      return { ok: false, reason: 'model', found: String(model) };
-    }
-    const modelCommit = body?.model_commit;
-    const sourceCommit = body?.source_commit;
-    if (
-      body?.ok !== true
-      || typeof modelCommit !== 'string'
-      || modelCommit === ''
-      || typeof sourceCommit !== 'string'
-      || sourceCommit === ''
-    ) {
-      return { ok: false, reason: 'bad health response', found: stdoutText };
-    }
-    return { ok: true, backend, model, modelCommit, sourceCommit };
-  }
-  return { ok: false, reason: 'bad health response', found: `exit ${result.status}: ${errorText}` };
-}
-
-/**
- * Prints the health line, or a skip line when the check fails, with the found
- * value named for a model or shape failure so the operator can see what was
- * there. A failed gate leaves every later line untouched.
- *
- * @param {{ out: (line: string) => void, env: Record<string, string | undefined> }} ctx - Line writer and environment
- * @returns {{ passed: boolean, cmd: string[], reason?: string }} True when the health check passed; a failed check carries the skip line it printed
- */
-function deemGate(ctx) {
-  const cmd = deemCommand(ctx.env);
-  const health = readDeemHealth(cmd, ctx.env);
-  if (health.ok) {
-    ctx.out(`deem: health backend=${health.backend} model=${health.model} model_commit=${health.modelCommit} source_commit=${health.sourceCommit}`);
-    return { passed: true, cmd, ...health };
-  }
-  const skipLine = `deem arm skipped: ${health.reason}`;
-  ctx.out(skipLine);
-  if (health.reason === 'model' || health.reason === 'bad health response') {
-    ctx.out(`deem: found=${JSON.stringify(health.found)}`);
-  }
-  return { passed: false, cmd, reason: skipLine };
 }
 
 /**
@@ -955,213 +841,6 @@ function rowDigest(row) {
  */
 function rotateOptions(options, order) {
   return options.map((_, index) => options[(index + order) % options.length]);
-}
-
-/**
- * The Deem arm: three choice calls per row, one per option order, then one
- * funnel noul per row whose three severity calls each landed a submitted key.
- * A severity call is measured when it exits 0 with a submitted key; a funnel
- * call is measured when it exits 0 with a finite noul in [0, 1]. An exit-4
- * severity call rechecks the health and retries once, because a dropped
- * connection is not a judgment; the funnel never reruns, since it never
- * decides. A stop prints its line and the rows finished, and leaves the
- * column and verdict unprinted.
- *
- * @param {{ rows: Array<object>, baselineRight: (row: object) => boolean }} plan - Labeled rows and the baseline-right predicate
- * @param {{ cmd: string[], model: string, modelCommit: string, sourceCommit: string }} gate - Passing deemGate result: command and health identity
- * @param {{ out: (line: string) => void, env: Record<string, string | undefined>,
- *   timeoutMs: number, callLog: { append: (record: object) => void },
- *   stored: object | null }} ctx - Line writer, environment, per-call timeout, call log and stored report
- * @returns {Promise<{ column: object, requalify: string | null } |
- *   { stopped: string, partialRows: number }>} The finished column or the stop line with the rows finished
- */
-async function runDeemArm(plan, gate, ctx) {
-  const planned = (ORDERS + 1) * plan.rows.length;
-  ctx.out(`deem: nothing leaves the machine; planned calls: ${planned}; estimated wall time: ${(planned * DEEM_P50_MS / 1000).toFixed(1)} s at ${DEEM_P50_MS} ms per call, the 2-option p50 from deem-local.md`);
-
-  const answers = new Map();
-  const wallTimes = [];
-  let finished = 0;
-
-  /**
-   * One calls.jsonl record. A call that led to a stop or a retry carries no
-   * judgment, so its outcome fields stay empty.
-   */
-  function record(row, call, order, attempt, r, outcome, status) {
-    return {
-      backend: 'deem',
-      call,
-      row: rowDigest(row),
-      order,
-      attempt,
-      wallMs: r.wallMs,
-      exitCode: r.code,
-      pick: outcome.pick ?? null,
-      pickProbability: outcome.pickProbability ?? null,
-      p0Probability: outcome.p0Probability ?? null,
-      noul: outcome.noul ?? null,
-      status,
-      modelId: gate.model,
-      modelCommit: gate.modelCommit,
-      sourceCommit: gate.sourceCommit,
-    };
-  }
-
-  function stop(line) {
-    ctx.out(line);
-    ctx.out(`deem: partial rows=${finished}`);
-    return { stopped: line, partialRows: finished };
-  }
-
-  // A severity answer counts only when it names a submitted key; the same
-  // answer carries the probability of every option, P0 included.
-  function severityOutcome(r) {
-    let parsed;
-    try {
-      parsed = JSON.parse(r.stdout);
-    } catch {
-      // A body that does not parse is an unmeasured call, not a crash.
-    }
-    const answer = parsed?.answers?.answer;
-    const choice = answer?.choice;
-    if (typeof choice !== 'string' || !OPTIONS.some((option) => option.key === choice)) return null;
-    const probability = answer?.probabilities?.[choice];
-    const p0 = answer?.probabilities?.P0;
-    return {
-      pick: choice,
-      pickProbability: Number.isFinite(probability) ? probability : null,
-      p0Probability: Number.isFinite(p0) ? p0 : null,
-    };
-  }
-
-  // A funnel answer counts only when it is a finite probability.
-  function funnelNoul(r) {
-    let parsed;
-    try {
-      parsed = JSON.parse(r.stdout);
-    } catch {
-      // A body that does not parse leaves the funnel row unmeasured.
-    }
-    const value = parsed?.answers?.answer?.noul;
-    return Number.isFinite(value) && value >= 0 && value <= 1 ? value : null;
-  }
-
-  const timeoutMs = ctx.timeoutMs ?? CALL_TIMEOUT_MS;
-
-  for (const row of plan.rows) {
-    const state = buildRowState(row);
-    const picks = [];
-    for (let order = 0; order < ORDERS; order += 1) {
-      const args = ['choice', '-q', QUESTION_SEVERITY];
-      for (const option of rotateOptions(OPTIONS, order)) args.push('-o', `${option.key}=${option.description}`);
-      const callArgs = [...gate.cmd.slice(1), ...args];
-      let attempt = 1;
-      let r = await spawnCall(gate.cmd[0], callArgs, state, ctx.env, timeoutMs);
-      wallTimes.push(r.wallMs);
-
-      if (!r.timedOut && r.code === 4) {
-        ctx.callLog.append(record(row, 'severity', order, attempt, r, {}, 'unmeasured'));
-        const health = readDeemHealth(gate.cmd, ctx.env);
-        if (!health.ok) return stop('deem arm stopped: server gone');
-        if (health.modelCommit !== gate.modelCommit || health.sourceCommit !== gate.sourceCommit) {
-          return stop('deem arm stopped: model commit changed mid-run');
-        }
-        attempt = 2;
-        r = await spawnCall(gate.cmd[0], callArgs, state, ctx.env, timeoutMs);
-        wallTimes.push(r.wallMs);
-      }
-
-      let outcome = null;
-      let status = 'unmeasured';
-      let stopLine = null;
-      if (r.timedOut) {
-        status = 'unmeasured_timeout';
-      } else if (r.code === 0) {
-        outcome = severityOutcome(r);
-        if (outcome !== null) status = 'measured';
-      } else if (r.code === 2) {
-        stopLine = 'deem arm stopped: usage error';
-      } else if (r.code === 3) {
-        stopLine = 'deem arm stopped: backend refused';
-      } else if (r.code === 130) {
-        stopLine = 'deem arm stopped: interrupted';
-      }
-
-      ctx.callLog.append(record(row, 'severity', order, attempt, r, outcome ?? {}, status));
-      if (stopLine !== null) return stop(stopLine);
-      picks.push({ pick: outcome?.pick ?? null, p0Probability: outcome?.p0Probability ?? null });
-    }
-    answers.set(rowKey(row.registry, row.findingId), picks);
-    finished += 1;
-  }
-
-  const measuredRows = plan.rows.filter((row) => {
-    const values = answers.get(rowKey(row.registry, row.findingId));
-    return Array.isArray(values)
-      && values.length === ORDERS
-      && values.every((value) => OPTIONS.some((option) => option.key === value?.pick));
-  });
-
-  const funnelValues = [];
-  for (const row of measuredRows) {
-    const state = buildRowState(row);
-    const callArgs = [...gate.cmd.slice(1), 'noul', '-q', QUESTION_FUNNEL];
-    const attempt = 1;
-    const r = await spawnCall(gate.cmd[0], callArgs, state, ctx.env, timeoutMs);
-    wallTimes.push(r.wallMs);
-
-    let noul = null;
-    let status = 'unmeasured';
-    let stopLine = null;
-    if (r.timedOut) {
-      status = 'unmeasured_timeout';
-    } else if (r.code === 0) {
-      noul = funnelNoul(r);
-      if (noul !== null) status = 'measured';
-    } else if (r.code === 2) {
-      stopLine = 'deem arm stopped: usage error';
-    } else if (r.code === 3) {
-      stopLine = 'deem arm stopped: backend refused';
-    } else if (r.code === 130) {
-      stopLine = 'deem arm stopped: interrupted';
-    }
-
-    ctx.callLog.append(record(row, 'funnel', null, attempt, r, noul === null ? {} : { noul }, status));
-    if (stopLine !== null) return stop(stopLine);
-    funnelValues.push(noul);
-  }
-
-  const column = summarizeColumn(
-    'deem',
-    plan.rows,
-    answers,
-    plan.baselineRight,
-    `model=${gate.model} model_commit=${gate.modelCommit} source_commit=${gate.sourceCommit}`,
-  );
-  const latency = { p50: nearestRank(wallTimes, 0.5), p95: nearestRank(wallTimes, 0.95) };
-  ctx.out(`column deem: K=${column.K} measured=${column.M} unmeasured=${column.unmeasured} p_loss=${formatP(column.pLoss)} latency_p50_ms=${latency.p50 ?? 'none'} latency_p95_ms=${latency.p95 ?? 'none'}`);
-  const orderLineText = orderLine('deem', plan.rows, answers);
-  if (orderLineText !== null) ctx.out(orderLineText);
-  ctx.out(funnelLine('deem', measuredRows.length, funnelValues));
-  ctx.out(exactLine('deem', plan.rows, answers));
-  const storedDeem = ctx.stored?.columns?.deem;
-  let requalify = null;
-  if (storedDeem && (storedDeem.modelCommit !== gate.modelCommit || storedDeem.sourceCommit !== gate.sourceCommit)) {
-    requalify = 'requalify: model commit changed';
-    ctx.out(requalify);
-  }
-  ctx.out(column.line);
-
-  return {
-    column: {
-      ...column,
-      latency,
-      modelId: gate.model,
-      modelCommit: gate.modelCommit,
-      sourceCommit: gate.sourceCommit,
-    },
-    requalify,
-  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1509,11 +1188,11 @@ async function runJevArm(plan, gate, ctx) {
  * @param {{ census: object, labels: { sha256: string | null, K: number,
  *   real: number, negatives: number, dropped: number },
  *   baseline: { right: number, of: number }, gate: string,
- *   jev?: object, deem?: object }} parts - Report inputs
+ *   jev?: object }} parts - Report inputs
  * @returns {object} Report object ready for JSON.stringify
  */
 function buildReport(parts) {
-  const { census, labels, baseline, gate, jev, deem } = parts;
+  const { census, labels, baseline, gate, jev } = parts;
   const report = {
     census,
     labels,
@@ -1525,7 +1204,7 @@ function buildReport(parts) {
     requalify: {},
   };
 
-  for (const [backend, arm] of [['jev', jev], ['deem', deem]]) {
+  for (const [backend, arm] of [['jev', jev]]) {
     if (!arm) continue;
     if (typeof arm.skipped === 'string') {
       report.skipped[backend] = arm.skipped;
@@ -1553,15 +1232,9 @@ function buildReport(parts) {
       unmeasured: column.unmeasured,
       latency: column.latency,
     };
-    if (backend === 'deem') {
-      report.columns[backend].modelId = column.modelId;
-      report.columns[backend].modelCommit = column.modelCommit;
-      report.columns[backend].sourceCommit = column.sourceCommit;
-    } else {
-      report.columns[backend].jevVersion = column.jevVersion;
-      report.columns[backend].provider = column.provider;
-      report.columns[backend].model = column.model;
-    }
+    report.columns[backend].jevVersion = column.jevVersion;
+    report.columns[backend].provider = column.provider;
+    report.columns[backend].model = column.model;
     report.requalify[backend] = arm.requalify ?? null;
   }
 
@@ -1602,7 +1275,6 @@ async function main(argv, deps = {}) {
         'write-label-sheet': { type: 'string' },
         labels: { type: 'string' },
         jev: { type: 'boolean' },
-        deem: { type: 'boolean' },
         out: { type: 'string' },
       },
     }));
@@ -1613,10 +1285,8 @@ async function main(argv, deps = {}) {
 
   // A model call whose outcome is never recorded cannot be inspected later,
   // so an arm without an output directory is refused before anything runs.
-  if ((values.jev === true || values.deem === true) && (typeof values.out !== 'string' || values.out === '')) {
-    err(values.jev === true
-      ? '--jev needs --out <dir> so every call is recorded'
-      : '--deem needs --out <dir> so every call is recorded');
+  if (values.jev === true && (typeof values.out !== 'string' || values.out === '')) {
+    err('--jev needs --out <dir> so every call is recorded');
     return 2;
   }
 
@@ -1698,7 +1368,7 @@ async function main(argv, deps = {}) {
   const gate = gateLine(K, negatives, labelCounts.real);
   out(gate.line);
 
-  const armRequested = values.jev === true || values.deem === true;
+  const armRequested = values.jev === true;
   const stored = armRequested ? readStoredReport(values.out) : null;
   const callLog = createCallLog(values.out);
   const plan = { rows: labeledRows, baselineRight: (row) => row.label === 'real' };
@@ -1717,20 +1387,6 @@ async function main(argv, deps = {}) {
     }
   }
 
-  let deemResult;
-  if (values.deem === true) {
-    if (gate.state !== 'open') {
-      const line = gate.state === 'headroom' ? 'deem arm skipped: no headroom' : 'deem arm skipped: label gate';
-      out(line);
-      deemResult = { skipped: line };
-    } else {
-      const deem = deemGate({ out, env });
-      deemResult = deem.passed
-        ? await runDeemArm(plan, deem, { out, env, timeoutMs, callLog, stored })
-        : { skipped: deem.reason };
-    }
-  }
-
   if (armRequested) {
     const report = buildReport({
       census,
@@ -1738,7 +1394,6 @@ async function main(argv, deps = {}) {
       baseline: { right: labelCounts.real, of: K },
       gate: gate.line,
       jev: jevResult,
-      deem: deemResult,
     });
     fs.mkdirSync(values.out, { recursive: true });
     fs.writeFileSync(path.join(values.out, 'report.json'), `${JSON.stringify(report, null, 2)}\n`, 'utf8');
@@ -1758,10 +1413,7 @@ module.exports = {
   PHRASES,
   LABEL_GATE,
   ORDERS,
-  DEEM_MODEL,
-  DEEM_P50_MS,
   JEV_VERSION,
-  HEALTH_TIMEOUT_MS,
   CALL_TIMEOUT_MS,
   BACKOFF_MS,
   MARGIN_LINE,
@@ -1792,13 +1444,9 @@ module.exports = {
   exactLine,
   nearestRank,
   which,
-  deemCommand,
-  readDeemHealth,
-  deemGate,
   spawnCall,
   createCallLog,
   readStoredReport,
-  runDeemArm,
   isPublished,
   jevGate,
   runJevArm,

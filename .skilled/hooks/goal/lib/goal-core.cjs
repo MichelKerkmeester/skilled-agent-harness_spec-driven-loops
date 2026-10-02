@@ -128,8 +128,11 @@ const VERIFIER_STOPWORDS = new Set([
   'mission', 'phase', 'that', 'this', 'update', 'with', 'work',
 ]);
 
-// Ported verbatim from opencode-goal's default heuristic supervisor verifier patterns.
-const VERIFIER_BLOCKING_PATTERN = /\b(blocked?|blocker|error|failed|failing|failure|cannot|can't|unable|todo|not yet|partial(?:ly)?|still need(?:s)?|incomplete|not complete|not done|waiting|pending)\b/i;
+// Ported from opencode-goal's default heuristic supervisor verifier patterns. The
+// fail and failures alternative skips a zero-count report (a test summary prints
+// `fail 0` or `0 failures`) but still blocks on a real count (`P0 fail`,
+// `2 failures`) or a bare `fails` verdict.
+const VERIFIER_BLOCKING_PATTERN = /\b(blocked?|blocker|error|failed|failing|failure|(?<!\b0\s+)(?:fails?|failures)(?!\s*[:=]?\s*0\b)|cannot|can't|unable|todo|not yet|partial(?:ly)?|still need(?:s)?|incomplete|not complete|not done|waiting|pending)\b/i;
 const VERIFIER_COMPLETION_PATTERN = /\b(done|completed?|finished|implemented|fixed|resolved|delivered|shipped|verified|validated|tests? passed|checks? passed|passing)\b/i;
 
 class GoalError extends Error {
@@ -592,9 +595,16 @@ function verifierResult(verdict, reason, evidence, confidence) {
  * `defaultHeuristicSupervisorVerifier`. Free-form assistant text can sound
  * conclusive while still describing a blocker, so ambiguous or mixed
  * evidence always stays open (`not-met`/`unclear`) rather than `met`.
+ * It judges the tail of the evidence because the completion proof comes
+ * last, and a cut there would read as truncation. Only the last
+ * `DEFAULT_MAX_EVIDENCE_CHARS` characters are judged, so a blocker stated
+ * earlier in a longer transcript is never seen by this verifier.
  */
 function verifyGoalHeuristic({ goal, transcriptText } = {}) {
-  const safeEvidence = sanitizeInlineText(transcriptText || '', DEFAULT_MAX_EVIDENCE_CHARS);
+  const fullEvidence = sanitizeInlineText(transcriptText || '', Infinity);
+  const safeEvidence = fullEvidence.length > DEFAULT_MAX_EVIDENCE_CHARS
+    ? fullEvidence.slice(-DEFAULT_MAX_EVIDENCE_CHARS).trimStart()
+    : fullEvidence;
   const safeObjective = sanitizeInlineText(goal?.objective || '', DEFAULT_MAX_OBJECTIVE_CHARS);
 
   if (safeEvidence.length < 24) {

@@ -27,7 +27,7 @@ With no switch the script is a census. It loads each hub's compiled engine read 
 
 `--rows-out <file>` writes one JSON line per mode clarify row with the committed prompt, the alternatives in router order, a `gold` taken from the scenario's `expected_workflow_mode` when it is among the alternatives and an empty `label`. `--transcripts <dir>` counts front-door output lines in a folder the operator names and prints the real clarify rate as counts only. Without it the census prints `real clarify rate: not measured`.
 
-`--score <file>` reads a rows file. A row is labeled when it has an operator `label` or a committed `gold`. A label outside the row's alternatives and `none_of_these` exits 2 naming the row. Under 30 labeled rows it prints `stop: fewer than 30 labeled rows` and calls nothing. Past the gate the baseline is the router's first alternative. When that baseline is right on more than 90 percent of the rows, the script prints `no headroom`. Otherwise `--jev` and `--deem`, each with `--out <dir>`, run behind their own gates, Jev first. Each backend answers every row three times in rotated option order and writes every call to `calls.jsonl`. Its column ends in `verdict <backend>: keep`, `kill` or `stop (<reason>)` under a keep rule fixed before any run.
+`--score <file>` reads a rows file. A row is labeled when it has an operator `label` or a committed `gold`. A label outside the row's alternatives and `none_of_these` exits 2 naming the row. Under 30 labeled rows it prints `stop: fewer than 30 labeled rows` and calls nothing. Past the gate the baseline is the router's first alternative. When that baseline is right on more than 90 percent of the rows, the script prints `no headroom`. Otherwise `--jev` with `--out <dir>` runs behind its gate. The classifier answers every row three times in rotated option order and writes every call to `calls.jsonl`. Its column ends in `verdict jev: keep`, `kill` or `stop (<reason>)` under a keep rule fixed before any run.
 
 ---
 
@@ -37,7 +37,7 @@ With no switch the script is a census. It loads each hub's compiled engine read 
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs` | Script | Census, transcript count, rows writer, label gate, both arms and the verdict |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs` | Script | Census, transcript count, rows writer, label gate, the arm and the verdict |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/validate-compiled-routing-scenarios.cjs` | Script | Playbook scenario parser the census imports |
 | `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs` | Shared | `loadHubEngine`, the per-hub compiled engine loader |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/labeled-prompts.jsonl` | Data | Routing-corpus prompts with their gold skill |
@@ -46,7 +46,7 @@ With no switch the script is a census. It loads each hub's compiled engine read 
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | Unit | Census counts, the checklist split, the transcript count, the label gate, the keep rule's verdicts and both gates on stub binaries |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | Unit | Census counts, the checklist split, the transcript count, the label gate, the keep rule's verdicts and the gate on stub binaries |
 | `.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/parent-hub/count-clarify-and-stop-at-the-label-gate.md` | Manual playbook | Runs the census and confirms the scorer stops at the label gate |
 
 ---

@@ -163,6 +163,11 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 39 | 039-hub-cleanup/ | Make the cli-classifier hub say what it is: a `cli-jev` folder for the Jev mode, pre-release versions everywhere, and a testing playbook for each transport. | Complete |
 | 40 | 040-hard-rules-sidecar/ | Move every rule, unchanged, into a `hard-rules.json` sidecar beside its SKILL.md, repoint every reader and test in the same change, and document where hard rules live, with enforcement identical before and after. | Complete |
 | 41 | 041-code-readmes-and-routing-alignment/ | Give every code folder this packet created a README, and align the cli-classifier hub's and both modes' smart routing with the sk-create-skill canon, with every correct routing decision unchanged. | Complete |
+| 42 | 042-label-drafting-and-confirmation/ | Fill the eleven label gates today's corpus can fill, run each zero-call gate, and record the blocked five and 028. | Complete |
+| 43 | 043-label-finding-fixes/ | Fix the tool defects 042's labels found: 027's stop-rater gold and lineage filter, 003's goal-core evidence clamp, and 006's model arm. | Complete |
+| 44 | 044-deem-answer-shape-fix/ | Make cli-deem read the answer shapes the real local Deem server sends, and make 027's and 026's scorers read judgment output at the `answers.answer` depth real cli-deem and jev print. | Complete |
+| 45 | 045-deem-live-runs/ | Run every scorer's Deem arm once on the local Deem server and record each result, and close the three Deem findings 044 recorded. Stopped after 2 of 20 when the operator retired Deem. | Complete |
+| 46 | 046-deem-deprecation/ | Remove `cli-deem` and every scorer's Deem arm so `cli-jev` is the only classifier, with `cli-classifier` kept as a parent hub for a future one. Four child phases. | Complete |
 
 ### Phase Transition Rules
 
@@ -217,6 +222,11 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 038-pi-classifier-transport-integration | 039-hub-cleanup | 038 is Planned and waits for the rename | `cli-jev/SKILL.md` exists and the routing gates pass |
 | 039-hub-cleanup | 040-hard-rules-sidecar | 039 is Complete, so the Jev packet path is final | No SKILL.md declares `hard_rules:` and the engine's verdicts match before and after |
 | 040-hard-rules-sidecar | 041-code-readmes-and-routing-alignment | 040 is Complete and the hub's paths are final | Each README validates and its command passes, `ROUTER.md` is active and `parent-skill-check` passes with 0 warnings, and the routing probe keeps its correct rows |
+| 041-code-readmes-and-routing-alignment | 042-label-drafting-and-confirmation | 041 is Complete, so the label files and scorers are at their final paths | Every fillable feature's zero-call gate prints its line or a recorded stop, and `validate.sh --strict` passes on 042 |
+| 042-label-drafting-and-confirmation | 043-label-finding-fixes | 042 is Complete and its decisions logs record the defects | Each changed suite passes, the cross-family review leaves no open P0 or P1, and `validate.sh --strict` passes on 043 |
+| 043-label-finding-fixes | 044-deem-answer-shape-fix | 043 is Complete and the operator asked for the fix | The cli-deem client gets a number or a known key from the local server for `noul`, `choice` and `score`, each changed suite passes, the cross-family review leaves no open P0 or P1, and `validate.sh --strict` passes on 044 |
+| 044-deem-answer-shape-fix | 045-deem-live-runs | 044 is Complete, so the client reads real answers, and the operator asked for every Deem item | Every Deem scorer has a recorded run, no run shows an answer-shape error, the cross-family review leaves no open P0 or P1, and `validate.sh --strict` passes on 045 |
+| 045-deem-live-runs | 046-deem-deprecation | 045 Complete, with its stopped runs superseded by its ADR-001 | `validate.sh --strict` on 045 |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -12,7 +12,7 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const CLI_ORCHESTRATION = path.resolve(HERE, '../../../skills/cli-external-orchestration');
 // The Jev transport is a mode of the classifier hub. A scan of a single root reads its
 // eight checks as implemented-but-undeclared, so that hub is scanned too, but only for the
-// packets a dispatch shape governs: its Deem client has no shape, so no preflight reads it.
+// packets a dispatch shape governs: the Jev client is the one a preflight reads.
 const CLI_CLASSIFIER = path.resolve(HERE, '../../../skills/cli-classifier');
 const PACKET_ROOTS = [CLI_ORCHESTRATION, CLI_CLASSIFIER];
 const GOVERNED = new Set(DISPATCH_SHAPES.map((shape) => shape.packetPath));

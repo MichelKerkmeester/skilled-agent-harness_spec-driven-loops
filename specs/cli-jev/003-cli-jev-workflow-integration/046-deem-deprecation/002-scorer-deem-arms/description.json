@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/002-scorer-deem-arms",
+  "description": "Phase 2: scorer-deem-arms",
+  "keywords": [
+    "phase",
+    "scorer-deem-arms"
+  ],
+  "lastUpdated": "2026-10-02T07:54:42.758Z",
+  "specId": "002",
+  "folderSlug": "scorer-deem-arms",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "046-deem-deprecation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

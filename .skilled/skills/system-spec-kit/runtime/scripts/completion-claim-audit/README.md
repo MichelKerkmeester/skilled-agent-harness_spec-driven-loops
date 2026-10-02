@@ -19,7 +19,7 @@ Current state:
 
 - One ESM module with a CLI entry point and exported functions the sibling test suite calls directly.
 - The detector and its pattern are loaded from the completion-evidence sentinel module, never a second copy, so the census and the Stop hooks cannot drift apart.
-- No model call happens unless `--deem` or `--jev` is passed, and each arm runs only behind its own check.
+- No model call happens unless `--jev` is passed, and the arm runs only behind its own check.
 - Only ids, counts and hashes leave the run. A string the output guard cannot account for voids the run before anything prints or writes.
 
 ---
@@ -28,9 +28,9 @@ Current state:
 
 | File | Responsibility |
 |---|---|
-| `score-completion-claims.mjs` | Argument parsing, row and label parsing, the census, the regex error counts, the label gate, the two backend gates and arms, the output guard and the report. |
+| `score-completion-claims.mjs` | Argument parsing, row and label parsing, the census, the regex error counts, the label gate, the backend gate and arm, the output guard and the report. |
 
-The module is laid out in named zones: imports, constants, rows, census, labels, gate, output guard, output directory, verdict, deem gate, deem arm, jev gate, jev arm, main.
+The module is laid out in named zones: imports, constants, rows, census, labels, gate, output guard, output directory, verdict, jev gate, jev arm, main.
 
 ---
 
@@ -38,8 +38,8 @@ The module is laid out in named zones: imports, constants, rows, census, labels,
 
 | Boundary | Rule |
 |---|---|
-| Model calls | None by default. `--deem` runs the local Deem CLI and `--jev` runs the Jev CLI, each only behind its own gate. |
-| Network | The Jev arm only, and only when `--accept-payload` is passed. The Deem arm scores locally and says so before its first call. |
+| Model calls | None by default. `--jev` runs the Jev CLI, only behind its own gate. |
+| Network | The Jev arm only, and only when `--accept-payload` is passed. |
 | Reads | The `--rows` and `--labels` files, and a `report.json` already present in `--out` for the commit and model comparison. |
 | Writes | `calls.jsonl` and `report.json` under `--out`. A report directory that resolves inside the repository is refused. |
 | Output content | Fixed labels, this run's row ids and lowercase hex digests. Any other string voids the run. |
@@ -60,7 +60,7 @@ parseLabels -> classCounts -> regexErrors  labeled rows, classes, B, false fires
 gateLine                                   stop, no headroom, or planned calls
       │
       ▼
-deemGate / jevGate -> runDeemArm / runJevArm
+jevGate -> runJevArm
       │
       ▼
 summarizeColumn -> decideVerdict           column counts, verdict, both tails
@@ -83,8 +83,7 @@ Each backend column reports the same counts: `K` labeled rows, `M` measured rows
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `node score-completion-claims.mjs --rows <file> [--labels <file>] [--deem] [--jev] [--out <dir>] [--accept-payload]` | CLI | Runs the census, then whichever arm its switch asks for. |
-| `--deem` | CLI flag | Adds the Deem column. It needs `--out` so every call is recorded. |
+| `node score-completion-claims.mjs --rows <file> [--labels <file>] [--jev] [--out <dir>] [--accept-payload]` | CLI | Runs the census, then the arm its switch asks for. |
 | `--jev` | CLI flag | Adds the Jev column. It needs `--out` and `--accept-payload`. |
 | `--labels` | CLI flag | Scores the regex against the operator's labels and opens the gate. |
 | `main(argv, deps)` | Function | Runs the census end to end and returns the exit code. Its writer, environment, timeout and backoff dependencies are replaceable in tests. |
@@ -92,8 +91,7 @@ Each backend column reports the same counts: `K` labeled rows, `M` measured rows
 | `parseLabels`, `sha256Hex`, `classCounts`, `regexErrors` | Function | Label parsing, the label set hash, the class counts and the regex error counts by word. |
 | `gateLine`, `stringLeaves`, `hasFreeText` | Function | The label gate line, the nested strings of an output object, and the free-text guard. |
 | `binomialTail`, `summarizeColumn`, `decideVerdict`, `verdictLine`, `formatP`, `nearestRank` | Function | The exact tail, the column counts, the verdict, and the verdict and latency lines. |
-| `which`, `deemCommand`, `readDeemHealth`, `deemGate`, `runDeemArm` | Function | Deem discovery, the health check that accepts the pinned model, and the one-call-per-row arm. |
-| `jevGate`, `runJevArm`, `spawnCall`, `createCallLog`, `readStoredReport` | Function | The Jev version and credential gate, the three-pass arm, the bounded child process, the call log and an earlier run's report. |
+| `which`, `jevGate`, `runJevArm`, `spawnCall`, `createCallLog`, `readStoredReport` | Function | The binary discovery, the Jev version and credential gate, the three-pass arm, the bounded child process, the call log and an earlier run's report. |
 
 Rows report `unmeasured` wherever a backend gave no usable score, and a stopped arm prints its line with the rows that finished and no column or verdict.
 
@@ -107,7 +105,7 @@ Run from `.skilled/skills/system-spec-kit/runtime`:
 npm test -- --run tests/completion-claim-audit.vitest.ts
 ```
 
-Expected result: the suite passes. Its fixtures are synthetic and stub `jev` and `cli-deem` binaries sit first on `PATH`, so the run needs no live backend and no key.
+Expected result: the suite passes. Its fixtures are synthetic and a stub `jev` binary sits first on `PATH`, so the run needs no live backend and no key.
 
 ---
 

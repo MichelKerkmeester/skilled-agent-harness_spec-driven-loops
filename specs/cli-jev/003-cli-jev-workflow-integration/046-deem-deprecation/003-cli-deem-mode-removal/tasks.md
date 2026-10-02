@@ -1,0 +1,183 @@
+---
+title: "Tasks: Phase 3: cli-deem-mode-removal"
+description: "Ordered tasks for phase 3 of the Deem deprecation: setup, implementation and verification."
+trigger_phrases:
+  - "delete cli-deem packet tasks"
+  - "one-mode classifier hub tasks"
+  - "cli-classifier routing remint tasks"
+  - "hermes cli-deem removal tasks"
+importance_tier: "important"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
+# Tasks: Phase 3: cli-deem-mode-removal
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:notation -->
+## Task Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+
+- [x] T001 Baseline the parent-hub check, routing status, harness and advisor suite. Evidence: `../001-removal-plan/inventory.md` section 3, the check exits 0 on the two-mode hub
+<!-- /ANCHOR:phase-1 -->
+
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+
+- [x] T002 Luna: delete the packet and reduce the hub files to one mode, with a new minor version and changelog entry. Evidence: commit `43598e2c67`, 57 files, hub 0.7.0.0, `changelog/v0.7.0.0.md`
+- [x] T003 Luna: update the compiled-routing fixtures, harness, advisor graph and orchestration metadata. Evidence: canary case `deem-choice-single` deleted, `deem-verb-narrowness` renamed `classifier-verb-narrowness` on a `judge` prompt, graph regenerated in `b338131b67`
+- [x] T004 Regenerate the Hermes mirror and re-mint routing. Evidence: `.hermes/skills/cli-deem/` gone, manifest hash `4d5aad95` in both activation copies
+<!-- /ANCHOR:phase-2 -->
+
+---
+
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+
+- [x] T005 Run the parent-hub check, routing status, harness, advisor suite and mirror check. Check: each passes. Evidence: check exit 0 with 0 warnings, status `compiled-serving` and `fresh`, harness `status: built` exit 0, mirror `PASS: 71 Hermes skill copies in sync`, advisor suite in `implementation-summary.md`
+- [x] T006 Route one classifier prompt through `compiled-route.cjs`. Check: `cli-jev`. Evidence: "use jev to judge whether this diff matches the spec" returns `route`, `single`, target `cli-jev`
+- [x] T007 Cross-family review. Check: P0 and P1 fixed, P2 in `goal.md`. Evidence: DeepSeek V4.1 Flash max reviewed Luna's commit, no P0 or P1, five P2 in `goal.md`
+- [x] T008 Closure: `repair-derived.cjs --apply`, `validate.sh --strict` and `check-goal.cjs`. Check: `RESULT: PASSED` on each
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
+- [ ] Manual verification passed
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+<!-- /ANCHOR:cross-refs -->
+
+---
+
+## Verification Checklist
+
+<!-- ANCHOR:protocol -->
+## Verification Protocol
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
+
+---
+
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
+
+- [ ] CHK-001 [P0] Requirements documented in spec.md
+- [ ] CHK-002 [P0] Technical approach defined in plan.md
+- [ ] CHK-003 [P1] Dependencies identified and available
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [ ] CHK-010 [P0] Code passes lint/format checks
+- [ ] CHK-011 [P0] No console errors or warnings
+- [ ] CHK-012 [P1] Error handling implemented
+- [ ] CHK-013 [P1] Code follows project patterns
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing Checklist
+
+- [ ] CHK-020 [P0] All acceptance criteria met
+- [ ] CHK-021 [P0] Manual testing complete
+- [ ] CHK-022 [P1] Edge cases tested
+- [ ] CHK-023 [P1] Error scenarios validated
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
+- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
+- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
+- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
+- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
+- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
+- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [ ] CHK-030 [P0] No hardcoded secrets
+- [ ] CHK-031 [P0] Input validation implemented
+- [ ] CHK-032 [P1] Auth/authz working correctly
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
+- [ ] CHK-041 [P1] Code comments adequate
+- [ ] CHK-042 [P2] README updated (if applicable)
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [ ] CHK-050 [P1] Temp files in scratch/ only
+- [ ] CHK-051 [P1] scratch/ cleaned before completion
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 12 | 0/12 |
+| P1 Items | 14 | 0/14 |
+| P2 Items | 1 | 0/1 |
+
+**Verification Date**: 2026-10-02
+<!-- /ANCHOR:summary -->
+
+---
