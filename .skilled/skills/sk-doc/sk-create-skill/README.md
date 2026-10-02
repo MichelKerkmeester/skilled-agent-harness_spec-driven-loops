@@ -167,8 +167,8 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 | Package completion | `python3 scripts/validate_skill_package.py <path>` | Ends with `package_skill.py --check: PASS (exit 0)`. Parent hubs also report legacy or compiled-ready state |
 | Strict contract check | `python3 scripts/validate_skill_package.py <path> --strict` | Promotes noncanonical generated paths from advisory to blocking |
 | Structure extraction | `python3 ../shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |
-| Clarify census and scorer | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | `pass 28` and `fail 0` |
-| Leaf-route replay | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | `pass 33` and `fail 0` |
+| Clarify census and scorer | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | `pass 22` and `fail 0` |
+| Leaf-route replay | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | `pass 31` and `fail 0` |
 
 ---
 

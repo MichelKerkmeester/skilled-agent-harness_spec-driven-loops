@@ -53,7 +53,7 @@ Before the first call the run prints `keep rule: coverage 10*M>=9*K, kill P(X>=L
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts` | Vitest | Twenty-three cases over synthetic fixtures, with a stub `jev` binary first on the path |
+| `.skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts` | Vitest | Twenty-seven cases over synthetic fixtures, with a stub `jev` binary first on the path |
 
 ---
 

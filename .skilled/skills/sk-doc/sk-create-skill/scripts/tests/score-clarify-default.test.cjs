@@ -457,7 +457,7 @@ test('a jev stub that answers the label keeps', { timeout: 120000 }, () => {
   }
 });
 
-test('four failing jev calls in thirty rows stop on coverage', { timeout: 120000 }, () => {
+test('four failing Jev rows in thirty stop on coverage', { timeout: 120000 }, () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   const stubs = makeStubs();
   try {

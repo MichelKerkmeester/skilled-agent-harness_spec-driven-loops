@@ -56,7 +56,7 @@ The keep rule is fixed in code and printed before any call: `keep rule: coverage
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts` | Vitest | 34 cases, run from `runtime/cli` as `npx vitest run --config ../../vitest.config.ts --project cli tests/score-alignment-suggestion.vitest.ts`, with every backend in the file a stub |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts` | Vitest | 35 cases, run from `runtime/cli` as `npx vitest run --config ../../vitest.config.ts --project cli tests/score-alignment-suggestion.vitest.ts`, with every backend in the file a stub |
 | `../../manual-testing-playbook/tooling-and-scripts/alignment-suggestion-measurement.md` | Manual playbook | Playbook scenario 461 for the alignment suggestion measurement |
 
 ---

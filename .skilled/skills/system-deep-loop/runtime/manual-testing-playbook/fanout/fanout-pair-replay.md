@@ -29,7 +29,7 @@ printed a `verdict` line, so this scenario claims none.
 - Layer partition: offline fan-out pair replay.
 - Real user request: `Run the fan-out pair replay census and confirm it stops at the label gate without calling a backend.`
 - Expected signals: The census prefixes `runs:`, `pairs:`, `class near-line:`, `class cross-body:` and `merge decisions:` on stdout. The final line `stop: fewer than 40 labeled pairs`. Exit 0 from both commands and no file written by the census run.
-- Pass/fail: PASS only if the census run exits 0 with its census prefixes and ends `stop: fewer than 40 labeled pairs` and the test run exits 0 with 36 tests passing. FAIL otherwise.
+- Pass/fail: PASS only if the census run exits 0 with its census prefixes and ends `stop: fewer than 40 labeled pairs` and the test run exits 0 with 37 tests passing. FAIL otherwise.
 
 ---
 
@@ -60,7 +60,7 @@ for each loop, then `merge undecidable: <n>`. The run ends on `stop: fewer than 
 pairs` because no labels are filled in. The counts read the live tree so a later run may
 differ.
 
-Command 2 reports 36 tests passing with exit 0. `label reader stops under 40 pairs` asserts
+Command 2 reports 37 tests passing with exit 0. `label reader stops under 40 pairs` asserts
 `stop: fewer than 40 labeled pairs`, `label reader stops under 10 cross-body` asserts
 `stop: fewer than 10 labeled cross-body pairs`, and `no headroom above 90 percent` asserts
 `no headroom`.
@@ -91,7 +91,7 @@ Command 2 reports 36 tests passing with exit 0. `label reader stops under 40 pai
 
 | File | Role |
 |---|---|
-| `tests/unit/score-fanout-pairs.vitest.ts` | 36 tests, including the label gate cases |
+| `tests/unit/score-fanout-pairs.vitest.ts` | 37 tests, including the label gate cases |
 
 ---
 
