@@ -47,13 +47,10 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
-      ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
       ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
       ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts",
-      ".hermes/skills/cli-deem/SKILL.md",
       "build/fix/044a.md"
     ],
     "entities": [
@@ -94,18 +91,6 @@
         "source": "derived"
       },
       {
-        "name": "cli-deem.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "cli-deem.test.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs",
-        "source": "derived"
-      },
-      {
         "name": "score-stop-rater.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs",
@@ -127,12 +112,6 @@
         "name": "completion-claim-audit.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".hermes/skills/cli-deem/SKILL.md",
         "source": "derived"
       },
       {
@@ -200,11 +179,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The local Deem server answers `noul` with `{\"noul\": <number>}` and `score` with a numeric `score`, index-keyed `probabilities` and a `legend`",
     "created_at": "2026-10-02T06:02:31Z",
-    "last_save_at": "2026-10-02T07:03:22.985Z",
+    "last_save_at": "2026-10-02T17:59:23.315Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:abb2540f2d390c641e66672100731c6588dbac05ad9ce1c054bc093892e975cd",
+    "source_fingerprint": "sha256:cea3b245dadaccca6fbffefe3ed71ad32409904be600f09cd5c9d6eceb71a9e0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7dff5d3cc0a306dbedb953385a279c99dfb88e4d09535c628c5849c61b14ace0",
       "plan.md": "fca6c8cc3f3cea5b180a4f48346be6b2ce234b5686698bb180d462490069595f",
-      "tasks.md": "0d2455f65db6cec218670f683817d12cac7dc9d14bec864088a6209241c6eb22",
-      "implementation-summary.md": "8f3273e0844cd36cc974116f2965baa444239deb18c383ab2ea170271e5bcd6c"
+      "tasks.md": "76502cd26bee2aaf9161e78cc90273c6c5b359ba684c94d2c7a48a1646dd8963",
+      "implementation-summary.md": "2ca6ac797c9bde78b11192f726fc603e7079ba9cb83a511cecfe79cf564676f1"
     },
     "last_active_at": null
   }

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phases 002 and 003 remove the code and the hub's mode",
     "created_at": "2026-10-02T07:54:43Z",
-    "last_save_at": "2026-10-02T16:17:16.808Z",
+    "last_save_at": "2026-10-02T17:59:29.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:56098445a6417943ba070a58837ef9015cb4715aa3e30c1d1435b553b00721cd",
+    "source_fingerprint": "sha256:a44068d5fefa18378e06d29a9c17ddd3334d7f50656fa0530faaef26c7550c00",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "03ec37146921df1536965b482bcf27df4a2586462cd11e0a5fd81c24622814e2",
       "plan.md": "65087b14c6ec6e9c99e22afcd6f474f83c460794148a15d049d928e2ec639fd1",
-      "tasks.md": "f5b2b4b54f3f6ef687c966ab785d8a55eec975fcb9a7f985a02956704ff9f469",
-      "implementation-summary.md": "92b7f2737ec8416eb519c84dcfb64e6228eae3d5e39b4f75d17070476897faab"
+      "tasks.md": "e7a0bf21a61df16a02856e0569b41fba2d15c7ec62da098e269f0d5e61f5d9e6",
+      "implementation-summary.md": "9d8eef5ebb320c99b426aad78c020193592fe6e8a04c6fdbb97929199db0921e"
     },
     "last_active_at": null
   }

@@ -78,7 +78,7 @@ Each suite's stub had printed the shape its own code expected. The stubs now pri
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The session traced the cause with two direct calls to the local server and a sweep of every scorer's parser, then sent Luna 6 max the client and SWE 2 max the two scorers in parallel, and SWE the docs after. It ran each suite from the changed state, ran the fixed client against the local server and committed each fix alone: `e783935de9`, `c8673c3c5f`, `bcb4128396` and `5d5eee4d67`. It made two small changes itself, both logged in `goal.md`: the float rounding in 027's Jev arm, and the review's `criteria` bound.
+The session traced the cause with two direct calls to the local server and a sweep of every scorer's parser, then sent Luna 6 max the client and SWE 2 max the two scorers in parallel, and SWE the docs after. It ran each suite from the changed state, ran the fixed client against the local server and committed each fix alone: `006994d12a`, `7180ff06b4`, `1882e3f868` and `ec3d3c1e7f`. It made two small changes itself, both logged in `goal.md`: the float rounding in 027's Jev arm, and the review's `criteria` bound.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -104,7 +104,7 @@ The session traced the cause with two direct calls to the local server and a swe
 | 027 and 026 suites | PASS, 61 (59 before) and 24 (23 before), 0 failing |
 | Local server | `health`, `noul`, `choice`, `score`, both `--value` forms and a `criteria` batch each exit 0 |
 | Docs | `validate_document.py` exits 0 on every changed doc, Hermes sync PASS 72, manifest `compiled-serving` |
-| Review | DeepSeek V4.1 Flash: 1 P1 fixed in `5d5eee4d67`, 3 P2 recorded |
+| Review | DeepSeek V4.1 Flash: 1 P1 fixed in `ec3d3c1e7f`, 3 P2 recorded |
 | Closure gates | PASS: `validate.sh --strict --recursive` `RESULT: PASSED` with 0 errors and 0 warnings on all 45 folders, and `check-goal.cjs` 5/5 on each |
 <!-- /ANCHOR:verification -->
 

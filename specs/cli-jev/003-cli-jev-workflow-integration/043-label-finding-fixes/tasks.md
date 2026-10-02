@@ -44,9 +44,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 027 gold and lineage filter (`score-stop-rater.cjs`, its vitest file, its catalog entry), Luna 6 max. Evidence: commit `55c33b363e`, suite 41 pass and 0 failing, census `sampled 25` with `no gold 72`
-- [x] T005 [P] 003 evidence clamp (`goal-core.cjs`, `goal-core.test.cjs`, `score-verifier-labeled-set.test.cjs`, the goal README), SWE 2 max. Evidence: commit `5543f6861e`, goal-core 78 pass and the five other goal suites at their baselines, 0 failing
-- [x] T006 006 Jev arm (`score-goal-lint.cjs`, `score-goal-lint.test.cjs`), Luna 6 max, brief `006a.md`. Evidence: commit `a5b3c462f3`, score-goal-lint 14 pass (8 before), the three neighboring suites unchanged at 12, 16 and 4, the default run byte-identical to HEAD
+- [x] T004 027 gold and lineage filter (`score-stop-rater.cjs`, its vitest file, its catalog entry), Luna 6 max. Evidence: commit `499e6dc28d`, suite 41 pass and 0 failing, census `sampled 25` with `no gold 72`
+- [x] T005 [P] 003 evidence clamp (`goal-core.cjs`, `goal-core.test.cjs`, `score-verifier-labeled-set.test.cjs`, the goal README), SWE 2 max. Evidence: commit `67b2262e64`, goal-core 78 pass and the five other goal suites at their baselines, 0 failing
+- [x] T006 006 Jev arm (`score-goal-lint.cjs`, `score-goal-lint.test.cjs`), Luna 6 max, brief `006a.md`. Evidence: commit `ce372a4404`, score-goal-lint 14 pass (8 before), the three neighboring suites unchanged at 12, 16 and 4, the default run byte-identical to HEAD
 - [x] T007 006 Deem arm (the same two files), after T006. Evidence: score-goal-lint 21 pass with the stub `cli-deem` cases, plus a coverage stop for both backends after a 0-row `kill` showed up on the local server
 <!-- /ANCHOR:phase-2 -->
 
@@ -55,8 +55,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T008 Document the 006 arms in the sk-create-goal docs that describe the scorer. Evidence: commit `eb4eb71881`, SWE 2 max, the session fixed three lines after it. `validate_document.py` 0 issues on the sk-create-goal README, scripts README, catalog entry and changelog v1.4.0.0. `sync-skills-hermes.cjs --check` PASS 72. sk-doc's activation manifest re-minted with `compiled-route-manifest.cjs refresh` and `compiled-route-status.cjs --hub sk-doc` fresh
-- [x] T009 DeepSeek V4.1 Flash reviews of the three fixes. Evidence: three read-only rounds (1,731 s, 1,524 s, 1,117 s), each `VERDICT: FAIL` until its P0 and P1 were reproduced and fixed: round one in `5a7db2f019`, `0cd052bf47` and `9bb1781175`, round two in `2825bd105b` and `1093a8520c`, round three's one-word P1 in `1f5d472ef7`. Every P2 is recorded in `goal.md`'s log. No fourth review ran after `1f5d472ef7`; the session reproduced the P1 and reran every goal suite instead
+- [x] T008 Document the 006 arms in the sk-create-goal docs that describe the scorer. Evidence: commit `097c1d68ca`, SWE 2 max, the session fixed three lines after it. `validate_document.py` 0 issues on the sk-create-goal README, scripts README, catalog entry and changelog v1.4.0.0. `sync-skills-hermes.cjs --check` PASS 72. sk-doc's activation manifest re-minted with `compiled-route-manifest.cjs refresh` and `compiled-route-status.cjs --hub sk-doc` fresh
+- [x] T009 DeepSeek V4.1 Flash reviews of the three fixes. Evidence: three read-only rounds (1,731 s, 1,524 s, 1,117 s), each `VERDICT: FAIL` until its P0 and P1 were reproduced and fixed: round one in `82bf342dae`, `2022ba3e91` and `72d28bb9c2`, round two in `81b3315624` and `419607ba19`, round three's one-word P1 in `c6d09396dd`. Every P2 is recorded in `goal.md`'s log. No fourth review ran after `c6d09396dd`; the session reproduced the P1 and reran every goal suite instead
 - [x] T010 Closure: `repair-derived.cjs --apply`, `validate.sh --strict` on this phase and the parent, `check-goal.cjs` on both. `repair-derived.cjs --apply` repaired the phase and the parent. `validate.sh --strict` on this phase printed `Errors: 0  Warnings: 0` and `RESULT: PASSED`, and `--recursive` on the parent printed `RESULT: PASSED` for all 44 folders. `check-goal.cjs` printed `RESULT: PASSED (5/5 checks)` on this phase, the parent and every child
 <!-- /ANCHOR:phase-3 -->
 
@@ -136,7 +136,7 @@ contextType: "implementation"
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. Evidence: 027's `it.each` table covers delimiters, joined free text, prefixes, anchors, tracked and untracked space paths. goal-core's zero-count table covers `fail: 0`, `0 fail`, `fails=0`, `0 failures` and `failures: 0`.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Evidence: three fixes, three review rounds, nine goal suites, four 006 suites and one 027 suite, each with its count in `implementation-summary.md`.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Evidence: score-goal-lint's tests put a stub `jev` and `cli-deem` first on `PATH` and assert no call without a switch. The unplanned `PATH=/usr/bin:/bin` run is logged as a deviation.
-- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: each task and log row names its commit, from `55c33b363e` to `1f5d472ef7`, and the census comparison names `9bb1781175`.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: each task and log row names its commit, from `499e6dc28d` to `c6d09396dd`, and the census comparison names `72d28bb9c2`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -144,7 +144,7 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets Evidence: a key-shape scan of `git diff 3943848cc5..HEAD` over `.skilled` and `.hermes` finds none, and no `.env` was opened.
+- [x] CHK-030 [P0] No hardcoded secrets Evidence: a key-shape scan of `git diff 8fb5763adb..HEAD` over `.skilled` and `.hermes` finds none, and no `.env` was opened.
 - [x] CHK-031 [P0] Input validation implemented Evidence: `--jev` and `--deem` without `--out` exit 2. Non-string `sources` and `evidence` entries are skipped.
 - [x] CHK-032 [P1] Auth/authz working correctly Evidence: the Jev arm runs only after `jev auth status` passes and passes Jev no secret. The Deem gate accepts only the local server.
 <!-- /ANCHOR:security -->

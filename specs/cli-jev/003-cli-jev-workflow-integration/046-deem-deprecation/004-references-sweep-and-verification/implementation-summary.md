@@ -71,7 +71,7 @@ The 54 inventory rows this phase owned are rewritten to describe Jev alone.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-DeepSeek V4.1 Flash max rewrote the docs in three batches. The session added the `cli-jev` entry, regenerated the baselines and the index, and ran the greps and suites. Luna 6 max reviewed the doc commits. Its P0, stale test counts after the coverage restore, went to DeepSeek and was fixed in `0c1ca648e8`, and the session fixed two more counts its scan found.
+DeepSeek V4.1 Flash max rewrote the docs in three batches. The session added the `cli-jev` entry, regenerated the baselines and the index, and ran the greps and suites. Luna 6 max reviewed the doc commits. Its P0, stale test counts after the coverage restore, went to DeepSeek and was fixed in `5711e5522e`, and the session fixed two more counts its scan found.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -100,8 +100,8 @@ DeepSeek V4.1 Flash max rewrote the docs in three batches. The session added the
 | Inventory suites | 24 of 24, 0 failing. Reader lens 36 PASS, 0 FAIL |
 | Changed scorer suites | 14 suites, 446 of 446 |
 | Advisor suite | 1055 passed, 0 failed |
-| Changelog entries | 13 new entries since `48ac21c64e` |
-| Cross-family review | P0 fixed in `0c1ca648e8`, P1 rejected with evidence, P2 in `goal.md` |
+| Changelog entries | 13 new entries since `b946a35518` |
+| Cross-family review | P0 fixed in `5711e5522e`, P1 rejected with evidence, P2 in `goal.md` |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -285,7 +285,7 @@ Each test below drove the Deem arm. Where it was the only test of logic the Jev 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-DeepSeek V4.1 Flash max took the one-arm scorers in six batches, on Cline and on OpenCode Go after each 429. Luna 6 max took 023 and 027, which ran both arms side by side. Luna reviewed DeepSeek's batches and DeepSeek reviewed Luna's. The six P1 coverage findings were fixed in `13991d53f8`. A later sweep of all 153 removed tests restored 32 more in `0cf0eadc93`. DeepSeek reviewed that commit and its one P1, the goal-lint requalify line, was fixed in `0c1ca648e8`.
+DeepSeek V4.1 Flash max took the one-arm scorers in six batches, on Cline and on OpenCode Go after each 429. Luna 6 max took 023 and 027, which ran both arms side by side. Luna reviewed DeepSeek's batches and DeepSeek reviewed Luna's. The six P1 coverage findings were fixed in `98dbc8c5df`. A later sweep of all 153 removed tests restored 32 more in `b4a8fc803e`. DeepSeek reviewed that commit and its one P1, the goal-lint requalify line, was fixed in `5711e5522e`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -311,8 +311,8 @@ DeepSeek V4.1 Flash max took the one-arm scorers in six batches, on Cline and on
 | Criterion 1 grep over the 99 assigned files | Nothing printed |
 | Default output, old against new on one tree | `scratch/default-diff.txt`: 16 identical, 023, 027 and 030 lose only the Deem planned-calls field, 019 differs only in its advisor-child timing line, which differs between runs of identical code |
 | `--deem` on each scorer | `scratch/deem-flag.txt`: 20 of 20 exit 2 through the unknown-flag path |
-| Covering suites from the final state | 24 of 24 inventory suites 0 fail, and the 14 suites `0cf0eadc93` and `0c1ca648e8` changed pass 446 of 446. The reader lens script prints 36 PASS and 0 FAIL |
-| Cross-family reviews | No P0. Six P1 fixed in `13991d53f8`, coverage sweep in `0cf0eadc93`, its review's one P1 fixed in `0c1ca648e8`. P2 in `goal.md` |
+| Covering suites from the final state | 24 of 24 inventory suites 0 fail, and the 14 suites `b4a8fc803e` and `5711e5522e` changed pass 446 of 446. The reader lens script prints 36 PASS and 0 FAIL |
+| Cross-family reviews | No P0. Six P1 fixed in `98dbc8c5df`, coverage sweep in `b4a8fc803e`, its review's one P1 fixed in `5711e5522e`. P2 in `goal.md` |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -78,8 +78,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planned | Done | Scoped 2026-10-02 from the operator's request to remove Deem and keep Jev |
-| Removal | Done | Luna 6 max, commit `326997828a`: packet and Hermes copy deleted, hub 0.7.0.0 with one mode, routing re-minted |
-| Advisor graph | Done | Regenerated with `skill_graph_compiler.py --export-json` in `a7b60bf56e` |
+| Removal | Done | Luna 6 max, commit `43598e2c67`: packet and Hermes copy deleted, hub 0.7.0.0 with one mode, routing re-minted |
+| Advisor graph | Done | Regenerated with `skill_graph_compiler.py --export-json` in `b338131b67` |
 | Checks | Done | Hub check exit 0, `compiled-serving` and `fresh`, harness built, mirror in sync, grep empty, Jev prompt routes `single` to `cli-jev` |
 | Review | Done | DeepSeek V4.1 Flash max: no P0 or P1, five P2 below |
 
@@ -88,10 +88,10 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Canary fixture | `deem-choice-single` deleted. `deem-verb-narrowness` became `classifier-verb-narrowness` on `judge this plan acceptable and ship it`, same expectation |
-| P2 hand-minified graph | Fixed: `a7b60bf56e` uses the canonical exporter. A rerun differs only in `generated_at` |
-| P2 stale `derived.last_updated_at` | Fixed in `b2fd4237f2`. Routing stays `compiled-serving` |
+| P2 hand-minified graph | Fixed: `b338131b67` uses the canonical exporter. A rerun differs only in `generated_at` |
+| P2 stale `derived.last_updated_at` | Fixed in `5aa8b6ed16`. Routing stays `compiled-serving` |
 | P2 doc versions | Kept: README and playbook 0.4.0.0, catalog 0.3.0.0, routing files 0.7.0.0. Sibling hubs carry independent doc versions and the doctor version checks pass |
 | P2 Hermes mirrors naming Deem | Fixed by phase 004's sweep, mirror `--check` passes |
-| P2 dangling generated paths | Phase 004's: README baselines regenerated in `5c6e7ac7cc`, the trigger index rebuilt at its close |
+| P2 dangling generated paths | Phase 004's: README baselines regenerated in `3d4d54d5d8`, the trigger index rebuilt at its close |
 | Advisor suite | Two runs under load averages above 20 failed only the freshness bench and native-scorer p95 budgets. Both passed in isolation, and a full run at load 5 to 7 passed 1055 with 0 failed |
 <!-- /ANCHOR:log -->
