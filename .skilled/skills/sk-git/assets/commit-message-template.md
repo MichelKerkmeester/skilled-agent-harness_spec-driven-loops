@@ -32,7 +32,8 @@ type(scope)[!]: imperative summary
 ```
 
 Type and scope are required. The scope names a stable subsystem, never a
-numeric packet. Aim for 80 characters and never exceed 100.
+numeric packet. Aim for 80 characters (`subject.length-target`) and never exceed
+100 characters (`subject.max-length`).
 
 Git-generated `Merge`, `Revert`, `fixup!`, `squash!`, and `amend!` subjects
 are preserved unchanged.
@@ -129,7 +130,7 @@ Commit-Id: 0009022
 ### Preserve the intended database journal mode
 
 ```text
-fix(spec-kit): preserve DELETE journal mode during startup
+fix(system-spec-kit): preserve DELETE journal mode during startup
 
 Context: A startup health check restored WAL mode and reopened a known
 multi-process crash risk.
@@ -156,12 +157,15 @@ actually gets committed here, not generic auth/API scaffolding.
 - [ ] Authored subject matches `type(scope)[!]: imperative summary` (`subject.format`).
 - [ ] Type is the first match in the canonical priority.
 - [ ] Scope is stable, lowercase, and not numeric-only (`subject.scope-numeric`).
+- [ ] Scope uses a canonical name rather than a listed alias (`subject.scope-alias`).
 - [ ] Summary says what changed, not how the work was organized (`subject.process-language`).
 - [ ] Summary is not vague or dependent on internal jargon (`subject.vague`).
+- [ ] Subject stays within the 80-character target when possible (`subject.length-target`).
 - [ ] Subject is at most 100 characters (`subject.max-length`).
 - [ ] The message has a prose body that says why, whatever the path count (`body.required`).
 - [ ] Verification claims name the command or observed evidence.
 - [ ] Breaking changes include `!` and `BREAKING CHANGE:` (`breaking.footer`).
+- [ ] Breaking commits carry `Context:`, `Changes:` and `Verification:` sections (`body.breaking-sections`).
 - [ ] Message remains understandable without the linked spec or issue.
 - [ ] The trailer paragraph is the last paragraph and stays contiguous (`trailer.final-paragraph`).
 - [ ] `Spec:` names an existing packet without the `specs/` prefix (`trailer.spec-prefix`, `trailer.spec-exists`).
@@ -186,15 +190,18 @@ Each rule has an id, and every block message names the id it failed:
 | `message.empty` | The message has content after comments are stripped |
 | `subject.format` | The subject is `type(scope)[!]: summary` with a listed type and a scope matching `scopePattern` |
 | `subject.scope-numeric` | The scope is a subsystem name, not a bare number |
+| `subject.scope-alias` | The scope uses a canonical name, not a listed alias |
 | `subject.summary-start` | The summary starts with a lowercase imperative verb |
 | `subject.repeated-spaces` | The summary has no double spaces |
 | `subject.trailing-punctuation` | The summary does not end with punctuation |
 | `subject.vague` | The summary is not one of the listed vague phrases |
 | `subject.max-length` | The subject is at most `maxLength` characters |
+| `subject.length-target` | Warning only: the subject is longer than `warnLength` characters |
 | `subject.process-language` | Warning only: phase, wave, lane, task-count or tranche language in the summary |
 | `body.blank-line` | A blank line separates the subject from the body |
 | `body.required` | At least one prose line sits above the trailers |
 | `body.line-length` | Warning only: a prose line is longer than `warnLineLength` |
+| `body.breaking-sections` | Error: a breaking body is missing one of the configured section labels |
 | `trailer.final-paragraph` | `Spec:` and `Commit-Id:` sit in the last paragraph with no prose beside them |
 | `trailer.commit-id-format` | `Commit-Id:` holds exactly seven digits |
 | `trailer.commit-id-unique` | No other commit already carries the same `Commit-Id:` |
@@ -218,12 +225,19 @@ Git-generated subjects listed in `passthroughSubjects` skip every rule.
     "types": ["build", "chore", "ci", "docs", "feat", "fix", "merge", "perf", "refactor", "release", "revert", "style", "test"],
     "scopeRequired": true,
     "scopePattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+    "scopeAliases": {
+      "spec-kit": "system-spec-kit",
+      "skill-advisor": "system-skill-advisor",
+      "deep-loop": "system-deep-loop",
+      "rules": "repo-rules"
+    },
     "forbidNumericScope": true,
     "allowBreakingMarker": true,
     "summaryStart": { "pattern": "^[a-z]", "hint": "a lowercase imperative verb" },
     "forbidTrailingPattern": "[.!?;:,]$",
     "forbidRepeatedSpaces": true,
     "maxLength": 100,
+    "warnLength": 80,
     "vagueSummaries": ["change files", "changes", "checkpoint", "cleanup", "fix", "fix bug", "misc", "misc changes", "miscellaneous changes", "stuff", "update", "update files", "update stuff", "various changes", "work in progress", "wip"],
     "warnPatterns": [
       {
@@ -236,7 +250,8 @@ Git-generated subjects listed in `passthroughSubjects` skip every rule.
   "body": {
     "required": true,
     "blankLineAfterSubject": true,
-    "warnLineLength": 100
+    "warnLineLength": 100,
+    "breakingSections": ["Context", "Changes", "Verification"]
   },
   "trailers": {
     "looseKeys": ["Co-Authored-By", "Signed-off-by", "Reviewed-by", "Tested-by", "Refs", "Fixes", "Closes", "Related to"],

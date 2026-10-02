@@ -367,6 +367,18 @@ MSG
 run_hook; RC=$?
 check "a Spec naming no packet folder is blocked" 1 "$RC" "trailer.spec-exists"
 
+# '..' resolves to the specs root itself, which exists, so it must be refused by path.
+setup_repo
+cat > "$TMP/message.txt" <<'MSG'
+feat(sk-git): add a thing
+
+This explains why the thing was added.
+
+Spec: ..
+MSG
+run_hook; RC=$?
+check "a Spec that climbs out of specs/ is blocked" 1 "$RC" "trailer.spec-exists"
+
 # ── 23. a repository with no rules block is not checked ─────────────────────
 setup_repo
 git -C "$TMP" config --unset skgit.contractDir
@@ -411,6 +423,40 @@ printf '## Enforced rules\n\n```json\n{ "kind": "commit", "subjct": {} }\n```\n'
 printf 'feat: add a thing\n' > "$TMP/message.txt"
 run_hook; RC=$?
 check "a malformed contract blocks the commit" 1 "$RC" "unknown key"
+
+setup_repo
+mkdir -p "$TMP/custom-contract"
+git -C "$TMP" config skgit.contractDir "$TMP/custom-contract"
+cat > "$TMP/custom-contract/commit-message-template.md" <<'TPL'
+## Enforced rules
+
+```json
+{
+  "kind": "commit",
+  "version": 1,
+  "subject": {
+    "types": ["feat"],
+    "scopeRequired": true,
+    "scopePattern": "^[a-z]+(-[a-z]+)*$",
+    "scopeAliases": { "old-scope": "canonical-scope" }
+  }
+}
+```
+TPL
+cat > "$TMP/message.txt" <<'MSG'
+feat(old-scope): add a thing
+
+Why it changed.
+MSG
+run_hook; RC=$?
+check "a scope alias is blocked by the real hook" 1 "$RC" "subject.scope-alias"
+if grep -q "canonical-scope" "$TMP/out.log"; then
+  echo "PASS  the hook names the canonical scope"
+  PASS=$((PASS + 1))
+else
+  echo "FAIL  the hook did not name the canonical scope"; sed 's/^/        /' "$TMP/out.log" | tail -5
+  FAIL=$((FAIL + 1))
+fi
 
 echo ""
 echo "PASS=$PASS FAIL=$FAIL"
