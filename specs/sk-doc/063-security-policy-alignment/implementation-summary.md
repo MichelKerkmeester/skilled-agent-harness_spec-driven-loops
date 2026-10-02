@@ -98,6 +98,8 @@ Each new statement came from a file read in this session: `.claude/settings.json
 | `hvr_scan.py SECURITY.md` | 0 hard blockers, mechanical ceiling 98/100. Baseline ceiling was 99 on a far shorter file |
 | Em dash and semicolon search | None found |
 | `git diff b0f89ee5f0 -- SECURITY.md` | Removed lines are the four renumbered headings and the first reporter bullet only |
+| Follow-up README formatting: `validate_document.py --type readme SECURITY.md` | VALID, 0 issues; the fallback warning is gone now that the type is explicit and the frontmatter is present |
+| Follow-up emoji scan over SECURITY.md | No emoji found; the diff changes only the frontmatter, the intro's blockquote marker and the nine headings |
 <!-- /ANCHOR:verification -->
 
 ---
