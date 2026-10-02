@@ -35,7 +35,7 @@ A classifier that runs locally costs no key and no quota. That only helps when a
 
 ### Why This Skill Exists
 
-Deem's server speaks the same System One protocol as Jev but names its fields differently. Pointing the Python `jev` CLI at it fails for `choice` and `score` with HTTP 400, because `jev` sends the options as `criteria` where Deem expects an `options` or `levels` list. Deem's answers use `value` and `level` where `jev` readers expect `noul` and `score`. The stub backend also answers `status` `ok` with a flat 0.5 for everything, so a caller that trusted `status` alone would treat noise as a judgment.
+Deem's server speaks the same System One protocol as Jev but takes its request fields differently. Pointing the Python `jev` CLI at it fails for `choice` and `score` with HTTP 400, because `jev` sends the options as `criteria` where Deem expects an `options` or `levels` list. Deem's `choice` answer also names the option text where a `jev` reader expects the submitted key. The stub backend also answers `status` `ok` with a flat 0.5 for everything, so a caller that trusted `status` alone would treat noise as a judgment.
 
 ### Why It Matters
 
@@ -75,7 +75,7 @@ The tests use an in-process fake server and never reach port 8300. Every test pa
 
 ## 4. HOW IT WORKS
 
-A caller spawns the binary with a subcommand and its flags. The client checks the flags and the caps before it opens any socket, posts Deem's request shape to `/v1/systemone` and rewrites the answer into the `jev` field names. Every failure maps to an exit code the caller already handles for `jev`.
+A caller spawns the binary with a subcommand and its flags. The client checks the flags and the caps before it opens any socket, posts Deem's request shape to `/v1/systemone` and validates the answer, mapping a `choice` description back to its submitted key. Every failure maps to an exit code the caller already handles for `jev`.
 
 ```text
 caller
@@ -87,7 +87,7 @@ cli-deem health  -->  GET /health, then the commit pair on disk  -->  exit 0, or
 cli-deem noul | choice | score | run
    |   checks flags and caps (26 options, 64 questions)
    v
-POST /v1/systemone (Deem's shape, no key)  -->  answer rekeyed to noul, choice, score  -->  stdout
+POST /v1/systemone (Deem's shape, no key)  -->  answer validated; choice mapped to its key  -->  stdout
 ```
 
 ### The Commit Pair

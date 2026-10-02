@@ -50,7 +50,7 @@ Asks Deem a yes/no question about a state and returns the probability as noul.
 
 #### Current Reality
 
-`cli-deem noul` sends the question as `instructions` and renames Deem's `value` to `noul` in the answer.
+`cli-deem noul` sends the question as `instructions` and passes Deem's `noul` probability through after a range check in `[0, 1]`.
 
 #### Source Files
 
@@ -78,11 +78,11 @@ See [`judgment-subcommands/choice-selection.md`](judgment-subcommands/choice-sel
 
 #### Description
 
-Asks Deem to place a state on an ordered scale and returns the zero-based position as score.
+Asks Deem to place a state on an ordered scale and returns the expected level as `score`.
 
 #### Current Reality
 
-`cli-deem score` sends the levels as a `levels` list. It replaces Deem's `level` text with its position and keys the probabilities by position.
+`cli-deem score` sends the levels as a `levels` list and passes Deem's `score`, the expected level, through after a range check. The `legend` and index-keyed `probabilities` arrive unchanged.
 
 #### Source Files
 
@@ -98,7 +98,7 @@ Sends a request file written in Deem's own shape and returns every answer in the
 
 #### Current Reality
 
-`cli-deem run` reads a request file or stdin, refuses more than 64 questions before sending and translates each answer by its type.
+`cli-deem run` reads a request file or stdin, refuses more than 64 questions before sending and validates each answer by its type.
 
 #### Source Files
 

@@ -1,8 +1,8 @@
 ---
 name: cli-deem
-description: "Local Deem classifier transport: noul probabilities, choice keys, score positions and batched runs from the served Deem model, gated by a health check."
+description: "Local Deem classifier transport: noul probabilities, choice keys, expected-level scores and batched runs from the served Deem model, gated by a health check."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 <!-- Keywords: cli-deem, deem, deem cli, local deem, deem model, deem classifier, deem health, deem noul, deem choice, deem score, deem run, deem-0.8-v1, commit pair, local typed judgment -->
@@ -11,7 +11,7 @@ version: 0.1.1.0
 
 > **Transport, not executor.** `cli-deem` is the `cli-classifier` hub's `packetKind: "transport"` mode. It is one Node file that sends a question to the Deem server on this machine and prints one typed answer. It has no file tools and no loop, so it never changes this workspace and never finishes a task on its own. Pair it with a workflow mode whenever the answer feeds an edit.
 
-`cli-deem` asks the locally served Deem model for four judgment types: a yes/no probability (`noul`), one option key (`choice`), a position on an ordered scale (`score`) and a batch of keyed answers (`run`). It posts Deem's own request shape to a loopback address (`127.0.0.1:8300` unless `CLI_DEEM_URL` names another) and prints the answer in the field names a `jev` reader already parses, so a caller written for `jev` output reads Deem output without a second parser. It needs no key. No data leaves the machine.
+`cli-deem` asks the locally served Deem model for four judgment types: a yes/no probability (`noul`), one option key (`choice`), an expected level on an ordered scale (`score`) and a batch of keyed answers (`run`). It posts Deem's own request shape to a loopback address (`127.0.0.1:8300` unless `CLI_DEEM_URL` names another) and prints the answer in the field names a `jev` reader already parses, so a caller written for `jev` output reads Deem output without a second parser. It needs no key. No data leaves the machine.
 
 **Core principle**: check availability with `health` first, send only the state the judgment needs, read the exit code before the payload and keep every consequence behind the caller's own switch.
 
@@ -228,12 +228,12 @@ node $C run request.json
 
 | Subcommand | Sent to Deem | Returned to the caller |
 |---|---|---|
-| `noul` | `instructions` only | `value` renamed to `noul` |
+| `noul` | `instructions` only | `noul` passed through after a range check in `[0, 1]` |
 | `choice` | the descriptions as an `options` list | the chosen description mapped back to its key, with `probabilities` rekeyed by key |
-| `score` | the levels as a `levels` list | `level` replaced by `score`, its zero-based position, with `probabilities` rekeyed by position |
-| `run` | the request file unchanged | each answer translated by its type. A `choice` keeps Deem's option text, because a Deem-shaped request lists options without keys |
+| `score` | the levels as a `levels` list | `score`, the expected level, passed through after a range check, with `legend` and index-keyed `probabilities` unchanged |
+| `run` | the request file unchanged | each answer validated by its type. A `choice` keeps Deem's option text, because a Deem-shaped request lists options without keys |
 
-Deem's `confidence`, `temperature` and the score's `expected` pass through unchanged. The envelope keeps Deem's `id`, `model` and `usage`.
+Deem's other fields — `confidence`, `x_confidence`, `x_temperature` and the score's `legend` and `probabilities` — pass through unchanged. The envelope keeps Deem's `id`, `model` and `usage`.
 
 ### Output Contract
 
@@ -286,7 +286,7 @@ Default output is one JSON line on stdout. Errors print `{"ok":false,"error":"<m
 
 ## 5. SUCCESS CRITERIA
 
-A judgment is complete when it exits 0, the payload parses, the answer fits its type and the caller has recorded the commit pair `health` printed. Fitting the type means `noul` is a number in `[0, 1]`, `choice` is one of the submitted keys and `score` is a position in the submitted list.
+A judgment is complete when it exits 0, the payload parses, the answer fits its type and the caller has recorded the commit pair `health` printed. Fitting the type means `noul` is a number in `[0, 1]`, `choice` is one of the submitted keys and `score` is a number from `0` to the last level index.
 
 The packet is complete when a reader can decide whether Deem is available, compose each subcommand, recognize every exit class and find the lifecycle commands without opening another packet.
 

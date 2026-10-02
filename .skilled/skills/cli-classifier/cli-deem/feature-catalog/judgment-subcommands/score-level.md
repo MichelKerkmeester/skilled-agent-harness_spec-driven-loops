@@ -1,6 +1,6 @@
 ---
 title: "Score level"
-description: "Asks Deem to place a state on an ordered scale and returns the zero-based position as score."
+description: "Asks Deem to place a state on an ordered scale and returns the expected level as score."
 trigger_phrases:
   - "score level"
   - "deem ordered scale"
@@ -14,9 +14,9 @@ version: 0.1.0.0
 
 ## 1. OVERVIEW
 
-Asks Deem to place a state on an ordered scale and returns the zero-based position as score.
+Asks Deem to place a state on an ordered scale and returns the expected level as score.
 
-Each `-l DESCRIPTION` adds one level, lowest first. A reader written for `jev` output reads the position as it reads a `jev` score.
+Each `-l DESCRIPTION` adds one level, lowest first. A reader written for `jev` output reads the `score` field as it reads a `jev` score.
 
 ---
 
@@ -24,7 +24,7 @@ Each `-l DESCRIPTION` adds one level, lowest first. A reader written for `jev` o
 
 The client sends the levels in flag order as the `levels` list of a `score` question. A `score` with no `-l` exits 2 before sending.
 
-Deem answers with the chosen level text in `level`, `probabilities` keyed by level text and a fractional `expected` position. The client replaces `level` with `score`, the zero-based position of that level in the submitted list. It rekeys `probabilities` by position as `"0"`, `"1"` and onward. `expected`, `confidence` and `temperature` pass through unchanged. `--value` prints the position alone.
+Deem answers with `score`, the expected level — a float from `0` to the last level index — plus a `legend` mapping each index to its level text and `probabilities` keyed by index as `"0"`, `"1"` and onward. The client range-checks `score` and passes the answer through unchanged, `confidence` and `x_temperature` included. `--value` prints the score alone.
 
 ---
 
@@ -34,13 +34,13 @@ Deem answers with the chosen level text in `level`, `probabilities` keyed by lev
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs` | Script | The levels request and the level to position translation |
+| `.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs` | Script | The levels request and the `score` range check |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs` | Node test | A score round trip and the missing-level refusal |
+| `.skilled/skills/cli-classifier/cli-deem/scripts/tests/cli-deem.test.mjs` | Node test | A score pass-through round trip and the range-check refusals |
 
 ---
 

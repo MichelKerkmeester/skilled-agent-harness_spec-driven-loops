@@ -40,7 +40,7 @@ These refusals exit 2 and send nothing:
 
 ### Answers
 
-Each answer is translated by its type. A `noul` answer gets `noul` in place of `value`. A `score` answer gets its position in `score` with probabilities keyed by position. A `choice` answer keeps Deem's option text, because a request in Deem's shape lists options without keys. An answer for a question id the request did not hold exits 1.
+Each answer is validated by its type. A `noul` answer keeps its `noul` number after a range check in `[0, 1]`. A `score` answer keeps its `score`, the expected level, after a range check, with `legend` and index-keyed `probabilities` unchanged. A `choice` answer keeps Deem's option text, because a request in Deem's shape lists options without keys. An answer for a question id the request did not hold exits 1.
 
 ---
 
@@ -50,7 +50,7 @@ Each answer is translated by its type. A `noul` answer gets `noul` in place of `
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs` | Script | Request reading, the batch caps and the per-type answer translation |
+| `.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs` | Script | Request reading, the batch caps and the per-type answer validation |
 
 ### Validation And Tests
 

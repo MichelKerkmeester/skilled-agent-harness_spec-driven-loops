@@ -210,7 +210,7 @@ Verify `noul --value` prints one number in `[0, 1]` and exits 0.
 
 Prompt: `Ask Deem for a probability that this request needs a reply today.`
 
-Confirm Deem's `value` arrives renamed to `noul`, and `--value` prints only that number.
+Confirm Deem's `noul` number arrives unchanged after the range check, and `--value` prints only that number.
 
 Desired user-visible outcome: the operator reads a probability between 0 and 1 with exit 0.
 
@@ -238,19 +238,19 @@ Desired user-visible outcome: the operator reads `billing` or `support` in the `
 > **Feature File:** [DEE-006](judgment-subcommands/choice-returns-submitted-key.md)
 > **Catalog:** [Choice selection](../feature-catalog/judgment-subcommands/choice-selection.md)
 
-### DEE-007 | Score returns a zero-based position
+### DEE-007 | Score returns the expected level
 
 #### Description
 
-Verify `score` prints the zero-based position of the chosen level and rekeys the probabilities by position.
+Verify `score` prints the expected level and keeps the index-keyed probabilities and the legend.
 
 #### Scenario Contract
 
 Prompt: `Ask Deem how severe this incident is.`
 
-Confirm Deem's `level` text becomes a position in the submitted lowest-to-highest list.
+Confirm Deem's `score` arrives as the expected level, a float from `0` to the last level index.
 
-Desired user-visible outcome: the operator reads `"score": 1` for the second level and probabilities keyed `"0"`, `"1"` and `"2"`.
+Desired user-visible outcome: the operator reads a `score` float inside the level range, probabilities keyed `"0"`, `"1"` and `"2"` and a `legend` naming each level.
 
 #### Test Execution
 
@@ -269,7 +269,7 @@ Prompt: `Send one Deem-shaped batch and translate every answer.`
 
 Confirm the batch translates each answer by its type and keeps the envelope.
 
-Desired user-visible outcome: the operator reads one answer per question key, with `noul` renamed and a batch `choice` keeping Deem's option text.
+Desired user-visible outcome: the operator reads one answer per question key, with `noul` passed through and a batch `choice` keeping Deem's option text.
 
 #### Test Execution
 
@@ -338,7 +338,7 @@ Desired user-visible outcome: the operator reads `deem arm skipped: not reachabl
 | DEE-004 | Health accepts a pinned install and prints the commit pair | Availability Gate | [DEE-004](availability-gate/health-accepts-pinned-install.md) |
 | DEE-005 | Noul returns a probability | Judgment Subcommands | [DEE-005](judgment-subcommands/noul-returns-probability.md) |
 | DEE-006 | Choice returns the submitted key | Judgment Subcommands | [DEE-006](judgment-subcommands/choice-returns-submitted-key.md) |
-| DEE-007 | Score returns a zero-based position | Judgment Subcommands | [DEE-007](judgment-subcommands/score-returns-zero-based-position.md) |
+| DEE-007 | Score returns the expected level | Judgment Subcommands | [DEE-007](judgment-subcommands/score-returns-zero-based-position.md) |
 | DEE-008 | A batched run translates every answer | Judgment Subcommands | [DEE-008](judgment-subcommands/batch-run-translates-every-answer.md) |
 | DEE-009 | A refused judgment never reads as a value | Dormant Path | [DEE-009](dormant-path/judgment-never-reads-a-refusal-as-a-value.md) |
 | DEE-010 | The completion-claim census stays dormant without Deem | Dormant Path | [DEE-010](dormant-path/completion-claim-audit-skips-without-deem.md) |
