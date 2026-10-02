@@ -784,6 +784,48 @@ describe('score-jev-tiebreak jev calibration', () => {
       rmSync(dir, { recursive: true, force: true });
     }
   }, 60_000);
+
+  it('a rejected Jev calibration pass records no calibration result', async () => {
+    const stub = makeStub('jev', [
+      `case "$1" in --version) echo 'jev 0.6.2'; exit 0;; auth) [ "$2" = test ] && echo '{"ok":true,"valid":true,"model":"stub-model"}'; exit 0;; noul) exit 3;; esac`,
+    ].join('\n'));
+    const dir = mkdtempSync(join(tmpdir(), 'jev-tiebreak-cal-stop-'));
+    const lines: string[] = [];
+    try {
+      const code = await main(['--jev', '--out', dir], {
+        census: {
+          ...synthCensus(),
+          labels: [
+            { id: 'l1', prompt: 'write a file', yes: true },
+            { id: 'l2', prompt: 'read only', yes: false },
+            { id: 'l3', prompt: 'write docs', yes: true },
+            { id: 'l4', prompt: 'review a diff', yes: false },
+          ],
+        },
+        out: (line: string) => lines.push(line),
+        env: { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}`, JEV_PROVIDER: 'openrouter' },
+        timeoutMs: 1500,
+        backoffMs: 10,
+      });
+
+      expect(code).toBe(0);
+      expect(lines).toContain('underpowered');
+      expect(lines).toContain('jev arm stopped: key rejected');
+      expect(lines.some((line) => line.startsWith('calibration: '))).toBe(false);
+      expect(lines.some((line) => line.startsWith('verdict: ') || line.startsWith('column: '))).toBe(false);
+      const calls = readFileSync(join(dir, 'calls.jsonl'), 'utf8')
+        .split('\n')
+        .filter((line) => line !== '')
+        .map((line) => JSON.parse(line));
+      expect(calls).toHaveLength(2);
+      expect(calls[1]).toMatchObject({ kind: 'noul', exit_code: 3, status: 'unmeasured' });
+      const report = JSON.parse(readFileSync(join(dir, 'report.json'), 'utf8'));
+      expect(report.stopped.jev).toBe('jev arm stopped: key rejected');
+    } finally {
+      rmSync(stub, { recursive: true, force: true });
+      rmSync(dir, { recursive: true, force: true });
+    }
+  }, 60_000);
 });
 
 describe('score-jev-tiebreak jev refusal by headroom', () => {

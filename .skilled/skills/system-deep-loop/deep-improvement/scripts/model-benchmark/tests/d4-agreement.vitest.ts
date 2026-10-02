@@ -508,6 +508,33 @@ echo "{\\"answers\\":{\\"answer\\":{\\"noul\\":$v}}}"`;
     }
   });
 
+  it('malformed Jev answers are failed calls and stop on coverage after requalification', async () => {
+    const set = labeledSet(0, 10, 20);
+    for (let i = 1; i <= 4; i += 1) fs.appendFileSync(path.join(set.outputs, `fx-b.run${i}.md`), 'MALFORMED\n');
+    const malformedJev = JEV.replace(
+      'case "$p" in *FLIP*)',
+      `case "$p" in *MALFORMED*) echo '{'; exit 0;; *FLIP*)`,
+    );
+    const stubs = stubDir({ jev: malformedJev });
+    const env = jevEnv(stubs);
+    const out = tempDir('d4-out-');
+    fs.writeFileSync(path.join(out, 'report.json'), JSON.stringify({ columns: { jev: { provider: 'openrouter', model: 'stub-model' } } }), 'utf8');
+
+    const { code, lines } = await runMain(
+      ['--outputs', set.outputs, '--fixtures', set.fixtures, '--labels', set.labels, '--jev', '--accept-payload', '--out', out],
+      env,
+    );
+
+    expect(code).toBe(0);
+    const calls = readCalls(out);
+    expect(calls).toHaveLength(91);
+    expect(calls.filter((call) => call.status === 'failed')).toHaveLength(12);
+    expect(lines.some((line) => line.startsWith('column jev: K=30 measured=26 unmeasured=4 '))).toBe(true);
+    const requalifyIndex = lines.indexOf('requalify: model changed');
+    expect(requalifyIndex).toBeGreaterThanOrEqual(0);
+    expect(lines[requalifyIndex + 1]).toMatch(/^verdict jev: stop \(coverage\) K=30 M=26 /);
+  });
+
   it('stops on flips when the reruns disagree', async () => {
     const set = labeledSet(0, 10, 20);
     for (let i = 1; i <= 10; i += 1) fs.appendFileSync(path.join(set.outputs, `fx-b.run${i}.md`), 'FLIP\n');

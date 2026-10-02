@@ -12,11 +12,12 @@ import { fileURLToPath } from 'node:url';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { QUESTION, detectTail } from '../scripts/completion-claim-audit/score-completion-claims.mjs';
+import { QUESTION, decideVerdict, detectTail } from '../scripts/completion-claim-audit/score-completion-claims.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SCRIPT = resolve(HERE, '../scripts/completion-claim-audit/score-completion-claims.mjs');
 const FIXTURES = resolve(HERE, 'completion-claim-audit-fixtures');
+const REPO_ROOT = resolve(HERE, '..', '..', '..', '..', '..');
 
 function fixture(name: string): string {
   return join(FIXTURES, `${name}.jsonl`);
@@ -47,7 +48,10 @@ function stubMain(): void {
     const table = env.STUB_ANSWERS ? JSON.parse(fs.readFileSync(env.STUB_ANSWERS, 'utf8')) : {};
     const entry = table[key];
     const position = Array.isArray(entry) ? entry[rerun % entry.length] : (entry ?? 0);
-    process.stdout.write(`${JSON.stringify({ answers: { answer: { noul: position } } })}\n`);
+    const response = env.STUB_TOP_LEVEL_NOUL === '1'
+      ? { noul: position }
+      : { answers: { answer: { noul: position } } };
+    process.stdout.write(`${JSON.stringify(response)}\n`);
   } else {
     process.exit(2);
   }
@@ -183,6 +187,30 @@ describe('score-completion-claims', () => {
     }
   });
 
+  it('a Jev output directory inside the repository is refused before any call', () => {
+    const outDir = join(REPO_ROOT, `.completion-claim-guard-${process.pid}-${Date.now()}`);
+    try {
+      const run = runScript(['--rows', fixture('census-happy'), '--jev', '--out', outDir]);
+
+      expect(run.code).toBe(2);
+      expect(run.stdout).toBe('');
+      expect(run.stderr).toContain('refused: report directory inside the repository');
+      expect(run.stubCalls('jev')).toEqual([]);
+      expect(existsSync(outDir)).toBe(false);
+    } finally {
+      rmSync(outDir, { recursive: true, force: true });
+    }
+  });
+
+  it('a Jev run without --out is refused before any call', () => {
+    const run = runScript(['--rows', fixture('census-happy'), '--jev']);
+
+    expect(run.code).toBe(2);
+    expect(run.stdout).toBe('');
+    expect(run.stderr).toContain('--jev needs --out <dir> so every call is recorded');
+    expect(run.stubCalls('jev')).toEqual([]);
+  });
+
   it('labels happy: 30 labels yield the sha line, the class counts and the planned gate', () => {
     const labelsPath = fixture('labels-happy');
     const run = runScript(['--rows', fixture('labels-happy-rows'), '--labels', labelsPath]);
@@ -315,5 +343,57 @@ describe('score-completion-claims', () => {
       expect(record.provider).toBe('official');
       expect(record.model).toBe('stub-model');
     }
+  });
+
+  it('verdict keep: a Jev column that clears the win rule keeps', () => {
+    expect(decideVerdict({ backend: 'jev', K: 30, M: 30, A: 30, B: 25, W: 5, L: 0, F: 0 }).verdict).toBe('keep');
+  });
+
+  it('verdict kill: five Jev losses with no win kill the column', () => {
+    expect(decideVerdict({ backend: 'jev', K: 34, M: 34, A: 25, B: 30, W: 0, L: 5, F: 0 }).verdict).toBe('kill');
+  });
+
+  it('verdict stop (margin): two net Jev wins sit under the margin', () => {
+    expect(decideVerdict({ backend: 'jev', K: 30, M: 30, A: 27, B: 25, W: 5, L: 3, F: 0 }).verdict).toBe('stop (margin)');
+  });
+
+  it('verdict stop (coverage): 26 measured Jev rows stop at the coverage floor', () => {
+    expect(decideVerdict({ backend: 'jev', K: 30, M: 26, A: 26, B: 21, W: 5, L: 0, F: 0 }).verdict).toBe('stop (coverage)');
+  });
+
+  it('a top-level Jev answer stays unmeasured', () => {
+    const labelsPath = fixture('verdict-keep-labels');
+    const outDir = tempDir('completion-claim-jev-out-');
+    const run = runScript(
+      ['--rows', fixture('labels-happy-rows'), '--labels', labelsPath, '--jev', '--accept-payload', '--out', outDir],
+      { STUB_TOP_LEVEL_NOUL: '1' },
+    );
+
+    expect(run.code).toBe(0);
+    expect(run.lines.some((line) => line.startsWith('column jev: rows=30 measured=0 unmeasured=30 '))).toBe(true);
+    const calls = readFileSync(join(outDir, 'calls.jsonl'), 'utf8').split('\n').filter((line) => line !== '').map((line) => JSON.parse(line) as Record<string, unknown>);
+    const rowCalls = calls.filter((call) => typeof call.rowId === 'string');
+    expect(rowCalls).toHaveLength(90);
+    expect(rowCalls.every((call) => call.status === 'unmeasured' && call.noul === null)).toBe(true);
+    expect(run.lines.at(-1)).toMatch(/^verdict jev: stop \(coverage\) K=30 M=0 /);
+  });
+
+  it('a stored Jev identity requalifies before the verdict', () => {
+    const outDir = tempDir('completion-claim-jev-out-');
+    writeFileSync(
+      join(outDir, 'report.json'),
+      JSON.stringify({ columns: { jev: { provider: 'openrouter', model: 'stub-model' } } }),
+    );
+    const run = runScript(
+      ['--rows', fixture('labels-happy-rows'), '--labels', fixture('labels-happy'), '--jev', '--accept-payload', '--out', outDir],
+      { STUB_JEV_VERSION: 'jev 0.6.2', STUB_AUTH_STATUS_EXIT: '0' },
+    );
+
+    expect(run.code).toBe(0);
+    const requalifyIndex = run.lines.indexOf('requalify: model changed');
+    expect(requalifyIndex).toBeGreaterThanOrEqual(0);
+    expect(run.lines[requalifyIndex + 1]).toMatch(/^verdict jev: /);
+    const report = JSON.parse(readFileSync(join(outDir, 'report.json'), 'utf8'));
+    expect(report.requalify.jev).toBe('requalify: model changed');
   });
 });

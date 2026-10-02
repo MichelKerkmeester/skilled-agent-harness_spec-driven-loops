@@ -875,6 +875,60 @@ describe('score-track-narrowing jev arm', () => {
     }
   });
 
+  it('marks Jev exit-1 calls unmeasured and stops on coverage', async () => {
+    const root = tempDir('score-track-narrowing-');
+    const { indexPath, probesPath } = keepCorpus(root, 'exit1');
+    const stubs = stubDir({ jev: JEV });
+    const out = tempDir('stn-out-');
+    const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    delete env.JEV_PROVIDER;
+
+    const r = await runMain(['--jev', '--out', out], {
+      repoRoot: root,
+      indexPath,
+      probesPath,
+      hubNames: [],
+      env,
+    });
+
+    expect(r.code).toBe(0);
+    expect(r.lines.some((line) => line.startsWith('column jev: rows=6 measured=5 unmeasured=1 '))).toBe(true);
+    expect(r.lines.some((line) => line.startsWith('verdict jev: stop (coverage) K=6 M=5 '))).toBe(true);
+    const records = fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8')
+      .split('\n')
+      .filter(Boolean)
+      .map((line) => JSON.parse(line));
+    const failed = records.filter((record) => record.exitCode === 1);
+    expect(failed).toHaveLength(3);
+    for (const record of failed) {
+      expect(record).toMatchObject({ backend: 'jev', status: 'unmeasured', pick: null });
+    }
+  });
+
+  it('writes report.json whose Jev column matches the stdout verdict', async () => {
+    const root = tempDir('score-track-narrowing-');
+    const { indexPath, probesPath } = keepCorpus(root);
+    const stubs = stubDir({ jev: JEV });
+    const out = tempDir('stn-out-');
+    const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    delete env.JEV_PROVIDER;
+
+    const r = await runMain(['--jev', '--out', out], {
+      repoRoot: root,
+      indexPath,
+      probesPath,
+      hubNames: [],
+      env,
+    });
+
+    expect(r.code).toBe(0);
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    const verdictLine = r.lines.find((line) => line.startsWith('verdict jev:'));
+    expect(verdictLine).toBeDefined();
+    expect(report.columns.jev.line).toBe(verdictLine);
+    expect(report.columns.jev.verdict).toBe('keep');
+  });
+
   it('stops with key rejected when a judgment exits 3 after the gate', async () => {
     const root = tempDir('score-track-narrowing-');
     const { indexPath, probesPath } = keepCorpus(root, 'exit3');
