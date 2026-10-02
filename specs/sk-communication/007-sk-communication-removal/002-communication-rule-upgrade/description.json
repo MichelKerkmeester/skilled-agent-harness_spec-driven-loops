@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "sk-communication/007-sk-communication-removal/002-communication-rule-upgrade",
+  "description": "Phase 2: communication-rule-upgrade",
+  "keywords": [
+    "phase",
+    "communication-rule-upgrade"
+  ],
+  "lastUpdated": "2026-10-02T05:40:42.171Z",
+  "specId": "002",
+  "folderSlug": "communication-rule-upgrade",
+  "parentChain": [
+    "sk-communication",
+    "007-sk-communication-removal"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "02-10-26_06-38__recorded-phase-2-implementation-evidence-trigger.md",
+    "02-10-26_06-40__completed-the-communication-rule-upgrade.md"
+  ]
+}
