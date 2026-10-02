@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 57,
     "missing-frontmatter": 6621,
-    "ok": 12700,
+    "ok": 12706,
     "valid-empty-list": 3519
   },
-  "documentsScanned": 22897,
+  "documentsScanned": 22903,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "70974051b7a9ba65cef46eb78030e729822f22bb34ea3e73800ffb68e3efeddb",
+  "manifestHash": "5026b0ab6a061160444246e93ec2ef2b8f6ca2eb06313103d9ba8fe504dc70ea",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -42,7 +42,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 33116,
+      "ok": 33120,
       "prose-sentence": 25,
       "single-token": 237,
       "stop-word-only": 2
@@ -65919,6 +65919,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch",
       "reason": "excluded directory"
     },
     {

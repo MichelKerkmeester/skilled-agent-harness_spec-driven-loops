@@ -1,5 +1,5 @@
 {
-  "manifestHash": "70974051b7a9ba65cef46eb78030e729822f22bb34ea3e73800ffb68e3efeddb",
+  "manifestHash": "5026b0ab6a061160444246e93ec2ef2b8f6ca2eb06313103d9ba8fe504dc70ea",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49102,6 +49102,9 @@
     "jev batch questions": [
       "jev batch questions"
     ],
+    "jev benefit overview": [
+      "jev benefit overview"
+    ],
     "jev census baseline column": [
       "jev census baseline column"
     ],
@@ -49209,6 +49212,9 @@
     ],
     "jev live judgment run": [
       "jev live judgment run"
+    ],
+    "jev live measurement": [
+      "jev live measurement"
     ],
     "jev manual testing": [
       "jev manual testing"
@@ -49464,6 +49470,9 @@
     ],
     "jev vercel openrouter": [
       "jev vercel openrouter"
+    ],
+    "jev verdict lines": [
+      "jev verdict lines"
     ],
     "jev what not to build": [
       "jev what not to build"
@@ -54745,6 +54754,9 @@
     ],
     "measure event frequency from the log": [
       "measure event frequency from the log"
+    ],
+    "measure every jev feature": [
+      "measure every jev feature"
     ],
     "measure fix against accuracy pin": [
       "measure fix against accuracy pin"
