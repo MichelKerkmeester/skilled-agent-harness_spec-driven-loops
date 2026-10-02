@@ -72,7 +72,7 @@ npm run check   # typecheck + build + tests + import smoke
 - [feature-catalog/feature-catalog.md](feature-catalog/feature-catalog.md): the current shipped-behavior inventory.
 - [manual-testing-playbook/manual-testing-playbook.md](manual-testing-playbook/manual-testing-playbook.md): deterministic operator validation scenarios.
 - `.skilled/skills/sk-communication/cli-communication-projection/docs/`: install, configuration, privacy, support-matrix, rollback, and runbook.
-- `benchmark/reply-harness/judge-agreement.mjs`: measures offline whether a Deem or Jev judge agrees with the operator's grades of masked replies more often than the mechanical scores. It calls no model by default, and `--deem` or `--jev` each need their own passing check and `--out <dir>`.
+- `benchmark/reply-harness/judge-agreement.mjs`: measures offline whether a Jev judge agrees with the operator's grades of masked replies more often than the mechanical scores. It calls no model by default, and `--jev` needs its own passing check and `--out <dir>`.
 
 ---
 

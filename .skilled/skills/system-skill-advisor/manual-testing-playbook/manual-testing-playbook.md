@@ -272,7 +272,7 @@ This category validates scorer fusion scenarios `SC-001..SC-007`.
 | SC-003 | Top-2 Ambiguity Window | [003-ambiguity.md](scorer-fusion/ambiguity.md) |
 | SC-004 | Lane Contribution Attribution | [004-lane-attribution.md](scorer-fusion/lane-attribution.md) |
 | SC-005 | Lane-by-Lane Ablation Protocol | [005-ablation.md](scorer-fusion/ablation.md) |
-| SC-006 | Offline Jev and Deem Tie-Break Eval | [tie-break-eval.md](scorer-fusion/tie-break-eval.md) |
+| SC-006 | Offline Jev Tie-Break Eval | [tie-break-eval.md](scorer-fusion/tie-break-eval.md) |
 | SC-007 | Offline Suggested-Order Eval | [suggested-order-eval.md](scorer-fusion/suggested-order-eval.md) |
 
 ---

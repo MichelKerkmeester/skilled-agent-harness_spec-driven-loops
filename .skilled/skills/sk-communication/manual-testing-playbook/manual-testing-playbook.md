@@ -225,7 +225,7 @@ Prompt: `Verify that only a complete, fresh, passing, human-certified evidence b
 
 ### COMM-011 | Offline judge census stops at the label gate
 
-Verify the offline judge measurement counts the committed masked replies and stops at its label gate with zero model calls, and that a stub Deem backend is skipped without changing the census. The `--jev` switch is gated the same way, and a Jev without a credential prints its identity line and one skip line.
+Verify the offline judge measurement counts the committed masked replies and stops at its label gate with zero model calls, and that the `--jev` switch is gated so a Jev without a credential prints its identity line and one skip line without changing the census.
 
 Prompt: `Check that the offline judge measurement counts the committed masked replies and stops at its label gate without calling a model, then return PASS or FAIL with evidence.`
 
