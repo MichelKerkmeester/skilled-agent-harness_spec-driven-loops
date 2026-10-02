@@ -11,7 +11,7 @@ trigger_phrases:
   - "no tables"
   - "don't use tables in chat"
   - "table or prose"
-  - "change modality not volume"
+  - "can you say that more plainly"
   - "I don't follow"
   - "in simple terms"
   - "too abstract"
@@ -29,7 +29,7 @@ trigger_phrases:
   - "offer once at the end"
 importance_tier: important
 contextType: reference
-version: 1.4.1.0
+version: 1.4.1.1
 ---
 
 # Rule: Communication
@@ -40,7 +40,7 @@ version: 1.4.1.0
 ## Fires when
 
 - About to write any substantive reply, an answer, an explanation, a close-out, a status.
-- The reader has signalled they did not understand.
+- The reader says they did not follow or asks for a plainer version.
 
 This file carries what `AGENTS.md` §8 used to hold in full. Its trigger is deliberately
 the broadest in the set: a rule about how replies read has to load whenever a reply is
@@ -124,17 +124,22 @@ sentence that mattered.
 
 ## 4. WHEN THE READER DID NOT FOLLOW
 
-"I don't follow", "what?", "too abstract", "in simple terms": all the same signal, and
-the wrong response to every one of them is the same explanation at greater length.
+"I don't follow", "what?" or "too abstract" means the explanation needs a different
+route. Change modality with a concrete example, a numbered sequence, a smaller first
+step or a picture using the runtime's visual capability. Do not repeat the same
+explanation at greater length.
 
-**Change modality, not volume.** For plainer wording, route to `sk-communication`
-(`/rewrite:response`). That skill is deliberately held off advisor routing, so this rule is
-the only thing that reaches it. For a diagram, use the runtime's own visual capability —
-`sk-communication` carried an explanation lane until it was retired, because what it produced
-was fenced source rather than a rendered picture.
+"say that more plainly", "in simple terms" or "rewrite that" calls for a plain
+re-render: a copy edit that rewords without reordering, cutting or adding. Keep every
+claim, number, caveat, instruction, conclusion and logical relationship in the same
+order and with the same strength. Keep protected spans byte-exact: code, commands,
+flags, paths, URLs, identifiers, config keys, error strings, quotations and numbers.
+Apply [hvr-rules.md](../skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md) as the wording standard; do not copy its rubric. If a plainer
+word changes what a sentence claims, keep the claim, as
+[scope-and-exemptions.md](../skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md) requires.
+If fidelity fails, return the original unchanged.
 
-The failure this prevents: the second explanation fails the same way as the first,
-because it was the same explanation.
+The failure this prevents: the same explanation repeats, or the plain rewrite changes the claim.
 
 ---
 
@@ -240,5 +245,6 @@ asked waits.
 - [ ] A tangent appears once, at the end, on a line that says it is deferred, or not at all.
 - [ ] Every sentence carries information: no empty opener, restated summary or unnamed warning survived.
 - [ ] Length matches what the reader asked, not what the work cost, and no table stands in a reply.
-- [ ] Where the reader said they did not follow, I changed modality rather than adding words.
+- [ ] When the reader did not follow, I changed modality instead of repeating the same explanation at greater length.
+- [ ] A plain re-render follows HVR as a copy edit, preserves claims, numbers and caveats at the same strength, keeps protected spans byte-exact, and yields when simpler wording would change the claim.
 - [ ] Nothing I cut for concision was something they needed.
