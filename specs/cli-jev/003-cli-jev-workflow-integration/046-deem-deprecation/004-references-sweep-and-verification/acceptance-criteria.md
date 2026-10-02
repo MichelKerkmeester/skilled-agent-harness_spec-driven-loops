@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification"
     last_updated_at: "2026-10-02T10:45:00Z"
     last_updated_by: "orchestrating-session"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Met every criterion"
+    next_safe_action: "None, the packet is closeable"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "spec-cli-jev-003-046-004-references-sweep-and-verification"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification
 **Level:** 2
-**Status:** Planned
+**Status:** Complete
 **Date:** 2026-10-02
 <!-- /ANCHOR:metadata -->
 
@@ -54,12 +54,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the final state, When both greps run, Then the inventory pattern prints only keep rows and the `--deem` grep prints nothing | Both outputs | Unmet | - |
-| AC-002 | REQ-002 | Given every suite in 001's inventory, When each runs from the final state, Then 0 fail | Each suite's output | Unmet | - |
-| AC-003 | REQ-003 | Given each changed doc and the hub, When `validate_document.py` and the hub check run, Then each passes | Their outputs | Unmet | - |
-| AC-004 | REQ-004 | Given each changed skill, When its `changelog/` is listed, Then it has one new entry for the removal | `ls` of each `changelog/` | Unmet | - |
-| AC-005 | REQ-005 | Given the whole removal, When the cross-family review reads it, Then no P0 or P1 stays open | The review output and `goal.md`'s log | Unmet | - |
-| AC-006 | REQ-001 to REQ-005 | Given the final state, When the phase closes, Then `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` | `repair-derived.cjs --apply`, then both commands on this folder | Unmet | - |
+| AC-001 | REQ-001 | Given the final state, When both greps run, Then the inventory pattern prints only keep rows and generated files holding spec or changelog text, and the `--deem` grep prints nothing | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification/implementation-summary.md:96` two keep files and five generated files with spec and changelog text only, criterion amended at `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification/goal.md:92`, and `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification/implementation-summary.md:97` `--deem` prints nothing | Met | - |
+| AC-002 | REQ-002 | Given every suite in 001's inventory, When each runs from the final state, Then 0 fail | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification/implementation-summary.md:100` 24 of 24 inventory suites 0 failing | Met | - |
+| AC-003 | REQ-003 | Given each changed doc and the hub, When `validate_document.py` and the hub check run, Then each passes | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification/implementation-summary.md:98` 135 of 135 docs valid and `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification/implementation-summary.md:99` hub check OK | Met | - |
+| AC-004 | REQ-004 | Given each changed skill, When its `changelog/` is listed, Then it has one new entry for the removal | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification/implementation-summary.md:103` 13 new entries, two metadata-only skills explained at `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification/goal.md:95` | Met | - |
+| AC-005 | REQ-005 | Given the whole removal, When the cross-family review reads it, Then no P0 or P1 stays open | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification/implementation-summary.md:104` P0 fixed in `0c1ca648e8`, P1 rejected with evidence at `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification/goal.md:94` | Met | - |
+| AC-006 | REQ-001 to REQ-005 | Given the final state, When the phase closes, Then `validate.sh --strict` prints `RESULT: PASSED` and `check-goal.cjs` prints `RESULT: PASSED (5/5 checks)` | `specs/cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation/004-references-sweep-and-verification/tasks.md:58` T008: `validate.sh --strict` RESULT: PASSED and `check-goal.cjs` RESULT: PASSED (5/5 checks) | Met | - |
 
 ### Status values
 
@@ -84,7 +84,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every row is `Unmet` until its evidence is observed from the final state.
+Every row is `Met` with evidence observed from the final state.
 <!-- /ANCHOR:closure -->

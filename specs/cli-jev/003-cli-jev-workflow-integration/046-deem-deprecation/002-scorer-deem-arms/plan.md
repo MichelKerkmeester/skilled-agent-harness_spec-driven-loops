@@ -3,7 +3,7 @@ title: "Implementation Plan: Phase 2: scorer-deem-arms"
 description: "Remove every scorer's --deem arm with its tests and docs, so each scorer's default run and --jev arm behave as they did before."
 trigger_phrases:
   - "remove scorer deem arm plan"
-  - "scorer --deem removal plan"
+  - "scorer deem flag removal plan"
   - "jev only scorer plan"
   - "deem arm tests plan"
 importance_tier: "important"

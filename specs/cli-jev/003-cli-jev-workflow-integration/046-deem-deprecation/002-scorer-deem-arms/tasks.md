@@ -3,7 +3,7 @@ title: "Tasks: Phase 2: scorer-deem-arms"
 description: "Ordered tasks for phase 2 of the Deem deprecation: setup, implementation and verification."
 trigger_phrases:
   - "remove scorer deem arm tasks"
-  - "scorer --deem removal tasks"
+  - "scorer deem flag removal tasks"
   - "jev only scorer tasks"
   - "deem arm tests tasks"
 importance_tier: "important"

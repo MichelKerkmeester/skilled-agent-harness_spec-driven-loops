@@ -12,15 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "remove scorer deem arm",
-      "scorer --deem removal",
+      "scorer deem flag removal",
       "jev only scorer",
       "deem arm tests",
       "remove scorer deem arm plan",
-      "scorer --deem removal plan",
+      "scorer deem flag removal plan",
       "jev only scorer plan",
       "deem arm tests plan",
       "remove scorer deem arm tasks",
-      "scorer --deem removal tasks",
+      "scorer deem flag removal tasks",
       "jev only scorer tasks",
       "deem arm tests tasks"
     ],
@@ -29,14 +29,14 @@
       "scorer",
       "deem",
       "arm",
+      "flag",
       "removal",
       "jev",
       "only",
       "tests",
       "plan",
       "tasks",
-      "twenty",
-      "scorers"
+      "twenty"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Twenty scorers accept `--deem`, and each arm has tests, docs and in two cases a side-by-side comparison with Jev",
     "created_at": "2026-10-02T07:54:41Z",
-    "last_save_at": "2026-10-02T16:10:15.601Z",
+    "last_save_at": "2026-10-02T16:15:45.842Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9c81701b738a3a2ce46bcb60067824338c2e523af10447c99d2f95426c66aa8",
+    "source_fingerprint": "sha256:e6213b9c4872ebd12b2796e2c88574c6893baa4b0f77e81537813d70716c3214",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2e072bbfcf7952541a4057c72d5481d7daced14caed7b6ceddb7b183ac30b57c",
-      "plan.md": "b0eccd7bbffa2130dee5a2b3dc9e5d07b0983744d43603d29e9360a6baced410",
-      "tasks.md": "82c14e55bebcdfc6e3f7c635cca557532e71aacad4122df868bc763cd19453f6",
+      "spec.md": "7eb8b0132c5b61ba08964730e278b7c5ad660c918dc0b82fc4ee36eba1883fef",
+      "plan.md": "4777b371c4ef4d3bf0f9e5d0e62860b319ac36f75788ce8f4fbed3f6e2126f73",
+      "tasks.md": "75a458ac5f5d86cba9360ca9984396e414682cf13dbd06e4f94b2bbfbf9f6a14",
       "implementation-summary.md": "ad17d505a3a9b2c13e74e170afd0d5406adcd734d95fdd4ecfb002d1c90cd763"
     },
     "last_active_at": null

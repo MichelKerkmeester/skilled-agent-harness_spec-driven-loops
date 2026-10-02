@@ -34,7 +34,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 List the inventory rows owned by 004 and confirm 002 and 003 are Complete
+- [x] T001 List the inventory rows owned by 004 and confirm 002 and 003 are Complete. Evidence: 54 rows, 002 closed in `4624a4f142`, 003 in `302456b8c2`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -42,9 +42,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 [P] DeepSeek batches of doc rewrites. Check: `validate_document.py` passes per doc
-- [ ] T003 Add one changelog entry per changed skill
-- [ ] T004 Rebuild the trigger index and commit its files
+- [x] T002 [P] DeepSeek batches of doc rewrites. Check: `validate_document.py` passes per doc. Evidence: `f20ba5f446`, `a81b7def29`, `645659d5b5`, and 135 of 135 changed docs valid
+- [x] T003 Add one changelog entry per changed skill. Evidence: 13 new entries
+- [x] T004 Rebuild the trigger index and commit its files. Evidence: `2b2ed3d750`, generator `--check` stale 0, obsolete 0
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -52,10 +52,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T005 Run both greps. Check: only keep rows, and nothing for `--deem`
-- [ ] T006 Run every inventory suite. Check: 0 failing
-- [ ] T007 Cross-family review of the whole removal. Check: P0 and P1 fixed, P2 in `goal.md`
-- [ ] T008 Closure: `repair-derived.cjs --apply`, `validate.sh --strict --recursive` on 046 and `check-goal.cjs` on 046 and each child. Check: `RESULT: PASSED` on each
+- [x] T005 Run both greps. Check: only keep rows, and nothing for `--deem`. Evidence: two keep files and five generated files with spec and changelog text only, and `--deem` prints nothing
+- [x] T006 Run every inventory suite. Check: 0 failing. Evidence: 24 of 24 suites 0 fail
+- [x] T007 Cross-family review of the whole removal. Check: P0 and P1 fixed, P2 in `goal.md`. Evidence: Luna's P0 fixed in `0c1ca648e8`, its P1 rejected with evidence
+- [x] T008 Closure: `repair-derived.cjs --apply`, `validate.sh --strict --recursive` on 046 and `check-goal.cjs` on 046 and each child. Check: `RESULT: PASSED` on each
 <!-- /ANCHOR:phase-3 -->
 
 ---

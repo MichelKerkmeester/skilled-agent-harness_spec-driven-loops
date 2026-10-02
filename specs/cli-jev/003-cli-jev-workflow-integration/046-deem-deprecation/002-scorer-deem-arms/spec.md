@@ -3,7 +3,7 @@ title: "Feature Specification: Phase 2: scorer-deem-arms"
 description: "Twenty scorers carry a --deem arm with its own tests and docs. This phase removes each arm so every scorer's default run and --jev arm behave exactly as before."
 trigger_phrases:
   - "remove scorer deem arm"
-  - "scorer --deem removal"
+  - "scorer deem flag removal"
   - "jev only scorer"
   - "deem arm tests"
 importance_tier: "important"
