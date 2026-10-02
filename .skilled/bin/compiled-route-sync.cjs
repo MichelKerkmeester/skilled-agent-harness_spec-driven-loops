@@ -36,10 +36,7 @@ const layout = require('./lib/compiled-route-layout.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const SPECS_ROOT = fs.realpathSync(path.join(REPO_ROOT, 'specs'));
-const IMPL_ROOT = path.join(
-  SPECS_ROOT,
-  'sk-doc/019-skill-routing-refactor/015-router-unification-program',
-);
+const IMPL_ROOT = path.join(SPECS_ROOT, path.relative('specs', layout.AUTHORED_PROGRAM_DIR));
 const CURRENT_LAYOUT = Object.freeze({
   activation: '013-live-activation',
   resolver: path.join('014-runtime-engine', 'lib', 'resolve.cjs'),
