@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f60fc57f77e9506294574efdeca913e485d619bb9449d2a7b2c8f4a118e14ea9",
+  "corpusHash": "aa3d01985688a1f24b6af16129bc527b6f7ba6d22092b85b15d650bf457230e2",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22815,
+  "includedPathCount": 22819,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13274,6 +13274,10 @@
     "specs/system-deep-loop/037-graph-engineering/research/research.md",
     "specs/system-deep-loop/037-graph-engineering/research/resource-map.md",
     "specs/system-deep-loop/037-graph-engineering/spec.md",
+    "specs/system-deep-loop/039-review-state-init-and-dispatch/implementation-summary.md",
+    "specs/system-deep-loop/039-review-state-init-and-dispatch/plan.md",
+    "specs/system-deep-loop/039-review-state-init-and-dispatch/spec.md",
+    "specs/system-deep-loop/039-review-state-init-and-dispatch/tasks.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/implementation-summary.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/plan.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/research/leak-research.md",
@@ -22845,7 +22849,7 @@
     "specs/system-speckit/047-plugin-scanner-readiness/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "74f89181c9a97d79e2a8626b6cd3dc72838fc53f9af985427a86ae74aec7bbab",
+  "manifestHash": "28c8845d6d8d3e2cd7ff155accbaa0f444cdf2cf2b6bbbe315ee699658d4388d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -25613,6 +25617,10 @@
     },
     {
       "path": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/039-review-state-init-and-dispatch/scratch",
       "reason": "excluded directory"
     },
     {

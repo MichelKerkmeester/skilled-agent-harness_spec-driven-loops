@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 57,
     "missing-frontmatter": 6621,
-    "ok": 12618,
+    "ok": 12622,
     "valid-empty-list": 3519
   },
-  "documentsScanned": 22815,
+  "documentsScanned": 22819,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "74f89181c9a97d79e2a8626b6cd3dc72838fc53f9af985427a86ae74aec7bbab",
+  "manifestHash": "28c8845d6d8d3e2cd7ff155accbaa0f444cdf2cf2b6bbbe315ee699658d4388d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -42,7 +42,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 32922,
+      "ok": 32938,
       "prose-sentence": 25,
       "single-token": 237,
       "stop-word-only": 2
@@ -67567,6 +67567,10 @@
     },
     {
       "path": "specs/system-deep-loop/037-graph-engineering/006-cross-study-integration/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/039-review-state-init-and-dispatch/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "74f89181c9a97d79e2a8626b6cd3dc72838fc53f9af985427a86ae74aec7bbab",
+  "manifestHash": "28c8845d6d8d3e2cd7ff155accbaa0f444cdf2cf2b6bbbe315ee699658d4388d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11727,6 +11727,18 @@
     "attributable flap log": [
       "attributable flap log"
     ],
+    "attribution collapse": [
+      "attribution collapse"
+    ],
+    "attribution collapse fix": [
+      "attribution collapse fix"
+    ],
+    "attribution collapse fixed": [
+      "attribution collapse fixed"
+    ],
+    "attribution collapse tasks": [
+      "attribution collapse tasks"
+    ],
     "attribution metadata": [
       "attribution metadata"
     ],
@@ -16514,6 +16526,9 @@
     ],
     "child dispatch preamble": [
       "child dispatch preamble"
+    ],
+    "child dispatch retry": [
+      "child dispatch retry"
     ],
     "child drift audit result": [
       "child drift audit result"
@@ -31950,6 +31965,9 @@
     "deep review run certificate": [
       "deep-review run certificate"
     ],
+    "deep review run open": [
+      "deep review run open"
+    ],
     "deep review runtime": [
       "deep-review runtime"
     ],
@@ -34344,6 +34362,15 @@
     ],
     "dispatch result envelopes": [
       "dispatch result envelopes"
+    ],
+    "dispatch retry plan": [
+      "dispatch retry plan"
+    ],
+    "dispatch retry summary": [
+      "dispatch retry summary"
+    ],
+    "dispatch retry tasks": [
+      "dispatch retry tasks"
     ],
     "dispatch review iteration": [
       "dispatch review iteration"
@@ -75842,6 +75869,15 @@
     "review rollback followup": [
       "review rollback followup"
     ],
+    "review run open plan": [
+      "review run open plan"
+    ],
+    "review run open summary": [
+      "review run open summary"
+    ],
+    "review run open tasks": [
+      "review run open tasks"
+    ],
     "review scope coverage report": [
       "review scope coverage report"
     ],
@@ -77035,6 +77071,18 @@
     ],
     "run history shows resume lineage": [
       "run history shows resume lineage"
+    ],
+    "run initialized census task": [
+      "run initialized census task"
+    ],
+    "run initialized gateway": [
+      "run initialized gateway"
+    ],
+    "run initialized gateway plan": [
+      "run initialized gateway plan"
+    ],
+    "run initialized shipped": [
+      "run initialized shipped"
     ],
     "run javascript in browser cli": [
       "run javascript in browser cli"
