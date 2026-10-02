@@ -3,8 +3,8 @@
 // ───────────────────────────────────────────────────────────────
 // Offline checks for the binomial keep line and the cluster reorder. No model call.
 
-import { spawn, spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -30,8 +30,6 @@ import {
   summarizeColumn,
   columnLines,
   verdictLine,
-  compareColumns,
-  compareLine,
   buildReport,
   spawnCall,
   writeCall,
@@ -212,9 +210,7 @@ describe('score-jev-tiebreak entry point', () => {
   it('default run prints the census and spawns no model binary', async () => {
     const stub = mkdtempSync(join(tmpdir(), 'jev-tiebreak-stub-'));
     try {
-      for (const name of ['jev', 'cli-deem']) {
-        writeFileSync(join(stub, name), `#!/bin/sh\necho "$*" >> "${join(stub, name)}.log"\n`, { mode: 0o755 });
-      }
+      writeFileSync(join(stub, 'jev'), `#!/bin/sh\necho "$*" >> "${join(stub, 'jev')}.log"\n`, { mode: 0o755 });
       const result = spawnSync(process.execPath, [SCRIPT], {
         encoding: 'utf8',
         timeout: 110_000,
@@ -231,7 +227,6 @@ describe('score-jev-tiebreak entry point', () => {
       expect(stdoutLines.filter((line) => line.startsWith('comparator: name=rerank '))).toHaveLength(1);
       expect(stdoutLines.filter((line) => line.startsWith('power: movable='))).toHaveLength(1);
       expect(existsSync(join(stub, 'jev.log'))).toBe(false);
-      expect(existsSync(join(stub, 'cli-deem.log'))).toBe(false);
     } finally {
       rmSync(stub, { recursive: true, force: true });
     }
@@ -321,146 +316,6 @@ describe('score-jev-tiebreak jev gate', () => {
   }, 120_000);
 });
 
-describe('score-jev-tiebreak deem gate', () => {
-  it('skips a stub backend', () => {
-    const stub = makeStub('cli-deem', `echo '{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}'`);
-    try {
-      const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}` };
-      const result = runScript(['--deem'], env);
-      expect(result.status).toBe(0);
-      const prefix = defaultStdout() ?? '';
-      const stdout = result.stdout ?? '';
-      expect(stdout.startsWith(prefix)).toBe(true);
-      expect(stdout.slice(prefix.length).split('\n').filter((line) => line !== '')).toEqual([
-        'deem arm skipped: stub backend',
-      ]);
-      expect(readFileSync(join(stub, 'cli-deem.log'), 'utf8').split('\n').filter((line) => line !== '')).toEqual(['health']);
-    } finally {
-      rmSync(stub, { recursive: true, force: true });
-    }
-  }, 120_000);
-
-  it('skips a model other than the pinned one', () => {
-    const stub = makeStub('cli-deem', `echo '{"ok":true,"backend":"torch","model":"deem-1.5","model_commit":"m1","source_commit":"s1"}'`);
-    try {
-      const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}` };
-      const result = runScript(['--deem'], env);
-      expect(result.status).toBe(0);
-      const prefix = defaultStdout() ?? '';
-      const stdout = result.stdout ?? '';
-      expect(stdout.startsWith(prefix)).toBe(true);
-      expect(stdout.slice(prefix.length).split('\n').filter((line) => line !== '')).toEqual([
-        'deem arm skipped: model',
-        'deem: found="deem-1.5"',
-      ]);
-      expect(readFileSync(join(stub, 'cli-deem.log'), 'utf8').split('\n').filter((line) => line !== '')).toEqual(['health']);
-    } finally {
-      rmSync(stub, { recursive: true, force: true });
-    }
-  }, 120_000);
-
-  it('skips a refused model reported on stderr', () => {
-    const stub = makeStub('cli-deem', `echo '{"ok":false,"error":"refused model: deem-1.5, expected deem-0.8-v1"}' >&2; exit 3`);
-    try {
-      const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}` };
-      const result = runScript(['--deem'], env);
-      expect(result.status).toBe(0);
-      const prefix = defaultStdout() ?? '';
-      const stdout = result.stdout ?? '';
-      expect(stdout.startsWith(prefix)).toBe(true);
-      expect(stdout.slice(prefix.length).split('\n').filter((line) => line !== '')).toEqual([
-        'deem arm skipped: model',
-        'deem: found="refused model: deem-1.5, expected deem-0.8-v1"',
-      ]);
-      expect(readFileSync(join(stub, 'cli-deem.log'), 'utf8').split('\n').filter((line) => line !== '')).toEqual(['health']);
-    } finally {
-      rmSync(stub, { recursive: true, force: true });
-    }
-  }, 120_000);
-
-  it('skips when the health check is not reachable', () => {
-    const stub = makeStub('cli-deem', `echo '{"ok":false,"error":"Deem unreachable: ECONNREFUSED"}' >&2; exit 4`);
-    try {
-      const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}` };
-      const result = runScript(['--deem'], env);
-      expect(result.status).toBe(0);
-      const prefix = defaultStdout() ?? '';
-      const stdout = result.stdout ?? '';
-      expect(stdout.startsWith(prefix)).toBe(true);
-      expect(stdout.slice(prefix.length).split('\n').filter((line) => line !== '')).toEqual([
-        'deem arm skipped: not reachable',
-      ]);
-      expect(readFileSync(join(stub, 'cli-deem.log'), 'utf8').split('\n').filter((line) => line !== '')).toEqual(['health']);
-    } finally {
-      rmSync(stub, { recursive: true, force: true });
-    }
-  }, 120_000);
-
-  it('skips a health body that is not json', () => {
-    const stub = makeStub('cli-deem', `echo 'not json'`);
-    try {
-      const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}` };
-      const result = runScript(['--deem'], env);
-      expect(result.status).toBe(0);
-      const prefix = defaultStdout() ?? '';
-      const stdout = result.stdout ?? '';
-      expect(stdout.startsWith(prefix)).toBe(true);
-      expect(stdout.slice(prefix.length).split('\n').filter((line) => line !== '')).toEqual([
-        'deem arm skipped: bad health response',
-        'deem: found="not json"',
-      ]);
-      expect(readFileSync(join(stub, 'cli-deem.log'), 'utf8').split('\n').filter((line) => line !== '')).toEqual(['health']);
-    } finally {
-      rmSync(stub, { recursive: true, force: true });
-    }
-  }, 120_000);
-
-  it('prints the health line when the pinned torch backend answers', () => {
-    const stub = makeStub('cli-deem', `if [ "$1" = health ]; then echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}'; exit 0; fi; exit 2`);
-    const out = mkdtempSync(join(tmpdir(), 'jev-tiebreak-deem-gate-out-'));
-    try {
-      const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}` };
-      const result = runScript(['--deem', '--out', out], env);
-      expect(result.status).toBe(0);
-      const prefix = defaultStdout() ?? '';
-      const stdout = result.stdout ?? '';
-      expect(stdout.startsWith(prefix)).toBe(true);
-      const after = stdout.slice(prefix.length).split('\n').filter((line) => line !== '');
-      expect(after.length).toBe(4);
-      expect(after[0]).toBe('deem: health backend=torch model=deem-0.8-v1 model_commit=m1 source_commit=s1');
-      expect(after[1].startsWith('deem: nothing leaves the machine planned_calls=')).toBe(true);
-      expect(after[2]).toBe('deem arm stopped: usage error');
-      expect(after[3]).toBe('deem: partial_rows=0');
-      const logLines = readFileSync(join(stub, 'cli-deem.log'), 'utf8').split('\n').filter((line) => line !== '');
-      expect(logLines.length).toBe(2);
-      expect(logLines[0]).toBe('health');
-      expect(logLines[1].startsWith('choice -q ')).toBe(true);
-    } finally {
-      rmSync(stub, { recursive: true, force: true });
-      rmSync(out, { recursive: true, force: true });
-    }
-  }, 120_000);
-
-  it('refuses a passing deem gate without --out before any call', () => {
-    const stub = makeStub('cli-deem', `if [ "$1" = health ]; then echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}'; exit 0; fi; exit 2`);
-    try {
-      const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}` };
-      const result = runScript(['--deem'], env);
-      expect(result.status).toBe(2);
-      expect(result.stderr).toContain('--deem needs --out <dir> so every call is recorded');
-      const prefix = defaultStdout() ?? '';
-      const stdout = result.stdout ?? '';
-      expect(stdout.startsWith(prefix)).toBe(true);
-      expect(stdout.slice(prefix.length).split('\n').filter((line) => line !== '')).toEqual([
-        'deem: health backend=torch model=deem-0.8-v1 model_commit=m1 source_commit=s1',
-      ]);
-      expect(readFileSync(join(stub, 'cli-deem.log'), 'utf8').split('\n').filter((line) => line !== '')).toEqual(['health']);
-    } finally {
-      rmSync(stub, { recursive: true, force: true });
-    }
-  }, 120_000);
-});
-
 function mk(id: string, gold: string, order: string[], cluster: string[], split = 'test') {
   const weights = Object.fromEntries(order.map((skill, index) => [skill, 1 - index / 10]));
   return {
@@ -496,7 +351,7 @@ describe('score-jev-tiebreak column and keep rule', () => {
       mk('n1', 'b', ['a', 'b'], ['a', 'b']),
       mk('x1', 'b', ['a', 'b'], ['a', 'b']),
     ];
-    const column = summarizeColumn('deem', rows, recs({
+    const column = summarizeColumn('jev', rows, recs({
       m1: ['b', 'b', 'b'],
       d1: ['b', 'b', 'a'],
       o1: ['b', 'b', 'b'],
@@ -533,7 +388,7 @@ describe('score-jev-tiebreak column and keep rule', () => {
       return row;
     });
     const answers = Object.fromEntries(rows.map((row) => [row.id, ['b', 'b', 'b']]));
-    const column = summarizeColumn('deem', rows, recs(answers), { ...synthCensus(), rows });
+    const column = summarizeColumn('jev', rows, recs(answers), { ...synthCensus(), rows });
     expect(column.wins).toBe(6);
     expect(column.decided).toBe(6);
     expect(column.pWin).toBe(0.015625);
@@ -543,13 +398,13 @@ describe('score-jev-tiebreak column and keep rule', () => {
     expect(column.conditions.flip.held).toBe(true);
     expect(column.verdict).toBe('keep');
     const summary = column;
-    expect(verdictLine(summary, 'model=deem-0.8-v1 model_commit=mc1 source_commit=sc1')).toBe(
-      'verdict: keep backend=deem decided=6 wins=6 losses=0 p_win=0.0156 p_loss=1.0000 flip=0.0000 model=deem-0.8-v1 model_commit=mc1 source_commit=sc1',
+    expect(verdictLine(summary, 'model=stub-model model_commit=mc1 source_commit=sc1')).toBe(
+      'verdict: keep backend=jev decided=6 wins=6 losses=0 p_win=0.0156 p_loss=1.0000 flip=0.0000 model=stub-model model_commit=mc1 source_commit=sc1',
     );
     expect(columnLines(summary)[0]).toBe(
-      'column: backend=deem rows=6 measured=6 wins=6 losses=0 ties=0 abstentions=0 unmeasured=0 unstable=0',
+      'column: backend=jev rows=6 measured=6 wins=6 losses=0 ties=0 abstentions=0 unmeasured=0 unstable=0',
     );
-    expect(columnLines(summary)[4]).toBe('column: backend=deem latency_p50_ms=10 latency_p95_ms=10');
+    expect(columnLines(summary)[4]).toBe('column: backend=jev latency_p50_ms=10 latency_p95_ms=10');
   });
 
   it('counts all three answers of a three-way split as flips, which blocks a keep', () => {
@@ -560,7 +415,7 @@ describe('score-jev-tiebreak column and keep rule', () => {
       return row;
     });
     const answers = Object.fromEntries(rows.map((row, index) => [row.id, index < 22 ? ['b', 'b', 'b'] : ['a', 'c', 'b']]));
-    const column = summarizeColumn('deem', rows, recs(answers), { ...synthCensus(), rows });
+    const column = summarizeColumn('jev', rows, recs(answers), { ...synthCensus(), rows });
     expect(column.measured).toBe(25);
     expect(column.wins).toBe(22);
     expect(column.unstable).toBe(3);
@@ -577,7 +432,7 @@ describe('score-jev-tiebreak column and keep rule', () => {
       return row;
     });
     const answers = Object.fromEntries(rows.map((row) => [row.id, ['b', 'b', 'b']]));
-    const column = summarizeColumn('deem', rows, recs(answers), { ...synthCensus(), rows });
+    const column = summarizeColumn('jev', rows, recs(answers), { ...synthCensus(), rows });
     expect(column.conditions.mrr.held).toBe(false);
     expect(column.conditions.sign.held).toBe(true);
     expect(column.verdict).toBe('inconclusive');
@@ -586,7 +441,7 @@ describe('score-jev-tiebreak column and keep rule', () => {
   it('kills a column whose losses are one-sided', () => {
     const rows = ['k1', 'k2', 'k3', 'k4', 'k5', 'k6'].map((id) => mk(id, 'a', ['a', 'b'], ['a', 'b']));
     const answers = Object.fromEntries(rows.map((row) => [row.id, ['b', 'b', 'b']]));
-    const column = summarizeColumn('deem', rows, recs(answers), { ...synthCensus(), rows });
+    const column = summarizeColumn('jev', rows, recs(answers), { ...synthCensus(), rows });
     expect(column.losses).toBe(6);
     expect(column.goldDemotions).toBe(6);
     expect(column.verdict).toBe('kill');
@@ -601,80 +456,48 @@ describe('score-jev-tiebreak column and keep rule', () => {
   });
 });
 
-describe('score-jev-tiebreak column comparison', () => {
-  it('bounds the paired gap on rows both columns decided', () => {
-    const a = { backend: 'jev', decidedRr: { r1: 1, r2: 1, r3: 0.5 } };
-    const b = { backend: 'deem', decidedRr: { r1: 0.5, r2: 0.5, r4: 1 } };
-    expect(compareColumns(a, b)).toEqual({
-      first: 'jev',
-      second: 'deem',
-      n: 2,
-      meanGap: 0.5,
-      lower95: 0.5,
-      upper95: 0.5,
-    });
-    const c = compareColumns(
-      { backend: 'jev', decidedRr: { r1: 1, r2: 0.5, r3: 1 } },
-      { backend: 'deem', decidedRr: { r1: 0.5, r2: 1, r3: 0.5 } },
-    );
-    expect(c.n).toBe(3);
-    expect(c.meanGap).toBeCloseTo(1 / 6);
-    expect(c.lower95).toBeCloseTo(1 / 6 - 1.6449 * Math.sqrt(1 / 3) / Math.sqrt(3));
-    expect(c.upper95).toBeGreaterThan(c.meanGap!);
-    expect(compareLine(compareColumns(a, b))).toBe(
-      'compare: first=jev second=deem rows_both_decided=2 mean_rr_gap=0.5000 lower95=0.5000 upper95=0.5000',
-    );
-  });
-
-  it('prints no bound below two shared rows', () => {
-    const empty = compareColumns({ backend: 'jev', decidedRr: { r1: 1 } }, { backend: 'deem', decidedRr: { r2: 1 } });
-    expect(empty).toEqual({ first: 'jev', second: 'deem', n: 0, meanGap: null, lower95: null, upper95: null });
-    expect(compareLine(empty).endsWith('rows_both_decided=0 mean_rr_gap=none lower95=none upper95=none')).toBe(true);
-  });
-});
-
 describe('score-jev-tiebreak report', () => {
-  it('files columns, calibration, stops and the comparison', () => {
+  it('files columns and calibration', () => {
     expect(buildReport(
       { headroom: 'ok', lines: ['census line'] },
-      { stopped: 'jev arm stopped: key rejected' },
       {
-        column: {
-          backend: 'deem',
-          wins: 6,
-          decidedRr: { r1: 1 },
-          conditions: { sign: { value: 0.0156, held: true } },
-          verdict: 'keep',
-          line: 'verdict: keep backend=deem',
-        },
-        calibration: { measured: 3 },
+        backend: 'jev',
+        wins: 6,
+        decidedRr: { r1: 1 },
+        conditions: { sign: { value: 0.0156, held: true } },
+        verdict: 'keep',
+        line: 'verdict: keep backend=jev',
       },
-      null,
     )).toEqual({
       headroom: 'ok',
       census: ['census line'],
       columns: {
-        deem: {
-          backend: 'deem',
+        jev: {
+          backend: 'jev',
           wins: 6,
           verdict: {
             outcome: 'keep',
-            line: 'verdict: keep backend=deem',
+            line: 'verdict: keep backend=jev',
             conditions: { sign: { value: 0.0156, held: true } },
           },
         },
       },
-      calibration: { deem: { measured: 3 } },
-      stopped: { jev: 'jev arm stopped: key rejected' },
-      compare: null,
+      calibration: {},
+      stopped: {},
     });
-    expect(buildReport({ headroom: 'none', lines: [] }, undefined, undefined, null)).toEqual({
+    expect(buildReport({ headroom: 'ok', lines: [] }, { calibration: { measured: 3 } })).toEqual({
+      headroom: 'ok',
+      census: [],
+      columns: {},
+      calibration: { jev: { measured: 3 } },
+      stopped: {},
+    });
+    expect(buildReport({ headroom: 'none', lines: [] }, undefined)).toEqual({
       headroom: 'none',
       census: [],
       columns: {},
       calibration: {},
       stopped: {},
-      compare: null,
     });
   });
 });
@@ -874,190 +697,7 @@ describe('score-jev-tiebreak jev arm', () => {
   }, 60_000);
 });
 
-describe('score-jev-tiebreak deem arm', () => {
-  const stubBody = [
-    `if [ "$1" = health ]; then n=$(cat "$D/n" 2>/dev/null || echo 0); n=$((n+1)); echo $n > "$D/n"`,
-    `  if [ -f "$D/gone" ] && [ $n -gt 1 ]; then echo '{"ok":false,"error":"Deem unreachable"}' >&2; exit 4; fi`,
-    `  mc=m1; if [ -f "$D/newpair" ] && [ $n -gt 1 ]; then mc=m2; fi`,
-    `  echo "{\\"ok\\":true,\\"backend\\":\\"torch\\",\\"model\\":\\"deem-0.8-v1\\",\\"model_commit\\":\\"$mc\\",\\"source_commit\\":\\"s1\\"}"; exit 0; fi`,
-    `p=$(cat); case "$p" in *offkey*) echo '{"model":"deem-0.8-v1","answers":{"answer":{"choice":"zzz","probabilities":{"zzz":0.9,"none":0.05}}}}'; exit 0;; *sigint*) exit 130;; *exit1*) exit 1;; *exit2*) exit 2;; *exit3*) exit 3;; *exit4*) exit 4;; esac`,
-    `echo '{"model":"deem-0.8-v1","answers":{"answer":{"choice":"b","probabilities":{"b":0.8,"none":0.05}}}}'`,
-  ].join('\n');
-
-  function census(prompts: string[]) {
-    return {
-      ...synthCensus(),
-      rows: prompts.map((prompt, index) => ({
-        ...mk(`r${index}`, 'b', ['a', 'b'], ['a', 'b'], index % 2 ? 'train' : 'test'),
-        prompt,
-      })),
-    };
-  }
-
-  async function drive(scored: ReturnType<typeof census>, prepare?: (stub: string) => void) {
-    const stub = makeStub('cli-deem', stubBody);
-    const dir = mkdtempSync(join(tmpdir(), 'jev-tiebreak-deem-'));
-    const lines: string[] = [];
-    try {
-      prepare?.(stub);
-      const code = await main(['--deem', '--out', dir], {
-        census: scored,
-        out: (line: string) => lines.push(line),
-        env: { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}` },
-        timeoutMs: 5000,
-      });
-      const calls = readFileSync(join(dir, 'calls.jsonl'), 'utf8')
-        .split('\n')
-        .filter((line) => line !== '')
-        .map((line) => JSON.parse(line));
-      const logLines = readFileSync(join(stub, 'cli-deem.log'), 'utf8')
-        .split('\n')
-        .filter((line) => line !== '');
-      return { code, lines, calls, logLines };
-    } finally {
-      rmSync(stub, { recursive: true, force: true });
-      rmSync(dir, { recursive: true, force: true });
-    }
-  }
-
-  it('rotates options, skips a cluster over the key cap, and records the commits', async () => {
-    const scored = census(['ok a', 'exit1 b', 'ok c', 'ok d', 'ok e', 'ok f']);
-    const wide = Array.from({ length: 26 }, (_, index) => `k${index}`);
-    scored.rows.push(mk('r6', 'k1', wide, wide));
-    const result = await drive(scored);
-    expect(result.code).toBe(0);
-
-    const plan = result.lines.find((line) => line.startsWith('deem: nothing leaves the machine planned_calls=18 '));
-    expect(plan?.endsWith('unmeasured_over25=1')).toBe(true);
-    expect(result.lines.some((line) => line.startsWith('column: backend=deem rows=7 measured=5 '))).toBe(true);
-    const verdict = result.lines.find((line) => line.startsWith('verdict: '));
-    expect(verdict?.endsWith('model=deem-0.8-v1 model_commit=m1 source_commit=s1')).toBe(true);
-
-    for (const call of result.calls) {
-      expect(call.backend).toBe('deem');
-      expect(call.model_commit).toBe('m1');
-      expect(call.source_commit).toBe('s1');
-      expect([0, 1, 2]).toContain(call.order);
-    }
-
-    const choiceLines = result.logLines.filter((line) => line.startsWith('choice'));
-    expect(choiceLines[0]).toContain('-o a=desc a -o b=desc b -o none=None of these skills fits the request');
-    const firstKeys = choiceLines.slice(0, 3).map((line) => {
-      const rest = line.slice(line.indexOf(' -o ') + 4);
-      return rest.slice(0, rest.indexOf('='));
-    });
-    expect(firstKeys).toEqual(['a', 'b', 'none']);
-    for (const line of result.logLines) {
-      expect(line.includes('--provider')).toBe(false);
-      expect(line.includes('k25=')).toBe(false);
-      expect(line.includes('KEY')).toBe(false);
-    }
-  }, 60_000);
-
-  it('stops when the backend refuses and keeps the calls already made', async () => {
-    const result = await drive(census(['ok a', 'ok b', 'exit3 c', 'ok d', 'ok e', 'ok f']));
-    expect(result.lines).toContain('deem arm stopped: backend refused');
-    expect(result.lines).toContain('deem: partial_rows=2');
-    expect(result.lines.some((line) => line.startsWith('verdict: '))).toBe(false);
-    expect(result.calls).toHaveLength(7);
-  }, 60_000);
-
-  it('stops when the model commit changes after a retryable exit', async () => {
-    const result = await drive(
-      census(['ok a', 'exit4 b', 'ok c', 'ok d', 'ok e', 'ok f']),
-      (stub) => writeFileSync(join(stub, 'newpair'), ''),
-    );
-    expect(result.lines).toContain('deem arm stopped: model commit changed mid-run');
-    expect(result.lines).toContain('deem: partial_rows=1');
-  }, 60_000);
-
-  it('gives options that share a description their key, so the client accepts them', async () => {
-    const scored = { ...census(['ok a', 'ok b', 'ok c', 'ok d', 'ok e', 'ok f']), describe: () => 'same text' };
-    const result = await drive(scored);
-    expect(result.lines.some((line) => line.startsWith('deem arm stopped'))).toBe(false);
-    expect(result.lines.some((line) => line.startsWith('verdict: '))).toBe(true);
-    const choiceLines = result.logLines.filter((line) => line.startsWith('choice'));
-    expect(choiceLines[0]).toContain('-o a=same text [a] -o b=same text [b] -o none=None of these skills fits the request');
-  }, 60_000);
-
-  it('stops when health says the server is gone', async () => {
-    const result = await drive(
-      census(['ok a', 'exit4 b', 'ok c', 'ok d', 'ok e', 'ok f']),
-      (stub) => writeFileSync(join(stub, 'gone'), ''),
-    );
-    expect(result.lines).toContain('deem arm stopped: server gone');
-  }, 60_000);
-
-  it('leaves a row out of the sign test when deem answers a key it was not offered', async () => {
-    const result = await drive(census(['offkey a', 'ok b', 'ok c', 'ok d', 'ok e', 'ok f']));
-    expect(result.code).toBe(0);
-    expect(result.lines.some((line) => line.startsWith('deem arm stopped'))).toBe(false);
-    const choice = result.calls.filter((call) => call.kind === 'choice');
-    const offkey = choice.filter((call) => call.row_id === 'r0');
-    expect(offkey).toHaveLength(3);
-    for (const call of offkey) expect(call).toMatchObject({ exit_code: 0, answer: null, pick_prob: null, status: 'unmeasured' });
-    expect(choice.filter((call) => call.row_id !== 'r0').map((call) => call.status)).toEqual(Array(15).fill('measured'));
-    expect(result.lines).toContain('column: backend=deem rows=6 measured=5 wins=5 losses=0 ties=0 abstentions=0 unmeasured=1 unstable=0');
-    expect(result.lines.find((line) => line.startsWith('verdict: '))).toContain(' decided=5 wins=5 losses=0 ');
-  }, 60_000);
-
-  it('stops on an interrupt at the first judgment and scores nothing', async () => {
-    const result = await drive(census(['sigint a', 'ok b', 'ok c', 'ok d', 'ok e', 'ok f']));
-    expect(result.code).toBe(0);
-    expect(result.lines).toContain('deem arm stopped: interrupted');
-    expect(result.lines).toContain('deem: partial_rows=0');
-    expect(result.lines.some((line) => /^(column|verdict|calibration): /.test(line))).toBe(false);
-    expect(result.calls).toHaveLength(1);
-    expect(result.calls[0]).toMatchObject({ kind: 'choice', row_id: 'r0', order: 0, exit_code: 130, answer: null, status: 'unmeasured' });
-    expect(result.logLines.filter((line) => line.startsWith('choice'))).toHaveLength(1);
-  }, 60_000);
-});
-
-describe('score-jev-tiebreak deem calibration', () => {
-  const body = [
-    `if [ "$1" = health ]; then echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}'; exit 0; fi`,
-    `p=$(cat); if [ "$1" = noul ]; then case "$p" in *write*) v=0.9;; *) v=0.2;; esac; echo "{\\"model\\":\\"deem-0.8-v1\\",\\"answers\\":{\\"answer\\":{\\"noul\\":$v}}}"; exit 0; fi`,
-    `echo '{"model":"deem-0.8-v1","answers":{"answer":{"choice":"b","probabilities":{"b":0.8,"none":0.05}}}}'`,
-  ].join('\n');
-
-  const labels = [
-    { id: 'l1', prompt: 'write a file', yes: true },
-    { id: 'l2', prompt: 'read only', yes: false },
-    { id: 'l3', prompt: 'write docs', yes: true },
-  ];
-
-  const calibrationLine = 'calibration: backend=deem n=3 measured=3 accuracy=1.0000 f1=1.0000 brier=0.0200 ece5=0.1333 temperature=0.05 archived_f1=0.9843';
-
-  function movableRows() {
-    return ['p0', 'p1', 'p2', 'p3', 'p4', 'p5'].map((prompt, index) => ({
-      ...mk(`r${index}`, 'b', ['a', 'b'], ['a', 'b'], index % 2 ? 'train' : 'test'),
-      prompt,
-    }));
-  }
-
-  async function run(rows: ReturnType<typeof mk>[]) {
-    const stub = makeStub('cli-deem', body);
-    const dir = mkdtempSync(join(tmpdir(), 'jev-tiebreak-deem-cal-'));
-    const lines: string[] = [];
-    try {
-      await main(['--deem', '--out', dir], {
-        census: { ...synthCensus(), rows, labels },
-        out: (line: string) => lines.push(line),
-        env: { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}` },
-        timeoutMs: 5000,
-      });
-      const calls = readFileSync(join(dir, 'calls.jsonl'), 'utf8')
-        .split('\n')
-        .filter((line) => line !== '')
-        .map((line) => JSON.parse(line));
-      const report = JSON.parse(readFileSync(join(dir, 'report.json'), 'utf8'));
-      return { lines, calls, report };
-    } finally {
-      rmSync(stub, { recursive: true, force: true });
-      rmSync(dir, { recursive: true, force: true });
-    }
-  }
-
+describe('score-jev-tiebreak calibration', () => {
   it('scores accuracy, F1, Brier, ECE, and temperature, including the empty list', () => {
     const metrics = calibrationMetrics([
       { p: 0.9, yes: true },
@@ -1080,61 +720,6 @@ describe('score-jev-tiebreak deem calibration', () => {
       temperature: null,
     });
   });
-
-  it('prints the calibration line after a six-row choice arm and records each noul', async () => {
-    const result = await run(movableRows());
-    expect(result.lines.some((line) => line.startsWith('deem: nothing leaves the machine planned_calls=21 '))).toBe(true);
-    expect(result.lines.some((line) => line.startsWith('verdict: '))).toBe(true);
-    expect(result.lines).toContain(calibrationLine);
-    const noul = result.calls.filter((call: { kind: string }) => call.kind === 'noul');
-    expect(noul).toHaveLength(3);
-    for (const call of noul) expect(call.model_commit).toBe('m1');
-    const verdict = result.lines.find((line) => line.startsWith('verdict: '));
-    expect(result.report.columns.deem.verdict.line).toBe(verdict);
-    expect(verdict?.startsWith(`verdict: ${result.report.columns.deem.verdict.outcome} backend=deem `)).toBe(true);
-    expect(Object.keys(result.report.columns.deem.verdict.conditions)).toEqual(['sign', 'mrr', 'right3', 'flip']);
-    for (const c of Object.values(result.report.columns.deem.verdict.conditions) as Array<{ value: number, held: boolean }>) {
-      expect(typeof c.value).toBe('number');
-      expect(typeof c.held).toBe('boolean');
-    }
-    expect(result.report.calibration.deem.measured).toBe(3);
-    expect(result.report.columns.deem.decidedRr).toBeUndefined();
-  }, 60_000);
-
-  it('still calibrates when no row can move', async () => {
-    const rows = ['r0', 'r1', 'r2', 'r3', 'r4', 'r5'].map((id) => mk(id, 'a', ['a', 'b'], ['a', 'b']));
-    const result = await run(rows);
-    expect(result.lines.some((line) => line.startsWith('deem: nothing leaves the machine planned_calls=3 '))).toBe(true);
-    expect(result.lines.some((line) => line.startsWith('column:'))).toBe(false);
-    expect(result.lines).toContain(calibrationLine);
-  }, 60_000);
-
-  it('prints no verdict when the noul pass stops', async () => {
-    const stub = makeStub('cli-deem', [
-      `if [ "$1" = health ]; then echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}'; exit 0; fi`,
-      `cat > /dev/null; if [ "$1" = noul ]; then exit 3; fi`,
-      `echo '{"model":"deem-0.8-v1","answers":{"answer":{"choice":"b","probabilities":{"b":0.8,"none":0.05}}}}'`,
-    ].join('\n'));
-    const dir = mkdtempSync(join(tmpdir(), 'jev-tiebreak-deem-stop-'));
-    const lines: string[] = [];
-    try {
-      await main(['--deem', '--out', dir], {
-        census: { ...synthCensus(), rows: movableRows(), labels },
-        out: (line: string) => lines.push(line),
-        env: { ...process.env, PATH: `${stub}${delimiter}${process.env.PATH}` },
-        timeoutMs: 5000,
-      });
-      const report = JSON.parse(readFileSync(join(dir, 'report.json'), 'utf8'));
-      expect(lines).toContain('deem arm stopped: backend refused');
-      expect(lines.some((line) => line.startsWith('verdict: '))).toBe(false);
-      expect(lines.some((line) => line.startsWith('column: '))).toBe(false);
-      expect(report.columns).toEqual({});
-      expect(report.stopped.deem).toBe('deem arm stopped: backend refused');
-    } finally {
-      rmSync(stub, { recursive: true, force: true });
-      rmSync(dir, { recursive: true, force: true });
-    }
-  }, 60_000);
 });
 
 describe('score-jev-tiebreak jev calibration', () => {
@@ -1197,121 +782,6 @@ describe('score-jev-tiebreak jev calibration', () => {
       rmSync(dir, { recursive: true, force: true });
     }
   }, 60_000);
-});
-
-describe('score-jev-tiebreak fake deem server', () => {
-  it('prints the deem column from the real client against a scripted server', async () => {
-    const SERVER = `
-const http = require('node:http');
-const server = http.createServer((req, res) => {
-  const chunks = [];
-  req.on('data', (chunk) => chunks.push(chunk));
-  req.on('end', () => {
-    if (req.method === 'GET' && req.url === '/health') {
-      res.writeHead(200, { 'content-type': 'application/json' });
-      res.end(JSON.stringify({ status: 'ok', backend: 'torch', model: 'deem-0.8-v1' }));
-      return;
-    }
-    const { state, questions } = JSON.parse(Buffer.concat(chunks).toString());
-    const q = questions.answer;
-    let answer;
-    if (q.type === 'noul') {
-      answer = { value: state.includes('write') ? 0.9 : 0.2 };
-    } else {
-      const pick = state.includes('flip') ? q.options[0] : (q.options.find((o) => o === 'desc b') ?? q.options[0]);
-      answer = { choice: pick, probabilities: { [pick]: 0.8 } };
-    }
-    res.writeHead(200, { 'content-type': 'application/json' });
-    res.end(JSON.stringify({ model: 'deem-0.8-v1', answers: { answer } }));
-  });
-});
-server.listen(0, '127.0.0.1', () => {
-  process.stdout.write(String(server.address().port) + '\\n');
-});
-`;
-    const server = spawn(process.execPath, ['-e', SERVER], { stdio: ['ignore', 'pipe', 'inherit'] });
-    const piped = server.stdout;
-    if (piped === null) {
-      server.kill();
-      throw new Error('deem server stdout is not a pipe');
-    }
-    let portSettled = false;
-    const portReady = new Promise<string>((resolvePort, reject) => {
-      piped.once('data', (chunk) => {
-        portSettled = true;
-        resolvePort(String(chunk).trim());
-      });
-      server.once('exit', (status) => {
-        if (!portSettled) reject(new Error(`deem server exited ${status} before reporting a port`));
-      });
-    });
-    const SHA = '0123456789abcdef0123456789abcdef01234567';
-    const home = mkdtempSync(join(tmpdir(), 'jev-tiebreak-deemhome-'));
-    mkdirSync(join(home, 'models', 'abc1234'), { recursive: true });
-    symlinkSync('abc1234', join(home, 'models', 'current'));
-    mkdirSync(join(home, 'src', '.git', 'objects'), { recursive: true });
-    mkdirSync(join(home, 'src', '.git', 'refs', 'heads'), { recursive: true });
-    writeFileSync(join(home, 'src', '.git', 'HEAD'), `${SHA}\n`);
-    const CLI = resolve(dirname(SCRIPT), '../../../../cli-classifier/cli-deem/scripts/cli-deem.mjs');
-    const wrap = makeStub('cli-deem', `exec "${process.execPath}" "${CLI}" "$@"`);
-    const rows = ['ok0', 'ok1', 'ok2', 'ok3', 'ok4', 'ok5'].map((prompt, i) => ({
-      ...mk(`r${i}`, 'b', ['a', 'b'], ['a', 'b'], i % 2 ? 'train' : 'test'),
-      prompt,
-    }));
-    rows.push({ ...mk('r6', 'b', ['a', 'b'], ['a', 'b']), prompt: 'flip row' });
-    const wide = Array.from({ length: 26 }, (_, index) => `k${index}`);
-    rows.push(mk('r7', 'k1', wide, wide));
-    const labels = [
-      { id: 'l1', prompt: 'write a file', yes: true },
-      { id: 'l2', prompt: 'read only', yes: false },
-    ];
-    const dir = mkdtempSync(join(tmpdir(), 'jev-tiebreak-fake-'));
-    const lines: string[] = [];
-    let code = 1;
-    let calls: Array<{ model_commit: string, source_commit: string, row_id: string }> = [];
-    let logLines: string[] = [];
-    try {
-      const port = await portReady;
-      code = await main(['--deem', '--out', dir], {
-        census: { ...synthCensus(), rows, labels },
-        out: (line: string) => lines.push(line),
-        env: {
-          ...process.env,
-          PATH: `${wrap}${delimiter}${process.env.PATH}`,
-          CLI_DEEM_URL: `http://127.0.0.1:${port}`,
-          CLI_DEEM_HOME: home,
-        },
-        timeoutMs: 20000,
-      });
-      calls = readFileSync(join(dir, 'calls.jsonl'), 'utf8')
-        .split('\n')
-        .filter((line) => line !== '')
-        .map((line) => JSON.parse(line));
-      logLines = readFileSync(join(wrap, 'cli-deem.log'), 'utf8').split('\n');
-    } finally {
-      server.kill();
-      rmSync(wrap, { recursive: true, force: true });
-      rmSync(home, { recursive: true, force: true });
-      rmSync(dir, { recursive: true, force: true });
-    }
-    expect(code).toBe(0);
-    expect(lines).toContain(`deem: health backend=torch model=deem-0.8-v1 model_commit=abc1234 source_commit=${SHA}`);
-    expect(lines.some((line) => line.startsWith('deem: nothing leaves the machine planned_calls=23 ') && line.endsWith('unmeasured_over25=1'))).toBe(true);
-    expect(lines).toContain('column: backend=deem rows=8 measured=7 wins=6 losses=0 ties=0 abstentions=0 unmeasured=1 unstable=1');
-    expect(lines.some((line) => line.startsWith('column: backend=deem movable_wins=6 ') && line.endsWith(' flip=0.1429'))).toBe(true);
-    expect(lines.some((line) => line.startsWith('verdict: inconclusive backend=deem decided=6 wins=6 losses=0 p_win=0.0156 p_loss=1.0000 flip=0.1429') && line.endsWith(`model=deem-0.8-v1 model_commit=abc1234 source_commit=${SHA}`))).toBe(true);
-    expect(lines).toContain('calibration: backend=deem n=2 measured=2 accuracy=1.0000 f1=1.0000 brier=0.0250 ece5=0.1500 temperature=0.05 archived_f1=0.9843');
-    expect(calls).toHaveLength(23);
-    for (const call of calls) {
-      expect(call.model_commit).toBe('abc1234');
-      expect(call.source_commit).toBe(SHA);
-      expect(call.row_id).not.toBe('r7');
-    }
-    for (const line of logLines) {
-      expect(line.includes('--provider')).toBe(false);
-      expect(line.includes('k25=')).toBe(false);
-    }
-  }, 120_000);
 });
 
 describe('score-jev-tiebreak jev refusal by headroom', () => {

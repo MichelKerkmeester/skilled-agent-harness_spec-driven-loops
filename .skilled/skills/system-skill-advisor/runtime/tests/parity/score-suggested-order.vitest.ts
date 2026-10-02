@@ -3,7 +3,6 @@
 // ───────────────────────────────────────────────────────────────
 // Offline checks with synthetic rows, stub binaries and stub children. No model call.
 
-import { spawnSync } from 'node:child_process';
 import { existsSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -65,29 +64,6 @@ function nodeBin(name: string, js: string) {
   writeFileSync(join(dir, name), `#!/bin/sh\nexec "${process.execPath}" "$(dirname "$0")/${name}.cjs" "$@"\n`, { mode: 0o755 });
   return dir;
 }
-
-const DEEM_STUB = `const fs = require('node:fs');
-const path = require('node:path');
-const args = process.argv.slice(2);
-fs.appendFileSync(path.join(__dirname, 'cli-deem.log'), args.join(' ') + '\\n');
-if (args[0] === 'health') {
-  process.stdout.write(JSON.stringify({ ok: true, backend: 'torch', model: 'deem-0.8-v1', model_commit: 'abc1234', source_commit: 'def5678' }) + '\\n', () => process.exit(0));
-}
-if (process.env.STUB_MODE === 'refuse') process.exit(3);
-let text = '';
-process.stdin.setEncoding('utf8');
-process.stdin.on('data', (chunk) => { text += chunk; });
-process.stdin.on('end', () => {
-  const keys = [];
-  for (let i = 0; i < args.length; i += 1) {
-    if (args[i] === '-o') keys.push(args[i + 1].split('=')[0]);
-  }
-  const probabilities = {};
-  for (const key of keys) probabilities[key] = key === 'g' ? 0.7 : 0.3 / (keys.length - 1);
-  if (text.startsWith('partial')) delete probabilities.none;
-  process.stdout.write(JSON.stringify({ answers: { answer: { choice: 'g', probabilities } } }) + '\\n');
-});
-`;
 
 const JEV_STUB = `const fs = require('node:fs');
 const path = require('node:path');
@@ -248,15 +224,15 @@ describe('score-suggested-order keep rule', () => {
   it('keeps a column that wins every decided row', () => {
     const rows = rowsOf(10, 10);
     const answersByRow = answersOf(rows, () => 'g');
-    const s = judgeColumn('deem', rows, answersByRow, walls, { isMatch: strict });
+    const s = judgeColumn('jev', rows, answersByRow, walls, { isMatch: strict });
     expect(s.verdict).toBe('keep');
     expect(s.baseline).toBe('scorer');
     expect(s.W).toBe(10);
     expect(s.L).toBe(0);
     expect(verdictLineFor(s, 'model=x')).toBe(
-      'verdict deem: keep K=20 M=20 W=10 L=0 F=0 p=0.0010 mrr=1.0000/0.7500 p95_ms=800 model=x',
+      'verdict jev: keep K=20 M=20 W=10 L=0 F=0 p=0.0010 mrr=1.0000/0.7500 p95_ms=800 model=x',
     );
-    expect(columnLine(s).startsWith('column deem: rows=20 measured=20 wins=10 losses=0')).toBe(true);
+    expect(columnLine(s).startsWith('column jev: rows=20 measured=20 wins=10 losses=0')).toBe(true);
   });
 
   it('kills a column that loses every decided row', () => {
@@ -265,7 +241,7 @@ describe('score-suggested-order keep rule', () => {
       ...answersOf(rows.slice(0, 10), () => 'a'),
       ...answersOf(rows.slice(10), () => 'g'),
     };
-    const s = judgeColumn('deem', rows, answersByRow, walls, { isMatch: strict });
+    const s = judgeColumn('jev', rows, answersByRow, walls, { isMatch: strict });
     expect(s.verdict).toBe('kill');
     expect(s.W).toBe(0);
     expect(s.L).toBe(10);
@@ -277,7 +253,7 @@ describe('score-suggested-order keep rule', () => {
     for (const id of ['m1', 'm2', 'm3']) {
       answersByRow[id] = [favor('g', ['a', 'g']), favor('g', ['a', 'g']), null];
     }
-    const s = judgeColumn('deem', rows, answersByRow, walls, { isMatch: strict });
+    const s = judgeColumn('jev', rows, answersByRow, walls, { isMatch: strict });
     expect(s.M).toBe(17);
     expect(s.verdict).toBe('stop (coverage)');
   });
@@ -285,7 +261,7 @@ describe('score-suggested-order keep rule', () => {
   it('stops on margin when one win cannot clear the baseline gap', () => {
     const rows = rowsOf(1, 19);
     const answersByRow = answersOf(rows, () => 'g');
-    const s = judgeColumn('deem', rows, answersByRow, walls, { isMatch: strict });
+    const s = judgeColumn('jev', rows, answersByRow, walls, { isMatch: strict });
     expect(s.baseline).toBe('scorer');
     expect(s.W).toBe(1);
     expect(s.L).toBe(0);
@@ -295,7 +271,7 @@ describe('score-suggested-order keep rule', () => {
   it('stops on the sign test when too few rows decide', () => {
     const rows = rowsOf(4, 4);
     const answersByRow = answersOf(rows, () => 'g');
-    const s = judgeColumn('deem', rows, answersByRow, walls, { isMatch: strict });
+    const s = judgeColumn('jev', rows, answersByRow, walls, { isMatch: strict });
     expect(s.baseline).toBe('scorer');
     expect(s.W).toBe(4);
     expect(s.L).toBe(0);
@@ -308,7 +284,7 @@ describe('score-suggested-order keep rule', () => {
     for (const row of rows.slice(10)) {
       answersByRow[row.id] = [favor('g', row.cluster), favor('g', row.cluster), favor('a', row.cluster)];
     }
-    const s = judgeColumn('deem', rows, answersByRow, walls, { isMatch: strict });
+    const s = judgeColumn('jev', rows, answersByRow, walls, { isMatch: strict });
     expect(s.F).toBe(10);
     expect(s.verdict).toBe('stop (flips)');
   });
@@ -317,7 +293,7 @@ describe('score-suggested-order keep rule', () => {
     const rows = rowsOf(10, 10);
     const answersByRow = answersOf(rows, () => 'g');
     const slowWalls = [...Array.from({ length: 56 }, () => 800), ...Array.from({ length: 4 }, () => 2500)];
-    const s = judgeColumn('deem', rows, answersByRow, slowWalls, { isMatch: strict });
+    const s = judgeColumn('jev', rows, answersByRow, slowWalls, { isMatch: strict });
     expect(s.t).toBe(2500);
     expect(s.verdict).toBe('stop (latency)');
   });
@@ -325,7 +301,7 @@ describe('score-suggested-order keep rule', () => {
   it('names the best zero-call order as the baseline when the column cannot beat it', () => {
     const rows = rowsOf(10, 0);
     const answersByRow = answersOf(rows, () => 'g');
-    const s = judgeColumn('deem', rows, answersByRow, walls, { isMatch: strict });
+    const s = judgeColumn('jev', rows, answersByRow, walls, { isMatch: strict });
     expect(s.baseline).toBe('always_second');
     expect(s.W).toBe(0);
     expect(s.L).toBe(0);
@@ -334,37 +310,6 @@ describe('score-suggested-order keep rule', () => {
 });
 
 describe('score-suggested-order timed child', () => {
-  it('runs health, then the call with the prompt on stdin', async () => {
-    const bin = makeBin('cli-deem', `case "$1" in health) exit 0;; choice) cat > "$D/stdin.txt"; echo '{"ok":true}';; esac`);
-    const job = {
-      prompt: 'hello prompt',
-      health: [join(bin, 'cli-deem')],
-      call: { cmd: [join(bin, 'cli-deem')], args: ['choice', '-q', 'Q'] },
-    };
-    const result = await childMain(JSON.stringify(job), { runAdvisor: async () => {} });
-    expect(result.healthCode).toBe(0);
-    expect(result.code).toBe(0);
-    expect(result.stdout.trim()).toBe('{"ok":true}');
-    expect(typeof result.advisorMs).toBe('number');
-    expect(readFileSync(join(bin, 'cli-deem.log'), 'utf8').trim().split('\n')).toEqual(['health', 'choice -q Q']);
-    expect(readFileSync(join(bin, 'stdin.txt'), 'utf8')).toBe('hello prompt');
-  });
-
-  it('skips the call when the health check fails', async () => {
-    const bin = makeBin('cli-deem', `case "$1" in health) exit 4;; esac`);
-    const job = {
-      prompt: 'hello prompt',
-      health: [join(bin, 'cli-deem')],
-      call: { cmd: [join(bin, 'cli-deem')], args: ['choice', '-q', 'Q'] },
-    };
-    const result = await childMain(JSON.stringify(job), { runAdvisor: async () => {} });
-    expect(result.healthCode).toBe(4);
-    expect(result.code).toBe(4);
-    expect(result.callMs).toBeNull();
-    expect(readFileSync(join(bin, 'cli-deem.log'), 'utf8').trim().split('\n')).toEqual(['health']);
-    expect(existsSync(join(bin, 'stdin.txt'))).toBe(false);
-  });
-
   it('returns a finished child result with its wall time', async () => {
     const out = await runTimedChild({ prompt: 'quick' }, { childFile: stubChild() });
     expect(out.timedOut).toBe(false);
@@ -458,23 +403,11 @@ describe('score-suggested-order entry point', () => {
     const out = vi.fn();
     expect(await main(['--jev'], { out })).toBe(2);
     expect(out).not.toHaveBeenCalled();
-
-    const deemDir = makeBin('cli-deem', '');
-    const child = spawnSync(process.execPath, [SCRIPT, '--deem'], {
-      encoding: 'utf8',
-      env: { ...process.env, PATH: `${deemDir}:${process.env.PATH}` },
-      timeout: 20_000,
-    });
-    expect(child.status).toBe(2);
-    expect(child.stdout).toBe('');
-    expect(child.stderr).toContain('--jev and --deem need --out <dir>');
-    expect(existsSync(join(deemDir, 'cli-deem.log'))).toBe(false);
   });
 
   it('defaults to the zero-call comparison and the planned calls', async () => {
     const jevDir = makeBin('jev', '');
-    const deemDir = makeBin('cli-deem', '');
-    const env = { ...process.env, PATH: `${jevDir}:${deemDir}:${process.env.PATH}` };
+    const env = { ...process.env, PATH: `${jevDir}:${process.env.PATH}` };
     const out = vi.fn();
     expect(await main([], { census: censusOf(6), timing, out, env })).toBe(0);
     const lines = out.mock.calls.map(([line]) => line);
@@ -485,12 +418,11 @@ describe('score-suggested-order entry point', () => {
     expect(lines.some((line) => line.startsWith('power: movable=6'))).toBe(true);
     expect(lines.slice(-4)).toEqual([
       'advisor child: p50=800 p95=900 max=1000 over_2200=0 children=11 killed=0',
-      'planned calls: jev=31 deem=30',
+      'planned calls: jev=31',
       'margin: 0.05',
       KEEP_RULE,
     ]);
     expect(existsSync(join(jevDir, 'jev.log'))).toBe(false);
-    expect(existsSync(join(deemDir, 'cli-deem.log'))).toBe(false);
   });
 
   it('stops on movable before planning any call', async () => {
@@ -532,110 +464,12 @@ describe('score-suggested-order entry point', () => {
   });
 });
 
-function deemRow(id: string, prompt: string, cluster: string[] = ['a', 'g']) {
-  return { ...rowOf(id, cluster), prompt };
-}
-
 function readCalls(outDir: string) {
   return readFileSync(join(outDir, 'calls.jsonl'), 'utf8')
     .split('\n')
     .filter((line) => line !== '')
     .map((line) => JSON.parse(line));
 }
-
-function deemRun(stubMode?: string) {
-  const dir = nodeBin('cli-deem', DEEM_STUB);
-  const outDir = mkdtempSync(join(tmpdir(), 'suggested-order-calls-'));
-  const out = vi.fn();
-  const gate = { cmd: [join(dir, 'cli-deem')], model: 'deem-0.8-v1', modelCommit: 'abc1234', sourceCommit: 'def5678' };
-  const ctx = {
-    out,
-    env: { ...process.env, STUB_MODE: stubMode },
-    outDir,
-    childFile: stubChild(),
-    advisorP50: 800,
-  };
-  return { dir, outDir, gate, ctx, lines: () => out.mock.calls.map(([line]) => line as string) };
-}
-
-describe('score-suggested-order deem arm', () => {
-  it('asks every row three times inside timed children and records each call', async () => {
-    const { dir, outDir, gate, ctx, lines } = deemRun();
-    const rows = Array.from({ length: 6 }, (_, index) => deemRow(`p${index + 1}`, `p${index + 1}`));
-    const census = { rows, isMatch: strict, describe: (s: string) => `desc ${s}` };
-    await runArm('deem', census, gate, ctx);
-    expect(lines()).toContain('deem: nothing leaves the machine planned_calls=18 est_wall_s=18.7');
-    expect(lines()).toContain('question: Which skill should handle this request?');
-    const verdict = lines().find((line) => line.startsWith('verdict deem:'));
-    expect(verdict?.startsWith('verdict deem: stop (margin) K=6 M=6 W=0 L=0 F=0')).toBe(true);
-    expect(verdict?.endsWith('model=deem-0.8-v1 model_commit=abc1234 source_commit=def5678')).toBe(true);
-    const calls = readCalls(outDir);
-    expect(calls).toHaveLength(18);
-    for (const call of calls) {
-      expect(typeof call.child_wall_ms).toBe('number');
-      expect(call.model_commit).toBe('abc1234');
-      expect(call.source_commit).toBe('def5678');
-      expect(call.status).toBe('measured');
-      expect(Object.keys(call.probabilities).sort()).toEqual(['a', 'g', 'none']);
-    }
-    const log = readFileSync(join(dir, 'cli-deem.log'), 'utf8').trim().split('\n');
-    expect(log.filter((line) => line === 'health')).toHaveLength(18);
-    const choices = log.filter((line) => line.startsWith('choice'));
-    expect(choices[0]).toContain('-o a=desc a -o g=desc g -o none=None of these skills fits the request');
-    expect(choices[1]).toContain('-o g=desc g -o none=None of these skills fits the request -o a=desc a');
-  }, 60_000);
-
-  it('records a call the classifier cannot fully answer as unmeasured', async () => {
-    const { outDir, gate, ctx, lines } = deemRun();
-    const rows = [
-      ...Array.from({ length: 5 }, (_, index) => deemRow(`p${index + 1}`, `p${index + 1}`)),
-      deemRow('six', 'partial six'),
-    ];
-    const census = { rows, isMatch: strict, describe: (s: string) => `desc ${s}` };
-    await runArm('deem', census, gate, ctx);
-    const column = lines().find((line) => line.startsWith('column deem:'));
-    expect(column).toContain('rows=6 measured=5');
-    const partial = readCalls(outDir).filter((call) => call.row_id === 'six');
-    expect(partial).toHaveLength(3);
-    for (const call of partial) {
-      expect(call.status).toBe('unmeasured');
-      expect(call.probabilities).not.toHaveProperty('none');
-    }
-  }, 60_000);
-
-  it('records a killed child at the timeout and stops on the latency p95', async () => {
-    const { outDir, gate, ctx, lines } = deemRun();
-    const rows = [
-      ...Array.from({ length: 10 }, (_, index) => deemRow(`m${index + 1}`, `p${index + 1}`)),
-      ...Array.from({ length: 8 }, (_, index) => deemRow(`f${index + 1}`, `f${index + 1}`, ['g', 'a'])),
-      deemRow('slow1', 'slow 1'),
-      deemRow('slow2', 'slow 2'),
-    ];
-    const census = { rows, isMatch: strict, describe: (s: string) => `desc ${s}` };
-    await runArm('deem', census, gate, ctx);
-    const slow = readCalls(outDir).filter((call) => call.row_id === 'slow1' || call.row_id === 'slow2');
-    expect(slow).toHaveLength(6);
-    for (const call of slow) {
-      expect(call.status).toBe('unmeasured_timeout');
-      expect(call.child_wall_ms).toBe(2500);
-    }
-    const verdict = lines().find((line) => line.startsWith('verdict deem:'));
-    expect(verdict?.startsWith('verdict deem: stop (latency) K=20 M=18 W=8 L=0 F=0 p=0.0039 mrr=1.0000/0.7778 p95_ms=2500')).toBe(true);
-  }, 120_000);
-
-  it('stops the arm when the backend refuses', async () => {
-    const { outDir, gate, ctx, lines } = deemRun('refuse');
-    const rows = [deemRow('p1', 'p1'), deemRow('p2', 'p2')];
-    const census = { rows, isMatch: strict, describe: (s: string) => `desc ${s}` };
-    const result = await runArm('deem', census, gate, ctx);
-    expect(result).toEqual({ stopped: 'deem arm stopped: backend refused' });
-    expect(lines()).toContain('deem: partial_rows=0');
-    expect(lines().some((line) => line.startsWith('verdict'))).toBe(false);
-    const calls = readCalls(outDir);
-    expect(calls).toHaveLength(1);
-    expect(calls[0].exit_code).toBe(3);
-  }, 60_000);
-});
 
 function jevRow(id: string, prompt: string, cluster: string[] = ['a', 'g']) {
   return { ...rowOf(id, cluster), prompt };
@@ -651,7 +485,6 @@ function jevRun(stubAuth?: string) {
     env: { ...process.env, STUB_AUTH: stubAuth },
     outDir,
     childFile: stubChild(),
-    advisorP50: 800,
     backoffMs: 10,
   };
   return { dir, outDir, gate, ctx, lines: () => out.mock.calls.map(([line]) => line as string) };
@@ -730,19 +563,6 @@ const noProvider = () => {
 };
 
 describe('score-suggested-order gates and arms in main', () => {
-  it('skips the deem arm on a stub backend after one gate call', async () => {
-    const base = (await linesOf([], { census: censusOf(6), timing })).lines;
-    const tmp = mkdtempSync(join(tmpdir(), 'suggested-order-out-'));
-    const deemDir = makeBin('cli-deem', `echo '{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"a","source_commit":"b"}'`);
-    const { code, lines } = await linesOf(['--deem', '--out', tmp], {
-      census: censusOf(6),
-      timing,
-      env: { ...noProvider(), PATH: `${deemDir}:${process.env.PATH}` },
-    });
-    expect(code).toBe(0);
-    expect(lines).toEqual([...base, 'deem arm skipped: stub backend']);
-    expect(readFileSync(join(deemDir, 'cli-deem.log'), 'utf8').trim().split('\n')).toEqual(['health']);
-  });
 
   it('skips the jev arm without a credential after one gate call', async () => {
     const base = (await linesOf([], { census: censusOf(6), timing })).lines;
@@ -768,44 +588,36 @@ describe('score-suggested-order gates and arms in main', () => {
   it('starts no gate when there is no headroom', async () => {
     const tmp = mkdtempSync(join(tmpdir(), 'suggested-order-out-'));
     const jevDir = makeBin('jev', 'case "$1" in --version) echo "jev 0.6.2";; auth) exit 3;; esac');
-    const deemDir = makeBin('cli-deem', `echo '{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"a","source_commit":"b"}'`);
-    const { code, lines } = await linesOf(['--jev', '--deem', '--out', tmp], {
+    const { code, lines } = await linesOf(['--jev', '--out', tmp], {
       census: censusOf(4),
       timing,
-      env: { ...noProvider(), PATH: `${jevDir}:${deemDir}:${process.env.PATH}` },
+      env: { ...noProvider(), PATH: `${jevDir}:${process.env.PATH}` },
     });
     expect(code).toBe(0);
     expect(lines).toContain('no headroom (movable)');
-    expect(lines.some((line) => line.startsWith('jev') || line.startsWith('deem'))).toBe(false);
+    expect(lines.some((line) => line.startsWith('jev'))).toBe(false);
     expect(existsSync(join(jevDir, 'jev.log'))).toBe(false);
-    expect(existsSync(join(deemDir, 'cli-deem.log'))).toBe(false);
   });
 
-  it('runs the jev arm, then the deem gate and arm, when both gates pass', async () => {
+  it('runs the jev arm when its gate passes', async () => {
     const tmp = mkdtempSync(join(tmpdir(), 'suggested-order-out-'));
     const jevDir2 = nodeBin('jev', JEV_STUB);
-    const deemDir2 = nodeBin('cli-deem', DEEM_STUB);
-    const { code, lines } = await linesOf(['--jev', '--deem', '--out', tmp], {
+    const { code, lines } = await linesOf(['--jev', '--out', tmp], {
       census: censusOf(6),
       timing,
-      env: { ...noProvider(), PATH: `${jevDir2}:${deemDir2}:${process.env.PATH}` },
+      env: { ...noProvider(), PATH: `${jevDir2}:${process.env.PATH}` },
       childFile: stubChild(),
       backoffMs: 10,
     });
     expect(code).toBe(0);
     expect(lines).toContain(`jev: path=${join(jevDir2, 'jev')} provider=official`);
     const jevVerdict = lines.findIndex((line) => line.startsWith('verdict jev:'));
-    const deemHealth = lines.indexOf('deem: health backend=torch model=deem-0.8-v1 model_commit=abc1234 source_commit=def5678');
-    const deemVerdict = lines.findIndex((line) => line.startsWith('verdict deem:'));
     expect(jevVerdict).toBeGreaterThanOrEqual(0);
-    expect(deemHealth).toBeGreaterThanOrEqual(0);
-    expect(deemHealth).toBeGreaterThan(jevVerdict);
-    expect(deemVerdict).toBeGreaterThan(deemHealth);
   }, 120_000);
 });
 
 describe('score-suggested-order report', () => {
-  it('builds the report from the census lines, the timing and both arm outcomes', () => {
+  it('builds the report from the census lines, the timing and the arm outcome', () => {
     const walls = Array.from({ length: 60 }, () => 800);
     const rows = [
       ...Array.from({ length: 10 }, (_, index) => rowOf(`m${index + 1}`, ['a', 'g'])),
@@ -816,28 +628,26 @@ describe('score-suggested-order report', () => {
       const map = favor('g', row.cluster);
       answersByRow[row.id] = [map, map, map];
     }
-    const s = judgeColumn('deem', rows, answersByRow, walls, { isMatch: strict });
-    s.line = 'verdict deem: keep ...';
-    s.identity = { model: 'deem-0.8-v1', model_commit: 'abc1234', source_commit: 'def5678' };
-    const report = buildReport(['census: x'], timing, null, { stopped: 'jev arm stopped: key rejected' }, s);
+    const s = judgeColumn('jev', rows, answersByRow, walls, { isMatch: strict });
+    s.line = 'verdict jev: keep ...';
+    s.identity = { jev_version: '0.6.2', provider: 'official', model: 'stub-model' };
+    const report = buildReport(['census: x'], timing, null, s);
     expect(report.census).toEqual(['census: x']);
     expect(report.advisor.children).toBe(11);
     expect(report.headroom).toBe('ok');
-    expect(report.stopped.jev).toBe('jev arm stopped: key rejected');
-    expect(report.columns.deem.verdict.outcome).toBe('keep');
-    expect(report.columns.deem.verdict.W).toBe(10);
-    expect(report.columns.deem.verdict.mrr_baseline).toBe(0.75);
-    expect(report.columns.deem.verdict.model_commit).toBe('abc1234');
-    expect(report.columns).not.toHaveProperty('jev');
+    expect(report.columns.jev.verdict.outcome).toBe('keep');
+    expect(report.columns.jev.verdict.W).toBe(10);
+    expect(report.columns.jev.verdict.mrr_baseline).toBe(0.75);
+    expect(report.columns.jev.verdict.model).toBe('stub-model');
   });
 
   it('writes the report when the only arm was skipped at its gate', async () => {
     const tmp = mkdtempSync(join(tmpdir(), 'suggested-order-out-'));
-    const deemDir = makeBin('cli-deem', `echo '{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"a","source_commit":"b"}'`);
-    const { code, lines } = await linesOf(['--deem', '--out', tmp], {
+    const jevDir = makeBin('jev', 'case "$1" in --version) echo "jev 0.6.2";; auth) exit 3;; esac');
+    const { code, lines } = await linesOf(['--jev', '--out', tmp], {
       census: censusOf(6),
       timing,
-      env: { ...noProvider(), PATH: `${deemDir}:${process.env.PATH}` },
+      env: { ...noProvider(), PATH: `${jevDir}:${process.env.PATH}` },
     });
     expect(code).toBe(0);
     const report = JSON.parse(readFileSync(join(tmp, 'report.json'), 'utf8'));

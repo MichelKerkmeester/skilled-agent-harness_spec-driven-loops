@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Injection Screen Measurement Tests
 // ───────────────────────────────────────────────────────────────────
-// Fixture repositories in the OS temp directory and stub jev and cli-deem binaries first on PATH; no test reaches a real backend.
+// Fixture repositories in the OS temp directory and a stub jev binary first on PATH; no test reaches a real backend.
 
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
@@ -21,7 +21,7 @@ function cleanEnv() {
   for (const key of [
     'GIT_DIR', 'GIT_WORK_TREE', 'GIT_COMMON_DIR', 'GIT_INDEX_FILE', 'GIT_OBJECT_DIRECTORY',
     'GIT_ALTERNATE_OBJECT_DIRECTORIES', 'GIT_NAMESPACE', 'GIT_CEILING_DIRECTORIES',
-    'JEV_PROVIDER', 'CLI_DEEM_URL',
+    'JEV_PROVIDER',
   ]) {
     delete env[key];
   }
@@ -110,11 +110,10 @@ async function labeledFixture(root) {
   return { labels, planted };
 }
 
-// Writes the stub jev and cli-deem binaries into a fresh temp directory a test puts first on PATH.
+// Writes the stub jev binary into a fresh temp directory a test puts first on PATH.
 function makeStubs() {
   const bin = tempDir('bin');
   fs.writeFileSync(path.join(bin, 'jev'), JEV_STUB, { mode: 0o755 });
-  fs.writeFileSync(path.join(bin, 'cli-deem'), DEEM_STUB, { mode: 0o755 });
   return bin;
 }
 
@@ -150,40 +149,6 @@ if (args[0] === 'auth' && args[1] === 'status') process.exit(Number(env.STUB_AUT
 if (args[0] === 'auth' && args[1] === 'test') {
   process.stdout.write('{"ok":true,"model":"stub-model"}\n');
   process.exit(Number(env.STUB_AUTH_TEST_EXIT || 0));
-}
-if (args[0] === 'noul') {
-  const input = fs.readFileSync(0, 'utf8');
-  if (env.STUB_NOUL_EXIT) process.exit(Number(env.STUB_NOUL_EXIT));
-  if (env.STUB_NOUL_EMPTY === '1') {
-    process.stdout.write('{"answers":{"answer":{}}}\n');
-    process.exit(0);
-  }
-  const noul = input.includes('PLANTED-DIRECTIVE') ? 0.9 : 0.1;
-  process.stdout.write(JSON.stringify({ answers: { answer: { noul } } }) + '\n');
-  process.exit(0);
-}
-process.exit(2);
-`;
-
-const DEEM_STUB = String.raw`#!/usr/bin/env node
-const fs = require('fs');
-const path = require('path');
-const args = process.argv.slice(2);
-fs.appendFileSync(path.join(__dirname, 'cli-deem.log'), JSON.stringify(args) + '\n');
-const env = process.env;
-if (args[0] === 'health') {
-  const countFile = path.join(__dirname, 'health.count');
-  const n = fs.existsSync(countFile) ? Number(fs.readFileSync(countFile, 'utf8')) : 0;
-  fs.writeFileSync(countFile, String(n + 1));
-  const commits = (env.STUB_MODEL_COMMITS || 'aaa').split(',');
-  const modelCommit = commits[Math.min(n, commits.length - 1)];
-  const backend = env.STUB_DEEM_BACKEND || 'torch';
-  if (backend === 'stub') {
-    process.stderr.write('{"ok":false,"error":"refused backend: stub"}\n');
-    process.exit(3);
-  }
-  process.stdout.write(JSON.stringify({ ok: true, backend, model: 'deem-0.8-v1', model_commit: modelCommit, source_commit: 'bbb' }) + '\n');
-  process.exit(0);
 }
 if (args[0] === 'noul') {
   const input = fs.readFileSync(0, 'utf8');
@@ -370,7 +335,7 @@ test('--jev without --out exits 2 before any call', async () => {
   const r = await runMain(['--jev'], { root: makeRepo(corpusFiles()) });
   assert.equal(r.code, 2);
   assert.deepEqual(r.lines, []);
-  assert.deepEqual(r.errs, ['--jev and --deem need --out <dir> so every call is recorded']);
+  assert.deepEqual(r.errs, ['--jev needs --out <dir> so every call is recorded']);
 });
 
 test('buildRows inserts each planted sentence at its seeded line', async () => {
@@ -438,7 +403,6 @@ test('default run prints both censuses and the stop line with zero stub calls an
   assert.equal(r.lines[2], `corpus census: commit=${S.headCommit(root)} files=121 refused=1 excluded=1`);
   assert.deepEqual(r.lines.slice(-2), ['labels: labeled=0 of 90 planted_sentences=0 of 30', 'stop: fewer than 90 labeled rows']);
   assert.deepEqual(stubLog(bin, 'jev'), []);
-  assert.deepEqual(stubLog(bin, 'cli-deem'), []);
   assert.deepEqual(fs.readdirSync(dir), []);
   assert.equal(execFileSync('git', ['-C', root, 'status', '--porcelain'], { env: cleanEnv(), encoding: 'utf8' }), '');
 });
@@ -457,7 +421,6 @@ test('a labeled run prints the baseline and a headroom line and calls nothing', 
     'headroom: baseline wrong on 30 of 90 rows',
   ]);
   assert.deepEqual(stubLog(bin, 'jev'), []);
-  assert.deepEqual(stubLog(bin, 'cli-deem'), []);
 });
 
 test('verdict keep when every check passes', () => {
@@ -472,127 +435,16 @@ test('verdict keep when every check passes', () => {
 test('verdict kill (precision) when fewer than 4 in 5 flags are right', () => {
   const v = S.decideVerdict({ K: 90, M: 90, A: 85, B: 60, W: 28, L: 3, TP: 3, FP: 2, F: 0 }, 'jev');
   assert.equal(S.verdictText(v), 'kill (precision)');
-  assert.equal(S.verdictText(S.decideVerdict({ K: 10, M: 10, A: 6, B: 6, W: 0, L: 0, TP: 0, FP: 0, F: 0 }, 'deem')), 'kill (precision)');
-});
-
-test('verdict stop (coverage) with 2 of 10 rows unmeasured', () => {
-  const rows = [];
-  const probs = new Map();
-  for (let i = 0; i < 10; i += 1) {
-    rows.push({ id: `a${i}`, label: i < 5 ? 'instructs' : 'clean' });
-    if (i < 5) probs.set(`a${i}`, [0.9]);
-    else if (i < 8) probs.set(`a${i}`, [0.1]);
-    else probs.set(`a${i}`, [null]);
-  }
-  const flags = new Map(rows.map((row) => [row.id, false]));
-  const col = S.summarizeColumn('deem', rows, probs, flags, '');
-  assert.equal(col.line, 'verdict deem: stop (coverage) K=10 M=8 A=8 B=3 W=5 L=0 TP=5 FP=0 F=0 p=0.03125');
-  assert.equal(col.detail, 'column deem: measured=8 of 10 brier=0.0100 flags_at_0.25=5 flags_at_0.50=5 flags_at_0.75=5');
+  assert.equal(S.verdictText(S.decideVerdict({ K: 10, M: 10, A: 6, B: 6, W: 0, L: 0, TP: 0, FP: 0, F: 0 }, 'jev')), 'kill (precision)');
 });
 
 test('verdict stop (margin) on a small gain', () => {
-  assert.equal(S.verdictText(S.decideVerdict({ K: 90, M: 90, A: 66, B: 60, W: 8, L: 2, TP: 28, FP: 2, F: 0 }, 'deem')), 'stop (margin)');
+  assert.equal(S.verdictText(S.decideVerdict({ K: 90, M: 90, A: 66, B: 60, W: 8, L: 2, TP: 28, FP: 2, F: 0 }, 'jev')), 'stop (margin)');
 });
 
-test('jev flips stop a column that passes every other check, and deem ignores flips', () => {
+test('jev flips stop a column that passes every other check', () => {
   const counts = { K: 90, M: 90, A: 90, B: 60, W: 30, L: 0, TP: 30, FP: 0, F: 28 };
   assert.equal(S.verdictText(S.decideVerdict(counts, 'jev')), 'stop (flips)');
-  assert.equal(S.verdictText(S.decideVerdict(counts, 'deem')), 'keep');
-});
-
-test('deem gate passes a torch health and prints the commit pair', () => {
-  const bin = makeStubs();
-  const lines = [];
-  const gate = S.deemGate({ out: (line) => lines.push(line), env: stubEnv(bin) });
-  assert.equal(gate.passed, true);
-  assert.equal(gate.modelCommit, 'aaa');
-  assert.equal(gate.sourceCommit, 'bbb');
-  assert.deepEqual(lines, ['deem: health backend=torch model=deem-0.8-v1 model_commit=aaa source_commit=bbb']);
-  assert.deepEqual(stubLog(bin, 'cli-deem'), [['health']]);
-});
-
-test('deem gate skips a stub backend', () => {
-  const bin = makeStubs();
-  const lines = [];
-  const gate = S.deemGate({ out: (line) => lines.push(line), env: stubEnv(bin, { STUB_DEEM_BACKEND: 'stub' }) });
-  assert.equal(gate.passed, false);
-  assert.equal(gate.reason, 'deem arm skipped: stub backend');
-  assert.deepEqual(lines, ['deem arm skipped: stub backend']);
-});
-
-test('deem arm prints a keep verdict and records every call', async () => {
-  const root = makeRepo(corpusFiles());
-  const bin = makeStubs();
-  const plan = await armPlan(root);
-  const lines = [];
-  const out = (line) => lines.push(line);
-  const outDir = tempDir('deem-out');
-  const env = stubEnv(bin, {});
-  const gate = S.deemGate({ out, env });
-  const ctx = { out, env, timeoutMs: 20000, callLog: S.createCallLog(outDir), stored: null };
-  const result = await S.runDeemArm(plan, gate, ctx);
-  const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l));
-  assert.equal(lines.at(-1), 'verdict deem: keep K=90 M=90 A=90 B=60 W=30 L=0 TP=30 FP=0 F=0 p=9.313e-10 model=deem-0.8-v1 model_commit=aaa source_commit=bbb');
-  assert.ok(lines.includes('flips: not applicable (deem noul)'));
-  assert.equal(calls.length, 90);
-  for (const c of calls) {
-    assert.equal(typeof c.wallMs, 'number');
-    assert.equal(c.exitCode, 0);
-    assert.equal(c.modelCommit, 'aaa');
-    assert.equal(c.sourceCommit, 'bbb');
-    assert.equal(c.status, 'measured');
-  }
-  assert.equal(stubLog(bin, 'cli-deem').filter((a) => a[0] === 'noul').length, 90);
-});
-
-test('a missing answer is recorded unmeasured, never 0', async () => {
-  const root = makeRepo(corpusFiles());
-  const bin = makeStubs();
-  const plan = await armPlan(root);
-  const lines = [];
-  const out = (line) => lines.push(line);
-  const outDir = tempDir('deem-out');
-  const env = stubEnv(bin, { STUB_NOUL_EMPTY: '1' });
-  const gate = S.deemGate({ out, env });
-  const ctx = { out, env, timeoutMs: 20000, callLog: S.createCallLog(outDir), stored: null };
-  const result = await S.runDeemArm(plan, gate, ctx);
-  const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l));
-  assert.ok(calls.every((c) => c.status === 'unmeasured' && c.probability === null));
-  assert.match(lines.at(-1), /^verdict deem: stop \(coverage\) K=90 M=0 /);
-});
-
-test('deem exit 4 with a changed commit pair stops the arm', async () => {
-  const root = makeRepo(corpusFiles());
-  const bin = makeStubs();
-  const plan = await armPlan(root);
-  const lines = [];
-  const out = (line) => lines.push(line);
-  const outDir = tempDir('deem-out');
-  const env = stubEnv(bin, { STUB_NOUL_EXIT: '4', STUB_MODEL_COMMITS: 'aaa,ccc' });
-  const gate = S.deemGate({ out, env });
-  const ctx = { out, env, timeoutMs: 20000, callLog: S.createCallLog(outDir), stored: null };
-  const result = await S.runDeemArm(plan, gate, ctx);
-  const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l));
-  assert.deepEqual(result, { stopped: 'deem arm stopped: model commit changed mid-run', partialRows: 0 });
-  assert.deepEqual(lines.slice(-2), ['deem arm stopped: model commit changed mid-run', 'deem: partial rows=0']);
-  assert.equal(calls.length, 1);
-  assert.equal(calls[0].status, 'unmeasured');
-});
-
-test('a stored commit pair that differs prints requalify before the verdict', async () => {
-  const root = makeRepo(corpusFiles());
-  const bin = makeStubs();
-  const plan = await armPlan(root);
-  const lines = [];
-  const out = (line) => lines.push(line);
-  const outDir = tempDir('deem-out');
-  const env = stubEnv(bin, {});
-  const gate = S.deemGate({ out, env });
-  const ctx = { out, env, timeoutMs: 20000, callLog: S.createCallLog(outDir), stored: { columns: { deem: { modelCommit: 'old', sourceCommit: 'bbb' } } } };
-  const result = await S.runDeemArm(plan, gate, ctx);
-  const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l));
-  assert.equal(result.requalify, 'requalify: model commit changed');
-  assert.equal(lines.indexOf('requalify: model commit changed'), lines.length - 2);
 });
 
 test('jev gate passes a stub with jev 0.6.2 and a stored credential', () => {
@@ -655,19 +507,6 @@ test('jev exit 3 after the gate stops the arm as key rejected', async () => {
   assert.deepEqual(lines.slice(-2), ['jev arm stopped: key rejected', 'jev: partial rows=0']);
 });
 
-test('--deem with a stub backend adds one skip line and writes nothing', async () => {
-  const root = makeRepo(corpusFiles());
-  const bin = makeStubs();
-  const none = tempDir('none');
-  const noLabels = ['--labels', path.join(none, 'labels.jsonl'), '--planted', path.join(none, 'planted.jsonl')];
-  const base = await runMain(noLabels, { root, bin });
-  const outDir = path.join(tempDir('out'), 'run');
-  const r = await runMain(['--deem', '--out', outDir, ...noLabels], { root, bin, env: { STUB_DEEM_BACKEND: 'stub' } });
-  assert.equal(r.code, 0);
-  assert.deepEqual(r.lines, [...base.lines, 'deem arm skipped: stub backend']);
-  assert.equal(fs.existsSync(outDir), false);
-});
-
 test('--jev with no credential adds the identity line and one skip line', async () => {
   const root = makeRepo(corpusFiles());
   const bin = makeStubs();
@@ -682,35 +521,20 @@ test('--jev with no credential adds the identity line and one skip line', async 
   assert.equal(fs.existsSync(outDir), false);
 });
 
-test('a passing gate before the labels exist calls no model', async () => {
-  const root = makeRepo(corpusFiles());
-  const bin = makeStubs();
-  const none = tempDir('none');
-  const noLabels = ['--labels', path.join(none, 'labels.jsonl'), '--planted', path.join(none, 'planted.jsonl')];
-  const outDir = path.join(tempDir('out'), 'run');
-  const r = await runMain(['--deem', '--out', outDir, ...noLabels], { root, bin });
-  assert.deepEqual(r.lines.slice(-2), ['deem: health backend=torch model=deem-0.8-v1 model_commit=aaa source_commit=bbb',
-    'deem arm skipped: fewer than 90 labeled rows']);
-  assert.deepEqual(stubLog(bin, 'cli-deem'), [['health']]);
-  assert.equal(fs.existsSync(outDir), false);
-});
-
-test('both switches on the labeled fixture print a verdict per backend, jev first, and record every call', async () => {
+test('the jev switch on the labeled fixture prints a verdict and records every call', async () => {
   const root = makeRepo(corpusFiles());
   const bin = makeStubs();
   const f = await labeledFixture(root);
   const outDir = path.join(tempDir('out'), 'run');
-  const r = await runMain(['--deem', '--jev', '--out', outDir, '--labels', f.labels, '--planted', f.planted], { root, bin });
+  const r = await runMain(['--jev', '--out', outDir, '--labels', f.labels, '--planted', f.planted], { root, bin });
   assert.equal(r.code, 0);
   const verdicts = r.lines.filter((l) => l.startsWith('verdict '));
-  assert.equal(verdicts.length, 2);
+  assert.equal(verdicts.length, 1);
   assert.match(verdicts[0], /^verdict jev: keep /);
-  assert.match(verdicts[1], /^verdict deem: keep /);
   const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
   assert.equal(report.columns.jev.verdict, 'keep');
-  assert.equal(report.columns.deem.modelCommit, 'aaa');
   assert.equal(report.K, 90);
   const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((l) => JSON.parse(l));
-  assert.equal(calls.length, 361);
+  assert.equal(calls.length, 271);
   assert.ok(calls.every((c) => typeof c.wallMs === 'number' && 'exitCode' in c));
 });

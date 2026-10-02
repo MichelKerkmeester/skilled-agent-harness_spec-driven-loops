@@ -3,7 +3,7 @@
 // MODULE: SUGGESTED CLUSTER ORDER EVAL
 // ───────────────────────────────────────────────────────────────────
 //
-// Measures, offline, whether a Jev or local Deem answer that orders the advisor's
+// Measures, offline, whether a Jev answer that orders the advisor's
 // whole near-tie cluster beats the best zero-call order, with each call timed
 // inside a child spawned the way the prompt shim spawns the advisor. The default
 // run makes no model call. The script holds no credential and reads none.
@@ -19,7 +19,7 @@ import { performance } from 'node:perf_hooks';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 
-import { alwaysSecondOrder, binomTail, classifyRow, confidenceOrder, deemGate, jevGate, loadCensus, readDeemHealth, reciprocalRank, reorderSlots, spawnCall, summarizeCensus, writeCall } from './score-jev-tiebreak.mjs';
+import { alwaysSecondOrder, binomTail, classifyRow, confidenceOrder, jevGate, loadCensus, reciprocalRank, reorderSlots, spawnCall, summarizeCensus, writeCall } from './score-jev-tiebreak.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -33,8 +33,6 @@ export const MIN_MOVABLE = 5;
 const CHOICE_QUESTION = 'Which skill should handle this request?';
 const NONE_DESCRIPTION = 'None of these skills fits the request';
 const PASSES = 3;
-const DEEM_MAX_KEYS = 25;
-const DEEM_CHOICE_P50_MS = 241;
 const JEV_VERSION = '0.6.2';
 const AUTH_TIMEOUT_MS = 30000;
 const GATE_TIMEOUT_MS = 10000;
@@ -260,12 +258,10 @@ async function runHookAdvisor(prompt) {
 }
 
 /**
- * One timed child's job: the advisor, then an optional health check and one
- * classifier call, each measured. A failing health check stops the run before
- * the call, and its code becomes the run's code.
+ * One timed child's job: the advisor, then one classifier call, each measured.
  * @param {string} stdinText
  * @param {{ runAdvisor?: (prompt: string) => Promise<void> }} [deps]
- * @returns {Promise<{ advisorMs: number, healthMs: number|null, healthCode: number|null, callMs: number|null, code: number|null, stdout: string }>}
+ * @returns {Promise<{ advisorMs: number, callMs: number|null, code: number|null, stdout: string }>}
  */
 export async function childMain(stdinText, deps = {}) {
   const job = JSON.parse(stdinText);
@@ -274,26 +270,10 @@ export async function childMain(stdinText, deps = {}) {
   await runAdvisor(job.prompt);
   const result = {
     advisorMs: Math.round(performance.now() - advisorStart),
-    healthMs: null,
-    healthCode: null,
     callMs: null,
     code: null,
     stdout: '',
   };
-  if (Array.isArray(job.health)) {
-    const healthStart = performance.now();
-    const health = spawnSync(job.health[0], [...job.health.slice(1), 'health'], {
-      env: process.env,
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'pipe'],
-    });
-    result.healthMs = Math.round(performance.now() - healthStart);
-    result.healthCode = health.error ? 127 : health.status ?? -1;
-    if (result.healthCode !== 0) {
-      result.code = result.healthCode;
-      return result;
-    }
-  }
   if (job.call) {
     const callStart = performance.now();
     const call = spawnSync(job.call.cmd[0], [...job.call.cmd.slice(1), ...job.call.args], {
@@ -403,22 +383,20 @@ export function headroomLine(movable, advisorP95) {
 
 /**
  * Choice arm over every eligible row, three rotated orders each: the Jev arm
- * sends the prompts to the hosted classifier, and the Deem arm to the local
- * server so nothing leaves the machine. Each order runs inside a timed child; a
- * killed child is recorded and the row continues. The Jev arm checks auth before
+ * sends the prompts to the hosted classifier. Each order runs inside a timed child;
+ * a killed child is recorded and the row continues. The arm checks auth before
  * any row, waits a backoff and retries once when the classifier reports itself
- * busy, and a rejected key stops it. The Deem arm re-checks the server health
- * before its single exit-4 retry, and a changed model or source commit stops it.
- * Exit 2, exit 3, and exit 130 stop either arm and report how many rows finished.
- * @param {'jev' | 'deem'} backend - Column name.
+ * busy, and a rejected key stops it.
+ * Exit 2, exit 3, and exit 130 stop the arm and report how many rows finished.
+ * @param {string} backend - Column name.
  * @param {{ rows: Array<{ id: string, prompt: string, cluster: string[], gold: string }>, isMatch: (candidate: string, gold: string) => boolean, describe: (skill: string) => string }} census
- * @param {{ path: string, provider: string } | { cmd: string[], model: string, modelCommit: string, sourceCommit: string }} gate - Passed gate: a Jev path and provider, or the Deem command, model name and both commits.
- * @param {{ out: (line: string) => void, env: Record<string, string | undefined>, outDir?: string, childFile?: string, timeoutMs?: number, advisorP50?: number|null, backoffMs?: number }} ctx - backoffMs waits before the single Jev exit-4 retry; default 2000.
+ * @param {{ path: string, provider: string }} gate - Passed gate: a Jev path and provider.
+ * @param {{ out: (line: string) => void, env: Record<string, string | undefined>, outDir?: string, childFile?: string, timeoutMs?: number, backoffMs?: number }} ctx - backoffMs waits before the single Jev exit-4 retry; default 2000.
  * @returns {Promise<object | { stopped: string }>}
  */
 export async function runArm(backend, census, gate, ctx) {
-  const { out, env, outDir, childFile, timeoutMs, advisorP50 } = ctx;
-  const rows = census.rows.filter((row) => classifyRow(row, census.isMatch) !== 'ineligible' && (backend === 'jev' || row.cluster.length <= DEEM_MAX_KEYS));
+  const { out, env, outDir, childFile, timeoutMs } = ctx;
+  const rows = census.rows.filter((row) => classifyRow(row, census.isMatch) !== 'ineligible');
 
   if (backend === 'jev') {
     let chars = 0;
@@ -431,8 +409,6 @@ export async function runArm(backend, census, gate, ctx) {
     }
     chars *= PASSES;
     out(`jev: payload=routing corpus prompts and skill projection descriptions planned_calls=${rows.length * PASSES + 1} est_input_tokens=${Math.ceil(chars / 4)}`);
-  } else {
-    out(`deem: nothing leaves the machine planned_calls=${rows.length * PASSES} est_wall_s=${(rows.length * PASSES * ((advisorP50 ?? 0) + DEEM_CHOICE_P50_MS) / 1000).toFixed(1)}`);
   }
   out(`question: ${CHOICE_QUESTION}`);
 
@@ -473,9 +449,7 @@ export async function runArm(backend, census, gate, ctx) {
     out(`jev: auth_test provider=${gate.provider} model=${model}`);
   }
 
-  const identity = backend === 'jev'
-    ? { jev_version: JEV_VERSION, provider: gate.provider, model }
-    : { model: gate.model, model_commit: gate.modelCommit, source_commit: gate.sourceCommit };
+  const identity = { jev_version: JEV_VERSION, provider: gate.provider, model };
 
   for (const row of rows) {
     const keys = [...row.cluster, 'none'];
@@ -483,9 +457,7 @@ export async function runArm(backend, census, gate, ctx) {
     answersByRow[row.id] = [];
     for (let order = 0; order < PASSES; order += 1) {
       const options = optionArgs(orders[order], census.describe, row.cluster);
-      const job = backend === 'jev'
-        ? { prompt: row.prompt, call: { cmd: [gate.path], args: ['choice', '--provider', gate.provider, '-q', CHOICE_QUESTION, ...options] } }
-        : { prompt: row.prompt, health: gate.cmd, call: { cmd: gate.cmd, args: ['choice', '-q', CHOICE_QUESTION, ...options] } };
+      const job = { prompt: row.prompt, call: { cmd: [gate.path], args: ['choice', '--provider', gate.provider, '-q', CHOICE_QUESTION, ...options] } };
       let attempt = 1;
       let answer = null;
       for (;;) {
@@ -508,7 +480,6 @@ export async function runArm(backend, census, gate, ctx) {
           attempt,
           child_wall_ms: child.wallMs,
           advisor_ms: child.result?.advisorMs ?? null,
-          health_ms: child.result?.healthMs ?? null,
           call_ms: child.result?.callMs ?? null,
           exit_code: code,
           probabilities: probs.raw,
@@ -521,18 +492,10 @@ export async function runArm(backend, census, gate, ctx) {
         }
         if (child.timedOut) break;
         if (code === 2) return stop(`${backend} arm stopped: usage error`);
-        if (code === 3) return stop(backend === 'jev' ? 'jev arm stopped: key rejected' : 'deem arm stopped: backend refused');
+        if (code === 3) return stop('jev arm stopped: key rejected');
         if (code === 130) return stop(`${backend} arm stopped: interrupted`);
         if (code === 4 && attempt === 1) {
-          if (backend === 'jev') {
-            await new Promise((done) => { setTimeout(done, ctx.backoffMs ?? 2000); });
-          } else {
-            const health = readDeemHealth(gate.cmd, env);
-            if (!health.ok) return stop('deem arm stopped: server gone');
-            if (health.model !== gate.model || health.modelCommit !== gate.modelCommit || health.sourceCommit !== gate.sourceCommit) {
-              return stop('deem arm stopped: model commit changed mid-run');
-            }
-          }
+          await new Promise((done) => { setTimeout(done, ctx.backoffMs ?? 2000); });
           attempt = 2;
           continue;
         }
@@ -547,9 +510,7 @@ export async function runArm(backend, census, gate, ctx) {
   out(`${backend}: calls=${walls.length} timeouts=${timeouts}`);
   out(columnLine(s));
   s.identity = identity;
-  s.line = verdictLineFor(s, backend === 'jev'
-    ? `jev_version=${JEV_VERSION} provider=${gate.provider} model=${model}`
-    : `model=${gate.model} model_commit=${gate.modelCommit} source_commit=${gate.sourceCommit}`);
+  s.line = verdictLineFor(s, `jev_version=${JEV_VERSION} provider=${gate.provider} model=${model}`);
   out(s.line);
   return s;
 }
@@ -563,10 +524,9 @@ export async function runArm(backend, census, gate, ctx) {
  * @param {Awaited<ReturnType<typeof timeAdvisor>>} timing - The advisor child timing.
  * @param {string|null} headroom - The headroom stop line, or null when there is headroom.
  * @param {object|undefined} jevResult - The Jev column verdict or stop record.
- * @param {object|undefined} deemResult - The Deem column verdict or stop record.
  * @returns {{ census: string[], advisor: { children: number, p50_ms: number|null, p95_ms: number|null, max_ms: number|null, over_2200: number, killed: number }, headroom: string, columns: Record<string, object>, stopped: Record<string, string> }}
  */
-export function buildReport(censusLines, timing, headroom, jevResult, deemResult) {
+export function buildReport(censusLines, timing, headroom, jevResult) {
   const report = {
     census: censusLines,
     advisor: {
@@ -581,7 +541,7 @@ export function buildReport(censusLines, timing, headroom, jevResult, deemResult
     columns: {},
     stopped: {},
   };
-  for (const [name, result] of [['jev', jevResult], ['deem', deemResult]]) {
+  for (const [name, result] of [['jev', jevResult]]) {
     if (result === undefined) continue;
     if ('stopped' in result) {
       report.stopped[name] = result.stopped;
@@ -641,7 +601,6 @@ export async function main(argv, deps = {}) {
       allowPositionals: false,
       options: {
         jev: { type: 'boolean' },
-        deem: { type: 'boolean' },
         out: { type: 'string' },
         child: { type: 'boolean' },
       },
@@ -661,9 +620,9 @@ export async function main(argv, deps = {}) {
     return 0;
   }
 
-  // A model arm must leave its call record behind, so both arms need --out.
-  if ((values.jev === true || values.deem === true) && (typeof values.out !== 'string' || values.out === '')) {
-    process.stderr.write('--jev and --deem need --out <dir> so every call is recorded\n');
+  // A model arm must leave its call record behind, so it needs --out.
+  if (values.jev === true && (typeof values.out !== 'string' || values.out === '')) {
+    process.stderr.write('--jev needs --out <dir> so every call is recorded\n');
     return 2;
   }
 
@@ -684,13 +643,11 @@ export async function main(argv, deps = {}) {
   out(advisorLine(timing));
 
   const eligible = census.rows.filter((row) => classifyRow(row, census.isMatch) !== 'ineligible');
-  const deemRows = eligible.filter((row) => row.cluster.length <= DEEM_MAX_KEYS);
   const headroom = headroomLine(summary.movable, timing.p95);
-  out(headroom ?? `planned calls: jev=${eligible.length * PASSES + 1} deem=${deemRows.length * PASSES}`);
+  out(headroom ?? `planned calls: jev=${eligible.length * PASSES + 1}`);
   out(`margin: ${MARGIN}`);
   out(KEEP_RULE_LINE);
   let jevResult;
-  let deemResult;
   if (headroom === null) {
     const armCtx = {
       out,
@@ -699,21 +656,16 @@ export async function main(argv, deps = {}) {
       childFile: deps.childFile,
       timeoutMs: deps.timeoutMs,
       backoffMs: deps.backoffMs,
-      advisorP50: timing.p50,
     };
-    // Jev runs first, each gate runs once, and a failed gate never starts the other backend.
+    // Jev runs only behind its own gate.
     if (values.jev === true) {
       const gate = jevGate({ out, env, timeoutMs: GATE_TIMEOUT_MS });
       if (gate.passed) jevResult = await runArm('jev', census, gate, armCtx);
     }
-    if (values.deem === true) {
-      const gate = deemGate({ out, env });
-      if (gate.passed) deemResult = await runArm('deem', census, gate, armCtx);
-    }
   }
-  if (values.jev === true || values.deem === true) {
+  if (values.jev === true) {
     mkdirSync(values.out, { recursive: true });
-    writeFileSync(join(values.out, 'report.json'), `${JSON.stringify(buildReport(censusLines, timing, headroom, jevResult, deemResult), null, 2)}\n`);
+    writeFileSync(join(values.out, 'report.json'), `${JSON.stringify(buildReport(censusLines, timing, headroom, jevResult), null, 2)}\n`);
   }
   return 0;
 }
