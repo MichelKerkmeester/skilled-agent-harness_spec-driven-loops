@@ -296,6 +296,7 @@ The read-only investigation found that the validator enforces only rules represe
 | REQ-015 | The commit template declares `body.breakingSections`; a breaking commit missing any of `Context`, `Changes` or `Verification` is blocked with `body.breaking-sections`. |
 | REQ-016 | The template example and `SKILL.md` wording use the canonical scopes and agree with the enforced contract. |
 | REQ-017 | Unit and hook tests cover the new rules, and the message-contract CI workflow runs the unit test suite. |
+| REQ-018 | A commit in a linked worktree of the hook's own repository is validated by that worktree's validator, so a change that adds a template key can be committed; any other repository never runs its own validator. |
 
 ### Follow-Up Scope
 
