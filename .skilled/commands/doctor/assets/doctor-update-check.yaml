@@ -1,0 +1,142 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: UPDATE CHECK WORKFLOW (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator checking this checkout against a spec-kit release
+purpose: Report release position, upstream availability and per-unit changes without changing checkout files.
+action: preflight -> release.check -> status.dashboard -> next.steps -> state.log
+
+operating_mode:
+  workflow: sequential_orchestrator
+  compliance: MANDATORY
+  execution: read_only
+  approvals: none
+  tracking: action_by_action
+  validation: engine_report
+
+check_invariant: |
+  Check is read-only with respect to the checkout. The engine may fetch a missing
+  release commit with `git fetch --no-tags <remote> refs/tags/<tag>`, which creates
+  no ref. This is the only network write, and it touches only the git object store
+  and `FETCH_HEAD`. `--offline` is passed through to prevent this fetch. Always report
+  unavailable upstream data as UNKNOWN, never as current.
+
+upstream_assets:
+  engine: ".skilled/commands/doctor/scripts/release-update.cjs"
+  presentation: ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
+  pass_policy:
+    engine_present: true
+    repository_required: true
+    upstream_unknown_is_visible: true
+
+user_inputs:
+  action: "check"
+  json: "[JSON] boolean"
+  release: "[RELEASE] optional tag"
+  scope: "[SCOPE] optional all or comma-separated unit names"
+  offline: "[OFFLINE] boolean"
+
+field_handling:
+  defaults:
+    action: check
+    json_empty: false
+    release_empty: engine_default
+    scope_empty: all
+    offline_empty: false
+  engine_mapping:
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs check"
+    json: "Always pass --json for parsing; when the user supplied --json, return the parsed report as JSON instead of the prose dashboard."
+    release: "--release <tag> when supplied"
+    scope: "--scope <value> when supplied"
+    offline: "--offline when requested"
+    repository: "--repo ."
+  status_values:
+    unit: [current, local, update, new, customized, conflict, removed, blocked, unknown]
+    rule: "Treat only the listed values as known; preserve any unexpected value as UNKNOWN and report it."
+
+mutation_boundaries:
+  allowed_targets: []
+  allowed_exception: "A missing release commit is fetched with `git fetch --no-tags <remote> refs/tags/<tag>`, which creates no ref. This is the only network write, and it touches only the git object store and `FETCH_HEAD`."
+  forbidden_targets:
+    - "all checkout files and refs"
+    - "all paths outside the git object store and FETCH_HEAD for the documented fetch exception"
+  validator:
+    name: canonical_path_validator
+    rule: "Validate that no checkout path or ref is written; permit only the documented missing-release git fetch exception."
+
+state_log_schema:
+  command: "/doctor:update check"
+  destination: "in-memory result only; check writes no state-log file"
+  persisted: false
+  start: "ISO-8601"
+  end: "ISO-8601"
+  duration_seconds: "number"
+  release: "string|null"
+  upstream_status: "available|unknown|offline"
+  status_counts: "map computed from the units array; counts.units is checked against the row total"
+  final_status: "ok|unknown|failed"
+
+workflow:
+  phase_1_preflight:
+    approval: none
+    checks:
+      - "Confirm the current directory is inside a git repository."
+      - "Confirm .skilled/commands/doctor/scripts/release-update.cjs exists."
+      - "Confirm the canonical path validator allows the engine invocation and the documented fetch exception only."
+    on_failure: "Show the presentation error template and stop without writing a file."
+
+  phase_2_engine_check:
+    approval: none
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json [--release <tag>] [--scope <value>] [--offline]"
+    flag_rule: "Include optional flags only when their input is bound; check accepts --json, --release, --scope and --offline."
+    parse_json_fields:
+      - schemaVersion
+      - command
+      - repo
+      - head
+      - release
+      - releaseCommit
+      - localLatest
+      - upstream.status
+      - upstream.latest
+      - upstream.error
+      - checkout.position
+      - checkout.aheadBy
+      - checkout.behindBy
+      - checkout.dirty
+      - status
+      - units
+      - files
+      - counts
+    file_fields: [path, unit, class, conflictKind, base, local, release]
+    unit_fields: [name, prefix, kind, status, baseSource, baseRelease, baseTree, releaseTree, classCounts, files, changelogs]
+    exit_policy: "Exit 0 means a report was produced, not that upstream is known. Exit 2 is usage failure. Keep UNKNOWN explicit for unavailable upstream or unknown status."
+    on_failure: "Present the command output and exit code, then stop without writing a file."
+
+  phase_3_render_dashboard:
+    approval: none
+    render: "Unless --json was requested, use the presentation dashboard with release position, upstream latest or UNKNOWN, ahead/behind counts, and per-unit status groups. When --json was requested, return the parsed engine report as JSON and do not add prose around it."
+    grouping:
+      quiet: "Combine current and local into one quiet line with both counts."
+      separate: [update, new, customized, conflict, removed, blocked, unknown]
+    changelog: "Show available per-unit changelog highlights and mark missing highlights as unavailable."
+    counts: "Compute unit counts by status from the units array; confirm counts.units equals the rendered row total and counts.files agrees with the file inventory. Preserve unknown unit values visibly."
+
+  phase_4_next_steps:
+    approval: none
+    json_policy: "Do not append prose next steps when --json was requested."
+    routing:
+      customized_or_conflict: "Offer /doctor:update align with the same optional release and scope."
+      update_or_new_only: "Offer /doctor:update apply, noting that a decision file is optional when no align decisions are needed."
+      removed_or_blocked_or_unknown: "Show the status-specific explanation and do not imply automatic application is safe."
+      databases: "Name /doctor:rebuild for database regeneration after applying a release."
+      no_changes: "Report that the selected units are current or local."
+
+  phase_5_terminal_status:
+    approval: none
+    fields: [command, start, end, duration_seconds, release, upstream_status, status_counts, final_status]
+    terminal_rule: "Return a terminal status without persisting a log file; the check action's mutation boundary allows no checkout path writes."
+
+terminal_statuses:
+  - "STATUS=OK"
+  - "STATUS=UNKNOWN"
+  - "STATUS=FAILED"
