@@ -113,11 +113,11 @@ Decisions outrank child goals.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 044 are Complete
+- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 044 are Complete
 - [x] 019 to 035 are Complete, each at its verdict line or label gate
 - [x] `validate_document.py` exits 0 on each changed skill doc
 - [x] No open P0 or P1, and no changed suite fails beyond its baseline
-- [ ] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
+- [x] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -262,4 +262,5 @@ and findings belong here.
 | Directive amendment: bind 043 (2026-10-01) | Source: the operator's choices for the label findings (027 "Both fixes", 006 "Build 006's model arm", 003 "Fix it in goal-core") and "Send goal prompt for what were doing and still open sk create goal". D3 now releases 019 to 043, BINDING gained row 043, and criterion 1 names 036 to 043 and is open until 043 closes. Budget cut, by section 3 step 5 of sk-create-goal's `budget-and-handoff.md`: D5's executor settings moved here, unchanged in force. DeepSeek V4.1 Flash runs on cli-pi through Cline at `xhigh`, then OpenCode Go at `max`, and Luna 6 max runs on the `fast` tier. `goal.cjs packet`: 4,000 before, 4,044 after the additions, 3,999 after the cut, `packet_budget=ok`. Rollback: `git show 5543f6861e:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
 | 043 Complete, all criteria met (2026-10-01) | 043 shipped the three label-finding fixes and closed three DeepSeek V4.1 Flash review rounds (commits `55c33b363e` to `1f5d472ef7`, P2s in 043's log). Every child criterion 1 names reads Complete, and 042's acceptance status was corrected from In Progress to match its Met rows. `validate.sh --strict --recursive` printed `RESULT: PASSED` with 0 errors and 0 warnings on all 44 folders, and `check-goal.cjs` passed 5/5 on each. Nothing is pushed or merged |
 | Directive amendment: bind 044 (2026-10-02) | Source: the operator's "Fix", after the session found that `cli-deem` reads `noul` and `score` answers in shapes the local Deem server never sends, and that 027's and 026's scorers read judgment output above `answers.answer`. D3 now releases 019 to 044, the binding gains 044, and criteria 1 and 5 are open again until 044 closes. To fit 4,000 characters (`budget-and-handoff.md` section 3, steps 5 and 6): D3 drops "ones", D5 puts each CLI in brackets, the binding line reads "child goals", criterion 2 reads "each at its verdict line or label gate", criterion 3 "each changed skill doc" and criterion 4 "changed suite". `goal.cjs packet` reads 3,999, `packet_budget=ok` |
+| 044 Complete, all criteria met again (2026-10-02) | 044 fixed the answer-shape mismatches (commits `e783935de9` to `5d5eee4d67`, P2s in 044's log). `cli-deem` now gets a number from the local Deem server for `noul` and `score`, and 027's and 026's model arms read `answers.answer`. No scorer has yet measured a real answer: that needs the operator's yes for a live run. `validate.sh --strict --recursive` printed `RESULT: PASSED` with 0 errors and 0 warnings on all 45 folders, and `check-goal.cjs` passed 5/5 on each. Nothing is pushed or merged |
 <!-- /ANCHOR:log -->
