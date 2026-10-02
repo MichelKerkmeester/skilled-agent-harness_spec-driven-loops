@@ -45,7 +45,7 @@ Each unit is one DeepSeek dispatch; the diff and suites are checked before the n
 
 - [x] T004 B1 unreadable blob blocks, cleanup trap (`.skilled/scripts/git-hooks/pre-commit`)
 - [x] T005 B2 the same in the standalone hook (`.skilled/hooks/git/pre-commit`)
-- [x] T006 B3 Spec containment and its test (`message-contract.mjs`, `message-contract.test.mjs`)
+- [x] T006 B3 Spec containment and its test (`message-contract.mjs`, `message-contract.test.mjs`); superseded at merge by a stricter concurrent fix on main
 - [x] T007 B4 root README hook section (`README.md`)
 - [x] T008 B5, B5b remote-branch policy (`references/remote-branch-policy.md`)
 - [x] T009 B6 primary hook README (`.skilled/scripts/git-hooks/README.md`)
