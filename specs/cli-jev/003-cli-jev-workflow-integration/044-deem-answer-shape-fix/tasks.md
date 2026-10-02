@@ -44,8 +44,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 [P] `cli-deem` `translateAnswer` and its fake answers (`cli-deem.mjs`, `cli-deem.test.mjs`), Luna 6 max, brief `044a.md`. Evidence: commit `e783935de9`, then the review's `criteria` fix `5d5eee4d67`. Luna's sandbox refused loopback binds, so the session ran the suite: 39 pass (34 before), 0 failing
-- [x] T005 [P] 027 and 026 parse depth and stubs (`score-stop-rater.cjs`, `score-stop-rater.vitest.ts`, `score-completion-claims.mjs`, `completion-claim-audit.vitest.ts`), SWE 2 max, brief `044b.md`. Evidence: commit `c8673c3c5f`, with the session's float-score fix in 027's Jev arm. 027 vitest 61 (59 before), 026 vitest 24 (23 before), 0 failing
+- [x] T004 [P] `cli-deem` `translateAnswer` and its fake answers (`cli-deem.mjs`, `cli-deem.test.mjs`), Luna 6 max, brief `044a.md`. Evidence: commit `006994d12a`, then the review's `criteria` fix `ec3d3c1e7f`. Luna's sandbox refused loopback binds, so the session ran the suite: 39 pass (34 before), 0 failing
+- [x] T005 [P] 027 and 026 parse depth and stubs (`score-stop-rater.cjs`, `score-stop-rater.vitest.ts`, `score-completion-claims.mjs`, `completion-claim-audit.vitest.ts`), SWE 2 max, brief `044b.md`. Evidence: commit `7180ff06b4`, with the session's float-score fix in 027's Jev arm. 027 vitest 61 (59 before), 026 vitest 24 (23 before), 0 failing
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -54,8 +54,8 @@ contextType: "implementation"
 ## Phase 3: Verification
 
 - [x] T006 Run `cli-deem noul`, `choice` and `score` against the local server. Evidence: `health`, `noul` 0.9707, `noul --value`, `choice` key `pay`, `score` 1.0983, `score --value` and a `run` batch with `criteria` (score 1.7875) each exit 0
-- [x] T007 Update the cli-deem docs that describe the answer shape, add a changelog entry, and correct 043's record. Evidence: commit `bcb4128396`, SWE 2 max. `validate_document.py` exits 0 on every changed doc, the old-wording grep finds nothing, Hermes sync PASS 72, cli-classifier's manifest re-minted to `compiled-serving`
-- [x] T008 One DeepSeek V4.1 Flash review of the changes. Evidence: 1,565 s, `VERDICT: FAIL` on 1 P1 and 3 P2. The P1 was reproduced and fixed in `5d5eee4d67`, with a test that fails on the old check. The P2s are in `goal.md`'s log
+- [x] T007 Update the cli-deem docs that describe the answer shape, add a changelog entry, and correct 043's record. Evidence: commit `1882e3f868`, SWE 2 max. `validate_document.py` exits 0 on every changed doc, the old-wording grep finds nothing, Hermes sync PASS 72, cli-classifier's manifest re-minted to `compiled-serving`
+- [x] T008 One DeepSeek V4.1 Flash review of the changes. Evidence: 1,565 s, `VERDICT: FAIL` on 1 P1 and 3 P2. The P1 was reproduced and fixed in `ec3d3c1e7f`, with a test that fails on the old check. The P2s are in `goal.md`'s log
 - [x] T009 Closure: `repair-derived.cjs --apply`, `validate.sh --strict` on this phase and the parent, `check-goal.cjs` on both. Evidence: `repair-derived.cjs --apply` ran on this phase and the parent. `validate.sh --strict --recursive` on the parent printed `RESULT: PASSED` with 0 errors and 0 warnings for all 45 folders, this phase among them, and `check-goal.cjs` printed `RESULT: PASSED (5/5 checks)` on the parent and every child
 <!-- /ANCHOR:phase-3 -->
 
@@ -135,7 +135,7 @@ contextType: "implementation"
 - [x] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases. Evidence: parser cases for the old shapes, out-of-range numbers, a top-level-only body and the `criteria` alias.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Evidence: three readers by three question types, three suites and seven local calls, each in `implementation-summary.md`.
 - [x] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state. Evidence: the scorer suites put stub `cli-deem` and `jev` first on `PATH`, and 026's suite runs the old shape behind `STUB_DEEM_TOP_LEVEL=1`.
-- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: each task names its commit, from `e783935de9` to `5d5eee4d67`.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: each task names its commit, from `006994d12a` to `ec3d3c1e7f`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -143,7 +143,7 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security
 
-- [x] CHK-030 [P0] No hardcoded secrets Evidence: a key-shape scan of `git diff eea335935d..HEAD` over `.skilled` and `.hermes` finds none.
+- [x] CHK-030 [P0] No hardcoded secrets Evidence: a key-shape scan of `git diff 68b3546cb2..HEAD` over `.skilled` and `.hermes` finds none.
 - [x] CHK-031 [P0] Input validation implemented Evidence: `noul` must be a finite number in [0, 1] and `score` a finite number from 0 to levels - 1.
 - [x] CHK-032 [P1] Auth/authz working correctly Evidence: the client accepts only a loopback URL and the pinned model `deem-0.8-v1`, and no Jev call ran.
 <!-- /ANCHOR:security -->

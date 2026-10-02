@@ -42,8 +42,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T002 Luna: delete the packet and reduce the hub files to one mode, with a new minor version and changelog entry. Evidence: commit `326997828a`, 57 files, hub 0.7.0.0, `changelog/v0.7.0.0.md`
-- [x] T003 Luna: update the compiled-routing fixtures, harness, advisor graph and orchestration metadata. Evidence: canary case `deem-choice-single` deleted, `deem-verb-narrowness` renamed `classifier-verb-narrowness` on a `judge` prompt, graph regenerated in `a7b60bf56e`
+- [x] T002 Luna: delete the packet and reduce the hub files to one mode, with a new minor version and changelog entry. Evidence: commit `43598e2c67`, 57 files, hub 0.7.0.0, `changelog/v0.7.0.0.md`
+- [x] T003 Luna: update the compiled-routing fixtures, harness, advisor graph and orchestration metadata. Evidence: canary case `deem-choice-single` deleted, `deem-verb-narrowness` renamed `classifier-verb-narrowness` on a `judge` prompt, graph regenerated in `b338131b67`
 - [x] T004 Regenerate the Hermes mirror and re-mint routing. Evidence: `.hermes/skills/cli-deem/` gone, manifest hash `4d5aad95` in both activation copies
 <!-- /ANCHOR:phase-2 -->
 

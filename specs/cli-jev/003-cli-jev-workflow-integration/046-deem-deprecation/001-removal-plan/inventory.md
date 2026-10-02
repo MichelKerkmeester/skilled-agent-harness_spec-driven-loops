@@ -13,7 +13,7 @@ contextType: "implementation"
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
-The list phases 002 to 004 work from. Taken on 2026-10-02 at `eb77315f46`.
+The list phases 002 to 004 work from. Taken on 2026-10-02 at `41f22fc59e`.
 
 ---
 

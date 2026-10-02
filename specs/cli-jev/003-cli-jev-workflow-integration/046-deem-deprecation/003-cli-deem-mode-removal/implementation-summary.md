@@ -75,7 +75,7 @@ The hub still passes as a parent hub and a second classifier joins as one new mo
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Luna 6 max took the hub and routing edits in commit `326997828a`. The session regenerated the Hermes mirror, re-minted routing, regenerated the advisor graph with the canonical exporter in `a7b60bf56e` and stamped the hub graph metadata in `b2fd4237f2`. DeepSeek V4.1 Flash max reviewed the commit.
+Luna 6 max took the hub and routing edits in commit `43598e2c67`. The session regenerated the Hermes mirror, re-minted routing, regenerated the advisor graph with the canonical exporter in `b338131b67` and stamped the hub graph metadata in `5aa8b6ed16`. DeepSeek V4.1 Flash max reviewed the commit.
 <!-- /ANCHOR:how-delivered -->
 
 ---

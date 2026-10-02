@@ -1,4 +1,4 @@
-# Default output, old scorer against new scorer on the same tree (base 48ac21c64e, 2026-10-02)
+# Default output, old scorer against new scorer on the same tree (base b946a35518, 2026-10-02)
 # Each old scorer ran from a copy beside the new one with identical arguments. A diff line is shown in full.
 002 identical, 10 lines
 006 identical, 9 lines

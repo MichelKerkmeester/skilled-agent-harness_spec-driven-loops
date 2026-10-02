@@ -78,12 +78,12 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planned | Done | Scoped 2026-10-02 from the operator's request to remove Deem and keep Jev |
-| Doc rewrites | Done | DeepSeek V4.1 Flash max in three batches: `f20ba5f446`, `a81b7def29`, `645659d5b5`. 135 changed docs pass `validate_document.py` |
-| Changelogs | Done | 13 new entries, one per changed skill or packet. `cli-jev` came last in `bf2ea5e8be` |
-| Generated files | Done | README baselines `5c6e7ac7cc`, trigger index and fixtures `2b2ed3d750` |
+| Doc rewrites | Done | DeepSeek V4.1 Flash max in three batches: `69b6a20dd4`, `66944d0221`, `0199c158b4`. 135 changed docs pass `validate_document.py` |
+| Changelogs | Done | 13 new entries, one per changed skill or packet. `cli-jev` came last in `4df619b5b2` |
+| Generated files | Done | README baselines `3d4d54d5d8`, trigger index and fixtures `28b6db26d6` |
 | Greps | Done | Inventory pattern: two keep files and five generated files. `--deem`: nothing |
 | Suites | Done | 24 inventory suites 0 fail, the changed scorer suites 446 of 446, advisor suite 1055 passed with 0 failed |
-| Review | Done | Luna on the doc commits. The P0 stale test counts were fixed in `0c1ca648e8` |
+| Review | Done | Luna on the doc commits. The P0 stale test counts were fixed in `5711e5522e` |
 
 ### Deviations and findings
 
