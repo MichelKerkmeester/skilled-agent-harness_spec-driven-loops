@@ -35,7 +35,7 @@ The contract is repository-agnostic. A repository that carries its own copy of a
 | Gate | When it runs | What it checks |
 |---|---|---|
 | `commit-msg` hook | Each local commit | The message being written |
-| `pre-push` hook, gate 6 | Each push | Every commit in the pushed range, plus a new branch's name, so a `--no-verify` commit is still caught |
+| `pre-push` hook, gate 6 | Each push | The commits this push adds (those no remote-tracking ref and, for an update, no old remote tip already holds), plus a new branch's name, so a `--no-verify` commit is still caught |
 | Agent gate (`git-message-gate.mjs`, in all seven runtimes) | Before an agent runs `git commit -m/-F`, `gh pr create/edit --body`, or a branch-creating command | The message, PR body or branch name in the command, before it runs |
 | `message-contract` CI workflow | Push and pull request | The pushed commits, the PR body and the branch name |
 
@@ -45,7 +45,7 @@ Exit 0 means the input passes or the repository declares no rules for that kind.
 
 ### Range Checks
 
-In range mode the validator reads every message with one `git log` call. A `Spec:` trailer passes when the packet exists in the pushed tip or in the commit's own tree, so a later commit that moves a packet does not fail an earlier one. The `Commit-Id` uniqueness scan ignores `*/HEAD` and the ref being overwritten, so a rebased branch is not compared with its own old copies.
+In range mode the validator reads every message with one `git log` call. A `Spec:` trailer passes when the packet exists in the pushed tip or in the commit's own tree, so a later commit that moves a packet does not fail an earlier one. The `Commit-Id` uniqueness scan ignores `*/HEAD` and the ref being overwritten, so a rebased branch is not compared with its own old copies. An owner with the same author email and author date as the candidate is that commit's rebased or amended copy, not a collision, at commit time and at push time alike.
 
 ### Drift Guard
 

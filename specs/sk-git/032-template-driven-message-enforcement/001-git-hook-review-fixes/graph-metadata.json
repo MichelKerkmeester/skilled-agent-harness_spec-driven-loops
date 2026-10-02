@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes",
+  "spec_folder": "sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes",
+  "parent_id": "sk-git/032-template-driven-message-enforcement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "git hook review fixes",
+      "untrusted repo hook source root",
+      "pre-push range already on remote",
+      "commit-id rebase collision",
+      "cherry-pick commit-id remint",
+      "git hook fix plan",
+      "hook trust block",
+      "deepseek dispatch units",
+      "git hook fix tasks",
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability"
+    ],
+    "key_topics": [
+      "git",
+      "hook",
+      "review",
+      "untrusted",
+      "repo",
+      "source",
+      "root",
+      "pre-push",
+      "range",
+      "already",
+      "remote",
+      "commit-id"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/scripts/git-hooks/lib/message-contract-gate.sh",
+      ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+      ".skilled/skills/sk-git/scripts/validate-message.mjs",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+      ".skilled/scripts/install-git-hooks.sh",
+      ".skilled/hooks/git/install-hooks.sh",
+      ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+      "lib/README.md",
+      ".skilled/scripts/git-hooks/README.md",
+      ".skilled/hooks/git/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract-gate.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/lib/message-contract-gate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "message-contract.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/lib/message-contract.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-message.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-git/scripts/validate-message.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install-hooks.sh",
+        "kind": "script",
+        "path": ".skilled/hooks/git/install-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shell",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hooks are installed machine-wide through `core.hooksPath`, but they choose their source root from a file inside whatever repository they fire in, so a cloned repository can make them run its own code on `pull`, `commit` or `push`",
+    "created_at": "2026-10-02T07:45:23Z",
+    "last_save_at": "2026-10-02T09:15:29.526Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fbc64e8b169fbd35fd41abb2a1ba2f20f6434ec42a7b9e99dd0fd26dd96553ec",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "752795b5e45d531a10a5c8fe86ceac7c069760d4bbfea1271e44ef45aa88b1c3",
+      "plan.md": "e3f67c36a9da7e653ebf161ed52490e1d6883333878915c0a760437b412de250",
+      "tasks.md": "44f5f75bc2799125e038ba9e2eee86c74fb1e61f17d8d1cb2213d9f331307254",
+      "implementation-summary.md": "cbdc848ce6cb3f71d27e2b27b469cc0ad9e15ced663a0ab423e70c89daaff5fa"
+    },
+    "last_active_at": null
+  }
+}

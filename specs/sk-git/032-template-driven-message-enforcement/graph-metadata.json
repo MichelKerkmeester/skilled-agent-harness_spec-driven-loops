@@ -3,7 +3,11 @@
   "packet_id": "sk-git/032-template-driven-message-enforcement",
   "spec_folder": "sk-git/032-template-driven-message-enforcement",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "sk-git/032-template-driven-message-enforcement/001-git-hook-review-fixes",
+    "sk-git/032-template-driven-message-enforcement/002-git-hook-review-residuals",
+    "sk-git/032-template-driven-message-enforcement/003-hook-docs-and-standards-alignment"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -210,7 +214,7 @@
     ],
     "causal_summary": "The sk-git commit contract is written three times: as prose in `SKILL.md` and `assets/commit-message-template.md`, and as hardcoded regexes in `.skilled/scripts/git-hooks/commit-msg`",
     "created_at": "2026-10-01T17:03:25Z",
-    "last_save_at": "2026-10-02T17:06:36.650Z",
+    "last_save_at": "2026-10-02T17:38:31.990Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,10 +225,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:505bc78cd472e2dcf41372491aad78827323aa734bbcab1fcff085f13a002f3d",
+    "source_fingerprint": "sha256:21fb99c080241236abaf781b5d9085dfb13d663d04f4db62b5f729067d56b323",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "57618ddddbe145eb9d23e693527ad0a6602c4ce6400bb4f27ace14ed165da03d",
+      "spec.md": "bf5796a37a373cb91115dbf825983ef60b97c2a82cd1457c53f3669cf91a5989",
       "plan.md": "12863fcd40232389cddc3c61a2d34e28e7132585e4384e6ac73d908474932459",
       "tasks.md": "b1def416119b91847f14e541b9dc3670a9cde3a4849a4f2a3cc4b13a7aa3f5ea",
       "decision-record.md": "30569418c2e34a16b3e7e0fef73d2e546c3eaad54c5d3d03eb01f3070872e228",

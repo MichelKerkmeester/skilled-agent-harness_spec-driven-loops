@@ -56,21 +56,37 @@ mcg_validator_path() {
 }
 
 # True when the repository at $1 declares an "Enforced rules" block in the
-# template named $2. Mirrors the validator's resolution order.
+# template named $2. Follows the validator's resolution exactly: a configured
+# skgit.contractDir is the only place it looks, otherwise the first of .sk-git/
+# and the sk-git skill assets that exists, even when that one lacks this
+# template. A configured directory that does not exist is a broken contract the
+# validator reports, so it counts as declared and the gate stays closed.
 mcg_repo_declares_rules() {
-  local repo_root="$1" template="$2" dir candidate
-  dir="$(git -C "$repo_root" config --get skgit.contractDir 2>/dev/null || true)"
-  case "$dir" in
-    ""|/*) ;;
-    *) dir="$repo_root/$dir" ;;
-  esac
-  for candidate in \
-    "$dir" "$repo_root/.sk-git" \
-    "$repo_root/.skilled/skills/sk-git/assets" "$repo_root/.opencode/skills/sk-git/assets"; do
-    [[ -n "$candidate" && -f "$candidate/$template" ]] || continue
-    grep -qiE '^#{1,6} .*Enforced rules' "$candidate/$template" && return 0
-  done
-  return 1
+  local repo_root="$1" template="$2" dir="" candidate
+  # Same rule as the validator: a command-scope setting (git -c, GIT_CONFIG_*) does not count.
+  dir="$(git -C "$repo_root" config --show-scope --get-all skgit.contractDir 2>/dev/null \
+    | grep -v "^command$(printf '\t')" | tail -n 1 | cut -f 2- || true)"
+  if [[ -n "$dir" ]]; then
+    case "$dir" in
+      /*) ;;
+      *) dir="$repo_root/$dir" ;;
+    esac
+    [[ -e "$dir" ]] || return 0
+  else
+    for candidate in \
+      "$repo_root/.sk-git" \
+      "$repo_root/.skilled/skills/sk-git/assets" "$repo_root/.opencode/skills/sk-git/assets"; do
+      if [[ -e "$candidate" ]]; then
+        dir="$candidate"
+        break
+      fi
+    done
+    [[ -n "$dir" ]] || return 1
+  fi
+  [[ -f "$dir/$template" ]] || return 1
+  # The validator's heading test: one to six hashes, whitespace, then "Enforced rules"
+  # as whole words, in any case.
+  grep -qiE '^#{1,6}[[:space:]]+(.*[^[:alnum:]_])?Enforced rules([^[:alnum:]_]|$)' "$dir/$template"
 }
 
 # Why the validator cannot run, or nothing when it can.

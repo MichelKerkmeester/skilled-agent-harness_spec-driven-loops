@@ -54,7 +54,7 @@ Current state:
 ### Compiled routing
 
 - `compiled-route-manifest.cjs` is the activation-manifest library. It mints and refreshes a hub's manifest, answers whether that manifest still matches what the hub's routing inputs compile to, and holds a writer lease so a manifest write cannot race a runtime publication. The 89-line `bin/compiled-route-manifest.cjs` is a CLI over this module, not a second copy of it.
-- `compiled-route-layout.cjs` resolves which internal generation a runtime root serves. It accepts one complete generation and refuses a root that mixes two, so a probe never reads one generation's activation state through another generation's resolver.
+- `compiled-route-layout.cjs` resolves which internal generation a runtime root serves. It accepts one complete generation and refuses a root that mixes two, so a probe never reads one generation's activation state through another generation's resolver. It also exports `AUTHORED_PROGRAM_DIR`, the path of the spec packet that holds the authored routing manifest, which the pre-commit hook, the route guard and the sync tool all read.
 - `compiled-routing/` is **generated output**, not source. `compiled-route-sync.cjs` traces the runtime closure from an authored resolver, stages a candidate, verifies every hub against it, and renames it over this directory. Anything written here by hand is erased by the next publication and cannot be promoted back, because only files the trace touches are copied. Change the authored program directory under `specs/` instead, then republish. The directory carries no README for the same reason.
 
 ---

@@ -4,10 +4,10 @@
 # ───────────────────────────────────────────────────────────────
 # Install repo hooks into .git/hooks/.
 #
-# .opencode/scripts/install-git-hooks.sh is the primary installer for this
-# repo's .git/hooks/pre-commit; that hook chains into this folder's
-# pre-commit as its comment-hygiene sub-gate. Run this script directly only
-# to install/test the hygiene gate standalone, without the other gates.
+# .skilled/scripts/install-git-hooks.sh is the primary installer. Its pre-commit
+# carries its own comment-hygiene gate and does not call this folder's
+# pre-commit. Run this script directly only to install this folder's standalone
+# hygiene helper, without the other gates.
 #
 # Usage: .opencode/hooks/git/install-hooks.sh
 set -euo pipefail

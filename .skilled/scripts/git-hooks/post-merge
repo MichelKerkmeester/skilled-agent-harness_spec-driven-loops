@@ -27,6 +27,26 @@ _in_toolchain_repo() {
   [[ -n "$REPO_ROOT" && -f "$SOURCE_ROOT/skills/system-spec-kit/SKILL.md" ]]
 }
 # <<< source-root selection
+# >>> hook trust (identical in every global hook script)
+# These scripts are installed once for every repository on the machine, and the block
+# above picks the source tree from the repository the hook fires in. A cloned repository
+# controls that tree, so its scripts run only when it shares a git common dir with the
+# checkout these hooks live in (that checkout or one of its worktrees), or when its local
+# config sets skilled.trustRepoHooks=true. Local config is never cloned, and command-line
+# or environment config does not count, so a repository cannot opt itself in. An
+# untrusted repository is treated as one without the toolchain.
+_trust_self="${BASH_SOURCE[0]}"
+while [[ -L "$_trust_self" ]]; do
+  _trust_link="$(readlink "$_trust_self")"
+  case "$_trust_link" in /*) _trust_self="$_trust_link" ;; *) _trust_self="$(dirname "$_trust_self")/$_trust_link" ;; esac
+done
+_hook_common="$(cd "$(dirname "$_trust_self")" 2>/dev/null && env -u GIT_DIR -u GIT_WORK_TREE -u GIT_COMMON_DIR -u GIT_INDEX_FILE git rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)"
+_repo_common="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null || true)"
+if [[ -n "$REPO_ROOT" && ( -z "$_hook_common" || "$_hook_common" != "$_repo_common" ) ]] \
+  && [[ "$(git config --local --bool skilled.trustRepoHooks 2>/dev/null || true)" != "true" ]]; then
+  SOURCE_ROOT="$REPO_ROOT/.skilled-untrusted"
+fi
+# <<< hook trust
 
 if [ -f "$SOURCE_ROOT/scripts/git-hooks/lib/autostash-orphan-guard.sh" ]; then
   # shellcheck source=/dev/null

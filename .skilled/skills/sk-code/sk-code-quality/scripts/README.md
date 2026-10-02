@@ -17,7 +17,7 @@ description: "The code-quality skill's standalone checkers plus the hook adapter
 
 | File / Folder | Purpose |
 |------|---------|
-| `check-comment-hygiene.sh` | Python script (kept as a `.sh` entrypoint) that scans one file's comment lines for ephemeral-artifact references such as packet/phase IDs, ADR/REQ/CHK IDs and spec paths, and exits 1 with the offending lines |
+| `check-comment-hygiene.sh` | Python script (kept as a `.sh` entrypoint) that scans the comment lines of one or more files for ephemeral-artifact references such as packet/phase IDs, ADR/REQ/CHK IDs and spec paths. It exits 1 with the offending lines when any file has one, 0 when at least one file was checked clean, and 2 when every file was skipped |
 | `check-comment-hygiene.test.sh` | Bash test harness that runs the comment-hygiene checker against seeded fixture files covering both violation and allowed-pattern cases |
 | `check-dist-staleness.sh` | Python script (kept as a `.sh` entrypoint) that checks whether a watched TypeScript package's compiled dist is stale, scoped to one edited file by default or every watched package with `--all` |
 | `hooks/` | Claude Code and Codex CLI PostToolUse adapters, see `hooks/README.md` |
