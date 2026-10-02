@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode",
+  "description": "`/doctor:mcp debug` diagnoses MCP servers that fail to start or expose no tools",
+  "keywords": [
+    "doctor",
+    "mcp",
+    "debug",
+    "diagnoses",
+    "servers",
+    "fail",
+    "start",
+    "expose",
+    "tools"
+  ],
+  "lastUpdated": "2026-10-02T16:13:28.622Z",
+  "specId": "002",
+  "folderSlug": "mcp-debug-code-mode",
+  "parentChain": [
+    "system-speckit",
+    "048-doctor-command-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

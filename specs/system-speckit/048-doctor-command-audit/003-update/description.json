@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/048-doctor-command-audit/003-update",
+  "description": "`/doctor:update` rebuilds the spec-kit runtime databases in dependency order",
+  "keywords": [
+    "doctor",
+    "rebuilds",
+    "spec-kit",
+    "runtime",
+    "databases",
+    "dependency",
+    "order"
+  ],
+  "lastUpdated": "2026-10-02T16:13:28.631Z",
+  "specId": "003",
+  "folderSlug": "update",
+  "parentChain": [
+    "system-speckit",
+    "048-doctor-command-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

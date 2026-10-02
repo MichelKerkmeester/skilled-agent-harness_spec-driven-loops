@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/048-doctor-command-audit",
+  "description": "The doctor commands are the operator's way to check and repair the system: `/doctor:mcp` (install, debug), `/doctor:update`, and ten `/doctor:speckit`",
+  "keywords": [
+    "doctor",
+    "commands",
+    "operator",
+    "way",
+    "check",
+    "repair",
+    "system",
+    "mcp",
+    "install",
+    "debug",
+    "ten",
+    "speckit"
+  ],
+  "lastUpdated": "2026-10-02T16:14:07.604Z",
+  "specId": "048",
+  "folderSlug": "doctor-command-audit",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

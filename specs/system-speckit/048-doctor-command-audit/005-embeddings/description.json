@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/048-doctor-command-audit/005-embeddings",
+  "description": "`/doctor:speckit embeddings` reports the embedding provider and the shared model-server status",
+  "keywords": [
+    "doctor",
+    "speckit",
+    "embeddings",
+    "reports",
+    "embedding",
+    "provider",
+    "shared",
+    "model-server",
+    "status"
+  ],
+  "lastUpdated": "2026-10-02T16:13:28.646Z",
+  "specId": "005",
+  "folderSlug": "embeddings",
+  "parentChain": [
+    "system-speckit",
+    "048-doctor-command-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
