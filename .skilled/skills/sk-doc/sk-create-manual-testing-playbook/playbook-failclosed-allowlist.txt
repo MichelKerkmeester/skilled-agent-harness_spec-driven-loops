@@ -36,7 +36,6 @@
 .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook
 .skilled/skills/sk-code/sk-code-review/manual-testing-playbook
 .skilled/skills/sk-code/sk-code-webflow/manual-testing-playbook
-.skilled/skills/sk-communication/manual-testing-playbook
 .skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook
 .skilled/skills/sk-design/manual-testing-playbook
 .skilled/skills/sk-doc/manual-testing-playbook

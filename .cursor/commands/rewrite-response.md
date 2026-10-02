@@ -1,1 +1,0 @@
-../../.skilled/commands/rewrite/response.md
