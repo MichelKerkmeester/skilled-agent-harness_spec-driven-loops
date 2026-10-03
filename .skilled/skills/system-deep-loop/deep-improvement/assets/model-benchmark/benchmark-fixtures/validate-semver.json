@@ -210,5 +210,6 @@
   "expectedDifficulty": "adversarial",
   "saturation": {
     "status": "active"
-  }
+  },
+  "allowlist": {"cli_flags":[],"symbols":["isValidSemver"]}
 }

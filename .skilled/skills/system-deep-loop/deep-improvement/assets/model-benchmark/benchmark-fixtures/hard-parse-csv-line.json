@@ -29,5 +29,6 @@
     { "name": "plain single field no commas", "args": ["hello"], "expect": ["hello"] }
   ],
   "expectedDifficulty": "adversarial",
-  "saturation": { "status": "active" }
+  "saturation": { "status": "active" },
+  "allowlist": {"cli_flags":[],"symbols":["parseCsvLine"]}
 }

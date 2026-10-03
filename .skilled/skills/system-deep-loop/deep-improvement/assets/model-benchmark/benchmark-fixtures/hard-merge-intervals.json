@@ -28,5 +28,6 @@
     { "name": "many mixed intervals", "args": [[[15, 18], [1, 3], [8, 10], [2, 6]]], "expect": [[1, 6], [8, 10], [15, 18]] }
   ],
   "expectedDifficulty": "adversarial",
-  "saturation": { "status": "active" }
+  "saturation": { "status": "active" },
+  "allowlist": {"cli_flags":[],"symbols":["mergeIntervals"]}
 }

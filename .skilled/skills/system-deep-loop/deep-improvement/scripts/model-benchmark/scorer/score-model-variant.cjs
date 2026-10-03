@@ -44,6 +44,7 @@ const { execSync, spawnSync } = require('child_process');
 const SCORER_ROOT = __dirname;
 const DET_DIR = path.join(SCORER_ROOT, 'deterministic');
 const harness = require(path.join(SCORER_ROOT, 'grader', 'harness.cjs'));
+const dispute = require(path.join(SCORER_ROOT, 'grader', 'dispute.cjs'));
 
 /**
  * Canonical 5-dim weights (D2 is the hard gate). Overridable via opts.rubric.
@@ -205,6 +206,61 @@ function applyHardGate(d1, d2) {
  * @returns {Function} Async grader function (virtualFixture, outputText, opts)
  * @throws {Error} When graderKind is not 'llm', 'mock' or 'noop'
  */
+function isGraderFailure(result) {
+  if (!result || typeof result !== 'object') return true;
+  if (result.mode === 'single') return isGraderFailure(result.primary);
+  if (result.mode === 'dual') {
+    return isGraderFailure(result.primary) || isGraderFailure(result.adversarial);
+  }
+  const parseStatus = typeof result.parse_status === 'string' ? result.parse_status : '';
+  return !Number.isFinite(result.score)
+    || Boolean(result.error)
+    || parseStatus === 'failed'
+    || parseStatus === 'unmeasured'
+    || parseStatus.includes('dim_mismatch');
+}
+
+function graderFailureMessage(result) {
+  if (result instanceof Error) return result.message;
+  if (result?.mode === 'single') return graderFailureMessage(result.primary);
+  if (result?.mode === 'dual') {
+    return graderFailureMessage(result.adversarial) || graderFailureMessage(result.primary);
+  }
+  return result?.error
+    || (result?.parse_status ? `grader parse status ${result.parse_status}` : 'grader returned an invalid result');
+}
+
+async function withOneRetry(call) {
+  let lastFailure;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    let result;
+    try {
+      result = await call(attempt);
+    } catch (error) {
+      lastFailure = error;
+      continue;
+    }
+    if (!isGraderFailure(result)) {
+      return attempt === 0 ? result : { ...result, attempts: 2, retried: true };
+    }
+    lastFailure = result;
+  }
+  return {
+    score: null,
+    confidence: null,
+    parse_status: 'unmeasured',
+    measured: false,
+    attempts: 2,
+    error: graderFailureMessage(lastFailure),
+    dim_id: 'D4',
+    evidence: [],
+  };
+}
+
+function retryRubricVersion(version, purpose) {
+  return `${version}-${purpose}-${crypto.randomBytes(8).toString('hex')}`;
+}
+
 function buildGraderFn(graderKind) {
   if (graderKind === 'noop') {
     return async () => ({ score: 1.0, confidence: 1.0, parse_status: 'noop', dim_id: 'D4', rationale: 'grader disabled (noop)', evidence: [] });
@@ -216,18 +272,44 @@ function buildGraderFn(graderKind) {
   }
   const mode = graderKind === 'llm' ? 'real' : 'mock';
   return async (virtualFixture, outputText, opts) => {
-    try {
-      return await harness.gradeD4({
-        fixture: virtualFixture,
-        swe16_output_text: outputText,
-        variant_hash: opts.candidateHash,
-        rubric_version: opts.rubricVersion || 'v1.0.0',
-        mode,
-        mock_mode: opts.mockMode || 'default',
-      });
-    } catch (err) {
-      return { score: 0.0, confidence: 0.0, parse_status: 'failed', dim_id: 'D4', error: err.message, evidence: [] };
+    const graderOpts = {
+      fixture: virtualFixture,
+      swe16_output_text: outputText,
+      variant_hash: opts.candidateHash,
+      rubric_version: opts.rubricVersion || 'v1.0.0',
+      mode,
+      mock_mode: opts.mockMode || 'default',
+    };
+    const primary = await withOneRetry((attempt) => harness.gradeD4({
+      ...graderOpts,
+      rubric_version: attempt === 0
+        ? graderOpts.rubric_version
+        : retryRubricVersion(graderOpts.rubric_version, 'retry'),
+    }));
+    if (isGraderFailure(primary)) return primary;
+
+    const adjudicated = await withOneRetry((attempt) => dispute.dualGraderInvocation(
+      attempt === 0
+        ? graderOpts
+        : { ...graderOpts, rubric_version: retryRubricVersion(graderOpts.rubric_version, 'escalation-retry') },
+      primary,
+    ));
+    if (isGraderFailure(adjudicated)) return adjudicated;
+    if (adjudicated.mode === 'single') {
+      return { ...adjudicated.primary, escalated: false };
     }
+    const confidences = [adjudicated.primary.confidence, adjudicated.adversarial.confidence]
+      .filter((confidence) => Number.isFinite(confidence));
+    return {
+      ...adjudicated.primary,
+      score: adjudicated.score_median,
+      confidence: confidences.length > 0 ? Math.min(...confidences) : adjudicated.primary.confidence,
+      escalated: true,
+      escalation_reason: adjudicated.escalation_reason,
+      dispute: adjudicated.dispute,
+      score_delta: adjudicated.score_delta,
+      adversarial: adjudicated.adversarial,
+    };
   };
 }
 
@@ -269,6 +351,11 @@ async function score(opts) {
   const virtualFixture = {
     id: fixtureId,
     scope: { cwd },
+    task: typeof criteria.task === 'string' ? criteria.task : undefined,
+    spec: typeof criteria.spec === 'string' ? criteria.spec : undefined,
+    visibleSpec: typeof criteria.spec === 'string'
+      ? criteria.spec
+      : (typeof criteria.visibleSpec === 'string' ? criteria.visibleSpec : undefined),
     acceptance: criteria.acceptance || [],
     grading: criteria.grading || [],
     requiredHeadings: criteria.requiredHeadings || [],
@@ -308,12 +395,29 @@ async function score(opts) {
       return 0;
     };
     let weighted = 0;
-    for (const d of rubric.dims) weighted += d.weight * dimScore(d.id);
+    let measuredWeight = 0;
+    let totalWeight = 0;
+    const unmeasuredDimensions = [];
+    for (const d of rubric.dims) {
+      totalWeight += d.weight;
+      const value = dimScore(d.id);
+      if (!Number.isFinite(value)) {
+        unmeasuredDimensions.push(d.id);
+        continue;
+      }
+      weighted += d.weight * value;
+      measuredWeight += d.weight;
+    }
+    const weightedScore = unmeasuredDimensions.length > 0
+      ? (measuredWeight > 0 ? weighted / measuredWeight : null)
+      : weighted;
 
     return {
       fixtureId,
       candidateId: candidateId || null,
-      weightedScore: Math.round(weighted * 10000) / 10000,
+      weightedScore: weightedScore === null ? null : Math.round(weightedScore * 10000) / 10000,
+      weightedScoreCoverage: totalWeight > 0 ? Math.round((measuredWeight / totalWeight) * 10000) / 10000 : null,
+      unmeasuredDimensions,
       hard_gate_failed: gate.hard_gate_failed,
       dimensions: {
         D1: finalAcc.score,
@@ -326,7 +430,7 @@ async function score(opts) {
       grader,
       interaction_terms: {
         d2_x_d1_decoupled: bundleGate.score >= 0.8 && finalAcc.score <= 0.4,
-        d4_x_d1_inverse: grader.score >= 0.9 && finalAcc.score <= 0.4,
+        d4_x_d1_inverse: Number.isFinite(grader.score) ? grader.score >= 0.9 && finalAcc.score <= 0.4 : null,
         d5_x_d1_inverse: preplanning.score >= 0.8 && finalAcc.score <= 0.4,
       },
     };

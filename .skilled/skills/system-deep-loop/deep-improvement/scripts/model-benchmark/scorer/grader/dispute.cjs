@@ -105,10 +105,11 @@ async function adversarialSecondCall(opts) {
  * Run the primary D4 grader and, when escalation triggers, the adversarial second call.
  *
  * @param {Object} opts - Grader options forwarded to harness.gradeD4.
+ * @param {Object} [primaryResult] - Previously measured primary result.
  * @returns {Promise<Object>} Single- or dual-mode result with median + dispute flag when escalated.
  */
-async function dualGraderInvocation(opts) {
-  const primary = await harness.gradeD4(opts);
+async function dualGraderInvocation(opts, primaryResult) {
+  const primary = primaryResult || await harness.gradeD4(opts);
   const escalate = shouldEscalateToDualGrader({ last_grader_result: primary, ...opts });
   if (!escalate.escalate) {
     return { mode: 'single', primary, escalated: false };

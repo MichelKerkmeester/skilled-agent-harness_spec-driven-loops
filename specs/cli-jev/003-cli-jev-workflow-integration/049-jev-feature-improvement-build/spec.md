@@ -108,7 +108,7 @@ Each child names its exact files in its own spec.
 | 2 | 002-track-narrowing-improvements/ | Build 048's ranked fixes for the Jev spec-track narrowing (017): pinned record, no `--out` overwrite, per-track and slack reporting | Complete |
 | 3 | 003-citation-drift-improvements/ | Build 048's ranked fixes for the Jev citation drift scan (032): min-rerun flag, live column, hash checks, one read per document | Complete |
 | 4 | 004-injection-screen-improvements/ | Build 048's ranked fixes for the Jev injection screen (035): corpus provenance, trust package, flag line 0.6, fewer calls | Complete |
-| 5 | 005-hallucination-grader-improvements/ | Build 048's ranked fixes for the Jev hallucination grader (024): allowlists, unmeasured failures, shared context | Planned |
+| 5 | 005-hallucination-grader-improvements/ | Build 048's ranked fixes for the Jev hallucination grader (024): allowlists, unmeasured failures, shared context | Complete |
 | 6 | 006-verdict-fallback-improvements/ | Build 048's ranked fixes for the Jev verdict fallback (025): typed verdict, wider parser, abstain outcome | Complete |
 | 7 | 007-clarify-default-improvements/ | Build 048's ranked fixes for the Jev clarify default (020): replay-verified rows, digests, class and hub baselines | Planned |
 | 8 | 008-folder-suggestion-improvements/ | Build 048's ranked fixes for the Jev folder suggestion (022): path-resolved descriptions, candidate recall, pins | Planned |
