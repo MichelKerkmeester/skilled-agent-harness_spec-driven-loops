@@ -6,8 +6,8 @@
 {"id":"h-released","raw_text":"The build is released."}
 {"id":"h-deployed","raw_text":"The service is deployed."}
 {"id":"h-implemented","raw_text":"The feature is implemented."}
-{"id":"h-occurred","raw_text":"The failure occurred."}
-{"id":"h-happened","raw_text":"The outage happened."}
+{"id":"h-occurred","raw_text":"The failure occurred after its fix was implemented."}
+{"id":"h-happened","raw_text":"The outage happened after the repair was released."}
 {"id":"h-completed-2","raw_text":"The draft is completed."}
 {"id":"h-fixed-2","raw_text":"The typo is fixed."}
 {"id":"h-deployed-2","raw_text":"The site is deployed."}

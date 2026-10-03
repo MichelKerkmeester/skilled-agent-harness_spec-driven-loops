@@ -28,7 +28,7 @@ Every file in this folder is a symlink. The real per-runtime adapters live in `s
 `evaluateCompletionEvidence({ specFolder, claimText, projectDir, env })` is the core entrypoint. It:
 
 1. Checks the kill switch. If disabled, returns `{decision:'ok'}`.
-2. Runs `detectCompletionClaim(claimText)`, tests the **last 400 characters** of the assistant's message for claim words (`completed`, `resolved`, `fixed`, `finished`, `shipped`, `released`, `deployed`, `implemented`, `occurred`, `happened`). A claim word used mid-turn ("I fixed the earlier typo, now let me look at...") does not fire, only a claim anchored to the trailing slice.
+2. Runs `detectCompletionClaim(claimText)`, tests the **last 160 characters** of the assistant's message for claim words (`completed`, `complete`, `resolved`, `fixed`, `finished`, `shipped`, `released`, `deployed`, `implemented`, `occurred`, `happened`). Checklist rows, table rows, code, and assignment lines are filtered before matching. A claim word used mid-turn ("I fixed the earlier typo, now let me look at...") does not fire, only a claim anchored to the trailing slice.
 3. Resolves the spec folder. If the folder has a `checklist.md`, spawns `check-completion.sh --json` under a bounded timeout (default 1200 ms) and checks the returned status against the advise set:
 
 | Status | Advisory detail |
@@ -65,7 +65,7 @@ Every adapter evaluates the **same** core. What differs is the event, how the cl
 | **Codex** | `codex/completion-evidence-stop.cjs` → `system-spec-kit/.../hooks/codex/` | `Stop` (`.codex/hooks.json`) | `payload.last_assistant_message` (dormant-safe if Codex doesn't surface the field) | Same lifecycle state file as Claude | `stderr` warning + advisory log. |
 | **Devin** | `devin/completion-evidence-stop.cjs` → `system-spec-kit/.../hooks/devin/` | `Stop` (`.devin/hooks.v1.json`) | `payload.last_assistant_message` | Same lifecycle state file | `stderr` warning + advisory log. |
 | **Cursor** | `cursor/completion-evidence-response.mjs` → `system-spec-kit/.../hooks/cursor/` | `afterAgentResponse` | `payload.text` | `resolveSpecFolderFromText(claimText)` (regex on the claim text), then `readLastSpecFolder` fallback | Advisory log only (no stderr). |
-| **Pi** | `pi/completion-evidence.ts` → `system-spec-kit/.../hooks/pi/` | `turn_end` | Flattens `event.message.content` (string or `TextContent[]`) | `resolveSpecFolderFromText(claimText)`, then `readLastSpecFolder` using `ctx.sessionManager.getSessionId()` | Advisory log + `pi.sendMessage({customType:"completion-evidence-advisory", content, display:false})`, model-visible. |
+| **Pi** | `pi/completion-evidence.ts` → `system-spec-kit/.../hooks/pi/` | `turn_end` | Flattens `event.message.content` (string or `TextContent[]`) | `resolveSpecFolderFromText(claimText)`, then `readLastSpecFolder` using `ctx.sessionManager.getSessionId()` | Advisory log + `pi.sendMessage({customType:"completion-evidence-advisory", content, display:false, deliverAs:"nextTurn"})`: hidden from human display and model-visible on the next turn. |
 | **OpenCode** | `opencode/system-completion-sentinel.js` → `.skilled/plugins/` | `session.idle` (+ `session.created` for sweep) | `resolveLastAssistantText` via `ctx.client.session.messages()` (fetches last 20 messages, finds last assistant entry) | `resolveSpecFolderFromText(claimText)` only: no lifecycle state file | Advisory log only. **Never** stdout/stderr (TUI constraint). `session.created` triggers throttled state sweep. |
 | **OpenCode** | `opencode/system-speckit-completion.js` → `.skilled/plugins/` | None (read-only tool) | N/A | Tool arg `specFolder` | Tool return value (pretty-printed JSON). Not a sentinel. |
 
@@ -100,7 +100,7 @@ completion/
 | `system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs` | Codex `Stop` adapter. Same structure as Claude. Dormant-safe if Codex doesn't surface the message field. |
 | `system-spec-kit/runtime/hooks/devin/completion-evidence-stop.cjs` | Devin `Stop` adapter. Same structure as Claude. |
 | `system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs` | Cursor `afterAgentResponse` adapter. Reads `payload.text`, resolves spec folder from text then lifecycle state, runs the core, logs to advisory log. |
-| `system-spec-kit/runtime/hooks/pi/completion-evidence.ts` | Pi `turn_end` extension. Flattens assistant message content, resolves spec folder from text then lifecycle state, runs the core, logs + sends `pi.sendMessage` (model-visible). |
+| `system-spec-kit/runtime/hooks/pi/completion-evidence.ts` | Pi `turn_end` extension. Flattens assistant message content, resolves spec folder from text then lifecycle state, runs the core, logs + queues a model-visible next-turn advisory with `display: false` and `deliverAs: "nextTurn"`. |
 | `.skilled/plugins/system-completion-sentinel.js` | OpenCode `session.idle` plugin. Resolves last assistant text via `ctx.client.session.messages()`, resolves spec folder from text, runs the core, logs to advisory log. `session.created` triggers sweep. Never stdout/stderr. |
 | `.skilled/plugins/system-speckit-completion.js` | OpenCode read-only tool `system_speckit_completion`. Returns a spec folder's completion state (level, checklist P0/P1/P2, placeholder completeness). Not a sentinel: no event hooks. |
 
@@ -134,7 +134,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.s
 | Evidence | The core checks recorded artifacts only: `check-completion.sh --json` output (checklist folders) or a `stat` of `implementation-summary.md` (Level 1 folders). It never runs a test, build, or `validate.sh`. |
 | Failure | Fail-open on every path: missing payload, missing spec folder, missing checklist, spawn failure, timeout, non-zero exit with no recoverable stdout, dedup persistence error, log write error, sweep error: all resolve to `{decision:'ok'}` or a no-op. |
 | State | Dedup store at `.skilled/skills/.state/completion-sentinel/advisory-dedup.json` (atomic writes, per-spec-folder fingerprint). Advisory log at `.skilled/logs/completion-sentinel-advisories.log` (256 KB, rotated to `.1`). Sweep prunes entries older than the retention window. |
-| Output | The core never writes stdout/stderr. Adapters log to the bounded advisory log; the Stop-event adapters also warn to stderr; Pi sends a model-visible `pi.sendMessage`; OpenCode logs to file only (TUI constraint). |
+| Output | The core never writes stdout/stderr. Adapters log to the bounded advisory log; the Stop-event adapters also warn to stderr; Pi sends a model-visible next-turn advisory with `display: false` and `deliverAs: "nextTurn"`; OpenCode logs to file only (TUI constraint). |
 
 ---
 
