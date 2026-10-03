@@ -17,18 +17,30 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
-trigger_phrases: []
+trigger_phrases:
+  - "runtime agent gateway alignment"
+  - "gateway alignment decision record"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: Runtime Agent Gateway Alignment
 
-## Context
+<!-- ANCHOR:adr-001 -->
+## ADR-001: The leaf calls the gateway directly
+
+<!-- ANCHOR:adr-001-context -->
+### Context
 
 The `.agents` audit surfaced that the deep-loop leaf agent prompts still instruct a direct `*-state.jsonl` bash-append, while the 012 runtime-enablement work made the event ledger authoritative and the projection file read-only. This record settles two questions the fix depends on: **who** appends (leaf vs. orchestrator), and **which agents** carry the defect.
+<!-- /ANCHOR:adr-001-context -->
 
-## Decision 1 — The leaf calls the gateway directly
+<!-- ANCHOR:adr-001-decision -->
+### Decision
 
 **Decision:** each affected leaf agent records its iteration event by calling `append-mode-event.cjs` itself, not by writing `*-state.jsonl` and relying on later reconciliation.
+<!-- /ANCHOR:adr-001-decision -->
+
+<!-- ANCHOR:adr-001-alternatives -->
+### Alternatives Considered
 
 **Evidence over the alternative.** One might argue the leaf writes the projection directly and the orchestrator reconciles it into the ledger. The shipped, tested contract refutes that:
 
@@ -38,14 +50,30 @@ The `.agents` audit surfaced that the deep-loop leaf agent prompts still instruc
 - `012-runtime-enablement/002-deep-research-enablement/implementation-summary.md`: "Post-flip fan-out leaves write through the gateway; the legacy file is a pure projection the guard verifies." `deep-research-postflip-fanout.vitest.ts` runs three leaves and reads every event back from the ledger in order.
 
 A direct leaf write is unauthorized, unfenced, and unreceipted; it diverges the projection from the ledger and is what the direct-append guard exists to catch. The leaf must call the gateway.
+<!-- /ANCHOR:adr-001-alternatives -->
+<!-- /ANCHOR:adr-001 -->
 
-## Decision 2 — Affected scope is four agents, not five
+<!-- ANCHOR:adr-002 -->
+## ADR-002: Affected scope is four agents, not five
+
+<!-- ANCHOR:adr-002-decision -->
+### Decision
 
 **Decision:** migrate `deep-research`, `deep-review`, `deep-alignment`, and `ai-council`. Leave `deep-improvement`.
+<!-- /ANCHOR:adr-002-decision -->
+
+<!-- ANCHOR:adr-002-context -->
+### Context
 
 **Why.** `deep-improvement` is a proposal-only mutator: it writes one packet-local candidate, returns structured metadata, and stops before any scoring, promotion, or state append. It appends no iteration record to a `*-state.jsonl`, so it has nothing to migrate. The other four each instruct a direct iteration append today (`deep-alignment` most explicitly, with a literal `printf '%s\n' '<json>' >> alignment/deep-alignment-state.jsonl`).
+<!-- /ANCHOR:adr-002-context -->
+<!-- /ANCHOR:adr-002 -->
 
-## Decision 3 — Per-mode gateway command (pinned from the orchestrator YAMLs)
+<!-- ANCHOR:adr-003 -->
+## ADR-003: Per-mode gateway command (pinned from the orchestrator YAMLs)
+
+<!-- ANCHOR:adr-003-decision -->
+### Decision
 
 | Agent | Gateway command |
 |-------|-----------------|
@@ -55,21 +83,45 @@ A direct leaf write is unauthorized, unfenced, and unreceipted; it diverges the 
 | `ai-council` | `append-mode-event.cjs --mode ai-council --run-directory <dir> --event-json <file>` |
 
 Exit 0 = durable; exit 2 = refused (halt and name the failed check); no direct-write fallback.
+<!-- /ANCHOR:adr-003-decision -->
+<!-- /ANCHOR:adr-003 -->
 
-## Decision 4 — Scope stays on the agent prompts
+<!-- ANCHOR:adr-004 -->
+## ADR-004: Scope stays on the agent prompts
+
+<!-- ANCHOR:adr-004-decision -->
+### Decision
 
 **Decision:** change only the leaf agent files. Do not edit the runtime, the ledger, the orchestrator YAMLs, or the mode SKILLs in this packet.
+<!-- /ANCHOR:adr-004-decision -->
+
+<!-- ANCHOR:adr-004-context -->
+### Context
 
 **Why.** The runtime and orchestrator already enforce the gateway; the defect is solely that the agent prompts lag. `deep-research` SKILL.md already carries gateway language; review/alignment/council SKILLs are silent on the write mechanism (not contradictory), so the agent fix is internally coherent without touching them. Adding gateway language to those SKILLs is a related follow-up, deliberately out of this packet to keep the blast radius on the 24 agent files the audit named.
+<!-- /ANCHOR:adr-004-context -->
+<!-- /ANCHOR:adr-004 -->
 
-## Decision 5 — `--event-json` takes one record, not the multi-line delta
+<!-- ANCHOR:adr-005 -->
+## ADR-005: `--event-json` takes one record, not the multi-line delta
+
+<!-- ANCHOR:adr-005-decision -->
+### Decision
 
 **Decision:** the gateway command names a single-record event file: `--event-json <record file>`, where the file holds exactly one JSON object. It is NOT the multi-line `deltas/iter-NNN.jsonl` (record on line 1 + finding/observation rows).
+<!-- /ANCHOR:adr-005-decision -->
+
+<!-- ANCHOR:adr-005-context -->
+### Context
 
 **Why — a real defect caught in verification.** The first canonical pattern pointed `--event-json` at `research/deltas/iter-NNN.jsonl` and described that delta file as "the gateway event payload." That is wrong: `append-mode-event.cjs` does `JSON.parse(fs.readFileSync(eventJsonPath))` — it parses the whole file as ONE object, so a multi-line delta throws on the trailing lines. The orchestrator YAML's own template confirms the shape: `--event-json <record file>`. The flaw had propagated to all migrated files before it was caught; every affected file now names `<record file>` and defines it as the single canonical iteration record, keeping the multi-line delta as a separate reducer artifact. A guard rule (D) fails any file whose `--event-json` points at a `deltas/` or `-state.jsonl` path, so the correction is provable and stays enforced.
+<!-- /ANCHOR:adr-005-context -->
+<!-- /ANCHOR:adr-005 -->
 
+<!-- ANCHOR:consequences -->
 ## Consequences
 
 - A dispatched leaf now produces a durable, authorized, receipted ledger record; the projection stays consistent with the ledger.
 - The change is prompt-only and fully reversible (`git checkout` restores the prior prompts); it alters behavior on the next dispatch, with no data migration.
 - Cross-runtime parity becomes a maintained invariant: the doc-level guard can run in CI to catch a future runtime drifting back to a direct write.
+<!-- /ANCHOR:consequences -->

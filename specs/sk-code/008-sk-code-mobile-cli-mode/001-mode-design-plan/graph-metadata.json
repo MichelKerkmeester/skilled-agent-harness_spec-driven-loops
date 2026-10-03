@@ -11,29 +11,23 @@
   },
   "derived": {
     "trigger_phrases": [
-      "code",
-      "mobile",
-      "cli",
-      "mode",
-      "design",
-      "spec",
-      "001",
-      "plan",
-      "tasks"
+      "mode design plan spec",
+      "mode design plan",
+      "mode design plan tasks"
     ],
     "key_topics": [
-      "code",
-      "mobile",
-      "cli",
       "mode",
       "design",
-      "spec",
       "plan",
+      "spec",
       "tasks",
       "phase",
       "plans",
       "new",
-      "sk-code"
+      "sk-code",
+      "parent",
+      "hub",
+      "purely"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -43,8 +37,7 @@
       "tasks.md",
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/sk-code/mode-registry.json",
-      ".opencode/skills/sk-code/ROUTER.md",
-      ".opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md"
+      ".opencode/skills/sk-code/ROUTER.md"
     ],
     "entities": [
       {
@@ -188,7 +181,7 @@
     ],
     "causal_summary": "This phase plans, but does not build, a new mode under the sk-code parent hub, purely for Mobile-CLI app work (apps/pi-remote-web/ and its siblings), so future code work…",
     "created_at": "2026-08-17T05:11:33.348Z",
-    "last_save_at": "2026-08-30T15:39:11.316Z",
+    "last_save_at": "2026-10-03T15:11:56.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +189,12 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:5e2324df4014ba03969fbf423e1fcd93ea596c5204dd301405b5fd39437dcb22",
+    "source_fingerprint": "sha256:eccfec3d871318c8eb221fc61566135ccc3a04919c0a7315f806ca1e4f97d066",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "36691f2b9e2bc3cf4d10732edcf2da3d0061ff5d9dbc3dded53b7ff567e99b72",
-      "plan.md": "a6b587b7250952980d953a419f37b150c879f6872291de44c6bed68513c78a85",
-      "tasks.md": "8dd0b0553b668bb25b82b60a8f03ab7612b6f18366b59eeceb7adf1f44380293"
+      "spec.md": "39c4124cc9e93072843d76fd798280d0982ea4b96cc72854a2d0d4384d81741b",
+      "plan.md": "dcf46edfc294d93a06bee7549b5072020a98e1ec76c3031a387e37bd0996f498",
+      "tasks.md": "cc374e38aa07a9e94118b1a08eeaabf895351e113c7f02a6e1f5a3949063ea04"
     },
     "last_active_child_id": null,
     "last_active_at": null

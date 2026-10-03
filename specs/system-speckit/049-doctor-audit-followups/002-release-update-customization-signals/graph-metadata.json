@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`release-update.cjs` compares base, local and release blobs per file and derives a unit status from the resulting classes",
     "created_at": "2026-10-03T05:27:40Z",
-    "last_save_at": "2026-10-03T07:05:00.191Z",
+    "last_save_at": "2026-10-03T15:12:23.304Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,11 +220,11 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d3ef96a58d362ab29fd7cbf8f658d77f8762eaa6ba0168ced3b7378fdb0fed0",
+    "source_fingerprint": "sha256:03a547440f24ff29f9375a2cf31530ebe1c418e3f45be74fbb3910de3c04879f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e2a146303255e1946bdc9b2aa06a3e16e29d36ae272f1ef3366155660c612787",
-      "plan.md": "bf90f3ae4b53e0e7724ddb58b07ec239d1d163d83d6e17cf5bfbc49609976314",
+      "plan.md": "931cc02cca85844e5027edc9ee855bf50ce56a4f4338c04a922339abc80b56dd",
       "tasks.md": "ee0e9469457c43287143c72a59aa56bee32be513197ba8acd5a0fb0af077c6eb",
       "implementation-summary.md": "a78f65f6aaeefba3b73a8631af0f28e69a2ca5cb4685c41b0c0a622b4ddb1a29"
     },

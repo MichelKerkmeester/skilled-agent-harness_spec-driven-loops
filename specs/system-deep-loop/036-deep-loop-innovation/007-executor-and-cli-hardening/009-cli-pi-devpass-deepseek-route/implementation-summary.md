@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 044-cli-pi-devpass-deepseek-route |
+| **Spec Folder** | 009-cli-pi-devpass-deepseek-route |
 | **Completed** | 2026-09-07 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

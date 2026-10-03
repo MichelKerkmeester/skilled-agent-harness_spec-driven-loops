@@ -3,8 +3,6 @@ title: "Feature Specification: pi-cache-optimizer OpenRouter session-affinity co
 description: "pi-cache-optimizer re-warns on every OpenRouter openai-completions model (e.g. openrouter/z-ai/glm-5.3-flash) because the merged compat lacks sendSessionAffinityHeaders, while 44 stale stats tmp files clutter ~/.pi/agent. Add a provider-level compat override for OpenRouter in models.json and sweep the stale temp files."
 trigger_phrases:
   - "pi-cache-optimizer"
-  - "sendSessionAffinityHeaders"
-  - "openrouter"
   - "glm-5.3-flash"
   - "session affinity"
   - "models.json"

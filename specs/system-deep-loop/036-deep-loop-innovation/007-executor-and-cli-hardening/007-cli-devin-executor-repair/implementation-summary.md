@@ -5,7 +5,7 @@ trigger_phrases:
   - "cli-devin executor repair implementation summary"
   - "respect-workspace-trust false landed"
   - "devin model list reconciliation shipped"
-  - "dfdd41f531"
+  - "workspace-trust flag"
 importance_tier: "high"
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/007-cli-devin-executor-repair"

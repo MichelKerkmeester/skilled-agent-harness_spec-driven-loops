@@ -18,7 +18,11 @@
       "OB scenario drafting plan",
       "manual testing playbook reading order",
       "sk-code-obsidian playbook tasks",
-      "OB scenario task breakdown"
+      "OB scenario task breakdown",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "sk-code-obsidian",
@@ -40,6 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       "manual-testing-playbook/manual-testing-playbook.md",
       ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
@@ -62,6 +67,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -187,22 +198,23 @@
     ],
     "causal_summary": "Before this phase, `sk-code-obsidian/` had no `manual-testing-playbook/` at all — `../goal.md` §6",
     "created_at": "2026-08-28T18:17:39Z",
-    "last_save_at": "2026-09-10T20:44:06.318Z",
+    "last_save_at": "2026-10-03T16:45:32.706Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e8c2b6e86a019f0c6eb92b208b5fee03278aa3213f5861b34758d060e4f8426a",
+    "source_fingerprint": "sha256:f0f5c394cb78373219da386af9ac06683ba6f82513637a1589d9c07f279ea97b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ffc7a5d07218d015e40469c18893fe7f5ead3f0943202d65b106853e5b575b39",
       "plan.md": "a53ba63569509f24d8da3179659c7ec1893db39bae912ee671f890699c7d971e",
       "tasks.md": "b38ea91e1d1a09a4b765b84375f8ab75d7845e4b9f5d5d03e41105218063e1a0",
-      "implementation-summary.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "implementation-summary.md": "50e8b7ec7a290f2858fc4a609021c08b0b4ae7e4767780fa671d64c49dd517b2"
     },
     "last_active_child_id": null,
     "last_active_at": null

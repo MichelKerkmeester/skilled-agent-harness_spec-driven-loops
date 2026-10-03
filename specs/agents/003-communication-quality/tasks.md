@@ -2,7 +2,6 @@
 title: "Tasks: AGENTS.md Communication Quality Section"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
   - "communication quality"
   - "agents.md"
 importance_tier: "normal"

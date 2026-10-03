@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 047-deprecate-skill-benchmark |
+| **Spec Folder** | 006-deprecate-skill-benchmark |
 | **Completed** | 2026-09-11 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

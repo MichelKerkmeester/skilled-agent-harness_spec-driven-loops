@@ -18,8 +18,11 @@
       "sk-code-obsidian phase 013 plan",
       "obsidian surface reality conformance tasks",
       "sk-code-obsidian phase 013 tasks",
-      "implementation summary surface reality conformance",
-      "sk-code-obsidian phase 013 findings"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "implementation summary surface reality conformance"
     ],
     "key_topics": [
       "obsidian",
@@ -33,7 +36,7 @@
       "scan-skill-references",
       "plan",
       "tasks",
-      "implementation"
+      "packet"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -41,6 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -60,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -165,42 +175,37 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Decisions Frozen",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What It Caught Immediately",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "naming",
+        "kind": "key_phrase",
+        "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 010 renamed 235 files across the plugin tree to enforce kebab-case, and every plugin-side gate",
     "created_at": "2026-08-28T18:17:41Z",
-    "last_save_at": "2026-09-10T20:44:06.478Z",
+    "last_save_at": "2026-10-03T16:45:42.479Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dddd51cbf8bfcc6a636b4344ac644370a34f3520d153bcf0d0bbfb6e9374022e",
+    "source_fingerprint": "sha256:95d6b4996e79b758952d254bd31821e6108dd77ba994f448f5eccac765b00f11",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "471ac8a40e2206347fbee13902e4234c8cd31e6ed34cd6c2d0debd07597b98d1",

@@ -3,9 +3,7 @@ title: "Tasks: Phase 022 Codex Wrapper"
 description: "Planned task breakdown for wiring Codex output through the Phase 020 CLI-output wrapper, the Codex envelope mapping, and the gate and fallback verification."
 trigger_phrases:
   - "codex-wrapper"
-  - "tasks"
   - "codex output projection"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

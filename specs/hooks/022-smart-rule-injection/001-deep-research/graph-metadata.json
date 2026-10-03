@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/022-smart-rule-injection/001-deep-research",
+  "spec_folder": "hooks/022-smart-rule-injection/001-deep-research",
+  "parent_id": "hooks/022-smart-rule-injection",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "prompt-time rule injection research",
+      "inject repo rules on a prompt",
+      "reach a read-only turn",
+      "injection candidate bar",
+      "prompt-time rule injection plan",
+      "injection bar test plan",
+      "refused candidate ledger",
+      "prompt-time rule injection tasks",
+      "injection refusal ledger tasks",
+      "prompt-time injection research closeout",
+      "injection bar and refusals"
+    ],
+    "key_topics": [
+      "prompt-time",
+      "rule",
+      "injection",
+      "research",
+      "inject",
+      "repo",
+      "rules",
+      "prompt",
+      "reach",
+      "read-only",
+      "turn",
+      "candidate"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-010.md",
+      "research/prior-findings.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "prior-findings.md",
+        "kind": "doc",
+        "path": "research/prior-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Repo",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Decide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Candidates",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Candidate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Repo rules load at Gate 5, which fires on the first write of a session",
+    "created_at": "2026-10-03T15:31:59.562Z",
+    "last_save_at": "2026-10-03T15:32:31.835Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:14776a7513526391daf88589f30a0fe2f6bd0d1dd4fb74d129c05c61fae87175",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "91de42a13fbb664924adba27dd7e692a0d4129c947b9dd1dfe6705dd7a775fbf",
+      "plan.md": "9037ae1430a51a475b5370198423912a32cbc8d82f1a3e2a31ef47024b80c392",
+      "tasks.md": "60e9ae2315cdf4542f6fb28b8ebcc5329580cdc16f733c89de8a1c50b51e447e",
+      "implementation-summary.md": "804668efcb234d2a36ed841ebb08aeeaf1244ccdb24a79dcdb23cfbece766f5c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

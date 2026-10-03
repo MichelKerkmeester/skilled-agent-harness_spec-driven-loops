@@ -3,8 +3,6 @@ title: "Tasks: Phase 011 Meaning-Judge Wiring"
 description: "Planned task breakdown for production composition, local reject-only judgment, and exact-original terminal-state handling."
 trigger_phrases:
   - "meaning-judge-wiring"
-  - "tasks"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

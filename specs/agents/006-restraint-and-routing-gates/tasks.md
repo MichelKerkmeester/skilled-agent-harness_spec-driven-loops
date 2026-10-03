@@ -2,7 +2,6 @@
 title: "Tasks: Pre-Write Restraint and Artifact Routing in AGENTS.md"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
   - "restraint routing"
   - "agents.md"
 importance_tier: "normal"

@@ -8,8 +8,8 @@ _memory:
     packet_pointer: "sk-code/008-sk-code-mobile-cli-mode/003-skill-doc-alignment"
     last_updated_at: "2026-08-27T12:00:00.000Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Implemented A-D in isolated Public worktree 037; opened PR #38. Gates green: scan-skill-references broken:0, negative-controls absent, ci-skill-root-metadata passed, validate_document.py rc=0. dqi-baseline refreshed to measured current-state (48 docs)."
-    next_safe_action: "Merge PR #38 to Public main, then reconcile packet to complete (implementation-summary.md, checklist)."
+    recent_action: "Implemented A-D in worktree 037; opened PR #38"
+    next_safe_action: "Merge PR #38, then reconcile packet to complete"
     blockers: []
     completion_pct: 90
 trigger_phrases:

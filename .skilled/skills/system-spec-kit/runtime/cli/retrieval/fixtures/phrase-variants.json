@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cb6f6909f8a3aff7661c1272a2e35605036da7385bb2f5ddf548995f43082018",
+  "manifestHash": "833fa8ea87ab8eaba9f097871f08630bb583d4159bc59363eff4fe20fe637aab",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -3197,9 +3197,6 @@
     "014 terminal packet": [
       "014 terminal packet"
     ],
-    "015": [
-      "015"
-    ],
     "015 002 core rework": [
       "015 002 core rework"
     ],
@@ -4411,9 +4408,6 @@
     ],
     "020 tasks sk code content quality remediation": [
       "020 tasks sk-code content quality remediation"
-    ],
-    "021": [
-      "021"
     ],
     "021 001 adr": [
       "021 001 ADR"
@@ -6632,9 +6626,6 @@
     "035 tasks": [
       "035 tasks"
     ],
-    "036": [
-      "036"
-    ],
     "036 authority cutover remediation next steps": [
       "036 authority cutover remediation next steps"
     ],
@@ -6688,9 +6679,6 @@
     ],
     "036 tasks": [
       "036 tasks"
-    ],
-    "037": [
-      "037"
     ],
     "037 001 sk code opencode standards audit": [
       "037-001-sk-code-opencode-standards-audit"
@@ -6754,9 +6742,6 @@
     ],
     "037 tasks": [
       "037 tasks"
-    ],
-    "038": [
-      "038"
     ],
     "038 039 embedding retry reset": [
       "038 039 embedding retry reset"
@@ -7177,9 +7162,6 @@
     ],
     "198 vitest failures triage": [
       "198 vitest failures triage"
-    ],
-    "1fb79e0106": [
-      "1fb79e0106"
     ],
     "20 iter deep research skill advisor": [
       "20-iter deep-research skill-advisor"
@@ -8152,9 +8134,6 @@
     ],
     "adoption sequencing": [
       "adoption sequencing"
-    ],
-    "adr": [
-      "adr"
     ],
     "adr 001 cocoindex embedder choice": [
       "ADR-001 cocoindex embedder choice"
@@ -10302,9 +10281,6 @@
     "allocation tasks": [
       "allocation tasks"
     ],
-    "allocator": [
-      "allocator"
-    ],
     "allocator hermetic test": [
       "allocator hermetic test"
     ],
@@ -11235,6 +11211,12 @@
     "artifact gate criteria": [
       "artifact gate criteria"
     ],
+    "artifact producer mode playbooks": [
+      "artifact-producer mode playbooks"
+    ],
+    "artifact producers playbooks delivered": [
+      "artifact-producers playbooks delivered"
+    ],
     "artifact progress liveness fanout": [
       "artifact progress liveness fanout"
     ],
@@ -11529,9 +11511,6 @@
     "assertnever": [
       "assertNever"
     ],
-    "assertpathinsideroot": [
-      "assertPathInsideRoot"
-    ],
     "assertpathinsideroot helper": [
       "assertPathInsideRoot helper"
     ],
@@ -11781,9 +11760,6 @@
     "au 005": [
       "au-005"
     ],
-    "audit": [
-      "audit"
-    ],
     "audit 033 034 036": [
       "audit 033 034 036"
     ],
@@ -11886,6 +11862,9 @@
     "authored case digest guarantee": [
       "authored case digest guarantee"
     ],
+    "authored compiled routing source": [
+      "authored compiled-routing source"
+    ],
     "authored continuity snapshot": [
       "authored continuity snapshot"
     ],
@@ -11894,6 +11873,15 @@
     ],
     "authored routing manifest path": [
       "authored routing manifest path"
+    ],
+    "authored routing source plan": [
+      "authored routing source plan"
+    ],
+    "authored routing source summary": [
+      "authored routing source summary"
+    ],
+    "authored routing source tasks": [
+      "authored routing source tasks"
     ],
     "authored write surface quality": [
       "authored write surface quality"
@@ -11919,11 +11907,11 @@
     "authoring not scoring boundary": [
       "authoring-not-scoring boundary"
     ],
+    "authoring surfaces playbooks delivered": [
+      "authoring-surfaces playbooks delivered"
+    ],
     "authoring time pre load": [
       "authoring-time pre-load"
-    ],
-    "authoritative": [
-      "authoritative"
     ],
     "authoritative z exclusion helper": [
       "authoritative z exclusion helper"
@@ -11990,9 +11978,6 @@
     ],
     "authz authn exposure": [
       "authz authn exposure"
-    ],
-    "auto": [
-      "auto"
     ],
     "auto build index on first read": [
       "auto-build index on first read"
@@ -13386,9 +13371,6 @@
     "body preservation invariant": [
       "body preservation invariant"
     ],
-    "boilerplate": [
-      "boilerplate"
-    ],
     "boilerplate rewrite evidence": [
       "boilerplate rewrite evidence"
     ],
@@ -13473,6 +13455,9 @@
     "botpoison spam protection": [
       "botpoison spam protection"
     ],
+    "boundaries containment and naming decisions": [
+      "boundaries containment and naming decisions"
+    ],
     "boundary condition review pass": [
       "boundary condition review pass"
     ],
@@ -13487,6 +13472,9 @@
     ],
     "boundary gated directive delivery plan": [
       "boundary-gated directive delivery plan"
+    ],
+    "boundary gated directive delivery tasks": [
+      "boundary-gated directive delivery tasks"
     ],
     "boundary justified duplication": [
       "boundary justified duplication"
@@ -13575,9 +13563,6 @@
     "bracketed stderr tags": [
       "bracketed stderr tags"
     ],
-    "branch": [
-      "branch"
-    ],
     "branch creation gate": [
       "branch creation gate"
     ],
@@ -13616,9 +13601,6 @@
     ],
     "breadth and synthesis iters": [
       "breadth and synthesis iters"
-    ],
-    "breakdown": [
-      "breakdown"
     ],
     "breaking change footer": [
       "breaking change footer"
@@ -14075,9 +14057,6 @@
     ],
     "c4 retrieval fusion": [
       "c4 retrieval fusion"
-    ],
-    "c4fc339e83": [
-      "c4fc339e83"
     ],
     "c5 quality score multiplier": [
       "c5 quality score multiplier"
@@ -16770,9 +16749,6 @@
     "chronological comment history": [
       "chronological comment history"
     ],
-    "chronology": [
-      "chronology"
-    ],
     "chunk fingerprint": [
       "chunk fingerprint"
     ],
@@ -17540,9 +17516,6 @@
     ],
     "clearer support for request routing": [
       "clearer support for request routing"
-    ],
-    "cli": [
-      "cli"
     ],
     "cli adapter shims": [
       "cli adapter shims"
@@ -19545,6 +19518,12 @@
     "cli pi dispatch rules": [
       "cli pi dispatch rules"
     ],
+    "cli pi fan out decision record": [
+      "cli-pi fan-out decision record"
+    ],
+    "cli pi fan out execution": [
+      "cli-pi fan-out execution"
+    ],
     "cli pi fanout execution": [
       "cli-pi fanout execution"
     ],
@@ -20064,6 +20043,9 @@
     ],
     "clickup webhooks": [
       "clickup webhooks"
+    ],
+    "client owned presentation": [
+      "client-owned presentation"
     ],
     "client reconnect plan": [
       "client reconnect plan"
@@ -23416,6 +23398,9 @@
     "compiled route front door": [
       "compiled route front door"
     ],
+    "compiled route layout pin": [
+      "compiled route layout pin"
+    ],
     "compiled route manifest refresh": [
       "compiled route manifest refresh"
     ],
@@ -23502,6 +23487,15 @@
     ],
     "compiled routing shapes": [
       "compiled-routing shapes"
+    ],
+    "compiled routing source home": [
+      "compiled routing source home"
+    ],
+    "compiled routing source maintenance": [
+      "compiled routing source maintenance"
+    ],
+    "compiled routing source verification": [
+      "compiled routing source verification"
     ],
     "compiled routing testing strategy": [
       "compiled routing testing strategy"
@@ -23830,9 +23824,6 @@
     "comprehensive skill validation": [
       "comprehensive skill validation"
     ],
-    "compress": [
-      "compress"
-    ],
     "compromise confirmed devin jwt": [
       "compromise confirmed devin jwt"
     ],
@@ -24097,6 +24088,9 @@
     "conformance gate evidence": [
       "conformance gate evidence"
     ],
+    "conformance rulings and gate repair decisions": [
+      "conformance rulings and gate repair decisions"
+    ],
     "conformance rulings tasks": [
       "conformance rulings tasks"
     ],
@@ -24349,11 +24343,11 @@
     "container node backfill outcome": [
       "container node backfill outcome"
     ],
-    "containment": [
-      "containment"
-    ],
     "containment alignment state records": [
       "containment alignment state records"
+    ],
+    "containment auto scope tasks": [
+      "containment auto-scope tasks"
     ],
     "containment branch subsumed": [
       "containment branch subsumed"
@@ -24411,6 +24405,9 @@
     ],
     "containment symlink autoscope": [
       "containment symlink autoscope"
+    ],
+    "containment symlink autoscope plan": [
+      "containment symlink autoscope plan"
     ],
     "containment symlink autoscope summary": [
       "containment symlink autoscope summary"
@@ -24637,9 +24634,6 @@
     "context vectors shard naming audit": [
       "context-vectors shard naming audit"
     ],
-    "contextador": [
-      "contextador"
-    ],
     "contextador adr": [
       "contextador adr"
     ],
@@ -24648,6 +24642,9 @@
     ],
     "contextador research findings": [
       "contextador research findings"
+    ],
+    "contextador research phase": [
+      "contextador research phase"
     ],
     "contextador research plan": [
       "contextador research plan"
@@ -24669,9 +24666,6 @@
     ],
     "continue post review closeout": [
       "continue post-review closeout"
-    ],
-    "continue work": [
-      "continue work"
     ],
     "continuity": [
       "continuity"
@@ -28105,6 +28099,9 @@
     "datasource vault read write": [
       "datasource vault read write"
     ],
+    "dated support matrix release gate": [
+      "dated support matrix release gate"
+    ],
     "db class grammar": [
       "db class grammar"
     ],
@@ -28503,6 +28500,9 @@
     ],
     "dedicated plugin support reduced": [
       "dedicated plugin support reduced"
+    ],
+    "dedicated sk code mode": [
+      "dedicated sk-code mode"
     ],
     "dedicated stress folder": [
       "dedicated stress folder"
@@ -33299,9 +33299,6 @@
     "descriptions json z guard": [
       "descriptions json z guard"
     ],
-    "design": [
-      "design"
-    ],
     "design a new screen": [
       "design a new screen"
     ],
@@ -34047,9 +34044,6 @@
     "df idf corpus": [
       "df-idf corpus"
     ],
-    "dfdd41f531": [
-      "dfdd41f531"
-    ],
     "dfidf cache reuse": [
       "DFIDF cache reuse"
     ],
@@ -34181,6 +34175,9 @@
     ],
     "diagram upgrade goal": [
       "diagram upgrade goal"
+    ],
+    "diagram upgrade research goal": [
+      "diagram upgrade research goal"
     ],
     "dialog role aria modal panel": [
       "dialog role aria-modal panel"
@@ -34502,6 +34499,9 @@
     ],
     "dispatch inspector classification": [
       "dispatch inspector classification"
+    ],
+    "dispatch mandate removal closure": [
+      "dispatch mandate removal closure"
     ],
     "dispatch mandate removal evidence": [
       "dispatch mandate removal evidence"
@@ -40028,6 +40028,9 @@
     "fast mode environment handoff": [
       "fast-mode environment handoff"
     ],
+    "fast mode fork goal": [
+      "fast mode fork goal"
+    ],
     "fast mode install transition": [
       "fast-mode install transition"
     ],
@@ -41108,6 +41111,9 @@
     "five boundary rollback plan": [
       "five-boundary rollback plan"
     ],
+    "five checks evaluation": [
+      "five checks evaluation"
+    ],
     "five checks framework": [
       "five checks framework"
     ],
@@ -41395,6 +41401,9 @@
     ],
     "fixture exemption validator": [
       "fixture exemption validator"
+    ],
+    "fixture first contract package": [
+      "fixture-first contract package"
     ],
     "fixture freshness audit rerank sidecar": [
       "fixture freshness audit rerank sidecar"
@@ -41800,9 +41809,6 @@
     ],
     "footer auth lines": [
       "footer auth lines"
-    ],
-    "for": [
-      "for"
     ],
     "force": [
       "force"
@@ -42892,6 +42898,9 @@
     "gate 3 question": [
       "gate-3 question"
     ],
+    "gate 3 question noise handover": [
+      "gate-3 question noise handover"
+    ],
     "gate 3 re ask": [
       "gate 3 re-ask"
     ],
@@ -43024,9 +43033,6 @@
     "gate readiness verification checklist": [
       "gate readiness verification checklist"
     ],
-    "gate release with a dated support matrix and fail closed compatibility doctor": [
-      "gate release with a dated support matrix and fail-closed compatibility doctor"
-    ],
     "gate release with deterministic safety plus blind human non inferiority": [
       "gate release with deterministic safety plus blind human non-inferiority"
     ],
@@ -43087,8 +43093,8 @@
     "gates a f plan": [
       "gates a-f plan"
     ],
-    "gateway": [
-      "gateway"
+    "gateway alignment decision record": [
+      "gateway alignment decision record"
     ],
     "gateway alignment deep review": [
       "gateway alignment deep review"
@@ -43101,6 +43107,12 @@
     ],
     "gateway contract remediation adr": [
       "gateway contract remediation adr"
+    ],
+    "gateway contract remediation plan": [
+      "gateway contract remediation plan"
+    ],
+    "gateway contract remediation tasks": [
+      "gateway contract remediation tasks"
     ],
     "gateway identity fail closed": [
       "gateway identity fail closed"
@@ -45062,9 +45074,6 @@
     "graft not episode model adr": [
       "graft not episode model adr"
     ],
-    "grammar": [
-      "grammar"
-    ],
     "grandfather claim tested": [
       "grandfather claim tested"
     ],
@@ -46069,6 +46078,9 @@
     ],
     "header conformance batches": [
       "header conformance batches"
+    ],
+    "header directive and structure sweep decisions": [
+      "header directive and structure sweep decisions"
     ],
     "header normalization phase": [
       "header normalization phase"
@@ -47928,9 +47940,6 @@
     ],
     "impl summary core": [
       "impl summary core"
-    ],
-    "implement": [
-      "implement"
     ],
     "implement 033 research recommendations": [
       "implement 033 research recommendations"
@@ -57650,6 +57659,12 @@
     "message sequence diagram": [
       "message sequence diagram"
     ],
+    "meta and quality mode playbooks": [
+      "meta and quality mode playbooks"
+    ],
+    "meta and quality playbooks delivered": [
+      "meta-and-quality playbooks delivered"
+    ],
     "meta bind task timer reference": [
       "meta bind task timer reference"
     ],
@@ -57877,9 +57892,6 @@
     ],
     "milestone timeline": [
       "milestone timeline"
-    ],
-    "milestones": [
-      "milestones"
     ],
     "mime types patterns": [
       "mime types patterns"
@@ -58640,11 +58652,11 @@
     "mobbin ux flow": [
       "mobbin ux flow"
     ],
-    "mobile": [
-      "mobile"
-    ],
     "mobile browser css patterns": [
       "mobile browser css patterns"
+    ],
+    "mobile cli app work": [
+      "mobile-cli app work"
     ],
     "mobile cli leaves the sk code hub": [
       "Mobile-CLI Leaves the sk-code Hub"
@@ -58735,6 +58747,15 @@
     ],
     "mode count update": [
       "mode count update"
+    ],
+    "mode design plan": [
+      "mode design plan"
+    ],
+    "mode design plan spec": [
+      "mode design plan spec"
+    ],
+    "mode design plan tasks": [
+      "mode design plan tasks"
     ],
     "mode event gateway": [
       "mode event gateway"
@@ -59735,8 +59756,8 @@
     "namespace scoped recovery payload": [
       "namespace-scoped recovery payload"
     ],
-    "naming": [
-      "naming"
+    "naming comment folder doc scanners": [
+      "naming comment folder-doc scanners"
     ],
     "naming convention guard": [
       "naming convention guard"
@@ -61368,6 +61389,9 @@
     "obsidian mode registry entry": [
       "obsidian mode-registry entry"
     ],
+    "obsidian on demand checklists": [
+      "obsidian on-demand checklists"
+    ],
     "obsidian plugin accessibility": [
       "obsidian plugin accessibility"
     ],
@@ -61400,6 +61424,9 @@
     ],
     "obsidian plugin flattened specs": [
       "obsidian plugin flattened specs"
+    ],
+    "obsidian plugin gate baselines": [
+      "obsidian plugin gate baselines"
     ],
     "obsidian plugin main js": [
       "obsidian plugin main.js"
@@ -61443,11 +61470,17 @@
     "obsidian readme conformance": [
       "obsidian readme conformance"
     ],
+    "obsidian references authored": [
+      "obsidian references authored"
+    ],
     "obsidian resource map cleanup": [
       "obsidian resource map cleanup"
     ],
     "obsidian rest api": [
       "obsidian rest api"
+    ],
+    "obsidian routing recall playbook": [
+      "obsidian routing recall playbook"
     ],
     "obsidian sample plugin": [
       "obsidian sample plugin"
@@ -61457,6 +61490,9 @@
     ],
     "obsidian scanners and gates": [
       "obsidian scanners and gates"
+    ],
+    "obsidian scanners and gates summary": [
+      "obsidian scanners and gates summary"
     ],
     "obsidian scanners implementation plan": [
       "obsidian scanners implementation plan"
@@ -61468,11 +61504,17 @@
       "obsidian search notes",
       "obsidian_search_notes"
     ],
+    "obsidian skill readme authored": [
+      "obsidian skill readme authored"
+    ],
     "obsidian snippets folder": [
       "obsidian snippets folder"
     ],
     "obsidian surface comparison": [
       "obsidian surface comparison"
+    ],
+    "obsidian surface design summary": [
+      "obsidian surface design summary"
     ],
     "obsidian surface detection": [
       "obsidian surface detection"
@@ -62662,9 +62704,6 @@
     ],
     "openltm retrieval observability": [
       "openltm retrieval observability"
-    ],
-    "openrouter": [
-      "openrouter"
     ],
     "openrouter allowlist": [
       "openrouter allowlist"
@@ -64659,6 +64698,9 @@
     "partial unique not autoincrement": [
       "partial unique not autoincrement"
     ],
+    "partition before revert": [
+      "partition before revert"
+    ],
     "partitioned review passes": [
       "partitioned review passes"
     ],
@@ -65379,9 +65421,6 @@
     "phantom validator rule scripts": [
       "phantom validator rule scripts"
     ],
-    "phase": [
-      "phase"
-    ],
     "phase 0 dispatch anchor deep review": [
       "phase 0 dispatch anchor deep review"
     ],
@@ -66017,9 +66056,6 @@
     ],
     "phase 4 cache optimizer": [
       "phase 4 cache optimizer"
-    ],
-    "phase 4 dedicated sk code mode for mobile cli app work": [
-      "phase 4 — dedicated sk-code mode for mobile-cli app work"
     ],
     "phase 5 completed diagnostics governance": [
       "phase 5 completed diagnostics governance"
@@ -66795,6 +66831,9 @@
     "pi directives only fallback dedup summary": [
       "pi directives-only fallback dedup summary"
     ],
+    "pi directives only fallback dedup tasks": [
+      "pi directives-only fallback dedup tasks"
+    ],
     "pi directives only fix plan": [
       "pi directives-only fix plan"
     ],
@@ -66863,6 +66902,9 @@
     ],
     "pi factory test plan": [
       "Pi factory test plan"
+    ],
+    "pi fast mode subagent goal": [
+      "pi fast mode subagent goal"
     ],
     "pi fast mode w subagent support": [
       "pi-fast-mode-w-subagent-support",
@@ -66963,6 +67005,9 @@
     ],
     "pi hook delay": [
       "pi hook delay"
+    ],
+    "pi hook latency handover": [
+      "pi hook latency handover"
     ],
     "pi input latency": [
       "pi input latency"
@@ -67210,6 +67255,9 @@
     ],
     "pi subagent directive removal": [
       "pi subagent directive removal"
+    ],
+    "pi subagent directive removal acceptance": [
+      "pi subagent directive removal acceptance"
     ],
     "pi subagent directive removal plan": [
       "pi subagent directive removal plan"
@@ -67886,14 +67934,8 @@
     "playbook versus runtime mismatch": [
       "playbook versus runtime mismatch"
     ],
-    "playbooks for the modes that act on another mode s output": [
-      "playbooks for the modes that act on another mode's output"
-    ],
     "playbooks for the modes that author a component": [
       "playbooks for the modes that author a component"
-    ],
-    "playbooks for the modes that derive an artifact from a source": [
-      "playbooks for the modes that derive an artifact from a source"
     ],
     "playwright chromium error": [
       "playwright chromium error"
@@ -68092,6 +68134,9 @@
     ],
     "port 9222 in use": [
       "port 9222 in use"
+    ],
+    "portability and false green repair decisions": [
+      "portability and false-green repair decisions"
     ],
     "portability repair": [
       "portability repair"
@@ -68527,6 +68572,9 @@
     ],
     "pre confirmation margin analysis decision": [
       "pre-confirmation margin analysis decision"
+    ],
+    "pre dispatch budget cap": [
+      "pre-dispatch budget cap"
     ],
     "pre drafting reader model": [
       "pre-drafting reader model"
@@ -69340,6 +69388,9 @@
     ],
     "promote qwen default reranker hold": [
       "promote qwen default reranker hold"
+    ],
+    "promoted candidate only guard": [
+      "promoted-candidate-only guard"
     ],
     "promoted candidate only rollback authority": [
       "promoted-candidate-only rollback authority"
@@ -71773,9 +71824,6 @@
     "reducer schema mismatches": [
       "reducer schema mismatches"
     ],
-    "redundancy": [
-      "redundancy"
-    ],
     "reelection default on": [
       "reelection default on"
     ],
@@ -74066,6 +74114,9 @@
     "repo convention audit": [
       "repo convention audit"
     ],
+    "repo convention audit summary": [
+      "repo convention audit summary"
+    ],
     "repo guards plugin": [
       "repo-guards plugin"
     ],
@@ -75621,9 +75672,6 @@
     "resumable trigger backfill": [
       "resumable trigger backfill"
     ],
-    "resume": [
-      "resume"
-    ],
     "resume 009 innovation gap remediation": [
       "resume 009 innovation gap remediation"
     ],
@@ -76849,9 +76897,6 @@
     "rewire and delete worklist": [
       "rewire and delete worklist"
     ],
-    "rewrite": [
-      "rewrite"
-    ],
     "rewrite 379 references": [
       "rewrite 379 references"
     ],
@@ -76887,6 +76932,12 @@
     ],
     "rewrite response by external agent": [
       "rewrite-response-by-external-agent"
+    ],
+    "rewrite response by external agent plan": [
+      "rewrite response by external agent plan"
+    ],
+    "rewrite response by external agent tasks": [
+      "rewrite response by external agent tasks"
     ],
     "rewrite response command": [
       "rewrite response command"
@@ -76992,9 +77043,6 @@
     ],
     "rm8 013 remediation": [
       "rm8 013 remediation"
-    ],
-    "roadmap": [
-      "roadmap"
     ],
     "roadmap document": [
       "roadmap document"
@@ -77386,6 +77434,9 @@
     "route native advisor brief": [
       "route native Advisor brief"
     ],
+    "route re mint authored manifest": [
+      "route re-mint authored manifest"
+    ],
     "route remint plan": [
       "route remint plan"
     ],
@@ -77487,6 +77538,18 @@
     ],
     "router presentation split": [
       "router presentation split"
+    ],
+    "router program authored copy": [
+      "router program authored copy"
+    ],
+    "router program custodian plan": [
+      "router program custodian plan"
+    ],
+    "router program custodian record": [
+      "router program custodian record"
+    ],
+    "router program custodian tasks": [
+      "router program custodian tasks"
     ],
     "router promotion checklist": [
       "router promotion checklist"
@@ -78327,6 +78390,9 @@
     ],
     "runtime lanes green criterion": [
       "runtime lanes green criterion"
+    ],
+    "runtime latent issue remediation": [
+      "runtime latent-issue remediation"
     ],
     "runtime library": [
       "runtime library"
@@ -79338,9 +79404,6 @@
     ],
     "schema warn to error": [
       "schema warn to error"
-    ],
-    "scope": [
-      "scope"
     ],
     "scope adherence validator": [
       "scope adherence validator"
@@ -80833,9 +80896,6 @@
     ],
     "send the standard as the instruction": [
       "send the standard as the instruction"
-    ],
-    "sendsessionaffinityheaders": [
-      "sendSessionAffinityHeaders"
     ],
     "sendsessionaffinityheaders opencode": [
       "sendSessionAffinityHeaders opencode"
@@ -82863,6 +82923,15 @@
     "sk code architecture decision phase": [
       "sk-code architecture decision phase"
     ],
+    "sk code architecture decision plan": [
+      "sk-code architecture decision plan"
+    ],
+    "sk code architecture decision summary": [
+      "sk-code architecture decision summary"
+    ],
+    "sk code architecture decision tasks": [
+      "sk-code architecture decision tasks"
+    ],
     "sk code assets animation snippets": [
       "sk-code assets/animation/snippets"
     ],
@@ -83010,6 +83079,15 @@
     "sk code debugging workflow": [
       "sk-code debugging workflow"
     ],
+    "sk code decision record plan": [
+      "sk-code decision record plan"
+    ],
+    "sk code decision record summary": [
+      "sk-code decision record summary"
+    ],
+    "sk code decision record tasks": [
+      "sk-code decision record tasks"
+    ],
     "sk code deterministic link repair plan": [
       "sk-code deterministic link repair plan"
     ],
@@ -83106,6 +83184,9 @@
     "sk code mobile cli deprecation": [
       "sk-code-mobile-cli deprecation"
     ],
+    "sk code mobile cli mode": [
+      "sk-code mobile-cli mode"
+    ],
     "sk code mode registry obsidian entry": [
       "sk-code mode-registry obsidian entry"
     ],
@@ -83132,6 +83213,9 @@
     ],
     "sk code obsidian checklist tasks": [
       "sk-code-obsidian checklist tasks"
+    ],
+    "sk code obsidian checklists summary": [
+      "sk-code-obsidian checklists summary"
     ],
     "sk code obsidian design plan": [
       "sk-code-obsidian design plan"
@@ -83187,8 +83271,14 @@
     "sk code obsidian playbook execution": [
       "sk-code-obsidian playbook execution"
     ],
+    "sk code obsidian playbook summary": [
+      "sk-code-obsidian playbook summary"
+    ],
     "sk code obsidian playbook tasks": [
       "sk-code-obsidian playbook tasks"
+    ],
+    "sk code obsidian reference stack summary": [
+      "sk-code-obsidian reference stack summary"
     ],
     "sk code obsidian references execution": [
       "sk-code-obsidian references execution"
@@ -83211,11 +83301,17 @@
     "sk code obsidian skill core execution": [
       "sk-code-obsidian skill core execution"
     ],
+    "sk code obsidian skill core summary": [
+      "sk-code-obsidian skill core summary"
+    ],
     "sk code obsidian skill core tasks": [
       "sk-code-obsidian skill core tasks"
     ],
     "sk code obsidian surface": [
       "sk-code-obsidian surface"
+    ],
+    "sk code obsidian surface design plan": [
+      "sk-code-obsidian surface design plan"
     ],
     "sk code obsidian v0 1 0 0": [
       "sk-code-obsidian v0.1.0.0"
@@ -91278,9 +91374,6 @@
     "startup wins measurement": [
       "startup wins measurement"
     ],
-    "state": [
-      "state"
-    ],
     "state change logging": [
       "state change logging"
     ],
@@ -94086,9 +94179,6 @@
     "targeted invalidation": [
       "targeted invalidation"
     ],
-    "task": [
-      "task"
-    ],
     "task 2b evidence": [
       "task 2b evidence"
     ],
@@ -95296,9 +95386,6 @@
     "time tracking script": [
       "time tracking script"
     ],
-    "timeline": [
-      "timeline"
-    ],
     "timeline diagram layout": [
       "timeline diagram layout"
     ],
@@ -95457,9 +95544,6 @@
     ],
     "tombstones edge promotion plan": [
       "tombstones edge promotion plan"
-    ],
-    "tone": [
-      "tone"
     ],
     "tool api drift remediation": [
       "tool api drift remediation"
@@ -97340,12 +97424,6 @@
     "use a generation keyed state machine with explicit ordering domains": [
       "use a generation-keyed state machine with explicit ordering domains"
     ],
-    "use a self contained fixture first contract package with immutable originals": [
-      "use a self-contained fixture-first contract package with immutable originals"
-    ],
-    "use client owned presentation whenever native interception is not explicitly safe": [
-      "use client-owned presentation whenever native interception is not explicitly safe"
-    ],
     "use deterministic first validation with a reject only model judge": [
       "use deterministic-first validation with a reject-only model judge"
     ],
@@ -98754,6 +98832,9 @@
     "verify the remaining obsidian tools": [
       "verify the remaining obsidian tools"
     ],
+    "verify then fix fan out": [
+      "verify-then-fix fan-out"
+    ],
     "verify workflow doctrine": [
       "verify workflow doctrine"
     ],
@@ -98993,9 +99074,6 @@
     ],
     "vocabulary phase checklist": [
       "vocabulary phase checklist"
-    ],
-    "voice": [
-      "voice"
     ],
     "voice category flag verdict": [
       "voice category flag verdict"
@@ -100259,6 +100337,9 @@
     "workspace teams": [
       "workspace teams"
     ],
+    "workspace trust flag": [
+      "workspace-trust flag"
+    ],
     "workspace user group members": [
       "workspace user group members"
     ],
@@ -100274,9 +100355,6 @@
     "workstream file ownership": [
       "workstream file ownership"
     ],
-    "worktree": [
-      "worktree"
-    ],
     "worktree 046 removal": [
       "worktree 046 removal"
     ],
@@ -100291,6 +100369,21 @@
     ],
     "worktree base relocation": [
       "worktree base relocation"
+    ],
+    "worktree branch naming overhaul decision record": [
+      "worktree branch naming overhaul decision record"
+    ],
+    "worktree branch naming overhaul implementation summary": [
+      "worktree branch naming overhaul implementation summary"
+    ],
+    "worktree branch naming overhaul plan": [
+      "worktree branch naming overhaul plan"
+    ],
+    "worktree branch naming overhaul spec": [
+      "worktree branch naming overhaul spec"
+    ],
+    "worktree branch naming overhaul tasks": [
+      "worktree branch naming overhaul tasks"
     ],
     "worktree build provisioning": [
       "worktree build provisioning"
@@ -100474,9 +100567,6 @@
     ],
     "wrapper writes iteration artifacts": [
       "wrapper writes iteration artifacts"
-    ],
-    "write": [
-      "write"
     ],
     "write a note": [
       "Write a note"

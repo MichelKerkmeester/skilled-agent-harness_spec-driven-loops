@@ -17,6 +17,10 @@
       "live-verification-and-sync plan",
       "fast-mode custom footer verification",
       "live-verification-and-sync tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "live-verification-and-sync implementation summary"
     ],
     "key_topics": [
@@ -31,7 +35,7 @@
       "plan",
       "verification",
       "tasks",
-      "implementation"
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       ".pi/PLUGINS.md",
       ".pi/settings.json",
@@ -61,6 +66,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -182,26 +193,21 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Source and package tests cannot prove real TUI/RPC status delivery, custom-footer coexistence, or a child Pi session inheriting the preference",
     "created_at": "2026-08-16T09:08:04Z",
-    "last_save_at": "2026-08-30T15:39:09.684Z",
+    "last_save_at": "2026-10-03T16:54:26.298Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31b6d719694f9e3f45f4090ba8380889315e683c7a4e520723793013c979e20c",
+    "source_fingerprint": "sha256:a6fae0c58514aac00c2139a07e47d72550b8ca173d80598e1da0f439b2024cfd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0372204fb2191d51713da6dc1530ecdaadbd9b79c162b886d3f1ffd4627b53f3",

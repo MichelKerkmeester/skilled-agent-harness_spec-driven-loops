@@ -19,9 +19,10 @@
       "phase 010 plan",
       "obsidian kebab rename tasks",
       "phase 010 tasks",
-      "implementation summary kebab rename",
-      "manifest driven rename oracle catch",
-      "scan-naming green obsidian plugin"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "obsidian",
@@ -43,6 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -62,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -167,42 +175,37 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Decisions Frozen",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "What Was Built Before",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Two Rewrite Passes",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 008 built `scan-naming.mjs`, which measured the plugin tree at 235 of 248 scanned files",
     "created_at": "2026-08-28T18:17:41Z",
-    "last_save_at": "2026-09-10T20:44:06.434Z",
+    "last_save_at": "2026-10-03T16:45:37.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5becf268bbb716fc782c9d447019a89e8a439b0a94c2e1c9e7c1ffaa4c49832d",
+    "source_fingerprint": "sha256:67c3985d57720b240f3b26c7ee54cc2b1f551f6d1578e3ba7cf95ac3b0643347",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2f0ac205b3069fe11415a0a99e32c103d73d30450d2824e917da3b04211f98fc",

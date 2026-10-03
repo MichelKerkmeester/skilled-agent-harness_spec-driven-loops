@@ -1,0 +1,24 @@
+{
+  "specFolder": "hooks/022-smart-rule-injection/002-event-triggered-injection",
+  "description": "An event carries a moment an always-loaded document cannot know about",
+  "keywords": [
+    "event",
+    "carries",
+    "moment",
+    "always-loaded",
+    "document",
+    "cannot",
+    "know",
+    "about"
+  ],
+  "lastUpdated": "2026-10-03T15:32:29.673Z",
+  "specId": "002",
+  "folderSlug": "event-triggered-injection",
+  "parentChain": [
+    "hooks",
+    "022-smart-rule-injection"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

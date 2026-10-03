@@ -4,7 +4,7 @@ description: "Accepted Phase 002 architecture: a self-contained fixture-first co
 trigger_phrases:
   - "contracts-and-fixtures"
   - "architecture decision"
-  - "use a self-contained fixture-first contract package with immutable originals"
+  - "fixture-first contract package"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

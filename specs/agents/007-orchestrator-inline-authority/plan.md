@@ -2,10 +2,6 @@
 title: "Implementation Plan: Orchestrator Inline Authority"
 description: "Grant bounded write capability in four dialects at once, and let a direct operator invocation satisfy a gate built to catch agent-to-agent dispatch."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
   - "plan core"
 importance_tier: "normal"
 contextType: "general"

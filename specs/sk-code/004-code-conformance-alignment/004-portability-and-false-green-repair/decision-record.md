@@ -1,22 +1,19 @@
-<!-- IF level:3 -->
 ---
-title: "Decision Record: [NAME]"
-description: "Decision record template for documenting architectural choices, alternatives, consequences, and implementation notes."
+title: "Decision Record: Portability and False-Green Repair"
+description: "Architecture decisions for this phase, carried over from the ADR section of plan.md."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "name"
-  - "template"
   - "decision record"
+  - "portability and false-green repair decisions"
+  - "five checks evaluation"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level-3"
-    last_updated_at: "2026-04-11T00:00:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "sk-code/004-code-conformance-alignment/004-portability-and-false-green-repair"
+    last_updated_at: "2026-09-07T18:33:41+02:00"
+    last_updated_by: "spec-validation-backfill"
+    recent_action: "Recorded the plan.md ADRs as decision entries"
+    next_safe_action: "Update entries when an ADR status changes"
     blockers: []
     key_files: []
     session_dedup:
@@ -27,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Decision Record: [NAME]
+# Decision Record: Portability and False-Green Repair
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
@@ -35,32 +32,27 @@ _memory:
 
 ---
 
+The decisions below are carried over verbatim from the ADR section of `plan.md`; their status there is the status here.
+
+---
+
 <!-- ANCHOR:adr-001 -->
-## ADR-001: [Decision Title]
+## ADR-001: Errexit is adopted command by command, never as a flag flip
 
 ### Metadata
 
 | Field | Value |
 |-------|-------|
-| **Status** | [Proposed/Accepted/Deprecated/Superseded] |
-| **Date** | [YYYY-MM-DD] |
-| **Deciders** | [Names] |
+| **Status** | Proposed |
+| **Date** | 2026-08-29 (first recorded in `plan.md`) |
+| **Deciders** | Not recorded |
 
 ---
 
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-<!-- Voice guide: State the problem directly. "We needed to choose between X and Y because Z"
-     not "A decision was required regarding the selection of an appropriate approach." -->
-
-[What problem or situation required this decision? What was at stake?
-Write in direct, active voice.]
-
-### Constraints
-
-- [Technical constraint with specifics]
-- [Business constraint with specifics]
+Three `.opencode/bin` git-coordination scripts run `set -uo pipefail` deliberately because they tolerate expected non-zero exits from probe commands. The verifier reports this as 3 `SH-STRICT-MODE` errors, and the naive fix — adding `-e` — will abort a rebase mid-flight.
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -68,9 +60,7 @@ Write in direct, active voice.]
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: [One-sentence description of the decision, in active voice]
-
-**How it works**: [Implementation approach in 2-3 direct sentences]
+Build a per-command tolerance inventory first; convert each tolerated non-zero exit into an explicit guarded conditional; only then add `-e`. Verify with nine failure-injection cases asserting **unchanged** exit semantics.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -78,12 +68,8 @@ Write in direct, active voice.]
 <!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives Considered
 
-| Option | Pros | Cons | Score |
-|--------|------|------|-------|
-| **[Chosen]** | [Advantages] | [Disadvantages] | [X/10] |
-| [Alternative A] | [Advantages] | [Disadvantages] | [Y/10] |
-
-**Why this one**: [Rationale in 1-2 sentences, direct and specific]
+- *Blanket `set -e`*: not behaviour-preserving; the archetype of a conformance fix that breaks production.
+- *Document the omission as an accepted exception*: leaves a real hard-blocker unaddressed and keeps the verifier permanently red on this root.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -91,199 +77,55 @@ Write in direct, active voice.]
 <!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
-**What improves**:
-- [Specific benefit with measurable impact where possible]
-- [Specific benefit]
-
-**What it costs**:
-- [Specific drawback] . Mitigation: [How to handle it]
-
-**Risks**:
-
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| [Risk with specifics] | [H/M/L] | [Concrete strategy] |
+- The scripts become conformant without a behaviour change, and the tolerance that was implicit becomes documented in the code.
+- The lane is slow relative to its line count, and it is the highest-risk work in the whole program.
 <!-- /ANCHOR:adr-001-consequences -->
-
----
-
-<!-- ANCHOR:adr-001-five-checks -->
-### Five Checks Evaluation
-
-| # | Check | Result | Evidence |
-|---|-------|--------|----------|
-| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an actual need now?] |
-| 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
-| 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
-| 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
-| 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
-
-**Checks Summary**: [X/5 PASS]
-<!-- /ANCHOR:adr-001-five-checks -->
-
----
-
-<!-- ANCHOR:adr-001-impl -->
-### Implementation
-
-**What changes**:
-- [System/Component with specific change]
-- [System/Component with specific change]
-
-**How to roll back**: [Concrete revert steps, not "revert if needed"]
-<!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
 ---
 
-<!--
-Level 3 Decision Record (Addendum): One ADR per major decision.
-Write in human voice: active, direct, specific. No em dashes, no hedging.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-<!-- /IF -->
-
-<!-- IF level:3+ -->
----
-title: "Decision Record: [NAME]"
-description: "not \"A decision was required regarding the selection of an appropriate approach.\" -->"
-trigger_phrases:
-  - "decision"
-  - "record"
-  - "name"
-  - "template"
-  - "decision record"
-importance_tier: "normal"
-contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "system-spec-kit/templates/level-3+"
-    last_updated_at: "2026-04-11T00:00:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 plus template"
-    next_safe_action: "Replace continuity placeholders"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "template-session"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
----
-# Decision Record: [NAME]
-
-<!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
-
----
-
-<!-- ANCHOR:adr-001 -->
-## ADR-001: [Decision Title]
+<!-- ANCHOR:adr-002 -->
+## ADR-002: A skip is a failure for this child
 
 ### Metadata
 
 | Field | Value |
 |-------|-------|
-| **Status** | [Proposed/Accepted/Deprecated/Superseded] |
-| **Date** | [YYYY-MM-DD] |
-| **Deciders** | [Names] |
+| **Status** | Proposed |
+| **Date** | 2026-08-29 (first recorded in `plan.md`) |
+| **Deciders** | Not recorded |
 
 ---
 
-<!-- ANCHOR:adr-001-context -->
+<!-- ANCHOR:adr-002-context -->
 ### Context
 
-<!-- Voice guide: State the problem directly. "We needed to choose between X and Y because Z"
-     not "A decision was required regarding the selection of an appropriate approach." -->
-
-[What problem or situation required this decision? What was at stake?
-Write in direct, active voice.]
-
-### Constraints
-
-- [Technical constraint with specifics]
-- [Business constraint with specifics]
-<!-- /ANCHOR:adr-001-context -->
+Two MCP suites skip when a hardcoded absolute packet path is absent, reporting green for coverage that never ran. Repairing them will surface work that was always missing.
+<!-- /ANCHOR:adr-002-context -->
 
 ---
 
-<!-- ANCHOR:adr-001-decision -->
+<!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: [One-sentence description of the decision, in active voice]
-
-**How it works**: [Implementation approach in 2-3 direct sentences]
-<!-- /ANCHOR:adr-001-decision -->
+For the duration of this child, a skipped case counts as a failure. Coverage either runs or fails loudly with a message naming the expected path.
+<!-- /ANCHOR:adr-002-decision -->
 
 ---
 
-<!-- ANCHOR:adr-001-alternatives -->
+<!-- ANCHOR:adr-002-alternatives -->
 ### Alternatives Considered
 
-| Option | Pros | Cons | Score |
-|--------|------|------|-------|
-| **[Chosen]** | [Advantages] | [Disadvantages] | [X/10] |
-| [Alternative A] | [Advantages] | [Disadvantages] | [Y/10] |
-
-**Why this one**: [Rationale in 1-2 sentences, direct and specific]
-<!-- /ANCHOR:adr-001-alternatives -->
+- *Keep the skip but log it*: a logged skip is still green on a dashboard, which is the defect.
+- *Delete the suites*: removes the false green by removing the coverage, which is worse.
+<!-- /ANCHOR:adr-002-alternatives -->
 
 ---
 
-<!-- ANCHOR:adr-001-consequences -->
+<!-- ANCHOR:adr-002-consequences -->
 ### Consequences
 
-**What improves**:
-- [Specific benefit with measurable impact where possible]
-- [Specific benefit]
-
-**What it costs**:
-- [Specific drawback] . Mitigation: [How to handle it]
-
-**Risks**:
-
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| [Risk with specifics] | [H/M/L] | [Concrete strategy] |
-<!-- /ANCHOR:adr-001-consequences -->
-
----
-
-<!-- ANCHOR:adr-001-five-checks -->
-### Five Checks Evaluation
-
-| # | Check | Result | Evidence |
-|---|-------|--------|----------|
-| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an actual need now?] |
-| 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
-| 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
-| 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
-| 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
-
-**Checks Summary**: [X/5 PASS]
-<!-- /ANCHOR:adr-001-five-checks -->
-
----
-
-<!-- ANCHOR:adr-001-impl -->
-### Implementation
-
-**What changes**:
-- [System/Component with specific change]
-- [System/Component with specific change]
-
-**How to roll back**: [Concrete revert steps, not "revert if needed"]
-<!-- /ANCHOR:adr-001-impl -->
-<!-- /ANCHOR:adr-001 -->
-
----
-
-<!--
-Level 3 Decision Record (Addendum): One ADR per major decision.
-Write in human voice: active, direct, specific. No em dashes, no hedging.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-<!-- /IF -->
+- Green becomes meaningful on these suites.
+- The repair may surface a body of genuinely failing coverage that must be triaged rather than re-muted, and that triage may exceed this child's scope — in which case it is escalated, not silenced.
+<!-- /ANCHOR:adr-002-consequences -->
+<!-- /ANCHOR:adr-002 -->

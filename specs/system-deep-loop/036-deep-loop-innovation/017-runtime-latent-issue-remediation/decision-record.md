@@ -10,7 +10,10 @@ _memory:
     last_updated_by: "claude"
     recent_action: "Recorded the remediation's key architecture decisions"
     next_safe_action: "Finalize the packet docs and validate --strict"
-trigger_phrases: []
+trigger_phrases:
+  - "runtime latent-issue remediation"
+  - "verify-then-fix fan-out"
+  - "pre-dispatch budget cap"
 ---
 # Decision Record: System-Deep-Loop Runtime Latent-Issue Remediation
 

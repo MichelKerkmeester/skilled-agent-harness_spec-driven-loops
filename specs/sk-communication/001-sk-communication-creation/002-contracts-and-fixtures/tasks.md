@@ -3,8 +3,6 @@ title: "Tasks: Phase 002 Contracts and Fixtures"
 description: "Implementation task breakdown for the standalone package bootstrap, shared contracts, reference corpus, and golden fixtures."
 trigger_phrases:
   - "contracts-and-fixtures"
-  - "tasks"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

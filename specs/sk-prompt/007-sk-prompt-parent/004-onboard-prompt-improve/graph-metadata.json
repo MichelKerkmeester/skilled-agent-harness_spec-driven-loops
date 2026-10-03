@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Phase 003 created the parent-hub skeleton, but the `prompt-improve/` packet has no relocated implementation yet",
     "created_at": "2026-06-03T06:13:44Z",
-    "last_save_at": "2026-08-30T15:39:18.875Z",
+    "last_save_at": "2026-10-03T15:44:24.022Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51f15dcd1362b7d1447b238fe2a589aa7e342de35cb78e037753eae1d89359c5",
+    "source_fingerprint": "sha256:c8636d747424b501d3d47022164ed9c793868efbe6537e83b21b9d003e38e30a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4e7d6e1db01b7c12ec59e9ba8dff94beba5d1a2178c9e3c313a59df5c373b030",
       "plan.md": "0377b0ed350fc01885762a61461ad96ba4dd642f3db536b27c6106e6b55b3a5b",
-      "tasks.md": "a09e11e5ca3d0404175bf5659ef5469bcb375a997e3c82eb7bbe1bd9873ea3e4",
+      "tasks.md": "0cffa9b98f46f43f5011a2108906e4f6bcdf1d98f840fd7bcbfe78d706b723d0",
       "implementation-summary.md": "a15bde170ad349c5504dcc14dc020587ba441dd1c4bae2050fc4463c710ed74e"
     },
     "last_active_child_id": null,

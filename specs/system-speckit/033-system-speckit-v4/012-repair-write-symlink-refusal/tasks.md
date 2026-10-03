@@ -14,7 +14,7 @@ contextType: "implementation"
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Refuse symlink traversal in the graph-metadata repair write path
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 

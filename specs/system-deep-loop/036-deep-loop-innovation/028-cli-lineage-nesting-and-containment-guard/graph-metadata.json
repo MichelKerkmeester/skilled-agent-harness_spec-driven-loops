@@ -20,9 +20,9 @@
       "pre-spawn refusal",
       "parallel work streams",
       "deep-loop runtime plan",
-      "tasks",
-      "name",
-      "template"
+      "tasks core",
+      "acceptance criteria",
+      "closure gate"
     ],
     "key_topics": [
       "nested",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A cli-codex fan-out lineage spawned a nested `codex exec` on every iteration and returned zero findings, and write containment reverted a concurrent operator edit from HEAD with no recoverable record",
     "created_at": "2026-09-02T17:17:51Z",
-    "last_save_at": "2026-09-11T16:42:29.219Z",
+    "last_save_at": "2026-10-03T15:12:20.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,12 +219,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19317da9d0c391007ac81a57ffc727983d1c3ef9ec7bf1c6c0a7d4d0e2a88a9f",
+    "source_fingerprint": "sha256:e0935e85211649ad10aabd4c70317e4dcf4b54d37f327d44168991b810e61166",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "53bbd7f209aeff09eabd94073bcff2be283d3cf472600c2045d9ace0aab6b9a4",
       "plan.md": "5aab58aac46d392dd8a0cbc568a4018967838b62ec07e71b197ab1300df924d1",
-      "tasks.md": "04330dd083f41685840333bf02717ca5f5b47cb0047406f8263ed112ea09b98b",
+      "tasks.md": "71448096844b06467179ee21e34dfcfba13461c25401507751c5d4bb1902f48e",
       "implementation-summary.md": "d8f5e3fe2566205017356dad6068ba7be6fc5205900fca0d1ea4f504adb5429b"
     },
     "last_active_child_id": null,

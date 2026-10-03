@@ -2,10 +2,6 @@
 title: "Feature Specification: Phase 1: transport-and-baseline"
 description: "Two scorers answer the routing question and disagree on roughly a third of prompts. Until one is named as the governing caller, every routing number in this packet is ambiguous, so this phase settles it and freezes the baseline."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
   - "spec core"
 importance_tier: "normal"
 contextType: "general"

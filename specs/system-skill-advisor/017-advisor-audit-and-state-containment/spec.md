@@ -2,10 +2,6 @@
 title: "Feature Specification: Advisor Audit and State Containment Phase Parent"
 description: "Phase parent for two advisor workstreams: containing the stray nested .opencode state directories that runtime writers leak, and auditing the advisor code surface itself."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
   - "spec core"
 importance_tier: "normal"
 contextType: "general"

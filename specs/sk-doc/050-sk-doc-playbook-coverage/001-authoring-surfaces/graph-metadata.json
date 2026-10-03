@@ -15,14 +15,14 @@
       "sk-create-command playbook",
       "sk-create-readme playbook",
       "playbooks for the modes that author a component",
-      "implementation",
-      "plan",
-      "name",
-      "template",
       "plan core",
-      "tasks",
       "tasks core",
-      "acceptance criteria"
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
       "sk-create-agent",
@@ -33,19 +33,26 @@
       "modes",
       "author",
       "component",
-      "implementation",
       "plan",
-      "name",
-      "template"
+      "core",
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+      ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-readme/SKILL.md"
     ],
     "entities": [
       {
@@ -76,6 +83,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
         "source": "derived"
       },
       {
@@ -127,7 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -139,13 +170,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow An",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -169,33 +194,15 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Each of these takes a request and emits a new component that something else will load",
     "created_at": "2026-09-01T11:47:59Z",
-    "last_save_at": "2026-09-07T16:17:04.771Z",
+    "last_save_at": "2026-10-03T16:44:25.897Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3dfd73f80046c716b94b3792529b34fd758352d3d599a4808801757fec092c43",
+    "source_fingerprint": "sha256:a8bd750043bf4b87db54bfd4644af5bef74909a7ae51cfb71ff9e0e6ff91a173",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80af10fa45564566a3269cb7256c68af49b38eae6fcc2159a668987c8401cbe6",
-      "plan.md": "76d066a5f089c51538b6db7de6c063b65782699b776ddb4579fc2a4616f76d54",
-      "tasks.md": "659e026fb2fc1a33fd257f4752498a394b1e4e552e3e5f5cfb79164287fc8f4c",
-      "implementation-summary.md": "eb93b1f4c37175eb637f6b103d2f1c1b8510218852f6a5a59afdad8df3ddc10b"
+      "spec.md": "9799aefdff71107a2aed27c6443e5daa7ab748b4b3a63d4956c292da713ab0a3",
+      "plan.md": "9ab07ddd6108cf4ad4d8cc6c03ceb3930e8dd9bcba293a2f605e16b650056bc9",
+      "tasks.md": "24163ff3d56aa550d2eb85fca41f7620b47b9f6a1edaf37a559b9e1801a66519",
+      "implementation-summary.md": "581adb4817f5229b688e690179e8ef31d9e299ebfb52aae4a56eaa92a632d5f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

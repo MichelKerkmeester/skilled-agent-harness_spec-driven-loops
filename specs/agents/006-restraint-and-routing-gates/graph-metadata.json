@@ -20,9 +20,9 @@
       "restraint routing plan",
       "agents.md plan",
       "gate 2 artifact trigger",
-      "implementation",
-      "plan",
-      "tasks"
+      "restraint routing",
+      "acceptance criteria",
+      "closure gate"
     ],
     "key_topics": [
       "pre-write",
@@ -50,8 +50,7 @@
       "AGENTS.md",
       ".opencode/skills/sk-code/shared/references/universal/code-quality-standards.md",
       ".opencode/skills/sk-code/sk-code-review/assets/test-quality-checklist.md",
-      ".opencode/skills/sk-doc/SKILL.md",
-      ".opencode/skills/sk-communication/SKILL.md"
+      ".opencode/skills/sk-doc/SKILL.md"
     ],
     "entities": [
       {
@@ -201,7 +200,7 @@
     ],
     "causal_summary": "Every restraint rule this framework needs already exists somewhere, but not where it fires",
     "created_at": "2026-08-29T11:13:34.480Z",
-    "last_save_at": "2026-08-30T15:39:07.032Z",
+    "last_save_at": "2026-10-03T15:11:43.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +211,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2ded3e13b376a5f43516f671c61e35fe14abcf90adcc38d33a116d06a1e990e",
+    "source_fingerprint": "sha256:d727227fa29e7317c7c586bdc0e2c16fa88cfe3f9f6bd69d84c68abf6c19827f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fa867a52ec0e7c51b3bbd01677ab4851c8c719cc9f3005ed04cf0ea46edf5747",
-      "plan.md": "3f4388ecba07793fb5643b8d20c0d27c5e1695f033a3b45162190e13802f55ac",
-      "tasks.md": "b6b97e6cb9d6c1cad2afb96977ff7a33ae7373de82566bd5c918e30a27821395",
-      "decision-record.md": "92000912e82e14e15ab6b9ae9ba89c4e0d1ce04e55034d31dba7f4f1109d3b57",
+      "plan.md": "26b6dce2e7d7ebbcc982c5c706b2545fbb43608a330274888efdc5d80330d51b",
+      "tasks.md": "d030affd7dc7b143fab70278d7341c82c976d83b0458c77382c42eee1b6113f1",
+      "decision-record.md": "83bbd490ff13d9107e50b48b2715eb203d1c652a5444fdb82ef79fb02e27284a",
       "implementation-summary.md": "404ce3ef988c7904753c589bebc16d423c8c043f1d9c79046dd218a37abbe6c8"
     },
     "last_active_child_id": null,

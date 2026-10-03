@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The decision tests refused a rule file; the operator override and the scope widening are recorded as decisions."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -11,8 +11,8 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "agents/009-turn-closeout-next-steps/002-decision-and-design"
-    last_updated_at: "2026-09-11T10:54:56Z"
-    last_updated_by: "template-author"
+    last_updated_at: "2026-09-11T19:44:00+02:00"
+    last_updated_by: "spec-validation-backfill"
     recent_action: "Phase closed; work recorded in tasks.md with evidence"
     next_safe_action: "None; phase complete and validated"
     blockers: []
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-002-decision-and-design"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,6 +41,7 @@ _memory:
 | **Spec Folder** | 002-decision-and-design |
 | **Completed** | 2026-09-11 |
 | **Level** | 2 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,18 +49,18 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+A recorded decision, including the part that went against the operator. The four decision tests refused a rule file, the operator wanted the rule anyway, and this phase wrote both down so the rule exists by decision rather than by appearing to pass.
 
 ### Phase 2: decision-and-design
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The always-loaded and scope-boundary tests decided the refusal. Naming a question tool per runtime sat Out under the router's section 4, so that question was escalated instead of absorbed, and the widening the operator chose is recorded in `REPO RULES.md` section 4 with the narrowing that keeps the boundary standing.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `../spec.md` | Modified | Open-questions section states the override and preserves the refusing research |
+| `REPO RULES.md` | Modified | Section 4 records the fourth widening as an operator decision |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +68,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+By running the four tests against the phase 001 research, one section per test, then recording the verdict, the escalation and the override in the parent spec. No rule text was written here; that is phase 003.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +78,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Record the override as an override | A rule that failed the tests must not read as one that passed them |
+| Escalate the scope question | Naming runtime question tools sat outside the router's scope statement, so widening it was the operator's call |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +89,9 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Verdict and deciding tests recorded | PASS, refusal by the always-loaded and scope-boundary tests |
+| Override recorded in the parent spec | PASS, open-questions section |
+| `acceptance-criteria.md` AC-001 | Met |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +99,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **The rule rests on a decision, not a passed test.** Anyone revisiting it should read the refusing research in phase 001 first.
 <!-- /ANCHOR:limitations -->
 
 ---

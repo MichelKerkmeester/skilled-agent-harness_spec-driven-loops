@@ -3,7 +3,6 @@ title: "Tasks: Phase 015 Package Relocation Into Skill"
 description: "Completed task breakdown for the rename-preserving package move, skill-doc reference conformance, implementation-alignment evidence, and packet closeout."
 trigger_phrases:
   - "package-into-skill"
-  - "tasks"
   - "package relocation tasks"
 importance_tier: "important"
 contextType: "implementation"

@@ -38,7 +38,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-1 -->
-## PHASE 1: SETUP
+## Phase 1: Setup
 
 - [x] T1 Normalizer added beside the stop-policy one, accepting the four documented values.
 <!-- /ANCHOR:phase-1 -->
@@ -46,7 +46,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## PHASE 2: IMPLEMENTATION
+## Phase 2: Implementation
 
 - [x] T2 Flag parsed where the stop policy is parsed.
 - [x] T3 Emitted into the prompt config the leaf reads.
@@ -57,7 +57,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-3 -->
-## PHASE 3: VERIFICATION
+## Phase 3: Verification
 
 - [x] T6 `node --check` clean.
 - [x] T7 Bad value rejected: `convergenceMode must be one of: default, off, sliding-window, divergent`.

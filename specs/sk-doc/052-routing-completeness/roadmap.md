@@ -2,7 +2,6 @@
 title: "Roadmap: Routing Completeness"
 description: "Level-agnostic forward plan for near-term, next-step and later work."
 trigger_phrases:
-  - "roadmap"
   - "forward plan"
   - "now next later"
   - "strategic milestones"

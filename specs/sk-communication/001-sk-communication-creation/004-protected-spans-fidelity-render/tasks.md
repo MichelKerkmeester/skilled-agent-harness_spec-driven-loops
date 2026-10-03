@@ -3,8 +3,6 @@ title: "Tasks: Phase 004 Protected Spans, Fidelity, and Render"
 description: "Implementation task breakdown for protect non-negotiable content, validate rewritten candidates deterministically, and choose a safe presentation mode."
 trigger_phrases:
   - "protected-spans-fidelity-render"
-  - "tasks"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

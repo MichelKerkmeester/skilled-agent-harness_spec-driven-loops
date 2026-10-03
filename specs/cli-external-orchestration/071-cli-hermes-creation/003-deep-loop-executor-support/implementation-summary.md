@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-09-14T20:20:00Z"
     last_updated_by: "claude-fable-5-1"
     recent_action: "Executor kind, builder, roster, audit maps, dispatch-audit row and tests shipped"
-    next_safe_action: "Raise the default cli-hermes timeoutSeconds guidance in the packet docs if a second lineage confirms the pace"
+    next_safe_action: "Raise cli-hermes timeoutSeconds guidance if a second lineage confirms pace"
     blockers: []
     key_files:
       - ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"

@@ -50,7 +50,13 @@
       ".pi/extensions/pi-cache-optimizer/index.ts",
       ".pi/settings.json",
       ".pi/PLUGINS.md",
-      ".pi/SYNC.md"
+      ".pi/SYNC.md",
+      "001-reclaim-deepseek-direct-ownership/goal.md",
+      "002-port-cache-economics/goal.md",
+      "003-port-retry-loop-guard/goal.md",
+      "004-port-hash-verified-edits/goal.md",
+      "005-remove-deep-pi/goal.md",
+      "006-reconcile-extension-documentation/goal.md"
     ],
     "entities": [
       {
@@ -164,14 +170,14 @@
     ],
     "causal_summary": "Pi loads two cache extensions whose responsibilities are divided by a hand-maintained model",
     "created_at": "2026-09-08T17:57:01Z",
-    "last_save_at": "2026-09-20T04:47:37.624Z",
+    "last_save_at": "2026-10-03T15:29:24.344Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:bcb213a79ac132abc683ce13d0a0a7573e03e32b93de90ccde7de4acd83e5f1a",
+    "source_fingerprint": "sha256:b87f76c6c2825afeaab2ebd6699f3bde904a6f066aeeac809fc613cbe4d52457",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ad982662efae376c806f924e7237dfdf1579b01fdbd9829a55d4585bef0c9b75"

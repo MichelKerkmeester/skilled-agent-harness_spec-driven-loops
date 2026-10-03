@@ -3,8 +3,6 @@ title: "Tasks: Phase 018 Projection Runtime Core"
 description: "Completed task breakdown for the default provider transport, the top-level projectMessage() orchestration, the default reject-only meaning judge, and the root-barrel client presentation exports."
 trigger_phrases:
   - "projection-runtime-core"
-  - "tasks"
-  - "implementation"
   - "projectMessage orchestration"
 importance_tier: "important"
 contextType: "implementation"

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Wired the close-out rule into REPO RULES.md and AGENTS.md with equal counts and zero broken links."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -11,8 +11,8 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "agents/009-turn-closeout-next-steps/004-agents-md-integration"
-    last_updated_at: "2026-09-11T10:54:58Z"
-    last_updated_by: "template-author"
+    last_updated_at: "2026-09-11T19:44:00+02:00"
+    last_updated_by: "spec-validation-backfill"
     recent_action: "Phase closed; work recorded in tasks.md with evidence"
     next_safe_action: "None; phase complete and validated"
     blockers: []
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-004-agents-md-integration"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,6 +41,7 @@ _memory:
 | **Spec Folder** | 004-agents-md-integration |
 | **Completed** | 2026-09-11 |
 | **Level** | 2 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,18 +49,18 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The new rule is reachable. `REPO RULES.md` gained its trigger row and index row, and `AGENTS.md` points at it from every section it governs, so Gate 5 loads it on the actions it covers.
 
 ### Phase 4: agents-md-integration
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The rule file was written before any router row, so an interruption would have left an unrouted file rather than a row pointing at nothing. `AGENTS.md` carries only pointers plus two operator-approved clauses.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `REPO RULES.md` | Modified | Trigger row and index row for the new rule |
+| `AGENTS.md` | Modified | Pointers in sections 3, 8 and 10, plus two approved clauses |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +68,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The router scope statement was checked first, then the rule file, then the rows, then the pointers. The `AGENTS.md` diff was reviewed line by line. It shipped in commit `ecdb0263549`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +78,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| File first, rows second | The safer wreck if interrupted is an unrouted file, not a dangling row |
+| Pointers only in `AGENTS.md` | Doctrine lives in the rule file; the two exceptions were operator-approved |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +89,9 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Rule files, trigger rows, index rows | PASS, eleven each |
+| Links | PASS, zero broken across the router, the rules and `AGENTS.md` |
+| `acceptance-criteria.md` AC-001 | Met |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +99,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Two non-pointer clauses sit in `AGENTS.md`.** Both were approved by the operator; any later trim should keep them or move them with the operator's yes.
 <!-- /ANCHOR:limitations -->
 
 ---

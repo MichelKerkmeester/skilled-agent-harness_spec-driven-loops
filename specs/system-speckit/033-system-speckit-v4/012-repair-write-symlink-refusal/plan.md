@@ -13,7 +13,7 @@ contextType: "implementation"
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Refuse symlink traversal in the graph-metadata repair write path
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: "Implementation Summary: Phase 7 — Split code-opencode Rust References"
 description: "Outcome of splitting the 4 oversized code-opencode Rust docs (1987/1571/1475/1005) into 21 topic-cohesive parts and rewiring the RUST/CODE_QUALITY router contract; all three deterministic router guards pass 21/21 with zero regressions against a clean-HEAD baseline."
+importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:

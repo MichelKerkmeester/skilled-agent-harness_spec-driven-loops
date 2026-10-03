@@ -3,11 +3,26 @@ title: "Decision Record: Perfect skill routing across the fleet"
 description: "The four decisions that shaped the routing repair: what stayed out of scope, why the generator merges, why the gate landed first, and why the confidence bar was never touched."
 trigger_phrases:
   - "decision record"
-  - "adr"
   - "routing decisions"
   - "scope boundary"
 importance_tier: "important"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-skill-advisor/024-routing-perfection-research"
+    last_updated_at: "2026-09-07T16:54:12+02:00"
+    last_updated_by: "spec-validation-backfill"
+    recent_action: "Recorded the four routing-repair decisions"
+    next_safe_action: "Decide the gated scorer tranche"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "024-routing-perfection-decision-record"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 # Decision Record: Perfect skill routing across the fleet

@@ -65,6 +65,14 @@ refused unless the branch is allowlisted or named in the variable for that one
 push. A blanket value still authorises updating a branch someone already
 published; it can no longer conjure a new one.
 
+### Files Changed
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `.opencode/scripts/git-hooks/pre-push` | Modified | Creation gate separated from update; release wildcard removed |
+| `.opencode/skills/sk-git/scripts/remote-branch-allowlist.txt` | Modified | Lists the approved release branch as a reviewable line |
+| `.opencode/scripts/git-hooks/tests/pre-push.test.sh` | Modified | Hook suite updated with the gate change |
+
 <!-- /ANCHOR:what-built -->
 
 ---

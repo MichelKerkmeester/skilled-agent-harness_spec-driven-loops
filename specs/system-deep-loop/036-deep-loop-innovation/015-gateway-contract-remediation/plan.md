@@ -2,10 +2,7 @@
 title: "Implementation Plan: Gateway [system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation/plan]"
 description: "Sequenced remediation plan for the ten 014-review findings plus the merge-tool bug: reconcile the state-write contract to the append gateway across prompt-packs, runtime, validator, SKILLs, YAMLs, and the guard, WS1-first behind a real-dispatch negative-control gate."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "gateway"
-  - "015"
+  - "gateway contract remediation plan"
 importance_tier: "important"
 contextType: "general"
 _memory:

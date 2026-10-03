@@ -15,9 +15,15 @@
     "trigger_phrases": [
       "sk-code architecture decision phase",
       "sk-code 5-mode decision",
+      "sk-code architecture decision plan",
+      "sk-code decision record plan",
+      "sk-code architecture decision tasks",
+      "sk-code decision record tasks",
       "sk-code architecture decision",
       "sk-code 5-mode taxonomy",
-      "sk-code parent decision record"
+      "sk-code parent decision record",
+      "sk-code architecture decision summary",
+      "sk-code decision record summary"
     ],
     "key_topics": [
       "sk-code",
@@ -25,19 +31,22 @@
       "decision",
       "phase",
       "5-mode",
+      "plan",
+      "record",
+      "tasks",
       "taxonomy",
       "parent",
-      "record",
-      "produced",
-      "decision-ready",
-      "recommendation",
-      "nothing"
+      "summary",
+      "produced"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
-      "decision-record.md"
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -47,9 +56,27 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -89,56 +116,104 @@
         "source": "derived"
       },
       {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Nested",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Iron Law",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "recommended",
-        "kind": "key_phrase",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "sk-design",
-        "kind": "key_phrase",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli-opencode",
-        "kind": "key_phrase",
         "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 produced a decision-ready recommendation but nothing binds it; the build phases need a single authoritative contract for the taxonomy, structure, fold-in, and cutover",
     "created_at": "2026-07-03T00:00:00Z",
-    "last_save_at": "2026-08-30T15:39:10.764Z",
+    "last_save_at": "2026-10-03T15:37:22.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "decision-record.md"
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:17ea20f6bf04428d7818e9817d83c61204801758a7e5b8cbb10646b0e152686c",
+    "source_fingerprint": "sha256:23033b383722c000d40bc79d3fcf4da24d174eb6ecd4fb27b3c9c0bcb0b7dd1f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5f9bdd2b350a0a9ae1b4447b0727fca6a2ff41e0f99f02e001e17ccc90b0c116",
-      "decision-record.md": "3b4225a291f963506723b1c7b53e17e75388ef25370533fae5d69d04d1fb0459"
+      "plan.md": "f52f304743760e6cd816a0bc66ec4d96ad278c6a8fd26253c5808eae3494f897",
+      "tasks.md": "a43e837c7a3caf9ba6c3a71f39927a8e82b8b48c6c092491ec73a6a65b2d25b4",
+      "decision-record.md": "0ad24b3367420e8c25250c2b8835fb955a38933f525f9b8b89636a17a55878f4",
+      "implementation-summary.md": "b2c9c30ca3d9c34b90a7814019379d00021c009cdf428d873c434c88896d6356"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -94,12 +94,12 @@ The analysis ran on a frozen tree, as the delegation rule now requires, and left
 
 | Check | Result |
 |-------|--------|
-| Analysis lineage | succeeded 1, five iterations, maxIterationsReached |
+| Analysis lineage (`research/research.md`) | succeeded 1, five iterations, maxIterationsReached |
 | Hook harnesses | autostash 2, commit-msg 11, pre-commit 25, prepare-commit-msg 43, installer harness rc 0 |
 | sk-git suites | rule engine 25 node cases, adapters 7, allocator 39 |
 | bin harnesses | reaper 24, session 18, sync log 7, rebase-abort 14 |
 | Ownerless lock reclaim | 2 seconds, was a 34-second timeout |
-| Proof lineage | succeeded 1, 259 seconds |
+| Proof lineage (`research/proof`) | succeeded 1, 259 seconds |
 <!-- /ANCHOR:verification -->
 
 ---

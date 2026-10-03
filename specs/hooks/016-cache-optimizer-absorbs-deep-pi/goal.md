@@ -71,7 +71,12 @@ anything above changes, the full text is resent in chat so the operator can upda
 
 | Surface | Bound to |
 |---------|----------|
-| Phase goals | `001-*/goal.md` through `006-*/goal.md` |
+| Phase goal | `001-reclaim-deepseek-direct-ownership/goal.md` |
+| Phase goal | `002-port-cache-economics/goal.md` |
+| Phase goal | `003-port-retry-loop-guard/goal.md` |
+| Phase goal | `004-port-hash-verified-edits/goal.md` |
+| Phase goal | `005-remove-deep-pi/goal.md` |
+| Phase goal | `006-reconcile-extension-documentation/goal.md` |
 | Packet spec | `spec.md` |
 | Closure gate | each phase's `acceptance-criteria.md` |
 | Operator copy | the session objective, which judges completion |

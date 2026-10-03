@@ -3,8 +3,6 @@ title: "Tasks: Goal-Hook Playbooks and Live Cross-Runtime Validation"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "goal hook playbook tasks"
-  - "name"
-  - "template"
   - "tasks core"
 importance_tier: "normal"
 contextType: "implementation"

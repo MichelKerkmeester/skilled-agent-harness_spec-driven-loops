@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor",
+  "spec_folder": "sk-doc/019-skill-routing-refactor",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/019-skill-routing-refactor/015-router-unification-program"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "authored compiled-routing source",
+      "router program authored copy",
+      "compiled route layout pin",
+      "route re-mint authored manifest",
+      "authored routing source plan",
+      "router program custodian plan",
+      "compiled routing source maintenance",
+      "authored routing source tasks",
+      "router program custodian tasks",
+      "compiled routing source verification",
+      "authored routing source summary",
+      "router program custodian record"
+    ],
+    "key_topics": [
+      "authored",
+      "compiled-routing",
+      "source",
+      "router",
+      "program",
+      "copy",
+      "compiled",
+      "route",
+      "layout",
+      "pin",
+      "re-mint",
+      "manifest"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/bin/lib/compiled-route-layout.cjs",
+      "specs/sk-doc/019-skill-routing-refactor/spec.md",
+      "specs/sk-doc/019-skill-routing-refactor/plan.md",
+      "specs/sk-doc/019-skill-routing-refactor/tasks.md",
+      "specs/sk-doc/019-skill-routing-refactor/implementation-summary.md",
+      ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+      ".skilled/bin/check-no-spec-imports.cjs",
+      ".skilled/bin/compiled-route-guard.cjs",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/019-skill-routing-refactor/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/019-skill-routing-refactor/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/019-skill-routing-refactor/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/019-skill-routing-refactor/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-layout.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-route-layout.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "serving-closure.manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/serving-closure.manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-spec-imports.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/check-no-spec-imports.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-guard.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Record",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Write",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Hub",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`specs/sk-doc/019-skill-routing-refactor/` sits in the spec tree under a packet number but carries no spec documents",
+    "created_at": "2026-10-03T16:41:04.296Z",
+    "last_save_at": "2026-10-03T16:41:04.296Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6eafe917f3cb06f97bc9b9ef50067b32616b29a07467d487977cf78da40d92c1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "811c7d4192f4f77e90e6a438b12c6eef1dc8a8ee3806ca44a5fcbbeea76dabea",
+      "plan.md": "57cdfa5b4e58988e71d09c52da69729e699a3ba371659c78d36d7014e295f8fc",
+      "tasks.md": "3b0932d8b5724e96213e46973ba4e177257ac43b1cc0dbe9bf717bd761a2aacd",
+      "implementation-summary.md": "6725869c1ad14e5ce105f2ac0fa965f174e6ac633193817cfdeda4e348e89cb0"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

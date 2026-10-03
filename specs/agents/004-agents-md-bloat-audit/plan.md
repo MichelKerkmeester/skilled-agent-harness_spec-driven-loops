@@ -4,8 +4,6 @@ description: "Run a 5-iteration read-only deep-research loop over the root AGENT
 trigger_phrases:
   - "agents.md bloat audit plan"
   - "deep research bloat"
-  - "implementation"
-  - "plan"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

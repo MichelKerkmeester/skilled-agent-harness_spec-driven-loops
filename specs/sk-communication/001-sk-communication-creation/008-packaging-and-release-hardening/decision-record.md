@@ -4,7 +4,7 @@ description: "Architecture decision for Phase 008: gate release with a dated sup
 trigger_phrases:
   - "packaging-and-release-hardening"
   - "architecture decision"
-  - "gate release with a dated support matrix and fail-closed compatibility doctor"
+  - "dated support matrix release gate"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

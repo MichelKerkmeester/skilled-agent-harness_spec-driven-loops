@@ -3,8 +3,6 @@ title: "Tasks: Phase 020 CLI-Output Wrapper Framework"
 description: "Planned task breakdown for the mode and adapter inventory, the parameterized wrapper entrypoint, incremental stream capture and normalization, the projectMessage() feed with a fail-open byte-exact original passthrough, the launch/registration pattern, and wrapper verification."
 trigger_phrases:
   - "cli-output-wrapper-framework"
-  - "tasks"
-  - "implementation"
   - "wrapper framework tasks"
 importance_tier: "important"
 contextType: "implementation"

@@ -14,15 +14,13 @@
       "retire governor directive",
       "proof over appearance removed",
       "advisor directive block",
-      "implementation",
-      "plan",
-      "name",
-      "template",
       "plan core",
-      "tasks",
       "tasks core",
       "acceptance criteria",
-      "closure gate"
+      "closure gate",
+      "ac traceability",
+      "waiver adr",
+      "impl summary core"
     ],
     "key_topics": [
       "retire",
@@ -33,10 +31,10 @@
       "removed",
       "advisor",
       "block",
-      "implementation",
       "plan",
-      "name",
-      "template"
+      "core",
+      "tasks",
+      "acceptance"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -46,9 +44,6 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
-      ".opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs",
       ".opencode/plugins/system-skill-advisor.js",
       ".opencode/hooks/injection-contract.md"
     ],
@@ -81,24 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "render.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
-        "source": "derived"
-      },
-      {
-        "name": "policy-plan.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/policy-plan.ts",
-        "source": "derived"
-      },
-      {
-        "name": "system-skill-advisor-bridge.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/plugin-bridges/system-skill-advisor-bridge.mjs",
         "source": "derived"
       },
       {
@@ -196,11 +173,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three constant directives were appended to every advisor brief on every user turn, on every",
     "created_at": "2026-08-30T18:28:13Z",
-    "last_save_at": "2026-09-10T20:43:35.182Z",
+    "last_save_at": "2026-10-03T15:11:50.397Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f048f887f431a8f1d650987e9a33725b9d29dfe40e4905cbbdd966613f5ffa7",
+    "source_fingerprint": "sha256:4d62cc2c5a3637f5a8fb5af0dfed6b9b4de29ba87ea8deff924e74d41fc5457d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4514f71054ee2bffb3d8135f6b4083bbbbed816c9c7f19cf6fb7955d0a5d8804",
-      "plan.md": "6a88d2ea1bb5673e356b0fce0e08d953990e990d3b6555346f3bd09a513377d0",
-      "tasks.md": "6d8b3f9a75c251736005bde5cf2cf010c220532f1814634deb0957731cf68cb7",
-      "implementation-summary.md": "18f47ab736272a9470340abf9b72e43e9bb95ca4fb1af97bac6161c828b83a7a"
+      "plan.md": "ede3b45a50bf018dfe8247c4b4f12f065d33498174f859c1e067988d1de30e3b",
+      "tasks.md": "46324c4d4c26f15b8ada592263792078b3e26cb937dff673b94500f7d4573a07",
+      "implementation-summary.md": "5c65494231e885ae44679938b78bff54858242b5cf263fb5616fd307663ebea6"
     },
     "last_active_child_id": null,
     "last_active_at": null

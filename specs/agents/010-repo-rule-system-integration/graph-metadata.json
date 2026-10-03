@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The rule set grew to eleven files in a few days, and every proposal so far was decided by one constraint discovered mid-flight rather than by design: Gate 5 fires on the first write of a session and never on a read-only turn, so a rule file goes silent exactly when someone is only reading",
     "created_at": "2026-09-11T18:25:49Z",
-    "last_save_at": "2026-09-11T18:27:16.570Z",
+    "last_save_at": "2026-10-03T15:11:43.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,11 +205,11 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:82d2642c234b69205cf0363ea78b42b92ce6ae25a13dec6d65e3faed9bc884ee",
+    "source_fingerprint": "sha256:8649bad4bfdba7a39da4941db2b167e84fd978321a0233f697b7aa33de80f7b2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3bc6dbdc278eda1464863284da170dab0c545413b6f35ee3f03c36c71345c258",
-      "plan.md": "9b3a046fbf03a4d0fc9c3dffedde557467f312b6b4e96ffa6c51aa463110bdc9",
+      "plan.md": "7558f946712fd6a85f5c586098f47e442577ddb2d006976b01180846c8a8562d",
       "tasks.md": "78434aab18e527b3632f619d3fc796fd5c70890073efb67a6f5b323ccf2df1c0",
       "implementation-summary.md": "b9d09ba699884150a870c2835e0c5610abdd2bf107053b70844e1556fd4cb906"
     },

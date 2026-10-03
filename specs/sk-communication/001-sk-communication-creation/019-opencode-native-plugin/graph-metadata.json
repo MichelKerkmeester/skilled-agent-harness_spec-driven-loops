@@ -19,10 +19,10 @@
       "implementation plan",
       "chat.message hook projection plan",
       "mk-communication-projection plugin plan",
-      "tasks",
-      "implementation",
       "mk-communication-projection plugin tasks",
-      "architecture decision"
+      "architecture decision",
+      "chat.message hook seam and message-id snapshot",
+      "mk-communication-projection decisions"
     ],
     "key_topics": [
       "opencode-native-plugin",
@@ -46,7 +46,6 @@
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-communication/cli-communication-projection/dist/index.js",
       "tests/README.md",
       ".opencode/plugins/README.md"
     ],
@@ -79,12 +78,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "index.js",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/dist/index.js",
         "source": "derived"
       },
       {
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Five Checks Evaluation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode is the only supported runtime with a native output-transform hook, but no runtime yet consumes the projection core, so the enablement flag gates nothing end-to-end",
     "created_at": "2026-08-14T05:28:35.233Z",
-    "last_save_at": "2026-08-30T15:39:11.812Z",
+    "last_save_at": "2026-10-03T15:12:02.711Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6059fc6e8e6bb820673c3862693b88eda4803bfe3186cc53a9f3bb1cf223b7ad",
+    "source_fingerprint": "sha256:fe06df3ecc1149a44c359fa609d66996fe2375709f9bcfa809c571e962096330",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "70c793f519a0bbec96e42cc5e6338578ce54cce80f15e4898e604da6b9ada162",
       "plan.md": "b6b8f462bc86a88a0d871a1fa72d1bcbfce9cf9feb3b94648fcf6a8b0b0058d6",
-      "tasks.md": "74cbdd5e94f8fa1008e69dbe9bf5467369f72b2c2353954e71fefdd7f52f3439",
+      "tasks.md": "5d343daf4d291431da933442384740b93087e42e7f0a4385f8d17acbf699d896",
       "decision-record.md": "1dbd61a94ab72d216df741e37aa8bd99ec4554dad738667535237ef42ee821a7",
       "implementation-summary.md": "3677c56e22436daa8fc8afd71d1ad3ada69e27697ffe0d32fea334b21d8dad5d"
     },

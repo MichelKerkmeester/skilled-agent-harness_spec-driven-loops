@@ -47,7 +47,6 @@
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
-      ".opencode/hooks/hook-flags.env",
       ".opencode/hooks/README.md",
       ".opencode/hooks/hook-flags.env.example",
       ".opencode/hooks/shared/hook-flags.cjs",
@@ -95,12 +94,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "hook-flags.env",
-        "kind": "file",
-        "path": ".opencode/hooks/hook-flags.env",
         "source": "derived"
       },
       {
@@ -204,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Equivalent hooks used different runtime adapters, module formats, and shell entrypoints",
     "created_at": "2026-08-13T17:49:26.189Z",
-    "last_save_at": "2026-09-10T20:43:33.872Z",
+    "last_save_at": "2026-10-03T14:37:12.378Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

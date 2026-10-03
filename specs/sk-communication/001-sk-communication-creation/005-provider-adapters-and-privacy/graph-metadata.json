@@ -15,14 +15,13 @@
       "portable cli projection",
       "implementation phase",
       "implementation plan",
-      "tasks",
-      "implementation",
       "architecture decision",
       "use model-scoped adapters behind a privacy-first router",
       "implementation status",
       "current state",
       "phase 005 handover",
-      "provider privacy handover"
+      "provider privacy handover",
+      "start runtime adapters clients"
     ],
     "key_topics": [
       "provider-adapters-and-privacy",
@@ -32,11 +31,11 @@
       "implementation",
       "phase",
       "plan",
-      "tasks",
       "architecture",
       "decision",
       "model-scoped",
-      "adapters"
+      "adapters",
+      "behind"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "Add model-scoped hosted and local provider adapters behind privacy-first routing and explicit egress consent",
     "created_at": "2026-08-11T10:04:30Z",
-    "last_save_at": "2026-09-11T16:41:54.054Z",
+    "last_save_at": "2026-10-03T15:12:00.148Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +208,12 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:211a8e3546bb64feedace5f51ae8a607ff82b01dd638342055864d62c32c848d",
+    "source_fingerprint": "sha256:dea517d4766497e2c65136b03ffe7ef5d5b0ee77692e5801fb0dc39946723226",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9dee715d5a6d992e5eb5cc2f86b5e148c4bf08cdfe8a09a37d0706cea25c9f49",
       "plan.md": "52282cd601e9e76abc1932d24e5f4e843f1bb64141610b3123dc90aec9a76ad1",
-      "tasks.md": "f180934ff55edf3d847ebce3c20db5134deaf2176e334a06e589f252c23619e9",
+      "tasks.md": "e4e8f481a401aea3fe2e59655485c6d4a3e68c1720f7389ee6c732ccff7287d8",
       "decision-record.md": "680883d20767bafb9d4a07c97f2d4e55d3f1ac18fb030fc7898265a130426608",
       "implementation-summary.md": "cd42a9f557ee2c13e8a1ad5df1589e95fc65bb1355f7b6a8096e9bbaf68025e2",
       "handover.md": "91d412ff1a8f730c3c44991d7228b6a9b8ee51ed379ef77f154161b6d3ca410a"

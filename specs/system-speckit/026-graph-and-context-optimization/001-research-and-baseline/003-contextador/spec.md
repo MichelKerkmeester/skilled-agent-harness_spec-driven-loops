@@ -2,7 +2,7 @@
 title: "Feature Specificatio [system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline/003-contextador/spec]"
 description: "Research Contextador's MCP query architecture, self-healing feedback loop, and Mainframe shared cache to identify concrete, evidence-backed improvements for Code_Environment/Public's retrieval surfaces."
 trigger_phrases:
-  - "contextador"
+  - "contextador research phase"
   - "mcp query interface"
   - "self-healing context"
   - "mainframe shared cache"

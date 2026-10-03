@@ -11,32 +11,32 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
       "spec core",
-      "implementation",
-      "plan",
       "plan core",
-      "tasks",
       "tasks core",
       "acceptance criteria",
-      "closure gate"
+      "closure gate",
+      "ac traceability",
+      "waiver adr",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "gate a summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
       "spec",
       "core",
-      "implementation",
       "plan",
       "tasks",
       "acceptance",
       "criteria",
-      "closure"
+      "closure",
+      "gate",
+      "traceability",
+      "waiver",
+      "adr",
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Across all five hubs, 234 of 444 declared signals resolve end to end to exactly one mode",
     "created_at": "2026-09-02T16:34:05Z",
-    "last_save_at": "2026-09-11T16:42:12.731Z",
+    "last_save_at": "2026-10-03T15:12:09.544Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,12 +221,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d8341819f5723f05209240e2cb4e81d67841be0c56e702ad73885b264e0fb8bb",
+    "source_fingerprint": "sha256:47ca2d28a7d9967e4d23ae9fb5bb7c6aa4439f50d5a3f101315539fc5f48e905",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "86e31a0b39f2c63126adbc56013f39f635d98aa16078359f0f3cc7dbf592ac5a",
-      "plan.md": "13b50981acca89033e8f4df03a5dc49603ab6ef65354c42e8d0e18760bd1ec54",
-      "tasks.md": "c1f5553b12f2d63a77ee46c63cc9b36fd41b646d538801846e7d0a8eed866b91",
+      "spec.md": "c9e3ae988736004307026bfc4377aa8f83017f43a15eacde8f1520933819f3d6",
+      "plan.md": "644fd9fdc6b67d551fc510f872cfec7f68c544dc6842587f46298d403b6f659e",
+      "tasks.md": "f597c81afb958861812abac5186adb3b46b278ce3577ee4cf3ca8efa61f78c81",
       "implementation-summary.md": "9563a8f9094c48e10f91df311b71065c34579bd9ee1163edc8dcd0b9257bf155"
     },
     "last_active_child_id": null,

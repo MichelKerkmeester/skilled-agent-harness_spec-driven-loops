@@ -84,7 +84,7 @@ rather than a rewrite.
 
 | Check | Result |
 |-------|--------|
-| Extension suite | exit 0, 68 -> 92 passing, tsc clean |
+| Extension suite, including the added `tests/hash-verified-edits.test.ts` | exit 0, 68 -> 92 passing, tsc clean |
 | Refusal | A target that drifted between read and write is refused; an unchanged target applies |
 | Annotation | Hashes are stable, whitespace-insensitive at line ends, offset-aware and idempotent on already-annotated content |
 <!-- /ANCHOR:verification -->

@@ -94,7 +94,7 @@ Document the implemented thin wrapper that makes every supported manual scenario
 
 - The optional DRY extraction into `persist-run-artifacts.cjs`, the Lane C shared-writer refactor, and the full 28-scenario-per-runtime suites.
 - Editing any authored playbook scenario command, prompt, feature file, or corpus manifest.
-- Changing Lane C's routing measurement or the normative D1-D5 contract. Link the [scoring contract](../../../../skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) and do not restate it; the authority is `scoring-contract.md:20-57`.
+- Changing Lane C's routing measurement or the normative D1-D5 contract. Point to the skill-benchmark scoring contract (`scoring-contract.md`, removed when the skill-benchmark lane was retired) and do not restate it; the authority is `scoring-contract.md:20-57`.
 - Creating a hand-authored `report.md` or a fill-in template for any renderer-owned Markdown report. The concrete renderer-owned file is `skill-benchmark-report.md`.
 - Repairing the historical goal-hook example; it remains historical evidence.
 - Guaranteeing persistence for an operator who bypasses the coordinator wrapper.

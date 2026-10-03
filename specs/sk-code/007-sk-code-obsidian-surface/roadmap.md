@@ -2,7 +2,6 @@
 title: "Roadmap: sk-code-obsidian surface and source-convention adoption"
 description: "Level-agnostic forward plan for near-term, next-step and later work."
 trigger_phrases:
-  - "roadmap"
   - "forward plan"
   - "now next later"
   - "sk-code-obsidian roadmap"

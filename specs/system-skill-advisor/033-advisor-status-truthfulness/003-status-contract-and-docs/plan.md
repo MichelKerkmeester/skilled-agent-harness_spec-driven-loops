@@ -263,3 +263,49 @@ Phase 1 (Setup: reader + source inventory) ──► Phase 2 (Docs + bound + hea
 - **Extend `semanticLaneHealth`**: mixes lane state with provider and server facts and keeps them behind an option the CLI cannot request.
 - **Probe on every status call**: adds latency and a hard dependency on the model server to a diagnostic that must work during outages.
 
+---
+
+<!-- ANCHOR:ai-execution -->
+## L3+: AI EXECUTION FRAMEWORK
+
+### Tier 1: Sequential Foundation
+**Files**: spec.md (sections 1-3)
+**Duration**: ~60s
+**Agent**: Primary
+
+### Tier 2: Parallel Execution
+| Agent | Focus | Files |
+|-------|-------|-------|
+| Plan Agent | plan.md | Technical approach |
+| Checklist Agent | tasks.md | Verification items |
+| Requirements Agent | spec.md (4-6) | Requirements detail |
+
+**Duration**: ~90s (parallel)
+
+### Tier 3: Integration
+**Agent**: Primary
+**Task**: Merge outputs, resolve conflicts
+**Duration**: ~60s
+
+### Pre-Task Checklist
+- [ ] Read spec.md, this plan and tasks.md before the first edit
+- [ ] Confirm the target files match the workstream file ownership below
+- [ ] Know the verification command for the task before starting it
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Execute tasks in dependency order; parallel work stays inside one workstream |
+| TASK-SCOPE | Touch only the files the task names; report anything else as a finding |
+| TASK-VERIFY | Run the task's verification before marking it complete |
+
+### Status Reporting Format
+
+`[TASK-ID] [DONE | IN PROGRESS | BLOCKED] - one line of evidence`
+
+### Blocked Task Protocol
+1. Mark the task BLOCKED with the blocking fact
+2. Record the fact in the tasks.md blocked section
+3. Continue with the next unblocked task; escalate after two blocked tasks
+<!-- /ANCHOR:ai-execution -->

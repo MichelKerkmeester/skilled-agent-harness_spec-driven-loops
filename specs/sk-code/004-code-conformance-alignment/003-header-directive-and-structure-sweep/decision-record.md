@@ -1,22 +1,19 @@
-<!-- IF level:3 -->
 ---
-title: "Decision Record: [NAME]"
-description: "Decision record template for documenting architectural choices, alternatives, consequences, and implementation notes."
+title: "Decision Record: Header, Directive and Structure Sweep"
+description: "Architecture decisions for this phase, carried over from the ADR section of plan.md."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "name"
-  - "template"
   - "decision record"
+  - "header directive and structure sweep decisions"
+  - "five checks evaluation"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level-3"
-    last_updated_at: "2026-04-11T00:00:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "sk-code/004-code-conformance-alignment/003-header-directive-and-structure-sweep"
+    last_updated_at: "2026-09-07T18:33:41+02:00"
+    last_updated_by: "spec-validation-backfill"
+    recent_action: "Recorded the plan.md ADRs as decision entries"
+    next_safe_action: "Update entries when an ADR status changes"
     blockers: []
     key_files: []
     session_dedup:
@@ -27,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Decision Record: [NAME]
+# Decision Record: Header, Directive and Structure Sweep
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
@@ -35,32 +32,27 @@ _memory:
 
 ---
 
+The decisions below are carried over verbatim from the ADR section of `plan.md`; their status there is the status here.
+
+---
+
 <!-- ANCHOR:adr-001 -->
-## ADR-001: [Decision Title]
+## ADR-001: Two gates per root, not one
 
 ### Metadata
 
 | Field | Value |
 |-------|-------|
-| **Status** | [Proposed/Accepted/Deprecated/Superseded] |
-| **Date** | [YYYY-MM-DD] |
-| **Deciders** | [Names] |
+| **Status** | Proposed |
+| **Date** | 2026-08-29 (first recorded in `plan.md`) |
+| **Deciders** | Not recorded |
 
 ---
 
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-<!-- Voice guide: State the problem directly. "We needed to choose between X and Y because Z"
-     not "A decision was required regarding the selection of an appropriate approach." -->
-
-[What problem or situation required this decision? What was at stake?
-Write in direct, active voice.]
-
-### Constraints
-
-- [Technical constraint with specifics]
-- [Business constraint with specifics]
+The drift verifier does not check header shape. On four lane A roots it returns `PASS` today while header-less files sit in the scanned set. Gating this phase on the verifier alone would reproduce the exact blindness that created the population.
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -68,9 +60,7 @@ Write in direct, active voice.]
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: [One-sentence description of the decision, in active voice]
-
-**How it works**: [Implementation approach in 2-3 direct sentences]
+Every root carries a header census as the closure gate and a verifier delta as the no-regression gate. A completion claim must report both.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -78,12 +68,8 @@ Write in direct, active voice.]
 <!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives Considered
 
-| Option | Pros | Cons | Score |
-|--------|------|------|-------|
-| **[Chosen]** | [Advantages] | [Disadvantages] | [X/10] |
-| [Alternative A] | [Advantages] | [Disadvantages] | [Y/10] |
-
-**Why this one**: [Rationale in 1-2 sentences, direct and specific]
+- *Verifier only*: cannot see the defect being fixed.
+- *Census only*: cannot see a regression the transform introduces.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -91,199 +77,103 @@ Write in direct, active voice.]
 <!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
-**What improves**:
-- [Specific benefit with measurable impact where possible]
-- [Specific benefit]
-
-**What it costs**:
-- [Specific drawback] . Mitigation: [How to handle it]
-
-**Risks**:
-
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| [Risk with specifics] | [H/M/L] | [Concrete strategy] |
+- The claim becomes falsifiable in both directions: the class is closed, and nothing else broke.
+- Two numbers must be captured and reported per root, which is more bookkeeping than a single `PASS`.
 <!-- /ANCHOR:adr-001-consequences -->
-
----
-
-<!-- ANCHOR:adr-001-five-checks -->
-### Five Checks Evaluation
-
-| # | Check | Result | Evidence |
-|---|-------|--------|----------|
-| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an actual need now?] |
-| 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
-| 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
-| 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
-| 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
-
-**Checks Summary**: [X/5 PASS]
-<!-- /ANCHOR:adr-001-five-checks -->
-
----
-
-<!-- ANCHOR:adr-001-impl -->
-### Implementation
-
-**What changes**:
-- [System/Component with specific change]
-- [System/Component with specific change]
-
-**How to roll back**: [Concrete revert steps, not "revert if needed"]
-<!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
 ---
 
-<!--
-Level 3 Decision Record (Addendum): One ADR per major decision.
-Write in human voice: active, direct, specific. No em dashes, no hedging.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-<!-- /IF -->
-
-<!-- IF level:3+ -->
----
-title: "Decision Record: [NAME]"
-description: "not \"A decision was required regarding the selection of an appropriate approach.\" -->"
-trigger_phrases:
-  - "decision"
-  - "record"
-  - "name"
-  - "template"
-  - "decision record"
-importance_tier: "normal"
-contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "system-spec-kit/templates/level-3+"
-    last_updated_at: "2026-04-11T00:00:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 plus template"
-    next_safe_action: "Replace continuity placeholders"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "template-session"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
----
-# Decision Record: [NAME]
-
-<!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
-
----
-
-<!-- ANCHOR:adr-001 -->
-## ADR-001: [Decision Title]
+<!-- ANCHOR:adr-002 -->
+## ADR-002: Three lanes ordered by blast radius, one commit per root
 
 ### Metadata
 
 | Field | Value |
 |-------|-------|
-| **Status** | [Proposed/Accepted/Deprecated/Superseded] |
-| **Date** | [YYYY-MM-DD] |
-| **Deciders** | [Names] |
+| **Status** | Proposed |
+| **Date** | 2026-08-29 (first recorded in `plan.md`) |
+| **Deciders** | Not recorded |
 
 ---
 
-<!-- ANCHOR:adr-001-context -->
+<!-- ANCHOR:adr-002-context -->
 ### Context
 
-<!-- Voice guide: State the problem directly. "We needed to choose between X and Y because Z"
-     not "A decision was required regarding the selection of an appropriate approach." -->
-
-[What problem or situation required this decision? What was at stake?
-Write in direct, active voice.]
-
-### Constraints
-
-- [Technical constraint with specifics]
-- [Business constraint with specifics]
-<!-- /ANCHOR:adr-001-context -->
+The population spans live hooks that run on every edit, authoring tooling, and benchmark rigs. A single sweeping commit would make a bad transform unrevertible without losing good work.
+<!-- /ANCHOR:adr-002-context -->
 
 ---
 
-<!-- ANCHOR:adr-001-decision -->
+<!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: [One-sentence description of the decision, in active voice]
-
-**How it works**: [Implementation approach in 2-3 direct sentences]
-<!-- /ANCHOR:adr-001-decision -->
+Three lanes, gated independently; within a lane, one commit per root.
+<!-- /ANCHOR:adr-002-decision -->
 
 ---
 
-<!-- ANCHOR:adr-001-alternatives -->
+<!-- ANCHOR:adr-002-alternatives -->
 ### Alternatives Considered
 
-| Option | Pros | Cons | Score |
-|--------|------|------|-------|
-| **[Chosen]** | [Advantages] | [Disadvantages] | [X/10] |
-| [Alternative A] | [Advantages] | [Disadvantages] | [Y/10] |
-
-**Why this one**: [Rationale in 1-2 sentences, direct and specific]
-<!-- /ANCHOR:adr-001-alternatives -->
+- *One commit for the whole sweep*: unrevertible at useful granularity.
+- *Per-file commits*: review noise without additional safety, since the gates are per root.
+<!-- /ANCHOR:adr-002-alternatives -->
 
 ---
 
-<!-- ANCHOR:adr-001-consequences -->
+<!-- ANCHOR:adr-002-consequences -->
 ### Consequences
 
-**What improves**:
-- [Specific benefit with measurable impact where possible]
-- [Specific benefit]
-
-**What it costs**:
-- [Specific drawback] . Mitigation: [How to handle it]
-
-**Risks**:
-
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| [Risk with specifics] | [H/M/L] | [Concrete strategy] |
-<!-- /ANCHOR:adr-001-consequences -->
+- Any root reverts alone, and lane A's live surfaces are gated by actually executing them.
+- The phase takes longer and produces more commits than a single sweep.
+<!-- /ANCHOR:adr-002-consequences -->
+<!-- /ANCHOR:adr-002 -->
 
 ---
 
-<!-- ANCHOR:adr-001-five-checks -->
-### Five Checks Evaluation
+<!-- ANCHOR:adr-003 -->
+## ADR-003: Fixture subjects are permanently exempt, enforced twice
 
-| # | Check | Result | Evidence |
-|---|-------|--------|----------|
-| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an actual need now?] |
-| 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
-| 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
-| 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
-| 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
+### Metadata
 
-**Checks Summary**: [X/5 PASS]
-<!-- /ANCHOR:adr-001-five-checks -->
+| Field | Value |
+|-------|-------|
+| **Status** | Proposed — ruling inherited from child 001 |
+| **Date** | 2026-08-29 (first recorded in `plan.md`) |
+| **Deciders** | Not recorded |
 
 ---
 
-<!-- ANCHOR:adr-001-impl -->
-### Implementation
+<!-- ANCHOR:adr-003-context -->
+### Context
 
-**What changes**:
-- [System/Component with specific change]
-- [System/Component with specific change]
-
-**How to roll back**: [Concrete revert steps, not "revert if needed"]
-<!-- /ANCHOR:adr-001-impl -->
-<!-- /ANCHOR:adr-001 -->
+Benchmark fixture subjects violate the standard by design; they are the inputs a grader is scored against. Editing them silently invalidates every historical result.
+<!-- /ANCHOR:adr-003-context -->
 
 ---
 
-<!--
-Level 3 Decision Record (Addendum): One ADR per major decision.
-Write in human voice: active, direct, specific. No em dashes, no hedging.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-<!-- /IF -->
+<!-- ANCHOR:adr-003-decision -->
+### Decision
+
+Exempt `**/benchmarks/**/fixtures/**` and seeded subject corpora, enforced both as a codemod filter and as a post-hoc diff assertion.
+<!-- /ANCHOR:adr-003-decision -->
+
+---
+
+<!-- ANCHOR:adr-003-alternatives -->
+### Alternatives Considered
+
+- *Filter only*: a filter bug would silently corrupt the corpus.
+- *Sweep fixtures too*: destroys the comparability of every historical benchmark result.
+<!-- /ANCHOR:adr-003-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-003-consequences -->
+### Consequences
+
+- Benchmark history stays comparable, and an accidental edit is caught even if the filter is wrong.
+- The standard carries a permanent documented exception, which must be discoverable so a future author does not "fix" the fixtures.
+<!-- /ANCHOR:adr-003-consequences -->
+<!-- /ANCHOR:adr-003 -->
