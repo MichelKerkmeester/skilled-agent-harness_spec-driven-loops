@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/006-verdict-fallback-improvements",
+  "description": "Phase 6: verdict-fallback-improvements",
+  "keywords": [
+    "phase",
+    "verdict-fallback-improvements"
+  ],
+  "lastUpdated": "2026-10-03T05:30:07.683Z",
+  "specId": "006",
+  "folderSlug": "verdict-fallback-improvements",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "049-jev-feature-improvement-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -170,6 +170,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 46 | 046-deem-deprecation/ | Remove `cli-deem` and every scorer's Deem arm so `cli-jev` is the only classifier, with `cli-classifier` kept as a parent hub for a future one. Four child phases. | Complete |
 | 47 | 047-measure-every-jev-feature/ | Give each of the 15 features without a Jev measurement a live Jev verdict or a zero-call bound from confirmed labels, then resend the benefit overview. | Complete |
 | 48 | 048-jev-feature-improvement-research/ | Research how to improve, refine and expand the ten kept or near-kept Jev features, one child each, with a DeepSeek and a Luna lineage. Ten child phases. | Complete |
+| 49 | 049-jev-feature-improvement-build/ | Build the recommendations from 048's research that need no new labels, corpus or default-on switch, one child per feature, and fix the deep-research workflow faults 048 hit. Twelve child phases. | Planned |
 
 ### Phase Transition Rules
 
@@ -231,6 +232,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 045-deem-live-runs | 046-deem-deprecation | 045 Complete, with its stopped runs superseded by its ADR-001 | `validate.sh --strict` on 045 |
 | 046-deem-deprecation | 047-measure-every-jev-feature | 046 Complete and the operator asked for every feature to be measured | 15 result rows in 047's `results.md` and `validate.sh --strict` on 047 |
 | 047-measure-every-jev-feature | 048-jev-feature-improvement-research | 047 Complete and the operator asked for research on every kept feature | `validate.sh --strict --recursive` on 048 |
+| 048-jev-feature-improvement-research | 049-jev-feature-improvement-build | 048 Complete and the operator asked for a build phase per researched feature and for the workflow faults | `validate.sh --strict --recursive` on 049 |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/001-fanout-merge-improvements",
+  "description": "Phase 1: fanout-merge-improvements",
+  "keywords": [
+    "phase",
+    "fanout-merge-improvements"
+  ],
+  "lastUpdated": "2026-10-03T05:30:03.630Z",
+  "specId": "001",
+  "folderSlug": "fanout-merge-improvements",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "049-jev-feature-improvement-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

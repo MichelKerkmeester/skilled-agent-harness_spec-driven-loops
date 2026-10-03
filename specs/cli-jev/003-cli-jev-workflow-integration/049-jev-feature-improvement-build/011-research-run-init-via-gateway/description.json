@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/011-research-run-init-via-gateway",
+  "description": "Phase 11: research-run-init-via-gateway",
+  "keywords": [
+    "phase",
+    "research-run-init-via-gateway"
+  ],
+  "lastUpdated": "2026-10-03T05:30:11.738Z",
+  "specId": "011",
+  "folderSlug": "research-run-init-via-gateway",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "049-jev-feature-improvement-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
