@@ -1,0 +1,14 @@
+{
+  "type": "config",
+  "topic": "Improve the Jev fan-out merge",
+  "maxIterations": 3,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research",
+  "sessionId": "fanout-luna-1790978645433-doul78",
+  "lineageId": "luna",
+  "generation": 1,
+  "executor": "cli-codex/gpt-6-luna",
+  "createdAt": "2026-10-02T22:21:06Z"
+}

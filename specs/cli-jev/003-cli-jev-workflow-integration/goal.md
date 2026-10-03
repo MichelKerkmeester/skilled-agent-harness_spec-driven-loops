@@ -44,11 +44,11 @@ _memory:
 
 | ID | Decision |
 |----|---|
-| D1 | Jev only, dormant unless `jev auth status --provider <p>` passes. Jev gets no secret |
-| D2 | `cli-classifier` stays a parent hub for future classifiers |
-| D3 | Run 019 to 047 in parallel when disjoint |
+| D1 | Jev only, dormant unless `jev auth status` passes. Jev gets no secret |
+| D2 | `cli-classifier` stays a parent hub |
+| D3 | Run 019 to 048 in parallel when disjoint |
 | D4 | 003, 006, 019 to 035 stop at their label gate. Only operator-confirmed or -delegated labels count |
-| D5 | Session verifies, commits. Workers: Luna 6 max fast (cli-codex), DeepSeek V4.1 Flash max (cli-pi: Cline, OpenCode Go). No MiMo or Claude leaves except the arbiter. Cross-family review: fix P0 and P1, record P2 |
+| D5 | Session verifies, commits. Workers: Luna 6 max fast (cli-codex), DeepSeek V4.1 Flash max (cli-pi). No MiMo or Claude leaves except the arbiter. Cross-family review: fix P0 and P1, record P2 |
 | D6 | Docs via sk-doc, code via sk-code |
 | D7 | Stop only for an install yes or missing key. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
@@ -109,6 +109,7 @@ Decisions outrank child goals.
 | 45 | `045-deem-live-runs/goal.md` |
 | 46 | `046-deem-deprecation/goal.md` |
 | 47 | `047-measure-every-jev-feature/goal.md` |
+| 48 | `048-jev-feature-improvement-research/goal.md` |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -116,7 +117,7 @@ Decisions outrank child goals.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 047 are Complete
+- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 048 are Complete
 - [x] 019 to 035 are Complete, each at its verdict line or label gate
 - [x] `validate_document.py` exits 0 on each changed skill doc
 - [x] No open P0 or P1, and no changed suite fails beyond its baseline
@@ -271,4 +272,6 @@ and findings belong here.
 | 046 Complete, all criteria met again (2026-10-02) | 046 removed `cli-deem` and every scorer's Deem arm, and `cli-classifier` serves `cli-jev` alone as a parent hub (commits `b946a35518` to `5655e1e388`, P2s in the logs of 046's children). From the final state: 24 inventory suites 0 fail, changed scorer suites 446 of 446, advisor suite 1055 passed with 0 failed, `validate.sh --strict --recursive` passes on this parent, its 46 children and 046's 4 nested children, and `check-goal.cjs` passes on all 51 goals |
 | 047 opened (2026-10-02) | The operator asked for every Jev feature to be measured. Phase 047 added with its goal and bound as row 47, criterion 1 reopened. Recursive strict validation printed `RESULT: PASSED` 48 times with 0 failed, and `check-goal.cjs` passed on all 52 goals. To fit the 4,000-character budget, D2, D3, D5 and D7 lost a few words each with no choice changed |
 | 047 Complete, all criteria met again (2026-10-02) | 047 measured all 15 remaining Jev features: keep 020, 022, 024, 025, 030, kill 006, 027, 028, 033, stop on margin 026, 031, no headroom 003, 005, 021, 034. One scorer fix in 027 (commit `51b2b3bd51`). Recursive strict 48 PASSED 0 FAILED, `check-goal.cjs` 52 of 52. Committed on `worktrees/082-measure-every-jev-feature`, not merged |
+| 048 opened (2026-10-03) | The operator asked for research on every kept feature: DeepSeek 5 iterations and Luna 3 per feature. 048 bound as row 48 with ten children, criterion 1 reopened. To fit the budget, D1 dropped the `--provider` argument, D2 its `cli-jev` mention and D5 its stale provider list, with no choice changed |
+| 048 Complete, all criteria met again (2026-10-03) | All ten children hold a merged `research.md` from DeepSeek (5 iterations) and Luna (3), each with one `synthesis_complete`. Three deep-loop runtime faults are recorded as P2 in 048's log: no producer for `run_initialized` (a config row blocks the first projection), the 15-key init row, and delta field drift in the merge. `validate.sh --strict --recursive` passes on 048 and its 10 children, `check-goal.cjs` passes on all 11 goals. Committed on `worktrees/085-jev-feature-improvement-research`, not merged |
 <!-- /ANCHOR:log -->

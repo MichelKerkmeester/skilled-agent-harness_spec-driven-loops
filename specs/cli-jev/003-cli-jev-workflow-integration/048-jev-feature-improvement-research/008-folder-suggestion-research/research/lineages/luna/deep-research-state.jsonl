@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":1,"run":1,"status":"insight","newInfoRatio":0.82,"ruledOut":[],"timestamp":"2026-10-03T02:32:07.342Z"}
+{"type":"event","event":"resumed","sessionId":"fanout-luna-1790993641275-joymxn","parentSessionId":"fanout-luna-1790993641275-joymxn","generation":1,"reason":"legacy-resume","timestamp":"2026-10-03T03:08:17.335Z"}
+{"type":"iteration","iteration":2,"run":2,"status":"insight","newInfoRatio":0.68,"ruledOut":["legacy-jsonl:fedfbaca662745f650506855236e5b53931d0600c08d9790ae94da5584296681:ruled-out:1"],"timestamp":"2026-10-03T03:11:41.449Z"}
+{"type":"iteration","iteration":3,"run":3,"status":"insight","newInfoRatio":0.71,"ruledOut":["legacy-jsonl:e03e50e3b81b03064b0827a638950d775418751479c3402ffab37b7e37c4b7a7:ruled-out:1"],"timestamp":"2026-10-03T03:14:31.973Z"}
+{"type":"event","event":"synthesis_complete","stem":"deep_research.synthesis_complete","lineageId":"fanout-luna-1790993641275-joymxn","runId":"fanout-luna-1790993641275-joymxn","answeredCount":5,"stopReason":"maxIterationsReached","totalIterations":3,"totalQuestions":5,"timestamp":"2026-10-03T03:25:20.922Z"}

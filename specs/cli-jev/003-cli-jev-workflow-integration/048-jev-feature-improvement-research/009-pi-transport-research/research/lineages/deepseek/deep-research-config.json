@@ -1,0 +1,21 @@
+{
+  "topic": "Improve, refine and expand the Jev Pi native classifier transport (cli-jev feature 037): the transport module .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs, its comparison scorer .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs, and the measured verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": { "convergenceMode": "default" },
+  "resource_map": { "emit": true },
+  "lineage": {
+    "sessionId": "fanout-deepseek-1790986325077-da6hri",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "executor": { "kind": "cli-pi", "model": "deepseek-v4.1-flash", "reasoningEffort": "max" },
+  "createdAt": "2026-10-03T00:21:10Z",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research",
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

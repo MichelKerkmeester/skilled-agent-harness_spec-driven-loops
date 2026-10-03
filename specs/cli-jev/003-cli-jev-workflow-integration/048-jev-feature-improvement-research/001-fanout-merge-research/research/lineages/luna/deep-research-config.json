@@ -1,0 +1,49 @@
+{
+  "topic": "Improve the Jev fan-out merge",
+  "research_topic": "Improve, refine and expand the Jev fan-out merge (cli-jev feature 030). Its scorer is .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs in system-deep-loop, and it measures the merge step of /deep:research and /deep:review fan-out runs, which decides whether two findings from parallel lineages are the same finding (fanout-merge.cjs and the fan-out runner in .skilled/skills/system-deep-loop/runtime/scripts/). Measured result: verdict jev: keep K=60 M=60 A=53 B=12 W=44 L=3 F=3 p=1.232e-10 on 60 recorded fan-out pairs labeled by a delegated arbiter. Real data and the largest win measured. The merge's own rule was right only on the 12 pairs labeled different. Answer five questions with file:line evidence: what drove this result, how to raise its accuracy or lower its cost, how to make the measurement more trustworthy, where else in .skilled the same judgment would pay off, and what a default-on integration would need, cost and risk.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research",
+  "artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/085-jev-feature-improvement-research/specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/research/lineages/luna",
+  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/085-jev-feature-improvement-research/specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/research/lineages/luna",
+  "loop_type": "research",
+  "stopPolicy": "max-iterations",
+  "stop_policy": "max-iterations",
+  "maxIterations": 3,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "convergenceMode": "default",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "timeoutSeconds": 3600
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-1790978645433-doul78",
+    "generation": 1,
+    "lineageId": "luna",
+    "lineageMode": "detached"
+  },
+  "scopeBoundary": {
+    "writeRoot": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/research/lineages/luna",
+    "forbiddenWrites": [
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/spec.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/plan.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/tasks.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/research/research.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/research/deep-research-config.json",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/research/deep-research-state.jsonl",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research/research/deep-research-strategy.md",
+      ".skilled",
+      ".utcp_config.json"
+    ],
+    "writeback": "skipped by detached lineage boundary"
+  },
+  "createdAt": "2026-10-02T22:21:06Z",
+  "status": "complete"
+}

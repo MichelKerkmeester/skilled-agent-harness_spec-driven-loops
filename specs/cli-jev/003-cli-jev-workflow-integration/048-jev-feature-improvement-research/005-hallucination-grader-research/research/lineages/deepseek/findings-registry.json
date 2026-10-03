@@ -1,0 +1,440 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "text": "What drove the measured result (K=56, M=56, A=55, B=47, W=8, L=0, F=1, p_win=0.003906)?",
+      "status": "resolved",
+      "resolvedAtIteration": 1,
+      "evidence": [
+        "047 run report.json/calls.jsonl",
+        "024-labels.jsonl",
+        "score-d4-agreement.cjs:240-258,296-305,344-346",
+        "hallucination-flag.cjs:106,123,154-176",
+        "in-memory reproduction (tp=9 tn=13 fp=34 fn=0)"
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "How can grader accuracy be raised or cost lowered?",
+      "status": "resolved",
+      "resolvedAtIteration": 2,
+      "evidence": [
+        "score-d4-agreement.cjs:43,712,996,982-996,841-845",
+        "grader/dispute.cjs:35,52-82,110-130",
+        "grader/prompts/system-grader.md:22-27",
+        "score-model-variant.cjs:217-229",
+        "in-memory reproduction"
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "Where else in .skilled would the same invented-name judgment pay off?",
+      "status": "resolved",
+      "resolvedAtIteration": 4,
+      "evidence": [
+        "agents/review.md:351,353,356",
+        "reviewer-scorer.cjs:46-51",
+        "citation-drift-scan.md:19-31",
+        "cli-classifier/mode-registry.json:23,32"
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "How can the measurement be made more trustworthy?",
+      "status": "resolved",
+      "resolvedAtIteration": 3,
+      "evidence": [
+        "024 spec.md:135,151-160",
+        "042 spec.md:44",
+        "derived: Clopper-Pearson/Bonferroni",
+        "score-d4-agreement.cjs:841-845",
+        "cache.cjs:22-24,52"
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "What would a default-on integration need, cost, and risk?",
+      "status": "resolved",
+      "resolvedAtIteration": 5,
+      "evidence": [
+        "024 goal.md:48,52",
+        "024 spec.md:94",
+        "score-model-variant.cjs:217-229",
+        "run-benchmark.cjs:590-634",
+        "harness.cjs:388-465",
+        "deep-model-benchmark-auto.yaml:233-245"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-corpus",
+      "text": "56 outputs = 42 honest (21 fixtures x run1/run2) + 14 careless run3; the 9 yes labels are exactly the nine hallucinating run3 files; 5 run3 answers are careless but clean.",
+      "addedAtIteration": 1,
+      "sources": [
+        "024-labels.jsonl",
+        "047/scratch/evidence/results.md:13"
+      ]
+    },
+    {
+      "id": "finding-1-miss",
+      "text": "A=55: all 47 no rows right, 8/9 yes rows right; the miss is harder-normalize-path.run3 (nouls 0.43/0.43/0.40, invented require + splitOnSlashes), a threshold false negative.",
+      "addedAtIteration": 1,
+      "sources": [
+        "047 run calls.jsonl",
+        "score-d4-agreement.cjs:344-346"
+      ]
+    },
+    {
+      "id": "finding-1-flip",
+      "text": "F=1 comes from validate-semver.run3 (0.55/0.41/0.54, two yes votes, one dissent); every other row voted unanimously.",
+      "addedAtIteration": 1,
+      "sources": [
+        "047 run calls.jsonl"
+      ]
+    },
+    {
+      "id": "finding-1-separation",
+      "text": "Noul separation: no-class median 0.07 / p95 0.23 / max 0.43; yes-class median 0.71 / min 0.40; only 8 of 168 calls in [0.40,0.60).",
+      "addedAtIteration": 1,
+      "sources": [
+        "047 run calls.jsonl"
+      ]
+    },
+    {
+      "id": "finding-1-baseline-method",
+      "text": "Baseline is majority (no) because checkRight 22 < majorityRight 47; majority never says yes, so the 8 caught yes rows are the only wins (W=8) and L=0 is structural.",
+      "addedAtIteration": 1,
+      "sources": [
+        "score-d4-agreement.cjs:240-258",
+        "report.json"
+      ]
+    },
+    {
+      "id": "finding-1-check-artifact",
+      "text": "The check's 22 reproduces exactly in memory (tp=9 tn=13 fp=34 fn=0) and is an allowlist artifact: 0 of 21 fixtures carry an allowlist, so every extracted token is unverified and 34 of 47 honest rows are flagged.",
+      "addedAtIteration": 1,
+      "sources": [
+        "score-d4-agreement.cjs:83-105,214",
+        "hallucination-flag.cjs:154-176"
+      ]
+    },
+    {
+      "id": "finding-1-grader-advantage",
+      "text": "The grader sees task+visibleSpec+output and can tell task-provided names from invented ones; the check cannot, which is exactly where the 34 fp and the grader's 47/47 specificity come from.",
+      "addedAtIteration": 1,
+      "sources": [
+        "score-d4-agreement.cjs:188-195",
+        "hallucination-flag.cjs:153-176"
+      ]
+    },
+    {
+      "id": "finding-1-keep-rule",
+      "text": "All five keep checks pass: coverage 560>=504, p_loss=1.0, margin 80>=56, sign 2^-8<0.05, flips 10<=168; headroom gate 470>504 false so the arm opened.",
+      "addedAtIteration": 1,
+      "sources": [
+        "score-d4-agreement.cjs:296-305,982-998",
+        "report.json"
+      ]
+    },
+    {
+      "id": "finding-1-cost",
+      "text": "169 calls (1 auth + 3x56), 0 unmeasured, ~93,003 estimated input tokens, app latency p50 326 ms / p95 434 ms / max 648 ms, auth 614 ms.",
+      "addedAtIteration": 1,
+      "sources": [
+        "047 run calls.jsonl",
+        "score-d4-agreement.cjs:43,712,996"
+      ]
+    },
+    {
+      "id": "finding-2-allowlist-lever",
+      "text": "0/21 fixtures carry allowlists; populating them repairs check specificity, anchors the Claude grader rubric, and lets buildState pass ground truth to the jev grader — the top structural lever.",
+      "addedAtIteration": 2,
+      "sources": [
+        "score-d4-agreement.cjs:83-105,191-192,214",
+        "system-grader.md:22-27"
+      ]
+    },
+    {
+      "id": "finding-2-cascade",
+      "text": "Cascade routes 43/56 rows today (130 vs 169 calls, 23% saving) because check fn=0; saving grows once allowlists cut the 34 false positives (unmeasured).",
+      "addedAtIteration": 2,
+      "sources": [
+        "in-memory reproduction",
+        "score-d4-agreement.cjs:209-231"
+      ]
+    },
+    {
+      "id": "finding-2-threshold",
+      "text": "Threshold 0.42 would fix the corpus miss with no no-row flip, but margin is one row and 0.03 noul: held-out hypothesis, not a patch.",
+      "addedAtIteration": 2,
+      "sources": [
+        "047 run calls.jsonl"
+      ]
+    },
+    {
+      "id": "finding-2-failure-semantics",
+      "text": "In the --grader llm path a dispatch or parse failure yields score 0.0 / parse_status failed, reading as maximal hallucination (D4 weight 0.15).",
+      "addedAtIteration": 2,
+      "sources": [
+        "score-model-variant.cjs:217-229,53-58",
+        "harness.cjs:427-438,458-465"
+      ]
+    },
+    {
+      "id": "finding-2-dispute",
+      "text": "dispute.cjs escalates low-confidence D4 calls to an adversarial second call with median+dispute; the jev arm has no analogue; 8/168 calls sit in [0.40,0.60).",
+      "addedAtIteration": 2,
+      "sources": [
+        "dispute.cjs:35,52-82,110-130",
+        "047 run calls.jsonl"
+      ]
+    },
+    {
+      "id": "finding-4-review",
+      "text": "Review findings already promise the property (paths exist, citations verified, no hallucinated issues) but enforce it by self-attestation; a jev name-existence pass makes it measured. Highest stake.",
+      "addedAtIteration": 4,
+      "sources": [
+        "agents/review.md:351,353,356",
+        "sk-code-review/SKILL.md:25,45",
+        "deep-review loop-protocol.md:113-118"
+      ]
+    },
+    {
+      "id": "finding-4-reviewer-seat",
+      "text": "reviewer-scorer.cjs grades reviewer-prompt fixtures with expectedVerdict/expectedFindings; four reviewer fixtures already in the corpus; D4 seat exists in the same scorer.",
+      "addedAtIteration": 4,
+      "sources": [
+        "reviewer-scorer.cjs:46-51",
+        "benchmark-fixtures reviewer-*.json",
+        "score-model-variant.cjs:53-58"
+      ]
+    },
+    {
+      "id": "finding-4-docs",
+      "text": "cite-drift-scan.mjs covers only <path>:<line> citation shapes and runs its own jev question; prose flag/function claims are uncovered — the D4 complement, as an advisory doc lint.",
+      "addedAtIteration": 4,
+      "sources": [
+        "sk-doc feature-catalog citation-drift-scan.md:19-31"
+      ]
+    },
+    {
+      "id": "finding-4-deeploop",
+      "text": "Deep-loop evidence files cite file:line at high volume; dead citations partially covered, never-existed targets the complement; lower stake than review findings.",
+      "addedAtIteration": 4,
+      "sources": [
+        "citation-drift-scan.md:21",
+        "deep-review loop-protocol.md:113-114"
+      ]
+    },
+    {
+      "id": "finding-4-route",
+      "text": "cli-classifier registers one transport (cli-jev) and says future classifiers join as modes; a name-existence mode gives all surfaces one route instead of per-feature prompts.",
+      "addedAtIteration": 4,
+      "sources": [
+        "cli-classifier/mode-registry.json:23,32",
+        "cli-classifier/SKILL.md:3"
+      ]
+    },
+    {
+      "id": "finding-4-notfit",
+      "text": "Not for forward-looking planning docs (they legitimately name future artifacts); any code-answer adoption needs populated allowlists or it repeats the empty-allowlist false-positive trap.",
+      "addedAtIteration": 4,
+      "sources": [
+        "citation-drift-scan.md:23",
+        "iteration-1/2 reproduction"
+      ]
+    },
+    {
+      "id": "finding-3-prereg",
+      "text": "Keep rule pre-registered 2026-09-29 before any model run; REQ-005 voids earlier verdicts if changed; power floor documented; applied exactly.",
+      "addedAtIteration": 3,
+      "sources": [
+        "024 spec.md:135,151-160",
+        "score-d4-agreement.cjs:35,37,296-305"
+      ]
+    },
+    {
+      "id": "finding-3-labels",
+      "text": "Labels are one delegated opinion: fresh Opus 5.5 medium arbiter per 042 ADR-001, blind, no second rater or adjudication of the one disagreement.",
+      "addedAtIteration": 3,
+      "sources": [
+        "047 goal.md:47",
+        "042 spec.md:44",
+        "047 results.md:13"
+      ]
+    },
+    {
+      "id": "finding-3-clustering",
+      "text": "Rows cluster by fixture (42 honest = 21x2; 9 yes = 9 fixtures; W+L=8); sign test assumes independence. Accuracy 55/56 CP95 [0.9045,0.9995] hides sensitivity 8/9 [0.5175,0.9972].",
+      "addedAtIteration": 3,
+      "sources": [
+        "024-labels.jsonl",
+        "derived: Clopper-Pearson"
+      ]
+    },
+    {
+      "id": "finding-3-familywise",
+      "text": "Nominal, not family-wise: Bonferroni k=15 threshold 0.003333, k=22 0.002273, p_win 0.00390625 above both; P(>=1 false keep in 15 indep tests) = 0.5367.",
+      "addedAtIteration": 3,
+      "sources": [
+        "047 spec.md:62",
+        "derived"
+      ]
+    },
+    {
+      "id": "finding-3-construct",
+      "text": "Check column flags a superset of the jev question scope because allowlists are empty; B is majority, so the 22 is not a same-question comparator; allowlist population makes the bar harder.",
+      "addedAtIteration": 3,
+      "sources": [
+        "score-d4-agreement.cjs:153-176,214",
+        "in-memory reproduction"
+      ]
+    },
+    {
+      "id": "finding-3-requalify",
+      "text": "Requalification compares provider/model only; labels sha is printed/recorded but never compared. Cache grader build hash placeholder mitigated by model-name+prompt-sha composite.",
+      "addedAtIteration": 3,
+      "sources": [
+        "score-d4-agreement.cjs:841-845,356",
+        "cache.cjs:22-24,52",
+        "harness.cjs:388-403"
+      ]
+    },
+    {
+      "id": "finding-3-stability",
+      "text": "Single recorded execution; 027 rerun precedent exists; the one flip shows boundary sampling noise; verdict stability unmeasured for 024.",
+      "addedAtIteration": 3,
+      "sources": [
+        "047 results.md:16",
+        "calls.jsonl"
+      ]
+    },
+    {
+      "id": "finding-3-receipts",
+      "text": "Receipts are strong (labels sha, calls.jsonl, strict parsing, payload gate, byte-identical skips); gaps are report surfacing.",
+      "addedAtIteration": 3,
+      "sources": [
+        "score-d4-agreement.cjs:139-163,356,436-480"
+      ]
+    },
+    {
+      "id": "finding-3-family",
+      "text": "Corpus tests one hallucination family on cooperative text; no other planted hallucination kinds and no adversarial outputs, though the harness has injection defenses.",
+      "addedAtIteration": 3,
+      "sources": [
+        "024-labels.jsonl",
+        "024-outputs/",
+        "harness.cjs:98-110,201-220"
+      ]
+    },
+    {
+      "id": "finding-5-backend-transfer",
+      "text": "The keep covers the jev column only; the llm grader is a different implementation never measured by this arm; keep rule applies per backend column; wiring a jev kind is a later operator-opened phase.",
+      "addedAtIteration": 5,
+      "sources": [
+        "024 goal.md:48,52",
+        "024 spec.md:94,135"
+      ]
+    },
+    {
+      "id": "finding-5-failure-semantics",
+      "text": "A default-on grader must first gain an unmeasured/unavailable representation; today dispatch or parse failure becomes score 0.0, deliberately left unchanged by 024 D1.",
+      "addedAtIteration": 5,
+      "sources": [
+        "024 goal.md:48",
+        "score-model-variant.cjs:217-229",
+        "harness.cjs:427-438"
+      ]
+    },
+    {
+      "id": "finding-5-defaults",
+      "text": "Defaults are hermetic (pattern, noop) and reports stamp scoringMethod+grader; default-on changes what every run measures and needs versioning plus re-baselining.",
+      "addedAtIteration": 5,
+      "sources": [
+        "opt-in-5dim-scorer.md:23-27",
+        "run-benchmark.cjs:577,590,737-740"
+      ]
+    },
+    {
+      "id": "finding-5-guards",
+      "text": "Family-collision guard refuses same-family llm grading without explicit override; jev gate skips without credential; default-on needs a stated independent grader model and documented degraded mode, no silent mock fallback.",
+      "addedAtIteration": 5,
+      "sources": [
+        "run-benchmark.cjs:590-592,621-634",
+        "score-d4-agreement.cjs:436-480"
+      ]
+    },
+    {
+      "id": "finding-5-cost",
+      "text": "One grader call per scored output per uncached pass; harness cache makes repeats free; recorded jev reference 169 calls / ~93k est. tokens for 56 outputs; no per-run cost cap (fanout cost-unit guard precedent).",
+      "addedAtIteration": 5,
+      "sources": [
+        "score-model-variant.cjs:295-306",
+        "harness.cjs:388-417,458-465",
+        "fanout-run.cjs:1047"
+      ]
+    },
+    {
+      "id": "finding-5-allowlists",
+      "text": "The llm rubric scores against allowlist.cli_flags/symbols; all 21 fixtures carry none; populate before default-on or the grader runs anchorless.",
+      "addedAtIteration": 5,
+      "sources": [
+        "system-grader.md:22-27",
+        "in-memory reproduction"
+      ]
+    },
+    {
+      "id": "finding-5-blast-radius",
+      "text": "Blast radius is advisory: the auto workflow can only recommend, cannot invoke promotion or create approval receipts (test asserts); outcome enum includes advisoryOnly.",
+      "addedAtIteration": 5,
+      "sources": [
+        "deep-model-benchmark-auto.yaml:233-245",
+        "autonomous-promotion-authority.vitest.ts:11-19"
+      ]
+    },
+    {
+      "id": "finding-5-noise",
+      "text": "Repeatability tolerance precedent (0.03, sub-tolerance deltas read as ties) encodes single-sample noise concerns; default-on D4 adds sampled noise to 15% of the weighted score.",
+      "addedAtIteration": 5,
+      "sources": [
+        "default.json",
+        "calls.jsonl"
+      ]
+    },
+    {
+      "id": "finding-5-trust-debt",
+      "text": "Measurement trust debt (single-labeler labels, clustered rows, nominal significance, one hallucination family) would circulate at larger scale with default-on.",
+      "addedAtIteration": 5,
+      "sources": [
+        "024 goal.md:52",
+        "iteration-3 findings"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-check-ceiling",
+      "text": "Reading 'deterministic check 22 of 56' as the check's realistic ceiling",
+      "reason": "It is the check with its allowlist input empty, which the fixture corpus guarantees.",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-threshold-patch",
+      "text": "Retuning the 0.5 threshold on this corpus' own evidence",
+      "reason": "Post-hoc, one-row margin (0.03 noul); threshold policy belongs in a fresh held-out agreement run.",
+      "addedAtIteration": 2
+    }
+  ],
+  "coverageBySources": {
+    "repo-scorer": 8,
+    "repo-grader-path": 5,
+    "repo-fixtures": 2,
+    "measurement-run": 6,
+    "spec-packet": 3,
+    "repo-review-docs": 4
+  },
+  "blockedStopHistory": [],
+  "updatedAt": "2026-10-03T00:27:00Z"
+}

@@ -50,7 +50,8 @@
     "cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix",
     "cli-jev/003-cli-jev-workflow-integration/045-deem-live-runs",
     "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation",
-    "cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature"
+    "cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature",
+    "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research"
   ],
   "manual": {
     "depends_on": [],
@@ -213,17 +214,17 @@
     ],
     "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-10-02T20:39:14.339Z",
+    "last_save_at": "2026-10-03T05:08:33.659Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:27190e59ea9ad4c0892d4b753a52197a8bdbb52636e2eebf44ad38921b96d899",
+    "source_fingerprint": "sha256:a8ccc0dd77f29d211b58bd0c69e8ddfbb4d3dad56cc79bad680241fe2c11d42a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0b421fbd575493d658ec0da2561c769b192e34dd99e943168628e404be8eaa20"
+      "spec.md": "ee244a8745a9058a3bb19d6184c0034c4b5bb68ebd1fb24e79d17223d75c92f2"
     },
     "last_active_child_id": "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
     "last_active_at": "2026-09-27T09:37:40.643Z"

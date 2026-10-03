@@ -169,6 +169,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 45 | 045-deem-live-runs/ | Run every scorer's Deem arm once on the local Deem server and record each result, and close the three Deem findings 044 recorded. Stopped after 2 of 20 when the operator retired Deem. | Complete |
 | 46 | 046-deem-deprecation/ | Remove `cli-deem` and every scorer's Deem arm so `cli-jev` is the only classifier, with `cli-classifier` kept as a parent hub for a future one. Four child phases. | Complete |
 | 47 | 047-measure-every-jev-feature/ | Give each of the 15 features without a Jev measurement a live Jev verdict or a zero-call bound from confirmed labels, then resend the benefit overview. | Complete |
+| 48 | 048-jev-feature-improvement-research/ | Research how to improve, refine and expand the ten kept or near-kept Jev features, one child each, with a DeepSeek and a Luna lineage. Ten child phases. | Complete |
 
 ### Phase Transition Rules
 
@@ -229,6 +230,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 044-deem-answer-shape-fix | 045-deem-live-runs | 044 is Complete, so the client reads real answers, and the operator asked for every Deem item | Every Deem scorer has a recorded run, no run shows an answer-shape error, the cross-family review leaves no open P0 or P1, and `validate.sh --strict` passes on 045 |
 | 045-deem-live-runs | 046-deem-deprecation | 045 Complete, with its stopped runs superseded by its ADR-001 | `validate.sh --strict` on 045 |
 | 046-deem-deprecation | 047-measure-every-jev-feature | 046 Complete and the operator asked for every feature to be measured | 15 result rows in 047's `results.md` and `validate.sh --strict` on 047 |
+| 047-measure-every-jev-feature | 048-jev-feature-improvement-research | 047 Complete and the operator asked for research on every kept feature | `validate.sh --strict --recursive` on 048 |
 <!-- /ANCHOR:phase-map -->
 
 ---

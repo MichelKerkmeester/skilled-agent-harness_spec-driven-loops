@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research",
+  "description": "Phase 047 measured the Jev fan-out merge at verdict jev: keep K=60 M=60 A=53 B=12 W=44 L=3 F=3 p=1.232e-10 on 60 recorded fan-out pairs labeled by a",
+  "keywords": [
+    "phase",
+    "measured",
+    "jev",
+    "fan-out",
+    "merge",
+    "verdict",
+    "keep",
+    "232e-10",
+    "recorded",
+    "pairs",
+    "labeled"
+  ],
+  "lastUpdated": "2026-10-02T22:02:39.133Z",
+  "specId": "001",
+  "folderSlug": "fanout-merge-research",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "048-jev-feature-improvement-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
