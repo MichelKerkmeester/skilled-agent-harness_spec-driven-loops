@@ -1,185 +1,195 @@
-// ┌──────────────────────────────────────────────────────────────────────────┐
-// │ MODULE: deep-research run-open gateway contract                          │
-// │ Each case extracts the shipped step_create_state_log text from both      │
-// │ research workflows, renders its placeholders, runs it with bash against   │
-// │ a fresh temp run directory, and asserts the ledger's first frame, the     │
-// │ gateway receipt, the projected state log and a following gateway append,  │
-// │ so a pass is a statement about the shipped workflow text itself.          │
-// └──────────────────────────────────────────────────────────────────────────┘
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Deep Research Run Open Tests
+// ───────────────────────────────────────────────────────────────────
 
-import { afterEach, describe, expect, it } from 'vitest';
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { afterEach, describe, expect, it } from 'vitest';
+
+import { DEEP_RESEARCH_STEM_PRODUCERS } from '../../lib/deep-research-ledger-schema/deep-research-ledger-types.js';
+
 const here = dirname(fileURLToPath(import.meta.url));
-const RUNTIME_ROOT = resolve(here, '..', '..');
-const REPO_ROOT = resolve(RUNTIME_ROOT, '..', '..', '..', '..');
-const GATEWAY_PATH = resolve(RUNTIME_ROOT, 'scripts', 'append-mode-event.cjs');
+const REPO_ROOT = resolve(here, '..', '..', '..', '..', '..', '..');
+const GATEWAY = resolve(here, '..', '..', 'scripts', 'append-mode-event.cjs');
+const FANOUT_RUN = resolve(here, '..', '..', 'scripts', 'fanout-run.cjs');
 
-const WORKFLOWS = [
-  { variant: 'auto', yamlPath: resolve(REPO_ROOT, '.skilled/commands/deep/assets/deep-research-auto.yaml') },
-  { variant: 'confirm', yamlPath: resolve(REPO_ROOT, '.skilled/commands/deep/assets/deep-research-confirm.yaml') },
-] as const;
+const buildLoopPrompt = createRequire(import.meta.url)(FANOUT_RUN).buildLoopPrompt as (
+  loopType: 'research',
+  specFolder: string,
+  lineageDir: string,
+  sessionId: string,
+  lineage: { kind: 'native'; label: string },
+  researchTopic: string,
+  options?: { stopPolicy?: string },
+) => string;
 
-const SESSION_ID = 'session-run-open-001';
-const ISO_NOW = '2026-06-28T00:00:00.000Z';
-
-const tempDirs: string[] = [];
+const scratch: string[] = [];
 
 afterEach(() => {
-  while (tempDirs.length > 0) {
-    const dir = tempDirs.pop();
-    if (dir) rmSync(dir, { recursive: true, force: true });
-  }
+  while (scratch.length > 0) rmSync(scratch.pop() as string, { recursive: true, force: true });
 });
 
-function makeTempDir(prefix: string): string {
-  const dir = mkdtempSync(join(tmpdir(), `deep-research-run-open-${prefix}-`));
-  tempDirs.push(dir);
+function researchDir(sessionId: string, relativeDir = 'research'): string {
+  const root = mkdtempSync(join(tmpdir(), 'deep-research-run-open-'));
+  scratch.push(root);
+  const dir = join(root, relativeDir);
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, 'deep-research-config.json'), JSON.stringify({
+    topic: 'Inspect gateway initialization behavior',
+    maxIterations: 3,
+    convergenceThreshold: 0.05,
+    antiConvergence: { minIterations: 1, convergenceMode: 'default', stopPolicy: 'fail-closed' },
+    stopPolicy: 'fail-closed',
+    specFolder: 'specs/test-research-run-open',
+    executionMode: 'auto',
+    executor: { kind: 'native', model: null, reasoningEffort: null },
+    lineage: {
+      sessionId,
+      parentSessionId: null,
+      lineageMode: 'new',
+      generation: 1,
+    },
+  }));
   return dir;
 }
 
-function stateLogPath(runDir: string): string {
-  return join(runDir, 'research', 'deep-research-state.jsonl');
+function initStepCommand(variant: 'auto' | 'confirm'): string {
+  const yaml = readFileSync(
+    join(REPO_ROOT, '.skilled/commands/deep/assets/deep-research-' + variant + '.yaml'),
+    'utf8',
+  );
+  const lines = yaml.split('\n');
+  const stepAt = lines.findIndex((line) => line.trim() === 'step_create_state_log:');
+  const commandAt = lines.findIndex((line, index) => index > stepAt && line.trim() === 'command: |');
+  if (stepAt < 0 || commandAt < 0) throw new Error('The research run-open command is missing.');
+  const body: string[] = [];
+  for (const line of lines.slice(commandAt + 1)) {
+    if (line.trim() !== '' && !line.startsWith('          ')) break;
+    body.push(line.slice(10));
+  }
+  return body.join('\n');
 }
 
-function stepBlock(source: string, key: string, indent = 6): string {
-  const marker = `${' '.repeat(indent)}${key}:`;
-  const start = source.indexOf(`\n${marker}`);
-  if (start === -1) throw new Error(`step ${key} not found in workflow`);
-  const tail = source.slice(start + 1);
-  const next = tail.slice(marker.length).search(new RegExp(`\\n {${indent}}[A-Za-z_]`));
-  return next === -1 ? tail : tail.slice(0, marker.length + next + 1);
+function runInit(variant: 'auto' | 'confirm', dir: string): ReturnType<typeof spawnSync> {
+  const command = initStepCommand(variant)
+    .replaceAll('{state_paths.config}', join(dir, 'deep-research-config.json'))
+    .replaceAll('{state_paths.state_log}', join(dir, 'deep-research-state.jsonl'));
+  return spawnSync('bash', ['-c', command], { cwd: REPO_ROOT, encoding: 'utf8' });
 }
 
-type RenderedStep = {
-  readonly record: string;
-  readonly command: string;
-};
+function gateway(
+  dir: string,
+  event: Record<string, unknown>,
+): { status: number | null; stdout: string } {
+  const eventPath = join(dir, '..', 'event.json');
+  writeFileSync(eventPath, JSON.stringify(event));
+  const result = spawnSync(process.execPath, [
+    GATEWAY,
+    '--mode',
+    'research',
+    '--run-directory',
+    dir,
+    '--event-json',
+    eventPath,
+  ], { cwd: REPO_ROOT, encoding: 'utf8' });
+  return { status: result.status, stdout: result.stdout ?? '' };
+}
 
-function renderStep(yamlPath: string, runDir: string): RenderedStep {
-  const step = stepBlock(readFileSync(yamlPath, 'utf8'), 'step_create_state_log');
-
-  const recordMatch = /^ {8}config_record: '(.*)'$/m.exec(step);
-  if (!recordMatch) throw new Error(`${yamlPath}: step_create_state_log has no config_record`);
-  const commandMatch = /^ {8}command: \|\n([\s\S]*?)(?=\n {8}[A-Za-z_]+:)/m.exec(step);
-  if (!commandMatch) throw new Error(`${yamlPath}: step_create_state_log has no command block`);
-
-  const replacements: Record<string, string> = {
-    '{research_topic}': 'Run-open gateway proof',
-    '{max_iterations}': '5',
-    '{convergence_threshold}': '0.8',
-    '{convergence_mode}': 'default',
-    '{stop_policy}': 'convergence',
-    '{resource_map_present}': 'true',
-    '{resource_map_emit}': 'true',
-    '{session_id_init}': SESSION_ID,
-    '{ISO_8601_NOW}': ISO_NOW,
-    '{spec_folder}': join(runDir, 'spec'),
-    '{state_paths.state_log}': stateLogPath(runDir),
-    '{config.executor.type}': 'native',
+function iterationRecord(sessionId: string): Record<string, unknown> {
+  return {
+    type: 'iteration',
+    schemaVersion: 1,
+    iteration: 1,
+    run: 1,
+    status: 'complete',
+    focus: 'source verification',
+    newInfoRatio: 0.5,
+    ruledOut: [],
+    sessionId,
+    lineageId: sessionId,
   };
-  const apply = (template: string): string => Object.entries(replacements).reduce(
-    (rendered, [placeholder, value]) => rendered.split(placeholder).join(value),
-    template,
+}
+
+function stateRows(dir: string): Array<Record<string, unknown>> {
+  return readFileSync(join(dir, 'deep-research-state.jsonl'), 'utf8')
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => JSON.parse(line) as Record<string, unknown>);
+}
+
+function expectRunOpenAndIteration(dir: string, init: ReturnType<typeof spawnSync>, sessionId: string): void {
+  expect(init.status, String(init.stdout) + String(init.stderr)).toBe(0);
+  expect(String(init.stdout)).not.toContain(
+    'Legacy config has one digest for both charter and configuration evidence.',
+  );
+  expect(stateRows(dir).map((row) => row.type)).toEqual(['config']);
+
+  const append = gateway(dir, iterationRecord(sessionId));
+  expect(append.status, append.stdout).toBe(0);
+  const rows = stateRows(dir);
+  expect(rows.map((row) => row.type)).toEqual(['config', 'iteration']);
+  expect(rows[1]).toMatchObject({ run: 1, status: 'complete' });
+}
+
+describe('deep-research run open', () => {
+  it.each(['auto', 'confirm'] as const)(
+    'the %s init step opens the run for later gateway appends',
+    (variant) => {
+      const sessionId = 'research-' + variant + '-run';
+      const dir = researchDir(sessionId);
+      expectRunOpenAndIteration(dir, runInit(variant, dir), sessionId);
+    },
   );
 
-  const record = apply(recordMatch[1]);
-  const command = apply(commandMatch[1].replace(/^ {10}/gm, '').trim().split('{config_record}').join(record));
-  // An unresolved placeholder would ship a broken script or a broken record, so
-  // fail here rather than in a subprocess whose error names the symptom.
-  expect(command, `${yamlPath}: unresolved placeholder in step_create_state_log command`).not.toMatch(/\{[A-Za-z_][A-Za-z0-9_.]*\}/);
-  return { record, command };
-}
-
-function gatewayEnv(authorityRoot: string): NodeJS.ProcessEnv {
-  return { ...process.env, DEEP_LOOP_AUTHORITY_ROOT: authorityRoot };
-}
-
-function runStep(yamlPath: string, runDir: string, authorityRoot: string) {
-  return spawnSync('/bin/bash', ['-c', renderStep(yamlPath, runDir).command], {
-    cwd: REPO_ROOT,
-    env: gatewayEnv(authorityRoot),
-    encoding: 'utf8',
+  it('uses the same init step for a fan-out lineage directory', () => {
+    const sessionId = 'fanout-research-seat-run';
+    const dir = researchDir(sessionId, 'lineages/seat');
+    const prompt = buildLoopPrompt(
+      'research',
+      'specs/test-fanout-research',
+      dir,
+      sessionId,
+      { kind: 'native', label: 'seat' },
+      'Inspect gateway initialization behavior',
+    );
+    expect(prompt).toContain('config.fanout_lineage_artifact_dir: ' + dir);
+    expect(prompt).toContain('Run phase_init, phase_main_loop');
+    expectRunOpenAndIteration(dir, runInit('auto', dir), sessionId);
   });
-}
 
-function appendIteration(runDirectory: string, eventDir: string, authorityRoot: string) {
-  const eventPath = join(eventDir, 'iteration-record.json');
-  writeFileSync(eventPath, JSON.stringify({
-    type: 'iteration',
-    run: 1,
-    sessionId: SESSION_ID,
-    lineageId: SESSION_ID,
-    status: 'complete',
-    focus: 'q',
-    newInfoRatio: 0.5,
-    timestamp: ISO_NOW,
-  }), 'utf8');
-  return spawnSync(process.execPath, [
-    GATEWAY_PATH,
-    '--mode', 'research',
-    '--run-directory', runDirectory,
-    '--event-json', eventPath,
-  ], {
-    env: gatewayEnv(authorityRoot),
-    encoding: 'utf8',
+  it('keeps legacy config rows on the gateway upcaster path', () => {
+    const sessionId = 'research-legacy-run';
+    const dir = researchDir(sessionId);
+    const init = gateway(dir, {
+      type: 'config',
+      schemaVersion: 1,
+      topic: 'Legacy research topic',
+      maxIterations: 3,
+      generation: 1,
+      sessionId,
+      lineageId: sessionId,
+    });
+    expect(init.status, init.stdout).toBe(0);
+    expect(init.stdout).toContain(
+      'Legacy config has one digest for both charter and configuration evidence.',
+    );
+    const append = gateway(dir, iterationRecord(sessionId));
+    expect(append.status, append.stdout).toBe(0);
+    expect(stateRows(dir).map((row) => row.type)).toEqual(['config', 'iteration']);
   });
-}
 
-function lastJsonLine(stdout: string): Record<string, unknown> {
-  const line = stdout.trim().split(/\r?\n/).filter(Boolean).at(-1) ?? '{}';
-  return JSON.parse(line) as Record<string, unknown>;
-}
-
-describe.each(WORKFLOWS)('deep-research $variant run open', ({ yamlPath }) => {
-  it('opens the ledger through the gateway and lets the projection write the state log', () => {
-    const runDir = makeTempDir('ok');
-    const authorityRoot = makeTempDir('ok-authority');
-
-    const result = runStep(yamlPath, runDir, authorityRoot);
-    expect(result.status, result.stderr).toBe(0);
-
-    const payload = lastJsonLine(result.stdout ?? '');
-    expect(payload.ok, JSON.stringify(payload)).toBe(true);
-    const receipt = payload.receipt as Record<string, unknown> | undefined;
-    expect(receipt).toBeDefined();
-    expect(receipt?.eventType).toBe('deep-research.ledger.run-initialized');
-    expect(receipt?.sequence).toBe(1);
-
-    expect(existsSync(join(
-      runDir, 'research', 'deep-research-ledger', 'frames', '0000000000000001.frame',
-    ))).toBe(true);
-
-    const firstLine = readFileSync(stateLogPath(runDir), 'utf8').split('\n', 1)[0];
-    const firstRow = JSON.parse(firstLine ?? '') as Record<string, unknown>;
-    expect(firstRow.type).toBe('config');
-
-    // A second record still opens and appends: the gateway keeps folding the
-    // ledger, so the state log is a projection rather than a one-shot write.
-    const second = appendIteration(join(runDir, 'research'), runDir, authorityRoot);
-    expect(second.status, second.stderr).toBe(0);
-    expect(lastJsonLine(second.stdout ?? '').ok).toBe(true);
-  }, 60_000);
-});
-
-describe('deep-research run open control', () => {
-  it('refuses an iteration append when the state log was written directly', () => {
-    const runDir = makeTempDir('control');
-    const authorityRoot = makeTempDir('control-authority');
-    const artifactDir = join(runDir, 'research');
-    mkdirSync(artifactDir, { recursive: true });
-    const { record } = renderStep(WORKFLOWS[0].yamlPath, runDir);
-    writeFileSync(stateLogPath(runDir), `${record}\n`, 'utf8');
-
-    const result = appendIteration(artifactDir, runDir, authorityRoot);
-    expect(result.status).toBe(2);
-
-    const payload = lastJsonLine(result.stdout ?? '');
-    expect(payload.ok).toBe(false);
-    expect(payload.phase).toBe('projection');
-  }, 60_000);
+  it('declares initialization as spoken by both research workflow variants', () => {
+    expect(DEEP_RESEARCH_STEM_PRODUCERS['deep_research.run_initialized']).toEqual({
+      status: 'spoken',
+      producers: [
+        '.skilled/commands/deep/assets/deep-research-auto.yaml',
+        '.skilled/commands/deep/assets/deep-research-confirm.yaml',
+      ],
+    });
+  });
 });

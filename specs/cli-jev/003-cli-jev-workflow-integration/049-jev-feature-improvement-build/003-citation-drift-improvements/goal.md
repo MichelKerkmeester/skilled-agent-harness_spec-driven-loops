@@ -11,17 +11,18 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/003-citation-drift-improvements"
-    last_updated_at: "2026-10-03T05:30:05Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-03T12:00:00Z"
+    last_updated_by: "claude-opus-5-5-049"
+    recent_action: "All completion criteria met with evidence"
+    next_safe_action: "None. The phase is Complete"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-5-5-049"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,10 +57,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `test-cite-drift-scan.mjs` passes, with cases for the min-rerun flag, hash refusal and stop branches
-- [ ] The census reads each document at most once on the fixture tree
-- [ ] The re-measure's verdict line and the amendment are in the log
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` on this phase
+- [x] `test-cite-drift-scan.mjs` passes, with cases for the min-rerun flag, hash refusal and stop branches
+- [x] The census reads each document at most once on the fixture tree
+- [x] The re-measure's verdict line and the amendment are in the log
+- [x] `validate.sh --strict` prints `RESULT: PASSED` on this phase
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,10 +77,14 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase opened | Done | Spec, plan, tasks and goal authored 2026-10-03 from 048's ranked table |
+| Build | Done | Luna on cli-codex; suite 36 passed |
+| Cross-family review | Done | DeepSeek on cli-pi: 1 P0 fixed (legacy label hashes), 1 P1 (re-measure, done below), 2 P2 recorded |
+| Re-measure (2026-10-03) | Done | Amendment: flag on the lowest rerun, adaptive reruns near the line, live and constructed columns. `verdict jev: keep K=40 M=40 A=35 B=13 W=22 L=0 TP=26 FP=0 F=0 p=2.384e-7 labels_sha256=2cbfddfc199d`, 55 calls (40 screening, 14 adaptive, 1 auth). Live column A=19 B=13 W=6 L=0, sign test p=0.01563. Run folder `~/.skilled/.labels/runs/049-003-jev-20261003` |
+| Validate | Done | `validate.sh --strict` RESULT: PASSED |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Claim unit per label row | Not in the original plan. Added to fix the review P0 without touching the committed labels file |
 <!-- /ANCHOR:log -->

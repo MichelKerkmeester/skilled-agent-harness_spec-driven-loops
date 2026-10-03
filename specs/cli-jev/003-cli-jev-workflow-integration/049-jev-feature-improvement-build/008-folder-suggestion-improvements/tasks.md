@@ -34,8 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read 048's research for this feature and the scorer's keep rule
-- [ ] T002 Capture the suite baseline before any change
+- [x] T001 Read 048's research for this feature and the scorer's keep rule
+- [x] T002 Capture the suite baseline before any change
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,11 +43,11 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Resolve `description.json` by path and skip archives in the basename index
-- [ ] T004 Add candidate recall and the content and folder save split
-- [ ] T005 Add a pre-declared comparator flag and list discordant rows
-- [ ] T006 Hash-pin inputs and add W+L, an interval and the negative controls
-- [ ] T007 Add the confidence-gated arm, then re-measure with `--out`
+- [x] T003 Resolve `description.json` by path and skip archives in the basename index
+- [x] T004 Add candidate recall and the content and folder save split
+- [x] T005 Add a pre-declared comparator flag and list discordant rows
+- [x] T006 Hash-pin inputs and add W+L, an interval and the negative controls
+- [x] T007 Add the confidence-gated arm, then re-measure with `--out`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +55,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Run the scorer's suite
-- [ ] T009 Check the f022-001 options now carry descriptions
-- [ ] T010 Run `validate.sh --strict` on this phase
+- [x] T008 Run the scorer's suite
+- [x] T009 Check the f022-001 options now carry descriptions
+- [x] T010 Run `validate.sh --strict` on this phase
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

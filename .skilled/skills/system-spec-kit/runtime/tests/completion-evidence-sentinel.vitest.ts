@@ -20,6 +20,7 @@ import childProcess from 'node:child_process';
 const require = createRequire(import.meta.url);
 const sentinelCore = require('../hooks/lib/completion-evidence-sentinel.cjs') as {
   COMPLETION_CLAIM_PATTERN: RegExp;
+  CLAIM_ANCHOR_TAIL_CHARS: number;
   SPEC_FOLDER_TEXT_PATTERN: RegExp;
   KILL_SWITCH_ENV: string;
   RETENTION_DAYS_ENV: string;
@@ -100,10 +101,61 @@ describe('completion-evidence-sentinel core', () => {
     expect(sentinelCore.detectCompletionClaim(CLAIM_TEXT)).toBe(true);
     expect(sentinelCore.detectCompletionClaim(NON_CLAIM_TEXT)).toBe(false);
     expect(sentinelCore.detectCompletionClaim('')).toBe(false);
+    expect(sentinelCore.CLAIM_ANCHOR_TAIL_CHARS).toBe(160);
+    expect(sentinelCore.detectCompletionClaim(`${'x'.repeat(155)} fixed`)).toBe(true);
+    expect(sentinelCore.detectCompletionClaim(`fixed${'x'.repeat(160)}`)).toBe(false);
     // A claim word buried deep in a long turn, far from the trailing anchor,
     // should not fire once padded past the anchor window.
     const buried = `${CLAIM_TEXT}${' filler'.repeat(200)}`;
     expect(sentinelCore.detectCompletionClaim(buried)).toBe(false);
+  });
+
+  it('recognizes complete as a whole claim word', () => {
+    expect(sentinelCore.detectCompletionClaim('The work is complete.')).toBe(true);
+    expect(sentinelCore.detectCompletionClaim('The status is incomplete.')).toBe(false);
+  });
+
+  it('filters checklist and table rows from the closing window', () => {
+    expect(sentinelCore.detectCompletionClaim('- [x] The task is completed.')).toBe(false);
+    expect(sentinelCore.detectCompletionClaim('| Status | completed |')).toBe(false);
+    expect(sentinelCore.detectCompletionClaim('Task | Status\n---- | ------\nRoll out | completed')).toBe(false);
+  });
+
+  it('filters fenced and inline code from the closing window', () => {
+    expect(sentinelCore.detectCompletionClaim('```js\nconst status = "completed";\n```')).toBe(false);
+    const longCodeBlock = `\`\`\`js\n${'const value = 1;\n'.repeat(20)}The task is complete.\n\`\`\``;
+    expect(longCodeBlock.length).toBeGreaterThan(sentinelCore.CLAIM_ANCHOR_TAIL_CHARS);
+    expect(sentinelCore.detectCompletionClaim(longCodeBlock)).toBe(false);
+    expect(sentinelCore.detectCompletionClaim('The stored value is `completed`.')).toBe(false);
+  });
+
+  it('filters assignments without suppressing prose claims', () => {
+    expect(sentinelCore.detectCompletionClaim('status = "completed";')).toBe(false);
+    expect(sentinelCore.detectCompletionClaim('status: completed')).toBe(false);
+    expect(sentinelCore.detectCompletionClaim('The status is complete.')).toBe(true);
+  });
+
+  it('wires Cursor afterAgentResponse to the completion adapter', () => {
+    const cursorHooks = JSON.parse(
+      readFileSync(new URL('../../../../../.cursor/hooks.json', import.meta.url), 'utf8'),
+    ) as { hooks: { afterAgentResponse?: { command: string }[] } };
+
+    expect(cursorHooks.hooks.afterAgentResponse?.some(({ command }) =>
+      command.includes('runtime/hooks/cursor/completion-evidence-response.mjs'))).toBe(true);
+  });
+
+  it('documents Pi advisory delivery as model-visible on the next turn', () => {
+    const readme = readFileSync(new URL('../../../../hooks/completion/README.md', import.meta.url), 'utf8');
+    const injectionContract = readFileSync(new URL('../../../../hooks/injection-contract.md', import.meta.url), 'utf8');
+    const piAdapter = readFileSync(new URL('../hooks/pi/completion-evidence.ts', import.meta.url), 'utf8');
+
+    expect(piAdapter).toContain('display: false');
+    expect(piAdapter).toContain('deliverAs: "nextTurn"');
+    for (const document of [readme, injectionContract]) {
+      expect(document).toContain('display: false');
+      expect(document).toContain('deliverAs: "nextTurn"');
+      expect(document).toMatch(/model-visible[\s\S]{0,100}next[- ]turn|next[- ]turn[\s\S]{0,100}model-visible/i);
+    }
   });
 
   it('resolveSpecFolderFromText extracts a spec-folder-shaped path and trims trailing punctuation', () => {

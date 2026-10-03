@@ -30,10 +30,17 @@ import { pathToFileURL } from 'node:url';
 // ───────────────────────────────────────────────────────────────────
 
 const TRANSPORT_ENV = 'JEV_TRANSPORT';
-const PI_PROVIDER = 'openrouter';
-const PI_MODEL_ID = 'typesafe/jev-1.13';
+const PI_CLASSIFIERS = new Map([
+  ['official', { provider: 'typesafe', model: 'jev-latest' }],
+  ['openrouter', { provider: 'openrouter', model: 'typesafe/jev-1.13' }],
+]);
+const PI_PACKAGE_VERSION = '0.99.2';
 const ANSWER_NAME = 'answer';
 const PI_PACKAGE_NAME = '@earendil-works/pi-coding-agent';
+const DEFAULT_TIMEOUT_MS = 30000;
+const piRuntimePromises = new Map();
+const piPreflightPromises = new Map();
+const reportedPiPreflightFailures = new Set();
 
 // One line per failed gate, then the CLI runs. The wording is the caller-visible
 // signal that Pi was asked for and did not answer, so only the gate name in it
@@ -48,16 +55,18 @@ function piSkipLine(gate) {
 
 /**
  * The transport one call uses, from the caller's option and the caller's own
- * environment object. The option wins over the environment; only the empty
- * string counts as unset, and an unknown value names itself in the one line
- * the caller reports before the CLI runs.
+ * environment object. An environment kill switch to the CLI wins; otherwise
+ * the option wins over the environment. Only the empty string counts as unset.
  *
  * @param {'jev' | 'pi' | undefined} option Per-call transport option.
  * @param {{ JEV_TRANSPORT?: string } | undefined} env Environment the caller passes to jev.
  * @returns {{ transport: 'jev' | 'pi', line: string | null }} Route plus the unknown-value line, or null when silent.
  */
 export function resolveTransport(option, env) {
-  const requested = option !== undefined && option !== '' ? option : (env ?? {})[TRANSPORT_ENV];
+  const environment = (env ?? {})[TRANSPORT_ENV];
+  const requested = environment === 'jev'
+    ? 'jev'
+    : (option !== undefined && option !== '' ? option : environment);
   if (requested === undefined || requested === '') return { transport: 'jev', line: null };
   if (requested === 'jev') return { transport: 'jev', line: null };
   if (requested === 'pi') return { transport: 'pi', line: null };
@@ -75,12 +84,13 @@ export function resolveTransport(option, env) {
  * the call on the CLI, because only `choice` has a transport decision to make.
  *
  * @param {string[]} args Arguments the caller would pass to `jev`.
- * @returns {{ question: string, keys: string[], criteria: Record<string, string> } | null} Parsed request, or null.
+ * @returns {{ provider?: string, question: string, keys: string[], criteria: Record<string, string> } | null} Parsed request, or null.
  */
 export function choiceRequestFrom(args) {
   if (!Array.isArray(args) || args[0] !== 'choice') return null;
 
   let question = '';
+  let provider;
   const keys = [];
   const criteria = {};
 
@@ -88,6 +98,7 @@ export function choiceRequestFrom(args) {
     const token = args[index];
     if (token === '--provider') {
       if (index + 1 >= args.length) return null;
+      provider = args[index + 1];
       index += 1;
       continue;
     }
@@ -114,7 +125,7 @@ export function choiceRequestFrom(args) {
   }
 
   if (keys.length === 0) return null;
-  return { question, keys, criteria };
+  return { provider, question, keys, criteria };
 }
 
 /**
@@ -255,6 +266,69 @@ async function createPiRuntime(packageDir) {
   return ModelRuntime.create();
 }
 
+function getCachedPiRuntime(packageDir, createRuntime) {
+  let runtimePromise = piRuntimePromises.get(packageDir);
+  if (runtimePromise === undefined) {
+    runtimePromise = Promise.resolve().then(() => createRuntime(packageDir));
+    piRuntimePromises.set(packageDir, runtimePromise);
+  }
+  return runtimePromise;
+}
+
+async function getPiPreflight(env, deps, jevProvider, classifier) {
+  const pathKey = env.PATH ?? '';
+  const preflightKey = JSON.stringify([pathKey, jevProvider]);
+  let preflightPromise = piPreflightPromises.get(preflightKey);
+  if (preflightPromise === undefined) {
+    preflightPromise = (async () => {
+      const pi = resolvePiPackage(env);
+      if (pi === null) return { gate: 'package' };
+      if (pi.version !== PI_PACKAGE_VERSION) return { gate: 'version' };
+
+      const runtime = deps.runtime ?? await getCachedPiRuntime(
+        pi.packageDir,
+        deps.createRuntime ?? createPiRuntime,
+      );
+      const model = runtime.getModelOfType('classifier', classifier.provider, classifier.model);
+      if (model === undefined) return { gate: 'model' };
+
+      let available = [];
+      try {
+        available = await runtime.getAvailableOfType('classifier', classifier.provider);
+      } catch {
+        available = [];
+      }
+      if (!Array.isArray(available) || !available.some((entry) => entry?.id === classifier.model)) {
+        return { gate: 'credential' };
+      }
+      return { gate: null, pi, runtime, model };
+    })().catch(() => ({ gate: 'package' }));
+    piPreflightPromises.set(preflightKey, preflightPromise);
+  }
+  return preflightPromise;
+}
+
+function reportPiPreflightFailureOnce(env, jevProvider, gate, report) {
+  const failureKey = JSON.stringify([env.PATH ?? '', jevProvider]);
+  if (reportedPiPreflightFailures.has(failureKey)) return;
+  reportedPiPreflightFailures.add(failureKey);
+  report(piSkipLine(gate));
+}
+
+function promiseWithinTimeout(operation, timeoutMs, onTimeout) {
+  let timer;
+  const operationPromise = Promise.resolve().then(operation);
+  const timeoutPromise = new Promise((resolve, reject) => {
+    timer = setTimeout(() => {
+      onTimeout?.();
+      const error = new Error('Pi transport timed out');
+      error.code = 'ETIMEDOUT';
+      reject(error);
+    }, Math.max(0, timeoutMs));
+  });
+  return Promise.race([operationPromise, timeoutPromise]).finally(() => clearTimeout(timer));
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 6. CALL SPAWN
 // ───────────────────────────────────────────────────────────────────
@@ -311,82 +385,88 @@ function spawnCli(options, spawnFn) {
   });
 }
 
+async function spawnCliWithinBudget(options, spawnFn, startedAt, timeoutMs) {
+  const elapsed = Date.now() - startedAt;
+  const remaining = timeoutMs - elapsed;
+  if (remaining <= 0) {
+    return { code: null, stdout: '', stderr: '', wallMs: elapsed, timedOut: true };
+  }
+  const result = await spawnCli({ ...options, timeoutMs: remaining }, spawnFn);
+  return { ...result, wallMs: Date.now() - startedAt };
+}
+
 /**
  * One bounded call that reaches the CLI or, when the switch names it and the
- * request is a choice, Pi. The Pi branch is attempted only after the package,
- * model and credential gates pass; each gate failure prints one skip line and
- * then runs the CLI, and no Pi failure is ever silent. The returned shape is
- * the caller's own spawn contract, whichever backend answered.
+ * request is a supported choice, Pi. Pi preflight is cached per process and
+ * only its first failure is reported; any CLI fallback receives the remaining
+ * call budget. The returned shape is the caller's own spawn contract.
  *
  * @param {{ file: string, args: string[], stdin: string, env?: object, timeoutMs: number, transport?: 'jev' | 'pi', report?: (line: string) => void }} options Call description.
- * @param {{ spawn?: Function, runtime?: object }} [deps] Test seams: the child spawn and an injected classifier runtime.
+ * @param {{ spawn?: Function, runtime?: object, createRuntime?: (packageDir: string) => Promise<object> | object }} [deps] Test seams for the child spawn and classifier runtime.
  * @returns {Promise<{ code: number|null, stdout: string, stderr: string, wallMs: number, timedOut: boolean }>} The call outcome.
  */
 export async function spawnClassifierCall(options, deps = {}) {
   const env = options.env ?? {};
   const report = options.report ?? ((line) => process.stdout.write(`${line}\n`));
   const spawnFn = deps.spawn ?? spawn;
-  const cli = () => spawnCli(options, spawnFn);
+  const timeoutMs = Number.isFinite(options.timeoutMs)
+    ? Math.max(0, options.timeoutMs)
+    : DEFAULT_TIMEOUT_MS;
+  const startedAt = Date.now();
+  const cli = () => spawnCliWithinBudget(options, spawnFn, startedAt, timeoutMs);
 
   // Only a choice request has a transport decision to make, so every other
   // invocation is spawned on the CLI unchanged and prints nothing.
   const request = choiceRequestFrom(options.args);
   if (request === null) return cli();
+  const effectiveProvider = request.provider ?? env.JEV_PROVIDER ?? 'official';
+  const classifier = PI_CLASSIFIERS.get(effectiveProvider);
+  if (classifier === undefined) return cli();
 
   const route = resolveTransport(options.transport, env);
   if (route.line !== null) report(route.line);
   if (route.transport !== 'pi') return cli();
 
-  const pi = resolvePiPackage(env);
-  if (pi === null) {
-    report(piSkipLine('package'));
-    return cli();
-  }
-
-  let runtime = deps.runtime;
-  if (runtime === undefined) {
-    try {
-      runtime = await createPiRuntime(pi.packageDir);
-    } catch {
-      report(piSkipLine('package'));
-      return cli();
-    }
-  }
-
-  const model = runtime.getModelOfType('classifier', PI_PROVIDER, PI_MODEL_ID);
-  if (model === undefined) {
-    report(piSkipLine('model'));
-    return cli();
-  }
-
-  let available = [];
+  let preflight;
   try {
-    available = await runtime.getAvailableOfType('classifier', PI_PROVIDER);
+    const remaining = timeoutMs - (Date.now() - startedAt);
+    if (remaining <= 0) return cli();
+    preflight = await promiseWithinTimeout(
+      () => getPiPreflight(env, deps, effectiveProvider, classifier),
+      remaining,
+    );
   } catch {
-    available = [];
+    reportPiPreflightFailureOnce(env, effectiveProvider, 'backend', report);
+    return cli();
   }
-  if (!Array.isArray(available) || !available.some((entry) => entry?.id === PI_MODEL_ID)) {
-    report(piSkipLine('credential'));
+  if (preflight.gate !== null) {
+    reportPiPreflightFailureOnce(env, effectiveProvider, preflight.gate, report);
     return cli();
   }
 
   const context = classifierContextFor(request, options.stdin ?? '');
-  const started = Date.now();
+  const remaining = timeoutMs - (Date.now() - startedAt);
+  if (remaining <= 0) return cli();
+  const controller = new AbortController();
   let result;
   try {
-    result = await runtime.classify(model, context, { signal: AbortSignal.timeout(options.timeoutMs) });
+    result = await promiseWithinTimeout(
+      () => preflight.runtime.classify(preflight.model, context, { signal: controller.signal }),
+      remaining,
+      () => controller.abort(),
+    );
   } catch {
     report(piSkipLine('backend'));
     return cli();
   }
-  const wallMs = Date.now() - started;
+  const wallMs = Date.now() - startedAt;
 
   if (result?.stopReason === 'error') {
     report(piSkipLine('backend'));
     return cli();
   }
 
-  const payload = choicePayloadFor(result, request.keys, PI_MODEL_ID);
+  const payload = choicePayloadFor(result, request.keys, classifier.model);
   if (payload === null) {
     report(piSkipLine('backend'));
     return cli();

@@ -30,5 +30,6 @@
     { "name": "illegal character is malformed", "args": ["1+a"], "expect": null }
   ],
   "expectedDifficulty": "adversarial",
-  "saturation": { "status": "active" }
+  "saturation": { "status": "active" },
+  "allowlist": {"cli_flags":[],"symbols":["evalExpr"]}
 }

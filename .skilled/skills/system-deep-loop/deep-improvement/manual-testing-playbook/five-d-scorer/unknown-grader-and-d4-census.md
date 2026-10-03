@@ -30,7 +30,7 @@ Operators run the exact prompt and command sequence for `5D-051` and confirm the
 - Real user request: `Check that a mistyped grader stops the benchmark and that the D4 census never calls a model by default.`
 - Prompt: `Check that a mistyped grader stops the benchmark and that the D4 census never calls a model by default.`
 - Expected execution process: Run the runner with `--grader jev` against a missing profile, then run the census on one output per fixture with a stub `jev` binary first on `PATH`, once plain and once with `--jev --out /tmp/5d-051/jev`.
-- Expected signals: The runner exits 2 and names `'jev'` with the usage line. The plain census exits 0, prints `allowlist: 0 of 21` and `stop: fewer than 30 labeled outputs`, and leaves `/tmp/5d-051/calls.log` absent. The `--jev` run adds the `jev: path=` identity line, then `jev arm skipped: version` and a `jev: found=""` line.
+- Expected signals: The runner exits 2 and names `'jev'` with the usage line. The plain census exits 0, prints `allowlist: 21 of 21` and `stop: fewer than 30 labeled outputs`, and leaves `/tmp/5d-051/calls.log` absent. The `--jev` run adds the `jev: path=` identity line, then `jev arm skipped: version` and a `jev: found=""` line.
 - Desired user-visible outcome: A concise operator-facing PASS/FAIL verdict with the decisive lines from each run.
 - Pass/fail: PASS if all three runs print their expected lines with the expected exit codes, FAIL if the runner accepts `jev`, the plain census calls a stub or the `--jev` run asks the stub a question.
 
@@ -55,7 +55,7 @@ Run from the repository root.
 
 ### Expected
 
-Step 2 prints `run-benchmark: unknown --grader 'jev' (expected noop, mock or llm)` and the `Usage: node run-benchmark.cjs --profile` line, then `exit=2`, and writes no `/tmp/5d-051/report.json`. Step 5 prints `exit=0`, `allowlist: 0 of 21` and `stop: fewer than 30 labeled outputs`, and `ls` reports that `/tmp/5d-051/calls.log` does not exist. Step 6 prints `exit=0`, the diff shows the `jev: path=` identity line, then `jev arm skipped: version` and a `jev: found=""` line, and `calls.log` gains only `jev --version`.
+Step 2 prints `run-benchmark: unknown --grader 'jev' (expected noop, mock or llm)` and the `Usage: node run-benchmark.cjs --profile` line, then `exit=2`, and writes no `/tmp/5d-051/report.json`. Step 5 prints `exit=0`, `allowlist: 21 of 21` and `stop: fewer than 30 labeled outputs`, and `ls` reports that `/tmp/5d-051/calls.log` does not exist. Step 6 prints `exit=0`, the diff shows the `jev: path=` identity line, then `jev arm skipped: version` and a `jev: found=""` line, and `calls.log` gains only `jev --version`.
 
 ### Evidence
 
@@ -68,7 +68,7 @@ The terminal transcript of steps 2, 5 and 6, `/tmp/5d-051/census.txt`, `/tmp/5d-
 
 ### Failure Triage
 
-If step 2 exits 0, check the `VALID_GRADERS` guard in `run-benchmark.cjs` and confirm it runs before the profile loads. If step 5 creates `calls.log`, find which code path spawns a backend without `--jev`. If step 6 shows a different skip reason, run `/tmp/5d-051/bin/jev --version` by hand and compare its output with the version check in `score-d4-agreement.cjs`. If `allowlist` is not `0 of 21`, count the fixture files and their `allowlist` keys again, because the fixture set may have changed.
+If step 2 exits 0, check the `VALID_GRADERS` guard in `run-benchmark.cjs` and confirm it runs before the profile loads. If step 5 creates `calls.log`, find which code path spawns a backend without `--jev`. If step 6 shows a different skip reason, run `/tmp/5d-051/bin/jev --version` by hand and compare its output with the version check in `score-d4-agreement.cjs`. If `allowlist` is not `21 of 21`, count the fixture files and their `allowlist` keys again, because the fixture set may have changed.
 
 ### Optional Supplemental Checks
 

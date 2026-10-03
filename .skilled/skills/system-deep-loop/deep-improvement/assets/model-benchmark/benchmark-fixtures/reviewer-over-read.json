@@ -39,5 +39,6 @@
       ],
       "reviewer_output": "VERDICT: FAIL\nFinding: repeat read lacks a stated reason; this violates read-budget discipline."
     }
-  ]
+  ],
+  "allowlist": {"cli_flags":[],"symbols":[]}
 }

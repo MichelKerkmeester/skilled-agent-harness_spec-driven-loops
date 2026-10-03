@@ -22,5 +22,6 @@
     { "name": "echoes nested array", "args": [[[1], [2, 3]]], "expect": [[1], [2, 3]] }
   ],
   "expectedDifficulty": "trivial",
-  "saturation": { "status": "active" }
+  "saturation": { "status": "active" },
+  "allowlist": {"cli_flags":[],"symbols":["echo"]}
 }

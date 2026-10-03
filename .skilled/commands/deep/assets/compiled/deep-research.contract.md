@@ -22,12 +22,12 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "11a4a15ac80fd56c59b87c2674cb7a723f0215949df523ac49b83c4d060bd7f4",
+      "sha256": "7e01264d9c502d4fba80729f2979987ed0b141da51e6ada08b6e53c14bac8fb8",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "14b934f9eaf55fb4ae44e8230888cf4f3b8169b1ecfff35f65150bfd087ed009",
+      "sha256": "1cde8a5d3ac31cf89dcd32f1ad1331beb9227e27f0e39f708bb22ac4b9272beb",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "e4f424212ba798f8d7f2da702b2c83236641aee866d55d912ca1c7e0a6e002aa",
+      "sha256": "7907b66e42184b43f1b5a87ac159611d70303bc64e4738d37a44af5cd402fb00",
       "section": "full"
     },
     {

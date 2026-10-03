@@ -165,6 +165,7 @@ async function resolveModeAdapter(mode) {
 
 async function main() {
   const fs = require('node:fs');
+  const path = require('node:path');
   const crypto = require('node:crypto');
 
   const args = parseArgs();
@@ -478,6 +479,27 @@ async function main() {
     eventRegistry: registry,
     binding,
   });
+
+  if (outcome && outcome.ok === false && outcome.phase === 'projection') {
+    const eventStem = eventRecord?.envelope?.payload?.stem;
+    const refusalRecord = {
+      at: new Date().toISOString(),
+      mode: normalizedMode,
+      phase: outcome.phase,
+      code: outcome.code,
+      reason: outcome.reason,
+      ...(typeof eventStem === 'string' && eventStem ? { stem: eventStem } : {}),
+    };
+    try {
+      fs.appendFileSync(
+        path.join(runDirectory, 'gateway-refusals.jsonl'),
+        `${JSON.stringify(refusalRecord)}\n`,
+        'utf8',
+      );
+    } catch {
+      // The refusal record is best-effort and must not change the CLI result.
+    }
+  }
 
   // Surface a lossy legacy migration instead of letting it pass silently. Only
   // the legacy upcast path sets legacyWarnings, so canonical/stem/event_type

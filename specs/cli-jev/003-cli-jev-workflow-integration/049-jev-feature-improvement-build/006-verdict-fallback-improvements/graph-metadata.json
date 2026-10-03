@@ -39,19 +39,19 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/006-verdict-fallback-research/research/research.md",
       ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-schema.md",
       ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs",
       ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs",
       ".skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/reviewer-regression.json",
-      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts"
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/006-verdict-fallback-research/research/research.md"
     ],
     "entities": [
       {
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Feature 025 scored 24 of 24, but on reports written so the regex misses them",
     "created_at": "2026-10-03T05:30:07Z",
-    "last_save_at": "2026-10-03T05:37:52.179Z",
+    "last_save_at": "2026-10-03T12:39:02.357Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:289405a342002b270432089c1a8fdbd1cd19208b3807304962b4d9af61d187da",
+    "source_fingerprint": "sha256:9eac36fa6dc8aea34192795c923bf7fdbff064033a09ac9b29dbfee91ad99755",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "03659f79534324e81948589208f20f098db905169eda1d6ab392e1642d86d46c",
+      "spec.md": "ec14928816db6b15eea92beac8901c8f6b2a07d16552846c313854501e6220a4",
       "plan.md": "2de79b12f170f3a8c09a0288a459d90ea280f8d0072e40d8c5729dcd1a6b147c",
-      "tasks.md": "354016323644dca7393cd165e3d094d7a97de0793de84c73a55daf9011c3491b",
-      "implementation-summary.md": "431a6fb63e46c2ed6873ccede725f57ed3431090653489781f58c682e520420e"
+      "tasks.md": "6e09ff7a1fad8d870a1912d77f99ad877a3d97b59b2851537eadb2b4e09c041b",
+      "implementation-summary.md": "e8118a90c2714cc9a85ac1017dd1bc4c90e3f08cb06ffb8d4def405efb0f51ed"
     },
     "last_active_at": null
   }

@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,7 +48,10 @@
       "implementation-summary.md",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
       ".skilled/commands/deep/assets/deep-research-confirm.yaml",
-      ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts"
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-run-open.vitest.ts",
+      "scratch/run-open-proof-state.jsonl.txt"
     ],
     "entities": [
       {
@@ -94,9 +97,27 @@
         "source": "derived"
       },
       {
+        "name": "deep-research.contract.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-research-ledger-types.ts",
         "kind": "code",
         "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-run-open.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-run-open.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-open-proof-state.jsonl.txt",
+        "kind": "file",
+        "path": "scratch/run-open-proof-state.jsonl.txt",
         "source": "derived"
       },
       {
@@ -176,29 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Both deep-research workflows open a run by writing a 15-key config row straight into `deep-research-state.jsonl`",
     "created_at": "2026-10-03T05:30:11Z",
-    "last_save_at": "2026-10-03T05:37:59.281Z",
+    "last_save_at": "2026-10-03T08:23:38.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff82589aa36dababceaad35524659265e6b75817ce919ebbbd17d8c212335240",
+    "source_fingerprint": "sha256:4c3734dd1d9184c89dc52d2d3cbe935e1fced7107d3549eafb0fb921e9ee3bd8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7b2fe3acb8e6e17b644fc23dd5bd484431c2e33cfbf33aae95bb5579c92e6dac",
+      "spec.md": "72ce1abd6142a1a1f340fea1eb6c1c9202cac8d62789d3ab7272b38294f082bf",
       "plan.md": "7c4ae3f634c2f146c2fbb650df1339283fd9fc7500a10adb667da8842726ae76",
-      "tasks.md": "1e51f72f0db33cc3de5920dd6431c751a3c9e44fe05c6e7004723f97d37e59da",
-      "implementation-summary.md": "fec7e73a1ba51a8e92de6e1012803f99064a63818f7f2e2b5668df6189258d80"
+      "tasks.md": "0afc86c63ba088de9a1a9150e64237fc053caa69f646e5f6b1009a4bf9ed893d",
+      "implementation-summary.md": "e739c11c7ef537bbbd848b035b534a6cc055b828ab7038077ad28f386c02ba82"
     },
     "last_active_at": null
   }

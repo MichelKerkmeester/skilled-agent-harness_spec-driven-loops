@@ -39,5 +39,6 @@
       ],
       "reviewer_output": "VERDICT: FAIL\nFinding: blocker is unresolved, so the final verdict must remain FAIL."
     }
-  ]
+  ],
+  "allowlist": {"cli_flags":[],"symbols":[]}
 }

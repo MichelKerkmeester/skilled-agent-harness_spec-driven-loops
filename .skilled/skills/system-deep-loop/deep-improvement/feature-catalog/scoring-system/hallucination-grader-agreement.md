@@ -39,6 +39,12 @@ The script prints the question every grader answers, the 0.10 margin, the keep r
 
 `--jev` needs `--out <dir>`. It prints the planned calls before the first one, records every call in `calls.jsonl` and writes `report.json`. A failed check or a closed label gate prints a `jev arm skipped:` line instead. A finished arm prints one `verdict jev:` line with `keep`, `kill` or `stop` and its reason. An answer that is not a number from 0 to 1 counts as unmeasured and never as a score.
 
+`--cascade` runs the same gate and arm over the same questions, but routes only the check-flagged outputs to the Jev noul and keeps the deterministic `no` call for the rest, so a cascade arm plans fewer calls. It needs `--out <dir>` like `--jev`, records the same way, and a finished cascade arm prints a `cascade: routed <n> of <N> check-flagged outputs; model calls=<n>` line before its `verdict cascade:` line.
+
+Every finished arm also prints one `class <arm> yes:` and one `class <arm> no:` line, where `<arm>` is `jev` or `cascade`, each carrying the per-class correct-over-total count, the rate and a 95 percent Clopper-Pearson interval.
+
+A rerun that reads a stored `report.json` whose `labelsSha256` differs from the current label file refuses to requalify: it prints `requalify refused: labels SHA changed for <arms>` and exits 2 before it opens any arm.
+
 ---
 
 ## 3. SOURCE FILES

@@ -23,11 +23,15 @@ import * as S from '../jev-transport.mjs';
 // 2. FIXTURES
 // ───────────────────────────────────────────────────────────────────
 
-const CHOICE_ARGS = ['choice', '--provider', 'official', '-q', 'Which option?', '-o', 'a=First', '-o', 'b=Second'];
+const CHOICE_ARGS = ['choice', '--provider', 'openrouter', '-q', 'Which option?', '-o', 'a=First', '-o', 'b=Second'];
+const CHOICE_ARGS_WITHOUT_PROVIDER = ['choice', '-q', 'Which option?', '-o', 'a=First', '-o', 'b=Second'];
+const OFFICIAL_CHOICE_ARGS = ['choice', '--provider', 'official', '-q', 'Which option?', '-o', 'a=First', '-o', 'b=Second'];
 const STATE_TEXT = 'the state text';
 const CLASSIFIER_MODEL = { id: 'typesafe/jev-1.13' };
+const OFFICIAL_CLASSIFIER_MODEL = { id: 'jev-latest' };
 const SKIP = {
   package: 'skip: pi transport unavailable (package), using jev CLI',
+  version: 'skip: pi transport unavailable (version), using jev CLI',
   model: 'skip: pi transport unavailable (model), using jev CLI',
   credential: 'skip: pi transport unavailable (credential), using jev CLI',
   backend: 'skip: pi transport unavailable (backend), using jev CLI',
@@ -40,13 +44,13 @@ function tempDir(prefix) {
 
 // The `pi` a fixture PATH finds must belong to the package by name, so the
 // executable sits inside a tree whose manifest names it.
-function stubPiPackage(root) {
+function stubPiPackage(root, version = '0.99.2') {
   const bin = path.join(root, 'bin');
   fs.mkdirSync(bin);
   fs.writeFileSync(path.join(bin, 'pi'), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
   fs.writeFileSync(
     path.join(root, 'package.json'),
-    JSON.stringify({ name: '@earendil-works/pi-coding-agent', version: '0.99.1' }),
+    JSON.stringify({ name: '@earendil-works/pi-coding-agent', version }),
   );
   return bin;
 }
@@ -127,6 +131,13 @@ function callOptions(overrides = {}) {
   };
 }
 
+function successfulChoiceResult() {
+  return {
+    stopReason: 'stop',
+    answers: { answer: { type: 'choice', choice: 'b', probabilities: { a: 0.25, b: 0.7 }, confidence: 0.9 } },
+  };
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 3. TRANSPORT SELECTION
 // ───────────────────────────────────────────────────────────────────
@@ -141,6 +152,10 @@ test('resolve_transport_reads_the_environment', () => {
 
 test('resolve_transport_option_wins_over_the_environment', () => {
   assert.deepEqual(S.resolveTransport('jev', { JEV_TRANSPORT: 'pi' }), { transport: 'jev', line: null });
+});
+
+test('resolve_transport_environment_kill_switch_overrides_pi_option', () => {
+  assert.deepEqual(S.resolveTransport('pi', { JEV_TRANSPORT: 'jev' }), { transport: 'jev', line: null });
 });
 
 test('resolve_transport_empty_value_is_unset', () => {
@@ -161,7 +176,7 @@ test('resolve_transport_unknown_value_names_itself', () => {
 test('choice_request_parses_the_cli_arguments', () => {
   assert.deepEqual(
     S.choiceRequestFrom(['choice', '--provider', 'official', '-q', 'Q', '-o', 'a=A', '-o', 'b=B']),
-    { question: 'Q', keys: ['a', 'b'], criteria: { a: 'A', b: 'B' } },
+    { provider: 'official', question: 'Q', keys: ['a', 'b'], criteria: { a: 'A', b: 'B' } },
   );
 });
 
@@ -251,6 +266,140 @@ test('spawn_call_switch_off_is_the_cli_spawn', async () => {
   assert.deepEqual(runtime.calls.classify, []);
 });
 
+test('spawn_call_official_provider_maps_to_typesafe_jev_latest', async () => {
+  const bin = stubPiPackage(tempDir('pi'));
+  const { lines, report } = collector();
+  const spawn = spawnStub();
+  const runtime = runtimeStub({
+    known: [OFFICIAL_CLASSIFIER_MODEL],
+    classify: async () => successfulChoiceResult(),
+  });
+  const outcome = await S.spawnClassifierCall(
+    callOptions({
+      args: OFFICIAL_CHOICE_ARGS,
+      env: { PATH: bin, JEV_PROVIDER: 'openrouter' },
+      report,
+      transport: 'pi',
+    }),
+    { spawn: spawn.spawnFn, runtime },
+  );
+
+  assert.equal(spawn.calls.length, 0);
+  assert.deepEqual(runtime.calls.model, [
+    { type: 'classifier', providerId: 'typesafe', modelId: 'jev-latest' },
+  ]);
+  assert.deepEqual(runtime.calls.available, [{ type: 'classifier', providerId: 'typesafe' }]);
+  assert.deepEqual(runtime.calls.classify[0].model, {
+    type: 'classifier',
+    provider: 'typesafe',
+    id: 'jev-latest',
+  });
+  assert.equal(JSON.parse(outcome.stdout).model, 'jev-latest');
+  assert.deepEqual(lines, []);
+});
+
+test('spawn_call_omitted_provider_defaults_to_official_pi', async () => {
+  const bin = stubPiPackage(tempDir('pi'));
+  const { lines, report } = collector();
+  const spawn = spawnStub({ stdout: '{"ok":true}\n' });
+  const runtime = runtimeStub({
+    known: [OFFICIAL_CLASSIFIER_MODEL],
+    classify: async () => successfulChoiceResult(),
+  });
+
+  const outcome = await S.spawnClassifierCall(
+    callOptions({
+      args: CHOICE_ARGS_WITHOUT_PROVIDER,
+      env: { PATH: bin },
+      report,
+      transport: 'pi',
+    }),
+    { spawn: spawn.spawnFn, runtime },
+  );
+
+  assert.equal(spawn.calls.length, 0);
+  assert.deepEqual(runtime.calls.model, [
+    { type: 'classifier', providerId: 'typesafe', modelId: 'jev-latest' },
+  ]);
+  assert.equal(JSON.parse(outcome.stdout).model, 'jev-latest');
+  assert.deepEqual(lines, []);
+});
+
+test('spawn_call_omitted_provider_uses_openrouter_environment_for_pi', async () => {
+  const bin = stubPiPackage(tempDir('pi'));
+  const { lines, report } = collector();
+  const spawn = spawnStub();
+  const runtime = runtimeStub({
+    classify: async () => ({
+      stopReason: 'stop',
+      answers: { answer: { type: 'choice', choice: 'b', probabilities: { a: 0.25, b: 0.7 }, confidence: 0.9 } },
+    }),
+  });
+
+  await S.spawnClassifierCall(
+    callOptions({
+      args: CHOICE_ARGS_WITHOUT_PROVIDER,
+      env: { PATH: bin, JEV_PROVIDER: 'openrouter' },
+      report,
+      transport: 'pi',
+    }),
+    { spawn: spawn.spawnFn, runtime },
+  );
+
+  assert.equal(spawn.calls.length, 0);
+  assert.deepEqual(runtime.calls.model, [
+    { type: 'classifier', providerId: 'openrouter', modelId: 'typesafe/jev-1.13' },
+  ]);
+  assert.deepEqual(runtime.calls.available, [{ type: 'classifier', providerId: 'openrouter' }]);
+  assert.equal(runtime.calls.classify.length, 1);
+  assert.equal(runtime.calls.classify[0].model.provider, 'openrouter');
+  assert.equal(runtime.calls.classify[0].model.id, 'typesafe/jev-1.13');
+  assert.deepEqual(lines, []);
+});
+
+test('spawn_call_vercel_and_custom_providers_stay_on_the_cli', async () => {
+  for (const provider of ['vercel', 'custom']) {
+    const bin = stubPiPackage(tempDir('pi'));
+    const { lines, report } = collector();
+    const spawn = spawnStub({ stdout: '{"ok":true}\n' });
+    const runtime = runtimeStub();
+    const args = provider === 'custom'
+      ? ['choice', '--provider', provider, ...CHOICE_ARGS_WITHOUT_PROVIDER.slice(1)]
+      : CHOICE_ARGS_WITHOUT_PROVIDER;
+    const env = provider === 'custom'
+      ? { PATH: bin, JEV_PROVIDER: 'official' }
+      : { PATH: bin, JEV_PROVIDER: provider };
+
+    await S.spawnClassifierCall(
+      callOptions({ args, env, report, transport: 'pi' }),
+      { spawn: spawn.spawnFn, runtime },
+    );
+
+    assert.equal(spawn.calls.length, 1, provider);
+    assert.deepEqual(spawn.calls[0].args, args, provider);
+    assert.deepEqual(runtime.calls.model, [], provider);
+    assert.deepEqual(runtime.calls.available, [], provider);
+    assert.deepEqual(runtime.calls.classify, [], provider);
+    assert.deepEqual(lines, [], provider);
+  }
+});
+
+test('spawn_call_environment_kill_switch_forces_cli_over_pi_option', async () => {
+  const env = { PATH: '/nonexistent', JEV_TRANSPORT: 'jev' };
+  const { lines, report } = collector();
+  const spawn = spawnStub({ stdout: '{"ok":true}\n' });
+  const runtime = runtimeStub();
+  const outcome = await S.spawnClassifierCall(
+    callOptions({ env, report, transport: 'pi' }),
+    { spawn: spawn.spawnFn, runtime },
+  );
+
+  assert.equal(outcome.stdout, '{"ok":true}\n');
+  assert.equal(spawn.calls.length, 1);
+  assert.deepEqual(runtime.calls.model, []);
+  assert.deepEqual(lines, []);
+});
+
 test('spawn_call_switch_on_answers_through_pi', async () => {
   const bin = stubPiPackage(tempDir('pi'));
   const env = { PATH: bin };
@@ -320,6 +469,144 @@ test('spawn_call_environment_switch_answers_through_pi', async () => {
   assert.equal(outcome.timedOut, false);
   assert.equal(typeof outcome.wallMs, 'number');
   assert.deepEqual(lines, []);
+});
+
+test('spawn_call_builds_and_preflights_one_runtime_for_three_pi_calls', async () => {
+  const bin = stubPiPackage(tempDir('pi'));
+  let builds = 0;
+  let runtime;
+  const createRuntime = () => {
+    builds += 1;
+    runtime = runtimeStub({
+      classify: async () => ({
+        stopReason: 'stop',
+        answers: { answer: { choice: 'b', probabilities: { a: 0.25, b: 0.7 }, confidence: 0.9 } },
+      }),
+    });
+    return runtime;
+  };
+  const spawn = spawnStub();
+  const { lines, report } = collector();
+
+  for (let index = 0; index < 3; index += 1) {
+    await S.spawnClassifierCall(
+      callOptions({ env: { PATH: bin }, report, transport: 'pi' }),
+      { spawn: spawn.spawnFn, createRuntime },
+    );
+  }
+
+  assert.equal(builds, 1);
+  assert.equal(runtime.calls.model.length, 1);
+  assert.equal(runtime.calls.available.length, 1);
+  assert.equal(runtime.calls.classify.length, 3);
+  assert.equal(spawn.calls.length, 0);
+  assert.deepEqual(lines, []);
+});
+
+test('spawn_call_preflight_cache_is_scoped_to_path_and_provider', async () => {
+  const bin = stubPiPackage(tempDir('pi'));
+  let builds = 0;
+  let runtime;
+  const createRuntime = () => {
+    builds += 1;
+    runtime = runtimeStub({
+      known: [CLASSIFIER_MODEL, OFFICIAL_CLASSIFIER_MODEL],
+      classify: async () => successfulChoiceResult(),
+    });
+    return runtime;
+  };
+  const spawn = spawnStub();
+  const { lines, report } = collector();
+
+  for (const provider of ['official', 'openrouter', 'official']) {
+    await S.spawnClassifierCall(
+      callOptions({
+        args: CHOICE_ARGS_WITHOUT_PROVIDER,
+        env: { PATH: bin, JEV_PROVIDER: provider },
+        report,
+        transport: 'pi',
+      }),
+      { spawn: spawn.spawnFn, createRuntime },
+    );
+  }
+
+  assert.equal(builds, 1);
+  assert.deepEqual(runtime.calls.model, [
+    { type: 'classifier', providerId: 'typesafe', modelId: 'jev-latest' },
+    { type: 'classifier', providerId: 'openrouter', modelId: 'typesafe/jev-1.13' },
+  ]);
+  assert.deepEqual(runtime.calls.available, [
+    { type: 'classifier', providerId: 'typesafe' },
+    { type: 'classifier', providerId: 'openrouter' },
+  ]);
+  assert.deepEqual(runtime.calls.classify.map(({ model }) => model.provider), [
+    'typesafe',
+    'openrouter',
+    'typesafe',
+  ]);
+  assert.equal(spawn.calls.length, 0);
+  assert.deepEqual(lines, []);
+});
+
+test('spawn_call_preflight_failure_is_checked_and_reported_once', async () => {
+  const bin = stubPiPackage(tempDir('pi'));
+  let builds = 0;
+  let runtime;
+  const createRuntime = () => {
+    builds += 1;
+    runtime = runtimeStub({ available: [] });
+    return runtime;
+  };
+  const spawn = spawnStub({ stdout: '{"ok":true}\n' });
+  const { lines, report } = collector();
+
+  for (let index = 0; index < 3; index += 1) {
+    await S.spawnClassifierCall(
+      callOptions({ env: { PATH: bin }, report, transport: 'pi' }),
+      { spawn: spawn.spawnFn, createRuntime },
+    );
+  }
+
+  assert.equal(builds, 1);
+  assert.equal(runtime.calls.model.length, 1);
+  assert.equal(runtime.calls.available.length, 1);
+  assert.equal(spawn.calls.length, 3);
+  assert.deepEqual(lines, [SKIP.credential]);
+});
+
+test('spawn_call_skips_an_unpinned_pi_package_version', async () => {
+  const bin = stubPiPackage(tempDir('pi'), '0.99.1');
+  const { lines, report } = collector();
+  const spawn = spawnStub({ stdout: '{"ok":true}\n' });
+  const runtime = runtimeStub();
+
+  await S.spawnClassifierCall(
+    callOptions({ env: { PATH: bin }, report, transport: 'pi' }),
+    { spawn: spawn.spawnFn, runtime },
+  );
+
+  assert.deepEqual(lines, [SKIP.version]);
+  assert.equal(spawn.calls.length, 1);
+  assert.deepEqual(runtime.calls.model, []);
+});
+
+test('spawn_call_pi_and_cli_fallback_share_one_timeout_budget', async () => {
+  const bin = stubPiPackage(tempDir('pi'));
+  const runtime = runtimeStub({
+    classify: () => new Promise((resolve, reject) => {
+      setTimeout(() => reject(new Error('backend refused')), 75);
+    }),
+  });
+  const spawn = spawnStub({ close: false });
+  const start = Date.now();
+  const outcome = await S.spawnClassifierCall(
+    callOptions({ env: { PATH: bin }, timeoutMs: 150, transport: 'pi', report: () => {} }),
+    { spawn: spawn.spawnFn, runtime },
+  );
+
+  assert.equal(outcome.timedOut, true);
+  assert.equal(spawn.calls.length, 1);
+  assert.ok(Date.now() - start < 195, `combined attempt took ${Date.now() - start}ms`);
 });
 
 test('spawn_call_package_gate_falls_back', async () => {

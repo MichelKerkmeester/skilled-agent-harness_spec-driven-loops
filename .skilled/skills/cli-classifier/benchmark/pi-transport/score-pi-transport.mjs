@@ -11,6 +11,7 @@
 //   node score-pi-transport.mjs
 //   node score-pi-transport.mjs --pi --out <dir>
 //   node score-pi-transport.mjs --cli --out <dir>
+//   node score-pi-transport.mjs --pi --cli --out <dir>
 //
 // Exit codes: 0 = census printed, or an arm printed its columns and verdict;
 // 1 = the baseline file is missing, empty or unparseable; 2 = bad invocation.
@@ -42,11 +43,13 @@ import { jevGate, spawnCall, writeCall } from '../../../system-skill-advisor/run
 // ───────────────────────────────────────────────────────────────────
 
 const PI_PACKAGE_NAME = '@earendil-works/pi-coding-agent';
+const PI_PACKAGE_VERSION = '0.99.2';
 
-// The classifier both sides ask, on Pi's provider id. Fixed as module constants
-// so the gate, the built questions and every recorded call name one model.
-const PI_PROVIDER = 'openrouter';
-const PI_MODEL_ID = 'typesafe/jev-1.13';
+// Jev and Pi must reach the same provider host for a paired comparison.
+const PI_CLASSIFIERS = new Map([
+  ['official', { provider: 'typesafe', model: 'jev-latest' }],
+  ['openrouter', { provider: 'openrouter', model: 'typesafe/jev-1.13' }],
+]);
 
 // The CLI version the shared gate pins and every rerun record names, in the
 // recorded file's own text shape so a rerun sits beside it under one value.
@@ -72,6 +75,7 @@ export const QUESTION_NAME = 'answer';
 const MIN_COVERAGE_PCT = 90;
 const MIN_AGREEMENT_PCT = 95;
 const MAX_LATENCY_RATIO = 1.5;
+const ESCALATION_MARGIN = 0.10;
 
 // The recorded CLI run a replay is measured against: the answers and timings
 // this comparison treats as the CLI side. Repo-relative, so a printed line or
@@ -544,6 +548,12 @@ export function topKeyByMean(maps, keys) {
   return topKey(meanMap(maps, keys), keys);
 }
 
+function topTwoMargin(maps, keys) {
+  if (maps.length === 0 || keys.length < 2) return null;
+  const values = Object.values(meanMap(maps, keys)).sort((left, right) => right - left);
+  return values[0] - values[1];
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 7. REPLAY PLAN
 // ───────────────────────────────────────────────────────────────────
@@ -611,6 +621,19 @@ function sha12(text) {
   return createHash('sha256').update(text).digest('hex').slice(0, 12);
 }
 
+function sha256(text) {
+  return createHash('sha256').update(text).digest('hex');
+}
+
+function usageFromCli(stdout) {
+  try {
+    const usage = JSON.parse(stdout)?.usage;
+    return usage !== null && typeof usage === 'object' && !Array.isArray(usage) ? usage : null;
+  } catch {
+    return null;
+  }
+}
+
 // Cost per hundred calls from the totals the service reported. A call without a
 // usage report stays out of the mean, so a missing figure never reads as zero.
 function costPerHundred(costs) {
@@ -622,13 +645,15 @@ function costPerHundred(costs) {
 // fixed, then the one model both sides ask. A model that is listed but cannot be
 // resolved fails the gate the same way a missing one does, and no
 // classification can run before the gate passes.
-async function piModelGate(runtime, out) {
-  const models = await runtime.getAvailableOfType('classifier', PI_PROVIDER);
-  const listed = models.some((entry) => entry.id === PI_MODEL_ID);
-  const model = listed ? runtime.getModelOfType('classifier', PI_PROVIDER, PI_MODEL_ID) : undefined;
+async function piModelGate(runtime, out, classifier) {
+  const models = await runtime.getAvailableOfType('classifier', classifier.provider);
+  const listed = models.some((entry) => entry.id === classifier.model);
+  const model = listed
+    ? runtime.getModelOfType('classifier', classifier.provider, classifier.model)
+    : undefined;
   const available = model !== undefined;
-  out(`pi gate: model=${PI_PROVIDER}/${PI_MODEL_ID} available=${available ? 'yes' : 'no'} openrouter_models=${models.length}`);
-  return { available, model, openrouterModels: models.length };
+  out(`pi gate: model=${classifier.provider}/${classifier.model} available=${available ? 'yes' : 'no'} ${classifier.provider}_models=${models.length}`);
+  return { available, model, modelCount: models.length };
 }
 
 /**
@@ -648,7 +673,8 @@ async function piModelGate(runtime, out) {
  *   excluded?: string[],
  *   runtime?: object,
  *   timeoutMs?: number,
- *   replay?: 'recorded' | 'fresh'
+ *   replay?: 'recorded' | 'fresh',
+ *   runDate?: string
  * }} [deps] Injectable dependencies; an injected runtime drives the arm without a Pi install.
  * @returns {Promise<{ column?: object, stopped?: string }>} The Pi column when the arm finished, or the stop line when a gate failed or the backend refused.
  */
@@ -660,11 +686,23 @@ export async function runPiArm(deps = {}) {
   const excluded = deps.excluded ?? [];
   const timeoutMs = deps.timeoutMs ?? CALL_TIMEOUT_MS;
   const replay = deps.replay ?? 'recorded';
+  const runDate = deps.runDate ?? new Date().toISOString().slice(0, 10);
+  const jevProvider = env.JEV_PROVIDER || 'official';
+  const classifier = PI_CLASSIFIERS.get(jevProvider);
+
+  if (classifier === undefined) {
+    out('pi arm skipped: provider');
+    return { stopped: 'pi arm skipped: provider' };
+  }
 
   const pi = resolvePiPackage(env);
   if (pi === null) {
     out('pi arm skipped: package');
     return { stopped: 'pi arm skipped: package' };
+  }
+  if (pi.version !== PI_PACKAGE_VERSION) {
+    out('pi arm skipped: version');
+    return { stopped: 'pi arm skipped: version' };
   }
 
   // No planned row means the recorded baseline could not be rebuilt, so there
@@ -685,7 +723,7 @@ export async function runPiArm(deps = {}) {
     }
   }
 
-  const gate = await piModelGate(runtime, out);
+  const gate = await piModelGate(runtime, out, classifier);
   if (!gate.available) {
     out('pi arm skipped: model');
     return { stopped: 'pi arm skipped: model' };
@@ -695,11 +733,12 @@ export async function runPiArm(deps = {}) {
   writeCall(deps.outDir, {
     backend: 'pi',
     kind: 'model_check',
-    model: PI_MODEL_ID,
-    provider: PI_PROVIDER,
+    model: classifier.model,
+    provider: classifier.provider,
     pi_version: piVersion,
-    openrouter_models: gate.openrouterModels,
+    classifier_models: gate.modelCount,
     status: 'measured',
+    run_date: runDate,
   });
 
   const byRow = new Map();
@@ -770,10 +809,13 @@ export async function runPiArm(deps = {}) {
         status,
         probabilities,
         replay,
-        model: PI_MODEL_ID,
-        provider: PI_PROVIDER,
+        model: classifier.model,
+        provider: classifier.provider,
         pi_version: piVersion,
         state_sha12: sha12(JSON.stringify(context.state)),
+        prompt_sha256: sha256(row.prompt),
+        usage: result?.usage ?? null,
+        run_date: runDate,
       });
 
       if (stopLine !== null) break;
@@ -804,8 +846,8 @@ export async function runPiArm(deps = {}) {
     p95_ms: nearestRank(wallTimes, 0.95),
     cost_per_100: costPerHundred(costs),
     byRow,
-    model: PI_MODEL_ID,
-    provider: PI_PROVIDER,
+    model: classifier.model,
+    provider: classifier.provider,
     pi_version: piVersion,
   };
   out(`pi: rows=${column.rows} calls=${column.calls} measured=${column.measured} unmeasured=${column.unmeasured} timeouts=${column.timeouts} excluded=${column.excluded}`);
@@ -830,7 +872,8 @@ export async function runPiArm(deps = {}) {
  *   outDir?: string,
  *   plan?: Map<string, { prompt: string, cluster: string[], keys: string[], orders: Array<{ order: number, keys: string[], args: string[] }> }>,
  *   excluded?: string[],
- *   timeoutMs?: number
+ *   timeoutMs?: number,
+ *   runDate?: string
  * }} [deps] Injectable dependencies; a stub jev first on PATH drives the arm without a live backend.
  * @returns {Promise<{ column?: object, stopped?: string }>} The CLI column when the arm finished, or the stop line when a gate failed or the CLI refused.
  */
@@ -840,6 +883,7 @@ export async function runCliArm(deps = {}) {
   const plan = deps.plan ?? new Map();
   const excluded = deps.excluded ?? [];
   const timeoutMs = deps.timeoutMs ?? CALL_TIMEOUT_MS;
+  const runDate = deps.runDate ?? new Date().toISOString().slice(0, 10);
 
   // An empty plan means the recorded baseline could not be rebuilt, so there
   // is nothing to ask and the arm stops before the gate spends a probe.
@@ -884,6 +928,7 @@ export async function runCliArm(deps = {}) {
     provider,
     model,
     status: auth.code === 0 ? 'measured' : 'unmeasured',
+    run_date: runDate,
   });
   if (auth.code !== 0) {
     let stopLine = 'cli arm stopped: auth test failed';
@@ -943,10 +988,14 @@ export async function runCliArm(deps = {}) {
         call_ms: null,
         exit_code: result.code,
         probabilities,
+        usage: result.code === 0 ? usageFromCli(result.stdout) : null,
         status,
         jev_version: JEV_VERSION,
         provider,
         model,
+        replay: 'fresh',
+        prompt_sha256: sha256(row.prompt),
+        run_date: runDate,
       });
 
       if (stopLine !== null) break;
@@ -1051,10 +1100,98 @@ export function metricsFor({ K, plan, piByRow, cliByRow }) {
   return {
     K,
     M: measured,
+    A: agreeing,
     coverage: K === 0 ? 0 : round1((measured / K) * 100),
     agreement: measured === 0 ? 0 : round1((agreeing / measured) * 100),
     median_abs_dp: nearestRank(differences, 0.5),
   };
+}
+
+/**
+ * Serve a Pi result only when its top-two mean margin clears the threshold.
+ *
+ * @param {object} input The paired rows and both arms' probability maps.
+ * @param {number} input.K Number of rows in the planned comparison.
+ * @param {Map<string, { keys: string[] }>} input.plan Replay rows and their candidate keys.
+ * @param {Map<string, Array<Record<string, number>>>} input.piByRow Pi probability maps.
+ * @param {Map<string, Array<Record<string, number>>>} input.cliByRow CLI probability maps.
+ * @param {number} [input.threshold=0.1] Minimum Pi margin to serve Pi.
+ * @returns {{ threshold: number, K: number, M: number, A: number,
+ *   pi_served: number, cli_deferred: number, agreement: number,
+ *   decisions: Array<object> }} The measured escalation decisions.
+ */
+export function marginGatedEscalation({
+  K,
+  plan,
+  piByRow,
+  cliByRow,
+  threshold = ESCALATION_MARGIN,
+}) {
+  let measured = 0;
+  let agreeing = 0;
+  let piServed = 0;
+  let cliDeferred = 0;
+  const decisions = [];
+
+  for (const [rowId, row] of plan) {
+    const pi = piByRow.get(rowId);
+    const cli = cliByRow.get(rowId);
+    if (pi === undefined || cli === undefined) continue;
+
+    const margin = topTwoMargin(pi, row.keys);
+    const piPick = topKeyByMean(pi, row.keys);
+    const cliPick = topKeyByMean(cli, row.keys);
+    const selectedBackend = margin !== null && margin >= threshold ? 'pi' : 'jev';
+    const selectedPick = selectedBackend === 'pi' ? piPick : cliPick;
+    const agrees = selectedPick === cliPick;
+    measured += 1;
+    if (selectedBackend === 'pi') piServed += 1;
+    else cliDeferred += 1;
+    if (agrees) agreeing += 1;
+    decisions.push({
+      row_id: rowId,
+      pi_margin: margin,
+      pi_pick: piPick,
+      cli_pick: cliPick,
+      selected_backend: selectedBackend,
+      selected_pick: selectedPick,
+      agrees,
+    });
+  }
+
+  return {
+    threshold,
+    K,
+    M: measured,
+    A: agreeing,
+    pi_served: piServed,
+    cli_deferred: cliDeferred,
+    agreement: measured === 0 ? 0 : round1((agreeing / measured) * 100),
+    decisions,
+  };
+}
+
+function escalationLine(escalation) {
+  return `escalation: threshold=${escalation.threshold.toFixed(2)} pi_served=${escalation.pi_served} cli_deferred=${escalation.cli_deferred} A=${escalation.A}/${escalation.M} agreement=${formatPct(escalation.agreement)}`;
+}
+
+function writeEscalationRecords(outDir, escalation, runDate) {
+  for (const decision of escalation.decisions) {
+    writeCall(outDir, {
+      backend: 'escalation',
+      kind: 'margin_gate',
+      row_id: decision.row_id,
+      threshold: escalation.threshold,
+      pi_margin: decision.pi_margin,
+      pi_pick: decision.pi_pick,
+      cli_pick: decision.cli_pick,
+      selected_backend: decision.selected_backend,
+      selected_pick: decision.selected_pick,
+      agrees: decision.agrees,
+      run_date: runDate,
+      status: 'measured',
+    });
+  }
 }
 
 // A ratio needs a positive CLI bound to compare against; a missing or zero one
@@ -1070,12 +1207,17 @@ function latencyWithinBound(metrics) {
  * judged. Then agreement and latency, the first failed bound naming the reason.
  * Only when every bound holds does the transport adopt.
  *
- * @param {{ coverage: number, agreement: number, p95_ms_pi: number | null, p95_ms_cli: number | null }} metrics The run's metrics.
+ * @param {{ K: number, M: number, A: number, coverage: number, agreement: number,
+ *   p95_ms_pi: number | null, p95_ms_cli: number | null }} metrics The run's metrics and raw counts.
  * @returns {{ outcome: 'adopt' | 'keep-cli' | 'stop', reason: 'coverage' | 'agreement' | 'latency' | null }} The judged outcome and the bound that decided it.
  */
 export function judge(metrics) {
-  if (metrics.coverage < MIN_COVERAGE_PCT) return { outcome: 'stop', reason: 'coverage' };
-  if (metrics.agreement < MIN_AGREEMENT_PCT) return { outcome: 'keep-cli', reason: 'agreement' };
+  if (metrics.K <= 0 || metrics.M * 100 < metrics.K * MIN_COVERAGE_PCT) {
+    return { outcome: 'stop', reason: 'coverage' };
+  }
+  if (metrics.M <= 0 || metrics.A * 100 < metrics.M * MIN_AGREEMENT_PCT) {
+    return { outcome: 'keep-cli', reason: 'agreement' };
+  }
   if (!latencyWithinBound(metrics)) return { outcome: 'keep-cli', reason: 'latency' };
   return { outcome: 'adopt', reason: null };
 }
@@ -1086,12 +1228,15 @@ export function judge(metrics) {
  * keep-cli are already explained by the fields beside them. A cost no run
  * reported prints as `none` and never changes the outcome.
  *
- * @param {{ outcome: string, reason: string | null, K: number, M: number, coverage: number, agreement: number, median_abs_dp: number | null, p95_ms_pi: number | null, p95_ms_cli: number | null, cost_per_100: number | null }} verdict The judged outcome over the run's metrics.
+ * @param {{ outcome: string, reason: string | null, K: number, M: number, A: number,
+ *   coverage: number, agreement: number, median_abs_dp: number | null,
+ *   p95_ms_pi: number | null, p95_ms_cli: number | null, cost_per_100: number | null }} verdict
+ *   The judged outcome over the run's metrics and raw counts.
  * @returns {string} The verdict line.
  */
 export function verdictLine(verdict) {
   const outcome = verdict.outcome === 'stop' ? `stop (${verdict.reason})` : verdict.outcome;
-  return `verdict pi-transport: ${outcome} K=${verdict.K} M=${verdict.M} coverage=${formatPct(verdict.coverage)} agreement=${formatPct(verdict.agreement)} median_abs_dp=${formatDp(verdict.median_abs_dp)} p95_ms=${formatMs(verdict.p95_ms_pi)}/${formatMs(verdict.p95_ms_cli)} cost_per_100=${formatCost(verdict.cost_per_100)}`;
+  return `verdict pi-transport: ${outcome} K=${verdict.K} M=${verdict.M} A=${verdict.A} coverage=${formatPct(verdict.coverage)} agreement=${formatPct(verdict.agreement)} median_abs_dp=${formatDp(verdict.median_abs_dp)} p95_ms=${formatMs(verdict.p95_ms_pi)}/${formatMs(verdict.p95_ms_cli)} cost_per_100=${formatCost(verdict.cost_per_100)}`;
 }
 
 /**
@@ -1260,6 +1405,7 @@ export async function main(argv, deps = {}) {
   }
 
   const armed = values.pi === true || values.cli === true;
+  const paired = values.pi === true && values.cli === true;
   const outDir = typeof values.out === 'string' && values.out !== '' ? values.out : null;
   if (values.pi === true && outDir === null) {
     err('--pi needs --out <dir> so every call is recorded');
@@ -1281,6 +1427,14 @@ export async function main(argv, deps = {}) {
     }
   }
 
+  const jevProvider = env.JEV_PROVIDER || 'official';
+  const classifier = PI_CLASSIFIERS.get(jevProvider);
+  if (paired && classifier === undefined) {
+    err(`paired run has no Pi classifier mapping for JEV_PROVIDER=${jevProvider}`);
+    return 2;
+  }
+  const runEnv = paired ? { ...env, JEV_PROVIDER: jevProvider } : env;
+
   // The baseline fixes the run's row set, so it is read before anything is
   // spawned: an unreadable one stops the run instead of printing a census whose
   // rows do not exist.
@@ -1296,9 +1450,9 @@ export async function main(argv, deps = {}) {
     return 1;
   }
 
-  const pi = await readPiCensus(env, { runtime: deps.runtime });
-  const jev = readJevCensus(env);
-  const llama = readLlamaCensus(env);
+  const pi = await readPiCensus(runEnv, { runtime: deps.runtime });
+  const jev = readJevCensus(runEnv);
+  const llama = readLlamaCensus(runEnv);
   const census = censusLines({ pi, jev, llama, baseline, baselinePath });
   for (const line of census) out(line);
   if (!armed) return 0;
@@ -1313,13 +1467,13 @@ export async function main(argv, deps = {}) {
     census: replayCensus,
     describe: replayCensus.describe,
   });
-
+  const runDate = new Date().toISOString().slice(0, 10);
   let piColumn = null;
   let cliColumn = null;
 
   if (values.pi === true) {
     const arm = await runPiArm({
-      env,
+      env: runEnv,
       out,
       err,
       outDir,
@@ -1327,14 +1481,15 @@ export async function main(argv, deps = {}) {
       excluded,
       runtime: deps.runtime,
       timeoutMs: deps.timeoutMs,
-      replay: values.cli === true ? 'fresh' : 'recorded',
+      replay: paired ? 'fresh' : 'recorded',
+      runDate,
     });
     if (arm.stopped !== undefined) return 0;
     piColumn = arm.column;
   }
 
   if (values.cli === true) {
-    const arm = await runCliArm({ env, out, outDir, plan, excluded, timeoutMs: deps.timeoutMs });
+    const arm = await runCliArm({ env: runEnv, out, outDir, plan, excluded, timeoutMs: deps.timeoutMs, runDate });
     if (arm.stopped !== undefined) return 0;
     cliColumn = arm.column;
   }
@@ -1350,6 +1505,18 @@ export async function main(argv, deps = {}) {
   if (cliColumn === null) cliColumn = recordedCliColumn(baseline, plan, excluded.length);
   out(columnLine(cliColumn));
 
+  let escalation = null;
+  if (paired) {
+    escalation = marginGatedEscalation({
+      K: plan.size + excluded.length,
+      plan,
+      piByRow: piColumn.byRow,
+      cliByRow: cliColumn.byRow,
+    });
+    writeEscalationRecords(outDir, escalation, runDate);
+    out(escalationLine(escalation));
+  }
+
   // A row the rebuild could not replay is still part of what the run set out to
   // compare, so it stays in the coverage denominator as an unmeasured row.
   const metrics = {
@@ -1358,15 +1525,18 @@ export async function main(argv, deps = {}) {
     p95_ms_cli: cliColumn.p95_ms,
     cost_per_100: piColumn.cost_per_100,
   };
-  out(`metrics: coverage=${formatPct(metrics.coverage)} agreement=${formatPct(metrics.agreement)} median_abs_dp=${formatDp(metrics.median_abs_dp)}`);
+  out(`metrics: K=${metrics.K} M=${metrics.M} A=${metrics.A} coverage=${formatPct(metrics.coverage)} agreement=${formatPct(metrics.agreement)} median_abs_dp=${formatDp(metrics.median_abs_dp)}`);
   const verdict = { ...metrics, ...judge(metrics) };
   const line = verdictLine(verdict);
   out(line);
   writeReport(outDir, {
+    run_date: runDate,
+    replay: paired ? 'fresh' : 'recorded',
     census,
     pi: columnReport(piColumn),
     cli: columnReport(cliColumn),
     metrics,
+    escalation,
     verdict: { ...verdict, line },
     stopped: {},
   });

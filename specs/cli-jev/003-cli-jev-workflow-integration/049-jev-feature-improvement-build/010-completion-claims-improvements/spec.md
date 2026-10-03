@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/010-completion-claims-improvements` |
 | **Parent Spec** | ../spec.md |
@@ -93,8 +93,12 @@ The completion sentinel catches the claims it can catch for free, fires less on 
 | `.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` | Modify | Duplicate IDs, attribution, threshold, holdout flag, cost, one-call arm |
 | `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts` | Modify | Cases for the scorer repairs |
 | `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/` | Modify | Correct the `labels-happy` construct |
-| `.cursor/hooks.json` | Modify | Wire the Cursor completion adapter |
+| `.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json` | Modify | Register the Cursor completion adapter; `.cursor/hooks.json` and `.cursor/hooks/` are regenerated from it |
+| `.cursor/hooks.json` and `.cursor/hooks/` | Regenerate | Output of `sync-hook-registrations.cjs` and `sync-runtime-mirrors.cjs`, never hand-edited |
+| `.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/README.md` | Modify | State the pre-registered threshold, the holdout flag, the one-call arm and the cost clause |
+| `.skilled/skills/system-spec-kit/runtime/hooks/cursor/README.md` | Modify | List `afterAgentResponse` as wired, delivery unverified |
 | `.skilled/hooks/completion/README.md` | Modify | Pi visibility matches the adapter and the injection contract |
+| `.skilled/hooks/injection-contract.md` | Modify | The sentinel section names Pi's model-visible next-turn advisory, as the adapter sends it |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -39,20 +39,27 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research/research/research.md",
       ".cursor/hooks.json",
       ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs",
       ".skilled/skills/system-spec-kit/runtime/tests/completion-evidence-sentinel.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
+      ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/README.md",
       ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts",
-      ".skilled/hooks/completion/README.md"
+      ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/labels-happy-rows.jsonl",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+      ".cursor/hooks/completion-evidence-response.mjs",
+      ".skilled/skills/system-spec-kit/runtime/hooks/cursor/README.md",
+      ".skilled/hooks/completion/README.md",
+      ".skilled/hooks/injection-contract.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research/research/research.md",
+      "hooks/pi/completion-evidence.ts"
     ],
     "entities": [
       {
@@ -110,15 +117,45 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/README.md",
+        "source": "derived"
+      },
+      {
         "name": "completion-claim-audit.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "labels-happy-rows.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/labels-happy-rows.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-response.mjs",
+        "kind": "file",
+        "path": ".cursor/hooks/completion-evidence-response.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
         "kind": "doc",
-        "path": ".skilled/hooks/completion/README.md",
+        "path": ".skilled/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence.ts",
+        "kind": "code",
+        "path": "hooks/pi/completion-evidence.ts",
         "source": "derived"
       },
       {
@@ -168,41 +205,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Improve",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Feature 026 stopped on margin, two rows short, against a sentinel regex that catches none of the 10 labeled claims and fires falsely 7 times",
     "created_at": "2026-10-03T05:30:10Z",
-    "last_save_at": "2026-10-03T05:37:57.831Z",
+    "last_save_at": "2026-10-03T08:47:36.939Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8b58253b93906a1dcc2fe87ec43381d40cae4bea6d53b4b75f69d9dc9680667e",
+    "source_fingerprint": "sha256:f6f92c4ffb8d678b8c360b678752e83f17ac1e8ab45a25204bfc60fa8ca89521",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "02aace0e17d6a81b4c6d03b8e5740af896444368b866d7283f458a9180d29e13",
+      "spec.md": "55aeaac121493a41bcb658a5cfead09aa2ec760a81e366250468660a58d33ac0",
       "plan.md": "ed595c0d4636e1f2c9cd764e1c86b096c5d4f4af413a105132f2ed4c50b6464c",
-      "tasks.md": "07ccbb2bf5c57a34d557104e2f52ed39d8751e799c8d63220fc6eb8dde261aba",
-      "implementation-summary.md": "2b1a07753545edaf9f2cb5cb1caca5a02096fdf3cfe1ceac3ad74acc0d6011f6"
+      "tasks.md": "01772caab75a2b2794c10a3789afd9281dabf60f033e906fa300fd6ac041ecdd",
+      "implementation-summary.md": "37a37d5141e686f3f4cb5e8e2855a76c39fc5dd230dd2955b60dedc7f2fb033f"
     },
     "last_active_at": null
   }

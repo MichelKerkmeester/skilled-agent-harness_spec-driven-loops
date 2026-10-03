@@ -47,7 +47,7 @@ node score-pi-transport.mjs --pi --cli --out <dir>
 # 2 = bad invocation, refused before any stdout line
 ```
 
-`--pi` arms the Pi side and `--cli` arms the paired CLI rerun. Each arm requires `--out <dir>` and appends one line per call to `calls.jsonl` under that directory, plus one `model_check` line when the Pi gate passes. An armed run that reaches a verdict also writes `report.json`. `--out` is legal only with an arm, so it exits 2 on its own. An arm without `--out` writes one stderr line and exits 2 before any stdout line. Both switches on one run send each built question to both sides from the one plan.
+`--pi` arms the Pi side and `--cli` arms the paired CLI rerun. Each arm requires `--out <dir>` and appends one line per call to `calls.jsonl` under that directory, plus one `model_check` line when the Pi gate passes. An armed run that reaches a verdict also writes `report.json`. `--out` is legal only with an arm, so it exits 2 on its own. An arm without `--out` writes one stderr line and exits 2 before any stdout line. Both switches on one run send each built question to both sides from the one plan. The paired run uses `JEV_PROVIDER` for both sides, defaulting to `official`, and refuses providers without a Pi mapping.
 
 The default run prints the census block in this order:
 
@@ -68,7 +68,7 @@ On this machine the census printed `pi classifier total: known=12 available=7`, 
 
 An armed run passes its gate before any classifier call, so a machine that cannot complete the run keeps its census and spends nothing.
 
-The Pi arm resolves the package that `pi` on `PATH` belongs to, then requires the classifier `openrouter/typesafe/jev-1.13` in that provider's available list. A failed read prints one skip line: `pi arm skipped: package` or `pi arm skipped: model`. The run then exits 0 with no call and no file. A passed gate prints `pi gate: model=openrouter/typesafe/jev-1.13 available=yes openrouter_models=<n>` before the arm starts.
+The Pi arm resolves the package that `pi` on `PATH` belongs to, then requires the classifier selected by the Jev provider map: `official` uses Pi `typesafe/jev-latest`, and `openrouter` uses Pi `openrouter/typesafe/jev-1.13`. `vercel` and `custom` have no Pi pair. The transport sends those providers to the CLI, and a paired benchmark refuses them. A failed read prints one skip line: `pi arm skipped: package` or `pi arm skipped: model`. The run then exits 0 with no call and no file. A passed gate names its mapped provider and model, such as `pi gate: model=typesafe/jev-latest available=yes typesafe_models=<n>`.
 
 The CLI arm uses the shared jev gate: `jev --version` must report `0.6.2`, then `jev auth status --provider official` must exit 0. A failure prints `jev arm skipped: version` or `jev arm skipped: no credential`. The run then exits 0 with no file.
 

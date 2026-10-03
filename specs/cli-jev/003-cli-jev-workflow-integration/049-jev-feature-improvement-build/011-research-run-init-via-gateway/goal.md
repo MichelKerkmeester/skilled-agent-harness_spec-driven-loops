@@ -11,17 +11,19 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/011-research-run-init-via-gateway"
-    last_updated_at: "2026-10-03T05:30:11Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-03T12:00:00Z"
+    last_updated_by: "claude-opus-5-5-049"
+    recent_action: "All completion criteria met with evidence"
+    next_safe_action: "None. The phase is Complete"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/commands/deep/assets/deep-research-auto.yaml"
+      - ".skilled/commands/deep/assets/deep-research-confirm.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-5-5-049"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,10 +58,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `deep-research-run-open.vitest.ts` passes for both workflows and a fan-out lineage
-- [ ] `check-ledger-stem-producers.cjs` exits 0 with `deep_research.run_initialized` spoken
-- [ ] A real research run records its first iteration through the gateway with exit 0
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` on this phase
+- [x] `deep-research-run-open.vitest.ts` passes for both workflows and a fan-out lineage
+- [x] `check-ledger-stem-producers.cjs` exits 0 with `deep_research.run_initialized` spoken
+- [x] A real research run records its first iteration through the gateway with exit 0
+- [x] `validate.sh --strict` prints `RESULT: PASSED` on this phase
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,10 +78,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase opened | Done | Spec, plan, tasks and goal authored 2026-10-03 from 048's goal log |
+| Build | Done | Luna on cli-codex, resumed once after the usage limit |
+| Cross-family review | Done | DeepSeek on cli-pi: 0 P0, 1 P1 fixed (compiled contract), 2 P2 (temp dir fixed, lineage id recorded) |
+| Real run (2026-10-03) | Done | `fanout-run.cjs`, one DeepSeek lineage, run `1791013368402-ajtzfh`, exit 0 in 2,383 s: config, iteration 1, synthesis_complete, no manual repair |
+| Validate | Done | `validate.sh --strict` RESULT: PASSED |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Compiled contract added to scope | Review P1: the workflow edits staled `compiled/deep-research.contract.md`. Regenerated with `compile-command-contracts.cjs --command deep/research --write` and added to Files to Change |
+| Proof output not committed | The 1.7 MB proof run tree was moved to the session scratchpad. Its state log is kept as `scratch/run-open-proof-state.jsonl.txt` |
 <!-- /ANCHOR:log -->

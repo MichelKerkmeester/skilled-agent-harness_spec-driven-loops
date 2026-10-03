@@ -3,10 +3,12 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { afterEach, describe, expect, it } from 'vitest';
+import { createHash } from 'node:crypto';
 import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, join, resolve } from 'node:path';
-import { binomTail, buildSyntheticTree, chooseBaseline, countVerdict, decideVerdict, formatPathLines, jevGate, main, modalPick, parseRows, replayPath, scanText, scanTranscriptFile, summarizeEvents, verdictLine } from '../evals/score-alignment-suggestion';
+import { binomTail, buildDescriber, buildSyntheticTree, chooseBaseline, countVerdict, decideVerdict, formatPathLines, jevGate, main, modalPick, parseRows, replayPath, runArm, scanText, scanTranscriptFile, summarizeEvents, verdictLine, wilsonInterval } from '../evals/score-alignment-suggestion';
+import type { Row, VerdictCounts } from '../evals/score-alignment-suggestion';
 
 const tempDirs: string[] = [];
 
@@ -335,11 +337,11 @@ describe('transcripts and rows', () => {
   });
 });
 
-function writeRows(dir: string, specs: Array<{ label: string; state?: string | null }>): string {
+function writeRows(dir: string, specs: Array<{ label: string; state?: string | null; path?: string }>): string {
   const rowsFile = join(dir, 'rows.jsonl');
   const rows = specs.map((spec, index) => ({
     id: `row-${String(index + 1).padStart(4, '0')}`,
-    path: 'data',
+    path: spec.path ?? 'data',
     target: '001-a',
     alternatives: ['002-b', '003-c'],
     state: spec.state === undefined ? 'pick:001-a' : spec.state,
@@ -379,6 +381,8 @@ describe('scorer and gate', () => {
     expect(code).toBe(0);
     expect(out).toEqual([
       'rows: total=30 labeled=29 callable=29 state_null=0',
+      'save path split: content=0 folder=30 other=0',
+      'candidate recall: content=0/0 (n/a) folder=29/29 (100.0%) overall=29/29 (100.0%)',
       'stop: fewer than 30 labeled rows (29 labeled)',
     ]);
     expect(existsSync(join(stubDir, 'jev.log'))).toBe(false);
@@ -400,28 +404,64 @@ describe('scorer and gate', () => {
     expect(code).toBe(0);
     expect(out).toEqual([
       'rows: total=30 labeled=30 callable=30 state_null=0',
-      'baseline: target=27 top=3 chosen=target',
+      'save path split: content=0 folder=30 other=0',
+      'candidate recall: content=0/0 (n/a) folder=30/30 (100.0%) overall=30/30 (100.0%)',
+      'baseline: target=27 top=3 chosen=target comparator=auto',
       'margin: 0.10',
       'keep rule: coverage 10*M>=9*K, kill P(X>=L)<=0.05, margin 10*(A-B)>=M, sign P(X>=W)<0.05, flips 10*F<=3*M',
       'question: Which spec folder should this save go to?',
     ]);
   });
 
-  it('rejects a foreign label by row id', async () => {
+  it('reports candidate recall by save path when a destination was not offered', async () => {
     const rowsDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
     tempDirs.push(rowsDir);
 
-    const f = writeRows(rowsDir, Array.from({ length: 30 }, (_, index) => ({
-      label: index === 3 ? '999-elsewhere' : index === 6 ? 'bogus' : '001-a',
-    })));
+    const f = writeRows(rowsDir, [
+      ...Array.from({ length: 15 }, () => ({ label: '001-a', path: 'cli' })),
+      ...Array.from({ length: 14 }, () => ({ label: '002-b', path: 'data' })),
+      { label: '004-not-offered', path: 'data' },
+    ]);
 
     const out: string[] = [];
     const err: string[] = [];
     const code = await main(['--score', f], { out: (line) => out.push(line), err: (line) => err.push(line) });
 
+    expect(code).toBe(0);
+    expect(err).toEqual([]);
+    expect(out).toContain('save path split: content=15 folder=15 other=0');
+    expect(out).toContain('candidate recall: content=15/15 (100.0%) folder=14/15 (93.3%) overall=29/30 (96.7%)');
+  });
+
+  it('honors a predeclared comparator', async () => {
+    const rowsDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    tempDirs.push(rowsDir);
+    const f = writeRows(rowsDir, [
+      ...Array.from({ length: 20 }, () => ({ label: '001-a' })),
+      ...Array.from({ length: 10 }, () => ({ label: '002-b' })),
+    ]);
+
+    const out: string[] = [];
+    const err: string[] = [];
+    const code = await main(['--score', f, '--baseline', 'target'], { out: (line) => out.push(line), err: (line) => err.push(line) });
+
+    expect(code).toBe(0);
+    expect(err).toEqual([]);
+    expect(out).toContain('baseline: target=20 top=10 chosen=target comparator=declared');
+  });
+
+  it('rejects an unsupported comparator', async () => {
+    const rowsDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    tempDirs.push(rowsDir);
+    const f = writeRows(rowsDir, Array.from({ length: 30 }, () => ({ label: '001-a' })));
+    const out: string[] = [];
+    const err: string[] = [];
+
+    const code = await main(['--score', f, '--baseline', 'auto'], { out: (line) => out.push(line), err: (line) => err.push(line) });
+
     expect(code).toBe(2);
     expect(out).toEqual([]);
-    expect(err).toEqual(['foreign label in rows: row-0004, row-0007']);
+    expect(err).toEqual(['--baseline must be target or top']);
   });
 
   it('the baseline stays with the target on a tie', () => {
@@ -464,6 +504,16 @@ describe('keep rule', () => {
     expect(binomTail(5, 0)).toBe(1);
     expect(binomTail(3, 4)).toBe(0);
     expect(binomTail(3, 2)).toBeCloseTo(0.5, 12);
+  });
+
+  it('bounds the discordant-row win rate and handles an empty sample', () => {
+    const interval = wilsonInterval(10, 11);
+
+    expect(interval.lower).toBeLessThan(10 / 11);
+    expect(interval.upper).toBeGreaterThan(10 / 11);
+    expect(interval.lower).toBeGreaterThan(0);
+    expect(interval.upper).toBeLessThan(1);
+    expect(wilsonInterval(0, 0)).toEqual({ lower: 0, upper: 1 });
   });
 
   it('modalPick finds the mode, an unstable row and a missing answer', () => {
@@ -539,7 +589,7 @@ echo "$*" >> "$(dirname "$0")/jev.log"
 case "$1" in
   --version) echo "\${STUB_JEV_VERSION:-jev 0.6.2}"; exit 0 ;;
   auth) if [ "$2" = status ]; then exit "\${STUB_JEV_AUTH:-0}"; fi; echo '{"model":"stub-model"}'; exit 0 ;;
-  choice) read -r state; case "$state" in pick:*) k="\${state#pick:}"; printf '{"model":"stub-model","answers":{"answer":{"choice":"%s","probabilities":{"%s":0.9}}}}\\n' "$k" "$k"; exit 0 ;; esac; exit 1 ;;
+  choice) read -r state; case "$state" in pick:*) k="\${state#pick:}"; p="\${STUB_JEV_PROB:-0.9}"; printf '{"model":"stub-model","answers":{"answer":{"choice":"%s","probabilities":{"%s":%s}}}}\\n' "$k" "$k" "$p"; exit 0 ;; esac; exit 1 ;;
 esac
 exit 1
 `;
@@ -548,6 +598,121 @@ exit 1
   chmodSync(join(dir, 'jev'), 0o755);
   return dir;
 }
+
+describe('path-resolved descriptions', () => {
+  it('shows two same-named folders with their descriptions and excludes archives from the basename index', async () => {
+    const specsRoot = mkdtempSync(join(tmpdir(), 'alignment-suggestion-specs-'));
+    const stub = makeBackendStubs();
+    const outDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    tempDirs.push(specsRoot, outDir);
+
+    const first = join(specsRoot, 'track-a', '001-deep-research');
+    const second = join(specsRoot, 'z_archive', 'track-b', '001-deep-research');
+    mkdirSync(first, { recursive: true });
+    mkdirSync(second, { recursive: true });
+    writeFileSync(join(first, 'description.json'), JSON.stringify({ description: 'Current description' }));
+    writeFileSync(join(second, 'description.json'), JSON.stringify({ description: 'Archived description' }));
+
+    const row = {
+      id: 'description-collision',
+      path: 'cli',
+      target: 'track-a/001-deep-research',
+      alternatives: ['z_archive/track-b/001-deep-research'],
+      state: 'pick:track-a/001-deep-research',
+      gold: null,
+      label: 'track-a/001-deep-research',
+    };
+    await runArm(
+      'jev',
+      [row],
+      'target',
+      { cmd: [join(stub, 'jev')] },
+      {
+        out: () => undefined,
+        env: { ...process.env, PATH: stub + delimiter + process.env.PATH },
+        timeoutMs: 1000,
+        backoffMs: 0,
+        outDir,
+        describe: buildDescriber(specsRoot),
+      }
+    );
+
+    expect(buildDescriber(specsRoot)('001-deep-research')).toBe('Current description');
+    const log = readFileSync(join(stub, 'jev.log'), 'utf8');
+    expect(log).toContain('-o track-a/001-deep-research=Current description');
+    expect(log).toContain('-o z_archive/track-b/001-deep-research=Archived description');
+  });
+
+  it('resolves a bare option to the row sibling over a same-named folder in another track', () => {
+    const specsRoot = mkdtempSync(join(tmpdir(), 'alignment-suggestion-specs-'));
+    tempDirs.push(specsRoot);
+
+    const sibling = join(specsRoot, 'track-a', '002-other');
+    const sameNameElsewhere = join(specsRoot, 'track-b', '002-other');
+    const rowPacket = join(specsRoot, 'track-a', '001-own');
+    mkdirSync(sibling, { recursive: true });
+    mkdirSync(sameNameElsewhere, { recursive: true });
+    mkdirSync(rowPacket, { recursive: true });
+    writeFileSync(join(sibling, 'description.json'), JSON.stringify({ description: 'Sibling description' }));
+    writeFileSync(join(sameNameElsewhere, 'description.json'), JSON.stringify({ description: 'Other-track description' }));
+
+    const describe = buildDescriber(specsRoot);
+    expect(describe('002-other')).toBe('002-other');
+    expect(describe('002-other', join('track-a', '001-own', 'plan.md'))).toBe('Sibling description');
+  });
+
+  it('resolves a census row option to the target sibling when the bare name collides', async () => {
+    const specsRoot = mkdtempSync(join(tmpdir(), 'alignment-suggestion-specs-'));
+    tempDirs.push(specsRoot);
+
+    const ownPacket = join(specsRoot, 'track-a', '001-own');
+    const siblingA = join(specsRoot, 'track-a', '002-other');
+    const siblingB = join(specsRoot, 'track-b', '002-other');
+    for (const dir of [ownPacket, siblingA, siblingB]) mkdirSync(dir, { recursive: true });
+    writeFileSync(join(ownPacket, 'description.json'), JSON.stringify({ description: 'Own description' }));
+    writeFileSync(join(siblingA, 'description.json'), JSON.stringify({ description: 'Track A sibling' }));
+    writeFileSync(join(siblingB, 'description.json'), JSON.stringify({ description: 'Track B sibling' }));
+
+    const runRow = async (row: Row): Promise<string> => {
+      const stub = makeBackendStubs();
+      const outDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+      tempDirs.push(outDir);
+      await runArm(
+        'jev',
+        [row],
+        'target',
+        { cmd: [join(stub, 'jev')] },
+        {
+          out: () => undefined,
+          env: { ...process.env, PATH: stub + delimiter + process.env.PATH },
+          timeoutMs: 1000,
+          backoffMs: 0,
+          outDir,
+          describe: buildDescriber(specsRoot),
+        }
+      );
+      return readFileSync(join(stub, 'jev.log'), 'utf8');
+    };
+
+    const shared = {
+      target: '001-own',
+      alternatives: ['002-other'],
+      state: 'pick:002-other',
+      gold: null,
+      label: '002-other',
+    };
+    const fileRow: Row = { id: 'file-row', path: join('track-a', '001-own', 'plan.md'), ...shared };
+    const censusRow: Row = { id: 'census-row', path: 'cli', ...shared };
+
+    const fileLog = await runRow(fileRow);
+    const censusLog = await runRow(censusRow);
+
+    expect(fileLog).toContain('-o 002-other=Track A sibling');
+    expect(censusLog).toContain('-o 002-other=Track A sibling');
+    expect(censusLog).not.toContain('Track B sibling');
+    expect(censusLog).not.toContain('-o 002-other=002-other');
+  });
+});
 
 describe('backend gates', () => {
   it('the jev gate passes a stub with a credential and an accepted payload', () => {
@@ -635,7 +800,8 @@ describe('model arms', () => {
     expect(firstCode).toBe(0);
     expect(secondCode).toBe(0);
     expect(secondOut).toContain('jev arm skipped: payload not accepted');
-    expect(secondOut.filter((line) => !line.startsWith('jev'))).toEqual(firstOut);
+    expect(secondOut.filter((line) => !line.startsWith('jev') && !line.startsWith('pins:'))).toEqual(firstOut);
+    expect(secondOut.some((line) => line.startsWith('pins:'))).toBe(true);
     const jevLog = readFileSync(join(stub, 'jev.log'), 'utf8').trim().split(/\n/);
     expect(jevLog.some((line) => line.startsWith('choice'))).toBe(false);
   });
@@ -662,8 +828,115 @@ describe('model arms', () => {
 
     expect(code).toBe(0);
     expect(out.some((line) => line.startsWith('jev: payload=operator session summaries and folder descriptions planned_calls=91 est_input_tokens='))).toBe(true);
-    expect(out[out.length - 1]).toBe(
+    expect(out).toContain(
       'verdict jev: keep K=30 M=30 A=30 B=20 W=10 L=0 F=0 p=0.0010 baseline=target jev_version=jev 0.6.2 provider=official model=stub-model'
     );
+  });
+
+  it('pins corpus, report and scorer hashes and reports discordances, intervals and negative controls', async () => {
+    const rowsDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    const outDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+    tempDirs.push(rowsDir, outDir);
+    const stub = makeBackendStubs();
+    const f = writeRows(rowsDir, [
+      ...Array.from({ length: 19 }, () => ({ label: '001-a', state: 'pick:002-b' })),
+      ...Array.from({ length: 10 }, () => ({ label: '003-c', state: 'pick:003-c' })),
+      { label: '002-b', state: 'pick:001-a' },
+    ]);
+    const out: string[] = [];
+    const err: string[] = [];
+
+    const code = await main(['--score', f, '--baseline', 'top', '--jev', '--accept-payload', '--out', outDir], {
+      out: (line) => out.push(line),
+      err: (line) => err.push(line),
+      env: { ...process.env, PATH: stub + delimiter + process.env.PATH, STUB_JEV_PROB: '1' },
+      describe: (folder) => folder,
+    });
+
+    const report = JSON.parse(readFileSync(join(outDir, 'report.json'), 'utf8')) as {
+      baseline: { target: number; top: number; chosen: string; comparator: string };
+      pins: { corpus_sha256: string; scorer_sha256: string };
+      columns: {
+        jev: { counts: { W: number; L: number }; discordantRows: unknown[] };
+        confidenceGated: { choiceCalls: number };
+        negativeControls: { labelSwap: { verdict: string }; distractorState: { verdict: string } };
+      };
+    };
+    const pins = JSON.parse(readFileSync(join(outDir, 'pins.json'), 'utf8')) as Record<string, string>;
+    const digest = (contents: Buffer | string): string => createHash('sha256').update(contents).digest('hex');
+    const reportBytes = readFileSync(join(outDir, 'report.json'));
+    const scorerBytes = readFileSync(resolve(__dirname, '../evals/score-alignment-suggestion.ts'));
+
+    expect(code).toBe(0);
+    expect(err).toEqual([]);
+    expect(report.baseline).toEqual({ target: 19, top: 1, chosen: 'top', comparator: 'declared' });
+    expect(report.columns.jev.counts).toMatchObject({ W: 10, L: 1 });
+    expect(report.columns.jev.discordantRows).toHaveLength(11);
+    expect(report.columns.confidenceGated.choiceCalls).toBe(30);
+    expect(report.columns.negativeControls.labelSwap.verdict).toEqual(expect.any(String));
+    expect(report.columns.negativeControls.distractorState.verdict).toEqual(expect.any(String));
+    expect(report.pins.corpus_sha256).toBe(digest(readFileSync(f)));
+    expect(report.pins.scorer_sha256).toBe(digest(scorerBytes));
+    expect(pins).toEqual({
+      corpus_sha256: digest(readFileSync(f)),
+      report_sha256: digest(reportBytes),
+      scorer_sha256: digest(scorerBytes),
+    });
+    expect(out.some((line) => line.startsWith('jev: W+L=11 interval95=['))).toBe(true);
+    expect(out).toContain('confidence-gated: choice_calls=30 full_pass_calls=90 saved=60');
+    expect(out.some((line) => line.startsWith('negative control label-swap: W+L='))).toBe(true);
+    expect(out.some((line) => line.startsWith('negative control distractor-state: W+L='))).toBe(true);
+    expect(out).toContain(`pins: corpus_sha256=${pins.corpus_sha256} report_sha256=${pins.report_sha256} scorer_sha256=${pins.scorer_sha256}`);
+    expect(readFileSync(join(stub, 'jev.log'), 'utf8').split('\n').filter((line) => line.startsWith('choice '))).toHaveLength(210);
+  });
+
+  it('skips passes two and three only after a probability of exactly 1.0', async () => {
+    const stub = makeBackendStubs();
+    const row = {
+      id: 'gated-row',
+      path: 'data',
+      target: '001-a',
+      alternatives: ['002-b', '003-c'],
+      state: 'pick:001-a',
+      gold: null,
+      label: '001-a',
+    };
+    const choiceCounts: number[] = [];
+    const scoredCounts: VerdictCounts[] = [];
+    const scoredPicks: Array<Array<string | null>> = [];
+
+    for (const probability of ['1', '0.99']) {
+      const outDir = mkdtempSync(join(tmpdir(), 'alignment-suggestion-'));
+      tempDirs.push(outDir);
+      const result = await runArm(
+        'jev',
+        [row],
+        'target',
+        { cmd: [join(stub, 'jev')] },
+        {
+          out: () => undefined,
+          env: { ...process.env, PATH: stub + delimiter + process.env.PATH, STUB_JEV_PROB: probability },
+          timeoutMs: 1000,
+          backoffMs: 0,
+          outDir,
+          describe: (folder) => folder,
+        },
+        { name: 'confidence-gated', confidenceGated: true }
+      );
+      if ('choiceCalls' in result) choiceCounts.push(result.choiceCalls);
+      if ('counts' in result) {
+        scoredCounts.push(result.counts);
+        scoredPicks.push(result.picks['gated-row']);
+      }
+    }
+
+    expect(choiceCounts).toEqual([1, 3]);
+    // A certainty-one row must still count as measured and score its single pick;
+    // asserting only the call count would pass even if the row went unmeasured.
+    expect(scoredCounts).toEqual([
+      { K: 1, M: 1, A: 1, B: 1, W: 0, L: 0, F: 0 },
+      { K: 1, M: 1, A: 1, B: 1, W: 0, L: 0, F: 0 },
+    ]);
+    expect(scoredPicks).toEqual([['001-a'], ['001-a', '001-a', '001-a']]);
   });
 });

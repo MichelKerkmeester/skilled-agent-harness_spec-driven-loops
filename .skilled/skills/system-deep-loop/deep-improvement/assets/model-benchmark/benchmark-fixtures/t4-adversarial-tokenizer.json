@@ -27,5 +27,6 @@
     { "name": "bare dot returns null", "args": ["."], "expect": null }
   ],
   "expectedDifficulty": "adversarial",
-  "saturation": { "status": "active" }
+  "saturation": { "status": "active" },
+  "allowlist": {"cli_flags":[],"symbols":["tokenize"]}
 }

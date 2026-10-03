@@ -35,7 +35,8 @@ A temporary, uncommitted `.cursor/hooks.json` wired every documented Cursor agen
 | `stop` | **Confirmed non-delivery** | Replaced by `sessionEnd` (`session-end.ts`) | Never fired across all 3 dispatches; `sessionEnd` is the actual completion signal under `-p` |
 | `beforeMCPExecution` | **Confirmed fires** | Shared repository guard, not an adapter in this folder | The Cursor MCP route guard is owned by the repository hooks tree, at `.skilled/hooks/mcp-route-guard/cursor/mcp-route-guard.mjs`. |
 | `preCompact` | **Registered, delivery unconfirmed** | `precompact.ts` | No CLI-reachable compaction trigger is available. |
-| `postToolUseFailure`, `afterMCPExecution`, `subagentStart`, `subagentStop`, `afterAgentResponse` | **Not wired** | None | No current repository guard consumes these events. |
+| `afterAgentResponse` | **Registered, delivery unconfirmed** | `completion-evidence-response.mjs` | Advisory completion-evidence check; live delivery has not been verified. |
+| `postToolUseFailure`, `afterMCPExecution`, `subagentStart`, `subagentStop` | **Not wired** | None | No current repository guard consumes these events. |
 
 **Re-verification trigger**: re-run the probe methodology above (temporary `.cursor/hooks.json` + logging script + `cursor-agent -p` dispatches covering shell/read/write, plus a deny-path test) whenever the installed `cursor-agent` build changes, before trusting this table as still accurate.
 
