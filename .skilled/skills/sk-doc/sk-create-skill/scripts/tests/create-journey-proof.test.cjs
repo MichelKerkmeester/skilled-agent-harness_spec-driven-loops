@@ -19,10 +19,6 @@ const INIT_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-creat
 const GATE_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'ci-skill-root-metadata.cjs');
 const VALIDATE_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'validate_skill_package.py');
 const CHECKER_PATH = path.join(REPO_ROOT, '.skilled', 'commands', 'doctor', 'scripts', 'parent-skill-check.cjs');
-const GENERATOR_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
-const LEAF_CONTRACT_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
-const ROOT_CONTRACT_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'skill-root-metadata-contract.cjs');
-const ROOT_ROUTER_CONTRACT_PATH = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 'root-router-contract.cjs');
 const ASSETS_DIR = path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'assets', 'skill');
 const GRAPH_TEMPLATE_PATH = path.join(ASSETS_DIR, 'skill-graph-metadata-template.json');
 const CONFIG_TEMPLATE_PATH = path.join(ASSETS_DIR, 'skill-leaf-manifest-config-template.json');
@@ -68,31 +64,6 @@ function assertShapeMatches(scaffoldPath, templatePath, label) {
     `${label}: scaffolder output and template have drifted\n  scaffold: ${scaffoldKeys.join(', ')}\n  template: ${templateKeys.join(', ')}`);
 }
 
-function stageDoctorSupport(tempRoot) {
-  const scriptsDir = path.join(tempRoot, 'sk-doc', 'sk-create-skill', 'scripts');
-  const libDir = path.join(scriptsDir, 'lib');
-  fs.mkdirSync(libDir, { recursive: true });
-  fs.copyFileSync(GENERATOR_PATH, path.join(scriptsDir, 'generate-leaf-manifest.cjs'));
-  fs.copyFileSync(LEAF_CONTRACT_PATH, path.join(libDir, 'leaf-resource-contract.cjs'));
-  fs.copyFileSync(ROOT_CONTRACT_PATH, path.join(libDir, 'skill-root-metadata-contract.cjs'));
-  fs.copyFileSync(ROOT_ROUTER_CONTRACT_PATH, path.join(libDir, 'root-router-contract.cjs'));
-  // generate-leaf-manifest.cjs now reads the shared S-class config defaults, so
-  // the doctor's staged copy needs it too or its require fails at runtime.
-  fs.copyFileSync(
-    path.join(REPO_ROOT, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'lib', 's-class-config-defaults.json'),
-    path.join(libDir, 's-class-config-defaults.json'),
-  );
-  // root-router-contract.cjs parses fences through the shared spec-kit parser,
-  // so the staged copy needs the same dependency edge the real skill root has:
-  // a @spec-kit/shared entry under the staged skill's node_modules.
-  fs.mkdirSync(path.join(tempRoot, 'sk-doc', 'node_modules', '@spec-kit'), { recursive: true });
-  fs.symlinkSync(
-    path.join(REPO_ROOT, '.skilled', 'skills', 'system-spec-kit', 'shared'),
-    path.join(tempRoot, 'sk-doc', 'node_modules', '@spec-kit', 'shared'),
-    'dir',
-  );
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. JOURNEY
 // ─────────────────────────────────────────────────────────────────────────────
@@ -130,8 +101,6 @@ try {
   assertShapeMatches(
     path.join(tempRoot, 'proof-solo', 'leaf-manifest.config.json'), CONFIG_TEMPLATE_PATH,
     'standalone leaf-manifest.config scaffold vs template');
-
-  stageDoctorSupport(tempRoot);
 
   // init_skill now runs the class gate --fix as part of scaffolding, so both
   // roots are born gate-fresh — a --fix here finds nothing left to fix (fixed=0),

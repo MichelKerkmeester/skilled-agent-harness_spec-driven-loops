@@ -233,7 +233,10 @@ Check `advisorRouting.routingClass` first. Most modes are `metadata` and skip ro
 | 10 | Projection maps and scorer, **for a non-`metadata` mode only** | `skill_advisor.py`, the scorer alias groups, the hub's `legacyAliases` | A `lexical` or `alias-fold` mode is advisor-visible by name, so it needs its own entries. A `metadata` mode needs none of this. A drift guard covers the maps |
 | 11 | Command mirrors | `.codex/prompts/`, `.pi/prompts/`, `.cursor/commands/`, `.claude/commands/` | The command is unreachable from those runtimes. Run each sync script; do not hand-create |
 
-**A green gate is not integration.** `parent-skill-check` covers rows 1-3, 9 and 11. Row 7 is covered by
+**A green gate is not integration.** `parent-skill-check` covers rows 1-3 and 9. Row 11 belongs to the
+mirror checkers under `.skilled/skills/system-spec-kit/runtime/cli/`: `validate-command-tree-parity.sh`
+for `.claude/commands/` and `.cursor/commands/`, `codex/sync-prompts.cjs --check` for `.codex/prompts/`,
+and `pi/sync-prompts-pi.cjs --check` for `.pi/prompts/`; CI runs all of them. Row 7 is covered by
 check 6b, which asserts the mode is *named in the table* and nothing more. Rows 4, 5, 6, 8 and 10 have no gate:
 a hub can pass every check with a mode that no request can reach.
 

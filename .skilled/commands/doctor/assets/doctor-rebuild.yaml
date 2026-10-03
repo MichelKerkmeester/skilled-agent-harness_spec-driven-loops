@@ -112,7 +112,7 @@ mutation_boundaries:
     - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.lock"
     - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.last-run.json"  # orchestrator state log
     - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.bootstrap.json"  # pre-MCP bootstrap state
-    - "/tmp/doctor-runtime-bootstrap.lock"  # pre-MCP bootstrap lock
+    - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.bootstrap.lock"  # pre-MCP bootstrap lock directory
     - "${TMPDIR:-/tmp}/doctor-runtime-bootstrap-actions.*"  # pre-MCP bootstrap action file
     - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.*.log"  # per-phase orchestrator logs
     - ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.config-instructions"  # manual remediation notes
@@ -183,6 +183,11 @@ workflow:
       command: "bash .skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh --root . --json"
       state_log: ".skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild.bootstrap.json"
       no_mcp_tools_allowed: true
+      exit_codes:
+        0: "runtime ready; state status=complete"
+        1: "bootstrap failed; state status=failed (or no .opencode directory, with no state written)"
+        2: "bad arguments to the bootstrap script"
+        3: "another bootstrap holds the lock; state status=busy"
     resume_rule:
       if_resume_bootstrap_true: "require bootstrap state status=complete and generated artifacts present; continue to phase_1_flock_acquire"
       if_resume_bootstrap_false_and_restart_required_true: "write .doctor-rebuild.last-run.json with final_status=restart_required, release any bootstrap lock, stop before database flock"
@@ -191,7 +196,13 @@ workflow:
     required_artifacts:
       - ".skilled/skills/system-spec-kit/runtime/cli/dist/graph/backfill-graph-metadata.js"
       - ".skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js"
+    busy:
+      condition: "bootstrap exit 3 (state status=busy)"
+      emit_error: "another runtime bootstrap is running for this workspace; rerun /doctor:rebuild after it finishes, or remove the lock directory if none is running"
+      final_status: "failed"
+      exit_code: 1
     failure:
+      condition: "any other non-zero bootstrap exit"
       emit_error: "runtime bootstrap failed before MCP registration; inspect .doctor-rebuild.bootstrap.json"
       final_status: "failed"
       exit_code: 1

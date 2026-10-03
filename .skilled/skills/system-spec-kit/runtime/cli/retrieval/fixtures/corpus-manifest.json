@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6d532e3b2cb6eec7fe7e6826293712c9569b533f9c3f6c0a6c19678014438ddb",
+  "corpusHash": "07a0872e7a1870cad171482b731b8ba2f9daa864c872f3a4e794c98e395438dc",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23286,
+  "includedPathCount": 23291,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23313,10 +23313,15 @@
     "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/acceptance-criteria.md",
+    "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "833fa8ea87ab8eaba9f097871f08630bb583d4159bc59363eff4fe20fe637aab",
+  "manifestHash": "40a0d9f3bf9da8987b6c04a48b7b1307874d265ddc5ac446a5b864d1f81ed8ce",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28684,6 +28689,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/scratch",
       "reason": "excluded directory"
     },
     {

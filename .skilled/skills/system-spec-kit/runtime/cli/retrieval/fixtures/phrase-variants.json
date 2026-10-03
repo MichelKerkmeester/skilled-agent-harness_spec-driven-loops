@@ -1,5 +1,5 @@
 {
-  "manifestHash": "833fa8ea87ab8eaba9f097871f08630bb583d4159bc59363eff4fe20fe637aab",
+  "manifestHash": "40a0d9f3bf9da8987b6c04a48b7b1307874d265ddc5ac446a5b864d1f81ed8ce",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -35242,6 +35242,9 @@
     "doctor fable mode yaml": [
       "doctor-fable-mode.yaml"
     ],
+    "doctor false pass fixes": [
+      "doctor false pass fixes"
+    ],
     "doctor gates drift": [
       "doctor gates drift"
     ],
@@ -35426,6 +35429,33 @@
     "doctor runtime mirrors yaml": [
       "doctor-runtime-mirrors.yaml"
     ],
+    "doctor script tests": [
+      "doctor script tests"
+    ],
+    "doctor scripts conformance": [
+      "doctor scripts conformance"
+    ],
+    "doctor scripts conformance plan": [
+      "doctor scripts conformance plan"
+    ],
+    "doctor scripts conformance summary": [
+      "doctor scripts conformance summary"
+    ],
+    "doctor scripts dead code": [
+      "doctor scripts dead code"
+    ],
+    "doctor scripts refactor plan": [
+      "doctor scripts refactor plan"
+    ],
+    "doctor scripts tasks": [
+      "doctor scripts tasks"
+    ],
+    "doctor scripts verification": [
+      "doctor scripts verification"
+    ],
+    "doctor scripts verification evidence": [
+      "doctor scripts verification evidence"
+    ],
     "doctor sequential thinking removal": [
       "doctor sequential thinking removal"
     ],
@@ -35515,6 +35545,15 @@
     ],
     "doctor surface authoring handover": [
       "doctor surface authoring handover"
+    ],
+    "doctor test runner": [
+      "doctor test runner"
+    ],
+    "doctor test runner shipped": [
+      "doctor test runner shipped"
+    ],
+    "doctor test runner tasks": [
+      "doctor test runner tasks"
     ],
     "doctor update": [
       "/doctor:update"

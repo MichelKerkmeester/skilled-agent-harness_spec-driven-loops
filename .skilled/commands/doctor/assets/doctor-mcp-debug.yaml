@@ -57,7 +57,7 @@ workflow:
     activities:
       - "Run bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json."
       - "Parse status, exitCode, summary, and checks[]."
-      - "Treat exit code 0 as healthy, 1 as warnings, and 2 as failures."
+      - "Treat exit code 0 as healthy, 1 as warnings, and 2 as failures. Exit code 3 means the script was invoked wrongly and printed no report; stop and report it."
       - "Do not pass the command's --fix flag to the script."
     command: "bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json"
     outputs: [diagnostic_json, fail_list, warn_list]
@@ -120,4 +120,5 @@ error_handling:
   script_not_found: "Stop and report .skilled/commands/doctor/scripts/mcp-doctor.sh is missing."
   node_not_found: "Report that Node.js 24 is required for Code Mode checks and repairs."
   json_parse_error: "Stop and report that the diagnostic JSON could not be parsed."
+  script_usage_error: "Exit code 3 means a bad argument or a --root that is not a directory; stop and report the script's stderr."
   repair_fails: "Record the command result and offer the documented manual resolution; do not retry without a new approval."

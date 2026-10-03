@@ -22,10 +22,10 @@ scope:
     pi: [.pi/mcp.json]
     devin: [.devin/mcp_config.json]
 
-# Mutation-class manifest read by scripts/check-mcp-mutation-class.sh (a
-# pre-commit gate). It declares the Code Mode installer's class so the guard
-# can hold the read-only and mutating line. The workflow below builds with npm
-# directly and never runs this installer; the declaration still binds the gate.
+# Server inventory for this workflow. The mutation-class gate
+# (scripts/check-mcp-mutation-class.sh) reads its own manifest,
+# assets/mcp-mutation-class-manifest.yaml, not this block. The workflow below
+# builds with npm directly and never runs the Code Mode installer.
 servers:
   code_mode:
     label: "Code Mode"
@@ -61,7 +61,7 @@ workflow:
   step_2_assess:
     purpose: Inspect the current Code Mode build, UTCP configuration, and runtime wiring
     activities:
-      - "Run bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json and parse status, exitCode, summary, and checks."
+      - "Run bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json and parse status, exitCode, summary, and checks. Exit 0 is healthy, 1 warnings, 2 failures; exit 3 means the script was invoked wrongly and printed no report, so stop and report it."
       - "Review the Code Mode package manifest, source timestamps, dist/index.js, node_modules, .utcp_config.json, and selected runtime config."
       - "Treat dist/index.js as stale when any available source input is newer; syntax-check a present dist/index.js with node --check."
       - "For Codex TOML, validate with Python tomllib when available; otherwise report the config as unvalidated."

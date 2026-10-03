@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Command Catalog Mirror Check
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 // Read-only /doctor diagnostic for command-catalog and command-metadata drift.
@@ -14,15 +17,15 @@
 //
 // It compares copies against the frontmatter tree, never a copy against a copy,
 // so it stays a guard rather than a second generator. Generating the indexes was
-// considered and rejected: the metadata covers 20 of the 39 shipped commands and
-// is itself hand-kept, so deriving one copy from another would launder drift
-// instead of reporting it.
+// considered and rejected: the hub metadata covers only the commands whose hubs
+// route them, well short of the whole tree, and is itself hand-kept, so deriving
+// one copy from another would launder drift instead of reporting it.
 //
 // Two tiers, because two kinds of disagreement are not the same failure:
 //   - Structural (drives exit status). Coverage, identity, counts and resolvable
 //     resources. A command missing from an index, an index naming a command that
-//     no longer exists, a stale group count, a metadata entry pointing at
-//     nothing. These break a reader or a router.
+//     no longer exists, a stale or missing group row, a metadata entry pointing
+//     at nothing. These break a reader or a router.
 //   - Prose (reported, exit 0 unless --strict). The description and argumentHint
 //     a hub copies out of frontmatter. A hub legitimately phrases a routing
 //     description its own way, and the metadata convention appends a pre-bound
@@ -30,15 +33,24 @@
 //     worth seeing without being worth failing a diagnostic over.
 //
 // Never writes; a /doctor run is read-only by contract.
-// Exit 0 when every copy covers the tree, 1 on drift, 2 on error.
+// Exit 0 when every copy covers the tree, 1 on drift, 2 on checker error (bad
+// arguments, a missing tree, or any unexpected throw), always with a STATUS= line.
 //
 // Usage: command-catalog-mirror-check.cjs [--root <dir>] [--strict]
 //   --root   check a copy of the tree instead of this repository, so a
 //            deliberate staleness can be proven without editing the real one.
 //   --strict promote prose divergence from a warning to drift.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('node:fs');
 const path = require('node:path');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const DEFAULT_REPO = path.resolve(__dirname, '../../../..');
 
@@ -50,6 +62,9 @@ const NON_NAMESPACE_DIRS = new Set(['assets', 'scripts']);
 // commands carry entries; a hub with none carries an empty array.
 const METADATA_GLOB_ROOT = '.skilled/skills';
 
+// The group table names root utilities under this label rather than a folder.
+const ROOT_GROUP = 'root';
+
 // A slash-command id: /name for a root utility, /family:name for a namespaced
 // one. The same grammar the metadata schema enforces.
 const COMMAND_ID_RE = /^\/[a-z][a-z0-9-]*(:[a-z][a-z0-9-]*)?$/;
@@ -59,11 +74,20 @@ const COMMAND_ID_RE = /^\/[a-z][a-z0-9-]*(:[a-z][a-z0-9-]*)?$/;
 // a false orphan trains the reader to ignore this output.
 const NAMESPACED_MENTION_RE = /\/[a-z][a-z0-9-]*:[a-z][a-z0-9-]*/g;
 
+const BACKTICK_SPAN_RE = /`([^`]+)`/g;
+
 // The metadata convention appends this annotation to an argument hint whose
 // :auto mode accepts pre-bound setup answers; the frontmatter carries it only on
 // some commands. The two surfaces disagree systematically rather than by drift,
 // so the grammar is compared without it.
 const PREBOUND_ANNOTATION_RE = /\s*\(:auto supports PRE-BOUND SETUP ANSWERS[^)]*\)\s*$/;
+
+// Width of the catalog or metadata label column in the report.
+const LABEL_WIDTH = 34;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function fail(message) {
   console.error(`STATUS=ERROR command-catalog-mirror: ${message}`);
@@ -83,7 +107,13 @@ function parseArgs(argv) {
   return opts;
 }
 
-// ── the tree of record ───────────────────────────────────────────────────────
+function tableCells(line) {
+  return line.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map((c) => c.trim());
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. THE TREE OF RECORD
+// ─────────────────────────────────────────────────────────────────────────────
 
 function readFrontmatter(file) {
   const text = fs.readFileSync(file, 'utf8');
@@ -136,22 +166,36 @@ function readCommandTree(commandsDir) {
   return commands;
 }
 
-// ── catalogs ─────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. CATALOGS
+// ─────────────────────────────────────────────────────────────────────────────
 
-// Coverage is judged against the catalog's table rows alone, never the whole
-// document. An index lists its commands in a table; a usage example further down
-// mentions the same ids in passing. Scanning everything lets a deleted row hide
-// behind an example of the command it used to describe, which is precisely the
-// staleness worth catching.
-function tableRows(text) {
-  return text.split('\n').filter((line) => /^\s*\|/.test(line)).join('\n');
+// Coverage is judged per table row, never over the whole document and never by
+// substring. A usage example further down mentions ids in passing, a group row's
+// description names the commands of its group, and one id can be the prefix of
+// another (/create:skill inside /create:skill-parent). Any of those lets a
+// deleted row hide, which is precisely the staleness worth catching. So a row
+// names the command its first backticked span opens with, compared exactly.
+//
+// A row may instead name the command by its backing file, as any backticked span
+// equal to the file path. The doctor router is the reason the fallback exists:
+// its index row says `/doctor:speckit <target>` (backed by `doctor/speckit.md`).
+function catalogEntries(text) {
+  const ids = new Set();
+  const paths = new Set();
+  for (const line of text.split('\n')) {
+    if (!/^\s*\|/.test(line)) continue;
+    const spans = [...line.matchAll(BACKTICK_SPAN_RE)].map((m) => m[1].trim());
+    if (spans.length === 0) continue;
+    const firstWord = spans[0].split(/\s+/)[0];
+    if (COMMAND_ID_RE.test(firstWord)) ids.add(firstWord);
+    for (const span of spans) paths.add(span);
+  }
+  return { ids, paths };
 }
 
-// A row names a command either by its invocation id or by its file path. The
-// doctor router is the reason both count: it ships as doctor/speckit.md but is
-// invoked as `/doctor:speckit <target>`, so its index row names the backing file.
-function catalogNames(rows, command) {
-  return rows.includes(command.id) || rows.includes(command.rel);
+function catalogNames(entries, command) {
+  return entries.ids.has(command.id) || entries.paths.has(command.rel);
 }
 
 function findCatalogs(commandsDir, namespaces) {
@@ -175,7 +219,7 @@ function groupCounts(text) {
   const counts = new Map();
   for (const line of text.split('\n')) {
     if (!/^\s*\|/.test(line)) continue;
-    const cells = line.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map((c) => c.trim());
+    const cells = tableCells(line);
     if (cells.length < 3) continue;
     const group = cells[0].match(/^\*\*([a-z][a-z0-9-]*)\*\*$/);
     const count = cells[2].match(/^\d+$/);
@@ -184,17 +228,46 @@ function groupCounts(text) {
   return counts;
 }
 
+function commandsInGroup(commands, group) {
+  return group === ROOT_GROUP
+    ? commands.filter((c) => c.ns === null)
+    : commands.filter((c) => c.ns === group);
+}
+
+// The group table is checked both ways: a row whose folder is gone, a count
+// that no longer matches, and a namespace (or the root) whose commands have no
+// row at all, the omission a newly added family produces.
+function checkGroupTable(text, commands, namespaces) {
+  const problems = [];
+  const counts = groupCounts(text);
+  for (const [group, claimed] of counts) {
+    const actual = commandsInGroup(commands, group).length;
+    if (actual === 0 && group !== ROOT_GROUP) {
+      problems.push(`group table lists '${group}' but no such command folder`);
+    } else if (actual !== claimed) {
+      problems.push(`group '${group}' count says ${claimed}, folder holds ${actual}`);
+    }
+  }
+  const groups = [...namespaces].sort();
+  if (commandsInGroup(commands, ROOT_GROUP).length > 0) groups.push(ROOT_GROUP);
+  for (const group of groups) {
+    if (counts.has(group)) continue;
+    const actual = commandsInGroup(commands, group).length;
+    problems.push(`'${group}' has ${actual} command(s) but no group-table row`);
+  }
+  return problems;
+}
+
 function checkCatalog(catalog, commands, namespaces) {
   const text = fs.readFileSync(catalog.abs, 'utf8');
-  const rows = tableRows(text);
+  const entries = catalogEntries(text);
   const inScope = catalog.scope === null
     ? commands
     : commands.filter((c) => c.ns === catalog.scope);
   const problems = [];
 
-  for (const command of inScope) {
-    if (!catalogNames(rows, command)) problems.push(`${command.id} not listed`);
-  }
+  const unlisted = inScope.filter((command) => !catalogNames(entries, command));
+  for (const command of unlisted) problems.push(`${command.id} not listed`);
 
   // An id in the catalog with no file behind it is drift the other way: the
   // index keeps offering a command the tree no longer defines.
@@ -209,24 +282,14 @@ function checkCatalog(catalog, commands, namespaces) {
     if (!known.has(mention)) problems.push(`${mention} listed but no such command file`);
   }
 
-  if (catalog.scope === null) {
-    for (const [group, claimed] of groupCounts(text)) {
-      const actual = group === 'root'
-        ? commands.filter((c) => c.ns === null).length
-        : commands.filter((c) => c.ns === group).length;
-      // A group row naming no namespace on disk is a stale row, not a bad count.
-      if (actual === 0 && group !== 'root') {
-        problems.push(`group table lists '${group}' but no such command folder`);
-      } else if (actual !== claimed) {
-        problems.push(`group '${group}' count says ${claimed}, folder holds ${actual}`);
-      }
-    }
-  }
+  if (catalog.scope === null) problems.push(...checkGroupTable(text, commands, namespaces));
 
-  return { covered: inScope.length - problems.filter((p) => p.endsWith('not listed')).length, total: inScope.length, problems };
+  return { covered: inScope.length - unlisted.length, total: inScope.length, problems };
 }
 
-// ── hub command-metadata ─────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. HUB COMMAND METADATA
+// ─────────────────────────────────────────────────────────────────────────────
 
 function findMetadataFiles(repo) {
   const skillsDir = path.join(repo, METADATA_GLOB_ROOT);
@@ -237,6 +300,33 @@ function findMetadataFiles(repo) {
     if (fs.existsSync(abs)) found.push({ label: `${skill}/command-metadata.json`, abs, skill });
   }
   return found;
+}
+
+function isPlainObject(value) {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function checkEntry(entry, command, repo, problems, warnings) {
+  const id = command.id;
+  if (entry.choreography !== undefined && !Array.isArray(entry.choreography)) {
+    problems.push(`${id} choreography is not an array`);
+  }
+  for (const step of Array.isArray(entry.choreography) ? entry.choreography : []) {
+    if (!step || typeof step.resource !== 'string') continue;
+    if (!fs.existsSync(path.join(repo, step.resource))) {
+      problems.push(`${id} loads a resource that does not exist: ${step.resource}`);
+    }
+  }
+
+  const description = command.frontmatter.description || '';
+  if ((entry.description || '') !== description) {
+    warnings.push(`${id} description differs from frontmatter`);
+  }
+  const hint = (command.frontmatter['argument-hint'] || '').replace(PREBOUND_ANNOTATION_RE, '');
+  const claimed = (entry.argumentHint || '').replace(PREBOUND_ANNOTATION_RE, '');
+  if (claimed !== hint) {
+    warnings.push(`${id} argumentHint differs from frontmatter`);
+  }
 }
 
 function checkMetadata(meta, commands, repo) {
@@ -252,41 +342,32 @@ function checkMetadata(meta, commands, repo) {
   const problems = [];
   const warnings = [];
   const claimedNamespaces = new Set();
+  const declared = new Set();
 
-  for (const entry of entries) {
+  entries.forEach((entry, index) => {
+    // A null or scalar entry carries no command to check; it is still drift,
+    // because the file no longer has the shape the advisor reads.
+    if (!isPlainObject(entry)) {
+      problems.push(`entry ${index + 1} is not an object`);
+      return;
+    }
     const id = typeof entry.command === 'string' ? entry.command : '(unnamed entry)';
     if (!COMMAND_ID_RE.test(id)) {
       problems.push(`${id} is not a slash-command id`);
-      continue;
+      return;
     }
+    declared.add(id);
     const command = byId.get(id);
     if (!command) {
       problems.push(`${id} has an entry but no command file`);
-      continue;
+      return;
     }
     if (command.ns) claimedNamespaces.add(command.ns);
-
-    for (const step of entry.choreography || []) {
-      if (!step || typeof step.resource !== 'string') continue;
-      if (!fs.existsSync(path.join(repo, step.resource))) {
-        problems.push(`${id} loads a resource that does not exist: ${step.resource}`);
-      }
-    }
-
-    const description = command.frontmatter.description || '';
-    if ((entry.description || '') !== description) {
-      warnings.push(`${id} description differs from frontmatter`);
-    }
-    const hint = (command.frontmatter['argument-hint'] || '').replace(PREBOUND_ANNOTATION_RE, '');
-    const claimed = (entry.argumentHint || '').replace(PREBOUND_ANNOTATION_RE, '');
-    if (claimed !== hint) {
-      warnings.push(`${id} argumentHint differs from frontmatter`);
-    }
-  }
+    checkEntry(entry, command, repo, problems, warnings);
+  });
 
   // A hub that speaks for a namespace speaks for all of it. Half a namespace is
   // how a newly added command goes unrouted while the file sits happily on disk.
-  const declared = new Set(entries.map((e) => e && e.command).filter(Boolean));
   for (const ns of claimedNamespaces) {
     for (const command of commands.filter((c) => c.ns === ns)) {
       if (!declared.has(command.id)) {
@@ -298,7 +379,9 @@ function checkMetadata(meta, commands, repo) {
   return { problems, warnings, entries: entries.length };
 }
 
-// ── report ───────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. REPORT
+// ─────────────────────────────────────────────────────────────────────────────
 
 function main() {
   const opts = parseArgs(process.argv.slice(2));
@@ -316,11 +399,14 @@ function main() {
   console.log(`canonical: .skilled/commands frontmatter (${commands.length} commands)\n`);
 
   const catalogs = findCatalogs(commandsDir, [...namespaces].sort());
-  if (catalogs.length === 0) drift.push('catalog: no README.txt index found under .skilled/commands');
+  if (catalogs.length === 0) {
+    drift.push('catalog: no README.txt index found under .skilled/commands');
+  }
   for (const catalog of catalogs) {
     const result = checkCatalog(catalog, commands, namespaces);
     const mark = result.problems.length === 0 ? 'OK  ' : 'DRIFT';
-    console.log(`  ${mark} ${catalog.label.padEnd(34)} ${result.covered}/${result.total} listed`);
+    const label = catalog.label.padEnd(LABEL_WIDTH);
+    console.log(`  ${mark} ${label} ${result.covered}/${result.total} listed`);
     for (const p of result.problems) {
       console.log(`         - ${p}`);
       drift.push(`${catalog.label}: ${p}`);
@@ -331,7 +417,8 @@ function main() {
     const result = checkMetadata(meta, commands, opts.root);
     if (result.entries === 0 && result.problems.length === 0) continue;
     const mark = result.problems.length === 0 ? 'OK  ' : 'DRIFT';
-    console.log(`  ${mark} ${meta.label.padEnd(34)} ${result.entries} entr${result.entries === 1 ? 'y' : 'ies'}`);
+    const noun = result.entries === 1 ? 'entry' : 'entries';
+    console.log(`  ${mark} ${meta.label.padEnd(LABEL_WIDTH)} ${result.entries} ${noun}`);
     for (const p of result.problems) {
       console.log(`         - ${p}`);
       drift.push(`${meta.label}: ${p}`);
@@ -349,11 +436,20 @@ function main() {
   const failing = opts.strict ? drift.length + prose.length : drift.length;
   if (failing > 0) {
     console.log(`\nSTATUS=DRIFT command-catalog-mirror: ${failing} issue(s)`);
-    console.log('Repair: the command file\'s frontmatter is the source. Update the index row, the group count, or the hub metadata entry to match it — never the other way round.\n');
+    console.log('Repair: the command file\'s frontmatter is the source. Update the index row, '
+      + 'the group row or count, or the hub metadata entry to match it — '
+      + 'never the other way round.\n');
     process.exit(1);
   }
-  console.log('\nSTATUS=OK command-catalog-mirror: every catalog and hub metadata covers the command tree\n');
+  console.log('\nSTATUS=OK command-catalog-mirror: '
+    + 'every catalog and hub metadata covers the command tree\n');
   process.exit(0);
 }
 
-main();
+// Any throw is the checker failing, never a drift verdict, so it must reach the
+// exit code the workflow maps to checker error rather than Node's default 1.
+try {
+  main();
+} catch (err) {
+  fail(`checker crashed: ${err && err.message ? err.message : String(err)}`);
+}

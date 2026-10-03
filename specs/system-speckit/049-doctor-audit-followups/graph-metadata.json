@@ -6,7 +6,8 @@
   "children_ids": [
     "system-speckit/049-doctor-audit-followups/001-trigger-index-freshness",
     "system-speckit/049-doctor-audit-followups/002-release-update-customization-signals",
-    "system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift"
+    "system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift",
+    "system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance"
   ],
   "manual": {
     "depends_on": [],
@@ -184,16 +185,16 @@
     ],
     "causal_summary": "The doctor command audit (packet 048) inspected every doctor target against the current checkout and applied its verdicts, but it deliberately recorded the defects it found in the subsystems the doctors inspect instead of fixing them",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-03T07:21:29.959Z",
+    "last_save_at": "2026-10-03T18:18:08.499Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8c979234edc41fce07ffb42520382ec255969fc380c19b82edb4286501a14049",
+    "source_fingerprint": "sha256:deac895129015bf0de3793f4c18df9ef9ead45206e237c879ab8d65603464528",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cf08d10864fa416c12d0e36de1b568818b15c5bd5ca8ad6b59a22a5840d6ee21"
+      "spec.md": "ae0ff027e411c04ceed1e696cf0540549a40c06bf144ca1b2b9e26a4f466079b"
     },
     "last_active_at": null
   }

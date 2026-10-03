@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 57,
     "missing-frontmatter": 6661,
-    "ok": 13053,
+    "ok": 13058,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23286,
+  "documentsScanned": 23291,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "833fa8ea87ab8eaba9f097871f08630bb583d4159bc59363eff4fe20fe637aab",
+  "manifestHash": "40a0d9f3bf9da8987b6c04a48b7b1307874d265ddc5ac446a5b864d1f81ed8ce",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33363,
+      "ok": 33376,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -70381,6 +70381,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/scratch",
       "reason": "excluded directory"
     },
     {

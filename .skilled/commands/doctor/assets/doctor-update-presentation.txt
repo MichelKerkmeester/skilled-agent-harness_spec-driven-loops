@@ -24,9 +24,9 @@ Accepted flags by action:
 
 | Action | Flags |
 |--------|-------|
-| check | `--json`, `--release=<tag>`, `--scope=all|<unit,...>`, `--offline`, `--include-prerelease` |
-| align | `--release=<tag>`, `--scope=all|<unit,...>`, `--offline`, `--dry-run`, `--include-prerelease` |
-| apply | `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit,...>`, `--include-prerelease` |
+| check | `--json`, `--release=<tag>`, `--scope=all|<unit-key,...>`, `--offline`, `--include-prerelease` |
+| align | `--release=<tag>`, `--scope=all|<unit-key,...>`, `--offline`, `--dry-run`, `--include-prerelease` |
+| apply | `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit-key,...>`, `--include-prerelease` |
 
 Latest-upstream resolution takes stable `vN.N.N.N` tags only. `--include-prerelease` also admits `vN.N.N.N-<pre>` tags; both compare version segments as numbers. A tag named with `--release` is used as given.
 
@@ -159,7 +159,7 @@ Or reply defer to defer this entire unit.
 Answers: [file path] = [decision]; [file path] = [decision]; ...
 ```
 
-Accept only `adopt-release`, `keep-local`, `merge`, `use-proposal` for eligible files, or `defer` for the whole unit. The engine may reject a decision that does not match the file class. Do not infer an answer from silence or from the recommendation. Record every file answer through the engine `decide` command, including an answer matching a prefilled suggestion. Record `defer` through `decide --unit <unit> --defer`.
+Accept only `adopt-release`, `keep-local`, `merge`, `use-proposal` for eligible files, or `defer` for the whole unit. The engine may reject a decision that does not match the file class. Do not infer an answer from silence or from the recommendation. Record every file answer through the engine `decide` command, including an answer matching a prefilled suggestion. Record `defer` through `decide --unit <unit-key> --defer`, using the unit's `key` from the report (`kind:name`, for example `skill:sk-git`). A plain name works only when no other unit shares it.
 
 ### Align summary
 

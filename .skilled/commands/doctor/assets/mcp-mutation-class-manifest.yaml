@@ -6,10 +6,19 @@
 # workflow happens to declare. Every script listed here must exist: the
 # guard fails closed on a missing file.
 #
+# Coverage: every script the pre-commit hook sends to the guard needs a
+# row here, or the guard fails:
+#   skills/(mcp-tooling/)?mcp-*/scripts/{doctor,install}*.sh
+#   skills/(mcp-tooling/)?mcp-*/mcp-servers/*/setup.sh
+#
+# Each entry names its skill_dir plus any of install_script,
+# doctor_script and setup_script, each with a matching
+# <kind>_script_mutation_class.
+#
 # Classes:
 #   mutating   installer; mutation is expected, the guard asserts the label
-#   read-only  doctor; the guard scans for unguarded mutation or network
-#   none       explicit "no script" sentinel
+#   read-only  the guard scans for unguarded mutation or network
+#   none       explicit "no script" sentinel; set <kind>_script: null
 # ─────────────────────────────────────────────────────────────────
 
 servers:
@@ -18,6 +27,8 @@ servers:
     skill_dir: ".skilled/skills/mcp-code-mode"
     install_script: "scripts/install.sh"
     install_script_mutation_class: mutating  # installer: writes config + npm install
+    doctor_script: "scripts/doctor.sh"
+    doctor_script_mutation_class: read-only  # dist and import checks only
 
 cli_skill_diagnostics:
   mcp-figma:
@@ -27,6 +38,8 @@ cli_skill_diagnostics:
     install_script_mutation_class: mutating  # installer: npm/git install of figma-ds-cli
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; no install/connect/patch
+    setup_script: "mcp-servers/figma-cli/setup.sh"
+    setup_script_mutation_class: mutating  # delegates to the skill installer
   mcp-chrome-devtools:
     label: "Chrome DevTools (CLI)"
     skill_dir: ".skilled/skills/mcp-tooling/mcp-chrome-devtools"
@@ -41,3 +54,42 @@ cli_skill_diagnostics:
     install_script_mutation_class: mutating  # installer: pipx/pip install of cupt
     doctor_script: "scripts/doctor.sh"
     doctor_script_mutation_class: read-only  # diagnostics only; token presence check
+    setup_script: "mcp-servers/clickup-cli/setup.sh"
+    setup_script_mutation_class: mutating  # pipx/pip install of cupt
+  mcp-aside-devtools:
+    label: "Aside DevTools (CLI)"
+    skill_dir: ".skilled/skills/mcp-tooling/mcp-aside-devtools"
+    install_script: "scripts/install.sh"
+    install_script_mutation_class: mutating  # wraps the official Aside curl installer
+    doctor_script: "scripts/doctor.sh"
+    doctor_script_mutation_class: read-only  # diagnostics plus a stdio MCP handshake
+  mcp-mobbin:
+    label: "Mobbin (MCP)"
+    skill_dir: ".skilled/skills/mcp-tooling/mcp-mobbin"
+    install_script: "scripts/install.sh"
+    install_script_mutation_class: read-only  # verify-only posture check; installs nothing
+    doctor_script: "scripts/doctor.sh"
+    doctor_script_mutation_class: read-only  # report-only; optional bounded live probe
+  mcp-notion:
+    label: "Notion (MCP)"
+    skill_dir: ".skilled/skills/mcp-tooling/mcp-notion"
+    install_script: "scripts/install.sh"
+    install_script_mutation_class: read-only  # checks Node/npx and prints snippets only
+    doctor_script: "scripts/doctor.sh"
+    doctor_script_mutation_class: read-only  # diagnostics only; token presence check
+  mcp-obsidian:
+    label: "Obsidian (CLI + MCP)"
+    skill_dir: ".skilled/skills/mcp-tooling/mcp-obsidian"
+    install_script: "scripts/install.sh"
+    install_script_mutation_class: mutating  # installs notesmd-cli
+    doctor_script: "scripts/doctor.sh"
+    doctor_script_mutation_class: read-only  # diagnostics plus a bounded local REST probe
+    setup_script: "mcp-servers/obsidian-cli/setup.sh"
+    setup_script_mutation_class: mutating  # Homebrew install of notesmd-cli
+  mcp-refero:
+    label: "Refero (MCP)"
+    skill_dir: ".skilled/skills/mcp-tooling/mcp-refero"
+    install_script: "scripts/install.sh"
+    install_script_mutation_class: read-only  # verify-only posture check; installs nothing
+    doctor_script: "scripts/doctor.sh"
+    doctor_script_mutation_class: read-only  # report-only; optional bounded live probe

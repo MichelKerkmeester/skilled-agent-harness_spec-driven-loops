@@ -1,33 +1,37 @@
 #!/usr/bin/env bash
 # ───────────────────────────────────────────────────────────────
-# COMPONENT: MCP Doctor — Shared Library
+# COMPONENT: MCP DOCTOR SHARED LIBRARY
 # ───────────────────────────────────────────────────────────────
 # Shared helper functions for mcp-doctor.sh.
 # Source this file; do not execute directly.
 #
 # Provides: colors, logging, JSON helpers, project root detection,
-#           result tracking, and summary rendering.
+#           result tracking, config and UTCP inspection, and summary rendering.
 #
 # Exit Codes: N/A (library — sourced, not executed)
-# ───────────────────────────────────────────────────────────────
 set -euo pipefail
 
-# ── 1. COLOR SUPPORT ─────────────────────────────────────────
-# Respects NO_COLOR env var and non-TTY pipes
+# ───────────────────────────────────────────────────────────────
+# 1. COLOR SUPPORT
+# ───────────────────────────────────────────────────────────────
+# Respects NO_COLOR and non-TTY pipes.
+
 if [[ -z "${NO_COLOR:-}" ]] && [[ -t 1 ]]; then
   RED='\033[0;31m'
   GREEN='\033[0;32m'
   YELLOW='\033[1;33m'
-  BLUE='\033[0;34m'
   CYAN='\033[0;36m'
   BOLD='\033[1m'
   DIM='\033[2m'
   NC='\033[0m'
 else
-  RED='' GREEN='' YELLOW='' BLUE='' CYAN='' BOLD='' DIM='' NC=''
+  RED='' GREEN='' YELLOW='' CYAN='' BOLD='' DIM='' NC=''
 fi
 
-# ── 2. LOGGING ───────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
+# 2. LOGGING
+# ───────────────────────────────────────────────────────────────
+
 log_pass()   { printf '  %b[PASS]%b %s\n' "$GREEN" "$NC" "$1"; }
 log_warn()   { printf '  %b[WARN]%b %s\n' "$YELLOW" "$NC" "$1"; }
 log_fail()   { printf '  %b[FAIL]%b %s\n' "$RED" "$NC" "$1" >&2; }
@@ -35,7 +39,10 @@ log_skip()   { printf '  %b[SKIP]%b %s\n' "$DIM" "$NC" "$1"; }
 log_info()   { printf '  %b[INFO]%b %s\n' "$CYAN" "$NC" "$1"; }
 log_header() { printf '\n%b=== %s ===%b\n' "$BOLD" "$1" "$NC"; }
 
-# ── 3. RESULT TRACKING ──────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
+# 3. RESULT TRACKING
+# ───────────────────────────────────────────────────────────────
+
 declare -a DOCTOR_RESULTS=()
 DOCTOR_PASS_COUNT=0
 DOCTOR_WARN_COUNT=0
@@ -78,7 +85,9 @@ record_info() {
   DOCTOR_RESULTS+=("INFO|${server}|${check}|${detail}")
 }
 
-# ── 4. JSON HELPERS ──────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
+# 4. JSON OUTPUT
+# ───────────────────────────────────────────────────────────────
 
 # Escape a string for safe JSON embedding
 # Args: $1=string to escape
@@ -113,7 +122,7 @@ emit_json_report() {
   printf '  "checks": [\n'
 
   local i=0
-  local status server check detail
+  local result status server check detail
   for result in "${DOCTOR_RESULTS[@]}"; do
     IFS='|' read -r status server check detail <<< "$result"
     [[ "$i" -gt 0 ]] && printf ',\n'
@@ -127,7 +136,9 @@ emit_json_report() {
   printf '}\n'
 }
 
-# ── 5. SUMMARY ───────────────────────────────────────────────
+# ───────────────────────────────────────────────────────────────
+# 5. SUMMARY
+# ───────────────────────────────────────────────────────────────
 
 # Print human-readable summary with exit code context
 # Args: $1=exit_code
@@ -143,18 +154,25 @@ print_summary() {
   elif [[ "$exit_code" -eq 1 ]]; then
     printf '  %bWarnings detected. Review the Code Mode checks above.%b\n' "$YELLOW" "$NC"
   else
-    printf '  %bFailures detected. Run with --fix to attempt auto-repair.%b\n' "$RED" "$NC" >&2
+    printf '  %bFailures detected. Review the FAIL checks above.%b\n' "$RED" "$NC" >&2
   fi
 }
 
-# ── 6. PROJECT ROOT DETECTION ────────────────────────────────
+# ───────────────────────────────────────────────────────────────
+# 6. PROJECT ROOT DETECTION
+# ───────────────────────────────────────────────────────────────
 
-# Walk up from script location to find project root
-# Args: $1=hint path (optional)
-# Returns: absolute project root path on stdout
+# Resolve the project root from an explicit path or by walking up from the script
+# Args: $1=explicit root (optional)
+# Returns: absolute project root on stdout; 1 when an explicit root is not a directory
 resolve_project_root() {
   local hint="${1:-}"
-  if [[ -n "$hint" && -d "$hint" ]]; then
+  if [[ -n "$hint" ]]; then
+    # An explicit root that is missing must never fall back to another tree.
+    if [[ ! -d "$hint" ]]; then
+      printf 'Error: --root is not a directory: %s\n' "$hint" >&2
+      return 1
+    fi
     cd "$hint" && pwd
     return
   fi
@@ -170,7 +188,9 @@ resolve_project_root() {
   pwd
 }
 
-# ── 7. PREREQUISITE CHECKING ─────────────────────────────────
+# ───────────────────────────────────────────────────────────────
+# 7. PREREQUISITE CHECKING
+# ───────────────────────────────────────────────────────────────
 
 # Check if a command exists on PATH
 # Args: $1=command name
@@ -179,16 +199,9 @@ check_command_exists() {
   command -v "$1" >/dev/null 2>&1
 }
 
-# Get the major version of Node.js
-# Returns: major version number on stdout, "0" if node not found
-get_node_major_version() {
-  if check_command_exists node; then
-    node -e 'console.log(process.versions.node.split(".")[0])' 2>/dev/null || echo "0"
-  else
-    echo "0"
-  fi
-}
-
+# Compare the running Node.js version with a dotted minimum
+# Args: $1=minimum version, e.g. 20.11.0
+# Returns: 0 when node exists and meets the minimum
 node_version_at_least() {
   local minimum="$1"
   check_command_exists node || return 1
@@ -205,11 +218,9 @@ node_version_at_least() {
   " 2>/dev/null
 }
 
-# ── 8. CONFIG FILE CHECKING ──────────────────────────────────
-
-# Keep parser results limited to registration status so unrelated config values stay private.
-CONFIG_CHECK_STATUS=""
-CONFIG_CHECK_DETAIL=""
+# ───────────────────────────────────────────────────────────────
+# 8. CONFIG FILE CHECKING
+# ───────────────────────────────────────────────────────────────
 
 # Pick the first Python interpreter on PATH whose stdlib provides tomllib, since the
 # default python3 on some hosts predates 3.11 and cannot parse TOML.
@@ -225,12 +236,15 @@ _doctor_toml_python() {
   return 0
 }
 
+# Check whether one runtime config registers Code Mode through the shared launcher.
+# Parsers report registration status only, so unrelated config values stay private.
+# Args: $1=config file $2=runtime (opencode, claude, codex, cursor, pi, devin)
+# Returns: "<PASS|WARN|FAIL><TAB><detail>" on stdout
 config_check_registration() {
   local file="$1" runtime="$2" parser_result=""
-  CONFIG_CHECK_STATUS="WARN"
-  CONFIG_CHECK_DETAIL="File not present"
 
   if [[ ! -f "$file" ]]; then
+    printf 'WARN\tFile not present\n'
     return 0
   fi
 
@@ -240,7 +254,7 @@ config_check_registration() {
     if [[ -z "$toml_python" ]]; then
       toml_python="python3"
     fi
-    if parser_result="$("$toml_python" - "$file" 2>/dev/null <<'PY'
+    parser_result="$("$toml_python" - "$file" 2>/dev/null <<'PY'
 import pathlib
 import sys
 
@@ -273,13 +287,9 @@ is_wired = (
 )
 print("wired" if is_wired else "not_wired")
 PY
-)"; then
-      :
-    else
-      :
-    fi
+)" || true
   else
-    if parser_result="$(node - "$file" "$runtime" 2>/dev/null <<'NODE'
+    parser_result="$(node - "$file" "$runtime" 2>/dev/null <<'NODE'
 const fs = require("fs");
 const [filePath, runtime] = process.argv.slice(2);
 let config;
@@ -312,55 +322,42 @@ const isWired = commandIsNode
 process.stdout.write(isWired ? "wired" : "not_wired");
 if (!isWired) process.exit(2);
 NODE
-)"; then
-      :
-    else
-      :
-    fi
+)" || true
   fi
 
   case "$parser_result" in
-    wired)
-      CONFIG_CHECK_STATUS="PASS"
-      CONFIG_CHECK_DETAIL="Code Mode launcher and UTCP path verified"
-      ;;
-    unvalidated)
-      CONFIG_CHECK_STATUS="WARN"
-      CONFIG_CHECK_DETAIL="unvalidated: no tomllib-capable Python (3.11+) was found"
-      ;;
-    invalid_json)
-      CONFIG_CHECK_STATUS="FAIL"
-      CONFIG_CHECK_DETAIL="Invalid JSON syntax"
-      ;;
-    invalid_toml)
-      CONFIG_CHECK_STATUS="FAIL"
-      CONFIG_CHECK_DETAIL="Invalid TOML syntax"
-      ;;
-    not_wired)
-      CONFIG_CHECK_STATUS="WARN"
-      CONFIG_CHECK_DETAIL="Code Mode launcher or UTCP path is missing or incorrect"
-      ;;
+    wired)        printf 'PASS\tCode Mode launcher and UTCP path verified\n' ;;
+    invalid_json) printf 'FAIL\tInvalid JSON syntax\n' ;;
+    invalid_toml) printf 'FAIL\tInvalid TOML syntax\n' ;;
+    not_wired)    printf 'WARN\tCode Mode launcher or UTCP path is missing or incorrect\n' ;;
     *)
-      CONFIG_CHECK_STATUS="WARN"
       if [[ "$runtime" == "codex" ]]; then
-        CONFIG_CHECK_DETAIL="unvalidated: no tomllib-capable Python (3.11+) was found"
+        printf 'WARN\tunvalidated: no tomllib-capable Python (3.11+) was found\n'
       else
-        CONFIG_CHECK_DETAIL="unvalidated: Node.js unavailable"
+        printf 'WARN\tunvalidated: Node.js unavailable\n'
       fi
       ;;
   esac
-
-  return 0
 }
 
-# Report credential presence only so diagnostics never disclose environment values.
+# ───────────────────────────────────────────────────────────────
+# 9. UTCP CONFIG INSPECTION
+# ───────────────────────────────────────────────────────────────
+
+# Inspect a parsed .utcp_config.json once. Credentials are reported by presence
+# only, so diagnostics never disclose environment values.
+# Args: $1=.utcp_config.json path $2=.env path
+# Returns: seven lines on stdout: manual count, manuals valid (1|0), manual issues,
+#          credential count, all credentials present (1|0), credential detail, and
+#          a closing "end" line so command substitution cannot strip empty fields
 inspect_utcp_config() {
   local config_file="$1" env_file="$2"
   node - "$config_file" "$env_file" <<'NODE'
 const fs = require("fs");
 const [configPath, envPath] = process.argv.slice(2);
 const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
-const manualEntries = config.manual_call_templates;
+const isObject = config !== null && typeof config === "object" && !Array.isArray(config);
+const manualEntries = isObject ? config.manual_call_templates : undefined;
 const manualIssues = [];
 const credentials = [];
 const envFileValues = new Map();
@@ -403,12 +400,14 @@ function collectReferences(value, references) {
   }
 }
 
-if (!Array.isArray(manualEntries)) {
+if (!isObject) {
+  manualIssues.push("top-level value is not a JSON object");
+} else if (!Array.isArray(manualEntries)) {
   manualIssues.push("manual_call_templates is missing or is not an array");
 } else {
   manualEntries.forEach((manual, index) => {
     const name = typeof manual?.name === "string" ? manual.name.trim() : "";
-    const hasValidName = /^[$_\p{ID_Start}][$_\u200C\u200D\p{ID_Continue}]*$/u.test(name);
+    const hasValidName = /^[$_\p{ID_Start}][$_‌‍\p{ID_Continue}]*$/u.test(name);
     const hasCallTemplateType = typeof manual?.call_template_type === "string"
       && manual.call_template_type.trim().length > 0;
 
@@ -432,11 +431,15 @@ if (!Array.isArray(manualEntries)) {
 }
 
 credentials.sort((left, right) => left.key.localeCompare(right.key));
-process.stdout.write(JSON.stringify({
-  manualCount: Array.isArray(manualEntries) ? manualEntries.length : 0,
-  manualArrayValid: Array.isArray(manualEntries),
-  manualIssues,
-  credentials,
-}));
+const manualsValid = Array.isArray(manualEntries) && manualIssues.length === 0;
+process.stdout.write([
+  String(Array.isArray(manualEntries) ? manualEntries.length : 0),
+  manualsValid ? "1" : "0",
+  manualIssues.join("; "),
+  String(credentials.length),
+  credentials.every((entry) => entry.present) ? "1" : "0",
+  credentials.map((entry) => `${entry.key}=${entry.present ? "present" : "missing"}`).join("; "),
+  "end",
+].join("\n") + "\n");
 NODE
 }

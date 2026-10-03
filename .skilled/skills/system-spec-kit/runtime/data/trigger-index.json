@@ -1,5 +1,5 @@
 {
-  "manifestHash": "833fa8ea87ab8eaba9f097871f08630bb583d4159bc59363eff4fe20fe637aab",
+  "manifestHash": "40a0d9f3bf9da8987b6c04a48b7b1307874d265ddc5ac446a5b864d1f81ed8ce",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13119,6 +13119,11 @@
     "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/acceptance-criteria.md",
+    "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "phrases": {
@@ -21384,7 +21389,8 @@
       12953,
       13092,
       13098,
-      13103
+      13103,
+      13109
     ],
     "ac traceability table": [
       10287,
@@ -21760,7 +21766,8 @@
       12953,
       13092,
       13098,
-      13103
+      13103,
+      13109
     ],
     "acceptance criteria closure gate": [
       12023,
@@ -35491,7 +35498,8 @@
       12953,
       13092,
       13098,
-      13103
+      13103,
+      13109
     ],
     "closure gate blocks evidence": [
       11963
@@ -51793,7 +51801,7 @@
       12231
     ],
     "doctor audit followups": [
-      13109
+      13114
     ],
     "doctor baseline verification": [
       12147
@@ -52032,9 +52040,12 @@
       13010,
       13040
     ],
+    "doctor false pass fixes": [
+      13112
+    ],
     "doctor gates drift": [
       13107,
-      13109
+      13114
     ],
     "doctor hard cutover": [
       10084
@@ -52234,6 +52245,33 @@
     "doctor runtime mirrors yaml": [
       13058
     ],
+    "doctor script tests": [
+      13112
+    ],
+    "doctor scripts conformance": [
+      13112
+    ],
+    "doctor scripts conformance plan": [
+      13111
+    ],
+    "doctor scripts conformance summary": [
+      13110
+    ],
+    "doctor scripts dead code": [
+      13112
+    ],
+    "doctor scripts refactor plan": [
+      13111
+    ],
+    "doctor scripts tasks": [
+      13113
+    ],
+    "doctor scripts verification": [
+      13113
+    ],
+    "doctor scripts verification evidence": [
+      13110
+    ],
     "doctor sequential thinking removal": [
       12146
     ],
@@ -52327,6 +52365,15 @@
     ],
     "doctor surface authoring handover": [
       9106
+    ],
+    "doctor test runner": [
+      13111
+    ],
+    "doctor test runner shipped": [
+      13110
+    ],
+    "doctor test runner tasks": [
+      13113
     ],
     "doctor update": [
       9129
@@ -95082,7 +95129,7 @@
       13101
     ],
     "release update signals": [
-      13109
+      13114
     ],
     "release updater over rebuild": [
       12975
@@ -121243,7 +121290,7 @@
     ],
     "trigger index freshness": [
       13096,
-      13109
+      13114
     ],
     "trigger index generator": [
       2388,
@@ -125441,7 +125488,8 @@
       12953,
       13092,
       13098,
-      13103
+      13103,
+      13109
     ],
     "wal autocheckpoint 256": [
       9226,
