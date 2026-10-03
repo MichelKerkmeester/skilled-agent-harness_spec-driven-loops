@@ -17,6 +17,8 @@ version: 2.5.0.0
 
 Scores, with zero model calls by default, how the completion-claim detector agrees with operator-labeled turns, then judges each labeled turn behind `--jev` and reports one keep, kill or stop decision.
 
+Retired on 2026-10-03 with no headroom. The shipped completion-claim detector, the audit's own baseline, is right on 101 of 110 labeled turns, so a judged column would need 112 of 110 to clear the ten-point margin. The last run therefore stopped before any call and printed `jev arm skipped: no headroom` (run `050-026-jev-20261003` in the operator's local labels store). The script and its tests stay in place as the record of that measurement, and no further run is planned.
+
 The audit answers two questions before anyone spends model calls on judging turns: whether the completion-evidence sentinel's detector agrees with the operator's own labels, and whether a judged backend beats that detector by the fixed ten-point margin. The label gate and the keep rule are fixed before any call, so a run can stop at the census and start no backend. Only ids, counts and hashes leave the census, and row text never reaches stdout or the report.
 
 ---

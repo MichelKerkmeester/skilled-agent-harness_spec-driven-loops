@@ -465,7 +465,7 @@ Measures offline whether a Jev severity choice separates real P0 findings from f
 
 #### How It Works
 
-`score-severity-replay.cjs` reads every tracked deep-review findings registry and prints the census and the label gate state with zero model calls by default. `--write-label-sheet <path>` writes one JSON line per P0 row for the operator to fill with `real`, `P1`, `P2` or `not_a_finding`, `--labels <file>` reads the filled sheet back, and the gate opens the `--jev` arm only past 20 labeled negatives, printing `stop: fewer than 20 labeled P0 negatives` or `no headroom` when it stays closed. The arm needs `--out <dir>`, and no run changes a severity.
+`score-severity-replay.cjs` reads every tracked deep-review findings registry and prints the census and the label gate state with zero model calls by default. `--write-label-sheet <path>` writes one JSON line per P0 row for the operator to fill with `real`, `P1`, `P2` or `not_a_finding`, `--labels <file>` reads the filled sheet back, and the gate opens the `--jev` arm only past 20 labeled negatives, printing `stop: fewer than 20 labeled P0 negatives` or `no headroom` when it stays closed. The arm needs `--out <dir>`, and no run changes a severity. Retired on 2026-10-03 at `stop (margin)`: Jev was right on 73 of 95 labeled P0 rows, the same count as the recorded severity, so the script stays as the record of that measurement.
 
 #### Source Files
 

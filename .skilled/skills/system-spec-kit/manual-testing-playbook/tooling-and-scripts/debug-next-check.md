@@ -14,6 +14,8 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 This scenario validates the debug next check for `463`. It focuses on a default run with a stub first on the path that starts no backend, the label-gate stop over 29 rows that prints no row text, the keep-rule run over 30 rows, and the suite that proves zero model calls.
 
+The measurement was retired on 2026-10-03 at `verdict jev: stop (margin) K=36 M=36 A=26 B=29` (`~/.skilled/.labels/runs/050-031-jev-20261003`): Jev was right on fewer labeled rows than the constant `read_code` answer. This scenario still checks the zero-call census, because the script stays in place as the record of that measurement.
+
 ### Why This Matters
 
 The scorer measures whether a model's choice of the cheapest next check beats the best constant answer on operator-labeled rows, and it calls no model on its default run, so the census shape has to be provable without any credential. A run over generated fixture rows shows the census and the label gate without opening a real backend, and a stub `jev` binary first on the path shows that nothing starts.

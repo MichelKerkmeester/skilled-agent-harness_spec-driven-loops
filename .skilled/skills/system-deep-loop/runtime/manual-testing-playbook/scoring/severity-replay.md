@@ -14,6 +14,8 @@ This document captures the realistic user-testing contract, execution flow, and 
 
 Adds `scripts/score-severity-replay.cjs`, an offline severity replay over the tracked deep-review findings registries. It measures whether a Jev severity choice would separate real P0 findings from false ones better than the recorded severity, and it changes no severity, no registry and no review gate. A default run makes no model call and writes no file. `--write-label-sheet <path>` writes one JSON line per P0 finding with an empty `label` for the operator to fill with `real`, `P1`, `P2` or `not_a_finding`, and `--labels <file>` reads the filled sheet back. Below 20 labeled P0 negatives the label gate stops the run before any backend is reached, and past the gate the requested arm meets its backend gate by name.
 
+The replay was retired on 2026-10-03 at `verdict jev: stop (margin) K=95 M=95 A=73 B=73` (`~/.skilled/.labels/runs/050-029-jev-20261003`): Jev was right on as many labeled P0 rows as the recorded severity, short of the ten-point margin. This scenario still checks the zero-call census, because the script stays in place as the record of that measurement.
+
 ### Why This Matters
 
 The replay must stay offline on every run, the label gate must stop a run before any backend is spawned, and a backend gate must skip by name without changing the census or the keep rule lines. Logging stubs first on `PATH` prove the census run and the label-gate stop call nothing.

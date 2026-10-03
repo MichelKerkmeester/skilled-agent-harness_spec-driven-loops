@@ -49,18 +49,18 @@
       ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs",
       ".skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts",
       "runtime/scripts/README.md",
-      "changelog/v4.6.0.0.md",
       "feature-catalog/tooling-and-scripts/debug-next-check.md",
       "manual-testing-playbook/tooling-and-scripts/debug-next-check.md",
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/system-spec-kit/README.md",
       ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
-      ".skilled/skills/system-spec-kit/changelog/v4.6.0.0.md",
       ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md",
       ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
-      ".hermes/skills/system-spec-kit/SKILL.md"
+      ".hermes/skills/system-spec-kit/SKILL.md",
+      "scratch/w4-session/session-evidence.md",
+      "scratch/w4-session/docs/facts.txt"
     ],
     "entities": [
       {
@@ -112,12 +112,6 @@
         "source": "derived"
       },
       {
-        "name": "v4.6.0.0.md",
-        "kind": "doc",
-        "path": "changelog/v4.6.0.0.md",
-        "source": "derived"
-      },
-      {
         "name": "debug-next-check.md",
         "kind": "doc",
         "path": "feature-catalog/tooling-and-scripts/debug-next-check.md",
@@ -139,6 +133,18 @@
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-evidence.md",
+        "kind": "doc",
+        "path": "scratch/w4-session/session-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "facts.txt",
+        "kind": "file",
+        "path": "scratch/w4-session/docs/facts.txt",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Test Files",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The vendored claude-jev integration asks one `choice` per debug hypothesis: which of `readcode`, `runtest`, `reproduce` or `instrument` is the cheapest way to confirm or rule it out (`../context/external repo's/claude-jev-main/src/domain/catalog/hypotheses.ts:10-15`, `:41-45`)",
     "created_at": "2026-09-29T12:42:43Z",
-    "last_save_at": "2026-09-29T21:18:16.964Z",
+    "last_save_at": "2026-10-03T21:30:59.314Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b2ba9880d6b485277a7ecffa974f14062b64d209fc07e87432f04444cb2c394",
+    "source_fingerprint": "sha256:b433bd9e98d8c0a1fe8c45b54bf812c7e0aaacf43ae3d7144749a3b785481f3e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b6b3497b418011520b1a27aadc837672e23013da0c996e7a6dfa1a281195a3a2",
