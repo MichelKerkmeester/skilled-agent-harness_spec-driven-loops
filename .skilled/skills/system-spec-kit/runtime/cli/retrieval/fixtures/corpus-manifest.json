@@ -1,5 +1,5 @@
 {
-  "corpusHash": "81283a67ad782ec0a9dfae2b2fcefec6eeed88b855381e1fe3a0429b2231c5a7",
+  "corpusHash": "779700f5f72ce5a92430a2fd8aeaf795a98c6769729123b7947994fd11ad8872",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -23077,7 +23077,7 @@
     "specs/system-speckit/047-plugin-scanner-readiness/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0266096a3b309c49621dee7066707837ddb4403f68d032788b46962761e91328",
+  "manifestHash": "c85d31423e6f02e6ade140ab68f0cca8b9c60bef4f86285172f9e489da893e6d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
