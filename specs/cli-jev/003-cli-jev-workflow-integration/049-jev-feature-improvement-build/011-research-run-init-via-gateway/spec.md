@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/011-research-run-init-via-gateway` |
 | **Parent Spec** | ../spec.md |
@@ -87,6 +87,7 @@ A deep-research run, including each fan-out lineage, opens through the append ga
 | ----------- | ------------- | ------------- |
 | `.skilled/commands/deep/assets/deep-research-auto.yaml` | Modify | Init step records `run_initialized` through the gateway |
 | `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Modify | Same change for the confirm variant |
+| `.skilled/commands/deep/assets/compiled/deep-research.contract.md` | Modify | Source digests regenerated for the two changed workflows |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts` | Modify | Census row for `run_initialized` becomes spoken |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-run-open.vitest.ts` | Create | Runs the shipped init step end to end |
 <!-- /ANCHOR:scope -->

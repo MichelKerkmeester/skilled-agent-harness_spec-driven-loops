@@ -114,7 +114,7 @@ Each child names its exact files in its own spec.
 | 8 | 008-folder-suggestion-improvements/ | Build 048's ranked fixes for the Jev folder suggestion (022): path-resolved descriptions, candidate recall, pins | Planned |
 | 9 | 009-pi-transport-improvements/ | Build 048's ranked fixes for the Pi classifier transport (037): provider intent, kill switch, cached runtime, paired benchmark | Planned |
 | 10 | 010-completion-claims-improvements/ | Build 048's ranked fixes for the completion-claim audit (026): sentinel regex, scorer repairs, Cursor wiring | Planned |
-| 11 | 011-research-run-init-via-gateway/ | Fix the deep-research run open: record `run_initialized` through the gateway so a run's first append projects | Planned |
+| 11 | 011-research-run-init-via-gateway/ | Fix the deep-research run open: record `run_initialized` through the gateway so a run's first append projects | Complete |
 | 12 | 012-fanout-runner-and-prompt-fixes/ | Fix the fan-out runner, merge and lineage prompt faults 048 hit | Planned |
 
 ### Phase Transition Rules

@@ -486,7 +486,7 @@ export type DeepResearchStemProducerStatus =
   | { readonly status: 'reserved'; readonly reason: string };
 
 export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
-  'deep_research.run_initialized': { status: 'reserved', reason: 'No writer emits it today: runs open with the flat config row. The run-open step would speak it once initialization appends its charter and executor fingerprint.' },
+  'deep_research.run_initialized': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-research-auto.yaml', '.skilled/commands/deep/assets/deep-research-confirm.yaml'] },
   'deep_research.run_resumed': { status: 'reserved', reason: 'No writer emits it today: resume rebuilds the flat config and state in place. The resume step would speak it once a resumed run records its compatibility decision as an event.' },
   'deep_research.run_restarted': { status: 'reserved', reason: 'No writer emits it today: restart rebinds the flat config in place. The restart step would speak it once the archived lineage and restart reason are appended.' },
   'deep_research.question_registered': { status: 'reserved', reason: 'No writer emits it today: questions are flat rows in the state log. A question step would speak it once registration appends its dependency and source-class contract.' },
