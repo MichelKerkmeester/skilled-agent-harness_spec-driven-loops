@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4d38cca683ad4af910e04acbef0361bdbe9f2a8cae63874f25e4a49c5aa77b37",
+  "corpusHash": "81283a67ad782ec0a9dfae2b2fcefec6eeed88b855381e1fe3a0429b2231c5a7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -23077,7 +23077,7 @@
     "specs/system-speckit/047-plugin-scanner-readiness/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5b81be91d84641b64458fd3ef445a25a9596e2f8e38ef067fd0f2e8328331354",
+  "manifestHash": "0266096a3b309c49621dee7066707837ddb4403f68d032788b46962761e91328",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -23625,6 +23625,10 @@
     },
     {
       "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures",
       "reason": "excluded directory"
     },
     {
