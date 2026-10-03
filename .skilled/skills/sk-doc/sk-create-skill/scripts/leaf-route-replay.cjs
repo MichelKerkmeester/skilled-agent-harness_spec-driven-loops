@@ -38,20 +38,14 @@ const NONE_DESCRIPTION = 'None of these alone';
 const ORDERS = 3;
 
 const JEV_VERSION = 'jev 0.6.2';
-const DEEM_MODEL = 'deem-0.8-v1';
-const HEALTH_TIMEOUT_MS = 2000;
 const JEV_TIMEOUT_MS = 90000;
-const DEEM_TIMEOUT_MS = 90000;
 const BACKOFF_MS = 2000;
-// The measured median wall time of one local choice call on the served model.
-const DEEM_P50_MS = 65.6;
-const REPO_CLI_DEEM = '.skilled/skills/cli-classifier/cli-deem/scripts/cli-deem.mjs';
 
 // The seven parent hubs this replay reports, in report order. Each ships a
 // ROUTER.md; cli-classifier declares itself stage1-only.
 const HUBS = Object.freeze(['sk-doc', 'mcp-tooling', 'system-deep-loop', 'cli-external-orchestration', 'sk-design', 'sk-code', 'cli-classifier']);
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const USAGE = 'usage: leaf-route-replay.cjs [--report <dir>] [--transcripts <dir>] [--prose <file>] [--jev] [--deem] [--out <dir>]';
+const USAGE = 'usage: leaf-route-replay.cjs [--report <dir>] [--transcripts <dir>] [--prose <file>] [--jev] [--out <dir>]';
 
 // A bare keyword like "review" gets swallowed by unrelated longer words
 // ("preview" contains "review"), so match those on word boundaries. The short
@@ -750,108 +744,6 @@ function jevGate(ctx) {
   return { passed: true, path, provider };
 }
 
-/**
- * cli-deem on PATH when that file is executable, otherwise the repo copy
- * under node.
- *
- * @param {{ PATH?: string }} env - Environment whose PATH is scanned.
- * @param {string} repoRoot - Repository root holding the fallback copy.
- * @returns {Array<string>} The command argv prefix.
- */
-function deemCommand(env, repoRoot) {
-  const found = which('cli-deem', env);
-  if (found !== null) return [found];
-  return [process.execPath, path.join(repoRoot, REPO_CLI_DEEM)];
-}
-
-/**
- * One health check. An unreachable binary, a stub backend, or a wrong model
- * is a failed check the caller prints as a skip.
- *
- * @param {Array<string>} cmd - deemCommand argv prefix.
- * @param {Record<string, string | undefined>} env - Child environment.
- * @returns {{ ok: true, backend: string, model: string, modelCommit: string, sourceCommit: string } | { ok: false, reason: string, found: unknown }} The health outcome.
- */
-function readDeemHealth(cmd, env) {
-  const result = spawnSync(cmd[0], [...cmd.slice(1), 'health'], {
-    env,
-    encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'pipe'],
-    timeout: HEALTH_TIMEOUT_MS,
-  });
-  let errorText = (result.stderr ?? '').trim();
-  try {
-    errorText = JSON.parse(errorText).error;
-  } catch {
-    // Leave the trimmed stderr when it is not JSON.
-  }
-
-  if (result.error || result.status === 4) {
-    return { ok: false, reason: 'not reachable', found: errorText };
-  }
-  if (result.status === 3) {
-    let reason = 'bad health response';
-    if (typeof errorText === 'string' && errorText.includes('stub')) reason = 'stub backend';
-    else if (typeof errorText === 'string' && errorText.includes('refused model')) reason = 'model';
-    return { ok: false, reason, found: errorText };
-  }
-  if (result.status === 0) {
-    const stdoutText = (result.stdout ?? '').trim();
-    let body;
-    try {
-      body = JSON.parse(stdoutText);
-    } catch {
-      return { ok: false, reason: 'bad health response', found: stdoutText };
-    }
-    const backend = body?.backend;
-    if (typeof backend === 'string' && backend.includes('stub')) {
-      return { ok: false, reason: 'stub backend', found: backend };
-    }
-    if (backend !== 'torch' && !(typeof backend === 'string' && backend.startsWith('ensemble:'))) {
-      return { ok: false, reason: 'bad health response', found: String(backend) };
-    }
-    const model = body?.model;
-    if (model !== DEEM_MODEL) {
-      return { ok: false, reason: 'model', found: String(model) };
-    }
-    const modelCommit = body?.model_commit;
-    const sourceCommit = body?.source_commit;
-    if (
-      body?.ok !== true
-      || typeof modelCommit !== 'string'
-      || modelCommit === ''
-      || typeof sourceCommit !== 'string'
-      || sourceCommit === ''
-    ) {
-      return { ok: false, reason: 'bad health response', found: stdoutText };
-    }
-    return { ok: true, backend, model, modelCommit, sourceCommit };
-  }
-  return { ok: false, reason: 'bad health response', found: `exit ${result.status}: ${errorText}` };
-}
-
-/**
- * Prints the health line, or a skip line when the check fails. The details
- * line carries what the backend reported for the model and response-shape
- * misses.
- *
- * @param {{ out: (line: string) => void, env: Record<string, string | undefined>, repoRoot: string }} ctx - Output sink, environment and repository root.
- * @returns {{ passed: boolean, cmd: Array<string> }} The gate outcome.
- */
-function deemGate(ctx) {
-  const cmd = deemCommand(ctx.env, ctx.repoRoot);
-  const health = readDeemHealth(cmd, ctx.env);
-  if (health.ok) {
-    ctx.out(`deem: health backend=${health.backend} model=${health.model} model_commit=${health.modelCommit} source_commit=${health.sourceCommit}`);
-    return { passed: true, cmd, ...health };
-  }
-  ctx.out(`deem arm skipped: ${health.reason}`);
-  if (health.reason === 'model' || health.reason === 'bad health response') {
-    ctx.out(`deem: found=${JSON.stringify(health.found)}`);
-  }
-  return { passed: false, cmd };
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // 10. BASELINE AND VERDICT MATH
 // ─────────────────────────────────────────────────────────────────────────────
@@ -860,7 +752,7 @@ function deemGate(ctx) {
 // decides either one.
 
 /**
- * Pick the baseline the tie-break arms measure against: the union of every
+ * Pick the baseline the tie-break arm measures against: the union of every
  * kept intent's leaves, or the leaves of the first tied intent in declaration
  * order, whichever scores higher over the tied rows. A tie goes to the union,
  * which is what the keyword arm already serves unaided. The chosen arm's
@@ -897,7 +789,7 @@ function chooseBaseline(rows) {
 
 /**
  * Rows the baseline does not already get exactly right: a baseline F1 below 1
- * leaves headroom for the tie-break arms to improve on.
+ * leaves headroom for the tie-break arm to improve on.
  *
  * @param {Map<string, number>} baseF1 - The chosen baseline's per-row F1.
  * @returns {number} The count of rows with baseline F1 below 1.
@@ -1167,136 +1059,6 @@ function intentTexts(router, keys) {
 }
 
 /**
- * The Deem choice arm: three rotated choice calls per tied row, then the
- * verdict. The payload line prints before the first call, so the cost is
- * visible before anything spends. Exit 4 rechecks health: a dead server or a
- * commit that changed mid-run stops the arm, otherwise the same call is
- * spawned once more and judged. Exit 2, exit 3 and exit 130 stop the arm.
- * Every spawn reaches calls.jsonl before any stop, so a stopped run keeps its
- * records. A stop prints its line and the finished-row count and returns
- * without a verdict. A pick of none_of_these, and an unstable row, keep the
- * union.
- *
- * @param {Array<{ id: string, hub: string, prompt: string, intents: string[], perIntentKeys: Object<string, string[]>, predKeys: string[], goldKeys: string[] }>} rows - The tied scored rows from runReplay.
- * @param {{ choice: 'union'|'first', baseF1: Map<string, number> }} baseline - The chosen baseline.
- * @param {{ cmd: Array<string>, model: string, modelCommit: string, sourceCommit: string }} gate - Passed deem health result.
- * @param {{ out: (line: string) => void, env: Record<string, string | undefined>, outDir: string | null, repoRoot: string, timeoutMs: number }} ctx - Output sink, environment, records directory, repository root and call timeout.
- * @returns {Promise<Object>} The counts with outcome, reason, p and the verdict line, or `{ stopped }`.
- */
-async function runDeemArm(rows, baseline, gate, ctx) {
-  const { out, env, outDir, repoRoot, timeoutMs } = ctx;
-  const K = rows.length;
-  out(`deem: nothing leaves the machine planned_calls=${3 * K} est_wall_s=${(3 * K * DEEM_P50_MS / 1000).toFixed(1)}`);
-
-  const picks = new Map();
-
-  /**
-   * Print a stop's line and the rows that finished before it.
-   *
-   * @param {string} line - The stop line to print.
-   * @param {number} finished - Rows that finished before the stop.
-   * @returns {{ stopped: string }} The arm's stop result.
-   */
-  function stop(line, finished) {
-    out(line);
-    out(`deem: partial_rows=${finished}`);
-    return { stopped: line };
-  }
-
-  /**
-   * One choice spawn, with the exit-4 retry. The caller's persist records
-   * every spawn before a stop can be reported, so a stop still leaves that
-   * call on disk.
-   *
-   * @param {Array<string>} args - Arguments after the health command prefix.
-   * @param {string} text - The row prompt, written to stdin.
-   * @param {(result: { code: number|null, stdout: string, wallMs: number, timedOut: boolean }) => void} persist - Records one spawn.
-   * @returns {Promise<{ r: { code: number|null, stdout: string, wallMs: number, timedOut: boolean }, stop?: string }>} The final result and any stop line.
-   */
-  async function deemCall(args, text, persist) {
-    let r = await spawnCall(gate.cmd[0], [...gate.cmd.slice(1), ...args], text, env, timeoutMs);
-    persist(r);
-    if (r.code === 4) {
-      const health = readDeemHealth(gate.cmd, env);
-      if (!health.ok) return { r, stop: 'deem arm stopped: server gone' };
-      if (health.modelCommit !== gate.modelCommit || health.sourceCommit !== gate.sourceCommit) {
-        return { r, stop: 'deem arm stopped: model commit changed mid-run' };
-      }
-      r = await spawnCall(gate.cmd[0], [...gate.cmd.slice(1), ...args], text, env, timeoutMs);
-      persist(r);
-    }
-    /** @type {string | undefined} */
-    let stopLine;
-    if (r.code === 2) stopLine = 'deem arm stopped: usage error';
-    else if (r.code === 3) stopLine = 'deem arm stopped: backend refused';
-    else if (r.code === 130) stopLine = 'deem arm stopped: interrupted';
-    return { r, stop: stopLine };
-  }
-
-  let finished = 0;
-  for (const row of rows) {
-    const keys = [...row.intents, NONE_KEY];
-    const router = parseRouter(fs.readFileSync(path.join(repoRoot, '.skilled', 'skills', row.hub, 'ROUTER.md'), 'utf8'));
-    const texts = intentTexts(router, keys);
-    const rowPicks = [];
-    const orders = rotations(keys);
-
-    for (let order = 0; order < orders.length; order += 1) {
-      const args = ['choice', '-q', CHOICE_INSTRUCTION, ...optionArgs(orders[order], texts)];
-      const outcome = await deemCall(args, row.prompt, (result) => {
-        const fields = judgeChoice(result, keys);
-        writeCall(outDir, {
-          kind: 'choice',
-          backend: 'deem',
-          row_id: row.id,
-          order,
-          wall_ms: result.wallMs,
-          exit_code: result.code,
-          pick: fields.pick,
-          pick_prob: fields.pickProb,
-          status: fields.status,
-          model: gate.model,
-          model_commit: gate.modelCommit,
-          source_commit: gate.sourceCommit
-        });
-      });
-      if (outcome.stop) return stop(outcome.stop, finished);
-      rowPicks.push(judgeChoice(outcome.r, keys).pick);
-    }
-
-    picks.set(row.id, rowPicks);
-    finished += 1;
-  }
-
-  let M = 0;
-  let SA = 0;
-  let SB = 0;
-  let W = 0;
-  let L = 0;
-  let F = 0;
-  for (const row of rows) {
-    const answers = picks.get(row.id);
-    if (!Array.isArray(answers) || answers.length !== ORDERS) continue;
-    if (!answers.every((answer) => typeof answer === 'string')) continue;
-    M += 1;
-    const { pick, top } = modalPick(answers);
-    F += ORDERS - top;
-    const picked = pick === null || pick === NONE_KEY ? row.predKeys : (row.perIntentKeys[pick] || []);
-    const columnF1 = scoreRow(picked, row.goldKeys).f1;
-    const baselineF1 = baseline.baseF1.get(row.id);
-    SA += columnF1;
-    SB += baselineF1;
-    if (columnF1 > baselineF1) W += 1;
-    else if (columnF1 < baselineF1) L += 1;
-  }
-  const counts = { K, M, SA, SB, W, L, F };
-  const decision = decideVerdict(counts);
-  const line = verdictLine('deem', counts, decision, 'baseline=' + baseline.choice + ' model=' + gate.model + ' model_commit=' + gate.modelCommit + ' source_commit=' + gate.sourceCommit);
-  out(line);
-  return { ...counts, outcome: decision.outcome, reason: decision.reason, p: decision.p, line };
-}
-
-/**
  * The Jev choice arm: one auth test, then three rotated choice calls per tied
  * row, then the verdict. The payload line prints before any call, so the cost
  * is visible before anything spends. A spawn that exits 4 is recorded as
@@ -1487,15 +1249,14 @@ async function runJevArm(rows, baseline, gate, ctx) {
  * Parse the replay CLI flags.
  *
  * @param {Array<string>} argv - Arguments after the script name.
- * @returns {{ report: string | null, transcripts: string | null, prose: string | null, jev: boolean, deem: boolean, out: string | null, error: string | null }} Parsed flags, or the first argument error.
+ * @returns {{ report: string | null, transcripts: string | null, prose: string | null, jev: boolean, out: string | null, error: string | null }} Parsed flags, or the first argument error.
  */
 function parseArgs(argv) {
-  const args = { report: null, transcripts: null, prose: null, jev: false, deem: false, out: null, error: null };
+  const args = { report: null, transcripts: null, prose: null, jev: false, out: null, error: null };
   for (let i = 0; i < argv.length; i += 1) {
     const token = argv[i];
-    if (token === '--jev' || token === '--deem') {
-      if (token === '--jev') args.jev = true;
-      else args.deem = true;
+    if (token === '--jev') {
+      args.jev = true;
       continue;
     }
     if (token !== '--report' && token !== '--transcripts' && token !== '--prose' && token !== '--out') {
@@ -1519,7 +1280,7 @@ function parseArgs(argv) {
 /**
  * Run the replay report: the per-hub and total keyword-arm lines, the read
  * recount behind --transcripts, the replay verdict behind --prose, and the
- * JSON report behind --report. Zero model calls: the tie-break arms stay
+ * JSON report behind --report. Zero model calls: the tie-break arm stays
  * dormant behind their switches.
  *
  * @param {Array<string>} argv - Arguments after the script name.
@@ -1538,8 +1299,8 @@ async function main(argv, deps = {}) {
     return 2;
   }
 
-  if ((args.jev || args.deem) && !args.out) {
-    err('error: --jev and --deem need --out <dir>');
+  if (args.jev && !args.out) {
+    err('error: --jev needs --out <dir>');
     return 2;
   }
 
@@ -1587,7 +1348,7 @@ async function main(argv, deps = {}) {
     fs.writeFileSync(path.join(args.report, 'report.json'), JSON.stringify(report, null, 2) + '\n');
   }
 
-  if (args.jev || args.deem) {
+  if (args.jev) {
     const tiedRows = replay.rows.filter((row) => row.intents.length >= 2);
     const baseline = chooseBaseline(tiedRows);
     out(`tied: K=${tiedRows.length}`);
@@ -1606,12 +1367,7 @@ async function main(argv, deps = {}) {
           ? await runJevArm(tiedRows, baseline, gate, { out, env, outDir: args.out, repoRoot, timeoutMs: JEV_TIMEOUT_MS, backoffMs: BACKOFF_MS })
           : { skipped: true };
       }
-      if (args.deem) {
-        const gate = deemGate({ out, env, repoRoot });
-        columns.deem = gate.passed
-          ? await runDeemArm(tiedRows, baseline, gate, { out, env, outDir: args.out, repoRoot, timeoutMs: DEEM_TIMEOUT_MS })
-          : { skipped: true };
-      }
+
     }
 
     const reportDir = args.report || args.out;
@@ -1641,13 +1397,8 @@ module.exports = {
   NONE_DESCRIPTION,
   ORDERS,
   JEV_VERSION,
-  DEEM_MODEL,
-  HEALTH_TIMEOUT_MS,
   JEV_TIMEOUT_MS,
-  DEEM_TIMEOUT_MS,
   BACKOFF_MS,
-  DEEM_P50_MS,
-  REPO_CLI_DEEM,
   parseRouter,
   keywordHits,
   scoreIntents,
@@ -1666,9 +1417,6 @@ module.exports = {
   replayVerdict,
   which,
   jevGate,
-  deemCommand,
-  readDeemHealth,
-  deemGate,
   spawnCall,
   writeCall,
   rotations,
@@ -1676,7 +1424,6 @@ module.exports = {
   judgeChoice,
   intentTexts,
   runJevArm,
-  runDeemArm,
   chooseBaseline,
   improvableCount,
   tailP,

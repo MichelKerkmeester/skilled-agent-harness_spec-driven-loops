@@ -7,8 +7,7 @@
 //   gateLine)
 //   Keep rule and column (binomialTail, modalPick, decideVerdict, formatP,
 //   summarizeColumn, orderLine, funnelLine, exactLine, nearestRank)
-//   Deem gate and arm (which, deemCommand, readDeemHealth, deemGate,
-//   spawnCall, createCallLog, readStoredReport, runDeemArm)
+//   Arm helpers (which, spawnCall, createCallLog, readStoredReport)
 //   Jev gate and arm (jevGate, isPublished, runJevArm)
 //   Main and report (buildReport, main)
 // ───────────────────────────────────────────────────────────────────
@@ -258,11 +257,11 @@ describe('score-severity-replay keep rule', () => {
     ]));
 
     const column = replay.summarizeColumn(
-      'deem',
+      'jev',
       rows,
       answers,
       (row: any) => row.label === 'real',
-      'model=deem-0.8-v1 model_commit=m1 source_commit=s1',
+      'jev_version=0.6.2 provider=official model=stub-model',
     );
 
     expect(column.K).toBe(30);
@@ -275,7 +274,7 @@ describe('score-severity-replay keep rule', () => {
     expect(column.outcome).toBe('keep');
     expect(column.reason).toBe(null);
     expect(column.pLoss).toBe(1);
-    expect(column.line).toBe('verdict deem: keep K=30 M=30 A=30 B=20 W=10 L=0 F=0 p=0.0009766 model=deem-0.8-v1 model_commit=m1 source_commit=s1');
+    expect(column.line).toBe('verdict jev: keep K=30 M=30 A=30 B=20 W=10 L=0 F=0 p=0.0009766 jev_version=0.6.2 provider=official model=stub-model');
     expect(replay.binomialTail(5, 5).num).toBe(1n);
     expect(replay.binomialTail(5, 5).den).toBe(32n);
   });
@@ -291,7 +290,7 @@ describe('score-severity-replay keep rule', () => {
     for (const row of realWrong) answers.set(replay.rowKey(row.registry, row.findingId), Array.from({ length: 3 }, () => ({ pick: 'P1' })));
     for (const row of negatives) answers.set(replay.rowKey(row.registry, row.findingId), Array.from({ length: 3 }, () => ({ pick: 'P0' })));
 
-    const column = replay.summarizeColumn('deem', rows, answers, (row: any) => row.label === 'real', '');
+    const column = replay.summarizeColumn('jev', rows, answers, (row: any) => row.label === 'real', '');
 
     expect(column.A).toBe(12);
     expect(column.B).toBe(20);
@@ -299,7 +298,7 @@ describe('score-severity-replay keep rule', () => {
     expect(column.L).toBe(8);
     expect(column.outcome).toBe('kill');
     expect(column.reason).toBe(null);
-    expect(column.line).toBe('verdict deem: kill K=30 M=30 A=12 B=20 W=0 L=8 F=0 p=1.000');
+    expect(column.line).toBe('verdict jev: kill K=30 M=30 A=12 B=20 W=0 L=8 F=0 p=1.000');
   });
 
   it('the verdict prints stop (coverage)', () => {
@@ -312,13 +311,13 @@ describe('score-severity-replay keep rule', () => {
     for (const row of negatives.slice(0, 6)) answers.set(replay.rowKey(row.registry, row.findingId), Array.from({ length: 3 }, () => ({ pick: 'P1' })));
     for (const row of negatives.slice(6)) answers.set(replay.rowKey(row.registry, row.findingId), [{ pick: null }, { pick: null }, { pick: null }]);
 
-    const column = replay.summarizeColumn('deem', rows, answers, (row: any) => row.label === 'real', '');
+    const column = replay.summarizeColumn('jev', rows, answers, (row: any) => row.label === 'real', '');
 
     expect(column.K).toBe(30);
     expect(column.M).toBe(26);
     expect(column.outcome).toBe('stop');
     expect(column.reason).toBe('coverage');
-    expect(column.line.startsWith('verdict deem: stop (coverage) K=30 M=26 ')).toBe(true);
+    expect(column.line.startsWith('verdict jev: stop (coverage) K=30 M=26 ')).toBe(true);
   });
 
   it('three different keys make a row unstable and count as wrong', () => {
@@ -331,18 +330,18 @@ describe('score-severity-replay keep rule', () => {
 
     expect(replay.modalPick([{ pick: 'P0' }, { pick: 'P1' }, { pick: 'P2' }])).toEqual({ pick: null, top: 0 });
 
-    const column = replay.summarizeColumn('deem', rows, answers, () => false, '');
+    const column = replay.summarizeColumn('jev', rows, answers, () => false, '');
 
     expect(column.M).toBe(6);
     expect(column.A).toBe(5);
     expect(column.F).toBe(3);
     expect(column.outcome).toBe('stop');
     expect(column.reason).toBe('flips');
-    expect(column.line.startsWith('verdict deem: stop (flips) K=6 M=6 A=5 B=0 W=5 L=0 F=3 ')).toBe(true);
+    expect(column.line.startsWith('verdict jev: stop (flips) K=6 M=6 A=5 B=0 W=5 L=0 F=3 ')).toBe(true);
   });
 
   it('stops on the sign test when the win tail is not below 0.05', () => {
-    const verdict = replay.decideVerdict({ backend: 'deem', K: 30, M: 30, A: 23, B: 20, W: 3, L: 0, F: 0 });
+    const verdict = replay.decideVerdict({ backend: 'jev', K: 30, M: 30, A: 23, B: 20, W: 3, L: 0, F: 0 });
 
     expect(verdict.outcome).toBe('stop');
     expect(verdict.reason).toBe('sign test');
@@ -362,238 +361,12 @@ describe('score-severity-replay keep rule', () => {
       [replay.rowKey(registry, 'A-003'), Array.from({ length: 3 }, () => ({ pick: 'P2', p0Probability: 0.2 }))],
     ]);
 
-    const before = replay.summarizeColumn('deem', rows, answers, (row: any) => row.label === 'real', '');
-    const line = replay.orderLine('deem', rows, answers);
-    const after = replay.summarizeColumn('deem', rows, answers, (row: any) => row.label === 'real', '');
+    const before = replay.summarizeColumn('jev', rows, answers, (row: any) => row.label === 'real', '');
+    const line = replay.orderLine('jev', rows, answers);
+    const after = replay.summarizeColumn('jev', rows, answers, (row: any) => row.label === 'real', '');
 
-    expect(line).toBe('order deem: registries=1 first_real_rank=1.0 recorded=2.0');
+    expect(line).toBe('order jev: registries=1 first_real_rank=1.0 recorded=2.0');
     expect(after.line).toBe(before.line);
-  });
-});
-
-describe('score-severity-replay deem gate and arm', () => {
-  type ArmRow = {
-    registry: string;
-    findingId: string;
-    label: string;
-    title: string;
-    dimension: string;
-    evidenceRefs: string[];
-    recommendation: string;
-  };
-
-  const REGISTRY = 'alpha/review/deep-review-findings-registry.json';
-  const DEEM_HEALTHY = 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi';
-  const DEEM_CHOICE_AND_FUNNEL = [
-    DEEM_HEALTHY,
-    'if [ "$1" = noul ]; then echo \'{"answers":{"answer":{"noul":0.9}}}\'; exit 0; fi',
-    'p=$(cat)',
-    'echo \'{"answers":{"answer":{"choice":"P1","probabilities":{"P0":0.1,"P1":0.8,"P2":0.05,"not_a_finding":0.05}}}}\'',
-  ].join('\n');
-  const DEEM_NEW_PAIR = [
-    'if [ "$1" = health ]; then',
-    '  n=$(cat "$D/health-n" 2>/dev/null || echo 0); n=$((n+1)); echo "$n" > "$D/health-n"',
-    '  mc=m1; if [ "$n" -gt 1 ]; then mc=m2; fi',
-    '  echo "{\\"ok\\":true,\\"backend\\":\\"torch\\",\\"model\\":\\"deem-0.8-v1\\",\\"model_commit\\":\\"$mc\\",\\"source_commit\\":\\"s1\\"}"',
-    '  exit 0',
-    'fi',
-    'p=$(cat)',
-    'if [ "$1" = choice ] && [ ! -f "$D/called" ]; then touch "$D/called"; exit 4; fi',
-    'echo \'{"answers":{"answer":{"choice":"P1","probabilities":{"P0":0.1,"P1":0.8,"P2":0.05,"not_a_finding":0.05}}}}\'',
-  ].join('\n');
-
-  function stubDir(bodies: Record<string, string>): string {
-    const dir = tempDir('severity-replay-stubs-');
-    for (const [name, body] of Object.entries(bodies)) {
-      const file = path.join(dir, name);
-      fs.writeFileSync(file, `#!/bin/sh\nD=$(dirname "$0")\necho "$*" >> "$D/${name}.log"\n${body}\n`, 'utf8');
-      fs.chmodSync(file, 0o755);
-    }
-    return dir;
-  }
-
-  function armEnv(stubs: string): NodeJS.ProcessEnv {
-    return { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
-  }
-
-  function readCalls(out: string): any[] {
-    return fs
-      .readFileSync(path.join(out, 'calls.jsonl'), 'utf8')
-      .trim()
-      .split('\n')
-      .map((line) => JSON.parse(line));
-  }
-
-  function planOf(rows: Array<{ findingId: string; label: string }>): { rows: ArmRow[]; baselineRight: (row: ArmRow) => boolean } {
-    return {
-      rows: rows.map((row) => ({
-        registry: REGISTRY,
-        findingId: row.findingId,
-        label: row.label,
-        title: 'Fixture finding',
-        dimension: 'correctness',
-        evidenceRefs: ['specs/x.md'],
-        recommendation: 'Fix it.',
-      })),
-      baselineRight: (row) => row.label === 'real',
-    };
-  }
-
-  it('the Deem gate passes a fake health', () => {
-    const stubs = stubDir({ 'cli-deem': DEEM_HEALTHY });
-    const env = armEnv(stubs);
-    const lines: string[] = [];
-
-    const gate = replay.deemGate({ out: (line: string) => lines.push(line), env });
-
-    expect(replay.which('cli-deem', env)).toBe(path.join(stubs, 'cli-deem'));
-    expect(gate.passed).toBe(true);
-    expect(gate.cmd[0]).toBe(path.join(stubs, 'cli-deem'));
-    expect(lines).toEqual(['deem: health backend=torch model=deem-0.8-v1 model_commit=m1 source_commit=s1']);
-    expect(fs.readFileSync(path.join(stubs, 'cli-deem.log'), 'utf8').trim().split('\n')).toEqual(['health']);
-  });
-
-  it('the Deem gate skips a stub backend', () => {
-    const stubs = stubDir({
-      'cli-deem': 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi',
-    });
-    const env = armEnv(stubs);
-    const lines: string[] = [];
-
-    const gate = replay.deemGate({ out: (line: string) => lines.push(line), env });
-
-    expect(gate.passed).toBe(false);
-    expect(gate.reason).toBe('deem arm skipped: stub backend');
-    expect(lines).toEqual(['deem arm skipped: stub backend']);
-    expect(fs.readFileSync(path.join(stubs, 'cli-deem.log'), 'utf8').trim().split('\n')).toEqual(['health']);
-  });
-
-  it('a Deem exit 4 with a new pair stops the arm', async () => {
-    const stubs = stubDir({ 'cli-deem': DEEM_NEW_PAIR });
-    const env = armEnv(stubs);
-    const lines: string[] = [];
-    const out = tempDir('severity-replay-deem-stop-');
-    const plan = planOf([
-      { findingId: 'N-1', label: 'P1' },
-      { findingId: 'N-2', label: 'P1' },
-    ]);
-    const gate = replay.deemGate({ out: (line: string) => lines.push(line), env });
-
-    const result = await replay.runDeemArm(plan, gate, {
-      out: (line: string) => lines.push(line),
-      env,
-      timeoutMs: 5000,
-      callLog: replay.createCallLog(out),
-      stored: null,
-    });
-
-    expect(gate.passed).toBe(true);
-    expect(result.stopped).toBe('deem arm stopped: model commit changed mid-run');
-    expect(result.partialRows).toBe(0);
-    expect(lines).toContain('deem arm stopped: model commit changed mid-run');
-    expect(lines).toContain('deem: partial rows=0');
-    expect(lines.some((line) => line.startsWith('verdict deem:'))).toBe(false);
-
-    const calls = readCalls(out);
-    expect(calls).toHaveLength(1);
-    expect(calls[0].call).toBe('severity');
-    expect(calls[0].exitCode).toBe(4);
-    expect(calls[0].status).toBe('unmeasured');
-  });
-
-  it('the funnel asks one noul per measured row and never decides', async () => {
-    const stubs = stubDir({ 'cli-deem': DEEM_CHOICE_AND_FUNNEL });
-    const env = armEnv(stubs);
-    const lines: string[] = [];
-    const out = tempDir('severity-replay-deem-funnel-');
-    const plan = planOf(Array.from({ length: 6 }, (_, index) => ({ findingId: `N-${index}`, label: 'P1' })));
-    const gate = replay.deemGate({ out: (line: string) => lines.push(line), env });
-
-    const result = await replay.runDeemArm(plan, gate, {
-      out: (line: string) => lines.push(line),
-      env,
-      timeoutMs: 5000,
-      callLog: replay.createCallLog(out),
-      stored: null,
-    });
-
-    expect(result.stopped).toBeUndefined();
-    expect(lines).toContain('funnel deem: asked=6 measured=6 yes=6 no=0');
-    const funnelIndex = lines.indexOf('funnel deem: asked=6 measured=6 yes=6 no=0');
-    const verdictIndex = lines.findIndex((line) => line.startsWith('verdict deem:'));
-    expect(verdictIndex).toBeGreaterThan(funnelIndex);
-
-    const severityAnswers = new Map(plan.rows.map((row) => [
-      replay.rowKey(row.registry, row.findingId),
-      Array.from({ length: 3 }, () => ({ pick: 'P1', p0Probability: 0.1 })),
-    ]));
-    const severityOnly = replay.summarizeColumn('deem', plan.rows, severityAnswers, plan.baselineRight, 'model=deem-0.8-v1 model_commit=m1 source_commit=s1');
-    expect(lines).toContain(severityOnly.line);
-
-    const calls = readCalls(out);
-    expect(calls).toHaveLength(24);
-    expect(calls.filter((call: any) => call.call === 'severity')).toHaveLength(18);
-    expect(calls.filter((call: any) => call.call === 'funnel')).toHaveLength(6);
-    for (const call of calls) {
-      expect(call.row).toMatch(/^[0-9a-f]{16}$/);
-      expect(call.status).toBe('measured');
-    }
-    expect(fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8')).not.toContain('N-');
-  });
-
-  it('a report.json is read back and requalifies a changed commit pair', async () => {
-    const stubs = stubDir({ 'cli-deem': DEEM_CHOICE_AND_FUNNEL });
-    const env = armEnv(stubs);
-    const lines: string[] = [];
-    const out = tempDir('severity-replay-deem-report-');
-    fs.writeFileSync(path.join(out, 'report.json'), JSON.stringify({ columns: { deem: { modelCommit: 'm0', sourceCommit: 's1' } } }), 'utf8');
-    const stored = replay.readStoredReport(out);
-    const plan = planOf(Array.from({ length: 6 }, (_, index) => ({ findingId: `N-${index}`, label: 'P1' })));
-    const gate = replay.deemGate({ out: (line: string) => lines.push(line), env });
-
-    const result = await replay.runDeemArm(plan, gate, {
-      out: (line: string) => lines.push(line),
-      env,
-      timeoutMs: 5000,
-      callLog: replay.createCallLog(out),
-      stored,
-    });
-
-    expect(stored).toEqual({ columns: { deem: { modelCommit: 'm0', sourceCommit: 's1' } } });
-    expect(replay.readStoredReport(tempDir('severity-replay-no-report-'))).toBe(null);
-    expect(result.requalify).toBe('requalify: model commit changed');
-    const requalifyIndex = lines.indexOf('requalify: model commit changed');
-    expect(requalifyIndex).toBeGreaterThanOrEqual(0);
-    expect(lines[requalifyIndex + 1].startsWith('verdict deem: keep K=6 M=6 A=6 B=0 W=6 L=0 F=0')).toBe(true);
-  });
-
-  it('the finding id never reaches a logged call', async () => {
-    const stubs = stubDir({ 'cli-deem': DEEM_CHOICE_AND_FUNNEL });
-    const env = armEnv(stubs);
-    const lines: string[] = [];
-    const out = tempDir('severity-replay-deem-digest-');
-    const plan = planOf([{ findingId: 'P2-001', label: 'P1' }]);
-    const gate = replay.deemGate({ out: (line: string) => lines.push(line), env });
-
-    await replay.runDeemArm(plan, gate, {
-      out: (line: string) => lines.push(line),
-      env,
-      timeoutMs: 5000,
-      callLog: replay.createCallLog(out),
-      stored: null,
-    });
-
-    // The log keeps the digest alone, so a call stays traceable to its row
-    // without the finding id, whose text carries the severity being judged.
-    const expected = createHash('sha256').update(`${REGISTRY}#P2-001`).digest('hex').slice(0, 16);
-    const calls = readCalls(out);
-    expect(calls).toHaveLength(4);
-    expect(calls.filter((call: any) => call.call === 'severity')).toHaveLength(3);
-    expect(calls.filter((call: any) => call.call === 'funnel')).toHaveLength(1);
-    for (const call of calls) expect(call.row).toBe(expected);
-
-    const text = fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8');
-    expect(text).not.toContain('P2-001');
   });
 });
 
@@ -762,6 +535,59 @@ describe('score-severity-replay jev gate and arm', () => {
     }
   });
 
+  it('a Jev report requalifies a changed model before the verdict', async () => {
+    const stubs = stubDir({ jev: JEV_CHOICE_AND_FUNNEL });
+    const env = armEnv(stubs);
+    const lines: string[] = [];
+    const out = tempDir('severity-replay-jev-requalify-');
+    const plan = planOf(Array.from({ length: 6 }, (_, index) => ({ findingId: `N-${index}`, label: 'P1' })));
+    const fake = fakeGit('');
+    const gate = replay.jevGate({ out: (line: string) => lines.push(line), env, timeoutMs: 5000 });
+
+    const result = await replay.runJevArm(plan, gate, {
+      out: (line: string) => lines.push(line),
+      env,
+      timeoutMs: 5000,
+      backoffMs: 1,
+      callLog: replay.createCallLog(out),
+      stored: { columns: { jev: { provider: 'openrouter', model: 'stub-model' } } },
+      git: fake.git,
+      root: '/repo',
+    });
+
+    expect(result.requalify).toBe('requalify: model changed');
+    const requalifyIndex = lines.indexOf('requalify: model changed');
+    expect(requalifyIndex).toBeGreaterThanOrEqual(0);
+    expect(lines[requalifyIndex + 1]).toMatch(/^verdict jev: keep /);
+  });
+
+  it('a Jev calls log the row digest without the finding id', async () => {
+    const stubs = stubDir({ jev: JEV_CHOICE_AND_FUNNEL });
+    const env = armEnv(stubs);
+    const lines: string[] = [];
+    const out = tempDir('severity-replay-jev-digest-');
+    const plan = planOf([{ findingId: 'P2-001', label: 'P1' }]);
+    const fake = fakeGit('');
+    const gate = replay.jevGate({ out: (line: string) => lines.push(line), env, timeoutMs: 5000 });
+
+    await replay.runJevArm(plan, gate, {
+      out: (line: string) => lines.push(line),
+      env,
+      timeoutMs: 5000,
+      backoffMs: 1,
+      callLog: replay.createCallLog(out),
+      stored: null,
+      git: fake.git,
+      root: '/repo',
+    });
+
+    const expected = createHash('sha256').update(`${plan.rows[0].registry}#P2-001`).digest('hex').slice(0, 16);
+    const calls = readCalls(out).filter((call: any) => call.call !== 'auth_test');
+    expect(calls).toHaveLength(4);
+    for (const call of calls) expect(call.row).toBe(expected);
+    expect(fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8')).not.toContain('P2-001');
+  });
+
   it('an unpublished row is withheld from Jev', async () => {
     const stubs = stubDir({ jev: JEV_CHOICE_AND_FUNNEL });
     const env = armEnv(stubs);
@@ -844,12 +670,6 @@ describe('score-severity-replay jev gate and arm', () => {
 
 describe('score-severity-replay main', () => {
   const REGISTRY = 'alpha/review/deep-review-findings-registry.json';
-  const DEEM_CHOICE_AND_FUNNEL = [
-    'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi',
-    'if [ "$1" = noul ]; then echo \'{"answers":{"answer":{"noul":0.9}}}\'; exit 0; fi',
-    'p=$(cat)',
-    'echo \'{"answers":{"answer":{"choice":"P1","probabilities":{"P0":0.1,"P1":0.8,"P2":0.05,"not_a_finding":0.05}}}}\'',
-  ].join('\n');
 
   type MainGit = (args: string[]) => { status: number; stdout: string; stderr: string };
 
@@ -926,7 +746,7 @@ describe('score-severity-replay main', () => {
 
   it('the default run makes zero model calls', async () => {
     const root = fixtureRoot(20);
-    const stubs = stubDir({ jev: 'exit 0', 'cli-deem': 'exit 0' });
+    const stubs = stubDir({ jev: 'exit 0' });
 
     const { code, lines, errs } = await runMain([], stubEnv(stubs), fakeGit(root, [REGISTRY]));
 
@@ -947,9 +767,39 @@ describe('score-severity-replay main', () => {
     expect(fs.readdirSync(stubs).filter((name) => name.endsWith('.log'))).toEqual([]);
   });
 
-  it('19 negatives spawn neither backend', async () => {
+  it('a Jev report records the gate and its finished column', async () => {
     const root = fixtureRoot(20);
-    const stubs = stubDir({ jev: 'exit 0', 'cli-deem': 'exit 0' });
+    const out = tempDir('severity-replay-main-jev-report-');
+    const labels = labelSheet(Array.from({ length: 20 }, (_, index) => ({ findingId: `A-${String(index).padStart(3, '0')}`, label: 'P1' })));
+    const stubs = stubDir({ jev: `case "$1" in
+  --version) echo 'jev 0.6.2'; exit 0;;
+  auth) if [ "$2" = status ]; then exit 0; fi; if [ "$2" = test ]; then echo '{"model":"stub-model"}'; exit 0; fi;;
+  choice) echo '{"answers":{"answer":{"choice":"P1","probabilities":{"P0":0.1,"P1":0.8,"P2":0.05,"not_a_finding":0.05}}}}'; exit 0;;
+  noul) echo '{"answers":{"answer":{"noul":0.1}}}'; exit 0;;
+esac
+exit 0` });
+
+    const { code, lines, errs } = await runMain(
+      ['--jev', '--out', out, '--labels', labels],
+      stubEnv(stubs),
+      fakeGit(root, [REGISTRY]),
+    );
+
+    expect(code).toBe(0);
+    expect(errs).toEqual([]);
+    expect(lines).toContain('gate: open K=20 negatives=20');
+    expect(lines).toContain('verdict jev: keep K=20 M=20 A=20 B=0 W=20 L=0 F=0 p=9.537e-7 jev_version=0.6.2 provider=official model=stub-model');
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    expect(report.gate).toBe('gate: open K=20 negatives=20');
+    expect(report.labels.K).toBe(20);
+    expect(report.columns.jev.verdict).toBe('keep');
+    expect(report.columns.jev.K).toBe(20);
+    expect(report.columns.jev.M).toBe(20);
+  });
+
+  it('19 negatives spawn no backend', async () => {
+    const root = fixtureRoot(20);
+    const stubs = stubDir({ jev: 'exit 0' });
     const out = tempDir('severity-replay-main-stop-out-');
     const labels = labelSheet([
       { findingId: 'A-000', label: 'real' },
@@ -957,7 +807,7 @@ describe('score-severity-replay main', () => {
     ]);
 
     const { code, lines, errs } = await runMain(
-      ['--jev', '--deem', '--out', out, '--labels', labels],
+      ['--jev', '--out', out, '--labels', labels],
       stubEnv(stubs),
       fakeGit(root, [REGISTRY]),
     );
@@ -966,14 +816,12 @@ describe('score-severity-replay main', () => {
     expect(errs).toEqual([]);
     expect(lines).toContain('stop: fewer than 20 labeled P0 negatives');
     expect(lines).toContain('jev arm skipped: label gate');
-    expect(lines).toContain('deem arm skipped: label gate');
-    expect(lines.indexOf('deem arm skipped: label gate')).toBeGreaterThan(lines.indexOf('jev arm skipped: label gate'));
     expect(fs.readdirSync(stubs).filter((name) => name.endsWith('.log'))).toEqual([]);
     expect(fs.existsSync(path.join(out, 'calls.jsonl'))).toBe(false);
 
     const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
     expect(report.gate).toBe('stop: fewer than 20 labeled P0 negatives');
-    expect(report.skipped).toEqual({ jev: 'jev arm skipped: label gate', deem: 'deem arm skipped: label gate' });
+    expect(report.skipped).toEqual({ jev: 'jev arm skipped: label gate' });
   });
 
   it('`--jev` without `--out` exits 2 before any call', async () => {
@@ -986,63 +834,5 @@ describe('score-severity-replay main', () => {
     expect(lines).toEqual([]);
     expect(errs).toEqual(['--jev needs --out <dir> so every call is recorded']);
     expect(fs.readdirSync(stubs).filter((name) => name.endsWith('.log'))).toEqual([]);
-  });
-
-  it('a report.json records the gate and the column', async () => {
-    const root = fixtureRoot(20);
-    const out = tempDir('severity-replay-main-report-');
-    const labels = labelSheet(Array.from({ length: 20 }, (_, index) => ({ findingId: `A-${String(index).padStart(3, '0')}`, label: 'P1' })));
-    const stubs = stubDir({ 'cli-deem': DEEM_CHOICE_AND_FUNNEL });
-
-    const { code, lines, errs } = await runMain(
-      ['--deem', '--out', out, '--labels', labels],
-      stubEnv(stubs),
-      fakeGit(root, [REGISTRY]),
-    );
-
-    expect(code).toBe(0);
-    expect(errs).toEqual([]);
-    expect(lines).toContain('gate: open K=20 negatives=20');
-    expect(lines).toContain('verdict deem: keep K=20 M=20 A=20 B=0 W=20 L=0 F=0 p=9.537e-7 model=deem-0.8-v1 model_commit=m1 source_commit=s1');
-
-    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
-    expect(report.census.registries).toBe(1);
-    expect(report.census.p0Rows).toHaveLength(20);
-    expect(report.labels.K).toBe(20);
-    expect(report.labels.real).toBe(0);
-    expect(report.labels.negatives).toBe(20);
-    expect(report.labels.dropped).toBe(0);
-    expect(report.labels.sha256).toMatch(/^[0-9a-f]{64}$/);
-    expect(report.baseline).toEqual({ right: 0, of: 20 });
-    expect(report.gate).toBe('gate: open K=20 negatives=20');
-    expect(report.columns.deem.verdict).toBe('keep');
-    expect(report.columns.deem.K).toBe(20);
-    expect(report.columns.deem.M).toBe(20);
-    expect(report.columns.deem.modelCommit).toBe('m1');
-    expect(report.requalify.deem).toBe(null);
-  });
-
-  it('the Deem gate skips a stub backend byte-identically', async () => {
-    const root = fixtureRoot(20);
-    const out = tempDir('severity-replay-main-skip-out-');
-    const labels = labelSheet(Array.from({ length: 20 }, (_, index) => ({ findingId: `A-${String(index).padStart(3, '0')}`, label: 'P1' })));
-    const stubs = stubDir({
-      'cli-deem': 'if [ "$1" = health ]; then echo \'{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"m1","source_commit":"s1"}\'; exit 0; fi',
-    });
-
-    const base = await runMain(['--labels', labels], stubEnv(stubs), fakeGit(root, [REGISTRY]));
-    const { code, lines, errs } = await runMain(
-      ['--deem', '--out', out, '--labels', labels],
-      stubEnv(stubs),
-      fakeGit(root, [REGISTRY]),
-    );
-
-    expect(code).toBe(0);
-    expect(errs).toEqual([]);
-    expect(lines.slice(0, base.lines.length)).toEqual(base.lines);
-    expect(lines.slice(base.lines.length)).toEqual(['deem arm skipped: stub backend']);
-
-    const log = fs.readFileSync(path.join(stubs, 'cli-deem.log'), 'utf8').trim().split('\n');
-    expect(log).toEqual(['health']);
   });
 });

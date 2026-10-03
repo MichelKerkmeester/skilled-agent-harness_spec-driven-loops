@@ -390,7 +390,6 @@ function decisionLines(rows, results) {
     return lines;
   }
   lines.push(`gate: tail_window leaves ${reachable} false not_met rows outside the wrapper rule`);
-  lines.push('gate: deem arm condition holds');
   lines.push('gate: jev arm also needs the three redaction cases and a recorded per-call latency, checked by hand');
   return lines;
 }

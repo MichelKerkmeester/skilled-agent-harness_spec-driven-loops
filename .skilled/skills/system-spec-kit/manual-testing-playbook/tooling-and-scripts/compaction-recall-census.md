@@ -16,7 +16,7 @@ This scenario validates the compaction recall census for `460`. It focuses on a 
 
 ### Why This Matters
 
-The census reads the operator's own sessions, so it has to stay read-only, call no model and keep transcript text out of its report. A run over the synthetic fixtures shows the report shape without opening a real transcript, and the suite checks that stub `jev` and `cli-deem` binaries first on the path are never called.
+The census reads the operator's own sessions, so it has to stay read-only, call no model and keep transcript text out of its report. A run over the synthetic fixtures shows the report shape without opening a real transcript, and the suite checks that a stub `jev` binary first on the path is never called.
 
 ---
 
@@ -83,7 +83,7 @@ Capture step 2's stdout, stderr and exit status, step 3's empty diff, step 4's c
 | File | Role |
 |---|---|
 | `.skilled/skills/system-spec-kit/runtime/scripts/compaction-recall/score-compaction-recall.mjs` | Picks the sessions, scores every boundary and prints the report and the stop line |
-| `.skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts` | Twelve cases over the fixtures, with stub `jev` and `cli-deem` binaries first on the path |
+| `.skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts` | Twelve cases over the fixtures, with a stub `jev` binary first on the path |
 | `.skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/clean.jsonl` | One of the six synthetic transcripts the run reads |
 
 Provenance: runtime/tests/compaction-recall.vitest.ts

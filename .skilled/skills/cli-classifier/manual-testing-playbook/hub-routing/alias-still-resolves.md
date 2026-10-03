@@ -25,7 +25,7 @@ This document captures the realistic routing contract, observed behavior, execut
 
 ## 1. OVERVIEW
 
-`cli-jev` has named the Jev transport as a mode, then as a hub of its own, and now names it as a mode again: mode `cli-jev` of the `cli-classifier` hub, over the packet folder `cli-jev`. The former packet name `cli-usage` sits in `mode-registry.json` `aliases[]` and as a vocabulary entry in `hub-router.json` `vocabularyClasses`, so a request that names only `cli-usage` still resolves mode `cli-jev` and loads the `cli-jev` packet.
+`cli-jev` has named the Jev transport as a mode, then as a hub of its own, and now names it as a mode again: mode `cli-jev` of the `cli-classifier` hub, over the packet folder `cli-jev`. The former packet name `cli-usage` sits in `mode-registry.json` `aliases[]` and as a vocabulary entry in `hub-router.json` `vocabularyClasses`, so a request that names only `cli-usage` still resolves mode `cli-jev` and loads the `cli-jev` packet. This is the hub's only mode today; a future classifier joins as a new mode with its own packet.
 
 ### Why This Matters
 
@@ -41,7 +41,7 @@ Operators run the exact prompt and command sequence for `CJ-002` and confirm the
 - Real user request: `cli-usage noul for this question.`
 - Prompt: `cli-usage noul for this question.`
 - Expected execution process: run the command sequence in §3 from the repository root, read the front door's JSON, then judge the result against the pass/fail criteria below.
-- Expected signals: the prompt carries no `jev judgment` phrase, so the resolution proves the alias signal: the front door answers `action: "route"` with `selectionKind: "single"` and one target whose `skillId` is `cli-classifier`, whose `workflowMode` is `cli-jev` and whose `packetId` is `cli-jev`, not a defer and not a `cli-deem` target.
+- Expected signals: the prompt carries no `jev judgment` phrase, so the resolution proves the alias signal: the front door answers `action: "route"` with `selectionKind: "single"` and one target whose `skillId` is `cli-classifier`, whose `workflowMode` is `cli-jev` and whose `packetId` is `cli-jev`, not a defer.
 - Evidence: the exact command, its exit status, and the front door's full JSON.
 - Desired user-visible outcome: the resolved workflow mode `cli-jev` and packet `cli-jev` for a request that names only `cli-usage`.
 - Pass/fail: PASS when the alias prompt routes a single `cli-jev` target; FAIL when it defers (the alias registration lost) or resolves anything else; SKIP only when the compiled front door cannot start, naming the failure as the blocker.

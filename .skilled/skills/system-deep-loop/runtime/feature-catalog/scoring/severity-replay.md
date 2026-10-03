@@ -1,6 +1,6 @@
 ---
 title: "Severity replay"
-description: "Measures offline whether a Jev or Deem severity choice separates real P0 findings from false ones better than the recorded severity."
+description: "Measures offline whether a Jev severity choice separates real P0 findings from false ones better than the recorded severity."
 trigger_phrases:
   - "severity replay"
   - "severity-replay"
@@ -18,9 +18,9 @@ version: 1.8.0.0
 
 ## 1. OVERVIEW
 
-Measures offline whether a Jev or Deem severity choice separates real P0 findings from false ones better than the recorded severity.
+Measures offline whether a Jev severity choice separates real P0 findings from false ones better than the recorded severity.
 
-Run with `node` from the repository root, `scripts/score-severity-replay.cjs` reads every tracked deep-review findings registry and prints the P0 census, the label need and the label gate state. The default run makes no model call and writes no file, and the script holds and reads no credential. It changes no severity, no registry and no review gate. The supported invocation is `node .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs [--write-label-sheet <path>] [--labels <file>] [--jev] [--deem] [--out <dir>]`, and the `USAGE` constant holds `usage: score-severity-replay.cjs [--write-label-sheet <path>] [--labels <file>] [--jev] [--deem] [--out <dir>]` without printing it.
+Run with `node` from the repository root, `scripts/score-severity-replay.cjs` reads every tracked deep-review findings registry and prints the P0 census, the label need and the label gate state. The default run makes no model call and writes no file, and the script holds and reads no credential. It changes no severity, no registry and no review gate. The supported invocation is `node .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs [--write-label-sheet <path>] [--labels <file>] [--jev] [--out <dir>]`, and the `USAGE` constant holds `usage: score-severity-replay.cjs [--write-label-sheet <path>] [--labels <file>] [--jev] [--out <dir>]` without printing it.
 
 This feature belongs to the scoring group and is catalogued as F058 in the `runtime/` inventory.
 
@@ -42,13 +42,13 @@ A labeled run prints `labels: none` or `labels: sha256=<sha> rows=<n>`, then `la
 keep rule: coverage 10*M >= 9*K, kill p_loss < 0.05, margin 10*(A-B) >= M, sign test p_win < 0.05, flips 10*F <= C
 ```
 
-The gate line is `stop: fewer than 20 labeled P0 negatives` when fewer than 20 rows carry a label other than `real`, `no headroom` when more than nine labeled rows in ten are `real`, and `gate: open K=<k> negatives=<n>` otherwise. A closed gate spawns no `jev` and no `cli-deem` process.
+The gate line is `stop: fewer than 20 labeled P0 negatives` when fewer than 20 rows carry a label other than `real`, `no headroom` when more than nine labeled rows in ten are `real`, and `gate: open K=<k> negatives=<n>` otherwise. A closed gate spawns no `jev` process.
 
-### Arms And Refusals
+### The Arm And Refusals
 
-Each arm sits behind its own switch and `--out <dir>`. With both switches the Jev gate and arm run first and then the Deem gate and arm, each on its own gate and regardless of the other's outcome. A closed gate prints `jev arm skipped: label gate` or `deem arm skipped: label gate`, and `jev arm skipped: no headroom` or `deem arm skipped: no headroom` in the headroom case. Past the gate the Jev gate can skip with `jev arm skipped: jev not on PATH`, `jev arm skipped: version` or `jev arm skipped: no credential`, and the Deem gate with `deem arm skipped: <reason>`, where `stub backend` is one reason. A run with an arm switch writes `report.json` in `<dir>`, and a run where every arm skips writes only that file and calls no backend.
+The arm sits behind its switch and `--out <dir>`. A closed gate prints `jev arm skipped: label gate`, or `jev arm skipped: no headroom` in the headroom case. Past the gate the arm can skip with `jev arm skipped: jev not on PATH`, `jev arm skipped: version` or `jev arm skipped: no credential`. A run with the arm switch writes `report.json` in `<dir>`, and a run where the arm skips writes only that file and calls no backend.
 
-Refusals exit 2 before any census line. `--jev` without `--out` prints `--jev needs --out <dir> so every call is recorded`, and `--deem` without `--out` prints `--deem needs --out <dir> so every call is recorded`. A `--write-label-sheet` path inside the repository prints `refusing to write the label sheet inside the repository` and writes no file. A bad labels row prints its row and its fault, for example `labels row 3: label must be "", real, P1, P2 or not_a_finding, got "x"` or `labels row 3: duplicate row <key>`.
+Refusals exit 2 before any census line. `--jev` without `--out` prints `--jev needs --out <dir> so every call is recorded`. A `--write-label-sheet` path inside the repository prints `refusing to write the label sheet inside the repository` and writes no file. A bad labels row prints its row and its fault, for example `labels row 3: label must be "", real, P1, P2 or not_a_finding, got "x"` or `labels row 3: duplicate row <key>`.
 
 The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
@@ -66,7 +66,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Type | Role |
 |---|---|---|
-| `tests/unit/score-severity-replay.vitest.ts` | Vitest | Covers the census counts, the phrase counter, the label sheet and reader, the gate states, the keep rule outcomes and the backend gates and skips against fixture registries and stub `jev` and `cli-deem` binaries. |
+| `tests/unit/score-severity-replay.vitest.ts` | Vitest | Covers the census counts, the phrase counter, the label sheet and reader, the gate states, the keep rule outcomes and the backend gate and skips against fixture registries and a stub `jev` binary. |
 
 ---
 

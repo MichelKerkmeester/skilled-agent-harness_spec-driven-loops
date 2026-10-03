@@ -1,0 +1,22 @@
+{
+  "specFolder": "sk-doc/064-description-budget",
+  "description": "Bring skill and agent descriptions back under the description budget",
+  "keywords": [
+    "bring",
+    "skill",
+    "agent",
+    "descriptions",
+    "back",
+    "description",
+    "budget"
+  ],
+  "lastUpdated": "2026-10-03T05:27:42.958Z",
+  "specId": "064",
+  "folderSlug": "description-budget",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deem answer shape fix",
+      "cli-deem noul value",
+      "deem score level",
+      "judgment envelope depth",
+      "deem answer shape plan",
+      "cli-deem translate fix plan",
+      "judgment envelope depth plan",
+      "deem score shape plan",
+      "deem answer shape tasks",
+      "cli-deem translate fix tasks",
+      "judgment envelope depth tasks",
+      "deem score shape tasks"
+    ],
+    "key_topics": [
+      "deem",
+      "answer",
+      "shape",
+      "cli-deem",
+      "noul",
+      "value",
+      "score",
+      "level",
+      "judgment",
+      "envelope",
+      "depth",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts",
+      "build/fix/044a.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "score-stop-rater.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/score-stop-rater.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-stop-rater.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/score-stop-rater.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "score-completion-claims.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "completion-claim-audit.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "044a.md",
+        "kind": "doc",
+        "path": "build/fix/044a.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The local Deem server answers `noul` with `{\"noul\": <number>}` and `score` with a numeric `score`, index-keyed `probabilities` and a `legend`",
+    "created_at": "2026-10-02T06:02:31Z",
+    "last_save_at": "2026-10-02T17:59:23.315Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cea3b245dadaccca6fbffefe3ed71ad32409904be600f09cd5c9d6eceb71a9e0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7dff5d3cc0a306dbedb953385a279c99dfb88e4d09535c628c5849c61b14ace0",
+      "plan.md": "fca6c8cc3f3cea5b180a4f48346be6b2ce234b5686698bb180d462490069595f",
+      "tasks.md": "76502cd26bee2aaf9161e78cc90273c6c5b359ba684c94d2c7a48a1646dd8963",
+      "implementation-summary.md": "2ca6ac797c9bde78b11192f726fc603e7079ba9cb83a511cecfe79cf564676f1"
+    },
+    "last_active_at": null
+  }
+}

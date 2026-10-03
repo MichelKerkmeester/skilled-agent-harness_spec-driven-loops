@@ -17,7 +17,7 @@ version: 2.3.0.0
 
 Scores, with zero model calls, what host compactions keep in the stock summary and the recorded brief and whether the vendored staged fit can hold each session, then prints one stop line for a later deletion arm.
 
-The census answers two questions before anyone builds a model pass that deletes tool results from a compacting session: can the vendored staged fit hold these sessions at all, and what do the host's stock summary and the recovered-context brief each keep. It reads only the transcripts the operator names, never starts `jev` or `cli-deem`, needs no key and leaves the hooks, the settings and the transcripts exactly as they are.
+The census answers two questions before anyone builds a model pass that deletes tool results from a compacting session: can the vendored staged fit hold these sessions at all, and what do the host's stock summary and the recovered-context brief each keep. It reads only the transcripts the operator names, never starts `jev`, needs no key and leaves the hooks, the settings and the transcripts exactly as they are.
 
 ---
 
@@ -55,7 +55,7 @@ The report at `--out` holds counts, scores, labels, file basenames, boundary uui
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts` | Vitest | Twelve cases over synthetic fixtures, with stub `jev` and `cli-deem` binaries first on the path |
+| `.skilled/skills/system-spec-kit/runtime/tests/compaction-recall.vitest.ts` | Vitest | Twelve cases over synthetic fixtures, with a stub `jev` binary first on the path |
 | `.skilled/skills/system-spec-kit/runtime/tests/compaction-recall-fixtures/clean.jsonl` | Fixture | One of six synthetic transcripts, each text field carrying a canary string |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/compaction-recall-census.md` | Manual playbook | Runs the census over the fixtures, then the suite |
 

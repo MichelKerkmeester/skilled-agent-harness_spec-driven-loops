@@ -433,7 +433,7 @@ Replays recorded deep-research lineage states offline and rates each stop decisi
 
 #### How It Works
 
-`score-stop-rater.cjs` walks the tracked lineage states and prints the census with zero model calls by default, derives each lineage's gold from first-appearance sources in its delta files, and opens the `--jev` or `--deem` arm only after five confirmed reads.
+`score-stop-rater.cjs` walks the tracked lineage states and prints the census with zero model calls by default, derives each lineage's gold from first-appearance sources in its delta files, and opens the `--jev` arm only after five confirmed reads.
 
 #### Source Files
 
@@ -449,7 +449,7 @@ Replays one stop-rater report offline and scores whether each recorded stop woul
 
 #### How It Works
 
-`score-stop-hint.cjs` reads the report under `--rater-report <dir>` and prints a hint count and one Keep-Rule verdict per column, with the keep rule line first so every verdict can be rechecked by hand. The default run scores `legacy` and `sources` and writes no file, `--jev` and `--deem` add the rater's recorded `jev` and `deem` columns, `--out <dir>` writes `<dir>/report.json`, and no run calls a model.
+`score-stop-hint.cjs` reads the report under `--rater-report <dir>` and prints a hint count and one Keep-Rule verdict per column, with the keep rule line first so every verdict can be rechecked by hand. The default run scores `legacy` and `sources` and writes no file, `--jev` adds the rater's recorded `jev` column, `--out <dir>` writes `<dir>/report.json`, and no run calls a model.
 
 #### Source Files
 
@@ -461,11 +461,11 @@ See [`scoring/stop-hint-replay.md`](../feature-catalog/scoring/stop-hint-replay.
 
 #### Description
 
-Measures offline whether a Jev or Deem severity choice separates real P0 findings from false ones better than the recorded severity.
+Measures offline whether a Jev severity choice separates real P0 findings from false ones better than the recorded severity.
 
 #### How It Works
 
-`score-severity-replay.cjs` reads every tracked deep-review findings registry and prints the census and the label gate state with zero model calls by default. `--write-label-sheet <path>` writes one JSON line per P0 row for the operator to fill with `real`, `P1`, `P2` or `not_a_finding`, `--labels <file>` reads the filled sheet back, and the gate opens the `--jev` and `--deem` arms only past 20 labeled negatives, printing `stop: fewer than 20 labeled P0 negatives` or `no headroom` when it stays closed. Each arm needs `--out <dir>`, and no run changes a severity.
+`score-severity-replay.cjs` reads every tracked deep-review findings registry and prints the census and the label gate state with zero model calls by default. `--write-label-sheet <path>` writes one JSON line per P0 row for the operator to fill with `real`, `P1`, `P2` or `not_a_finding`, `--labels <file>` reads the filled sheet back, and the gate opens the `--jev` arm only past 20 labeled negatives, printing `stop: fewer than 20 labeled P0 negatives` or `no headroom` when it stays closed. The arm needs `--out <dir>`, and no run changes a severity.
 
 #### Source Files
 
@@ -847,11 +847,11 @@ See [`fanout/persisted-wait-crash-resume.md`](../feature-catalog/fanout/persiste
 
 #### Description
 
-Replays the fan-out merge's own near-line and cross-body pair decisions with dedup on and off and scores a `--jev` or `--deem` backend against the operator's labels through the Keep Rule.
+Replays the fan-out merge's own near-line and cross-body pair decisions with dedup on and off and scores a `--jev` backend against the operator's labels through the Keep Rule.
 
 #### How It Works
 
-`score-fanout-pairs.cjs` walks the tracked `{research,review}/lineages/` registries of every deep-research and deep-review run that holds at least two lineages, then prints the pair census and the merge's own decision on each pair with near-duplicate deduplication on and off. `--write-pair-sheet <path>` writes at most 60 pairs per class ordered by the SHA-256 of the pair key for the operator to label `same` or `different`, and `--labels <file>` reads the filled sheet back. The label gate then prints one line: `stop: fewer than 40 labeled pairs`, `stop: fewer than 10 labeled cross-body pairs`, `no headroom` or `planned calls: jev <3K+1>, deem <2K>`. Behind `--jev` or `--deem` one arm scores that backend on the labeled pairs, and the Keep Rule then decides in order: coverage `10*M >= 9*K` else `stop (coverage)`, kill when the exact `P(X>=L)` is below 0.05, margin `10*(A-B) >= M` else `stop (margin)`, the sign test `P(X>=W)` below 0.05 with `p = 1` at `W+L = 0` else `stop (sign test)`, flips `10*F <= C` else `stop (flips)`, else `keep`. Every verdict line it builds carries `reader=none named`.
+`score-fanout-pairs.cjs` walks the tracked `{research,review}/lineages/` registries of every deep-research and deep-review run that holds at least two lineages, then prints the pair census and the merge's own decision on each pair with near-duplicate deduplication on and off. `--write-pair-sheet <path>` writes at most 60 pairs per class ordered by the SHA-256 of the pair key for the operator to label `same` or `different`, and `--labels <file>` reads the filled sheet back. The label gate then prints one line: `stop: fewer than 40 labeled pairs`, `stop: fewer than 10 labeled cross-body pairs`, `no headroom` or `planned calls: jev <3K+1>`. Behind `--jev` one arm scores that backend on the labeled pairs, and the Keep Rule then decides in order: coverage `10*M >= 9*K` else `stop (coverage)`, kill when the exact `P(X>=L)` is below 0.05, margin `10*(A-B) >= M` else `stop (margin)`, the sign test `P(X>=W)` below 0.05 with `p = 1` at `W+L = 0` else `stop (sign test)`, flips `10*F <= C` else `stop (flips)`, else `keep`. Every verdict line it builds carries `reader=none named`.
 
 #### Source Files
 

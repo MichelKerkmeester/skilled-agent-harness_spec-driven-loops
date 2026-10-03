@@ -12,7 +12,6 @@
 #
 # Adding a line is how a cleaned package becomes permanent. Never remove a line to make a
 # red build green — fix the package instead.
-.skilled/skills/cli-classifier/cli-deem/manual-testing-playbook
 .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook
 .skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook
 .skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook

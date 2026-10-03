@@ -1,0 +1,40 @@
+{"row":"R01","verdict":"supports","reason":"Line 126 is exactly the `\"flowchart\",` keyword the sentence names."}
+{"row":"R02","verdict":"contradicts","reason":"Window shows state references, templates, and success-criteria text — no generated-fence contract."}
+{"row":"R03","verdict":"contradicts","reason":"Window shows Dashboard Awareness and the routing-scan tool table; the output-verification checklist sits above it."}
+{"row":"R04","verdict":"contradicts","reason":"Window shows goal.md frontmatter, not the quoted D3 sentence at line 53."}
+{"row":"R05","verdict":"contradicts","reason":"Window shows use-when bullets and keyword triggers, nothing about a mandatory command-owned workflow."}
+{"row":"R06","verdict":"contradicts","reason":"Window shows lifecycle modes, TrustState, and resource-map integration — not the state-packet location or pause sentinel."}
+{"row":"R07","verdict":"supports","reason":"hashPacket builds a SHA-256 over framed packet file paths, kinds, and contents, as claimed."}
+{"row":"R08","verdict":"contradicts","reason":"Window shows fixture-vector and embedding-cache loading, not the isLiveScorerLane/shadowOnly fusion logic."}
+{"row":"R09","verdict":"contradicts","reason":"Window shows os.path.join path constants, not the stdlib import-ordering lines the evidence pointer cites."}
+{"row":"R10","verdict":"partial","reason":"Window shows output-separation lines (reducer-owned files, progressiveSynthesis edit row) but not the progressive-output rule itself."}
+{"row":"R11","verdict":"supports","reason":"Line 53 is verbatim the quoted D3 decision row."}
+{"row":"R12","verdict":"contradicts","reason":"Window shows the decisions table and operator-copy text, not the '| Phase opened | Pending |' log row."}
+{"row":"R13","verdict":"contradicts","reason":"Window shows a freshness-error branch and ORCHESTRATOR_CMD setup — no numbered-section divider evidence."}
+{"row":"R14","verdict":"contradicts","reason":"Window shows vocabulary keyword lists, not the defaultMode declaration at line 5."}
+{"row":"R15","verdict":"contradicts","reason":"Window shows frontmatter, not the objective quote at line 43."}
+{"row":"R16","verdict":"supports","reason":"Line 53 shows the quoted 'findings only' D3 sentence verbatim."}
+{"row":"R17","verdict":"contradicts","reason":"Window shows an ASCII diagram arrow at 142, not the cli-orca owner-table row."}
+{"row":"R18","verdict":"supports","reason":"Line 75 is verbatim the 'deep-research-state.jsonl holds 10 iteration records' criterion."}
+{"row":"R19","verdict":"partial","reason":"Window shows the tool's main() plumbing and its manifest-lib reference, but not the mint usage lines at 29-30."}
+{"row":"R20","verdict":"partial","reason":"Window shows the classifier signature and canonical/legacy checks but the same-inode, byte-identical, and reject outcomes fall just below it."}
+{"row":"R21","verdict":"partial","reason":"Window shows phraseSpecificity weighting on doc triggers, but not the claimed 0.7x/0.45x direct-vs-affordance weights."}
+{"row":"R22","verdict":"supports","reason":"Window shows the research retaining the unit-grid/unit-ring substitution and arc-pie omission after the shadcn comparison."}
+{"row":"R23","verdict":"contradicts","reason":"Window shows goal.md frontmatter, not the quoted sentence at line 53."}
+{"row":"R24","verdict":"contradicts","reason":"Window shows only the claimed function's return tail plus a different restoreFromQuarantine function."}
+{"row":"R25","verdict":"supports","reason":"Window shows the shebang plus MODULE banner and 'use strict' that the header rule cites."}
+{"row":"R26","verdict":"partial","reason":"Window enumerates Webflow markers inside guard prose (vendor globals, wrangler.toml) but not the verbatim definition block the sentence points to."}
+{"row":"R27","verdict":"partial","reason":"Window shows the before/after diagnostics return; the status-read, skip, index, and publish steps are above it."}
+{"row":"R28","verdict":"partial","reason":"Window shows fixtureVector, the deterministic token-overlap mechanism, but not the VITEST fallback wiring."}
+{"row":"R29","verdict":"contradicts","reason":"Window shows bundle-rules/authority-graph assembly, not the modeVocabulary class-keyword extraction."}
+{"row":"R30","verdict":"partial","reason":"Window shows the run-reuse and runStop gate region the finding cites, but no snapshot or correctness-fallback mechanism."}
+{"row":"R31","verdict":"supports","reason":"Window shows the module docstring with description and usage that the docstring rule cites."}
+{"row":"R32","verdict":"partial","reason":"Window's header index names `_json_escape()` but the cited helper-definition lines aren't shown."}
+{"row":"R33","verdict":"contradicts","reason":"Window shows expected-signals and pass/fail text, not the `stage: negative` frontmatter line."}
+{"row":"R34","verdict":"contradicts","reason":"Window shows evidence floors and routing bonuses, not the 0.72 derived-dominant short-circuit pin."}
+{"row":"R35","verdict":"contradicts","reason":"Window shows neutral-workspace isolation checks; the 20 MB stdout cap is elsewhere (line ~3562)."}
+{"row":"R36","verdict":"supports","reason":"Line 17 is `\"none\": \"no signal, fall to the default mode\"`, exactly the claimed fallback."}
+{"row":"R37","verdict":"contradicts","reason":"Window shows a Plugin & Extension Library section with no cli-orca ownership statement."}
+{"row":"R38","verdict":"contradicts","reason":"Window shows the convergence report and integration points, not state or exhausted-approach rules."}
+{"row":"R39","verdict":"contradicts","reason":"Window shows cli-orca's own use-cases/not-to-use sections; no line names the standalone cli-orca skill as a deferral."}
+{"row":"R40","verdict":"partial","reason":"Window shows the manifest types including divergentCount, but the builder/counting function itself isn't shown."}

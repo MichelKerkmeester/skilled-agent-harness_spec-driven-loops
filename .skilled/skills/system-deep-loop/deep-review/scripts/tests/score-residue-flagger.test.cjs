@@ -25,7 +25,7 @@ const S = require('../score-residue-flagger.cjs');
 function cleanEnv() {
   const env = { ...process.env };
   for (const key of Object.keys(env)) {
-    if (key.startsWith('GIT_') || key === 'JEV_PROVIDER' || key === 'CLI_DEEM_URL') delete env[key];
+    if (key.startsWith('GIT_') || key === 'JEV_PROVIDER') delete env[key];
   }
   return env;
 }
@@ -130,11 +130,10 @@ function stubScript(logName) {
   ].join('\n');
 }
 
-// Stub jev and cli-deem binaries first on PATH; no case reaches a real backend.
+// A stub jev binary first on PATH; no case reaches a real backend.
 function makeStubs() {
   const bin = tempDir('bin');
   fs.writeFileSync(path.join(bin, 'jev'), stubScript('jev.log'), { mode: 0o755 });
-  fs.writeFileSync(path.join(bin, 'cli-deem'), stubScript('cli-deem.log'), { mode: 0o755 });
   return bin;
 }
 
@@ -456,7 +455,6 @@ test('label gate 99', async () => {
   assert.ok(run.lines.includes('stop: fewer than 100 labeled rows'));
   assert.ok(!run.lines.some((line) => line.startsWith('baseline:')));
   assert.deepEqual(stubLog(bin, 'jev'), []);
-  assert.deepEqual(stubLog(bin, 'cli-deem'), []);
 });
 
 test('default zero calls', async () => {
@@ -469,7 +467,6 @@ test('default zero calls', async () => {
   assert.ok(run.lines.some((line) => line.startsWith('severity ')));
   assert.ok(run.lines.some((line) => line.startsWith('dimension ')));
   assert.deepEqual(stubLog(bin, 'jev'), []);
-  assert.deepEqual(stubLog(bin, 'cli-deem'), []);
   assert.equal(runGit(root, ['status', '--porcelain']), before);
   assert.equal(fs.existsSync(path.join(root, 'report.json')), false);
   assert.equal(fs.existsSync(path.join(root, 'calls.jsonl')), false);
@@ -495,7 +492,6 @@ test('baseline and headroom', async () => {
     `instruction traceability sha256=${S.sha256Hex(traceability)}: ${traceability}`
   ]);
   assert.deepEqual(stubLog(bin, 'jev'), []);
-  assert.deepEqual(stubLog(bin, 'cli-deem'), []);
 });
 
 test('no headroom', async () => {
@@ -510,7 +506,6 @@ test('no headroom', async () => {
   assert.ok(!run.lines.some((line) => line.startsWith('headroom:')));
   assert.equal(S.headroomLine({ right: 95, defect: 5, K: 100 }), 'no headroom');
   assert.deepEqual(stubLog(bin, 'jev'), []);
-  assert.deepEqual(stubLog(bin, 'cli-deem'), []);
 });
 
 test('underpowered', () => {
@@ -537,13 +532,6 @@ test('verdict kill precision', () => {
   assert.equal(verdict.outcome, 'kill');
   assert.equal(verdict.reason, 'precision');
   assert.equal(S.verdictText(verdict), 'kill (precision)');
-  const counts = { K: 10, M: 10, A: 6, B: 6, W: 0, L: 0, TP: 0, FP: 0, F: 0 };
-  const deem = S.decideVerdict({ backend: 'deem', ...counts });
-  assert.equal(S.verdictText(deem), 'kill (precision)');
-  assert.equal(
-    S.verdictLine('deem', counts, deem, ''),
-    'verdict deem: kill (precision) K=10 M=10 A=6 B=6 W=0 L=0 TP=0 FP=0 F=n/a p=1.000'
-  );
 });
 
 test('verdict stop coverage', () => {
@@ -554,7 +542,7 @@ test('verdict stop coverage', () => {
 });
 
 test('verdict stop margin', () => {
-  const verdict = S.decideVerdict({ backend: 'deem', K: 90, M: 90, A: 66, B: 60, W: 8, L: 2, TP: 28, FP: 2, F: 0 });
+  const verdict = S.decideVerdict({ backend: 'jev', K: 90, M: 90, A: 66, B: 60, W: 8, L: 2, TP: 28, FP: 2, F: 0 });
   assert.equal(verdict.outcome, 'stop');
   assert.equal(verdict.reason, 'margin');
   assert.equal(S.verdictText(verdict), 'stop (margin)');
@@ -575,54 +563,6 @@ test('brier score', () => {
   assert.equal(S.brierScore(calls, rows), 0.25 / 3, 'the unmeasured row leaves the score');
   assert.equal(S.brierScore([], rows), null);
 });
-
-// A cli-deem stub driven by a JSON config beside it: health answers by call
-// index, and each noul answer is keyed by the window hash, so a call's
-// judgment follows the text the arm sent rather than its position.
-function writeDeemStub(bin, config) {
-  fs.writeFileSync(path.join(bin, 'cli-deem.config.json'), JSON.stringify(config));
-  const script = [
-    '#!/usr/bin/env node',
-    "'use strict';",
-    "const fs = require('fs');",
-    "const path = require('path');",
-    "const crypto = require('crypto');",
-    'const dir = __dirname;',
-    "const config = JSON.parse(fs.readFileSync(path.join(dir, 'cli-deem.config.json'), 'utf8'));",
-    'const argv = process.argv.slice(2);',
-    "fs.appendFileSync(path.join(dir, 'cli-deem.log'), JSON.stringify(argv) + '\\n');",
-    'function bump(name) {',
-    '  const file = path.join(dir, name);',
-    "  const next = (fs.existsSync(file) ? Number(fs.readFileSync(file, 'utf8')) : 0) + 1;",
-    '  fs.writeFileSync(file, String(next));',
-    '  return next - 1;',
-    '}',
-    "if (argv[0] === 'health') {",
-    "  const answer = config.health[Math.min(bump('health.count'), config.health.length - 1)];",
-    "  if (answer.stderr !== undefined) process.stderr.write(answer.stderr);",
-    '  if (answer.exit !== 0) process.exit(answer.exit);',
-    '  process.stdout.write(JSON.stringify(answer.body));',
-    '  process.exit(0);',
-    '}',
-    "if (argv[0] === 'noul') {",
-    "  const answer = config.noul[Math.min(bump('noul.count'), config.noul.length - 1)];",
-    '  if (answer.exit !== 0) process.exit(answer.exit);',
-    "  let stdin = '';",
-    "  process.stdin.setEncoding('utf8');",
-    "  process.stdin.on('data', (chunk) => { stdin += chunk; });",
-    "  process.stdin.on('end', () => {",
-    "    const key = crypto.createHash('sha256').update(stdin).digest('hex').slice(0, 12);",
-    '    const noul = (answer.probabilities ?? {})[key] ?? null;',
-    '    process.stdout.write(JSON.stringify({ answers: { answer: { noul } } }));',
-    '    process.exit(0);',
-    '  });',
-    '  return;',
-    '}',
-    'process.exit(2);',
-    ''
-  ].join('\n');
-  fs.writeFileSync(path.join(bin, 'cli-deem'), script, { mode: 0o755 });
-}
 
 // The environment the fixtures reach the stubs through: first on PATH, no
 // redirectors inherited from the caller.
@@ -672,176 +612,22 @@ function labelsProbabilities(root, labelsFile, probabilityForLabel) {
   return probabilities;
 }
 
-// The identity a stub health reports.
-function deemHealthBody(modelCommit, sourceCommit) {
-  return { ok: true, backend: 'torch', model: 'deem-0.8-v1', model_commit: modelCommit, source_commit: sourceCommit };
-}
-
-test('deem gate pass', async () => {
-  const bin = makeStubs();
-  const plan = smallPlan(5, 5);
-  writeDeemStub(bin, {
-    health: [{ exit: 0, body: deemHealthBody('mdl-gate', 'src-gate') }],
-    noul: [{ exit: 0, probabilities: planProbabilities(plan) }]
-  });
-  const lines = [];
-  const out = (line) => lines.push(line);
-  const env = stubEnv(bin);
-  const gate = S.deemGate({ out, env, repoRoot: tempDir('deem-gate-root') });
-  assert.equal(gate.passed, true);
-  assert.deepEqual(lines, ['deem: health backend=torch model=deem-0.8-v1 model_commit=mdl-gate source_commit=src-gate']);
-  const outDir = tempDir('deem-gate-out');
-  const result = await S.runDeemArm(plan, gate, { out, env, timeoutMs: 20000, callLog: S.createCallLog(outDir), stored: null });
-  assert.equal(result.column.line,
-    'verdict deem: keep K=10 M=10 A=10 B=5 W=5 L=0 TP=5 FP=0 F=n/a p=0.03125 model=deem-0.8-v1 model_commit=mdl-gate source_commit=src-gate');
-  assert.equal(lines[1], 'deem: nothing leaves the machine; planned calls: 10; estimated wall time: 0.6 s at 60.5 ms per call, the noul p50 in deem-local.md');
-  assert.ok(lines.includes('brier deem: 0.0100'));
-  assert.ok(lines.includes('flips: not applicable (deem noul)'));
-  assert.equal(lines[lines.length - 1], result.column.line);
-  assert.equal(S.readJsonl(path.join(outDir, 'calls.jsonl')).length, 10);
-  assert.deepEqual(stubLog(bin, 'cli-deem')[0], ['health']);
-});
-
-test('deem stub backend', async () => {
-  const { root } = makeDrawFixture();
-  const bin = makeStubs();
-  const labels = writeLabels(root, 31, (index) => (index < 50 ? 'defect' : 'clean'));
-  writeDeemStub(bin, { health: [{ exit: 3, stderr: '{"error":"stub backend"}' }], noul: [] });
-  const outDir = tempDir('deem-stub-out');
-  const plain = await runMainWithStubs(['--labels', labels], { root, bin });
-  const skipped = await runMainWithStubs(['--labels', labels, '--deem', '--out', outDir], { root, bin });
-  assert.equal(plain.code, 0, plain.errs.join('\n'));
-  assert.equal(skipped.code, 0, skipped.errs.join('\n'));
-  assert.deepEqual(skipped.lines.slice(0, plain.lines.length), plain.lines);
-  assert.deepEqual(skipped.lines.slice(plain.lines.length), ['deem arm skipped: stub backend']);
-  assert.deepEqual(stubLog(bin, 'cli-deem'), [['health']]);
-  assert.equal(fs.existsSync(path.join(outDir, 'calls.jsonl')), false);
-  assert.equal(fs.existsSync(path.join(outDir, 'report.json')), false);
-});
-
-test('deem keep', async () => {
-  const { root } = makeDrawFixture();
-  const bin = makeStubs();
-  const labels = writeLabels(root, 32, (index) => (index < 50 ? 'defect' : 'clean'));
-  writeDeemStub(bin, {
-    health: [{ exit: 0, body: deemHealthBody('mdl-keep', 'src-keep') }],
-    noul: [{ exit: 0, probabilities: labelsProbabilities(root, labels, (label) => (label === 'defect' ? 0.9 : 0.1)) }]
-  });
-  const outDir = tempDir('deem-keep-out');
-  const run = await runMainWithStubs(['--labels', labels, '--deem', '--out', outDir], { root, bin });
-  assert.equal(run.code, 0, run.errs.join('\n'));
-  assert.ok(run.lines.includes('brier deem: 0.0100'));
-  assert.ok(run.lines.includes('flips: not applicable (deem noul)'));
-  const verdicts = run.lines.filter((line) => line.startsWith('verdict deem: '));
-  assert.equal(verdicts.length, 1);
-  assert.equal(verdicts[0],
-    'verdict deem: keep K=100 M=100 A=100 B=50 W=50 L=0 TP=50 FP=0 F=n/a p=8.882e-16 model=deem-0.8-v1 model_commit=mdl-keep source_commit=src-keep');
-  const calls = S.readJsonl(path.join(outDir, 'calls.jsonl'));
-  assert.equal(calls.length, 100);
-  for (const call of calls) {
-    assert.equal(call.backend, 'deem');
-    assert.equal(call.rerun, 0);
-    assert.ok(Number.isFinite(call.wallMs) && call.wallMs >= 0);
-    assert.equal(call.exitCode, 0);
-    assert.equal(call.modelId, 'deem-0.8-v1');
-    assert.equal(call.modelCommit, 'mdl-keep');
-    assert.equal(call.sourceCommit, 'src-keep');
-    assert.equal(call.status, 'measured');
-    assert.equal(call.flag, call.probability >= 0.5);
-  }
-  const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
-  assert.deepEqual(Object.keys(report),
-    ['commit', 'census', 'labels', 'baseline', 'headroom', 'margin', 'keepRule', 'instructions', 'columns', 'requalify', 'stopped', 'skipped']);
-  assert.deepEqual(Object.keys(report.labels), ['path', 'sha256', 'rows', 'labeled']);
-  assert.equal(report.labels.path, labels);
-  assert.equal(report.labels.sha256, S.sha256Hex(fs.readFileSync(labels, 'utf8')));
-  assert.equal(report.labels.rows, 100);
-  assert.equal(report.labels.labeled, 100);
-  assert.deepEqual(report.baseline, { right: 50, defect: 50, K: 100 });
-  assert.equal(report.headroom, 'headroom: a 10-point gain fits above 50/100');
-  assert.equal(report.margin, 'margin: 0.10');
-  assert.ok(report.keepRule.startsWith('keep rule: coverage 10*M >= 9*K'));
-  const correctness = 'Does this passage claim behavior that its own text shows to be wrong or inconsistent?';
-  const traceability = 'Does this passage name a spec item or requirement that the text it describes does not match or does not contain?';
-  assert.deepEqual(report.instructions, {
-    correctness: { sha256: S.sha256Hex(correctness) },
-    traceability: { sha256: S.sha256Hex(traceability) }
-  });
-  assert.equal(report.columns.deem.line, verdicts[0]);
-  assert.equal(report.columns.deem.modelCommit, 'mdl-keep');
-  assert.equal(report.requalify.deem, null);
-  assert.deepEqual(report.stopped, {});
-  assert.deepEqual(report.skipped, {});
-  assert.equal(report.commit, report.census.commit);
-});
-
-test('deem exit 4 changed pair', async () => {
-  const bin = makeStubs();
-  const plan = smallPlan(5, 5);
-  writeDeemStub(bin, {
-    health: [
-      { exit: 0, body: deemHealthBody('mdl-one', 'src-one') },
-      { exit: 0, body: deemHealthBody('mdl-two', 'src-two') }
-    ],
-    noul: [{ exit: 4 }]
-  });
-  const lines = [];
-  const out = (line) => lines.push(line);
-  const env = stubEnv(bin);
-  const gate = S.deemGate({ out, env, repoRoot: tempDir('deem-stop-root') });
-  assert.equal(gate.passed, true);
-  const outDir = tempDir('deem-stop-out');
-  const result = await S.runDeemArm(plan, gate, { out, env, timeoutMs: 20000, callLog: S.createCallLog(outDir), stored: null });
-  assert.deepEqual(result, { stopped: 'deem arm stopped: model commit changed mid-run', partialRows: 0 });
-  assert.ok(lines.includes('deem arm stopped: model commit changed mid-run'));
-  assert.ok(lines.includes('deem: partial rows=0'));
-  assert.ok(!lines.some((line) => line.startsWith('verdict ')));
-  assert.deepEqual(stubLog(bin, 'cli-deem'), [['health'], ['noul', '-q', 'Q correctness'], ['health']]);
-  const calls = S.readJsonl(path.join(outDir, 'calls.jsonl'));
-  assert.equal(calls.length, 1);
-  assert.equal(calls[0].rowId, 'r001');
-  assert.equal(calls[0].rerun, 0);
-  assert.ok(Number.isFinite(calls[0].wallMs));
-  assert.equal(calls[0].exitCode, 4);
-  assert.equal(calls[0].backend, 'deem');
-  assert.equal(calls[0].probability, null);
-  assert.equal(calls[0].flag, null);
-  assert.equal(calls[0].status, 'unmeasured');
-  assert.equal(calls[0].modelCommit, 'mdl-one');
-  assert.equal(calls[0].sourceCommit, 'src-one');
-});
-
 test('--out required', async () => {
   const { root } = makeFixture();
   const bin = makeStubs();
   const run = await runMainWithStubs(['--jev'], { root, bin });
   assert.equal(run.code, 2);
   assert.deepEqual(run.lines, []);
-  assert.deepEqual(run.errs, ['--jev and --deem need --out <dir> so every call is recorded']);
+  assert.deepEqual(run.errs, ['--jev needs --out <dir> so every call is recorded']);
   assert.deepEqual(stubLog(bin, 'jev'), []);
-  assert.deepEqual(stubLog(bin, 'cli-deem'), []);
-  assert.equal(fs.existsSync(path.join(root, 'report.json')), false);
-});
 
-test('requalify', async () => {
-  const bin = makeStubs();
-  const plan = smallPlan(5, 5);
-  writeDeemStub(bin, {
-    health: [{ exit: 0, body: deemHealthBody('mdl-new', 'src-new') }],
-    noul: [{ exit: 0, probabilities: planProbabilities(plan) }]
-  });
-  const lines = [];
-  const out = (line) => lines.push(line);
-  const env = stubEnv(bin);
-  const gate = S.deemGate({ out, env, repoRoot: tempDir('deem-requalify-root') });
-  const outDir = tempDir('deem-requalify-out');
-  const stored = { columns: { deem: { modelCommit: 'mdl-old', sourceCommit: 'src-old' } } };
-  const result = await S.runDeemArm(plan, gate, { out, env, timeoutMs: 20000, callLog: S.createCallLog(outDir), stored });
-  assert.equal(result.requalify, 'requalify: model commit changed');
-  const index = lines.indexOf('requalify: model commit changed');
-  assert.ok(index >= 0);
-  assert.ok(lines[index + 1].startsWith('verdict deem: '));
-  assert.equal(lines.filter((line) => line.startsWith('requalify:')).length, 1);
+  // A retired backend's switch is no longer accepted by the argument parser.
+  const rejected = await runMainWithStubs(['--bogus'], { root, bin });
+  assert.equal(rejected.code, 2);
+  assert.deepEqual(rejected.lines, []);
+  assert.deepEqual(rejected.errs, ['unknown switch: --bogus']);
+  assert.deepEqual(stubLog(bin, 'jev'), []);
+  assert.equal(fs.existsSync(path.join(root, 'report.json')), false);
 });
 
 // A jev stub driven by a JSON config beside it: the version and credential

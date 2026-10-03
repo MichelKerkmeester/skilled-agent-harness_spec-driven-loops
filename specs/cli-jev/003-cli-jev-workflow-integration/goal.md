@@ -38,19 +38,19 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Find where a classifier cuts the main AI's context and review work, and build every released phase.
+**Objective:** Find where a classifier saves main AI work and build every released phase.
 
 ### Decisions
 
 | ID | Decision |
-|----|----------|
-| D1 | Jev first, else Deem, dormant unless one passes its check (`jev auth status --provider <p>` or Deem's health check). Jev gets no secret |
-| D2 | Hub `cli-classifier` holds `cli-jev` and `cli-deem`. Deem 0.8B bf16 runs locally |
-| D3 | Released: 019 to 041. Disjoint builds may run in parallel |
-| D4 | 003, 006 and 019 to 035 stop at their label gate. No model labels |
-| D5 | The session orchestrates, verifies and commits. Workers: DeepSeek V4.1 Flash on cli-pi (Cline `xhigh`, then OpenCode Go `max`), SWE 2 max on cli-devin, Luna 6 max fast on cli-codex. No MiMo, no Claude leaves. Cross-family review: fix P0 and P1, record P2 |
-| D6 | Skill docs via sk-doc, code via sk-code's OpenCode route |
-| D7 | Stop only for an install yes or a missing credential. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
+|----|---|
+| D1 | Jev only, dormant unless `jev auth status --provider <p>` passes. Jev gets no secret |
+| D2 | `cli-classifier` stays a parent hub for future classifiers |
+| D3 | Run 019 to 047 in parallel when disjoint |
+| D4 | 003, 006, 019 to 035 stop at their label gate. Only operator-confirmed or -delegated labels count |
+| D5 | Session verifies, commits. Workers: Luna 6 max fast (cli-codex), DeepSeek V4.1 Flash max (cli-pi: Cline, OpenCode Go). No MiMo or Claude leaves except the arbiter. Cross-family review: fix P0 and P1, record P2 |
+| D6 | Docs via sk-doc, code via sk-code |
+| D7 | Stop only for an install yes or missing key. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -58,51 +58,57 @@ _memory:
 <!-- ANCHOR:binding -->
 ## 2. BINDING
 
-Decisions outrank each child goal.
+Decisions outrank child goals.
 
 | # | Goal |
-|---|------|
-| 001 | `001-deep-research/goal.md` |
-| 002 | `002-advisor-jev-tiebreak-arm/goal.md` |
-| 003 | `003-goal-verifier-jev-shadow/goal.md` |
-| 004 | `004-deep-research-expansion/goal.md` |
-| 005 | `005-compaction-recall-harness/goal.md` |
-| 006 | `006-goal-criteria-lint/goal.md` |
-| 007 | `007-classifier-deep-research/goal.md` |
-| 008 | `008-cli-classifier-hub/goal.md` |
-| 009 | `009-cli-jev-hub-move/goal.md` |
-| 010 | `010-trigger-index-search-fixes/goal.md` |
-| 011 | `011-spec-validator-fixes/goal.md` |
-| 012 | `012-sk-doc-validator-and-reference-fixes/goal.md` |
-| 013 | `013-sk-prompt-framework-docs/goal.md` |
-| 014 | `014-sk-design-doc-and-routing-check/goal.md` |
-| 015 | `015-fanout-merge-and-steering-fixes/goal.md` |
-| 016 | `016-deem-local-hardening/goal.md` |
-| 017 | `017-deem-search-narrowing-arm/goal.md` |
-| 018 | `018-worktree-provision-shared-link/goal.md` |
-| 019 | `019-advisor-suggested-order/goal.md` |
-| 020 | `020-routing-clarify-default/goal.md` |
-| 021 | `021-stage2-leaf-route-replay/goal.md` |
-| 022 | `022-alignment-folder-suggestion/goal.md` |
-| 023 | `023-reply-harness-blinded-judge/goal.md` |
-| 024 | `024-hallucination-grader/goal.md` |
-| 025 | `025-reviewer-verdict-fallback/goal.md` |
-| 026 | `026-completion-claim-audit/goal.md` |
-| 027 | `027-stop-second-rater/goal.md` |
-| 028 | `028-confirm-mode-stop-hint/goal.md` |
-| 029 | `029-p0-reread-order/goal.md` |
-| 030 | `030-fanout-merge-shadow-record/goal.md` |
-| 031 | `031-debug-next-check/goal.md` |
-| 032 | `032-citation-drift-scan/goal.md` |
-| 033 | `033-validator-residue-flagger/goal.md` |
-| 034 | `034-hvr-reader-needed-lens/goal.md` |
-| 035 | `035-fetched-text-injection-screen/goal.md` |
-| 036 | `036-sk-code-and-sk-doc-alignment/goal.md` |
-| 037 | `037-pi-native-classifier-transport/goal.md` |
-| 038 | `038-pi-classifier-transport-integration/goal.md` |
-| 039 | `039-hub-cleanup/goal.md` |
-| 040 | `040-hard-rules-sidecar/goal.md` |
-| 041 | `041-code-readmes-and-routing-alignment/goal.md` |
+|---|---|
+| 1 | `001-deep-research/goal.md` |
+| 2 | `002-advisor-jev-tiebreak-arm/goal.md` |
+| 3 | `003-goal-verifier-jev-shadow/goal.md` |
+| 4 | `004-deep-research-expansion/goal.md` |
+| 5 | `005-compaction-recall-harness/goal.md` |
+| 6 | `006-goal-criteria-lint/goal.md` |
+| 7 | `007-classifier-deep-research/goal.md` |
+| 8 | `008-cli-classifier-hub/goal.md` |
+| 9 | `009-cli-jev-hub-move/goal.md` |
+| 10 | `010-trigger-index-search-fixes/goal.md` |
+| 11 | `011-spec-validator-fixes/goal.md` |
+| 12 | `012-sk-doc-validator-and-reference-fixes/goal.md` |
+| 13 | `013-sk-prompt-framework-docs/goal.md` |
+| 14 | `014-sk-design-doc-and-routing-check/goal.md` |
+| 15 | `015-fanout-merge-and-steering-fixes/goal.md` |
+| 16 | `016-deem-local-hardening/goal.md` |
+| 17 | `017-deem-search-narrowing-arm/goal.md` |
+| 18 | `018-worktree-provision-shared-link/goal.md` |
+| 19 | `019-advisor-suggested-order/goal.md` |
+| 20 | `020-routing-clarify-default/goal.md` |
+| 21 | `021-stage2-leaf-route-replay/goal.md` |
+| 22 | `022-alignment-folder-suggestion/goal.md` |
+| 23 | `023-reply-harness-blinded-judge/goal.md` |
+| 24 | `024-hallucination-grader/goal.md` |
+| 25 | `025-reviewer-verdict-fallback/goal.md` |
+| 26 | `026-completion-claim-audit/goal.md` |
+| 27 | `027-stop-second-rater/goal.md` |
+| 28 | `028-confirm-mode-stop-hint/goal.md` |
+| 29 | `029-p0-reread-order/goal.md` |
+| 30 | `030-fanout-merge-shadow-record/goal.md` |
+| 31 | `031-debug-next-check/goal.md` |
+| 32 | `032-citation-drift-scan/goal.md` |
+| 33 | `033-validator-residue-flagger/goal.md` |
+| 34 | `034-hvr-reader-needed-lens/goal.md` |
+| 35 | `035-fetched-text-injection-screen/goal.md` |
+| 36 | `036-sk-code-and-sk-doc-alignment/goal.md` |
+| 37 | `037-pi-native-classifier-transport/goal.md` |
+| 38 | `038-pi-classifier-transport-integration/goal.md` |
+| 39 | `039-hub-cleanup/goal.md` |
+| 40 | `040-hard-rules-sidecar/goal.md` |
+| 41 | `041-code-readmes-and-routing-alignment/goal.md` |
+| 42 | `042-label-drafting-and-confirmation/goal.md` |
+| 43 | `043-label-finding-fixes/goal.md` |
+| 44 | `044-deem-answer-shape-fix/goal.md` |
+| 45 | `045-deem-live-runs/goal.md` |
+| 46 | `046-deem-deprecation/goal.md` |
+| 47 | `047-measure-every-jev-feature/goal.md` |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -110,10 +116,10 @@ Decisions outrank each child goal.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 041 are Complete
-- [x] 019 to 035 are Complete: each prints its verdict line or stops at its label gate
-- [x] `validate_document.py` exits 0 on every skill doc a build changed
-- [x] No open P0 or P1 finding, and no changed runtime's suite fails beyond its baseline
+- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 047 are Complete
+- [x] 019 to 035 are Complete, each at its verdict line or label gate
+- [x] `validate_document.py` exits 0 on each changed skill doc
+- [x] No open P0 or P1, and no changed suite fails beyond its baseline
 - [x] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
 <!-- /ANCHOR:completion -->
 
@@ -253,4 +259,16 @@ and findings belong here.
 | Directive amendment: bind 039 and 040 (2026-09-30) | Source: the operator's "its also missing cli-jev", "all cli classifier skills nad modes should stay pre-release ... dont reach v1.0.0.0", "cli deem is also missing testing playbook" and "you have hard rules in skill frontmatter? Thats not supported", then the answers "Rename to cli-jev (Recommended)", "Continue each line (Recommended)" and "Move rules out of frontmatter". 039 renames the Jev packet folder, holds versions to 0.x and adds the cli-deem playbook. 040 moves hard rules to a sidecar. Both run before 038's build. To stay under 4,000 characters D3 drops its Built list (criterion 1 names those phases) and "in order, one per `later` item" (019 to 035 are Complete), and D5 names MiMo by its display name |
 | Directive amendment: executor roster (2026-09-30) | Source: the operator's words above. D5 drops MiMo v2.6 Pro and the LLM Gateway fallback, and adds SWE 2 max on cli-devin (`devin -p --model swe-2-max --permission-mode dangerous`) and Luna 6 max fast on cli-codex (`codex exec --model gpt-6-luna -c model_reasoning_effort="max" -c service_tier="fast"`). DeepSeek stays on cli-pi through Cline, then OpenCode Go. Closed phases keep their MiMo records as history. The 038 review MiMo had started was stopped before it reported |
 | Directive amendment: bind 041, and the labeling decision (2026-10-01) | Source: the operator, 2026-09-30: "Scripts and tests folder nested inside are missing code readme's" and "make sure smart routing in oarent hub and nested modes are 100% oerfected snd sligned with sk doc create skill". D3 now reads "Released: 019 to 041", BINDING gained row 041, and criterion 1 names 036 to 041 and was reopened until 041 closed. To fit the budget, D2 "stays served locally" became "runs locally", D4 dropped "R17 is dropped" (recorded in the row "Directive amendment: bind and release 019 to 035") and D6 dropped "change". `goal.cjs packet`: 4,029 characters before the cuts, 3,998 after, `packet_budget=ok`. Also on 2026-10-01, asked how the 17 label gates should be filled, the operator chose "AI drafts, you confirm (Recommended)" and "After 041 lands (Recommended)": two models label each row separately, rows where they agree are pre-filled, and the operator approves or flips each row, so labels stay human-approved and D4's "No model labels" holds. That work is a later phase on the operator's release. Rollback: `git show d2e2a333cd:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
+| Directive amendment: bind 042 and the label rule (2026-10-01) | Source: the operator's "continue" of 2026-10-01, answering the offer to release the labeling phase, and the earlier answers "AI drafts, you confirm (Recommended)" and "After 041 lands (Recommended)". D4 "No model labels" became "Only operator-confirmed labels count": models may draft a label, but a scorer reads only rows the operator confirmed. D3 now releases 019 to 042, BINDING gained row 042, and criterion 1 names 036 to 042 and is open until 042 closes. Budget cuts, same meaning: the objective "cuts the main AI's context and review work" became "saves the main AI work"; D2 dropped "0.8B bf16" (the model pin lives in `cli-deem/references/model-pin.md`); D3 "Disjoint builds may run in parallel" became "disjoint builds in parallel"; D5 dropped "The" and "no Claude leaves" became "or Claude leaves"; D6 "Skill docs ... sk-code's OpenCode route" became "Docs ... sk-code" (the route is sk-code's own choice); D7 dropped "a"; criterion 4 dropped "finding" and "'s". `goal.cjs packet`: 3,998 before, 4,042 after the additions, 3,999 after the cuts, `packet_budget=ok`; `check-goal.cjs` 5/5. Rollback: `git show ebcc68e8ed:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
+| Exception to D4 and D5: delegated Claude arbiter in 042 (2026-10-01) | Source: the operator in chat, "Let fresh opus 5.5 xhigh decide", then "Opus decides, you see a digest (Recommended)", then "dont use opus xhigh", "your using multiple" and "Instead use Opus medium". One fresh Opus 5.5 medium leaf, run alone, settled every 042 label row from its source, with the Luna and SWE drafts as claims. That is a Claude leaf, which D5 rules out, and its labels are delegated rather than read by the operator, which D4 does not name. The exception is recorded in `042-label-drafting-and-confirmation/decision-record.md` ADR-001, and the next row writes it into D4 and D5. Every label row with a `labeler` field reads `operator-delegated:opus-5.5-medium` |
+| Directive amendment: the delegated arbiter (2026-10-01) | Source: the operator chose "Amend D4 and D5" in chat. D4 "Only operator-confirmed labels count" became "Only operator-confirmed or -delegated labels count". D5 "No MiMo or Claude leaves" became "No MiMo or Claude leaves bar a delegated arbiter". Budget cuts, same meaning: D1 "dormant unless one passes its check (`jev auth status --provider <p>` or Deem's health check)" became "dormant unless `jev auth status --provider <p>` or Deem's health check passes", D2 "`cli-deem`, Deem served locally" became "local `cli-deem`", D3 "Released: ... disjoint builds in parallel" became "Released ... disjoint ones in parallel", D5 "verifies and commits" became "verifies, commits". `goal.cjs packet`: 3,999 before, 4,016 after the additions, 4,000 after the cuts, `packet_budget=ok`. Rollback: `git show 9ff85f21bb:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
+| Directive amendment: bind 043 (2026-10-01) | Source: the operator's choices for the label findings (027 "Both fixes", 006 "Build 006's model arm", 003 "Fix it in goal-core") and "Send goal prompt for what were doing and still open sk create goal". D3 now releases 019 to 043, BINDING gained row 043, and criterion 1 names 036 to 043 and is open until 043 closes. Budget cut, by section 3 step 5 of sk-create-goal's `budget-and-handoff.md`: D5's executor settings moved here, unchanged in force. DeepSeek V4.1 Flash runs on cli-pi through Cline at `xhigh`, then OpenCode Go at `max`, and Luna 6 max runs on the `fast` tier. `goal.cjs packet`: 4,000 before, 4,044 after the additions, 3,999 after the cut, `packet_budget=ok`. Rollback: `git show 67b2262e64:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
+| 043 Complete, all criteria met (2026-10-01) | 043 shipped the three label-finding fixes and closed three DeepSeek V4.1 Flash review rounds (commits `499e6dc28d` to `c6d09396dd`, P2s in 043's log). Every child criterion 1 names reads Complete, and 042's acceptance status was corrected from In Progress to match its Met rows. `validate.sh --strict --recursive` printed `RESULT: PASSED` with 0 errors and 0 warnings on all 44 folders, and `check-goal.cjs` passed 5/5 on each. Nothing is pushed or merged |
+| Directive amendment: bind 044 (2026-10-02) | Source: the operator's "Fix", after the session found that `cli-deem` reads `noul` and `score` answers in shapes the local Deem server never sends, and that 027's and 026's scorers read judgment output above `answers.answer`. D3 now releases 019 to 044, the binding gains 044, and criteria 1 and 5 are open again until 044 closes. To fit 4,000 characters (`budget-and-handoff.md` section 3, steps 5 and 6): D3 drops "ones", D5 puts each CLI in brackets, the binding line reads "child goals", criterion 2 reads "each at its verdict line or label gate", criterion 3 "each changed skill doc" and criterion 4 "changed suite". `goal.cjs packet` reads 3,999, `packet_budget=ok` |
+| 044 Complete, all criteria met again (2026-10-02) | 044 fixed the answer-shape mismatches (commits `006994d12a` to `ec3d3c1e7f`, P2s in 044's log). `cli-deem` now gets a number from the local Deem server for `noul` and `score`, and 027's and 026's model arms read `answers.answer`. No scorer has yet measured a real answer: that needs the operator's yes for a live run. `validate.sh --strict --recursive` printed `RESULT: PASSED` with 0 errors and 0 warnings on all 45 folders, and `check-goal.cjs` passed 5/5 on each. Nothing is pushed or merged |
+| Directive amendment: bind 045 (2026-10-02) | Source: the operator's "Do all deem things needed / open". D3 now releases 019 to 045, the binding gains 045, and criteria 1 and 5 are open again until 045 closes. The new row put the slice 38 characters over 4,000. `check-goal.cjs` reads only a binding row's second cell, so the first cell, a display index, now reads `1` to `45` instead of `001` to `045`, which frees 54 characters with no wording cut. `goal.cjs packet` reads 3,984, `packet_budget=ok`. Every phase adds about 45 characters, so the next one may need the split `budget-and-handoff.md` section 3 names |
+| Directive amendment: retire Deem, bind 046 (2026-10-02) | Source: the operator's "Stop and deprecate deem completely", "lets deperecate deem cli completely and only keep cli jev", "Cli classifier still needs to stay a parent hun tho", "In case we want to support future classifiers" and "Use luna max 6 fast cli codex and deepseek v4.1 flash max cli pi opencode go and cline provider as needed". D1 is now Jev only. D2 keeps `cli-classifier` a parent hub for `cli-jev` and future classifiers. D3 releases 019 to 046, the binding gains 046 and criterion 1 reads 036 to 046. D5 names Luna 6 max fast and DeepSeek V4.1 Flash max, and SWE leaves. 045 closed with its last 18 runs and review superseded by its ADR-001, after 002 and 006 both answered `kill`. 046 has four phases, each with its own goal: 001 inventory and decisions, 002 scorer arms, 003 the mode and hub, 004 sweep and verification. Durable slice 3996 characters after trimming D2 and D5 wording |
+| 046 Complete, all criteria met again (2026-10-02) | 046 removed `cli-deem` and every scorer's Deem arm, and `cli-classifier` serves `cli-jev` alone as a parent hub (commits `b946a35518` to `5655e1e388`, P2s in the logs of 046's children). From the final state: 24 inventory suites 0 fail, changed scorer suites 446 of 446, advisor suite 1055 passed with 0 failed, `validate.sh --strict --recursive` passes on this parent, its 46 children and 046's 4 nested children, and `check-goal.cjs` passes on all 51 goals |
+| 047 opened (2026-10-02) | The operator asked for every Jev feature to be measured. Phase 047 added with its goal and bound as row 47, criterion 1 reopened. Recursive strict validation printed `RESULT: PASSED` 48 times with 0 failed, and `check-goal.cjs` passed on all 52 goals. To fit the 4,000-character budget, D2, D3, D5 and D7 lost a few words each with no choice changed |
+| 047 Complete, all criteria met again (2026-10-02) | 047 measured all 15 remaining Jev features: keep 020, 022, 024, 025, 030, kill 006, 027, 028, 033, stop on margin 026, 031, no headroom 003, 005, 021, 034. One scorer fix in 027 (commit `51b2b3bd51`). Recursive strict 48 PASSED 0 FAILED, `check-goal.cjs` 52 of 52. Committed on `worktrees/082-measure-every-jev-feature`, not merged |
 <!-- /ANCHOR:log -->

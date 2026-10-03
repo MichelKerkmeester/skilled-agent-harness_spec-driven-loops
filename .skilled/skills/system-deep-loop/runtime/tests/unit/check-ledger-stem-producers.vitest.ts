@@ -225,6 +225,7 @@ describe('check-ledger-stem-producers against the committed tree', () => {
       'deep_review.iteration_recorded',
       'deep_review.migration',
       'deep_review.recovery_baseline',
+      'deep_review.run_initialized',
       'deep_review.synthesis_complete',
       'deep_review.synthesis_incomplete',
     ]);

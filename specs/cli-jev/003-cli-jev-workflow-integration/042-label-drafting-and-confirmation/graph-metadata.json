@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "label drafting confirmation",
+      "operator label gate",
+      "blind label drafts",
+      "zero call gate run",
+      "label drafting plan",
+      "labeling card gate",
+      "blind draft compare",
+      "chat label confirmation",
+      "labeling task breakdown",
+      "draft compare tasks",
+      "confirmation batch tasks",
+      "gate run checklist"
+    ],
+    "key_topics": [
+      "label",
+      "drafting",
+      "confirmation",
+      "operator",
+      "gate",
+      "blind",
+      "drafts",
+      "zero",
+      "call",
+      "run",
+      "plan",
+      "labeling"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/labels.jsonl",
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/planted.jsonl",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-labels.jsonl",
+      ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr-reader-lens-labels.jsonl",
+      "scratch/evidence/card-020.md",
+      ".skilled/hooks/goal/lib/verifier-labeled-set.jsonl",
+      "scratch/evidence/labels/gates.md",
+      "scratch/gates/edge-cases.txt",
+      "scratch/compare/summary.txt",
+      "scratch/evidence/label-inventory-1.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-criteria-labels.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/scripts/goal-criteria-labels.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "labels.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/labels.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "planted.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/injection-screen/planted.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-labels.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-labels.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-reader-lens-labels.jsonl",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr-reader-lens-labels.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "card-020.md",
+        "kind": "doc",
+        "path": "scratch/evidence/card-020.md",
+        "source": "derived"
+      },
+      {
+        "name": "verifier-labeled-set.jsonl",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/verifier-labeled-set.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "gates.md",
+        "kind": "doc",
+        "path": "scratch/evidence/labels/gates.md",
+        "source": "derived"
+      },
+      {
+        "name": "edge-cases.txt",
+        "kind": "file",
+        "path": "scratch/gates/edge-cases.txt",
+        "source": "derived"
+      },
+      {
+        "name": "summary.txt",
+        "kind": "file",
+        "path": "scratch/compare/summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "label-inventory-1.md",
+        "kind": "doc",
+        "path": "scratch/evidence/label-inventory-1.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Seventeen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Seventeen child phases of this packet carry a label gate or follow one, and each is Complete with its gate still open",
+    "created_at": "2026-10-01T12:59:07Z",
+    "last_save_at": "2026-10-01T21:31:40.261Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9dafd9f6ddd004ebe330de6229d65f9267c0f2b58325d9c06f721e5c62407023",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c12657a95a1a6d0f023af0ec27d8446ca659507865d0cf2ccee39a473af34049",
+      "plan.md": "8ab46289667c681fc2a9041839a265fec22355a16029e853dd3eb75fa86d9f53",
+      "tasks.md": "34c22932adbda27ea14ff9f64eb85af5a22c7e27244afae1e786d2d7baea779b",
+      "decision-record.md": "c877a13f58b48d37294e172fd8a6508f951a5cb99d447ec7f499d0f757d0e05c",
+      "implementation-summary.md": "cbee248306a3b41ec27bbfaf7450cb391b36b7f57ddeb8f1709653893799464d"
+    },
+    "last_active_at": null
+  }
+}

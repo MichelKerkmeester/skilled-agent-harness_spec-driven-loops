@@ -6,7 +6,6 @@
 //   Merge oracle (mergeDecision, readBaseline)
 //   Pair sheet, labels and gate (writePairSheet, parseLabels, gateState)
 //   Jev gate and arm (jevGate, runJevArm)
-//   Deem gate and arm (deemGate, runDeemArm)
 //   Keep rule and report (binomialTail, decideVerdict, main)
 // ───────────────────────────────────────────────────────────────────
 
@@ -688,154 +687,6 @@ describe('score-fanout-pairs jev gate and arm', () => {
   });
 });
 
-/** A cli-deem stub for the gate and arm: a passing health, then one split pair. */
-const DEEM_STUB = `case "$1" in
-  health)
-    echo '{"ok":true,"backend":"torch","model":"deem-0.8-v1","model_commit":"abc123","source_commit":"def456"}'
-    exit 0;;
-  noul)
-    first=$(sed -n '2p')
-    case "$first" in
-      'finding text a 0') echo '{"answers":{"answer":{"noul":0.9}}}'; exit 0;;
-      'finding text b 0') echo '{"answers":{"answer":{"noul":0.1}}}'; exit 0;;
-    esac
-    echo '{"answers":{"answer":{"noul":0.9}}}'
-    exit 0;;
-esac
-exit 1`;
-
-describe('score-fanout-pairs deem gate and arm', () => {
-  it('deem gate passes a fake health', () => {
-    const stub = stubDir({ 'cli-deem': DEEM_STUB });
-    const out: string[] = [];
-
-    const gate = pairs.deemGate({ out: (line: string) => out.push(line), env: stubEnv(stub) }) as Record<string, any>;
-
-    expect(gate.passed).toBe(true);
-    expect(gate.backend).toBe('torch');
-    expect(gate.cmd).toEqual([path.join(stub, 'cli-deem')]);
-    expect(out[0]).toBe('deem: health backend=torch model=deem-0.8-v1 model_commit=abc123 source_commit=def456');
-    const logged = fs.readFileSync(path.join(stub, 'cli-deem.log'), 'utf8').trim();
-    expect(logged).toBe('health');
-  });
-
-  it('deem gate skips a stub backend', () => {
-    const stub = stubDir({
-      'cli-deem': `case "$1" in
-  health) echo '{"ok":true,"backend":"stub","model":"deem-0.8-v1","model_commit":"abc","source_commit":"def"}'; exit 0;;
-esac
-exit 1`,
-    });
-    const out: string[] = [];
-
-    const gate = pairs.deemGate({ out: (line: string) => out.push(line), env: stubEnv(stub) }) as Record<string, any>;
-
-    expect(gate.passed).toBe(false);
-    expect(out).toEqual(['deem arm skipped: stub backend']);
-  });
-
-  it('deem gate skips an unreachable server', () => {
-    const stub = stubDir({ 'cli-deem': 'exit 4' });
-    const out: string[] = [];
-
-    const gate = pairs.deemGate({ out: (line: string) => out.push(line), env: stubEnv(stub) }) as Record<string, any>;
-
-    expect(gate.passed).toBe(false);
-    expect(out).toEqual(['deem arm skipped: not reachable']);
-  });
-
-  it('deem arm marks a disagreeing pair unstable', async () => {
-    const stub = stubDir({ 'cli-deem': DEEM_STUB });
-    const rows = [0, 1, 2, 3, 4].map((index) => armPair(index));
-    const baselineCalls = new Map(rows.map((row) => [row.key, 'different']));
-    const calls: Record<string, any>[] = [];
-
-    const result = await pairs.runDeemArm(
-      { rows, baselineCalls },
-      { cmd: [path.join(stub, 'cli-deem')], model: 'deem-0.8-v1', modelCommit: 'abc123', sourceCommit: 'def456' },
-      {
-        out: () => {},
-        env: stubEnv(stub),
-        timeoutMs: 5000,
-        callLog: { append: (record: Record<string, any>) => calls.push(record) },
-        stored: null,
-      },
-    ) as Record<string, any>;
-
-    const split = calls.filter((record) => record.pair_key === rows[0].key);
-    expect(split.map((record) => record.order)).toEqual(['AB', 'BA']);
-    expect(split.map((record) => record.probability)).toEqual([0.9, 0.1]);
-    expect(split.every((record) => record.status === 'measured')).toBe(true);
-    // A split pair has no modal answer, so it is counted wrong: the flip count
-    // takes it and the four agreeing pairs are the only ones the column got right.
-    expect(result.column.M).toBe(5);
-    expect(result.column.A).toBe(4);
-    expect(result.column.F).toBe(1);
-  });
-
-  it('deem arm requalifies only when the stored commit pair differs', async () => {
-    const stub = stubDir({ 'cli-deem': DEEM_STUB });
-    const rows = [0, 1, 2, 3, 4].map((index) => armPair(index));
-    const baselineCalls = new Map(rows.map((row) => [row.key, 'different']));
-    const gate = { cmd: [path.join(stub, 'cli-deem')], model: 'deem-0.8-v1', modelCommit: 'abc123', sourceCommit: 'def456' };
-    const run = async (stored: Record<string, any>) => {
-      const out: string[] = [];
-      await pairs.runDeemArm({ rows, baselineCalls }, gate, {
-        out: (line: string) => out.push(line),
-        env: stubEnv(stub),
-        timeoutMs: 5000,
-        callLog: { append: () => {} },
-        stored,
-      });
-      return out;
-    };
-
-    const changed = await run({ columns: { deem: { modelCommit: 'old123', sourceCommit: 'def456' } } });
-    const index = changed.indexOf('requalify: model commit changed');
-    expect(index).toBeGreaterThanOrEqual(0);
-    expect(changed[index + 1].startsWith('verdict deem: ')).toBe(true);
-    const same = await run({ columns: { deem: { modelCommit: 'abc123', sourceCommit: 'def456' } } });
-    expect(same).not.toContain('requalify: model commit changed');
-  });
-});
-
-/**
- * One 40-pair research fixture whose labels clear the pair gate and leave the
- * merge's better decision below the ninety-percent headroom line, so a test
- * can drive an arm through main. The first ten pairs are cross-body and the
- * rest near-line; the labels disagree with the merge on enough pairs to open
- * the gate.
- */
-function openGateFixture(root: string): { sheetPath: string; tracked: string[] } {
-  const tracked: string[] = [];
-  const keys: string[] = [];
-  for (let index = 0; index < 40; index += 1) {
-    const runDir = `pair-${index + 1}`;
-    const cross = index < 10;
-    const a = cross
-      ? { id: 'a', summary: 'shared problem alpha' }
-      : { id: 'a', summary: 'shared body', title: 'alpha beta gamma' };
-    const b = cross
-      ? { id: 'b', summary: 'shared problem beta' }
-      : { id: 'b', summary: 'shared body', title: 'alpha delta epsilon' };
-    tracked.push(...writeRun(root, 'research', runDir, [
-      { label: 'la', findings: [a] },
-      { label: 'lb', findings: [b] },
-    ]));
-    keys.push(pairs.pairKey('research', runDir, { ...a, _lineage: 'la' }, { ...b, _lineage: 'lb' }));
-  }
-  const sheetPath = path.join(tempDir('fanout-pairs-gold-'), 'labels.jsonl');
-  // Nine cross-body and fifteen near-line labels disagree with the merge's
-  // collapse, which keeps its better setting at 24 of 40 right: past the gate
-  // but below the headroom line that would close it.
-  const rows = keys.map((key, index) => JSON.stringify({
-    pair_key: key,
-    label: index < 9 || index >= 25 ? 'different' : 'same',
-  }));
-  fs.writeFileSync(sheetPath, `${rows.join('\n')}\n`, 'utf8');
-  return { sheetPath, tracked: tracked.sort() };
-}
-
 describe('score-fanout-pairs keep rule and report', () => {
   it('verdict prints keep', () => {
     const rows = [0, 1, 2, 3, 4].map((index) => armPair(index));
@@ -850,12 +701,12 @@ describe('score-fanout-pairs keep rule and report', () => {
 
   it('verdict prints kill', () => {
     const rows = [0, 1, 2, 3, 4].map((index) => armPair(index));
-    const answers = new Map(rows.map((row) => [row.key, [0.1, 0.1]]));
+    const answers = new Map(rows.map((row) => [row.key, [0.1, 0.1, 0.1]]));
     const baselineCalls = new Map(rows.map((row) => [row.key, 'same']));
 
-    const column = pairs.summarizeColumn('deem', rows, answers, baselineCalls, '') as Record<string, any>;
+    const column = pairs.summarizeColumn('jev', rows, answers, baselineCalls, '') as Record<string, any>;
 
-    expect(column.line.startsWith('verdict deem: kill')).toBe(true);
+    expect(column.line.startsWith('verdict jev: kill')).toBe(true);
   });
 
   it('verdict prints stop (coverage)', () => {
@@ -879,7 +730,7 @@ describe('score-fanout-pairs keep rule and report', () => {
   });
 
   it('default run makes no call', async () => {
-    const stub = stubDir({ jev: JEV_STUB, 'cli-deem': DEEM_STUB });
+    const stub = stubDir({ jev: JEV_STUB });
     const root = tempDir('fanout-pairs-default-');
     const tracked = writeRun(root, 'research', 'run-default', ['alpha', 'beta']);
 
@@ -890,7 +741,6 @@ describe('score-fanout-pairs keep rule and report', () => {
       expect(lines.some((line) => line.startsWith(prefix))).toBe(true);
     }
     expect(fs.existsSync(path.join(stub, 'jev.log'))).toBe(false);
-    expect(fs.existsSync(path.join(stub, 'cli-deem.log'))).toBe(false);
   });
 
   it('refuses a model arm without --out', async () => {
@@ -904,24 +754,35 @@ describe('score-fanout-pairs keep rule and report', () => {
     expect(fs.existsSync(path.join(stub, 'jev.log'))).toBe(false);
   });
 
-  it('report and calls.jsonl written once', async () => {
-    const stub = stubDir({ 'cli-deem': DEEM_STUB });
-    const root = tempDir('fanout-pairs-report-');
-    const outDir = path.join(tempDir('fanout-pairs-out-'), 'run');
-    const fixture = openGateFixture(root);
+  it('writes one Jev report and one call record per arm request', async () => {
+    const stub = stubDir({ jev: JEV_STUB });
+    const root = tempDir('fanout-pairs-jev-report-');
+    const outDir = path.join(tempDir('fanout-pairs-jev-out-'), 'run');
+    const sheetPath = labeledFixture(root, 40, 10);
+    const labelRows = fs.readFileSync(sheetPath, 'utf8').trim().split('\n').map((line, index) => ({
+      ...JSON.parse(line) as Record<string, any>,
+      label: index < 9 || index >= 25 ? 'different' : 'same',
+    }));
+    fs.writeFileSync(sheetPath, `${labelRows.map((row) => JSON.stringify(row)).join('\n')}\n`, 'utf8');
+    const tracked = Array.from({ length: 40 }, (_, index) => [
+      `pair-${index + 1}/research/lineages/la/findings-registry.json`,
+      `pair-${index + 1}/research/lineages/lb/findings-registry.json`,
+    ]).flat();
 
     const { code } = await runMain(
-      ['--deem', '--out', outDir, '--labels', fixture.sheetPath],
+      ['--jev', '--out', outDir, '--labels', sheetPath],
       stubEnv(stub),
-      { root, listTracked: () => fixture.tracked },
+      { root, listTracked: () => tracked, git: () => ({ status: 0, error: null }) },
     );
 
     expect(code).toBe(0);
     const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8')) as Record<string, any>;
-    expect(report.columns.deem.line.startsWith('verdict deem: ')).toBe(true);
-    expect(report.columns.deem.line).toContain('reader=none named');
+    expect(report.columns.jev.line.startsWith('verdict jev: ')).toBe(true);
+    expect(report.columns.jev.line).toContain('reader=none named');
     const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n')
       .map((line) => JSON.parse(line) as Record<string, any>);
-    expect(calls).toHaveLength(80);
+    expect(calls).toHaveLength(121);
+    expect(calls.filter((call) => call.pair_key === null)).toHaveLength(1);
+    expect(calls.filter((call) => call.pair_key !== null)).toHaveLength(120);
   }, 30000);
 });

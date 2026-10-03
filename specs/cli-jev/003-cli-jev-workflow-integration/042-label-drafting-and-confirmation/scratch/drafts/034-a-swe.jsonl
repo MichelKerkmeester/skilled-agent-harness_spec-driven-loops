@@ -1,0 +1,99 @@
+{"row":"SY02","label":"no","reason":"The Mobbin service gets two names (transport, tool) and 'extracted tokens' is a deliberate appositive definition."}
+{"row":"SY03","label":"no","reason":"Implementation/debugging/verification doctrine name three genuinely different files."}
+{"row":"SY04","label":"yes","reason":"The same element is called mark, flourish, and chromatic breath with no definitional framing."}
+{"row":"SY05","label":"no","reason":"Superseded, archived/future, and rolled-back entries are different entry types."}
+{"row":"SY06","label":"no","reason":"Scanner, lens, control, and equivalent name distinct tools, tests, and roles."}
+{"row":"SY07","label":"no","reason":"Page, protocol, and summary list parts of one file; no triple naming of one thing."}
+{"row":"SY08","label":"no","reason":"Pumice Canvas, Limestone Surface, Ember Feature, and Plasma Hero are four different surfaces."}
+{"row":"SY09","label":"no","reason":"Each row names a different file with its own role."}
+{"row":"SY10","label":"no","reason":"Two different files are listed with distinct roles."}
+{"row":"SY11","label":"no","reason":"Payloads and fields are described consistently; no three names for one thing."}
+{"row":"SY12","label":"no","reason":"One appositive description of a reference file; no synonym set."}
+{"row":"SY13","label":"no","reason":"Section headers and line comments are different things."}
+{"row":"SY14","label":"no","reason":"Anchor, marker, block, and grammar name related but distinct constructs, and evidence terms are defined."}
+{"row":"SY15","label":"no","reason":"Only child/exploration child repeat the same stem; no three distinct names."}
+{"row":"SY16","label":"no","reason":"Catalog metadata; single names throughout."}
+{"row":"SY17","label":"no","reason":"RICCE items get two names (elements, rows), below the three-word threshold."}
+{"row":"SY18","label":"no","reason":"Checkout and branch are two names; mode/selection/choice just modify current-branch."}
+{"row":"SY19","label":"no","reason":"Package, folder, and record name different referents (the set vs the JSON file)."}
+{"row":"SY20","label":"no","reason":"Record and report name different files; no triple."}
+{"row":"SY21","label":"no","reason":"Install/reinstall share one word; distinct failure cases described."}
+{"row":"SY22","label":"no","reason":"Catalog metadata; no repeated referent under multiple names."}
+{"row":"SY23","label":"no","reason":"Sidecar result, commit fallback, and degradations describe different contract halves."}
+{"row":"SY24","label":"no","reason":"Endpoint problem and key are different failures; pair/failures gives only two names."}
+{"row":"SY25","label":"no","reason":"Pill is the single name; 'nav highlights' describes its use."}
+{"row":"SY26","label":"no","reason":"Contract, behavior, flow, anchors, metadata enumerate different contents."}
+{"row":"SY27","label":"no","reason":"Three different paths each get one description."}
+{"row":"SY28","label":"yes","reason":"The same technique is called type stack, headline treatment, and editorial signature."}
+{"row":"SY29","label":"no","reason":"WHAT comments and commented-out code are different problems."}
+{"row":"SY30","label":"no","reason":"Publication state and shared branches are two related terms, not three names for one thing."}
+{"row":"SY31","label":"no","reason":"Auth is an abbreviation of authentication; no cycling."}
+{"row":"SY32","label":"no","reason":"Interaction state/data gives two word choices; 'those states' abbreviates the same term."}
+{"row":"SY33","label":"no","reason":"Tree and repository mutation are at most two names for the same state."}
+{"row":"SY34","label":"no","reason":"Entry point and first signal are role descriptions; check/signal is only a pair."}
+{"row":"SY35","label":"no","reason":"Each criterion names a different artifact."}
+{"row":"SY36","label":"no","reason":"Daemon, CLI front door, handlers, and plugin are distinct components."}
+{"row":"SY37","label":"no","reason":"Six different dimensions, each scored once."}
+{"row":"SY38","label":"yes","reason":"The goal's rendered content is called the goal, repo-guards-goal section, and goal slice interchangeably."}
+{"row":"SY39","label":"no","reason":"Live branch is defined by an em-dash appositive; checkout and branch are different things."}
+{"row":"SY40","label":"yes","reason":"The same execution is called the run, the script, and the replay for no stated reason."}
+{"row":"SY41","label":"no","reason":"Probe and pinned version are used consistently."}
+{"row":"SY42","label":"no","reason":"Four different tools each get one description."}
+{"row":"SY43","label":"no","reason":"Branch and directory are deliberately different named things."}
+{"row":"SY44","label":"no","reason":"Field-value table; no repeated referent under multiple names."}
+{"row":"SY45","label":"no","reason":"Slug and token are distinct (a slug contains tokens); used consistently."}
+{"row":"SY46","label":"no","reason":"Template comments name fixed subsections once."}
+{"row":"SY47","label":"no","reason":"Lane A (agent-improvement) is a deliberate parenthetical definition."}
+{"row":"SY48","label":"no","reason":"Corruption, generic error, and restore failure are different failure cases."}
+{"row":"SY49","label":"no","reason":"Catalog metadata; single names."}
+{"row":"SY50","label":"no","reason":"OriginalOnlyEmergencyMode/original-only path gives at most two names; digest is abbreviated once."}
+{"row":"SI01","label":"no","reason":"Each line maps a concrete symptom to a concrete cause and fix."}
+{"row":"SI02","label":"no","reason":"Bullets state concrete capabilities, not importance."}
+{"row":"SI03","label":"no","reason":"Plain source listing with a factual pointer."}
+{"row":"SI04","label":"no","reason":"Describes exactly what the promote and rollback scripts do."}
+{"row":"SI05","label":"no","reason":"Anchor table naming files and roles."}
+{"row":"SI06","label":"no","reason":"States concrete dispatch conditions for Depth 1."}
+{"row":"SI07","label":"no","reason":"Factual cross-reference and a factual note that no automated check exists."}
+{"row":"SI08","label":"no","reason":"Benchmark source metadata table."}
+{"row":"SI09","label":"no","reason":"Catalog source metadata."}
+{"row":"SI10","label":"no","reason":"Concrete expected command outputs."}
+{"row":"SI11","label":"no","reason":"Benchmark source metadata table."}
+{"row":"SI12","label":"no","reason":"Test file table."}
+{"row":"SI13","label":"no","reason":"Concrete pass/fail conditions."}
+{"row":"SI14","label":"no","reason":"Benchmark source metadata table."}
+{"row":"SI15","label":"no","reason":"Describes what the fill does (accent-border work) rather than declaring importance."}
+{"row":"SI16","label":"no","reason":"A prompt template with a concrete task."}
+{"row":"SI17","label":"no","reason":"Concrete boundary rules and a flow diagram."}
+{"row":"SI18","label":"no","reason":"CRITICAL PATH is a label on a concrete verification step, which the boundary rule excludes."}
+{"row":"SI19","label":"no","reason":"Concrete pass/fail conditions with evidence paths."}
+{"row":"SI20","label":"no","reason":"States what the feature adds."}
+{"row":"SI21","label":"no","reason":"Checklist item plus a concrete do-not instruction."}
+{"row":"SI22","label":"no","reason":"Scenario contract with concrete expectations."}
+{"row":"SI23","label":"no","reason":"Concrete pass/fail/skip conditions."}
+{"row":"SI24","label":"no","reason":"Plain source listing."}
+{"row":"SI25","label":"yes","reason":"The passage's content is that continuity is the difference that makes the id worth capturing, asserting significance rather than reporting behavior."}
+{"row":"SI26","label":"no","reason":"Concrete color values and component prompts."}
+{"row":"SI27","label":"no","reason":"Decision matrix mapping scenarios to options."}
+{"row":"SI28","label":"no","reason":"Catalog source metadata."}
+{"row":"SI29","label":"no","reason":"Concrete verdict and evidence rows."}
+{"row":"SI30","label":"no","reason":"Concrete visual spec; 'quiet companions' is a role, not an importance claim."}
+{"row":"SI31","label":"no","reason":"Describes the marker/autosync mechanism concretely."}
+{"row":"SI32","label":"no","reason":"States the element's visual function (a hole that draws the eye), not its importance."}
+{"row":"SI33","label":"no","reason":"Routing instruction."}
+{"row":"SI34","label":"no","reason":"A title and one-line description."}
+{"row":"SI35","label":"no","reason":"Reference table."}
+{"row":"SI36","label":"no","reason":"Concrete failure triage steps."}
+{"row":"SI37","label":"no","reason":"A rule banning the tell plus quoted banned phrases; it declares nothing important itself."}
+{"row":"SI38","label":"no","reason":"Command reference list."}
+{"row":"SI39","label":"no","reason":"Document header listing contents."}
+{"row":"SI40","label":"no","reason":"Concrete activation conditions."}
+{"row":"SI41","label":"no","reason":"A functional principle plus concrete instructions; no importance declaration."}
+{"row":"SI42","label":"no","reason":"Concrete provider precedence rules."}
+{"row":"SI43","label":"no","reason":"Concrete boundary rules."}
+{"row":"SI44","label":"no","reason":"Route map description."}
+{"row":"SI45","label":"no","reason":"Template scaffold with concrete gate instructions."}
+{"row":"SI46","label":"no","reason":"Catalog source metadata."}
+{"row":"SI47","label":"no","reason":"States what the border does in the design; functional, not an importance claim."}
+{"row":"SI48","label":"no","reason":"A verdict line."}
+{"row":"SI49","label":"no","reason":"Exact command sequence and criteria table."}
+{"row":"SI50","label":"no","reason":"Concrete orchestration steps and a scenario row."}

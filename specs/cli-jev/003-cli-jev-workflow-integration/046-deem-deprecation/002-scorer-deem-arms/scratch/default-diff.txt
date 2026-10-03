@@ -1,0 +1,38 @@
+# Default output, old scorer against new scorer on the same tree (base b946a35518, 2026-10-02)
+# Each old scorer ran from a copy beside the new one with identical arguments. A diff line is shown in full.
+002 identical, 10 lines
+006 identical, 9 lines
+019 differs (old copy run beside the old 002 it imports; the advisor-child line is timing and differs between runs of identical code):
+    11c11
+    < advisor child: p50=1417 p95=2500 max=2500 over_2200=48 children=241 killed=37
+    ---
+    > advisor child: p50=1505 p95=2500 max=2500 over_2200=61 children=241 killed=56
+020 identical, 23 lines
+021 identical, 10 lines
+022 identical, 7 lines
+023 differs:
+    22c22
+    < planned calls: deem=168 jev=505
+    ---
+    > planned calls: jev=505
+024 identical, 15 lines (input: --outputs deep-improvement/assets/model-benchmark/benchmark-fixtures)
+025 identical, 13 lines
+026 identical, 11 lines
+027 differs:
+    12c12
+    < planned calls: deem 279 jev 838
+    ---
+    > planned calls: jev 838
+028 identical, 1 lines (input: a zero-call 027 rater report)
+029 identical, 24 lines
+030 differs:
+    14c14
+    < planned calls: jev 181, deem 120
+    ---
+    > planned calls: jev 181
+031 identical, 11 lines
+032 identical, 26 lines
+033 identical, 540 lines
+034 identical, 16 lines
+035 identical, 21 lines
+017 identical, 29 lines (old and new ran in parallel, both exit 0, 4140 s wall time)

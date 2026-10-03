@@ -1,8 +1,8 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Debug Next Check Scorer Tests
 // ───────────────────────────────────────────────────────────────────
-// Synthetic fixtures and temporary repositories only. Stub jev and cli-deem
-// binaries come first on PATH, so no script run here can reach a live backend.
+// Synthetic fixtures and temporary repositories only. A stub jev binary
+// comes first on PATH, so no script run here can reach a live backend.
 
 import { execFileSync, spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -24,10 +24,10 @@ function tempDir(prefix: string): string {
   return dir;
 }
 
-/** Writes stub jev and cli-deem binaries whose only side effect is a log line. */
+/** Writes a stub jev binary whose only side effect is a log line. */
 function makeStubs(): string {
   const stubDir = tempDir('debug-next-check-stub-');
-  for (const name of ['jev', 'cli-deem']) {
+  for (const name of ['jev']) {
     writeFileSync(
       join(stubDir, name),
       `#!/bin/sh\necho "$*" >> "$(dirname "$0")/${name}.log"\nexit 0\n`,
@@ -63,57 +63,12 @@ function armStubMain(): void {
 
 const ARM_STUB_SOURCE = `#!/usr/bin/env node\n(${armStubMain.toString()})();\n`;
 
-/** Writes the response-table jev and cli-deem stubs used by the arm cases. */
+/** Writes the response-table jev stub used by the arm cases. */
 function makeArmStubs(): string {
   const stubDir = tempDir('debug-next-check-arm-stub-');
-  for (const name of ['jev', 'cli-deem']) {
+  for (const name of ['jev']) {
     writeFileSync(join(stubDir, name), ARM_STUB_SOURCE, { mode: 0o755 });
   }
-  return stubDir;
-}
-
-// Test double for the Deem arm cases: cli-deem only, logging one line per
-// invocation and answering from STUB_* variables so no run reaches a server.
-// A second health check reports a new model commit when STUB_HEALTH_SHIFT is
-// set, which is how a mid-run identity change is exercised.
-function deemStubMain(): void {
-  const fs = require('node:fs');
-  const path = require('node:path');
-  const name = path.basename(process.argv[1]);
-  const args = process.argv.slice(2);
-  const env = process.env;
-  const logPath = path.join(path.dirname(process.argv[1]), `${name}.log`);
-  const prior = fs.existsSync(logPath) ? fs.readFileSync(logPath, 'utf8').split('\n') : [];
-  fs.appendFileSync(logPath, `${args.join(' ')}\n`);
-  const healthCalls = prior.filter((line) => line.startsWith('health')).length;
-  const choiceCalls = prior.filter((line) => line.startsWith('choice ')).length;
-  if (name === 'cli-deem' && args[0] === 'health') {
-    if (env.STUB_HEALTH === 'stub') {
-      process.stderr.write('{"ok":false,"error":"refused backend: ensemble:stub"}\n');
-      process.exit(3);
-    }
-    const shifted = env.STUB_HEALTH_SHIFT === '1' && healthCalls > 0;
-    process.stdout.write(`${JSON.stringify({
-      ok: true,
-      backend: 'torch',
-      model: 'deem-0.8-v1',
-      model_commit: shifted ? 'stubmodel-new' : 'stubmodel',
-      source_commit: 'stubsource',
-    })}\n`);
-  } else if (name === 'cli-deem' && args[0] === 'choice') {
-    if (env.STUB_CHOICE_EXIT === '4' && choiceCalls === 0) process.exit(4);
-    process.stdout.write(`${JSON.stringify({ answers: { answer: { choice: 'read_code', probabilities: { read_code: 0.9 } } } })}\n`);
-  } else {
-    process.exit(2);
-  }
-}
-
-const DEEM_STUB_SOURCE = `#!/usr/bin/env node\n(${deemStubMain.toString()})();\n`;
-
-/** Writes the cli-deem stub used by the Deem arm cases. */
-function makeDeemStubs(): string {
-  const stubDir = tempDir('debug-next-check-deem-stub-');
-  writeFileSync(join(stubDir, 'cli-deem'), DEEM_STUB_SOURCE, { mode: 0o755 });
   return stubDir;
 }
 
@@ -137,14 +92,6 @@ function pickStubMain(): void {
     process.exit(0);
   } else if (name === 'jev' && args[0] === 'auth' && args[1] === 'test') {
     process.stdout.write('{"ok":true,"model":"stub-model"}\n');
-  } else if (name === 'cli-deem' && args[0] === 'health') {
-    process.stdout.write(`${JSON.stringify({
-      ok: true,
-      backend: 'torch',
-      model: 'deem-0.8-v1',
-      model_commit: env.STUB_MODEL_COMMIT || 'stubmodel',
-      source_commit: env.STUB_SOURCE_COMMIT || 'stubsource',
-    })}\n`);
   } else if (args[0] === 'choice') {
     const order = choiceCalls % 3;
     if (env.STUB_ORDER0_EXIT === '1' && order === 0) process.exit(1);
@@ -162,10 +109,10 @@ function pickStubMain(): void {
 
 const PICK_STUB_SOURCE = `#!/usr/bin/env node\n(${pickStubMain.toString()})();\n`;
 
-/** Writes the pick-schedule jev and cli-deem stubs used by the verdict cases. */
+/** Writes the pick-schedule jev stub used by the verdict cases. */
 function makePickStubs(): string {
   const stubDir = tempDir('debug-next-check-pick-stub-');
-  for (const name of ['jev', 'cli-deem']) {
+  for (const name of ['jev']) {
     writeFileSync(join(stubDir, name), PICK_STUB_SOURCE, { mode: 0o755 });
   }
   return stubDir;
@@ -191,7 +138,7 @@ function keepSchedule(): string {
   return verdictLabels().map((label) => (label === 'run_test' ? 'run_test' : 'read_code')).join(',');
 }
 
-/** Picks wrong on every row: run_test on the read_code rows and read_code on the rest. */
+/** Picks a wrong key on every row while the baseline is right on twelve. */
 function killSchedule(): string {
   return verdictLabels().map((label) => (label === 'read_code' ? 'run_test' : 'read_code')).join(',');
 }
@@ -279,7 +226,6 @@ describe('score-debug-next-check', () => {
     expect(run.lines).toContain('mined rows: 0');
     expect(run.stderr).toBe('');
     expect(existsSync(join(run.stubDir, 'jev.log'))).toBe(false);
-    expect(existsSync(join(run.stubDir, 'cli-deem.log'))).toBe(false);
   });
 
   it('seam planted', async () => {
@@ -327,15 +273,6 @@ describe('score-debug-next-check', () => {
     expect(run.code).toBe(2);
     expect(run.stderr).toContain('--out');
     expect(existsSync(join(run.stubDir, 'jev.log'))).toBe(false);
-    expect(existsSync(join(run.stubDir, 'cli-deem.log'))).toBe(false);
-  });
-
-  it('--deem without --out', () => {
-    const fixture = writeFixture([fixtureRow()]);
-    const run = runScript(['--deem', '--fixture', fixture]);
-
-    expect(run.code).toBe(2);
-    expect(run.stderr).toContain('--out');
   });
 
   it('fixture valid', async () => {
@@ -370,12 +307,11 @@ describe('score-debug-next-check', () => {
     const rows = Array.from({ length: 29 }, (_, index) => fixtureRow({ id: `row-${index + 1}` }));
     const fixture = writeFixture(rows);
     const out = tempDir('debug-next-check-out-');
-    const run = runScript(['--fixture', fixture, '--jev', '--deem', '--out', out]);
+    const run = runScript(['--fixture', fixture, '--jev', '--out', out]);
 
     expect(run.code).toBe(0);
     expect(run.lines).toContain('stop: fewer than 30 labeled rows');
     expect(existsSync(join(run.stubDir, 'jev.log'))).toBe(false);
-    expect(existsSync(join(run.stubDir, 'cli-deem.log'))).toBe(false);
     expect(existsSync(join(out, 'calls.jsonl'))).toBe(false);
   });
 
@@ -383,7 +319,7 @@ describe('score-debug-next-check', () => {
     const rows = Array.from({ length: 30 }, (_, index) => fixtureRow({ id: `row-${index + 1}` }));
     const fixture = writeFixture(rows);
     const out = tempDir('debug-next-check-out-');
-    const run = runScript(['--fixture', fixture, '--jev', '--deem', '--out', out]);
+    const run = runScript(['--fixture', fixture, '--jev', '--out', out]);
 
     expect(run.code).toBe(0);
     expect(run.lines.some((line) => /^fixture: rows=30 sha256=[0-9a-f]{64}$/.test(line))).toBe(true);
@@ -441,13 +377,12 @@ describe('score-debug-next-check', () => {
     );
     const fixture = writeFixture(rows);
     const out = tempDir('debug-next-check-out-');
-    const run = runScript(['--fixture', fixture, '--jev', '--deem', '--out', out]);
+    const run = runScript(['--fixture', fixture, '--jev', '--out', out]);
 
     expect(run.code).toBe(0);
     expect(run.lines).toContain('baseline: read_code 28/30');
     expect(run.lines).toContain('no headroom');
     expect(existsSync(join(run.stubDir, 'jev.log'))).toBe(false);
-    expect(existsSync(join(run.stubDir, 'cli-deem.log'))).toBe(false);
     expect(existsSync(join(out, 'calls.jsonl'))).toBe(false);
   });
 
@@ -585,89 +520,6 @@ describe('score-debug-next-check', () => {
     expect(stubLines(run.stubDir, 'jev').filter((line) => line.startsWith('choice '))).toHaveLength(36);
   });
 
-  it('deem gate pass', () => {
-    const rows = Array.from({ length: 30 }, (_, index) => fixtureRow({
-      id: `deem-pass-${index}`,
-      label: ['read_code', 'run_test', 'reproduce', 'instrument'][index % 4],
-    }));
-    const fixture = writeFixture(rows);
-    const out = tempDir('debug-next-check-out-');
-    const run = runScript(['--fixture', fixture, '--deem', '--out', out], makeDeemStubs());
-
-    expect(run.code).toBe(0);
-    expect(run.lines).toContain('deem: health backend=torch model=deem-0.8-v1 model_commit=stubmodel source_commit=stubsource');
-    expect(run.lines).toContain('deem: nothing leaves the machine; planned calls: 90; estimated wall time: 5.9 s at 65.6 ms per call, the 2-option p50 in deem-local.md');
-    expect(readCallsLog(join(out, 'calls.jsonl'))).toHaveLength(90);
-  });
-
-  it('deem stub backend', () => {
-    const rows = Array.from({ length: 30 }, (_, index) => fixtureRow({
-      id: `deem-stub-${index}`,
-      label: ['read_code', 'run_test', 'reproduce', 'instrument'][index % 4],
-    }));
-    const fixture = writeFixture(rows);
-    const out = tempDir('debug-next-check-out-');
-    const run = runScript(
-      ['--fixture', fixture, '--deem', '--out', out],
-      makeDeemStubs(),
-      { STUB_HEALTH: 'stub' },
-    );
-    const plain = runScript(['--fixture', fixture]);
-
-    expect(run.code).toBe(0);
-    expect(run.lines).toContain('deem arm skipped: stub backend');
-    expect(run.lines.filter((line) => line !== 'deem arm skipped: stub backend')).toEqual(plain.lines);
-  });
-
-  it('deem exit 4 new pair', () => {
-    const rows = Array.from({ length: 30 }, (_, index) => fixtureRow({
-      id: `deem-retry-${index}`,
-      label: ['read_code', 'run_test', 'reproduce', 'instrument'][index % 4],
-    }));
-    const fixture = writeFixture(rows);
-    const out = tempDir('debug-next-check-out-');
-    const run = runScript(
-      ['--fixture', fixture, '--deem', '--out', out],
-      makeDeemStubs(),
-      { STUB_CHOICE_EXIT: '4', STUB_HEALTH_SHIFT: '1' },
-    );
-
-    expect(run.code).toBe(0);
-    expect(run.lines).toContain('deem arm stopped: model commit changed mid-run');
-    expect(run.lines).toContain('deem: partial rows=0');
-    expect(run.lines.some((line) => line.startsWith('verdict '))).toBe(false);
-  });
-
-  it('verdict keep', () => {
-    const out = tempDir('debug-next-check-out-');
-    const run = runScript(
-      ['--fixture', writeFixture(verdictRows()), '--deem', '--out', out],
-      makePickStubs(),
-      { STUB_PICKS: keepSchedule() },
-    );
-
-    expect(run.code).toBe(0);
-    expect(run.lines).toContain(
-      'verdict deem: keep K=30 M=30 A=20 B=12 W=8 L=0 F=0 p=0.003906'
-      + ' baseline=read_code model=deem-0.8-v1 model_commit=stubmodel source_commit=stubsource',
-    );
-  });
-
-  it('verdict kill', () => {
-    const out = tempDir('debug-next-check-out-');
-    const run = runScript(
-      ['--fixture', writeFixture(verdictRows()), '--deem', '--out', out],
-      makePickStubs(),
-      { STUB_PICKS: killSchedule() },
-    );
-
-    expect(run.code).toBe(0);
-    expect(run.lines).toContain(
-      'verdict deem: kill K=30 M=30 A=0 B=12 W=0 L=12 F=0 p=0.0002441'
-      + ' baseline=read_code model=deem-0.8-v1 model_commit=stubmodel source_commit=stubsource',
-    );
-  });
-
   it('verdict coverage', () => {
     const out = tempDir('debug-next-check-out-');
     const run = runScript(
@@ -683,55 +535,77 @@ describe('score-debug-next-check', () => {
     );
   });
 
-  it('requalify', () => {
+  it('verdict keep', () => {
     const out = tempDir('debug-next-check-out-');
-    writeFileSync(
-      join(out, 'report.json'),
-      `${JSON.stringify({ columns: { deem: { modelCommit: 'previous-model', sourceCommit: 'previous-source' } } })}\n`,
-    );
     const run = runScript(
-      ['--fixture', writeFixture(verdictRows()), '--deem', '--out', out],
+      ['--fixture', writeFixture(verdictRows()), '--jev', '--out', out],
       makePickStubs(),
       { STUB_PICKS: keepSchedule() },
     );
 
     expect(run.code).toBe(0);
-    const requalifyAt = run.lines.indexOf('requalify: model commit changed');
-    const verdictAt = run.lines.findIndex((line) => line.startsWith('verdict deem:'));
+    expect(run.lines.some((line) => line.startsWith('verdict jev: keep K=30 M=30 A=20 B=12 W=8 L=0 F=0 p='))).toBe(true);
+  });
+
+  it('verdict kill', () => {
+    const out = tempDir('debug-next-check-out-');
+    const run = runScript(
+      ['--fixture', writeFixture(verdictRows()), '--jev', '--out', out],
+      makePickStubs(),
+      { STUB_PICKS: killSchedule() },
+    );
+
+    expect(run.code).toBe(0);
+    expect(run.lines.some((line) => line.startsWith('verdict jev: kill K=30 M=30 A=0 B=12 W=0 L=12 F=0 p='))).toBe(true);
+  });
+
+  it('a changed Jev identity requalifies before the verdict', () => {
+    const out = tempDir('debug-next-check-out-');
+    writeFileSync(
+      join(out, 'report.json'),
+      `${JSON.stringify({ columns: { jev: { provider: 'openrouter', model: 'stub-model' } } })}\n`,
+    );
+    const run = runScript(
+      ['--fixture', writeFixture(verdictRows()), '--jev', '--out', out],
+      makePickStubs(),
+      { STUB_PICKS: keepSchedule() },
+    );
+
+    expect(run.code).toBe(0);
+    const requalifyAt = run.lines.indexOf('requalify: model changed');
+    const verdictAt = run.lines.findIndex((line) => line.startsWith('verdict jev:'));
     expect(requalifyAt).toBeGreaterThan(-1);
     expect(verdictAt).toBeGreaterThan(requalifyAt);
+  });
+
+  it('an unstable Jev row counts as a miss and adds its missing votes to flips', () => {
+    const out = tempDir('debug-next-check-out-');
+    const run = runScript(
+      ['--fixture', writeFixture(verdictRows()), '--jev', '--out', out],
+      makePickStubs(),
+      { STUB_PICKS: 'run_test', STUB_UNSTABLE_ROW: '0' },
+    );
+
+    expect(run.code).toBe(0);
+    expect(run.lines.some((line) => /^column jev: rows=30 measured=30 unmeasured=0 unstable=1 withheld=0 latency_p50_ms=\d+ latency_p95_ms=\d+$/.test(line))).toBe(true);
+    expect(run.lines.some((line) => /^verdict jev: .* F=2 /.test(line))).toBe(true);
   });
 
   it('report line', () => {
     const out = tempDir('debug-next-check-out-');
     const run = runScript(
-      ['--fixture', writeFixture(verdictRows()), '--jev', '--deem', '--out', out],
+      ['--fixture', writeFixture(verdictRows()), '--jev', '--out', out],
       makePickStubs(),
       { STUB_PICKS: keepSchedule() },
     );
 
     expect(run.code).toBe(0);
     const report = JSON.parse(readFileSync(join(out, 'report.json'), 'utf8'));
-    for (const backend of ['jev', 'deem']) {
+    for (const backend of ['jev']) {
       const stdoutLine = run.lines.find((line) => line.startsWith(`verdict ${backend}:`));
       expect(stdoutLine).toBeDefined();
       expect(report.columns[backend].line).toBe(stdoutLine);
     }
-  });
-
-  it('unstable row', () => {
-    const out = tempDir('debug-next-check-out-');
-    const run = runScript(
-      ['--fixture', writeFixture(verdictRows()), '--deem', '--out', out],
-      makePickStubs(),
-      { STUB_PICKS: 'run_test', STUB_UNSTABLE_ROW: '0' },
-    );
-
-    expect(run.code).toBe(0);
-    expect(
-      run.lines.some((line) => /^column deem: rows=30 measured=30 unmeasured=0 unstable=1 latency_p50_ms=\d+ latency_p95_ms=\d+$/.test(line)),
-    ).toBe(true);
-    expect(run.lines.some((line) => /^verdict deem: .* F=2 /.test(line))).toBe(true);
   });
 
   it('no row text', () => {
@@ -740,7 +614,7 @@ describe('score-debug-next-check', () => {
       : row));
     const out = tempDir('debug-next-check-out-');
     const run = runScript(
-      ['--fixture', writeFixture(rows), '--jev', '--deem', '--out', out],
+      ['--fixture', writeFixture(rows), '--jev', '--out', out],
       makePickStubs(),
       { STUB_PICKS: 'read_code' },
     );

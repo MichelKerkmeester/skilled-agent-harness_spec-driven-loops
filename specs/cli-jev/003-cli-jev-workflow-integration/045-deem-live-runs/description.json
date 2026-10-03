@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/045-deem-live-runs",
+  "description": "Phase 45: deem-live-runs",
+  "keywords": [
+    "phase",
+    "deem-live-runs"
+  ],
+  "lastUpdated": "2026-10-02T07:13:44.735Z",
+  "specId": "045",
+  "folderSlug": "deem-live-runs",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

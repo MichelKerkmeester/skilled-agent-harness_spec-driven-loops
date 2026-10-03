@@ -3,7 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 //
 // Counts below-50 alignment saves per save path and replays both validator paths,
-// with zero model calls. Past a 30-row label gate, an opt-in Jev or Deem column picks
+// with zero model calls. Past a 30-row label gate, an opt-in Jev column picks
 // one of the folders a save listed. The script holds no credential and reads none.
 
 // ───────────────────────────────────────────────────────────────────
@@ -61,8 +61,6 @@ const JEV_VERSION = 'jev 0.6.2';
 const CHOICE_QUESTION = 'Which spec folder should this save go to?';
 const NONE_KEY = 'none_of_these';
 const NONE_DESCRIPTION = 'None of these folders';
-const DEEM_MODEL = 'deem-0.8-v1';
-const DEEM_P50_MS = 65.6;
 const HEALTH_TIMEOUT_MS = 2000;
 const CALL_TIMEOUT_MS = 90000;
 const BACKOFF_MS = 2000;
@@ -696,7 +694,7 @@ export function decideVerdict(c: VerdictCounts): { verdict: string; p: number } 
  * backend identity.
  */
 export function verdictLine(
-  backend: 'jev' | 'deem',
+  backend: 'jev',
   c: VerdictCounts,
   v: { verdict: string; p: number },
   baseline: 'target' | 'top',
@@ -771,107 +769,6 @@ export function jevGate(ctx: { out: (line: string) => void; env: NodeJS.ProcessE
   return { passed: true, path: jevPath, provider };
 }
 
-/** The Deem CLI to probe: the one on PATH, else the repo script under the running Node. */
-export function deemCommand(env: NodeJS.ProcessEnv): string[] {
-  const onPath = which('cli-deem', env);
-  if (onPath !== null) return [onPath];
-  return [process.execPath, path.join(REPO_ROOT, '.skilled', 'skills', 'cli-classifier', 'cli-deem', 'scripts', 'cli-deem.mjs')];
-}
-
-/**
- * Reads Deem health through its CLI: only a torch or ensemble backend on the pinned
- * model with non-empty commits counts as healthy. The probe carries no row text and
- * no credential.
- */
-export function readDeemHealth(
-  cmd: string[],
-  env: NodeJS.ProcessEnv
-): { ok: true; backend: string; model: string; modelCommit: string; sourceCommit: string } | { ok: false; reason: string; found: unknown } {
-  const run = spawnSync(cmd[0], [...cmd.slice(1), 'health'], {
-    stdio: ['ignore', 'pipe', 'pipe'],
-    encoding: 'utf8',
-    timeout: HEALTH_TIMEOUT_MS,
-    env,
-  });
-
-  if (run.error !== undefined || run.signal !== null || run.status === 4) {
-    return { ok: false, reason: 'not reachable', found: null };
-  }
-
-  const stdout = (run.stdout ?? '').trim();
-
-  if (run.status === 3) {
-    let errorText = '';
-    try {
-      const parsed = JSON.parse((run.stderr ?? '').trim()) as unknown;
-      if (parsed !== null && typeof parsed === 'object') {
-        const error = (parsed as Record<string, unknown>).error;
-        if (typeof error === 'string') errorText = error;
-      }
-    } catch {
-      // a non-JSON stderr falls through to the generic reason below
-    }
-    if (errorText.includes('stub')) return { ok: false, reason: 'stub backend', found: errorText };
-    if (errorText.includes('refused model')) return { ok: false, reason: 'model', found: errorText };
-    return { ok: false, reason: 'bad health response', found: (run.stderr ?? '').trim() };
-  }
-
-  if (run.status !== 0) {
-    return { ok: false, reason: 'bad health response', found: (run.stderr ?? '').trim() };
-  }
-
-  let parsed: unknown;
-  try {
-    parsed = JSON.parse(stdout) as unknown;
-  } catch {
-    return { ok: false, reason: 'bad health response', found: stdout };
-  }
-  if (parsed === null || typeof parsed !== 'object') {
-    return { ok: false, reason: 'bad health response', found: stdout };
-  }
-
-  const record = parsed as Record<string, unknown>;
-  const backend = record.backend;
-  const model = record.model;
-  if (typeof backend !== 'string') return { ok: false, reason: 'bad health response', found: stdout };
-  if (backend.includes('stub')) return { ok: false, reason: 'stub backend', found: backend };
-  if (backend !== 'torch' && !backend.startsWith('ensemble:')) {
-    return { ok: false, reason: 'bad health response', found: stdout };
-  }
-  if (typeof model !== 'string' || model !== DEEM_MODEL) {
-    return { ok: false, reason: 'model', found: typeof model === 'string' ? model : stdout };
-  }
-
-  const modelCommit = record.model_commit;
-  const sourceCommit = record.source_commit;
-  if (record.ok !== true || typeof modelCommit !== 'string' || modelCommit === '' || typeof sourceCommit !== 'string' || sourceCommit === '') {
-    return { ok: false, reason: 'bad health response', found: stdout };
-  }
-
-  return { ok: true, backend, model, modelCommit, sourceCommit };
-}
-
-/**
- * Runs the Deem gate: a healthy backend prints its identity and hands the arm its command
- * and identity; any other answer prints why the arm is skipped.
- */
-export function deemGate(
-  ctx: { out: (line: string) => void; env: NodeJS.ProcessEnv }
-): { passed: false } | { passed: true; cmd: string[]; model: string; modelCommit: string; sourceCommit: string } {
-  const cmd = deemCommand(ctx.env);
-  const health = readDeemHealth(cmd, ctx.env);
-  if (!health.ok) {
-    ctx.out(`deem arm skipped: ${health.reason}`);
-    if (health.reason === 'model' || health.reason === 'bad health response') {
-      ctx.out(`deem: found=${JSON.stringify(health.found)}`);
-    }
-    return { passed: false };
-  }
-
-  ctx.out(`deem: health backend=${health.backend} model=${health.model} model_commit=${health.modelCommit} source_commit=${health.sourceCommit}`);
-  return { passed: true, cmd, model: health.model, modelCommit: health.modelCommit, sourceCommit: health.sourceCommit };
-}
-
 // ───────────────────────────────────────────────────────────────────
 // 10. MODEL ARMS
 // ───────────────────────────────────────────────────────────────────
@@ -887,7 +784,7 @@ interface CallResult {
 
 /** One calls.jsonl line: what a call was and what it returned, never the row state. */
 interface CallRecord {
-  backend: 'jev' | 'deem';
+  backend: 'jev';
   row_id: string | null;
   order: number | null;
   wall_ms: number;
@@ -1097,7 +994,7 @@ function buildOptionLines(row: Row, describe: (folder: string) => string): strin
  * line ends the arm with the rows finished so far, and no verdict.
  */
 export async function runArm(
-  backend: 'jev' | 'deem',
+  backend: 'jev',
   rows: Row[],
   chosen: 'target' | 'top',
   gate: { cmd: string[]; provider?: string; model?: string; modelCommit?: string; sourceCommit?: string },
@@ -1120,9 +1017,6 @@ export async function runArm(
       0
     );
     ctx.out(`jev: payload=operator session summaries and folder descriptions planned_calls=${3 * rows.length + 1} est_input_tokens=${Math.ceil((3 * perRow) / 4)}`);
-  } else {
-    const calls = 3 * rows.length;
-    ctx.out(`deem: nothing leaves the machine planned_calls=${calls} est_wall_s=${((calls * DEEM_P50_MS) / 1000).toFixed(1)}`);
   }
 
   let jevModel = 'unknown';
@@ -1181,9 +1075,6 @@ export async function runArm(
       status: step.status,
       options_hash: optionsHash,
     };
-    if (backend === 'deem') {
-      return { ...base, model: gate.model ?? null, model_commit: gate.modelCommit ?? null, source_commit: gate.sourceCommit ?? null };
-    }
     return { ...base, jev_version: JEV_VERSION, provider, model: jevModel };
   };
 
@@ -1208,19 +1099,7 @@ export async function runArm(
     let result = await attempt();
 
     if (result.code === 4) {
-      if (backend === 'deem') {
-        const health = readDeemHealth(gate.cmd, ctx.env);
-        if (!health.ok) {
-          writeCall(ctx.outDir, callRecord(row, order, result, UNMEASURED, optionsHash));
-          return { stop: 'deem arm stopped: server gone' };
-        }
-        if (health.modelCommit !== gate.modelCommit || health.sourceCommit !== gate.sourceCommit) {
-          writeCall(ctx.outDir, callRecord(row, order, result, UNMEASURED, optionsHash));
-          return { stop: 'deem arm stopped: model commit changed mid-run' };
-        }
-      } else {
-        await sleep(ctx.backoffMs);
-      }
+      await sleep(ctx.backoffMs);
       result = await attempt();
     }
 
@@ -1228,7 +1107,7 @@ export async function runArm(
     writeCall(ctx.outDir, callRecord(row, order, result, step, optionsHash));
 
     if (result.code === 2) return { stop: `${backend} arm stopped: usage error` };
-    if (result.code === 3) return { stop: backend === 'jev' ? 'jev arm stopped: key rejected' : 'deem arm stopped: backend refused' };
+    if (result.code === 3) return { stop: 'jev arm stopped: key rejected' };
     if (result.code === 130) return { stop: `${backend} arm stopped: interrupted` };
     return { pick: step.pick };
   };
@@ -1255,9 +1134,7 @@ export async function runArm(
 
   const counts = countVerdict(rows, picks, chosen);
   const decided = decideVerdict(counts);
-  const extra = backend === 'deem'
-    ? `model=${gate.model ?? ''} model_commit=${gate.modelCommit ?? ''} source_commit=${gate.sourceCommit ?? ''}`
-    : `jev_version=${JEV_VERSION} provider=${provider} model=${jevModel}`;
+  const extra = `jev_version=${JEV_VERSION} provider=${provider} model=${jevModel}`;
   const line = verdictLine(backend, counts, decided, chosen, extra);
   ctx.out(line);
   return { line, verdict: decided.verdict, counts, p: decided.p };
@@ -1287,13 +1164,12 @@ const MAIN_OPTIONS = {
   score: { type: 'string' },
   out: { type: 'string' },
   jev: { type: 'boolean' },
-  deem: { type: 'boolean' },
   'accept-payload': { type: 'boolean' },
 } as const;
 
 /**
  * Runs one census pass: every refusal first, then committed counts and the optional
- * counts report. It never spawns jev or cli-deem, so it makes no model call.
+ * counts report. It never spawns jev, so it makes no model call.
  */
 export async function main(argv: string[], deps: MainDeps = {}): Promise<number> {
   const out = deps.out ?? ((line: string) => process.stdout.write(`${line}\n`));
@@ -1307,7 +1183,6 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
   let score: string | undefined;
   let outDir: string | undefined;
   let jev = false;
-  let deem = false;
   let acceptPayload = false;
   try {
     const { values } = parseArgs({ args: argv, options: MAIN_OPTIONS, strict: true, allowPositionals: false });
@@ -1317,7 +1192,6 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
     score = values.score;
     outDir = values.out;
     jev = values.jev === true;
-    deem = values.deem === true;
     acceptPayload = values['accept-payload'] === true;
   } catch (error) {
     err(`usage error: ${error instanceof Error ? error.message : String(error)}`);
@@ -1332,12 +1206,12 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
     err('--score runs alone');
     return 2;
   }
-  if ((jev || deem) && score === undefined) {
-    err('--jev and --deem need --score <rows file>');
+  if (jev && score === undefined) {
+    err('--jev needs --score <rows file>');
     return 2;
   }
-  if ((jev || deem) && outDir === undefined) {
-    err('--jev and --deem need --out <dir> so every call is recorded');
+  if (jev && outDir === undefined) {
+    err('--jev needs --out <dir> so every call is recorded');
     return 2;
   }
 
@@ -1406,7 +1280,7 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
     out(`question: ${CHOICE_QUESTION}`);
 
     const env = deps.env ?? process.env;
-    const columns: { jev?: ArmOutcome; deem?: ArmOutcome } = {};
+    const columns: { jev?: ArmOutcome } = {};
     const armCtx = {
       out,
       env,
@@ -1417,7 +1291,6 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
     };
 
     const jevGateResult = jev ? jevGate({ out, env, acceptPayload }) : null;
-    const deemGateResult = deem ? deemGate({ out, env }) : null;
     if (jevGateResult !== null && jevGateResult.passed && jevGateResult.path !== null) {
       columns.jev = await runArm(
         'jev',
@@ -1427,22 +1300,8 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
         armCtx
       );
     }
-    if (deemGateResult !== null && deemGateResult.passed) {
-      columns.deem = await runArm(
-        'deem',
-        callable,
-        baseline.chosen,
-        {
-          cmd: deemGateResult.cmd,
-          model: deemGateResult.model,
-          modelCommit: deemGateResult.modelCommit,
-          sourceCommit: deemGateResult.sourceCommit,
-        },
-        armCtx
-      );
-    }
 
-    if (jev || deem) {
+    if (jev) {
       mkdirSync(armCtx.outDir, { recursive: true });
       const payload = {
         rows: { total: parsedRows.rows.length, labeled: labeled.length, callable: callable.length, stateNull },
