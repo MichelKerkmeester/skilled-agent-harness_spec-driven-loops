@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure",
+  "description": "Phase 2: feature-review-and-remeasure",
+  "keywords": [
+    "phase",
+    "feature-review-and-remeasure"
+  ],
+  "lastUpdated": "2026-10-03T17:39:28.447Z",
+  "specId": "002",
+  "folderSlug": "feature-review-and-remeasure",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "050-pi-default-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
