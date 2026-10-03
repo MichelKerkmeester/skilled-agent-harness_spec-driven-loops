@@ -458,7 +458,7 @@ Adds `scripts/score-severity-replay.cjs`, an offline replay that reads every tra
 #### Scenario Contract
 Prompt: `Run the offline severity replay with logging stubs first on PATH and confirm the default run makes zero model calls and writes no file, the label gate stops the arm by name, --jev without --out refuses with exit 2 before any census line, no stub is called, and the suite passes.`
 
-Expected signals: The default run prints the census and ends with `stop: fewer than 20 labeled P0 negatives` with no stub call, `jev arm skipped: label gate` prints when the arm is requested and only `report.json` is written under `--out <dir>`, `--jev needs --out <dir> so every call is recorded` lands on stderr with exit 2 before any census line, `git status` outside `specs/` is unchanged, and 28 passing tests.
+Expected signals: The default run prints the census and ends with `stop: fewer than 20 labeled P0 negatives` with no stub call, `jev arm skipped: label gate` prints when the arm is requested and only `report.json` is written under `--out <dir>`, `--jev needs --out <dir> so every call is recorded` lands on stderr with exit 2 before any census line, `git status` outside `specs/` is unchanged, and 29 passing tests.
 
 #### Test Execution
 > **Feature File:** [DLR-058](../manual-testing-playbook/scoring/severity-replay.md)

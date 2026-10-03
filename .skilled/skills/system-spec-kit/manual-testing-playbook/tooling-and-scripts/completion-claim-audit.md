@@ -26,11 +26,11 @@ The audit scores the completion-claim detector on turn text and calls no model o
 
 Operators run the exact prompt and command sequence for `462` and confirm the expected signals without contradictory evidence.
 
-- Objective: confirm that a default run over the synthetic rows prints the census lines and a last line `stop: fewer than 30 labeled rows`, starts no stub and exits 0, that the two working-tree status captures match, and that the suite reports 22 passed
+- Objective: confirm that a default run over the synthetic rows prints the census lines and a last line `stop: fewer than 30 labeled rows`, starts no stub and exits 0, that the two working-tree status captures match, and that the suite reports 34 passed
 - Real user request: `Where does the completion-claim detector fire, and can I find out without calling a model?`
 - Prompt: `Run the completion claim audit on the synthetic rows with a stub first on the path, confirm nothing was called or changed, then run its test suite.`
 - Expected execution process: the working-tree status is captured, a stub `jev` executable that logs every call is placed first on `PATH`, the audit runs over `tests/completion-claim-audit-fixtures/census-happy.jsonl` with no arm switch, the stub logs are read, the status is captured again and compared and the vitest suite runs.
-- Expected signals: step 3 prints `rows: 12 fires: 10`, `words: completed=1 resolved=1 fixed=1 finished=1 shipped=1 released=1 deployed=1 implemented=1 occurred=1 happened=1`, `labels: none`, `labeled: 0 (yes 0, no 0)`, `regex accuracy: n/a (no labels)`, `regex false fires: 0 (by word: none)`, `regex missed claims: 0 (by word: none)`, `margin: 0.10`, one line starting `keep rule:`, one line starting `power:` and a last line `stop: fewer than 30 labeled rows`, with no fixture row text on stdout and exit 0. Step 4 prints nothing. Step 5 prints nothing. Step 6 reports 22 passed and exits 0.
+- Expected signals: step 3 prints `rows: 12 fires: 10`, `words: completed=1 resolved=1 fixed=1 finished=1 shipped=1 released=1 deployed=1 implemented=1 occurred=1 happened=1`, `labels: none`, `labeled: 0 (yes 0, no 0)`, `regex accuracy: n/a (no labels)`, `regex false fires: 0 (by word: none)`, `regex missed claims: 0 (by word: none)`, `margin: 0.10`, one line starting `keep rule:`, one line starting `power:` and a last line `stop: fewer than 30 labeled rows`, with no fixture row text on stdout and exit 0. Step 4 prints nothing. Step 5 prints nothing. Step 6 reports 34 passed and exits 0.
 - Desired user-visible outcome: the census counts, the stop line and a statement that nothing was called or changed, with the evidence.
 - Pass/fail: PASS if every signal holds. FAIL if a line is missing, step 4 prints a log line, step 5 shows a change or a test fails.
 
@@ -53,7 +53,7 @@ Operators run the exact prompt and command sequence for `462` and confirm the ex
 
 ### Expected
 
-Step 3 prints the census lines the scenario contract names and exits 0. Step 4 prints nothing. Step 5 prints nothing. Step 6 reports 22 passed and exits 0.
+Step 3 prints the census lines the scenario contract names and exits 0. Step 4 prints nothing. Step 5 prints nothing. Step 6 reports 34 passed and exits 0.
 
 ### Evidence
 
@@ -85,7 +85,7 @@ Capture step 3's stdout and exit status, step 4's empty output, step 5's empty d
 | File | Role |
 |---|---|
 | `.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` | Prints the census lines, the label-gate stop line and the arm lines, and writes the report |
-| `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts` | Twenty-two cases over the fixtures, with a stub `jev` binary first on the path |
+| `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts` | Thirty-four cases over the fixtures, with a stub `jev` binary first on the path |
 | `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/census-happy.jsonl` | The twelve synthetic rows the census run reads |
 
 Provenance: runtime/tests/completion-claim-audit.vitest.ts
