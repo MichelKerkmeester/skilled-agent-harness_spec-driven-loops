@@ -1,6 +1,6 @@
 ---
 name: sk-code
-description: "sk-code: quality/review workflow modes plus read-only surface packets with implement/debug/verify doctrine and stack knowledge."
+description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 2.2.4.0
 metadata:

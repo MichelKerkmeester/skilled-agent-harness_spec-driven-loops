@@ -120,6 +120,8 @@ The phase ran as an audit first and an apply second. The audit followed the work
 7. **Recorded finding: frontmatter trigger phrases exist for one skill out of fourteen.** The rest live in `graph-metadata.json` and body `Keywords:` comments, so any tool that reads routing phrases from frontmatter sees coverage for 1 of 14.
 8. **The recorded run was read-only.** The mutating path — source edits, rebuild and the advisor test suite — was verified by command-line probes and the route validator, not by executing a mutation.
 9. **The phrase-boost envelope is an operator judgment call.** The observed amounts run -0.6 to 1.8 and the declared `[-1.0, 2.0]` is a deliberate bound around them, not a measured contract.
+
+**Follow-up status.** Items 1 to 3 are resolved by `specs/system-skill-advisor/033-advisor-status-truthfulness` phase 001: one shared hash recipe, `skillCount` 14 and an `indexStaleness` comparison. Items 4 to 6 are resolved by the same packet: `PHRASE_BOOST_BOUND`, re-measured citations and documented `--trusted`. Item 7 is settled by decision in phase 003: `graph-metadata.json` is the routing-phrase source and frontmatter stays unpopulated. Items 8 and 9 stand as recorded.
 <!-- /ANCHOR:limitations -->
 
 ---

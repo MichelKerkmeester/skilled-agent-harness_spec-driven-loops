@@ -40,7 +40,7 @@ ADR-001 to ADR-003 live in `plan.md` and are Accepted there. This file holds the
 <!-- ANCHOR:adr-004-context -->
 ### Context
 
-REQ-005 bundled four corrections: the rebuild presentation's skill-budget row, the packet label in `audit_descriptions.py`'s report title, the packet label in both `quick_validate.py` docstrings, and the hardcoded 8,000 Claude budget. The last three sit in `audit_descriptions.py` and the sk-doc validators, which `specs/sk-doc/063-description-budget` edits in the same build. Two packets editing one file at once would collide.
+REQ-005 bundled four corrections: the rebuild presentation's skill-budget row, the packet label in `audit_descriptions.py`'s report title, the packet label in both `quick_validate.py` docstrings, and the hardcoded 8,000 Claude budget. The last three sit in `audit_descriptions.py` and the sk-doc validators, which `specs/sk-doc/064-description-budget` edits in the same build. Two packets editing one file at once would collide.
 
 ### Constraints
 - This phase owns `doctor-rebuild-presentation.txt` but not `audit_descriptions.py` or the sk-doc scripts.
@@ -52,7 +52,7 @@ REQ-005 bundled four corrections: the rebuild presentation's skill-budget row, t
 <!-- ANCHOR:adr-004-decision -->
 ### Decision
 
-**Summary**: This phase corrects the presentation row only; the report title, the two docstrings and the budget source are handled by `specs/sk-doc/063-description-budget`.
+**Summary**: This phase corrects the presentation row only; the report title, the two docstrings and the budget source are handled by `specs/sk-doc/064-description-budget`.
 
 **Details**: AC-005 is marked Superseded by this record. The presentation row now reads "Description-budget audit for skills, commands and agents", and `rg -n "Advisor budget"` over the rebuild presentation finds nothing.
 <!-- /ANCHOR:adr-004-decision -->

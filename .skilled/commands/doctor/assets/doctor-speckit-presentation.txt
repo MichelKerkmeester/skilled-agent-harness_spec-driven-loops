@@ -9,7 +9,7 @@ When `$ARGUMENTS` lacks a recognized positional target, ask this prompt first af
 ```text
 What do you want to do?
 
-   1) Update everything to match latest spec-kit release   (e.g. 3.3.0.0 -> 3.4.x)
+   1) Update to the latest framework release   (check, align, apply)
    2) Debug retrieval index              (trigger index, ripgrep conventions)
    6) Debug Deep-Loop history            (research/review/council iteration graphs)
    7) Re-tune Skill Advisor              (which skill gets recommended)
@@ -28,7 +28,7 @@ Accepted answers:
 
 | Answer | Result |
 |--------|--------|
-| `1` | Abort `/doctor:speckit`; display `Switch to /doctor:rebuild --migrate for upgrade migration. Exiting /doctor:speckit.` |
+| `1` | Abort `/doctor:speckit`; display `Switch to /doctor:update, which starts with a read-only release check. Exiting /doctor:speckit.` |
 | `2` | target = `speckit-retrieval` |
 | `6` | target = `deep-loop` |
 | `7` | target = `skill-advisor` |

@@ -1192,7 +1192,7 @@ The active autonomous loop families (the improvement family carries two lanes). 
 &nbsp;
 #### DOCTOR
 
-Five commands cover every spec-kit diagnostic surface. Run `/doctor:speckit` with no target to see the interactive menu. Upgrade users see "Update everything to match latest release" as option 1.
+Five commands cover every spec-kit diagnostic surface. Run `/doctor:speckit` with no target to see the interactive menu. Its option 1 hands release updates to `/doctor:update`.
 
 **`/doctor:speckit <target>` (router)**
 
@@ -1205,7 +1205,7 @@ Five commands cover every spec-kit diagnostic surface. Run `/doctor:speckit` wit
 
 **`/doctor:mcp install|debug`** - MCP infrastructure repair
 
-- `install`. Fresh install or reinstall of the Code Mode MCP server from its install guide. Handles old-conflicting-with-new (clean reinstall with venv/node_modules removal)
+- `install`. Installs dependencies and builds Code Mode when its `dist` is missing or stale, configures `.utcp_config.json` manuals and registers Code Mode in the seven project runtime configs, each write after its own approval
 - `debug`. Diagnoses Code Mode with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
 
 **`/doctor:rebuild`** - multi-subsystem rebuild orchestrator
@@ -1217,6 +1217,13 @@ Five commands cover every spec-kit diagnostic surface. Run `/doctor:speckit` wit
 - Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle packet schema migration. Wall-clock 8-25 min
 
 **`/doctor:update [check|align|apply]`** - release-aware spec-kit updater with a read-only check, an alignment step that writes only inside its run directory, and a dry-run plan followed by one approval before applying and verifying release files.
+
+**`/doctor:env [list | <section> | <VARIABLE>] [--dry-run]`** - guided environment switches
+
+- Reads the switch list from `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` at run time, so a newly documented switch shows up without a command change
+- Shows each switch's default, type, description and source, and reports whether it is set in the process, `hook-flags.env`, `.env` or Claude settings, by name only, never by value
+- Saves a preference only after showing the exact line and destination and getting an explicit yes. `--dry-run` shows the same preview and writes nothing
+- Explains secrets and per-invocation switches without asking for or saving their values. A per-invocation switch is shown as a one-command prefix
 
 The 16 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 

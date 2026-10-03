@@ -59,8 +59,8 @@
       ".skilled/commands/doctor/assets/doctor-mcp-presentation.txt",
       ".skilled/commands/README.txt",
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
-      ".skilled/commands/doctor/_routes.yaml",
-      "scratch/reality-check.md"
+      ".skilled/skills/mcp-code-mode/mcp-server/package.json",
+      ".skilled/commands/doctor/_routes.yaml"
     ],
     "entities": [
       {
@@ -160,15 +160,15 @@
         "source": "derived"
       },
       {
-        "name": "_routes.yaml",
+        "name": "package.json",
         "kind": "config",
-        "path": ".skilled/commands/doctor/_routes.yaml",
+        "path": ".skilled/skills/mcp-code-mode/mcp-server/package.json",
         "source": "derived"
       },
       {
-        "name": "reality-check.md",
-        "kind": "doc",
-        "path": "scratch/reality-check.md",
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`/doctor:mcp debug` diagnoses MCP servers that fail to start or expose no tools",
     "created_at": "2026-10-02T16:10:11Z",
-    "last_save_at": "2026-10-02T20:23:20.460Z",
+    "last_save_at": "2026-10-03T11:48:56.184Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:093faea8ac5475bc293aca295071dbf6d6195db5e2825441e397abaad31025cc",
+    "source_fingerprint": "sha256:c7654925f930c4c2b85850e5296f82e571d095e62b54f4f5d754ea30785d6388",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9f4da6f6f0a3287fddf945af8edd971dd0eb32b8b64b493c753d2f7dc5ffe20a",
       "plan.md": "755000e4c7300a020fa817558bb938dab5906cec2daa3f03896de2838f30555d",
       "tasks.md": "fdac4d704f921d4da962738c45e7eb0dc41f899808342cddc48fd333561654d1",
-      "implementation-summary.md": "66bd5628b8a003035268881ad104bc19231fbc92ab84c8e01ae6407424893911"
+      "implementation-summary.md": "8d1057f1495e29bd1a27bdea7ee50aab29ae31ea0f48c729c65f1512ef7c38d3"
     },
     "last_active_at": null
   }

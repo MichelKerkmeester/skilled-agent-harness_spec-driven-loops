@@ -129,6 +129,8 @@ The audit ran at HEAD `83616db9ba221a80d271b2b924b3a32664962ffd` and left every 
 3. The frozen fixture `fixtures/latency-report.json` pins a different `manifestHash` and a worktree and layout that no longer exist. `runtime/cli/retrieval/README.md:79` states the five frozen acceptance fixtures pin their snapshot hash and that a mismatch is not a staleness signal, and the doctor's four-way compare excludes them; not a defect.
 4. `pass_policy.index_regenerates_byte_identical` cannot be checked inside the workflow's own write boundary (report and state log only). The generator's scratch-build contract would allow the check; the doctor does not name it. Recorded, not changed.
 5. No index regeneration was performed: the audit is read-only and `/doctor:rebuild` owns regeneration (its generator leg runs `generate-trigger-index.mjs`), so the stale index reported in finding 1 still stood when this phase closed.
+
+**Follow-up status.** In the first list, items 1 to 5 and 7 are resolved by `specs/system-speckit/049-doctor-audit-followups` phase 001: the index is regenerated, the generator judges with folder tokens, the doctor's staleness verdict comes from `--check`, the symlink claims are gone, and the ripgrep observations were re-tested at 15.2.0. Item 6 is resolved by phase 003 (T023). In the second list, item 1 is superseded by the `--check` verdict and item 5 by the regeneration. Items 2 to 4 stand as recorded; item 3 is not a defect.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1,5 +1,5 @@
 ---
-description: "Router for /doctor: dispatches subsystem diagnostics to a named target through _routes.yaml."
+description: "Dispatches spec-kit subsystem diagnostics to a named target through _routes.yaml."
 argument-hint: "<target> [flags] | list | ?"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---

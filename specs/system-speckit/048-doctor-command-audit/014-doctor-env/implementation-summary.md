@@ -120,6 +120,8 @@ The phase ran as an audit first and an apply second. Three executors took part. 
 2. **The confirmed write was proven against a disposable copy.** The reader was pointed at that copy through `HOOK_FLAGS_CONFIG`, so the operator's configuration was never touched and the real destination was never written.
 3. **Recorded finding: the reference's stated count is stale.** ENV-REFERENCE.md says it documents 144 unique variables, while its tables hold 158. The 14 git-hook marker rows added to section 5 did not update the stated count. The phase records this and leaves it, because the reference is outside its scope.
 4. **Shell profiles are never written.** The command prints one export line instead. That is the designed boundary, not a gap.
+
+**Follow-up status.** Item 3 is resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003: ENV-REFERENCE.md states 154 by its own method and names the 158 total. Items 1, 2 and 4 stand as recorded; 4 is the designed boundary.
 <!-- /ANCHOR:limitations -->
 
 ---

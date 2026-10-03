@@ -142,6 +142,8 @@ were then closed from the audit evidence in `scratch/`.
 2. **The model-server health payload does not match the object the retired workflow expected.** `/api/health` uses state, model, dim, device, load timing and error; the workflow also named dtype, healthy, serverState, loaded, baseUrl and modelServerError. Evidence: `doctor-embeddings.yaml:51-52` before deletion and `hf-model-server.cjs:838-853`. Recorded, not fixed.
 3. **Live provider and model-server health is UNKNOWN.** The workflow-shaped `advisor_status` call was blocked by a sandbox IPC `EPERM`, exit 75. This is not evidence that the provider or server is unhealthy. Evidence: `scratch/doctor-run.log`. Recorded, not fixed.
 4. **The presentation's generic `/doctor` forms have no matching root command files** in either checked command tree; the nested router exists and is the one in use. This is a separate doctor-surface observation, not part of the retirement. Evidence: `scratch/reality-check.md` and `scratch/proposal.md`.
+
+**Follow-up status.** Item 1 is resolved in part by `specs/system-skill-advisor/033-advisor-status-truthfulness`: `advisor_status` takes an opt-in `includeEmbeddingsHealth`. Item 4 is resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003's invocation sweep. Items 2 and 3 stand with the retired route: no workflow reads that payload now.
 <!-- /ANCHOR:limitations -->
 
 ---

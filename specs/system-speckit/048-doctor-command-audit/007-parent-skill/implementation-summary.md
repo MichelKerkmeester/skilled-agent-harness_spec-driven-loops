@@ -116,6 +116,8 @@ Audited first: read the router, the route entry, the workflow, the checker and t
 2. **Three `parent-skill-check-*.test.cjs` suites fail in this worktree.** They fail exactly as they did before the batch because their temporary fixtures cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` here. The failure is a baseline condition of this worktree, not a regression from this change.
 3. **The route validator does not verify workflow activities.** Its script-existence assertion checks `script_invocations` paths, so `route-validate.sh` passing does not by itself prove that phase 0 invokes every route script. The route's ordering comment and the workflow activity list are the evidence for that order.
 4. **The recorded run predates the label edit.** `scratch/doctor-run.log:24` shows the earlier `Mode 5-9: canon (FAIL)` label. The edit is descriptive only, so the audit results recorded in that log are unaffected.
+
+**Follow-up status.** Items 2 and 3 are resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003: the fixtures pass, and `route-validate` assertion L1 checks that each route script is invoked by its workflow. Items 1 and 4 are observations.
 <!-- /ANCHOR:limitations -->
 
 ---

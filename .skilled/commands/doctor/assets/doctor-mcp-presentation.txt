@@ -83,7 +83,7 @@ D) Cancel
 
 Request explicit approval for each dependency install, build, `.utcp_config.json` edit, or runtime config edit. When no runtime is selected, plan changes for all seven supported project configs; `--runtime` narrows that plan. Preserve existing manuals and unrelated config entries. Never request, display, or write credential values. Ask for a credential variable name only; the operator manages its value in root `.env` outside the workflow.
 
-When documenting a manual credential, use neutral names only. Example: manual `example_service` with `${API_TOKEN}` expects the key `example_service_API_TOKEN`; report whether the key is present or missing, never its value.
+When documenting a manual credential, use neutral names only. Code Mode doubles each underscore in the manual name before adding the `_<VAR>` suffix. Example: manual `example_service` with `${API_TOKEN}` expects the key `example__service_API_TOKEN`; report whether the key is present or missing, never its value.
 
 Supported runtime files:
 
