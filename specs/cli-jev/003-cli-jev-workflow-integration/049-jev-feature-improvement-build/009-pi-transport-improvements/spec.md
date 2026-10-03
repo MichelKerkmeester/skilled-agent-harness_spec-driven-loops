@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/009-pi-transport-improvements` |
 | **Parent Spec** | ../spec.md |

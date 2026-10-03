@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -120,6 +120,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -133,12 +139,6 @@
       },
       {
         "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Feature 037 adopted the Pi transport by one row, on a comparison whose CLI arm was a day older and used another provider",
     "created_at": "2026-10-03T05:30:09Z",
-    "last_save_at": "2026-10-03T05:37:56.410Z",
+    "last_save_at": "2026-10-03T08:30:03.296Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a683e60c430c7188e6c3e98940aaca64cfb07cfc7a560f8a18218a7a3086a608",
+    "source_fingerprint": "sha256:1ee7e10aeb3e5fc07123150080e0a37d61a096633079aa181bcd02cf3c9d9c4d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2854b96217aa3feff8e5933b9d7c411453f5db2d25f142eec7cc17f7bf9fd36",
+      "spec.md": "7cbfb78b014f1525350f7746dd3c7e69873ff8549e07326c0e90b06c82307967",
       "plan.md": "5b5c656d4c4db85f56e5d4dc5e8b1d977b4d007bf88640588b7a5ef1677d5773",
-      "tasks.md": "ddf17d7c57764bdb850f88a419819828ce02d8e92cce81caf55efae37ca06cdc",
+      "tasks.md": "8c840248a3b115f9fd46e5ac492dcc5add0cea34c4a090f2a1d390d454232e0e",
       "implementation-summary.md": "9f5cfc3d14a896d3a83d4838a730761e9dff1da9727c71883837aaa5a1aa8ff7"
     },
     "last_active_at": null

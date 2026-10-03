@@ -122,13 +122,13 @@ function stubJev(dir, authExit = 0) {
 // A stub `pi` executable inside its own package manifest. The resolver reads the
 // manifest only, but the executable must exist and be runnable for `which` to
 // name it, and the manifest's version is what the census line reports.
-function stubPiPackage(root) {
+function stubPiPackage(root, version = '0.99.2') {
   const bin = path.join(root, 'bin');
   fs.mkdirSync(bin);
   fs.writeFileSync(path.join(bin, 'pi'), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
   fs.writeFileSync(
     path.join(root, 'package.json'),
-    JSON.stringify({ name: '@earendil-works/pi-coding-agent', version: '0.99.1' }),
+    JSON.stringify({ name: '@earendil-works/pi-coding-agent', version }),
   );
   return { bin, packageDir: fs.realpathSync(root) };
 }
@@ -210,7 +210,7 @@ test('census_lines_report_zero_available_without_credentials', async () => {
   const lines = S.censusLines({ pi, jev, llama, baseline });
 
   assert.deepEqual(lines.slice(0, 4), [
-    `pi: path=${packageDir} version=0.99.1`,
+    `pi: path=${packageDir} version=0.99.2`,
     'pi classifier openrouter: known=7 available=0',
     'pi classifier z-ai: known=5 available=0',
     'pi classifier total: known=12 available=0',
@@ -225,7 +225,7 @@ async function runMain(args, options = {}) {
   const lines = [];
   const errors = [];
   const code = await S.main(args, {
-    env: { PATH: options.bin ?? '', JEV_PROVIDER: 'official' },
+    env: { PATH: options.bin ?? '', ...(options.provider === undefined ? {} : { JEV_PROVIDER: options.provider }) },
     runtime: options.runtime,
     baselinePath: options.baselinePath,
     loadCensus: options.loadCensus,
@@ -498,6 +498,7 @@ test('metrics_for_counts_coverage_and_agreement', () => {
 
   assert.equal(metrics.K, 10);
   assert.equal(metrics.M, 9);
+  assert.equal(metrics.A, 8);
   assert.equal(metrics.coverage, 90);
   assert.equal(metrics.agreement, 88.9);
 });
@@ -519,9 +520,34 @@ test('metrics_for_median_over_a_partial_map_row', () => {
   // median is the both-sided row's own 0.25, not a value mixed with a map the
   // CLI never sent.
   assert.equal(metrics.M, 1);
+  assert.equal(metrics.A, 1);
   assert.equal(metrics.coverage, 50);
   assert.equal(metrics.agreement, 100);
   assert.equal(metrics.median_abs_dp, 0.25);
+});
+
+test('margin_gated_escalation_defers_low_margin_rows_to_cli', () => {
+  const row = { prompt: ARM_PROMPT, cluster: ['alpha', 'beta'], keys: ['alpha', 'beta', 'none'], orders: [0] };
+  const plan = new Map([['low-margin', row], ['high-margin', row]]);
+  const piByRow = new Map([
+    ['low-margin', [{ alpha: 0.42, beta: 0.38, none: 0.2 }]],
+    ['high-margin', [{ alpha: 0.8, beta: 0.1, none: 0.1 }]],
+  ]);
+  const cliByRow = new Map([
+    ['low-margin', [{ alpha: 0.3, beta: 0.6, none: 0.1 }]],
+    ['high-margin', [{ alpha: 0.3, beta: 0.6, none: 0.1 }]],
+  ]);
+
+  const arm = S.marginGatedEscalation({ K: 2, plan, piByRow, cliByRow });
+
+  assert.equal(arm.threshold, 0.1);
+  assert.equal(arm.K, 2);
+  assert.equal(arm.M, 2);
+  assert.equal(arm.A, 1);
+  assert.equal(arm.pi_served, 1);
+  assert.equal(arm.cli_deferred, 1);
+  assert.equal(arm.agreement, 50);
+  assert.deepEqual(arm.decisions.map((decision) => decision.selected_backend), ['jev', 'pi']);
 });
 
 // A run's metrics with every bound passing, so each judge test moves one field
@@ -530,6 +556,7 @@ function passingMetrics(overrides = {}) {
   return {
     K: 10,
     M: 10,
+    A: 10,
     coverage: 100,
     agreement: 100,
     median_abs_dp: 0,
@@ -541,11 +568,22 @@ function passingMetrics(overrides = {}) {
 }
 
 test('judge_stops_on_coverage_below_ninety', () => {
-  assert.deepEqual(S.judge(passingMetrics({ coverage: 89.9 })), { outcome: 'stop', reason: 'coverage' });
+  assert.deepEqual(S.judge(passingMetrics({ K: 1000, M: 899, A: 899, coverage: 89.9 })), { outcome: 'stop', reason: 'coverage' });
 });
 
 test('judge_keeps_cli_on_agreement_below_ninety_five', () => {
-  assert.deepEqual(S.judge(passingMetrics({ agreement: 94.9 })), { outcome: 'keep-cli', reason: 'agreement' });
+  assert.deepEqual(S.judge(passingMetrics({ K: 1000, M: 1000, A: 949, agreement: 94.9 })), { outcome: 'keep-cli', reason: 'agreement' });
+});
+
+test('judge_uses_raw_counts_when_rounded_percentages_reach_the_threshold', () => {
+  assert.deepEqual(
+    S.judge(passingMetrics({ K: 2000, M: 1799, A: 1799, coverage: 90, agreement: 100 })),
+    { outcome: 'stop', reason: 'coverage' },
+  );
+  assert.deepEqual(
+    S.judge(passingMetrics({ K: 2000, M: 2000, A: 1899, coverage: 100, agreement: 95 })),
+    { outcome: 'keep-cli', reason: 'agreement' },
+  );
 });
 
 test('judge_keeps_cli_on_latency_over_one_and_a_half', () => {
@@ -553,10 +591,10 @@ test('judge_keeps_cli_on_latency_over_one_and_a_half', () => {
 });
 
 test('judge_adopts_when_every_bound_holds', () => {
-  // Coverage at 90, agreement at 95 and latency at exactly 1.5x all sit on the
-  // rule's inclusive bounds, so each check has to pass at its edge.
+  // Coverage and agreement meet their inclusive count bounds, and latency is
+  // exactly 1.5x, so each check has to pass at its edge.
   assert.deepEqual(
-    S.judge(passingMetrics({ coverage: 90, agreement: 95, p95_ms_pi: 150 })),
+    S.judge(passingMetrics({ K: 100, M: 100, A: 95, coverage: 100, agreement: 95, p95_ms_pi: 150 })),
     { outcome: 'adopt', reason: null },
   );
 });
@@ -567,6 +605,7 @@ test('verdict_line_matches_the_fixed_field_order', () => {
     reason: null,
     K: 111,
     M: 110,
+    A: 107,
     coverage: 99.1,
     agreement: 97.3,
     median_abs_dp: 0.0123,
@@ -577,11 +616,11 @@ test('verdict_line_matches_the_fixed_field_order', () => {
 
   assert.equal(
     S.verdictLine(verdict),
-    'verdict pi-transport: adopt K=111 M=110 coverage=99.1 agreement=97.3 median_abs_dp=0.0123 p95_ms=412/388 cost_per_100=none',
+    'verdict pi-transport: adopt K=111 M=110 A=107 coverage=99.1 agreement=97.3 median_abs_dp=0.0123 p95_ms=412/388 cost_per_100=none',
   );
   assert.equal(
     S.verdictLine({ ...verdict, outcome: 'stop', reason: 'coverage' }),
-    'verdict pi-transport: stop (coverage) K=111 M=110 coverage=99.1 agreement=97.3 median_abs_dp=0.0123 p95_ms=412/388 cost_per_100=none',
+    'verdict pi-transport: stop (coverage) K=111 M=110 A=107 coverage=99.1 agreement=97.3 median_abs_dp=0.0123 p95_ms=412/388 cost_per_100=none',
   );
 });
 
@@ -703,6 +742,25 @@ test('run_pi_arm_skips_when_the_model_is_unavailable', async () => {
   assert.equal(fs.existsSync(path.join(outDir, 'calls.jsonl')), false);
 });
 
+test('run_pi_arm_skips_when_the_package_version_is_not_pinned', async () => {
+  const { bin } = stubPiPackage(tempDir('pi'), '0.99.1');
+  const runtime = stubPiRuntime([{ provider: 'openrouter', id: 'typesafe/jev-1.13' }], fullChoiceAnswer);
+  const lines = [];
+  const outDir = tempDir('out');
+  const result = await S.runPiArm({
+    env: { PATH: bin },
+    runtime,
+    plan: singleCallPlan(),
+    outDir,
+    out: (line) => lines.push(line),
+  });
+
+  assert.deepEqual(lines, ['pi arm skipped: version']);
+  assert.equal(result.stopped, 'pi arm skipped: version');
+  assert.equal(runtime.classifications.length, 0);
+  assert.equal(fs.existsSync(path.join(outDir, 'calls.jsonl')), false);
+});
+
 test('run_pi_arm_measures_a_full_map_and_records_it', async () => {
   const root = tempDir('pi');
   const { bin } = stubPiPackage(root);
@@ -738,7 +796,17 @@ test('run_pi_arm_measures_a_full_map_and_records_it', async () => {
   assert.equal(choice.replay, 'recorded');
   assert.equal(choice.model, 'typesafe/jev-1.13');
   assert.equal(choice.provider, 'openrouter');
-  assert.equal(choice.pi_version, '0.99.1');
+  assert.equal(choice.pi_version, '0.99.2');
+  assert.equal(choice.prompt_sha256, createHash('sha256').update(ARM_PROMPT).digest('hex'));
+  assert.deepEqual(choice.usage, {
+    input: 10,
+    output: 2,
+    cacheRead: 0,
+    cacheWrite: 0,
+    totalTokens: 12,
+    cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0.0004 },
+  });
+  assert.match(choice.run_date, /^\d{4}-\d{2}-\d{2}$/);
   assert.deepEqual(Object.keys(choice.probabilities), ['mcp-code-mode', 'sk-code', 'mcp-tooling', 'none']);
   const stateSha12 = createHash('sha256').update(JSON.stringify({ request: ARM_PROMPT })).digest('hex').slice(0, 12);
   assert.equal(choice.state_sha12, stateSha12);
@@ -821,6 +889,7 @@ function armStubJev(dir, version = 'jev 0.6.2') {
         probabilities: { 'mcp-code-mode': 0.94, 'sk-code': 0.03, 'mcp-tooling': 0.02, none: 0.01 },
       },
     },
+    usage: { input: 10, output: 2, totalTokens: 12 },
   });
   fs.writeFileSync(file, [
     '#!/bin/sh',
@@ -917,6 +986,7 @@ test('run_cli_arm_records_one_line_per_call', async () => {
   assert.equal(auth.jev_version, '0.6.2');
   assert.equal(auth.provider, 'official');
   assert.equal(auth.model, 'jev-1.13.0');
+  assert.match(auth.run_date, /^\d{4}-\d{2}-\d{2}$/);
 
   for (const [index, choice] of records.slice(1).entries()) {
     assert.equal(choice.backend, 'jev');
@@ -928,6 +998,10 @@ test('run_cli_arm_records_one_line_per_call', async () => {
     assert.equal(choice.jev_version, '0.6.2');
     assert.equal(choice.provider, 'official');
     assert.equal(choice.model, 'jev-1.13.0');
+    assert.equal(choice.replay, 'fresh');
+    assert.equal(choice.prompt_sha256, createHash('sha256').update(ARM_PROMPT).digest('hex'));
+    assert.deepEqual(choice.usage, { input: 10, output: 2, totalTokens: 12 });
+    assert.equal(choice.run_date, auth.run_date);
     assert.equal(typeof choice.child_wall_ms, 'number');
     assert.equal(choice.advisor_ms, null);
     assert.equal(choice.health_ms, null);
@@ -1021,7 +1095,7 @@ test('main_pi_run_prints_columns_metrics_verdict_and_writes_report', async () =>
   // recorded 302 ms and every bound holds: the fixture adopts.
   assert.match(lines[printed[0]], /^column pi: rows=2 measured=2 p50_ms=\d+ p95_ms=\d+ cost_per_100=0\.0400$/);
   assert.equal(lines[printed[1]], 'column cli: rows=2 measured=2 p50_ms=301 p95_ms=302 calls=6');
-  assert.equal(lines[printed[2]], 'metrics: coverage=100.0 agreement=100.0 median_abs_dp=0.0000');
+  assert.equal(lines[printed[2]], 'metrics: K=2 M=2 A=2 coverage=100.0 agreement=100.0 median_abs_dp=0.0000');
 
   const verdictLine = lines[printed[3]];
   assert.ok(verdictLine.startsWith('verdict pi-transport: adopt'), verdictLine);
@@ -1032,6 +1106,69 @@ test('main_pi_run_prints_columns_metrics_verdict_and_writes_report', async () =>
   assert.equal(report.verdict.line, verdictLine);
   assert.equal(report.metrics.K, 2);
   assert.equal(report.metrics.M, 2);
+  assert.equal(report.metrics.A, 2);
+});
+
+test('main_paired_run_records_fresh_arms_and_margin_escalation', async () => {
+  const { bin } = stubPiPackage(tempDir('pi'));
+  armStubJev(bin);
+  const baselineFile = path.join(tempDir('baseline'), 'calls.jsonl');
+  fs.writeFileSync(baselineFile, baselineText(2));
+  const outDir = tempDir('out');
+  const runtime = censusAndArmRuntime([{ provider: 'openrouter', id: 'typesafe/jev-1.13' }], recordedAnswer);
+  const { code, lines, errors } = await runMain(['--pi', '--cli', '--out', outDir], {
+    bin,
+    runtime,
+    baselinePath: baselineFile,
+    loadCensus: async () => replayCensus(2),
+  });
+
+  assert.equal(code, 0);
+  assert.deepEqual(errors, []);
+  assert.ok(lines.some((line) => line === 'escalation: threshold=0.10 pi_served=2 cli_deferred=0 A=2/2 agreement=100.0'));
+  const verdictLine = lines.find((line) => line.startsWith('verdict '));
+  assert.match(verdictLine, /^verdict pi-transport: (adopt|keep-cli) K=2 M=2 A=2 /);
+
+  const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
+  assert.equal(report.replay, 'fresh');
+  assert.equal(report.metrics.K, 2);
+  assert.equal(report.metrics.M, 2);
+  assert.equal(report.metrics.A, 2);
+  assert.equal(report.escalation.A, 2);
+  assert.equal(report.escalation.pi_served, 2);
+
+  const records = readCallRecords(outDir);
+  const calls = records.filter((record) => record.kind === 'choice');
+  const piCalls = calls.filter((record) => record.backend === 'pi');
+  const cliCalls = calls.filter((record) => record.backend === 'jev');
+  const gateRecords = records.filter((record) => record.kind === 'margin_gate');
+  const runDate = report.run_date;
+  const promptDigest = createHash('sha256').update(ARM_PROMPT).digest('hex');
+
+  assert.equal(piCalls.length, 6);
+  assert.equal(cliCalls.length, 6);
+  assert.equal(gateRecords.length, 2);
+  assert.ok(calls.every((record) => record.replay === 'fresh'));
+  assert.ok(calls.every((record) => record.run_date === runDate));
+  assert.ok(calls.every((record) => record.prompt_sha256 === promptDigest));
+  assert.ok(piCalls.every((record) => record.usage?.cost?.total === 0.0004));
+  assert.ok(cliCalls.every((record) => record.usage?.totalTokens === 12));
+  assert.ok(cliCalls.every((record) => record.provider === 'openrouter'));
+  assert.ok(gateRecords.every((record) => record.run_date === runDate));
+});
+
+test('main_paired_run_rejects_an_explicit_provider_mismatch', async () => {
+  const { bin } = stubPiPackage(tempDir('pi'));
+  stubJev(bin);
+  const { code, lines, errors } = await runMain(['--pi', '--cli', '--out', tempDir('out')], {
+    bin,
+    provider: 'official',
+  });
+
+  assert.equal(code, 2);
+  assert.deepEqual(lines, []);
+  assert.deepEqual(errors, ['paired run requires JEV_PROVIDER=openrouter to compare the same provider']);
+  assert.equal(fs.existsSync(path.join(bin, 'invocations.log')), false);
 });
 
 test('main_excluded_rows_count_against_coverage', async () => {
@@ -1057,5 +1194,5 @@ test('main_excluded_rows_count_against_coverage', async () => {
 
   const verdictLine = lines.find((line) => line.startsWith('verdict '));
   assert.ok(verdictLine !== undefined, lines.join('\n'));
-  assert.match(verdictLine, /^verdict pi-transport: stop \(coverage\) K=10 M=2 coverage=20\.0 /);
+  assert.match(verdictLine, /^verdict pi-transport: stop \(coverage\) K=10 M=2 A=2 coverage=20\.0 /);
 });
