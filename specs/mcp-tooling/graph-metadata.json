@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "mcp-tooling/019-official-obsidian-cli",
-    "mcp-tooling/020-obsidian-plugin-reduction"
+    "mcp-tooling/020-obsidian-plugin-reduction",
+    "mcp-tooling/021-code-mode-fresh-clone-build"
   ],
   "manual": {
     "depends_on": [],

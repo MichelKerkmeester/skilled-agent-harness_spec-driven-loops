@@ -1,0 +1,23 @@
+{
+  "specFolder": "mcp-tooling/021-code-mode-fresh-clone-build",
+  "description": "Make Code Mode buildable from a fresh clone and validate its UTCP config",
+  "keywords": [
+    "code",
+    "mode",
+    "buildable",
+    "fresh",
+    "clone",
+    "validate",
+    "utcp",
+    "config"
+  ],
+  "lastUpdated": "2026-10-03T05:27:35.399Z",
+  "specId": "021",
+  "folderSlug": "code-mode-fresh-clone-build",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
