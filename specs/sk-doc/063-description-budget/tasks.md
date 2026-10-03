@@ -72,7 +72,7 @@ contextType: "general"
 - [x] T022 Final audit: `python3 .skilled/commands/doctor/scripts/audit_descriptions.py --repo-root "$PWD"` reports zero OVER-SOFT, zero HARD-FAIL and a project total at or under 5,600, or the measured total with the items at their floor and the residual recorded Evidence: zero OVER-SOFT, zero HARD-FAIL, total 6330, residual 730 over 5,600, recorded in implementation-summary.md.
 - [x] T023 Per-file validation: `python3 .skilled/skills/sk-doc/scripts/quick_validate.py .skilled/skills/<name>` for every trimmed skill with no description warning, and `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file> --type agent` or `--type command` for every trimmed agent and command file Evidence: quick_validate exit 0 for six skills, validate_document VALID for both agent files; no command file was trimmed.
 - [x] T024 Routing check: every representative prompt returns the same top skill as its baseline, or the difference is recorded with both runs and the trimmed description restored Evidence: same top skill for all 8 prompts (`scratch/routing-diff.md`).
-- [B] T025 Provenance check: `node .skilled/bin/compiled-route-guard.cjs` exits 0 with every hub fresh or excused, every mirror `--check` exits 0, and `command-catalog-mirror-check.cjs` reports `STATUS=OK` BLOCKED until commit: mirrors exit 0 and catalog STATUS=OK, but `compiled-route-guard.cjs` exits 1 with five hubs stale-manifest because their SKILL.md changed; the pre-commit hook re-mints and stages those manifests (`.skilled/scripts/git-hooks/pre-commit`, compiled-routing auto re-mint).
+- [x] T025 Provenance check: after commit `4ffc4097b7` the pre-commit hook re-minted and staged the manifests for cli-classifier, cli-external-orchestration, sk-code, sk-design and sk-doc; `compiled-route-guard.cjs` now reports all five fresh. Every mirror `--check` exits 0 and `command-catalog-mirror-check.cjs` reports `STATUS=OK`. The guard's only remaining stale hub is mcp-tooling, which this packet never touched (its last change is commit `195bf01663`).
 - [x] T026 Packet validation: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/063-description-budget --strict` prints `RESULT: PASSED` Evidence: see implementation-summary.md Verification.
 - [x] T027 Fill `implementation-summary.md` with the measured totals, the routing table, the files changed, the decisions, and the Known Limitations entry carrying the per-item-targets arithmetic when the ceiling was not reached (`implementation-summary.md`) Evidence: implementation-summary.md filled.
 <!-- /ANCHOR:phase-3 -->
@@ -83,7 +83,7 @@ contextType: "general"
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining (one remains: T025, clears at commit)
+- [x] No `[B]` blocked tasks remaining (T025 cleared at commit)
 - [ ] Manual verification passed
 <!-- /ANCHOR:completion -->
 
