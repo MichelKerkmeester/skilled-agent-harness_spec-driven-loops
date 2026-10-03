@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-10-03 |
 | **Branch** | `worktrees/079-doctor-command-audit` |
 | **Parent Spec** | None (top-level packet) |
@@ -129,6 +129,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 3 | 003-doctor-gates-and-drift/ | Restore the doctor gates' coverage, fix the failing fixtures, and align the doctor's own text and counts | Complete |
 | 4 | 004-doctor-scripts-conformance/ | Bring every doctor script to the sk-code OpenCode standards, remove dead code and put each script under an automated test that CI runs | Complete |
 | 5 | 005-doctor-update-research/ | Six iterations of deep research into whether `/doctor:update` and the release-update engine are complete and correct, ending in a ranked fix list | Complete |
+| 6 | 006-doctor-update-fixes/ | Fix every finding and recommendation of the doctor-update research, reviewed first by a fresh Opus 5.5 and implemented by Sonnet 5.5 | In Progress |
 
 ### Phase Transition Rules
 
@@ -145,6 +146,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 002-release-update-customization-signals | 003-doctor-gates-and-drift | Phase 002's acceptance criteria are Met, Waived or Superseded, and the engine suite passes | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/049-doctor-audit-followups/002-release-update-customization-signals --strict` prints `RESULT: PASSED`, and `node --test .skilled/commands/doctor/scripts/tests/release-update.test.cjs` reports `fail 0` |
 | 003-doctor-gates-and-drift | 004-doctor-scripts-conformance | Phase 003's acceptance criteria are Met and the doctor gates exit 0 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift --strict` prints `RESULT: PASSED` |
 | 004-doctor-scripts-conformance | 005-doctor-update-research | Phase 004's acceptance criteria are Met and its commit is on the branch | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance --strict` prints `RESULT: PASSED` |
+| 005-doctor-update-research | 006-doctor-update-fixes | `research/research.md` ranks every finding with a fix and a proving test, and phase 005 validates strict | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research --strict` prints `RESULT: PASSED` |
 <!-- /ANCHOR:phase-map -->
 
 ---
