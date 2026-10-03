@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,12 +47,16 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
       ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
-      ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
+      ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-cli.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-pool.vitest.ts"
     ],
     "entities": [
       {
@@ -92,27 +96,15 @@
         "source": "derived"
       },
       {
-        "name": "fanout-merge.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "prompt-pack-iteration.md.tmpl",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
         "source": "derived"
       },
       {
-        "name": "prompt-pack.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.contract.md",
-        "kind": "doc",
-        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+        "name": "append-mode-event.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs",
         "source": "derived"
       },
       {
@@ -122,19 +114,49 @@
         "source": "derived"
       },
       {
+        "name": "cli-guards.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-merge.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "append-mode-event-cli.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-cli.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "fanout-run.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "fanout-pool.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-pool.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -164,6 +186,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -174,35 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Widen",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Other",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 048 hit four more fan-out faults",
     "created_at": "2026-10-03T05:30:11Z",
-    "last_save_at": "2026-10-03T12:44:57.936Z",
+    "last_save_at": "2026-10-03T16:14:18.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:519dbf0c06f7fcbdc7195eb956bb9dad906588cc7603cc79bf8d2f49c9ce8cfb",
+    "source_fingerprint": "sha256:632747e46f281347c637f3b33dc1f903faa5a741bb381fe0b650424ab749362c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "381bc954c871d25ef3ced17253e38d0473d757461e03941b47853d3468b6a194",
+      "spec.md": "b37ceea763356e0d9a6ec444165ab5da29164286f82289570f48aa804a782418",
       "plan.md": "7a84a4e7476c63cd61933b3aad23751c50b39bf920767b4733fb384da3badf0d",
-      "tasks.md": "5f76361d0765ce49546152bffb400c6798ca35986d0c1cceadae13639a95758d",
-      "implementation-summary.md": "dc4a9f9dd9f85b38c3870e2cb550d603a43cf0df2722051fb0b97ce5b09ecd42"
+      "tasks.md": "976c94d521a70566e48796b1a14ed84b930bd196ce6f08a8500b5e0cf9857b6b",
+      "implementation-summary.md": "584fa0899da203c6b1cc321b545319668948983e62291a87b0321f3a3e2867dd"
     },
     "last_active_at": null
   }

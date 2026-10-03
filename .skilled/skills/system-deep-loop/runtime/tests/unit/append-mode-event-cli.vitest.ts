@@ -161,6 +161,7 @@ describe('append-mode-event CLI subprocess execution', () => {
     expect(result.json.ok).toBe(true);
     expect(result.json.projectionRefreshed).toBe(true);
     expect(result.json.projectionError).toBeNull();
+    expect(existsSync(join(runDir, 'gateway-refusals.jsonl'))).toBe(false);
 
     const receipt = result.json.receipt as Record<string, unknown>;
     expect(receipt).toBeDefined();
@@ -192,6 +193,40 @@ describe('append-mode-event CLI subprocess execution', () => {
     expect(projectedRow.topic).toBe('run-cli-001');
     expect(projectedRow.maxIterations).toBe(10);
     expect(projectedRow.generation).toBe(1);
+  });
+
+  it('records one gateway refusal when the projection refresh fails', () => {
+    const runDir = createTempDir('projection-failure');
+    const eventJsonPath = join(runDir, 'event.json');
+    writeFileSync(eventJsonPath, JSON.stringify(sampleRunInitializedEvent()), 'utf8');
+    mkdirSync(join(runDir, 'research', 'deep-research-state.jsonl'), { recursive: true });
+
+    const result = runCli([
+      '--mode',
+      'deep-research',
+      '--run-directory',
+      runDir,
+      '--event-json',
+      eventJsonPath,
+    ]);
+
+    expect(result.exitCode).toBe(2);
+    expect(result.json).toMatchObject({ ok: false, phase: 'projection', code: 'PROJECTION_FAILED' });
+    expect(typeof result.json.reason).toBe('string');
+
+    const refusalPath = join(runDir, 'gateway-refusals.jsonl');
+    expect(existsSync(refusalPath)).toBe(true);
+    const refusalLines = readFileSync(refusalPath, 'utf8').trim().split(/\r?\n/);
+    expect(refusalLines).toHaveLength(1);
+    const refusal = JSON.parse(refusalLines[0]) as Record<string, unknown>;
+    expect(Number.isNaN(Date.parse(String(refusal.at)))).toBe(false);
+    expect(refusal).toMatchObject({
+      mode: 'deep-research',
+      phase: 'projection',
+      code: 'PROJECTION_FAILED',
+      reason: result.json.reason,
+      stem: 'deep_research.run_initialized',
+    });
   });
 
   it('supports sequential appends across multiple CLI invocations', async () => {

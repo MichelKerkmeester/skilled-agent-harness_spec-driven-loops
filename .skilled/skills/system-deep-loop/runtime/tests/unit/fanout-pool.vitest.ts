@@ -39,7 +39,8 @@ const {
       output?: unknown;
       error?: {
         message: string;
-        failure_class?: 'timeout' | 'exit' | 'salvage_miss';
+        code?: string;
+        failure_class?: 'timeout' | 'exit' | 'salvage_miss' | 'artifact_miss' | 'projection_refusal';
         retry_verdict?: 'transient' | 'fatal';
         retryable?: boolean;
         aborted?: boolean;
@@ -56,13 +57,13 @@ const {
       all_failed: boolean;
       completed_with_containment_advisory: number;
       gauges: { lag: number; pending: number; failed: number };
-      failure_classes: { timeout: number; exit: number; salvage_miss: number };
+      failure_classes: { timeout: number; exit: number; salvage_miss: number; artifact_miss: number; projection_refusal: number };
     };
   }>;
   buildPoolSummary: (results: Array<Record<string, unknown>>) => {
     summary: {
       completed_with_containment_advisory: number;
-      failure_classes: { timeout: number; exit: number; salvage_miss: number };
+      failure_classes: { timeout: number; exit: number; salvage_miss: number; artifact_miss: number; projection_refusal: number };
     };
   };
   createWavePlannerInterface: () => {
@@ -210,7 +211,7 @@ describe('runCappedPool', () => {
       all_failed: false,
       completed_with_containment_advisory: 0,
       gauges: { lag: 0, pending: 0, failed: 0 },
-      failure_classes: { timeout: 0, exit: 0, salvage_miss: 0 },
+      failure_classes: { timeout: 0, exit: 0, salvage_miss: 0, artifact_miss: 0, projection_refusal: 0 },
     });
   });
 
@@ -674,7 +675,63 @@ describe('runCappedPool', () => {
     });
 
     expect(result.results.map((entry) => entry.error?.failure_class)).toEqual(['timeout', 'exit', 'salvage_miss']);
-    expect(result.summary.failure_classes).toEqual({ timeout: 1, exit: 1, salvage_miss: 1 });
+    expect(result.summary.failure_classes).toEqual({
+      timeout: 1,
+      exit: 1,
+      salvage_miss: 1,
+      artifact_miss: 0,
+      projection_refusal: 0,
+    });
+  });
+
+  it('does not retry gateway projection refusals and still retries plain salvage misses', async () => {
+    let projectionAttempts = 0;
+    let salvageAttempts = 0;
+    const result = await runCappedPool({
+      items: [{ label: 'projection-refusal' }, { label: 'salvage-miss' }],
+      concurrency: 1,
+      maxRetries: 1,
+      worker: async (item: { label: string }) => {
+        if (item.label === 'projection-refusal') {
+          projectionAttempts += 1;
+          const error = Object.assign(new Error('Projection refused'), {
+            projectionRefused: true,
+            code: 'ATTRIBUTION_COLLAPSE',
+            reason: 'projection refresh failed',
+          });
+          throw error;
+        }
+
+        salvageAttempts += 1;
+        if (salvageAttempts === 1) {
+          const error = new Error('Salvage miss') as Error & { salvage?: { salvaged: number; failed: number } };
+          error.salvage = { salvaged: 0, failed: 1 };
+          throw error;
+        }
+        return { ok: true };
+      },
+    });
+
+    expect(projectionAttempts).toBe(1);
+    expect(salvageAttempts).toBe(2);
+    expect(result.results[0]).toMatchObject({
+      status: 'rejected',
+      error: {
+        failure_class: 'projection_refusal',
+        retry_verdict: 'fatal',
+        retryable: false,
+        code: 'ATTRIBUTION_COLLAPSE',
+        reason: 'projection refresh failed',
+      },
+    });
+    expect(result.results[1]).toMatchObject({ status: 'fulfilled', retry_attempts: 1 });
+    expect(result.summary.failure_classes).toEqual({
+      timeout: 0,
+      exit: 0,
+      salvage_miss: 0,
+      artifact_miss: 0,
+      projection_refusal: 1,
+    });
   });
 
   it('retries a transient lineage alone and flips it to succeeded when the retry passes', async () => {
@@ -868,7 +925,27 @@ describe('status ledger helpers', () => {
       { label: 'legacy', status: 'rejected', error: { message: 'old shape' } },
     ]);
 
-    expect(envelope.summary.failure_classes).toEqual({ timeout: 0, exit: 1, salvage_miss: 0 });
+    expect(envelope.summary.failure_classes).toEqual({
+      timeout: 0,
+      exit: 1,
+      salvage_miss: 0,
+      artifact_miss: 0,
+      projection_refusal: 0,
+    });
+  });
+
+  it('counts artifact misses in the failure-class rollup', () => {
+    const envelope = buildPoolSummary([
+      { label: 'partial', status: 'rejected', error: { message: 'incomplete salvage', failure_class: 'artifact_miss' } },
+    ]);
+
+    expect(envelope.summary.failure_classes).toEqual({
+      timeout: 0,
+      exit: 0,
+      salvage_miss: 0,
+      artifact_miss: 1,
+      projection_refusal: 0,
+    });
   });
 
   it('appends JSONL entries to the status ledger', () => {

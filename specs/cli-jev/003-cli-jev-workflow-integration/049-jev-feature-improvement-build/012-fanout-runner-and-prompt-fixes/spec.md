@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/012-fanout-runner-and-prompt-fixes` |
 | **Parent Spec** | ../spec.md |
@@ -89,6 +89,9 @@ A fan-out run merges every finding a lineage writes, fails fast on a refusal tha
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Modify | Read `claim` and `summary`, warn on unreadable finding rows |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts` | Modify | Cases for the new fields and the warning |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Projection refusal is non-retryable, absolute lineage directory |
+| `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` | Modify | Write a refusal record into the run directory when a projection refresh fails |
+| `.skilled/skills/system-deep-loop/runtime/scripts/lib/cli-guards.cjs` and `fanout-pool.cjs` | Modify | A fatal `projection_refusal` failure class and its rollup |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/append-mode-event-cli.vitest.ts` and `fanout-pool.vitest.ts` | Modify | The refusal record and the projection-refusal class and rollup |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | Cases for the refusal classification and the absolute lineage directory |
 | `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` | Modify | Field name, contradiction handling, verbatim lineage-path rule |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts` | Modify | Render assertions for the three iteration-prompt instructions |
@@ -109,7 +112,7 @@ A fan-out run merges every finding a lineage writes, fails fast on a refusal tha
 
 | ID | Requirement | Acceptance Criteria |
 | ---- | ------------- | --------------------- |
-| REQ-002 | A lineage stopped by a gateway projection refusal is not retried. | A test feeds the refusal and asserts one attempt and a non-retryable class. |
+| REQ-002 | A lineage stopped by a gateway projection refusal is not retried. | The gateway writes a refusal record in the lineage's run directory, and a test runs a lineage that leaves one and asserts one attempt and a non-retryable class. |
 | REQ-003 | The prompt pack states the `label` field, the contradiction rule and the verbatim lineage-path rule. | A render test asserts all three instructions in the rendered prompt. |
 | REQ-004 | The runner resolves the lineage directory to an absolute path before it builds the lineage prompt. | A test builds a lineage prompt from a relative base directory and asserts the absolute lineage path. |
 <!-- /ANCHOR:requirements -->

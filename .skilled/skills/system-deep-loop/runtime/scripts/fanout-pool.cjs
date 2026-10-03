@@ -121,6 +121,8 @@ function buildFailureClassRollup(results) {
     timeout: 0,
     exit: 0,
     salvage_miss: 0,
+    artifact_miss: 0,
+    projection_refusal: 0,
   };
   for (const result of results) {
     if (!result || result.status !== 'rejected') {
@@ -138,6 +140,9 @@ function buildFailureClassRollup(results) {
 
 function normalizeError(error) {
   const classification = classifyLineageFailure(error);
+  const code = error && typeof error === 'object' && typeof error.code === 'string'
+    ? error.code
+    : undefined;
   const reason = error && typeof error === 'object' && typeof error.reason === 'string'
     ? error.reason
     : undefined;
@@ -145,6 +150,7 @@ function normalizeError(error) {
     name: error && error.name ? String(error.name) : 'Error',
     message: error && error.message ? String(error.message) : String(error),
     ...classification,
+    ...(code !== undefined ? { code } : {}),
     ...(reason ? { reason } : {}),
   };
 }
