@@ -25,8 +25,19 @@ Outputs:
 - JSON envelope (`--json`) for CI/pre-commit consumption
 - Non-zero exit when project total exceeds `--fail-over=N`
 
-Constants come from the same source-of-truth as quick_validate.py:
-130/110 soft, 1536 hard, 6400 project ceiling.
+Budget constants (soft targets, hard cap, project ceiling) come from
+.skilled/skills/sk-doc/shared/assets/skill-contract.json `descriptionBudget`.
+When that file is missing the audit falls back to 130/110 soft, 1536 hard and a
+6400 project ceiling.
+
+Usage:
+    python3 audit_descriptions.py [--repo-root DIR] [--json] [--top-n N]
+                                  [--fail-over N] [--project-ceiling N]
+
+Exit codes:
+    0 - Every item is under the hard cap and no requested --fail-over is exceeded
+    1 - An item exceeds the hard cap, or the total exceeds --fail-over
+    2 - Zero items found, bad arguments, or a malformed skill-contract.json
 
 Reference: .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md
            § "Description Budget & Trim Style"
@@ -43,32 +54,63 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-# Reuse quick_validate.py constants (single source of truth in python).
+# ───────────────────────────────────────────────────────────────
+# 1. CONFIGURATION
+# ───────────────────────────────────────────────────────────────
+
 SCRIPT_DIR = Path(__file__).resolve().parent
-QUICK_VALIDATE_DIR = SCRIPT_DIR.parent.parent.parent / "skills" / "sk-doc" / "scripts"
-sys.path.insert(0, str(QUICK_VALIDATE_DIR))
+SKILL_CONTRACT_PATH = (
+    SCRIPT_DIR.parent.parent.parent / "skills" / "sk-doc" / "shared" / "assets" / "skill-contract.json"
+)
+
+# Used only when skill-contract.json is absent, so the audit still runs on a
+# partial checkout. A present but malformed contract is an error, not a fallback.
+FALLBACK_DESCRIPTION_BUDGET: Dict[str, int] = {
+    "soft_skill": 130,
+    "soft_command": 110,
+    "hard_cap": 1536,
+    "project_ceiling": 6400,
+}
+
+
+def load_description_budget(contract_path: Path) -> Dict[str, int]:
+    """
+    Read the description budget from the skill contract.
+
+    Args:
+        contract_path: Path to skill-contract.json
+
+    Returns:
+        Dict with soft_skill, soft_command, hard_cap and project_ceiling; the
+        documented fallback when the file does not exist
+
+    Raises:
+        ValueError: If the file exists but lacks a usable descriptionBudget
+    """
+    if not contract_path.is_file():
+        return dict(FALLBACK_DESCRIPTION_BUDGET)
+    try:
+        budget = json.loads(contract_path.read_text(encoding="utf-8"))["descriptionBudget"]
+        return {
+            "soft_skill": int(budget["skill"]["softMax"]),
+            "soft_command": int(budget["command"]["softMax"]),
+            "hard_cap": int(budget["hardCap"]),
+            "project_ceiling": int(budget["projectCeiling"]),
+        }
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        raise ValueError(f"{contract_path} has no usable descriptionBudget: {exc}") from exc
+
 
 try:
-    from quick_validate import (  # type: ignore
-        DESCRIPTION_HARD_CAP,
-        DESCRIPTION_SOFT_TARGET_COMMAND,
-        DESCRIPTION_SOFT_TARGET_SKILL,
-        strip_matching_quotes,
-    )
-except ImportError:
-    # Defensive fallback so the audit still runs if quick_validate.py is missing.
-    DESCRIPTION_HARD_CAP = 1536
-    DESCRIPTION_SOFT_TARGET_SKILL = 130
-    DESCRIPTION_SOFT_TARGET_COMMAND = 110
+    _BUDGET = load_description_budget(SKILL_CONTRACT_PATH)
+except ValueError as _contract_error:
+    print(f"ERROR: {_contract_error}", file=sys.stderr)
+    sys.exit(2)
 
-    def strip_matching_quotes(value: str) -> str:
-        value = value.strip()
-        if len(value) >= 2 and value[0] == value[-1] and value[0] in ('"', "'"):
-            return value[1:-1]
-        return value
-
-
-PROJECT_SOFT_CEILING_DEFAULT = 6400
+DESCRIPTION_SOFT_TARGET_SKILL = _BUDGET["soft_skill"]
+DESCRIPTION_SOFT_TARGET_COMMAND = _BUDGET["soft_command"]
+DESCRIPTION_HARD_CAP = _BUDGET["hard_cap"]
+PROJECT_SOFT_CEILING_DEFAULT = _BUDGET["project_ceiling"]
 
 
 # The runtime can override the 8,000 default through SLASH_COMMAND_TOOL_CHAR_BUDGET.
@@ -85,8 +127,16 @@ CLAUDE_CODE_BUDGET_DEFAULT = _claude_code_budget_default()
 
 
 # ───────────────────────────────────────────────────────────────
-# 1. PARSING
+# 2. PARSING
 # ───────────────────────────────────────────────────────────────
+
+
+def strip_matching_quotes(value: str) -> str:
+    """Strip one matching pair of wrapping single or double quotes."""
+    value = value.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in ('"', "'"):
+        return value[1:-1]
+    return value
 
 
 def parse_yaml_frontmatter_description(text: str) -> Optional[str]:
@@ -109,38 +159,15 @@ def parse_yaml_frontmatter_description(text: str) -> Optional[str]:
     return strip_matching_quotes(desc_match.group(1))
 
 
-def parse_toml_description(text: str) -> Optional[str]:
-    """Extract `description = "..."` from a top-level TOML file.
-
-    Uses tomllib when available (Python 3.11+); falls back to a regex match
-    for older Pythons. The regex is deliberately conservative: top-level only,
-    string literal only.
-    """
-    try:
-        import tomllib  # type: ignore
-        try:
-            data = tomllib.loads(text)
-            value = data.get("description")
-            if isinstance(value, str):
-                return value
-        except tomllib.TOMLDecodeError:
-            pass
-    except ImportError:
-        pass
-    # Regex fallback. Anchors to a top-level (non-indented) `description = "..."`.
-    match = re.search(r'^description\s*=\s*"([^"\n]*)"', text, flags=re.MULTILINE)
-    if match:
-        return match.group(1)
-    return None
-
-
 # ───────────────────────────────────────────────────────────────
-# 2. SURFACE WALKING
+# 3. SURFACE WALKING
 # ───────────────────────────────────────────────────────────────
 
 
 @dataclass
 class Item:
+    """One audited description and where it lives."""
+
     name: str
     surface: str  # 'skill' | 'command' | 'agent'
     path: str
@@ -150,6 +177,7 @@ class Item:
 
     @property
     def soft_target(self) -> int:
+        """Soft length target for this item's surface."""
         return (
             DESCRIPTION_SOFT_TARGET_COMMAND
             if self.surface == "command"
@@ -158,6 +186,7 @@ class Item:
 
     @property
     def status(self) -> str:
+        """HARD-FAIL over the hard cap, OVER-SOFT over the soft target, else OK."""
         if self.length > DESCRIPTION_HARD_CAP:
             return "HARD-FAIL"
         if self.length > self.soft_target:
@@ -166,6 +195,7 @@ class Item:
 
 
 def walk_skills(repo: Path) -> List[Item]:
+    """Collect one item per .skilled/skills/<name>/SKILL.md with a description."""
     items: List[Item] = []
     base = repo / ".skilled" / "skills"
     if not base.is_dir():
@@ -194,6 +224,7 @@ def walk_skills(repo: Path) -> List[Item]:
 
 
 def walk_commands(repo: Path) -> List[Item]:
+    """Collect one item per command markdown file, skipping assets and scripts."""
     items: List[Item] = []
     base = repo / ".skilled" / "commands"
     if not base.is_dir():
@@ -230,24 +261,19 @@ def walk_commands(repo: Path) -> List[Item]:
 def walk_agents(repo: Path) -> List[Item]:
     """Walk repo-managed runtime agent surfaces, dedupe by name, annotate mirrors."""
     surfaces = [
-        (repo / ".skilled" / "agents", "yaml"),
-        (repo / ".claude" / "agents", "yaml"),
+        repo / ".skilled" / "agents",
+        repo / ".claude" / "agents",
     ]
     by_name: Dict[str, Item] = {}
-    for base, fmt in surfaces:
+    for base in surfaces:
         if not base.is_dir():
             continue
-        pattern = "*.md" if fmt == "yaml" else "*.toml"
-        for path in sorted(base.glob(pattern)):
+        for path in sorted(base.glob("*.md")):
             try:
                 text = path.read_text(encoding="utf-8")
             except OSError:
                 continue
-            desc = (
-                parse_yaml_frontmatter_description(text)
-                if fmt == "yaml"
-                else parse_toml_description(text)
-            )
+            desc = parse_yaml_frontmatter_description(text)
             if desc is None:
                 continue
             name = path.stem
@@ -268,15 +294,17 @@ def walk_agents(repo: Path) -> List[Item]:
 
 
 # ───────────────────────────────────────────────────────────────
-# 3. REPORTING
+# 4. REPORTING
 # ───────────────────────────────────────────────────────────────
 
 
 def project_total(items: List[Item]) -> int:
+    """Sum of all audited description lengths."""
     return sum(item.length for item in items)
 
 
 def render_table(items: List[Item], top_n: int = 10) -> str:
+    """Render the top_n longest descriptions as a fixed-width table."""
     sorted_items = sorted(items, key=lambda i: -i.length)
     lines: List[str] = []
     lines.append(f"{'STATUS':<10} {'CHARS':>5}  {'SURFACE':<8}  NAME")
@@ -299,6 +327,7 @@ def render_human(
     fail_over: Optional[int],
     top_n: int,
 ) -> str:
+    """Render the full human-readable report."""
     total = project_total(items)
     lines: List[str] = []
     lines.append("=" * 70)
@@ -324,7 +353,7 @@ def render_human(
     over_soft = [i for i in items if i.status == "OVER-SOFT"]
     hard_fail = [i for i in items if i.status == "HARD-FAIL"]
     if hard_fail:
-        lines.append("HARD-FAIL items (over Claude Code 1536-char per-item cap):")
+        lines.append(f"HARD-FAIL items (over Claude Code {DESCRIPTION_HARD_CAP}-char per-item cap):")
         for i in hard_fail:
             lines.append(f"  - {i.surface} {i.name} ({i.length} chars)")
         lines.append("")
@@ -351,6 +380,7 @@ def render_json(
     project_ceiling: int,
     fail_over: Optional[int],
 ) -> Dict[str, Any]:
+    """Build the JSON envelope consumed by CI and the skill-budget workflow."""
     total = project_total(items)
     return {
         "totalChars": total,
@@ -389,11 +419,23 @@ def render_json(
 
 
 # ───────────────────────────────────────────────────────────────
-# 4. MAIN
+# 5. MAIN
 # ───────────────────────────────────────────────────────────────
 
 
+def positive_int(raw: str) -> int:
+    """Argparse type for a whole number of at least 1."""
+    try:
+        value = int(raw)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(f"expected a whole number, got {raw!r}") from exc
+    if value < 1:
+        raise argparse.ArgumentTypeError(f"must be at least 1, got {value}")
+    return value
+
+
 def main() -> None:
+    """Parse arguments, audit the repository and exit with the documented code."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--repo-root",
@@ -408,7 +450,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--top-n",
-        type=int,
+        type=positive_int,
         default=10,
         help="How many bloated items to surface in the human report (default 10)",
     )

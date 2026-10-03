@@ -36,6 +36,7 @@ Reject an unknown action or any flag that is invalid for the selected action bef
 - `check` accepts `--json`, `--release=<tag>`, `--scope=all|<unit,...>`, `--offline` and `--include-prerelease`.
 - `align` accepts `--release=<tag>`, `--scope=all|<unit,...>`, `--offline`, `--dry-run` and `--include-prerelease`.
 - `apply` accepts `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit,...>` and `--include-prerelease`.
+- A `--scope` unit is a plain name or a `<kind>:<name>` key such as `skill:hub-a` or `directory:hooks`; a name that two kinds share needs the key form, and the engine rejects it otherwise.
 - Reject cross-action and unknown flags before loading a workflow YAML. Do not infer confirmation suffixes or modes.
 - Follow the selected workflow's state-log schema and terminal-status rules. If an owned asset is missing, stop and report its path.
 - The YAML owns workflow behavior. The presentation asset owns visible wording and layout.
@@ -60,7 +61,7 @@ All visible text and layouts live only in `.skilled/commands/doctor/assets/docto
 
 ## 6. WORKFLOW SUMMARY
 
-`check` reports release position and per-unit status without changing checkout files. `align` gathers explicit decisions into an ignored run directory and never writes outside it. `apply` previews the plan, requests one approval before its first write, applies selected decisions and verifies the resulting checkout; with no alignment run it writes only update and new units. The three workflows share the release-update engine while retaining action-specific input and mutation boundaries.
+`check` reports release position and per-unit status without changing checkout files. `align` gathers explicit decisions into an ignored run directory and never writes outside it. `apply` previews the plan, requests one approval before its first write, applies selected decisions and verifies the resulting checkout; with no unapplied alignment run at the current HEAD it writes only update and new units. The three workflows share the release-update engine while retaining action-specific input and mutation boundaries.
 
 Release policy: latest-upstream resolution takes stable tags only unless `--include-prerelease` is passed, and both orders compare version segments as numbers. Generated files (leaf manifests, the trigger index and its sidecars, and graph-metadata `derived` blocks) never count as customizations; apply names their generators instead of writing them.
 

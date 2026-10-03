@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ parent-skill-check-leaf-manifest.test — coverage for the 10a-10d guards  ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Parent Skill Check Leaf Manifest Test
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 /**
@@ -10,10 +10,9 @@
  * and each guard code fails closed on its own class of drift without hiding
  * behind a single catch-all message.
  *
- * The checker resolves the leaf-resource contract library from the canonical
- * sibling sk-doc hub, never the process repo root, so every fixture carries an
- * isolated copy of the real library/generator at that topology. Fixtures live
- * under the OS temp directory and never write the real sk-doc hub.
+ * The checker resolves the leaf-resource contract library and generator from
+ * the repository root, so a fixture hub in the OS temp directory is audited
+ * against the same code as a live hub. Fixtures never write the real tree.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -33,13 +32,15 @@ const { spawnSync } = require('node:child_process');
 const CHECKER_PATH = path.join(__dirname, '..', 'parent-skill-check.cjs');
 const REAL_SK_DOC_ROOT = path.join(__dirname, '..', '..', '..', '..', 'skills', 'sk-doc');
 const REAL_GENERATOR_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
-const REAL_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
-const REAL_ROOT_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'skill-root-metadata-contract.cjs');
-const REAL_ROOT_ROUTER_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'root-router-contract.cjs');
-const REAL_S_CLASS_DEFAULTS_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 's-class-config-defaults.json');
 
 const MODE_A = 'demo-alpha';
 const MODE_B = 'demo-beta';
+
+// Every temp fixture root this run creates, removed when the process exits.
+const FIXTURE_ROOTS = [];
+process.on('exit', () => {
+  for (const root of FIXTURE_ROOTS) fs.rmSync(root, { recursive: true, force: true });
+});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. FIXTURE HELPERS
@@ -55,35 +56,10 @@ function writeJson(p, data) {
 
 function makeTempHubDir() {
   const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'parent-skill-check-leaf-manifest-'));
+  FIXTURE_ROOTS.push(fixtureRoot);
   const hubRoot = path.join(fixtureRoot, 'demo-hub');
   fs.mkdirSync(hubRoot);
   return hubRoot;
-}
-
-// The generator/library resolve from the sibling sk-doc hub, matching the real
-// multi-hub layout while keeping each fixture isolated.
-function installContractLibrary(hubRoot) {
-  const scriptsDir = path.join(path.dirname(hubRoot), 'sk-doc', 'sk-create-skill', 'scripts');
-  const libDir = path.join(scriptsDir, 'lib');
-  fs.mkdirSync(libDir, { recursive: true });
-  fs.copyFileSync(REAL_GENERATOR_PATH, path.join(scriptsDir, 'generate-leaf-manifest.cjs'));
-  fs.copyFileSync(REAL_CONTRACT_LIB_PATH, path.join(libDir, 'leaf-resource-contract.cjs'));
-  // The root-metadata class check resolves from the same sibling location, so a
-  // fixture that stages only the leaf tooling would fail on a missing library
-  // rather than on the leaf-manifest behaviour these cases exist to cover. The
-  // root-router two-state check (12) resolves from the same location too.
-  fs.copyFileSync(REAL_ROOT_CONTRACT_LIB_PATH, path.join(libDir, 'skill-root-metadata-contract.cjs'));
-  fs.copyFileSync(REAL_ROOT_ROUTER_CONTRACT_LIB_PATH, path.join(libDir, 'root-router-contract.cjs'));
-  // generate-leaf-manifest.cjs reads the shared S-class config defaults, so the
-  // staged copy needs it too or its require fails at runtime.
-  fs.copyFileSync(REAL_S_CLASS_DEFAULTS_PATH, path.join(libDir, 's-class-config-defaults.json'));
-  // The copied contract libraries require @spec-kit/shared, which the real tree
-  // resolves through sk-doc's node_modules link. Recreate that link beside the
-  // copied sk-doc tree so the fixture loads the same module graph; realpathSync
-  // throws when the real link is absent, so a missing install fails loudly.
-  const sharedLink = path.join(path.dirname(hubRoot), 'sk-doc', 'node_modules', '@spec-kit', 'shared');
-  fs.mkdirSync(path.dirname(sharedLink), { recursive: true });
-  fs.symlinkSync(fs.realpathSync(path.join(REAL_SK_DOC_ROOT, 'node_modules', '@spec-kit', 'shared')), sharedLink, 'dir');
 }
 
 function writePacketCompanions(packetDir, packetSkillName) {
@@ -106,6 +82,7 @@ function baseRegistry() {
         toolSurface,
         packet: 'create-skill',
         packetSkillName: 'create-skill',
+        aliases: ['alpha thing'],
         grandfatheredFolderMismatch: false,
         advisorRouting: { routingClass: 'metadata' },
       },
@@ -116,6 +93,7 @@ function baseRegistry() {
         toolSurface,
         packet: 'pkg-two',
         packetSkillName: 'pkg-two',
+        aliases: ['beta thing'],
         grandfatheredFolderMismatch: false,
         advisorRouting: { routingClass: 'metadata' },
       },
@@ -140,7 +118,7 @@ function baseHubRouter() {
 }
 
 // A complete, canon-clean two-mode hub with a fresh, byte-consistent
-// leaf-manifest.json, so PARENT_HUB_CHECK_STRICT=1 finds nothing from the
+// leaf-manifest.json, so the default (strict) run finds nothing from the
 // pre-existing checks and only the new leaf-manifest guards are under test.
 function buildCleanFixture() {
   const hubRoot = makeTempHubDir();
@@ -149,7 +127,7 @@ function buildCleanFixture() {
   fs.writeFileSync(path.join(hubRoot, 'graph-metadata.json'), JSON.stringify({ skill_id: basename, family: 'sk-hub' }, null, 2));
   writeJson(path.join(hubRoot, 'mode-registry.json'), baseRegistry());
   writeJson(path.join(hubRoot, 'hub-router.json'), baseHubRouter());
-  writeJson(path.join(hubRoot, 'description.json'), { name: basename, description: 'fixture hub', version: '0.0.0', keywords: ['fixture'] });
+  writeJson(path.join(hubRoot, 'description.json'), { name: basename, description: 'fixture hub', version: '1.0.0.0', keywords: ['fixture'] });
   // A hub declares its command surface even when empty; the class check
   // requires the file's presence, so the fixture carries the empty form.
   writeJson(path.join(hubRoot, 'command-metadata.json'), []);
@@ -190,11 +168,8 @@ function buildCleanFixture() {
   writePacketCompanions(packetA, 'create-skill');
   writePacketCompanions(packetB, 'pkg-two');
 
-  installContractLibrary(hubRoot);
-
-  const generatorPath = path.join(path.dirname(hubRoot), 'sk-doc', 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
   // eslint-disable-next-line global-require, import/no-dynamic-require
-  const generator = require(generatorPath);
+  const generator = require(REAL_GENERATOR_PATH);
   fs.writeFileSync(path.join(hubRoot, 'leaf-manifest.json'), generator.buildManifestBytes(hubRoot));
 
   return hubRoot;
@@ -207,11 +182,10 @@ function buildCleanFixture() {
 // parent-skill-check.cjs calls process.exit() unconditionally, so it must run
 // as a child process rather than be require()'d in-process. PASS/INFO go to
 // stdout and FAIL/WARN go to stderr, so both are combined for assertions.
-function runChecker(hubRoot, envOverrides) {
-  const result = spawnSync(process.execPath, [CHECKER_PATH, hubRoot], {
-    encoding: 'utf8',
-    env: { ...process.env, ...envOverrides },
-  });
+function runChecker(hubRoot) {
+  const env = { ...process.env };
+  delete env.PARENT_HUB_CHECK_STRICT;
+  const result = spawnSync(process.execPath, [CHECKER_PATH, hubRoot], { encoding: 'utf8', env });
   return { status: result.status, stdout: `${result.stdout || ''}${result.stderr || ''}` };
 }
 
@@ -221,7 +195,7 @@ function runChecker(hubRoot, envOverrides) {
 
 function testCleanManifestPassesAllFourGuards() {
   const hubRoot = buildCleanFixture();
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assert.match(result.stdout, /PASS: 10a-manifest-source/);
   assert.match(result.stdout, /PASS: 10b-byte-drift/);
   assert.match(result.stdout, /PASS: 10c-target-collision/);
@@ -241,7 +215,7 @@ function testMissingResourceContractVersionFailsManifestSource() {
   delete registry.resourceContractVersion;
   writeJson(registryPath, registry);
 
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assert.match(result.stdout, /FAIL: 10a-manifest-source:.*resourceContractVersion/);
   assert.match(result.stdout, /10b-byte-drift: skipped/);
   assert.match(result.stdout, /10c-target-collision: skipped/);
@@ -259,7 +233,7 @@ function testStaleManifestFailsByteDrift() {
   // committed bytes no longer match what regeneration produces today.
   fs.writeFileSync(path.join(hubRoot, 'create-skill', 'references', 'extra.md'), '# extra\n');
 
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assert.match(result.stdout, /FAIL: 10b-byte-drift:.*stale/);
   assert.match(result.stdout, /PASS: 10a-manifest-source/);
   assert.match(result.stdout, /PASS: 10c-target-collision/);
@@ -279,7 +253,7 @@ function testDuplicateCompositeFailsTargetCollision() {
     { workflowMode: MODE_A, leafResourceId: 'references/hello.md', diskPath: 'create-skill/references/hello.md' },
   ]);
 
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assert.match(result.stdout, /FAIL: 10c-target-collision:.*duplicate/i);
   assert.match(result.stdout, /PASS: 10a-manifest-source/);
   assert.match(result.stdout, /10b-byte-drift: skipped/);
@@ -300,7 +274,7 @@ function testOrphanedManifestModeFailsReachability() {
   registry.modes = registry.modes.filter((m) => m.workflowMode !== MODE_B);
   writeJson(registryPath, registry);
 
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assert.match(result.stdout, new RegExp(`FAIL: 10d-reachability:.*${MODE_B}`));
   assert.notEqual(result.status, 0);
 }

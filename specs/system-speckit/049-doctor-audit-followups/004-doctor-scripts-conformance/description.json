@@ -1,0 +1,36 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance",
+  "description": "Bring the doctor scripts to the sk-code OpenCode standards, fix their verified false-PASS and crash bugs with regression tests, remove dead code, and ",
+  "keywords": [
+    "bring",
+    "doctor",
+    "scripts",
+    "sk-code",
+    "opencode",
+    "standards",
+    "verified",
+    "false-pass",
+    "crash",
+    "bugs",
+    "regression",
+    "tests",
+    "remove",
+    "dead",
+    "code",
+    "run",
+    "every",
+    "suite",
+    "one",
+    "runner"
+  ],
+  "lastUpdated": "2026-10-03T18:18:06.039Z",
+  "specId": "004",
+  "folderSlug": "doctor-scripts-conformance",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

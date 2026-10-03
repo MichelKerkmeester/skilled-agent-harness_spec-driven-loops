@@ -14,11 +14,14 @@ operating_mode:
   validation: engine_report
 
 check_invariant: |
-  Check is read-only with respect to the checkout. The engine may fetch a missing
-  release commit with `git fetch --no-tags <remote> refs/tags/<tag>`, which creates
-  no ref. This is the only network write, and it touches only the git object store
-  and `FETCH_HEAD`. `--offline` is passed through to prevent this fetch. Always report
-  unavailable upstream data as UNKNOWN, never as current.
+  Check is read-only with respect to the checkout. The engine may fetch a release
+  commit it lacks with `git fetch --no-tags <remote> refs/tags/<tag>`, which creates
+  no ref: the target release, a release named in base.json, and, for a unit with
+  neither a recorded base nor a release tag in HEAD's ancestry (a copied or vendored
+  tree), each upstream release tag it compares that unit against to infer its base.
+  These fetches are the only network writes, and they touch only the git object
+  store and `FETCH_HEAD`. `--offline` is passed through to prevent all of them.
+  Always report unavailable upstream data as UNKNOWN, never as current.
 
 upstream_assets:
   engine: ".skilled/commands/doctor/scripts/release-update.cjs"
@@ -32,7 +35,7 @@ user_inputs:
   action: "check"
   json: "[JSON] boolean"
   release: "[RELEASE] optional tag"
-  scope: "[SCOPE] optional all or comma-separated unit names"
+  scope: "[SCOPE] optional all or comma-separated units, each a plain name or a kind:name key (skill:hub-a, directory:hooks); a name that two kinds share needs the kind:name form"
   offline: "[OFFLINE] boolean"
   include_prerelease: "[INCLUDE_PRERELEASE] boolean"
 
@@ -57,13 +60,13 @@ field_handling:
 
 mutation_boundaries:
   allowed_targets: []
-  allowed_exception: "A missing release commit is fetched with `git fetch --no-tags <remote> refs/tags/<tag>`, which creates no ref. This is the only network write, and it touches only the git object store and `FETCH_HEAD`."
+  allowed_exception: "A release commit the checkout lacks (the target release, a release recorded in base.json, or an upstream release tag compared while inferring a unit's base) is fetched with `git fetch --no-tags <remote> refs/tags/<tag>`, which creates no ref. These are the only network writes, and they touch only the git object store and `FETCH_HEAD`."
   forbidden_targets:
     - "all checkout files and refs"
-    - "all paths outside the git object store and FETCH_HEAD for the documented fetch exception"
+    - "all paths outside the git object store and FETCH_HEAD for the documented release-commit fetch exception"
   validator:
     name: canonical_path_validator
-    rule: "Validate that no checkout path or ref is written; permit only the documented missing-release git fetch exception."
+    rule: "Validate that no checkout path or ref is written; permit only the documented release-commit git fetch exception."
 
 state_log_schema:
   command: "/doctor:update check"
@@ -83,7 +86,7 @@ workflow:
     checks:
       - "Confirm the current directory is inside a git repository."
       - "Confirm .skilled/commands/doctor/scripts/release-update.cjs exists."
-      - "Confirm the canonical path validator allows the engine invocation and the documented fetch exception only."
+      - "Confirm the canonical path validator allows the engine invocation and the documented release-commit fetch exception only."
     on_failure: "Show the presentation error template and stop without writing a file."
 
   phase_2_engine_check:
@@ -111,7 +114,8 @@ workflow:
       - files
       - counts
     file_fields: [path, unit, class, conflictKind, regenerate, generator, base, local, release]
-    unit_fields: [name, prefix, kind, status, baseSource, baseRelease, baseTree, releaseTree, classCounts, regenerate, files, changelogs]
+    unit_fields: [key, name, prefix, kind, status, baseSource, baseRelease, baseTree, releaseTree, classCounts, regenerate, files, changelogs]
+    unit_identity: "A unit is identified by its key, <kind>:<name> (kind is root, skill, command or directory), because a skill hub may share its name with a top-level directory. file.unit and baseRecording.units hold keys; join files to units on unit.key, never on name alone."
     generated_class: "A file whose difference only a generator made (a leaf manifest, the trigger index and its sidecars, or a graph-metadata change confined to its derived block) reports class generated. It never makes its unit customized; apply leaves its bytes alone and names its generator under followUps.regenerate."
     exit_policy: "Exit 0 means a report was produced, not that upstream is known. Exit 2 is usage failure. Keep UNKNOWN explicit for unavailable upstream or unknown status."
     on_failure: "Present the command output and exit code, then stop without writing a file."

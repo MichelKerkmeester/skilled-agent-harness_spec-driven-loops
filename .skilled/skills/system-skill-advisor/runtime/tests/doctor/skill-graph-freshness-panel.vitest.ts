@@ -195,4 +195,84 @@ describe('skill-graph freshness panel', () => {
     expect(output).toContain('on-disk graph-metadata    : 1 skills (source of truth)');
     expect(output).not.toContain('nested-skill');
   });
+
+  it('names a zombie (in SQLite, not on disk) and a missing skill (on disk, not in SQLite)', () => {
+    const root = tempRoot();
+    const dbDir = join(root, 'db');
+    writeSkill(root, 'alpha', 'hub', { last_updated_at: OLD_STAMP });
+    writeSkill(root, 'beta', 'hub', { last_updated_at: OLD_STAMP });
+    writeCompiled(root, NEW_STAMP, { hub: ['alpha', 'beta'] });
+    writeDb(dbDir, [['alpha', 'hub'], ['retired', 'hub']]);
+
+    const { status, output } = runPanel(root, dbDir);
+
+    expect(status, output).toBe(0);
+    expect(output).toContain('ZOMBIE (in SQLite, not on disk): retired');
+    expect(output).toContain('MISSING (on disk, not in SQLite): beta');
+  });
+
+  it('names a ghost (in compiled json, not on disk) and a skill on disk the compiled json lacks', () => {
+    const root = tempRoot();
+    const dbDir = join(root, 'db');
+    writeSkill(root, 'alpha', 'hub', { last_updated_at: OLD_STAMP });
+    writeSkill(root, 'fresh', 'hub', { last_updated_at: OLD_STAMP });
+    writeCompiled(root, NEW_STAMP, { hub: ['alpha', 'retired'] });
+    writeDb(dbDir, [['alpha', 'hub'], ['fresh', 'hub']]);
+
+    const { status, output } = runPanel(root, dbDir);
+
+    expect(status, output).toBe(0);
+    expect(output).toContain('GHOST (in compiled json, not on disk): retired');
+    expect(output).toContain('MISSING (on disk, not in compiled json): fresh');
+  });
+
+  it('treats a compiled json with no families key as degraded rather than zero clean skills', () => {
+    const root = tempRoot();
+    const dbDir = join(root, 'db');
+    writeSkill(root, 'alpha', 'hub', { last_updated_at: OLD_STAMP });
+    writeCompiledRaw(root, JSON.stringify({ generated_at: NEW_STAMP }));
+    writeDb(dbDir, [['alpha', 'hub']]);
+
+    const { status, output } = runPanel(root, dbDir);
+
+    expect(status, output).toBe(0);
+    expect(output).toContain(
+      '  DEGRADED: compiled skill-graph.json has no families; '
+      + 'GHOST, MISSING and FAMILY MISMATCH compiled vs disk were not checked (SQLite vs disk only)',
+    );
+    expect(output).not.toContain('GHOST (in compiled json, not on disk)');
+  });
+
+  it('treats an empty families object as degraded and says no comparison ran when SQLite is absent too', () => {
+    const root = tempRoot();
+    const emptyDbDir = join(root, 'db-empty');
+    mkdirSync(emptyDbDir, { recursive: true });
+    writeSkill(root, 'alpha', 'hub', { last_updated_at: OLD_STAMP });
+    writeCompiled(root, NEW_STAMP, {});
+
+    const { status, output } = runPanel(root, emptyDbDir);
+
+    expect(status, output).toBe(0);
+    expect(output).toContain('DEGRADED: compiled skill-graph.json has no families;');
+    expect(output).toContain('were not checked (no source comparison ran)');
+    expect(output).not.toContain('(compiled json vs disk only)');
+  });
+
+  it('reports malformed graph-metadata as unreadable instead of as a ghost', () => {
+    const root = tempRoot();
+    const dbDir = join(root, 'db');
+    writeSkill(root, 'alpha', 'hub', { last_updated_at: OLD_STAMP });
+    const brokenDir = join(root, '.skilled/skills/broken');
+    mkdirSync(brokenDir, { recursive: true });
+    writeFileSync(join(brokenDir, 'graph-metadata.json'), '{ not json');
+    writeCompiled(root, NEW_STAMP, { hub: ['alpha', 'broken'] });
+    writeDb(dbDir, [['alpha', 'hub'], ['broken', 'hub']]);
+
+    const { status, output } = runPanel(root, dbDir);
+
+    expect(status, output).toBe(0);
+    expect(output).toMatch(/UNREADABLE graph-metadata: broken \(/);
+    expect(output).toContain('GHOST (in compiled json, not on disk): none');
+    expect(output).toContain('ZOMBIE (in SQLite, not on disk): none');
+  });
 });

@@ -132,7 +132,7 @@ execution:
     - "Run upstream_assets.runtime_mirrors with --check. Covers the cursor/devin agent, command and skill symlink trees plus all four hook discovery mirrors. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.codex_agents with --check. Covers the generated .codex/agents/*.toml. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.codex_prompts with --check. Covers the generated .codex/prompts/*.md stubs. Exit 0 = in sync, 1 = drift."
-    - "Run upstream_assets.agent_roster. Covers roster coverage across all five surfaces and rejects a real file where a symlink belongs. Exit 0 = in sync, 1 = drift, 2 = canonical dir missing."
+    - "Run upstream_assets.agent_roster. Covers roster coverage across all five surfaces and rejects a real file where a symlink belongs. Exit 0 = in sync, 1 = drift, 2 = checker error (bad argument, canonical dir missing, or crash)."
     - "Run upstream_assets.command_catalog. Compare command frontmatter with the root and family indexes and hub metadata. Exit 0 = in sync, 1 = drift, 2 = checker error."
     - "Run upstream_assets.codex_hooks_installer with --check --allow-worktree. Covers the user-global ~/.codex/hooks.json against the repo's .codex/hooks.json, including orphaned entries whose .skilled adapter no longer exists on disk. Explicit OK output = in sync; a drift report = drift; refusal, error, or missing affirmative output = error."
     - "Run upstream_assets.pi_agents with --check. Covers the generated .pi/agents/*.md. Exit 0 = in sync, 1 = drift."

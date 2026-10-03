@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ release-update — evidence-backed release planning and recovery            ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Release Update
+// ───────────────────────────────────────────────────────────────────
+// Evidence-backed release planning, alignment, apply and recovery for .skilled/.
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -25,18 +26,36 @@ const BASE_FILE = path.join(RELEASE_DIR, 'base.json');
 const DIVERGENCE_FILE = path.join(RELEASE_DIR, 'divergence.json');
 const LOCK_FILE = path.join(RELEASE_DIR, '.apply.lock');
 const CONFLICT_MARKER_RE = /^(?:<<<<<<<|=======|>>>>>>>)(?: |$)/m;
+const DECISIONS = new Set(['adopt-release', 'keep-local', 'merge', 'use-proposal']);
+const UNIT_KINDS = ['root', 'skill', 'command', 'directory'];
+const RECORD_BASE_REMEDY = 're-run record-base to rewrite base.json with kind:name unit keys';
+const OPTION_REMEDY = 'pass the kind:name form, for example ';
+// Conflicts align writes no proposal for. Taking the release whole (its bytes,
+// or its deletion) is the only way to accept the release side of them.
+const ADOPTABLE_CONFLICTS = new Set(['binary', 'deleted-locally', 'deleted-in-release']);
 const MAX_MERGE_CELLS = 4000000;
+// Large enough for `ls-tree -r` over the whole .skilled tree and its biggest blobs.
+const GIT_MAX_BUFFER_BYTES = 64 * 1024 * 1024;
+const LOG_PREFIX = '[release-update]';
+const SCRIPT_COMMAND = 'node .skilled/commands/doctor/scripts/release-update.cjs';
 const USAGE = 'Usage: release-update.cjs <check|align|decide|apply|rollback|record-base> [options]';
 const HELP_FLAGS = new Set(['--help', '-h']);
 const objectFormats = new Map();
 
 const COMMAND_OPTIONS = {
   check: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'include-prerelease']),
-  align: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'out', 'dry-run', 'include-prerelease']),
-  decide: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'run', 'path', 'decision', 'unit', 'defer']),
-  apply: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'decisions', 'dry-run', 'include-prerelease']),
-  rollback: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'run']),
-  'record-base': new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'dry-run', 'include-prerelease']),
+  align: new Set([
+    'repo', 'remote', 'release', 'scope', 'offline', 'json', 'out', 'dry-run', 'include-prerelease',
+  ]),
+  decide: new Set(['repo', 'json', 'run', 'path', 'decision', 'unit', 'defer']),
+  apply: new Set([
+    'repo', 'remote', 'release', 'scope', 'offline', 'json', 'decisions', 'dry-run',
+    'include-prerelease',
+  ]),
+  rollback: new Set(['repo', 'json', 'run']),
+  'record-base': new Set([
+    'repo', 'remote', 'release', 'scope', 'offline', 'json', 'dry-run', 'include-prerelease',
+  ]),
 };
 
 const COMMAND_PURPOSES = {
@@ -58,9 +77,21 @@ const LEAF_MANIFEST_GENERATOR = 'node .skilled/skills/sk-doc/sk-create-skill/scr
 const SKILL_DERIVED_GENERATOR = 'node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root <skill-dir> --write';
 const TRIGGER_INDEX_GENERATOR = 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs';
 const GENERATED_ARTIFACTS = [
-  { pattern: /^\.skilled\/skills\/.+\/leaf-manifest\.json$/, scope: 'file', generator: LEAF_MANIFEST_GENERATOR },
-  { pattern: /^\.skilled\/skills\/.+\/graph-metadata\.json$/, scope: 'derived', generator: SKILL_DERIVED_GENERATOR },
-  { pattern: /^\.skilled\/skills\/system-spec-kit\/runtime\/data\/trigger-index\.json$/, scope: 'file', generator: TRIGGER_INDEX_GENERATOR },
+  {
+    pattern: /^\.skilled\/skills\/.+\/leaf-manifest\.json$/,
+    scope: 'file',
+    generator: LEAF_MANIFEST_GENERATOR,
+  },
+  {
+    pattern: /^\.skilled\/skills\/.+\/graph-metadata\.json$/,
+    scope: 'derived',
+    generator: SKILL_DERIVED_GENERATOR,
+  },
+  {
+    pattern: /^\.skilled\/skills\/system-spec-kit\/runtime\/data\/trigger-index\.json$/,
+    scope: 'file',
+    generator: TRIGGER_INDEX_GENERATOR,
+  },
   {
     pattern: /^\.skilled\/skills\/system-spec-kit\/runtime\/cli\/retrieval\/fixtures\/(?:corpus-manifest|generation-diagnostics|phrase-variants)\.json$/,
     scope: 'file',
@@ -75,9 +106,16 @@ function helpText() {
   for (const name of names) lines.push('  ' + name.padEnd(12) + COMMAND_PURPOSES[name]);
   lines.push('', 'Accepted options:');
   for (const name of names) {
-    lines.push('  ' + name.padEnd(12) + [...COMMAND_OPTIONS[name]].map((option) => '--' + option).join(' '));
+    const options = [...COMMAND_OPTIONS[name]].map((option) => '--' + option);
+    lines.push('  ' + name.padEnd(12) + options.join(' '));
   }
   lines.push(
+    '',
+    'Units:',
+    '  A unit is identified as <kind>:<name>, where kind is root, skill, command or',
+    '  directory (skill:hub-a, directory:hooks, command:commands/doctor). --scope and',
+    '  --unit accept a plain name when only one unit has it; a name two kinds share',
+    '  needs the kind:name form. Reports, base.json and decisions use kind:name keys.',
     '',
     'Paths:',
     '  run directory   ' + RUNS_DIR + '/<release>-<utc-stamp>/',
@@ -86,13 +124,15 @@ function helpText() {
     '',
     'Release policy:',
     '  Latest-upstream resolution takes stable vN.N.N.N tags only. --include-prerelease',
-    '  also admits vN.N.N.N-<pre> tags; both orders compare numeric segments. A tag named',
-    '  with --release is used as given.',
+    '  also admits vN.N.N.N-<pre> tags; both orders compare numeric segments, and numeric',
+    '  prerelease identifiers compare as numbers (rc.9 before rc.10). A tag named with',
+    '  --release is used as given.',
     '',
-    'Apply without an alignment run:',
-    '  With no run directory, apply plans from the current check and writes only update',
-    '  and new units, re-verifying each local file against its base at write time.',
-    '  Customized units still need align and a --decisions file.',
+    'Apply without a decisions file:',
+    '  With no --decisions, apply uses the newest alignment run made at the current HEAD',
+    '  that has not been applied. With no such run, apply plans from the current check',
+    '  and writes only update and new units, re-verifying each local file against its',
+    '  base at write time. Customized units still need align and a --decisions file.',
     '',
     'Exit codes:',
     '  0  the command completed; a check report is printed whatever the release status',
@@ -105,6 +145,11 @@ function helpText() {
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. VERSION AND PATH HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
+
+// A usage error exits 2 and prints the usage line.
+function usageError(message) {
+  return Object.assign(new Error(message), { usage: true });
+}
 
 function parseVersion(tag) {
   if (typeof tag !== 'string') return null;
@@ -131,7 +176,29 @@ function compareVersions(left, right) {
   if (a.prerelease && !b.prerelease) return -1;
   if (!a.prerelease && b.prerelease) return 1;
   if (a.prerelease === b.prerelease) return 0;
-  return a.prerelease.localeCompare(b.prerelease);
+  return comparePrerelease(a.prerelease, b.prerelease);
+}
+
+// Semantic-versioning precedence: numeric identifiers compare as numbers and
+// rank below alphanumeric ones, others compare by code unit, and a shorter
+// identifier list ranks lower when every shared identifier is equal.
+function comparePrerelease(left, right) {
+  const a = left.split('.');
+  const b = right.split('.');
+  for (let index = 0; index < Math.min(a.length, b.length); index += 1) {
+    const aNumeric = /^\d+$/.test(a[index]);
+    const bNumeric = /^\d+$/.test(b[index]);
+    if (aNumeric && bNumeric) {
+      const first = BigInt(a[index]);
+      const second = BigInt(b[index]);
+      if (first !== second) return first < second ? -1 : 1;
+    } else if (aNumeric !== bNumeric) {
+      return aNumeric ? -1 : 1;
+    } else if (a[index] !== b[index]) {
+      return a[index] < b[index] ? -1 : 1;
+    }
+  }
+  return Math.sign(a.length - b.length);
 }
 
 function assertSafeRelative(input, label = 'path') {
@@ -139,7 +206,8 @@ function assertSafeRelative(input, label = 'path') {
     throw new Error(label + ' must be a non-empty relative path');
   }
   const normalized = input.replace(/\\/g, '/');
-  if (normalized.startsWith('/') || normalized.split('/').some((part) => part === '..' || part === '.')) {
+  const dotPart = normalized.split('/').some((part) => part === '..' || part === '.');
+  if (normalized.startsWith('/') || dotPart) {
     throw new Error(label + ' must stay within its root');
   }
   return normalized.replace(/\/+/g, '/');
@@ -147,7 +215,8 @@ function assertSafeRelative(input, label = 'path') {
 
 function withinRoot(root, candidate) {
   const relative = path.relative(root, candidate);
-  return relative === '' || (!relative.startsWith('..' + path.sep) && relative !== '..' && !path.isAbsolute(relative));
+  if (relative === '') return true;
+  return !relative.startsWith('..' + path.sep) && relative !== '..' && !path.isAbsolute(relative);
 }
 
 function safeResolve(root, relative, { allowMissingParents = true } = {}) {
@@ -198,7 +267,7 @@ function git(repo, args, options = {}) {
     cwd: repo,
     encoding: options.encoding === undefined ? 'utf8' : options.encoding,
     input: options.input,
-    maxBuffer: 64 * 1024 * 1024,
+    maxBuffer: GIT_MAX_BUFFER_BYTES,
     stdio: ['pipe', 'pipe', 'pipe'],
   });
 }
@@ -221,7 +290,9 @@ function gitBlobId(repo, bytes) {
   let format = objectFormats.get(repo);
   if (!format) {
     format = git(repo, ['rev-parse', '--show-object-format']).trim();
-    if (!['sha1', 'sha256'].includes(format)) throw new Error('unsupported Git object format: ' + format);
+    if (!['sha1', 'sha256'].includes(format)) {
+      throw new Error('unsupported Git object format: ' + format);
+    }
     objectFormats.set(repo, format);
   }
   const content = Buffer.from(bytes);
@@ -248,7 +319,8 @@ function parseTreeOutput(buffer) {
 
 function commitFiles(repo, revision) {
   if (!revision) return new Map();
-  const result = gitTry(repo, ['ls-tree', '-rz', '--full-tree', '-r', revision, '--', '.skilled'], { encoding: null });
+  const args = ['ls-tree', '-rz', '--full-tree', '-r', revision, '--', '.skilled'];
+  const result = gitTry(repo, args, { encoding: null });
   return result.ok ? parseTreeOutput(result.value) : new Map();
 }
 
@@ -322,7 +394,8 @@ function tagNames(repo) {
 function remoteTags(repo, remote) {
   const result = gitTry(repo, ['ls-remote', '--tags', remote]);
   if (!result.ok) {
-    const detail = result.error.stderr ? result.error.stderr.toString('utf8').trim() : result.error.message;
+    const { stderr, message } = result.error;
+    const detail = stderr ? stderr.toString('utf8').trim() : message;
     return { known: false, tags: [], error: detail };
   }
   const tags = new Set();
@@ -374,10 +447,12 @@ function entriesForUnit(files, unit) {
   const selected = new Map();
   for (const [filePath, entry] of files) {
     if (unit.prefix === '.skilled') {
-      if (!filePath.startsWith('.skilled/') || filePath.slice('.skilled/'.length).includes('/')) continue;
+      const nested = filePath.slice('.skilled/'.length).includes('/');
+      if (!filePath.startsWith('.skilled/') || nested) continue;
       selected.set(filePath, entry);
     } else if (filePath.startsWith(prefix)) {
-      if ((unit.childPrefixes || []).some((childPrefix) => filePath.startsWith(childPrefix + '/'))) continue;
+      const children = unit.childPrefixes || [];
+      if (children.some((childPrefix) => filePath.startsWith(childPrefix + '/'))) continue;
       selected.set(filePath, entry);
     }
   }
@@ -388,10 +463,44 @@ function entriesForUnit(files, unit) {
 // 5. PURE UNIT AND FILE CLASSIFICATION
 // ─────────────────────────────────────────────────────────────────────────────
 
+// The one identity of a unit: a skill hub may share its name with a top-level
+// directory such as hooks, so a name alone is not unique.
+function unitKey(unit) {
+  return unit.kind + ':' + unit.name;
+}
+
+function parseUnitKey(value) {
+  const separator = typeof value === 'string' ? value.indexOf(':') : -1;
+  if (separator < 0 || !UNIT_KINDS.includes(value.slice(0, separator))) return null;
+  return { kind: value.slice(0, separator), name: value.slice(separator + 1) };
+}
+
+function ambiguityError(subject, units, remedy) {
+  const keys = units.map(unitKey).sort();
+  const hint = remedy === OPTION_REMEDY ? remedy + keys[0] : remedy;
+  return new Error(subject + ' is ambiguous: it names ' + keys.join(' and ') + '; ' + hint);
+}
+
+// The units a reference names: a kind:name key names at most one, and a plain
+// name may stand for a unit only when no other unit shares it.
+function matchUnitRef(ref, units, remedy, usage = false) {
+  if (parseUnitKey(ref)) return units.filter((unit) => unitKey(unit) === ref);
+  const named = units.filter((unit) => unit.name === ref);
+  if (named.length > 1) {
+    const error = ambiguityError('unit name ' + ref, named, remedy);
+    throw usage ? Object.assign(error, { usage: true }) : error;
+  }
+  return named;
+}
+
 function enumerateUnits(inputPaths) {
-  const paths = [...new Set(inputPaths.map((entry) => typeof entry === 'string' ? entry : entry.path))]
+  const rawPaths = inputPaths.map((entry) => (typeof entry === 'string' ? entry : entry.path));
+  const paths = [...new Set(rawPaths)]
     .filter((filePath) => typeof filePath === 'string' && filePath.startsWith('.skilled/'));
-  const names = new Map();
+  // Keyed by kind and name: a skill hub may share its name with a top-level
+  // directory such as hooks, and neither may hide the other.
+  const units = new Map();
+  const addUnit = (unit) => units.set(unitKey(unit), unit);
   const skillRoots = new Set();
   for (const filePath of paths) {
     const relative = filePath.slice('.skilled/'.length);
@@ -406,31 +515,30 @@ function enumerateUnits(inputPaths) {
     const relative = filePath.slice('.skilled/'.length);
     const parts = relative.split('/');
     if (parts.length === 1) {
-      names.set('(root)', { name: '(root)', prefix: '.skilled', kind: 'root' });
+      addUnit({ name: '(root)', prefix: '.skilled', kind: 'root' });
       continue;
     }
     if (parts[0] === 'skills' && parts.length >= 2) {
       const skillPath = parts.slice(1).join('/');
-      const root = skillRootList.find((candidate) => skillPath === candidate || skillPath.startsWith(candidate + '/'));
-      if (root) {
-        names.set(root, { name: root, prefix: 'skills/' + root, kind: 'skill' });
-      } else {
-        const hub = parts[1];
-        names.set(hub, { name: hub, prefix: 'skills/' + hub, kind: 'skill' });
-      }
+      const root = skillRootList.find((candidate) => (
+        skillPath === candidate || skillPath.startsWith(candidate + '/')
+      ));
+      const name = root || parts[1];
+      addUnit({ name, prefix: 'skills/' + name, kind: 'skill' });
       continue;
     }
     if (parts[0] === 'commands' && parts.length >= 2) {
       const name = 'commands/' + parts[1];
-      names.set(name, { name, prefix: 'commands/' + parts[1], kind: 'command' });
+      addUnit({ name, prefix: 'commands/' + parts[1], kind: 'command' });
       continue;
     }
-    const name = parts[0];
-    names.set(name, { name, prefix: name, kind: 'directory' });
+    addUnit({ name: parts[0], prefix: parts[0], kind: 'directory' });
   }
-  const result = [...names.values()].sort((a, b) => a.name.localeCompare(b.name));
+  const result = [...units.values()]
+    .sort((a, b) => a.name.localeCompare(b.name) || a.kind.localeCompare(b.kind));
   return result.map((unit) => ({
     ...unit,
+    key: unitKey(unit),
     childPrefixes: unit.kind === 'skill' && !unit.name.includes('/')
       ? result.filter((candidate) => candidate.kind === 'skill'
         && candidate.name.startsWith(unit.name + '/'))
@@ -527,7 +635,8 @@ function mergeText(baseBytes, localBytes, releaseBytes) {
   }));
   if (overlap) return { kind: 'conflicting', content: conflictText(localBytes, releaseBytes) };
   const merged = base.slice();
-  for (const edit of [...localEdits, ...releaseEdits].sort((a, b) => b.start - a.start || b.end - a.end)) {
+  const edits = [...localEdits, ...releaseEdits].sort((a, b) => b.start - a.start || b.end - a.end);
+  for (const edit of edits) {
     merged.splice(edit.start, edit.end - edit.start, ...edit.replacement);
   }
   return { kind: 'mergeable', content: Buffer.from(merged.join('')) };
@@ -556,11 +665,17 @@ function classifyFile(base, local, release) {
 
 function applyScope(units, scope) {
   if (!scope || scope === 'all') return units;
-  const wanted = new Set(scope.split(',').map((name) => name.trim()).filter(Boolean));
-  if (!wanted.size) throw Object.assign(new Error('--scope must be all or a comma-separated unit list'), { usage: true });
-  const unknown = [...wanted].filter((name) => !units.some((unit) => unit.name === name));
-  if (unknown.length) throw Object.assign(new Error('unknown scope unit(s): ' + unknown.join(', ')), { usage: true });
-  return units.filter((unit) => wanted.has(unit.name));
+  const wanted = [...new Set(scope.split(',').map((name) => name.trim()).filter(Boolean))];
+  if (!wanted.length) throw usageError('--scope must be all or a comma-separated unit list');
+  const selected = new Set();
+  const unknown = [];
+  for (const ref of wanted) {
+    const matches = matchUnitRef(ref, units, OPTION_REMEDY, true);
+    if (!matches.length) unknown.push(ref);
+    for (const unit of matches) selected.add(unitKey(unit));
+  }
+  if (unknown.length) throw usageError('unknown scope unit(s): ' + unknown.join(', '));
+  return units.filter((unit) => selected.has(unitKey(unit)));
 }
 
 function generatedArtifact(filePath) {
@@ -584,7 +699,8 @@ function jsonWithoutDerived(bytes) {
 // Content is read only for the derived-block rule, so a whole-file artifact
 // costs no extra git process.
 function regeneratedClass(artifact, base, local, release, classification, contentOf) {
-  if (!artifact || !local || !['local-only', 'conflict'].includes(classification.class)) return null;
+  if (!artifact || !local) return null;
+  if (!['local-only', 'conflict'].includes(classification.class)) return null;
   const marked = { class: 'generated', conflictKind: null, generator: artifact.generator };
   if (artifact.scope === 'file') {
     if (classification.class === 'local-only' || release) return marked;
@@ -599,7 +715,12 @@ function regeneratedClass(artifact, base, local, release, classification, conten
   if (releaseAuthored === baseAuthored) return marked;
   // The release changed authored fields while the local change stayed inside
   // the derived block: take the release bytes, then regenerate the block.
-  return { class: 'take-release', conflictKind: null, regenerate: true, generator: artifact.generator };
+  return {
+    class: 'take-release',
+    conflictKind: null,
+    regenerate: true,
+    generator: artifact.generator,
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -624,7 +745,9 @@ function releaseContext(repo, options) {
     : remoteTags(repo, options.remote);
   const upstream = { ...fetchedUpstream, tags: fetchedUpstream.tags.filter(accepts) };
   const localLatest = latestTag(localTags, options.includePrerelease);
-  const upstreamLatest = upstream.known ? latestTag(upstream.tags, options.includePrerelease) : null;
+  const upstreamLatest = upstream.known
+    ? latestTag(upstream.tags, options.includePrerelease)
+    : null;
   const release = options.release || upstreamLatest || localLatest;
   const commits = new Map();
   const releaseCommit = release
@@ -643,13 +766,11 @@ function releaseContext(repo, options) {
   const ancestry = ancestors.length ? ancestors[ancestors.length - 1] : null;
   return {
     head,
-    localTags,
     localLatest,
     upstream: {
       status: upstream.known && upstreamLatest ? 'known' : 'unknown',
       latest: upstreamLatest || 'unknown',
       error: upstream.error,
-      tags: upstream.tags,
     },
     release,
     releaseCommit,
@@ -669,10 +790,16 @@ function isAncestor(repo, ancestor, descendant) {
   return result.error.status === 1 ? false : null;
 }
 
+// Base evidence in order of strength: a recorded release whose unit tree still
+// matches, the newest release tag in HEAD's ancestry, then the release tag whose
+// unit tree is nearest the local one. Inference compares upstream-only tags too,
+// so without --offline it may fetch their commits (a vendored tree has no tags).
 function baseForUnit(repo, unit, context, recorded, options) {
-  const record = recorded.units && recorded.units[unit.name];
-  if (record && typeof record.release === 'string' && parseVersion(record.release)) {
-    const commit = tagCommit(repo, record.release, options.remote, !options.offline, context.commits);
+  const record = recorded[unitKey(unit)];
+  if (isReleaseRecord(record)) {
+    const commit = tagCommit(
+      repo, record.release, options.remote, !options.offline, context.commits,
+    );
     if (commit) {
       const files = entriesForUnit(commitFiles(repo, commit), unit);
       const tree = unitTreeFingerprint(files);
@@ -741,7 +868,8 @@ function mergeWithGitOrText(repo, base, local, release) {
       ], { encoding: null });
       if (result.ok) return { kind: 'mergeable', content: result.value };
       if (result.error.status === 1) {
-        return { kind: 'conflicting', content: result.error.stdout || conflictText(local.content, release.content) };
+        const content = result.error.stdout || conflictText(local.content, release.content);
+        return { kind: 'conflicting', content };
       }
     }
   }
@@ -760,7 +888,10 @@ function classifyDetailed(repo, base, local, release) {
   const detailed = classifyFile(withContent(base), withContent(local), withContent(release));
   if (detailed.class !== 'conflict'
     || !['mergeable', 'conflicting'].includes(detailed.conflictKind) || !base) return detailed;
-  return { ...detailed, ...mergeWithGitOrText(repo, withContent(base), withContent(local), withContent(release)) };
+  const merged = mergeWithGitOrText(
+    repo, withContent(base), withContent(local), withContent(release),
+  );
+  return { ...detailed, ...merged };
 }
 
 function countClasses(files) {
@@ -789,38 +920,94 @@ function unitStatus(files, base, local, release) {
   return 'customized';
 }
 
-function syntheticPathForUnit(name) {
-  if (name === '(root)') return '.skilled/.release-unit-placeholder';
-  if (name.startsWith('commands/')) return '.skilled/' + name + '/.release-unit-placeholder';
-  if (name.includes('/')) return '.skilled/skills/' + name + '/SKILL.md';
-  if (name.startsWith('skills/')) return '.skilled/' + name + '/.release-unit-placeholder';
+// A path that enumerates to the named unit, for a recorded unit no tree holds.
+function isReleaseRecord(record) {
+  if (!record || typeof record.release !== 'string') return false;
+  return Boolean(parseVersion(record.release));
+}
+
+function syntheticPathForUnit(name, kind) {
+  if (kind === 'root') return '.skilled/.release-unit-placeholder';
+  if (kind === 'directory' || kind === 'command') {
+    return '.skilled/' + name + '/.release-unit-placeholder';
+  }
   return '.skilled/skills/' + name + '/SKILL.md';
+}
+
+// Legacy name-only records predate kinds; read without a matching unit, such a
+// name is a skill unless it is the root or a command family.
+function legacyKind(name) {
+  if (name === '(root)') return 'root';
+  return name.startsWith('commands/') ? 'command' : 'skill';
+}
+
+// Rewrites base.json unit records to kind:name keys. A name-only key from an
+// older version is the unique unit with that name in `units`; it is dropped
+// when every unit it could name is being rewritten now, as record-base does.
+function normalizeBaseUnits(records, units, rewritten = new Set()) {
+  const result = {};
+  const legacy = [];
+  for (const [key, record] of Object.entries(records || {})) {
+    if (parseUnitKey(key)) result[key] = record;
+    else legacy.push([key, record]);
+  }
+  for (const [name, record] of legacy) {
+    const named = units.filter((unit) => unit.name === name);
+    if (named.length && named.every((unit) => rewritten.has(unitKey(unit)))) continue;
+    if (named.length > 1) {
+      throw ambiguityError('base.json record ' + name, named, RECORD_BASE_REMEDY);
+    }
+    const key = named.length ? unitKey(named[0]) : unitKey({ name, kind: legacyKind(name) });
+    if (!(key in result)) result[key] = record;
+  }
+  return result;
 }
 
 function buildReport(repo, options) {
   const context = releaseContext(repo, options);
-  const recorded = loadJson(path.join(repo, BASE_FILE), { units: {} });
-  const recordedPaths = [];
-  for (const [name, record] of Object.entries(recorded.units || {})) {
-    let included = false;
-    if (record && typeof record.release === 'string' && parseVersion(record.release)) {
-      const commit = tagCommit(repo, record.release, options.remote, !options.offline, context.commits);
-      const historicalFiles = commit ? commitFiles(repo, commit) : new Map();
-      const historicalUnit = enumerateUnits([...historicalFiles.keys()]).find((unit) => unit.name === name);
-      if (historicalUnit) {
-        recordedPaths.push(...entriesForUnit(historicalFiles, historicalUnit).keys());
-        included = true;
-      }
-    }
-    if (!included) recordedPaths.push(syntheticPathForUnit(name));
-  }
-  const unitPaths = new Set([
+  const recordedRaw = loadJson(path.join(repo, BASE_FILE), { units: {} }).units || {};
+  const treePaths = [
     ...context.headMap.keys(),
     ...context.ancestryMap.keys(),
     ...context.localMap.keys(),
     ...context.targetMap.keys(),
-    ...recordedPaths,
-  ]);
+  ];
+  const treeUnits = enumerateUnits(treePaths);
+  const releaseFiles = new Map();
+  const filesAtRelease = (release) => {
+    if (!releaseFiles.has(release)) {
+      const commit = tagCommit(repo, release, options.remote, !options.offline, context.commits);
+      releaseFiles.set(release, commit ? commitFiles(repo, commit) : new Map());
+    }
+    return releaseFiles.get(release);
+  };
+  // A legacy name-only record that no current tree holds may still name a unit
+  // of the release it recorded.
+  const legacyUniverse = [...treeUnits];
+  for (const [name, record] of Object.entries(recordedRaw)) {
+    if (parseUnitKey(name) || treeUnits.some((unit) => unit.name === name)) continue;
+    if (!isReleaseRecord(record)) continue;
+    const historical = enumerateUnits([...filesAtRelease(record.release).keys()]);
+    legacyUniverse.push(...historical.filter((unit) => unit.name === name));
+  }
+  const recorded = normalizeBaseUnits(recordedRaw, legacyUniverse);
+  const recordedPaths = [];
+  for (const [key, record] of Object.entries(recorded)) {
+    const matches = (unit) => unitKey(unit) === key;
+    if (isReleaseRecord(record)) {
+      const historicalFiles = filesAtRelease(record.release);
+      const historicalUnit = enumerateUnits([...historicalFiles.keys()]).find(matches);
+      if (historicalUnit) {
+        recordedPaths.push(...entriesForUnit(historicalFiles, historicalUnit).keys());
+        continue;
+      }
+    }
+    if (!treeUnits.some(matches)) {
+      const { kind, name } = parseUnitKey(key);
+      recordedPaths.push(syntheticPathForUnit(name, kind));
+    }
+  }
+  const unitPaths = new Set([...treePaths, ...recordedPaths]);
   const units = applyScope(enumerateUnits([...unitPaths]), options.scope);
   const ledger = ledgerEntries(repo);
   const reports = [];
@@ -830,7 +1017,8 @@ function buildReport(repo, options) {
     const baseFiles = base.files;
     const localUnit = entriesForUnit(context.localMap, unit);
     const releaseUnit = entriesForUnit(context.targetMap, unit);
-    const paths = [...new Set([...baseFiles.keys(), ...localUnit.keys(), ...releaseUnit.keys()])].sort();
+    const paths = [...new Set([...baseFiles.keys(), ...localUnit.keys(), ...releaseUnit.keys()])]
+      .sort();
     const fileReports = [];
     for (const filePath of paths) {
       const local = localUnit.get(filePath) || null;
@@ -858,7 +1046,7 @@ function buildReport(repo, options) {
       const { proposal, ...summary } = resolvedClass;
       const report = {
         path: filePath,
-        unit: unit.name,
+        unit: unitKey(unit),
         ...summary,
         base: baseEntry && { mode: baseEntry.mode, blob: baseEntry.blob },
         local: local && { mode: local.mode, blob: local.blob },
@@ -871,14 +1059,16 @@ function buildReport(repo, options) {
     const regenerate = fileReports
       .filter((file) => file.class === 'generated' || file.regenerate)
       .map((file) => ({ path: file.path, generator: file.generator }));
+    // A release that deletes a changelog has no entry to show for it.
     const changelogs = fileReports
       .filter((file) => /(^|\/)(?:changelog|changelogs)(?:\/|\.|$)/i.test(file.path)
-        && file.class === 'take-release')
+        && file.class === 'take-release' && file.release)
       .map((file) => ({
         path: file.path,
         content: blobBytes(repo, releaseUnit.get(file.path)).toString('utf8'),
       }));
     reports.push({
+      key: unitKey(unit),
       name: unit.name,
       prefix: unit.prefix,
       kind: unit.kind,
@@ -896,7 +1086,8 @@ function buildReport(repo, options) {
   const upstreamKnown = context.upstream.status === 'known';
   const checkout = releasePosition(repo, context.head, context.releaseCommit);
   const dirty = git(repo, ['status', '--porcelain']).trim().length > 0;
-  const offersUpdate = reports.some((unit) => ['conflict', 'customized', 'update', 'new', 'removed'].includes(unit.status));
+  const updateStatuses = ['conflict', 'customized', 'update', 'new', 'removed'];
+  const offersUpdate = reports.some((unit) => updateStatuses.includes(unit.status));
   const hasBlocked = reports.some((unit) => unit.status === 'blocked');
   let status = 'current';
   if (offersUpdate) {
@@ -908,12 +1099,14 @@ function buildReport(repo, options) {
     status = 'unknown';
     for (const unit of reports) if (unit.status === 'current') unit.status = 'unknown';
   }
-  const unrecorded = reports.filter((unit) => unit.baseSource === 'inferred' || unit.baseSource === 'none');
+  const unrecorded = reports.filter((unit) => (
+    unit.baseSource === 'inferred' || unit.baseSource === 'none'
+  ));
   const baseRecording = {
     needed: unrecorded.length > 0,
-    units: unrecorded.map((unit) => unit.name),
+    units: unrecorded.map((unit) => unit.key),
     action: unrecorded.length
-      ? 'node .skilled/commands/doctor/scripts/release-update.cjs record-base --release <installed-release>'
+      ? SCRIPT_COMMAND + ' record-base --release <installed-release>'
       : null,
   };
   return {
@@ -952,20 +1145,38 @@ function defaultRunDir(repo, release) {
   return path.join(repo, RUNS_DIR, tag + '-' + stamp);
 }
 
-function mergeResultForReport(repo, file) {
-  if (file.class !== 'conflict' || !['mergeable', 'conflicting'].includes(file.conflictKind)) return null;
-  const base = file.base && { ...file.base, content: blobBytes(repo, file.base) };
-  const local = file.local && { ...file.local, content: blobBytes(repo, file.local) };
+// Local state comes from the worktree, and an uncommitted or untracked file's
+// blob id is in no object store, so its bytes are read from disk.
+function withLocalContent(repo, file) {
+  if (!file.local) return null;
+  const entry = worktreeEntry(repo, file.path);
+  if (!entry || !entry.content || entry.blob !== file.local.blob) {
+    throw new Error('local file changed while align was reading it: ' + file.path
+      + '; run align again');
+  }
+  return { ...file.local, content: entry.content };
+}
+
+function entryBytes(repo, entry) {
+  return entry.content || blobBytes(repo, entry);
+}
+
+function mergeResultForReport(repo, file, local) {
+  if (file.class !== 'conflict') return null;
+  if (!['mergeable', 'conflicting'].includes(file.conflictKind)) return null;
   const release = file.release && { ...file.release, content: blobBytes(repo, file.release) };
   if (!local || !release) return null;
-  if (!base) return { kind: 'conflicting', content: file.proposal || conflictText(local.content, release.content) };
+  if (!file.base) {
+    return { kind: 'conflicting', content: conflictText(local.content, release.content) };
+  }
+  const base = { ...file.base, content: blobBytes(repo, file.base) };
   return mergeWithGitOrText(repo, base, local, release);
 }
 
 function recommendation(file, unit) {
   if (file.conflictKind === 'mergeable') return 'merge';
   if (file.conflictKind === 'conflicting') return 'use-proposal';
-  if (file.conflictKind === 'deleted-locally' || file.conflictKind === 'deleted-in-release') return 'keep-local';
+  if (['deleted-locally', 'deleted-in-release'].includes(file.conflictKind)) return 'keep-local';
   if (file.class === 'local-only' || file.class === 'kept-local') return 'keep-local';
   if (file.class === 'take-release' && unit.status === 'customized') return 'adopt-release';
   return null;
@@ -974,8 +1185,8 @@ function recommendation(file, unit) {
 function evidenceDiff(repo, before, after, beforeLabel, afterLabel) {
   if (sameState(before, after)) return 'No content or mode changes.';
   if (before && after && before.mode === '120000' && after.mode === '120000') {
-    const oldTarget = blobBytes(repo, before).toString('utf8');
-    const newTarget = blobBytes(repo, after).toString('utf8');
+    const oldTarget = entryBytes(repo, before).toString('utf8');
+    const newTarget = entryBytes(repo, after).toString('utf8');
     return [
       '--- ' + beforeLabel + ' symlink target',
       '+++ ' + afterLabel + ' symlink target',
@@ -983,8 +1194,8 @@ function evidenceDiff(repo, before, after, beforeLabel, afterLabel) {
       '+' + newTarget,
     ].join('\n');
   }
-  const beforeBytes = before ? blobBytes(repo, before) : Buffer.alloc(0);
-  const afterBytes = after ? blobBytes(repo, after) : Buffer.alloc(0);
+  const beforeBytes = before ? entryBytes(repo, before) : Buffer.alloc(0);
+  const afterBytes = after ? entryBytes(repo, after) : Buffer.alloc(0);
   if (isBinary(before && { ...before, content: beforeBytes })
     || isBinary(after && { ...after, content: afterBytes })) {
     return 'Binary content changed from '
@@ -1002,14 +1213,15 @@ function evidenceDiff(repo, before, after, beforeLabel, afterLabel) {
   return lines.join('\n');
 }
 
-function evidenceCard(repo, file, unit, changelogs, merge) {
+function evidenceCard(repo, file, local, unit, merge) {
+  const changelogs = unit.changelogs;
   const changelogRationale = changelogs.length
     ? changelogs.map((entry) => entry.path + '\n' + entry.content).join('\n\n')
     : 'no added changelog entry for this unit';
   return [
     '# Release evidence: ' + file.path,
     '',
-    '- Unit: ' + unit.name,
+    '- Unit: ' + unit.key,
     '- Class: ' + file.class,
     '- Conflict kind: ' + (file.conflictKind || 'none'),
     '- Base blob: ' + (file.base ? file.base.blob : 'absent'),
@@ -1031,7 +1243,7 @@ function evidenceCard(repo, file, unit, changelogs, merge) {
     '## Base-to-local diff',
     '',
     '\x60\x60\x60diff',
-    evidenceDiff(repo, file.base, file.local, 'base', 'local'),
+    evidenceDiff(repo, file.base, local, 'base', 'local'),
     '\x60\x60\x60',
     '',
   ].join('\n');
@@ -1040,8 +1252,6 @@ function evidenceCard(repo, file, unit, changelogs, merge) {
 function makePlan(repo, options) {
   const report = buildReport(repo, options);
   const runDir = path.resolve(repo, options.out || defaultRunDir(repo, report.release));
-  const runRelative = path.relative(repo, runDir);
-  const externalRunDir = path.isAbsolute(runRelative) || runRelative.startsWith('..' + path.sep) || runRelative === '..';
   const plan = {
     schemaVersion: 1,
     command: 'align',
@@ -1055,7 +1265,7 @@ function makePlan(repo, options) {
     checkout: report.checkout,
     status: report.status,
     units: report.units.map(({ files, ...unit }) => unit),
-    files: report.files.filter((file) => file.class !== 'same').map((file) => file),
+    files: report.files.filter((file) => file.class !== 'same'),
   };
   const decisions = { schemaVersion: 1, release: report.release, files: {}, deferredUnits: [] };
   const evidence = [];
@@ -1064,35 +1274,44 @@ function makePlan(repo, options) {
     for (const file of unit.files) {
       const shouldExplain = file.class !== 'same' && file.class !== 'generated'
         && ['customized', 'conflict', 'removed'].includes(unit.status);
-      const rec = recommendation(file, unit);
       if (file.class === 'take-release' && unit.status === 'customized') {
         decisions.files[file.path] = { decision: 'adopt-release', source: 'prefilled' };
       }
       if (!shouldExplain) continue;
-      const merge = mergeResultForReport(repo, file);
+      const local = withLocalContent(repo, file);
+      const merge = mergeResultForReport(repo, file, local);
       evidence.push({
         path: path.join('evidence', runRelativePath(file.path) + '.md'),
-        content: evidenceCard(repo, file, unit, unit.changelogs, merge),
+        content: evidenceCard(repo, file, local, unit, merge),
       });
-      if (merge) proposals.push({ path: path.join('proposals', runRelativePath(file.path)), content: merge.content });
+      if (merge) {
+        const proposalFile = path.join('proposals', runRelativePath(file.path));
+        proposals.push({ path: proposalFile, content: merge.content });
+      }
     }
   }
   plan.evidenceFiles = evidence.map((entry) => entry.path);
   plan.proposalFiles = proposals.map((entry) => entry.path);
-  plan.externalRunDir = externalRunDir;
+  plan.externalRunDir = !withinRoot(repo, runDir);
   return { plan, decisions, evidence, proposals };
 }
 
+// The parent is resolved so a symlinked ancestor (macOS /var, say) still yields
+// a real child path; the run directory itself must not be a symlink.
 function assertRunDirectory(runDir) {
-  const resolved = path.resolve(runDir);
-  const parent = path.dirname(resolved);
+  const requested = path.resolve(runDir);
+  if (!path.basename(requested)) throw new Error('run directory path is invalid: ' + requested);
+  const parent = path.dirname(requested);
   fs.mkdirSync(parent, { recursive: true });
-  const parentReal = fs.realpathSync(parent);
-  if (!withinRoot(parentReal, resolved)) throw new Error('run directory path is invalid');
+  const resolved = path.join(fs.realpathSync(parent), path.basename(requested));
   if (fs.existsSync(resolved)) {
     const stats = fs.lstatSync(resolved);
-    if (stats.isSymbolicLink() || !stats.isDirectory()) throw new Error('run path must be a real directory');
-    if (fs.readdirSync(resolved).length) throw new Error('run directory already exists and is not empty: ' + resolved);
+    if (stats.isSymbolicLink() || !stats.isDirectory()) {
+      throw new Error('run path must be a real directory');
+    }
+    if (fs.readdirSync(resolved).length) {
+      throw new Error('run directory already exists and is not empty: ' + resolved);
+    }
   } else {
     fs.mkdirSync(resolved);
   }
@@ -1134,7 +1353,9 @@ function writeRunFileReplacement(runDir, relative, content) {
 function readRunFile(runDir, relative) {
   const target = safeResolve(runDir, relative, { allowMissingParents: false });
   const stats = fs.lstatSync(target);
-  if (stats.isSymbolicLink() || !stats.isFile()) throw new Error('run artifact must be a regular file: ' + relative);
+  if (stats.isSymbolicLink() || !stats.isFile()) {
+    throw new Error('run artifact must be a regular file: ' + relative);
+  }
   return fs.readFileSync(target);
 }
 
@@ -1151,6 +1372,8 @@ function createAlignment(repo, options) {
   const result = makePlan(repo, options);
   if (!options.dryRun) {
     const runDir = assertRunDirectory(result.plan.runDir);
+    result.plan.runDir = runDir;
+    result.plan.externalRunDir = !withinRoot(repo, runDir);
     for (const entry of result.evidence) writeRunFile(runDir, entry.path, entry.content);
     for (const entry of result.proposals) writeRunFile(runDir, entry.path, entry.content);
     writeRunFile(runDir, 'plan.json', JSON.stringify(result.plan, null, 2) + '\n');
@@ -1160,19 +1383,43 @@ function createAlignment(repo, options) {
 }
 
 function loadRun(runPath, repo) {
-  if (!runPath) throw new Error('--run <dir> is required');
   const runDir = path.resolve(repo, runPath);
-  const stats = fs.lstatSync(runDir);
-  if (stats.isSymbolicLink() || !stats.isDirectory()) throw new Error('run path must be a real directory');
-  const planPath = safeResolve(runDir, 'plan.json', { allowMissingParents: false });
-  const decisionsPath = safeResolve(runDir, 'decisions.json', { allowMissingParents: false });
-  return {
-    runDir,
-    planPath,
-    decisionsPath,
-    plan: readRunJson(runDir, 'plan.json', null),
-    decisions: readRunJson(runDir, 'decisions.json', { schemaVersion: 1, files: {}, deferredUnits: [] }),
+  let stats;
+  try {
+    stats = fs.lstatSync(runDir);
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    throw new Error('run directory not found: ' + runDir
+      + '; pass the runDir that align or apply reported, or run align to create one');
+  }
+  if (stats.isSymbolicLink() || !stats.isDirectory()) {
+    throw new Error('run path must be a real directory');
+  }
+  const plan = readRunJson(runDir, 'plan.json', null);
+  if (!plan) {
+    throw new Error('run directory has no plan.json: ' + runDir
+      + '; run align to create an alignment run');
+  }
+  const emptyDecisions = { schemaVersion: 1, files: {}, deferredUnits: [] };
+  const run = { runDir, plan, decisions: readRunJson(runDir, 'decisions.json', emptyDecisions) };
+  return normalizeRunUnits(run);
+}
+
+// Runs written by an older version name units without their kind. Each plan
+// unit carries its kind, so a plain name is resolved to the plan unit that has
+// it; a name two plan units share cannot be read and needs a new run.
+function normalizeRunUnits(run) {
+  const units = run.plan.units || [];
+  for (const unit of units) unit.key = unitKey(unit);
+  const toKey = (ref, source) => {
+    const remedy = source + ' predates kind:name unit keys; run align again for a new run';
+    const matches = matchUnitRef(ref, units, remedy);
+    return matches.length ? unitKey(matches[0]) : ref;
   };
+  for (const file of run.plan.files || []) file.unit = toKey(file.unit, 'plan.json');
+  const deferred = run.decisions.deferredUnits || [];
+  run.decisions.deferredUnits = deferred.map((ref) => toKey(ref, 'decisions.json'));
+  return run;
 }
 
 function normalizedDecisionPath(input, plan) {
@@ -1184,24 +1431,35 @@ function normalizedDecisionPath(input, plan) {
   return candidate;
 }
 
-function proposalPath(runDir, filePath) {
-  return safeResolve(runDir, path.join('proposals', runRelativePath(filePath)), { allowMissingParents: false });
+// Align writes a proposal only for a mergeable or conflicting text file.
+function readProposal(run, filePath) {
+  try {
+    return readRunFile(run.runDir, path.join('proposals', runRelativePath(filePath)));
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+    throw new Error('no proposal for ' + filePath + ' in ' + run.runDir
+      + '; align writes one only for a mergeable or conflicting text file,'
+      + ' so decide adopt-release or keep-local for it');
+  }
 }
 
 function proposeDecision(run, filePath, decision) {
   const file = run.plan.files.find((candidate) => candidate.path === filePath);
-  if (!file) throw new Error('path is not in the alignment plan');
-  if (!new Set(['adopt-release', 'keep-local', 'merge', 'use-proposal']).has(decision)) {
-    throw new Error('unsupported decision: ' + decision);
+  if (!DECISIONS.has(decision)) {
+    throw new Error('unsupported decision: ' + decision
+      + '; use one of ' + [...DECISIONS].join(', '));
   }
-  if (decision === 'adopt-release' && file.class !== 'take-release') {
-    throw new Error('adopt-release is allowed only for take-release files');
+  const adoptable = file.class === 'take-release'
+    || (file.class === 'conflict' && ADOPTABLE_CONFLICTS.has(file.conflictKind));
+  if (decision === 'adopt-release' && !adoptable) {
+    throw new Error('adopt-release is allowed only for take-release files and for binary'
+      + ' or deleted conflicts; resolve a text conflict with merge or use-proposal');
   }
   if (decision === 'merge' && file.conflictKind !== 'mergeable') {
     throw new Error('merge is allowed only for mergeable files');
   }
   if (decision === 'use-proposal' || decision === 'merge') {
-    const bytes = readRunFile(run.runDir, path.relative(run.runDir, proposalPath(run.runDir, filePath)));
+    const bytes = readProposal(run, filePath);
     if (CONFLICT_MARKER_RE.test(bytes.toString('utf8'))) {
       throw new Error(decision + ' requires all conflict markers to be removed');
     }
@@ -1213,19 +1471,19 @@ function proposeDecision(run, filePath, decision) {
   } else {
     run.decisions.files[filePath] = { decision, decidedAt: new Date().toISOString() };
   }
-  writeRunFileReplacement(run.runDir, 'decisions.json', JSON.stringify(run.decisions, null, 2) + '\n');
+  writeRunFileReplacement(run.runDir, 'decisions.json', jsonBytes(run.decisions));
   return { path: filePath, decision, runDir: run.runDir };
 }
 
-function deferUnit(run, unitName) {
-  if (!run.plan.units.some((unit) => unit.name === unitName)) {
-    throw new Error('unit is not in the alignment plan: ' + unitName);
-  }
+function deferUnit(run, ref) {
+  const [unit] = matchUnitRef(ref, run.plan.units, OPTION_REMEDY);
+  if (!unit) throw new Error('unit is not in the alignment plan: ' + ref);
+  const key = unitKey(unit);
   const deferred = new Set(run.decisions.deferredUnits || []);
-  deferred.add(unitName);
+  deferred.add(key);
   run.decisions.deferredUnits = [...deferred].sort();
-  writeRunFileReplacement(run.runDir, 'decisions.json', JSON.stringify(run.decisions, null, 2) + '\n');
-  return { unit: unitName, deferred: true, runDir: run.runDir };
+  writeRunFileReplacement(run.runDir, 'decisions.json', jsonBytes(run.decisions));
+  return { unit: key, deferred: true, runDir: run.runDir };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1236,10 +1494,6 @@ function currentState(repo, filePath) {
   const entry = worktreeEntry(repo, filePath);
   if (!entry || entry.directory || entry.unsupported) return null;
   return { mode: entry.mode, blob: entry.blob };
-}
-
-function stateEquals(left, right) {
-  return sameState(left, right);
 }
 
 function pathDirtyAgainstHead(repo, filePath, headFiles) {
@@ -1253,15 +1507,15 @@ function pathDirtyAgainstHead(repo, filePath, headFiles) {
 
 function targetForRelease(repo, file) {
   if (!file.release) return null;
-  return { mode: file.release.mode, blob: file.release.blob, content: blobBytes(repo, file.release) };
+  const { mode, blob } = file.release;
+  return { mode, blob, content: blobBytes(repo, file.release) };
 }
 
 function decisionTarget(repo, run, file, record) {
   const decision = typeof record === 'string' ? record : record.decision;
   if (decision === 'adopt-release') return targetForRelease(repo, file);
   if (decision === 'keep-local') return undefined;
-  const proposedPath = proposalPath(run.runDir, file.path);
-  const content = readRunFile(run.runDir, path.relative(run.runDir, proposedPath));
+  const content = readProposal(run, file.path);
   const sha256 = crypto.createHash('sha256').update(content).digest('hex');
   if (!record.proposalSha256 || sha256 !== record.proposalSha256) {
     throw new Error('proposal changed after decision: ' + file.path);
@@ -1273,13 +1527,22 @@ function decisionTarget(repo, run, file, record) {
   return { mode, blob: gitBlobId(repo, content), content };
 }
 
-function latestRun(repo) {
+// The newest run apply may reuse without --decisions: an alignment run made at
+// the current HEAD that no apply has consumed. Any other run is stale.
+function latestRun(repo, head) {
   const directory = path.join(repo, RUNS_DIR);
   if (!fs.existsSync(directory)) return null;
+  const madeAtHead = (runDir) => {
+    try {
+      return JSON.parse(fs.readFileSync(path.join(runDir, 'plan.json'), 'utf8')).head === head;
+    } catch {
+      return false;
+    }
+  };
   const runs = fs.readdirSync(directory, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => path.join(directory, entry.name))
-    .filter((entry) => fs.existsSync(path.join(entry, 'plan.json')))
+    .filter((runDir) => !fs.existsSync(path.join(runDir, 'rollback.json')) && madeAtHead(runDir))
     .sort((a, b) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs);
   return runs.length ? runs[0] : null;
 }
@@ -1301,7 +1564,7 @@ function planWithoutRun(repo, options) {
 function resolveApplyRun(repo, options) {
   const decisionsPath = options.decisions;
   if (!decisionsPath) {
-    const latest = latestRun(repo);
+    const latest = latestRun(repo, git(repo, ['rev-parse', 'HEAD']).trim());
     if (!latest) return planWithoutRun(repo, options);
     const run = loadRun(latest, repo);
     run.decisions = { schemaVersion: 1, files: {}, deferredUnits: [] };
@@ -1314,10 +1577,9 @@ function resolveApplyRun(repo, options) {
       + '; run align first and decide inside that run');
   }
   const run = loadRun(runDir, repo);
-  run.decisionsPath = absolutePath;
   run.decisions = readRunJson(runDir, path.basename(absolutePath), null);
   if (!run.decisions) throw new Error('decision file is missing or invalid');
-  return run;
+  return normalizeRunUnits(run);
 }
 
 function jsonBytes(value) {
@@ -1343,8 +1605,45 @@ function removeEmptyParents(repo, directory) {
   }
 }
 
+function unitContains(unit, filePath) {
+  if (typeof unit.prefix !== 'string') return false;
+  if (unit.prefix === '.skilled') return /^\.skilled\/[^/]+$/.test(filePath);
+  return filePath.startsWith('.skilled/' + unit.prefix + '/');
+}
+
+// The most specific planned unit holding a path, so a child skill's files never
+// count as its hub's.
+function owningUnit(units, filePath) {
+  const holders = units.filter((unit) => unitContains(unit, filePath));
+  return holders.sort((a, b) => b.prefix.length - a.prefix.length)[0] || null;
+}
+
+// SEC: a plan is an editable file in the run directory, so a path it names is
+// written only when it lies inside the unit it is planned under.
+function uniqueUnits(units) {
+  return [...new Map(units.map((unit) => [unitKey(unit), unit])).values()];
+}
+
+function assertPlannedPath(units, file) {
+  const normalized = assertSafeRelative(file.path, 'plan path');
+  const owner = owningUnit(units, normalized);
+  if (normalized !== file.path || !owner || unitKey(owner) !== file.unit) {
+    throw new Error('plan path is outside unit ' + file.unit + ': ' + file.path
+      + '; refusing to write it, run align again for a clean plan');
+  }
+}
+
+function shellQuote(value) {
+  return /^[\w./@:+-]+$/.test(value) ? value : "'" + value.replace(/'/g, "'\\''") + "'";
+}
+
+function rollbackCommand(repo, runDir) {
+  return SCRIPT_COMMAND + ' rollback --repo ' + shellQuote(repo) + ' --run ' + shellQuote(runDir);
+}
+
 function assertPlanFresh(repo, run, paths) {
-  const releaseFiles = run.plan.releaseCommit ? commitFiles(repo, run.plan.releaseCommit) : new Map();
+  const { releaseCommit } = run.plan;
+  const releaseFiles = releaseCommit ? commitFiles(repo, releaseCommit) : new Map();
   const selected = paths ? new Set(paths) : new Set(run.plan.files.map((file) => file.path));
   for (const file of run.plan.files.filter((entry) => selected.has(entry.path))) {
     const localEntry = worktreeEntry(repo, file.path);
@@ -1352,7 +1651,9 @@ function assertPlanFresh(repo, run, paths) {
       ? { mode: localEntry.mode, blob: localEntry.blob }
       : null;
     const plannedLocal = file.local ? { mode: file.local.mode, blob: file.local.blob } : null;
-    if (!sameState(local, plannedLocal)) throw new Error('drift since align: local blob changed for ' + file.path);
+    if (!sameState(local, plannedLocal)) {
+      throw new Error('drift since align: local blob changed for ' + file.path);
+    }
     const actualRelease = releaseFiles.get(file.path) || null;
     if (!sameState(actualRelease, file.release)) {
       throw new Error('drift since align: release blob changed for ' + file.path);
@@ -1363,31 +1664,34 @@ function assertPlanFresh(repo, run, paths) {
 function prepareWrites(repo, run, scope) {
   const headFiles = commitFiles(repo, 'HEAD');
   const deferred = new Set(run.decisions.deferredUnits || []);
-  const unitMap = new Map(run.plan.units.map((unit) => [unit.name, unit]));
+  const unitMap = new Map(run.plan.units.map((unit) => [unitKey(unit), unit]));
   const selectedUnits = applyScope(run.plan.units, scope);
   const writes = [];
   const ledgerAdditions = [];
   const appliedUnits = new Set();
   const skippedUnits = [];
   for (const unit of selectedUnits) {
-    const fileEntries = run.plan.files.filter((file) => file.unit === unit.name);
-    if (deferred.has(unit.name)) {
-      skippedUnits.push({ unit: unit.name, reason: 'deferred' });
+    const key = unitKey(unit);
+    const fileEntries = run.plan.files.filter((file) => file.unit === key);
+    if (deferred.has(key)) {
+      skippedUnits.push({ unit: key, reason: 'deferred' });
       continue;
     }
     if (['current', 'local', 'unknown', 'blocked'].includes(unit.status)) continue;
     if (['update', 'new'].includes(unit.status)) {
       for (const file of fileEntries) {
         if (file.class === 'take-release') {
-          writes.push({ path: file.path, after: targetForRelease(repo, file), file, decision: 'adopt-release' });
+          const after = targetForRelease(repo, file);
+          writes.push({ path: file.path, after, file, decision: 'adopt-release' });
         }
       }
-      appliedUnits.add(unit.name);
+      appliedUnits.add(key);
       continue;
     }
-    const chosen = fileEntries.filter((file) => run.decisions.files && run.decisions.files[file.path]);
+    const decided = run.decisions.files || {};
+    const chosen = fileEntries.filter((file) => decided[file.path]);
     if (!chosen.length) {
-      skippedUnits.push({ unit: unit.name, reason: 'no decisions' });
+      skippedUnits.push({ unit: key, reason: 'no decisions' });
       continue;
     }
     for (const file of chosen) {
@@ -1399,24 +1703,31 @@ function prepareWrites(repo, run, scope) {
       }
       if (['keep-local', 'merge', 'use-proposal'].includes(decision)) {
         ledgerAdditions.push({
-          unit: unit.name,
+          unit: key,
           path: file.path,
           release: run.plan.release,
-          localBlob: decision === 'keep-local' ? (file.local && file.local.blob) : target && target.blob,
+          localBlob: decision === 'keep-local'
+            ? (file.local && file.local.blob)
+            : target && target.blob,
           releaseBlob: file.release ? file.release.blob : null,
           decision,
           decidedAt: (typeof record === 'object' && record.decidedAt) || new Date().toISOString(),
         });
       }
     }
-    appliedUnits.add(unit.name);
+    appliedUnits.add(key);
   }
+  for (const write of writes) assertPlannedPath(run.plan.units, write.file);
   const oldBasePath = safeResolve(repo, BASE_FILE);
   const oldBase = loadJson(oldBasePath, { schemaVersion: 1, units: {} });
-  const newBase = { schemaVersion: 1, units: { ...(oldBase.units || {}) } };
-  for (const unitName of appliedUnits) {
-    const unit = unitMap.get(unitName);
-    if (unit) newBase.units[unitName] = { release: run.plan.release, tree: unit.releaseTree };
+  // Legacy name-only records resolve against every unit the checkout or the
+  // plan knows, so a record for a unit outside this plan keeps its own kind.
+  const knownUnits = [...enumerateUnits([...headFiles.keys()]), ...run.plan.units];
+  const baseUnits = normalizeBaseUnits(oldBase.units, uniqueUnits(knownUnits));
+  const newBase = { schemaVersion: 1, units: baseUnits };
+  for (const key of appliedUnits) {
+    const unit = unitMap.get(key);
+    if (unit) newBase.units[key] = { release: run.plan.release, tree: unit.releaseTree };
   }
   const baseContent = jsonBytes(newBase);
   writes.push({
@@ -1429,7 +1740,10 @@ function prepareWrites(repo, run, scope) {
   if (ledgerAdditions.length || fs.existsSync(ledgerPath)) {
     const newLedger = {
       schemaVersion: 1,
-      entries: [...(Array.isArray(existingLedger.entries) ? existingLedger.entries : []), ...ledgerAdditions],
+      entries: [
+        ...(Array.isArray(existingLedger.entries) ? existingLedger.entries : []),
+        ...ledgerAdditions,
+      ],
     };
     const ledgerContent = jsonBytes(newLedger);
     writes.push({
@@ -1469,7 +1783,8 @@ function acquireLock(repo) {
     throw error;
   }
   try {
-    fs.writeFileSync(descriptor, JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }) + '\n');
+    const owner = { pid: process.pid, startedAt: new Date().toISOString() };
+    fs.writeFileSync(descriptor, JSON.stringify(owner) + '\n');
   } catch (error) {
     fs.closeSync(descriptor);
     fs.rmSync(lockPath, { force: true });
@@ -1496,8 +1811,9 @@ function writeAtomic(repo, filePath, entry, content) {
     if (entry.mode === '120000') {
       fs.symlinkSync(content, tempPath);
     } else {
-      fs.writeFileSync(tempPath, content, { mode: entry.mode === '100755' ? 0o755 : 0o644, flag: 'wx' });
-      fs.chmodSync(tempPath, entry.mode === '100755' ? 0o755 : 0o644);
+      const mode = entry.mode === '100755' ? 0o755 : 0o644;
+      fs.writeFileSync(tempPath, content, { mode, flag: 'wx' });
+      fs.chmodSync(tempPath, mode);
     }
     fs.renameSync(tempPath, destination);
   } finally {
@@ -1507,22 +1823,27 @@ function writeAtomic(repo, filePath, entry, content) {
 
 function applyPlan(repo, options) {
   const run = resolveApplyRun(repo, options);
-  if (!run.plan || run.plan.repo !== repo) throw new Error('alignment plan belongs to another repository');
+  if (run.plan.repo !== repo) throw new Error('alignment plan belongs to another repository');
   if (options.release && options.release !== run.plan.release) {
     throw new Error('--release does not match the alignment plan');
   }
-  if (run.plan.releaseCommit && !gitTry(repo, ['cat-file', '-e', run.plan.releaseCommit + '^{commit}']).ok) {
+  if (!run.withoutRun && fs.existsSync(safeResolve(run.runDir, 'rollback.json'))) {
+    throw new Error('this run was already applied (rollback.json exists): ' + run.runDir
+      + '; run align for a new plan, or undo this one with ' + rollbackCommand(repo, run.runDir));
+  }
+  if (fs.existsSync(safeResolve(repo, LOCK_FILE))) {
+    throw new Error('apply lock already exists: ' + LOCK_FILE);
+  }
+  const { releaseCommit } = run.plan;
+  if (releaseCommit && !gitTry(repo, ['cat-file', '-e', releaseCommit + '^{commit}']).ok) {
     throw new Error('release commit from alignment is unavailable');
   }
   const prepared = prepareWrites(repo, run, options.scope);
   assertPlanFresh(repo, run, prepared.freshnessPaths);
   for (const write of prepared.writes) {
-    if (write.after && !write.after.content && write.after.blob) write.after.content = blobBytes(repo, write.after);
-  }
-  const lockPath = safeResolve(repo, LOCK_FILE);
-  if (fs.existsSync(lockPath)) throw new Error('apply lock already exists: ' + LOCK_FILE);
-  if (fs.existsSync(safeResolve(run.runDir, 'rollback.json'))) {
-    throw new Error('rollback record already exists for this run');
+    if (write.after && !write.after.content && write.after.blob) {
+      write.after.content = blobBytes(repo, write.after);
+    }
   }
   const rollback = {
     schemaVersion: 1,
@@ -1566,8 +1887,18 @@ function applyPlan(repo, options) {
       writeRunFile(run.runDir, 'plan.json', JSON.stringify(run.plan, null, 2) + '\n');
     }
     writeRunFile(run.runDir, 'rollback.json', JSON.stringify(rollback, null, 2) + '\n');
-    for (const write of prepared.writes) {
-      writeAtomic(repo, write.path, write.after, write.after && write.after.content);
+    // Writes are atomic one file at a time, not as a set, so a failure part way
+    // leaves a partial tree that only the recorded rollback undoes.
+    let completed = 0;
+    try {
+      for (const write of prepared.writes) {
+        writeAtomic(repo, write.path, write.after, write.after && write.after.content);
+        completed += 1;
+      }
+    } catch (error) {
+      throw new Error('apply stopped after ' + completed + ' of ' + prepared.writes.length
+        + ' writes, at ' + prepared.writes[completed].path + ': ' + error.message
+        + '; the checkout is partly updated, restore it with ' + rollbackCommand(repo, run.runDir));
     }
   } finally {
     fs.rmSync(acquired, { force: true });
@@ -1577,7 +1908,9 @@ function applyPlan(repo, options) {
     runDir: run.runDir,
     release: run.plan.release,
     written: prepared.writes.filter((write) => write.after).map((write) => write.path),
-    added: prepared.writes.filter((write) => write.after && !write.before).map((write) => write.path),
+    added: prepared.writes
+      .filter((write) => write.after && !write.before)
+      .map((write) => write.path),
     deleted: prepared.writes.filter((write) => !write.after).map((write) => write.path),
     withoutRun: Boolean(run.withoutRun),
     skippedUnits: prepared.skippedUnits,
@@ -1592,7 +1925,8 @@ function regenerateFollowUps(plan, appliedUnits) {
   const applied = new Set(appliedUnits);
   const byGenerator = new Map();
   for (const file of plan.files) {
-    if (!applied.has(file.unit) || !(file.class === 'generated' || file.regenerate) || !file.generator) continue;
+    const regenerated = file.class === 'generated' || file.regenerate;
+    if (!applied.has(file.unit) || !regenerated || !file.generator) continue;
     if (!byGenerator.has(file.generator)) byGenerator.set(file.generator, []);
     byGenerator.get(file.generator).push(file.path);
   }
@@ -1607,9 +1941,9 @@ function followUps(writes, regenerate = []) {
   let runtimeMirrors = false;
   for (const write of writes) {
     const filePath = write.path;
-    if (write.file && write.file.unit.includes('/')
-      && write.file.path.startsWith('.skilled/skills/')) {
-      regenerateHubs.add(write.file.unit.split('/')[0]);
+    const owner = write.file && parseUnitKey(write.file.unit);
+    if (owner && owner.kind === 'skill' && owner.name.includes('/')) {
+      regenerateHubs.add(owner.name.split('/')[0]);
     }
     if (filePath.startsWith('.skilled/hooks/') || /git-hooks/.test(filePath)) reinstallHooks = true;
     if (write.before === null && write.after || write.before && !write.after) {
@@ -1638,7 +1972,8 @@ function recordBase(repo, options) {
   const localTags = tagNames(repo).filter(acceptsTag(options.includePrerelease));
   const release = options.release || latestTag(localTags, options.includePrerelease);
   if (!release) {
-    throw new Error('no local release tag exists; name the release this tree was installed from with --release');
+    throw new Error('no local release tag exists;'
+      + ' name the release this tree was installed from with --release');
   }
   const commit = tagCommit(repo, release, options.remote, !options.offline, new Map());
   if (!commit) throw new Error('release tag could not be resolved: ' + release);
@@ -1651,9 +1986,18 @@ function recordBase(repo, options) {
       + '; commit or discard it before recording again');
   }
   const existing = loadJson(safeResolve(repo, BASE_FILE), { schemaVersion: 1, units: {} });
-  const next = { schemaVersion: 1, units: { ...(existing.units || {}) } };
+  const recording = new Set(units.map(unitKey));
+  const knownUnits = uniqueUnits([
+    ...enumerateUnits([...releaseFiles.keys()]),
+    ...enumerateUnits([...headFiles.keys()]),
+  ]);
+  const nextUnits = normalizeBaseUnits(existing.units, knownUnits, recording);
+  const next = { schemaVersion: 1, units: nextUnits };
   for (const unit of units) {
-    next.units[unit.name] = { release, tree: unitTreeFingerprint(entriesForUnit(releaseFiles, unit)) };
+    next.units[unitKey(unit)] = {
+      release,
+      tree: unitTreeFingerprint(entriesForUnit(releaseFiles, unit)),
+    };
   }
   if (!options.dryRun) {
     writeAtomic(repo, BASE_FILE, { mode: '100644' }, jsonBytes(next));
@@ -1664,35 +2008,57 @@ function recordBase(repo, options) {
     release,
     releaseCommit: commit,
     baseFile: BASE_FILE,
-    units: units.map((unit) => unit.name),
+    units: units.map(unitKey),
   };
 }
 
 function rollbackPlan(repo, runPath) {
   const run = loadRun(runPath, repo);
   const rollback = readRunJson(run.runDir, 'rollback.json', null);
-  if (!rollback || !Array.isArray(rollback.paths)) throw new Error('rollback.json is missing or invalid');
+  if (!rollback) {
+    throw new Error('this run has no rollback.json: ' + run.runDir
+      + '; apply has not written from it, so there is nothing to roll back');
+  }
+  if (!Array.isArray(rollback.paths)) {
+    throw new Error('rollback.json has no paths array: ' + run.runDir);
+  }
+  // SEC: rollback.json is as editable as the plan, so it may restore only the
+  // release records and paths inside the plan's units.
+  for (const entry of rollback.paths) {
+    const allowed = [BASE_FILE, DIVERGENCE_FILE].includes(entry.path)
+      || (typeof entry.path === 'string' && owningUnit(run.plan.units, entry.path));
+    if (!allowed) {
+      throw new Error('rollback path is outside the plan\'s units: ' + entry.path
+        + '; refusing to restore it');
+    }
+  }
+  const lockPath = acquireLock(repo);
   const restored = [];
   const skipped = [];
-  for (const entry of rollback.paths) {
-    const current = currentState(repo, entry.path);
-    if (stateEquals(current, entry.before)) {
+  try {
+    for (const entry of rollback.paths) {
+      const current = currentState(repo, entry.path);
+      if (sameState(current, entry.before)) {
+        restored.push(entry.path);
+        continue;
+      }
+      if (!sameState(current, entry.after)) {
+        skipped.push(entry.path);
+        continue;
+      }
+      if (entry.before) {
+        writeAtomic(repo, entry.path, entry.before, blobBytes(repo, entry.before));
+      } else {
+        writeAtomic(repo, entry.path, null, null);
+        removeEmptyParents(repo, path.dirname(safeResolve(repo, entry.path)));
+      }
       restored.push(entry.path);
-      continue;
     }
-    if (!stateEquals(current, entry.after)) {
-      skipped.push(entry.path);
-      continue;
-    }
-    if (entry.before) {
-      writeAtomic(repo, entry.path, entry.before, blobBytes(repo, entry.before));
-    } else {
-      writeAtomic(repo, entry.path, null, null);
-      removeEmptyParents(repo, path.dirname(safeResolve(repo, entry.path)));
-    }
-    restored.push(entry.path);
+  } finally {
+    fs.rmSync(lockPath, { force: true });
   }
-  return { command: 'rollback', runDir: run.runDir, restored, skipped, exitCode: skipped.length ? 1 : 0 };
+  const exitCode = skipped.length ? 1 : 0;
+  return { command: 'rollback', runDir: run.runDir, restored, skipped, exitCode };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1701,9 +2067,11 @@ function rollbackPlan(repo, runPath) {
 
 function parseArgs(argv) {
   const command = argv[0];
-  if (!command) throw Object.assign(new Error('missing subcommand'), { usage: true });
-  if (!COMMAND_OPTIONS[command]) throw Object.assign(new Error('unknown subcommand: ' + command), { usage: true });
-  const options = { command, remote: 'origin', scope: 'all', offline: false, json: false, dryRun: false };
+  if (!command) throw usageError('missing subcommand');
+  if (!COMMAND_OPTIONS[command]) throw usageError('unknown subcommand: ' + command);
+  const options = {
+    command, remote: 'origin', scope: 'all', offline: false, json: false, dryRun: false,
+  };
   const valueOptions = new Set([
     'repo', 'remote', 'release', 'scope', 'out', 'run', 'path', 'decision', 'unit', 'decisions',
   ]);
@@ -1712,39 +2080,40 @@ function parseArgs(argv) {
   const seenOptions = new Set();
   for (let index = 1; index < argv.length; index += 1) {
     const token = argv[index];
-    if (!token.startsWith('--')) throw Object.assign(new Error('unexpected argument: ' + token), { usage: true });
+    if (!token.startsWith('--')) throw usageError('unexpected argument: ' + token);
     const equal = token.indexOf('=');
     const key = token.slice(2, equal < 0 ? undefined : equal);
     if (!COMMAND_OPTIONS[command].has(key)) {
-      throw Object.assign(new Error('unknown option for ' + command + ': --' + key), { usage: true });
+      throw usageError('unknown option for ' + command + ': --' + key);
     }
-    if (seenOptions.has(key)) throw Object.assign(new Error('duplicate option: --' + key), { usage: true });
+    if (seenOptions.has(key)) throw usageError('duplicate option: --' + key);
     seenOptions.add(key);
     if (booleanOptions.has(key)) {
-      if (equal >= 0) throw Object.assign(new Error('--' + key + ' does not take a value'), { usage: true });
+      if (equal >= 0) throw usageError('--' + key + ' does not take a value');
       options[booleanKeys[key] || key] = true;
       continue;
     }
-    if (!valueOptions.has(key)) throw Object.assign(new Error('unsupported option: --' + key), { usage: true });
+    if (!valueOptions.has(key)) throw usageError('unsupported option: --' + key);
     const value = equal >= 0 ? token.slice(equal + 1) : argv[++index];
     if (typeof value !== 'string' || !value || value.startsWith('--')) {
-      throw Object.assign(new Error('--' + key + ' requires a value'), { usage: true });
+      throw usageError('--' + key + ' requires a value');
     }
     options[key] = value;
   }
   if (options.release && !parseVersion(options.release)) {
-    throw Object.assign(new Error('--release must be a version tag'), { usage: true });
+    throw usageError('--release must be a version tag');
   }
   if (command === 'decide') {
     const defer = Boolean(options.defer);
     const hasPathChoice = options.path !== undefined || options.decision !== undefined;
     if (!options.run || defer === hasPathChoice || (defer && !options.unit)
       || (!defer && (!options.path || !options.decision || options.unit))) {
-      throw Object.assign(new Error('decide requires --run and either --path <p> --decision <d> or --unit <u> --defer'), { usage: true });
+      throw usageError('decide requires --run and either --path <p> --decision <d>'
+        + ' or --unit <u> --defer');
     }
   }
   if (command === 'rollback' && !options.run) {
-    throw Object.assign(new Error('rollback requires --run <dir>'), { usage: true });
+    throw usageError('rollback requires --run <dir>');
   }
   return options;
 }
@@ -1755,9 +2124,10 @@ function plainSummary(result) {
       'release: ' + result.release,
       'upstream: ' + result.upstream.latest,
       'status: ' + result.status,
-      ...result.units.map((unit) => unit.name + ': ' + unit.status + ' (' + unit.baseSource + ')'),
+      ...result.units.map((unit) => unit.key + ': ' + unit.status + ' (' + unit.baseSource + ')'),
       ...(result.baseRecording && result.baseRecording.needed
-        ? ['base: ' + result.baseRecording.units.length + ' unit(s) have no recorded base; run ' + result.baseRecording.action]
+        ? ['base: ' + result.baseRecording.units.length
+          + ' unit(s) have no recorded base; run ' + result.baseRecording.action]
         : []),
     ].join('\n');
   }
@@ -1817,7 +2187,8 @@ function main(argv = process.argv.slice(2)) {
       ? { ok: false, error: outcome.error, exitCode: outcome.exitCode }
       : { ok: outcome.exitCode === 0, ...outcome.result }, null, 2) + '\n');
   } else if (outcome.error) {
-    process.stderr.write(outcome.error + '\n' + (outcome.exitCode === 2 ? USAGE + '\n' : ''));
+    const usage = outcome.exitCode === 2 ? USAGE + '\n' : '';
+    process.stderr.write(LOG_PREFIX + ' ' + outcome.error + '\n' + usage);
   } else {
     process.stdout.write(plainSummary(outcome.result) + '\n');
   }
@@ -1836,6 +2207,8 @@ module.exports = {
   main,
   parseVersion,
   runCommand,
+  // Exported for tests: the placeholder path must enumerate to its own unit.
+  syntheticPathForUnit,
 };
 
 if (require.main === module) main();

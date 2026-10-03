@@ -18,7 +18,7 @@ importance_tier: "important"
 
 `.skilled/commands/doctor/scripts/` contains shell, JavaScript and Python tools that support doctor routes.
 
-The scripts validate route manifests, inspect MCP installations, audit parent skill hubs, report graph freshness and prepare runtime dependencies for update workflows. Some scripts are read-only while bootstrap and repair paths can mutate local state.
+The scripts validate route manifests, inspect MCP installations, audit parent skill hubs, report graph freshness, plan and apply framework release updates, and prepare runtime dependencies for `/doctor:rebuild`. Most are read-only. The bootstrap and the release updater's apply and rollback paths write local state. Every script has a test under `tests/`, and one runner executes them all.
 
 ---
 
@@ -37,7 +37,9 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 +-- parent-skill-check.cjs
 +-- route-validate.py
 +-- route-validate.sh
++-- release-update.cjs
 +-- skill-graph-freshness.cjs
++-- tests/            # one suite per script, plus run-all.sh
 `-- README.md
 ```
 
@@ -54,6 +56,7 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `check-mcp-mutation-class.sh` | Enforces read-only and mutating classifications for MCP doctor and installer scripts. |
 | `doctor-runtime-bootstrap.sh` | Installs or builds required runtime dependencies for the update route when needed. |
 | `parent-skill-check.cjs` | Audits parent skill hubs against structural and routing invariants. |
+| `release-update.cjs` | Plans, aligns, applies and rolls back framework release updates for the three `/doctor:update` workflows. |
 | `skill-graph-freshness.cjs` | Compares compiled, SQLite and on-disk skill graph representations without writing. |
 | `fable-mode-check.cjs` | Reports deep-loop behavioral metrics against an optional baseline. |
 | `audit_descriptions.py` | Audits description lengths across skills, commands and agents. |
@@ -102,9 +105,12 @@ bash .skilled/commands/doctor/scripts/route-validate.sh --self-test
 | `bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json` | Emit machine-readable MCP diagnostics. |
 | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs <skill-dir>` | Audit one parent skill hub. |
 | `node .skilled/commands/doctor/scripts/skill-graph-freshness.cjs` | Report skill graph drift. |
-| `node .skilled/commands/doctor/scripts/fable-mode-check.cjs [artifact-dir]` | Report behavioral metrics. |
+| `node .skilled/commands/doctor/scripts/fable-mode-check.cjs --dir <artifact-dir>` | Report behavioral metrics (a positional `<artifact-dir>` also works). |
 | `python3 .skilled/commands/doctor/scripts/audit_descriptions.py --repo-root .` | Audit description budgets. |
 | `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` | Report agent-roster coverage drift across runtimes. |
+| `node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs` | Report command-catalog and hub-metadata drift. |
+| `bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh` | Check the read-only and mutating classes of MCP doctor and installer scripts. |
+| `node .skilled/commands/doctor/scripts/release-update.cjs check --offline` | Report what a release update would change, without fetching. |
 
 ---
 
@@ -113,13 +119,15 @@ bash .skilled/commands/doctor/scripts/route-validate.sh --self-test
 | Script | Boundary |
 |---|---|
 | `route-validate.sh` | Read-only during normal validation. Its self-test creates temporary fixture files and removes them on exit. |
-| `mcp-doctor.sh` | Diagnostic by default. `--fix` can install dependencies, rebuild output and create database directories. |
+| `mcp-doctor.sh` | Read-only diagnostic. Repairs belong to the `/doctor:mcp` workflows, one approval at a time. Exit 3 means bad arguments. |
 | `check-mcp-mutation-class.sh` | Read-only contract scan. |
 | `doctor-runtime-bootstrap.sh` | Mutating. It can migrate directories, install dependencies, build output and write bootstrap state. |
 | `parent-skill-check.cjs` | Read-only audit. |
 | `skill-graph-freshness.cjs` | Read-only report. |
 | `fable-mode-check.cjs` | Read-only report. |
 | `audit_descriptions.py` | Read-only audit. |
+| `agent-roster-mirror-check.cjs`, `command-catalog-mirror-check.cjs` | Read-only reports. |
+| `release-update.cjs` | `check` and `align --dry-run` are read-only. `align` writes a run directory. `apply`, `rollback` and `record-base` write framework files and release records under a lock. |
 
 Do not invoke a mutating path from a route classified as read-only.
 
@@ -127,22 +135,24 @@ Do not invoke a mutating path from a route classified as read-only.
 
 ## 7. VALIDATION
 
-Run syntax checks from the repository root:
+Run every doctor test from the repository root. CI runs the same command in the `doctor-scripts` job of `.github/workflows/spec-kit-check.yml`:
 
 ```bash
-bash -n .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh
-bash -n .skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh
-bash -n .skilled/commands/doctor/scripts/mcp-doctor-lib.sh
-bash -n .skilled/commands/doctor/scripts/mcp-doctor.sh
-bash -n .skilled/commands/doctor/scripts/route-validate.sh
-node --check .skilled/commands/doctor/scripts/fable-mode-check.cjs
-node --check .skilled/commands/doctor/scripts/parent-skill-check.cjs
-node --check .skilled/commands/doctor/scripts/skill-graph-freshness.cjs
-python3 -m py_compile .skilled/commands/doctor/scripts/audit_descriptions.py
-python3 -m py_compile .skilled/commands/doctor/scripts/route-validate.py
+bash .skilled/commands/doctor/scripts/tests/run-all.sh
 ```
 
-Expected result: every command exits with status `0` and produces no syntax error.
+The runner needs `node`, `python3` with PyYAML, and the advisor runtime's dependencies (`npm --prefix .skilled/skills/system-skill-advisor/runtime ci`). It exits `0` when every suite passes, `1` when one fails and `2` when a required tool is missing. `tests/README.md` lists the suites.
+
+Each script can be pointed at a fixture tree, which is how the tests run without touching the repository:
+
+| Script | Override |
+|---|---|
+| `agent-roster-mirror-check.cjs`, `command-catalog-mirror-check.cjs`, `mcp-doctor.sh`, `doctor-runtime-bootstrap.sh`, `release-update.cjs` | `--root <dir>` |
+| `audit_descriptions.py`, `route-validate.sh` | `--repo-root <dir>`. `route-validate.sh` also reads `REPO_ROOT`, `ROUTES_FILE`, `ROUTER_FILE`, `ASSETS_DIR` and `PRESENTATION_FILE` |
+| `check-mcp-mutation-class.sh` | the repository root as its first argument |
+| `doctor-runtime-bootstrap.sh` | `DOCTOR_BOOTSTRAP_LOCK` for the lock path |
+| `parent-skill-check.cjs` | `PARENT_HUB_CHECK_COMMANDS_DIR` for the commands tree. `PARENT_HUB_CHECK_STRICT=0` reports advisory findings as warnings, and hard invariants still fail |
+| `skill-graph-freshness.cjs` | `SKILL_GRAPH_FRESHNESS_ROOT`, `SYSTEM_SKILL_ADVISOR_DB_DIR` |
 
 ---
 
@@ -151,4 +161,5 @@ Expected result: every command exits with status `0` and produces no syntax erro
 - [Doctor route manifest](../_routes.yaml)
 - [Doctor command router](../speckit.md)
 - [Doctor assets](../assets/)
+- [Doctor script tests](./tests/README.md)
 - [Commands directory](../../)

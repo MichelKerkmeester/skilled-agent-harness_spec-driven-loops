@@ -33,7 +33,7 @@ upstream_assets:
 user_inputs:
   action: "align"
   release: "[RELEASE] optional tag"
-  scope: "[SCOPE] optional all or comma-separated unit names"
+  scope: "[SCOPE] optional all or comma-separated units, each a plain name or a kind:name key (skill:hub-a, directory:hooks); a name that two kinds share needs the kind:name form"
   offline: "[OFFLINE] boolean"
   dry_run: "[DRY_RUN] boolean"
 
@@ -53,7 +53,7 @@ field_handling:
     include_prerelease: "--include-prerelease when requested; without it latest-upstream resolution takes stable tags only"
     dry_run: "--dry-run when requested"
   accepted_decisions: [adopt-release, keep-local, merge, use-proposal]
-  defer: "Use decide --unit <unit> --defer; do not invent a file decision for the deferred unit."
+  defer: "Use decide --unit <unit-key> --defer with the unit's kind:name key from the plan (a plain name is accepted only when no other unit shares it); do not invent a file decision for the deferred unit."
 
 mutation_boundaries:
   allowed_targets:
@@ -76,7 +76,7 @@ state_log_schema:
   release: "string|null"
   run_dir: "string|null"
   decisions_recorded: "number"
-  deferred_units: "array of unit names"
+  deferred_units: "array of kind:name unit keys"
   final_status: "aligned|deferred|dry_run|failed"
 
 workflow:
@@ -113,13 +113,13 @@ workflow:
       file: [adopt-release, keep-local, merge, use-proposal]
       unit: [defer]
     eligibility:
-      adopt-release: "Only when allowed by the engine for the planned file class."
+      adopt-release: "Only for take-release files and for binary, deleted-locally or deleted-in-release conflicts, which have no proposal; for those conflicts it writes the release bytes or the release deletion. A mergeable or conflicting text file takes merge, use-proposal or keep-local."
       merge: "Only when the engine reports a mergeable conflict and the proposal has no unresolved markers."
       use-proposal: "Only after the proposal is shown and has no unresolved markers."
       keep-local: "Keep the checkout version for this planned file."
       defer: "Record the unit as deferred and leave its files unapplied."
     record_each_file: "node .skilled/commands/doctor/scripts/release-update.cjs decide --repo . --run <runDir> --path <planned-file-path> --decision <accepted-answer> --json"
-    record_defer: "node .skilled/commands/doctor/scripts/release-update.cjs decide --repo . --run <runDir> --unit <unit-name> --defer --json"
+    record_defer: "node .skilled/commands/doctor/scripts/release-update.cjs decide --repo . --run <runDir> --unit <unit-key> --defer --json"
     record_policy: "Call decide for every file answer, including answers that match an initial engine suggestion. Call decide only after any proposal edit is complete. Read and confirm the returned JSON before continuing."
     decision_order: "Complete one unit's consolidated batch before presenting the next unit's batch."
     on_failure: "Stop further decisions, retain the run directory for recovery, write the state log and show the failed file or unit."
