@@ -516,6 +516,14 @@ export interface Row {
   label: string;
 }
 
+/** Separate counters keep path-specific candidate misses visible in the summary. */
+export interface CandidateRecall {
+  content: { offered: number; labeled: number };
+  folder: { offered: number; labeled: number };
+  other: { offered: number; labeled: number };
+  overall: { offered: number; labeled: number };
+}
+
 /** True when a parsed JSON value carries every field the row shape requires. */
 function isRow(value: unknown): value is Row {
   if (value === null || typeof value !== 'object') return false;
@@ -566,14 +574,33 @@ export function effectiveLabel(row: Row): string | null {
   return null;
 }
 
-/** Ids of rows whose non-empty trimmed label names no option of that row. */
-export function foreignLabelIds(rows: Row[]): string[] {
-  return rows
-    .filter((row) => {
-      const label = row.label.trim();
-      return label !== '' && !rowOptions(row).includes(label);
-    })
-    .map((row) => row.id);
+/** Separates candidate misses before scoring, since a chooser cannot recover an unoffered folder. */
+export function summarizeCandidateRecall(rows: Row[]): CandidateRecall {
+  const recall: CandidateRecall = {
+    content: { offered: 0, labeled: 0 },
+    folder: { offered: 0, labeled: 0 },
+    other: { offered: 0, labeled: 0 },
+    overall: { offered: 0, labeled: 0 },
+  };
+  for (const row of rows) {
+    const label = effectiveLabel(row);
+    if (label === null || label === NONE_KEY) continue;
+    const category = row.path === 'cli' ? recall.content : row.path === 'data' ? recall.folder : recall.other;
+    const offered = row.target === label || row.alternatives.includes(label);
+    category.labeled += 1;
+    recall.overall.labeled += 1;
+    if (offered) {
+      category.offered += 1;
+      recall.overall.offered += 1;
+    }
+  }
+  return recall;
+}
+
+/** Marks an empty sample as n/a because a zero denominator has no recall rate. */
+function formatRecall(recall: { offered: number; labeled: number }): string {
+  const rate = recall.labeled === 0 ? 'n/a' : `${((100 * recall.offered) / recall.labeled).toFixed(1)}%`;
+  return `${recall.offered}/${recall.labeled} (${rate})`;
 }
 
 /**
@@ -645,18 +672,39 @@ export interface VerdictCounts {
   F: number;
 }
 
+/** Preserves differing rows for review because W+L alone hides which labels disagree. */
+export interface DiscordantRow {
+  rowId: string;
+  label: string;
+  comparatorPick: string;
+  modelPick: string;
+  outcome: 'win' | 'loss';
+}
+
+/** Keeps uncertainty tied to the discordant rows that determine the win-rate sign test. */
+export interface ConfidenceInterval {
+  lower: number;
+  upper: number;
+}
+
 /**
- * Counts the keep rule over the callable rows: a row is measured when all three passes
- * answered, and each measured row compares its modal pick and the baseline answer to
- * its effective label.
+ * Counts three answers, or one exact-confidence answer, so the gated arm can measure a
+ * row without paying for two redundant passes.
  */
-export function countVerdict(rows: Row[], picks: Record<string, Array<string | null>>, chosen: 'target' | 'top'): VerdictCounts {
+export function countVerdict(
+  rows: Row[],
+  picks: Record<string, Array<string | null>>,
+  chosen: 'target' | 'top',
+  confidenceGated = false
+): VerdictCounts {
   const counts: VerdictCounts = { K: rows.length, M: 0, A: 0, B: 0, W: 0, L: 0, F: 0 };
   for (const row of rows) {
     const rowPicks = picks[row.id];
-    if (rowPicks === undefined || rowPicks.length !== PASSES || rowPicks.some((pick) => pick === null)) continue;
+    if (rowPicks === undefined || rowPicks.some((pick) => pick === null)) continue;
+    const singleCertainPass = confidenceGated && rowPicks.length === 1;
+    if (!singleCertainPass && rowPicks.length !== PASSES) continue;
 
-    const { pick, flips } = modalPick(rowPicks);
+    const { pick, flips } = singleCertainPass ? { pick: rowPicks[0], flips: 0 } : modalPick(rowPicks);
     const label = effectiveLabel(row);
     const baselineAnswer = chosen === 'target' ? row.target : row.alternatives[0];
     const columnRight = pick === label;
@@ -687,6 +735,95 @@ export function decideVerdict(c: VerdictCounts): { verdict: string; p: number } 
   if (signP >= 0.05) return { verdict: 'stop (sign test)', p: signP };
   if (10 * c.F > 3 * c.M) return { verdict: 'stop (flips)', p: signP };
   return { verdict: 'keep', p: signP };
+}
+
+/** Uses a Wilson interval because a small discordant sample is not an exact win rate. */
+export function wilsonInterval(wins: number, total: number): ConfidenceInterval {
+  if (total === 0) return { lower: 0, upper: 1 };
+  const z = 1.96;
+  const rate = wins / total;
+  const zSquared = z * z;
+  const denominator = 1 + zSquared / total;
+  const center = (rate + zSquared / (2 * total)) / denominator;
+  const margin = (z * Math.sqrt((rate * (1 - rate)) / total + zSquared / (4 * total * total))) / denominator;
+  return { lower: Math.max(0, center - margin), upper: Math.min(1, center + margin) };
+}
+
+/** Exposes the differing labels that an aggregate W+L count cannot identify. */
+function listDiscordantRows(
+  rows: Row[],
+  picks: Record<string, Array<string | null>>,
+  chosen: 'target' | 'top',
+  confidenceGated = false
+): DiscordantRow[] {
+  const discordant: DiscordantRow[] = [];
+  for (const row of rows) {
+    const rowPicks = picks[row.id];
+    if (rowPicks === undefined || rowPicks.some((pick) => pick === null)) continue;
+    const singleCertainPass = confidenceGated && rowPicks.length === 1;
+    if (!singleCertainPass && rowPicks.length !== PASSES) continue;
+    const modelPick = singleCertainPass ? rowPicks[0] : modalPick(rowPicks).pick;
+    const label = effectiveLabel(row);
+    if (modelPick === null || modelPick === undefined || label === null) continue;
+    const comparatorPick = chosen === 'target' ? row.target : row.alternatives[0];
+    const modelRight = modelPick === label;
+    const comparatorRight = comparatorPick === label;
+    if (modelRight === comparatorRight) continue;
+    discordant.push({
+      rowId: row.id,
+      label,
+      comparatorPick,
+      modelPick,
+      outcome: modelRight ? 'win' : 'loss',
+    });
+  }
+  return discordant;
+}
+
+type ArmMetrics = {
+  verdict: string;
+  counts: VerdictCounts;
+  p: number;
+  discordantRows: DiscordantRow[];
+  interval: ConfidenceInterval;
+};
+
+/** Reuses saved picks so the swapped-label control does not make extra model calls. */
+function scorePicks(
+  rows: Row[],
+  picks: Record<string, Array<string | null>>,
+  chosen: 'target' | 'top',
+  confidenceGated = false
+): ArmMetrics {
+  const counts = countVerdict(rows, picks, chosen, confidenceGated);
+  const decided = decideVerdict(counts);
+  return {
+    verdict: decided.verdict,
+    counts,
+    p: decided.p,
+    discordantRows: listDiscordantRows(rows, picks, chosen, confidenceGated),
+    interval: wilsonInterval(counts.W, counts.W + counts.L),
+  };
+}
+
+/** Reuses the choices to check whether evaluation changes when target and top labels swap. */
+function swapTargetTopLabels(rows: Row[]): Row[] {
+  return rows.map((row) => {
+    const label = effectiveLabel(row);
+    const top = row.alternatives[0];
+    if (label === null || top === undefined) return row;
+    if (label === row.target) return { ...row, label: top, gold: null };
+    if (label === top) return { ...row, label: row.target, gold: null };
+    return { ...row, label, gold: null };
+  });
+}
+
+/** Rotates states to expose choices that depend on matching row context. */
+function distractorStates(rows: Row[]): Row[] {
+  return rows.map((row, index) => ({
+    ...row,
+    state: rows.length > 1 ? rows[(index + 1) % rows.length].state : 'Unrelated context',
+  }));
 }
 
 /**
@@ -785,6 +922,7 @@ interface CallResult {
 /** One calls.jsonl line: what a call was and what it returned, never the row state. */
 interface CallRecord {
   backend: 'jev';
+  arm: string;
   row_id: string | null;
   order: number | null;
   wall_ms: number;
@@ -808,12 +946,21 @@ interface Classification {
 }
 
 /** One call step's outcome for the row loop: the measured pick, or the stop that ended the arm. */
-type StepOutcome = { pick: string | null } | { stop: string };
+type StepOutcome = { pick: string | null; probability: number | null } | { stop: string };
 
 /** One arm run's outcome: its verdict line, or the stop line with the rows finished before it. */
 type ArmOutcome =
-  | { line: string; verdict: string; counts: VerdictCounts; p: number }
-  | { stopped: string; partialRows: number };
+  | {
+      line: string;
+      verdict: string;
+      counts: VerdictCounts;
+      p: number;
+      picks: Record<string, Array<string | null>>;
+      discordantRows: DiscordantRow[];
+      interval: ConfidenceInterval;
+      choiceCalls: number;
+    }
+  | { stopped: string; partialRows: number; choiceCalls: number };
 
 /** The classification of a call that produced no usable pick. */
 const UNMEASURED: Classification = { pick: null, pickProb: null, status: 'unmeasured' };
@@ -828,18 +975,61 @@ function readEntries(dir: string): Dirent[] {
 }
 
 /**
- * Builds the folder describer the arms send. A folder that names its own path reads that
- * folder's description.json; a bare name reads the one folder of that name under the specs
- * root that holds one. A missing file, a non-string description or two folders with the
- * same name fall back to the folder name. The name index is built once.
+ * The `description.json` for a bare option name under the row's own packet parent. Resolving
+ * against the row's track keeps a colliding basename from collapsing to the folder name when the
+ * same name also lives in another track.
  */
-export function buildDescriber(specsRoot: string): (folder: string) => string {
+/** Resolves a folder key to its description text; rowPath and target carry the row's context. */
+export type Describer = (folder: string, rowPath?: string, target?: string) => string;
+
+/**
+ * The file path whose grandparent directory is the row's parent folder, used to resolve
+ * bare option names as siblings. A labeled row stores a repository file path, used as is.
+ * A census row stores only its save category in `path`, so the row's target name is looked
+ * up through the folder index; only a unique hit supplies the parent, and everything else
+ * keeps the row's fallback.
+ */
+function siblingAnchorFor(
+  rowPath: string | undefined,
+  target: string | undefined,
+  indexByName: () => Map<string, string[]>
+): string | null {
+  if (rowPath === undefined) return null;
+  if (rowPath.includes('/') || rowPath.includes(path.sep)) return rowPath;
+  if (target === undefined || target.includes('/') || target.includes(path.sep)) return null;
+  const dirs = indexByName().get(target) ?? [];
+  if (dirs.length !== 1) return null;
+  return path.join(dirs[0], 'description.json');
+}
+
+function siblingDescriptionFile(specsRoot: string, rowPath: string, folder: string): string | null {
+  const normalized = rowPath.split(/[\\/]/).join(path.sep);
+  const packetParent = path.dirname(path.dirname(normalized));
+  if (packetParent === '' || packetParent === '.') return null;
+  const candidates = [
+    path.resolve(specsRoot, packetParent, folder),
+    path.resolve(path.dirname(specsRoot), packetParent, folder),
+  ];
+  for (const candidate of candidates) {
+    if (!isPathInsideRoot(specsRoot, candidate)) continue;
+    const file = path.join(candidate, 'description.json');
+    if (existsSync(file)) return file;
+  }
+  return null;
+}
+
+/**
+ * Resolves explicit folder paths first because basenames can collide across tracks. The
+ * basename index excludes archives so retired descriptions cannot make live names ambiguous.
+ */
+export function buildDescriber(specsRoot: string): Describer {
   let byName: Map<string, string[]> | null = null;
 
   const indexByName = (): Map<string, string[]> => {
     if (byName !== null) return byName;
     const index = new Map<string, string[]>();
     const walk = (dir: string): void => {
+      if (isArchiveFolder(path.basename(dir))) return;
       const entries = readEntries(dir);
       if (entries.some((entry) => entry.isFile() && entry.name === 'description.json')) {
         const name = path.basename(dir);
@@ -854,13 +1044,18 @@ export function buildDescriber(specsRoot: string): (folder: string) => string {
     return index;
   };
 
-  return (folder: string): string => {
+  return (folder: string, rowPath?: string, target?: string): string => {
     let file: string | null = null;
-    if (folder.includes('/')) {
-      file = path.join(specsRoot, folder, 'description.json');
+    if (folder.includes('/') || folder.includes(path.sep)) {
+      const folderPath = path.resolve(specsRoot, folder);
+      if (isPathInsideRoot(specsRoot, folderPath)) file = path.join(folderPath, 'description.json');
     } else {
-      const dirs = indexByName().get(folder) ?? [];
-      if (dirs.length === 1) file = path.join(dirs[0], 'description.json');
+      const anchor = siblingAnchorFor(rowPath, target, indexByName);
+      if (anchor !== null) file = siblingDescriptionFile(specsRoot, anchor, folder);
+      if (file === null) {
+        const dirs = indexByName().get(folder) ?? [];
+        if (dirs.length === 1) file = path.join(dirs[0], 'description.json');
+      }
     }
     if (file !== null) {
       try {
@@ -931,6 +1126,11 @@ function writeCall(outDir: string, record: CallRecord): void {
   appendFileSync(path.join(outDir, 'calls.jsonl'), `${JSON.stringify(record)}\n`);
 }
 
+/** Ties a run to the exact input and report bytes used for its comparison. */
+function sha256(contents: Buffer | string): string {
+  return createHash('sha256').update(contents).digest('hex');
+}
+
 /** Parses stdout as JSON, or null when it is not JSON. */
 function tryJson(text: string): unknown {
   try {
@@ -977,9 +1177,9 @@ function sleep(ms: number): Promise<void> {
 }
 
 /** The `key=text` option lines of one row, with a shared text disambiguated by its key. */
-function buildOptionLines(row: Row, describe: (folder: string) => string): string[] {
+function buildOptionLines(row: Row, describe: Describer): string[] {
   const keys = rowOptions(row);
-  const texts = keys.map((key) => (key === NONE_KEY ? NONE_DESCRIPTION : describe(key)));
+  const texts = keys.map((key) => (key === NONE_KEY ? NONE_DESCRIPTION : describe(key, row.path, row.target)));
   const shared = new Map<string, number>();
   for (const text of texts) shared.set(text, (shared.get(text) ?? 0) + 1);
   return keys.map((key, index) => {
@@ -1004,10 +1204,13 @@ export async function runArm(
     timeoutMs: number;
     backoffMs: number;
     outDir: string;
-    describe: (folder: string) => string;
-  }
+    describe: Describer;
+  },
+  options: { name?: string; confidenceGated?: boolean } = {}
 ): Promise<ArmOutcome> {
   const provider = gate.provider ?? 'official';
+  const armName = options.name ?? backend;
+  const confidenceGated = options.confidenceGated ?? false;
   const optionLines = rows.map((row) => buildOptionLines(row, ctx.describe));
 
   if (backend === 'jev') {
@@ -1016,7 +1219,7 @@ export async function runArm(
         sum + (row.state ?? '').length + CHOICE_QUESTION.length + optionLines[index].reduce((lineSum, line) => lineSum + line.length, 0),
       0
     );
-    ctx.out(`jev: payload=operator session summaries and folder descriptions planned_calls=${3 * rows.length + 1} est_input_tokens=${Math.ceil((3 * perRow) / 4)}`);
+    ctx.out(`${armName}: payload=operator session summaries and folder descriptions planned_calls=${3 * rows.length + 1} est_input_tokens=${Math.ceil((3 * perRow) / 4)}`);
   }
 
   let jevModel = 'unknown';
@@ -1037,6 +1240,7 @@ export async function runArm(
     }
     writeCall(ctx.outDir, {
       backend,
+      arm: armName,
       row_id: null,
       order: null,
       wall_ms: auth.wallMs,
@@ -1052,11 +1256,12 @@ export async function runArm(
     if (auth.code !== 0) {
       const stopped = auth.code === 3 ? 'jev arm stopped: key rejected' : 'jev arm stopped: auth test failed';
       ctx.out(stopped);
-      ctx.out(`${backend}: partial_rows=0`);
-      return { stopped, partialRows: 0 };
+      ctx.out(`${armName}: partial_rows=0`);
+      return { stopped, partialRows: 0, choiceCalls: 0 };
     }
   }
 
+  let choiceCalls = 0;
   const callRecord = (
     row: Row,
     order: number,
@@ -1066,6 +1271,7 @@ export async function runArm(
   ): CallRecord => {
     const base = {
       backend,
+      arm: armName,
       row_id: row.id,
       order,
       wall_ms: result.wallMs,
@@ -1094,8 +1300,10 @@ export async function runArm(
     optionsHash: string,
     keys: string[]
   ): Promise<StepOutcome> => {
-    const attempt = (): Promise<CallResult> =>
-      spawnCall(gate.cmd[0], [...gate.cmd.slice(1), ...args], row.state ?? '', ctx.env, ctx.timeoutMs);
+    const attempt = (): Promise<CallResult> => {
+      choiceCalls += 1;
+      return spawnCall(gate.cmd[0], [...gate.cmd.slice(1), ...args], row.state ?? '', ctx.env, ctx.timeoutMs);
+    };
     let result = await attempt();
 
     if (result.code === 4) {
@@ -1109,7 +1317,7 @@ export async function runArm(
     if (result.code === 2) return { stop: `${backend} arm stopped: usage error` };
     if (result.code === 3) return { stop: 'jev arm stopped: key rejected' };
     if (result.code === 130) return { stop: `${backend} arm stopped: interrupted` };
-    return { pick: step.pick };
+    return { pick: step.pick, probability: step.pickProb };
   };
 
   const picks: Record<string, Array<string | null>> = {};
@@ -1124,20 +1332,29 @@ export async function runArm(
       const step = await runStep(row, order, callArgs(order, lines), optionsHash, keys);
       if ('stop' in step) {
         ctx.out(step.stop);
-        ctx.out(`${backend}: partial_rows=${rowIndex}`);
-        return { stopped: step.stop, partialRows: rowIndex };
+        ctx.out(`${armName}: partial_rows=${rowIndex}`);
+        return { stopped: step.stop, partialRows: rowIndex, choiceCalls };
       }
       rowPicks.push(step.pick);
+      if (confidenceGated && order === 0 && step.probability === 1) break;
     }
     picks[row.id] = rowPicks;
   }
 
-  const counts = countVerdict(rows, picks, chosen);
+  const counts = countVerdict(rows, picks, chosen, confidenceGated);
   const decided = decideVerdict(counts);
   const extra = `jev_version=${JEV_VERSION} provider=${provider} model=${jevModel}`;
   const line = verdictLine(backend, counts, decided, chosen, extra);
+  const discordantRows = listDiscordantRows(rows, picks, chosen, confidenceGated);
+  const interval = wilsonInterval(counts.W, counts.W + counts.L);
   ctx.out(line);
-  return { line, verdict: decided.verdict, counts, p: decided.p };
+  ctx.out(`${armName}: W+L=${counts.W + counts.L} interval95=[${interval.lower.toFixed(3)},${interval.upper.toFixed(3)}]`);
+  ctx.out(`${armName}: discordant_rows=${discordantRows.length}`);
+  for (const discordant of discordantRows) {
+    ctx.out(`${armName}: discordant row_id=${discordant.rowId} outcome=${discordant.outcome} label=${discordant.label} comparator=${discordant.comparatorPick} model=${discordant.modelPick}`);
+  }
+  if (confidenceGated) ctx.out(`${armName}: choice_calls=${choiceCalls} full_pass_calls=${rows.length * PASSES} saved=${rows.length * PASSES - choiceCalls}`);
+  return { line, verdict: decided.verdict, counts, p: decided.p, picks, discordantRows, interval, choiceCalls };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -1152,7 +1369,7 @@ export interface MainDeps {
   repoRoot?: string;
   specsRoot?: string;
   trackedFiles?: () => { files: string[]; skippedSource: number };
-  describe?: (folder: string) => string;
+  describe?: Describer;
   timeoutMs?: number;
   backoffMs?: number;
 }
@@ -1162,6 +1379,7 @@ const MAIN_OPTIONS = {
   transcripts: { type: 'string' },
   'rows-out': { type: 'string' },
   score: { type: 'string' },
+  baseline: { type: 'string' },
   out: { type: 'string' },
   jev: { type: 'boolean' },
   'accept-payload': { type: 'boolean' },
@@ -1181,6 +1399,7 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
   let transcripts: string | undefined;
   let rowsOut: string | undefined;
   let score: string | undefined;
+  let baselineArgument: string | undefined;
   let outDir: string | undefined;
   let jev = false;
   let acceptPayload = false;
@@ -1190,11 +1409,21 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
     transcripts = values.transcripts;
     rowsOut = values['rows-out'];
     score = values.score;
+    baselineArgument = values.baseline;
     outDir = values.out;
     jev = values.jev === true;
     acceptPayload = values['accept-payload'] === true;
   } catch (error) {
     err(`usage error: ${error instanceof Error ? error.message : String(error)}`);
+    return 2;
+  }
+
+  if (baselineArgument !== undefined && baselineArgument !== 'target' && baselineArgument !== 'top') {
+    err('--baseline must be target or top');
+    return 2;
+  }
+  if (baselineArgument !== undefined && score === undefined) {
+    err('--baseline needs --score <rows file>');
     return 2;
   }
 
@@ -1238,22 +1467,23 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
       return 2;
     }
 
-    const parsedRows = parseRows(readFileSync(score, 'utf8'));
+    const rowsBytes = readFileSync(score);
+    const parsedRows = parseRows(rowsBytes.toString('utf8'));
     if ('error' in parsedRows) {
       err(parsedRows.error);
-      return 2;
-    }
-
-    const foreign = foreignLabelIds(parsedRows.rows);
-    if (foreign.length > 0) {
-      err(`foreign label in rows: ${foreign.join(', ')}`);
       return 2;
     }
 
     const labeled = parsedRows.rows.filter((row) => effectiveLabel(row) !== null);
     const callable = labeled.filter((row) => row.state !== null && row.state !== '');
     const stateNull = parsedRows.rows.filter((row) => row.state === null).length;
+    const contentSaves = parsedRows.rows.filter((row) => row.path === 'cli').length;
+    const folderSaves = parsedRows.rows.filter((row) => row.path === 'data').length;
+    const otherSaves = parsedRows.rows.length - contentSaves - folderSaves;
+    const candidateRecall = summarizeCandidateRecall(parsedRows.rows);
     out(`rows: total=${parsedRows.rows.length} labeled=${labeled.length} callable=${callable.length} state_null=${stateNull}`);
+    out(`save path split: content=${contentSaves} folder=${folderSaves} other=${otherSaves}`);
+    out(`candidate recall: content=${formatRecall(candidateRecall.content)} folder=${formatRecall(candidateRecall.folder)} overall=${formatRecall(candidateRecall.overall)}`);
     if (labeled.length < LABEL_GATE) {
       out(`stop: fewer than ${LABEL_GATE} labeled rows (${labeled.length} labeled)`);
       return 0;
@@ -1263,8 +1493,14 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
       return 0;
     }
 
-    const baseline = chooseBaseline(labeled);
-    out(`baseline: target=${baseline.target} top=${baseline.top} chosen=${baseline.chosen}`);
+    const automaticBaseline = chooseBaseline(labeled);
+    const declaredComparator = baselineArgument === 'target' || baselineArgument === 'top' ? baselineArgument : null;
+    const baseline = {
+      ...automaticBaseline,
+      chosen: declaredComparator ?? automaticBaseline.chosen,
+      comparator: declaredComparator === null ? 'auto' : 'declared',
+    };
+    out(`baseline: target=${baseline.target} top=${baseline.top} chosen=${baseline.chosen} comparator=${baseline.comparator}`);
 
     const right = callable.filter((row) => {
       const answer = baseline.chosen === 'target' ? row.target : row.alternatives[0];
@@ -1280,7 +1516,11 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
     out(`question: ${CHOICE_QUESTION}`);
 
     const env = deps.env ?? process.env;
-    const columns: { jev?: ArmOutcome } = {};
+    const columns: {
+      jev?: ArmOutcome;
+      confidenceGated?: ArmOutcome;
+      negativeControls?: { labelSwap: ArmMetrics; distractorState?: ArmOutcome };
+    } = {};
     const armCtx = {
       out,
       env,
@@ -1292,23 +1532,65 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
 
     const jevGateResult = jev ? jevGate({ out, env, acceptPayload }) : null;
     if (jevGateResult !== null && jevGateResult.passed && jevGateResult.path !== null) {
-      columns.jev = await runArm(
+      const gate = { cmd: [jevGateResult.path], provider: jevGateResult.provider };
+      const primary = await runArm(
         'jev',
         callable,
         baseline.chosen,
-        { cmd: [jevGateResult.path], provider: jevGateResult.provider },
+        gate,
         armCtx
       );
+      columns.jev = primary;
+      if ('picks' in primary) {
+        const labelSwap = scorePicks(swapTargetTopLabels(callable), primary.picks, baseline.chosen);
+        columns.negativeControls = { labelSwap };
+        out(`negative control label-swap: W+L=${labelSwap.counts.W + labelSwap.counts.L} interval95=[${labelSwap.interval.lower.toFixed(3)},${labelSwap.interval.upper.toFixed(3)}]`);
+        out(`negative control label-swap: discordant_rows=${labelSwap.discordantRows.length}`);
+        for (const discordant of labelSwap.discordantRows) {
+          out(`negative control label-swap: discordant row_id=${discordant.rowId} outcome=${discordant.outcome} label=${discordant.label} comparator=${discordant.comparatorPick} model=${discordant.modelPick}`);
+        }
+
+        columns.confidenceGated = await runArm(
+          'jev',
+          callable,
+          baseline.chosen,
+          gate,
+          armCtx,
+          { name: 'confidence-gated', confidenceGated: true }
+        );
+        columns.negativeControls.distractorState = await runArm(
+          'jev',
+          distractorStates(callable),
+          baseline.chosen,
+          gate,
+          armCtx,
+          { name: 'negative control distractor-state' }
+        );
+      }
     }
 
     if (jev) {
       mkdirSync(armCtx.outDir, { recursive: true });
       const payload = {
         rows: { total: parsedRows.rows.length, labeled: labeled.length, callable: callable.length, stateNull },
+        savePathSplit: { content: contentSaves, folder: folderSaves, other: otherSaves },
+        candidateRecall,
         baseline,
+        pins: {
+          corpus_sha256: sha256(rowsBytes),
+          scorer_sha256: sha256(readFileSync(new URL(import.meta.url))),
+        },
         columns,
       };
-      writeFileSync(path.join(armCtx.outDir, 'report.json'), `${JSON.stringify(payload, null, 2)}\n`);
+      const reportFile = path.join(armCtx.outDir, 'report.json');
+      writeFileSync(reportFile, `${JSON.stringify(payload, null, 2)}\n`);
+      const pins = {
+        corpus_sha256: sha256(rowsBytes),
+        report_sha256: sha256(readFileSync(reportFile)),
+        scorer_sha256: sha256(readFileSync(new URL(import.meta.url))),
+      };
+      writeFileSync(path.join(armCtx.outDir, 'pins.json'), `${JSON.stringify(pins, null, 2)}\n`);
+      out(`pins: corpus_sha256=${pins.corpus_sha256} report_sha256=${pins.report_sha256} scorer_sha256=${pins.scorer_sha256}`);
     }
     return 0;
   }

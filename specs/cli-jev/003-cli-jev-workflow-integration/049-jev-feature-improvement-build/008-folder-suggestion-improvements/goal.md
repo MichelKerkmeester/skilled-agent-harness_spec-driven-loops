@@ -11,17 +11,18 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/008-folder-suggestion-improvements"
-    last_updated_at: "2026-10-03T05:30:09Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-03T12:00:00Z"
+    last_updated_by: "claude-opus-5-5-049"
+    recent_action: "All completion criteria met with evidence"
+    next_safe_action: "None. The phase is Complete"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-5-5-049"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,10 +57,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `score-alignment-suggestion.vitest.ts` passes, with cases for the basename collision, recall and the comparator flag
-- [ ] The f022-001 options all carry descriptions in a dry run
-- [ ] The re-measure's verdict line and the f022-001 pick are in the log
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` on this phase
+- [x] `score-alignment-suggestion.vitest.ts` passes, with cases for the basename collision, recall and the comparator flag
+- [x] The f022-001 options all carry descriptions in a dry run
+- [x] The re-measure's verdict line and the f022-001 pick are in the log
+- [x] `validate.sh --strict` prints `RESULT: PASSED` on this phase
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,10 +77,16 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase opened | Done | Spec, plan, tasks and goal authored 2026-10-03 from 048's ranked table |
+| Build | Done | Luna on cli-codex |
+| Session dry run | Done | The path branch never fired on real rows; DeepSeek fixed it, so every f022-001 option carries a description |
+| Cross-family review | Done | Luna: 1 P0 fixed (census rows), 1 P1 fixed (gated arm scoring asserted), 1 P1 closed by this log |
+| Amendment (2026-10-03) | Done | Recorded before the re-measure: path-resolved descriptions, gated arm reported beside the three-pass arm, negative controls. Old verdict on record: 022 `keep K=40 M=40 A=39 B=30 W=10 L=1 F=0 p=0.0059 baseline=top`, 121 calls |
+| Re-measure (2026-10-03) | Done | `verdict jev: keep K=40 M=40 A=39 B=30 W=10 L=1 F=0 p=0.0059 baseline=top`, same as 022. f022-001 picks `007-classifier-deep-research` (label `001-deep-research`). Label swap W+L=10, interval [0.722, 1.000]. Distractor state: kill W=0 L=30. Candidate recall 40 of 40. Pins: report e207895e, scorer 62c36db0, corpus 815d3ac8. Run `~/.skilled/.labels/runs/049-008-jev-20261003b` |
+| Validate | Done | `validate.sh --strict` RESULT: PASSED |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Foreign-label refusal replaced by candidate recall | The scorer used to exit 2 on a label outside a row's options. R3 counts such a row as a recall miss, which adds no win or loss to the sign test |
 <!-- /ANCHOR:log -->

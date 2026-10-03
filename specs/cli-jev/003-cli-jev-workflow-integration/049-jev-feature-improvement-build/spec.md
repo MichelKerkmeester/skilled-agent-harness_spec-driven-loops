@@ -111,7 +111,7 @@ Each child names its exact files in its own spec.
 | 5 | 005-hallucination-grader-improvements/ | Build 048's ranked fixes for the Jev hallucination grader (024): allowlists, unmeasured failures, shared context | Complete |
 | 6 | 006-verdict-fallback-improvements/ | Build 048's ranked fixes for the Jev verdict fallback (025): typed verdict, wider parser, abstain outcome | Complete |
 | 7 | 007-clarify-default-improvements/ | Build 048's ranked fixes for the Jev clarify default (020): replay-verified rows, digests, class and hub baselines | Complete |
-| 8 | 008-folder-suggestion-improvements/ | Build 048's ranked fixes for the Jev folder suggestion (022): path-resolved descriptions, candidate recall, pins | Planned |
+| 8 | 008-folder-suggestion-improvements/ | Build 048's ranked fixes for the Jev folder suggestion (022): path-resolved descriptions, candidate recall, pins | Complete |
 | 9 | 009-pi-transport-improvements/ | Build 048's ranked fixes for the Pi classifier transport (037): provider intent, kill switch, cached runtime, paired benchmark | In Progress |
 | 10 | 010-completion-claims-improvements/ | Build 048's ranked fixes for the completion-claim audit (026): sentinel regex, scorer repairs, Cursor wiring | Complete |
 | 11 | 011-research-run-init-via-gateway/ | Fix the deep-research run open: record `run_initialized` through the gateway so a run's first append projects | Complete |
