@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 57,
     "missing-frontmatter": 6675,
-    "ok": 13068,
+    "ok": 13077,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23315,
+  "documentsScanned": 23324,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "ee8e4bb95c0254a5fef3f869eb33b980c67a7485e862b60378327175e7a2d008",
+  "manifestHash": "bbe6ca0aa638d330dc274eb7cd18b62475d713f01b0a82bd2cbe09d9e2b62151",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -65968,6 +65968,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-external-orchestration/079-claude-code-native-dispatch/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-external-orchestration/z_archive",
       "reason": "excluded directory"
     },
@@ -70481,6 +70485,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,0 +1,25 @@
+{
+  "specFolder": "cli-external-orchestration/079-claude-code-native-dispatch",
+  "description": "Tell Claude Code sessions to dispatch native subagents instead of the cli-claude-code CLI",
+  "keywords": [
+    "tell",
+    "claude",
+    "code",
+    "sessions",
+    "dispatch",
+    "native",
+    "subagents",
+    "instead",
+    "cli-claude-code",
+    "cli"
+  ],
+  "lastUpdated": "2026-10-03T21:11:45.316Z",
+  "specId": "079",
+  "folderSlug": "claude-code-native-dispatch",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
