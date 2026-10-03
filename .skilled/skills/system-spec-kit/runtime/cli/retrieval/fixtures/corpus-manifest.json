@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1d80ab9dee40e65b99a12a11237a2e826338e052319c0b612d5afadc21bff5d0",
+  "corpusHash": "e37131bb5a32c197cbc0146b08f5e5d8b6dc91141205c052e654fd171de109b6",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23315,
+  "includedPathCount": 23324,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8546,6 +8546,10 @@
     "specs/cli-external-orchestration/078-layer-3-own-paths-baseline/plan.md",
     "specs/cli-external-orchestration/078-layer-3-own-paths-baseline/spec.md",
     "specs/cli-external-orchestration/078-layer-3-own-paths-baseline/tasks.md",
+    "specs/cli-external-orchestration/079-claude-code-native-dispatch/implementation-summary.md",
+    "specs/cli-external-orchestration/079-claude-code-native-dispatch/plan.md",
+    "specs/cli-external-orchestration/079-claude-code-native-dispatch/spec.md",
+    "specs/cli-external-orchestration/079-claude-code-native-dispatch/tasks.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
     "specs/cli-jev/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md",
@@ -23342,10 +23346,15 @@
     "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/resource-map.md",
     "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/acceptance-criteria.md",
+    "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ee8e4bb95c0254a5fef3f869eb33b980c67a7485e862b60378327175e7a2d008",
+  "manifestHash": "bbe6ca0aa638d330dc274eb7cd18b62475d713f01b0a82bd2cbe09d9e2b62151",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24213,6 +24222,10 @@
     },
     {
       "path": "specs/cli-external-orchestration/078-layer-3-own-paths-baseline/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/079-claude-code-native-dispatch/scratch",
       "reason": "excluded directory"
     },
     {
@@ -28729,6 +28742,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes/scratch",
       "reason": "excluded directory"
     },
     {
