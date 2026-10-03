@@ -4,8 +4,10 @@
 # ───────────────────────────────────────────────────────────────
 
 """
-Audit the total description-budget consumption across all project surfaces
-that feed Claude Code's available-skills list.
+Audit the total description-budget consumption across the authored skill,
+command and agent surfaces. The total is the authoring surface, not exactly
+the list Claude Code loads: it includes the runtime-exclusive commands
+goal-opencode.md and vision.md, which are never mirrored into .claude/commands.
 
 Surfaces walked:
 - .skilled/skills/<name>/SKILL.md            (YAML frontmatter)
@@ -24,7 +26,7 @@ Outputs:
 - Non-zero exit when project total exceeds `--fail-over=N`
 
 Constants come from the same source-of-truth as quick_validate.py:
-130/110 soft, 1536 hard, 5600 project ceiling.
+130/110 soft, 1536 hard, 6400 project ceiling.
 
 Reference: .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md
            § "Description Budget & Trim Style"
@@ -34,6 +36,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from dataclasses import dataclass, field
@@ -65,8 +68,20 @@ except ImportError:
         return value
 
 
-PROJECT_SOFT_CEILING_DEFAULT = 5600
-CLAUDE_CODE_BUDGET_DEFAULT = 8000  # SLASH_COMMAND_TOOL_CHAR_BUDGET
+PROJECT_SOFT_CEILING_DEFAULT = 6400
+
+
+# The runtime can override the 8,000 default through SLASH_COMMAND_TOOL_CHAR_BUDGET.
+def _claude_code_budget_default() -> int:
+    raw = os.environ.get("SLASH_COMMAND_TOOL_CHAR_BUDGET", "")
+    try:
+        value = int(raw)
+    except ValueError:
+        return 8000
+    return value if value > 0 else 8000
+
+
+CLAUDE_CODE_BUDGET_DEFAULT = _claude_code_budget_default()
 
 
 # ───────────────────────────────────────────────────────────────
@@ -287,7 +302,7 @@ def render_human(
     total = project_total(items)
     lines: List[str] = []
     lines.append("=" * 70)
-    lines.append("Skill/Command/Agent Description Budget Audit (Packet 086)")
+    lines.append("Skill/Command/Agent Description Budget Audit")
     lines.append("=" * 70)
     lines.append("")
     lines.append(f"Items audited:  {len(items)}")
@@ -403,7 +418,7 @@ def main() -> None:
         default=None,
         help=(
             "Exit non-zero when project total exceeds this many chars. "
-            "Recommended: 5600 (project soft-ceiling) for CI / pre-commit."
+            "Recommended: 6400 (project soft-ceiling) for CI / pre-commit."
         ),
     )
     parser.add_argument(

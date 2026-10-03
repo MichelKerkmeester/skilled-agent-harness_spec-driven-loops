@@ -1,6 +1,6 @@
 ---
 name: system-spec-kit
-description: "Unified spec-folder workflow + context preservation: Levels 1-3+, validation, trigger-index and ripgrep retrieval. Required for file modifications."
+description: "Spec-folder workflow + context preservation: Levels 1-3+, validation, trigger-index, ripgrep retrieval. Required for file changes."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
 version: 2.6.1.0
 ---
