@@ -789,6 +789,47 @@ function findMissingLineageArtifacts(loopType, lineageDir) {
     .filter((artifactPath) => !hasNonEmptyFile(artifactPath));
 }
 
+function readGatewayProjectionRefusal(lineageDir, attemptStartedAtIso) {
+  const attemptStartedAtMs = Date.parse(attemptStartedAtIso);
+  if (!Number.isFinite(attemptStartedAtMs)) return null;
+
+  let lines;
+  try {
+    lines = fs.readFileSync(path.join(lineageDir, 'gateway-refusals.jsonl'), 'utf8').split(/\r?\n/);
+  } catch {
+    return null;
+  }
+
+  for (let index = lines.length - 1; index >= 0; index -= 1) {
+    const line = lines[index].trim();
+    if (!line) continue;
+
+    let record;
+    try {
+      record = JSON.parse(line);
+    } catch {
+      continue;
+    }
+
+    const refusedAtMs = Date.parse(record?.at);
+    if (
+      record?.phase === 'projection'
+      && Number.isFinite(refusedAtMs)
+      && refusedAtMs >= attemptStartedAtMs
+    ) {
+      return record;
+    }
+  }
+  return null;
+}
+
+function attachGatewayProjectionRefusal(failure, record) {
+  if (!record) return;
+  failure.projectionRefused = true;
+  if (typeof record.code === 'string') failure.code = record.code;
+  if (typeof record.reason === 'string') failure.reason = record.reason;
+}
+
 function findMissingLineageStateLog(loopType, lineageDir) {
   const stateLogPath = requiredLineageStateLogPath(loopType, lineageDir);
   if (stateLogPath && !hasNonEmptyFile(stateLogPath)) {
@@ -3271,7 +3312,8 @@ async function main() {
       fs.mkdirSync(stateDir, { recursive: true });
 
       const sessionId = `fanout-${lineage.label}-${runId}`;
-      const prompt = buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, researchTopic, {
+      const promptLineageDir = path.resolve(process.cwd(), lineageDir);
+      const prompt = buildLoopPrompt(loopType, specFolder, promptLineageDir, sessionId, lineage, researchTopic, {
         convergenceThreshold,
         convergenceMode,
         stopPolicy,
@@ -3309,7 +3351,7 @@ async function main() {
         {
           loopType,
           specFolder,
-          lineageDir,
+          lineageDir: promptLineageDir,
           sessionId,
           convergenceThreshold,
           convergenceMode,
@@ -3684,6 +3726,7 @@ async function main() {
         stopPolicy,
         lineageDir,
       });
+      const gatewayProjectionRefusal = readGatewayProjectionRefusal(lineageDir, slotWindowStartIso);
 
       // A lineage whose CLI exits non-zero or is killed by the timeout is a FAILURE,
       // not a success. Throw so the pool settles this item as rejected and counts it
@@ -3709,6 +3752,7 @@ async function main() {
         failure.timedOut = timedOut;
         failure.killedBySignal = killedBySignal;
         failure.salvage = salvage;
+        attachGatewayProjectionRefusal(failure, gatewayProjectionRefusal);
         throw failure;
       }
 
@@ -3721,6 +3765,7 @@ async function main() {
         failure.timedOut = false;
         failure.salvage = { salvaged: salvage.salvaged, failed: Math.max(1, salvage.failed) };
         failure.missingArtifacts = missingArtifacts;
+        attachGatewayProjectionRefusal(failure, gatewayProjectionRefusal);
         throw failure;
       }
 
@@ -3733,6 +3778,7 @@ async function main() {
         failure.timedOut = false;
         failure.salvage = salvage;
         failure.stopPolicyViolation = stopPolicyViolation;
+        attachGatewayProjectionRefusal(failure, gatewayProjectionRefusal);
         throw failure;
       }
 
@@ -3750,6 +3796,7 @@ async function main() {
         failure.timedOut = false;
         failure.salvage = { salvaged: salvage.salvaged, failed: salvage.failed };
         failure.missingArtifacts = [];
+        attachGatewayProjectionRefusal(failure, gatewayProjectionRefusal);
         throw failure;
       }
 

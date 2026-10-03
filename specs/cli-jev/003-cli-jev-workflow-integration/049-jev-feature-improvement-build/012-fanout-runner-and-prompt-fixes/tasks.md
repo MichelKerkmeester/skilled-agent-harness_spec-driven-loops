@@ -44,9 +44,9 @@ contextType: "general"
 ## Phase 2: Implementation
 
 - [x] T003 Read `claim` and `summary` in the merge and warn on unreadable finding rows
-- [B] T004 Classify a gateway projection refusal as non-retryable in the runner, and resolve the lineage directory to an absolute path before the prompt is built (blocked: `fanout-run.cjs` carries another session's uncommitted 040 change)
+- [x] T004 Classify a gateway projection refusal as non-retryable in the runner, and resolve the lineage directory to an absolute path before the prompt is built
 - [x] T005 Add the field name, contradiction rule and verbatim lineage-path rule to the iteration prompt pack, with render assertions
-- [B] T006 Rebase onto the `fanout-run.cjs` change from `system-deep-loop/040-cli-pi-opencode-go-route` if it has landed (blocked: `fanout-run.cjs` carries another session's uncommitted 040 change)
+- [x] T006 Keep the runner edits clear of the uncommitted `system-deep-loop/040-cli-pi-opencode-go-route` region of `fanout-run.cjs` and its test, so both changes merge cleanly
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -64,9 +64,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

@@ -115,7 +115,7 @@ Each child names its exact files in its own spec.
 | 9 | 009-pi-transport-improvements/ | Build 048's ranked fixes for the Pi classifier transport (037): provider intent, kill switch, cached runtime, paired benchmark | Complete |
 | 10 | 010-completion-claims-improvements/ | Build 048's ranked fixes for the completion-claim audit (026): sentinel regex, scorer repairs, Cursor wiring | Complete |
 | 11 | 011-research-run-init-via-gateway/ | Fix the deep-research run open: record `run_initialized` through the gateway so a run's first append projects | Complete |
-| 12 | 012-fanout-runner-and-prompt-fixes/ | Fix the fan-out runner, merge and lineage prompt faults 048 hit | In Progress |
+| 12 | 012-fanout-runner-and-prompt-fixes/ | Fix the fan-out runner, merge and lineage prompt faults 048 hit | Complete |
 
 ### Phase Transition Rules
 
