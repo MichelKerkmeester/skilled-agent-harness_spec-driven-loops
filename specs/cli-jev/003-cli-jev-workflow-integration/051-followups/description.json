@@ -1,0 +1,18 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/051-followups",
+  "description": "Phase 51: followups",
+  "keywords": [
+    "phase",
+    "followups"
+  ],
+  "lastUpdated": "2026-10-03T21:08:43.358Z",
+  "specId": "051",
+  "folderSlug": "followups",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -46,9 +46,9 @@ _memory:
 |----|---|
 | D1 | Jev only, dormant unless `jev auth status` passes. Jev gets no secret |
 | D2 | `cli-classifier` stays a parent hub |
-| D3 | Run 019 to 050 in parallel when disjoint |
+| D3 | Run 019 to 051 in parallel when disjoint |
 | D4 | 003, 006, 019 to 035 stop at their label gate. Only operator-confirmed or -delegated labels count |
-| D5 | Session verifies, commits. Workers: Luna 6 max fast (cli-codex), DeepSeek V4.1 Flash max (cli-pi). No MiMo. Claude only as arbiter or 050 reviewer. Cross-family review: fix P0 and P1, record P2 |
+| D5 | Session verifies, commits. Workers: Luna 6 max fast (cli-codex), DeepSeek V4.1 Flash max (cli-pi). No MiMo. Claude only as arbiter or 050-051 lead. Cross-family review: fix P0/P1, record P2 |
 | D6 | Docs via sk-doc, code via sk-code |
 | D7 | Stop only for an install yes or missing key. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
@@ -112,6 +112,7 @@ Decisions outrank child goals.
 | 48 | 048-jev-feature-improvement-research/goal.md |
 | 49 | 049-jev-feature-improvement-build/goal.md |
 | 50 | 050-pi-default-review/goal.md |
+| 51 | 051-followups/goal.md |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -119,11 +120,10 @@ Decisions outrank child goals.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 050 are Complete
-- [x] 019 to 035 are Complete, each at its verdict line or label gate
+- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 019 to 051 are Complete, 019 to 035 at a verdict line or label gate
 - [x] `validate_document.py` exits 0 on each changed skill doc
 - [x] No open P0 or P1, and no changed suite fails beyond its baseline
-- [x] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
+- [ ] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -282,4 +282,5 @@ and findings belong here.
 | 049 opened (2026-10-03) | The operator asked for a phase per researched feature to build its recommendations, and for the workflow faults. 049 bound as row 49 with twelve children, Planned and not released: D3 still ends at 048. To fit the budget, the binding rows dropped their backticks, which `check-goal.cjs` accepts, with no wording changed |
 | Directive amendment: release 049 (2026-10-03) | Source: the operator's "Yes both" to two asks: release 049 for build by extending D3, and merge the worktree branch into main and push it. D3 now runs 019 to 049. Criterion 1 names 036 to 049 and is open until 049 is Complete. Same length, so the slice stays under budget. Rollback: restore sections 1 and 3 from `git show 300058eaaa:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
 | Directive amendment: bind 050 (2026-10-03) | Source: the operator, 2026-10-03: "Make cli pi default transport if available", then "ask fresh opus 5.5 xhigh to review and test / measure and possibly redune and fix" the features worth wiring in and those stopped on margin, with DeepSeek V4.1 Flash max on cli-pi (OpenCode Go or Cline) and Luna 6 max fast on cli-codex. D3 now runs 019 to 050, the binding gains 050 and criteria 1 and 5 are open until 050 closes. D5 lets a Claude leaf act as 050's reviewer, because the operator named it. Rollback: restore sections 1 to 3 from `git show HEAD:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` at this commit's parent |
+| Directive amendment: bind 051 (2026-10-03) | Source: the operator, 2026-10-03: "Fix all use deepseek v4.1 flash max agents orchestrated by fresh opus" and "You are master orchestrar", answering the session's four next steps. D3 now runs 019 to 051, the binding gains 051 and criteria 1 and 5 are open until 051 closes. D5 lets fresh Claude leads run 051's streams. To fit 4,000 characters, criteria 1 and 2 merged into one line with the same meaning and D5 reads "fix P0/P1". 051 D1 records the operator lifting 047 D6 for 032 alone |
 <!-- /ANCHOR:log -->

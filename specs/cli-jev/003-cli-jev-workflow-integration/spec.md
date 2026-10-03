@@ -172,6 +172,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 48 | 048-jev-feature-improvement-research/ | Research how to improve, refine and expand the ten kept or near-kept Jev features, one child each, with a DeepSeek and a Luna lineage. Ten child phases. | Complete |
 | 49 | 049-jev-feature-improvement-build/ | Build the recommendations from 048's research that need no new labels, corpus or default-on switch, one child per feature, and fix the deep-research workflow faults 048 hit. Twelve child phases. | Complete |
 | 50 | 050-pi-default-review/ | Make Pi the default Jev transport when it can answer, for choice and noul, then have a fresh Opus reviewer test, re-measure and fix the nine features with a measured gain or a near miss. Two child phases. | Complete |
+| 51 | 051-followups/ | Build the follow-ups the 050 review left: 032 as a non-blocking check, Pi model and usage on records, the input-wrapping test, the 025 capture, 017 R8, and retiring 026, 029 and 031. | Planned |
 
 ### Phase Transition Rules
 
@@ -235,6 +236,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 047-measure-every-jev-feature | 048-jev-feature-improvement-research | 047 Complete and the operator asked for research on every kept feature | `validate.sh --strict --recursive` on 048 |
 | 048-jev-feature-improvement-research | 049-jev-feature-improvement-build | 048 Complete and the operator asked for a build phase per researched feature and for the workflow faults | `validate.sh --strict --recursive` on 049 |
 | 049-jev-feature-improvement-build | 050-pi-default-review | 049 Complete and the operator asked for Pi as the default transport and a review of nine features | `validate.sh --strict --recursive` on 050 |
+| 050-pi-default-review | 051-followups | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
