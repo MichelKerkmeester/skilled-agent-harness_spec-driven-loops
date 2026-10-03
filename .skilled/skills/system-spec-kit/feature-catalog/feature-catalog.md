@@ -127,7 +127,7 @@ Scores, with zero model calls by default, how the completion-claim detector agre
 
 #### Current Reality
 
-`.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` makes zero model calls by default and writes no file. Its census reads only the rows named with `--rows` and the labels named with `--labels`, and no row text reaches stdout or the report. Each judgment arm runs only behind its own switch, `--jev`, with `--out <dir>` outside the repository, and no run has printed a `verdict` line.
+`.skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs` makes zero model calls by default and writes no file. Its census reads only the rows named with `--rows` and the labels named with `--labels`, and no row text reaches stdout or the report. Each judgment arm runs only behind its own switch, `--jev`, with `--out <dir>` outside the repository. Retired on 2026-10-03: the shipped detector is right on 101 of 110 labeled turns, which leaves no headroom for a judged column, so the last run stopped before any call with `jev arm skipped: no headroom`. The script stays as the record of that measurement.
 
 #### Source Files
 
@@ -143,7 +143,7 @@ Scores, with zero model calls by default, how often each constant next-check ans
 
 #### Current Reality
 
-`.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` makes zero model calls by default and writes nothing outside `--out`. Its fixture must sit outside the repository, `--jev` sends only rows marked `jev_ok: true`, and no run on real rows has printed a `verdict` line.
+`.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` makes zero model calls by default and writes nothing outside `--out`. Its fixture must sit outside the repository, and `--jev` sends only rows marked `jev_ok: true`. Retired on 2026-10-03 at `stop (margin)`: Jev was right on 26 of 36 labeled rows against the 29 of the constant `read_code` answer, so the script stays as the record of that measurement.
 
 #### Source Files
 

@@ -20,6 +20,8 @@ version: 1.8.0.0
 
 Measures offline whether a Jev severity choice separates real P0 findings from false ones better than the recorded severity.
 
+Retired on 2026-10-03 at a stop. The last run printed `verdict jev: stop (margin) K=95 M=95 A=73 B=73 W=7 L=7 F=7 p=0.6047` (run `050-029-jev-20261003` in the operator's local labels store, 380 calls). Jev's severity was right on 73 of 95 labeled P0 rows, the same count as the recorded severity, and a keep needs at least 83. The run before it read `A=76 B=73` (run `029-jev-20261001`), also short of the margin. The script and its tests stay in place as the record of that measurement, and no further run is planned.
+
 Run with `node` from the repository root, `scripts/score-severity-replay.cjs` reads every tracked deep-review findings registry and prints the P0 census, the label need and the label gate state. The default run makes no model call and writes no file, and the script holds and reads no credential. It changes no severity, no registry and no review gate. The supported invocation is `node .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs [--write-label-sheet <path>] [--labels <file>] [--jev] [--out <dir>]`, and the `USAGE` constant holds `usage: score-severity-replay.cjs [--write-label-sheet <path>] [--labels <file>] [--jev] [--out <dir>]` without printing it.
 
 This feature belongs to the scoring group and is catalogued as F058 in the `runtime/` inventory.

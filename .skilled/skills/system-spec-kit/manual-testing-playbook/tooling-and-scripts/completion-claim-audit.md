@@ -14,6 +14,8 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 This scenario validates the completion claim audit for `462`. It focuses on a default run over the synthetic rows with a stub first on the path that starts no backend and prints no row text, and the suite that proves zero model calls.
 
+The audit was retired on 2026-10-03 with no headroom: the shipped detector is right on 101 of 110 labeled turns, so a judged column cannot clear the ten-point margin, and the last run (`~/.skilled/.labels/runs/050-026-jev-20261003`) stopped before any call. This scenario still checks the zero-call census, because the script stays in place as the record of that measurement.
+
 ### Why This Matters
 
 The audit scores the completion-claim detector on turn text and calls no model on its default run, so the census shape has to be provable without any credential. A run over the synthetic rows shows the census and the label gate without opening a real session, and a stub `jev` binary first on the path shows that no backend starts.

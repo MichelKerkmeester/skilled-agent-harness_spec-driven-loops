@@ -17,6 +17,8 @@ version: 2.6.0.0
 
 Scores, with zero model calls by default, how often each constant next-check answer is right on operator-labeled debug rows and whether that leaves headroom, then judges the labeled rows behind `--jev` and reports one keep, kill or stop decision.
 
+Retired on 2026-10-03 at a stop. The last run printed `verdict jev: stop (margin) K=36 M=36 A=26 B=29 W=6 L=9 F=9 p=0.8491 baseline=read_code` (run `050-031-jev-20261003` in the operator's local labels store, 108 calls). Jev picked the labeled next check on 26 of 36 rows, fewer than the 29 the constant `read_code` answer gets right, and a keep needs at least 33. The script and its tests stay in place as the record of that measurement, and no further run is planned.
+
 The census answers two questions before anyone wires a backend pick into the debug next-check choice: does any tracked file outside the spec tree already name `next_check`, and would a backend beat the best constant answer on labeled rows. It reads only the repository's own git state and the operator fixture, makes no model call without its switch and its own gate, and writes nothing outside `--out`.
 
 ---
@@ -37,7 +39,7 @@ Each arm runs only past the label gate and the headroom check, behind its own sw
 
 ### Keep Rule And Verdict
 
-Before the first call the run prints `keep rule: coverage 10*M>=9*K, kill P(X>=L)<0.05, margin 10*(A-B)>=M, sign P(X>=W)<0.05, flips 10*F<=3*M`, and those checks run in that order with the first failure deciding. Only a completed arm prints a `verdict` line, the same line lands in the column of `report.json`, and no run has printed one yet. With `--out <dir>` every run writes `report.json`, even a stopped one, and an arm adds `calls.jsonl`, one record per call and per withheld row and order, never row text. A printed census, a skipped arm and a stopped arm all exit 0.
+Before the first call the run prints `keep rule: coverage 10*M>=9*K, kill P(X>=L)<0.05, margin 10*(A-B)>=M, sign P(X>=W)<0.05, flips 10*F<=3*M`, and those checks run in that order with the first failure deciding. Only a completed arm prints a `verdict` line, and the same line lands in the column of `report.json`. With `--out <dir>` every run writes `report.json`, even a stopped one, and an arm adds `calls.jsonl`, one record per call and per withheld row and order, never row text. A printed census, a skipped arm and a stopped arm all exit 0.
 
 ---
 
