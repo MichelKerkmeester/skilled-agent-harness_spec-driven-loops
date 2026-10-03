@@ -103,6 +103,7 @@ async function main() {
   if (!queryType || typeof queryType !== 'string') throw inputError('queryType is required');
 
   const ns = { specFolder, loopType, sessionId };
+  const readOnly = args.readOnly === true;
   const limit = parseBoundedInteger(args, 'limit', 50, 1, 200);
   let db = null;
 
@@ -111,6 +112,7 @@ async function main() {
     db = isCouncil
       ? await import('../lib/council/council-graph-db.ts')
       : await import('../lib/coverage-graph/coverage-graph-db.ts');
+    if (readOnly) db.openReadOnlyDb();
     installSignalHandlers(() => db?.closeDb());
     maybeThrowTestFault();
     const query = isCouncil
@@ -195,6 +197,7 @@ async function main() {
         default:
           throw inputError(`Unknown queryType: "${queryType}"`);
       }
+      if (readOnly) data = { ...data, readOnly: true, databasePresent: db.isReadOnlyDbPresent() };
       jsonOut({ status: 'ok', data });
       return;
     }
@@ -234,6 +237,7 @@ async function main() {
       default:
         throw inputError(`Unknown queryType: "${queryType}"`);
     }
+    if (readOnly) data = { ...data, readOnly: true, databasePresent: db.isReadOnlyDbPresent() };
     jsonOut({ status: 'ok', data });
   } finally {
     db?.closeDb();

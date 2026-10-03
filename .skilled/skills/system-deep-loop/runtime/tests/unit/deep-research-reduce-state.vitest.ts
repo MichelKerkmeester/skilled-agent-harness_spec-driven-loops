@@ -58,6 +58,11 @@ const {
   }) => {
     registry: {
       status?: string;
+      metrics?: {
+        iterationsCompleted: number;
+        openQuestions: number;
+        resolvedQuestions: number;
+      };
       keyQuestions?: Array<{
         id: string;
         inboxId?: string | null;
@@ -138,6 +143,7 @@ const {
     };
     strategy: string;
     dashboard: string;
+    resourceMap: string | null;
     hasCorruption: boolean;
   };
   parseIterationFile: (iterationPath: string) => {
@@ -905,5 +911,170 @@ describe('deep-research reduce-state strategy fallback', () => {
     } finally {
       warnSpy.mockRestore();
     }
+  });
+});
+
+function writeStrategyWithQuestions(specFolder: string, questionLines: string[]): void {
+  writeFileSync(
+    join(specFolder, 'research', 'deep-research-strategy.md'),
+    [
+      '# Deep Research Strategy',
+      '',
+      '<!-- ANCHOR:key-questions -->',
+      '## 3. KEY QUESTIONS (remaining)',
+      ...questionLines,
+      '<!-- /ANCHOR:key-questions -->',
+      '',
+      '<!-- ANCHOR:answered-questions -->',
+      '## 6. ANSWERED QUESTIONS',
+      '[None yet]',
+      '<!-- /ANCHOR:answered-questions -->',
+      '',
+      '<!-- ANCHOR:what-worked -->',
+      '## 7. WHAT WORKED',
+      '[None yet]',
+      '<!-- /ANCHOR:what-worked -->',
+      '',
+      '<!-- ANCHOR:what-failed -->',
+      '## 8. WHAT FAILED',
+      '[None yet]',
+      '<!-- /ANCHOR:what-failed -->',
+      '',
+      '<!-- ANCHOR:exhausted-approaches -->',
+      '## 9. EXHAUSTED APPROACHES (do not retry)',
+      '[None yet]',
+      '<!-- /ANCHOR:exhausted-approaches -->',
+      '',
+      '<!-- ANCHOR:ruled-out-directions -->',
+      '## 10. RULED OUT DIRECTIONS',
+      '[None yet]',
+      '<!-- /ANCHOR:ruled-out-directions -->',
+      '',
+      '<!-- ANCHOR:carried-forward-open-questions -->',
+      '## 11A. CARRIED-FORWARD OPEN QUESTIONS',
+      '[None yet]',
+      '<!-- /ANCHOR:carried-forward-open-questions -->',
+      '',
+      '<!-- ANCHOR:next-focus -->',
+      '## 11. NEXT FOCUS',
+      '[None yet]',
+      '<!-- /ANCHOR:next-focus -->',
+      '',
+    ].join('\n'),
+    'utf8',
+  );
+}
+
+function writeDeltaRows(specFolder: string, fileName: string, rows: Array<Record<string, unknown>>): void {
+  const deltaDir = join(specFolder, 'research', 'deltas');
+  mkdirSync(deltaDir, { recursive: true });
+  writeFileSync(
+    join(deltaDir, fileName),
+    `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`,
+    'utf8',
+  );
+}
+
+describe('deep-research reduce-state delta iteration merge', () => {
+  it('ticks only the strategy box named by the delta answeredQuestions', () => {
+    const specFolder = makeTempSpec();
+    writeStrategyWithQuestions(specFolder, [
+      '- [ ] Which delta merge path resolves?',
+      '- [ ] Which delta merge path stays open?',
+    ]);
+    writeState(specFolder, `${JSON.stringify({
+      type: 'iteration',
+      iteration: 1,
+      run: 1,
+      status: 'complete',
+      newInfoRatio: 0.5,
+      ruledOut: [],
+      timestamp: '2026-06-28T00:00:00.000Z',
+    })}\n`);
+    writeDeltaRows(specFolder, 'iter-001.jsonl', [
+      {
+        type: 'iteration',
+        iteration: 1,
+        run: 1,
+        status: 'complete',
+        newInfoRatio: 0.5,
+        focus: 'delta merge',
+        answeredQuestions: ['Which delta merge path resolves?'],
+      },
+    ]);
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect(result.strategy).toContain('- [x] Which delta merge path resolves?');
+    expect(result.strategy).toContain('- [ ] Which delta merge path stays open?');
+    expect(result.registry.metrics?.resolvedQuestions).toBe(1);
+    expect(result.registry.metrics?.openQuestions).toBe(1);
+  });
+
+  it('keeps state-log status and newInfoRatio when the delta iteration row disagrees', () => {
+    const specFolder = makeTempSpec();
+    writeState(specFolder, `${JSON.stringify({
+      type: 'iteration',
+      run: 1,
+      status: 'complete',
+      newInfoRatio: 0.4,
+    })}\n`);
+    writeDeltaRows(specFolder, 'iter-001.jsonl', [
+      {
+        type: 'iteration',
+        iteration: 1,
+        run: 1,
+        status: 'error',
+        newInfoRatio: 0.9,
+        focus: 'delta focus',
+      },
+    ]);
+
+    const result = reduceResearchState(specFolder, { write: false });
+
+    expect(result.dashboard).toContain('| 1 | delta focus | - | 0.40 | 0 | complete |');
+    expect(result.dashboard).not.toContain('0.90');
+    expect(result.dashboard).not.toContain('Latest iteration reported error status.');
+  });
+
+  it('emits a resource map from delta finding sources', () => {
+    const specFolder = makeTempSpec();
+    writeFileSync(
+      join(specFolder, 'research', 'deep-research-config.json'),
+      `${JSON.stringify({ topic: 'Delta sources', resource_map: { emit: true } }, null, 2)}\n`,
+      'utf8',
+    );
+    writeState(specFolder, `${JSON.stringify({
+      type: 'iteration',
+      run: 1,
+      status: 'complete',
+      newInfoRatio: 0.5,
+    })}\n`);
+    writeDeltaRows(specFolder, 'iter-001.jsonl', [
+      {
+        type: 'iteration',
+        iteration: 1,
+        run: 1,
+        status: 'complete',
+        newInfoRatio: 0.5,
+        answeredQuestions: [],
+      },
+      {
+        type: 'finding',
+        id: 'f-iter001-001',
+        severity: 'P1',
+        label: 'Delta source finding',
+        iteration: 1,
+        sources: ['src/a.ts'],
+      },
+    ]);
+
+    const result = reduceResearchState(specFolder, { write: false, emitResourceMap: true });
+    const resourceMap = result.resourceMap ?? '';
+
+    expect(result.resourceMap).not.toBeNull();
+    expect(resourceMap).toContain('src/a.ts');
+    const totalReferences = Number(/Total references\*\*: (\d+)/.exec(resourceMap)?.[1] ?? '0');
+    expect(totalReferences).toBeGreaterThan(0);
   });
 });

@@ -2,7 +2,7 @@
 # DOCTOR: DEEP LOOP COVERAGE GRAPH WORKFLOW (INTERACTIVE DIAGNOSTIC MODE)
 # ─────────────────────────────────────────────────────────────────
 role: Expert Operator running deep-loop coverage graph diagnostics in interactive mode
-purpose: Diagnose deep-loop and council graph status with user review gates. The workflow itself writes only its packet-local state log; called status and convergence scripts may create a missing coverage database and append observability events.
+purpose: Diagnose deep-loop and council graph status with user review gates. The workflow itself writes only its packet-local state log, and every status, query and convergence call runs with --read-only, so the calls create no database, apply no schema, append no observability event and persist no snapshot.
 action: Discovery -> gate -> analysis -> gate -> recommendation -> report
 
 # ─────────────────────────────────────────────────────────────────
@@ -25,10 +25,11 @@ deep_loop_doctor_invariant: |
   Deep-loop doctor reads graph nodes and edges from both the deep-loop coverage
   graph (research/review/context) and the council graph, plus the iteration
   folders and ai-council artifacts that back them. The workflow itself writes
-  only its packet-local state log. The status and convergence scripts it calls
-  may create a missing coverage database and append observability events. It
-  never calls deep_loop_graph_upsert; the coverage graph is created by the deep-loop
-  scripts on first use (no rebuild entry point) and the council graph by replay-graph-from-artifacts.cjs.
+  only its packet-local state log, and every status, query and convergence call
+  runs with --read-only, so the calls create no database, apply no schema,
+  append no observability event and persist no snapshot. It never calls
+  deep_loop_graph_upsert; the council graph is created by
+  replay-graph-from-artifacts.cjs.
   Lazy-init is surfaced only as a recommendation when a graph is empty and its
   source inventory (iteration folders or ai-council artifacts) is readable.
 
@@ -50,7 +51,7 @@ upstream_assets:
 deep_loop_doctor_philosophy:
   principle: "Coverage graph checks should show whether iteration evidence and ai-council artifacts are represented in the deep-loop and council graphs."
   approach: "Discover iteration folders -> let user review -> sample status/query/convergence -> let user review -> emit recommendation."
-  mandate: "The workflow itself writes only its packet-local state log; status and convergence scripts may create a missing coverage database and append observability events."
+  mandate: "The workflow itself writes only its packet-local state log, and every status, query and convergence call runs with --read-only, so the calls create no database, apply no schema, append no observability event and persist no snapshot."
 
 # ─────────────────────────────────────────────────────────────────
 # USER INPUTS
@@ -80,10 +81,6 @@ field_handling:
 mutation_boundaries:
   allowed_targets:
     - "<active-spec-folder>/scratch/doctor-deep-loop-state.*.json"
-    - ".skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # coverage graph DB
-    - ".skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite.pre-doctor-deep-loop.*.bak"  # deep-loop snapshot files only
-    - ".skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite"  # council graph DB
-    - ".skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite.pre-doctor-deep-loop.*.bak"  # council snapshot files only
   forbidden_targets:
     - "<active-spec-folder>/research/iterations/*.md"  # read-only source inputs, never rewritten
     - "<active-spec-folder>/review/iterations/*.md"  # read-only source inputs, never rewritten
@@ -96,15 +93,18 @@ mutation_boundaries:
     - ".skilled/agents/**/*.md"
     - ".skilled/commands/doctor/*.md"
     - ".skilled/commands/doctor/assets/doctor-*.yaml"
+    - ".skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # read through --read-only only
+    - ".skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite"  # read through --read-only only
     - "direct SQL graph mutation"
-  policy: "The workflow itself writes only the packet-local state log. The called status and convergence scripts may create a missing coverage database and append observability events. Iteration files and council artifacts remain read-only inputs."
-  enforcement: "Any direct workflow write outside the packet-local state log halts with STATUS=FAIL and ERROR='confirm-mode-mutation-violation'. Calls to the status and convergence scripts retain their documented database initialization and observability side effects."
+  policy: "The workflow itself writes only the packet-local state log. Every status, query and convergence call runs with --read-only, so the calls create no database, apply no schema, append no observability event and persist no snapshot. Iteration files and council artifacts remain read-only inputs."
+  enforcement: "Any direct workflow write outside the packet-local state log halts with STATUS=FAIL and ERROR='confirm-mode-mutation-violation'. Calls to the status, query and convergence scripts run with --read-only, so they create no database, apply no schema, append no observability event and persist no snapshot."
   validator:
     runs: "Apply these target checks before any direct workflow write; only the packet-local state log is written directly."
     steps:
       - "Resolve the state-log path under the active spec folder scratch directory."
       - "Reject direct workflow writes to iteration files, council artifacts, graph databases, or other packet files."
       - "Use only status, query, and convergence scripts for graph inspection; never call deep_loop_graph_upsert."
+      - "Pass --read-only on every status, query and convergence call."
 
 # ─────────────────────────────────────────────────────────────────
 # INTERACTIVE GATES
@@ -162,9 +162,10 @@ workflow:
       - "Bash: stat -f '%m %z' .skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite when present."
       - "Bash: stat -f '%m %z' .skilled/skills/system-deep-loop/runtime/database/council-graph.sqlite when present and scope includes council."
       - "Group iteration files and ai-council artifacts by specFolder, loopType (research|review|context|council), and inferred sessionId from metadata or folder path."
-      - "Run status.cjs for up to 10 sampled spec/session namespaces; use loopType='council' for ai-council namespaces when scope includes council."
+      - "Run status.cjs with --read-only for up to 10 sampled spec/session namespaces; use loopType='council' for ai-council namespaces when scope includes council."
       - "Set lazy_init.available=true when empty_graph=true and (iteration_folder_count > 0 or ai_council_artifact_count > 0)."
       - "Interactive gate: before_phase_1_analysis."
+    note: "An absent database reports databasePresent=false and counts as graph_present=false."
     outputs:
       - graph_present: true|false
       - empty_graph: true|false
@@ -180,11 +181,11 @@ workflow:
   phase_1_analysis:
     purpose: "Classify graph drift using query and convergence checks."
     activities:
-      - "For sampled namespaces, run query.cjs with --query-type coverage_gaps --limit 50."
-      - "For sampled research namespaces, run query.cjs with --query-type uncovered_questions --limit 50."
-      - "For sampled research namespaces, run query.cjs with --query-type unverified_claims --limit 50."
-      - "For packets with at least three iterations, run convergence.cjs with --iteration <latest_iteration> --persist-snapshot false."
-      - "For ai-council packets with council artifacts (scope includes council), run status.cjs, query.cjs, and convergence.cjs with loopType='council' against the council graph."
+      - "For sampled namespaces, run query.cjs with --read-only --query-type coverage_gaps --limit 50."
+      - "For sampled research namespaces, run query.cjs with --read-only --query-type uncovered_questions --limit 50."
+      - "For sampled research namespaces, run query.cjs with --read-only --query-type unverified_claims --limit 50."
+      - "For packets with at least three iterations, run convergence.cjs with --read-only --iteration <latest_iteration>."
+      - "For ai-council packets with council artifacts (scope includes council), run status.cjs, query.cjs, and convergence.cjs with --read-only and loopType='council' against the council graph."
       - "Classify drift as empty_graph, stale_graph, orphan_nodes, missing_convergence_signal, or coverage_gaps."
       - "Never call deep_loop_graph_upsert in diagnostic mode."
       - "Interactive gate: before_phase_2_recommendation."
