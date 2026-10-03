@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/040-read-only-and-research-bookkeeping",
+  "spec_folder": "system-deep-loop/040-read-only-and-research-bookkeeping",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop read-only mode",
+      "deep-research bookkeeping",
+      "coverage graph empty",
+      "lock nonce release",
+      "research key questions unticked",
+      "deep-loop read-only plan",
+      "graph database read-only open",
+      "research run-open gateway plan",
+      "bookkeeping repair plan",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "read-only",
+      "mode",
+      "deep-research",
+      "bookkeeping",
+      "coverage",
+      "graph",
+      "empty",
+      "lock",
+      "nonce",
+      "release",
+      "research"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "specs/system-speckit/048-doctor-command-audit/004-deep-loop/implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts",
+      ".skilled/skills/system-deep-loop/runtime/lib/council/council-graph-db.ts",
+      ".skilled/skills/system-deep-loop/runtime/scripts/status.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/query.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+      ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+      ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/package.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-db.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "council-graph-db.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/council/council-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/status.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "query.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/query.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-deep-loop.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-deep-loop.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack-iteration.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-ledger-types.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-reduce-state.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/runtime/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop graph scripts are not read-only, so no caller can promise they leave the machine unchanged",
+    "created_at": "2026-10-03T05:27:39Z",
+    "last_save_at": "2026-10-03T05:53:55.046Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5d64d5e4043d762de8cc34e7d9e3395f132705ab50257218f4610c5a5627614f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9fbd598787b781bed59b0342f3f0d71f331743f311bfff44111a31cd9318d93c",
+      "plan.md": "fe4b00b722deeed122a2da3d244c5cf655a0e8f6d3c066b6b3190ef039b5a713",
+      "tasks.md": "8d072989770682ce70b6b881e0ec986439f9af3a4c98268745cd03fce02336fe",
+      "implementation-summary.md": "1c808bce9c620361da549e2f50bf90517010ef08d2f04df517dedbb8fbced06f"
+    },
+    "last_active_at": null
+  }
+}
