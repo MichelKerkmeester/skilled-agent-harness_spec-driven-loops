@@ -20,6 +20,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
+import { spawnClassifierCall } from '../../../cli-classifier/shared/scripts/jev-transport.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 1. CONSTANTS
@@ -1176,7 +1177,14 @@ export async function runJevArm(plan, gate, ctx) {
     let rerunLimit = 1;
 
     for (let rerun = 0; rerun < rerunLimit; rerun += 1) {
-      let call = await spawnCall(gate.path, callArgs, state, ctx.env, ctx.timeoutMs);
+      let call = await spawnClassifierCall({
+        file: gate.path,
+        args: callArgs,
+        stdin: state,
+        env: ctx.env,
+        timeoutMs: ctx.timeoutMs,
+        report: ctx.out,
+      });
       wallTimes.push(call.wallMs);
 
       if (!call.timedOut && call.code === 4) {
@@ -1186,6 +1194,7 @@ export async function runJevArm(plan, gate, ctx) {
           wallMs: call.wallMs,
           exitCode: call.code,
           backend: 'jev',
+          transport: call.transport,
           probability: null,
           flag: null,
           status: 'unmeasured',
@@ -1194,7 +1203,14 @@ export async function runJevArm(plan, gate, ctx) {
           model,
         });
         await new Promise((resolve) => setTimeout(resolve, ctx.backoffMs));
-        call = await spawnCall(gate.path, callArgs, state, ctx.env, ctx.timeoutMs);
+        call = await spawnClassifierCall({
+          file: gate.path,
+          args: callArgs,
+          stdin: state,
+          env: ctx.env,
+          timeoutMs: ctx.timeoutMs,
+          report: ctx.out,
+        });
         wallTimes.push(call.wallMs);
       }
 
@@ -1223,6 +1239,7 @@ export async function runJevArm(plan, gate, ctx) {
         wallMs: call.wallMs,
         exitCode: call.code,
         backend: 'jev',
+        transport: call.transport,
         probability,
         flag,
         status,

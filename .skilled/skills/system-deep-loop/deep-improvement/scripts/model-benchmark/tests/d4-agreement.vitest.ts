@@ -86,7 +86,7 @@ async function runMain(
   const code = await d4.main(argv, {
     out: (line: string) => lines.push(line),
     err: (line: string) => errs.push(line),
-    env,
+    env: { ...env, JEV_TRANSPORT: 'jev' },
     timeoutMs: 5000,
     backoffMs: 1,
   });
@@ -735,6 +735,23 @@ echo "{\\"answers\\":{\\"answer\\":{\\"noul\\":$v}}}"`;
       expect(call.model).toBe('stub-model');
       expect(call.jevVersion).toBe('0.6.2');
     }
+  });
+
+  it('records the selected transport on judgment calls', async () => {
+    const set = labeledSet(0, 10, 20);
+    const stubs = stubDir({ jev: JEV });
+    const env = jevEnv(stubs);
+    const out = tempDir('d4-transport-out-');
+
+    const { code } = await runMain(
+      ['--outputs', set.outputs, '--fixtures', set.fixtures, '--labels', set.labels, '--jev', '--accept-payload', '--out', out],
+      env,
+    );
+
+    expect(code).toBe(0);
+    const judgmentCalls = readCalls(out).filter((call) => call.output !== null);
+    expect(judgmentCalls).toHaveLength(90);
+    expect(judgmentCalls.every((call) => call.transport === 'jev')).toBe(true);
   });
 
   it('reports the check-routed cascade arm and repeats its verdict without requalification', async () => {

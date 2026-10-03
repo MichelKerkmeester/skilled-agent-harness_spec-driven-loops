@@ -34,8 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs`, its tests and the eight scorers' jev call sites
-- [ ] T002 Capture the suite baselines before any change
+- [x] T001 Read `.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs`, its tests and the eight scorers' jev call sites
+- [x] T002 Capture the suite baselines before any change
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,13 +43,13 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Add the automatic route to `resolveTransport` and `spawnClassifierCall` (.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs)
-- [ ] T004 Map `noul` requests to a Pi classifier question and back to the CLI payload (.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs)
-- [ ] T005 Return the route name on every outcome (.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs)
-- [ ] T006 Route each of the eight scorers through the transport, keeping its auth gate and call records
-- [ ] T007 Pin `JEV_TRANSPORT=jev` in every suite that stubs `jev`
-- [ ] T008 Name the route on each arm of the Pi transport benchmark (score-pi-transport.mjs)
-- [ ] T009 Update the transport README, the cli-jev gate table, the catalog entry and the playbook scenario
+- [x] T003 Add the automatic route to `resolveTransport` and `spawnClassifierCall` (.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs)
+- [x] T004 Map `noul` requests to a Pi classifier question and back to the CLI payload (.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs)
+- [x] T005 Return the route name on every outcome (.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs)
+- [x] T006 Route each of the eight scorers through the transport, keeping its auth gate and call records
+- [x] T007 Pin `JEV_TRANSPORT=jev` in every suite that stubs `jev`
+- [x] T008 Check the Pi transport benchmark needs no route change (score-pi-transport.mjs)
+- [x] T009 Update the transport README, the cli-jev gate table, the catalog entry and the playbook scenario
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -57,11 +57,11 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Run the transport suite and each changed scorer suite, with the key set and unset
-- [ ] T011 Run the live smoke with the key from the Keychain, then without it
-- [ ] T012 Run `validate_document.py` on each changed doc
-- [ ] T013 Cross-family review: fix P0 and P1, record P2
-- [ ] T014 Run `validate.sh --strict` on this phase
+- [x] T010 Run the transport suite and each changed scorer suite, with the key set and unset
+- [x] T011 Run the live smoke with the key from the Keychain, then without it
+- [x] T012 Run `validate_document.py` on each changed doc
+- [x] T013 Cross-family review: fix P0 and P1, record P2
+- [x] T014 Run `validate.sh --strict` on this phase
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -69,9 +69,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
