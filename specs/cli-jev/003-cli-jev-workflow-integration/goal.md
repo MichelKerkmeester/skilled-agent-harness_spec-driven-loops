@@ -119,11 +119,11 @@ Decisions outrank child goals.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 050 are Complete
+- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 050 are Complete
 - [x] 019 to 035 are Complete, each at its verdict line or label gate
 - [x] `validate_document.py` exits 0 on each changed skill doc
 - [x] No open P0 or P1, and no changed suite fails beyond its baseline
-- [ ] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
+- [x] `validate.sh --strict --recursive` and `check-goal.cjs` pass on the parent and every child
 <!-- /ANCHOR:completion -->
 
 ---
@@ -189,6 +189,7 @@ and findings belong here.
 | 038 pi classifier transport integration | Done | The working tree at HEAD `c5c72d31ec` on worktree 071: one opt-in Pi transport module for Jev `choice` questions beside the jev CLI, two approved callers wired with one call site each behind byte-identical switch-off recordings (59 and 202 lines), a module suite at 22 of 22 with 0 failed and one row per gate, and 9 changed docs VALID. SWE 2 max review PASS with no open P0 or P1 and four P2s recorded; the orchestrator commits the build path-scoped |
 | 041 code READMEs and routing alignment | Done | Build `2116de635c` on worktree 071, 32 files, all written by DeepSeek V4.1 Flash on cli-pi. Eleven code-folder READMEs, each VALID with its documented test command passing. Hub `ROUTER.md` promoted to `router_state: active` with seven intents, both mode section 2s on the sk-create-skill template, one keyword list across all three routers. The ten-prompt compiled-route probe keeps its eight correct rows and now routes the two former misses; the fleet vocabulary-reach check passes with cli-classifier at 49 phrases; the leaf-route replay scores the hub's four new gold rows at F1 1.000. SWE 2 max review round 1 FAIL (five P1 stale-wording and evidence items, all fixed), round 2 PASS with one P2, fixed. Phase docs: strict PASSED, check-goal 5/5, 26 of 26 checklist rows. Evidence: `041-code-readmes-and-routing-alignment/scratch/evidence/build-evidence.md` |
 | 049 jev feature improvement build | Done | All 12 children Complete. Since the first push: 009 `87cd7c8dc4` maps each jev provider to the Pi classifier on its own host, and its paired run on the official host adopts (agreement 95.1, p95 299/575 ms) with `TYPESAFE_API_KEY` read per process from the operator's Keychain; 012 `eb3580b152` and `004aa45d69` stop retrying lineages the projection gateway refused. Final tree: deep-loop runtime 161 of 161 files (2,901 passed), cli-classifier 128 of 128; 049 strict recursive 13 of 13 |
+| 050 Pi default and feature review | Done | Pi answers Jev choice and noul calls by default when it can (`67fd8577ef`), and a fresh Opus 5.5 reviewer re-measured nine features over it (`9399d3b40a`). 037 read keep-cli on the repeat, and the operator kept Pi as the default |
 | Criterion 1 (2026-10-03) | Done | All 22 listed phases read Complete with 0 open goal criteria, except 045, whose criteria 1, 2 and 4 are superseded by its ADR-001 after the operator's Deem deprecation, as its log records |
 
 ### Deviations and findings
