@@ -39,16 +39,16 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research/research/research.md",
       ".skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts"
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/score-alignment-suggestion.vitest.ts",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research/research/research.md"
     ],
     "entities": [
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Feature 022 kept against the top-listed alternative, because the fixture's target is wrong on every row",
     "created_at": "2026-10-03T05:30:08Z",
-    "last_save_at": "2026-10-03T05:37:54.984Z",
+    "last_save_at": "2026-10-03T12:46:29.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db3e4c54a600f5cb382f6a6f52c678c99eb8330f82c3d0f1e76b4ba17ed89a03",
+    "source_fingerprint": "sha256:a685e54639de2eaec4502fb2a12733af8dfd220e98c83ca25036836fc33406f3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f31a26c0e85809a922bf5e2b68c45bd816ba14f947ec1c91e26110595aceb380",
+      "spec.md": "e726c672d04a4ab2b04e71b610f741de37c587b609778d8453645b190ff427b5",
       "plan.md": "ba5de3910448a001bdb54445bf6284cd27b97828ea54bbbd3246aab45677e571",
-      "tasks.md": "16f89ca58a9087adf6e52bab344d1ac5c907a87557c8b63b81b0dd49b13ecd83",
-      "implementation-summary.md": "9a962cd0e2aac545e0a3b78181bbd1383b48c5d724d88df43388064b84b970d4"
+      "tasks.md": "19096763764d92193751221834ff27f8ebcdaa4e573dbf6b4aa3e30cf0b86af6",
+      "implementation-summary.md": "1bcba0971a3acd8fbaef2e6b76025bf34272cd4bef48d9101d564c12b1550db5"
     },
     "last_active_at": null
   }
