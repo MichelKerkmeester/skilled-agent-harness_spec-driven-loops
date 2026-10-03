@@ -259,6 +259,11 @@ never `process.env`, so a narrow env means the CLI.
 including `auth`, `noul`, `score`, `run` and a `choice` call with an unmappable flag, is spawned on the
 CLI unchanged and prints nothing.
 
+**Provider map.** The transport uses the call's `--provider`, then `JEV_PROVIDER`, defaulting to
+`official`. `official` maps to Pi `typesafe/jev-latest`; `openrouter` maps to Pi
+`openrouter/typesafe/jev-1.13`. `vercel` and `custom` stay on the CLI. The preflight cache is keyed by
+`PATH` and the Jev provider.
+
 **Three gates, then the backend.** `ModelRuntime.create()` is imported from the package `pi` resolves
 to. Three gates run in order before any classifier call, and the first failure prints exactly one line
 and then runs the CLI:
@@ -266,8 +271,8 @@ and then runs the CLI:
 | Gate | Failure line |
 |---|---|
 | package: the package resolves and `ModelRuntime.create()` returns | `skip: pi transport unavailable (package), using jev CLI` |
-| model: `getModelOfType('classifier', 'openrouter', 'typesafe/jev-1.13')` returns a model | `skip: pi transport unavailable (model), using jev CLI` |
-| credential: `getAvailableOfType('classifier', 'openrouter')` lists `typesafe/jev-1.13` | `skip: pi transport unavailable (credential), using jev CLI` |
+| model: `getModelOfType('classifier', piProvider, classifierId)` returns the mapped model | `skip: pi transport unavailable (model), using jev CLI` |
+| credential: `getAvailableOfType('classifier', piProvider)` lists the mapped `classifierId` | `skip: pi transport unavailable (credential), using jev CLI` |
 | backend: `classify()` throws or errors, or the answer names a key that was not submitted, or a submitted key has no finite probability | `skip: pi transport unavailable (backend), using jev CLI` |
 
 The call is `runtime.classify(model, context, { signal })` under the caller's own timeout, and its answer

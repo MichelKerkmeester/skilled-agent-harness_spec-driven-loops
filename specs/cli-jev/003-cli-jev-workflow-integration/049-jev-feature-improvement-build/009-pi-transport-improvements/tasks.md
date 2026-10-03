@@ -48,7 +48,8 @@ contextType: "general"
 - [x] T005 Cache the runtime per process, pin the Pi version and preflight once
 - [x] T006 Bound the combined Pi and CLI latency and keep fallback quiet
 - [x] T007 Repair the paired benchmark run, record usage and digests, add the escalation arm
-- [B] T008 Run the paired benchmark once with `--out` (blocked: Jev has no OpenRouter key and D1 gives Jev no secret)
+- [x] T008 Map `official` to Pi's `typesafe` classifier in the transport and benchmark, and update the four docs that name the pin
+- [x] T012 Run the paired benchmark once with `--out` on the official host, with `TYPESAFE_API_KEY` read from the Keychain per process
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -66,9 +67,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

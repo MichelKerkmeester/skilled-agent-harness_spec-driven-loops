@@ -50,11 +50,16 @@ nothing, because only `choice` has a transport decision to make.
 `ModelRuntime.create()` is imported from the package `pi` resolves to. Three gates run in order before
 any classifier call, and the first failure stops the Pi path:
 
+The transport selects the Jev provider from the call's `--provider`, then `JEV_PROVIDER`, defaulting
+to `official`. Its Pi map is `official` to `typesafe` / `jev-latest` and `openrouter` to `openrouter` /
+`typesafe/jev-1.13`. `vercel` and `custom` stay on the CLI. Preflight is cached per `PATH` and Jev
+provider.
+
 | Gate | Checked with | Failure line |
 |---|---|---|
 | package | `resolvePiPackage` resolves, and `ModelRuntime.create()` does not throw | `skip: pi transport unavailable (package), using jev CLI` |
-| model | `getModelOfType('classifier', 'openrouter', 'typesafe/jev-1.13')` is defined | `skip: pi transport unavailable (model), using jev CLI` |
-| credential | `getAvailableOfType('classifier', 'openrouter')` lists `typesafe/jev-1.13` | `skip: pi transport unavailable (credential), using jev CLI` |
+| model | `getModelOfType('classifier', piProvider, classifierId)` is defined for the mapped pair | `skip: pi transport unavailable (model), using jev CLI` |
+| credential | `getAvailableOfType('classifier', piProvider)` lists the mapped `classifierId` | `skip: pi transport unavailable (credential), using jev CLI` |
 | backend | `classify()` throws or errors, or the answer misses a submitted key or a finite probability | `skip: pi transport unavailable (backend), using jev CLI` |
 
 Each failure prints its one line and then runs the CLI, so the caller still receives a CLI-shaped

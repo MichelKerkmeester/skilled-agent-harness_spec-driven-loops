@@ -151,17 +151,17 @@
     ],
     "causal_summary": "Phase 048 gave ten kept or near-kept Jev features a ranked list of ways to improve, refine and expand them",
     "created_at": "2026-10-03T05:30:02Z",
-    "last_save_at": "2026-10-03T12:46:31.692Z",
+    "last_save_at": "2026-10-03T15:11:14.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:46fdfc39ac7d595522b6ed8973b73dab7c809867430ec5166326d533bc3ff8d3",
+    "source_fingerprint": "sha256:063e3d6b137bd8ba074b6a7aa8d3c69b423ae5f5559070903593a7e2d383fae4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "40d27e732598def76525f674a9b6e2cf82a34682becb5b14d9e9a70395d19a94"
+      "spec.md": "fdd4fde8d29b631f96090526a667f1ad14530202df01c780e145cfa4ded54b93"
     },
     "last_active_at": null
   }

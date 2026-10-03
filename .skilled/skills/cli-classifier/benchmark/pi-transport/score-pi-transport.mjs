@@ -45,10 +45,11 @@ import { jevGate, spawnCall, writeCall } from '../../../system-skill-advisor/run
 const PI_PACKAGE_NAME = '@earendil-works/pi-coding-agent';
 const PI_PACKAGE_VERSION = '0.99.2';
 
-// The classifier both sides ask, on Pi's provider id. Fixed as module constants
-// so the gate, the built questions and every recorded call name one model.
-const PI_PROVIDER = 'openrouter';
-const PI_MODEL_ID = 'typesafe/jev-1.13';
+// Jev and Pi must reach the same provider host for a paired comparison.
+const PI_CLASSIFIERS = new Map([
+  ['official', { provider: 'typesafe', model: 'jev-latest' }],
+  ['openrouter', { provider: 'openrouter', model: 'typesafe/jev-1.13' }],
+]);
 
 // The CLI version the shared gate pins and every rerun record names, in the
 // recorded file's own text shape so a rerun sits beside it under one value.
@@ -644,13 +645,15 @@ function costPerHundred(costs) {
 // fixed, then the one model both sides ask. A model that is listed but cannot be
 // resolved fails the gate the same way a missing one does, and no
 // classification can run before the gate passes.
-async function piModelGate(runtime, out) {
-  const models = await runtime.getAvailableOfType('classifier', PI_PROVIDER);
-  const listed = models.some((entry) => entry.id === PI_MODEL_ID);
-  const model = listed ? runtime.getModelOfType('classifier', PI_PROVIDER, PI_MODEL_ID) : undefined;
+async function piModelGate(runtime, out, classifier) {
+  const models = await runtime.getAvailableOfType('classifier', classifier.provider);
+  const listed = models.some((entry) => entry.id === classifier.model);
+  const model = listed
+    ? runtime.getModelOfType('classifier', classifier.provider, classifier.model)
+    : undefined;
   const available = model !== undefined;
-  out(`pi gate: model=${PI_PROVIDER}/${PI_MODEL_ID} available=${available ? 'yes' : 'no'} openrouter_models=${models.length}`);
-  return { available, model, openrouterModels: models.length };
+  out(`pi gate: model=${classifier.provider}/${classifier.model} available=${available ? 'yes' : 'no'} ${classifier.provider}_models=${models.length}`);
+  return { available, model, modelCount: models.length };
 }
 
 /**
@@ -684,6 +687,13 @@ export async function runPiArm(deps = {}) {
   const timeoutMs = deps.timeoutMs ?? CALL_TIMEOUT_MS;
   const replay = deps.replay ?? 'recorded';
   const runDate = deps.runDate ?? new Date().toISOString().slice(0, 10);
+  const jevProvider = env.JEV_PROVIDER || 'official';
+  const classifier = PI_CLASSIFIERS.get(jevProvider);
+
+  if (classifier === undefined) {
+    out('pi arm skipped: provider');
+    return { stopped: 'pi arm skipped: provider' };
+  }
 
   const pi = resolvePiPackage(env);
   if (pi === null) {
@@ -713,7 +723,7 @@ export async function runPiArm(deps = {}) {
     }
   }
 
-  const gate = await piModelGate(runtime, out);
+  const gate = await piModelGate(runtime, out, classifier);
   if (!gate.available) {
     out('pi arm skipped: model');
     return { stopped: 'pi arm skipped: model' };
@@ -723,10 +733,10 @@ export async function runPiArm(deps = {}) {
   writeCall(deps.outDir, {
     backend: 'pi',
     kind: 'model_check',
-    model: PI_MODEL_ID,
-    provider: PI_PROVIDER,
+    model: classifier.model,
+    provider: classifier.provider,
     pi_version: piVersion,
-    openrouter_models: gate.openrouterModels,
+    classifier_models: gate.modelCount,
     status: 'measured',
     run_date: runDate,
   });
@@ -799,8 +809,8 @@ export async function runPiArm(deps = {}) {
         status,
         probabilities,
         replay,
-        model: PI_MODEL_ID,
-        provider: PI_PROVIDER,
+        model: classifier.model,
+        provider: classifier.provider,
         pi_version: piVersion,
         state_sha12: sha12(JSON.stringify(context.state)),
         prompt_sha256: sha256(row.prompt),
@@ -836,8 +846,8 @@ export async function runPiArm(deps = {}) {
     p95_ms: nearestRank(wallTimes, 0.95),
     cost_per_100: costPerHundred(costs),
     byRow,
-    model: PI_MODEL_ID,
-    provider: PI_PROVIDER,
+    model: classifier.model,
+    provider: classifier.provider,
     pi_version: piVersion,
   };
   out(`pi: rows=${column.rows} calls=${column.calls} measured=${column.measured} unmeasured=${column.unmeasured} timeouts=${column.timeouts} excluded=${column.excluded}`);
@@ -1417,16 +1427,13 @@ export async function main(argv, deps = {}) {
     }
   }
 
-  if (
-    paired
-    && env.JEV_PROVIDER !== undefined
-    && env.JEV_PROVIDER !== ''
-    && env.JEV_PROVIDER !== PI_PROVIDER
-  ) {
-    err(`paired run requires JEV_PROVIDER=${PI_PROVIDER} to compare the same provider`);
+  const jevProvider = env.JEV_PROVIDER || 'official';
+  const classifier = PI_CLASSIFIERS.get(jevProvider);
+  if (paired && classifier === undefined) {
+    err(`paired run has no Pi classifier mapping for JEV_PROVIDER=${jevProvider}`);
     return 2;
   }
-  const runEnv = paired ? { ...env, JEV_PROVIDER: PI_PROVIDER } : env;
+  const runEnv = paired ? { ...env, JEV_PROVIDER: jevProvider } : env;
 
   // The baseline fixes the run's row set, so it is read before anything is
   // spawned: an unreadable one stops the run instead of printing a census whose
