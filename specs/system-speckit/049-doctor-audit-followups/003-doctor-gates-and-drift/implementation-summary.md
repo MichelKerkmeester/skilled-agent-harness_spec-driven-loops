@@ -83,6 +83,10 @@ The guard reads its own manifest, `.skilled/commands/doctor/assets/mcp-mutation-
 | `.skilled/commands/deep/assets/compiled/{deep-ai-council,deep-review,deep-research}.contract.md` | Regenerated (handoff sweep) | Source digests only |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/{mcp-tooling,sk-doc}/manifest.json` and their authored copies | Re-minted (handoff sweep) | Policy hash matches current routing inputs |
 | `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and sidecars | Regenerated (handoff sweep) | Fresh against the corpus |
+| `README.md` | Modified (closing pass) | `/doctor:env` entry; `/doctor:mcp install` line matches the workflow; option 1 sentence names `/doctor:update` |
+| `.skilled/commands/doctor/assets/doctor-speckit-presentation.txt` | Modified (closing pass) | Menu option 1 hands release updates to `/doctor:update` instead of `/doctor:rebuild --migrate` |
+| `.skilled/commands/doctor/assets/doctor-mcp-install.yaml`, `doctor-mcp-presentation.txt` | Modified (closing pass) | Credential keys use the doubled-underscore manual name |
+| `.skilled/commands/doctor/speckit.md` | Modified (closing pass) | Description no longer calls it the router for `/doctor` |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -133,6 +137,9 @@ A later handoff sweep, run by the parent build orchestrator once every packet ha
 | Handoff sweep: `check-contract-drift.cjs` | Before exit 2 (31 stale digests); after `[CONTRACT DRIFT] OK commands=3`, exit 0 |
 | Handoff sweep: `compiled-route-guard.cjs` | Before `mcp-tooling stale-manifest`; after all seven hubs `fresh` |
 | Handoff sweep: `validate.sh` on the 033 trigger-index child `--strict` | PASS, `RESULT: PASSED` |
+| Closing pass: `rg -n "rebuild --migrate"` on the speckit presentation | Exit 1, no match |
+| Closing pass: YAML parse of `doctor-mcp-install.yaml` | `YAML_OK` |
+| Closing pass: four mirror `--check` scripts and `command-catalog-mirror-check.cjs` | PASS: 34, 34 and 34 prompts and 174 mirrors in sync; `STATUS=OK` |
 | Handoff sweep: trigger index `--check --json` | PASS: regenerated (only `manifestHash` changed), then `--check --json` exit 0, `fresh: true`, 23056 documents, 0 missing, 0 stale |
 <!-- /ANCHOR:verification -->
 
@@ -142,11 +149,11 @@ A later handoff sweep, run by the parent build orchestrator once every packet ha
 ## Known Limitations
 
 1. **Resolved in the handoff sweep: the pre-commit staging trigger.** The hook's trigger regex now matches `mcp-mutation-class-manifest.yaml`, proven by hook test case 29b (T022, AC-010).
-2. **Handed off: three skill-budget items** (report title, two docstrings, 8,000 budget) to `specs/sk-doc/063-description-budget` (ADR-004).
+2. **Handed off: three skill-budget items** (report title, two docstrings, 8,000 budget) to `specs/sk-doc/064-description-budget` (ADR-004).
 3. **Resolved in the handoff sweep: `.skilled/commands/README.txt:158`** now shows `/doctor:speckit <target> [flags]`.
 4. **Resolved in the handoff sweep: generic `/doctor` text elsewhere** (T024, AC-011). The 14 bare `/doctor` hits that remain stay on purpose: seven code comments that describe a doctor run generically rather than how to invoke it (`command-catalog-mirror-check.cjs:4,32`, `agent-roster-mirror-check.cjs:4,14`, `fable-mode-check.cjs:4,6`, `skill-graph-freshness.cjs:12`); `fable-metrics.cjs:14`, `advisor-server.ts:229` and two test-header comments (`parent-skill-check-fixtures.vitest.ts:9`, `skill-graph-freshness-panel.vitest.ts:4`), likewise generic; `workflow-invariance.vitest.ts:114`, a comment about the router consolidation docs' vocabulary; `skill-root-metadata-contract.test.cjs:551`, test data for a path helper, not an invocation; and `category-overview.md:6`, a frontmatter trigger phrase that is retrieval vocabulary. `create-command-presentation.txt:92` keeps `/doctor:cache` as a hypothetical naming example.
-6. **README names five doctor commands but documents four.** `README.md` now says five commands, which matches the tree, but its DOCTOR section has no `/doctor:env` entry. Adding one is new content outside the sweep.
-5. **`speckit.md` keeps its "Router for /doctor" description.** Changing a command's frontmatter description reaches the runtime mirrors and the description budget, so it was left alone.
+5. **Resolved in the closing pass: the `speckit.md` description** no longer says "Router for /doctor" (T031).
+6. **Resolved in the closing pass: the README DOCTOR section** documents all five commands (T028).
 <!-- /ANCHOR:limitations -->
 
 ---

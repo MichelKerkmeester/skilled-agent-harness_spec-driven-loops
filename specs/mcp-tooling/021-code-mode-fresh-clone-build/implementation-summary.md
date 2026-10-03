@@ -125,7 +125,7 @@ The manifest was copied by the orchestrator. Four executor dispatches ran in par
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The manifest is not committed yet.** It is present and not ignored in this worktree. The parent session must stage it. In the primary checkout, where a local `.skilled/.gitignore` matches `package.json`, staging needs `git add -f` once.
-2. **Nine credential values remain missing.** They are operator-managed, so the doctor keeps the WARN by design.
+1. **Resolved at commit: the manifest is tracked.** Commit `4626ffdfbc` added `.skilled/skills/mcp-code-mode/mcp-server/package.json`. A tracked file is unaffected by the primary checkout's local `.skilled/.gitignore` rule for `package.json`.
+2. **By design: credential values are the operator's.** The doctor reports missing values as one WARN, by name only, and never asks for or writes a value.
 3. **No acceptance-criteria.md.** This is a Level 1 packet, so tasks.md and the spec requirements table are the closure record.
 <!-- /ANCHOR:limitations -->

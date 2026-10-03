@@ -123,6 +123,8 @@ GPT-6 Luna (cli-codex, max, fast) applied the fix in one batch with the other `/
 2. **No live corpus run.** No deep-loop artifact corpus exists in this checkout, so the observed runs exercised only the missing-input paths; the metric rendering and delta rows against a real corpus were not verified in this phase.
 3. **Running without a directory is now an error by design.** An operator who omits `--dir` gets exit 2 and `pass --dir <path>`; the added setup prompt covers the interactive router flow.
 4. **The three parent-skill test failures are environmental.** They fail at baseline in this worktree for a fixture-loading reason unrelated to this phase's change and are not a regression.
+
+**Follow-up status.** Items 1 and 4 are resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003: the baseline target is null with a retirement note, and the fixtures link `@spec-kit/shared`. Items 2 and 3 stand as recorded: no corpus exists, and the missing-directory error is by design.
 <!-- /ANCHOR:limitations -->
 
 ---

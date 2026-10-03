@@ -129,7 +129,7 @@ GPT-6 Luna wrote the runtime change, and DeepSeek V4.1 Flash wrote the panel cha
 ## Known Limitations
 
 1. **The parity suites needed a cross-packet fix.** Three `tests/parity` failures came from the shared hash recipe landing together with a trimmed `sk-code` description. Phase 2 records the measurement and the fix; the suite is green.
-2. **The compiled `skill-graph.json` is stale today.** The panel now reports it. Regenerating it is operator-gated and outside this phase.
+2. **Resolved since: the compiled `skill-graph.json` is fresh.** After merging main the panel reports `STALE COMPILED: none` (generated 2026-10-02T13:09:40Z, newest source stamp 2026-10-02T12:00:00Z), with 14 skills in the compiled graph, SQLite and on disk.
 3. **A running daemon keeps old code until it restarts.** The shim refuses a stale dist, but a warm daemon serves what it loaded.
 <!-- /ANCHOR:limitations -->
 

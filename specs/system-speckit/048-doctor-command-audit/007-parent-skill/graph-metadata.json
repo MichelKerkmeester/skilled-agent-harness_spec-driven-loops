@@ -204,7 +204,7 @@
     ],
     "causal_summary": "`/doctor:speckit parent-skill` checks parent-hub skill structure",
     "created_at": "2026-10-02T16:10:19Z",
-    "last_save_at": "2026-10-02T21:09:12.906Z",
+    "last_save_at": "2026-10-03T11:48:56.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d1fba238131c223b69340a9b38abb6d7c90771d8154bdf996b42e9b5d080dab",
+    "source_fingerprint": "sha256:581b7d4c7b64f03bd760cae3621d5ce6f3b4e4c987ac16d215db49f7de670536",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5f3f936cae2e551cfe2698b113d6b7f5bb7dd4b493dc5ced9ad8c259f665b37f",
       "plan.md": "2145a4e479624a97c2cf3f583e867d8702827c5d9dc2d21902fc2d8f87de89da",
       "tasks.md": "25b317dc3642fec7ba556a32ff9407e3012ae5189f4423bd62500b2e4409c2af",
-      "implementation-summary.md": "8800ee6581a767418cb08793db6a411b5ccf47f1fb22095dee3c110bc738dd43"
+      "implementation-summary.md": "46c0eabf9379943ebd7de4b9b47e669358d1d6455f0b046c9d95225392b75d24"
     },
     "last_active_at": null
   }

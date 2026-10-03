@@ -117,10 +117,10 @@ The baseline `--check` and bucket were captured first, every finding was re-chec
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The index can go stale again before commit.** Other packets edit spec documents in the same build. The `--check` result above is what this build observed; the parent session regenerates after every packet lands.
-2. **Handed off: the 033 continuity paths** (ADR-002), two exact replacements spelled out in `decision-record.md`.
+1. **Handled at each commit: index freshness.** Other packets edited spec documents in the same build, so the parent session regenerated the index after every packet landed and again after merging main; `generate-trigger-index.mjs --check` exits 0 on the final tree.
+2. **Resolved in phase 003: the 033 continuity paths** (ADR-002), applied as T023.
 3. **Regeneration bypassed the full `/doctor:rebuild` flow.** It ran the leg's exact generator command, without the backup snapshot (git holds the prior bytes) and without the advisor database steps.
-4. **The `/doctor <target>` form remains in other speckit docs** (`.skilled/commands/speckit/`), outside this build's owned files.
+4. **Resolved in phase 003: the `/doctor <target>` form in other speckit docs**, replaced by the invocation sweep (T024).
 <!-- /ANCHOR:limitations -->
 
 ---

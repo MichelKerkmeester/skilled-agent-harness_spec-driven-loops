@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Every switch that turns a hook, gate or runtime feature off, or changes its default, is an environment variable or git config key documented in `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`, a 472-line reference",
     "created_at": "2026-10-02T16:10:28Z",
-    "last_save_at": "2026-10-02T20:23:51.388Z",
+    "last_save_at": "2026-10-03T11:48:56.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac10fa9dfe6302ba670fab60357b685dce20d438d0adf95a3d9d8056ee111ab3",
+    "source_fingerprint": "sha256:1d383e32a98745a7f062ff7880a8c4eba89cf8ea4b6e1c0eaa6c9fa4000ee10f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ecf4f245343fe2e34e2cd95af66eba2d5ca842d1097ec7891efadf46ff00b273",
       "plan.md": "5758a68169947fba4527376991dd7c435aaccf932ecd330abf039dacdc00fc8c",
       "tasks.md": "9d04cf5da4f05861d946324db95d374359d37e0f7f48cbe452d6dc90a760fa16",
-      "implementation-summary.md": "9fcce4978580aa62b01ba3da47d0340495ac0114affd537ef300dc57eca8bff8"
+      "implementation-summary.md": "4d35e2b9aabf6e592db5bf20bf7f9a9a3fd93d3209f8e4c69e5b9254d7a3902a"
     },
     "last_active_at": null
   }

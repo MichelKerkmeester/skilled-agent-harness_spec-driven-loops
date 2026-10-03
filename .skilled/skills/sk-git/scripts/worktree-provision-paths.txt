@@ -28,6 +28,11 @@
 # built policy plan directly.
 .skilled/skills/system-skill-advisor/runtime  dist/runtime/lib/policy-plan.js
 
+# The deep-loop skill root, whose only dependency links the spec-kit shared
+# package for the mode packets' scripts outside runtime/. The agent-mirror commit
+# gate imports its frontmatter parser through that link.
+.skilled/skills/system-deep-loop
+
 # The deep-loop runtime, which the fan-out runner needs.
 .skilled/skills/system-deep-loop/runtime
 

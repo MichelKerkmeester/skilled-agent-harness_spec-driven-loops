@@ -124,8 +124,8 @@ The probes ran in the orchestrating session, outside any executor sandbox, becau
 ## Known Limitations
 
 1. **Two phrases win by less than 0.002.** `audit the docs` (sk-doc over sk-code) and `review convergence` (system-deep-loop over sk-code) pass today. A later scorer or vocabulary change could flip them, and the fleet probe would report it.
-2. **The live numbers depend on vocabulary that another packet is editing.** Skill descriptions were being rewritten in this worktree during the runs. The post-change run measured that in-flight state.
-3. **A watcher reindex did not clear a stale signature on its own** during this session. A trusted `advisor_rebuild` did. The cause sits outside this phase and was not investigated.
+2. **Re-measured on the settled vocabulary.** Skill descriptions were being rewritten in this worktree during the original runs. After every description edit landed and main was merged, `ci-router-vocabulary-reach.cjs` reported `RESULT: PASSED` across all seven hubs: 0 wrong-hub, 0 outranked, 0 no-reach.
+3. **Not reproduced since: a watcher reindex that left a stale signature.** In a later probe, adding a trailing newline to `sk-git/graph-metadata.json` and then restoring it each triggered a watcher reindex within 5 seconds (generation 67 to 68 to 69), and `indexStaleness` read `fresh`, 0 changed, both times. The earlier case predates phase 001's shared hash recipe, which plausibly explains it; that link is inferred, not proven.
 <!-- /ANCHOR:limitations -->
 
 ---

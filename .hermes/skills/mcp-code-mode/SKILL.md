@@ -335,7 +335,7 @@ Use `.utcp_config.json` with `manual_call_templates[]`; each entry defines the m
 
 ### Critical: Prefixed Environment Variables
 
-> **⚠️ IMPORTANT**: Code Mode prefixes ALL environment variables with `{manual_name}_` from your configuration.
+> **⚠️ IMPORTANT**: Code Mode prefixes ALL environment variables with `{manual_name}_` from your configuration, doubling each underscore in the manual name first: `clickup_official` with `${CLICKUP_API_KEY}` needs `clickup__official_CLICKUP_API_KEY`.
 
 **Example:**
 - Config has `"name": "clickup"` and env section references `${CLICKUP_API_KEY}`

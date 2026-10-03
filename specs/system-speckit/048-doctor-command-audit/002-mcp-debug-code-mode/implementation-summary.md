@@ -127,6 +127,8 @@ GPT-6 Luna (cli-codex, max, fast) applied the audit-then-apply change as one exe
 5. **Finding, not fixed: the `magicpath` manual in `.utcp_config.json` is a CLI manual without its required `config` field.**
 6. **Codex registration is WARN where `tomllib` is unavailable.** This machine runs Python 3.9, so `.codex/config.toml` is reported "unvalidated" and never as PASS.
 7. **Live tool discovery is only probed from an already-connected Code Mode session.** This phase ran the script directly, so no live tool probe was executed; the workflow reports it as not probed.
+
+**Follow-up status.** Items 1 to 6 are resolved by `specs/mcp-tooling/021-code-mode-fresh-clone-build`: the manifest is tracked, `install.sh` builds, the validator checks per-type fields and doubled-underscore keys, MagicPath was valid all along, and the doctor picks a Python 3.11+ interpreter for the Codex TOML check. Item 7 stands as recorded: a live tool probe needs a connected Code Mode session.
 <!-- /ANCHOR:limitations -->
 
 ---

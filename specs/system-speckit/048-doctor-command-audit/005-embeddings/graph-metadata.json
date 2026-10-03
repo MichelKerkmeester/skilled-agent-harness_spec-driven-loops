@@ -206,7 +206,7 @@
     ],
     "causal_summary": "`/doctor:speckit embeddings` reports the embedding provider and the shared model-server status",
     "created_at": "2026-10-02T16:10:16Z",
-    "last_save_at": "2026-10-02T20:59:55.728Z",
+    "last_save_at": "2026-10-03T11:48:56.184Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6fbcd63753ed4ce816dc1109506bd7783a620708c8d88fd179632c4f88c1265f",
+    "source_fingerprint": "sha256:7635ddf6e8e59083e34bced906d541ea40b8097a9fbbfa061655d0b4cb717b52",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8a83bf90a56d2298b89ed19459c2a810e423b9fe3d1ede0fe55e9229573d7d42",
       "plan.md": "8a718dd6ba1e672df742935fd5ab37a9c495b8620b6992f346483dfb90b5f4ce",
       "tasks.md": "0d58bacaac8f3390bb033cde1bd4f951b718ac20792ac744796fab5f009358e2",
-      "implementation-summary.md": "85b05e18ce6c60f2146ec1c62d8ef98fe1940130a1a6de7acc30a39c1b39f85b"
+      "implementation-summary.md": "13d9d434d6d8ceda4bd7ca6d542f4fc71a08c4de79e2288abf376b530a336331"
     },
     "last_active_at": null
   }

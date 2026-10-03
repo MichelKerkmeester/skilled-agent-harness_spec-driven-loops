@@ -116,6 +116,8 @@ Audit first: the phase inventoried every path, script, command, flag and variabl
 2. **Recorded finding: user-global Codex hook parity is unverified, not a confirmed defect.** `~/.codex/hooks.json` exists, but the check stopped at the linked-worktree guard before comparing its contents (`scratch/doctor-run.log:45-47`). The route now passes `--allow-worktree`, which is the path to that comparison.
 3. **Repair commands were not run.** The write-producing repair commands and the package build were recorded as skipped by the read-only audit (`scratch/doctor-run.log:457-487`).
 4. **Three doctor test fixtures fail in this worktree, as before the batch.** `parent-skill-check-*.test.cjs` cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` inside a temporary fixture; this matches the pre-batch baseline and is not a regression.
+
+**Follow-up status.** Item 4 is resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003. Item 2 stands: user-global Codex hooks live outside the repository and need the operator's own check. Items 1 and 3 are observations.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -85,7 +85,7 @@ workflow:
     activities:
       - "Preserve existing valid manuals and add only the manual the user identifies, using a valid underscore-separated JavaScript identifier."
       - "Require every manual to have a non-empty name and call_template_type."
-      - "For each ${VAR} reference, identify the expected <manual_name>_<VAR> key. Report only the key name and whether it is present."
+      - "For each ${VAR} reference, identify the expected key: the manual name with each underscore doubled, then _<VAR>. Report only the key name and whether it is present."
       - "If a credential key is missing, tell the user to manage its value in the repository root .env file outside this workflow. Never write, ask for, or print the value."
       - "Validate the final .utcp_config.json as JSON."
 

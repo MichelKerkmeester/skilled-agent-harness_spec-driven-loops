@@ -122,6 +122,8 @@ The two fixes were applied in the shared `/doctor:speckit` batch with the other 
 4. **Recorded finding: the doctor's own reference doc recommends an invocation the doctor rejects.** `frontmatter-templates.md` and `sk-create-skill/references/shared/common-pitfalls.md` say to run `/doctor skill-budget :auto`, but the doctor family contract declares no supported modes and the router rejects unknown flags. The fix belongs to those two sk-doc documents. Recorded, not fixed.
 5. **Recorded observations left unfixed.** `doctor-update-presentation.txt:176` describes `/doctor skill-budget` as an "Advisor budget/status helper" when it audits description budgets; `audit_descriptions.py` prints a packet label in its report title and `quick_validate.py` carries one in its docstring; and the audit's Claude Code budget is hardcoded at 8,000 while `SLASH_COMMAND_TOOL_CHAR_BUDGET` is unset in this checkout. Recorded, not fixed.
 6. **The three `parent-skill-check-*.test.cjs` fixtures fail in this worktree exactly as at baseline.** They cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js`, so their temporary fixtures report a false FAIL. This is pre-existing, not a regression from this phase.
+
+**Follow-up status.** Items 2 to 4 are resolved by `specs/sk-doc/064-description-budget`: seven trims, the ceiling raised to 6,400 by operator decision, the counted surface stated, and the accepted invocation in both references. Items 5 and 6 are resolved by `specs/system-speckit/049-doctor-audit-followups` phase 003. Item 1 stands as recorded.
 <!-- /ANCHOR:limitations -->
 
 ---
