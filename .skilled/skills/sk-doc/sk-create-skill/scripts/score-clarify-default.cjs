@@ -45,6 +45,7 @@ const LABEL_GATE = 30;
 const CHOICE_INSTRUCTION = 'Which workflow mode should handle this request?';
 const NONE_DESCRIPTION = 'None of these modes';
 const ORDERS = 3;
+const EARLY_STOP_ORDERS = 2;
 const MARGIN_LINE = 'margin: 0.10';
 const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, kill P(X >= L) <= 0.05, margin 10*(A-B) >= M, sign test p < 0.05, flips 10*F <= 3*M';
 
@@ -350,7 +351,9 @@ function rowLines(rows) {
     prompt: r.prompt,
     alternatives: r.alternatives,
     gold: r.gold,
-    label: ''
+    label: '',
+    label_approver: '',
+    decision_reference: ''
   }));
 }
 
@@ -545,17 +548,254 @@ function describeModes(repoRoot, hub, keys) {
  * @returns {{ count: number, sha256: string }} The distinct option count and digest.
  */
 function optionsDigest(labeled, repoRoot) {
-  const options = new Set();
+  const options = optionEntries(labeled, repoRoot);
+  const lines = options.map((option) => option.hub + '/' + option.key + '=' + option.text);
+  return {
+    count: options.length,
+    sha256: crypto.createHash('sha256').update(lines.join('\n')).digest('hex')
+  };
+}
+
+/**
+ * Resolve the distinct option records measured by a labeled row set.
+ *
+ * @param {Array<object>} labeled - labelRows labeled output.
+ * @param {string} repoRoot - Repository root.
+ * @returns {Array<{ hub: string, key: string, text: string }>} Sorted option records.
+ */
+function optionEntries(labeled, repoRoot) {
+  const options = new Map();
   for (const row of labeled) {
     for (const [key, text] of describeModes(repoRoot, row.hub, [...row.alternatives, NONE_KEY])) {
-      options.add(row.hub + '/' + key + '=' + text);
+      const identity = row.hub + '/' + key + '=' + text;
+      options.set(identity, { hub: row.hub, key, text });
     }
   }
-  const sorted = [...options].sort();
-  return {
-    count: sorted.length,
-    sha256: crypto.createHash('sha256').update(sorted.join('\n')).digest('hex')
+  return [...options.keys()].sort().map((identity) => options.get(identity));
+}
+
+/**
+ * Identify the compiled router inputs that decide a row.
+ *
+ * @param {object} router - Compiled routing module.
+ * @param {string} repoRoot - Repository root.
+ * @param {string} hub - Hub id.
+ * @param {object} snapshot - Loaded compiled policy snapshot.
+ * @param {string} runtimeSha256 - Digest of the compiled routing entry module.
+ * @returns {object} Stable runtime and policy identity.
+ */
+function routerBuildIdentity(router, repoRoot, hub, snapshot, runtimeSha256) {
+  const policy = snapshot && snapshot.policy;
+  const hubChild = router.HUB_CHILD && router.HUB_CHILD[hub];
+  if (!hubChild || !policy || typeof policy.effectivePolicyHash !== 'string'
+    || policy.activationGeneration === undefined || policy.activationGeneration === null) {
+    throw new Error('router identity is incomplete for hub ' + hub);
+  }
+  const childRoot = path.join(repoRoot, CANARY_ROOT, hubChild);
+  const canaryRouter = path.join(childRoot, 'lib', 'canary-router.cjs');
+  const routerSource = fs.existsSync(canaryRouter)
+    ? canaryRouter
+    : path.join(childRoot, 'lib', 'router.cjs');
+  const snapshotLoader = path.join(childRoot, 'harness', 'build-artifacts.cjs');
+  const identity = {
+    runtimeModule: COMPILED_ROUTE_MODULE,
+    runtimeSha256,
+    hubChild,
+    routerSource: path.relative(repoRoot, routerSource),
+    routerSourceSha256: crypto.createHash('sha256')
+      .update(fs.readFileSync(routerSource))
+      .digest('hex'),
+    snapshotLoader: path.relative(repoRoot, snapshotLoader),
+    snapshotLoaderSha256: crypto.createHash('sha256')
+      .update(fs.readFileSync(snapshotLoader))
+      .digest('hex'),
+    policyHash: policy.effectivePolicyHash,
+    generation: policy.activationGeneration
   };
+  return {
+    ...identity,
+    buildId: crypto.createHash('sha256').update(JSON.stringify(identity)).digest('hex')
+  };
+}
+
+/**
+ * Replay each supplied row against the loaded compiled router and pin the
+ * runtime and policy identity used for that score.
+ *
+ * @param {Array<object>} rows - Rows read from the input JSONL.
+ * @param {object} router - Compiled routing module.
+ * @param {string} repoRoot - Repository root.
+ * @returns {{ rows: Array<object>, buildIdentity: Object<string, object>, refused: Array<{ id: string, action: string }> }}
+ *   Replayed rows, per-hub identity, and rows whose action no longer clarifies.
+ */
+function replayRows(rows, router, repoRoot) {
+  const runtimeSha256 = crypto.createHash('sha256')
+    .update(fs.readFileSync(path.join(repoRoot, COMPILED_ROUTE_MODULE)))
+    .digest('hex');
+  const engines = new Map();
+  const modesByHub = new Map();
+  const buildIdentity = {};
+  const replayed = [];
+  const refused = [];
+
+  for (const row of rows) {
+    const rowId = row && row.id !== undefined ? String(row.id) : '(unknown)';
+    let engine;
+    let evaluated;
+    try {
+      if (!engines.has(row.hub)) engines.set(row.hub, router.loadHubEngine(row.hub));
+      engine = engines.get(row.hub);
+      evaluated = engine.evaluate(engine.snapshot, { prompt: row.prompt });
+    } catch (error) {
+      throw new Error('row ' + rowId + ' replay failed: ' + error.message);
+    }
+
+    const decision = evaluated && evaluated.decision;
+    if (!decision || decision.action !== 'clarify') {
+      const action = decision && typeof decision.action === 'string' ? decision.action : 'unparsed';
+      refused.push({ id: rowId, action });
+      continue;
+    }
+
+    if (!modesByHub.has(row.hub)) modesByHub.set(row.hub, readRegistry(repoRoot, row.hub).modes);
+    const rawAlternatives = decision.clarify && decision.clarify.alternatives;
+    const alternatives = modeAlternatives(rawAlternatives, modesByHub.get(row.hub));
+    if (alternatives === null) {
+      throw new Error('row ' + rowId + ' replay is not a mode clarification');
+    }
+    if (!Array.isArray(row.alternatives)
+      || JSON.stringify(alternatives) !== JSON.stringify(row.alternatives)) {
+      throw new Error('row ' + rowId + ' replay alternatives changed');
+    }
+
+    if (!buildIdentity[row.hub]) {
+      buildIdentity[row.hub] = routerBuildIdentity(
+        router,
+        repoRoot,
+        row.hub,
+        engine.snapshot,
+        runtimeSha256
+      );
+    }
+    const identity = buildIdentity[row.hub];
+    replayed.push({
+      ...row,
+      replay: {
+        action: decision.action,
+        alternatives: Array.isArray(rawAlternatives) ? rawAlternatives : [],
+        modeAlternatives: alternatives,
+        buildId: identity.buildId,
+        policyHash: identity.policyHash,
+        generation: identity.generation
+      }
+    });
+  }
+
+  return { rows: replayed, buildIdentity, refused };
+}
+
+/**
+ * Compute the three deterministic baselines for a labeled row set.
+ *
+ * @param {Array<object>} labeled - Rows carrying a resolvable value.
+ * @returns {object} Correct counts and the strongest simple policy.
+ */
+function baselineScores(labeled) {
+  const total = labeled.length;
+  const first = labeled.filter((row) => row.alternatives[0] === row.value).length;
+  const second = labeled.filter((row) => row.alternatives[1] === row.value).length;
+  const alwaysNone = labeled.filter((row) => row.value === NONE_KEY).length;
+  const candidates = [
+    { policy: 'first-alternative', correct: first },
+    { policy: 'second-alternative', correct: second },
+    { policy: 'always-none', correct: alwaysNone }
+  ];
+  candidates.sort((a, b) => b.correct - a.correct || a.policy.localeCompare(b.policy));
+  return {
+    total,
+    firstAlternative: { correct: first, total },
+    secondAlternative: { correct: second, total },
+    alwaysNone: { correct: alwaysNone, total },
+    strongest: candidates[0]
+  };
+}
+
+/**
+ * Summarize deterministic baselines and an optional measured column by hub
+ * and by whether the label names a mode or none of the offered modes.
+ *
+ * @param {Array<object>} labeled - Rows carrying a resolvable value.
+ * @param {Map<string, Array<string|null>>} [answersById] - Optional picks by row.
+ * @returns {Array<object>} Sorted hub/class result records.
+ */
+function classHubResults(labeled, answersById = null) {
+  const groups = new Map();
+  for (const row of labeled) {
+    const labelClass = row.value === NONE_KEY ? 'none' : 'mode';
+    const key = row.hub + '\n' + labelClass;
+    if (!groups.has(key)) {
+      groups.set(key, {
+        hub: row.hub,
+        class: labelClass,
+        rows: 0,
+        firstAlternative: 0,
+        secondAlternative: 0,
+        alwaysNone: 0,
+        measured: 0,
+        correct: 0
+      });
+    }
+    const group = groups.get(key);
+    group.rows += 1;
+    if (row.alternatives[0] === row.value) group.firstAlternative += 1;
+    if (row.alternatives[1] === row.value) group.secondAlternative += 1;
+    if (row.value === NONE_KEY) group.alwaysNone += 1;
+
+    const answers = answersById && answersById.get(row.id);
+    if (Array.isArray(answers) && answers.length >= EARLY_STOP_ORDERS && answers.length <= ORDERS
+      && answers.every((answer) => typeof answer === 'string')) {
+      group.measured += 1;
+      if (modalPick(answers).pick === row.value) group.correct += 1;
+    }
+  }
+
+  return [...groups.values()]
+    .sort((a, b) => a.hub.localeCompare(b.hub) || a.class.localeCompare(b.class))
+    .map((group) => ({
+      hub: group.hub,
+      class: group.class,
+      rows: group.rows,
+      baselines: {
+        firstAlternative: group.firstAlternative,
+        secondAlternative: group.secondAlternative,
+        alwaysNone: group.alwaysNone
+      },
+      model: answersById ? {
+        measured: group.measured,
+        correct: group.correct,
+        accuracy: group.measured > 0 ? group.correct / group.measured : null
+      } : null
+    }));
+}
+
+/**
+ * Format class and hub summaries for the score report.
+ *
+ * @param {Array<object>} results - classHubResults output.
+ * @returns {Array<string>} Human-readable report lines.
+ */
+function classHubLines(results) {
+  return results.map((result) => {
+    let line = 'result: hub=' + result.hub + ' class=' + result.class + ' rows=' + result.rows
+      + ' first=' + result.baselines.firstAlternative + '/' + result.rows
+      + ' second=' + result.baselines.secondAlternative + '/' + result.rows
+      + ' always_none=' + result.baselines.alwaysNone + '/' + result.rows;
+    if (result.model) {
+      line += ' jev=' + result.model.correct + '/' + result.model.measured;
+      if (result.model.accuracy !== null) line += ' accuracy=' + result.model.accuracy.toFixed(4);
+    }
+    return line;
+  });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -630,10 +870,12 @@ function decideVerdict({ K, M, A, B, W, L, F }) {
 }
 
 /**
- * One column's counts. A row is measured only when its record holds exactly
- * one answer per order and every answer is a string; every other row stays
- * unmeasured. An unstable or abstained pick is wrong for the column, and the
- * votes a pick lacks add to the flip count.
+ * One column's counts. A row is measured when its record holds a measured
+ * answer for every order it ran, at least the early-stop minimum and no more
+ * than all orders, with every answer a string; every other row stays
+ * unmeasured. A row that stopped early carries only the votes it measured, so
+ * the flips a pick lacks are counted over those measured votes alone. An
+ * unstable or abstained pick is wrong for the column.
  *
  * @param {Array<{ id: string, alternatives: Array<string>, value: string }>} labeled - Kept rows.
  * @param {Map<string, Array<string | null>>} answersById - Row id to submitted keys in call order.
@@ -652,12 +894,12 @@ function scoreColumn(labeled, answersById) {
 
   for (const row of labeled) {
     const answers = answersById.get(row.id);
-    if (!Array.isArray(answers) || answers.length !== ORDERS) continue;
+    if (!Array.isArray(answers) || answers.length < EARLY_STOP_ORDERS || answers.length > ORDERS) continue;
     if (!answers.every((answer) => typeof answer === 'string')) continue;
 
     M += 1;
     const { pick, top } = modalPick(answers);
-    F += ORDERS - top;
+    F += answers.length - top;
     if (pick === null) unstable += 1;
     if (pick === NONE_KEY) abstained += 1;
 
@@ -900,11 +1142,13 @@ function judgeChoice(result, keys) {
 }
 
 /**
- * The Jev choice arm: one auth test, then three rotated choice calls per
- * labeled row, then the verdict. The payload line prints before any call, so
- * the cost is visible before anything spends. A spawn that exits 4 is
- * recorded as unmeasured and the same call is spawned once more after the
- * backoff; the second result is judged. Exit 2, exit 3 and exit 130 stop the
+ * The Jev choice arm: one auth test, then two initial rotated choices per
+ * labeled row, with a third only when the first two measured picks disagree.
+ * When the first two agree the row stops early and keeps only those two
+ * measured votes, so an unmeasured third order contributes no vote or flip. The
+ * payload line prints before any call, so the cost is visible before anything
+ * spends. A spawn exiting 4 is recorded as unmeasured, then retried once after
+ * the backoff; the second result is judged. Exit 2, exit 3 and exit 130 stop the
  * arm. Every spawn reaches calls.jsonl before any stop, so a stopped run
  * keeps its records. A stop prints its line and the finished-row count and
  * returns without a verdict.
@@ -919,6 +1163,7 @@ async function runJevArm(labeled, gate, ctx) {
   const K = labeled.length;
   const provider = gate.provider;
   let model = 'unknown';
+  let calls = 0;
 
   let chars = 0;
   for (const row of labeled) {
@@ -927,8 +1172,9 @@ async function runJevArm(labeled, gate, ctx) {
     chars += row.prompt.length + CHOICE_INSTRUCTION.length;
     for (const key of keys) chars += key.length + texts.get(key).length + 1;
   }
-  chars *= 3;
-  out(`jev: payload=${JEV_PAYLOAD} planned_calls=${3 * K + 1} est_input_tokens=${Math.ceil(chars / 4)}`);
+  chars *= EARLY_STOP_ORDERS;
+  out('jev: payload=' + JEV_PAYLOAD + ' planned_calls=' + (EARLY_STOP_ORDERS * K + 1)
+    + ' max_calls=' + (ORDERS * K + 1) + ' est_input_tokens=' + Math.ceil(chars / 4));
 
   /**
    * One spawn with the exit-4 retry. The caller's judge records every spawn
@@ -940,6 +1186,7 @@ async function runJevArm(labeled, gate, ctx) {
    * @returns {Promise<{ code: number|null, stdout: string, stderr: string, wallMs: number, timedOut: boolean }>} The final spawn's result.
    */
   async function call(args, text, fields) {
+    calls += 1;
     let result = await spawnClassifierCall({ file: gate.path, args, stdin: text, env, timeoutMs, report: out });
     if (result.code === 4) {
       writeCall(outDir, {
@@ -957,6 +1204,7 @@ async function runJevArm(labeled, gate, ctx) {
         model
       });
       await new Promise((done) => { setTimeout(done, backoffMs); });
+      calls += 1;
       result = await spawnCall(gate.path, args, text, env, timeoutMs);
     }
     return result;
@@ -1004,6 +1252,8 @@ async function runJevArm(labeled, gate, ctx) {
   out(`jev: auth_test provider=${provider} model=${model}`);
 
   const picks = new Map();
+  const inferredThirdOrderIds = [];
+  let choiceCalls = 0;
   let finished = 0;
   for (const row of labeled) {
     const keys = [...row.alternatives, NONE_KEY];
@@ -1012,6 +1262,12 @@ async function runJevArm(labeled, gate, ctx) {
     const orders = rotations(keys);
 
     for (let order = 0; order < orders.length; order += 1) {
+      if (order >= EARLY_STOP_ORDERS && typeof rowPicks[0] === 'string'
+        && rowPicks[0] === rowPicks[1]) {
+        inferredThirdOrderIds.push(row.id);
+        break;
+      }
+      choiceCalls += 1;
       const args = ['choice', '--provider', provider, '-q', CHOICE_INSTRUCTION, ...optionArgs(orders[order], texts)];
       const result = await call(args, row.prompt, { kind: 'choice', row_id: row.id, order });
       const fields = judgeChoice(result, keys);
@@ -1054,7 +1310,19 @@ async function runJevArm(labeled, gate, ctx) {
   const decision = decideVerdict(counts);
   const line = verdictLine('jev', counts, decision, 'jev_version=0.6.2 provider=' + provider + ' model=' + model);
   out(line);
-  return { ...counts, outcome: decision.outcome, reason: decision.reason, p: decision.p, line };
+  out('jev: calls=' + calls + ' choice_calls=' + choiceCalls
+    + ' early_stops=' + inferredThirdOrderIds.length);
+  return {
+    ...counts,
+    outcome: decision.outcome,
+    reason: decision.reason,
+    p: decision.p,
+    line,
+    calls,
+    choiceCalls,
+    inferredThirdOrderIds,
+    picks: Object.fromEntries(picks)
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1154,7 +1422,7 @@ function censusLines(census, corpusSummary, hubs) {
  * @returns {Promise<number>} The process exit code.
  */
 async function runScoreCommand(args, deps) {
-  const { out, err, repoRoot, env, jevTimeoutMs, backoffMs } = deps;
+  const { out, err, repoRoot, env, jevTimeoutMs, backoffMs, compiledRouter } = deps;
 
   let rows;
   try {
@@ -1164,7 +1432,20 @@ async function runScoreCommand(args, deps) {
     return 2;
   }
 
-  const { labeled, foreign } = labelRows(rows);
+  let replay;
+  try {
+    const router = compiledRouter || require(path.join(repoRoot, COMPILED_ROUTE_MODULE));
+    replay = replayRows(rows, router, repoRoot);
+  } catch (error) {
+    err('error: ' + error.message);
+    return 2;
+  }
+
+  for (const entry of replay.refused) {
+    out('replay refused: ' + entry.id + ' (' + entry.action + ')');
+  }
+
+  const { labeled, foreign } = labelRows(replay.rows);
   if (foreign.length > 0) {
     for (const entry of foreign) {
       err('error: row ' + entry.id + ' label "' + entry.value + '" is not one of its alternatives or ' + NONE_KEY);
@@ -1182,32 +1463,87 @@ async function runScoreCommand(args, deps) {
     return 0;
   }
 
-  const B = labeled.filter((row) => row.alternatives[0] === row.value).length;
+  const baselines = baselineScores(labeled);
+  const B = baselines.firstAlternative.correct;
+  const options = optionEntries(labeled, repoRoot);
   const digest = optionsDigest(labeled, repoRoot);
   out('baseline: first alternative right on ' + B + '/' + K);
+  out('baseline: second alternative right on ' + baselines.secondAlternative.correct + '/' + K);
+  out('baseline: always none right on ' + baselines.alwaysNone.correct + '/' + K);
+  out('baseline: strongest simple policy ' + baselines.strongest.policy
+    + ' right on ' + baselines.strongest.correct + '/' + K);
   out(MARGIN_LINE);
   out(KEEP_RULE_LINE);
   out('instruction: -q "' + CHOICE_INSTRUCTION + '"');
   out('options: ' + digest.count + ' sha256=' + digest.sha256 + ' none="' + NONE_DESCRIPTION + '"');
   out('orders: ' + ORDERS + ', router order with none_of_these last, then rotated left by 1 and by 2');
 
-  if (10 * B > 9 * K) {
+  const hasHeadroom = 10 * B <= 9 * K;
+  if (!hasHeadroom) {
     out('no headroom: the first alternative is right on ' + B + '/' + K + ', above 0.90');
-    return 0;
+  } else {
+    out('headroom: a 10-point gain fits above ' + B + '/' + K);
   }
-  out('headroom: a 10-point gain fits above ' + B + '/' + K);
 
   const columns = {};
-  if (args.jev) {
+  let picksById = null;
+  if (args.jev && !hasHeadroom) {
+    columns.jev = { skipped: true, reason: 'no headroom' };
+    out('jev arm skipped: no headroom');
+  } else if (args.jev) {
     const gate = jevGate({ out, env });
     columns.jev = gate.passed
       ? await runJevArm(labeled, gate, { out, env, outDir: args.out, repoRoot, timeoutMs: jevTimeoutMs, backoffMs })
       : { skipped: true };
+    if (columns.jev && columns.jev.picks) picksById = new Map(Object.entries(columns.jev.picks));
   }
 
+  const resultsByClassAndHub = classHubResults(labeled, picksById);
+  for (const line of classHubLines(resultsByClassAndHub)) out(line);
+
   if (args.jev) {
+    const rowRecords = replay.rows.map((row) => ({
+      id: row.id,
+      hub: row.hub,
+      source: row.source,
+      prompt: row.prompt,
+      alternatives: row.alternatives,
+      gold: row.gold,
+      replay: row.replay
+    }));
+    const labelRecords = replay.rows.map((row) => ({
+      id: row.id,
+      label: typeof row.label === 'string' ? row.label : '',
+      gold: typeof row.gold === 'string' ? row.gold : null,
+      label_approver: typeof row.label_approver === 'string' ? row.label_approver : '',
+      decision_reference: typeof row.decision_reference === 'string' ? row.decision_reference : ''
+    }));
+    const sha256Json = (value) => crypto.createHash('sha256')
+      .update(JSON.stringify(value))
+      .digest('hex');
+    const sha256File = (file) => crypto.createHash('sha256')
+      .update(fs.readFileSync(file))
+      .digest('hex');
+    const digests = {
+      rows: { count: rowRecords.length, sha256: sha256Json(rowRecords) },
+      labels: { count: labelRecords.length, sha256: sha256Json(labelRecords) },
+      options: digest,
+      scorer: { sha256: sha256File(__filename) }
+    };
     fs.mkdirSync(args.out, { recursive: true });
-    fs.writeFileSync(path.join(args.out, 'report.json'), JSON.stringify({ K, B, columns }, null, 2) + '\n');
+    const report = {
+      buildIdentity: replay.buildIdentity,
+      digests,
+      rows: rowRecords,
+      labels: labelRecords,
+      options,
+      baselines,
+      resultsByClassAndHub,
+      K,
+      B,
+      columns
+    };
+    fs.writeFileSync(path.join(args.out, 'report.json'), JSON.stringify(report, null, 2) + '\n');
   }
   return 0;
 }
@@ -1216,7 +1552,15 @@ async function runScoreCommand(args, deps) {
  * Run the clarify census and emit its report.
  *
  * @param {Array<string>} argv - Arguments after the script name.
- * @param {{ out?: (line: string) => void, err?: (line: string) => void, repoRoot?: string, env?: Record<string, string | undefined>, timeoutMs?: number, backoffMs?: number }} [deps] - Injectable output sinks, repository root, environment, call timeout and exit-4 retry wait.
+ * @param {{
+ *   out?: (line: string) => void,
+ *   err?: (line: string) => void,
+ *   repoRoot?: string,
+ *   env?: Record<string, string | undefined>,
+ *   timeoutMs?: number,
+ *   backoffMs?: number,
+ *   compiledRouter?: object
+ * }} [deps] - Output sinks, root, environment, router, timeout and retry wait.
  * @returns {Promise<number>} The process exit code.
  */
 async function main(argv, deps = {}) {
@@ -1239,7 +1583,15 @@ async function main(argv, deps = {}) {
   const repoRoot = deps.repoRoot || REPO_ROOT;
   const jevTimeoutMs = deps.timeoutMs || JEV_TIMEOUT_MS;
   const backoffMs = deps.backoffMs || BACKOFF_MS;
-  if (args.score) return await runScoreCommand(args, { out, err, repoRoot, env, jevTimeoutMs, backoffMs });
+  if (args.score) return await runScoreCommand(args, {
+    out,
+    err,
+    repoRoot,
+    env,
+    jevTimeoutMs,
+    backoffMs,
+    compiledRouter: deps.compiledRouter
+  });
 
   if (args.transcripts) {
     const stat = fs.statSync(args.transcripts, { throwIfNoEntry: false });

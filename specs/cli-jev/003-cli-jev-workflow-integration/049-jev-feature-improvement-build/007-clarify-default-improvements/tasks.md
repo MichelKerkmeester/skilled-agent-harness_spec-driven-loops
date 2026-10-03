@@ -34,8 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read 048's research for this feature and the scorer's keep rule
-- [ ] T002 Capture the suite baseline before any change
+- [x] T001 Read 048's research for this feature and the scorer's keep rule
+- [x] T002 Capture the suite baseline before any change
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,11 +43,11 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Replay each row on the pinned router build and refuse non-clarify rows
-- [ ] T004 Write the four digests and the build identity into `report.json`
-- [ ] T005 Report by class and hub with always-none and second-alternative baselines
-- [ ] T006 Add approver and decision reference fields to the row schema
-- [ ] T007 Add the two-call early stop, then replay the recorded 047 run
+- [x] T003 Replay each row on the pinned router build and refuse non-clarify rows
+- [x] T004 Write the four digests and the build identity into `report.json`
+- [x] T005 Report by class and hub with always-none and second-alternative baselines
+- [x] T006 Add approver and decision reference fields to the row schema
+- [x] T007 Add the two-call early stop, then replay the recorded 047 run
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +55,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Run the scorer's tests
-- [ ] T009 Replay the recorded 047 run and compare picks and call count
-- [ ] T010 Run `validate.sh --strict` on this phase
+- [x] T008 Run the scorer's tests
+- [x] T009 Replay the recorded 047 run and compare picks and call count
+- [x] T010 Run `validate.sh --strict` on this phase
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

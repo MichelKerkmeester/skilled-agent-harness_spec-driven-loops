@@ -110,7 +110,7 @@ Each child names its exact files in its own spec.
 | 4 | 004-injection-screen-improvements/ | Build 048's ranked fixes for the Jev injection screen (035): corpus provenance, trust package, flag line 0.6, fewer calls | Complete |
 | 5 | 005-hallucination-grader-improvements/ | Build 048's ranked fixes for the Jev hallucination grader (024): allowlists, unmeasured failures, shared context | Complete |
 | 6 | 006-verdict-fallback-improvements/ | Build 048's ranked fixes for the Jev verdict fallback (025): typed verdict, wider parser, abstain outcome | Complete |
-| 7 | 007-clarify-default-improvements/ | Build 048's ranked fixes for the Jev clarify default (020): replay-verified rows, digests, class and hub baselines | Planned |
+| 7 | 007-clarify-default-improvements/ | Build 048's ranked fixes for the Jev clarify default (020): replay-verified rows, digests, class and hub baselines | Complete |
 | 8 | 008-folder-suggestion-improvements/ | Build 048's ranked fixes for the Jev folder suggestion (022): path-resolved descriptions, candidate recall, pins | Planned |
 | 9 | 009-pi-transport-improvements/ | Build 048's ranked fixes for the Pi classifier transport (037): provider intent, kill switch, cached runtime, paired benchmark | Planned |
 | 10 | 010-completion-claims-improvements/ | Build 048's ranked fixes for the completion-claim audit (026): sentinel regex, scorer repairs, Cursor wiring | Complete |

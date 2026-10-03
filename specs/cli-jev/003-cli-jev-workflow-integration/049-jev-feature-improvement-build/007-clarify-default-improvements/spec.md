@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/007-clarify-default-improvements` |
 | **Parent Spec** | ../spec.md |
@@ -89,6 +89,7 @@ The clarify scorer scores only rows that still clarify, reports by class and hub
 | ----------- | ------------- | ------------- |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs` | Modify | Replay check, digests, class and hub report, baselines, approver fields, early stop |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | Modify | Cases for each new behavior |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures/047-020-recorded-picks.jsonl` | Create | The 047 run's recorded choice picks (row, order, pick, status) for the REQ-004 replay test |
 <!-- /ANCHOR:scope -->
 
 ---
