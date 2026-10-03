@@ -26,6 +26,7 @@ import { spawn, spawnSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
+import { spawnClassifierCall } from '../../../../cli-classifier/shared/scripts/jev-transport.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -820,6 +821,7 @@ export async function runJevArm(plan, gate, ctx) {
       attempt,
       wallMs: r.wallMs,
       exitCode: r.code,
+      transport: r.transport,
       noul,
       status,
       jevVersion: JEV_VERSION_VALUE,
@@ -857,14 +859,28 @@ export async function runJevArm(plan, gate, ctx) {
     const values = [];
     for (let pass = 0; pass < reruns; pass += 1) {
       let attempt = 1;
-      let r = await spawnCall(gate.path, callArgs, entry.tail, ctx.env, ctx.timeoutMs);
+      let r = await spawnClassifierCall({
+        file: gate.path,
+        args: callArgs,
+        stdin: entry.tail,
+        env: ctx.env,
+        timeoutMs: ctx.timeoutMs,
+        report: ctx.out,
+      });
       wallTimes.push(r.wallMs);
 
       if (!r.timedOut && r.code === 4) {
         ctx.callLog.append(record(id, pass, attempt, r, null, 'unmeasured'));
         await new Promise((resolve) => setTimeout(resolve, ctx.backoffMs));
         attempt = 2;
-        r = await spawnCall(gate.path, callArgs, entry.tail, ctx.env, ctx.timeoutMs);
+        r = await spawnClassifierCall({
+          file: gate.path,
+          args: callArgs,
+          stdin: entry.tail,
+          env: ctx.env,
+          timeoutMs: ctx.timeoutMs,
+          report: ctx.out,
+        });
         wallTimes.push(r.wallMs);
       }
 

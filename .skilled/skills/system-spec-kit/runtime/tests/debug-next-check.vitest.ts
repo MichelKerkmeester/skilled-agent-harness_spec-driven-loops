@@ -163,6 +163,7 @@ function runScript(
       ...process.env,
       PATH: `${stubDir}${delimiter}${process.env.PATH}`,
       ...extraEnv,
+      JEV_TRANSPORT: 'jev',
     },
   });
   return {
@@ -518,6 +519,27 @@ describe('score-debug-next-check', () => {
       expect(record.exitCode).toBeNull();
     }
     expect(stubLines(run.stubDir, 'jev').filter((line) => line.startsWith('choice '))).toHaveLength(36);
+  });
+
+  it('records the selected transport on judgment calls', () => {
+    const rows = Array.from({ length: 30 }, (_, index) => fixtureRow({
+      id: `transport-${index}`,
+      label: ['read_code', 'run_test', 'reproduce', 'instrument'][index % 4],
+      jev_ok: index < 12,
+    }));
+    const fixture = writeFixture(rows);
+    const out = tempDir('debug-next-check-transport-out-');
+    const run = runScript(
+      ['--fixture', fixture, '--jev', '--out', out],
+      makeArmStubs(),
+      { STUB_JEV_VERSION: 'jev 0.6.2', STUB_AUTH_STATUS_EXIT: '0' },
+    );
+
+    expect(run.code).toBe(0);
+    const judgmentCalls = readCallsLog(join(out, 'calls.jsonl'))
+      .filter((record) => record.status === 'measured' && typeof record.rowId === 'string');
+    expect(judgmentCalls).toHaveLength(36);
+    expect(judgmentCalls.every((record) => record.transport === 'jev')).toBe(true);
   });
 
   it('verdict coverage', () => {

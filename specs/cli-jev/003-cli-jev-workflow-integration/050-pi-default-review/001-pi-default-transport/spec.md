@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/001-pi-default-transport` |
 | **Parent Spec** | ../spec.md |
@@ -98,7 +98,8 @@ When Pi is installed at the pinned version and holds a credential for the provid
 | `.skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs` | Modify | 029 P0 reread order: Jev calls go through the transport (choice and noul) |
 | `.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` | Modify | 031 debug next check: Jev calls go through the transport (choice) |
 | Each scorer's own test file | Modify | One routing case, and `JEV_TRANSPORT=jev` pinned where it stubs `jev` |
-| `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs` | Modify | Each arm names its route, so the automatic default cannot blur the comparison |
+| `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs` | None | Checked, no change: it drives its own CLI and Pi arms and never calls the transport, so the default cannot blur it |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` and `score-clarify-default.test.cjs` | Modify | Pin `JEV_TRANSPORT=jev`, because their scorers already call the transport and now default to the automatic route |
 | `.skilled/skills/cli-classifier/shared/scripts/README.md` | Modify | The new default |
 | `.skilled/skills/cli-classifier/cli-jev/SKILL.md` | Modify | Gate table and transport section |
 | `.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md` | Modify | The new default |

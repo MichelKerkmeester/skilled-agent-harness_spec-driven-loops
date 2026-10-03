@@ -1,6 +1,6 @@
 ---
 title: "Jev transport scripts"
-description: "Shared transport that answers jev choice questions through the jev CLI or Pi's classifier runtime."
+description: "Shared transport that answers jev choice and noul questions through the jev CLI or Pi's classifier runtime, preferring Pi when its preflight passes."
 trigger_phrases:
   - "jev transport"
   - "pi classifier transport"
@@ -13,9 +13,9 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`shared/scripts/` holds `jev-transport.mjs`, the transport that answers a jev `choice` question through either the `jev` CLI or Pi's native classifier runtime. The CLI is the default and the fallback, and a Pi gate that fails prints exactly one skip line before the CLI runs, so a caller always receives a CLI-shaped outcome and never loses its bytes.
+`shared/scripts/` holds `jev-transport.mjs`, the transport that answers a jev `choice` or `noul` question through either the `jev` CLI or Pi's native classifier runtime. With no transport named it tries Pi first and the CLI answers wherever Pi cannot, with no skip line. A route that asked for Pi by name prints exactly one skip line before the CLI runs on a failed gate, so either way the caller receives a CLI-shaped outcome and never loses its bytes.
 
-The module holds no credential. It calls into the Pi install that `pi` on `PATH` resolves to, and Pi resolves its own credential from its own store. The two `.cjs` callers require this file, so it ships no top-level await and reaches the Pi SDK with a lazy import inside the Pi branch only.
+The module holds no credential. It calls into the Pi install that `pi` on `PATH` resolves to, and Pi resolves its own credential from its own store or the caller's environment (for the `official` provider, `TYPESAFE_API_KEY`). The module never reads it. The `.cjs` callers require this file, so it ships no top-level await and reaches the Pi SDK with a lazy import inside the Pi branch only.
 
 ---
 
@@ -23,7 +23,7 @@ The module holds no credential. It calls into the Pi install that `pi` on `PATH`
 
 | File | Responsibility |
 |---|---|
-| `jev-transport.mjs` | Defaults to the `jev` CLI and switches to Pi only when the `transport` option or the caller's `JEV_TRANSPORT` value reads `pi`. For a `choice` request it parses `--provider`, `-q`/`--question` and `-o`/`--option`, maps them to Pi's classifier context, and falls back to the CLI on each gate: package, model, credential and backend. |
+| `jev-transport.mjs` | Tries Pi by default when the call names no transport and the preflight passes: the pinned Pi 0.99.2 package, the mapped model and a credential Pi can read. `JEV_TRANSPORT=jev` forces the CLI, while `JEV_TRANSPORT=pi` or the per-call `transport: 'pi'` option asks for Pi and prints one skip line when Pi cannot answer. It maps a `choice` or `noul` request to Pi's classifier context and falls back to the CLI on each failed gate and on a backend failure. `score` and `run` stay on the CLI. Every outcome names the route that answered, `pi` or `jev`. |
 | `tests/` | Holds `jev-transport.test.mjs`, the `node --test` suite for the module. Both backends are stubs, so no test opens a socket, calls a model or needs a key. |
 
 ---

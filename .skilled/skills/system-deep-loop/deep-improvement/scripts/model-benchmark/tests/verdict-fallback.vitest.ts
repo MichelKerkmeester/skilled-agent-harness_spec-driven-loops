@@ -91,7 +91,7 @@ async function runMain(
   const code = await vf.main(argv, {
     out: (line: string) => lines.push(line),
     err: (line: string) => errs.push(line),
-    env,
+    env: { ...env, JEV_TRANSPORT: 'jev' },
     timeoutMs: 5000,
     backoffMs: 1,
   });
@@ -836,9 +836,9 @@ echo '{"answers":{"answer":{"choice":"'$pick'"}},"usage":{"input_tokens":10,"out
       usageTokens: null,
     });
     expect(calls.slice(1, 4)).toEqual([
-      { backend: 'jev', output: 'row-1', order: 1, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model', usageTokens: { input: 10, output: 2, total: 12 } },
-      { backend: 'jev', output: 'row-1', order: 2, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model', usageTokens: { input: 10, output: 2, total: 12 } },
-      { backend: 'jev', output: 'row-1', order: 3, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model', usageTokens: { input: 10, output: 2, total: 12 } },
+      { backend: 'jev', output: 'row-1', order: 1, attempt: 1, wallMs: expect.any(Number), exitCode: 0, transport: 'jev', pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model', usageTokens: { input: 10, output: 2, total: 12 } },
+      { backend: 'jev', output: 'row-1', order: 2, attempt: 1, wallMs: expect.any(Number), exitCode: 0, transport: 'jev', pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model', usageTokens: { input: 10, output: 2, total: 12 } },
+      { backend: 'jev', output: 'row-1', order: 3, attempt: 1, wallMs: expect.any(Number), exitCode: 0, transport: 'jev', pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model', usageTokens: { input: 10, output: 2, total: 12 } },
     ]);
     expect(calls[1].usageTokens).toEqual({ input: 10, output: 2, total: 12 });
 
@@ -854,6 +854,15 @@ echo '{"answers":{"answer":{"choice":"'$pick'"}},"usage":{"input_tokens":10,"out
       fail: { pass: 0, fail: 4, block: 0, abstain: 0, unknown: 0 },
       block: { pass: 0, fail: 0, block: 3, abstain: 0, unknown: 0 },
     });
+  });
+
+  it('records the selected transport on judgment calls', async () => {
+    const run = await runArm(['111', '111', '111', '111', '111', '222', '222', '222', '222', '333', '333', '333']);
+    const judgmentCalls = readCalls(run.out).filter((call) => call.output !== null);
+
+    expect(run.code).toBe(0);
+    expect(judgmentCalls.length).toBeGreaterThan(0);
+    expect(judgmentCalls.every((call) => call.transport === 'jev')).toBe(true);
   });
 
   it('report requalifies a changed Jev identity before its verdict', async () => {

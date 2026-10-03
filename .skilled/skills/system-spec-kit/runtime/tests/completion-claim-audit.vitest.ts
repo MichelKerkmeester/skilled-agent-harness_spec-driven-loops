@@ -110,6 +110,7 @@ function runScript(args: string[], extraEnv: Record<string, string> = {}): Run {
       ...process.env,
       PATH: `${stubDir}${delimiter}${process.env.PATH}`,
       ...extraEnv,
+      JEV_TRANSPORT: 'jev',
     },
   });
   return {
@@ -457,6 +458,21 @@ describe('score-completion-claims', () => {
     expect(report.columns['jev-one-call'].K).toBe(30);
     expect(report.judgeThreshold).toBe(0.70);
     expect(report.detectorArms.shipped).toEqual({ claimsCaught: 14, falseFires: 2 });
+  });
+
+  it('records the selected transport on judgment calls', () => {
+    const outDir = tempDir('completion-claim-transport-out-');
+    const run = runScript(
+      ['--rows', fixture('labels-happy-rows'), '--labels', fixture('labels-happy'), '--jev', '--one-call', '--accept-payload', '--out', outDir],
+      { STUB_JEV_VERSION: 'jev 0.6.2', STUB_AUTH_STATUS_EXIT: '0' },
+    );
+
+    expect(run.code).toBe(0);
+    const calls = readFileSync(join(outDir, 'calls.jsonl'), 'utf8')
+      .split('\n').filter((line) => line !== '').map((line) => JSON.parse(line) as Record<string, unknown>);
+    const judgmentCalls = calls.filter((call) => typeof call.rowId === 'string');
+    expect(judgmentCalls).toHaveLength(30);
+    expect(judgmentCalls.every((call) => call.transport === 'jev')).toBe(true);
   });
 
   it('jev gate edge: a rejected credential skips the arm and leaves the census byte-identical', () => {

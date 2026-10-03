@@ -39,7 +39,7 @@
       "strategy"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -57,10 +57,10 @@
       ".skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs",
       ".skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs",
       ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
       ".skilled/skills/cli-classifier/shared/scripts/README.md",
       ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
-      ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
-      ".skilled/skills/cli-classifier/feature-catalog/feature-catalog.md"
+      ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md"
     ],
     "entities": [
       {
@@ -160,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "leaf-route-replay.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/cli-classifier/shared/scripts/README.md",
@@ -175,12 +181,6 @@
         "name": "pi-transport-integration.md",
         "kind": "doc",
         "path": ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": ".skilled/skills/cli-classifier/feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The Pi transport answered with 95.1% agreement with the jev CLI in about half the p95 time, yet it runs only when a caller sets `JEVTRANSPORT=pi`",
     "created_at": "2026-10-03T17:39:27Z",
-    "last_save_at": "2026-10-03T17:42:04.031Z",
+    "last_save_at": "2026-10-03T19:32:34.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd300bde564c2c138a3809085e568a31dfeb3a2690c16b9d69d959d26562d571",
+    "source_fingerprint": "sha256:100fae07c69cc31eec0b0e370a153fc6bf5aae357384ad4d7c9643aa6939bd43",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b5f77a1481a181bafa8e78885da51f9e951f08d433ec4486d7e4645e9ebf0422",
+      "spec.md": "9fbf54cecb2670e75128098fd66e800600b8087f9cdf544f053fada4977a442b",
       "plan.md": "ee89f54cde937c09279f3a2fbe11545e4fe5d052d3f98fe2b4a079e8321ea6ee",
-      "tasks.md": "22cf5023e8542f116415865db4186c34ca39bd559830db5823f6fff3e0640e0f",
-      "implementation-summary.md": "60ce4c24d6d2adbe253c73f3cb0b7847dff63c85cf3dfb5670c6f1aceecb8d1c"
+      "tasks.md": "e68ed6750971bf9aa2600e279aa45e04d3cf98f2d2ea121200b36470d5dab34e",
+      "implementation-summary.md": "8a945682a05a25afff38bae1758fab001d4c32d7c9e9b263745ea7d48733de9d"
     },
     "last_active_at": null
   }

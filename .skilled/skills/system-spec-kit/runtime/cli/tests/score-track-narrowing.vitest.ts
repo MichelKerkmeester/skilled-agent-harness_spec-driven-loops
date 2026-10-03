@@ -164,6 +164,7 @@ async function runMain(
   const errs: string[] = [];
   const code = await main(argv, {
     ...deps,
+    env: { ...(deps.env ?? process.env), JEV_TRANSPORT: 'jev' },
     out: (line: string) => { lines.push(line); },
     err: (line: string) => { errs.push(line); },
   });
@@ -1095,6 +1096,34 @@ describe('score-track-narrowing jev arm', () => {
       expect(record.provider).toBe('official');
       expect(record.model).toBe('stub-model');
     }
+  });
+
+  it('records the selected transport on judgment calls', async () => {
+    const root = tempDir('score-track-narrowing-transport-');
+    const { indexPath, probesPath } = keepCorpus(root);
+    const stubs = stubDir({ jev: JEV });
+    const out = tempDir('stn-transport-out-');
+    const env: NodeJS.ProcessEnv = {
+      ...process.env,
+      PATH: `${stubs}${path.delimiter}${process.env.PATH}`,
+      JEV_TRANSPORT: 'jev',
+    };
+    delete env.JEV_PROVIDER;
+
+    const run = await runMain(['--jev', '--out', out], {
+      repoRoot: root,
+      indexPath,
+      probesPath,
+      hubNames: [],
+      env,
+    });
+
+    expect(run.code).toBe(0);
+    const calls = fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8')
+      .split('\n').filter(Boolean).map((line) => JSON.parse(line));
+    const judgmentCalls = calls.filter((call) => call.rowId !== null);
+    expect(judgmentCalls.length).toBeGreaterThan(0);
+    expect(judgmentCalls.every((call) => call.transport === 'jev')).toBe(true);
   });
 
   it('marks Jev exit-1 calls unmeasured and stops on coverage', async () => {
