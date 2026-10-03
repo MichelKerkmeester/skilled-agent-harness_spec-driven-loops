@@ -39,7 +39,7 @@
       "research"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -190,12 +190,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop graph scripts are not read-only, so no caller can promise they leave the machine unchanged",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-03T08:43:17.968Z",
+    "last_save_at": "2026-10-03T10:31:03.027Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:78f664d19dc99b94ee318e37228c968036b1696397cc60a8b3a85ba242a96697",
+    "source_fingerprint": "sha256:b7b8655231b515cd030f8ead3ad9897ae1bcdc62aab581507070bca7f57fed7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f11ec2c4cd72d12694f4d30e589f575929e4430fddc86925dfd92684c0c94735",
+      "spec.md": "ef71547db33481e21aa5d3c9cd2ee0ced07b7127a27c3e3a26d3fa32844c6d12",
       "plan.md": "fe4b00b722deeed122a2da3d244c5cf655a0e8f6d3c066b6b3190ef039b5a713",
-      "tasks.md": "4f7219ec466b03db88b43072eb7aa9418710d92b7ce042255b34eea320ae6308",
-      "implementation-summary.md": "07c1079c42b041805cf22221a19f08dbcfafc510db68ef57736505ff54aee1b0"
+      "tasks.md": "212b847a576536a8ac1afb262bd288b149d5123c827f44dedaae000fda0a7e27",
+      "implementation-summary.md": "5ffca242306472a746bfb0c43cc259309c3badc9b3904f9debd0ef0f23093821"
     },
     "last_active_at": null
   }

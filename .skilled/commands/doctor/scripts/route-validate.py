@@ -3,7 +3,7 @@
 # COMPONENT: DOCTOR ROUTE VALIDATOR
 # ───────────────────────────────────────────────────────────────
 """
-route-validate.py — Canonical-manifest CI assertion for /doctor router.
+route-validate.py validates the canonical manifest for the /doctor:speckit router.
 
 Validates `.skilled/commands/doctor/_routes.yaml` against:
   A. YAML parse + schema_version

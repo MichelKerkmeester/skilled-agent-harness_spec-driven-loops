@@ -5,7 +5,7 @@ allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
 <!-- skill_agent: system-spec-kit -->
 
-# /doctor Router
+# /doctor:speckit Router
 
 This command is a thin router. It resolves the target and setup values, then loads the target workflow YAML and the presentation contract.
 

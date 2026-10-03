@@ -173,6 +173,6 @@ Examples:
 | Build output is stale | Review the source timestamp findings, then approve a rebuild if appropriate. |
 | Codex TOML cannot be validated | Install Python 3.11 or later, or review the TOML manually; keep the result unvalidated. |
 | Debug repair did not resolve the finding | Read the Code Mode install guide and apply its documented resolution after approval. |
-| Code Mode is healthy but another subsystem check fails | Use `/doctor <target>` for that subsystem. |
+| Code Mode is healthy but another subsystem check fails | Use `/doctor:speckit <target>` for that subsystem. |
 
 End interactive presentations with: `What would you like to do next?`

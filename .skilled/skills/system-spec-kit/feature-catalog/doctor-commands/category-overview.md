@@ -1,6 +1,6 @@
 ---
 title: "Doctor commands"
-description: "Category covering the spec-kit /doctor argv-positional router and its nine subsystem routes, plus the /doctor:rebuild database aligner, /doctor:update release updater, /doctor:mcp infra surface, and version-migration flows."
+description: "Category covering the spec-kit /doctor:speckit argv-positional router and its nine subsystem routes, plus standalone /doctor:rebuild, /doctor:update, /doctor:mcp install|debug and /doctor:env commands and version-migration flows."
 trigger_phrases:
   - "doctor commands"
   - "/doctor"
@@ -16,15 +16,15 @@ version: 1.6.0.6
 
 ## 1. OVERVIEW
 
-Category covering the spec-kit `/doctor` argv-positional router and its nine subsystem routes, plus the `/doctor:rebuild` cross-subsystem aligner, `/doctor:update` release updater, `/doctor:mcp` infra surface, and version-migration flows.
+Category covering the spec-kit `/doctor:speckit` argv-positional router and its nine subsystem routes, plus standalone `/doctor:rebuild`, `/doctor:update`, `/doctor:mcp install|debug` and `/doctor:env` commands and version-migration flows.
 
-This category documents the consolidated `/doctor <target>` command surface that diagnoses and repairs spec-kit subsystems. It replaced the legacy `/doctor:<name>` colon-form commands after the 013 Phase 5 hard cutover, and it now exposes one route manifest, one CI assertion, and one harness layout that exercises every route end-to-end through the manual testing playbook.
+This category documents the consolidated `/doctor:speckit <target>` command surface that diagnoses and repairs spec-kit subsystems. The legacy colon-form commands were consolidated into this router during the hard cutover. It now has one route manifest and one CI assertion. The manual testing playbook has a harness layout that exercises every route end to end.
 
 ---
 
 ## 2. HOW IT WORKS
 
-The shipped surface now includes nine subsystem routes under `/doctor <target>` (speckit-retrieval, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors), a standalone `/doctor:rebuild` cross-subsystem aligner, a standalone `/doctor:update` release updater with check, align and gated apply actions, a standalone `/doctor:mcp install|debug` infra surface, and a version-migration flow that moves the spec-kit MCP through point releases.
+The shipped surface includes nine subsystem routes under `/doctor:speckit <target>` (speckit-retrieval, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, router-reach, fable-mode, runtime-mirrors). It also includes standalone `/doctor:rebuild`, `/doctor:update` with check, align and gated apply actions, `/doctor:mcp install|debug` and `/doctor:env`, plus a version-migration flow that moves the spec-kit MCP through point releases.
 
 The route manifest declares every target's location and mutation class so Gate 3 can be answered per-route before execution. Routes marked `read-only` may inspect and report without a spec-folder write path; `add-only` routes may create scoped logs, snapshots, or evidence after Gate 3 is satisfied; `mutates` routes follow the same spec-folder discipline as any other file or database mutation. A CI assertion verifies the manifest against the router source.
 
@@ -38,7 +38,7 @@ The playbook peer at `manual-testing-playbook/doctor-commands/` covers twenty-fi
 
 | File | Layer | Role |
 |------|-------|------|
-| `.skilled/commands/doctor/speckit.md` | Router | `/doctor <target>` argv-positional dispatch source |
+| `.skilled/commands/doctor/speckit.md` | Router | `/doctor:speckit <target>` argv-positional dispatch source |
 | `.skilled/commands/doctor/_routes.yaml` | Manifest | Route manifest exposing each target's location and mutation class |
 | `.skilled/commands/doctor/rebuild.md` | Command | `/doctor:rebuild` cross-subsystem aligner with snapshot, validate, rollback, run-log |
 | `.skilled/commands/doctor/update.md` | Command | `/doctor:update` release-aware check, align and apply workflows |

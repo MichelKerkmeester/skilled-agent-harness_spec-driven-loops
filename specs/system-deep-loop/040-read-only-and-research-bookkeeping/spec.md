@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/040-read-only-and-research-bookkeeping` |
 <!-- /ANCHOR:metadata -->

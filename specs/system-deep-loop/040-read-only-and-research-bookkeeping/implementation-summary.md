@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "The deep-loop graph scripts gained a read-only mode that provably leaves the filesystem untouched, and a deep-research run now opens through the gateway, releases its lock, persists its graph, ticks answered questions, lists cited files and stages no transient state. Two verifications wait on files owned elsewhere."
+description: "The deep-loop graph scripts gained a read-only mode that provably leaves the filesystem untouched, the doctor route uses it, and a deep-research run now opens through the gateway, releases its lock, persists its graph, ticks answered questions, lists cited files and stages or tracks no transient state."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -13,11 +13,9 @@ _memory:
     packet_pointer: "system-deep-loop/040-read-only-and-research-bookkeeping"
     last_updated_at: "2026-10-03T08:55:00Z"
     last_updated_by: "build-orchestrator"
-    recent_action: "Built read-only mode and research bookkeeping fixes; 8 of 10 acceptance rows Met"
-    next_safe_action: "Land the handed-off route and ignore edits, then re-verify AC-002 and AC-008"
-    blockers:
-      - "AC-002 needs --read-only in .skilled/commands/doctor/_routes.yaml (owned by another packet)"
-      - "AC-008 needs transient run-state rules in .gitignore (outside this build's ownership)"
+    recent_action: "Closed the handoff sweep; 10 of 10 rows Met"
+    next_safe_action: "Parent session reviews and commits the handoff sweep"
+    blockers: []
     key_files:
       - ".skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts"
       - ".skilled/skills/system-deep-loop/runtime/lib/council/council-graph-db.ts"
@@ -31,7 +29,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-040-read-only-and-research-bookkeeping"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -49,7 +47,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 040-read-only-and-research-bookkeeping |
-| **Completed** | Not yet: 8 of 10 acceptance rows Met, 2 wait on handed-off files |
+| **Completed** | 2026-10-03 (handoff sweep closed AC-002 and AC-008) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -58,13 +56,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Verdict: built and verified for everything this build owns; not closeable yet. A doctor run can now ask the deep-loop graph whatever it needs and prove it changed nothing, and a deep-research run now leaves a ledger, graph, question count, resource map and git index that match what the run did.
+Verdict: built, verified and closed; all ten acceptance rows Met. A doctor run can now ask the deep-loop graph whatever it needs and prove it changed nothing, and a deep-research run now leaves a ledger, graph, question count, resource map and git index that match what the run did.
 
 ### Give the deep-loop runtime a read-only mode and repair deep-research bookkeeping
 
-`status.cjs`, `query.cjs` and `convergence.cjs` take `--read-only`. In that mode they open the database through a new non-creating open: an existing file opens read-only (from a patched in-memory copy when the WAL side files are absent, because a path open would recreate them), and a missing file is served from an empty in-memory schema. No directory, file, schema, version row, observability event or snapshot is written, and each payload reports `readOnly` and `databasePresent`. `DEEP_LOOP_COVERAGE_DB_DIR` now points the coverage graph at a scratch directory, the way `DEEP_LOOP_COUNCIL_DB_DIR` already did for the council graph. The doctor deep-loop workflow passes the flag on every call and its write boundary no longer claims the calls may create a database.
+`status.cjs`, `query.cjs` and `convergence.cjs` take `--read-only`. In that mode they open the database through a new non-creating open: an existing file opens read-only (from a patched in-memory copy when the WAL side files are absent, because a path open would recreate them), and a missing file is served from an empty in-memory schema. No directory, file, schema, version row, observability event or snapshot is written, and each payload reports `readOnly` and `databasePresent`. `DEEP_LOOP_COVERAGE_DB_DIR` now points the coverage graph at a scratch directory, the way `DEEP_LOOP_COUNCIL_DB_DIR` already did for the council graph. The doctor deep-loop workflow and its route in `_routes.yaml` pass the flag on every call, and the write boundary no longer claims the calls may create a database. `script-interface-contract.md` documents the flag and both directory variables.
 
-On the research side, both workflows open a run by staging a canonical `deep_research.run_initialized` event through the append gateway, so the ledger's first frame is the run-initialized event and the stem census lists it as spoken. Every lock release carries the acquisition nonce. The marker guard ignores its own `DEEP-RESEARCH` header and halts only on a review marker. Bookkeeping rows the gateway refuses on purpose moved to a `bookkeeping_log` directive and are listed under `state_write_protocol.pinned_bookkeeping`, so no step routes a row that can only fail. The graph upsert reads graph events from the iteration delta file. The reducer merges each delta's iteration record into the thin state-log row (state log wins on every key it has), so `answeredQuestions` ticks strategy boxes, and the prompt pack now requires `answeredQuestions`, finding `sources` and SOURCE node `path`, which the resource map reads. Staging excludes the lock, both sentinels and the projection watermarks while lock-coordinator state stays staged.
+On the research side, both workflows open a run by staging a canonical `deep_research.run_initialized` event through the append gateway, so the ledger's first frame is the run-initialized event and the stem census lists it as spoken. Every lock release carries the acquisition nonce. The marker guard ignores its own `DEEP-RESEARCH` header and halts only on a review marker. Bookkeeping rows the gateway refuses on purpose moved to a `bookkeeping_log` directive and are listed under `state_write_protocol.pinned_bookkeeping`, so no step routes a row that can only fail. The graph upsert reads graph events from the iteration delta file. The reducer merges each delta's iteration record into the thin state-log row (state log wins on every key it has), so `answeredQuestions` ticks strategy boxes, and the prompt pack now requires `answeredQuestions`, finding `sources` and SOURCE node `path`, which the resource map reads. Staging excludes the lock, both sentinels and the projection watermarks while lock-coordinator state stays staged, and the root `.gitignore` now ignores the same four names so an operator cannot add them by hand. The deep-review workflows had the same self-matching marker guard; it now ignores its own `DEEP-REVIEW` header and halts only on `DEEP-RESEARCH` or `CODE-REVIEW`.
 
 ### Files Changed
 
@@ -89,6 +87,11 @@ On the research side, both workflows open a run by staging a canonical `deep_res
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-marker-scan.vitest.ts` | Created | Header passes, review marker halts |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-lock-release.vitest.ts` | Created | Every release carries the nonce; real release removes the lock |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-bookkeeping-emission.vitest.ts` | Created | Every routed row accepted, every pinned row refused |
+| `.skilled/commands/doctor/_routes.yaml` | Modified (handoff sweep) | Deep-loop invocations pass `--read-only`; `--persist-snapshot false` dropped |
+| `.gitignore` | Modified (handoff sweep) | Ignores deep-research lock, sentinels and projection watermarks, with the reason |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml`, `deep-review-confirm.yaml` | Modified (handoff sweep) | Marker guard matches only foreign markers |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-marker-scan.vitest.ts` | Created (handoff sweep) | Review header passes, foreign markers halt |
+| `.skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md` | Modified (handoff sweep) | Documents `--read-only` and both database directory variables |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -97,6 +100,8 @@ On the research side, both workflows open a run by staging a canonical `deep_res
 ## How It Was Delivered
 
 Reproduce first: each of the eight findings was re-run against the tree before its fix (records in `scratch/repro-*.md`); all held, and the run-open finding held in a stronger form (the legacy row cannot pass the gateway at all, and a direct-written row makes the next gateway append fail with exit 2). Code was written by DeepSeek V4.1 Flash through cli-pi in one-change dispatches; a GPT-6 Luna dispatch hit its usage limit before writing anything and its work was re-split onto DeepSeek. Every executor diff was read and its checks re-run before the next dispatch. Two orchestrator edits followed review: the run-open command now exits non-zero when its node step fails (it could otherwise skip the gateway and pass), and the census test counts were updated for the newly spoken stem.
+
+A handoff sweep, run after every packet was committed and no other writer remained, closed what this build had handed off. The route flag and the ignore rules were small literal edits made directly by the orchestrator. The review marker fix and its test were written by DeepSeek V4.1 Flash through cli-pi on opencode-go, and the contract doc by GPT-6 Luna through cli-codex; each diff was read and its checks rerun.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -130,6 +135,12 @@ Reproduce first: each of the eight findings was re-run against the tree before i
 | `check-ledger-stem-producers.cjs` | PASS: exit 0, spoken 14, reserved 55 |
 | `route-validate.sh`; `command-catalog-mirror-check.cjs` | PASS: exit 0 each |
 | Prompt sync (codex, pi, hermes) and runtime mirrors, with `--check` | PASS: nothing written; 34 prompts each and 174 mirrors in sync |
+| Handoff sweep: `route-validate.sh` after the route edit | PASS: exit 0, 9 routes, 2 informational warnings; `--self-test` exit 0 |
+| Handoff sweep: `git check-ignore -v` | PASS: the four transient names ignored (exit 0); coordinator state and grant journal not ignored (exit 1) |
+| Handoff sweep: marker tests | PASS: `deep-review-marker-scan.vitest.ts` and `deep-research-marker-scan.vitest.ts`, 2 files, 4 tests |
+| Handoff sweep: stress suite | Parent quiet run: 8 files passed, 151 passed, 8 skipped. Three reruns here at load 17 to 22: 6, 11 and 6 failures, a different set each run, all `exit null` timeouts; load-related |
+| Handoff sweep: full suite without stress | 2 failed / 2729 passed (158 files). Baseline contract failures gone after the contract recompile; the 2 `fanout-run.vitest.ts` failures reproduce with the HEAD review workflows and come from the committed cli-pi opencode-go route change |
+| Handoff sweep: `npm run typecheck` | PASS: exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -137,13 +148,14 @@ Reproduce first: each of the eight findings was re-run against the tree before i
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Handed off: doctor route flag.** `.skilled/commands/doctor/_routes.yaml` lines 57-59 still call status, query and convergence without `--read-only` (convergence still says `--persist-snapshot false`). Another packet is editing that file, so this build did not touch it. AC-002 stays Unmet until the three invocations add `--read-only`.
-2. **Handed off: ignore rules.** `.gitignore` has no deep-research run-state rules, so `git check-ignore` on a lock file still finds nothing. Staging is already safe through the pathspecs. AC-008 stays Unmet until the root ignore file gains rules for `.deep-research.lock`, `.deep-research-pause`, `.deep-research-run-now` and `.legacy-projection-watermarks/`.
-3. **Stale compiled contracts.** `check-contract-drift` and three `render-command-contract` cases failed before this build (stale source digests across several commands and system-spec-kit references) and still fail. Recompiling with `compile-command-contracts.cjs --write` would also seal other packets' in-flight files into the digests, so it was left for the operator.
-4. **Stress suite.** See the verification row; the 8 cli-adapter failures need a rerun inside the worktree on a quiet machine before SC-003 can be called met.
+1. **Resolved in the handoff sweep: doctor route flag.** `_routes.yaml` now passes `--read-only` on all three deep-loop calls (AC-002 Met).
+2. **Resolved in the handoff sweep: ignore rules.** The root `.gitignore` ignores the four transient names (AC-008 Met). The 33 lock files already tracked stay tracked; removing them from history is a separate decision.
+3. **Resolved in the handoff sweep: stale compiled contracts.** The three deep-loop contracts were recompiled once every packet was committed; `check-contract-drift.cjs` reports `OK commands=3`.
+4. **Stress suite is load-sensitive.** A quiet run passes (151 passed); under load average about 20 the cli-adapter stress tests time out in varying places. Not a regression from this packet.
 5. **Projection drops config fields.** The gateway's projection writes a thin state-log config row (topic is replaced by the session id); the reducer reads the config file instead, so nothing breaks, but the state log's first row is not a full config record.
-6. **Same marker defect in deep-review.** `deep-review-auto.yaml` uses the same self-matching pattern; deep-review is outside this packet.
-7. **Script interface doc.** `runtime/references/script-interface-contract.md` does not yet describe `--read-only` or `DEEP_LOOP_COVERAGE_DB_DIR`.
+6. **Resolved in the handoff sweep: deep-review marker defect.** Both review workflows now use `nested_marker_pattern` (T048).
+7. **Resolved in the handoff sweep: script interface doc.** The contract documents `--read-only` and both directory variables (T049).
+8. **Two fanout-run failures outside this packet.** `fanout-run.vitest.ts` fails its containment-mode override and future-checkpoint resume cases in this worktree; they fail the same with this packet's review workflow edits reverted and trace to the committed cli-pi opencode-go route change.
 <!-- /ANCHOR:limitations -->
 
 ---

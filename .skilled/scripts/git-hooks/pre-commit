@@ -291,7 +291,8 @@ if [[ "${SPECKIT_SKIP_CARD_SYNC:-0}" != "1" ]]; then
 fi
 
 # --- MCP mutation-class gate (blocking) ---
-# When an mcp-* install/doctor script or the install-doctor manifest is staged,
+# When an mcp-* install/doctor script, the install-doctor workflow or the guard's
+# mutation-class manifest is staged,
 # enforce the read-only / mutating contract: a "read-only" doctor that grows an
 # unguarded mutation or unbounded network call (or a missing manifest label)
 # fails the commit. Guards against the doctor-that-connected-to-all-servers and
@@ -300,7 +301,7 @@ fi
 if [[ "${SPECKIT_SKIP_MCP_MUTATION_CLASS:-0}" != "1" ]]; then
   MUTCLASS_GUARD="${SOURCE_ROOT}/commands/doctor/scripts/check-mcp-mutation-class.sh"
   if git diff --cached --name-only --diff-filter=ACM \
-       | grep -Eq '^\.(opencode|skilled)/(skills/(mcp-tooling/)?mcp-[a-z-]+/(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)|commands/doctor/assets/doctor-mcp-install\.yaml)$'; then
+       | grep -Eq '^\.(opencode|skilled)/(skills/(mcp-tooling/)?mcp-[a-z-]+/(scripts/(doctor|install)[a-z.-]*\.sh|mcp-servers/[^/]+/setup\.sh)|commands/doctor/assets/(doctor-mcp-install|mcp-mutation-class-manifest)\.yaml)$'; then
     if [[ ! -f "$MUTCLASS_GUARD" ]]; then
       if _in_toolchain_repo; then
         echo "" >&2
@@ -312,7 +313,7 @@ if [[ "${SPECKIT_SKIP_MCP_MUTATION_CLASS:-0}" != "1" ]]; then
       echo "" >&2
       echo "BLOCKED [gate:mcp-mutation-class]: MCP mutation-class contract failed (see FAIL lines above)." >&2
       echo "Fix: a read-only doctor must not run mutations or unbounded network calls;" >&2
-      echo "     declare each script's mutation_class in doctor-mcp-install.yaml." >&2
+      echo "     declare each script's mutation_class in mcp-mutation-class-manifest.yaml." >&2
       echo "Bypass: SPECKIT_SKIP_MCP_MUTATION_CLASS=1 git commit ..." >&2
       exit 1
     fi

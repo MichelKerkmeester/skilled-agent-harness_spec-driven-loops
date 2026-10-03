@@ -388,3 +388,13 @@ specs/**/context/
 # reads it back unless it is passed explicitly with --from-manifest.
 /frontmatter-version-manifest.csv
 /frontmatter-version-manifest.json
+
+# Deep-research run state. The lock names a live writer, the pause and run-now
+# files are one-shot sentinels, and the watermark directory holds projection
+# cursors rebuilt from the ledger, so none of it is history. Lock-coordinator
+# state under locks-and-fencing-v1/ stays tracked: its grant journal is the
+# fencing evidence a replay reads.
+.deep-research.lock
+.deep-research-pause
+.deep-research-run-now
+.legacy-projection-watermarks/

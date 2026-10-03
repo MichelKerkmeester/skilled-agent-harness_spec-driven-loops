@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift"
     last_updated_at: "2026-10-03T05:27:42Z"
     last_updated_by: "build-orchestrator"
-    recent_action: "Built and verified the phase"
+    recent_action: "Closed the handoff sweep"
     next_safe_action: "Parent session reviews and commits"
     blockers: []
     key_files:
@@ -76,6 +76,13 @@ The guard reads its own manifest, `.skilled/commands/doctor/assets/mcp-mutation-
 | `.skilled/skills/system-spec-kit/runtime/cli/metrics/README.md` | Modified | Says why the baseline target is null |
 | `specs/system-speckit/048-doctor-command-audit/003-update/spec.md` | Modified | Phase Context describes the split into `/doctor:rebuild` and the three update workflows |
 | `specs/system-speckit/048-doctor-command-audit/013-speckit-retrieval/implementation-summary.md` | Modified | Limitation 2 drops the dead pattern claim; limitation 5 names `/doctor:rebuild` |
+| `.skilled/scripts/git-hooks/pre-commit` | Modified (handoff sweep) | Mutation-class trigger also matches `mcp-mutation-class-manifest.yaml`; "Fix:" line names that manifest |
+| `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` | Modified (handoff sweep) | Case 29b: staging only the manifest reaches the guard |
+| `specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md` | Modified (handoff sweep) | Two continuity `key_files` paths point at the live `.skilled` runtime |
+| 32 command, skill and README files (list in `git diff --stat`) | Modified (handoff sweep) | Retired `/doctor` forms replaced with the canonical command names, with stale target lists, counts and packet labels fixed in the same sentences |
+| `.skilled/commands/deep/assets/compiled/{deep-ai-council,deep-review,deep-research}.contract.md` | Regenerated (handoff sweep) | Source digests only |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/{mcp-tooling,sk-doc}/manifest.json` and their authored copies | Re-minted (handoff sweep) | Policy hash matches current routing inputs |
+| `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and sidecars | Regenerated (handoff sweep) | Fresh against the corpus |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -84,6 +91,8 @@ The guard reads its own manifest, `.skilled/commands/doctor/assets/mcp-mutation-
 ## How It Was Delivered
 
 Each finding was re-checked first (`scratch/findings-recheck.md`), the failing output was captured before any edit, and each gate was rerun after its change. The build orchestrator wrote the changes directly instead of dispatching CLI executors, because it runs as a leaf worker that may not dispatch other agents. Nothing was committed.
+
+A later handoff sweep, run by the parent build orchestrator once every packet had been committed and no other writer remained, closed the items this phase had handed off. The invocation sweep was written by a GPT-6 Luna dispatch through cli-codex and reviewed diff by diff; the hook trigger, its test case, the 033 path fix, one integration-points table row and one feature-catalog sentence were small literal edits made directly. Contract recompilation, routing re-mints and the trigger index were regenerated with their own tools.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -118,6 +127,13 @@ Each finding was re-checked first (`scratch/findings-recheck.md`), the failing o
 | `node .skilled/bin/install-codex-hooks.mjs --check --allow-worktree` | PASS, exit 0, OK |
 | `node .skilled/commands/doctor/scripts/fable-mode-check.cjs --dir specs/agents/010-repo-rule-system-integration/research` | PASS, exit 0, metric rows printed |
 | `validate.sh specs/system-speckit/048-doctor-command-audit --recursive --strict` | PASS, 15 of 15 `RESULT: PASSED` |
+| Handoff sweep: `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh` | PASS, 69 passed, 0 failed, exit 0; against the HEAD hook the new case fails (68 passed, 1 failed) |
+| Handoff sweep: `bash -n .skilled/scripts/git-hooks/pre-commit` | PASS, exit 0 |
+| Handoff sweep: retired-form `rg` | 93 hits before, 14 after (reasons below) |
+| Handoff sweep: `check-contract-drift.cjs` | Before exit 2 (31 stale digests); after `[CONTRACT DRIFT] OK commands=3`, exit 0 |
+| Handoff sweep: `compiled-route-guard.cjs` | Before `mcp-tooling stale-manifest`; after all seven hubs `fresh` |
+| Handoff sweep: `validate.sh` on the 033 trigger-index child `--strict` | PASS, `RESULT: PASSED` |
+| Handoff sweep: trigger index `--check --json` | PASS: regenerated (only `manifestHash` changed), then `--check --json` exit 0, `fresh: true`, 23056 documents, 0 missing, 0 stale |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -125,10 +141,11 @@ Each finding was re-checked first (`scratch/findings-recheck.md`), the failing o
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Handed off: the pre-commit staging trigger.** `.skilled/scripts/git-hooks/pre-commit:303` runs the guard when `doctor-mcp-install.yaml` is staged, not the new manifest. Staging only the manifest skips the guard until that regex adds `mcp-mutation-class-manifest\.yaml`. That hook is outside this phase's owned files.
+1. **Resolved in the handoff sweep: the pre-commit staging trigger.** The hook's trigger regex now matches `mcp-mutation-class-manifest.yaml`, proven by hook test case 29b (T022, AC-010).
 2. **Handed off: three skill-budget items** (report title, two docstrings, 8,000 budget) to `specs/sk-doc/063-description-budget` (ADR-004).
-3. **Handed off: `.skilled/commands/README.txt:158`** still shows `/doctor <target> [flags]`; it is outside this phase's owned files.
-4. **Generic `/doctor <target>` text remains elsewhere.** `rg` finds it in `doctor-mcp-presentation.txt:176` (another packet's file), the speckit command docs, and the system-spec-kit feature catalog and manual-testing playbook. ADR-001 covered the presentation and its supporting docs; the wider sweep was not in the plan.
+3. **Resolved in the handoff sweep: `.skilled/commands/README.txt:158`** now shows `/doctor:speckit <target> [flags]`.
+4. **Resolved in the handoff sweep: generic `/doctor` text elsewhere** (T024, AC-011). The 14 bare `/doctor` hits that remain stay on purpose: seven code comments that describe a doctor run generically rather than how to invoke it (`command-catalog-mirror-check.cjs:4,32`, `agent-roster-mirror-check.cjs:4,14`, `fable-mode-check.cjs:4,6`, `skill-graph-freshness.cjs:12`); `fable-metrics.cjs:14`, `advisor-server.ts:229` and two test-header comments (`parent-skill-check-fixtures.vitest.ts:9`, `skill-graph-freshness-panel.vitest.ts:4`), likewise generic; `workflow-invariance.vitest.ts:114`, a comment about the router consolidation docs' vocabulary; `skill-root-metadata-contract.test.cjs:551`, test data for a path helper, not an invocation; and `category-overview.md:6`, a frontmatter trigger phrase that is retrieval vocabulary. `create-command-presentation.txt:92` keeps `/doctor:cache` as a hypothetical naming example.
+6. **README names five doctor commands but documents four.** `README.md` now says five commands, which matches the tree, but its DOCTOR section has no `/doctor:env` entry. Adding one is new content outside the sweep.
 5. **`speckit.md` keeps its "Router for /doctor" description.** Changing a command's frontmatter description reaches the runtime mirrors and the description budget, so it was left alone.
 <!-- /ANCHOR:limitations -->
 

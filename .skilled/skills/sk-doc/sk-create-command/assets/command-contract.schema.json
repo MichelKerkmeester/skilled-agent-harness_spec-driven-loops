@@ -168,7 +168,7 @@
         },
         "invocation_aliases": {
           "type": "array",
-          "description": "The runtime invocation forms (e.g. /create, /speckit:plan, /doctor <target>, :auto/:confirm suffixes).",
+          "description": "The runtime invocation forms (e.g. /create, /speckit:plan, /doctor:speckit <target>, :auto/:confirm suffixes).",
           "minItems": 1,
           "items": { "type": "string" }
         },

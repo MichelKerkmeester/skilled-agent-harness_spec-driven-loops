@@ -737,7 +737,7 @@ See [`governance/feature-flag-governance.md`](governance/feature-flag-governance
 
 #### Description
 
-The argv-positional `/doctor` router and the subsystem routes it dispatches to.
+The argv-positional `/doctor:speckit` router and the subsystem routes it dispatches to.
 
 #### Current Reality
 
@@ -755,7 +755,7 @@ See [`doctor-commands/category-overview.md`](doctor-commands/category-overview.m
 
 #### Description
 
-Argv-positional `/doctor` router that dispatches to per-subsystem YAML workflows via a canonical `_routes.yaml` manifest.
+Argv-positional `/doctor:speckit` router that dispatches to per-subsystem YAML workflows via a canonical `_routes.yaml` manifest.
 
 #### Current Reality
 
