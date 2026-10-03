@@ -11,6 +11,31 @@
     "reviewer-over-read",
     "reviewer-ac-coverage"
   ],
+  "optInGraders": ["jev"],
+  "missCaseFixtures": [
+    {
+      "id": "reviewer-miss-unsafe-evidence",
+      "kind": "reviewer-prompt",
+      "agent": "review",
+      "prompt_template": "Review the provided change and return a typed verdict.",
+      "input_kind": "state_ref",
+      "input": "A required validation result is stale.",
+      "reviewer_output": "The validation evidence is stale. Rerun it before approving this change.",
+      "expectedVerdict": "fail",
+      "expectedFindings": []
+    },
+    {
+      "id": "reviewer-miss-no-decision",
+      "kind": "reviewer-prompt",
+      "agent": "review",
+      "prompt_template": "Review the provided change and return a typed verdict.",
+      "input_kind": "state_ref",
+      "input": "The available material is incomplete.",
+      "reviewer_output": "The available material does not support a conclusion about this change.",
+      "expectedVerdict": "abstain",
+      "expectedFindings": []
+    }
+  ],
   "outputsDir": ".skilled/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}",
   "metrics": ["correctness", "verdict_match", "finding_match"],
   "scoring": {

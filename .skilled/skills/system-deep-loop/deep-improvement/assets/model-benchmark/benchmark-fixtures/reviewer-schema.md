@@ -17,7 +17,7 @@ version: 1.17.0.2
 
 ## 1. OVERVIEW
 
-Reviewer fixtures let Lane B check whether a reviewer prompt still catches a known bug class. A fixture supplies a prompt template, a diff or repo-state input, and an expected verdict. The scorer runs the reviewer prompt, extracts `PASS`, `FAIL`, or `BLOCK`, then compares the result to the hidden oracle.
+Reviewer fixtures let Lane B check whether a reviewer prompt still catches a known bug class. A fixture supplies a prompt template, a diff or repo-state input, and an expected verdict. The scorer reads the typed `verdict` field first, then accepts only a complete, anchored verdict line as a text fallback.
 
 Reviewer fixtures are opt-in. Existing pattern and code-task fixtures keep their current scorers unless `SPECKIT_REVIEWER_BENCHMARKS` is enabled and the fixture has the reviewer shape.
 
@@ -30,7 +30,7 @@ Reviewer fixtures are opt-in. Existing pattern and code-task fixtures keep their
   "id": "reviewer-example",
   "kind": "reviewer-prompt",
   "agent": "review",
-  "prompt_template": "Review this change. Return VERDICT: PASS|FAIL|BLOCK.",
+  "prompt_template": "Review this change. Return JSON with verdict set to PASS, FAIL, BLOCK, or ABSTAIN.",
   "input_kind": "diff",
   "input": {
     "repo_state": "short state summary",
@@ -56,7 +56,7 @@ Required fields:
 - `prompt_template`: prompt text. The scorer replaces `{{input}}`, `{{diff}}`, `{{state_ref}}`, and `{{review_focus}}` when present.
 - `input_kind`: `diff` or `state_ref`.
 - `input`: object or string carrying the repo-state/diff material.
-- `expectedVerdict`: one of `pass`, `fail`, or `block`.
+- `expectedVerdict`: one of `pass`, `fail`, `block`, or `abstain`.
 - `expectedFindings`: finding expectations checked against reviewer output.
 
 ---
@@ -79,13 +79,13 @@ Live model dispatch is opt-in and should stay outside blocking CI unless the ope
 
 ## 5. VERDICT CONTRACT
 
-Reviewer output should include one parseable verdict line:
+Reviewer output should use a typed JSON verdict:
 
-```text
-VERDICT: FAIL
+```json
+{"verdict":"FAIL","findings":[]}
 ```
 
-Accepted verdicts are `PASS`, `FAIL`, and `BLOCK` in any case. If the pattern matcher cannot find a verdict and the run uses `--grader llm`, the scorer asks the existing model dispatcher to classify the prose into one of the three verdicts.
+Accepted typed values are `PASS`, `FAIL`, `BLOCK`, and `ABSTAIN` in any case. A typed field takes precedence; an invalid typed value stays unresolved. For legacy plain-text output, the parser accepts a complete verdict line, including markdown emphasis, a heading marker, a `Final verdict` label, or a short parenthetical qualifier. If no verdict is found, `--grader llm` or an explicitly opted-in `--grader jev` can classify the prose. The `jev` grader can return `ABSTAIN` when the output states no decision; malformed or unknown choices remain unresolved.
 
 On mismatch, the Lane B report surfaces one consequence line per fixture:
 
