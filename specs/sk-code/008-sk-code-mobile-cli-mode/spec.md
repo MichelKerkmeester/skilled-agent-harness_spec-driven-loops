@@ -2,7 +2,9 @@
 title: "Phase 4 — Dedicated sk-code Mode for Mobile-CLI App Work"
 description: "Phase 4 — Dedicated sk-code Mode for Mobile-CLI App Work"
 trigger_phrases:
-  - "phase 4 — dedicated sk-code mode for mobile-cli app work"
+  - "sk-code mobile-cli mode"
+  - "dedicated sk-code mode"
+  - "mobile-cli app work"
 importance_tier: "important"
 contextType: "planning"
 _memory:

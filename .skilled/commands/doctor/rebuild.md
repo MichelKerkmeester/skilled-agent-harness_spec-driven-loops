@@ -1,0 +1,70 @@
+---
+description: Rebuild spec-kit runtime databases in dependency-safe order through the interactive confirm workflow.
+argument-hint: "[--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap]"
+allowed-tools: Read, Bash, Grep, Glob
+---
+<!-- skill_agent: system-spec-kit -->
+
+# /doctor:rebuild Router
+
+This command is a thin router. It resolves rebuild flags and setup values, then loads the rebuild workflow YAML and the presentation contract.
+
+## 1. ROUTER CONTRACT
+
+Do not dispatch agents from this Markdown file. Do not edit workflow YAML while executing this command.
+
+Load the presentation contract before showing startup questions, mid-run prompts, dashboards, validation displays, result summaries, or restart-required text.
+
+---
+
+## 2. OWNED ASSETS
+
+| Purpose | Asset |
+|---------|-------|
+| Presentation source of truth | `.skilled/commands/doctor/assets/doctor-rebuild-presentation.txt` |
+| Rebuild workflow | `.skilled/commands/doctor/assets/doctor-rebuild.yaml` |
+
+---
+
+## 3. MODE ROUTING
+
+- This command is always interactive; deleted mode suffixes are invalid.
+- Snapshot the declared graph databases before mutation unless `--no-snapshot` was explicitly passed.
+- Require a restart only when the bootstrap reports `restart_required=true`; a layout migration alone does not require one. When a restart is required, start a fresh OpenCode process and rerun with `--resume-bootstrap`.
+- `--migrate` reads the migration manifest and refuses on gaps; this command does not create or edit that manifest.
+- `--cleanup-legacy` prompts per manifest-listed legacy file; no silent deletion.
+- Acquire the rebuild flock before probes or mutations that can enter the database rebuild path.
+- Every terminal path writes the rebuild state log defined by the YAML workflow.
+- If any referenced asset is missing, stop and report the missing path.
+- The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
+
+---
+
+## 4. EXECUTION TARGETS
+
+1. Read `.skilled/commands/doctor/assets/doctor-rebuild-presentation.txt`.
+2. Parse `$ARGUMENTS` for supported flags: `--force`, `--no-snapshot`, `--cleanup-legacy`, `--migrate`, `--keep-snapshots`, and `--resume-bootstrap`.
+3. Bind setup values: `mode` (fixed `confirm`), `force`, `no_snapshot`, `cleanup_legacy`, `migrate`, `keep_snapshots`, `resume_bootstrap`, and internal `skip_status_check` (fixed `false`; no user flag).
+4. If `--force` is absent, ask the presentation contract's initial confirmation prompt and wait.
+5. If `--force` is present, auto-answer the initial confirmation as proceed; the skill-advisor daemon check still runs when the workflow reaches Phase 2.
+6. Load `.skilled/commands/doctor/assets/doctor-rebuild.yaml` only after every setup value is bound.
+7. Execute the YAML phase by phase.
+8. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, restart-required display, and next-step text.
+
+---
+
+## 5. PRESENTATION BOUNDARY
+
+The following content lives only in `.skilled/commands/doctor/assets/doctor-rebuild-presentation.txt`:
+
+- Initial confirmation and mid-run prompt catalog.
+- Cross-subsystem health dashboard layout.
+- Status output, state-log, snapshot, restart-required, and failure display templates.
+- Related-command and next-step display text.
+
+---
+
+## 6. WORKFLOW SUMMARY
+
+The `doctor-rebuild.yaml` workflow rebuilds the spec-kit runtime databases in dependency-safe order under interactive confirmation, snapshotting each declared graph database before mutation unless `--no-snapshot` is passed, and writing a rebuild state log on every terminal path. A bootstrap that reports `restart_required=true` ends with `STATUS=RESTART_REQUIRED` so a fresh process reruns with `--resume-bootstrap`; a layout migration alone does not require a restart. All visible wording is owned by the presentation contract.
+

@@ -1,0 +1,221 @@
+# /doctor:env Presentation Contract
+
+This file is the source of truth for every user-visible prompt, menu, table, preview, error, and status in /doctor:env. The router owns argument routing. The workflow owns live inventory parsing, safe source inspection, preference handling, and confirmed writes.
+
+## 1. Selection Prompt
+
+When no selector is passed, first show the live count and the available section headings and variable names, then ask:
+
+    /doctor:env reads the current environment switch reference and reports where each switch is set.
+    Choose one section or variable to inspect, or choose list to print the complete inventory and stop.
+
+    [list]
+    [section heading 1]
+    [section heading 2]
+    [VARIABLE_NAME]
+    ...
+
+    Reply with one section, one variable name, list, or cancel:
+
+Accept one listed section, one variable name, list, or cancel. Do not infer a selection from an ambiguous response. If a section name matches multiple heading paths, show the matching paths and ask again.
+
+## 2. Inventory and Source-State Tables
+
+Before handling a selection, show:
+
+    Environment Switch Inventory
+    Reference: .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+    Parsed variables: [unique variable count]
+
+    | Section | Variable | Default | Type | Description | Documented source | Class |
+    |---------|----------|---------|------|-------------|-------------------|-------|
+    | [heading path] | [VARIABLE_NAME] | [default or [redacted]] | [type] | [description] | [source] | [preference|per-invocation|secret] |
+
+Then show presence indicators for every parsed variable:
+
+    Read-only source state
+    | Variable | Process environment | hook-flags.env | .env | Claude Code settings |
+    |----------|--------------------|----------------|------|----------------------|
+    | [VARIABLE_NAME] | [set|unset|unreadable] | [set|unset|unreadable] | [set|unset|unreadable] | [set|unset|unreadable] |
+
+Presence tables never include values. For a secret, display only set, unset, or unreadable in each source column, and show [redacted] for its default. Never append a value to a secret row.
+
+If --dry-run was supplied, append:
+
+    Mode: DRY RUN — inspection and previews only; no file will be written.
+
+If the argument is list, stop after these tables and finish with STATUS=OK. Do not show the selection menu or ask any preference questions.
+
+## 3. Selected Variable Displays
+
+### Preference
+
+For each selected preference, show:
+
+    Selected preference: [VARIABLE_NAME]
+    Section: [heading path]
+    Current value by source:
+    | Source | State | Current value |
+    |--------|-------|---------------|
+    | Process environment | [set|unset] | [escaped value or —] |
+    | hook-flags.env | [set|unset] | [escaped value or —] |
+    | .env (Code Mode only) | [set|unset] | [escaped value or —] |
+    | .claude/settings.local.json env block | [set|unset] | [escaped value or —] |
+
+    Default: [documented default]
+    Type: [documented type]
+    Does: [description]
+    Documented source: [source]
+
+If a process value overrides the selected file value for a reader, add:
+
+    Note: the process environment currently sets this variable and may override the selected file destination in this process.
+
+Ask:
+
+    What value should [VARIABLE_NAME] have? Enter one value that matches type [documented type] and the documented constraints, or cancel:
+
+Reject invalid values using the validation error in section 6. Never normalize or silently change the operator's input.
+
+### Secret
+
+Show the name, classification, and source locations only:
+
+    Secret switch: [VARIABLE_NAME]
+    Set in: [comma-separated source names, or nowhere detected]
+    The value is hidden and will not be requested, read for display, or changed.
+    For Code Mode provider credentials, .env is the loading location. Other readers require the shell or runtime to export the variable.
+
+If this secret is also per-invocation, show only:
+
+    One-command form: [VARIABLE_NAME]=<value supplied outside this command> <one command from its documented context>
+
+Do not show its default, current value, or any candidate value. Continue to the next selected variable without asking for input.
+
+### Per-Invocation Switch
+
+Show:
+
+    Per-invocation switch: [VARIABLE_NAME]
+    Default: [documented default]
+    Type: [documented type]
+    Does: [description]
+    Documented source: [source]
+    Use for one command only: [VARIABLE_NAME]=<documented value> <one command from its documented context>
+    This switch will not be saved.
+
+For a section 5 git-hook marker, take the value from its documented Type cell (for example =1) and the git command from its documented source hook (pre-commit, prepare-commit-msg and commit-msg mean git commit; pre-push means git push), and show:
+
+    [VARIABLE_NAME]=1 git commit ...
+
+Never ask to persist a per-invocation switch. If a variable is both secret and per-invocation, use the redacted secret form above.
+
+## 4. Preference Destination and Exact Preview
+
+After the operator supplies a valid preference value, show only destinations eligible for that variable:
+
+    Where should [VARIABLE_NAME] be saved?
+    1) .skilled/hooks/hook-flags.env — only when its documented reader consumes this switch
+    2) .claude/settings.local.json env block — Claude Code only
+    3) Print an export line for me to copy into my shell profile; do not write a profile
+    X) Cancel
+    Reply with 1, 2, 3, or X:
+
+Omit option 1 when the hook reader does not consume the selected variable. Never offer .env as a preference destination. If the operator selects an unavailable destination, explain why and ask again.
+
+Then show the exact destination and lines:
+
+    Proposed change
+    Destination: [exact file path, or shell profile (display only)]
+    Operation: [replace existing assignment|append assignment|create from template and set assignment|update one JSON env property|display only]
+    Exact line(s):
+    [exact line(s) that would be written or printed]
+
+    [If hook-flags.env is missing: initialization source: .skilled/hooks/hook-flags.env.example; secret assignments remain blank.]
+    [If process environment sets the variable: this saved value may be overridden in the current process.]
+
+For a hook-flags.env file that does not exist, show the exact resulting content or exact sanitized template lines plus the selected assignment. Do not reveal or copy any secret assignment from the template. Keep every unrelated existing setting unchanged.
+
+For the shell-profile choice, the exact line must be a safely quoted export line. The command only displays it; it never writes a shell profile.
+
+### Confirmation
+
+For a real file write, ask immediately before mutation:
+
+    Write exactly the change shown above to [destination]?
+    Reply yes to write, or no/cancel to leave files unchanged:
+
+Only an unambiguous yes authorizes that one write. A no, cancel, ambiguous answer, or interrupted interaction returns STATUS=CANCELLED ACTION=cancelled and writes nothing for the pending change.
+
+For --dry-run, do not ask for a write confirmation. Show:
+
+    DRY RUN: the exact change above would be proposed; no file was written.
+
+For the shell-profile choice, show the export line and then:
+
+    No file was written. Copy the line into your shell profile only if you choose to.
+
+## 5. Post-Write and Terminal Status
+
+After writing hook-flags.env or .claude/settings.local.json, re-read the destination. Show only the changed assignment/property line:
+
+    Verified from [destination]:
+    [written line]
+
+Do not display surrounding file content. Do not claim success if re-read or value comparison fails.
+
+Finish with exactly one status:
+
+    STATUS=OK
+
+    STATUS=CANCELLED ACTION=cancelled
+
+    STATUS=FAIL ERROR="[sanitized error description]"
+
+For a successful dry run, append a short note before STATUS=OK:
+
+    Dry run only; no files were written.
+
+For a successful shell-profile display, append a short note before STATUS=OK:
+
+    Export line printed; no shell profile was written.
+
+Never include a secret value, preference value, configuration contents, or unsanitized tool error in a status.
+
+## 6. Errors and Input Validation
+
+Unknown argument, duplicate selector, extra argument, or unknown flag:
+
+    STATUS=FAIL ERROR="invalid arguments; use list, one section, one variable, and optional --dry-run"
+
+No supported rows, malformed table row, conflicting duplicate metadata, or ambiguous reference parse:
+
+    STATUS=FAIL ERROR="could not safely parse the documented switch inventory"
+
+No matching selector:
+
+    STATUS=FAIL ERROR="no matching section or variable"
+
+Unreadable selected source or malformed selected destination file:
+
+    STATUS=FAIL ERROR="selected source could not be read safely; no write was made"
+
+Invalid value:
+
+    That value does not match type [documented type] or its documented constraints. Enter a valid value or cancel:
+
+Unknown or ambiguous type after one clarification:
+
+    STATUS=FAIL ERROR="the documented type is ambiguous; no write was made"
+
+Write or read-back verification failure:
+
+    STATUS=FAIL ERROR="write or read-back verification failed"
+
+Every error must be sanitized. Never include an environment value, a secret default, file contents, or a command's raw error output.
+
+## 7. Next-Step Text
+
+Do not show a next-step prompt for list; list prints its two tables and stops. For an interactive inspection, show this prompt immediately before the terminal status. The terminal status is always the final output:
+
+    Next: run /doctor:env again to inspect another section or variable, or /doctor:env list to see every switch and where it is set.

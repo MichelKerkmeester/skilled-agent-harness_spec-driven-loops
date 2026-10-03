@@ -4,7 +4,6 @@
 // Command handler for skill_graph_status — reports counts,
 // validation summary, and source staleness for the skill graph.
 
-import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import * as skillGraphDb from '../../lib/skill-graph/skill-graph-db.js';
@@ -182,9 +181,9 @@ function summarizeSourceStaleness(sourceRows: SourceRow[]): Record<string, unkno
       continue;
     }
 
-    const currentHash = createHash('sha256')
-      .update(readFileSync(resolvedPath))
-      .digest('hex');
+    const currentHash = skillGraphDb.computeSkillMetadataContentHash(
+      readFileSync(resolvedPath, 'utf8'),
+    );
 
     if (currentHash !== row.contentHash) {
       changedSourceFiles++;

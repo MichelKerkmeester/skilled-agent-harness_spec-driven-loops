@@ -17,12 +17,12 @@
       "implementation plan",
       "localProvider easy config loader",
       "local LLM auto-used",
-      "tasks",
       "localProvider loader tasks",
       "architecture decision",
       "shared loader and fail-closed local provider config",
       "local provider loader implementation",
-      "localProvider easy config complete"
+      "localProvider easy config complete",
+      "implementation summary"
     ],
     "key_topics": [
       "local-provider-loader",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`createOllamaModelRecord`, `createLlamaCppModelRecord`, the OpenAI-compatible and Ollama-native adapters, and `createLocalHttpTransport` are all shipped and tested, but no entry point builds the `projectMessage` input from them",
     "created_at": "2026-08-14T17:53:14.584Z",
-    "last_save_at": "2026-09-03T22:17:10.112Z",
+    "last_save_at": "2026-10-03T15:12:06.496Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c5c87cc10e585bfdfe7cea66fdc6326b372ee0d336116c4db03d203b78b818f0",
+    "source_fingerprint": "sha256:931222617eaba27e8009df87b6446e948467518e3d2eec5b508a16d4313cff7c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0901372fd00cf64bb1813f28a96f4aae9b6a764dc21d56713a49bae32a55a8f2",
       "plan.md": "55ab4f8c0779d1d737d901257290aa37fe71ef2dd829840f933ca3616c7bcbb9",
-      "tasks.md": "8df71b83d1c4ce296f4da7fa60466cc9bcd0e4ca798f718d5d7ffc3c3fcc8079",
+      "tasks.md": "267cc7b89840d55357ffaf05c8dc9c9f313e6cb0936071b270c70d7cc6bda6e3",
       "decision-record.md": "75eb6d371ccd8f09e04de71069c54e480b627616d7174aa02a226dbd3cdd759e",
       "implementation-summary.md": "b41f5c86f1b91fe5f7e391a3acda12f4b1f4f49c6b8ead9e661eec287c9f6235"
     },

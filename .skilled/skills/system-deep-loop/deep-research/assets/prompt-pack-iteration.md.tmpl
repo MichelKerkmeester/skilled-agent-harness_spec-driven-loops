@@ -63,8 +63,10 @@ You MUST produce THREE artifacts per iteration. The YAML-owned post_dispatch_val
 2. **Canonical iteration record recorded THROUGH THE APPEND GATEWAY** — never written to `{state_paths_state_log}` directly — the gateway is its only writer, and it refreshes that log from the ledger after authorizing, fencing, and receipting the record. The record MUST use `"type":"iteration"` EXACTLY — NOT `"iteration_delta"` or any other variant. The reducer counts records where `type === "iteration"` only; other types are silently ignored (the iteration will look incomplete and the reducer may re-run it). The record MUST also carry stable identity: `runId`, `sessionId` and `lineageId`, all set to the run's session id, which you read from `{state_paths_config}` (the `lineage.sessionId` field). A record without them is refused with `stable-identity-missing`, because the gateway cannot attach a record it cannot place in a run. Required schema:
 
 ```json
-{"type":"iteration","iteration":<n>,"runId":"<run session id>","sessionId":"<run session id>","lineageId":"<run session id>","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":<0..1>,"status":"<string>","focus":"<string>","graphEvents":[/* optional */],"executor":{/* workflow-owned for non-native runs */}}
+{"type":"iteration","iteration":<n>,"runId":"<run session id>","sessionId":"<run session id>","lineageId":"<run session id>","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":<0..1>,"status":"<string>","focus":"<string>","answeredQuestions":["<exact text of each strategy key question this iteration answered>"],"graphEvents":[/* optional */],"executor":{/* workflow-owned for non-native runs */}}
 ```
+
+`answeredQuestions` is REQUIRED on the record: list the exact text of each strategy key question this iteration answered, or an empty array when none were answered. The text must match the strategy's `- [ ]` question text exactly, because the reducer ticks a box only on an exact match.
 
 Record this single JSON object through the append gateway — do NOT `echo`/`>>` it into `{state_paths_state_log}` (the gateway is its only writer and refreshes it from the ledger). Write the one-line record to a temp file, then run:
 
@@ -81,10 +83,12 @@ For non-native CLI executors, the workflow owns executor provenance. It writes a
 
 3. **Per-iteration delta file** at `{state_paths_delta_pattern}` (path pre-substituted for the current iteration — e.g. `deltas/iter-001.jsonl`). This file holds the structured delta stream for this iteration: one `{"type":"iteration",...}` record (same content as the state-log append) plus per-event structured records (one per graphEvent, finding, invariant, observation, edge, ruled_out direction). Each record on its own JSON line. The reducer reads the combined state log + delta files to rebuild dashboards and registries after interruption or partial runs.
 
+Every `finding` row MUST carry `"sources":["<repo-relative file path or URL>", ...]`, and every `SOURCE` graph node that names a file MUST carry `"path":"<repo-relative file path>"`; the resource map is built from those fields.
+
 Example delta file contents (one iteration):
 ```json
-{"type":"iteration","iteration":3,"runId":"<run session id>","sessionId":"<run session id>","lineageId":"<run session id>","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.62,"status":"insight","focus":"..."}
-{"type":"finding","id":"f-iter003-001","severity":"P1","label":"...","iteration":3}
+{"type":"iteration","iteration":3,"runId":"<run session id>","sessionId":"<run session id>","lineageId":"<run session id>","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.62,"status":"insight","focus":"...","answeredQuestions":["<exact text of each strategy key question this iteration answered>"]}
+{"type":"finding","id":"f-iter003-001","severity":"P1","label":"...","iteration":3,"sources":["<repo-relative file path or URL>"]}
 {"type":"invariant","id":"inv-iter003-001","label":"...","iteration":3}
 {"type":"observation","id":"obs-iter003-001","packet":"007","classification":"real","iteration":3}
 {"type":"edge","id":"e-iter003-001","relation":"VIOLATES","source":"obs-001","target":"inv-001","iteration":3}

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The roster drift is one fact repeated in five places: three READMEs advertise a pre-alignment four-family roster and four improvement lanes against a registry with five families and three lanes",
     "created_at": "2026-07-31T01:25:21.765Z",
-    "last_save_at": "2026-09-11T16:42:26.451Z",
+    "last_save_at": "2026-10-03T15:26:01.804Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:c64a9790d1eeffd9f71779c41bed73a9c14633f95dc403195385ebf9779edd94",
+    "source_fingerprint": "sha256:e0dd51635fce2c5f300f5ba5fe0960261e020e33e384d0f7dc98552f9b71a669",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cc685923e97d150323d1fd6e36e57103579facf467ca7a810d830d8c3bac5d0e",
       "plan.md": "6a21cc95f3361982ff4fc7ae9715e37baa3acb2bd94aa66243228842c29a80b3",
       "tasks.md": "7efeeb2c11630802b54cb63d4bbb0fecf0ecec69118da6e9a38f2fddc75f5c8d",
       "implementation-summary.md": "2abfb06f438a6fd83228a18fd967ee6c0898269dc5c6277dfaabb9bde0e46dec",
-      "handover.md": "7717ef7c5685eda8ba7936654fdae4f710a57a8e492f1e04045377229937c479"
+      "handover.md": "0a97de823e3177d94720bef27ba1cb5b21a160353f616bceb35e889dc9e9c212"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,12 +2,7 @@
 title: "Tasks: Worktree/Branch Naming Overhaul"
 description: "Level 3 task list for the naming overhaul: allocator + validators, pre-push gate, migration helper, self-test, docs rewrite, and packet verification."
 trigger_phrases:
-  - "tasks"
-  - "worktree"
-  - "branch"
-  - "naming"
-  - "grammar"
-  - "allocator"
+  - "worktree branch naming overhaul tasks"
 importance_tier: "normal"
 contextType: "general"
 _memory:

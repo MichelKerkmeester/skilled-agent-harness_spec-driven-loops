@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The repair script decides whether a candidate is a regular file while walking the tree, using the directory entry — which reports on the link itself, so symlinks are correctly skipped",
     "created_at": "2026-08-30T08:24:08Z",
-    "last_save_at": "2026-09-08T18:23:41.227Z",
+    "last_save_at": "2026-10-03T15:36:08.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:232f4aa2a3112d3b0050d2c50cb6c11f63a081b8d45883ce7e11a7eadebfc8b4",
+    "source_fingerprint": "sha256:8bf99445d7a284bcaa493ff7132a2400db2581cb68fde40b989c4d6241aaf9f9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4cb2812ac19ec84d3dd7575035791ec10d3155c231d2297a1da8df6da664bf84",
-      "plan.md": "0783bfa2078189cd523cf5c40e3ba93147eb2e5d528f102394ac6f263ca8fa45",
-      "tasks.md": "10b22b0477fd26aef0479fc7f570eb91637718848013399ce28f37468053014b",
+      "spec.md": "60379b15cd88b69b4cecf75340e2a411d4470af63881f504deaa895ddcc5142e",
+      "plan.md": "28b80234e44e173f20dcbfa7b0ea107f730baf48bb0c497bb27b3f0efe77b2dc",
+      "tasks.md": "4483ae7e5da8c0cda4b79712de81925d88f4cc26ba3a73c08be3a85dd521a2ed",
       "decision-record.md": "4318e38ea077097305a09676c8bc810042c8729b6cb838af9f6c9e13c9e207ce",
-      "implementation-summary.md": "b1aa5c36ec9d1d30b5cd7f7b35b36ff0f4c7c53007c42f66003f8509ddc63464"
+      "implementation-summary.md": "5a93427328d8515c0e497f3c235f017e4e0a4c0d00d9ec86c60f13d6a1fc2524"
     },
     "last_active_child_id": null,
     "last_active_at": null

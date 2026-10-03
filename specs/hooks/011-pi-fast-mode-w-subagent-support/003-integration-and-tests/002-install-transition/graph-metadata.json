@@ -17,6 +17,10 @@
       "install-transition plan",
       "pi install remove fast mode",
       "install-transition tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "install-transition implementation summary"
     ],
     "key_topics": [
@@ -31,7 +35,7 @@
       "remove",
       "mode",
       "tasks",
-      "implementation"
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       ".pi/settings.json",
       ".pi/PLUGINS.md"
@@ -60,6 +65,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -181,26 +192,21 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Installing the fork beside another extension that registers `/fast` and `--fast` creates load-order ambiguity",
     "created_at": "2026-08-16T09:08:03Z",
-    "last_save_at": "2026-08-30T15:39:09.678Z",
+    "last_save_at": "2026-10-03T16:54:26.293Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76f3e633bd609e6fb50fe157f7ede2bd2bc7388a17a488dc83b088257df6a782",
+    "source_fingerprint": "sha256:623ef2bdeff169913168194fbe3aed9dff65a4ef2ccebf9703fd3408a578b972",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3ec5712ec66ca309e740eabff1f4403d41b526cbe0a2093cb215300463124d97",

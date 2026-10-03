@@ -2242,6 +2242,8 @@ function isFlashMaxPinnedModel(model) {
 // Effective reasoning effort after the Flash top-tier pin.
 // Mirrors pinReasoningEffortForModel in executor-config.ts.
 function pinReasoningEffortForModel(model, reasoningEffort) {
+  // Cline serves DeepSeek V4.1 Flash with no max tier, so its literal pins to its top tier, xhigh.
+  if (model.startsWith('cline-pass/') && isFlashMaxPinnedModel(model)) return 'xhigh';
   return isFlashMaxPinnedModel(model) ? 'max' : reasoningEffort;
 }
 
@@ -2349,14 +2351,16 @@ const CURSOR_DEFAULT_MODEL = 'composer-2.5';
 // pass-through with no house model, so this synchronous duplicate keeps
 // command construction fail-closed without importing the TypeScript module.
 const PI_ALLOWED_MODELS = new Set([
-  // Bare DeepSeek V4.1 Flash literal is DevPass-fronted on pi (opencode-go fronts DeepSeek Flash
-  // too, but one literal maps to one provider, so that route is direct-dispatch only; the direct
-  // DeepSeek API provider was retired). The gateway deactivated the older vision-exp id and
-  // returns 410 for it, so the bare literal here is the 4.1 line.
+  // Bare DeepSeek V4.1 Flash literal is DevPass-fronted on pi (the direct DeepSeek API provider
+  // was retired). opencode-go and Cline front the same model, each reached through its own
+  // provider-qualified literal below rather than through this bare one. The gateway deactivated
+  // the older vision-exp id and returns 410 for it, so the bare literal here is the 4.1 line.
   'deepseek-v4.1-flash',
-  // The same model through opencode-go, named by its provider-prefixed literal so it can sit
-  // beside the DevPass bare literal without one literal mapping to two providers.
+  // Provider-qualified DeepSeek V4.1 Flash routes, for runs that must bill through
+  // opencode-go or Cline instead of DevPass. Each literal names its provider, so it maps to
+  // exactly one route and the bare literal above keeps DevPass.
   'opencode-go/deepseek-v4.1-flash',
+  'cline-pass/deepseek-v4.1-flash',
   'minimax-m3',
   'gpt-6-luna',
   'gpt-6-sol',
@@ -2588,6 +2592,7 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 const PI_MODEL_PROVIDERS = new Map([
   ['deepseek-v4.1-flash', 'llmgateway'],
   ['opencode-go/deepseek-v4.1-flash', 'opencode-go'],
+  ['cline-pass/deepseek-v4.1-flash', 'cline-pass'],
   ['minimax-m3', 'minimax'],
   ['gpt-6-luna', 'openai-codex'],
   ['gpt-6-sol', 'openai-codex'],
@@ -2607,6 +2612,14 @@ const PI_MODEL_PROVIDERS = new Map([
   // direct-dispatch only, exactly as the Cline route already is. DevPass wins the fan-out slot
   // because it is a flat-price subscription and the other two routes bill per token.
   ['glm-5.3-flash', 'llmgateway'],
+]);
+// A provider-qualified literal already carries its route, so the default
+// `${provider}/${model}` composition would repeat the provider. These literals map to the
+// exact selector Pi lists for them instead: opencode-go names the model bare, and Cline lists
+// it under a cline-pass/ id, which gives the three-segment form.
+const PI_MODEL_SELECTORS = new Map([
+  ['opencode-go/deepseek-v4.1-flash', 'opencode-go/deepseek-v4.1-flash'],
+  ['cline-pass/deepseek-v4.1-flash', 'cline-pass/cline-pass/deepseek-v4.1-flash'],
 ]);
 // Map each shared reasoningEffort level to the name Pi's `--thinking` uses (from the
 // installed `pi --help`): the config's 'none' is Pi's 'off', and the config's 'ultra'
@@ -2642,8 +2655,7 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
   // non-interactive dispatch without it can hang for minutes on startup network
   // probes. The caller must read the OUTPUT TEXT for the result and for
   // "No API key found" — Pi's exit code is not a reliable success or auth signal.
-  // A literal that already names its provider is the full selector; every other literal gets its prefix.
-  const selector = model.startsWith(`${provider}/`) ? model : `${provider}/${model}`;
+  const selector = PI_MODEL_SELECTORS.get(model) ?? `${provider}/${model}`;
   const args = ['-p', '--offline', '--model', selector];
   // Pi enforces no OS-level sandbox (its flag support intentionally omits one);
   // a read-only leaf is bounded by restricting the tool allowlist to reads AND by

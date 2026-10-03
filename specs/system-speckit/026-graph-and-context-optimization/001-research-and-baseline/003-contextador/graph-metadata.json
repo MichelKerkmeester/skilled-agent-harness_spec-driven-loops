@@ -13,7 +13,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "contextador",
+      "contextador research phase",
       "mcp query interface",
       "self-healing context",
       "mainframe shared cache",
@@ -28,6 +28,8 @@
     ],
     "key_topics": [
       "contextador",
+      "research",
+      "phase",
       "mcp",
       "query",
       "interface",
@@ -36,9 +38,7 @@
       "mainframe",
       "shared",
       "cache",
-      "token",
-      "efficient",
-      "navigation"
+      "token"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`CodeEnvironment/Public` already operates CocoIndex, Code Graph MCP, and Spec Kit Memory",
     "created_at": "2026-04-12T09:02:53.447Z",
-    "last_save_at": "2026-08-30T15:39:29.139Z",
+    "last_save_at": "2026-10-03T15:33:34.158Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,10 +208,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38ea2646891e3ad98b3e789bd69a8cf8e2614efc731b0b9842077e3c5f608dac",
+    "source_fingerprint": "sha256:92c99c282e2b843cd9bd82bb4c376d1ed6f5cdd94c2e532caa497b4e237afa1d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6e36fa0c1f47747667a3a6af8b25f94748832fd30675edbb1664b770690a91e7",
+      "spec.md": "1881c282c18be30bfde767f7c8b79a871c4f85c8678cd707e62062b6a8c36fd8",
       "plan.md": "d9c5bd9881d3713191fdfd7f027d0954dcac187e40fd3621cdae66cc3444374e",
       "tasks.md": "444d0369de14d5dd1044004b7d28e8b5e6925b491e28dc0b60570584897942c4",
       "decision-record.md": "c0d51c5214b8226e336cf4f44d23848f271197dedc366213b12dbee332e676b9",

@@ -184,7 +184,7 @@ Count `graph-metadata.json` files under the hub. There must be exactly one, at t
 
 Run the completion gate until it exits clean. Then run the routing-drift check if you edited aliases or vocabulary classes.
 
-**Failure this prevents:** shipping a hub that scaffolds but does not pass the same gate `/create:skill-parent` and `/doctor parent-skill` require.
+**Failure this prevents:** shipping a hub that scaffolds but does not pass the same gate `/create:skill-parent` and `/doctor:speckit parent-skill` require.
 
 If you need another mode later, use `/create:skill-parent <skill-name> update --modes ...`. Do not re-run `create` on the live folder.
 
@@ -208,7 +208,7 @@ Run these from the repository root. End on `validate_skill_package.py` for every
 
 ### Parent hub (after Section 4)
 
-Structural audit (same checker `/doctor parent-skill` runs, and the same script `validate_skill_package.py` invokes for a parent root):
+Structural audit uses the same checker that `/doctor:speckit parent-skill` runs and the same script that `validate_skill_package.py` invokes for a parent root:
 
 ```bash
 node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/<hub-name>

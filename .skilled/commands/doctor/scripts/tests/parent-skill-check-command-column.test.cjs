@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ parent-skill-check-command-column.test: coverage for check 6c            ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Parent Skill Check Command Column Test
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 /**
@@ -13,8 +13,8 @@
  * declares a real one still passed 6b and must not also pass 6c.
  *
  * Mirrors the leaf-manifest and root-router test files' fixture pattern:
- * a temp two-mode hub, one contract library copy at the sibling sk-doc
- * topology the checker resolves libraries from, and no live hub is touched.
+ * a temp two-mode hub audited against the repository's own contract
+ * libraries, and no live hub is touched.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -34,22 +34,20 @@ const { spawnSync } = require('node:child_process');
 const CHECKER_PATH = path.join(__dirname, '..', 'parent-skill-check.cjs');
 const REAL_SK_DOC_ROOT = path.join(__dirname, '..', '..', '..', '..', 'skills', 'sk-doc');
 const REAL_GENERATOR_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
-const REAL_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
-const REAL_ROOT_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'skill-root-metadata-contract.cjs');
-const REAL_ROOT_ROUTER_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'root-router-contract.cjs');
-const REAL_S_CLASS_DEFAULTS_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 's-class-config-defaults.json');
 
 const MODE_A = 'demo-alpha';
 const MODE_B = 'demo-beta';
 const COMMAND_A = '/demo:alpha';
 
+// Every temp fixture root this run creates, removed when the process exits.
+const FIXTURE_ROOTS = [];
+process.on('exit', () => {
+  for (const root of FIXTURE_ROOTS) fs.rmSync(root, { recursive: true, force: true });
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. FIXTURE HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
-
-function readJson(p) {
-  return JSON.parse(fs.readFileSync(p, 'utf8'));
-}
 
 function writeJson(p, data) {
   fs.writeFileSync(p, JSON.stringify(data, null, 2));
@@ -57,22 +55,10 @@ function writeJson(p, data) {
 
 function makeTempHubDir() {
   const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'parent-skill-check-command-column-'));
+  FIXTURE_ROOTS.push(fixtureRoot);
   const hubRoot = path.join(fixtureRoot, 'demo-hub');
   fs.mkdirSync(hubRoot);
   return hubRoot;
-}
-
-// The generator/library resolve from the sibling sk-doc hub, matching the real
-// multi-hub layout while keeping each fixture isolated.
-function installContractLibrary(hubRoot) {
-  const scriptsDir = path.join(path.dirname(hubRoot), 'sk-doc', 'sk-create-skill', 'scripts');
-  const libDir = path.join(scriptsDir, 'lib');
-  fs.mkdirSync(libDir, { recursive: true });
-  fs.copyFileSync(REAL_GENERATOR_PATH, path.join(scriptsDir, 'generate-leaf-manifest.cjs'));
-  fs.copyFileSync(REAL_CONTRACT_LIB_PATH, path.join(libDir, 'leaf-resource-contract.cjs'));
-  fs.copyFileSync(REAL_ROOT_CONTRACT_LIB_PATH, path.join(libDir, 'skill-root-metadata-contract.cjs'));
-  fs.copyFileSync(REAL_ROOT_ROUTER_CONTRACT_LIB_PATH, path.join(libDir, 'root-router-contract.cjs'));
-  fs.copyFileSync(REAL_S_CLASS_DEFAULTS_PATH, path.join(libDir, 's-class-config-defaults.json'));
 }
 
 function writePacketCompanions(packetDir, packetSkillName) {
@@ -95,6 +81,7 @@ function baseRegistry() {
         toolSurface,
         packet: 'create-skill',
         packetSkillName: 'create-skill',
+        aliases: ['alpha thing'],
         grandfatheredFolderMismatch: false,
         command: COMMAND_A,
         advisorRouting: { routingClass: 'metadata' },
@@ -106,6 +93,7 @@ function baseRegistry() {
         toolSurface,
         packet: 'pkg-two',
         packetSkillName: 'pkg-two',
+        aliases: ['beta thing'],
         grandfatheredFolderMismatch: false,
         // No command: this mode routes by alias only, so its table row is free
         // to say so and 6c must not demand a literal command for it.
@@ -137,6 +125,7 @@ function hubSkillMd(commandCellForModeA) {
   return [
     '---',
     'name: demo-hub',
+    'version: 1.0.0.0',
     'allowed-tools: [Read]',
     '---',
     '# demo-hub',
@@ -150,8 +139,8 @@ function hubSkillMd(commandCellForModeA) {
 }
 
 // A complete, canon-clean two-mode hub with a fresh, byte-consistent
-// leaf-manifest.json and a real mode table, so PARENT_HUB_CHECK_STRICT=1 finds
-// nothing from the pre-existing checks and only 6c is under test.
+// leaf-manifest.json and a real mode table, so the default (strict) run finds
+// nothing from the other checks and only 6c is under test.
 // `commandCellForModeA` lets a case corrupt just that one cell.
 function buildCleanFixture(commandCellForModeA) {
   const hubRoot = makeTempHubDir();
@@ -160,7 +149,7 @@ function buildCleanFixture(commandCellForModeA) {
   fs.writeFileSync(path.join(hubRoot, 'graph-metadata.json'), JSON.stringify({ skill_id: basename, family: 'sk-hub' }, null, 2));
   writeJson(path.join(hubRoot, 'mode-registry.json'), baseRegistry());
   writeJson(path.join(hubRoot, 'hub-router.json'), baseHubRouter());
-  writeJson(path.join(hubRoot, 'description.json'), { name: basename, description: 'fixture hub', version: '0.0.0', keywords: ['fixture'] });
+  writeJson(path.join(hubRoot, 'description.json'), { name: basename, description: 'fixture hub', version: '1.0.0.0', keywords: ['fixture'] });
   writeJson(path.join(hubRoot, 'command-metadata.json'), []);
   fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), hubSkillMd(commandCellForModeA));
   fs.writeFileSync(path.join(hubRoot, 'ROUTER.md'), [
@@ -196,11 +185,8 @@ function buildCleanFixture(commandCellForModeA) {
   writePacketCompanions(packetA, 'create-skill');
   writePacketCompanions(packetB, 'pkg-two');
 
-  installContractLibrary(hubRoot);
-
-  const generatorPath = path.join(path.dirname(hubRoot), 'sk-doc', 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
   // eslint-disable-next-line global-require, import/no-dynamic-require
-  const generator = require(generatorPath);
+  const generator = require(REAL_GENERATOR_PATH);
   fs.writeFileSync(path.join(hubRoot, 'leaf-manifest.json'), generator.buildManifestBytes(hubRoot));
 
   return hubRoot;
@@ -213,11 +199,10 @@ function buildCleanFixture(commandCellForModeA) {
 // parent-skill-check.cjs calls process.exit() unconditionally, so it must run
 // as a child process rather than be require()'d in-process. PASS/INFO go to
 // stdout and FAIL/WARN go to stderr, so both are combined for assertions.
-function runChecker(hubRoot, envOverrides) {
-  const result = spawnSync(process.execPath, [CHECKER_PATH, hubRoot], {
-    encoding: 'utf8',
-    env: { ...process.env, ...envOverrides },
-  });
+function runChecker(hubRoot) {
+  const env = { ...process.env };
+  delete env.PARENT_HUB_CHECK_STRICT;
+  const result = spawnSync(process.execPath, [CHECKER_PATH, hubRoot], { encoding: 'utf8', env });
   return { status: result.status, stdout: `${result.stdout || ''}${result.stderr || ''}` };
 }
 
@@ -227,7 +212,7 @@ function runChecker(hubRoot, envOverrides) {
 
 function testMatchingCommandPasses6c() {
   const hubRoot = buildCleanFixture(`\`${COMMAND_A}\``);
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assert.match(result.stdout, /PASS: 6c: every mode-table row whose registry entry declares a command/);
   assert.doesNotMatch(result.stdout, /FAIL: 6c/);
   assert.equal(result.status, 0, `expected a canon-clean fixture to exit 0:\n${result.stdout}`);
@@ -238,7 +223,7 @@ function testDashInsteadOfDeclaredCommandFails6c() {
   // mode the registry routes by alias. Here the registry declares a real
   // command instead, so the dash is stale and must fail.
   const hubRoot = buildCleanFixture('— (routes via aliases)');
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assert.match(result.stdout, new RegExp(`FAIL: 6c:.*${MODE_A.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
   assert.match(result.stdout, /hiding a working command/);
   assert.notEqual(result.status, 0);
@@ -248,7 +233,7 @@ function testWrongCommandFails6c() {
   // A row that names a command, just not the registered one, must also fail.
   // 6c checks the string matches, not merely that the cell is non-empty.
   const hubRoot = buildCleanFixture('`/demo:wrong`');
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assert.match(result.stdout, new RegExp(`FAIL: 6c:.*${MODE_A.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
   assert.notEqual(result.status, 0);
 }
@@ -263,12 +248,12 @@ function testRemovingTheModeRowFailsThenRestoringPasses() {
   const withRowRemoved = original.split('\n').filter((line) => !line.includes(`**${MODE_A}**`)).join('\n');
   fs.writeFileSync(skillMdPath, withRowRemoved);
 
-  const removedResult = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const removedResult = runChecker(hubRoot);
   assert.match(removedResult.stdout, new RegExp(`FAIL: 6b:.*${MODE_A.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
   assert.notEqual(removedResult.status, 0);
 
   fs.writeFileSync(skillMdPath, original);
-  const restoredResult = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const restoredResult = runChecker(hubRoot);
   assert.match(restoredResult.stdout, /PASS: 6b:/);
   assert.match(restoredResult.stdout, /PASS: 6c:/);
   assert.equal(restoredResult.status, 0, `expected the restored row to pass again:\n${restoredResult.stdout}`);

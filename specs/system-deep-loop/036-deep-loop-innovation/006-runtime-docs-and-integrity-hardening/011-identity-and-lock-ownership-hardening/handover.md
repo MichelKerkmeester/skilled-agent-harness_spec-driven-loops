@@ -29,7 +29,12 @@ _memory:
 
 # Handover — 033 Identity and Lock Ownership Hardening
 
-## STATUS: LANDED (third attempt)
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
+
+<!-- ANCHOR:handover-summary -->
+## 1. Handover Summary
+
+### Status: LANDED (third attempt)
 
 The 033 remediation landed as `53d977fcae` on `skilled/v4.0.0.0`, passing the FULL per-mode
 matrix (32/32 files: 8 modes x certificates/rollback-gate/resume-adapter/shadow-parity) that
@@ -53,10 +58,14 @@ regression the third attempt's mandatory full-matrix gate was built to catch, an
 The first two attempts' verified-reverted end state (`runtime/lib`+`runtime/tests` ==
 landed-024 `0c5c966015`, `tsc` rc 0, `agent-improvement-certificates` 14/14 pass) is preserved
 below as the historical record of what was tried and rolled back before the third attempt.
+<!-- /ANCHOR:handover-summary -->
 
 ---
 
-## What the 024 deep review found (the valuable output — keep)
+<!-- ANCHOR:context-transfer -->
+## 2. Context Transfer
+
+### What the 024 deep review found (the valuable output — keep)
 
 A 20-iteration deep review of landed-024 (executor **GPT-5.6-LUNA MAX FAST** via cli-codex,
 no early convergence) returned **verdict FAIL, P0=3 / P1=3**. Full report:
@@ -78,7 +87,7 @@ These four (F001-F004) are real gaps that 024's own checks missed and are worth 
 
 ---
 
-## Why 033 was reverted — postmortem
+### Why 033 was reverted — postmortem
 
 Two LUNA build attempts (initial full fix set, then a targeted re-fix) each ended in a
 **catastrophic 451-failed-test regression** across the per-mode suites (certificates,
@@ -106,7 +115,7 @@ back rather than partially landed.
 
 ---
 
-## THE HARD LESSON (read before re-attempting)
+### THE HARD LESSON (read before re-attempting)
 
 F001/F002-class fixes have **deep, non-obvious blast radius** through the per-mode
 authorization machinery. Two traps caught this attempt:
@@ -148,7 +157,7 @@ authorization machinery. Two traps caught this attempt:
 
 ---
 
-## Working headless deep-review mechanism (epic deliverable — preserve)
+### Working headless deep-review mechanism (epic deliverable — preserve)
 
 `opencode run --command deep/review` does **NOT** work headlessly (the agent narrates
 instead of executing the loop). The working path is calling the fan-out runner directly:
@@ -174,9 +183,14 @@ Notes: default `maxCostUnitsPerLineage` (72) rejects a 20-iter lineage — raise
 set `sandboxMode: read-only` (it blocks the loop's own state writes). Output lands at
 `review/lineages/<label>/review-report.md`.
 
+<!-- /ANCHOR:context-transfer -->
+
 ---
 
-## Next steps
+<!-- ANCHOR:next-session -->
+## 3. For Next Session
+
+### Next steps
 
 1. **024** — landed + clean. No action.
 2. **033** — landed as `53d977fcae` following the mandatory conditions above (root-cause
@@ -185,7 +199,7 @@ set `sandboxMode: read-only` (it blocks the loop's own state writes). Output lan
 4. **WS1 036 runtime chain** (026-032, 019, 020) — 026/027/028/029/030/031/032 also landed;
    see each child's own `implementation-summary.md`.
 
-## Environment gotchas (carried forward)
+### Environment gotchas (carried forward)
 
 - node = `/opt/homebrew/bin/node`; after `cd` into the worktree a chpwd hook clobbers PATH →
   `export PATH="/opt/homebrew/bin:/usr/bin:/bin:$PATH"` **after** cd.
@@ -197,3 +211,4 @@ set `sandboxMode: read-only` (it blocks the loop's own state writes). Output lan
 - Landing uses the leak-guard tree-to-tree lander (seeds a temp index from fresh origin
   FETCH_HEAD, guards 0 deletions + all-under-prefix, commit-tree + braced push with
   `SPECKIT_ALLOW_REMOTE_PUSH=1`). It does not advance the local branch HEAD.
+<!-- /ANCHOR:next-session -->

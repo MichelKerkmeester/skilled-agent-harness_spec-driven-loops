@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/002-release-update-customization-signals",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/002-release-update-customization-signals",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "release update customization",
+      "generated file classification",
+      "base manifest recording",
+      "provenance fingerprint prefilter",
+      "prerelease policy",
+      "implementation plan",
+      "release engine changes",
+      "generated class",
+      "base recording",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "release",
+      "customization",
+      "file",
+      "classification",
+      "base",
+      "manifest",
+      "recording",
+      "provenance",
+      "fingerprint",
+      "prefilter",
+      "prerelease",
+      "policy"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/release-update.cjs",
+      ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+      ".skilled/commands/doctor/update.md",
+      ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+      "scratch/findings-recheck.md",
+      "scratch/engine-tests.log",
+      "scratch/fixture-demo.sh",
+      "scratch/measurement.md",
+      "scratch/generated-inventory.md",
+      "scratch/provenance-input.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/derived/provenance.ts",
+      "scratch/fixture-demo.log"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/release-update.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-check.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-align.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "findings-recheck.md",
+        "kind": "doc",
+        "path": "scratch/findings-recheck.md",
+        "source": "derived"
+      },
+      {
+        "name": "engine-tests.log",
+        "kind": "file",
+        "path": "scratch/engine-tests.log",
+        "source": "derived"
+      },
+      {
+        "name": "fixture-demo.sh",
+        "kind": "script",
+        "path": "scratch/fixture-demo.sh",
+        "source": "derived"
+      },
+      {
+        "name": "measurement.md",
+        "kind": "doc",
+        "path": "scratch/measurement.md",
+        "source": "derived"
+      },
+      {
+        "name": "generated-inventory.md",
+        "kind": "doc",
+        "path": "scratch/generated-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "provenance-input.md",
+        "kind": "doc",
+        "path": "scratch/provenance-input.md",
+        "source": "derived"
+      },
+      {
+        "name": "provenance.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/derived/provenance.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fixture-demo.log",
+        "kind": "file",
+        "path": "scratch/fixture-demo.log",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`release-update.cjs` compares base, local and release blobs per file and derives a unit status from the resulting classes",
+    "created_at": "2026-10-03T05:27:40Z",
+    "last_save_at": "2026-10-03T15:12:23.304Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:03a547440f24ff29f9375a2cf31530ebe1c418e3f45be74fbb3910de3c04879f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e2a146303255e1946bdc9b2aa06a3e16e29d36ae272f1ef3366155660c612787",
+      "plan.md": "931cc02cca85844e5027edc9ee855bf50ce56a4f4338c04a922339abc80b56dd",
+      "tasks.md": "ee0e9469457c43287143c72a59aa56bee32be513197ba8acd5a0fb0af077c6eb",
+      "implementation-summary.md": "a78f65f6aaeefba3b73a8631af0f28e69a2ca5cb4685c41b0c0a622b4ddb1a29"
+    },
+    "last_active_at": null
+  }
+}

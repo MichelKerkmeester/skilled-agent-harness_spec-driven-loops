@@ -14,7 +14,7 @@ version: 1.2.0.3
 
 # Advisor Index Handoff
 
-The shared field vocabulary that `/create:skill`, `/create:skill-parent`, `/doctor:skill-advisor`, and `/doctor:parent-skill` all render after touching a skill root, so that scaffolding a skill and diagnosing its advisor state describe the same reality in the same words.
+The shared field vocabulary that `/create:skill`, `/create:skill-parent`, `/doctor:speckit skill-advisor`, and `/doctor:speckit parent-skill` all render after touching a skill root, so that scaffolding a skill and diagnosing its advisor state describe the same reality in the same words.
 
 ---
 
@@ -111,7 +111,7 @@ H-only fields render **omitted**, not `N/A` or a false negative, on standalone (
 | Parent `/create:skill-parent` create | Full handoff, H-specific values (`leaf-manifest.json` freshness from the scoped generator this workflow just ran) |
 | Parent `/create:skill-parent` update | Full handoff, H-specific values |
 | Reference-only / asset-only create branches | **Not** the full handoff — only the narrow conditional `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check <skillDir>` leaf-freshness signal, gated on the changed path falling under a configured leaf root |
-| `/doctor:skill-advisor` | Full handoff vocabulary, live values from `skill_graph_validate`/`advisor_rebuild`/`advisor_validate` |
-| `/doctor:parent-skill` | Full handoff vocabulary; read-only — distinguishes `leaf-manifest.json` missing from stale and points at the scoped generator, never attempts repair |
+| `/doctor:speckit skill-advisor` | Full handoff vocabulary, live values from `skill_graph_validate`/`advisor_rebuild`/`advisor_validate` |
+| `/doctor:speckit parent-skill` | Full handoff vocabulary, read-only. Distinguishes `leaf-manifest.json` missing from stale and points at the scoped generator, never attempts repair |
 
 Rendering the full handoff on a reference/asset-only branch would be misleading: those branches touch roots where the H-only fields are forbidden, so most of the handoff would be inapplicable noise around one real signal (research.md Theme F7).

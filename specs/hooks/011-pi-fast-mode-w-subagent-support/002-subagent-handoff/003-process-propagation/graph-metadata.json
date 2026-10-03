@@ -17,6 +17,10 @@
       "process-propagation plan",
       "child process environment test",
       "process-propagation tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "process-propagation implementation summary"
     ],
     "key_topics": [
@@ -31,7 +35,7 @@
       "plan",
       "test",
       "tasks",
-      "implementation"
+      "packet"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -58,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -175,30 +186,25 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Process Propagation",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Unit calls to a parser cannot prove that the actual child process receives the parent's environment or that a child toggle remains local to its copied environment",
     "created_at": "2026-08-16T09:08:04Z",
-    "last_save_at": "2026-08-30T15:39:09.658Z",
+    "last_save_at": "2026-10-03T16:54:26.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7acf339f018d6360594cc4bd869805042f88441d1527d73b1c96e9b4b7687c05",
+    "source_fingerprint": "sha256:5d808e8f288fe9f9cce2f46fbef2d35debf0f00450a28161ea69c6e5e3418985",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c8ef200cdc93996230860ce9ed2100f96bdcc7e38a6ef7165c8c782c3ff6827a",

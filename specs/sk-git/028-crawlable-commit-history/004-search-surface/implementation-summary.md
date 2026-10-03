@@ -91,9 +91,9 @@ One cli-pi dispatch on DeepSeek V4.1 Flash at high effort edited the four docume
 
 | Check | Result |
 |-------|--------|
-| validate_document.py x4 | VALID |
-| validate_catalog_package.py --package sk-git | 12 pre-existing warnings, 0 new |
-| validate-playbook-package.cjs --package sk-git | 2 pre-existing violations in the pre-push scenario, 0 new; scenario count 36 to 37 |
+| `validate_document.py` x4 | VALID |
+| `validate_catalog_package.py --package sk-git` | 12 pre-existing warnings, 0 new |
+| `validate-playbook-package.cjs --package sk-git` | 2 pre-existing violations in the pre-push scenario, 0 new; scenario count 36 to 37 |
 | Three queries on fixture commit 24f46cd | all returned it |
 <!-- /ANCHOR:verification -->
 

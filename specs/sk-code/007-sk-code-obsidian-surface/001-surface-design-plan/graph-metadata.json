@@ -18,7 +18,11 @@
       "surface design plan reading order",
       "obsidian surface plan drafting",
       "sk-code-obsidian design plan tasks",
-      "surface design plan task breakdown"
+      "surface design plan task breakdown",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "sk-code-obsidian",
@@ -40,6 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       "mode-design-plan.md"
     ],
@@ -60,6 +65,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -169,26 +180,39 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-code-obsidian` cannot be authored correctly on the first attempt without first grounding every",
     "created_at": "2026-08-28T18:17:35Z",
-    "last_save_at": "2026-09-03T22:52:15.844Z",
+    "last_save_at": "2026-10-03T16:45:22.387Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e787c7bf9c449af5378025594c70cc14ad9b1546a5fee45bff8faee2d1548756",
+    "source_fingerprint": "sha256:21255826df7f8f7487b0400150aa15f317ccc3f94f637222dab8f3ef97523dd5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "dcfd4dca5c01b8f3f19b483cf8f72815dff6cf39ec54b8d6058d545616753d8e",
       "plan.md": "481b7c3fabb4aed476a1504bb6b4fd94e82ab9c34012a973cee2c5f94dadade7",
       "tasks.md": "6ae3405ceeabc107e2fc3117ae348f9b180839ba048c92df0ed714ff773cdaa3",
-      "implementation-summary.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "implementation-summary.md": "2e743f8c31d09af53f2e36b49033fe587a6573f3395f7a94923d3281370357ea"
     },
     "last_active_child_id": null,
     "last_active_at": null

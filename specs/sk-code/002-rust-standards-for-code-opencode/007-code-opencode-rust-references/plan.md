@@ -1,6 +1,7 @@
 ---
 title: "Implementation Plan: Phase 7 — Split code-opencode Rust References"
 description: "Deterministic line-partition of the 4 Rust docs, then a lockstep rewire of the RUST/CODE_QUALITY router contract, gated by the three deterministic vitests."
+importance_tier: "normal"
 contextType: "implementation"
 trigger_phrases:
   - "implementation plan"

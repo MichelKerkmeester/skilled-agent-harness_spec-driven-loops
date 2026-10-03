@@ -13,14 +13,21 @@ contextType: "implementation"
 
 ---
 
-<!-- ANCHOR:tasks -->
-## Tasks
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Measure the trigger set
 
 - [x] T001 Read the manifest compiler to find the declared hash inputs
 - [x] T002 Probe one file class at a time against the route guard to find the real trigger set
+<!-- /ANCHOR:phase-1 -->
+
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Add the gate and prove three cases
+
 - [x] T003 Add the gate block to the pre-commit hook, patterned on the mirror-parity gate
 - [x] T004 Prove the three cases against the real hook and restore the tree
-<!-- /ANCHOR:tasks -->
+<!-- /ANCHOR:phase-2 -->
 
 ---
 

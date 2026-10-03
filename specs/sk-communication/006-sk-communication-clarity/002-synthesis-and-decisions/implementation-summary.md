@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "One verdict and one owning document per communication candidate, with every contested case settled by an Accepted ADR."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -41,6 +41,7 @@ _memory:
 | **Spec Folder** | 002-synthesis-and-decisions |
 | **Completed** | 2026-09-12 |
 | **Level** | 2 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,18 +49,20 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+One verdict per recommendation and one owning document per adopted recommendation. Of the 29 candidates, 25 are adopted with exactly one owner each and four are recorded as deliberate non-work with a blocking reason, so no rule grows a second copy that drifts.
 
 ### Phase 2: synthesis-and-decisions
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The contested cases are settled in writing: `decision-record.md` holds ten Accepted ADRs, including the colon-clause conflict (ADR-001 keeps the existing rule). The reader-profile question is answered as a decision: seven delivery rules bind whenever a reply is written, and three reader-conditional rules need an operator-selected mode that stays off by default.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `allocation-table.md` | Created | Allocation table, non-work register, rejection list and reader-profile split |
+| `decision-record.md` | Created | ADR-001 to ADR-010, all Accepted |
+| `spec.md` | Modified | Records the allocation once decided |
+| `tasks.md` | Modified | T001 to T025 ticked with evidence |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +70,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Both syntheses were read in full rather than through their dashboards: the DeepSeek `001-research-communication-context/research/research.md` at ten iterations and the LUNA `research/luna-fanout/lineages/luna/research.md` at five. The candidate union came from the phase 001 merge of 44 rows into 29, and the current stack was re-read so no verdict rested on memory of a rule.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +80,10 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| One owner per adopted row | Two owners means two copies, which drift the moment either is edited |
+| Non-work recorded, not dropped | Four candidates have no surface that can carry them today, and saying so is a decision |
+| Wording standard as base plus supplement | The two reply-facing wording candidates then move with the voice half |
+| Baseline captured in phase 003's setup | A baseline taken after the rules change cannot support a regression claim |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +93,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Verdict coverage | PASS, 29 of 29 rows carry a verdict, 4 non-work rows present |
+| Duplicate owner scan | PASS, 25 adopted rows, one owner each |
+| ADRs reachable and Accepted | PASS, checked by T003, T011 and T020 |
+| `validate.sh --strict` on this folder | Run by T025 from the final state |
+| `acceptance-criteria.md` AC-001 to AC-009 | All Met |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +105,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **ADR count drift in the records.** T003 and T020 speak of eight ADRs and AC-004 of nine, while `decision-record.md` now holds ten; the later ADRs were added after those checks ran.
 <!-- /ANCHOR:limitations -->
 
 ---

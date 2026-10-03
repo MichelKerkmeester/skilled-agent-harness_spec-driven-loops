@@ -46,7 +46,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "repo-rules/presenting-decisions.md",
+      ".skilled/repo-rules/communication-decisions.md",
       "repo-rules/communication.md"
     ],
     "entities": [
@@ -81,9 +81,9 @@
         "source": "derived"
       },
       {
-        "name": "presenting-decisions.md",
+        "name": "communication-decisions.md",
         "kind": "doc",
-        "path": "repo-rules/presenting-decisions.md",
+        "path": ".skilled/repo-rules/communication-decisions.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`communication.md` bundled three different trigger conditions under one",
     "created_at": "2026-09-11T17:16:17Z",
-    "last_save_at": "2026-09-11T17:37:50.033Z",
+    "last_save_at": "2026-10-03T15:43:36.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8dba7d667a7a0a9c0441202753f3181d4a5f5eeae1bd0c9a13539455a0303fe9",
+    "source_fingerprint": "sha256:42be5f113f3094040d0b9b25838e74c79a3203f52531b8e043faa1054793e12b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1d9213b7596bb28fd97129cceab970c47d8356165b98feb53cc35131c4936c60",
       "plan.md": "66210852764df1f0e90900632d1f0d4a23ce79e62082f2776da68dc4ff8d5330",
       "tasks.md": "26a875522c2d99d9de64ed09e321209f2f6394c0edfa512a28a092db6027178e",
-      "implementation-summary.md": "9a8667dfb08dc0229ebd5ec2fa62d8f30626e78eaeca03ab8a73ab1bce263531"
+      "implementation-summary.md": "90b18ac08d0e9540ab108103f3777fdc1986b7dcdfc3d453b8585167b7079838"
     },
     "last_active_at": null
   }

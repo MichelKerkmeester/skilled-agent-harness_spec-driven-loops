@@ -18,8 +18,11 @@
       "sk-code-obsidian phase 012 plan",
       "obsidian doc template conformance tasks",
       "sk-code-obsidian phase 012 tasks",
-      "implementation summary doc template conformance",
-      "sk-code-obsidian phase 012 findings"
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "implementation summary doc template conformance"
     ],
     "key_topics": [
       "obsidian",
@@ -41,6 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -60,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -165,42 +175,37 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Decisions Frozen",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "strict",
+        "kind": "key_phrase",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "As Measured",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 011 closed the packet's first ten phases with a live gate re-run, but named two phases still",
     "created_at": "2026-08-28T18:17:41Z",
-    "last_save_at": "2026-09-10T20:44:06.480Z",
+    "last_save_at": "2026-10-03T16:45:40.789Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc37e394fa868e6bf64ee93861ef9d8b79e9130ffac42298d57efbac26b2d50a",
+    "source_fingerprint": "sha256:99cb5c30cf1785131ff19d32fd26b8ffc1ee663d045738409ef563d9bc61bc5d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "32536a7db75c4cba2a065a16ef17553d927ab7c7972afef885f1d6f83f51e02c",

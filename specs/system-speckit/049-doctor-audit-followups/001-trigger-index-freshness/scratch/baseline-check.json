@@ -1,0 +1,1698 @@
+{
+  "corpusManifestHash": "bf9484b753db364e380df45be1db4b871d5d7e5ae1fd358e47ac626cd072b56b",
+  "documentsScanned": 23055,
+  "durationMs": 14497.097125,
+  "fresh": false,
+  "indexManifestHash": "6c0344fd7582f89d7247d6f9815da371d30c5ce4390b4bc316c110a744984d7c",
+  "indexPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/079-doctor-command-audit/.skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+  "missingDocuments": 176,
+  "obsoletePaths": [],
+  "staleDocuments": [
+    {
+      "added": [
+        "cross subsystem aligner doctor rebuild"
+      ],
+      "path": ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+      "removed": [
+        "cross subsystem aligner doctor update"
+      ]
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/mcp-tooling/021-code-mode-fresh-clone-build/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/mcp-tooling/021-code-mode-fresh-clone-build/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "feature specification",
+        "problem statement",
+        "requirements and scope",
+        "success criteria"
+      ],
+      "path": "specs/mcp-tooling/021-code-mode-fresh-clone-build/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/mcp-tooling/021-code-mode-fresh-clone-build/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/sk-doc/063-description-budget/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/sk-doc/063-description-budget/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "advisor routing keywords",
+        "agent description length",
+        "audit description surface",
+        "description budget overage",
+        "skill description trim"
+      ],
+      "path": "specs/sk-doc/063-description-budget/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/sk-doc/063-description-budget/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "ac traceability",
+        "acceptance criteria",
+        "closure gate",
+        "waiver adr"
+      ],
+      "path": "specs/system-deep-loop/040-read-only-and-research-bookkeeping/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-deep-loop/040-read-only-and-research-bookkeeping/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "bookkeeping repair plan",
+        "deep loop read only plan",
+        "graph database read only open",
+        "research run open gateway plan"
+      ],
+      "path": "specs/system-deep-loop/040-read-only-and-research-bookkeeping/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "coverage graph empty",
+        "deep loop read only mode",
+        "deep research bookkeeping",
+        "lock nonce release",
+        "research key questions unticked"
+      ],
+      "path": "specs/system-deep-loop/040-read-only-and-research-bookkeeping/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-deep-loop/040-read-only-and-research-bookkeeping/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "ac traceability",
+        "acceptance criteria",
+        "closure gate",
+        "waiver adr"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "advisor status freshness",
+        "degraded sqlite artifact",
+        "skill count scan truth",
+        "skill graph freshness panel"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "ac traceability",
+        "acceptance criteria",
+        "closure gate",
+        "waiver adr"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/002-router-reach-misroutes/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/002-router-reach-misroutes/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/002-router-reach-misroutes/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "live fleet rerun",
+        "outranked routing phrases",
+        "router reach misroutes",
+        "wrong hub phrases"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/002-router-reach-misroutes/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/002-router-reach-misroutes/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "ac traceability",
+        "acceptance criteria",
+        "closure gate",
+        "waiver adr"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "advisor scorer references",
+        "embeddings health status",
+        "phrase boost bound",
+        "trusted mutation docs"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "advisor embeddings health",
+        "advisor status truthfulness",
+        "router reach misroutes",
+        "skill graph freshness"
+      ],
+      "path": "specs/system-skill-advisor/033-advisor-status-truthfulness/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor mcp install audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor mcp install audit",
+        "doctor mcp install relevance",
+        "doctor mcp install yaml"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor mcp debug audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor mcp debug audit",
+        "doctor mcp debug relevance",
+        "doctor mcp debug yaml"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor update audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor update split decision",
+        "doctor update yaml superseded",
+        "release updater over rebuild"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/decision-record.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor mcp install audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor mcp install audit",
+        "doctor mcp install relevance",
+        "doctor mcp install yaml"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor mcp debug audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor mcp debug audit",
+        "doctor mcp debug relevance",
+        "doctor mcp debug yaml"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor env command acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor env",
+        "doctor env command",
+        "guided env setup"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/1/content/specs/system-speckit/048-doctor-command-audit/014-doctor-env/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor deep loop audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor deep loop audit",
+        "doctor deep loop yaml",
+        "doctor speckit deep loop relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/004-deep-loop/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor embeddings audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor embeddings audit",
+        "doctor embeddings yaml",
+        "doctor speckit embeddings relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/005-embeddings/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor fable mode audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor fable mode audit",
+        "doctor fable mode yaml",
+        "doctor speckit fable mode relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor router reach audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor router reach audit",
+        "doctor router reach yaml",
+        "doctor speckit router reach relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/10/content/specs/system-speckit/048-doctor-command-audit/008-router-reach/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor fable mode audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/9/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/9/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/9/content/specs/system-speckit/048-doctor-command-audit/006-fable-mode/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor update redesign",
+        "release alignment proposal",
+        "release aware doctor update",
+        "skill customization detection"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/deep-research-strategy.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor rebuild split",
+        "doctor update redesign research",
+        "release aware doctor update",
+        "skill customization alignment proposal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/research.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor update audit",
+        "doctor update relevance",
+        "doctor update yaml"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/003-update/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor deep loop audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/004-deep-loop/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/004-deep-loop/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/004-deep-loop/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/004-deep-loop/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor deep loop audit",
+        "doctor deep loop yaml",
+        "doctor speckit deep loop relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/004-deep-loop/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/004-deep-loop/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor embeddings audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/005-embeddings/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/005-embeddings/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/005-embeddings/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/005-embeddings/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor embeddings audit",
+        "doctor embeddings yaml",
+        "doctor speckit embeddings relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/005-embeddings/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/005-embeddings/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor fable mode audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/006-fable-mode/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/006-fable-mode/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/006-fable-mode/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/006-fable-mode/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor fable mode audit",
+        "doctor fable mode yaml",
+        "doctor speckit fable mode relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/006-fable-mode/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/006-fable-mode/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor parent skill audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/007-parent-skill/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/007-parent-skill/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/007-parent-skill/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/007-parent-skill/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor parent skill audit",
+        "doctor parent skill yaml",
+        "doctor speckit parent skill relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/007-parent-skill/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/007-parent-skill/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor router reach audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/008-router-reach/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/008-router-reach/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/008-router-reach/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/008-router-reach/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor router reach audit",
+        "doctor router reach yaml",
+        "doctor speckit router reach relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/008-router-reach/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/008-router-reach/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor runtime mirrors audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/009-runtime-mirrors/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/009-runtime-mirrors/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/009-runtime-mirrors/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/009-runtime-mirrors/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor runtime mirrors audit",
+        "doctor runtime mirrors yaml",
+        "doctor speckit runtime mirrors relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/009-runtime-mirrors/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/009-runtime-mirrors/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor skill advisor audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/010-skill-advisor/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/010-skill-advisor/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/010-skill-advisor/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/010-skill-advisor/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor skill advisor audit",
+        "doctor skill advisor yaml",
+        "doctor speckit skill advisor relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/010-skill-advisor/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/010-skill-advisor/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor skill budget audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/011-skill-budget/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/011-skill-budget/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/011-skill-budget/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/011-skill-budget/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor skill budget audit",
+        "doctor skill budget yaml",
+        "doctor speckit skill budget relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/011-skill-budget/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/011-skill-budget/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor skill graph freshness audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/012-skill-graph-freshness/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/012-skill-graph-freshness/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/012-skill-graph-freshness/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/012-skill-graph-freshness/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor skill graph freshness audit",
+        "doctor skill graph freshness yaml",
+        "doctor speckit skill graph freshness relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/012-skill-graph-freshness/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/012-skill-graph-freshness/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor speckit retrieval audit acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/013-speckit-retrieval/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/013-speckit-retrieval/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/013-speckit-retrieval/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/013-speckit-retrieval/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor speckit retrieval audit",
+        "doctor speckit retrieval yaml",
+        "doctor speckit speckit retrieval relevance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/013-speckit-retrieval/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/013-speckit-retrieval/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor env command acceptance"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/014-doctor-env/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/014-doctor-env/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/014-doctor-env/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "architecture decisions",
+        "implementation plan",
+        "technical approach",
+        "testing strategy"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/014-doctor-env/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor env",
+        "doctor env command",
+        "guided env setup"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/014-doctor-env/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/014-doctor-env/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "completion criteria",
+        "durable directive",
+        "goal binding",
+        "packet goal"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/goal.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor command audit",
+        "doctor command relevance",
+        "doctor env command",
+        "doctor mcp code mode"
+      ],
+      "path": "specs/system-speckit/048-doctor-command-audit/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "ac traceability",
+        "acceptance criteria",
+        "closure gate",
+        "waiver adr"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/001-trigger-index-freshness/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/001-trigger-index-freshness/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "folder token fallback",
+        "implementation plan",
+        "staleness evidence",
+        "trigger index regeneration"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/001-trigger-index-freshness/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "byte identical regeneration",
+        "retrieval conventions symlink",
+        "ripgrep version pin",
+        "stale trigger index",
+        "trigger index freshness"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/001-trigger-index-freshness/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/001-trigger-index-freshness/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "ac traceability",
+        "acceptance criteria",
+        "closure gate",
+        "waiver adr"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/002-release-update-customization-signals/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/002-release-update-customization-signals/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "base recording",
+        "generated class",
+        "implementation plan",
+        "release engine changes"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/002-release-update-customization-signals/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "base manifest recording",
+        "generated file classification",
+        "prerelease policy",
+        "provenance fingerprint prefilter",
+        "release update customization"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/002-release-update-customization-signals/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/002-release-update-customization-signals/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "ac traceability",
+        "acceptance criteria",
+        "closure gate",
+        "waiver adr"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/acceptance-criteria.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "decision record",
+        "description budget packet",
+        "skill budget handoff"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/decision-record.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "continuation notes",
+        "implementation summary",
+        "validation evidence",
+        "what shipped"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/implementation-summary.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "fixture resolution",
+        "guard manifest",
+        "implementation plan",
+        "route validator activities"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/plan.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor gates drift",
+        "env reference count",
+        "mutation class coverage",
+        "parent skill fixtures",
+        "route validate activities"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/spec.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "implementation tasks",
+        "task breakdown",
+        "task dependencies",
+        "verification checklist"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift/tasks.md",
+      "removed": []
+    },
+    {
+      "added": [
+        "doctor audit followups",
+        "doctor gates drift",
+        "release update signals",
+        "trigger index freshness"
+      ],
+      "path": "specs/system-speckit/049-doctor-audit-followups/spec.md",
+      "removed": []
+    }
+  ],
+  "untrustedDocuments": []
+}

@@ -3,8 +3,6 @@ title: "Tasks: Phase 013 Capability-Evidence Unblock"
 description: "Planned task breakdown for fresh capability evidence, snapshot merge, supported transport reachability, and fail-closed reversal."
 trigger_phrases:
   - "capability-evidence-unblock"
-  - "tasks"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

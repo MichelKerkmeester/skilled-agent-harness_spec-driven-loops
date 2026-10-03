@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/048-doctor-command-audit/010-skill-advisor",
+  "spec_folder": "system-speckit/048-doctor-command-audit/010-skill-advisor",
+  "parent_id": "system-speckit/048-doctor-command-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor skill-advisor audit",
+      "/doctor:speckit skill-advisor relevance",
+      "doctor-skill-advisor.yaml",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "doctor skill-advisor audit acceptance"
+    ],
+    "key_topics": [
+      "doctor",
+      "skill-advisor",
+      "audit",
+      "speckit",
+      "relevance",
+      "doctor-skill-advisor",
+      "yaml",
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/assets/doctor-skill-advisor.yaml",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      "scratch/reality-check.md",
+      "scratch/doctor-run.log",
+      "scratch/proposal.md",
+      ".skilled/commands/doctor/speckit.md",
+      ".skilled/bin/skill-advisor.cjs",
+      ".skilled/commands/speckit/README.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-advisor.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-skill-advisor.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
+        "source": "derived"
+      },
+      {
+        "name": "proposal.md",
+        "kind": "doc",
+        "path": "scratch/proposal.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/doctor:speckit skill-advisor` checks and repairs the skill advisor",
+    "created_at": "2026-10-02T16:10:23Z",
+    "last_save_at": "2026-10-03T11:48:56.193Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e8c3374ccf9eb6c0becd84466b8ee1ed8eade58935da3c520a609608c4cfb1be",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "308fab621bf2fc590145d33b8a85a24651aa3e1b81dd2bc83c7ee9f6e7c93098",
+      "plan.md": "78d75a53848900fb6e5274bb09dc47d9196b241190bf8f023e7a15cde8ed4c83",
+      "tasks.md": "cc22bda5588940f690f15ee15dcd437f8976934ad4b65c589442ecc3b434f184",
+      "implementation-summary.md": "099ddd539df6a6c5f55a7c9a76321f2c11da5d59dcc3ed5694600954f2b537b3"
+    },
+    "last_active_at": null
+  }
+}

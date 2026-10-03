@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`PIMODELPROVIDERS` maps the bare `deepseek-v4.1-flash` literal to `llmgateway`, and one literal maps to one provider, so `/deep:review` and `/deep:research` with `--executor=cli-pi` can only reach DeepSeek V4.1 Flash through DevPass",
     "created_at": "2026-10-02T18:36:37Z",
-    "last_save_at": "2026-10-02T19:03:13.983Z",
+    "last_save_at": "2026-10-03T18:54:55.145Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e0bfed83e662acb586b088e4e1a3687f742186858ede4cff56d82f64cb73c80",
+    "source_fingerprint": "sha256:f6384e4418e73c44cae42929c7c9ad74fff5d95fc1e1168850b33725823eac4a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2d1ba57294dc04b60c22ed1aca6e3695242b6cfabcc9457965eb9b25f368e2bc",
       "plan.md": "4820bf5e33a9712303eb98b1b5d07610f7366402150449b8cd434ebc019bfa21",
       "tasks.md": "88b683c46b7ca05c7ff35edab8fcd41ee71798dff85b50ee34c7bc79099c6674",
-      "implementation-summary.md": "99a9ddd13d1ff0fa8eafbe269750f67f9baeefd0a856dcdc0d58e225ccc5b560"
+      "implementation-summary.md": "b5f44a3ef188ae866e4ade67e1573984c3e7b0bd94789daf1189b6efdfc861fe"
     },
     "last_active_at": null
   }

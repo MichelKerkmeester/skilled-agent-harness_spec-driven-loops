@@ -1,6 +1,49 @@
 #!/usr/bin/env bash
-# Prepare the system-spec-kit runtime before /doctor:update asks OpenCode for MCP tools.
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: DOCTOR RUNTIME BOOTSTRAP
+# ───────────────────────────────────────────────────────────────
+# Prepares the system-spec-kit runtime before /doctor:rebuild asks OpenCode for
+# MCP tools: moves a legacy .opencode/skill directory to .opencode/skills,
+# installs the workspace dependencies and builds @spec-kit/runtime plus
+# @spec-kit/cli when their dist helpers are missing. Every terminal path except
+# bad arguments and a missing .opencode directory writes the state file.
+#
+# Usage: doctor-runtime-bootstrap.sh [--root <workspace>] [--json]
+#
+# Environment:
+#   DOCTOR_BOOTSTRAP_LOCK  Lock directory. Defaults to
+#                          .doctor-rebuild.bootstrap.lock in the advisor database dir.
+#
+# Exit Codes:
+#   0 - Runtime ready (state status=complete)
+#   1 - Bootstrap failed (state status=failed), or no .opencode directory
+#   2 - Bad arguments
+#   3 - Another bootstrap holds the lock (state status=busy)
 set -euo pipefail
+
+# ───────────────────────────────────────────────────────────────
+# 1. ARGUMENTS
+# ───────────────────────────────────────────────────────────────
+
+show_help() {
+  cat <<'HELP'
+Usage: bash .skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh [--root <workspace>] [--json]
+
+Moves a legacy .opencode/skill directory to .opencode/skills when present (in
+this repository .opencode/skills is a symlink to .skilled/skills), installs
+system-spec-kit workspace dependencies, and builds the @spec-kit/runtime and
+@spec-kit/cli workspaces /doctor:rebuild needs.
+
+State: .opencode/skills/system-skill-advisor/runtime/database/.doctor-rebuild.bootstrap.json
+Lock:  .doctor-rebuild.bootstrap.lock beside the state file, or $DOCTOR_BOOTSTRAP_LOCK
+
+Exit codes:
+  0  runtime ready (status=complete)
+  1  bootstrap failed (status=failed), or no .opencode directory
+  2  bad arguments
+  3  another bootstrap holds the lock (status=busy)
+HELP
+}
 
 ROOT=""
 JSON_MODE=false
@@ -20,13 +63,7 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     --help|-h)
-      cat <<'HELP'
-Usage: bash .skilled/commands/doctor/scripts/doctor-runtime-bootstrap.sh [--root <workspace>] [--json]
-
-Migrates a legacy .opencode/skill directory into .skilled/skills when present,
-installs system-spec-kit workspace dependencies, and builds the MCP server and
-script runtimes needed by /doctor:update.
-HELP
+      show_help
       exit 0
       ;;
     *)
@@ -36,81 +73,96 @@ HELP
   esac
 done
 
-if [[ -z "$ROOT" ]]; then
-  ROOT="$(pwd)"
-fi
-ROOT="$(cd "$ROOT" && pwd)"
+# ───────────────────────────────────────────────────────────────
+# 2. PATHS
+# ───────────────────────────────────────────────────────────────
 
+ROOT="$(cd "${ROOT:-.}" && pwd)"
 OPENCODE_DIR="$ROOT/.opencode"
 SKILLS_DIR="$OPENCODE_DIR/skills"
 LEGACY_SKILL_DIR="$OPENCODE_DIR/skill"
 KIT_DIR="$SKILLS_DIR/system-spec-kit"
-# Runtime state for /doctor:update. It lives in the advisor's database directory
+# Runtime state for /doctor:rebuild. It lives in the advisor's database directory
 # because that one is tracked and gitignore-managed; the spec-kit runtime/database
 # directory that used to hold it left with its server and is absent on a fresh clone.
 DB_DIR="$SKILLS_DIR/system-skill-advisor/runtime/database"
-STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
-LOCK_FILE="/tmp/doctor-runtime-bootstrap.lock"
+STATE_FILE="$DB_DIR/.doctor-rebuild.bootstrap.json"
+# Per workspace, so worktrees and users never share one lock.
+LOCK_DIR="${DOCTOR_BOOTSTRAP_LOCK:-$DB_DIR/.doctor-rebuild.bootstrap.lock}"
 GRAPH_BACKFILL_DIST="$KIT_DIR/runtime/cli/dist/graph/backfill-graph-metadata.js"
 DESCRIPTION_DIST="$KIT_DIR/runtime/cli/dist/spec-folder/generate-description.js"
 
 started_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 actions_file="$(mktemp "${TMPDIR:-/tmp}/doctor-runtime-bootstrap-actions.XXXXXX")"
 restart_required=false
+lock_held=false
 
-finish_state() {
-  local status="$1"
-  local message="${2:-}"
-  local ended_at
-  ended_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-
-  mkdir -p "$DB_DIR"
-  STARTED_AT="$started_at" \
-  ENDED_AT="$ended_at" \
-  STATUS="$status" \
-  MESSAGE="$message" \
-  RESTART_REQUIRED="$restart_required" \
-  ACTIONS_FILE="$actions_file" \
-  STATE_FILE="$STATE_FILE" \
-  node <<'NODE'
-const fs = require('fs');
-
-const actions = fs.existsSync(process.env.ACTIONS_FILE)
-  ? fs.readFileSync(process.env.ACTIONS_FILE, 'utf8').split('\n').filter(Boolean)
-  : [];
-
-const payload = {
-  command: '/doctor:update',
-  phase: 'runtime-bootstrap',
-  start: process.env.STARTED_AT,
-  end: process.env.ENDED_AT,
-  status: process.env.STATUS,
-  restart_required: process.env.RESTART_REQUIRED === 'true',
-  actions,
-};
-
-if (process.env.MESSAGE) {
-  payload.message = process.env.MESSAGE;
-}
-
-fs.writeFileSync(process.env.STATE_FILE, `${JSON.stringify(payload, null, 2)}\n`);
-NODE
-}
+# ───────────────────────────────────────────────────────────────
+# 3. STATE AND OUTPUT
+# ───────────────────────────────────────────────────────────────
 
 cleanup() {
   rm -f "$actions_file"
+  if [[ "$lock_held" == true ]]; then
+    rm -rf "$LOCK_DIR"
+  fi
 }
 trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 record_action() {
   printf '%s\n' "$1" >> "$actions_file"
 }
 
+_json_escape() {
+  local s="$1"
+  s="${s//\\/\\\\}"
+  s="${s//\"/\\\"}"
+  s="${s//$'\n'/\\n}"
+  s="${s//$'\r'/\\r}"
+  s="${s//$'\t'/\\t}"
+  printf '%s' "$s"
+}
+
+# Write the state file without node, so a missing toolchain still leaves a record
+# Args: $1=status $2=message (optional)
+finish_state() {
+  local status="$1" message="${2:-}" ended_at action separator=""
+  ended_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  mkdir -p "$DB_DIR"
+  {
+    printf '{\n'
+    printf '  "command": "/doctor:rebuild",\n'
+    printf '  "phase": "runtime-bootstrap",\n'
+    printf '  "start": "%s",\n' "$started_at"
+    printf '  "end": "%s",\n' "$ended_at"
+    printf '  "status": "%s",\n' "$(_json_escape "$status")"
+    printf '  "restart_required": %s,\n' "$restart_required"
+    printf '  "actions": ['
+    while IFS= read -r action; do
+      [[ -n "$action" ]] || continue
+      printf '%s\n    "%s"' "$separator" "$(_json_escape "$action")"
+      separator=","
+    done < "$actions_file"
+    if [[ -n "$separator" ]]; then
+      printf '\n  ]'
+    else
+      printf ']'
+    fi
+    if [[ -n "$message" ]]; then
+      printf ',\n  "message": "%s"' "$(_json_escape "$message")"
+    fi
+    printf '\n}\n'
+  } > "$STATE_FILE.tmp.$$"
+  mv "$STATE_FILE.tmp.$$" "$STATE_FILE"
+}
+
 emit() {
   if [[ "$JSON_MODE" == true ]]; then
-    node -e "const fs=require('fs'); process.stdout.write(fs.readFileSync(process.argv[1], 'utf8'))" "$STATE_FILE"
+    cat "$STATE_FILE"
   else
-    echo "$1"
+    printf '%s\n' "$1"
   fi
 }
 
@@ -121,43 +173,97 @@ fail() {
   exit 1
 }
 
+# ───────────────────────────────────────────────────────────────
+# 4. LOCKING
+# ───────────────────────────────────────────────────────────────
+
+# Take the lock with an atomic mkdir, which needs no flock binary and never
+# follows a planted symlink. A lock whose recorded holder no longer runs was
+# left by a killed bootstrap and is reclaimed once.
+# Returns: 0 when held, 1 when another live bootstrap holds it
+acquire_lock() {
+  local holder=""
+  mkdir -p "${LOCK_DIR%/*}"
+  if ! mkdir "$LOCK_DIR" 2>/dev/null; then
+    [[ -d "$LOCK_DIR" ]] || fail "cannot create lock directory $LOCK_DIR"
+    holder="$(cat "$LOCK_DIR/pid" 2>/dev/null || true)"
+    if [[ ! "$holder" =~ ^[0-9]+$ ]] || kill -0 "$holder" 2>/dev/null; then
+      return 1
+    fi
+    rm -rf "$LOCK_DIR"
+    mkdir "$LOCK_DIR" 2>/dev/null || return 1
+    record_action "reclaimed a stale bootstrap lock left by process $holder"
+  fi
+  lock_held=true
+  printf '%s\n' "$$" > "$LOCK_DIR/pid"
+}
+
+# ───────────────────────────────────────────────────────────────
+# 5. LEGACY LAYOUT
+# ───────────────────────────────────────────────────────────────
+
+# Move a real legacy .opencode/skill directory to .opencode/skills. This runs
+# before anything creates paths under .opencode/skills, otherwise a legacy
+# layout would look like a stray copy and be backed up instead of promoted. A
+# layout move alone never forces a restart; a fresh install still restarts via
+# the build step.
+migrate_legacy_layout() {
+  local backup
+  if [[ ! -d "$LEGACY_SKILL_DIR" || -L "$LEGACY_SKILL_DIR" ]]; then
+    return 0
+  fi
+  if [[ ! -e "$SKILLS_DIR" && ! -L "$SKILLS_DIR" ]]; then
+    mv "$LEGACY_SKILL_DIR" "$SKILLS_DIR"
+    record_action "promoted legacy .opencode/skill directory to .opencode/skills"
+  elif [[ -d "$SKILLS_DIR" ]]; then
+    backup="$OPENCODE_DIR/skill_legacy_backup_$(date -u +%Y%m%dT%H%M%SZ)"
+    mv "$LEGACY_SKILL_DIR" "$backup"
+    record_action "moved stray legacy .opencode/skill directory to ${backup#"$ROOT"/}"
+  fi
+}
+
+# ───────────────────────────────────────────────────────────────
+# 6. BUILD
+# ───────────────────────────────────────────────────────────────
+
+# Install dependencies and build both workspaces from the kit directory. Each
+# step returns explicitly because errexit is off inside a tested function.
+run_build() {
+  cd "$KIT_DIR" || return 1
+  if [[ -f package-lock.json ]]; then
+    npm ci --no-fund --silent || return 1
+  else
+    npm install --no-fund --silent || return 1
+  fi
+  if ! npm audit --audit-level=high; then
+    printf '[doctor-bootstrap] WARNING: npm audit found high-severity issues. Continuing bootstrap; investigate at next opportunity.\n' >&2
+  fi
+  npm run build --workspace=@spec-kit/runtime || return 1
+  npm run build --workspace=@spec-kit/cli || return 1
+}
+
+# ───────────────────────────────────────────────────────────────
+# 7. MAIN
+# ───────────────────────────────────────────────────────────────
+
 if [[ ! -d "$OPENCODE_DIR" ]]; then
   echo "doctor-runtime-bootstrap: .opencode directory not found under $ROOT" >&2
   exit 1
 fi
 
+migrate_legacy_layout
 mkdir -p "$DB_DIR"
-exec 9>"$LOCK_FILE"
-if ! flock -n 9; then
-  printf '[doctor-bootstrap] Another bootstrap is in progress (lock %s held). Exiting.\n' "$LOCK_FILE" >&2
-  exit 0
-fi
 
-# Migrate a real legacy .opencode/skill directory into the canonical .skilled/skills
-# layout. Every launcher and config resolves the plural path directly, so the singular
-# .opencode/skill compatibility symlink is unnecessary. The bootstrap no longer creates it,
-# and a layout move alone never forces a restart -- the old code recreated the shim whenever
-# it was absent and looped restart_required, blocking the rebuild. A genuine fresh install
-# still restarts via the dist build step below.
-if [[ ! -d "$SKILLS_DIR" && -d "$LEGACY_SKILL_DIR" && ! -L "$LEGACY_SKILL_DIR" ]]; then
-  mv "$LEGACY_SKILL_DIR" "$SKILLS_DIR"
-  record_action "promoted legacy .opencode/skill directory to .skilled/skills"
-elif [[ -d "$SKILLS_DIR" && -d "$LEGACY_SKILL_DIR" && ! -L "$LEGACY_SKILL_DIR" ]]; then
-  backup="$OPENCODE_DIR/skill_legacy_backup_$(date -u +%Y%m%dT%H%M%SZ)"
-  mv "$LEGACY_SKILL_DIR" "$backup"
-  record_action "moved stray legacy .opencode/skill directory to ${backup#$ROOT/}"
+if ! acquire_lock; then
+  printf '[doctor-bootstrap] Another bootstrap holds the lock %s. Rerun after it finishes, or remove the lock if no bootstrap is running.\n' "$LOCK_DIR" >&2
+  finish_state "busy" "another bootstrap holds the lock $LOCK_DIR"
+  emit "BOOTSTRAP_BUSY restart_required=$restart_required state_log=$STATE_FILE lock=$LOCK_DIR"
+  exit 3
 fi
-
-KIT_DIR="$SKILLS_DIR/system-spec-kit"
-DB_DIR="$SKILLS_DIR/system-skill-advisor/runtime/database"
-STATE_FILE="$DB_DIR/.doctor-update.bootstrap.json"
-GRAPH_BACKFILL_DIST="$KIT_DIR/runtime/cli/dist/graph/backfill-graph-metadata.js"
-DESCRIPTION_DIST="$KIT_DIR/runtime/cli/dist/spec-folder/generate-description.js"
 
 if [[ ! -d "$KIT_DIR" ]]; then
   fail "system-spec-kit not found at $KIT_DIR"
 fi
-
 if ! command -v node >/dev/null 2>&1; then
   fail "node is required to build system-spec-kit"
 fi
@@ -165,41 +271,13 @@ if ! command -v npm >/dev/null 2>&1; then
   fail "npm is required to build system-spec-kit"
 fi
 
-need_build=false
 if [[ ! -f "$GRAPH_BACKFILL_DIST" || ! -f "$DESCRIPTION_DIST" ]]; then
-  need_build=true
   record_action "detected missing runtime/cli/dist migration helpers"
-fi
-
-if [[ "$need_build" == true ]]; then
+  # Under --json, stdout carries only the state document.
   if [[ "$JSON_MODE" == true ]]; then
-    (
-      cd "$KIT_DIR"
-      if [[ -f package-lock.json ]]; then
-        npm ci --no-fund --silent
-      else
-        npm install --no-fund --silent
-      fi
-      npm audit --audit-level=high || {
-        printf '[doctor-bootstrap] WARNING: npm audit found high-severity issues. Continuing bootstrap; investigate at next opportunity.\n' >&2
-      }
-      npm run build --workspace=@spec-kit/runtime
-      npm run build --workspace=@spec-kit/cli
-    ) >&2
+    ( run_build ) >&2 || fail "dependency install or build failed in $KIT_DIR"
   else
-    (
-      cd "$KIT_DIR"
-      if [[ -f package-lock.json ]]; then
-        npm ci --no-fund --silent
-      else
-        npm install --no-fund --silent
-      fi
-      npm audit --audit-level=high || {
-        printf '[doctor-bootstrap] WARNING: npm audit found high-severity issues. Continuing bootstrap; investigate at next opportunity.\n' >&2
-      }
-      npm run build --workspace=@spec-kit/runtime
-      npm run build --workspace=@spec-kit/cli
-    )
+    ( run_build ) || fail "dependency install or build failed in $KIT_DIR"
   fi
   restart_required=true
   record_action "installed dependencies and built @spec-kit/runtime plus @spec-kit/cli"

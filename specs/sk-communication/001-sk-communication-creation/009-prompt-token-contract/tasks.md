@@ -3,8 +3,6 @@ title: "Tasks: Phase 009 Prompt Token-Contract"
 description: "Planned task breakdown for the versioned marker contract, synthetic example, and fixed-corpus verification."
 trigger_phrases:
   - "prompt-token-contract"
-  - "tasks"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

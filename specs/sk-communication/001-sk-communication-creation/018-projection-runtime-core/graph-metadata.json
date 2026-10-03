@@ -16,8 +16,6 @@
       "provider transport default",
       "communication projection runtime",
       "implementation plan",
-      "tasks",
-      "implementation",
       "architecture decision",
       "default provider transport",
       "implementation summary"
@@ -34,7 +32,7 @@
       "runtime",
       "implementation",
       "plan",
-      "tasks"
+      "architecture"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -43,9 +41,7 @@
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/executor.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/index.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -76,18 +72,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "executor.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/executor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/index.ts",
         "source": "derived"
       },
       {
@@ -191,11 +175,23 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The provider adapters only prepare and parse; there is no default transport implementation, so the executor cannot run out of the box",
     "created_at": "2026-08-14T05:26:32.058Z",
-    "last_save_at": "2026-09-03T22:17:05.620Z",
+    "last_save_at": "2026-10-03T15:12:02.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +201,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:860e11c71e949277d8c3cac5946e9b3042d121aa2d78c9bf280bd1076a7c7ea9",
+    "source_fingerprint": "sha256:0f207931f5a8ebb3465ef0c73ac11c23eb476c359969d65b0d1f9e4a78ac2422",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b5095777aeb7af9be9aa1904a33132d523885ebaee2fb8fc322574a512ba7c9b",
       "plan.md": "88ec17e32466bddd9b602e10ef62f2f97768a373e638ae97b371d942e62a5d4b",
-      "tasks.md": "ed8793addcafc95c664255615cce4414ba75589bacf6b50c90e7dd9f0e9fcd8b",
+      "tasks.md": "07a0a87dd0ea47301d26d733d261d5e004ce7d26e39bdb8ef821a88262bbfa5c",
       "decision-record.md": "b8d0a8056cfa48f038a8969f4ecd84ad001b2eeb7db6c524d0beffdb6ec9b736",
       "implementation-summary.md": "368be3385f65f48c5067b2e88a062e70bf4bfaa0c9e4b505908ee4579a04cd70"
     },

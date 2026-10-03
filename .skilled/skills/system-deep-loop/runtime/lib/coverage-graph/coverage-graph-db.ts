@@ -2,7 +2,7 @@
 // MODULE: Coverage Graph Database
 // ───────────────────────────────────────────────────────────────────
 
-import { mkdirSync, statSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -147,7 +147,8 @@ export interface BatchUpsertResult {
 export const SCHEMA_VERSION = 4;
 
 const DB_FILENAME = 'deep-loop-graph.sqlite';
-export const COVERAGE_GRAPH_DATABASE_DIR = join(
+// Lets tests and diagnostics point at a scratch directory instead of the checked-in database.
+export const COVERAGE_GRAPH_DATABASE_DIR = process.env.DEEP_LOOP_COVERAGE_DB_DIR || join(
   dirname(fileURLToPath(import.meta.url)),
   '..',
   '..',
@@ -305,6 +306,8 @@ let db: Database.Database | null = null;
 let dbPath: string | null = null;
 let statementDb: Database.Database | null = null;
 const preparedStatements = new Map<string, Database.Statement>();
+let readOnly = false;
+let readOnlyPresent = false;
 
 /**
  * Initialize (or get) the coverage graph database.
@@ -370,6 +373,77 @@ export function initDb(dbDir: string): Database.Database {
   }
 }
 
+// The ambient declaration types only the writable constructor, so the
+// read-only open names the options overload it omits.
+const ReadOnlyDatabase = Database as unknown as new (
+  filename: string | Buffer,
+  options: { readonly: boolean; fileMustExist?: boolean },
+) => Database.Database;
+
+/**
+ * Open the coverage graph database for read-only queries.
+ *
+ * Never creates a directory or a database file. An absent database is served
+ * from an in-memory schema so queries return empty rows without touching disk.
+ *
+ * @param dbDir - Directory for the database file.
+ * @returns Whether the on-disk database file was present.
+ */
+export function openReadOnlyDb(dbDir: string = COVERAGE_GRAPH_DATABASE_DIR): { present: boolean } {
+  if (db && readOnly) return { present: readOnlyPresent };
+
+  if (db) {
+    db.close();
+    db = null;
+    dbPath = null;
+    statementDb = null;
+    preparedStatements.clear();
+  }
+
+  const path = join(dbDir, DB_FILENAME);
+  if (existsSync(path)) {
+    if (!existsSync(`${path}-wal`) && !existsSync(`${path}-shm`)) {
+      // A path open of a WAL-mode file recreates its -wal and -shm side files on the first
+      // query; the patched copy opens from memory in rollback mode without touching disk.
+      const buffer = readFileSync(path);
+      buffer[18] = 1;
+      buffer[19] = 1;
+      db = new ReadOnlyDatabase(buffer, { readonly: true });
+    } else {
+      db = new ReadOnlyDatabase(path, { readonly: true, fileMustExist: true });
+    }
+    dbPath = path;
+    readOnlyPresent = true;
+  } else {
+    db = new Database(':memory:');
+    db.exec(SCHEMA_SQL);
+    db.prepare('INSERT INTO schema_version (version) VALUES (?)').run(SCHEMA_VERSION);
+    dbPath = null;
+    readOnlyPresent = false;
+  }
+
+  readOnly = true;
+  return { present: readOnlyPresent };
+}
+
+/**
+ * Report whether the active connection is a read-only one.
+ *
+ * @returns True when openReadOnlyDb opened the current connection.
+ */
+export function isReadOnlyDb(): boolean {
+  return readOnly;
+}
+
+/**
+ * Report whether the read-only open found the database file on disk.
+ *
+ * @returns True when the read-only connection is backed by a database file.
+ */
+export function isReadOnlyDbPresent(): boolean {
+  return readOnlyPresent;
+}
+
 /**
  * Get the current database instance (lazy-initializes if needed).
  *
@@ -391,6 +465,8 @@ export function closeDb(): void {
     statementDb = null;
     preparedStatements.clear();
   }
+  readOnly = false;
+  readOnlyPresent = false;
 }
 
 // ───────────────────────────────────────────────────────────────────

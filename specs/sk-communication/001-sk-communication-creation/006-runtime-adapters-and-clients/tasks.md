@@ -3,8 +3,6 @@ title: "Tasks: Phase 006 Runtime Adapters and Clients"
 description: "Implementation task breakdown for integrating the projection core with six CLIs through their safest supported event and presentation boundaries."
 trigger_phrases:
   - "runtime-adapters-and-clients"
-  - "tasks"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

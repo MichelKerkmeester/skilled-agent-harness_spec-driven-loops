@@ -17,7 +17,11 @@
     "trigger_phrases": [
       "integration-and-tests workstream",
       "fast-mode install transition",
-      "fast-mode live verification"
+      "fast-mode live verification",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "integration-and-tests",
@@ -27,25 +31,35 @@
       "transition",
       "live",
       "verification",
-      "unit",
-      "tests",
-      "cannot",
-      "prove",
-      "extension"
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "goal.md",
       ".pi/settings.json",
       ".pi/PLUGINS.md",
-      ".pi/SYNC.md"
+      ".pi/SYNC.md",
+      "001-extension-integration-suite/goal.md",
+      "002-install-transition/goal.md",
+      "003-live-verification-and-sync/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -101,17 +115,54 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Unit tests cannot prove that the extension loader, settings transition, duplicate command registry, custom footer, RPC surface, and real child process work together",
     "created_at": "2026-08-16T07:07:48Z",
-    "last_save_at": "2026-08-30T15:39:09.666Z",
+    "last_save_at": "2026-10-03T16:54:26.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "goal.md"
     ],
-    "source_fingerprint": "sha256:669e39cf3eb9560bdc86a5ae4e0cf6aaeb0296af208ae6da13e96ab58f827e90",
+    "source_fingerprint": "sha256:b0cfe80ee88a3e399a3a3a7c85a5d8b193697a6936a7fe0db4f3989eea03415e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "50c125d9ca524b484e57cb5f5de02b7ce1d61f093e8e156ee46a9fd784b45283"

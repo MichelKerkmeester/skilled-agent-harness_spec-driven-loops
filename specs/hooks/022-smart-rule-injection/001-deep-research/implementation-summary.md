@@ -53,6 +53,7 @@ A prompt-time injection earns its slot by naming a specific prohibition a gate e
 ### The Promotion Target
 
 The delegation self-lens clause is the sole read-side obligation the resident layer does not carry. The remedy is promotion into the resident layer, not injection: a clause that must bind while reading belongs where it always loads. The promotion location and the decision are the operator's.
+The ten iteration records behind this closeout are `research/iterations/iteration-001.md` through `research/iterations/iteration-010.md`, with the carried-in context in `research/prior-findings.md`.
 
 <!-- /ANCHOR:what-built -->
 

@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-03T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Recorded the operator-approved 5-mode architecture and the regression-first build sequence"
-    next_safe_action: "Resolve build isolation (worktree vs in-place), then run 003 scaffold-hub via /create:sk-skill-parent"
+    next_safe_action: "Resolve build isolation, then run 003 scaffold-hub"
     blockers: []
     key_files:
       - "../001-research-and-context/research/research.md"
@@ -32,18 +32,22 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## 1. STATUS
 
 **Accepted** — 2026-07-03, by operator ("Go with recommended"). Supersedes no prior decision; this is the founding architecture for the sk-code family.
 
 ---
 
+<!-- ANCHOR:adr-001-context -->
 ## 2. CONTEXT
 
 `sk-code` (v3.5, flat, two-axis surface × phase router) and `sk-code-review` (v1.5, standalone, already coupled to sk-code) fragment code work and collide in the advisor. Phase 001 produced a decision-ready recommendation (`../001-research-and-context/research/research.md`, backed by a GPT-5.5-fast pass with `file:line` citations and a two-scout blast-radius map). The nested parent-hub pattern is already proven by `sk-design` and governed by `.opencode/skills/sk-doc/references/skill_creation/parent_skills_nested_packets.md`.
+<!-- /ANCHOR:adr-001-context -->
 
 ---
 
+<!-- ANCHOR:adr-001-decision -->
 ## 3. DECISION
 
 **Convert `sk-code` into a nested parent hub** (mirror `sk-design`, not deep-loop) with **five phase/activity mode packets over one shared surface router**, folding `sk-code-review` in as the `code-review` mode.
@@ -64,9 +68,11 @@ _memory:
 - **`mode-registry.json` + `hub-router.json`** modeled on `sk-design`; all modes `advisorRouting.routingClass: "metadata"` (no projection-map or drift-guard work).
 - **`sk-code-review` → clean `code-review`** (`folder == packetSkillName`). A **legacy `sk-code-review` alias/redirect** is preserved through cutover and removed only after explicit `sk-code-review` prompts resolve to hub + `code-review`.
 - **Native invocability (Option E):** `Skill(sk-code)` + mode hint routes to a mode; per-mode commands + a `code` family agent are fallback surfaces. Hub `allowed-tools` = union of mode tools. Every new/moved doc carries a 4-part `version` (118).
+<!-- /ANCHOR:adr-001-decision -->
 
 ---
 
+<!-- ANCHOR:adr-001-alternatives -->
 ## 4. OPTIONS CONSIDERED
 
 | Option | Verdict |
@@ -76,9 +82,11 @@ _memory:
 | Surface-lanes-only (webflow/opencode/motion) | Rejected — surfaces are resource/evidence families, not workflow modes; MOTION_DEV is a peer resource, not a surface |
 | Leaner 2–3 modes (implement+review, phases folded in) | Considered and declined by the operator in favor of the 5-mode split |
 | Keep flat sk-code + sk-code-review | Rejected — the status quo that motivated this packet (advisor collision, monolith) |
+<!-- /ANCHOR:adr-001-alternatives -->
 
 ---
 
+<!-- ANCHOR:adr-001-impl -->
 ## 5. BUILD SEQUENCE (regression-first) → phases 003–009
 
 1. **Freeze routing-parity fixtures FIRST** — representative prompts: WEBFLOW, OPENCODE, UNKNOWN, Motion.dev cross-stack, Phase-1.5 quality, Phase-3 verify, explicit `sk-code-review`. (003 pre-step.)
@@ -91,9 +99,11 @@ _memory:
 8. **009 cutover-and-rollout** — remove the legacy `sk-code-review` route only after explicit-review prompts resolve; `parent-skill-check.cjs` + recursive validation; version/changelog bumps.
 
 **Execution model:** Claude orchestrates/verifies; GPT-5.5-fast (high) via cli-opencode performs the writing/implementing. Each phase validates before the next (`parent-skill-check.cjs` + manual/`validate.sh`).
+<!-- /ANCHOR:adr-001-impl -->
 
 ---
 
+<!-- ANCHOR:adr-001-consequences -->
 ## 6. CONSEQUENCES
 
 **Positive:** one advisor identity (dissolves the sk-code/sk-code-review ambiguity); centralized surface precedence; extensible modes; sk-code-review doctrine preserved.
@@ -102,9 +112,13 @@ _memory:
 - High blast radius (~428 + ~119 live files). Mitigated by regression-first fixtures + phased validation + legacy alias.
 - **Cross-session collision:** the advisor is also in the active 028 packet's scope. The advisor edits (007) are late; earlier phases are additive. Coordinate/isolate before 007.
 - Mode-level routing precision is unverified by automation (all-metadata modes have no parity fixtures) — validate via `parent-skill-check.cjs` + manual playbooks.
+<!-- /ANCHOR:adr-001-consequences -->
 
 ---
 
+<!-- ANCHOR:adr-001-rollback -->
 ## 7. ROLLBACK
 
 Phases 003–006 are additive/relocating within a git-tracked tree — revert by branch/worktree discard. The destructive step (delete `sk-code-review/graph-metadata.json`, 005) and the advisor rebuild (007) are the hard-to-reverse points; take a checkpoint/commit before each, and keep the legacy alias until 009 parity passes.
+<!-- /ANCHOR:adr-001-rollback -->
+<!-- /ANCHOR:adr-001 -->

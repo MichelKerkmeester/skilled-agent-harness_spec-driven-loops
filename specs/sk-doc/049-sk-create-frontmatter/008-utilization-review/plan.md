@@ -2,10 +2,6 @@
 title: "Implementation Plan: utilization-review"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
   - "plan core"
 importance_tier: "normal"
 contextType: "general"

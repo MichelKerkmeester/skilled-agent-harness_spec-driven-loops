@@ -1,34 +1,38 @@
 # /doctor:mcp Presentation Contract
 
-This file is the single source of truth for user-facing presentation in `/doctor:mcp`: startup questions, MCP assessment dashboards, install/repair prompts, verification summaries, final reports, troubleshooting, and next-step text. The command router owns sub-action routing only. The workflow YAML owns execution behavior.
+This file defines user-facing prompts and reports for the Code Mode install and debug workflows.
 
-## 1. Startup Presentation
+## Startup
 
-When `$ARGUMENTS` lacks a positional sub-action, ask this prompt first.
+When `$ARGUMENTS` has no positional sub-action, ask:
 
 ```text
-What do you want to do with MCP servers?
-   1) Install fresh    (all 5 MCP servers from install guides)
-   2) Debug + repair   (diagnose failures, apply guided fixes)
+What do you want to do with Code Mode?
+   1) Install or configure
+   2) Debug and repair
    X) Cancel
 ```
 
-Accepted answers:
-
 | Answer | Result |
 |--------|--------|
-| `1`, `I`, `install` | sub_action = `install` |
-| `2`, `D`, `debug` | sub_action = `debug` |
+| `1`, `I`, `install` | `sub_action = install` |
+| `2`, `D`, `debug` | `sub_action = debug` |
 | `X`, empty, `cancel` | `STATUS=CANCEL` |
 
-### Unknown Sub-Action Failure
+For an unknown sub-action, show:
 
 ```text
 Unknown sub-action '[sub_action]'. Valid: install, debug. Try `/doctor:mcp install` or `/doctor:mcp debug`.
 STATUS=FAIL ERROR="unknown_sub_action"
 ```
 
-### Cross-Sub-Action Flag Failures
+## Arguments and Setup
+
+`install` accepts `--runtime <name>` with `opencode`, `claude`, `codex`, `cursor`, `pi`, or `devin`. `claude` covers both `.mcp.json` and `.claude/mcp.json`.
+
+`debug` accepts `--fix`. It enables individually approved repairs; it does not approve changes automatically.
+
+Reject flags that do not belong to the selected sub-action:
 
 ```text
 Flag '--fix' is only valid for `debug`. Did you mean `/doctor:mcp debug --fix`?
@@ -40,157 +44,135 @@ Flag '--runtime' is only valid for `install`. Did you mean `/doctor:mcp install 
 STATUS=FAIL ERROR="cross_sub_action_flag_injection"
 ```
 
-## 2. Setup Dashboard
-
-Render after sub-action and flags resolve.
+Render the setup dashboard after the sub-action and flags resolve:
 
 ```text
 DOCTOR MCP SETUP
 Sub-action: [install|debug]
 Workflow: .skilled/commands/doctor/assets/[doctor-mcp-install.yaml|doctor-mcp-debug.yaml]
-Server filter: [name|all]
-Runtime filter: [name|detected|n/a]
+Runtime: [name|all|n/a]
 Fix mode: [true|false|n/a]
 Presentation: .skilled/commands/doctor/assets/doctor-mcp-presentation.txt
 Next: load workflow YAML
 ```
 
-## 3. Install Presentation
+## Install
 
-### Assessment Table
+Show one Code Mode assessment row:
 
 ```text
-MCP INSTALL ASSESSMENT
+CODE MODE INSTALL ASSESSMENT
 
-| Server | Status | Detail |
-|--------|--------|--------|
-| Skill Advisor | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
-| System Code Graph | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
-| Code Mode | [INSTALLED|STALE|MISSING|SKIPPED] | [detail] |
+| Component | Build | UTCP config | Runtime wiring |
+|-----------|-------|-------------|----------------|
+| Code Mode | [READY|STALE|MISSING|BLOCKED] | [VALID|INVALID|MISSING] | [WIRED|UNWIRED|UNVALIDATED] |
 ```
 
-### Install Decision Prompt
+Explain before any writes that a missing `.skilled/skills/mcp-code-mode/mcp-server/package.json` blocks the install. Do not make any changes after that finding.
+
+For work that can proceed, ask:
 
 ```text
-Assessment complete. How would you like to proceed?
+Assessment complete. Choose what to do:
 
-A) Install/reinstall all that need it (MISSING + STALE)
-B) Walk through each server interactively
-C) Only install MISSING servers (skip STALE)
+A) Install missing dependencies and build when needed
+B) Review each proposed change individually
+C) Show the report and stop
 D) Cancel
 ```
 
-### Per-Server Install Prompt
+Request explicit approval for each dependency install, build, `.utcp_config.json` edit, or runtime config edit. When no runtime is selected, plan changes for all seven supported project configs; `--runtime` narrows that plan. Preserve existing manuals and unrelated config entries. Never request, display, or write credential values. Ask for a credential variable name only; the operator manages its value in root `.env` outside the workflow.
+
+When documenting a manual credential, use neutral names only. Code Mode doubles each underscore in the manual name before adding the `_<VAR>` suffix. Example: manual `example_service` with `${API_TOKEN}` expects the key `example__service_API_TOKEN`; report whether the key is present or missing, never its value.
+
+Supported runtime files:
+
+| Runtime | Config files |
+|---------|--------------|
+| `opencode` | `opencode.json` |
+| `claude` | `.mcp.json`, `.claude/mcp.json` |
+| `codex` | `.codex/config.toml` |
+| `cursor` | `.cursor/mcp.json` |
+| `pi` | `.pi/mcp.json` |
+| `devin` | `.devin/mcp_config.json` |
+
+For a Codex TOML config, Python `tomllib` validates when available. If unavailable, report `UNVALIDATED` and do not claim a validation pass. Hermes registration is user-level in `~/.hermes/config.yaml` and is not checked.
+
+## Debug
+
+Show one Code Mode diagnostic row:
 
 ```text
-Ready to install [server label]:
-Commands: [install steps]
-Proceed? [Y/n/skip]
-```
+CODE MODE DEBUG FINDINGS
 
-## 4. Debug Presentation
-
-### Diagnostic Findings Table
-
-```text
-MCP DEBUG FINDINGS
-
-| Server | Status | Issues |
-|--------|--------|--------|
-| Skill Advisor | [PASS|WARN|FAIL] | [summary] |
-| System Code Graph | [PASS|WARN|FAIL] | [summary] |
+| Component | Status | Findings |
+|-----------|--------|----------|
 | Code Mode | [PASS|WARN|FAIL] | [summary] |
 ```
 
-### Repair Decision Prompt
+For each finding, show its check name, detail, and proposed repair. The health script runs as `bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json`; never pass `--fix` to the script. Its report contains `status`, `exitCode`, `summary`, and `checks`.
+
+With `--fix`, present repairs one at a time and ask:
 
 ```text
-[fail_count] failure(s) and [warn_count] warning(s) found.
-
-A) Fix all issues automatically
-B) Walk through each issue interactively
-C) Show detailed report and stop
-```
-
-### Per-Issue Prompt
-
-```text
-Issue: [server] - [check]
+Finding: [check]
 Detail: [detail]
-Root cause: [hypothesis]
-Proposed fix: [repair description]
-Command: [repair command]
+Proposed repair: [description]
+Command or file change: [repair]
 
-Fix now? [Y/n/skip]
+Apply this repair? [Y/n]
 ```
 
-### Re-Verification Prompt
+Do not repair credentials during debug. Report expected key names with present or missing status only. For each approved repair, rerun the JSON health check and report what changed.
+
+## Final Reports
 
 ```text
-Verification complete: [resolved_count] fixed, [remaining_count] remaining.
+Code Mode Install — Final Report
 
-A) Investigate remaining issues
-B) Accept current state
-```
+| Check | Before | After | Result |
+|-------|--------|-------|--------|
+| Build | [before] | [after] | [status] |
+| UTCP config | [before] | [after] | [status] |
+| Runtime wiring | [before] | [after] | [status] |
 
-## 5. Final Report Templates
-
-### Install Final Report
-
-```text
-MCP Install - Final Report
-
-| Server | Before | After | Action Taken |
-|--------|--------|-------|--------------|
-| Skill Advisor | [before] | [after] | [action] |
-| System Code Graph | [before] | [after] | [action] |
-| Code Mode | [before] | [after] | [action] |
-
-Config wiring: [config_summary]
-
-Next Steps:
-- Restart your AI client to pick up MCP servers.
-- Test each registered MCP tool.
-- If issues persist: /doctor:mcp debug
-
+Credential keys: [names with present or missing status; never values]
+Next steps: [next_steps]
 STATUS=[OK|CANCELLED|FAIL]
 ```
 
-### Debug Final Report
-
 ```text
-MCP Doctor - Final Report
+Code Mode Debug — Final Report
 
-| Server | Before | After | Status |
-|--------|--------|-------|--------|
-| Skill Advisor | [before] | [after] | [status] |
-| System Code Graph | [before] | [after] | [status] |
-| Code Mode | [before] | [after] | [status] |
+| Check | Before | After | Result |
+|-------|--------|-------|--------|
+| [check] | [before] | [after] | [status] |
 
-Config wiring: [config_summary]
-Next Steps: [next_steps]
+Credential keys: [names with present or missing status; never values]
+Unvalidated configs: [paths or none]
+Next steps: [next_steps]
 STATUS=[OK|CANCELLED|FAIL]
 ```
 
-## 6. Examples Display
+## Examples
 
 ```text
 Examples:
   /doctor:mcp install
-  /doctor:mcp install --server system_skill_advisor
   /doctor:mcp install --runtime claude
   /doctor:mcp debug
   /doctor:mcp debug --fix
 ```
 
-## 7. Troubleshooting Display
+## Troubleshooting
 
-| Situation | Suggested Action |
+| Situation | Suggested action |
 |-----------|------------------|
-| Install just finished | The install workflow runs the health check automatically |
-| Install prerequisites missing | Install Node >= 20.11.0, Python >= 3.11, npm, and npx, then rerun |
-| Debug repair did not take | Read the cited install guide and apply the manual install section |
-| MCP is OK but subsystem doctor fails | Use `/doctor <target>` for subsystem diagnostics |
-| Need full spec-kit rebuild | Run `/doctor:mcp debug --fix`, then `/doctor:update` |
+| Install prerequisites are missing | Install Node.js 24 and npm, then rerun. |
+| Code Mode package manifest is missing | Stop; restore the package manifest in the project before installing. |
+| Build output is stale | Review the source timestamp findings, then approve a rebuild if appropriate. |
+| Codex TOML cannot be validated | Install Python 3.11 or later, or review the TOML manually; keep the result unvalidated. |
+| Debug repair did not resolve the finding | Read the Code Mode install guide and apply its documented resolution after approval. |
+| Code Mode is healthy but another subsystem check fails | Use `/doctor:speckit <target>` for that subsystem. |
 
 End interactive presentations with: `What would you like to do next?`

@@ -1,6 +1,6 @@
 ---
 name: sk-doc
-description: "Documentation & OpenCode-component authoring hub: skills, agents, commands, READMEs, catalogs, playbooks, changelogs, packet goals, frontmatter."
+description: "Documentation & component authoring hub: skills, agents, commands, READMEs, catalogs, playbooks, changelogs, goals, frontmatter."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 2.2.6.0
 metadata:

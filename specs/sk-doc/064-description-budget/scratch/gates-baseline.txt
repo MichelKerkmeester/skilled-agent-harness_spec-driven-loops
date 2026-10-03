@@ -1,0 +1,10 @@
+== pi/sync-agents-pi.cjs --check exit=0 :: [pi-agent-sync] PASS: 12 agents are in sync. 
+== pi/sync-prompts-pi.cjs --check exit=0 :: [pi-prompt-sync] PASS: 34 prompts are in sync. 
+== codex/sync-agents.cjs --check exit=0 :: [codex-agent-sync] PASS: 12 agents are in sync. 
+== codex/sync-prompts.cjs --check exit=0 :: [codex-prompt-sync] PASS: 34 prompts are in sync. 
+== hermes/sync-skills-hermes.cjs --check exit=0 :: PASS: 71 Hermes skill copies in sync 
+== hermes/sync-prompts-hermes.cjs --check exit=0 :: [hermes-prompt-sync] PASS: 34 prompts are in sync. 
+== runtime-mirrors/sync-runtime-mirrors.cjs --check exit=0 :: [runtime-mirror-sync] PASS: 174 mirrors across 8 trees are in sync. 
+== command-catalog-mirror-check exit=0 ::   OK   system-deep-loop/command-metadata.json 5 entries  STATUS=OK command-catalog-mirror: every catalog and hub metadata covers the command tree 
+== compiled-route-guard exit=0 ::   cli-classifier              fresh   cli-external-orchestration  fresh   mcp-tooling                 fresh   sk-code                     fresh   sk-design                   fresh   sk-doc                      fresh   system-deep-loop            fresh  All hubs fresh or excused: serving matches inputs, and the runtime matches its source. 
+== route-validate exit=0 ::  ───────────────────────────────────────────────────────────────── OK: route-validate — 9 routes validated, 2 warnings 

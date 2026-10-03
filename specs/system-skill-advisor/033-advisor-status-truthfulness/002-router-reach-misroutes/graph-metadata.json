@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/033-advisor-status-truthfulness/002-router-reach-misroutes",
+  "spec_folder": "system-skill-advisor/033-advisor-status-truthfulness/002-router-reach-misroutes",
+  "parent_id": "system-skill-advisor/033-advisor-status-truthfulness",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "router reach misroutes",
+      "wrong hub phrases",
+      "outranked routing phrases",
+      "live fleet rerun",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "router",
+      "reach",
+      "misroutes",
+      "wrong",
+      "hub",
+      "phrases",
+      "outranked",
+      "routing",
+      "live",
+      "fleet",
+      "rerun",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/live-fleet.log",
+      "scratch/reproduction.md",
+      "scratch/verification.log",
+      "scratch/verification-degraded-attempt.log",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts",
+      ".skilled/bin/skill-advisor.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/router-reach-allowlist.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "live-fleet.log",
+        "kind": "file",
+        "path": "scratch/live-fleet.log",
+        "source": "derived"
+      },
+      {
+        "name": "reproduction.md",
+        "kind": "doc",
+        "path": "scratch/reproduction.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification.log",
+        "kind": "file",
+        "path": "scratch/verification.log",
+        "source": "derived"
+      },
+      {
+        "name": "verification-degraded-attempt.log",
+        "kind": "file",
+        "path": "scratch/verification-degraded-attempt.log",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "local-native-approved-divergences.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+        "source": "derived"
+      },
+      {
+        "name": "python-ts-parity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-corpus-parity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "router-reach-allowlist.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/router-reach-allowlist.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Establish",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The source audit's fleet run reported `checked=7 hub(s), wrong-hub=14, outranked=18, no-reach=221, allowed=8, probe-error=0`, `advisor generation: unknown`, `RESULT: FAILED` (`specs/system-speckit/048-doctor-command-audit/008-router-reach/scratch/doctor-run.log:303-305`)",
+    "created_at": "2026-10-03T05:27:36Z",
+    "last_save_at": "2026-10-03T15:12:20.858Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:296a7066b8ca6b41a701b994aaa85c42195cfd2c3a451b5d38ca6752acff7fb8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a69895777b732228d6f68f6af2d635aa9558a7764dd0cac02fb6b5f28264de7e",
+      "plan.md": "ef5a3b1b12c0bfbdcb16d3355efc867c53f060b0412a00372bab982bbe16a241",
+      "tasks.md": "472336ad7496db07efb109c3353b0f2cc995e2cbcfd3553b3dea2b4584b8c489",
+      "implementation-summary.md": "482090bb437912c067e33eec0f6778617c6de8138136a090098bff049d75453c"
+    },
+    "last_active_at": null
+  }
+}

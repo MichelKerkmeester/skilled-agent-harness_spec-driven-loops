@@ -35,10 +35,50 @@ _memory:
 
 # Tasks: Pi Subagent Directive Removal
 
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:notation -->
+## Task Notation
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+
+**Task Format**: `T### [P?] Description (file path)`
+<!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Implementation
+
 - [x] T001 Remove the dispatch directive constants, byte counts, prototype flag, shadow receipt interfaces, policy-plan observation, and lifecycle shadow resets from `prompt-advisor.ts`; keep the advisor bridge, raw capture, brief de-dup, and advisor-debug.
 - [x] T002 Remove `DIRECTIVE_MARKER` from `dispatch-preflight-lint.ts` transform recognition and injected-content stripping; drop the stale native-subagent-tool clause from the deny reason.
 - [x] T003 Rewrite `dispatch-preflight-lint.test.ts` without the compact semantic matrix, the shadow boundary suite, and the directive-content assertions; keep the deny matrix and the registered-boundary authorization tests.
 - [x] T004 Replace the directive-append test in `prompt-advisor.vitest.ts` with a no-context no-transform expectation; keep the blank-input and renderer-agnostic tests.
 - [x] T005 Update `injection-contract.md`, `.pi/PLUGINS.md`, and `.pi/SYNC.md` to stop asserting the removed package mandate.
+<!-- /ANCHOR:phase-1 -->
+
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Verification
+
 - [x] T006 Run all three affected test suites — 32/32, 14/14, 3/3.
 - [x] T007 Regenerate the packet graph metadata and update the parent phase map.
+<!-- /ANCHOR:phase-2 -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+- **Acceptance Criteria**: See `acceptance-criteria.md`
+<!-- /ANCHOR:cross-refs -->

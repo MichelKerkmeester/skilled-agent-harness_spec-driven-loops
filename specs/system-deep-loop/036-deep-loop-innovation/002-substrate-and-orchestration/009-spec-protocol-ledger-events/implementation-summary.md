@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 050-spec-protocol-ledger-events |
+| **Spec Folder** | 009-spec-protocol-ledger-events |
 | **Completed** | 2026-09-19 |
 | **Level** | 2 |
 | **Status** | Complete |

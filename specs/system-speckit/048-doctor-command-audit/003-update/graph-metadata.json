@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/048-doctor-command-audit/003-update",
+  "spec_folder": "system-speckit/048-doctor-command-audit/003-update",
+  "parent_id": "system-speckit/048-doctor-command-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor update audit",
+      "/doctor:update relevance",
+      "doctor-update.yaml",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "doctor update audit acceptance"
+    ],
+    "key_topics": [
+      "doctor",
+      "audit",
+      "relevance",
+      "doctor-update",
+      "yaml",
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture",
+      "decisions",
+      "testing"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "scratch/reality-check.md",
+      "scratch/doctor-run.log",
+      "scratch/design.md",
+      ".skilled/commands/doctor/scripts/release-update.cjs",
+      ".skilled/commands/doctor/update.md",
+      ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+      ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+      ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/README.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": "scratch/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/release-update.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-check.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-check.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-align.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-align.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-apply.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-update-apply.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/doctor:update` was a database rebuild",
+    "created_at": "2026-10-02T16:10:13Z",
+    "last_save_at": "2026-10-03T11:48:56.205Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:0b12fdf2bf0f32ce8f5fac44c7de33003216b3a1f91596b39125f507c4f54f2a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "68c58bd6a488146e10c3d87168a0a0a8f804119878fa11145b4287f857b9f055",
+      "plan.md": "85277519f5fc3c032eb42fb7969a7255ab25ee37cb0502bfafd88139526d8efe",
+      "tasks.md": "28ca1e8b1f96931a481028624750ed5c66da458561872b0bf0e86c43ca249a14",
+      "decision-record.md": "d15f90ded7024ef2560253bbdfbfd78798068b80ef58fd3296714cb4e67ffaa1",
+      "implementation-summary.md": "8994bef7d30e28f482b709a6089c3dfe601af677ae238531f31542dcbb5c8413",
+      "research/research.md": "d609708f8552bde5e29460b5dceee485eb41353ad26d490612ac2a59f6cb3e8b"
+    },
+    "last_active_at": null
+  }
+}

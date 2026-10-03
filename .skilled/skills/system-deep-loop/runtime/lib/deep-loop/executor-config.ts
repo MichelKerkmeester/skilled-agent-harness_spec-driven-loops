@@ -213,16 +213,18 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
  * the operator-confirmed picker roster so generic provider routing cannot broaden it.
  */
 export const PI_SUPPORTED_MODELS = [
-  // Bare DeepSeek V4.1 Flash literal is DevPass-fronted on pi (opencode-go fronts DeepSeek Flash
-  // too but one literal maps to one provider, so that route is direct-dispatch only;
-  // the direct DeepSeek API provider was retired from the roster); `PI_MODEL_PROVIDERS` in
-  // fanout-run.cjs holds the provider mapping for it. The gateway deactivated the older
-  // vision-exp id and answers 410 for it, so the 4.1 line is the live route. It accepts images
-  // like the id it replaces, so nothing is lost by moving.
+  // Bare DeepSeek V4.1 Flash literal is DevPass-fronted on pi (the direct DeepSeek API
+  // provider was retired from the roster); `PI_MODEL_PROVIDERS` in fanout-run.cjs holds the
+  // provider mapping for it. opencode-go and Cline front the same model, each reached through
+  // its own provider-qualified literal below rather than through this bare one. The gateway
+  // deactivated the older vision-exp id and answers 410 for it, so the 4.1 line is the live
+  // route. It accepts images like the id it replaces, so nothing is lost by moving.
   'deepseek-v4.1-flash',
-  // The same model through opencode-go, named by its provider-prefixed literal so it can sit
-  // beside the DevPass bare literal without one literal mapping to two providers.
+  // Provider-qualified DeepSeek V4.1 Flash routes, for runs that must bill through
+  // opencode-go or Cline instead of DevPass. Each literal names its provider, so it maps to
+  // exactly one route and the bare literal above keeps DevPass.
   'opencode-go/deepseek-v4.1-flash',
+  'cline-pass/deepseek-v4.1-flash',
   'minimax-m3',
   'gpt-6-luna',
   'gpt-6-sol',
@@ -308,11 +310,15 @@ export function isFlashMaxPinnedModel(model: string): boolean {
   return /(^|\/)(deepseek-v4-flash(-latest|-vision-exp)?|deepseek-v4\.1-flash|glm-5\.3-flash)$/.test(model);
 }
 
-/** Effective reasoning effort after the Flash top-tier pin. */
+/**
+ * Effective reasoning effort after the Flash top-tier pin. The pin is the route's top tier:
+ * Cline serves DeepSeek V4.1 Flash with no max tier, so its literal pins to xhigh instead.
+ */
 export function pinReasoningEffortForModel(
   model: string,
   reasoningEffort: string | null | undefined,
 ): string | null | undefined {
+  if (model.startsWith('cline-pass/') && isFlashMaxPinnedModel(model)) return 'xhigh';
   return isFlashMaxPinnedModel(model) ? 'max' : reasoningEffort;
 }
 

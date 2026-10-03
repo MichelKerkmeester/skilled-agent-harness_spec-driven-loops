@@ -18,17 +18,17 @@ description: "Runtime-agnostic reader for deep-loop behavioral signals (opener r
 | File | Purpose |
 |------|---------|
 | `fable-metrics.cjs` | Parses tool-use and assistant-text messages from a lineage's JSON stream or iteration markdown, then scores median words per message, self-opener rate, unsolicited-caveat rate and evidence-backed completion ratio. Exports `discoverLineages`, `measureLineage` and `aggregate`. |
-| `fable-baseline.json` | A stored snapshot of prior lineage measurements (labels, sample sizes and the same metric fields `fable-metrics.cjs` computes), written by a prior `--baseline` run. |
+| `fable-baseline.json` | A stored snapshot of prior lineage measurements (labels, sample sizes and the same metric fields `fable-metrics.cjs` computes), written by a prior `--baseline` run. Its `target` is `null` because the measured corpus was deleted; the aggregate stays the comparison baseline. |
 
 ---
 
 ## 3. CONSUMERS
 
-- `.skilled/commands/doctor/scripts/fable-mode-check.cjs` requires `fable-metrics.cjs` directly for `/doctor` fable-mode reporting.
+- `.skilled/commands/doctor/scripts/fable-mode-check.cjs` requires `fable-metrics.cjs` directly for `/doctor:speckit fable-mode` reporting.
 - `.skilled/commands/doctor/assets/doctor-fable-mode.yaml` documents the fable-mode doctor route.
 
 ---
 
 ## 4. RELATED
 
-- [`fable-mode-check.cjs`](../../../../../commands/doctor/scripts/fable-mode-check.cjs): the `/doctor` entrypoint that calls this module.
+- [`fable-mode-check.cjs`](../../../../../commands/doctor/scripts/fable-mode-check.cjs): the `/doctor:speckit fable-mode` entrypoint that calls this module.

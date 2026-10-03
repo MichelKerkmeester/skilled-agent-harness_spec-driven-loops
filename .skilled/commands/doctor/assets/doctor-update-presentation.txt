@@ -1,179 +1,333 @@
 # /doctor:update Presentation Contract
 
-This file is the single source of truth for user-facing presentation in `/doctor:update`: startup confirmation, mid-run prompts, cross-subsystem dashboards, validation displays, status outputs, restart-required messages, related commands, and next-step text. The command router owns flag parsing and asset routing only. The workflow YAML owns execution behavior.
+This file is the single source of truth for user-facing wording and layout in `/doctor:update check`, `align` and `apply`. The router owns argument parsing and action routing. Each workflow YAML owns execution behavior.
 
-## 1. Startup Confirmation
+## 1. Action and Flag Errors
 
-Ask this prompt before any mutating phase unless `--force=true`. Lightweight read-only status probes are allowed only after flag parsing.
+### Unknown action
 
 ```text
-/doctor:update rebuilds ALL spec-kit databases in dependency order with
-snapshots + auto-rollback on regression. ETA 8-25 min.
-
-Mid-run prompts:
-   SHORT  steps    -> auto (no prompt)
-   LONG-POLE step  -> ETA prompt + skip   (Q-LONG, 5-15 min)
-
-   1) Proceed
-   X) Cancel
+ERROR: /doctor:update does not recognize action "[action]".
+Choose check, align or apply.
+No workflow was started.
 ```
 
-Accept `1`, `A`, `Y`, `Proceed`, or Enter as proceed. Accept `X`, `N`, or `Cancel` as `STATUS=CANCELLED`. If input is empty, ask again once; on second empty input, return `STATUS=CANCELLED`.
-
-## 2. Mid-Run Prompt Catalog
-
-Use these prompts verbatim. Do not paraphrase, summarize, or split them into multiple messages.
-
-### Q-LONG - Long-Pole ETA Prompt
-
-When: before the trigger-index regeneration over the spec-doc and skill-doc corpus. Suppressed if `--force=true`.
+### Cross-action or unknown flag
 
 ```text
-LONG-POLE: trigger-index regeneration over the spec-doc and skill-doc corpus.
-
-   ETA      1-5 min   (depends on corpus size; the generator is local and single-pass)
-   Mutates  full index rewrite   (rollback available via Phase 3 snapshot)
-   Network  none - the generator reads frontmatter from disk and needs no API
-
-   1) Proceed
-   2) Skip   (advisor -> STALE; deep-loop init still runs)
-   X) Cancel + rollback
+ERROR: [flag] is not valid for /doctor:update [action].
+Accepted flags: [flags for this action]
+No workflow was loaded and no engine command was run.
 ```
 
-Accept `1`, `A`, `Y`, or `Proceed` as proceed. Accept `2` or `Skip` as skipped and marked stale. Accept `X`, `N`, or `Cancel` as rollback plus `STATUS=CANCELLED`. Empty input re-asks once; second empty input returns `STATUS=CANCELLED`.
+Accepted flags by action:
 
-### Q-PROBE - Active-MCP-Client Prompt
+| Action | Flags |
+|--------|-------|
+| check | `--json`, `--release=<tag>`, `--scope=all|<unit-key,...>`, `--offline`, `--include-prerelease` |
+| align | `--release=<tag>`, `--scope=all|<unit-key,...>`, `--offline`, `--dry-run`, `--include-prerelease` |
+| apply | `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit-key,...>`, `--include-prerelease` |
 
-When: Phase 2 detects one or more other MCP clients holding open a database this run rebuilds. Always fires; `--force` reduces it to a single confirmation rather than per-client prompts.
+Latest-upstream resolution takes stable `vN.N.N.N` tags only. `--include-prerelease` also admits `vN.N.N.N-<pre>` tags; both compare version segments as numbers. A tag named with `--release` is used as given.
+
+Bare `/doctor:update` runs `check`. There are no `:auto` or `:confirm` suffixes.
+
+## 2. Check Dashboard
+
+Render the engine report using this layout. Use `UNKNOWN` when upstream latest or the overall report status is unknown. Never treat unavailable upstream data as proof that the checkout is current.
+
+When the operator passes `--json`, return the engine report as one JSON document and omit the prose dashboard and next steps.
 
 ```text
-Active MCP client(s) detected:
-   [comma-separated client_id list]
+Spec-kit Release Check
 
-The rebuild will cancel their open transactions and stale their cache until reconnect.
+Release position: [ahead|behind|even|unknown] [release tag or UNKNOWN]
+Upstream latest: [tag or UNKNOWN]
+Checkout: [head]  Ahead: [count]  Behind: [count]  Dirty: [yes|no]
+Report status: [status]
 
-   1) Proceed anyway
-   X) Cancel  (rerun when clients are idle)
+Quiet units: [current count] current, [local count] local (no action)
+
+| Status | Unit | Kind | File changes | Changelog highlights |
+|--------|------|------|--------------|----------------------|
+| [update|new|customized|conflict|removed|blocked|unknown] | [unit] | [kind] | [class counts] | [highlights or none found] |
+
+Next steps
+[action-specific next step]
 ```
 
-Accept `1`, `A`, `Y`, or `Proceed` as proceed. Accept `X`, `N`, or `Cancel` as `STATUS=CANCELLED`. Empty input re-asks once; second empty input returns `STATUS=CANCELLED`.
+Files the engine classes `generated` (a leaf manifest, the trigger index and its sidecars, or a graph-metadata change inside its `derived` block) were rewritten by a generator, not edited by an author. They never make a unit customized; show them in the class counts and never offer a decision for them.
 
-### Q-LEGACY - Per-File Legacy Cleanup Prompt
+Show a row for each unit that is not `current` or `local`, grouped by status. Combine `current` and `local` into the quiet line and include both counts. Include counts for statuses with no matching unit as zero in the summary when the engine report provides status counts. Preserve an unexpected unit status visibly as `unknown`. Show available changelog highlights from the selected release and unit. If upstream latest is unavailable, display `UNKNOWN` and its engine error when present.
 
-When: Phase 9 processes each file listed in the migration manifest's legacy cleanup targets and `--cleanup-legacy=true`.
+### Check next steps
+
+Use the applicable line or lines:
 
 ```text
-Legacy file: [absolute path]
-   Reason:   [manifest reason string]
-   Size:     [human-readable size]
-
-   Y) Delete  (irreversible)
-   N) Keep    (default if empty)
-   A) Yes to ALL remaining
-   Q) Quit cleanup  (keep the rest, continue to Phase 10)
+Customized or conflict units need decisions: /doctor:update align [same release and scope flags]
+Removed units need a decision review: /doctor:update align [same release and scope flags]
+Only update or new units need writes: /doctor:update apply [same release and scope flags]
+Removed, blocked or unknown units need review before applying: inspect the status details, then choose align or apply as appropriate.
+Database regeneration after an update: /doctor:rebuild
+No selected units need an update.
 ```
 
-Accept `Y` or `Delete` as delete. Accept `N`, `Keep`, `Skip`, or empty as keep. Accept `A` or `All` as auto-delete remaining. Accept `Q` or `Quit` as exit Phase 9 early.
-
-### Q-FAIL - Step-Failure Recovery Prompt
-
-When: a step fails its first run and the 5-second-backoff retry. Suppressed if `--force=true`; force mode auto-rolls back.
+When offering apply without a decisions file, add this note if no earlier alignment run is known:
 
 ```text
-Step "[step_name]" failed after retry.
-   Phase:    [N]
-   Exit:     [code]
-   Snapshot: [path]
-
-Error (last 5 stderr lines):
-[excerpt]
-
-   1) Rollback + cancel       (default if empty after re-ask)
-   2) Continue without rollback   (DANGEROUS - subsequent steps may regress)
-   3) Retry once more
+No alignment run is needed for update and new units. /doctor:update apply plans from the current check, writes only those units, and re-checks each file against its base before writing. Customized or conflicting units are skipped until /doctor:update align records decisions for them.
 ```
 
-Accept `1`, `A`, `Y`, or `Rollback` as rollback plus `STATUS=ROLLED_BACK`. Accept `2` or `Continue` as log warning, skip step, and continue. Accept `3` or `Retry` as a third attempt. Empty input re-asks once; second empty input defaults to rollback.
-
-## 3. Setup Dashboard
-
-Render after flag parsing and before YAML load.
+When the report's `baseRecording.needed` is true, add:
 
 ```text
-DOCTOR UPDATE SETUP
-Workflow: .skilled/commands/doctor/assets/doctor-update.yaml
-Presentation: .skilled/commands/doctor/assets/doctor-update-presentation.txt
-Mode: INTERACTIVE
-Flags: force=[true|false] no_snapshot=[true|false] cleanup_legacy=[true|false] migrate=[true|false] keep_snapshots=[true|false] resume_bootstrap=[true|false]
-Snapshots: [enabled|disabled]
-Next: load workflow YAML
+[count] unit(s) have no recorded base, so their status rests on an inferred base. This is normal right after copying or installing .skilled/. Record the release this tree was installed from, with your approval, by running:
+node .skilled/commands/doctor/scripts/release-update.cjs record-base --release <installed-release>
+It writes .skilled/release/base.json. Commit that file, then run /doctor:update again.
 ```
 
-## 4. Cross-Subsystem Health Dashboard
-
-Render before selecting dependency actions.
+If the report is unknown, end with:
 
 ```text
-Cross-Subsystem Health Dashboard
-
-| Subsystem     | Status | Age | Coverage | Recommended Action |
-|---------------|--------|-----|----------|--------------------|
-| trigger-index | [OK|STALE|MISSING|REGRESSED] | [age] | [metric] | [regenerate|skip|rollback] |
-| skill-graph   | [OK|STALE|MISSING] | [age] | [n/a|metric] | [scan|skip] |
-| advisor       | [OK|INVALID|STALE] | [age] | [n/a|metric] | [rebuild|validate] |
-| deep-loop     | [OK|EMPTY|STALE] | [age] | [n/a|metric] | [upsert|skip] |
+Upstream status is UNKNOWN. The report cannot confirm that this checkout is current.
 ```
 
-## 5. Status Output Templates
+## 3. Align Evidence Cards and Decision Batches
 
-### Final Status
+Present one consolidated batch per `customized`, `conflict` or `removed` unit. Show each non-same file's complete evidence card before asking for the batch response.
 
-```text
-Doctor Update Result
+````text
+ALIGNMENT REVIEW
+Release: [release]
+Run directory: [runDir]
 
-Final status: STATUS=[OK|FAIL|ROLLED_BACK|CANCELLED|RESTART_REQUIRED]
-State log: .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.last-run.json
-Snapshots: [kept|cleaned|skipped]
-Touched subsystems: [list]
-Validation: [gold-battery and schema summary]
+Unit: [unit]  Status: [customized|conflict|removed]
+Files needing review: [count]
+
+Evidence card [number] of [count]
+Path: [file path]
+Class: [class]  Conflict type: [kind or none]
+Base blob / mode: [blob or absent] / [mode or absent]
+Local blob / mode: [blob or absent] / [mode or absent]
+Release blob / mode: [blob or absent] / [mode or absent]
+Merge summary: [summary]
+Changelog rationale: [rationale]
+Recommended decision: [decision or review]
+Accepted for this file: [engine-eligible answers for this file]
+
+Base-to-release diff
+```diff
+[complete evidence diff]
 ```
 
-### Restart Required
+Base-to-local diff
+```diff
+[complete evidence diff]
+```
+```
+
+For `merge` or `use-proposal`, show the entire proposal before asking for that answer:
+
+````text
+Proposed text for [file path]
+```text
+[complete proposal text]
+```
+````
+
+If the proposal contains conflict markers, ask:
 
 ```text
-STATUS=RESTART_REQUIRED
+The proposal still has conflict markers. Reply with the complete resolved file text.
+It will replace only [runDir]/proposals/[relative path] inside this run directory. The decision is recorded after the resolved proposal passes marker validation.
+```
 
-Runtime bootstrap completed before database rebuild started.
-Restart OpenCode so MCP tools register, then rerun:
-  /doctor:update --resume-bootstrap
+Write the supplied resolved content to exactly that proposal path with a quoted Bash heredoc using a delimiter absent from the supplied content. Do not show or run `Edit`. Re-read the full proposal and confirm all markers are gone before offering `merge` or `use-proposal`.
+
+After all evidence cards for one unit, ask:
+
+```text
+Decision batch for [unit]
+For each file, reply with one accepted decision:
+  adopt-release  take the release version when the engine allows it
+  keep-local     preserve the checkout version
+  merge          accept the resolved proposal for a mergeable conflict
+  use-proposal   accept the resolved proposal after conflict markers are removed
+Or reply defer to defer this entire unit.
+
+Answers: [file path] = [decision]; [file path] = [decision]; ...
+```
+
+Accept only `adopt-release`, `keep-local`, `merge`, `use-proposal` for eligible files, or `defer` for the whole unit. The engine may reject a decision that does not match the file class. Do not infer an answer from silence or from the recommendation. Record every file answer through the engine `decide` command, including an answer matching a prefilled suggestion. Record `defer` through `decide --unit <unit-key> --defer`, using the unit's `key` from the report (`kind:name`, for example `skill:sk-git`). A plain name works only when no other unit shares it.
+
+### Align summary
+
+```text
+Alignment decisions recorded
+Release: [release]
+Run directory: [runDir]
+Decisions: [count]
+Deferred units: [list or none]
+Unresolved files: [list or none]
+State log: [runDir]/.doctor-update.last-run.json, or none for dry-run or preflight failure
+
+Apply a completed decision set:
+  /doctor:update apply --decisions=[runDir]/decisions.json
+```
+
+When a dry-run plan was requested, use:
+
+```text
+STATUS=DRY_RUN
+No run directory or decisions file was written. No apply handoff is available yet.
+```
+
+## 4. Apply Plan and Startup Approval
+
+Show the engine dry-run plan before asking for approval:
+
+```text
+Release Apply Plan
+Release: [release]
+Run directory: [runDir]
+
+| Operation | Path | Unit |
+|-----------|------|------|
+| [add|replace|delete] | [path] | [unit or release metadata] |
+
+Applied units: [list or none]
+Skipped units: [unit and reason, or none]
+Follow-up checks: [regenerate hubs, generated files and their generators, hooks, runtime mirrors, databases]
+Targets modified since alignment: [none or engine refusal]
+```
+
+If the dry-run plan is valid, ask once:
+
+```text
+Apply exactly this release plan to the checkout?
+Reply yes to approve the planned writes, or no to leave release-managed files unchanged.
+```
+
+Only an unambiguous `yes` approves. On `no`, cancellation, ambiguity or interruption, do not run engine apply without `--dry-run`. Write the terminal state log and report `STATUS=DECLINED`. If the operator supplied `--dry-run`, do not ask this prompt; stop after the plan with `STATUS=DRY_RUN`.
+
+## 5. Post-Apply Battery and Recovery
+
+Show every applicable check and its observed result:
+
+```text
+Post-apply checks
+
+| Check | Result | Detail |
+|-------|--------|--------|
+| Leaf manifests | [PASS|FAIL|not applicable] | [output tail] |
+| Skill-derived metadata | [PASS|FAIL] | [changed count, error count, exit code] |
+| Route validation | [PASS|FAIL] | [output tail] |
+| Command catalog mirror | [PASS|FAIL] | [output tail] |
+| Runtime mirrors | [PASS|FAIL] | [output tail] |
+| Codex prompts | [PASS|FAIL] | [output tail] |
+| Pi prompts | [PASS|FAIL] | [output tail] |
+| Hermes prompts | [PASS|FAIL] | [output tail] |
+| Hook installers | [PASS|FAIL|not applicable] | [output tail] |
+```
+
+For a failing check with a documented write counterpart, ask:
+
+```text
+[check] failed: [short evidence]
+1) Run the documented repair command, then rerun this check
+2) Roll back the release update
+X) Stop and leave the applied release in place
+Reply 1, 2 or X:
+```
+
+Run the write counterpart only after an unambiguous `1`. Route validation and the command catalog checker have no write mode; for those failures, explain the mismatch and offer rollback or stop. Do not invent a checker write flag.
+
+Rollback uses the engine first:
+
+```text
+Rollback release update from [runDir] using the engine rollback record?
+Reply yes to restore paths that still match the applied release, or no to leave the checkout as-is.
+```
+
+If engine rollback reports skipped paths, show each exact path and ask before running `git restore`:
+
+```text
+The engine skipped these paths because their contents changed after apply:
+[exact skipped paths]
+
+git restore will discard their current contents and restore the index version.
+Reply yes to restore only these paths, or no to leave them unchanged:
+```
+
+Run `git restore -- [exact engine-reported skipped paths]` only after an unambiguous yes. Report each restored and skipped path. Never call a partial rollback complete.
+
+## 6. Database Rebuild Prompt
+
+After the battery, ask:
+
+```text
+The release update completed its post-apply checks.
+Run /doctor:rebuild now to refresh spec-kit databases?
+Reply yes to run it, or no to skip.
+```
+
+Record `reindex=rebuilt` only after successful completion is observed. If skipped, show:
+
+```text
+Database rebuild skipped. The spec-kit database index may be stale.
+Run /doctor:rebuild when you are ready.
+```
+
+If rebuild fails, record `reindex=failed`, show the observed error and the same stale-index warning. Never present skipped or failed reindexing as full success.
+
+## 7. Result Templates
+
+### Check
+
+```text
+Doctor Update Check
+Release: [release or UNKNOWN]
+Upstream latest: [tag or UNKNOWN]
+Unit counts: [status counts]
+STATUS=[OK|UNKNOWN|FAILED]
+```
+
+### Align
+
+```text
+Doctor Update Align
+Release: [release]
+Run directory: [runDir or none for dry-run]
+Decisions recorded: [count]
+Deferred units: [list or none]
+State log: [runDir]/.doctor-update.last-run.json, or none for dry-run or preflight failure
+STATUS=[ALIGNED|DEFERRED|DRY_RUN|FAILED]
+```
+
+### Apply
+
+```text
+Doctor Update Apply
+Release: [release]
+Run directory: [runDir]
+Written: [count]
+Added: [count]  Deleted: [count]
+Skipped units: [list or none]
+Post-apply checks: [pass count] passed, [fail count] failed
+Database reindex: [rebuilt|skipped|failed|not applicable]
+Rollback: [not needed|completed|partial|failed]
+State log: .skilled/release/runs/.doctor-update.last-run.json
+STATUS=[APPLIED|PARTIAL|ROLLED_BACK|DECLINED|DRY_RUN|FAILED]
 ```
 
 ### Failure
 
 ```text
-STATUS=FAIL ERROR="[message]"
-State log: .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.last-run.json
-Failed phase: [phase]
-Next: inspect the state log and rerun with the safest applicable flag set.
+STATUS=FAILED ERROR="[sanitized error]"
+Action: [check|align|apply]
+State record: [validated path or not persisted for this action]
+Next: [safe next step]
 ```
-
-### Rolled Back
-
-```text
-STATUS=ROLLED_BACK
-Reason: [step failure|gold-battery regression|operator choice]
-Restored snapshots: [list]
-State log: .skilled/skills/system-skill-advisor/runtime/database/.doctor-update.last-run.json
-```
-
-## 6. Related Commands Display
-
-| Command | When To Use |
-|---------|-------------|
-| `/doctor speckit-retrieval` | Isolated trigger-index and retrieval-conventions health diagnosis |
-| `/doctor deep-loop` | Isolated research/review coverage graph diagnosis |
-| `/doctor skill-advisor` | Advisor and skill-graph optimization pass |
-| `/doctor skill-budget` | Advisor budget/status helper |
-| `/doctor:mcp debug --fix` | MCP infrastructure repair before subsystem diagnostics |
 
 End interactive presentations with: `What would you like to do next?`

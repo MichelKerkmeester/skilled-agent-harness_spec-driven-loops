@@ -39,15 +39,15 @@ upstream_assets:
 # INPUTS
 # ─────────────────────────────────────────────────────────────────
 inputs:
-  target_dir: "Deep-loop artifact dir (a lineage dir or a dir containing lineages/). Defaults to the 002 research corpus when omitted; pass as the first positional argument or via --dir."
-  baseline: "Optional baseline snapshot path (--baseline). Defaults to the committed fable-baseline.json."
+  target_dir: "Required deep-loop artifact directory (one lineage directory or a directory containing lineages/); pass with --dir."
+  baseline: "Optional baseline snapshot path (--baseline); defaults to the committed fable-baseline.json."
 
 # ─────────────────────────────────────────────────────────────────
 # EXECUTION
 # ─────────────────────────────────────────────────────────────────
 execution:
   steps:
-    - "Execute upstream_assets.audit_script via Bash with target_dir as --dir (or the first positional argument)."
+    - "Execute upstream_assets.audit_script via Bash with target_dir as --dir and baseline as --baseline; when baseline is empty, use upstream_assets.baseline_snapshot."
     - "Render the five behavioral metrics and the per-metric delta against the baseline."
     - "Report STATUS from the script exit code; never write."
 
@@ -55,7 +55,12 @@ execution:
 # OUTPUT
 # ─────────────────────────────────────────────────────────────────
 output: |
-  STATUS=OK when the diagnostic renders (script exits 0).
-  STATUS=ERROR ERROR="fable-mode target directory not found" when the script exits 2.
+  STATUS=OK when the diagnostic renders and at least one metric was measured (script exits 0).
+  STATUS=ERROR when the script exits 2, with ERROR set from its STATUS=ERROR line:
+    ERROR="fable-mode invalid arguments" for an unknown flag, a flag missing its value, or a doubled target;
+    ERROR="fable-mode target directory not found" when target_dir does not exist;
+    ERROR="fable-mode target is not a directory" when target_dir is a file;
+    ERROR="fable-mode baseline could not be loaded" when an explicit baseline is missing or malformed;
+    ERROR="fable-mode nothing measured" when the target yields no lineage or every metric is INSUFFICIENT.
   The metrics are drift detectors, not quality scores: higher tool:text and evidence ratios and
   lower words/opener/caveat values indicate closer alignment to the fable-5 signature.

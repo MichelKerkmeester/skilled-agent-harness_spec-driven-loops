@@ -15,8 +15,6 @@
       "reject-only meaning gate",
       "projection quality",
       "implementation plan",
-      "tasks",
-      "implementation",
       "architecture decision",
       "local reject-only judge"
     ],
@@ -29,10 +27,10 @@
       "quality",
       "implementation",
       "plan",
-      "tasks",
       "architecture",
       "decision",
-      "local"
+      "local",
+      "judge"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -190,7 +188,7 @@
     ],
     "causal_summary": "No production source connects the candidate to `validateProjectionCandidate`, `evaluateFidelityVeto`, or `runProxyReviewers` outside evaluation",
     "created_at": "2026-08-13T04:05:03.387Z",
-    "last_save_at": "2026-09-03T22:16:56.228Z",
+    "last_save_at": "2026-10-03T15:12:00.941Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +197,12 @@
       "tasks.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:ec8e290e59402524f5bab4cf3a943a10b42e8b4476a36fe206836f7d883cee06",
+    "source_fingerprint": "sha256:595e083cba0077d98295bccdf47fd7aed076ec22ff91590ebefb28d4a10f6411",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "03f661bcbef11981b8097ba8b0962f5dc5d037368bf5e471c47a23e53e6bc846",
       "plan.md": "1d3327b986f07c58215e6ade38403184bbe8efac03564c841a35141f78edf411",
-      "tasks.md": "1cc9e7cdcbc500537b8c700be2c36a8b7d0d8bdb8518291f711a34fb84320f5f",
+      "tasks.md": "1481b871ae6e07083cf050572eef214fd6337c8f130288e0fdb2d79eb7e09c6f",
       "decision-record.md": "4febc43565282e78ae9570f42b57de2d4329782dbd725e9aa1d70a2b1dd7e94d"
     },
     "last_active_child_id": null,

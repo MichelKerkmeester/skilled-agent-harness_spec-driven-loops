@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/048-doctor-command-audit/006-fable-mode",
+  "spec_folder": "system-speckit/048-doctor-command-audit/006-fable-mode",
+  "parent_id": "system-speckit/048-doctor-command-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor fable-mode audit",
+      "/doctor:speckit fable-mode relevance",
+      "doctor-fable-mode.yaml",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "doctor fable-mode audit acceptance"
+    ],
+    "key_topics": [
+      "doctor",
+      "fable-mode",
+      "audit",
+      "speckit",
+      "relevance",
+      "doctor-fable-mode",
+      "yaml",
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/fable-mode-check.cjs",
+      ".skilled/commands/doctor/assets/doctor-fable-mode.yaml",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      "scratch/doctor-run.log",
+      "scratch/reality-check.md",
+      "scratch/proposal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fable-mode-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/fable-mode-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-fable-mode.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-fable-mode.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
+        "source": "derived"
+      },
+      {
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "proposal.md",
+        "kind": "doc",
+        "path": "scratch/proposal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/doctor:speckit fable-mode` checks the fable-mode configuration",
+    "created_at": "2026-10-02T16:10:17Z",
+    "last_save_at": "2026-10-03T11:48:56.177Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fcbcf92383622cf80d20091de241fb7c17d3e95a93c1be002d1bf7034c6dde0a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "efae50045d2cbc54a7083c63482693633fbefdb3b0484ec0af0528c8f7605c88",
+      "plan.md": "088cafe940e5238b7dd91653cc7db72fdae7bdb52b00be9aa9a164858c26e4a5",
+      "tasks.md": "67d4b5638baedcbf72fec9a1d9e081184069efb7d4d3ed0ac1a2267c58d2d9ab",
+      "implementation-summary.md": "772d48474fbe2af27e76b9144d94c398ee0e41ae6939bc8b8c735aa2f9642da3"
+    },
+    "last_active_at": null
+  }
+}

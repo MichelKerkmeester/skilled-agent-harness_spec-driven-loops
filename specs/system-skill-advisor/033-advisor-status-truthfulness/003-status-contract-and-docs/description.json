@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs",
+  "description": "Phase 3: status-contract-and-docs",
+  "keywords": [
+    "phase",
+    "status-contract-and-docs"
+  ],
+  "lastUpdated": "2026-10-03T05:27:38.432Z",
+  "specId": "003",
+  "folderSlug": "status-contract-and-docs",
+  "parentChain": [
+    "system-skill-advisor",
+    "033-advisor-status-truthfulness"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

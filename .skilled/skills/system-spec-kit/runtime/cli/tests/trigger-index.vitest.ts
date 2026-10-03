@@ -14,6 +14,8 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { publishJson, stableStringify } from '../retrieval/lib/artifact.mjs';
 import { canonicalRelativePath, CORPUS_ROOTS, IGNORED_PATHS, walkCorpus } from '../retrieval/lib/corpus.mjs';
 import { CATEGORY, readTriggerPhrases } from '../retrieval/lib/frontmatter.mjs';
+import { packetFolderTokens } from '../retrieval/lib/grep-convention.mjs';
+import { judgeTriggerPhrase } from '../retrieval/lib/phrase-judge.mjs';
 import {
   normalizeTriggerText,
   queryTokens,
@@ -568,6 +570,25 @@ describe('generate', () => {
     expect(quality.phrases).toEqual({ 'generic-workflow-word': 1, 'numeric-only': 1, ok: 1, 'single-token': 1 });
     // 'retrieval' is owned by both documents; 'memory' and the date by one each.
     expect(quality.documents).toEqual({ 'generic-workflow-word': 1, 'numeric-only': 1, 'single-token': 2 });
+  });
+
+  it('judges each owner with its own folder tokens, so folder-token-fallback reaches the bucket', () => {
+    const root = makeTempDir('speckit-trigger-foldertoken-');
+    writeDoc(root, 'specs/track/042-retrieval-lane/spec.md', frontmatter(['retrieval', 'spec folder question']));
+    writeDoc(root, 'specs/track/other.md', frontmatter(['retrieval']));
+
+    const built = buildIndex({ repoRoot: root, roots: CORPUS_ROOTS });
+    const quality = built.diagnostics.phraseQuality as { phrases: Record<string, number>; documents: Record<string, number> };
+
+    // The phrase counts once, as folder-token-fallback, because one owner's folder repeats it.
+    expect(quality.phrases).toEqual({ 'folder-token-fallback': 1, ok: 1 });
+    // Each owner counts under the class the per-document validator gives it.
+    expect(quality.documents).toEqual({ 'folder-token-fallback': 1, 'single-token': 1 });
+    const folderOwner = 'specs/track/042-retrieval-lane/spec.md';
+    expect(judgeTriggerPhrase('retrieval', { folderTokens: packetFolderTokens(folderOwner) })?.negativeClass)
+      .toBe('folder-token-fallback');
+    expect(judgeTriggerPhrase('retrieval', { folderTokens: packetFolderTokens('specs/track/other.md') })?.negativeClass)
+      .toBe('single-token');
   });
 
   it('counts every diagnostic category across one corpus', () => {

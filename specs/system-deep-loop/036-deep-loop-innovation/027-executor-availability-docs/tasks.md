@@ -2,9 +2,6 @@
 title: "Tasks: Correct the deep-loop command contracts to state the real per-command CLI executor sets"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
   - "tasks core"
 importance_tier: "normal"
 contextType: "general"

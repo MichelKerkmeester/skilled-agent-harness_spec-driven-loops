@@ -1,0 +1,33 @@
+{
+  "specFolder": "hooks/010-hook-feature-flags-and-hub-index",
+  "description": "Give every repo-authored runtime hook a default-on per-concern kill-switch across six runtimes, backed by a master switch and one canonical hub index.",
+  "keywords": [
+    "give",
+    "every",
+    "repo-authored",
+    "runtime",
+    "hook",
+    "default-on",
+    "per-concern",
+    "kill-switch",
+    "across",
+    "six",
+    "runtimes",
+    "backed",
+    "master",
+    "switch",
+    "one",
+    "canonical",
+    "hub",
+    "index"
+  ],
+  "lastUpdated": "2026-10-03T14:45:17.100Z",
+  "specId": "010",
+  "folderSlug": "hook-feature-flags-and-hub-index",
+  "parentChain": [
+    "hooks"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/021-code-mode-fresh-clone-build",
+  "spec_folder": "mcp-tooling/021-code-mode-fresh-clone-build",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-code-mode/mcp-server/package.json",
+      ".skilled/skills/mcp-code-mode/scripts/install.sh",
+      ".skilled/skills/mcp-code-mode/scripts/validate_config.py",
+      ".skilled/skills/mcp-code-mode/references/configuration.md",
+      ".skilled/skills/mcp-code-mode/SKILL.md",
+      ".skilled/skills/mcp-code-mode/mcp-server/scripts/README.md",
+      ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md",
+      ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh",
+      ".skilled/commands/doctor/scripts/mcp-doctor.sh",
+      "specs/system-speckit/048-doctor-command-audit/001-mcp-install-code-mode/implementation-summary.md",
+      "specs/system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode/implementation-summary.md",
+      ".skilled/bin/mcp-code-mode-launcher.cjs",
+      ".skilled/bin/lib/node-engine-resolver.cjs",
+      ".skilled/skills/mcp-code-mode/mcp-server/package-lock.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-code-mode/mcp-server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "install.sh",
+        "kind": "script",
+        "path": ".skilled/skills/mcp-code-mode/scripts/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validate_config.py",
+        "kind": "file",
+        "path": ".skilled/skills/mcp-code-mode/scripts/validate_config.py",
+        "source": "derived"
+      },
+      {
+        "name": "configuration.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-code-mode/references/configuration.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-code-mode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-code-mode/mcp-server/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL-GUIDE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor-lib.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-code-mode-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/mcp-code-mode-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "node-engine-resolver.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/node-engine-resolver.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-code-mode/mcp-server/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Make Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Re",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Note Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A fresh clone or worktree cannot build Code Mode, and the config preflight reports the shipped UTCP configuration wrongly",
+    "created_at": "2026-10-03T05:27:35Z",
+    "last_save_at": "2026-10-03T11:48:56.177Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a238630faa725b2ad2ba04c698a26b1c360710042eaf85a1098577087c1ffb5e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f7183164b864457a884569347bc6a7ce2ecf80b1a09ee9d121eeac3b5d93ace0",
+      "plan.md": "bcb603d40eaba1a882b9c865144e83298a657481ce3b3c7600f96088aeb831ea",
+      "tasks.md": "c64280d000b66574ed408bc206b0a86ffab5f44e86615aea203cdd4eb1965b3a",
+      "implementation-summary.md": "cf088e910f528bb539c233a5bbbb7fa36eb521f0980cd84fb175ead093f4cadb"
+    },
+    "last_active_at": null
+  }
+}

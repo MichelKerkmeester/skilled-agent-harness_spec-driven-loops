@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/048-doctor-command-audit/007-parent-skill",
+  "description": "`/doctor:speckit parent-skill` checks parent-hub skill structure",
+  "keywords": [
+    "doctor",
+    "speckit",
+    "parent-skill",
+    "checks",
+    "parent-hub",
+    "skill",
+    "structure"
+  ],
+  "lastUpdated": "2026-10-02T16:13:28.668Z",
+  "specId": "007",
+  "folderSlug": "parent-skill",
+  "parentChain": [
+    "system-speckit",
+    "048-doctor-command-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

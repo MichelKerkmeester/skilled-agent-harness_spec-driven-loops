@@ -1,0 +1,9 @@
+[
+{"item":"sk-code","prompt":"review this code change for bugs and verify the implementation","exit":0,"top3":[["sk-code", 0.781, 0.9396], ["system-deep-loop", 0.171, 0.82], ["sk-doc", 0.161, 0.82]]},
+{"item":"sk-code","prompt":"implement and debug this webflow animation code","exit":0,"top3":[["sk-code", 0.837, 0.95], ["mcp-tooling", 0.157, 0.82], ["sk-design", 0.1, 0.82]]},
+{"item":"design-agent","prompt":"design a chart for this dashboard","exit":0,"top3":[["sk-design", 0.502, 0.82]]},
+{"item":"cli-classifier","prompt":"ask the classifier model for a typed judgment through jev","exit":0,"top3":[["cli-classifier", 0.816, 0.95]]},
+{"item":"cli-external-orchestration","prompt":"dispatch this task to the codex cli as an external executor","exit":0,"top3":[["cli-external-orchestration", 0.774, 0.95]]},
+{"item":"system-spec-kit","prompt":"create a spec folder for this feature","exit":0,"top3":[["system-spec-kit", 0.86, 0.95], ["sk-doc", 0.348, 0.82], ["mcp-tooling", 0.298, 0.82]]},
+{"item":"sk-doc","prompt":"write a skill readme","exit":0,"top3":[["sk-doc", 0.856, 0.95], ["system-spec-kit", 0.448, 0.82], ["mcp-tooling", 0.296, 0.82]]},
+{"item":"sk-design","prompt":"choose the design values and spacing scale for this surface","exit":0,"top3":[["sk-design", 0.711, 0.902]]}]

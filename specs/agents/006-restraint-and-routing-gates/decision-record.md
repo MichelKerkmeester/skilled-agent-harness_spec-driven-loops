@@ -2,8 +2,6 @@
 title: "Decision Record: Pre-Write Restraint and Artifact Routing in AGENTS.md"
 description: "Records the mid-flight scope amendment that took this packet past its original diff budget, and why the added work was accepted rather than deferred."
 trigger_phrases:
-  - "decision"
-  - "record"
   - "scope amendment"
   - "diff budget"
   - "agents.md"

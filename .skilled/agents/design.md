@@ -1,6 +1,6 @@
 ---
 name: design
-description: "Design specialist across the four sk-design modes: decides values and behavior via sk-design-fundamentals, measures an existing surface into a Style Reference via sk-design-md-generator, and authors charts and diagrams via sk-design-chart and sk-design-diagram. LEAF."
+description: "Design specialist across the four sk-design modes: values and behavior, Style Reference measurement, charts and diagrams. LEAF."
 mode: subagent
 temperature: 0.2
 permission:

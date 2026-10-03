@@ -1,6 +1,7 @@
 ---
 title: "Tasks: Phase 9 — Split code-webflow Implementation References"
 description: "Task checklist with evidence for the code-webflow implementation reference split and router rewire."
+importance_tier: "normal"
 contextType: "implementation"
 trigger_phrases:
   - "task breakdown"

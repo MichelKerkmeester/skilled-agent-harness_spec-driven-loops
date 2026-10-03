@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode",
+  "spec_folder": "system-speckit/048-doctor-command-audit/002-mcp-debug-code-mode",
+  "parent_id": "system-speckit/048-doctor-command-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor mcp-debug audit",
+      "/doctor:mcp debug relevance",
+      "doctor-mcp-debug.yaml",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "doctor mcp-debug audit acceptance"
+    ],
+    "key_topics": [
+      "doctor",
+      "mcp-debug",
+      "audit",
+      "mcp",
+      "debug",
+      "relevance",
+      "doctor-mcp-debug",
+      "yaml",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".cursor/mcp.json",
+      ".pi/mcp.json",
+      ".devin/mcp_config.json",
+      ".skilled/commands/doctor/assets/doctor-mcp-debug.yaml",
+      ".skilled/commands/doctor/scripts/mcp-doctor.sh",
+      ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh",
+      ".skilled/commands/doctor/mcp.md",
+      ".skilled/commands/doctor/assets/doctor-mcp-presentation.txt",
+      ".skilled/commands/README.txt",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/skills/mcp-code-mode/mcp-server/package.json",
+      ".skilled/commands/doctor/_routes.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_config.json",
+        "kind": "config",
+        "path": ".devin/mcp_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-mcp-debug.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-mcp-debug.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor-lib.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-mcp-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-mcp-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".skilled/skills/mcp-code-mode/mcp-server/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/doctor:mcp debug` diagnoses MCP servers that fail to start or expose no tools",
+    "created_at": "2026-10-02T16:10:11Z",
+    "last_save_at": "2026-10-03T11:48:56.184Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c7654925f930c4c2b85850e5296f82e571d095e62b54f4f5d754ea30785d6388",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9f4da6f6f0a3287fddf945af8edd971dd0eb32b8b64b493c753d2f7dc5ffe20a",
+      "plan.md": "755000e4c7300a020fa817558bb938dab5906cec2daa3f03896de2838f30555d",
+      "tasks.md": "fdac4d704f921d4da962738c45e7eb0dc41f899808342cddc48fd333561654d1",
+      "implementation-summary.md": "8d1057f1495e29bd1a27bdea7ee50aab29ae31ea0f48c729c65f1512ef7c38d3"
+    },
+    "last_active_at": null
+  }
+}

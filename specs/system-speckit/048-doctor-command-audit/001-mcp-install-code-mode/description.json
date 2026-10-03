@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/048-doctor-command-audit/001-mcp-install-code-mode",
+  "description": "`/doctor:mcp install` installs MCP servers and registers them in each runtime config",
+  "keywords": [
+    "doctor",
+    "mcp",
+    "install",
+    "installs",
+    "servers",
+    "registers",
+    "them",
+    "runtime",
+    "config"
+  ],
+  "lastUpdated": "2026-10-02T16:13:28.611Z",
+  "specId": "001",
+  "folderSlug": "mcp-install-code-mode",
+  "parentChain": [
+    "system-speckit",
+    "048-doctor-command-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 041-cli-pi-devpass-glm-route |
+| **Spec Folder** | 008-cli-pi-devpass-glm-route |
 | **Completed** | 2026-09-05 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

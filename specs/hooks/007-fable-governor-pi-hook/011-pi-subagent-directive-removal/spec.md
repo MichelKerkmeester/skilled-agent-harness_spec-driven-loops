@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "hooks/007-fable-governor-pi-hook/011-pi-subagent-directive-removal"
     last_updated_at: "2026-09-08T09:30:00Z"
     last_updated_by: "pi-helper"
-    recent_action: "Removed the pi-subagents dispatch directive and shadow machinery after the package was uninstalled from the runtime config"
+    recent_action: "Removed the pi-subagents dispatch directive and shadow machinery"
     next_safe_action: "Confirm the working tree diff and commit the removal packet"
     blockers: []
     key_files:

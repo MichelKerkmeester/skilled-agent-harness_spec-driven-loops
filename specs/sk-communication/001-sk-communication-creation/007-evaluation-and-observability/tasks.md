@@ -3,8 +3,6 @@ title: "Tasks: Phase 007 Evaluation and Observability"
 description: "Implementation task breakdown for the evaluation and observability release-gate framework."
 trigger_phrases:
   - "evaluation-and-observability"
-  - "tasks"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

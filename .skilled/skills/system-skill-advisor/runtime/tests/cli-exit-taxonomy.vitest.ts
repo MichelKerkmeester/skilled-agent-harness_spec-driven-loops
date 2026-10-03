@@ -76,6 +76,25 @@ describe('skill-advisor CLI exit taxonomy', () => {
     expect(parseStatusEnvelope(run).status).toBe('error');
   });
 
+  it('accepts semantic and embeddings health options for advisor_status', () => {
+    const scope = makeScope('status-health-options');
+    delete scope.env.HF_EMBED_SERVER_URL;
+    const run = runSkillAdvisorShim([
+      'advisor_status',
+      '--json',
+      JSON.stringify({
+        workspaceRoot: scope.rootDir,
+        includeSemanticHealth: true,
+        includeEmbeddingsHealth: true,
+      }),
+      '--format',
+      'json',
+    ], scope.env, { timeoutMs: 30_000 });
+
+    expect(run.exitCode, run.stderr).toBe(0);
+    expect(parseStatusEnvelope(run).status).toBe('ok');
+  });
+
   it('reserves exit 69 for protocol disagreement without forcing a version mismatch', () => {
     expect(__testing.EXIT_PROTOCOL).toBe(69);
   });

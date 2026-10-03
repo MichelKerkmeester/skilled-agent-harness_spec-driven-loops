@@ -3,7 +3,6 @@ title: "Tasks: Phase 024 Devin Wrapper"
 description: "Planned task breakdown for the Devin single-turn probe, print-mode capture, runtime adapter routing, gate-first projection, byte-exact fallback, and packet closeout."
 trigger_phrases:
   - "devin-wrapper"
-  - "tasks"
   - "devin -p print projection tasks"
   - "devin runtime adapter wiring tasks"
 importance_tier: "important"

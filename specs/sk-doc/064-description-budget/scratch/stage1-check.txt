@@ -1,0 +1,63 @@
+======================================================================
+Skill/Command/Agent Description Budget Audit (Packet 086)
+======================================================================
+
+Items audited:  62
+  - skills:     14
+  - commands:   36
+  - agents:     12 (unique names)
+
+Project total:         6330 chars
+Project soft-ceiling:  5600 chars
+Headroom:              -730 chars under ceiling
+Default Claude Code budget: 8000 chars (built-ins consume the 2400-char headroom)
+
+Top 12 by length:
+STATUS     CHARS  SURFACE   NAME
+----------------------------------------------------------------------
+OK           130  skill     system-spec-kit
+OK           128  skill     sk-doc
+OK           128  skill     sk-prompt
+OK           127  skill     sk-code
+OK           127  agent     design  (mirrored: 2 surfaces)
+OK           126  skill     cli-classifier
+OK           125  skill     mcp-code-mode
+OK           124  skill     cli-external-orchestration
+OK           122  skill     sk-git
+OK           122  skill     sk-vision
+OK           121  skill     cli-orca
+OK           121  agent     ai-council  (mirrored: 2 surfaces)
+... (50 more)
+
+WARN: project total 6330 > soft ceiling 5600
+audit exit=0
+== quick_validate sk-code
+✅ Skill is valid!
+exit=0
+== quick_validate cli-classifier
+✅ Skill is valid!
+exit=0
+== quick_validate cli-external-orchestration
+✅ Skill is valid!
+exit=0
+== quick_validate system-spec-kit
+✅ Skill is valid!
+exit=0
+== quick_validate sk-doc
+✅ Skill is valid!
+exit=0
+== quick_validate sk-design
+✅ Skill is valid!
+exit=0
+== validate_document .skilled/agents/design.md
+
+✅ VALID: .skilled/agents/design.md
+Document type: agent
+Total issues: 1
+exit=0
+== validate_document .claude/agents/design.md
+
+✅ VALID: .claude/agents/design.md
+Document type: agent
+Total issues: 1
+exit=0

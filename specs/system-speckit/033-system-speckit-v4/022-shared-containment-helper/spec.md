@@ -5,7 +5,6 @@ trigger_phrases:
   - "shared containment helper"
   - "path containment seam"
   - "write boundary helper"
-  - "assertPathInsideRoot"
   - "symlinked parent escape"
 importance_tier: "normal"
 contextType: "general"

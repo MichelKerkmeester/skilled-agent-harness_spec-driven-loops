@@ -1,0 +1,22 @@
+{
+  "manifestHash": "6c0344fd7582f89d7247d6f9815da371d30c5ce4390b4bc316c110a744984d7c",
+  "phraseQuality": {
+    "documents": {
+      "editor-fallback": 3,
+      "generic-workflow-word": 95,
+      "numeric-only": 52,
+      "prose-sentence": 16,
+      "single-token": 508,
+      "stop-word-only": 10
+    },
+    "phrases": {
+      "editor-fallback": 2,
+      "generic-workflow-word": 3,
+      "numeric-only": 33,
+      "ok": 32984,
+      "prose-sentence": 25,
+      "single-token": 237,
+      "stop-word-only": 2
+    }
+  }
+}

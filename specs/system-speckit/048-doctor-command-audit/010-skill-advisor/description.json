@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/048-doctor-command-audit/010-skill-advisor",
+  "description": "`/doctor:speckit skill-advisor` checks and repairs the skill advisor",
+  "keywords": [
+    "doctor",
+    "speckit",
+    "skill-advisor",
+    "checks",
+    "repairs",
+    "skill",
+    "advisor"
+  ],
+  "lastUpdated": "2026-10-02T16:13:28.696Z",
+  "specId": "010",
+  "folderSlug": "skill-advisor",
+  "parentChain": [
+    "system-speckit",
+    "048-doctor-command-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,319 +1,111 @@
-# ─────────────────────────────────────────────────────────────────
-# MCP DOCTOR: INSTALL WORKFLOW
-# ─────────────────────────────────────────────────────────────────
-role: MCP Installation Specialist
-purpose: Fresh install or reinstall all supported MCP servers from install guides
-action: Run guided installation with verification
+role: Code Mode installation specialist
+purpose: Install Code Mode, configure its UTCP manual file, and register supported runtimes
+action: Run the install workflow with explicit approval before writes
 
-# ─────────────────────────────────────────────────────────────────
-# OPERATING MODE
-# ─────────────────────────────────────────────────────────────────
 operating_mode:
   workflow: sequential_6_step
-  compliance: MANDATORY
   execution: interactive
-  workflow_compliance: MANDATORY
-  workflow_execution: interactive
-  approvals: per_server
-  tracking: installed_skipped_failed_per_server
+  approvals: per_mutation
   validation: post_install_health_check
   intent: INSTALL
 
-# ─────────────────────────────────────────────────────────────────
-# MCP-INSTALL DOCTOR INVARIANT
-# ─────────────────────────────────────────────────────────────────
-mcp_install_doctor_invariant: |
-  MCP install workflows perform fresh install (or reinstall) of the supported MCP
-  servers based on their install guides. Each server's install runs only after
-  prerequisite check passes (Node >= 20.11.0, Python >= 3.11, npm) and
-  the user approves the install plan. No silent overwrite of existing installs:
-  if a server is already present, the user is prompted to skip, reinstall, or
-  upgrade. Post-install health check (mcp-doctor.sh --json) is mandatory and
-  failure halts the workflow with rollback guidance.
+scope:
+  component: Code Mode
+  source: .skilled/skills/mcp-code-mode
+  manual_config: .utcp_config.json
+  allowed_runtimes: [opencode, claude, codex, cursor, pi, devin]
+  runtime_config_files:
+    opencode: [opencode.json]
+    claude: [.mcp.json, .claude/mcp.json]
+    codex: [.codex/config.toml]
+    cursor: [.cursor/mcp.json]
+    pi: [.pi/mcp.json]
+    devin: [.devin/mcp_config.json]
 
-# ─────────────────────────────────────────────────────────────────
-# UPSTREAM ASSETS
-# ─────────────────────────────────────────────────────────────────
-upstream_assets:
-  contract: "local command design contract"
-  files:
-    spec: "spec.md"
-    decision_record: "decision-record.md"
-  install_guides:
-    code_mode: ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md"
-  scripts:
-    health_check: ".skilled/commands/doctor/scripts/mcp-doctor.sh"
-  pass_policy:
-    prerequisite_check_required: true
-    user_approval_per_server: true
-    health_check_after_each: true
-
-# ─────────────────────────────────────────────────────────────────
-# USER INPUTS
-# ─────────────────────────────────────────────────────────────────
-user_inputs:
-  server_filter: "[SERVER_FILTER] string|null"
-  runtime_filter: "[RUNTIME_FILTER] string|null"
-
-# ─────────────────────────────────────────────────────────────────
-# FIELD HANDLING
-# ─────────────────────────────────────────────────────────────────
-field_handling:
-  defaults:
-    server_filter_empty: null  # install every server defined in this file when unset
-    runtime_filter_empty: null  # auto-detect active runtime when unset
-  server_filter_policy:
-    null: "install all supported MCP servers"
-    set: "install only the named server"
-  runtime_filter_policy:
-    null: "wire MCP config into the detected active runtime"
-    set: "wire MCP config into the named runtime only"
-
-# ─────────────────────────────────────────────────────────────────
-# ARGUMENT PARSING
-# ─────────────────────────────────────────────────────────────────
-arguments:
-  server_filter:
-    flag: "--server"
-    value: "<name>"
-    default: null
-    effect: "Only install the specified server"
-  runtime_filter:
-    flag: "--runtime"
-    value: "<name>"
-    valid_values: [opencode, claude, vscode]
-    default: null
-    effect: "Only configure for the specified runtime"
-
-# ─────────────────────────────────────────────────────────────────
-# REFERENCE: INSTALL GUIDES (read these during workflow)
-# ─────────────────────────────────────────────────────────────────
-install_guides:
-  code_mode: .skilled/skills/mcp-code-mode/INSTALL-GUIDE.md
-
-# ─────────────────────────────────────────────────────────────────
-# REFERENCE: SERVER DEFINITIONS
-# ─────────────────────────────────────────────────────────────────
+# Server inventory for this workflow. The mutation-class gate
+# (scripts/check-mcp-mutation-class.sh) reads its own manifest,
+# assets/mcp-mutation-class-manifest.yaml, not this block. The workflow below
+# builds with npm directly and never runs the Code Mode installer.
 servers:
   code_mode:
     label: "Code Mode"
-    runtime: node
     skill_dir: ".skilled/skills/mcp-code-mode"
     entry_point: "mcp-server/dist/index.js"
     install_script: "scripts/install.sh"
-    install_script_mutation_class: mutating  # installer: writes config + npm install
-    health_checks:
-      - { path: "mcp-server/dist/index.js", type: "file_exists" }
-      - { path: "mcp-server/node_modules", type: "dir_exists" }
-    install_steps:
-      - "bash {skill_dir}/scripts/install.sh"
-    fallback_install:
-      - "cd {skill_dir}/mcp-server && npm install && npm run build"
-    extra_config:
-      - { path: ".utcp_config.json", type: "file_exists", description: "UTCP config for external MCP servers" }
+    install_script_mutation_class: mutating  # installer: writes runtime config and runs npm install
 
-# ─────────────────────────────────────────────────────────────────
-# REFERENCE: CLI-PRIMARY DESIGN SKILLS (not registered MCP servers)
-# ─────────────────────────────────────────────────────────────────
-# These mcp-* skills drive an external app or browser from the terminal and
-# expose an OPTIONAL MCP via Code Mode rather than running a registered MCP
-# server, so they are NOT part of the server install/repair loop above and
-# have no entry_point or build. Each ships its own install plus diagnostics,
-# so run those per-skill for CLI readiness. Listed here so the mcp install and
-# doctor setup covers every mcp skill, not only the registered servers.
-cli_skill_diagnostics:
-  mcp-figma:
-    label: "Figma (CLI)"
-    skill_dir: ".skilled/skills/mcp-tooling/mcp-figma"
-    install_script: "scripts/install.sh"
-    install_script_mutation_class: mutating  # installer: npm/git install of figma-ds-cli
-    doctor_script: "scripts/doctor.sh"
-    doctor_script_mutation_class: read-only  # diagnostics only; no install/connect/patch
-    install_guide: ".skilled/skills/mcp-tooling/mcp-figma/INSTALL-GUIDE.md"
-  mcp-chrome-devtools:
-    label: "Chrome DevTools (CLI)"
-    skill_dir: ".skilled/skills/mcp-tooling/mcp-chrome-devtools"
-    install_script: "scripts/install.sh"
-    install_script_mutation_class: mutating  # installer: npm install + PATH/profile edits
-    doctor_script: "scripts/doctor.sh"
-    doctor_script_mutation_class: read-only  # diagnostics only; no install
-    install_guide: ".skilled/skills/mcp-tooling/mcp-chrome-devtools/INSTALL-GUIDE.md"
-  mcp-click-up:
-    label: "ClickUp (CLI)"
-    skill_dir: ".skilled/skills/mcp-tooling/mcp-click-up"
-    install_script: "scripts/install.sh"
-    install_script_mutation_class: mutating  # installer: pipx/pip install of cupt
-    doctor_script: "scripts/doctor.sh"
-    doctor_script_mutation_class: read-only  # diagnostics only; token presence check
-    install_guide: ".skilled/skills/mcp-tooling/mcp-click-up/INSTALL-GUIDE.md"
+inputs:
+  runtime:
+    flag: "--runtime"
+    values: [opencode, claude, codex, cursor, pi, devin]
+    default: all
 
-# ─────────────────────────────────────────────────────────────────
-# REFERENCE: CONFIG TEMPLATES
-# ─────────────────────────────────────────────────────────────────
-config_files:
-  opencode:
-    path: "opencode.json"
-    format: "json-mcp"
-    label: "OpenCode"
-    guide_section: "Option B: Copilot / OpenCode"
-  claude:
-    path: ".claude/mcp.json"
-    format: "json-mcpServers"
-    label: "Claude Code"
-    guide_section: "Option E: Claude CLI"
-  vscode:
-    path: ".vscode/mcp.json"
-    format: "json-mcpServers"
-    label: "VS Code / Copilot"
-    guide_section: "Option A: Claude Code"
+invariants:
+  - "Only Code Mode build files, .utcp_config.json, and the selected runtime config files may be changed."
+  - "Never request, display, or write credential values. Ask only for variable names and report their presence in root .env or the process environment."
+  - "Preserve existing manuals and runtime entries when editing configuration."
+  - "Stop before mutation when the Code Mode package.json is missing."
+  - "Do not pass --fix or any runtime filter to the diagnostic script."
 
-# ─────────────────────────────────────────────────────────────────
-# WORKFLOW
-# ─────────────────────────────────────────────────────────────────
 workflow:
-
   step_1_preflight:
-    name: "Preflight"
-    purpose: "Check system prerequisites before any install"
+    purpose: Confirm the repository and Code Mode build prerequisites
     activities:
-      - "Check Node.js version: node --version (must be >=20.11.0)"
-      - "Check npm: npm --version"
-      - "Report which servers can be installed based on available prerequisites"
-      - "If --server flag provided, validate server name"
-      - "If --runtime flag provided, validate runtime name"
-    on_missing_prereq:
-      action: "WARN and skip affected servers, continue with others"
-      hard_block: "If no prerequisites available at all, STATUS=FAIL"
-    outputs:
-      - prerequisite_report: "Which tools available, which servers can proceed"
-      - servers_to_install: "Filtered list based on prereqs + --server flag"
+      - "Confirm the repository root and read the Code Mode install guide."
+      - "Require npm for an approved build. Confirm that a Node.js 24 interpreter can be resolved from the Code Mode manifest and launcher when the manifest is present."
+      - "Check .skilled/skills/mcp-code-mode/mcp-server/package.json. If it is missing, report that this worktree lacks the package manifest and stop before writes."
+      - "If --runtime is set, validate it against the allowed_runtimes list."
+      - "If --runtime is unset, include all supported runtime config files in the assessment and registration plan."
+    outputs: [runtime_selection, prerequisite_status]
 
   step_2_assess:
-    name: "Assess Current State"
-    purpose: "For each server, determine: INSTALLED, STALE, or MISSING"
+    purpose: Inspect the current Code Mode build, UTCP configuration, and runtime wiring
     activities:
-      - "FOR EACH server in servers_to_install:"
-      - "  1. Read the install guide (Sections 2-3: Prerequisites, Installation)"
-      - "  2. Run health_checks from server definition"
-      - "  3. Classify: INSTALLED (all pass), STALE (some fail), MISSING (none pass)"
-      - "  4. If STALE: identify which specific check failed"
-      - "Present assessment table to user"
-    assessment_format: |
-      | Server | Status | Detail |
-      |--------|--------|--------|
-      | Code Mode | {status} | {detail} |
-    checkpoint:
-      enabled: true
-      prompt: |
-        Assessment complete. How would you like to proceed?
+      - "Run bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json and parse status, exitCode, summary, and checks. Exit 0 is healthy, 1 warnings, 2 failures; exit 3 means the script was invoked wrongly and printed no report, so stop and report it."
+      - "Review the Code Mode package manifest, source timestamps, dist/index.js, node_modules, .utcp_config.json, and selected runtime config."
+      - "Treat dist/index.js as stale when any available source input is newer; syntax-check a present dist/index.js with node --check."
+      - "For Codex TOML, validate with Python tomllib when available; otherwise report the config as unvalidated."
+    outputs: [assessment_json, build_status, manual_status, runtime_status]
 
-        A) Install/reinstall all that need it (MISSING + STALE)
-        B) Walk through each server interactively
-        C) Only install MISSING servers (skip STALE)
-        D) Cancel
-      options:
-        - { key: "A", action: "install all MISSING + STALE" }
-        - { key: "B", action: "interactive per-server prompts" }
-        - { key: "C", action: "install MISSING only" }
-        - { key: "D", action: "STATUS=CANCELLED" }
-    outputs:
-      - server_states: "Map of server -> INSTALLED|STALE|MISSING"
-      - install_plan: "Which servers to install based on user choice"
+  step_3_build:
+    purpose: Install Code Mode dependencies and build when needed
+    condition: "The package manifest exists and the user approves the build or dependency install."
+    approval: per_mutation
+    actions:
+      - "Run cd .skilled/skills/mcp-code-mode/mcp-server && npm install when dependencies are missing or the user requests a fresh install."
+      - "Run cd .skilled/skills/mcp-code-mode/mcp-server && npm run build when dist/index.js is missing or stale."
+    prohibited_actions:
+      - "Do not run scripts/install.sh."
+      - "Do not edit files under .skilled/skills/mcp-code-mode beyond the build outputs and package-manager outputs produced by the approved commands."
 
-  step_3_install:
-    name: "Install"
-    purpose: "Execute install steps for each server in the install plan"
+  step_4_configure_manual:
+    purpose: Create or update the Code Mode UTCP manual configuration
+    condition: "The user approves a .utcp_config.json change."
+    approval: per_mutation
     activities:
-      - "FOR EACH server in install_plan:"
-      - "  1. Read the install guide's Installation section (Phase 2 + Phase 3)"
-      - "  2. If STALE and has clean_reinstall: ask user whether to clean first"
-      - "  3. Execute install_steps in order"
-      - "  4. If install fails and fallback_build exists: try fallback"
-      - "  5. Execute post_install steps if defined"
-      - "  6. Run health_checks to confirm install succeeded"
-      - "  7. Report PASS or FAIL per server"
-    per_server_checkpoint:
-      enabled: true
-      condition: "interactive mode (user chose B at step 2)"
-      prompt: |
-        Ready to install {server.label}:
-        Commands: {install_steps}
-        Proceed? [Y/n/skip]
-    on_failure:
-      max_retries: 1
-      action: "Report error, suggest /doctor:mcp debug --server {name}"
-    outputs:
-      - install_results: "Map of server -> PASS|FAIL + details"
+      - "Preserve existing valid manuals and add only the manual the user identifies, using a valid underscore-separated JavaScript identifier."
+      - "Require every manual to have a non-empty name and call_template_type."
+      - "For each ${VAR} reference, identify the expected key: the manual name with each underscore doubled, then _<VAR>. Report only the key name and whether it is present."
+      - "If a credential key is missing, tell the user to manage its value in the repository root .env file outside this workflow. Never write, ask for, or print the value."
+      - "Validate the final .utcp_config.json as JSON."
 
-  step_4_configure:
-    name: "Configure Runtime Wiring"
-    purpose: "Verify MCP server entries exist in runtime config files"
+  step_5_register_runtime:
+    purpose: Register Code Mode in the selected runtime config files
+    condition: "The user approves a runtime config change."
+    approval: per_mutation
     activities:
-      - "Determine which config files to check:"
-      - "  If --runtime flag: only that runtime's config"
-      - "  Else: all config files that exist on disk"
-      - "FOR EACH config file that exists:"
-      - "  1. Read the file"
-      - "  2. FOR EACH installed server: check if MCP entry is present"
-      - "  3. If entry missing:"
-      - "     a. Read the install guide's Configuration section for the correct snippet"
-      - "     b. Present the snippet to user"
-      - "     c. Ask: Add this entry? [Y/n/manual]"
-      - "     d. If Y: edit the config file to add the entry"
-      - "     e. If manual: show snippet, user edits themselves"
-    config_safety:
-      rule: "Always validate JSON/TOML syntax after edit"
-      validation: "python3 -m json.tool < {config_file} for JSON; grep syntax for TOML"
-      on_validation_fail: "Revert edit, show error, ask user to fix manually"
-    outputs:
-      - config_report: "Which configs have which servers wired"
+      - "Set the Code Mode command to node and include .skilled/bin/mcp-code-mode-launcher.cjs in its command arguments."
+      - "Set UTCP_CONFIG_FILE to .utcp_config.json in the Code Mode environment."
+      - "When --runtime is unset, register all seven project config files. When set, limit registration to that runtime; claude covers both .mcp.json and .claude/mcp.json. Preserve unrelated entries."
+      - "Parse JSON runtime files with node. Parse Codex TOML with Python tomllib when available; if unavailable, report unvalidated and do not claim validation passed."
+      - "Request explicit approval for each runtime file before editing it."
+    user_level_note: "Hermes registration is user-level in ~/.hermes/config.yaml and is not checked."
 
-  step_5_verify:
-    name: "Verify"
-    purpose: "Run full diagnostic to confirm everything works"
+  step_6_verify:
+    purpose: Recheck the resulting Code Mode installation and report its state
     activities:
-      - "Run: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json"
-      - "Parse JSON results"
-      - "Compare with step_2 assessment: what improved"
-      - "Report any remaining issues"
-    command: "bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json"
-    on_remaining_failures:
-      action: "Suggest /doctor:mcp debug for remaining issues"
-    outputs:
-      - verification_json: "Post-install diagnostic results"
-      - improvements: "Before vs after comparison"
-
-  step_6_summary:
-    name: "Summary"
-    purpose: "Final report with what was done and next steps"
-    report_format: |
-      ## MCP Install — Final Report
-
-      | Server | Before | After | Action Taken |
-      |--------|--------|-------|--------------|
-      | Code Mode | {before} | {after} | {action} |
-
-      **Config wiring:** {config_summary}
-
-      ### Next Steps
-      - Restart your AI client to pick up MCP servers
-      - Test: ask your AI assistant to use each MCP tool
-      - If issues persist: /doctor:mcp debug
-
-      STATUS={final_status}
-
-# ─────────────────────────────────────────────────────────────────
-# ERROR HANDLING
-# ─────────────────────────────────────────────────────────────────
-error_handling:
-  node_too_old:
-    check: "node version < 20.11.0"
-    action: "FAIL for Node-based servers, suggest upgrade"
-  npm_install_fails:
-    action: "Clear npm cache (npm cache clean --force), retry once"
-  pip_install_fails:
-    action: "Remove .venv, retry with install script"
-  build_fails:
-    action: "Try fallback_build if defined, else report manual steps"
-  config_edit_fails:
-    action: "Show snippet for manual paste, never force-write broken JSON"
+      - "Run bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json. Do not pass --fix."
+      - "Parse the preserved JSON shape: status, exitCode, summary, and checks[]."
+      - "Report build freshness, UTCP JSON and manual fields, credential key names with present or missing status, and runtime wiring. Never include credential values."
+      - "List any remaining FAIL or WARN checks and distinguish unvalidated from valid."
+    outputs: [verification_json, final_status, remaining_issues]

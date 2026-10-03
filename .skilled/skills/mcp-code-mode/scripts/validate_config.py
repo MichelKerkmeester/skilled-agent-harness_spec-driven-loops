@@ -214,7 +214,7 @@ class ConfigValidator:
         """
         prefix = f"manual_call_templates[{idx}]"
 
-        required_fields = ['name', 'call_template_type', 'config']
+        required_fields = ['name', 'call_template_type']
         for field in required_fields:
             if field not in template:
                 self.errors.append(f"{prefix}: missing required field '{field}'")
@@ -224,11 +224,14 @@ class ConfigValidator:
             if not isinstance(name, str):
                 self.errors.append(f"{prefix}: field 'name' must be a string")
             else:
-                if not VALID_IDENTIFIER.match(name):
+                is_valid_name = bool(VALID_IDENTIFIER.match(name))
+                if not is_valid_name:
                     self.errors.append(
                         f"{prefix}: invalid manual name '{name}' "
                         "(must be valid JavaScript identifier: letters, digits, _, $ only)"
                     )
+                else:
+                    self._extract_env_vars(template, name, prefix)
 
                 if name in manual_names:
                     self.errors.append(f"{prefix}: duplicate manual name '{name}'")
@@ -247,8 +250,8 @@ class ConfigValidator:
                         "(use underscores instead)"
                     )
 
+        call_template_type = template.get('call_template_type')
         if 'call_template_type' in template:
-            call_template_type = template['call_template_type']
             valid_types = ['mcp', 'http', 'cli', 'file']
             if not isinstance(call_template_type, str):
                 self.errors.append(
@@ -261,8 +264,78 @@ class ConfigValidator:
                     f"(expected one of: {', '.join(valid_types)})"
                 )
 
-        if template.get('call_template_type') == 'mcp':
-            self._validate_mcp_config(template.get('config', {}), prefix)
+        if call_template_type == 'mcp':
+            if 'config' not in template:
+                self.errors.append(f"{prefix}: missing required field 'config'")
+            else:
+                self._validate_mcp_config(template['config'], prefix)
+        elif call_template_type == 'cli':
+            if 'commands' not in template:
+                self.errors.append(f"{prefix}: missing required field 'commands'")
+            else:
+                commands = template['commands']
+                if not isinstance(commands, list) or not commands:
+                    self.errors.append(
+                        f"{prefix}.commands: must be a non-empty array"
+                    )
+                else:
+                    for command_idx, command in enumerate(commands):
+                        command_prefix = f"{prefix}.commands[{command_idx}]"
+                        if not isinstance(command, dict):
+                            self.errors.append(f"{command_prefix}: must be an object")
+                            continue
+
+                        if 'command' not in command:
+                            self.errors.append(
+                                f"{command_prefix}: missing string 'command'"
+                            )
+                        elif not isinstance(command['command'], str):
+                            self.errors.append(
+                                f"{command_prefix}.command: must be a string"
+                            )
+
+                        if 'append_to_final_output' in command:
+                            append_to_final_output = command['append_to_final_output']
+                            if (
+                                append_to_final_output is not None
+                                and not isinstance(append_to_final_output, bool)
+                            ):
+                                self.errors.append(
+                                    f"{command_prefix}.append_to_final_output: "
+                                    "must be a boolean or null"
+                                )
+
+            if 'env_vars' in template and not isinstance(template['env_vars'], dict):
+                self.errors.append(f"{prefix}.env_vars: must be an object")
+            if (
+                'working_dir' in template
+                and not isinstance(template['working_dir'], str)
+            ):
+                self.errors.append(f"{prefix}.working_dir: must be a string")
+        elif call_template_type == 'http':
+            if 'url' not in template:
+                self.errors.append(f"{prefix}: missing required field 'url'")
+            elif not isinstance(template['url'], str):
+                self.errors.append(f"{prefix}.url: must be a string")
+
+            if 'http_method' in template:
+                http_method = template['http_method']
+                if not isinstance(http_method, str) or http_method not in {
+                    'GET', 'POST', 'PUT', 'DELETE', 'PATCH'
+                }:
+                    self.errors.append(
+                        f"{prefix}.http_method: must be one of "
+                        "GET, POST, PUT, DELETE, PATCH"
+                    )
+            if 'content_type' in template and not isinstance(
+                template['content_type'], str
+            ):
+                self.errors.append(f"{prefix}.content_type: must be a string")
+        elif call_template_type == 'file':
+            if 'file_path' not in template:
+                self.errors.append(f"{prefix}: missing required field 'file_path'")
+            elif not isinstance(template['file_path'], str):
+                self.errors.append(f"{prefix}.file_path: must be a string")
 
     def _validate_mcp_config(self, config: Any, prefix: str) -> None:
         """Validate MCP server configuration within a template.
@@ -306,21 +379,27 @@ class ConfigValidator:
                 if 'url' not in server_config:
                     self.errors.append(f"{server_prefix}: missing 'url'")
 
-            if 'env' in server_config and isinstance(server_config['env'], dict):
-                for _env_key, env_value in server_config['env'].items():
-                    if isinstance(env_value, str):
-                        self._extract_env_vars(env_value, server_prefix)
-
-    def _extract_env_vars(self, value: str, context: str) -> None:
-        """Extract and track environment variable references.
+    def _extract_env_vars(self, value: Any, manual_name: str, context: str) -> None:
+        """Extract template references and track their manual-prefixed keys.
 
         Args:
-            value: String value that may contain ${VAR} references.
-            context: Context string for associating variables with their source.
+            value: Template value to scan recursively for ${VAR} references.
+            manual_name: Manual name; its underscores are doubled to form the key prefix.
+            context: Template prefix for associating variables with their source.
         """
-        for match in ENV_VAR_PATTERN.finditer(value):
-            var_name = match.group(1)
-            self._required_env_vars.add((var_name, context))
+        if isinstance(value, dict):
+            for nested_value in value.values():
+                self._extract_env_vars(nested_value, manual_name, context)
+        elif isinstance(value, list):
+            for nested_value in value:
+                self._extract_env_vars(nested_value, manual_name, context)
+        elif isinstance(value, str):
+            for match in ENV_VAR_PATTERN.finditer(value):
+                var_name = match.group(1)
+                # The UTCP SDK doubles every underscore in the namespace before
+                # joining, so manual "a_b" and variable "X" resolve as "a__b_X".
+                namespace = manual_name.replace('_', '__')
+                self._required_env_vars.add((f"{namespace}_{var_name}", context))
 
     def _validate_env_vars(self) -> None:
         """Validate that all referenced environment variables are defined.
@@ -332,9 +411,9 @@ class ConfigValidator:
             return
 
         missing_vars = []
-        for var_name, context in self._required_env_vars:
-            if var_name not in self.env_vars:
-                missing_vars.append(f"  - {var_name} (referenced in {context})")
+        for prefixed_key, context in self._required_env_vars:
+            if prefixed_key not in self.env_vars:
+                missing_vars.append(f"  - {prefixed_key} (referenced in {context})")
 
         if missing_vars:
             self.errors.append(

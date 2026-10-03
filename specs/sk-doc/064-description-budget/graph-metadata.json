@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/064-description-budget",
+  "spec_folder": "sk-doc/064-description-budget",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "description budget overage",
+      "skill description trim",
+      "agent description length",
+      "advisor routing keywords",
+      "audit description surface",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "description",
+      "budget",
+      "overage",
+      "skill",
+      "trim",
+      "agent",
+      "length",
+      "advisor",
+      "routing",
+      "keywords",
+      "audit",
+      "surface"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/agents/design.md",
+      ".claude/agents/design.md",
+      ".skilled/skills/cli-classifier/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/SKILL.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-design/SKILL.md",
+      ".skilled/commands/doctor/scripts/audit_descriptions.py",
+      ".skilled/commands/doctor/assets/doctor-skill-budget.yaml",
+      ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
+      ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
+      ".skilled/skills/sk-doc/shared/assets/skill-contract.json",
+      ".pi/agents/design.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".skilled/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit_descriptions.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/audit_descriptions.py",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-budget.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-skill-budget.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "quick_validate.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "common-pitfalls.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-md-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/assets/skill-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Seven",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Trim",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Seven authored descriptions sit over their soft target and the project total runs 1,251 characters over its 5,600 ceiling",
+    "created_at": "2026-10-03T05:27:42Z",
+    "last_save_at": "2026-10-03T11:48:56.194Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ec6fae3c6a57b513114b2b719b657c3806c3d95b228ff47f3e5d5625efa77dd1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4633d71d2bab81b62e7a09c444b3e6f0c773b02bb0a5bc3606f71394bc17e365",
+      "plan.md": "d66f99d975f9514fef7af802c50152acfe0cd240475dba50f61f1f676bf6ffe9",
+      "tasks.md": "2215b1828a5aad0a1fa91ccdb0c556f466a0fb246f8a70ede3721dfe5f245f2b",
+      "implementation-summary.md": "7f435b0857af6810d8a1972be57679916c72670b422888e442355abef4c300c9"
+    },
+    "last_active_at": null
+  }
+}

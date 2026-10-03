@@ -17,6 +17,10 @@
       "identity-config-compat plan",
       "config compatibility plan",
       "identity-config-compat tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "identity-config-compat implementation summary"
     ],
     "key_topics": [
@@ -28,10 +32,10 @@
       "plan",
       "compatibility",
       "tasks",
-      "implementation",
-      "summary",
-      "changing",
-      "package"
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       ".pi/settings.json"
     ],
@@ -59,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -180,26 +191,21 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Changing the package identity can strand an existing fast-mode configuration if the loader only looks at a new path",
     "created_at": "2026-08-16T09:08:03Z",
-    "last_save_at": "2026-08-30T15:39:09.625Z",
+    "last_save_at": "2026-10-03T16:54:26.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b82a70865c151134a599bbaa0a6f50ec7fa4aef041f4a98cd1196ae8e84a35c7",
+    "source_fingerprint": "sha256:d134ed33dca755fcfefb2f35c3fe691588480e85eef4206ec1cbe69651ec2d05",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "31f419e343747452dcafc964ca1a3b4e664baf14e075879bb353b54feb1442d7",

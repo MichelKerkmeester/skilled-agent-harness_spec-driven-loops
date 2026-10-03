@@ -2,9 +2,6 @@
 title: "Tasks: Phase 3: gate-b-realistic-corpus"
 description: "Every task this phase ran, marked done with the evidence that settles it: an observed count, a command output, or a commit."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
   - "tasks core"
 importance_tier: "normal"
 contextType: "general"

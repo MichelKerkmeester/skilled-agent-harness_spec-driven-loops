@@ -2,12 +2,7 @@
 title: "Feature Specification: Worktree/Branch Naming Overhaul"
 description: "Replace the owner-first branch grammar with two flat, spec-style numbered namespaces (worktrees/NNN-slug, branches/NNN-slug) with independent no-skip counters, a sourceable validator set, a pre-push gate update, and a dry-run migration helper."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "worktree"
-  - "branch"
-  - "naming"
-  - "grammar"
+  - "worktree branch naming overhaul spec"
 importance_tier: "normal"
 contextType: "general"
 _memory:

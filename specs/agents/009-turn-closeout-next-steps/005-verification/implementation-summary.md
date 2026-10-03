@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Re-ran every programme check from the final state and re-applied five contracts that had reverted to HEAD."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -11,8 +11,8 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "agents/009-turn-closeout-next-steps/005-verification"
-    last_updated_at: "2026-09-11T10:54:58Z"
-    last_updated_by: "template-author"
+    last_updated_at: "2026-09-11T19:44:00+02:00"
+    last_updated_by: "spec-validation-backfill"
     recent_action: "Phase closed; work recorded in tasks.md with evidence"
     next_safe_action: "None; phase complete and validated"
     blockers: []
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-005-verification"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,6 +41,7 @@ _memory:
 | **Spec Folder** | 005-verification |
 | **Completed** | 2026-09-11 |
 | **Level** | 2 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,18 +49,18 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+A re-check of the whole programme from its final state, and the catch that justified it: five contracts had silently reverted to `HEAD` while the session ran, and were re-applied before closure.
 
 ### Phase 5: verification
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+No new doctrine. This phase re-ran the counts, links, collisions, length bands and strict validation over the finished set rather than trusting the earlier green results.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `tasks.md` | Modified | Verification evidence for T001 to T006 |
+| Five reverted contracts | Re-applied | Restored the edits that `HEAD` moving under the session had undone |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +68,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+By rerunning every check after the work stopped, then rerunning again once `HEAD` was seen to have moved under the session.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +78,7 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Re-verify after `HEAD` moved | Earlier green results described a tree that no longer existed |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +88,12 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Rule files, trigger rows, index rows | PASS, eleven each |
+| Links | PASS, zero broken |
+| Trigger collisions | PASS, 194 phrases across eleven files |
+| Length bands | PASS, none over the 250 ceiling |
+| `validate.sh --strict` from the final state | PASS, nine folders passed, zero failed |
+| `acceptance-criteria.md` AC-001 | Met |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +101,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **The five reverted contracts are not named here.** The tasks record their count, not their paths.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -13,7 +13,7 @@ Validates:
 - Optional fields: allowed-tools
 - Name format: hyphen-case
 - Description: single line (no YAML block format)
-- Description length within budget (packet 086): soft warn at 130/110, hard fail at 1536
+- Description length within budget: soft warn at 130/110, hard fail at 1536
 - allowed-tools (if present): array format [Tool1, Tool2]
 - allowed-tools MCP tokens: fully qualified mcp__<server>__<tool>, for skills and commands alike
 - No angle brackets in description
@@ -93,7 +93,7 @@ def check_description_length(
         return (
             None,
             f"Description is {length} chars, exceeds soft target of {soft_target}. "
-            f"Project total budget is ~5,600 chars (default 8,000 minus built-ins); "
+            f"Project total budget is ~6,400 chars (default 8,000 minus built-ins, user-level and plugin skills); "
             f"trim per .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md "
             f"§ 'Description Budget & Trim Style'.",
         )
@@ -215,7 +215,7 @@ def validate_skill(
 
         if '<' in description or '>' in description:
             # Command descriptions legitimately carry <arg> placeholder notation
-            # (e.g. /doctor <target>); a skill description with angle brackets
+            # (e.g. /doctor:speckit <target>); a skill description with angle brackets
             # breaks registration, so it stays a hard failure there.
             if kind == 'command':
                 warnings.append("Description contains angle brackets (< or >) — allowed as <arg> placeholder notation for commands")

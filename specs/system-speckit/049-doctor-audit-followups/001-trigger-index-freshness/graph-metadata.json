@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/001-trigger-index-freshness",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/001-trigger-index-freshness",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "trigger index freshness",
+      "stale trigger index",
+      "retrieval conventions symlink",
+      "ripgrep version pin",
+      "byte-identical regeneration",
+      "implementation plan",
+      "trigger index regeneration",
+      "folder token fallback",
+      "staleness evidence",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "trigger",
+      "index",
+      "freshness",
+      "stale",
+      "retrieval",
+      "conventions",
+      "symlink",
+      "ripgrep",
+      "version",
+      "pin",
+      "byte-identical",
+      "regeneration"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
+      ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "scratch/findings-recheck.md",
+      "scratch/ripgrep-retest.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+      "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md",
+      "scratch/baseline-check.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-retrieval.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "findings-recheck.md",
+        "kind": "doc",
+        "path": "scratch/findings-recheck.md",
+        "source": "derived"
+      },
+      {
+        "name": "ripgrep-retest.md",
+        "kind": "doc",
+        "path": "scratch/ripgrep-retest.md",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "generation-diagnostics.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-variants.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-check.json",
+        "kind": "config",
+        "path": "scratch/baseline-check.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`generate-trigger-index.mjs --check --json` exits 1 on this checkout: the committed index is stale (176 documents differ, 175 indexed paths are missing, 23,052 documents scanned in the planning run) and the corpus manifest hash has moved past the index's",
+    "created_at": "2026-10-03T05:27:39Z",
+    "last_save_at": "2026-10-03T15:12:23.307Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b75b02bb300b21ff108a8605de06fab65b715d8737d6e486de16bd7e56631be0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c6742fb4c79935f38ff3527577d74f716867799e3e09c8cba2f44953a72d08f1",
+      "plan.md": "814dd9280cbdd42d137be4a53ae560a63eb2a7a0945ed1784ea90159cda7fa47",
+      "tasks.md": "9fc40a3842db551c3eae9f868c737e4ad08e01e3d057d1a18c098f62f832c391",
+      "decision-record.md": "e430c1af861544c9682ee770427d8ceebacbf38a119f8a81759c2906c0799190",
+      "implementation-summary.md": "b090a3b91909e32bebf2842702ccef505ee50f7f41159630b8146de085c19b6f"
+    },
+    "last_active_at": null
+  }
+}

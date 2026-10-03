@@ -83,18 +83,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Runtime code review, review drift remediation, rollback candidate hash hardening, and review containment exemption.",
+    "causal_summary": "Runtime code review, review drift remediation, rollback candidate hash hardening, review containment exemption, and the review-leaf protocol.",
     "created_at": "2026-09-20T08:33:47.113Z",
-    "last_save_at": "2026-09-20T08:33:47.113Z",
+    "last_save_at": "2026-10-03T14:37:12.377Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:58de9d8752b3decf29179cc6190045d7dd432ff138fbcc3de5960aacebf2a9ce",
+    "source_fingerprint": "sha256:33c3c4161e35a4642b5b1297148ec7b6702b23cc308ac2c42c741844716af88f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ec9f71173eb34d392a9cd46c690da80e6c0bbee54b95c6dc76a724f1a717c47f"
+      "spec.md": "83ffccdcd6bde61e7bc0e73adb8e1d4488bec3e9f85c0bca280e1d4e7e5082e3"
     },
     "last_active_child_id": "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/005-review-leaf-protocol",
     "last_active_at": null

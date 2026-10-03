@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups",
+  "description": "Fix the spec-kit defects the doctor command audit recorded",
+  "keywords": [
+    "spec-kit",
+    "defects",
+    "doctor",
+    "command",
+    "audit",
+    "recorded"
+  ],
+  "lastUpdated": "2026-10-03T05:27:39.835Z",
+  "specId": "049",
+  "folderSlug": "doctor-audit-followups",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

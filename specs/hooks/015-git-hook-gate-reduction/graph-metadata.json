@@ -15,14 +15,13 @@
       "hook off-switch broken",
       "mcp mutation regex blind",
       "mass deletion zero saves",
-      "implementation",
-      "plan",
-      "name",
-      "template",
       "plan core",
-      "tasks",
       "tasks core",
-      "acceptance criteria"
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr",
+      "impl summary core"
     ],
     "key_topics": [
       "git",
@@ -48,8 +47,7 @@
       "implementation-summary.md",
       ".opencode/scripts/git-hooks/pre-commit",
       ".opencode/scripts/git-hooks/pre-push",
-      ".opencode/scripts/git-hooks/commit-msg",
-      ".opencode/hooks/hook-flags.env"
+      ".opencode/scripts/git-hooks/commit-msg"
     ],
     "entities": [
       {
@@ -98,12 +96,6 @@
         "name": "commit-msg",
         "kind": "file",
         "path": ".opencode/scripts/git-hooks/commit-msg",
-        "source": "derived"
-      },
-      {
-        "name": "hook-flags.env",
-        "kind": "file",
-        "path": ".opencode/hooks/hook-flags.env",
         "source": "derived"
       },
       {
@@ -195,11 +187,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Thirteen blocking gates across three hooks",
     "created_at": "2026-08-31T02:55:45Z",
-    "last_save_at": "2026-09-10T20:43:35.199Z",
+    "last_save_at": "2026-10-03T15:11:50.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a3876bb168a0fff551ea2b95dafdff2fd4e43f1f8c9fa69c9e789a4df1a0057",
+    "source_fingerprint": "sha256:fac2d7281514bce3c0b1e3787346446c6e7cfb905da75036124bf1bc0c566198",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "653e6efabcee69c99376b15242f33a40b5f1305621dbfcd82d8b9bc2d215c7d8",
-      "plan.md": "2ce82dc62f8979121a86f5e4f4df4890c0d9bdd508c977ea9a2fc5c263c9e868",
-      "tasks.md": "08ba4d0398cc9d9db47cdd1cf7e2eb56db44ef0f244d2e32b8cc1c5a5f79d7f9",
-      "implementation-summary.md": "44c0168b0e59bc82ca10b338479cdc2ae446c391990b3b50613aa526b72892a0"
+      "plan.md": "96e164d6d82745a584c82e1b0d7b881343493660009a15cb53722ad300c51424",
+      "tasks.md": "b0d1b6b954c3c440ff37aa5c89ce89096106c192a4cfebcd583d6b348bfd6966",
+      "implementation-summary.md": "7a239b5e3364ff698ad18a8a4a51b3642b55fddab84aa6fb0d6f8c4d84a11ee2"
     },
     "last_active_child_id": null,
     "last_active_at": null

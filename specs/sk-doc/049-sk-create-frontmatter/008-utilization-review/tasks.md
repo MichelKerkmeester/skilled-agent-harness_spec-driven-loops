@@ -2,9 +2,6 @@
 title: "Task Breakdown: utilization-review"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
   - "tasks core"
 importance_tier: "normal"
 contextType: "general"

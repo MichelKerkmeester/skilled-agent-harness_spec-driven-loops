@@ -2,7 +2,6 @@
 title: "Tasks: Phase 7: spec-kit-residue"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
   - "adr disposition"
   - "049 supersession"
   - "coverage graph repoint"

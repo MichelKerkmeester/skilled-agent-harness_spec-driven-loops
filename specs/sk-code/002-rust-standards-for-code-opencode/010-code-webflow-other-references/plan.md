@@ -1,6 +1,7 @@
 ---
 title: "Implementation Plan: Phase 10 — Split code-webflow Other References"
 description: "Deterministic split of 8 code-webflow docs + tool-driven lockstep rewire of the code-webflow RESOURCE_MAP, parent union, and playbook expected_resources."
+importance_tier: "normal"
 contextType: "implementation"
 trigger_phrases:
   - "implementation plan"

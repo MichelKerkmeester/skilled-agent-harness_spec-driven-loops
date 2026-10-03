@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/048-doctor-command-audit/011-skill-budget",
+  "spec_folder": "system-speckit/048-doctor-command-audit/011-skill-budget",
+  "parent_id": "system-speckit/048-doctor-command-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor skill-budget audit",
+      "/doctor:speckit skill-budget relevance",
+      "doctor-skill-budget.yaml",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "doctor skill-budget audit acceptance"
+    ],
+    "key_topics": [
+      "doctor",
+      "skill-budget",
+      "audit",
+      "speckit",
+      "relevance",
+      "doctor-skill-budget",
+      "yaml",
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/assets/doctor-skill-budget.yaml",
+      "scratch/doctor-run.log",
+      ".skilled/commands/doctor/scripts/audit_descriptions.py",
+      ".skilled/commands/doctor/_routes.yaml",
+      "scripts/README.md",
+      "scratch/reality-check.md",
+      "scratch/proposal.md",
+      ".skilled/commands/goal-opencode.md",
+      ".skilled/commands/vision.md",
+      ".skilled/commands/doctor/speckit.md",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      ".skilled/commands/doctor/scripts/route-validate.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-budget.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-skill-budget.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
+        "source": "derived"
+      },
+      {
+        "name": "audit_descriptions.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/audit_descriptions.py",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "proposal.md",
+        "kind": "doc",
+        "path": "scratch/proposal.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode.md",
+        "kind": "doc",
+        "path": ".skilled/commands/goal-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "vision.md",
+        "kind": "doc",
+        "path": ".skilled/commands/vision.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/route-validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/doctor:speckit skill-budget` reports skill description budgets",
+    "created_at": "2026-10-02T16:10:24Z",
+    "last_save_at": "2026-10-03T11:48:56.194Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c966fe1a05c6196018b46abafcbd1f750264d8d83fed3c47b2262e9225ec0a4a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "71404044b58622106e6b02059cb95bc2c8ca666272376ecf179bb5e3ff809494",
+      "plan.md": "b35609b94b0f76475990e50bbe2e6d4f476f2c4dfa3397f6746ca343575ee155",
+      "tasks.md": "cc622bc41c6b8a590dcee82f969bd71b9b44630fcc9333ebcdce10f44e114013",
+      "implementation-summary.md": "70f052095098a9f955a777530844079d9add8c0e187f25978f228372a079806c"
+    },
+    "last_active_at": null
+  }
+}

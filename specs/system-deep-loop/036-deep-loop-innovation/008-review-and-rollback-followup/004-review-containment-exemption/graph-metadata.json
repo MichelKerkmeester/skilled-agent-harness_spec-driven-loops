@@ -22,7 +22,7 @@
       "isRegenerableRuntimeState task",
       "review containment exemption implementation summary",
       "isRegenerableRuntimeState shipped",
-      "1fb79e0106"
+      "partition before revert"
     ],
     "key_topics": [
       "review",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Fan-out review lineages died because the runtime writes its own git-tracked generated state during a contained lineage: telemetry under `runtime/database/` and the spec memory-index (`descriptions.json` / `description.json`)",
     "created_at": "2026-08-13T06:44:37.562Z",
-    "last_save_at": "2026-08-30T15:39:22.064Z",
+    "last_save_at": "2026-10-03T15:26:33.045Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9785edaec23950cfa8b139298bb6a81d06c8af4d3beb2656caa3a452021d960c",
+    "source_fingerprint": "sha256:27c67c1beb87cc82d57cfa46501b40ba4f1210f96c73d373b26403d70d5e75d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "71ac7dbf2d8d1eaa42f1076875c2b647db16703c4493b6f5b87d68afde51a351",
       "plan.md": "e319870fa120847d4cd43ead933e049c69d399ede0cb794ee73fb6b4b8231a27",
       "tasks.md": "5630966cecafa06ff9c455258481678e8743f39e005138b3a9e42f996f4baaad",
-      "implementation-summary.md": "2b44e2c1c49d5d3c76a5562a4f595882cb15d78f82ffdeb17d4840a415e16367"
+      "implementation-summary.md": "b8ed1c0c057a7009fa4d2d47c23af2196e1f9a0b454029b1b3badb7b9195e920"
     },
     "last_active_child_id": null,
     "last_active_at": null

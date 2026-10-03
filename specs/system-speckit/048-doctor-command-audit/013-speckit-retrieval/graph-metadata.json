@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/048-doctor-command-audit/013-speckit-retrieval",
+  "spec_folder": "system-speckit/048-doctor-command-audit/013-speckit-retrieval",
+  "parent_id": "system-speckit/048-doctor-command-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor speckit-retrieval audit",
+      "/doctor:speckit speckit-retrieval relevance",
+      "doctor-speckit-retrieval.yaml",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies",
+      "doctor speckit-retrieval audit acceptance"
+    ],
+    "key_topics": [
+      "doctor",
+      "speckit-retrieval",
+      "audit",
+      "speckit",
+      "relevance",
+      "doctor-speckit-retrieval",
+      "yaml",
+      "implementation",
+      "plan",
+      "technical",
+      "approach",
+      "architecture"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/doctor-run.log",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      ".skilled/commands/doctor/speckit.md",
+      "scratch/reality-check.md",
+      "scratch/proposal.md",
+      "references/retrieval/retrieval-conventions.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-run.log",
+        "kind": "file",
+        "path": "scratch/doctor-run.log",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-retrieval.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "reality-check.md",
+        "kind": "doc",
+        "path": "scratch/reality-check.md",
+        "source": "derived"
+      },
+      {
+        "name": "proposal.md",
+        "kind": "doc",
+        "path": "scratch/proposal.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": "references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/doctor:speckit speckit-retrieval` checks the trigger index and the ripgrep retrieval recipes",
+    "created_at": "2026-10-02T16:10:27Z",
+    "last_save_at": "2026-10-03T11:48:56.188Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:94d946f15ee23a6e882a3ab81afcdd1a82a71cad24941a346c4ece4e6c796513",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "40b06ac7f712a9b95a25e99436f51ac24e855cafc0d4d4ffd71aaba4d3cf0af1",
+      "plan.md": "fdf8bde2cacd4eeaa026ed6b2a86c97f48038326eceaeb89ac4b9120a9232995",
+      "tasks.md": "3dd7ce6b977d7274b3b301d750f36921a923fe7c22b6c94d6d3116530410acf0",
+      "implementation-summary.md": "4d77c85c5edbc497586ec97f01d71ab856196d2a1e638cf2cd75e3154bca8d17"
+    },
+    "last_active_at": null
+  }
+}

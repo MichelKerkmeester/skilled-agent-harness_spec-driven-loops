@@ -15,14 +15,13 @@
       "portable cli projection",
       "implementation phase",
       "implementation plan",
-      "tasks",
-      "implementation",
       "architecture decision",
       "use a generation-keyed state machine with explicit ordering domains",
       "implementation status",
       "current state",
       "phase 003 handover",
-      "core normalization handover"
+      "core normalization handover",
+      "start protected spans fidelity render"
     ],
     "key_topics": [
       "core-normalization-and-assembly",
@@ -32,11 +31,11 @@
       "implementation",
       "phase",
       "plan",
-      "tasks",
       "architecture",
       "decision",
       "generation-keyed",
-      "state"
+      "state",
+      "machine"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "Build the runtime-neutral core that normalizes events, assembles one deterministic message, and selects the bounded conversational context that made the reference effective without changing canonical state",
     "created_at": "2026-08-11T10:04:29Z",
-    "last_save_at": "2026-09-03T22:16:38.886Z",
+    "last_save_at": "2026-10-03T15:11:59.647Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +206,12 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:2f520282eee05d6cdce76a2c390e2ee6b1b67af82fe6613a86ae3c989067f070",
+    "source_fingerprint": "sha256:efc04198d84f534e5671623fd7ec5b93a8ee370909467ee8ba5dbd043d506f33",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "714ce0371a97603b3d5e1d8c09fb4199775e693cddb6439dbd6e16e8bf1f5841",
       "plan.md": "84fe979d44dd287d99984404d6be587c59791805c3252c9bb4f895b91bd3a11e",
-      "tasks.md": "1bcde3d427e1c91755fa7d875d6150341f6b8c83bdbcecd8c573068a955dc236",
+      "tasks.md": "67c9cd548b85484e37338d377304c5e659844008a3178d59e5b564cc1658d0b4",
       "decision-record.md": "ca1aa964d888d5d3db995e52776e06c134bfd5c8ceb8c0879476200498e17b0e",
       "implementation-summary.md": "84330b5f335b33b622bb31f5ab53b584acb1b6998bf1a9418ccf2d0937386b9a",
       "handover.md": "6e2c1af592214d15fff404145eb173ad934da2a3526d4e893a47f60fed7f6611"

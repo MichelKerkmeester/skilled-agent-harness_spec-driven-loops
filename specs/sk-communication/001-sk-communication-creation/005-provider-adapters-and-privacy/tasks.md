@@ -3,8 +3,6 @@ title: "Tasks: Phase 005 Provider Adapters and Privacy"
 description: "Implementation task breakdown for add model-scoped hosted and local provider adapters behind privacy-first routing and explicit egress consent."
 trigger_phrases:
   - "provider-adapters-and-privacy"
-  - "tasks"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

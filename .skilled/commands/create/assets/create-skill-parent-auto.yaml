@@ -441,10 +441,10 @@ workflow:
       - root_router_actioned
 
   step_5_validation:
-    purpose: Validate the generated package against the canonical structural gate (success gate == the /doctor parent-skill-check gate)
+    purpose: Validate the generated package against the canonical structural gate (success gate == the /doctor:speckit parent-skill gate)
     activities:
       - Run validate_document.py on the hub SKILL.md
-      - "Run the canonical structural gate and REQUIRE exit 0: node .skilled/commands/doctor/scripts/parent-skill-check.cjs [skill_root] — the same gate /doctor parent-skill runs, owning hub identity, the two-axis discriminator, toolSurface, hub-router validity, description.json, changelog shape, and registry/directory reverse consistency"
+      - "Run the canonical structural gate and REQUIRE exit 0: node .skilled/commands/doctor/scripts/parent-skill-check.cjs [skill_root]. The /doctor:speckit parent-skill workflow runs this same gate, which checks owning hub identity, the two-axis discriminator, toolSurface, hub-router validity, description.json, changelog shape and registry/directory reverse consistency."
       - "For a net-new hub (create), the default gate now blocks on checks 5-9 (canon-promoted): node .skilled/commands/doctor/scripts/parent-skill-check.cjs [skill_root] must exit 0, so a fresh hub must carry no canon gaps in hub-router, description.json, changelog shape, playbook, or benchmark baseline"
       - "Assert the hub graph-metadata.json has skill_id == hub folder name AND family in {cli, mcp, sk-code, deep-loop, sk-util, system}"
       - Check mode-registry.json is valid JSON and has one advisorRouting block per mode

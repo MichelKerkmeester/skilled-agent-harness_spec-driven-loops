@@ -3,7 +3,6 @@ title: "Tasks: Phase 017 Runtime-Wiring Feasibility and Contract"
 description: "Planned task breakdown for the runtime feasibility inventory, the hook-to-projection integration contract, and the OpenCode and Pi validation probes."
 trigger_phrases:
   - "runtime-wiring-feasibility-and-contract"
-  - "tasks"
   - "hook to projection integration contract"
   - "chat.message display validation"
 importance_tier: "important"

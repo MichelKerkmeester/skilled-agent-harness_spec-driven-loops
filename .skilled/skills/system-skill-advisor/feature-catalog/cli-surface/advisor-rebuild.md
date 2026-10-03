@@ -25,6 +25,8 @@ Give operators an explicit repair path for stale, absent or unavailable advisor 
 
 When rebuild proceeds, it indexes `.skilled/skills/`, publishes a fresh skill-graph generation with `reason: "advisor_rebuild"`, rereads status and returns freshness before/after, generation before/after, skill count, indexing summary and warnings. `advisor_status` remains diagnostic-only and never repairs stale state.
 
+`advisor_rebuild` mutates advisor state, so the CLI refuses the call unless the caller passes `--trusted` or sets `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` in the environment. An untrusted call exits 64 with the message `advisor_rebuild requires --trusted or SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. Example: `node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true`.
+
 The command manifest and dispatcher register `advisor_rebuild` alongside `advisor_recommend`, `advisor_status` and `advisor_validate`. The CLI exposes nine public commands: four `advisor_*` commands and five `skill_graph_*` commands.
 
 ---

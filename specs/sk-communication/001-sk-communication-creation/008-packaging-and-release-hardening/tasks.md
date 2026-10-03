@@ -3,8 +3,6 @@ title: "Tasks: Phase 008 Packaging and Release Hardening"
 description: "Implementation task breakdown for packaging, the compatibility doctor, release gates, rollback, and six-runtime release rehearsals."
 trigger_phrases:
   - "packaging-and-release-hardening"
-  - "tasks"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

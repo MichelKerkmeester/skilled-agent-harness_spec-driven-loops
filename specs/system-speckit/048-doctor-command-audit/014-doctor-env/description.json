@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/048-doctor-command-audit/014-doctor-env",
+  "description": "Every switch that turns a hook, gate or runtime feature off, or changes its default, is an environment variable or git config key documented in",
+  "keywords": [
+    "every",
+    "switch",
+    "turns",
+    "hook",
+    "gate",
+    "runtime",
+    "feature",
+    "changes",
+    "default",
+    "environment",
+    "variable",
+    "git",
+    "config",
+    "key",
+    "documented"
+  ],
+  "lastUpdated": "2026-10-02T16:13:28.742Z",
+  "specId": "014",
+  "folderSlug": "doctor-env",
+  "parentChain": [
+    "system-speckit",
+    "048-doctor-command-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

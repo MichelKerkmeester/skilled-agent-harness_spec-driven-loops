@@ -3,8 +3,6 @@ title: "Tasks: Phase 010 Adjacent-Span Coalescing"
 description: "Planned task breakdown for burden measurement, representation selection, local resolution, and strict fidelity verification."
 trigger_phrases:
   - "adjacent-span-coalescing"
-  - "tasks"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

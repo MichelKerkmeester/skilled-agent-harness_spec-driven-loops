@@ -154,7 +154,43 @@ jobs:
           node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
           node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check
           node .opencode/skills/system-spec-kit/runtime/cli/codex/sync-prompts.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check
+          node .opencode/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs --check
           node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs
           node .opencode/commands/doctor/scripts/command-catalog-mirror-check.cjs
           node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check
           node .opencode/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs --check
+
+  doctor-scripts:
+    name: Doctor script test suites
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+
+      - name: Setup Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.11'
+
+      # The mutation-class guard parses its manifest with PyYAML. The mirror
+      # checks require @spec-kit/shared through the workspace link, the hub
+      # check loads sk-doc's contract libraries, which import the same package
+      # through sk-doc's own install, and the freshness panel suite runs on the
+      # advisor runtime's vitest.
+      - name: Install test dependencies
+        run: |
+          set -euo pipefail
+          python3 -m pip install pyyaml==6.0.3
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/sk-doc ci
+          npm --prefix .opencode/skills/system-skill-advisor/runtime ci
+
+      # One runner, so CI and a developer execute the same set of suites.
+      - name: Run every doctor script suite
+        run: bash .opencode/commands/doctor/scripts/tests/run-all.sh

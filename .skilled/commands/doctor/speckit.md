@@ -1,11 +1,11 @@
 ---
-description: "Router for /doctor: dispatches subsystem diagnostics to a named target through _routes.yaml."
+description: "Dispatches spec-kit subsystem diagnostics to a named target through _routes.yaml."
 argument-hint: "<target> [flags] | list | ?"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
 <!-- skill_agent: system-spec-kit -->
 
-# /doctor Router
+# /doctor:speckit Router
 
 This command is a thin router. It resolves the target and setup values, then loads the target workflow YAML and the presentation contract.
 
@@ -34,7 +34,7 @@ Load the presentation contract before showing startup questions, setup dashboard
 - Unknown or cross-target flags fail before YAML load.
 - The YAML start condition is: target bound, workflow asset exists, presentation asset loaded, and every target setup variable resolved.
 - If any referenced asset is missing, stop and report the missing path.
-- Companion commands are not routed through this file: `/doctor:update` and `/doctor:mcp install|debug` have their own routers.
+- Companion commands are not routed through this file: `/doctor:rebuild` and `/doctor:mcp install|debug` have their own routers.
 - The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
 
 ---
@@ -46,7 +46,6 @@ These existing YAML assets are referenced only. The router must not modify them.
 | Target | Workflow |
 |--------|----------|
 | `speckit-retrieval` | `.skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml` |
-| `embeddings` | `.skilled/commands/doctor/assets/doctor-embeddings.yaml` |
 | `deep-loop` | `.skilled/commands/doctor/assets/doctor-deep-loop.yaml` |
 | `skill-advisor` | `.skilled/commands/doctor/assets/doctor-skill-advisor.yaml` |
 | `skill-budget` | `.skilled/commands/doctor/assets/doctor-skill-budget.yaml` |
@@ -83,5 +82,4 @@ The following content lives only in `.skilled/commands/doctor/assets/doctor-spec
 
 ## 6. WORKFLOW SUMMARY
 
-The router resolves a subsystem `target` against `_routes.yaml`, binds that target's workflow YAML plus its setup variables, allowed flags, and mutation class, then loads and executes the resolved `doctor_<target>.yaml` step by step under an always-interactive mode. `list`, `?`, or `--list` render the subsystem manifest instead of dispatching. All visible wording is owned by the presentation contract; subsystem-specific behavior lives in each target workflow.
-
+The router resolves a subsystem `target` against `_routes.yaml`, binds that target's workflow YAML plus its setup variables, allowed flags, and mutation class, then loads and executes the resolved `doctor-<target>.yaml` step by step under an always-interactive mode. `list`, `?`, or `--list` render the subsystem manifest instead of dispatching. All visible wording is owned by the presentation contract; subsystem-specific behavior lives in each target workflow.

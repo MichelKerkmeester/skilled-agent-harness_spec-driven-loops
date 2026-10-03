@@ -2,9 +2,6 @@
 title: "Implementation Summary"
 description: "A credential guarantee was placed at the codex execution adapter, measured working, then withdrawn and reverted after a review found the patched module is not on the path that failed. The ignore rule for lineage homes survived; the record is kept because the investigation found real things."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
   - "impl summary core"
 importance_tier: "normal"
 contextType: "general"

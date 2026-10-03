@@ -1,6 +1,6 @@
 ---
 name: cli-external-orchestration
-description: "Parent hub for external CLI dispatch: routes to seven workflow modes through mode-registry.json. Holds no per-mode logic; dispatches by workflowMode."
+description: "Parent hub for external CLI dispatch: routes to seven workflow modes through mode-registry.json; dispatches by workflowMode."
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.7.1.0
 metadata:

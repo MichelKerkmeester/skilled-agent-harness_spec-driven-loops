@@ -3,7 +3,6 @@ title: "Feature Specification: Phase 3: deep-loop executor support for cli-herme
 description: "Add cli-hermes as the eighth executor kind in the deep-loop runtime with a fail-closed dispatch builder, a two-id roster, audit and dispatch-audit coverage, and unit tests, so /deep:research and /deep:review lineages can run on Hermes."
 trigger_phrases:
   - "cli-hermes executor kind"
-  - "buildHermesLineageCommand"
   - "hermes fan-out lineage"
   - "hermes supported models"
 importance_tier: "important"

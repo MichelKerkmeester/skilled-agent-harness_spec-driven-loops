@@ -1,0 +1,144 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: UPDATE ALIGN WORKFLOW (RUN-DIRECTORY ONLY)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator recording release-alignment decisions for this checkout
+purpose: Review evidence for customized, conflicting and removed units and record chosen decisions in an ignored run directory.
+action: preflight -> release.align -> evidence.review -> decision.batch -> summary.handoff -> state.log
+
+operating_mode:
+  workflow: sequential_orchestrator
+  compliance: MANDATORY
+  execution: interactive
+  approvals: per_unit_decision_batch
+  tracking: unit_by_unit
+  validation: engine_decision_validation
+  state_dir: ".skilled/release/runs"
+
+align_orchestrator_invariant: |
+  Alignment writes only inside one canonical, gitignored run directory below
+  .skilled/release/runs. The engine creates run artifacts and records choices in
+  decisions.json. Proposal resolution may replace only the matching proposals
+  file in that run directory. Never write skills, command files, checkout units
+  or any path outside the run directory. Every accepted answer is recorded by
+  the engine decide command. A deferred unit remains unapplied.
+
+upstream_assets:
+  engine: ".skilled/commands/doctor/scripts/release-update.cjs"
+  presentation: ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
+  pass_policy:
+    gitignore_match_required: true
+    engine_run_dir_must_be_under: ".skilled/release/runs"
+    only_customized_conflict_removed_units_need_decisions: true
+
+user_inputs:
+  action: "align"
+  release: "[RELEASE] optional tag"
+  scope: "[SCOPE] optional all or comma-separated units, each a plain name or a kind:name key (skill:hub-a, directory:hooks); a name that two kinds share needs the kind:name form"
+  offline: "[OFFLINE] boolean"
+  dry_run: "[DRY_RUN] boolean"
+
+field_handling:
+  defaults:
+    release_empty: engine_default
+    scope_empty: all
+    offline_empty: false
+    dry_run_empty: false
+  engine_mapping:
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs align"
+    repository: "--repo ."
+    json: "--json for machine-readable plan and runDir"
+    release: "--release <tag> when supplied"
+    scope: "--scope <value> when supplied"
+    offline: "--offline when requested"
+    include_prerelease: "--include-prerelease when requested; without it latest-upstream resolution takes stable tags only"
+    dry_run: "--dry-run when requested"
+  accepted_decisions: [adopt-release, keep-local, merge, use-proposal]
+  defer: "Use decide --unit <unit-key> --defer with the unit's kind:name key from the plan (a plain name is accepted only when no other unit shares it); do not invent a file decision for the deferred unit."
+
+mutation_boundaries:
+  allowed_targets:
+    - ".skilled/release/runs/<release>-<utc-stamp>/**"
+    - "The matching proposals/<unit-relative-path> file inside that run directory when resolving proposal markers"
+  forbidden_targets:
+    - "all skill files, command files, prompts, runtime mirrors and release-managed checkout files"
+    - "all paths outside the selected .skilled/release/runs/<release>-<utc-stamp>/ directory"
+    - "any symlinked run directory, parent directory or proposal file"
+  validator:
+    name: canonical_path_validator
+    rule: "Resolve real paths and require the run directory to be a new, non-symlink child of .skilled/release/runs; require git check-ignore to match it; before any proposal write, require the canonical proposal path to be an existing regular file under that run directory's proposals/ subtree."
+
+state_log_schema:
+  command: "/doctor:update align"
+  location: "<runDir>/.doctor-update.last-run.json for a materialized run; no file for dry-run or preflight failure"
+  start: "ISO-8601"
+  end: "ISO-8601"
+  duration_seconds: "number"
+  release: "string|null"
+  run_dir: "string|null"
+  decisions_recorded: "number"
+  deferred_units: "array of kind:name unit keys"
+  final_status: "aligned|deferred|dry_run|failed"
+
+workflow:
+  phase_1_preflight:
+    approval: none
+    checks:
+      - "Confirm the current directory is inside a git repository and the engine exists."
+      - "Confirm .skilled/release/runs is the intended ignored run root with git check-ignore."
+      - "Bind action flags and confirm no cross-action flag reached the workflow."
+    on_failure: "Do not load or run engine align. Show the error template and stop without writing outside a run directory."
+
+  phase_2_engine_align:
+    approval: none
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs align --repo . --json [--release <tag>] [--scope <value>] [--offline] [--dry-run] [--include-prerelease]"
+    flag_rule: "Include only bound optional flags. Do not pass --out; use the engine's default unique run path below .skilled/release/runs."
+    parse_json_fields: [command, repo, release, releaseCommit, head, upstream, checkout, status, units, files, evidenceFiles, proposalFiles, runDir, externalRunDir, dryRun]
+    dry_run_rule: "When dryRun is true, show the plan only. It creates no run directory, evidence, proposals or decisions, so do not ask for decisions or offer an apply handoff."
+    run_dir_rule: "For a non-dry run, validate runDir is canonical, new, non-symlinked and gitignored before reading or writing run artifacts."
+    on_failure: "If engine align created a validated run directory, write the state record inside that directory. Otherwise present failure and stop without writing outside a run directory."
+
+  phase_3_evidence_review:
+    approval: none
+    unit_filter: "Review units whose status is customized, conflict or removed. Skip current, local, update, new, blocked and unknown units; report any of these separately when present."
+    procedure:
+      - "For each selected unit, collect all non-same planned files and present one consolidated decision batch for that unit."
+      - "Read each plan.evidenceFiles entry and show its complete evidence card with the engine recommendation."
+      - "If the file has merge or use-proposal as the selected answer, show the complete proposal text before asking for that answer."
+      - "When a proposal contains conflict markers, ask the user to resolve them. Write the resolved full text through a quoted Bash heredoc to that one validated proposal path inside the run directory; do not use Edit. Re-read the file and confirm no conflict markers remain."
+      - "Never write proposal text to a checkout path or to a different file in the run directory."
+
+  phase_4_decision_batch:
+    approval: "Require an answer for every presented file or allow defer for the whole unit."
+    accepted_answers:
+      file: [adopt-release, keep-local, merge, use-proposal]
+      unit: [defer]
+    eligibility:
+      adopt-release: "Only for take-release files and for binary, deleted-locally or deleted-in-release conflicts, which have no proposal; for those conflicts it writes the release bytes or the release deletion. A mergeable or conflicting text file takes merge, use-proposal or keep-local."
+      merge: "Only when the engine reports a mergeable conflict and the proposal has no unresolved markers."
+      use-proposal: "Only after the proposal is shown and has no unresolved markers."
+      keep-local: "Keep the checkout version for this planned file."
+      defer: "Record the unit as deferred and leave its files unapplied."
+    record_each_file: "node .skilled/commands/doctor/scripts/release-update.cjs decide --repo . --run <runDir> --path <planned-file-path> --decision <accepted-answer> --json"
+    record_defer: "node .skilled/commands/doctor/scripts/release-update.cjs decide --repo . --run <runDir> --unit <unit-key> --defer --json"
+    record_policy: "Call decide for every file answer, including answers that match an initial engine suggestion. Call decide only after any proposal edit is complete. Read and confirm the returned JSON before continuing."
+    decision_order: "Complete one unit's consolidated batch before presenting the next unit's batch."
+    on_failure: "Stop further decisions, retain the run directory for recovery, write the state log and show the failed file or unit."
+
+  phase_5_summary_handoff:
+    approval: none
+    summarize: "Report decisions by unit, every deferred unit and any unresolved files. Never imply deferred files are ready to apply."
+    handoff: "Offer /doctor:update apply --decisions=<runDir>/decisions.json for a completed decision set."
+    apply_when_no_decisions: "When the plan has no customized, conflict or removed units, offer /doctor:update apply without a decisions path."
+    dry_run_handoff: "Do not offer apply from a dry-run preview because no decisions.json exists."
+
+  phase_6_state_log:
+    approval: none
+    write: "<runDir>/.doctor-update.last-run.json only when a non-dry-run run directory exists"
+    fields: [command, start, end, duration_seconds, release, run_dir, decisions_recorded, deferred_units, final_status]
+    terminal_rule: "For a materialized run, write the state log inside that run directory on aligned, deferred, failed and handled interruption paths. For dry-run or preflight failure, return the status in the presentation only."
+
+terminal_statuses:
+  - "STATUS=ALIGNED"
+  - "STATUS=DEFERRED"
+  - "STATUS=DRY_RUN"
+  - "STATUS=FAILED"

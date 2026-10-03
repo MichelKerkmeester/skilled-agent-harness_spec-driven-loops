@@ -1,0 +1,12 @@
+{
+  "corpusManifestHash": "fe97c1ee0fca6ee565cee202bd6e74b3c46b1c02e412a3b4f6473f7f4d21d5c8",
+  "documentsScanned": 23056,
+  "durationMs": 14576.26675,
+  "fresh": true,
+  "indexManifestHash": "fe97c1ee0fca6ee565cee202bd6e74b3c46b1c02e412a3b4f6473f7f4d21d5c8",
+  "indexPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/079-doctor-command-audit/.skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+  "missingDocuments": 0,
+  "obsoletePaths": [],
+  "staleDocuments": [],
+  "untrustedDocuments": []
+}

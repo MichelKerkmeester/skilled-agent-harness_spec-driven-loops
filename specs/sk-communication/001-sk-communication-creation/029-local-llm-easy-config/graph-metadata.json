@@ -19,10 +19,10 @@
       "research plan",
       "deep-research loop design",
       "local projection design",
-      "tasks",
       "research loop execution",
       "accepted GROK synthesis",
-      "localProvider loader design"
+      "localProvider loader design",
+      "local LLM research completion"
     ],
     "key_topics": [
       "local-llm-easy-config",
@@ -47,26 +47,13 @@
       "implementation-summary.md",
       "research/research.md",
       ".pi/settings.json",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/config/enablement.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/config/index.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/runtime/project-message.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/transports/http.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/adapters.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/presets.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/registry.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/fidelity/reject-only-judge.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/fidelity/validator.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/privacy/router.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/src/wrapper/run.ts",
-      ".opencode/skills/sk-communication/cli-communication-projection/bin/cli-output-wrapper.mjs",
-      ".opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md",
-      ".opencode/skills/sk-communication/cli-communication-projection/docs/configuration.md"
+      "specs/sk-communication/001-sk-communication-creation/029-local-llm-easy-config/spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "specs/sk-communication/001-sk-communication-creation/029-local-llm-easy-config/spec.md",
         "source": "derived"
       },
       {
@@ -100,90 +87,6 @@
         "source": "derived"
       },
       {
-        "name": "enablement.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/config/enablement.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/config/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "project-message.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/runtime/project-message.ts",
-        "source": "derived"
-      },
-      {
-        "name": "http.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/transports/http.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adapters.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/adapters.ts",
-        "source": "derived"
-      },
-      {
-        "name": "presets.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/presets.ts",
-        "source": "derived"
-      },
-      {
-        "name": "registry.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reject-only-judge.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/fidelity/reject-only-judge.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validator.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/fidelity/validator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "router.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/privacy/router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "run.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/wrapper/run.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cli-output-wrapper.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/bin/cli-output-wrapper.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "enablement.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md",
-        "source": "derived"
-      },
-      {
-        "name": "configuration.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/docs/configuration.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +109,95 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Question Design",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Shipped",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Easy Config Research",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Produce a validated, ranked design recommendation that specifies the operator UX and the activation seam for local LLM easy-config: config-file and environment-variable discovery, provider auto-construction, a judge default that permits local accepts without weakening the reject-only safety contract, privacy defaults that keep traffic local-only, and how the plugin and wrapper automatically pick up the configured provider with no further operator steps",
     "created_at": "2026-08-14T14:57:53.601Z",
-    "last_save_at": "2026-09-10T20:44:12.750Z",
+    "last_save_at": "2026-10-03T15:12:05.944Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +207,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:fab842da96cc30c0950ad7d20e050f59002cbebbc6bbc5ebc730258bba06ab3e",
+    "source_fingerprint": "sha256:04926743df4682f60d314e23b495291b2abc0f0d7abcebf96f534ade9935c120",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6c7d16582d9d7f07cfb8334dcf04238bf07e1b7b80ad1931fa723fbee3e79182",
       "plan.md": "4d805c19aa8f3d7232a71891fced0c4b763e731f0a3ad486f094aa90dbbe7e13",
-      "tasks.md": "431e31020abac7b3566950f26ef4255aeae4ce07ac2ae8e5d419b0d25faae7f1",
+      "tasks.md": "99c3b0747b3099724a790e2e8aaa4c0b1ed04681d9aed712a2dfcc5a22f7a5eb",
       "implementation-summary.md": "834730887ac4ed611a2cc3f0ee87610bc53d79ffcc33c66a2876480f4af4bf2d",
       "research/research.md": "d82ef8a0f5252fb2b5bb6f29e550c587c300b261830f5b3fda1e95aff6ecd719"
     },

@@ -27,9 +27,14 @@ _memory:
 > `[x]` done · `[ ]` open.
 
 <!-- ANCHOR:tasks -->
+## Phase 1: Implementation
+
 - [x] T001 [P0] `git-primary-reconcile.sh`: replace the blanket pre-fetch dirty skip with a `TRACKED_DIRTY` flag; keep the behind-only `git merge --ff-only`; add the `TRACKED_DIRTY` gate before the rebase; add the dirty-collision block message. (SC-1, SC-3, SC-5)
 - [x] T002 [P0] `git-live-follow.sh`: drop the dirty pre-check in the behind-only branch; let `git merge --ff-only` decide; refusal prints a would-overwrite-local-changes message. (SC-1, SC-2)
 - [x] T003 [P1] `references/continuous-integration.md`: update the two script descriptions and the safety-contract row. (SC-4)
+
+## Phase 2: Verification
+
 - [x] T004 [P0] Prove the primitive in a throwaway repo: disjoint dirty → ff advances + WIP preserved; colliding dirty → ff refused + edit preserved. `bash -n` both scripts. (SC-1, SC-2)
 <!-- /ANCHOR:tasks -->
 

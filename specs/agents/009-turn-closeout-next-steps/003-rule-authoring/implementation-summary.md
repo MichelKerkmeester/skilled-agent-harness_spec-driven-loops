@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Authored the close-out and question-asking repo rule, checked for structure, collisions and the punctuation ban."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -11,8 +11,8 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "agents/009-turn-closeout-next-steps/003-rule-authoring"
-    last_updated_at: "2026-09-11T10:54:57Z"
-    last_updated_by: "template-author"
+    last_updated_at: "2026-09-11T19:44:00+02:00"
+    last_updated_by: "spec-validation-backfill"
     recent_action: "Phase closed; work recorded in tasks.md with evidence"
     next_safe_action: "None; phase complete and validated"
     blockers: []
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-003-rule-authoring"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,6 +41,7 @@ _memory:
 | **Spec Folder** | 003-rule-authoring |
 | **Completed** | 2026-09-11 |
 | **Level** | 2 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,18 +49,17 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The close-out rule itself: `repo-rules/handoff-and-questions.md`, 165 lines inside the preferred band, telling a turn to end with what the operator has to do next and to ask a structured question where a choice is needed. The file was later renamed and now lives at `.skilled/repo-rules/communication-handoff.md`.
 
 ### Phase 3: rule-authoring
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The file was written against the rule template and anatomy contract, and every runtime row that had read UNKNOWN now names its evidence: the Pi extension recorded in `.pi/PLUGINS.md`, OpenCode marked operator-reported and Codex marked unverified.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `repo-rules/handoff-and-questions.md` | Created | The close-out and question-asking rule, version 1.0.0.0 then 1.1.0.0 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +67,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Authored in one pass, checked against the shipped corpus for structure, trigger collisions and the punctuation ban, then version-bumped after the runtime rows changed. It shipped in commit `ecdb0263549`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +77,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Name runtime evidence per row | An UNKNOWN row gives a reader nothing to act on; a named source can be checked |
+| Bump to 1.1.0.0 after the content change | The runtime rows changed what the rule tells a reader |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +88,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Ten fixed structural elements | PASS, six frontmatter keys in order, seven sections, seven dividers |
+| Trigger collisions | PASS, 194 phrases, zero collisions |
+| Punctuation ban | PASS, zero em dashes, zero semicolons |
+| `acceptance-criteria.md` AC-001 | Met |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +99,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Codex question-tool support is unverified.** The row says so rather than guessing.
 <!-- /ANCHOR:limitations -->
 
 ---

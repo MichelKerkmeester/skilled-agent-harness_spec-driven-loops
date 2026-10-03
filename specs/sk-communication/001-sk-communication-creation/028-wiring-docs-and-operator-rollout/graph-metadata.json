@@ -18,8 +18,6 @@
       "per-runtime setup docs",
       "implementation plan",
       "operator rollout plan",
-      "tasks",
-      "implementation",
       "implementation summary"
     ],
     "key_topics": [
@@ -42,10 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md",
-      ".opencode/skills/sk-communication/cli-communication-projection/docs/runbook.md",
-      ".opencode/skills/sk-communication/cli-communication-projection/docs/rollback.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -70,24 +65,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "enablement.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md",
-        "source": "derived"
-      },
-      {
-        "name": "runbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/docs/runbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "rollback.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/cli-communication-projection/docs/rollback.md",
         "source": "derived"
       },
       {
@@ -191,11 +168,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Enablement Guide",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Projection is now wired across six runtimes, but the operator has no single, current source of truth for turning it on safely, so the enablement choices and per-runtime launch commands are scattered across Phases 016, 019, and 020 through 025",
     "created_at": "2026-08-14T05:50:52.081Z",
-    "last_save_at": "2026-08-30T15:39:11.875Z",
+    "last_save_at": "2026-10-03T15:12:05.777Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +187,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aaf0a5e7f590ab55a6224e9ef437d3744fde5b6d0e23dca2a157902c20c4bc1e",
+    "source_fingerprint": "sha256:b58739ecfd09fee4d72e1614e09caa9778591726e1e8ec2e8ba3a92beb1f04e1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a3b4e5f657bd5ecb61e66923c137d71fa3554e7581b11ecb68c5e069d9211e21",
       "plan.md": "d8667c53455e8b2959e0bb995134a12ad469c4f5b85168b59038f5a9e848c05e",
-      "tasks.md": "bbe63ae369da4cd40efa55caba4da31ebe32c24f8d10b29d0465f091c9bba632",
+      "tasks.md": "80292e6ac4a353bd80c0c6581b0a1803e098654618a0bc52ab43b6684b5d2056",
       "implementation-summary.md": "62e790a957a81f4bced821b22d66cb2100531fe46dbe58149f3d1c99a799926f"
     },
     "last_active_child_id": null,

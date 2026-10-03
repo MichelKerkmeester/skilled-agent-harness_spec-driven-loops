@@ -268,9 +268,9 @@ The Claude Code harness imposes two limits that authors don't see directly:
 | Per-skill soft target | **≤ 130 chars** | Project convention, keeping routing-keyword density high |
 | Per-command soft target | **≤ 110 chars** | Project convention, since commands are terser by nature |
 | Per-item hard cap | **1,536 chars** | Claude Code internal limit (combined `description` + `when_to_use`) |
-| Project soft-ceiling | **5,600 chars** | Total of all project descriptions, leaving ~2,400-char headroom for Claude Code built-ins under the default `SLASH_COMMAND_TOOL_CHAR_BUDGET = 8000` |
+| Project soft-ceiling | **6,400 chars** | Total of all project descriptions, leaving ~1,600-char headroom for Claude Code built-ins, user-level skills and plugin skills under the default `SLASH_COMMAND_TOOL_CHAR_BUDGET = 8000` |
 
-When project total exceeds the 8,000-char default, Claude Code **silently drops** the longest descriptions from its available-skills list. Skills stay invocable explicitly, but the model can no longer auto-suggest them. (Packet 083 had to trim 36 descriptions because the project had grown to ~10,050 chars and 15 skills were dropped.)
+The 8,000-char failure point does not move with the ceiling, and an operator with skill-heavy plugins has less headroom than this. When the combined total exceeds the 8,000-char default, Claude Code **silently drops** the longest descriptions from its available-skills list. Skills stay invocable explicitly, but the model can no longer auto-suggest them. (Packet 083 had to trim 36 descriptions because the project had grown to ~10,050 chars and 15 skills were dropped.)
 
 **Trim style, what to DROP**:
 - Product enumerations (`ClickUp/Notion/Figma/Chrome…`)
@@ -299,7 +299,9 @@ description: "Multi-stack coding standards and verification. Smart router auto-d
 
 The trimmed version retains every routing-keyword the advisor cares about (`coding`, `standards`, `verification`, `surface`, `code patterns`) while losing the brittle stack enumeration that would have to be edited every time a library is added.
 
-**Validation at create-time**: `quick_validate.py` warns when descriptions exceed the soft target and hard-fails at 1,536 chars. Run `/doctor skill-budget :auto` periodically to detect accumulated drift across the project.
+**Validation at create-time**: `quick_validate.py` warns when descriptions exceed the soft target and hard-fails at 1,536 chars. Run `/doctor:speckit skill-budget` periodically to detect accumulated drift across the project.
+
+**What the audit counts**: the total is the authored surface, not exactly the list Claude Code loads. It sums every `.skilled/skills/*/SKILL.md`, every `.skilled/commands/**/*.md` and the agents in `.skilled/agents/` and `.claude/agents/` (deduped by name), so it includes the runtime-exclusive commands `goal-opencode.md` and `vision.md`, which are never mirrored into `.claude/commands`. The Claude Code budget it reports is read from `SLASH_COMMAND_TOOL_CHAR_BUDGET` when that variable is set, and falls back to 8,000.
 
 ### `allowed-tools` Field
 

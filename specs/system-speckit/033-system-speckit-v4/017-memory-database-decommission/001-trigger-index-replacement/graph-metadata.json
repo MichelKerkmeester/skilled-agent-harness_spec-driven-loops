@@ -49,8 +49,7 @@
       "implementation-summary.md",
       "data/trigger-index.json",
       "references/retrieval/retrieval-conventions.md",
-      ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
-      "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
+      ".opencode/skills/system-spec-kit/references/retrieval/retrieval-conventions.md"
     ],
     "entities": [
       {
@@ -99,12 +98,6 @@
         "name": "retrieval-conventions.md",
         "kind": "doc",
         "path": "references/retrieval/retrieval-conventions.md",
-        "source": "derived"
-      },
-      {
-        "name": "deepseek.extracted.md",
-        "kind": "doc",
-        "path": "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`AGENTS.md` Gate 1 mandates `memorymatchtriggers(prompt)` on every user message, and that tool is",
     "created_at": "2026-09-02T11:04:48Z",
-    "last_save_at": "2026-09-06T07:09:13.876Z",
+    "last_save_at": "2026-10-03T08:57:32.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f0ef441ae3228a078f1a6a83b2f3ade2f44292fc73c6a8cd48afd028a4eb5e7",
+    "source_fingerprint": "sha256:d35e79bb9b81c4cd5f0f76f3cd555ad47bc7b8c562f945e9bd1ed9351086eba7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0a5cfa28bbae8090b809ee22c3fc8e1079ae96a8dd715917d99d0e0fb2d76523",

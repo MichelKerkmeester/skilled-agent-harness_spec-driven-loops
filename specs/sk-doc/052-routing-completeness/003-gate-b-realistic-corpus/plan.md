@@ -2,10 +2,6 @@
 title: "Implementation Plan: Phase 3: gate-b-realistic-corpus"
 description: "How the realistic corpus was built and measured: prompts written by hand against each registry, one daemon call per row with exit status read from a file, and every miss classified by mechanism from the same JSON."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
   - "plan core"
 importance_tier: "normal"
 contextType: "general"

@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 046-synthesis-chat-presentation |
+| **Spec Folder** | 005-synthesis-chat-presentation |
 | **Completed** | 2026-09-11 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

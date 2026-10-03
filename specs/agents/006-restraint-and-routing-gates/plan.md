@@ -5,8 +5,6 @@ trigger_phrases:
   - "restraint routing plan"
   - "agents.md plan"
   - "gate 2 artifact trigger"
-  - "implementation"
-  - "plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

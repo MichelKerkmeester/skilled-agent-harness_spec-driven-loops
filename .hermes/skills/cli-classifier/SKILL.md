@@ -1,6 +1,6 @@
 ---
 name: cli-classifier
-description: "Routes typed classifier judgment requests to the hosted Jev transport through mode-registry.json. The hub holds cli-jev today; future classifiers join as new modes."
+description: "Routes typed classifier judgment requests to the hosted Jev transport via mode-registry.json; future classifiers join as modes."
 allowed-tools: [Read, Bash, Grep, Glob]
 version: 0.7.0.0
 ---
