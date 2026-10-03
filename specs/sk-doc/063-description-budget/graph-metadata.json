@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/063-description-budget",
+  "spec_folder": "sk-doc/063-description-budget",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "description budget overage",
+      "skill description trim",
+      "agent description length",
+      "advisor routing keywords",
+      "audit description surface",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "description",
+      "budget",
+      "overage",
+      "skill",
+      "trim",
+      "agent",
+      "length",
+      "advisor",
+      "routing",
+      "keywords",
+      "audit",
+      "surface"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/goal-opencode.md",
+      ".skilled/commands/vision.md",
+      ".skilled/commands/doctor/assets/doctor-skill-budget.yaml",
+      ".skilled/skills/sk-doc/shared/assets/skill-contract.json",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/agents/design.md",
+      ".claude/agents/design.md",
+      ".skilled/skills/cli-classifier/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/SKILL.md",
+      ".skilled/skills/system-spec-kit/SKILL.md",
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-design/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md",
+      ".skilled/commands/doctor/scripts/audit_descriptions.py",
+      ".skilled/skills/sk-doc/command-metadata.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode.md",
+        "kind": "doc",
+        "path": ".skilled/commands/goal-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "vision.md",
+        "kind": "doc",
+        "path": ".skilled/commands/vision.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-budget.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-skill-budget.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/assets/skill-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".skilled/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "common-pitfalls.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit_descriptions.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/audit_descriptions.py",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Seven",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Trim",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Seven authored descriptions sit over their soft target and the project total runs 1,251 characters over its 5,600 ceiling",
+    "created_at": "2026-10-03T05:27:42Z",
+    "last_save_at": "2026-10-03T05:43:28.794Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:86693b65cef9449698c0caf9e9e54b70154348f4e259bd2da9f7e7d112cb8e04",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d0e19695ac2c6dbae5e35b4655ae5f6a4aac721e6a0f35c743ab129437a3fe75",
+      "plan.md": "3cb64bdb245e0df5f6ed829be4bf2efef1fef818160b880b937b25d60b0ad7e5",
+      "tasks.md": "2a9534e66a0562053998878e0ffdc0ee9e54fc54a7f0b8631f64516da48a1aa1",
+      "implementation-summary.md": "d437ddeac0525ffd30115d8e4a9c41106a3c36fd97624e291e60e449997fc3f1"
+    },
+    "last_active_at": null
+  }
+}
