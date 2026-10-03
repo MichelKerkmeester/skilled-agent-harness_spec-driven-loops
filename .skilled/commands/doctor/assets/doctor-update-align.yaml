@@ -126,8 +126,8 @@ workflow:
 
   phase_5_summary_handoff:
     approval: none
-    summarize: "Report decisions by unit, every deferred unit and any unresolved files. Never imply deferred files are ready to apply."
-    handoff: "Offer /doctor:update apply --decisions=<runDir>/decisions.json for a completed decision set."
+    summarize: "Report decisions by unit, every deferred unit and each unresolved file. An unresolved file is a take-release or conflict file in a customized, conflict or removed unit that is not deferred and has no operator decide record. A prefilled record counts as unresolved. Never imply deferred files are ready to apply."
+    handoff: "Offer /doctor:update apply --decisions=<runDir>/decisions.json only when no file is unresolved. Otherwise explain that apply skips each unit with an unresolved file."
     apply_when_no_decisions: "When the plan has no customized, conflict or removed units, offer /doctor:update apply without a decisions path."
     dry_run_handoff: "Do not offer apply from a dry-run preview because no decisions.json exists."
 

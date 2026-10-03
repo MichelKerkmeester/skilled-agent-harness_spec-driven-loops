@@ -197,7 +197,7 @@ Run directory: [runDir]
 | [add|replace|delete] | [path] | [unit or release metadata] |
 
 Applied units: [list or none]
-Skipped units: [unit and reason, or none]
+Skipped units: [unit and reason, with the paths for undecided files, or none]
 Follow-up checks: [regenerate hubs, generated files and their generators, hooks, runtime mirrors, databases]
 Targets modified since alignment: [none or engine refusal]
 ```

@@ -108,6 +108,7 @@ workflow:
       - "Parse the complete writes, skippedUnits, appliedUnits and followUps arrays."
       - "Confirm every write path is allowed by the canonical path validator."
       - "Show the full plan, including added, replaced and deleted paths, skipped units and follow-up checks."
+      - "Show each skipped unit with its reason, and for reason undecided files list its paths."
     terminal_dry_run: "If the user supplied --dry-run, write the state log and stop with STATUS=DRY_RUN. Do not ask for startup approval or call apply without --dry-run."
     on_failure: "Write the state log, show the engine refusal and stop without mutation."
 
@@ -123,7 +124,7 @@ workflow:
       - "Acquire .skilled/release/.apply.lock and refuse if it already exists."
       - "Write <runDir>/rollback.json before the first target file write."
       - "Apply only engine-planned writes, then update base.json and divergence.json."
-      - "Release the lock in the engine finally path on every exit after acquisition."
+      - "Release the lock in the engine finally path on every exit after acquisition. SIGINT, SIGTERM and SIGHUP are deferred while the lock is held, so only SIGKILL or power loss can strand it, and the engine then reports the lock as stale."
     postconditions:
       - "Read the full JSON and record written, added, deleted, skippedUnits, appliedUnits and followUps."
       - "Confirm .skilled/release/.apply.lock is absent after the engine exits; never remove a lock that was not acquired by this invocation."

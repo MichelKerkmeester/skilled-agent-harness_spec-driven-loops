@@ -38,7 +38,7 @@ const MAX_MERGE_CELLS = 4000000;
 const GIT_MAX_BUFFER_BYTES = 64 * 1024 * 1024;
 const LOG_PREFIX = '[release-update]';
 const SCRIPT_COMMAND = 'node .skilled/commands/doctor/scripts/release-update.cjs';
-const USAGE = 'Usage: release-update.cjs <check|align|decide|apply|rollback|record-base> [options]';
+const USAGE = 'Usage: release-update.cjs <check|align|decide|apply|rollback|record-base|unlock> [options]';
 const HELP_FLAGS = new Set(['--help', '-h']);
 const objectFormats = new Map();
 
@@ -53,6 +53,7 @@ const COMMAND_OPTIONS = {
     'include-prerelease',
   ]),
   rollback: new Set(['repo', 'json', 'run']),
+  unlock: new Set(['repo', 'json', 'dry-run']),
   'record-base': new Set([
     'repo', 'remote', 'release', 'scope', 'offline', 'json', 'dry-run', 'include-prerelease',
   ]),
@@ -64,6 +65,7 @@ const COMMAND_PURPOSES = {
   decide: 'Record one file decision, or defer one unit, inside an alignment run.',
   apply: 'Write the accepted release files and update the base and divergence records.',
   rollback: 'Restore the paths an alignment run recorded in its rollback plan.',
+  unlock: 'Remove an apply lock whose owner process is no longer running.',
   'record-base': 'Record every unit of a named release as the base, for a copied or fresh install.',
 };
 
@@ -1661,6 +1663,12 @@ function assertPlanFresh(repo, run, paths) {
   }
 }
 
+// A prefilled record is the engine's own suggestion, not the operator's consent.
+function isOperatorDecision(record) {
+  if (typeof record === 'string') return record.length > 0;
+  return Boolean(record && typeof record.decision === 'string' && record.source !== 'prefilled');
+}
+
 function prepareWrites(repo, run, scope) {
   const headFiles = commitFiles(repo, 'HEAD');
   const deferred = new Set(run.decisions.deferredUnits || []);
@@ -1689,9 +1697,18 @@ function prepareWrites(repo, run, scope) {
       continue;
     }
     const decided = run.decisions.files || {};
-    const chosen = fileEntries.filter((file) => decided[file.path]);
+    const chosen = fileEntries.filter((file) => isOperatorDecision(decided[file.path]));
     if (!chosen.length) {
       skippedUnits.push({ unit: key, reason: 'no decisions' });
+      continue;
+    }
+    const undecided = fileEntries
+      .filter((file) => ['take-release', 'conflict'].includes(file.class)
+        && !isOperatorDecision(decided[file.path]))
+      .map((file) => file.path);
+    if (undecided.length) {
+      // Skipping the whole unit avoids advancing its base past an unwritten release change.
+      skippedUnits.push({ unit: key, reason: 'undecided files', paths: undecided });
       continue;
     }
     for (const file of chosen) {
@@ -1772,19 +1789,80 @@ function prepareWrites(repo, run, scope) {
   };
 }
 
-function acquireLock(repo) {
+function processRunning(pid) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    return error.code === 'EPERM';
+  }
+}
+
+function readLockState(repo) {
+  const lockPath = safeResolve(repo, LOCK_FILE);
+  if (!fs.existsSync(lockPath)) return { state: 'absent', owner: null };
+  let owner;
+  try {
+    owner = JSON.parse(fs.readFileSync(lockPath, 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT') return { state: 'absent', owner: null };
+    return { state: 'unknown', owner: null };
+  }
+  if (!owner || typeof owner !== 'object' || Array.isArray(owner)
+    || !Number.isInteger(owner.pid) || owner.pid <= 0) {
+    return { state: 'unknown', owner };
+  }
+  return { state: processRunning(owner.pid) ? 'live' : 'stale', owner };
+}
+
+function lockConflictError(repo) {
+  const prefix = 'apply lock already exists: ' + LOCK_FILE;
+  const { state, owner } = readLockState(repo);
+  if (state === 'live') {
+    const command = typeof owner.command === 'string' && owner.command
+      ? owner.command
+      : 'unknown command';
+    return new Error(prefix + ', held by running process ' + owner.pid + ' (' + command
+      + '), so wait for it to finish');
+  }
+  if (state === 'stale') {
+    const command = typeof owner.command === 'string' && owner.command
+      ? owner.command
+      : 'unknown command';
+    const startedAt = typeof owner.startedAt === 'string' && owner.startedAt
+      ? owner.startedAt
+      : 'unknown start time';
+    let message = prefix + ', and it is stale because process ' + owner.pid + ' (' + command
+      + ', started ' + startedAt + ') is no longer running. Clear it with ' + SCRIPT_COMMAND
+      + ' unlock';
+    if (typeof owner.runDir === 'string' && owner.runDir
+      && fs.existsSync(path.join(path.resolve(repo, owner.runDir), 'rollback.json'))) {
+      message += ', then restore the interrupted run with ' + rollbackCommand(repo, owner.runDir);
+    }
+    return new Error(message);
+  }
+  return new Error(prefix + ', and it has no readable owner, so confirm that no apply, rollback'
+    + ' or record-base is running before removing it by hand');
+}
+
+function acquireLock(repo, owner) {
   const lockPath = safeResolve(repo, LOCK_FILE);
   fs.mkdirSync(path.dirname(lockPath), { recursive: true });
   let descriptor;
   try {
     descriptor = fs.openSync(lockPath, 'wx', 0o600);
   } catch (error) {
-    if (error.code === 'EEXIST') throw new Error('apply lock already exists: ' + LOCK_FILE);
+    if (error.code === 'EEXIST') throw lockConflictError(repo);
     throw error;
   }
   try {
-    const owner = { pid: process.pid, startedAt: new Date().toISOString() };
-    fs.writeFileSync(descriptor, JSON.stringify(owner) + '\n');
+    const lockOwner = {
+      pid: process.pid,
+      startedAt: new Date().toISOString(),
+      command: owner.command,
+      runDir: owner.runDir || null,
+    };
+    fs.writeFileSync(descriptor, JSON.stringify(lockOwner) + '\n');
   } catch (error) {
     fs.closeSync(descriptor);
     fs.rmSync(lockPath, { force: true });
@@ -1792,6 +1870,43 @@ function acquireLock(repo) {
   }
   fs.closeSync(descriptor);
   return lockPath;
+}
+
+// Only a dead owner's lock is safe to remove; keep live and unreadable locks for investigation.
+function unlockStale(repo, options) {
+  const { state, owner } = readLockState(repo);
+  const runDir = owner && typeof owner.runDir === 'string' && owner.runDir
+    ? owner.runDir
+    : null;
+  const rollbackRecorded = runDir
+    ? fs.existsSync(path.join(path.resolve(repo, runDir), 'rollback.json'))
+    : null;
+  const result = {
+    command: 'unlock',
+    dryRun: Boolean(options.dryRun),
+    lock: state,
+    owner,
+    removable: state === 'stale',
+    removed: false,
+    runDir,
+    rollbackRecorded,
+    rollback: rollbackRecorded ? rollbackCommand(repo, runDir) : null,
+  };
+  if (state === 'absent' || options.dryRun) return result;
+  if (state !== 'stale') throw lockConflictError(repo);
+  fs.rmSync(safeResolve(repo, LOCK_FILE));
+  result.removed = true;
+  return result;
+}
+
+// Node skips finally on these signals, so defer them for lock cleanup; unlock recovers from SIGKILL or power loss.
+function deferSignals() {
+  const signals = ['SIGINT', 'SIGTERM', 'SIGHUP'];
+  const listener = () => {};
+  for (const signal of signals) process.on(signal, listener);
+  return () => {
+    for (const signal of signals) process.removeListener(signal, listener);
+  };
 }
 
 function writeAtomic(repo, filePath, entry, content) {
@@ -1832,7 +1947,7 @@ function applyPlan(repo, options) {
       + '; run align for a new plan, or undo this one with ' + rollbackCommand(repo, run.runDir));
   }
   if (fs.existsSync(safeResolve(repo, LOCK_FILE))) {
-    throw new Error('apply lock already exists: ' + LOCK_FILE);
+    throw lockConflictError(repo);
   }
   const { releaseCommit } = run.plan;
   if (releaseCommit && !gitTry(repo, ['cat-file', '-e', releaseCommit + '^{commit}']).ok) {
@@ -1872,7 +1987,14 @@ function applyPlan(repo, options) {
       followUps: followUps(prepared.writes, regenerate),
     };
   }
-  const acquired = acquireLock(repo);
+  const restoreSignals = deferSignals();
+  let acquired;
+  try {
+    acquired = acquireLock(repo, { command: 'apply', runDir: run.runDir });
+  } catch (error) {
+    restoreSignals();
+    throw error;
+  }
   try {
     assertPlanFresh(repo, run, prepared.freshnessPaths);
     for (const write of prepared.writes) {
@@ -1901,7 +2023,11 @@ function applyPlan(repo, options) {
         + '; the checkout is partly updated, restore it with ' + rollbackCommand(repo, run.runDir));
     }
   } finally {
-    fs.rmSync(acquired, { force: true });
+    try {
+      fs.rmSync(acquired, { force: true });
+    } finally {
+      restoreSignals();
+    }
   }
   return {
     command: 'apply',
@@ -2032,7 +2158,14 @@ function rollbackPlan(repo, runPath) {
         + '; refusing to restore it');
     }
   }
-  const lockPath = acquireLock(repo);
+  const restoreSignals = deferSignals();
+  let lockPath;
+  try {
+    lockPath = acquireLock(repo, { command: 'rollback', runDir: run.runDir });
+  } catch (error) {
+    restoreSignals();
+    throw error;
+  }
   const restored = [];
   const skipped = [];
   try {
@@ -2055,7 +2188,11 @@ function rollbackPlan(repo, runPath) {
       restored.push(entry.path);
     }
   } finally {
-    fs.rmSync(lockPath, { force: true });
+    try {
+      fs.rmSync(lockPath, { force: true });
+    } finally {
+      restoreSignals();
+    }
   }
   const exitCode = skipped.length ? 1 : 0;
   return { command: 'rollback', runDir: run.runDir, restored, skipped, exitCode };
@@ -2160,6 +2297,8 @@ function runCommand(argv) {
       result = applyPlan(repo, options);
     } else if (options.command === 'record-base') {
       result = recordBase(repo, options);
+    } else if (options.command === 'unlock') {
+      result = unlockStale(repo, options);
     } else {
       result = rollbackPlan(repo, options.run);
     }
