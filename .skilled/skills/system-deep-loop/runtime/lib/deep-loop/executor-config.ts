@@ -220,6 +220,9 @@ export const PI_SUPPORTED_MODELS = [
   // vision-exp id and answers 410 for it, so the 4.1 line is the live route. It accepts images
   // like the id it replaces, so nothing is lost by moving.
   'deepseek-v4.1-flash',
+  // The same model through opencode-go, named by its provider-prefixed literal so it can sit
+  // beside the DevPass bare literal without one literal mapping to two providers.
+  'opencode-go/deepseek-v4.1-flash',
   'minimax-m3',
   'gpt-6-luna',
   'gpt-6-sol',
