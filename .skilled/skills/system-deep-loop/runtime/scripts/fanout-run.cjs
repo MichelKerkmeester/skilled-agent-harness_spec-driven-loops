@@ -2313,6 +2313,9 @@ const PI_ALLOWED_MODELS = new Set([
   // DeepSeek API provider was retired). The gateway deactivated the older vision-exp id and
   // returns 410 for it, so the bare literal here is the 4.1 line.
   'deepseek-v4.1-flash',
+  // The same model through opencode-go, named by its provider-prefixed literal so it can sit
+  // beside the DevPass bare literal without one literal mapping to two providers.
+  'opencode-go/deepseek-v4.1-flash',
   'minimax-m3',
   'gpt-6-luna',
   'gpt-6-sol',
@@ -2543,6 +2546,7 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 // synchronous and unit-testable, matching this file's per-kind convention.
 const PI_MODEL_PROVIDERS = new Map([
   ['deepseek-v4.1-flash', 'llmgateway'],
+  ['opencode-go/deepseek-v4.1-flash', 'opencode-go'],
   ['minimax-m3', 'minimax'],
   ['gpt-6-luna', 'openai-codex'],
   ['gpt-6-sol', 'openai-codex'],
@@ -2597,7 +2601,9 @@ function buildPiLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermiss
   // non-interactive dispatch without it can hang for minutes on startup network
   // probes. The caller must read the OUTPUT TEXT for the result and for
   // "No API key found" — Pi's exit code is not a reliable success or auth signal.
-  const args = ['-p', '--offline', '--model', `${provider}/${model}`];
+  // A literal that already names its provider is the full selector; every other literal gets its prefix.
+  const selector = model.startsWith(`${provider}/`) ? model : `${provider}/${model}`;
+  const args = ['-p', '--offline', '--model', selector];
   // Pi enforces no OS-level sandbox (its flag support intentionally omits one);
   // a read-only leaf is bounded by restricting the tool allowlist to reads AND by
   // disabling auto-discovered extensions, skills, and prompt templates. Their

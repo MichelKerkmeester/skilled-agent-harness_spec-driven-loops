@@ -1936,6 +1936,18 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     expect(command.effectiveConfig.model).toBe('deepseek-v4.1-flash');
   });
 
+  it('routes the opencode-go DeepSeek literal as its own selector, pinned to max', () => {
+    const binDir = makeTempDir('fanout-run-pi-opencode-go-');
+    writeStubBinary(binDir, 'pi');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    const command = buildLineageCommand(
+      { kind: 'cli-pi', model: 'opencode-go/deepseek-v4.1-flash', reasoningEffort: 'high' },
+      'p', 'workspace-write', 'default', opts,
+    ) as { args: string[]; effectiveConfig: { model: string; reasoningEffort: string | null } };
+    expect(command.args).toEqual(['-p', '--offline', '--model', 'opencode-go/deepseek-v4.1-flash', '--thinking', 'max', 'p']);
+    expect(command.effectiveConfig.reasoningEffort).toBe('max');
+  });
+
   it('pins cli-pi deepseek-v4.1-flash to --thinking max even when a lower effort is requested', () => {
     const binDir = makeTempDir('fanout-run-pi-flash-max-');
     writeStubBinary(binDir, 'pi');
