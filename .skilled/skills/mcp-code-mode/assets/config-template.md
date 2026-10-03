@@ -358,7 +358,7 @@ figma_FIGMA_API_KEY=figd_your_token_here
 notion_NOTION_TOKEN=ntn_your_token_here
 ```
 
-**Why Prefixed?** Code Mode automatically prepends `{manual_name}_` to all environment variable references. If your config has `"name": "clickup"` and references `${CLICKUP_API_KEY}`, Code Mode looks for `clickup_CLICKUP_API_KEY` in your `.env` file.
+**Why Prefixed?** Code Mode automatically prepends `{manual_name}_` to all environment variable references, doubling each underscore in the manual name first. If your config has `"name": "clickup"` and references `${CLICKUP_API_KEY}`, Code Mode looks for `clickup_CLICKUP_API_KEY` in your `.env` file. With `"name": "clickup_official"` and the same reference, it looks for `clickup__official_CLICKUP_API_KEY`.
 
 **Security:**
 - Add `.env` to `.gitignore` (never commit credentials)

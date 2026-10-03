@@ -223,33 +223,33 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
    ```json
    {
      "call_template_type": "http",
-     "config": {
-       "base_url": "https://api.example.com",
-       "headers": { "Authorization": "Bearer ${API_KEY}" }
-     }
+     "url": "https://api.example.com/v1",
+     "http_method": "GET",
+     "content_type": "application/json",
+     "headers": { "Authorization": "Bearer ${API_KEY}" }
    }
    ```
+   - **Defaults:** `http_method` defaults to `GET` and `content_type` defaults to `application/json`.
 
 3. **`"cli"`** - CLI tool integration
    ```json
    {
      "call_template_type": "cli",
-     "config": {
-       "command": "git",
-       "args_template": ["status"]
-     }
+     "commands": [
+       { "command": "git status", "append_to_final_output": true }
+     ]
    }
    ```
+   - **Required:** every step in `commands` needs a string `"command"`. There is no `"config"` key for `cli`.
 
 4. **`"file"`** - File-based tool configuration
    ```json
    {
      "call_template_type": "file",
-     "config": {
-       "file_path": "./tools/custom_tools.json"
-     }
+     "file_path": "./tools/custom_tools.json"
    }
    ```
+   - **Required:** `file_path` sits at the top level. There is no `"config"` wrapper.
 
 #### MCP Server Configuration
 
@@ -306,13 +306,14 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
 
 ### Critical: Prefixed Variable Names
 
-> **⚠️ IMPORTANT**: Code Mode prefixes ALL environment variables with `{manual_name}_` from your `.utcp_config.json`. You MUST use prefixed variable names in your `.env` file.
+> **⚠️ IMPORTANT**: Code Mode prefixes ALL environment variables with `{manual_name}_` from your `.utcp_config.json`, doubling each underscore in the manual name first. You MUST use prefixed variable names in your `.env` file.
 
 ### Structure
 
 ```bash
-# ⚠️ Code Mode requires PREFIXED variable names: {manual_name}_{VAR}
+# ⚠️ Code Mode requires PREFIXED variable names: {manual_name with each _ doubled}_{VAR}
 # The prefix comes from the "name" field in .utcp_config.json
+# Underscores in the manual name are doubled: clickup_official -> clickup__official_CLICKUP_API_KEY
 
 # ClickUp Configuration (prefix: clickup)
 clickup_CLICKUP_API_KEY=pk_your_api_key_here
@@ -558,7 +559,7 @@ call_tool_chain({
 
 ## 7. TROUBLESHOOTING
 
-### Problem: Variable '{manual_name}_{VAR}' Not Found
+### Problem: Variable '{manual_name with each _ doubled}_{VAR}' Not Found
 
 **Symptoms:**
 ```
@@ -588,7 +589,7 @@ The prefix comes from the `"name"` field in your `.utcp_config.json`:
 
 **Quick Fix:**
 1. Find your manual name: `grep '"name":' .utcp_config.json`
-2. Update `.env` to use prefixed format: `{manual_name}_{VAR_NAME}=value`
+2. Update `.env` to use prefixed format: `{manual_name with each _ doubled}_{VAR_NAME}=value`
 3. Restart Code Mode MCP server
 
 **Reference Table:**
@@ -610,7 +611,7 @@ Error: Environment variable CLICKUP_API_KEY not found
 **Solutions:**
 1. Check `.env` file exists in same directory as `.utcp_config.json`
 2. Verify variable name matches exactly (case-sensitive)
-3. **Use prefixed format**: `{manual_name}_{VAR}` (see above)
+3. **Use prefixed format**: `{manual_name with each _ doubled}_{VAR}` (see above)
 4. Restart Code Mode MCP server after changing `.env`
 5. Check `load_variables_from` config is correct:
    ```json

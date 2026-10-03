@@ -210,6 +210,21 @@ node_version_at_least() {
 # Keep parser results limited to registration status so unrelated config values stay private.
 CONFIG_CHECK_STATUS=""
 CONFIG_CHECK_DETAIL=""
+
+# Pick the first Python interpreter on PATH whose stdlib provides tomllib, since the
+# default python3 on some hosts predates 3.11 and cannot parse TOML.
+# Returns: interpreter command name on stdout, empty when none qualifies
+_doctor_toml_python() {
+  local candidate
+  for candidate in python3 python3.14 python3.13 python3.12 python3.11; do
+    if check_command_exists "$candidate" && "$candidate" -c 'import tomllib' >/dev/null 2>&1; then
+      printf '%s' "$candidate"
+      return 0
+    fi
+  done
+  return 0
+}
+
 config_check_registration() {
   local file="$1" runtime="$2" parser_result=""
   CONFIG_CHECK_STATUS="WARN"
@@ -220,7 +235,12 @@ config_check_registration() {
   fi
 
   if [[ "$runtime" == "codex" ]]; then
-    if parser_result="$(python3 - "$file" 2>/dev/null <<'PY'
+    local toml_python
+    toml_python="$(_doctor_toml_python)"
+    if [[ -z "$toml_python" ]]; then
+      toml_python="python3"
+    fi
+    if parser_result="$("$toml_python" - "$file" 2>/dev/null <<'PY'
 import pathlib
 import sys
 
@@ -306,7 +326,7 @@ NODE
       ;;
     unvalidated)
       CONFIG_CHECK_STATUS="WARN"
-      CONFIG_CHECK_DETAIL="unvalidated: Python tomllib unavailable"
+      CONFIG_CHECK_DETAIL="unvalidated: no tomllib-capable Python (3.11+) was found"
       ;;
     invalid_json)
       CONFIG_CHECK_STATUS="FAIL"
@@ -323,7 +343,7 @@ NODE
     *)
       CONFIG_CHECK_STATUS="WARN"
       if [[ "$runtime" == "codex" ]]; then
-        CONFIG_CHECK_DETAIL="unvalidated: Python tomllib unavailable"
+        CONFIG_CHECK_DETAIL="unvalidated: no tomllib-capable Python (3.11+) was found"
       else
         CONFIG_CHECK_DETAIL="unvalidated: Node.js unavailable"
       fi
@@ -399,7 +419,8 @@ if (!Array.isArray(manualEntries)) {
     const references = new Set();
     collectReferences(manual, references);
     for (const reference of references) {
-      const key = `${name}_${reference}`;
+      // Mirrors the UTCP SDK: underscores in the manual name are doubled before joining.
+      const key = `${name.replace(/_/g, "__")}_${reference}`;
       const processValue = process.env[key];
       credentials.push({
         key,
