@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ceae2f699f4b5473e790537262d0917ec9403c28023a05b55a502a46a55c2d85",
+  "corpusHash": "0b893c2b6cc9e99665a60f5aee4c1db85042abc91ae051ff30c2ba3563f77ae8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 22985,
+  "includedPathCount": 23047,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8982,6 +8982,68 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/goal.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/001-fanout-merge-improvements/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/001-fanout-merge-improvements/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/001-fanout-merge-improvements/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/001-fanout-merge-improvements/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/001-fanout-merge-improvements/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/003-citation-drift-improvements/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/003-citation-drift-improvements/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/003-citation-drift-improvements/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/003-citation-drift-improvements/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/003-citation-drift-improvements/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/004-injection-screen-improvements/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/004-injection-screen-improvements/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/004-injection-screen-improvements/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/004-injection-screen-improvements/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/004-injection-screen-improvements/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/005-hallucination-grader-improvements/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/005-hallucination-grader-improvements/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/005-hallucination-grader-improvements/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/005-hallucination-grader-improvements/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/005-hallucination-grader-improvements/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/006-verdict-fallback-improvements/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/006-verdict-fallback-improvements/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/006-verdict-fallback-improvements/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/006-verdict-fallback-improvements/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/006-verdict-fallback-improvements/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/007-clarify-default-improvements/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/007-clarify-default-improvements/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/007-clarify-default-improvements/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/007-clarify-default-improvements/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/007-clarify-default-improvements/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/008-folder-suggestion-improvements/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/008-folder-suggestion-improvements/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/008-folder-suggestion-improvements/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/008-folder-suggestion-improvements/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/008-folder-suggestion-improvements/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/010-completion-claims-improvements/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/010-completion-claims-improvements/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/010-completion-claims-improvements/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/010-completion-claims-improvements/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/010-completion-claims-improvements/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/011-research-run-init-via-gateway/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/011-research-run-init-via-gateway/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/011-research-run-init-via-gateway/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/011-research-run-init-via-gateway/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/011-research-run-init-via-gateway/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/012-fanout-runner-and-prompt-fixes/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/012-fanout-runner-and-prompt-fixes/implementation-summary.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/012-fanout-runner-and-prompt-fixes/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/012-fanout-runner-and-prompt-fixes/spec.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/012-fanout-runner-and-prompt-fixes/tasks.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/goal.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/spec.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/goal.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/spec.md",
     "specs/cli-orca/001-mcp-orca-cli/acceptance-criteria.md",
@@ -23015,7 +23077,7 @@
     "specs/system-speckit/047-plugin-scanner-readiness/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "41ec207e968085aeada1be2fc0ee597a0dfe6d8b22ecdc9e7ea0fdfdcbd19781",
+  "manifestHash": "57ef4ece906e713f992f0090f7f6d262b76144158a7510ef9b5c54b895a1c7e8",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -24219,6 +24281,54 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/001-fanout-merge-improvements/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/003-citation-drift-improvements/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/004-injection-screen-improvements/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/005-hallucination-grader-improvements/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/006-verdict-fallback-improvements/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/007-clarify-default-improvements/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/008-folder-suggestion-improvements/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/010-completion-claims-improvements/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/011-research-run-init-via-gateway/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/012-fanout-runner-and-prompt-fixes/scratch",
       "reason": "excluded directory"
     },
     {

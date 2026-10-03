@@ -1,5 +1,5 @@
 {
-  "manifestHash": "41ec207e968085aeada1be2fc0ee597a0dfe6d8b22ecdc9e7ea0fdfdcbd19781",
+  "manifestHash": "57ef4ece906e713f992f0090f7f6d262b76144158a7510ef9b5c54b895a1c7e8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -31391,6 +31391,9 @@
     "deep research run certificate tasks": [
       "deep-research run certificate tasks"
     ],
+    "deep research run init fix": [
+      "deep research run init fix"
+    ],
     "deep research run now": [
       "deep-research-run-now"
     ],
@@ -49191,6 +49194,9 @@
     ],
     "jev fan out merge improvement": [
       "jev fan-out merge improvement"
+    ],
+    "jev feature improvement build": [
+      "jev feature improvement build"
     ],
     "jev feature improvement research": [
       "jev feature improvement research"
