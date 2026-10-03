@@ -20,7 +20,8 @@
     "system-skill-advisor/029-fix-remaining-advisor-defects",
     "system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement",
     "system-skill-advisor/031-align-runtime-code-with-sk-code-opencode",
-    "system-skill-advisor/032-fresh-clone-bootstrap"
+    "system-skill-advisor/032-fresh-clone-bootstrap",
+    "system-skill-advisor/033-advisor-status-truthfulness"
   ],
   "manual": {
     "depends_on": [],

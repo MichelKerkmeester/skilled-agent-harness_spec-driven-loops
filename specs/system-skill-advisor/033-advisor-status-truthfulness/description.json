@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-skill-advisor/033-advisor-status-truthfulness",
+  "description": "Make the advisor's freshness, scan and routing reports match what is on disk",
+  "keywords": [
+    "advisor",
+    "freshness",
+    "scan",
+    "routing",
+    "reports",
+    "match",
+    "disk"
+  ],
+  "lastUpdated": "2026-10-03T05:27:36.132Z",
+  "specId": "033",
+  "folderSlug": "advisor-status-truthfulness",
+  "parentChain": [
+    "system-skill-advisor"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
