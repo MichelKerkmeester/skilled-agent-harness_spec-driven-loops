@@ -7,7 +7,8 @@
     "system-deep-loop/036-deep-loop-innovation",
     "system-deep-loop/037-graph-engineering",
     "system-deep-loop/038-review-gateway-iteration-record",
-    "system-deep-loop/039-review-state-init-and-dispatch"
+    "system-deep-loop/039-review-state-init-and-dispatch",
+    "system-deep-loop/040-read-only-and-research-bookkeeping"
   ],
   "manual": {
     "depends_on": [],

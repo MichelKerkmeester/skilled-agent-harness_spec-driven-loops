@@ -1,0 +1,96 @@
+---
+title: "Acceptance Criteria: Give the deep-loop runtime a read-only mode and repair deep-research bookkeeping"
+description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
+trigger_phrases:
+  - "acceptance criteria"
+  - "closure gate"
+  - "ac traceability"
+  - "waiver adr"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-deep-loop/040-read-only-and-research-bookkeeping"
+    last_updated_at: "2026-10-03T05:27:39Z"
+    last_updated_by: "scaffold"
+    recent_action: "Authored the acceptance criteria for this packet"
+    next_safe_action: "Meet, waive or supersede the open criteria"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "scaffold-040-read-only-and-research-bookkeeping"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
+# Acceptance Criteria: Give the deep-loop runtime a read-only mode and repair deep-research bookkeeping
+
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+
+> This document decides whether the packet may close. A packet is closeable when
+> every row below is `Met`, `Waived` or `Superseded`. A `Waived` or `Superseded`
+> row MUST name an ADR that exists in `decision-record.md`.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+**Packet:** system-deep-loop/040-read-only-and-research-bookkeeping
+**Level:** 2
+**Status:** Planned
+**Date:** 2026-10-03
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:criteria -->
+## 2. CRITERIA
+
+One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it.
+
+| AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
+|-------|-----|---------------------|--------------|--------|--------|
+| AC-001 | REQ-001 | Given a scratch coverage database directory with no database file, When status, query and convergence run with the read-only flag, Then each returns an empty result and the directory is still absent; given a present database, the same calls write no observability event and no snapshot | `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/graph-read-only.vitest.ts`; probe `DEEP_LOOP_COVERAGE_DB_DIR=<tmp>/absent node scripts/status.cjs --spec-folder specs/system-deep-loop/040-read-only-and-research-bookkeeping --loop-type context --session-id probe --read-only` then `test ! -e <tmp>/absent` | Unmet | - |
+| AC-002 | REQ-002 | Given the doctor deep-loop route, When each status, query and convergence invocation runs, Then the invocation carries the read-only flag and the workflow contract names no database creation or observability append | `rg -n -- '--read-only' .skilled/commands/doctor/_routes.yaml .skilled/commands/doctor/assets/doctor-deep-loop.yaml`; `bash .skilled/commands/doctor/scripts/route-validate.sh` | Unmet | - |
+| AC-003 | REQ-003 | Given a fresh temp packet, When the shipped init step from each deep-research workflow runs, Then the gateway exits 0 and the ledger's first frame receipt is the run-initialized event, and the stem census lists that stem as spoken | `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-run-open.vitest.ts`; `node scripts/check-ledger-stem-producers.cjs` | Unmet | - |
+| AC-004 | REQ-004 | Given an iteration delta whose record answers key questions, When the reducer runs, Then the strategy's key-question boxes are ticked for those questions and the registry reports a matching resolved count | `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-reduce-state.vitest.ts` | Unmet | - |
+| AC-005 | REQ-005 | Given an iteration delta carrying graph events, When the upsert step runs, Then the coverage database holds nodes and edges for that namespace | `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-graph-upsert.vitest.ts` | Unmet | - |
+| AC-006 | REQ-006 | Given an acquired nonce-bearing lock, When a workflow release path runs, Then it passes the captured nonce, reports released true, and the lock file is gone | `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-lock-release.vitest.ts tests/unit/loop-lock-cli.vitest.ts` | Unmet | - |
+| AC-007 | REQ-007 | Given iteration deltas whose records carry path fields, When the resource map is emitted, Then `Total references` is greater than zero and the entries name the files | `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-reduce-state.vitest.ts`; `node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <fixture> --emit-resource-map` then read the `Total references` line | Unmet | - |
+| AC-008 | REQ-008 | Given a fixture research packet, When the staging step runs, Then no lock, pause sentinel, run-now sentinel or projection watermark is staged, while deltas, iterations, ledger frames and lock-coordinator state remain staged | `git check-ignore -v specs/system-speckit/048-doctor-command-audit/003-update/research/.deep-research.lock`; `git add --dry-run -- <fixture>/research` piped through `rg -- '\.deep-research\.lock\|\.deep-research-pause\|\.deep-research-run-now\|\.legacy-projection-watermarks'` returns no match | Unmet | - |
+| AC-009 | REQ-009 | Given every event name the workflows route through the gateway, When each is sent through the gateway, Then it exits 0, or the workflow no longer emits it | `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-bookkeeping-emission.vitest.ts tests/unit/append-mode-event-legacy-seam.vitest.ts` | Unmet | - |
+| AC-010 | REQ-010 | Given a rendered prompt whose first line is the canonical header, When the marker guard runs, Then it does not halt; given a first line that is a nested-dispatch marker other than the canonical header, Then it halts | `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/deep-research-marker-scan.vitest.ts` | Unmet | - |
+
+### Status values
+
+| Value | Meaning |
+|-------|---------|
+| `Met` | Verified. The Verification cell names evidence that was actually observed. |
+| `Unmet` | Not yet satisfied. Blocks closure. |
+| `Waived` | Deliberately not pursued. Requires an ADR in the Waiver cell. |
+| `Superseded` | Replaced by a different criterion or decision. Requires an ADR in the Waiver cell. |
+
+### Waiver cell
+
+Write `-` when the row is `Met` or `Unmet`. Write `ADR-NNN` when the row is
+`Waived` or `Superseded`, naming a decision record that exists in
+`decision-record.md`. A waiver naming an ADR that is not there fails validation:
+the point of a waiver is that someone recorded the reasoning, so an unbacked
+waiver is treated as an unmet criterion rather than as a pass.
+<!-- /ANCHOR:criteria -->
+
+---
+
+<!-- ANCHOR:closure -->
+## 3. CLOSURE STATEMENT
+
+**Closeable:** No
+
+The criteria are unmet at planning time. Each one names the test or command that
+will prove it; the packet closes when every row reads `Met` with observed
+evidence, or a waiver names an ADR.
+<!-- /ANCHOR:closure -->
