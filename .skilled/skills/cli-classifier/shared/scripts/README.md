@@ -23,7 +23,7 @@ The module holds no credential. It calls into the Pi install that `pi` on `PATH`
 
 | File | Responsibility |
 |---|---|
-| `jev-transport.mjs` | Tries Pi by default when the call names no transport and the preflight passes: the pinned Pi 0.99.2 package, the mapped model and a credential Pi can read. `JEV_TRANSPORT=jev` forces the CLI, while `JEV_TRANSPORT=pi` or the per-call `transport: 'pi'` option asks for Pi and prints one skip line when Pi cannot answer. It maps a `choice` or `noul` request to Pi's classifier context and falls back to the CLI on each failed gate and on a backend failure. `score` and `run` stay on the CLI. Every outcome names the route that answered, `pi` or `jev`. |
+| `jev-transport.mjs` | Tries Pi by default when the call names no transport and the preflight passes: the pinned Pi 0.99.2 package, the mapped model and a credential Pi can read. `JEV_TRANSPORT=jev` forces the CLI, while `JEV_TRANSPORT=pi` or the per-call `transport: 'pi'` option asks for Pi and prints one skip line when Pi cannot answer. It maps a `choice` or `noul` request to Pi's classifier context, with the state under the `text` key, and falls back to the CLI on each failed gate and on a backend failure. `score` and `run` stay on the CLI. Every outcome names the route that answered, `pi` or `jev`, and the model that answered, and a Pi answer's payload carries its token usage. |
 | `tests/` | Holds `jev-transport.test.mjs`, the `node --test` suite for the module. Both backends are stubs, so no test opens a socket, calls a model or needs a key. |
 
 ---

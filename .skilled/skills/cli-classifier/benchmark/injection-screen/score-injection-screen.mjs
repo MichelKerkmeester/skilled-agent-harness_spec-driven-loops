@@ -1252,6 +1252,9 @@ export async function runJevArm(plan, gate, ctx) {
   }
   ctx.out(`jev: auth test provider=${gate.provider} model=${model}`);
 
+  // Every model a call outcome named, so the verdict can name who answered.
+  const answered = new Set();
+
   /**
    * One calls.jsonl record. A spawn that led to a stop or a retry carries no
    * judgment, so its probability, flag and status stay empty.
@@ -1271,7 +1274,7 @@ export async function runJevArm(plan, gate, ctx) {
       status,
       jevVersion: JEV_VERSION,
       provider: gate.provider,
-      model,
+      model: r.model ?? model,
     };
   }
 
@@ -1287,6 +1290,7 @@ export async function runJevArm(plan, gate, ctx) {
       report: ctx.out,
     });
     wallTimes.push(r.wallMs);
+    if (typeof r.model === 'string') answered.add(r.model);
 
     if (!r.timedOut && r.code === 4) {
       ctx.callLog.append(record(row, questionId, rerun, attempt, r, null, 'unmeasured'));
@@ -1301,6 +1305,7 @@ export async function runJevArm(plan, gate, ctx) {
         report: ctx.out,
       });
       wallTimes.push(r.wallMs);
+      if (typeof r.model === 'string') answered.add(r.model);
     }
 
     let probability = null;
@@ -1386,12 +1391,15 @@ export async function runJevArm(plan, gate, ctx) {
     }
   }
 
+  // The verdict names the model that answered its calls, joining the names when more than one model answered.
+  const answeringModel = answered.size === 0 ? model : [...answered].sort().join('+');
+
   const column = summarizeColumn(
     'jev',
     plan.rows,
     probs,
     plan.baselineFlags,
-    `jev_version=${JEV_VERSION.split(' ')[1]} provider=${gate.provider} model=${model}`,
+    `jev_version=${JEV_VERSION.split(' ')[1]} provider=${gate.provider} model=${answeringModel}`,
   );
   const latency = { p50: nearestRank(wallTimes, 0.5), p95: nearestRank(wallTimes, 0.95) };
   ctx.out(`${column.detail} latency_p50_ms=${latency.p50 ?? 'none'} latency_p95_ms=${latency.p95 ?? 'none'}`);
@@ -1406,14 +1414,14 @@ export async function runJevArm(plan, gate, ctx) {
   ctx.out(`review question: queried=${reviewQuestion.queried} measured=${reviewQuestion.measured} flagged_at_${FLAG_AT.toFixed(2)}=${reviewQuestion.flagged}`);
   const storedJev = ctx.stored?.columns?.jev;
   let requalify = null;
-  if (storedJev && (storedJev.provider !== gate.provider || storedJev.model !== model)) {
+  if (storedJev && (storedJev.provider !== gate.provider || storedJev.model !== answeringModel)) {
     requalify = 'requalify: model changed';
     ctx.out(requalify);
   }
   ctx.out(column.line);
   let rewordedColumn = null;
   if (ctx.rewordedArm === true && rewordedStop === null) {
-    rewordedColumn = summarizeColumn('jev-reworded', plan.rows, rewordedProbs, plan.baselineFlags, `reworded jev_version=${JEV_VERSION.split(' ')[1]} provider=${gate.provider} model=${model}`);
+    rewordedColumn = summarizeColumn('jev-reworded', plan.rows, rewordedProbs, plan.baselineFlags, `reworded jev_version=${JEV_VERSION.split(' ')[1]} provider=${gate.provider} model=${answeringModel}`);
     ctx.out(rewordedColumn.detail);
     ctx.out(rewordedColumn.line);
   } else if (rewordedStop !== null) {
@@ -1421,7 +1429,7 @@ export async function runJevArm(plan, gate, ctx) {
     ctx.out(`jev-reworded: partial rows=${rewordedFinished}`);
   }
   return {
-    column: { ...column, latency, jevVersion: JEV_VERSION, provider: gate.provider, model },
+    column: { ...column, latency, jevVersion: JEV_VERSION, provider: gate.provider, model: answeringModel },
     rewordedColumn,
     rewordedStop,
     rewordedPartialRows: rewordedFinished,

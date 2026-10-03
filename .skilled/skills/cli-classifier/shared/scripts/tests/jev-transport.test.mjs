@@ -206,7 +206,7 @@ test('classifier_context_carries_the_state_and_ordered_criteria', () => {
   const request = { question: 'Q', keys: ['a', 'b'], criteria: { a: 'A', b: 'B' } };
   const context = S.classifierContextFor(request, 'the row prompt');
   assert.deepEqual(context, {
-    state: { request: 'the row prompt' },
+    state: { text: 'the row prompt' },
     questions: { answer: { type: 'choice', instructions: 'Q', criteria: { a: 'A', b: 'B' } } },
   });
   assert.deepEqual(Object.keys(context.questions.answer.criteria), ['a', 'b']);
@@ -228,7 +228,7 @@ test('noul_request_parses_question_and_optional_provider', () => {
 
 test('noul_classifier_context_uses_wire_type_and_stdin_state', () => {
   assert.deepEqual(S.classifierContextFor({ type: 'noul', question: 'Is this relevant?' }, STATE_TEXT), {
-    state: { request: STATE_TEXT },
+    state: { text: STATE_TEXT },
     questions: { answer: { type: 'bool', instructions: 'Is this relevant?' } },
   });
 });
@@ -466,7 +466,7 @@ test('spawn_call_auto_choice_answers_through_pi', async () => {
     id: 'typesafe/jev-1.13',
   });
   assert.deepEqual(runtime.calls.classify[0].context, {
-    state: { request: STATE_TEXT },
+    state: { text: STATE_TEXT },
     questions: { answer: { type: 'choice', instructions: 'Which option?', criteria: { a: 'First', b: 'Second' } } },
   });
   assert.deepEqual(Object.keys(runtime.calls.classify[0].options), ['signal']);
@@ -496,7 +496,7 @@ test('spawn_call_auto_noul_answers_through_pi', async () => {
 
   assert.equal(spawn.calls.length, 0);
   assert.deepEqual(runtime.calls.classify[0].context, {
-    state: { request: STATE_TEXT },
+    state: { text: STATE_TEXT },
     questions: { answer: { type: 'bool', instructions: 'Is this relevant?' } },
   });
   assert.deepEqual(JSON.parse(outcome.stdout), {
@@ -892,6 +892,121 @@ test('spawn_call_spawn_error_is_127', async () => {
   assert.equal(outcome.timedOut, false);
 });
 
+test('spawn_call_pi_names_the_answering_model_and_prints_usage', async () => {
+  const bin = stubPiPackage(tempDir('pi'));
+  const { lines, report } = collector();
+  const spawn = spawnStub();
+  const runtime = runtimeStub({
+    known: [OFFICIAL_CLASSIFIER_MODEL],
+    classify: async () => ({
+      ...successfulChoiceResult(),
+      provider: 'typesafe',
+      model: 'jev-latest',
+      usage: {
+        input: 513,
+        output: 55,
+        cacheRead: 0,
+        cacheWrite: 0,
+        totalTokens: 568,
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 },
+      },
+    }),
+  });
+  const outcome = await S.spawnClassifierCall(
+    callOptions({ args: OFFICIAL_CHOICE_ARGS, env: { PATH: bin }, report, transport: 'pi' }),
+    { spawn: spawn.spawnFn, runtime },
+  );
+
+  assert.equal(spawn.calls.length, 0);
+  assert.equal(outcome.model, 'typesafe/jev-latest');
+  const payload = JSON.parse(outcome.stdout);
+  assert.deepEqual(payload.usage, { input_tokens: 513, output_tokens: 55 });
+  assert.equal(payload.model, 'jev-latest');
+  assert.deepEqual(lines, []);
+});
+
+test('spawn_call_pi_without_a_reported_model_falls_back_to_its_classifier_entry', async () => {
+  const bin = stubPiPackage(tempDir('pi'));
+  const { lines, report } = collector();
+  const spawn = spawnStub();
+  const runtime = runtimeStub({ classify: async () => successfulNoulResult(0.75) });
+  const outcome = await S.spawnClassifierCall(
+    callOptions({ args: NOUL_ARGS, env: { PATH: bin }, report }),
+    { spawn: spawn.spawnFn, runtime },
+  );
+
+  assert.equal(outcome.model, 'openrouter/typesafe/jev-1.13');
+  const payload = JSON.parse(outcome.stdout);
+  assert.equal(Object.hasOwn(payload, 'usage'), false);
+  assert.equal(payload.model, 'typesafe/jev-1.13');
+  assert.deepEqual(lines, []);
+});
+
+test('spawn_call_pi_partial_usage_stays_unprinted', async () => {
+  const reported = [
+    {},
+    { input: 513 },
+    { input: 513, output: Number.NaN },
+    { input: Number.POSITIVE_INFINITY, output: 55 },
+  ];
+  for (const usage of reported) {
+    const bin = stubPiPackage(tempDir('pi'));
+    const { report } = collector();
+    const spawn = spawnStub();
+    const runtime = runtimeStub({
+      classify: async () => ({ ...successfulNoulResult(0.75), usage }),
+    });
+    const outcome = await S.spawnClassifierCall(
+      callOptions({ args: NOUL_ARGS, env: { PATH: bin }, report }),
+      { spawn: spawn.spawnFn, runtime },
+    );
+
+    assert.equal(Object.hasOwn(JSON.parse(outcome.stdout), 'usage'), false, JSON.stringify(usage));
+  }
+});
+
+test('spawn_call_cli_names_the_model_the_service_printed', async () => {
+  const printed = [
+    ['{"answers":{"answer":{"noul":0.2}},"model":"jev-1.13.0"}\n', 'jev-1.13.0'],
+    ['{"ok":true}\n', null],
+    ['not json\n', null],
+  ];
+  for (const [stdout, expected] of printed) {
+    const { report } = collector();
+    const spawn = spawnStub({ stdout });
+    const outcome = await S.spawnClassifierCall(
+      callOptions({ env: { PATH: '/nonexistent' }, report, transport: 'jev' }),
+      { spawn: spawn.spawnFn },
+    );
+
+    assert.equal(outcome.transport, 'jev', stdout.trim());
+    assert.equal(outcome.stdout, stdout, stdout.trim());
+    assert.equal(outcome.model, expected, stdout.trim());
+  }
+});
+
+test('spawn_call_fallback_names_the_cli_model_not_pis', async () => {
+  const bin = stubPiPackage(tempDir('pi'));
+  const { lines, report } = collector();
+  const spawn = spawnStub({ stdout: '{"answers":{"answer":{"noul":0.2}},"model":"jev-1.13.0"}\n' });
+  const runtime = runtimeStub({
+    classify: async () => ({
+      stopReason: 'error',
+      provider: 'typesafe',
+      model: 'jev-latest',
+      answers: {},
+    }),
+  });
+  const outcome = await S.spawnClassifierCall(
+    callOptions({ args: NOUL_ARGS, env: { PATH: bin }, report, transport: 'pi' }),
+    { spawn: spawn.spawnFn, runtime },
+  );
+
+  assert.deepEqual(lines, [SKIP.backend]);
+  assert.equal(outcome.transport, 'jev');
+  assert.equal(outcome.model, 'jev-1.13.0');
+});
+
 // ───────────────────────────────────────────────────────────────────
 // 7. COMMONJS REACH
 // ───────────────────────────────────────────────────────────────────
@@ -914,10 +1029,12 @@ test('module_requires_from_commonjs', async () => {
     'choicePayloadFor',
     'choiceRequestFrom',
     'classifierContextFor',
+    'cliModelFrom',
     'noulPayloadFor',
     'noulRequestFrom',
     'resolveTransport',
     'spawnClassifierCall',
+    'usagePayloadFor',
   ]);
   for (const value of Object.values(required)) assert.equal(typeof value, 'function');
 });

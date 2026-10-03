@@ -23,7 +23,7 @@ Both backends are stubs: a recorded child-process factory for the `jev` CLI and 
 
 | File | Responsibility |
 |---|---|
-| `jev-transport.test.mjs` | Tests `resolveTransport`, `choiceRequestFrom`, `classifierContextFor` and `choicePayloadFor`, both `spawnClassifierCall` paths with the package, model, credential and backend fallbacks, the timeout and spawn-error outcomes, and the module's CommonJS reach. |
+| `jev-transport.test.mjs` | Tests `resolveTransport`, `choiceRequestFrom`, `classifierContextFor` and `choicePayloadFor`, both `spawnClassifierCall` paths with the package, model, credential and backend fallbacks, the timeout and spawn-error outcomes, the answering model on both routes, Pi's token usage, and the module's CommonJS reach. |
 
 ---
 
