@@ -95,6 +95,7 @@ The completion sentinel catches the claims it can catch for free, fires less on 
 | `.skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/` | Modify | Correct the `labels-happy` construct |
 | `.cursor/hooks.json` | Modify | Wire the Cursor completion adapter |
 | `.skilled/hooks/completion/README.md` | Modify | Pi visibility matches the adapter and the injection contract |
+| `.skilled/hooks/injection-contract.md` | Modify | The sentinel section names Pi's model-visible next-turn advisory, as the adapter sends it |
 <!-- /ANCHOR:scope -->
 
 ---

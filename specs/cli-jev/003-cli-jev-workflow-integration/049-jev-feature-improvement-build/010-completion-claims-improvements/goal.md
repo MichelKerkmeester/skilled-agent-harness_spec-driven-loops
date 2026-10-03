@@ -81,5 +81,5 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Injection contract added to scope (2026-10-03) | The first build halted on R9: the injection contract says the sentinel injects nothing, while `hooks/pi/completion-evidence.ts` sends a `display:false` message delivered next turn. The code is the truth and R9 exists to reconcile the docs to it, so the session added `.skilled/hooks/injection-contract.md` to Files to Change |
 <!-- /ANCHOR:log -->
