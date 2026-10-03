@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "The injection screen keeps its keep verdict at the new 0.6 flag line, with false positives down from 5 to 3."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -11,17 +11,18 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/004-injection-screen-improvements"
-    last_updated_at: "2026-10-03T05:30:06Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-10-03T12:00:00Z"
+    last_updated_by: "claude-opus-5-5-049"
+    recent_action: "Built, reviewed and verified the phase"
+    next_safe_action: "None. The phase is Complete"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-004-injection-screen-improvements"
+      session_id: "claude-opus-5-5-049"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,18 +49,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The injection screen keeps its keep verdict at the new 0.6 flag line, with false positives down from 5 to 3. It now refuses a corpus row that no longer matches its recorded commit or snapshot, and its report carries the trust package an operator needs to check the result.
 
-### Phase 4: injection-screen-improvements
+### Phase 1: injection-screen-improvements
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`score-injection-screen.mjs` asks Jev whether a section of fetched text tries to redirect an agent. It now refuses rows whose source no longer matches the recorded commit or snapshot digest, and records label, planted, snapshot, instruction and lexical hashes. The report prints comparator Brier, natural and planted recall apart, close calls and a hardened lexical comparator as a hybrid floor. Rows run two calls and a third only on disagreement, the flag line is 0.6, and an opt-in `--reworded-arm` scores a reworded question beside the original one, with a review-band question on rows in the 0.25 to 0.75 band. A failed reworded call is reported on its own line and never erases the primary verdict.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs` | Modified | Corpus check, trust package, flag line, call protocol, comparator, question arms |
+| `.skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs` | Modified | Corpus refusal, hashes, Brier, recall split, close calls, call protocol, reworded-arm failure |
+| `.skilled/skills/cli-classifier/benchmark/injection-screen/README.md` | Modified | Corpus provenance and the new report fields |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +69,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Luna 6 max fast built it on cli-codex. A DeepSeek V4.1 Flash max review on cli-pi found a P1, untested refusals, which DeepSeek fixed. The first re-measure ran the reworded question as the primary one and returned kill. The session attributed that to the wording from the recorded calls, and DeepSeek restored the original question with the reworded one behind `--reworded-arm`. A Luna review of the final change found a P0: a failed reworded call dropped the completed primary verdict. DeepSeek fixed it with a test. The second re-measure keeps.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +79,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep the original question as the primary arm | On the recorded calls the reworded question raised false positives from 5 to 15 at 0.5, so it stays an opt-in comparison arm |
+| Report the reworded arm apart from the primary verdict | An opt-in side arm must never decide or erase the verdict the keep rule reads |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +90,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `node --test .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs` | 49 passed (baseline 35) |
+| Live re-measure, `--jev --reworded-arm --out ~/.skilled/.labels/runs/049-004-jev-20261003b` | exit 0 in 122 s, 371 calls (181 primary): `verdict jev: keep K=90 M=90 A=82 B=68 W=19 L=5 TP=30 FP=3 F=1 p=0.003305`, brier 0.0670, natural recall 0.600, planted 0.900 |
+| Luna review of the final change | 1 P0 fixed (reworded failure erased the primary verdict), 1 P1 closed by this log |
+| `validate.sh --strict` | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +101,9 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **The baseline moved.** The hardened lexical comparator gives B=68 where 035 had 56, so W and L are not directly comparable to the 035 line.
+2. **The reworded question loses.** `verdict jev-reworded: kill (precision) ... FP=11`, recorded and kept as an opt-in arm only.
+3. **No new corpus slices.** Real-fetch, obfuscated and multilingual rows need new labels, per 003 D4.
 <!-- /ANCHOR:limitations -->
 
 ---
