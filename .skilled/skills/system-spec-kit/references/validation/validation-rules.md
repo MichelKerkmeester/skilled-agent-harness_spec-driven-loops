@@ -580,6 +580,7 @@ Either adjust the declared level or modify content to match:
 
 - Level 3: Should have protocol section (warning if missing)
 - Level 3+: Must have at least 3/4 components (error if fewer)
+- Phase parent: skipped. Under the lean trio policy its `plan.md` and `tasks.md` live in the child folders, which carry the protocol.
 
 ### Detection Patterns
 
