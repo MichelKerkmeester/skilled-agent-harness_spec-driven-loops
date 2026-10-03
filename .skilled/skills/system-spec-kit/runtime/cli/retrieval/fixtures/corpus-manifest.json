@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fdf4454682f632743df3f4db25cab3bd8e331c89ac068fb44d186736e012f171",
+  "corpusHash": "1d80ab9dee40e65b99a12a11237a2e826338e052319c0b612d5afadc21bff5d0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23295,
+  "includedPathCount": 23315,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23322,10 +23322,30 @@
     "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-dashboard.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-001.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-002.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-003.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-004.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-005.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-006.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-1.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-2.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-3.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-4.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-5.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-6.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/research.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/resource-map.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "73129b571ab540f487fd89bf02ac6ada98799a14688f2f2d64a7519c41a95849",
+  "manifestHash": "ee8e4bb95c0254a5fef3f869eb33b980c67a7485e862b60378327175e7a2d008",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28705,6 +28725,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "73129b571ab540f487fd89bf02ac6ada98799a14688f2f2d64a7519c41a95849",
+  "manifestHash": "ee8e4bb95c0254a5fef3f869eb33b980c67a7485e862b60378327175e7a2d008",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13128,6 +13128,12 @@
     "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/deep-research-strategy.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/research/research.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "phrases": {
@@ -47793,6 +47799,9 @@
     "deep research executor split": [
       8678
     ],
+    "deep research executor switch": [
+      13119
+    ],
     "deep research fan out cli devin": [
       2596
     ],
@@ -48150,7 +48159,8 @@
       11324,
       11326,
       11867,
-      12793
+      12793,
+      13120
     ],
     "deep research strategy md": [
       1814
@@ -51807,7 +51817,7 @@
       12235
     ],
     "doctor audit followups": [
-      13118
+      13124
     ],
     "doctor baseline verification": [
       12151
@@ -52051,7 +52061,7 @@
     ],
     "doctor gates drift": [
       13111,
-      13118
+      13124
     ],
     "doctor hard cutover": [
       10088
@@ -52418,6 +52428,15 @@
       9113,
       9129
     ],
+    "doctor update perfection": [
+      13122
+    ],
+    "doctor update perfection findings": [
+      13118
+    ],
+    "doctor update perfection research": [
+      13121
+    ],
     "doctor update redesign": [
       13024
     ],
@@ -52427,11 +52446,29 @@
     "doctor update relevance": [
       13026
     ],
+    "doctor update remediation ranking": [
+      13121
+    ],
+    "doctor update research": [
+      13122
+    ],
+    "doctor update research plan": [
+      13119
+    ],
+    "doctor update research summary": [
+      13118
+    ],
+    "doctor update research tasks": [
+      13123
+    ],
     "doctor update scaffold": [
       10085
     ],
     "doctor update split decision": [
       12979
+    ],
+    "doctor update stale apply lock": [
+      13121
     ],
     "doctor update tasks": [
       9115
@@ -55971,7 +56008,8 @@
       3555,
       4490,
       11867,
-      12793
+      12793,
+      13120
     ],
     "exhausted review approaches": [
       1832,
@@ -95139,8 +95177,17 @@
     "release update customization": [
       13105
     ],
-    "release update signals": [
+    "release update engine audit": [
+      13121
+    ],
+    "release update engine defects": [
       13118
+    ],
+    "release update engine research": [
+      13122
+    ],
+    "release update signals": [
+      13124
     ],
     "release updater over rebuild": [
       12979
@@ -97208,7 +97255,8 @@
       3555,
       4490,
       11867,
-      12793
+      12793,
+      13120
     ],
     "research spec conflict detection": [
       1824
@@ -97231,7 +97279,8 @@
       4209,
       4490,
       11867,
-      12793
+      12793,
+      13120
     ],
     "research stop contract": [
       1819
@@ -97247,7 +97296,8 @@
       3555,
       4490,
       11867,
-      12793
+      12793,
+      13120
     ],
     "research stuck count": [
       1818
@@ -100102,7 +100152,8 @@
       4209,
       4490,
       11867,
-      12793
+      12793,
+      13120
     ],
     "ruledout array": [
       1805
@@ -121307,7 +121358,7 @@
     ],
     "trigger index freshness": [
       13100,
-      13118
+      13124
     ],
     "trigger index generator": [
       2388,
