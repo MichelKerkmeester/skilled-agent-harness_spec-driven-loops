@@ -46,7 +46,7 @@ _memory:
 |----|---|
 | D1 | Jev only, dormant unless `jev auth status` passes. Jev gets no secret |
 | D2 | `cli-classifier` stays a parent hub |
-| D3 | Run 019 to 048 in parallel when disjoint |
+| D3 | Run 019 to 049 in parallel when disjoint |
 | D4 | 003, 006, 019 to 035 stop at their label gate. Only operator-confirmed or -delegated labels count |
 | D5 | Session verifies, commits. Workers: Luna 6 max fast (cli-codex), DeepSeek V4.1 Flash max (cli-pi). No MiMo or Claude leaves except the arbiter. Cross-family review: fix P0 and P1, record P2 |
 | D6 | Docs via sk-doc, code via sk-code |
@@ -118,7 +118,7 @@ Decisions outrank child goals.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 048 are Complete
+- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 049 are Complete
 - [x] 019 to 035 are Complete, each at its verdict line or label gate
 - [x] `validate_document.py` exits 0 on each changed skill doc
 - [x] No open P0 or P1, and no changed suite fails beyond its baseline
@@ -276,4 +276,5 @@ and findings belong here.
 | 048 opened (2026-10-03) | The operator asked for research on every kept feature: DeepSeek 5 iterations and Luna 3 per feature. 048 bound as row 48 with ten children, criterion 1 reopened. To fit the budget, D1 dropped the `--provider` argument, D2 its `cli-jev` mention and D5 its stale provider list, with no choice changed |
 | 048 Complete, all criteria met again (2026-10-03) | All ten children hold a merged `research.md` from DeepSeek (5 iterations) and Luna (3), each with one `synthesis_complete`. Three deep-loop runtime faults are recorded as P2 in 048's log: no producer for `run_initialized` (a config row blocks the first projection), the 15-key init row, and delta field drift in the merge. `validate.sh --strict --recursive` passes on 048 and its 10 children, `check-goal.cjs` passes on all 11 goals. Committed on `worktrees/085-jev-feature-improvement-research`, not merged |
 | 049 opened (2026-10-03) | The operator asked for a phase per researched feature to build its recommendations, and for the workflow faults. 049 bound as row 49 with twelve children, Planned and not released: D3 still ends at 048. To fit the budget, the binding rows dropped their backticks, which `check-goal.cjs` accepts, with no wording changed |
+| Directive amendment: release 049 (2026-10-03) | Source: the operator's "Yes both" to two asks: release 049 for build by extending D3, and merge the worktree branch into main and push it. D3 now runs 019 to 049. Criterion 1 names 036 to 049 and is open until 049 is Complete. Same length, so the slice stays under budget. Rollback: restore sections 1 and 3 from `git show 300058eaaa:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
 <!-- /ANCHOR:log -->

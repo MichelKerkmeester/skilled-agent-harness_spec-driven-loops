@@ -146,7 +146,7 @@ Each child names its exact files in its own spec.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- None. Releasing these phases for build is the operator's call under 003 D3.
+- None. The operator released these phases for build on 2026-10-03, and 003 D3 now runs 019 to 049.
 <!-- /ANCHOR:questions -->
 
 ---
