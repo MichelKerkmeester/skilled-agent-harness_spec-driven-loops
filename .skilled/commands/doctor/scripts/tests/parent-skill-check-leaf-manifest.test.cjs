@@ -77,6 +77,13 @@ function installContractLibrary(hubRoot) {
   // generate-leaf-manifest.cjs reads the shared S-class config defaults, so the
   // staged copy needs it too or its require fails at runtime.
   fs.copyFileSync(REAL_S_CLASS_DEFAULTS_PATH, path.join(libDir, 's-class-config-defaults.json'));
+  // The copied contract libraries require @spec-kit/shared, which the real tree
+  // resolves through sk-doc's node_modules link. Recreate that link beside the
+  // copied sk-doc tree so the fixture loads the same module graph; realpathSync
+  // throws when the real link is absent, so a missing install fails loudly.
+  const sharedLink = path.join(path.dirname(hubRoot), 'sk-doc', 'node_modules', '@spec-kit', 'shared');
+  fs.mkdirSync(path.dirname(sharedLink), { recursive: true });
+  fs.symlinkSync(fs.realpathSync(path.join(REAL_SK_DOC_ROOT, 'node_modules', '@spec-kit', 'shared')), sharedLink, 'dir');
 }
 
 function writePacketCompanions(packetDir, packetSkillName) {
@@ -146,7 +153,7 @@ function buildCleanFixture() {
   // A hub declares its command surface even when empty; the class check
   // requires the file's presence, so the fixture carries the empty form.
   writeJson(path.join(hubRoot, 'command-metadata.json'), []);
-  fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nallowed-tools: [Read]\n---\n# demo-hub\n');
+  fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nversion: 1.0.0.0\nallowed-tools: [Read]\n---\n# demo-hub\n');
   // The root-router two-state check runs on every hub, so the clean fixture
   // ships the leafless stage1-only root router its fresh-scaffold twin would
   // carry; it stays out of the way of the leaf-manifest guards under test.

@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────────────────────
 # DOCTOR ROUTER — CANONICAL ROUTE MANIFEST
 # ─────────────────────────────────────────────────────────────────
-# Source of truth for /doctor <target> dispatch.
+# Source of truth for /doctor:speckit <target> dispatch.
 # Read by: .skilled/commands/doctor/speckit.md (the router)
 # Validated by: .skilled/commands/doctor/scripts/route-validate.sh
 # Consumed by: NOT currently harvested by either Skill Advisor implementation.
@@ -9,7 +9,7 @@
 #   ("references","assets") rooted at SKILLS_DIR; TS doc-frontmatter.ts:23)
 #   walk only .skilled/skills/*/{references,assets}/*.md frontmatter — a
 #   .yaml file under .skilled/commands/doctor/ is out of scope by both file
-#   type and root. /doctor <target> dispatch is presentation-menu/argv-driven
+#   type and root. /doctor:speckit <target> dispatch is presentation-menu/argv-driven
 #   (see speckit.md), not advisor-driven. The trigger_phrases field below is
 #   retained for a possible future doctor-routes harvester but is inert today.
 #
@@ -38,6 +38,7 @@ routes:
     gate3_location: "<packet_scratch>/doctor-speckit-retrieval-report.<timestamp>.md + <packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json"
     mcp_tools: []   # file-and-script diagnostic; no MCP calls and no background service
     script_invocations:
+      - 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json  # the staleness verdict: exit 0 = fresh, 1 = stale documents named, 2+ = unreadable index; writes nothing'
       - 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "resume work session context"  # index present AND lookup runs: exit 0 = hits, 1 = clean no-hit, 2+ = missing or unreadable index, reported with stderr and never as a no-hit'
       - "rg --no-config --hidden --files-with-matches --max-count 1 --fixed-strings --ignore-case --glob '*.md' --glob '!**/z_archive/**' --glob '!**/node_modules/**' --glob '!**/.git/**' --glob '!**/scratch/**' -- 'trigger index generator' specs .skilled  # the section 2.2 recipe, flags verbatim"
     trigger_phrases:

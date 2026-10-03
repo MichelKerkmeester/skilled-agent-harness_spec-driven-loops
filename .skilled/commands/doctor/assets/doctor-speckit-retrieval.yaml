@@ -37,7 +37,8 @@ upstream_assets:
   pass_policy:
     lookup_exit_class: "0 or 1 on the probe prompt and on every prompt in fixtures/prompt-set.json; 2 or higher fails"  # the lookup contract, never a result count
     cold_lookup_p95_budget_ms: 200  # the budget the latency report was accepted under
-    index_regenerates_byte_identical: true  # two generator runs must hash the same
+    index_regenerates_byte_identical: true  # two generator runs must hash the same; proof owned by /doctor:rebuild
+    index_regenerates_byte_identical_owner: "/doctor:rebuild"  # its generator leg rebuilds the index and its --check verification proves the result; this read-only doctor writes only its report and state log, so it can never run the two builds the proof needs
 speckit_retrieval_doctor_philosophy:
   principle: "Detect index staleness before it breaks Gate 1 lookups; this command never mutates — regeneration runs through /doctor:rebuild"
   approach: "Read the index and its manifest → run the lookup and a ripgrep recipe → classify staleness → emit recommendations"
@@ -61,7 +62,7 @@ mutation_boundaries:
     - "<packet_scratch>/doctor-speckit-retrieval-state.*.json"  # the diagnostic state log only
   forbidden_targets:
     - ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"  # never regenerate from the doctor
-    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor speckit-retrieval
+    - "<active-spec-folder>/**/*.md"  # never write into spec packet docs from /doctor:speckit speckit-retrieval
     - "<active-spec-folder>/description.json"  # spec metadata belongs to the continuity writer
     - "<active-spec-folder>/graph-metadata.json"  # graph metadata is not a doctor target
     - ".skilled/skills/**/SKILL.md"  # never edit skill bodies
@@ -105,9 +106,15 @@ interactive_gates:
 # STALENESS SIGNALS
 # ─────────────────────────────────────────────────────────────────
 staleness_signals:
+  index_content_stale:
+    detection: "generate-trigger-index.mjs --check --json exits 1 with fresh false, naming staleDocuments, a non-zero missingDocuments count, or obsoletePaths: the committed index no longer matches what the corpus declares"
+    severity: medium
+    note: "This is the staleness verdict. --check reads the corpus and the committed index and writes nothing. Exit 2 or higher is an unreadable index or a bad invocation, reported with stderr and never as fresh."
   index_older_than_corpus:
     detection: "Any indexed source file has an mtime newer than the trigger index mtime"
-    severity: medium
+    severity: low
+    note: "Supporting evidence only. A checkout, copy or touch moves mtimes without changing a phrase, so this sample never decides the verdict; index_content_stale does."
+
   committed_pair_mismatch:
     detection: "The manifestHash inside runtime/data/trigger-index.json differs from the one in runtime/cli/retrieval/fixtures/corpus-manifest.json, so one generator run did not produce the committed pair"
     severity: medium
@@ -126,7 +133,7 @@ staleness_signals:
     detection: "Unmatched or orphan <!-- ANCHOR:id --> / <!-- /ANCHOR:id --> pairs in the up-to-five sampled packets; phase 1 counts them per sample"
     severity: low
   corpus_pollution:
-    detection: "The phraseQuality bucket in committed generation-diagnostics.json reports editor-fallback, generic-workflow-word, numeric-only, prose-sentence, single-token, and stop-word-only counts; any non-zero count is the signal. Folder-token-fallback requires packet tokens that this aggregate does not receive and is checked by the per-document frontmatter validator."
+    detection: "The phraseQuality bucket in committed generation-diagnostics.json reports editor-fallback, folder-token-fallback, generic-workflow-word, numeric-only, prose-sentence, single-token, and stop-word-only counts; any non-zero count is the signal. The generator judges each owning document with its own packet-folder tokens, so folder-token-fallback is counted the way the per-document validator reports it."
     severity: medium
   schema_version_mismatch:
     detection: "The index schema version does not match the version the lookup script expects"
@@ -145,6 +152,7 @@ workflow:
     activities:
       - "Bash: test -f .skilled/skills/system-spec-kit/runtime/data/trigger-index.json (index present)"
       - "Bash: stat -f '%m %z' .skilled/skills/system-spec-kit/runtime/data/trigger-index.json (mtime + size)"
+      - "Bash: node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json (the staleness evidence; it writes nothing). Exit 0 with fresh true means the committed index matches the corpus; exit 1 is the index_content_stale signal, recorded with its staleDocuments count, missingDocuments and obsoletePaths; exit 2 or higher is reported with stderr and never as fresh. It walks the corpus once, so run it once per doctor run"
       - "Run upstream_assets.lookup_command with a known probe prompt; record exit status, indexHash, manifestHash and candidatePhraseCount"
       - "Run the lookup once per prompt in .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/prompt-set.json; any exit of 2 or higher is the lookup_exit_error signal"
       - "Bash: compare the manifestHash field of .skilled/skills/system-spec-kit/runtime/data/trigger-index.json with the manifestHash fields of .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json, generation-diagnostics.json and phrase-variants.json; any unequal value is the committed_pair_mismatch signal, since one generator run writes all four"
@@ -158,6 +166,7 @@ workflow:
       - index_present: true|false
       - index_mtime: {path: string, mtime: epoch_seconds}
       - index_size: {path: string, size: bytes}
+      - index_check: {exit: 0|1|2+, fresh: true|false, stale_documents: N, missing_documents: N, obsolete_paths: N}
       - lookup_exit: 0|1|2+
       - index_hash: string
       - manifest_hash: string
@@ -175,15 +184,16 @@ workflow:
   phase_1_analysis:
     purpose: Classify staleness signals + identify suspect packets
     activities:
-      - "Cross-reference the index mtime with source mtimes: node -e reads the index's paths array from runtime/data/trigger-index.json and stats each path; any indexed file newer than the index is the index_older_than_corpus signal. The recipe roots hold lineages, dist and fixtures the index excludes, so a find over the roots would over-count"
-      - "Sample up to 5 packets flagged as staleness candidates"
+      - "Supporting evidence only, after the phase 0 --check verdict: cross-reference the index mtime with source mtimes. node -e reads the index's paths array from runtime/data/trigger-index.json and stats each path; any indexed file newer than the index is the index_older_than_corpus signal, reported beside the --check result and never in place of it. The recipe roots hold lineages, dist and fixtures the index excludes, so a find over the roots would over-count"
+      - "Sample up to 5 packets flagged as staleness candidates, taking them from the --check staleDocuments list first"
       - "For each sample, read its frontmatter trigger_phrases and compare against the phrases the index holds for that path (read-only)"
       - "For each sample, count <!-- ANCHOR:id --> openers against <!-- /ANCHOR:id --> closers; an unmatched pair is the anchor_marker_drift signal"
-      - "Read the phraseQuality bucket of .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json; report every non-zero aggregate class as corpus_pollution, whether or not any source document is stale. Folder-token-fallback needs packet tokens and remains covered by per-document frontmatter validation."
+      - "Read the phraseQuality bucket of .skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json; report every non-zero aggregate class as corpus_pollution, whether or not any source document is stale."
       - "Aggregate signals into a staleness_classes count map"
       - "Interactive gate: before_phase_2_recommendation"
     outputs:
       - staleness_classes:
+          index_content_stale: 0|1
           index_older_than_corpus: N
           lookup_exit_error: K
           ripgrep_ambient_config: L
@@ -199,8 +209,8 @@ workflow:
     purpose: Translate staleness signals into recommended action
     rules:
       - "If severity_max == high (schema mismatch, lookup error, or ambient config) → recommend a full regeneration via /doctor:rebuild"
-      - "If severity_max == medium (index older than corpus, manifest hash mismatch, or corpus pollution) → recommend full-corpus regeneration via /doctor:rebuild, or a corpus fix first when the signal is pollution: the phrases never rank, so the cost is precision and parse time, not a wrong answer"
-      - "If severity_max == low (trigger phrase OR anchor drift) → recommend monitoring; rerun in 1-2 weeks"
+      - "If severity_max == medium (index content stale per --check, manifest hash mismatch, or corpus pollution) → recommend full-corpus regeneration via /doctor:rebuild, or a corpus fix first when the signal is pollution: the phrases never rank, so the cost is precision and parse time, not a wrong answer"
+      - "If severity_max == low (trigger phrase drift, anchor drift, or an mtime sample that --check did not confirm) → recommend monitoring; rerun in 1-2 weeks"
       - "If no staleness → status=OK, no action needed"
       - "A lookup exit of 1 with a healthy index is a correct empty answer, not a finding. Never recommend a regeneration to make a no-hit disappear."
     outputs:
@@ -234,7 +244,7 @@ output_contract:
   state_log:
     path: "<packet_scratch>/doctor-speckit-retrieval-state.<timestamp>.json"
     schema:
-      command: "/doctor speckit-retrieval"
+      command: "/doctor:speckit speckit-retrieval"
       mode: INTERACTIVE
       intent: DIAGNOSE
       timestamp: ISO_8601

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6c0344fd7582f89d7247d6f9815da371d30c5ce4390b4bc316c110a744984d7c",
+  "manifestHash": "fe97c1ee0fca6ee565cee202bd6e74b3c46b1c02e412a3b4f6473f7f4d21d5c8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7667,6 +7667,9 @@
     "acceptance criteria template": [
       "acceptance criteria template"
     ],
+    "acceptance packet correction": [
+      "acceptance packet correction"
+    ],
     "acceptance receipt binding evidence": [
       "acceptance receipt binding evidence"
     ],
@@ -8572,6 +8575,9 @@
     "advisor embedder tests": [
       "advisor embedder tests"
     ],
+    "advisor embeddings health": [
+      "advisor embeddings health"
+    ],
     "advisor env hardening": [
       "advisor env hardening"
     ],
@@ -8999,6 +9005,9 @@
     "advisor routing code queue": [
       "advisor routing code queue"
     ],
+    "advisor routing keywords": [
+      "advisor routing keywords"
+    ],
     "advisor runtime alignment": [
       "advisor runtime alignment"
     ],
@@ -9040,6 +9049,9 @@
     ],
     "advisor scorer null id crash": [
       "advisor scorer null id crash"
+    ],
+    "advisor scorer references": [
+      "advisor scorer references"
     ],
     "advisor scorer repair plan": [
       "advisor scorer repair plan"
@@ -9137,11 +9149,17 @@
     "advisor status fields": [
       "advisor status fields"
     ],
+    "advisor status freshness": [
+      "advisor status freshness"
+    ],
     "advisor status handler": [
       "advisor status handler"
     ],
     "advisor status rebuild playbook": [
       "advisor status rebuild playbook"
+    ],
+    "advisor status truthfulness": [
+      "advisor status truthfulness"
     ],
     "advisor suggested order": [
       "advisor suggested order"
@@ -9421,6 +9439,9 @@
     ],
     "agent delegation table": [
       "agent delegation table"
+    ],
+    "agent description length": [
+      "agent description length"
     ],
     "agent dispatch table": [
       "agent dispatch table"
@@ -11778,6 +11799,9 @@
     "audit codebase clarity": [
       "audit codebase clarity"
     ],
+    "audit description surface": [
+      "audit description surface"
+    ],
     "audit executor": [
       "audit executor"
     ],
@@ -12363,8 +12387,14 @@
     "barter symlinks readme": [
       "barter symlinks readme"
     ],
+    "base manifest recording": [
+      "base manifest recording"
+    ],
     "base plus supplement": [
       "base plus supplement"
+    ],
+    "base recording": [
+      "base recording"
     ],
     "based": [
       "based"
@@ -13359,6 +13389,9 @@
     "boilerplate rewrite evidence": [
       "boilerplate rewrite evidence"
     ],
+    "bookkeeping repair plan": [
+      "bookkeeping repair plan"
+    ],
     "boolean expression": [
       "boolean expression"
     ],
@@ -13955,6 +13988,9 @@
     ],
     "byte identical jsonl projection": [
       "byte-identical JSONL projection"
+    ],
+    "byte identical regeneration": [
+      "byte-identical regeneration"
     ],
     "byte identical render gate": [
       "byte-identical render gate"
@@ -24696,6 +24732,9 @@
     "continuity identity verification": [
       "continuity identity verification"
     ],
+    "continuity key files handoff": [
+      "continuity key files handoff"
+    ],
     "continuity memory runtime": [
       "continuity memory runtime"
     ],
@@ -25710,6 +25749,9 @@
     ],
     "coverage graph db ts": [
       "coverage-graph-db.ts"
+    ],
+    "coverage graph empty": [
+      "coverage graph empty"
     ],
     "coverage graph fuzzy merge": [
       "coverage-graph fuzzy merge"
@@ -26771,8 +26813,8 @@
     "cross study integration tasks": [
       "cross study integration tasks"
     ],
-    "cross subsystem aligner doctor update": [
-      "cross-subsystem aligner doctor update"
+    "cross subsystem aligner doctor rebuild": [
+      "cross-subsystem aligner doctor rebuild"
     ],
     "cross subsystem health dashboard": [
       "cross-subsystem health dashboard"
@@ -30324,6 +30366,12 @@
     "deep loop promotion integrity": [
       "deep loop promotion integrity"
     ],
+    "deep loop read only mode": [
+      "deep-loop read-only mode"
+    ],
+    "deep loop read only plan": [
+      "deep-loop read-only plan"
+    ],
     "deep loop readme coverage complete": [
       "deep-loop README coverage complete"
     ],
@@ -30917,6 +30965,9 @@
     ],
     "deep research bloat": [
       "deep research bloat"
+    ],
+    "deep research bookkeeping": [
+      "deep-research bookkeeping"
     ],
     "deep research cap reconciliation": [
       "deep research cap reconciliation"
@@ -32543,6 +32594,9 @@
     "degraded readiness envelope parity tasks": [
       "degraded readiness envelope parity tasks"
     ],
+    "degraded sqlite artifact": [
+      "degraded sqlite artifact"
+    ],
     "degraded vector health": [
       "degraded vector health"
     ],
@@ -33097,6 +33151,12 @@
     ],
     "describe this image": [
       "describe this image"
+    ],
+    "description budget overage": [
+      "description budget overage"
+    ],
+    "description budget packet": [
+      "description budget packet"
     ],
     "description depends on": [
       "description depends_on"
@@ -34858,6 +34918,9 @@
     "doctor asset health checks": [
       "doctor asset health checks"
     ],
+    "doctor audit followups": [
+      "doctor audit followups"
+    ],
     "doctor baseline verification": [
       "doctor baseline verification"
     ],
@@ -34894,6 +34957,9 @@
     "doctor command alignment": [
       "doctor command alignment"
     ],
+    "doctor command audit": [
+      "doctor command audit"
+    ],
     "doctor command authoring plan": [
       "doctor command authoring plan"
     ],
@@ -34920,6 +34986,9 @@
     ],
     "doctor command realignment post cocoindex": [
       "doctor command realignment post-cocoindex"
+    ],
+    "doctor command relevance": [
+      "doctor command relevance"
     ],
     "doctor command resources": [
       "doctor command resources"
@@ -35012,6 +35081,15 @@
       "/doctor deep-loop",
       "doctor deep-loop"
     ],
+    "doctor deep loop audit": [
+      "doctor deep-loop audit"
+    ],
+    "doctor deep loop audit acceptance": [
+      "doctor deep-loop audit acceptance"
+    ],
+    "doctor deep loop yaml": [
+      "doctor-deep-loop.yaml"
+    ],
     "doctor degraded adapters route": [
       "doctor degraded adapters route"
     ],
@@ -35027,6 +35105,12 @@
     "doctor drift check": [
       "doctor drift check"
     ],
+    "doctor embeddings audit": [
+      "doctor embeddings audit"
+    ],
+    "doctor embeddings audit acceptance": [
+      "doctor embeddings audit acceptance"
+    ],
     "doctor embeddings cold start timeout implementation plan": [
       "doctor embeddings cold-start timeout implementation plan"
     ],
@@ -35035,6 +35119,30 @@
     ],
     "doctor embeddings route": [
       "doctor embeddings route"
+    ],
+    "doctor embeddings yaml": [
+      "doctor-embeddings.yaml"
+    ],
+    "doctor env": [
+      "/doctor:env"
+    ],
+    "doctor env command": [
+      "doctor env command"
+    ],
+    "doctor env command acceptance": [
+      "doctor env command acceptance"
+    ],
+    "doctor fable mode audit": [
+      "doctor fable-mode audit"
+    ],
+    "doctor fable mode audit acceptance": [
+      "doctor fable-mode audit acceptance"
+    ],
+    "doctor fable mode yaml": [
+      "doctor-fable-mode.yaml"
+    ],
+    "doctor gates drift": [
+      "doctor gates drift"
     ],
     "doctor hard cutover": [
       "doctor hard cutover"
@@ -35063,8 +35171,35 @@
     "doctor install guidance": [
       "doctor install guidance"
     ],
+    "doctor mcp code mode": [
+      "doctor mcp code mode"
+    ],
+    "doctor mcp debug audit": [
+      "doctor mcp-debug audit"
+    ],
+    "doctor mcp debug audit acceptance": [
+      "doctor mcp-debug audit acceptance"
+    ],
+    "doctor mcp debug relevance": [
+      "/doctor:mcp debug relevance"
+    ],
+    "doctor mcp debug yaml": [
+      "doctor-mcp-debug.yaml"
+    ],
+    "doctor mcp install audit": [
+      "doctor mcp-install audit"
+    ],
+    "doctor mcp install audit acceptance": [
+      "doctor mcp-install audit acceptance"
+    ],
+    "doctor mcp install relevance": [
+      "/doctor:mcp install relevance"
+    ],
     "doctor mcp install review": [
       "doctor mcp install review"
+    ],
+    "doctor mcp install yaml": [
+      "doctor-mcp-install.yaml"
     ],
     "doctor memory": [
       "/doctor memory",
@@ -35091,6 +35226,15 @@
     "doctor mutation class read only": [
       "doctor mutation class read-only"
     ],
+    "doctor parent skill audit": [
+      "doctor parent-skill audit"
+    ],
+    "doctor parent skill audit acceptance": [
+      "doctor parent-skill audit acceptance"
+    ],
+    "doctor parent skill yaml": [
+      "doctor-parent-skill.yaml"
+    ],
     "doctor playbook invocation rewrite": [
       "doctor playbook invocation rewrite"
     ],
@@ -35105,6 +35249,9 @@
     ],
     "doctor realignment research findings": [
       "doctor realignment research findings"
+    ],
+    "doctor rebuild split": [
+      "doctor rebuild split"
     ],
     "doctor removal tasks": [
       "doctor removal tasks"
@@ -35154,11 +35301,29 @@
     "doctor router phase handoff": [
       "doctor router phase handoff"
     ],
+    "doctor router reach audit": [
+      "doctor router-reach audit"
+    ],
+    "doctor router reach audit acceptance": [
+      "doctor router-reach audit acceptance"
+    ],
+    "doctor router reach yaml": [
+      "doctor-router-reach.yaml"
+    ],
     "doctor router task graph": [
       "doctor router task graph"
     ],
     "doctor rows new adapters": [
       "doctor rows new adapters"
+    ],
+    "doctor runtime mirrors audit": [
+      "doctor runtime-mirrors audit"
+    ],
+    "doctor runtime mirrors audit acceptance": [
+      "doctor runtime-mirrors audit acceptance"
+    ],
+    "doctor runtime mirrors yaml": [
+      "doctor-runtime-mirrors.yaml"
     ],
     "doctor sequential thinking removal": [
       "doctor sequential thinking removal"
@@ -35172,11 +35337,77 @@
     "doctor skill advisor": [
       "/doctor:skill-advisor"
     ],
+    "doctor skill advisor audit": [
+      "doctor skill-advisor audit"
+    ],
+    "doctor skill advisor audit acceptance": [
+      "doctor skill-advisor audit acceptance"
+    ],
     "doctor skill advisor command": [
       "doctor skill-advisor command"
     ],
+    "doctor skill advisor yaml": [
+      "doctor-skill-advisor.yaml"
+    ],
+    "doctor skill budget audit": [
+      "doctor skill-budget audit"
+    ],
+    "doctor skill budget audit acceptance": [
+      "doctor skill-budget audit acceptance"
+    ],
+    "doctor skill budget yaml": [
+      "doctor-skill-budget.yaml"
+    ],
+    "doctor skill graph freshness audit": [
+      "doctor skill-graph-freshness audit"
+    ],
+    "doctor skill graph freshness audit acceptance": [
+      "doctor skill-graph-freshness audit acceptance"
+    ],
+    "doctor skill graph freshness yaml": [
+      "doctor-skill-graph-freshness.yaml"
+    ],
+    "doctor speckit deep loop relevance": [
+      "/doctor:speckit deep-loop relevance"
+    ],
+    "doctor speckit embeddings relevance": [
+      "/doctor:speckit embeddings relevance"
+    ],
+    "doctor speckit fable mode relevance": [
+      "/doctor:speckit fable-mode relevance"
+    ],
+    "doctor speckit parent skill relevance": [
+      "/doctor:speckit parent-skill relevance"
+    ],
+    "doctor speckit retrieval audit": [
+      "doctor speckit-retrieval audit"
+    ],
+    "doctor speckit retrieval audit acceptance": [
+      "doctor speckit-retrieval audit acceptance"
+    ],
     "doctor speckit retrieval rename": [
       "doctor speckit-retrieval rename"
+    ],
+    "doctor speckit retrieval yaml": [
+      "doctor-speckit-retrieval.yaml"
+    ],
+    "doctor speckit router reach relevance": [
+      "/doctor:speckit router-reach relevance"
+    ],
+    "doctor speckit runtime mirrors relevance": [
+      "/doctor:speckit runtime-mirrors relevance"
+    ],
+    "doctor speckit skill advisor relevance": [
+      "/doctor:speckit skill-advisor relevance"
+    ],
+    "doctor speckit skill budget relevance": [
+      "/doctor:speckit skill-budget relevance"
+    ],
+    "doctor speckit skill graph freshness relevance": [
+      "/doctor:speckit skill-graph-freshness relevance"
+    ],
+    "doctor speckit speckit retrieval relevance": [
+      "/doctor:speckit speckit-retrieval relevance"
     ],
     "doctor startup questions": [
       "doctor startup questions"
@@ -35186,6 +35417,12 @@
     ],
     "doctor update": [
       "/doctor:update"
+    ],
+    "doctor update audit": [
+      "doctor update audit"
+    ],
+    "doctor update audit acceptance": [
+      "doctor update audit acceptance"
     ],
     "doctor update command": [
       "doctor update command"
@@ -35214,14 +35451,32 @@
     "doctor update paths": [
       "doctor update paths"
     ],
+    "doctor update redesign": [
+      "doctor update redesign"
+    ],
+    "doctor update redesign research": [
+      "doctor update redesign research"
+    ],
+    "doctor update relevance": [
+      "/doctor:update relevance"
+    ],
     "doctor update scaffold": [
       "doctor update scaffold"
+    ],
+    "doctor update split decision": [
+      "doctor update split decision"
     ],
     "doctor update tasks": [
       "doctor update tasks"
     ],
     "doctor update v3 3 hardening handover": [
       "/doctor:update v3.3 hardening handover"
+    ],
+    "doctor update yaml": [
+      "doctor-update.yaml"
+    ],
+    "doctor update yaml superseded": [
+      "doctor-update yaml superseded"
     ],
     "doctor vs code mcp wiring false warning": [
       "doctor VS Code MCP wiring false warning"
@@ -36922,6 +37177,9 @@
     "embeddings factory": [
       "embeddings factory"
     ],
+    "embeddings health status": [
+      "embeddings health status"
+    ],
     "embeddings monolith gone": [
       "embeddings monolith gone"
     ],
@@ -37452,6 +37710,9 @@
     ],
     "env reader table script": [
       "env reader table script"
+    ],
+    "env reference count": [
+      "env reference count"
     ],
     "env reference date refresh 022": [
       "ENV_REFERENCE date refresh 022"
@@ -41037,6 +41298,9 @@
     "fixture parity testing strategy": [
       "fixture parity testing strategy"
     ],
+    "fixture resolution": [
+      "fixture resolution"
+    ],
     "fixture runner output": [
       "fixture runner output"
     ],
@@ -41366,6 +41630,9 @@
     ],
     "folder structure reference": [
       "folder structure reference"
+    ],
+    "folder token fallback": [
+      "folder token fallback"
     ],
     "folder utilities": [
       "folder utilities"
@@ -42831,8 +43098,14 @@
     "generate visual report": [
       "generate visual report"
     ],
+    "generated class": [
+      "generated class"
+    ],
     "generated command bridge projection": [
       "generated command bridge projection"
+    ],
+    "generated file classification": [
+      "generated file classification"
     ],
     "generated file voice edit": [
       "generated file voice edit"
@@ -44786,6 +45059,9 @@
     "graph counts and signals": [
       "graph counts and signals"
     ],
+    "graph database read only open": [
+      "graph database read-only open"
+    ],
     "graph degree channel skip": [
       "graph degree channel skip"
     ],
@@ -45221,6 +45497,9 @@
     "guard index fixes tasks": [
       "guard index fixes tasks"
     ],
+    "guard manifest": [
+      "guard manifest"
+    ],
     "guard order disjoint": [
       "guard order disjoint"
     ],
@@ -45280,6 +45559,9 @@
     ],
     "guide pages distinct roles": [
       "guide pages distinct roles"
+    ],
+    "guided env setup": [
+      "guided env setup"
     ],
     "guided run wrapper": [
       "guided run wrapper"
@@ -51551,6 +51833,9 @@
     "live event vocabulary upcaster": [
       "live event vocabulary upcaster"
     ],
+    "live fleet rerun": [
+      "live fleet rerun"
+    ],
     "live follow log growth": [
       "live-follow log growth"
     ],
@@ -52096,6 +52381,9 @@
     ],
     "lock guarded jsonl append": [
       "lock-guarded jsonl append"
+    ],
+    "lock nonce release": [
+      "lock nonce release"
     ],
     "lock ownership task list": [
       "lock ownership task list"
@@ -59055,6 +59343,9 @@
     "mutation and ownership boundaries": [
       "mutation and ownership boundaries"
     ],
+    "mutation class coverage": [
+      "mutation class coverage"
+    ],
     "mutation class enum discipline": [
       "mutation_class enum discipline"
     ],
@@ -62955,6 +63246,9 @@
     "outranked phrases": [
       "outranked phrases"
     ],
+    "outranked routing phrases": [
+      "outranked routing phrases"
+    ],
     "outside workspace workspace root": [
       "OUTSIDE_WORKSPACE workspace root"
     ],
@@ -63858,6 +64152,9 @@
     ],
     "parent skill check promotion plan": [
       "parent-skill-check promotion plan"
+    ],
+    "parent skill fixtures": [
+      "parent skill fixtures"
     ],
     "parent skill hub template": [
       "parent skill hub template"
@@ -65881,6 +66178,9 @@
     ],
     "phased spec documentation": [
       "phased spec documentation"
+    ],
+    "phrase boost bound": [
+      "phrase boost bound"
     ],
     "phrase intent booster migration": [
       "phrase intent booster migration"
@@ -68193,6 +68493,9 @@
     "prepush residue tasks": [
       "prepush residue tasks"
     ],
+    "prerelease policy": [
+      "prerelease policy"
+    ],
     "presentation adherence research": [
       "presentation adherence research"
     ],
@@ -69135,6 +69438,9 @@
     ],
     "provenance fingerprint": [
       "provenance fingerprint"
+    ],
+    "provenance fingerprint prefilter": [
+      "provenance fingerprint prefilter"
     ],
     "provenance injection": [
       "provenance injection"
@@ -71911,6 +72217,9 @@
     "relative import census": [
       "relative import census"
     ],
+    "release alignment proposal": [
+      "release alignment proposal"
+    ],
     "release alignment remediation": [
       "release alignment remediation"
     ],
@@ -72424,6 +72733,9 @@
     "release and program test fixture singular to plural sweep changelog": [
       "release and program test fixture singular to plural sweep changelog"
     ],
+    "release aware doctor update": [
+      "release-aware doctor update"
+    ],
     "release blocker remediation": [
       "release blocker remediation"
     ],
@@ -72634,6 +72946,9 @@
     "release doc verdict directive": [
       "release doc verdict directive"
     ],
+    "release engine changes": [
+      "release engine changes"
+    ],
     "release gate complete": [
       "release gate complete"
     ],
@@ -72715,6 +73030,15 @@
     ],
     "release readiness workflow": [
       "release-readiness workflow"
+    ],
+    "release update customization": [
+      "release update customization"
+    ],
+    "release update signals": [
+      "release update signals"
+    ],
+    "release updater over rebuild": [
+      "release updater over rebuild"
     ],
     "release yml github actions": [
       "release.yml github actions"
@@ -74217,6 +74541,9 @@
     "research iterations": [
       "research iterations"
     ],
+    "research key questions unticked": [
+      "research key questions unticked"
+    ],
     "research known context capture": [
       "research known context capture"
     ],
@@ -74414,6 +74741,9 @@
     ],
     "research review loop types": [
       "research review loop types"
+    ],
+    "research run open gateway plan": [
+      "research run-open gateway plan"
     ],
     "research run plan": [
       "research run plan"
@@ -75228,6 +75558,9 @@
     ],
     "retrieval class routing verdict tasks": [
       "retrieval class routing verdict tasks"
+    ],
+    "retrieval conventions symlink": [
+      "retrieval conventions symlink"
     ],
     "retrieval coverage alignment": [
       "retrieval coverage alignment"
@@ -76274,6 +76607,9 @@
     "ripgrep search system research lane": [
       "ripgrep search system research lane"
     ],
+    "ripgrep version pin": [
+      "ripgrep version pin"
+    ],
     "risky followup remediation": [
       "risky followup remediation"
     ],
@@ -76709,6 +77045,9 @@
     "route this request to a skill": [
       "route this request to a skill"
     ],
+    "route validate activities": [
+      "route validate activities"
+    ],
     "route validate contract": [
       "route-validate contract"
     ],
@@ -76726,6 +77065,9 @@
     ],
     "route validate tasks": [
       "route-validate tasks"
+    ],
+    "route validator activities": [
+      "route validator activities"
     ],
     "router active criteria": [
       "router active criteria"
@@ -76789,6 +77131,9 @@
     ],
     "router promotion checklist": [
       "router promotion checklist"
+    ],
+    "router reach misroutes": [
+      "router reach misroutes"
     ],
     "router read recount": [
       "router read recount"
@@ -86122,6 +86467,9 @@
     "skill brief is back": [
       "skill brief is back"
     ],
+    "skill budget handoff": [
+      "skill budget handoff"
+    ],
     "skill changelog retrofit": [
       "skill changelog retrofit"
     ],
@@ -86134,6 +86482,9 @@
     "skill contribution projection": [
       "skill contribution projection"
     ],
+    "skill count scan truth": [
+      "skill count scan truth"
+    ],
     "skill creation pitfalls": [
       "skill creation pitfalls"
     ],
@@ -86142,6 +86493,15 @@
     ],
     "skill creation workflow": [
       "skill creation workflow"
+    ],
+    "skill customization alignment proposal": [
+      "skill customization alignment proposal"
+    ],
+    "skill customization detection": [
+      "skill customization detection"
+    ],
+    "skill description trim": [
+      "skill description trim"
     ],
     "skill description trim rules": [
       "skill description trim rules"
@@ -86341,6 +86701,12 @@
     ],
     "skill graph extraction": [
       "skill graph extraction"
+    ],
+    "skill graph freshness": [
+      "skill graph freshness"
+    ],
+    "skill graph freshness panel": [
+      "skill graph freshness panel"
     ],
     "skill graph generation json in spec folders": [
       "skill-graph-generation.json in spec folders"
@@ -90220,6 +90586,9 @@
     "stale surface corrections": [
       "stale surface corrections"
     ],
+    "stale trigger index": [
+      "stale trigger index"
+    ],
     "stale versus legitimate references": [
       "stale versus legitimate references"
     ],
@@ -90240,6 +90609,9 @@
     ],
     "staleness detection": [
       "staleness detection"
+    ],
+    "staleness evidence": [
+      "staleness evidence"
     ],
     "staleness maintenance queue": [
       "staleness maintenance queue"
@@ -95250,6 +95622,9 @@
     "trigger index fix tasks": [
       "trigger index fix tasks"
     ],
+    "trigger index freshness": [
+      "trigger index freshness"
+    ],
     "trigger index generator": [
       "trigger index generator"
     ],
@@ -95282,6 +95657,9 @@
     ],
     "trigger index regenerated lineages": [
       "trigger index regenerated lineages"
+    ],
+    "trigger index regeneration": [
+      "trigger index regeneration"
     ],
     "trigger index regeneration task": [
       "trigger index regeneration task"
@@ -95495,6 +95873,9 @@
     ],
     "trusted caller": [
       "trusted caller"
+    ],
+    "trusted mutation docs": [
+      "trusted mutation docs"
     ],
     "trusted mutation gate": [
       "trusted mutation gate"
@@ -99791,6 +100172,9 @@
     ],
     "writevectorstoshard patch": [
       "writeVectorsToShard patch"
+    ],
+    "wrong hub phrases": [
+      "wrong hub phrases"
     ],
     "wrong phase label": [
       "wrong phase label"

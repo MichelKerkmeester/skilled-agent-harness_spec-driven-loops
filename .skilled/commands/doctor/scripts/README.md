@@ -78,6 +78,7 @@ The validator checks:
 - Script path resolution
 - Target parity across router and presentation surfaces
 - Read-only route mutation policy
+- Workflow activity coverage for every route script invocation
 
 Run it from the repository root:
 

@@ -39,28 +39,28 @@
       "activities"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
+      ".skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml",
       ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
       ".skilled/commands/doctor/scripts/route-validate.py",
       ".skilled/commands/doctor/scripts/route-validate.sh",
+      ".skilled/commands/doctor/scripts/README.md",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
       ".skilled/commands/doctor/assets/doctor-rebuild-presentation.txt",
-      ".skilled/commands/doctor/scripts/audit_descriptions.py",
-      ".skilled/skills/sk-doc/scripts/quick_validate.py",
-      ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
+      ".skilled/commands/doctor/_routes.yaml",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
       ".skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json",
-      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      ".skilled/skills/system-spec-kit/runtime/cli/metrics/README.md",
       "specs/system-speckit/048-doctor-command-audit/003-update/spec.md",
       "specs/system-speckit/048-doctor-command-audit/013-speckit-retrieval/implementation-summary.md",
-      ".skilled/commands/doctor/speckit.md",
-      ".skilled/commands/doctor/scripts/fable-mode-check.cjs",
-      ".skilled/commands/doctor/_routes.yaml"
+      "scratch/findings-recheck.md"
     ],
     "entities": [
       {
@@ -88,9 +88,21 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-mutation-class-manifest.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml",
         "source": "derived"
       },
       {
@@ -112,21 +124,27 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
         "name": "doctor-rebuild-presentation.txt",
         "kind": "file",
         "path": ".skilled/commands/doctor/assets/doctor-rebuild-presentation.txt",
         "source": "derived"
       },
       {
-        "name": "audit_descriptions.py",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/audit_descriptions.py",
-        "source": "derived"
-      },
-      {
-        "name": "quick_validate.py",
-        "kind": "file",
-        "path": ".skilled/skills/sk-doc/scripts/quick_validate.py",
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
         "source": "derived"
       },
       {
@@ -142,27 +160,9 @@
         "source": "derived"
       },
       {
-        "name": "doctor-speckit-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "speckit.md",
+        "name": "findings-recheck.md",
         "kind": "doc",
-        "path": ".skilled/commands/doctor/speckit.md",
-        "source": "derived"
-      },
-      {
-        "name": "fable-mode-check.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/fable-mode-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "_routes.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/_routes.yaml",
+        "path": "scratch/findings-recheck.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nine defects recorded across the audit remain open",
     "created_at": "2026-10-03T05:27:41Z",
-    "last_save_at": "2026-10-03T05:54:26.782Z",
+    "last_save_at": "2026-10-03T07:21:12.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,15 +218,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:13262d4cc48b014bd04c3d4aca1c35da3abb54376174b651e13d9ed425c3c88e",
+    "source_fingerprint": "sha256:0b73f955850f5fa5a79a82eb424c8eb90734f0b325a55d4a8edc2b632c0b38a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d23af451cf687aa328f01a2328d62dfce895d05c80ac411f5e1cab8fb074b68b",
-      "plan.md": "eecb567dc3298cca9eb396174a47de6ef4218070d98a3e8789c5e72f0b18c77d",
-      "tasks.md": "628837b0123e315caa207b0b9233dbc40c2dc137fb5ad7dd7fd152fe8b415d7a",
-      "implementation-summary.md": "13caae203899c55b86bc6f51f68717d0b6963f3e1475fc76b673ef014922a572"
+      "spec.md": "a787caa3754704ff331c38c6c338aecdb1a703f47c5856717e80092e03b52806",
+      "plan.md": "1a81ffffec78c028dbac7e9e55ba37e684b4f0899d4c43aa35699f8d45e59fed",
+      "tasks.md": "193f1c6c9573c9000fd40624d7d90ed13b92cf72c48184ded149aebf489ce6b6",
+      "decision-record.md": "d563294f39e197fe319613ce7a5c803b6ead727455954e3179af48e293f31bcf",
+      "implementation-summary.md": "91283339e0a12f333c5b0d2472e65c54917081d49d1aa15eead71a44f9d0c983"
     },
     "last_active_at": null
   }

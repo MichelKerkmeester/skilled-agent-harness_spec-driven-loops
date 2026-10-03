@@ -34,7 +34,7 @@ The release-aware updater classifies every file by comparing base, local and rel
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `worktrees/079-doctor-command-audit` |
 | **Parent Spec** | ../spec.md |

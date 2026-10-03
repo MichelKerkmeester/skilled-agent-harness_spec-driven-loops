@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `worktrees/079-doctor-command-audit` |
 | **Parent Spec** | None (top-level packet) |
@@ -124,9 +124,9 @@ Summary table of files touched across all phases — for audit trail only; per-p
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-trigger-index-freshness/ | Regenerate the committed trigger index and make its staleness, phrase-class and version claims match the system | Pending |
-| 2 | 002-release-update-customization-signals/ | Teach the release updater generated-versus-authored files, base recording, and settle its prerelease and apply-only questions | Pending |
-| 3 | 003-doctor-gates-and-drift/ | Restore the doctor gates' coverage, fix the failing fixtures, and align the doctor's own text and counts | Pending |
+| 1 | 001-trigger-index-freshness/ | Regenerate the committed trigger index and make its staleness, phrase-class and version claims match the system | Complete |
+| 2 | 002-release-update-customization-signals/ | Teach the release updater generated-versus-authored files, base recording, and settle its prerelease and apply-only questions | Complete |
+| 3 | 003-doctor-gates-and-drift/ | Restore the doctor gates' coverage, fix the failing fixtures, and align the doctor's own text and counts | Complete |
 
 ### Phase Transition Rules
 

@@ -166,10 +166,10 @@ State log: .skilled/skills/system-skill-advisor/runtime/database/.doctor-rebuild
 
 | Command | When To Use |
 |---------|-------------|
-| `/doctor speckit-retrieval` | Isolated trigger-index and retrieval-conventions health diagnosis |
-| `/doctor deep-loop` | Isolated research/review coverage graph diagnosis |
-| `/doctor skill-advisor` | Advisor and skill-graph optimization pass |
-| `/doctor skill-budget` | Advisor budget/status helper |
+| `/doctor:speckit speckit-retrieval` | Isolated trigger-index and retrieval-conventions health diagnosis |
+| `/doctor:speckit deep-loop` | Isolated research/review coverage graph diagnosis |
+| `/doctor:speckit skill-advisor` | Advisor and skill-graph optimization pass |
+| `/doctor:speckit skill-budget` | Description-budget audit for skills, commands and agents |
 | `/doctor:mcp debug --fix` | MCP infrastructure repair before subsystem diagnostics |
 
 End interactive presentations with: `What would you like to do next?`

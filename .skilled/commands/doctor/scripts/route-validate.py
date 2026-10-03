@@ -21,6 +21,10 @@ Validates `.skilled/commands/doctor/_routes.yaml` against:
   K. Read-only mutation-policy: a `mutating: read-only` route may not declare a
      packet/file/DB write in its target YAML or grant a known-mutating advisor
      command
+  L. Workflow activity coverage: every local script a route's
+     script_invocations names is invoked by that route's workflow YAML (its
+     repo-relative path or its file name appears in a parsed YAML value, so a
+     comment alone does not count)
 
 Exit codes:
   0 — all assertions pass
@@ -59,6 +63,28 @@ VALID_MUTATING = {"read-only", "add-only", "mutates"}
 # Matches repo-relative local script paths inside script_invocations prose,
 # e.g. ".skilled/bin/skill-advisor.cjs" or ".skilled/commands/doctor/scripts/x.py"
 SCRIPT_PATH_RE = re.compile(r"\.(?:skilled|opencode)/[^\s\"']+\.(?:cjs|mjs|js|py|sh)")
+
+
+def yaml_string_values(node, out: list[str]) -> list[str]:
+    """Collect every string key and value from a parsed YAML tree. Comments are
+    dropped by the parser, so only text the workflow actually carries counts."""
+    if isinstance(node, dict):
+        for key, value in node.items():
+            yaml_string_values(key, out)
+            yaml_string_values(value, out)
+    elif isinstance(node, list):
+        for value in node:
+            yaml_string_values(value, out)
+    elif isinstance(node, str):
+        out.append(node)
+    return out
+
+
+def workflow_mentions_script(workflow_text: str, script_rel: str) -> bool:
+    if script_rel in workflow_text:
+        return True
+    name = script_rel.rsplit("/", 1)[-1]
+    return re.search(r"(?<![\w.-])" + re.escape(name) + r"(?![\w.-])", workflow_text) is not None
 
 # Advisor CLI invocation shape for cli_commands entries: the repo-relative shim
 # path plus the set of commands the CLI itself exposes.
@@ -480,6 +506,38 @@ def main():
             k_failed = True
     if not k_failed:
         R.passed("K1/K2: no read-only route declares a write or grants a mutating advisor command")
+
+    # ─────────────────────────────────────────────────────────────
+    # L. WORKFLOW ACTIVITY COVERAGE (route script -> workflow YAML)
+    # ─────────────────────────────────────────────────────────────
+    l_failed = False
+    l_checked = 0
+    for route in routes:
+        if not isinstance(route, dict):
+            continue
+        target = route.get("target")
+        yaml_name = route.get("yaml")
+        invocations = route.get("script_invocations") or []
+        if not yaml_name or not invocations:
+            continue
+        yaml_path = assets_dir / yaml_name
+        if not yaml_path.exists():
+            continue  # D1 already reports the missing asset
+        try:
+            workflow_doc = yaml.safe_load(yaml_path.read_text(encoding="utf-8"))
+        except yaml.YAMLError as e:
+            R.fail(f"L1: route '{target}' workflow YAML ({yaml_path.name}) does not parse: {e}")
+            l_failed = True
+            continue
+        workflow_text = "\n".join(yaml_string_values(workflow_doc, []))
+        for inv in invocations:
+            for script_rel in SCRIPT_PATH_RE.findall(inv):
+                l_checked += 1
+                if not workflow_mentions_script(workflow_text, script_rel):
+                    R.fail(f"L1: route '{target}' declares {script_rel} in script_invocations but no activity in {yaml_path.name} invokes it")
+                    l_failed = True
+    if not l_failed:
+        R.passed(f"L1: all {l_checked} route script invocations are invoked by their workflow YAML")
 
     # ─────────────────────────────────────────────────────────────
     # SUMMARY

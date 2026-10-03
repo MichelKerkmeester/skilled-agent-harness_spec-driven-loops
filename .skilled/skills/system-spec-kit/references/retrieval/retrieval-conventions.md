@@ -132,7 +132,7 @@ The grammar is an exact pair. An opening `<!-- ANCHOR:id -->` and a closing `<!-
 
 `--json` cannot be combined with the path-only mode (`-l` or `--files-with-matches`), the count mode (`-c` or `--count`) or `--count-matches`. Each output mode is its own recipe, and the wrapper parses one shape at a time.
 
-> **Observed hazard at ripgrep 14.1.1.** Combining them is not rejected. The last output-mode flag on the command line wins silently. `rg --json --count` returned count lines and `rg --count --json` returned JSONL, both at exit `0`. A wrapper that sets both flags therefore gets whichever it happened to write last, and a JSONL parser handed count output sees an empty result rather than an error. Do not rely on ripgrep to catch this.
+> **Observed hazard, re-tested at ripgrep 15.2.0.** Combining them is not rejected. The last output-mode flag on the command line wins silently. `rg --json --count` returned count lines and `rg --count --json` returned JSONL, both at exit `0`. A wrapper that sets both flags therefore gets whichever it happened to write last, and a JSONL parser handed count output sees an empty result rather than an error. Do not rely on ripgrep to catch this.
 
 ---
 
@@ -173,17 +173,19 @@ Three outcomes, and a wrapper must branch on all three. Treating a non-zero exit
 
 ### Worked Example
 
-Run against this repository at ripgrep 14.1.1, with the phrase `trigger index generator` and the roots `specs .skilled`.
+Run against this repository at ripgrep 15.2.0 on 2026-10-03, with the phrase `trigger index generator` and the roots `specs .skilled`. The exit codes are the contract; the counts move as the corpus grows.
 
 | Recipe | Observed exit | Observed output |
 |--------|---------------|-----------------|
-| Structured JSONL, Section 2.1 | `0` | 10 JSONL records |
-| Path-only, Section 2.2 | `0` | 3 paths |
-| Count, Section 2.3 | `0` | 3 lines, one match each |
-| Context and anchor, Section 2.4 | `0` | 22 JSONL records at `-C 2` |
-| Path-only with the phrase `zzq-no-such-phrase-here` | `1` | Empty |
-| Any recipe with a search root that does not exist | `2` | `rg: <path>: IO error ... (os error 2)` on stderr |
+| Structured JSONL, Section 2.1 | `0` | 49 JSONL records |
+| Path-only, Section 2.2 | `0` | 15 paths |
+| Count, Section 2.3 | `0` | 15 lines, one per matching file |
+| Context and anchor, Section 2.4 | `0` | 121 JSONL records at `-C 2` |
+| Path-only with a phrase no file contains | `1` | Empty |
+| Any recipe with a search root that does not exist | `2` | `rg: <path>: No such file or directory (os error 2)` on stderr |
 | A malformed `--regexp` pattern | `2` | `rg: regex parse error` on stderr |
+
+Build the no-hit phrase at run time. A literal absent phrase quoted in this document stops being absent, because the recipe then matches this file.
 
 The two exit `2` rows are the reason the mapping matters. Both produced no stdout, which is exactly what an exit `1` produces, so a wrapper reading stdout alone cannot tell a clean miss from a broken invocation.
 
@@ -258,7 +260,7 @@ Use one canonical spelling in emitted frontmatter. A reader may recognize the `t
 
 Declare phrases of two or more tokens. A single-token phrase can only ever match by exact equality: `scorePhrase` in `lib/normalize.mjs` gives it no containment or token-overlap score, so against any longer prompt it surfaces as a zero-score `partial` candidate and never ranks. A phrase that is only numbers names a packet id or a date, never a concept a prompt would carry.
 
-The judge in `lib/phrase-judge.mjs` is the one place these rules live: the retrofit pipeline and the `GREP_CONVENTION` validator report each rejected phrase as a warning, and the generator counts every class over the committed index in the `phraseQuality` bucket of `generation-diagnostics.json`, which `/doctor speckit-retrieval` reads as its pollution signal. A warning never deletes an author's phrase; it names what the index cannot use.
+The judge in `lib/phrase-judge.mjs` is the one place these rules live: the retrofit pipeline and the `GREP_CONVENTION` validator report each rejected phrase as a warning, and the generator counts every class over the committed index in the `phraseQuality` bucket of `generation-diagnostics.json`, which `/doctor:speckit speckit-retrieval` reads as its pollution signal. The generator judges each owning document with that document's packet-folder tokens (`packetFolderTokens` in `lib/grep-convention.mjs`, the derivation the validator uses), so `folder-token-fallback` reaches the bucket. When owners of one phrase disagree, `documents` counts each owner under its own class and `phrases` counts the phrase once, as `folder-token-fallback` if any owner's folder repeats it. A warning never deletes an author's phrase; it names what the index cannot use.
 
 The lookup applies its own two limits to the prompt, not to declared phrases: a query token shorter than three characters is dropped before matching, and only the first eight distinct eligible tokens are kept, in the order they first appear; both discards are reported in the lookup's JSON output.
 
@@ -274,7 +276,7 @@ The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep r
 |------|:---:|:---:|--------|
 | `specs` | Yes | Yes | Shared |
 | `.skilled/skills` | Yes | Yes (subset of `.skilled`) | Shared |
-| `.opencode/specs` (a symlink to `specs`) | Folded onto `specs` | Yes, under the path it was given | The corpus walker canonicalizes the alias so one document never owns a phrase twice; ripgrep reports whichever spelling the caller passed. |
+| `.opencode/specs`, only where a runtime keeps it as an alias of `specs` | Folded onto `specs` | Yes, under the path it was given | Absent in this checkout. Where the alias exists, the corpus walker canonicalizes it (`lib/corpus.mjs`) so one document never owns a phrase twice, and ripgrep reports whichever spelling the caller passed. |
 | `.skilled/hooks` | Yes | Yes (subset of `.skilled`) | The goal contract documents live here and describe behaviour an operator asks for by name, such as binding a session to a packet or resending a changed goal. No skill document restates them in full, so without this root a lookup for that vocabulary reached a summary instead of the contract |
 | `.skilled/changelog/skilled` | Yes | Yes (subset of `.skilled`) | The framework release notes live here, one entry per Skilled release, and each carries `trigger_phrases` that name its version. They answered Gate 1 from under `.skilled/skills` until they moved, so without this root a lookup such as "v4.0.0.0 release notes" lost its target. Only this folder joins: the rest of `.skilled/changelog` is symlinks onto skill folders, which the walker does not follow |
 | Rest of `.skilled` (`commands`, `agents`, `bin`, `rules`, …) | No | Yes | Deliberate divergence. Every trigger-index root becomes part of a committed, size-tracked, fail-closed-on-malformed generated artifact that every Gate 1 lookup parses cold; the ripgrep lane carries no such artifact, so widening its reach costs nothing. The trigger index stays scoped to the `trigger_phrases`-governed corpus |

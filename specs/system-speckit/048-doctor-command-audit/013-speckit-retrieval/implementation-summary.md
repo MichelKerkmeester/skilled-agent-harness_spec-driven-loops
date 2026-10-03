@@ -125,10 +125,10 @@ The audit ran at HEAD `83616db9ba221a80d271b2b924b3a32664962ffd` and left every 
 ### Other limitations
 
 1. The optional evidence-backed staleness probe from `scratch/proposal.md` was not applied, so the mtime heuristic stays mtime-only (finding 3). It is an addition, not a mismatch repair.
-2. `doctor-update.yaml` still carries the dead `doctor_*.yaml` underscore pattern; the release-aware update redesign owns that file and its rewrite.
+2. The dead underscore-named workflow pattern this audit found lived in the old single update workflow. The release-aware redesign replaced that file with `doctor-update-check.yaml`, `doctor-update-align.yaml` and `doctor-update-apply.yaml`, none of which carries it, so nothing remains to fix.
 3. The frozen fixture `fixtures/latency-report.json` pins a different `manifestHash` and a worktree and layout that no longer exist. `runtime/cli/retrieval/README.md:79` states the five frozen acceptance fixtures pin their snapshot hash and that a mismatch is not a staleness signal, and the doctor's four-way compare excludes them; not a defect.
 4. `pass_policy.index_regenerates_byte_identical` cannot be checked inside the workflow's own write boundary (report and state log only). The generator's scratch-build contract would allow the check; the doctor does not name it. Recorded, not changed.
-5. No index regeneration was performed: the audit is read-only and `/doctor:update` owns regeneration, so the stale index reported in finding 1 still stands.
+5. No index regeneration was performed: the audit is read-only and `/doctor:rebuild` owns regeneration (its generator leg runs `generate-trigger-index.mjs`), so the stale index reported in finding 1 still stood when this phase closed.
 <!-- /ANCHOR:limitations -->
 
 ---

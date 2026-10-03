@@ -38,7 +38,7 @@ contextType: "implementation"
 
 This is **Phase 3** of the doctor command audit. It covers `/doctor:update` alone.
 
-**Scope Boundary**: `/doctor:update`, its route entry and `.skilled/commands/doctor/assets/doctor-update.yaml`. Mutability today: mutates.
+**Scope Boundary**: `/doctor:update` and what it became. The audit found a database rebuild that could never host a release apply, so the phase split it: the rebuild moved to `/doctor:rebuild` (`doctor-rebuild.yaml`), and `/doctor:update` became the release-aware updater over `release-update.cjs` with three workflows, `doctor-update-check.yaml` (read-only), `doctor-update-align.yaml` (add-only) and `doctor-update-apply.yaml` (mutates). The original single `doctor-update.yaml` no longer exists.
 
 **Dependencies**:
 - A provisioned worktree, so the scripts the doctor calls can run.

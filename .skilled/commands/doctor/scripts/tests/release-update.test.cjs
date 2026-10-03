@@ -17,6 +17,7 @@ const { afterEach, test } = require('node:test');
 const {
   compareVersions,
   enumerateUnits,
+  latestTag,
   parseVersion,
 } = require('../release-update.cjs');
 
@@ -33,6 +34,9 @@ const HUB_LOCAL_FILE = '.skilled/skills/hub-local/SKILL.md';
 const EXECUTABLE_FILE = '.skilled/commands/fam/run.sh';
 const SYMLINK_FILE = '.skilled/commands/fam/current-link';
 const HUB_B_RELEASE_FILE = '.skilled/skills/hub-b/references/managed.md';
+const HUB_A_LEAF_MANIFEST = '.skilled/skills/hub-a/leaf-manifest.json';
+const HUB_A_GRAPH = '.skilled/skills/hub-a/graph-metadata.json';
+const HUB_B_GRAPH = '.skilled/skills/hub-b/graph-metadata.json';
 const fixtureRoots = new Set();
 
 function git(repo, args) {
@@ -159,6 +163,69 @@ function makeRemovedFixture() {
   return { root, upstream, operator };
 }
 
+function graphMetadata(skillId, authoredNote, derivedStamp) {
+  return JSON.stringify({
+    schema_version: 2,
+    skill_id: skillId,
+    note: authoredNote,
+    derived: { last_updated_at: derivedStamp, trigger_phrases: [skillId + ' ' + derivedStamp] },
+  }, null, 2) + '\n';
+}
+
+// Upstream ships a leaf manifest and graph metadata; the release changes only an
+// authored reference. The operator then regenerates both artifacts locally, as
+// the generators do after any source change, and edits one authored field.
+function makeGeneratedFixture() {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'release-update-generated-'));
+  fixtureRoots.add(root);
+  const upstream = path.join(root, 'upstream');
+  const operator = path.join(root, 'operator');
+  fs.mkdirSync(upstream);
+  git(upstream, ['init', '-q']);
+  configureGit(upstream);
+  writeFile(upstream, '.skilled/skills/hub-a/SKILL.md', '# hub-a\n');
+  writeFile(upstream, HUB_A_FILE, '# a reference\nBase line\n');
+  writeFile(upstream, HUB_A_LEAF_MANIFEST, '{\n  "leaves": ["base"]\n}\n');
+  writeFile(upstream, HUB_A_GRAPH, graphMetadata('hub-a', 'authored', 'base'));
+  writeFile(upstream, HUB_B_FILE, '# hub-b\nBase hub instructions\n');
+  writeFile(upstream, HUB_B_GRAPH, graphMetadata('hub-b', 'authored', 'base'));
+  commitAll(upstream, 'base release');
+  git(upstream, ['tag', '-a', 'v1.0.0.0', '-m', 'release v1.0.0.0']);
+  git(root, ['clone', '--quiet', upstream, operator]);
+  configureGit(operator);
+  writeFile(upstream, HUB_A_FILE, '# a reference\nRelease line\n');
+  commitAll(upstream, 'release changes');
+  git(upstream, ['tag', '-a', 'v1.1.0.0', '-m', 'release v1.1.0.0']);
+  writeFile(operator, HUB_A_LEAF_MANIFEST, '{\n  "leaves": ["regenerated"]\n}\n');
+  writeFile(operator, HUB_A_GRAPH, graphMetadata('hub-a', 'authored', 'regenerated'));
+  writeFile(operator, HUB_B_GRAPH, graphMetadata('hub-b', 'operator edit', 'base'));
+  commitAll(operator, 'local regeneration and one authored edit');
+  return { root, upstream, operator };
+}
+
+// Stable and prerelease tags whose numeric order differs from their string order.
+function makePrereleaseFixture() {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'release-update-prerelease-'));
+  fixtureRoots.add(root);
+  const upstream = path.join(root, 'upstream');
+  const operator = path.join(root, 'operator');
+  fs.mkdirSync(upstream);
+  git(upstream, ['init', '-q']);
+  configureGit(upstream);
+  writeFile(upstream, '.skilled/skills/hub-a/SKILL.md', '# hub-a\n');
+  writeFile(upstream, HUB_A_FILE, '# a reference\nBase line\n');
+  commitAll(upstream, 'base release');
+  git(upstream, ['tag', '-a', 'v1.9.0.0', '-m', 'release v1.9.0.0']);
+  git(root, ['clone', '--quiet', upstream, operator]);
+  configureGit(operator);
+  for (const tag of ['v1.10.0.0', 'v1.9.5.0-rc.1', 'v1.11.0.0-beta.1']) {
+    writeFile(upstream, HUB_A_FILE, '# a reference\n' + tag + ' line\n');
+    commitAll(upstream, 'changes for ' + tag);
+    git(upstream, ['tag', '-a', tag, '-m', 'release ' + tag]);
+  }
+  return { root, upstream, operator };
+}
+
 function runCli(repo, ...args) {
   const result = spawnSync(process.execPath, [
     SCRIPT_PATH,
@@ -204,6 +271,13 @@ test('versions compare by numeric segment and parser excludes no data', () => {
   assert.equal(compareVersions('v1.10.0.0', 'v1.9.0.0'), 1);
   assert.equal(compareVersions('v1.1.0.0-beta.1', 'v1.1.0.0'), -1);
   assert.equal(parseVersion('not-a-release'), null);
+});
+
+test('latest-tag resolution excludes prereleases by default and orders numerically either way', () => {
+  const tags = ['v1.9.0.0', 'v1.10.0.0', 'v1.9.5.0-rc.1', 'v1.11.0.0-beta.1', 'v1.2.0.0'];
+  assert.equal(latestTag(tags), 'v1.10.0.0');
+  assert.equal(latestTag(tags, true), 'v1.11.0.0-beta.1');
+  assert.equal(latestTag(['v1.11.0.0-beta.1']), null);
 });
 
 test('unit enumeration separates hubs, child skills, command families, and root files', () => {
@@ -313,6 +387,93 @@ test('conflicting proposals reject merge and accept use-proposal after marker re
   assert.match(decisions.files[CHILD_FILE].proposalSha256, /^[0-9a-f]{64}$/);
 });
 
+test('locally regenerated artifacts are a generated class that never customizes a unit', () => {
+  const fixture = makeGeneratedFixture();
+  const result = runCli(fixture.operator, 'check');
+  assert.equal(result.exitCode, 0, JSON.stringify(result.document));
+  const report = result.document;
+  const hubA = unit(report, 'hub-a');
+  assert.equal(hubA.status, 'update');
+  assert.equal(runFile(report, HUB_A_LEAF_MANIFEST).class, 'generated');
+  assert.equal(runFile(report, HUB_A_GRAPH).class, 'generated');
+  assert.deepEqual(hubA.regenerate.map((entry) => entry.path).sort(), [HUB_A_GRAPH, HUB_A_LEAF_MANIFEST].sort());
+  assert.ok(hubA.regenerate.every((entry) => /generate-leaf-manifest|regenerate-skill-derived/.test(entry.generator)));
+  // An edit outside the derived block is authored, so it stays a customization.
+  assert.equal(runFile(report, HUB_B_GRAPH).class, 'local-only');
+  assert.equal(unit(report, 'hub-b').status, 'local');
+
+  const dry = runCli(fixture.operator, 'apply', '--dry-run');
+  assert.equal(dry.exitCode, 0, JSON.stringify(dry.document));
+  const written = dry.document.writes.map((write) => write.path);
+  assert.ok(written.includes(HUB_A_FILE));
+  assert.ok(!written.includes(HUB_A_LEAF_MANIFEST) && !written.includes(HUB_A_GRAPH));
+  const regenerated = dry.document.followUps.regenerate.flatMap((entry) => entry.paths).sort();
+  assert.deepEqual(regenerated, [HUB_A_GRAPH, HUB_A_LEAF_MANIFEST].sort());
+});
+
+test('a graph-metadata release edit outside the derived block is taken, then regenerated', () => {
+  const fixture = makeGeneratedFixture();
+  writeFile(fixture.upstream, HUB_A_GRAPH, graphMetadata('hub-a', 'release note', 'base'));
+  commitAll(fixture.upstream, 'release edits authored graph metadata');
+  git(fixture.upstream, ['tag', '-a', 'v1.2.0.0', '-m', 'release v1.2.0.0']);
+  const report = runCli(fixture.operator, 'check').document;
+  const file = runFile(report, HUB_A_GRAPH);
+  assert.equal(file.class, 'take-release');
+  assert.equal(file.regenerate, true);
+  assert.equal(unit(report, 'hub-a').status, 'update');
+});
+
+test('a copied tree reports a recorded base after record-base', () => {
+  const fixture = makeFixture();
+  const vendor = path.join(fixture.root, 'vendor-recorded');
+  fs.mkdirSync(vendor);
+  git(vendor, ['init', '-q']);
+  configureGit(vendor);
+  fs.cpSync(path.join(fixture.baseTree, '.skilled'), path.join(vendor, '.skilled'), { recursive: true });
+  commitAll(vendor, 'vendor framework tree');
+
+  const before = runCli(vendor, 'check', '--remote', fixture.upstream);
+  assert.equal(before.exitCode, 0, JSON.stringify(before.document));
+  assert.equal(unit(before.document, 'hub-a').baseSource, 'inferred');
+  assert.equal(before.document.baseRecording.needed, true);
+  assert.match(before.document.baseRecording.action, /record-base --release/);
+
+  const noTag = runCli(vendor, 'record-base', '--remote', fixture.upstream);
+  assert.equal(noTag.exitCode, 1);
+  assert.match(noTag.document.error, /name the release this tree was installed from/);
+
+  const recorded = runCli(vendor, 'record-base', '--release', 'v1.0.0.0', '--remote', fixture.upstream);
+  assert.equal(recorded.exitCode, 0, JSON.stringify(recorded.document));
+  assert.deepEqual(recorded.document.units, ['commands/fam', 'hub-a', 'hub-b', 'hub-b/child-c']);
+  const base = JSON.parse(fs.readFileSync(path.join(vendor, '.skilled/release/base.json'), 'utf8'));
+  assert.equal(base.units['hub-a'].release, 'v1.0.0.0');
+  assert.match(base.units['hub-a'].tree, /^[0-9a-f]{64}$/);
+
+  const after = runCli(vendor, 'check', '--remote', fixture.upstream);
+  assert.equal(after.exitCode, 0, JSON.stringify(after.document));
+  for (const name of recorded.document.units) {
+    assert.equal(unit(after.document, name).baseSource, 'recorded', name);
+  }
+  assert.equal(unit(after.document, 'hub-a').status, 'update');
+  assert.deepEqual(after.document.baseRecording.units, ['hub-d']);
+
+  const again = runCli(vendor, 'record-base', '--release', 'v1.0.0.0', '--remote', fixture.upstream);
+  assert.equal(again.exitCode, 1);
+  assert.match(again.document.error, /commit or discard it/);
+});
+
+test('latest-upstream resolution takes stable tags unless prereleases are opted in', () => {
+  const fixture = makePrereleaseFixture();
+  const stable = runCli(fixture.operator, 'check');
+  assert.equal(stable.exitCode, 0, JSON.stringify(stable.document));
+  assert.equal(stable.document.upstream.latest, 'v1.10.0.0');
+  assert.equal(stable.document.release, 'v1.10.0.0');
+  const opted = runCli(fixture.operator, 'check', '--include-prerelease');
+  assert.equal(opted.exitCode, 0, JSON.stringify(opted.document));
+  assert.equal(opted.document.upstream.latest, 'v1.11.0.0-beta.1');
+  assert.equal(opted.document.release, 'v1.11.0.0-beta.1');
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. APPLY AND ROLLBACK
 // ─────────────────────────────────────────────────────────────────────────────
@@ -361,6 +522,37 @@ test('apply leaves customized-unit release files alone unless a decisions file i
   const decidedApply = runCli(decidedFixture.operator, 'apply', '--decisions', decisionsPath);
   assert.equal(decidedApply.exitCode, 0, JSON.stringify(decidedApply.document));
   assert.equal(fs.readFileSync(path.join(decidedFixture.operator, HUB_B_RELEASE_FILE), 'utf8'), 'release-managed\n');
+});
+
+test('apply without an alignment run plans update and new units and refuses decisions without a run', () => {
+  const fixture = makeFixture();
+  const runsDir = path.join(fixture.operator, '.skilled/release/runs');
+  const dry = runCli(fixture.operator, 'apply', '--dry-run');
+  assert.equal(dry.exitCode, 0, JSON.stringify(dry.document));
+  assert.equal(dry.document.withoutRun, true);
+  const written = dry.document.writes.map((write) => write.path);
+  assert.ok(written.includes(HUB_A_FILE));
+  assert.ok(written.includes(HUB_D_FILE));
+  assert.ok(written.includes('.skilled/release/base.json'));
+  assert.ok(!written.includes(CHILD_FILE));
+  assert.ok(dry.document.skippedUnits.some((entry) => entry.unit === 'hub-b/child-c' && entry.reason === 'no decisions'));
+  assert.equal(fs.existsSync(runsDir), false);
+
+  const loose = path.join(fixture.root, 'loose-decisions.json');
+  fs.writeFileSync(loose, JSON.stringify({ schemaVersion: 1, files: {}, deferredUnits: [] }));
+  const refused = runCli(fixture.operator, 'apply', '--dry-run', '--decisions', loose);
+  assert.equal(refused.exitCode, 1);
+  assert.match(refused.document.error, /needs its alignment run/);
+
+  const applied = runCli(fixture.operator, 'apply');
+  assert.equal(applied.exitCode, 0, JSON.stringify(applied.document));
+  assert.match(fs.readFileSync(path.join(fixture.operator, HUB_A_FILE), 'utf8'), /Release line/);
+  assert.match(fs.readFileSync(path.join(fixture.operator, CHILD_FILE), 'utf8'), /first: operator/);
+  assert.ok(fs.existsSync(path.join(applied.document.runDir, 'plan.json')));
+  const rolledBack = runCli(fixture.operator, 'rollback', '--run', applied.document.runDir);
+  assert.equal(rolledBack.exitCode, 0, JSON.stringify(rolledBack.document));
+  assert.match(fs.readFileSync(path.join(fixture.operator, HUB_A_FILE), 'utf8'), /Base line/);
+  assert.equal(fs.existsSync(path.join(fixture.operator, HUB_D_FILE)), false);
 });
 
 test('apply refuses a target with staged or unstaged worktree changes', () => {
@@ -441,12 +633,13 @@ test('vendored tree infers the release base without shared history', () => {
 test('help names every subcommand with its parser options and exits 0', () => {
   const result = spawnSync(process.execPath, [SCRIPT_PATH, '--help'], { encoding: 'utf8' });
   assert.equal(result.status, 0);
-  for (const name of ['check', 'align', 'decide', 'apply', 'rollback']) {
+  for (const name of ['check', 'align', 'decide', 'apply', 'rollback', 'record-base']) {
     assert.match(result.stdout, new RegExp('^  ' + name + '\\b', 'm'), 'help should name ' + name);
   }
   assert.match(result.stdout, /--out/);
   assert.match(result.stdout, /--defer/);
   assert.match(result.stdout, /--decisions/);
+  assert.match(result.stdout, /--include-prerelease/);
   assert.match(result.stdout, /Exit codes/);
   assert.match(result.stdout, /\.skilled\/release\/runs\//);
   assert.match(result.stdout, /\.skilled\/release\/base\.json/);
