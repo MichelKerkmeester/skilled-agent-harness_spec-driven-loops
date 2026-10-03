@@ -956,7 +956,7 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
 });
 
 describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
-  it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash and GLM variants and the DevPass GLM-5.3-Flash literal', () => {
+  it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash and GLM variants, the DevPass GLM-5.3-Flash literal and the opencode-go DeepSeek literal', () => {
     expect([...PI_SUPPORTED_MODELS].sort()).toEqual([
       'deepseek-v4.1-flash',
       'deepseek/deepseek-v4-flash-vision-exp',
@@ -966,6 +966,7 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
       'mimo-v2.6-flash',
       'mimo-v2.6-pro',
       'minimax-m3',
+      'opencode-go/deepseek-v4.1-flash',
       'qwen3.8-max',
       'z-ai/glm-5.3-flash',
     ]);
