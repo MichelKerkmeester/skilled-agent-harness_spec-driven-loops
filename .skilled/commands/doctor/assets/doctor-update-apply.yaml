@@ -40,6 +40,9 @@ user_inputs:
   dry_run: "[DRY_RUN] boolean"
   release: "[RELEASE] optional tag"
   scope: "[SCOPE] optional all or comma-separated units, each a plain name or a kind:name key (skill:hub-a, directory:hooks); a name that two kinds share needs the kind:name form"
+  remote: "[REMOTE] optional framework remote name or repository URL"
+  offline: "[OFFLINE] boolean"
+  include_prerelease: "[INCLUDE_PRERELEASE] boolean"
 
 field_handling:
   defaults:
@@ -47,10 +50,16 @@ field_handling:
     dry_run_empty: false
     release_empty: engine_default_from_plan
     scope_empty: all
+    remote_empty: base_json_remote_or_origin
+    offline_empty: false
+    include_prerelease_empty: false
   engine_mapping:
-    dry_run: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json --dry-run [--decisions <path>] [--release <tag>] [--scope <value>] [--include-prerelease]"
-    apply: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json [--decisions <path>] [--release <tag>] [--scope <value>] [--include-prerelease]"
+    dry_run: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json --dry-run [--decisions <path>] [--release <tag>] [--scope <value>] [--remote <value>] [--offline] [--include-prerelease]"
+    apply: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json [--decisions <path>] [--release <tag>] [--scope <value>] [--remote <value>] [--offline] [--include-prerelease]"
     rollback: "node .skilled/commands/doctor/scripts/release-update.cjs rollback --repo . --run <runDir> --json"
+    remote: "Pass --remote <value> when supplied. Otherwise use the remote recorded in base.json, then origin."
+    offline: "--offline when requested"
+    include_prerelease: "--include-prerelease when requested; without it latest-upstream resolution takes stable tags only"
   engine_plan_fields: [command, dryRun, writes, skippedUnits, appliedUnits, followUps]
   engine_apply_fields: [command, runDir, release, written, added, deleted, skippedUnits, appliedUnits, followUps]
   follow_up_fields: [regenerateHubs, regenerate, reinstallHooks, runtimeMirrors, rebuildDatabases]
@@ -98,12 +107,12 @@ workflow:
       - "Confirm .skilled/release/.apply.lock does not exist. If present, refuse and do not remove it."
       - "Confirm the run directory and state-log target pass the canonical path validator and are gitignored."
     clean_targets: "The engine's apply --dry-run is authoritative for selected target cleanliness, drift, marker/hash validity and lock absence. A refusal stops before startup approval and before release-managed writes."
-    on_failure: "Write the terminal state log if the validated run root is available, leave any pre-existing lock untouched, show the failure and stop."
+    on_failure: "If git check-ignore does not match the run root, show the presentation's run-root template and stop. Otherwise write the terminal state log if the validated run root is available, leave any pre-existing lock untouched, show the failure and stop."
 
   phase_2_engine_dry_run:
     approval: none
-    command: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json --dry-run [--decisions <path>] [--release <tag>] [--scope <value>] [--include-prerelease]"
-    flag_rule: "Include only bound optional flags. This command writes no release files, rollback record or lock."
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json --dry-run [--decisions <path>] [--release <tag>] [--scope <value>] [--remote <value>] [--offline] [--include-prerelease]"
+    flag_rule: "Include only bound optional flags. Pass [--remote <value>] and [--offline] when requested. This command writes no release files, rollback record or lock."
     checks:
       - "Parse the complete writes, skippedUnits, appliedUnits and followUps arrays."
       - "Confirm every write path is allowed by the canonical path validator."
@@ -119,7 +128,7 @@ workflow:
 
   phase_4_engine_apply:
     approval: "Requires the one startup approval. No further startup approval is requested for the exact displayed plan."
-    command: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json [--decisions <path>] [--release <tag>] [--scope <value>] [--include-prerelease]"
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json [--decisions <path>] [--release <tag>] [--scope <value>] [--remote <value>] [--offline] [--include-prerelease]"
     engine_guarantees:
       - "Acquire .skilled/release/.apply.lock and refuse if it already exists."
       - "Write <runDir>/rollback.json before the first target file write."

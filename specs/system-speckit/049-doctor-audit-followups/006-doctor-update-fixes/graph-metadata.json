@@ -47,6 +47,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md",
       ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md",
+      ".skilled/release/.gitignore",
       ".skilled/commands/doctor/scripts/release-update.cjs",
       ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
       ".skilled/commands/doctor/update.md",
@@ -59,8 +60,7 @@
       ".skilled/commands/doctor/scripts/README.md",
       ".skilled/commands/doctor/scripts/tests/README.md",
       ".skilled/commands/README.txt",
-      ".skilled/changelog/skilled/README.md",
-      ".skilled/bin/compiled-route-manifest.cjs"
+      ".skilled/changelog/skilled/README.md"
     ],
     "entities": [
       {
@@ -97,6 +97,12 @@
         "name": "javascript-checklist.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".skilled/release/.gitignore",
         "source": "derived"
       },
       {
@@ -166,12 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "compiled-route-manifest.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/compiled-route-manifest.cjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`/doctor:update` is not safe to build on yet",
     "created_at": "2026-10-03T21:06:40Z",
-    "last_save_at": "2026-10-03T22:25:29.265Z",
+    "last_save_at": "2026-10-03T23:21:34.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:845fdefc061c91513985edf5d1214783f2718f691d543cc058c204e5f12968ec",
+    "source_fingerprint": "sha256:4fda23ae1b3da003500d02cc27f1ff33adb1671220fd38b57bf66d69763de4e3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d22b9ff0f2775959e9b4e5be206c0ca0213ae6815507d7ad6d03a45d4a1f08f2",
       "plan.md": "f95e85645538246705bfe3a329dc1663f19bd6c253b40f9f3b57c786661d9cb2",
-      "tasks.md": "81f5f3c83b21d8f3fd3b8a75ccd1d47cbf3ff90dfc24014b2a58754ddd14d0de",
+      "tasks.md": "b672715bb8f95eb1d65c2c142c216934934bbbfb3a0b6abb3fb117752bb2882e",
       "implementation-summary.md": "172d9af9cb2009af142a06dbd11e29b4ef9334f75b2127219615cafa9b62bf55"
     },
     "last_active_at": null
