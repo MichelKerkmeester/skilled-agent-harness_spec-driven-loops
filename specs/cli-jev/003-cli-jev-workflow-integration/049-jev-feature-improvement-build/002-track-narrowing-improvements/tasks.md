@@ -34,8 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read 048's research for this feature and the scorer's keep rule
-- [ ] T002 Capture the suite baseline before any change
+- [x] T001 Read 048's research for this feature and the scorer's keep rule
+- [x] T002 Capture the suite baseline before any change
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,11 +43,11 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Pin the row-set digest and model tuple in the report
-- [ ] T004 Refuse an `--out` directory that already holds a run
-- [ ] T005 Add decided-subset accuracy, margin slack and the per-track confusion and abstention table
-- [ ] T006 Add the probability-aware, one-call and shortlist arms from recorded calls
-- [ ] T007 Repeat the run with `--out` and add the cluster-aware bootstrap interval
+- [x] T003 Pin the row-set digest and model tuple in the report
+- [x] T004 Refuse an `--out` directory that already holds a run
+- [x] T005 Add decided-subset accuracy, margin slack and the per-track confusion and abstention table
+- [x] T006 Add the probability-aware, one-call and shortlist arms from recorded calls
+- [x] T007 Repeat the run with `--out` and add the cluster-aware bootstrap interval
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +55,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Run the scorer's suite
-- [ ] T009 Replay the recorded 047 run and compare the verdict line
-- [ ] T010 Run `validate.sh --strict` on this phase
+- [x] T008 Run the scorer's suite
+- [x] T009 Replay the recorded 047 run and compare the verdict line
+- [x] T010 Run `validate.sh --strict` on this phase
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

@@ -8,11 +8,11 @@
 // holds and reads no credential.
 //
 // Usage:
-//   node score-track-narrowing.mjs [--jev] [--out <dir>]
+//   node score-track-narrowing.mjs [--jev] [--out <dir>] [--replay <calls.jsonl>]
 //
 // Exit codes: 0 = report printed, a skipped or stopped arm included; 2 = bad
-// invocation or unreadable input, or --jev without --out, refused before any
-// output or call.
+// invocation or unreadable input, --jev without --out, or --out that already
+// holds a run, refused before any output or call.
 // ───────────────────────────────────────────────────────────────────
 
 import { spawn, spawnSync } from 'node:child_process';
@@ -56,6 +56,8 @@ export const CHOICE_INSTRUCTION = 'Which spec track is this text about?';
 export const NONE_KEY = 'none';
 export const NONE_DESCRIPTION = 'None of these tracks';
 export const ORDERS = 3;
+export const SHORTLIST_SIZE = 5;
+const BOOTSTRAP_REPLICATES = 1000;
 export const MARGIN_LINE = 'margin: 0.10';
 export const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, '
   + 'margin 10*(A-B) >= M, sign test p < 0.05, flips 10*F <= 3*M';
@@ -282,7 +284,7 @@ export function classifyDescription(description, folderName, phrases) {
  * Candidates that survive classification, capped per track in hash order.
  *
  * @param {string} repoRoot Repository root.
- * @param {{ hubNames?: string[] }} [options]
+ * @param {{ hubNames?: string[], replayRowIds?: Set<string> }} [options]
  * @returns {{
  *   tracks: Array<{ track: string, description: string }>,
  *   rows: Array<{ id: string, folder: string, track: string, question: string }>,
@@ -297,6 +299,7 @@ export function classifyDescription(description, folderName, phrases) {
  */
 export function buildTestSet(repoRoot, options = {}) {
   const hubNames = options.hubNames ?? listHubNames(repoRoot);
+  const replayRowIds = options.replayRowIds;
   const tracks = listTracks(repoRoot);
   const phrases = leakPhrases(tracks.map((entry) => entry.track), hubNames);
   const rows = [];
@@ -331,7 +334,10 @@ export function buildTestSet(repoRoot, options = {}) {
       folderDigest(left.folder),
       folderDigest(right.folder),
     ));
-    const selected = kept.slice(0, MAX_ROWS_PER_TRACK);
+    // Replays must reach recorded candidates even when new rows push them past the live cap.
+    const selected = replayRowIds
+      ? kept.filter((candidate) => replayRowIds.has(candidate.folder))
+      : kept.slice(0, MAX_ROWS_PER_TRACK);
     const segment = normalizeTriggerText(entry.track.split('-').at(-1) ?? '');
     let residual = 0;
     for (const candidate of selected) {
@@ -1013,6 +1019,472 @@ export function columnLine(summary, latency) {
 }
 
 /**
+ * A stable pin for the exact questions and option set scored by a run.
+ *
+ * @param {{ rows: Array<{ id: string, track: string, question: string }> }} testSet
+ * @param {{ sha256: string }} options
+ * @returns {{ rowSetSha256: string, rowCount: number, optionSetSha256: string, rows: Array<{ id: string, track: string, questionSha256: string }> }}
+ */
+export function pinRowSet(testSet, options) {
+  const rows = testSet.rows.map((row) => ({
+    id: row.id,
+    track: row.track,
+    questionSha256: createHash('sha256').update(row.question).digest('hex'),
+  }));
+  const canonical = JSON.stringify({ rows, optionSetSha256: options.sha256 });
+  return {
+    rowSetSha256: createHash('sha256').update(canonical).digest('hex'),
+    rowCount: rows.length,
+    optionSetSha256: options.sha256,
+    rows,
+  };
+}
+
+/**
+ * Whether an output directory already contains a scorer run.
+ *
+ * @param {string | undefined} outDir Candidate output directory.
+ * @returns {boolean} True when either durable run artifact already exists.
+ */
+export function outDirectoryHoldsRun(outDir) {
+  if (typeof outDir !== 'string' || outDir === '') return false;
+  return ['calls.jsonl', 'report.json'].some((name) => fs.existsSync(path.join(outDir, name)));
+}
+
+/**
+ * Read recorded calls without invoking the Jev executable.
+ *
+ * @param {string} filePath JSON-lines call log.
+ * @returns {Array<Record<string, unknown>>} Parsed calls.
+ * @throws {Error} When the file is unreadable or a line is not valid JSON.
+ */
+export function readCallRecords(filePath) {
+  const lines = fs.readFileSync(filePath, 'utf8').split('\n').filter((line) => line.trim() !== '');
+  return lines.map((line, index) => {
+    try {
+      const value = JSON.parse(line);
+      if (!value || typeof value !== 'object' || Array.isArray(value)) {
+        throw new Error('record must be an object');
+      }
+      return value;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      throw new Error(`invalid call record on line ${index + 1}: ${message}`);
+    }
+  });
+}
+
+/**
+ * Use the saved question pins to keep replay membership tied to the measured run.
+ * Call logs from older runs can still identify their rows when no pin is available.
+ *
+ * @param {string} filePath JSON-lines call log.
+ * @param {Array<Record<string, unknown>>} records Parsed call records.
+ * @returns {Array<{ id: string, track?: string, questionSha256?: string }>} Recorded row pins.
+ */
+function readReplayRowPins(filePath, records) {
+  const reportPath = path.join(path.dirname(filePath), 'report.json');
+  let rows;
+  let reportRowCount;
+  if (fs.existsSync(reportPath)) {
+    const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+    if (report && typeof report === 'object' && Object.hasOwn(report, 'dataPin')) {
+      rows = report.dataPin?.rows;
+      if (!Array.isArray(rows)) throw new Error('sibling report.json has an invalid row pin');
+    } else if (Number.isInteger(report?.testSet?.K)) {
+      reportRowCount = report.testSet.K;
+    }
+  }
+
+  if (!rows) {
+    const ids = new Set();
+    for (const record of records) {
+      if (
+        record.backend === 'jev'
+        && record.kind === 'test'
+        && typeof record.rowId === 'string'
+      ) ids.add(record.rowId);
+    }
+    rows = [...ids].map((id) => ({ id }));
+  }
+
+  const seenIds = new Set();
+  for (const pin of rows) {
+    if (!pin || typeof pin !== 'object' || typeof pin.id !== 'string') {
+      throw new Error('recorded row pin has no row id');
+    }
+    if (seenIds.has(pin.id)) throw new Error(`duplicate recorded row pin: ${pin.id}`);
+    seenIds.add(pin.id);
+  }
+  if (reportRowCount !== undefined && rows.length !== reportRowCount) {
+    throw new Error(`sibling report records ${reportRowCount} rows but the call log identifies ${rows.length}`);
+  }
+  return rows;
+}
+
+/**
+ * Match recorded pins against current baseline rows before scoring them.
+ *
+ * @param {ReturnType<typeof buildTestSet>} testSet Current candidate rows.
+ * @param {Array<{ id: string, track?: string, questionSha256?: string }>} rowPins Recorded row pins.
+ * @returns {{ testSet: ReturnType<typeof buildTestSet>, droppedRows: Array<{ id: string, reason: string }> }}
+ */
+function selectReplayRows(testSet, rowPins) {
+  const currentRows = new Map(testSet.rows.map((row) => [row.id, row]));
+  const rows = [];
+  const droppedRows = [];
+
+  for (const pin of rowPins) {
+    const row = currentRows.get(pin.id);
+    if (!row) {
+      droppedRows.push({ id: pin.id, reason: 'missing from current corpus' });
+      continue;
+    }
+    if (typeof pin.track === 'string' && pin.track !== row.track) {
+      droppedRows.push({ id: pin.id, reason: 'track changed' });
+      continue;
+    }
+    if (
+      typeof pin.questionSha256 === 'string'
+      && createHash('sha256').update(row.question).digest('hex') !== pin.questionSha256
+    ) {
+      droppedRows.push({ id: pin.id, reason: 'question changed' });
+      continue;
+    }
+    rows.push(row);
+  }
+
+  const counts = Object.fromEntries(testSet.tracks.map(({ track }) => [
+    track,
+    { ...testSet.counts[track], kept: 0 },
+  ]));
+  for (const row of rows) counts[row.track].kept += 1;
+
+  return {
+    testSet: { ...testSet, rows, counts },
+    droppedRows,
+  };
+}
+
+/**
+ * One model identity shared by every record in a replay.
+ *
+ * @param {Array<Record<string, unknown>>} records Recorded calls.
+ * @returns {{ jevVersion: string, provider: string, model: string }}
+ * @throws {Error} When the records do not identify exactly one model tuple.
+ */
+export function modelTupleFromRecords(records) {
+  const tuples = new Map();
+  for (const record of records) {
+    if (
+      record.backend !== 'jev'
+      || typeof record.jevVersion !== 'string'
+      || typeof record.provider !== 'string'
+      || typeof record.model !== 'string'
+    ) continue;
+    const tuple = {
+      jevVersion: record.jevVersion,
+      provider: record.provider,
+      model: record.model,
+    };
+    tuples.set(JSON.stringify(tuple), tuple);
+  }
+  if (tuples.size !== 1) throw new Error('call log must identify exactly one Jev model tuple');
+  return [...tuples.values()][0];
+}
+
+function recordsByRowAndOrder(records, kind) {
+  const byRow = new Map();
+  for (const record of records) {
+    if (
+      record.backend !== 'jev'
+      || record.kind !== kind
+      || typeof record.rowId !== 'string'
+      || !Number.isInteger(record.order)
+    ) continue;
+    let byOrder = byRow.get(record.rowId);
+    if (!byOrder) {
+      byOrder = new Map();
+      byRow.set(record.rowId, byOrder);
+    }
+    const prior = byOrder.get(record.order);
+    if (!prior || Number(record.attempt ?? 1) >= Number(prior.attempt ?? 1)) {
+      byOrder.set(record.order, record);
+    }
+  }
+  return byRow;
+}
+
+function recordedPick(record) {
+  return record?.status === 'measured' && typeof record.pick === 'string'
+    ? record.pick
+    : null;
+}
+
+function picksForRow(byRow, rowId, orderCount = ORDERS) {
+  const byOrder = byRow.get(rowId);
+  return Array.from({ length: orderCount }, (_, order) => recordedPick(byOrder?.get(order)));
+}
+
+function sumProbability(scores, key, value) {
+  if (typeof key !== 'string' || typeof value !== 'number' || !Number.isFinite(value)) return;
+  scores.set(key, (scores.get(key) ?? 0) + value);
+}
+
+function probabilityPick(records) {
+  if (!Array.isArray(records) || records.length !== ORDERS) return null;
+  const scores = new Map();
+  for (const record of records) {
+    if (recordedPick(record) === null) return null;
+    if (record.pick === NONE_KEY) {
+      sumProbability(scores, NONE_KEY, record.pickProb ?? record.noneProb);
+    } else {
+      sumProbability(scores, record.pick, record.pickProb);
+      sumProbability(scores, NONE_KEY, record.noneProb);
+    }
+  }
+  let bestKey = null;
+  let bestScore = -Infinity;
+  for (const [key, score] of scores) {
+    if (score > bestScore) {
+      bestKey = key;
+      bestScore = score;
+    }
+  }
+  return bestKey;
+}
+
+function summarizePickArm(backend, rows, selectedPicks, baselinePicks, byRow, orderCount) {
+  const K = rows.length;
+  let M = 0;
+  let unstable = 0;
+  let abstained = 0;
+  let A = 0;
+  let B = 0;
+  let W = 0;
+  let L = 0;
+  let F = 0;
+  let decidedCount = 0;
+  let decidedCorrect = 0;
+  for (const row of rows) {
+    const pick = selectedPicks.get(row.id);
+    if (typeof pick !== 'string') continue;
+    const answers = picksForRow(byRow, row.id, orderCount);
+    if (!answers.every((answer) => typeof answer === 'string')) continue;
+    M += 1;
+    const { top } = modalPick(answers);
+    if (orderCount === ORDERS) {
+      F += ORDERS - top;
+      if (top < 2) unstable += 1;
+    }
+    if (pick === NONE_KEY) abstained += 1;
+    const backendRight = pick === row.track;
+    const baselineRight = baselinePicks.get(row.id) === row.track;
+    if (backendRight) A += 1;
+    if (baselineRight) B += 1;
+    if (backendRight && !baselineRight) W += 1;
+    if (baselineRight && !backendRight) L += 1;
+    if (pick !== NONE_KEY) {
+      decidedCount += 1;
+      if (backendRight) decidedCorrect += 1;
+    }
+  }
+
+  const verdict = decideVerdict({ K, M, A, B, W, L, F });
+  const line = `verdict ${backend}: ${verdict.outcome === 'keep' ? 'keep' : `stop (${verdict.reason})`}`
+    + ` K=${K} M=${M} A=${A} B=${B} W=${W} L=${L} F=${F} p=${formatP(verdict.p)}`;
+  return {
+    backend,
+    K,
+    M,
+    unmeasured: K - M,
+    unstable,
+    abstained,
+    A,
+    B,
+    W,
+    L,
+    F,
+    p: verdict.p,
+    flipRate: M === 0 ? 0 : F / (orderCount * M),
+    outcome: verdict.outcome,
+    reason: verdict.reason,
+    line,
+    decidedCount,
+    decidedCorrect,
+    decidedAccuracy: decidedCount === 0 ? null : decidedCorrect / decidedCount,
+    marginSlack: M === 0 ? null : (A - B) - (M / 10),
+  };
+}
+
+function percentile(values, quantile) {
+  if (values.length === 0) return null;
+  const sorted = [...values].sort((left, right) => left - right);
+  const position = (sorted.length - 1) * quantile;
+  const lower = Math.floor(position);
+  const upper = Math.ceil(position);
+  if (lower === upper) return sorted[lower];
+  const fraction = position - lower;
+  return sorted[lower] + ((sorted[upper] - sorted[lower]) * fraction);
+}
+
+/**
+ * Resample whole tracks so rows from the same track remain clustered.
+ *
+ * @param {Array<{ id: string, track: string }>} rows Scored rows.
+ * @param {Map<string, string | null>} picks Model picks.
+ * @param {Map<string, string | null>} baselinePicks Baseline picks.
+ * @returns {{ clusterCount: number, replicates: number, estimate: number | null, lower: number | null, upper: number | null }}
+ */
+export function clusterBootstrapInterval(rows, picks, baselinePicks) {
+  const clusters = new Map();
+  let totalDelta = 0;
+  let totalRows = 0;
+  for (const row of rows) {
+    const pick = picks.get(row.id);
+    if (typeof pick !== 'string') continue;
+    const delta = Number(pick === row.track) - Number(baselinePicks.get(row.id) === row.track);
+    if (!clusters.has(row.track)) clusters.set(row.track, []);
+    clusters.get(row.track).push(delta);
+    totalDelta += delta;
+    totalRows += 1;
+  }
+  const names = [...clusters.keys()].sort(compareCodeUnits);
+  if (names.length === 0) {
+    return {
+      clusterCount: 0,
+      replicates: BOOTSTRAP_REPLICATES,
+      estimate: null,
+      lower: null,
+      upper: null,
+    };
+  }
+
+  const seedText = rows.map((row) => `${row.id}\u0000${picks.get(row.id) ?? ''}`).join('\n');
+  const seedBytes = createHash('sha256').update(seedText).digest();
+  let state = seedBytes.readUInt32BE(0) || 1;
+  const random = () => {
+    state = (Math.imul(1664525, state) + 1013904223) >>> 0;
+    return state / 0x1_0000_0000;
+  };
+  const estimates = [];
+  for (let replicate = 0; replicate < BOOTSTRAP_REPLICATES; replicate += 1) {
+    let delta = 0;
+    let sampledRows = 0;
+    for (let draw = 0; draw < names.length; draw += 1) {
+      const name = names[Math.floor(random() * names.length)];
+      const cluster = clusters.get(name);
+      for (const rowDelta of cluster) {
+        delta += rowDelta;
+        sampledRows += 1;
+      }
+    }
+    estimates.push(sampledRows === 0 ? 0 : delta / sampledRows);
+  }
+
+  return {
+    clusterCount: names.length,
+    replicates: BOOTSTRAP_REPLICATES,
+    estimate: totalDelta / totalRows,
+    lower: percentile(estimates, 0.025),
+    upper: percentile(estimates, 0.975),
+  };
+}
+
+/**
+ * Derive alternative arms and diagnostics from recorded calls.
+ *
+ * @param {{ rows: Array<{ id: string, track: string }>, probes: Array<{ id: string }>, baselinePicks: Map<string, string | null>, options: { pairs: Array<[string, string]> } }} plan
+ * @param {Array<Record<string, unknown>>} records Recorded calls.
+ * @param {{ jevVersion: string, provider: string, model: string }} modelTuple
+ * @returns {{ column: object, latency: { p50: number | null, p95: number | null }, probePicks: Map<string, string | null>, probabilityAware: object, oneCall: object, shortlist: object, perTrack: Record<string, object>, bootstrap: object, modelTuple: object }}
+ */
+export function analyzeRecordedCalls(plan, records, modelTuple) {
+  const testByRow = recordsByRowAndOrder(records, 'test');
+  const probeByRow = recordsByRowAndOrder(records, 'probe');
+  const rowAnswers = new Map(plan.rows.map((row) => [row.id, picksForRow(testByRow, row.id)]));
+  const suffix = `jev_version=${modelTuple.jevVersion.replace(/^jev /, '')}`
+    + ` provider=${modelTuple.provider} model=${modelTuple.model}`;
+  const column = summarizeColumn('jev', plan.rows, rowAnswers, plan.baselinePicks, suffix);
+  const wallTimes = records
+    .map((record) => record.wallMs)
+    .filter((value) => typeof value === 'number' && Number.isFinite(value));
+  const latency = {
+    p50: nearestRank(wallTimes, 0.5),
+    p95: nearestRank(wallTimes, 0.95),
+  };
+  const probabilityPicks = new Map(plan.rows.map((row) => [
+    row.id,
+    probabilityPick(Array.from({ length: ORDERS }, (_, order) => testByRow.get(row.id)?.get(order))),
+  ]));
+  const oneCallPicks = new Map(plan.rows.map((row) => [row.id, recordedPick(testByRow.get(row.id)?.get(0))]));
+  const probabilityAware = summarizePickArm(
+    'probability-aware', plan.rows, probabilityPicks, plan.baselinePicks, testByRow, ORDERS,
+  );
+  const oneCall = summarizePickArm(
+    'one-call', plan.rows, oneCallPicks, plan.baselinePicks, testByRow, 1,
+  );
+  const perTrack = {};
+  for (const row of plan.rows) {
+    if (!perTrack[row.track]) {
+      perTrack[row.track] = { rows: 0, measured: 0, correct: 0, wrong: 0, abstained: 0, confusion: {} };
+    }
+    const bucket = perTrack[row.track];
+    bucket.rows += 1;
+    const answers = rowAnswers.get(row.id);
+    if (!answers.every((answer) => typeof answer === 'string')) continue;
+    const pick = modalPick(answers).pick;
+    if (pick === null) continue;
+    bucket.measured += 1;
+    bucket.confusion[pick] = (bucket.confusion[pick] ?? 0) + 1;
+    if (pick === NONE_KEY) bucket.abstained += 1;
+    else if (pick === row.track) bucket.correct += 1;
+    else bucket.wrong += 1;
+  }
+  for (const bucket of Object.values(perTrack)) {
+    bucket.confusion = Object.fromEntries(
+      Object.entries(bucket.confusion).sort(([left], [right]) => compareCodeUnits(left, right)),
+    );
+  }
+  const shortlist = {
+    candidateTracks: Math.min(SHORTLIST_SIZE, Math.max(0, plan.options.pairs.length - 1)),
+    callsPerRow: 1,
+    measured: false,
+    reason: 'the replay contains no responses to a five-track option list',
+  };
+  const bootstrap = clusterBootstrapInterval(plan.rows, probabilityPicks, plan.baselinePicks);
+  const probePicks = new Map(plan.probes.map((probe) => {
+    const answers = picksForRow(probeByRow, probe.id);
+    return [probe.id, answers.every((answer) => typeof answer === 'string') ? modalPick(answers).pick : null];
+  }));
+  return {
+    column, latency, probePicks, probabilityAware, oneCall, shortlist, perTrack, bootstrap, modelTuple,
+  };
+}
+
+function recordedAnalysisLines(analysis, out) {
+  out(columnLine(analysis.column, analysis.latency));
+  out(analysis.column.line);
+  out(analysis.probabilityAware.line);
+  const decidedAccuracy = analysis.probabilityAware.decidedAccuracy;
+  out(`decided-subset probability-aware: ${analysis.probabilityAware.decidedCorrect}/${analysis.probabilityAware.decidedCount}`
+    + ` accuracy=${decidedAccuracy === null ? 'none' : decidedAccuracy.toFixed(4)}`);
+  const marginSlack = analysis.probabilityAware.marginSlack;
+  out(`margin slack probability-aware: ${marginSlack === null ? 'none' : marginSlack.toFixed(1)} rows`);
+  out(analysis.oneCall.line);
+  out(`shortlist arm: candidates=${analysis.shortlist.candidateTracks}`
+    + ` calls_per_row=${analysis.shortlist.callsPerRow} accuracy=not-measured reason=${analysis.shortlist.reason}`);
+  for (const [track, bucket] of Object.entries(analysis.perTrack)) {
+    out(`per-track jev: gold=${track} rows=${bucket.rows} measured=${bucket.measured}`
+      + ` correct=${bucket.correct} wrong=${bucket.wrong} abstained=${bucket.abstained}`
+      + ` confusion=${JSON.stringify(bucket.confusion)}`);
+  }
+  const { clusterCount, replicates, lower, upper } = analysis.bootstrap;
+  out(`bootstrap probability-aware vs baseline: accuracy_delta_95_ci=[${lower === null ? 'none' : lower.toFixed(4)},${upper === null ? 'none' : upper.toFixed(4)}]`
+    + ` clusters=${clusterCount} replicates=${replicates}`);
+}
+
+/**
  * First executable file of this name on PATH, or null when none is executable.
  * Empty PATH entries are skipped. A missing path, a directory, or a file that
  * cannot be executed is not a match.
@@ -1112,7 +1584,7 @@ export function createCallLog(outDir) {
       const filePath = path.join(outDir, 'calls.jsonl');
       if (!created) {
         fs.mkdirSync(outDir, { recursive: true });
-        fs.writeFileSync(filePath, '');
+        fs.writeFileSync(filePath, '', { flag: 'wx' });
         created = true;
       }
       fs.appendFileSync(filePath, `${JSON.stringify(record)}\n`);
@@ -1197,10 +1669,8 @@ export function jevGate(ctx) {
  *   env: Record<string, string | undefined>,
  *   timeoutMs: number,
  *   backoffMs: number,
- *   callLog: { append: (record: object) => void },
- *   stored: object | null
- * }} ctx Line writer, environment, per-call timeout, retry wait, the call log
- *   and an earlier run's report.
+ *   callLog: { append: (record: object) => void }
+ * }} ctx Line writer, environment, per-call timeout, retry wait and call log.
  * @returns {Promise<
  *   { stopped: string, partialRows: number }
  *   | {
@@ -1246,7 +1716,7 @@ export async function runJevArm(plan, gate, ctx) {
   chars *= ORDERS;
   ctx.out(`jev: payload: committed packet descriptions, fixture probe text and track descriptions; planned calls: ${ORDERS * items.length + 1}; estimated input tokens: ${Math.ceil(chars / 4)}`);
 
-  const wallTimes = [];
+  const callRecords = [];
   let finished = 0;
 
   function stop(line) {
@@ -1262,7 +1732,6 @@ export async function runJevArm(plan, gate, ctx) {
     ctx.env,
     ctx.timeoutMs,
   );
-  wallTimes.push(auth.wallMs);
   let model = 'unknown';
   if (auth.code === 0) {
     let parsed;
@@ -1273,7 +1742,7 @@ export async function runJevArm(plan, gate, ctx) {
     }
     if (typeof parsed?.model === 'string') model = parsed.model;
   }
-  ctx.callLog.append({
+  const authRecord = {
     backend: 'jev',
     kind: 'auth_test',
     rowId: null,
@@ -1288,15 +1757,15 @@ export async function runJevArm(plan, gate, ctx) {
     jevVersion: JEV_VERSION,
     provider: gate.provider,
     model,
-  });
+  };
+  ctx.callLog.append(authRecord);
+  callRecords.push(authRecord);
   if (auth.code !== 0) {
     if (auth.code === 3) return stop('jev arm stopped: key rejected');
     if (auth.code === 130) return stop('jev arm stopped: interrupted');
     return stop('jev arm stopped: auth test failed');
   }
   ctx.out(`jev: auth test provider=${gate.provider} model=${model}`);
-
-  const answers = new Map();
 
   /**
    * One calls.jsonl record. A spawn that led to a stop or a retry carries no
@@ -1322,7 +1791,6 @@ export async function runJevArm(plan, gate, ctx) {
   }
 
   for (const item of items) {
-    const picks = [];
     for (let order = 0; order < ORDERS; order += 1) {
       const args = ['choice', '--provider', gate.provider, '-q', CHOICE_INSTRUCTION];
       for (const [key, description] of rotateOptions(plan.options.pairs, order)) {
@@ -1330,14 +1798,14 @@ export async function runJevArm(plan, gate, ctx) {
       }
       let attempt = 1;
       let r = await spawnCall(gate.path, args, item.question, ctx.env, ctx.timeoutMs);
-      wallTimes.push(r.wallMs);
 
       if (!r.timedOut && r.code === 4) {
-        ctx.callLog.append(record(item, order, attempt, r, null, null, null, 'unmeasured'));
+        const failedAttempt = record(item, order, attempt, r, null, null, null, 'unmeasured');
+        ctx.callLog.append(failedAttempt);
+        callRecords.push(failedAttempt);
         await new Promise((resolve) => setTimeout(resolve, ctx.backoffMs));
         attempt = 2;
         r = await spawnCall(gate.path, args, item.question, ctx.env, ctx.timeoutMs);
-        wallTimes.push(r.wallMs);
       }
 
       let pick = null;
@@ -1370,79 +1838,40 @@ export async function runJevArm(plan, gate, ctx) {
         stopLine = 'jev arm stopped: interrupted';
       }
 
-      ctx.callLog.append(record(item, order, attempt, r, pick, pickProb, noneProb, status));
+      const callRecord = record(item, order, attempt, r, pick, pickProb, noneProb, status);
+      ctx.callLog.append(callRecord);
+      callRecords.push(callRecord);
       if (stopLine !== null) return stop(stopLine);
-      picks.push(pick);
     }
-    answers.set(item.id, picks);
     finished += 1;
   }
 
-  const rowAnswers = new Map(plan.rows.map((row) => [row.id, answers.get(row.id)]));
-  const column = summarizeColumn(
-    'jev',
-    plan.rows,
-    rowAnswers,
-    plan.baselinePicks,
-    `jev_version=${JEV_VERSION.split(' ')[1]} provider=${gate.provider} model=${model}`,
-  );
-  const latency = {
-    p50: nearestRank(wallTimes, 0.5),
-    p95: nearestRank(wallTimes, 0.95),
+  const modelTuple = {
+    jevVersion: JEV_VERSION,
+    provider: gate.provider,
+    model,
   };
-  ctx.out(columnLine(column, latency));
-  const storedJev = ctx.stored?.columns?.jev;
-  let requalify = null;
-  if (storedJev && (storedJev.provider !== gate.provider || storedJev.model !== model)) {
-    requalify = 'requalify: model changed';
-    ctx.out(requalify);
-  }
-  ctx.out(column.line);
-
-  const probePicks = new Map(plan.probes.map((probe) => {
-    const picks = answers.get(probe.id);
-    if (
-      !Array.isArray(picks)
-      || picks.length !== ORDERS
-      || !picks.every((pick) => typeof pick === 'string')
-    ) {
-      return [probe.id, null];
-    }
-    return [probe.id, modalPick(picks).pick];
-  }));
+  const analysis = analyzeRecordedCalls(plan, callRecords, modelTuple);
+  recordedAnalysisLines(analysis, ctx.out);
+  const column = {
+    ...analysis.column,
+    latency: analysis.latency,
+    jevVersion: modelTuple.jevVersion,
+    provider: modelTuple.provider,
+    model: modelTuple.model,
+  };
 
   return {
-    column: {
-      ...column,
-      latency,
-      jevVersion: JEV_VERSION,
-      provider: gate.provider,
-      model,
-      requalify,
-    },
-    probePicks,
+    column,
+    probePicks: analysis.probePicks,
+    analysis,
+    modelTuple,
   };
 }
 
 // ───────────────────────────────────────────────────────────────────
 // 8. ENTRY POINT
 // ───────────────────────────────────────────────────────────────────
-
-/**
- * Parsed report.json written by an earlier run into the same out directory.
- *
- * @param {string | undefined} outDir Directory that may hold report.json.
- * @returns {object | null} The parsed report, or null when outDir is empty,
- *   the file is missing, or the file does not parse.
- */
-export function readStoredReport(outDir) {
-  if (typeof outDir !== 'string' || outDir === '') return null;
-  try {
-    return JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8'));
-  } catch {
-    return null;
-  }
-}
 
 /**
  * The report one run writes to report.json. The test set keeps its row count
@@ -1458,12 +1887,16 @@ export function readStoredReport(outDir) {
  *   options: { pairs: Array<[string, string]>, sha256: string },
  *   probes: Array<{ gold: string[] }>,
  *   probeHitCounts: Record<string, number>,
- *   jev?: object
+ *   analysis?: object,
+ *   jev?: object,
+ *   replay?: { droppedRows: Array<{ id: string, reason: string }> }
  * }} parts
  * @returns {object} Report object ready for JSON.stringify.
  */
 export function buildReport(parts) {
-  const { manifestHash, testSet, summary, options, probes, probeHitCounts, jev } = parts;
+  const {
+    manifestHash, testSet, summary, options, probes, probeHitCounts, analysis, jev, replay,
+  } = parts;
   let goldLess = 0;
   for (const probe of probes) {
     if (probe.gold.length === 0) goldLess += 1;
@@ -1472,16 +1905,26 @@ export function buildReport(parts) {
   const report = {
     manifestHash,
     testSet: { K: testSet.rows.length, counts: testSet.counts },
+    dataPin: pinRowSet(testSet, options),
     baselines: summary,
     instruction: CHOICE_INSTRUCTION,
     options: options.pairs.length,
     optionSetSha256: options.sha256,
+    modelTuple: jev?.modelTuple ?? null,
     probes: { total: probes.length, goldLess, hits: probeHitCounts },
+    analysis: analysis ? {
+      probabilityAware: analysis.probabilityAware,
+      oneCall: analysis.oneCall,
+      shortlist: analysis.shortlist,
+      perTrack: analysis.perTrack,
+      bootstrap: analysis.bootstrap,
+    } : null,
     columns: {},
     stopped: {},
     skipped: {},
     requalify: {},
   };
+  if (replay) report.replay = replay;
 
   for (const [backend, arm] of [['jev', jev]]) {
     if (!arm) continue;
@@ -1519,15 +1962,15 @@ export function buildReport(parts) {
       report.columns[backend].provider = column.provider;
       report.columns[backend].model = column.model;
     }
-    report.requalify[backend] = arm.requalify ?? null;
+    report.requalify[backend] = null;
   }
 
   return report;
 }
 
 /**
- * Prints the zero-call report. The default run writes no file and spawns no
- * model binary, so stdout is byte-identical between runs.
+ * Prints the zero-call report, or replays a recorded call log without a model
+ * call. The default run writes no file and spawns no model binary.
  *
  * @param {string[]} argv - Arguments after the script path.
  * @param {Object} [deps] - Input, writer and model arm replacements.
@@ -1540,7 +1983,7 @@ export function buildReport(parts) {
  * @param {Record<string, string | undefined>} [deps.env] - Model arm environment. Default process.env.
  * @param {number} [deps.timeoutMs] - Model arm call timeout. Default 90000.
  * @param {number} [deps.backoffMs] - Model arm retry wait. Default 2000.
- * @returns {Promise<number>} 0 = report printed, 2 = bad invocation, unreadable input, or a model switch without --out.
+ * @returns {Promise<number>} 0 = report printed, 2 = bad invocation or unreadable input.
  */
 export async function main(argv, deps = {}) {
   const repoRoot = deps.repoRoot ?? DEFAULT_REPO_ROOT;
@@ -1562,6 +2005,7 @@ export async function main(argv, deps = {}) {
       options: {
         jev: { type: 'boolean' },
         out: { type: 'string' },
+        replay: { type: 'string' },
       },
     });
   } catch (error) {
@@ -1573,9 +2017,23 @@ export async function main(argv, deps = {}) {
     err('--jev needs --out <dir> so every call is recorded');
     return 2;
   }
-  const stored = typeof values.out === 'string' && values.out !== '' && values.jev === true
-    ? readStoredReport(values.out)
-    : null;
+  const hasReplay = values.replay !== undefined;
+  if (hasReplay && (typeof values.replay !== 'string' || values.replay === '')) {
+    err('--replay needs a calls.jsonl path');
+    return 2;
+  }
+  if (values.jev === true && hasReplay) {
+    err('--jev and --replay cannot be combined');
+    return 2;
+  }
+  if (values.out !== undefined && values.out === '') {
+    err('--out needs a directory');
+    return 2;
+  }
+  if (outDirectoryHoldsRun(values.out)) {
+    err('--out directory already holds a run');
+    return 2;
+  }
 
   const started = Date.now();
   let testSet;
@@ -1585,8 +2043,26 @@ export async function main(argv, deps = {}) {
   let lookupProbe;
   let ripgrepProbe;
   let jevResult;
+  let replayRecords;
+  let replayTuple;
+  let replayRowPins;
+  let replayDroppedRows = [];
   try {
-    testSet = buildTestSet(repoRoot, hubNames ? { hubNames } : {});
+    if (hasReplay) {
+      replayRecords = readCallRecords(values.replay);
+      replayTuple = modelTupleFromRecords(replayRecords);
+      replayRowPins = readReplayRowPins(values.replay, replayRecords);
+    }
+    const testSetOptions = hubNames ? { hubNames } : {};
+    if (hasReplay) {
+      testSetOptions.replayRowIds = new Set(replayRowPins.map((pin) => pin.id));
+    }
+    testSet = buildTestSet(repoRoot, testSetOptions);
+    if (hasReplay) {
+      const selected = selectReplayRows(testSet, replayRowPins);
+      testSet = selected.testSet;
+      replayDroppedRows = selected.droppedRows;
+    }
     loaded = loadIndex(indexPath, { hashIndex: false });
     probes = probeGold(loaded, loadProbes(probesPath));
     const context = { repoRoot, cache: new Map() };
@@ -1614,31 +2090,45 @@ export async function main(argv, deps = {}) {
     row.id,
     picks[index][summary.method],
   ]));
+  const armPlan = {
+    rows: testSet.rows,
+    probes: probes.filter((probe) => probe.gold.length > 0),
+    options,
+    baselinePicks,
+  };
 
   out(`index manifestHash: ${loaded.manifestHash}`);
+  for (const dropped of replayDroppedRows) {
+    out(`replay row dropped: ${dropped.id} reason=${dropped.reason}`);
+  }
   for (const line of testSetLines(testSet)) out(line);
   for (const line of baselineLines(summary)) out(line);
   for (const line of ruleLines(options)) out(line);
   for (const line of headroomLines(summary, probeCount)) out(line);
-  const callLog = createCallLog(values.out);
-  // The model arm runs here, after the zero-call report and before the probe line.
-  if (values.jev === true) {
+  if (hasReplay) {
+    const analysis = analyzeRecordedCalls(armPlan, replayRecords, replayTuple);
+    recordedAnalysisLines(analysis, out);
+    jevResult = {
+      column: {
+        ...analysis.column,
+        latency: analysis.latency,
+        ...analysis.modelTuple,
+      },
+      probePicks: analysis.probePicks,
+      analysis,
+      modelTuple: analysis.modelTuple,
+    };
+  } else if (values.jev === true) {
     if (!summary.headroom) {
       jevResult = { skipped: 'jev arm skipped: no headroom' };
       out(jevResult.skipped);
     } else {
       const jevCheck = jevGate({ out, env, timeoutMs });
-      // The Jev arm runs here after a passing gate.
       if (jevCheck.passed) {
         jevResult = await runJevArm(
-          {
-            rows: testSet.rows,
-            probes: probes.filter((probe) => probe.gold.length > 0),
-            options,
-            baselinePicks,
-          },
+          armPlan,
           jevCheck,
-          { out, env, timeoutMs, backoffMs, callLog, stored },
+          { out, env, timeoutMs, backoffMs, callLog: createCallLog(values.out) },
         );
       } else {
         jevResult = { skipped: jevCheck.reason };
@@ -1656,7 +2146,7 @@ export async function main(argv, deps = {}) {
   out(probeLine(probes, probeMethods));
 
   if (
-    values.jev === true
+    (values.jev === true || hasReplay)
     && typeof values.out === 'string'
     && values.out !== ''
   ) {
@@ -1667,10 +2157,17 @@ export async function main(argv, deps = {}) {
       options,
       probes,
       probeHitCounts: Object.fromEntries(probeMethods),
+      analysis: jevResult?.analysis,
       jev: jevResult,
+      replay: hasReplay ? { droppedRows: replayDroppedRows } : undefined,
     });
     fs.mkdirSync(values.out, { recursive: true });
-    fs.writeFileSync(path.join(values.out, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
+    if (hasReplay) fs.copyFileSync(values.replay, path.join(values.out, 'calls.jsonl'));
+    fs.writeFileSync(
+      path.join(values.out, 'report.json'),
+      `${JSON.stringify(report, null, 2)}\n`,
+      { flag: 'wx' },
+    );
   }
 
   err(`wall time: ${((Date.now() - started) / 1000).toFixed(1)} s`);
