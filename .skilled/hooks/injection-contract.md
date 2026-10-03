@@ -236,9 +236,9 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 ### Completion Evidence Sentinel
 
-**Injects:** nothing into the model context today. `completion-evidence-stop.cjs` and OpenCode's `system-completion-sentinel.js` both log an advisory finding to a file/stderr when a completion claim looks unsupported by spec evidence, but neither ever sets `systemMessage`/`additionalContext`, by explicit design: "Advisory only for the entire v1 rollout, never `{decision:"block"}`."
+**Injects:** Pi's `turn_end` adapter queues a model-visible advisory for the next turn with `pi.sendMessage`, `display: false`, and `{ deliverAs: "nextTurn" }`. It stays hidden from human display and does not start a turn immediately. The other adapters record the advisory through their runtime's log and/or stderr channel. All adapters remain advisory-only and never block a turn.
 
-- **Channel:** `[LOG]`.
+- **Channel:** Pi model context on the next turn; other adapters use advisory logs and/or stderr, depending on the runtime.
 
 ### Permission Request Policy (Devin only)
 

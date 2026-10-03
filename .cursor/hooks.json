@@ -113,6 +113,13 @@
         "type": "command",
         "timeout": 10
       }
+    ],
+    "afterAgentResponse": [
+      {
+        "command": "node .skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs || { printf \"%s\\n\" \"mk-hook-drift host=cursor event=afterAgentResponse adapter=completion-evidence-response.mjs\" >&2; printf %s '{\"permission\":\"allow\",\"agent_message\":\"mk cursor hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\",\"mkHookDrift\":true}'; }",
+        "type": "command",
+        "timeout": 10
+      }
     ]
   }
 }

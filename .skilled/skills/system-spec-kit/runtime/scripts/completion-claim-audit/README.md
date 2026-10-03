@@ -77,15 +77,19 @@ The label gate opens an arm only when the labels hold at least 30 rows, at least
 
 Each backend column reports the same counts: `K` labeled rows, `M` measured rows, `A` judge calls that match the label, `B` regex calls that match the label, `W` judge-only wins, `L` judge-only losses, and `F` rerun flips on the Jev backend alone. The verdict takes the first failed check in this order: coverage `10*M >= 9*K`, kill when the exact one-sided loss tail sits below 0.05, margin `10*(A-B) >= M`, sign test on `W` against `W + L`, then the flip check for the Jev backend. Both tails are summed in BigInt, so no float comparison decides a verdict.
 
+The judge threshold is pre-registered at 0.70, so a score at or above 0.70 is a `yes` call. Each labeled run prints `judge threshold: 0.70 (pre-registered)`. The keep-rule line ends with `cost: one-call arm <= K judgments, reference arm = 3*K judgments`.
+
 ---
 
 ## 5. ENTRYPOINTS
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `node score-completion-claims.mjs --rows <file> [--labels <file>] [--jev] [--out <dir>] [--accept-payload]` | CLI | Runs the census, then the arm its switch asks for. |
+| `node score-completion-claims.mjs --rows <file> [--labels <file>] [--holdout] [--jev [--one-call]] [--out <dir>] [--accept-payload]` | CLI | Runs the census, then the arm its switch asks for. |
 | `--jev` | CLI flag | Adds the Jev column. It needs `--out` and `--accept-payload`. |
+| `--one-call` | CLI flag | Runs the Jev arm once per labeled row instead of three times. Requires `--jev`. |
 | `--labels` | CLI flag | Scores the regex against the operator's labels and opens the gate. |
+| `--holdout` | CLI flag | Uses a deterministic, approximately half-sized holdout within each label class. Requires `--labels`. |
 | `main(argv, deps)` | Function | Runs the census end to end and returns the exit code. Its writer, environment, timeout and backoff dependencies are replaceable in tests. |
 | `parseRows`, `detectTail`, `runCensus` | Function | Row parsing, the trailing slice the detector reads, and the fire counts by claim word. |
 | `parseLabels`, `sha256Hex`, `classCounts`, `regexErrors` | Function | Label parsing, the label set hash, the class counts and the regex error counts by word. |

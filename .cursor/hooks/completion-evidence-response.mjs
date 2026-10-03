@@ -1,0 +1,1 @@
+../../.skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs

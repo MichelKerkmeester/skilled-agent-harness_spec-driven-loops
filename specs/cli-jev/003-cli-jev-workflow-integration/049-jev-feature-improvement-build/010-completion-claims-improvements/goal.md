@@ -11,17 +11,19 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/010-completion-claims-improvements"
-    last_updated_at: "2026-10-03T05:30:10Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-03T12:00:00Z"
+    last_updated_by: "claude-opus-5-5-049"
+    recent_action: "All completion criteria met with evidence"
+    next_safe_action: "None. The phase is Complete"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs"
+      - ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-5-5-049"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,10 +58,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `completion-evidence-sentinel.vitest.ts` and `completion-claim-audit.vitest.ts` pass with the new cases
-- [ ] The scorer's census on the 047 rows reports more than 0 true and at most 7 false fires for the shipped sentinel, with every arm's counts in the log
-- [ ] `.cursor/hooks.json` lists the completion adapter
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` on this phase
+- [x] `completion-evidence-sentinel.vitest.ts` and `completion-claim-audit.vitest.ts` pass with the new cases
+- [x] The scorer's census on the 047 rows reports more than 0 true and at most 7 false fires for the shipped sentinel, with every arm's counts in the log
+- [x] `.cursor/hooks.json` lists the completion adapter
+- [x] `validate.sh --strict` prints `RESULT: PASSED` on this phase
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,10 +78,16 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase opened | Done | Spec, plan, tasks and goal authored 2026-10-03 from 048's ranked table |
+| Build | Done | Luna on cli-codex: usage-limit stop, R9 halt and ruling, full build |
+| Cross-family review | Done | DeepSeek on cli-pi: 1 P0 and 1 P1 fixed by a Luna fix dispatch, 2 P2 (Cursor README fixed, packet evidence recorded here) |
+| Census on the 047 rows (2026-10-03) | Done | today: claims_caught=0 false_fires=7; complete: 3/7; anchor: 0/3; both: 1/3; shipped: claims_caught=1 false_fires=0. Judge threshold 0.70 pre-registered |
+| Mirrors and docs | Done | Both mirror checks PASS; `validate_document.py` exit 0 on four docs |
+| Validate | Done | `validate.sh --strict` RESULT: PASSED |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Injection contract added to scope (2026-10-03) | The first build halted on R9: the injection contract says the sentinel injects nothing, while `hooks/pi/completion-evidence.ts` sends a `display:false` message delivered next turn. The code is the truth and R9 exists to reconcile the docs to it, so the session added `.skilled/hooks/injection-contract.md` to Files to Change |
+| Registry, scorer README and Cursor README added to scope (2026-10-03) | Review P0: the build hand-edited `.cursor/hooks.json`, a file rendered from `hook-registry.json`, so `sync-hook-registrations.cjs --check` reported drift and `hook-adapter-path-parity.vitest.ts` failed. Review P1: REQ-004's README half was missing. The session moved the wiring to the registry, added the scorer README for REQ-004 and the Cursor hooks README for the review P2. The 011 and 009 commits used `SPECKIT_SKIP_MIRROR_PARITY=1` because this phase's uncommitted Cursor edit was the gate's only failure |
 <!-- /ANCHOR:log -->
