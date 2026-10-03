@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs",
+  "spec_folder": "system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs",
+  "parent_id": "system-skill-advisor/033-advisor-status-truthfulness",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "trusted mutation docs",
+      "advisor scorer references",
+      "phrase boost bound",
+      "embeddings health status",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "trusted",
+      "mutation",
+      "docs",
+      "advisor",
+      "scorer",
+      "references",
+      "phrase",
+      "boost",
+      "bound",
+      "embeddings",
+      "health",
+      "status"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/commands/doctor/assets/doctor-skill-advisor.yaml",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-rebuild.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-scan.md",
+      ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
+      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts",
+      ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-status.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-advisor.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-skill-advisor.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-rebuild.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-rebuild.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-scan.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-scan.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-scorer.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-status.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-manifest.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-status.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-status.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-status.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Five gaps were recorded by the doctor command audit and re-verified at planning time",
+    "created_at": "2026-10-03T05:27:37Z",
+    "last_save_at": "2026-10-03T05:53:40.771Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cf8f5db9de45bc3103bb8b0da7a1d7cc9ab748c0ba511ff9a970487b508f114f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0ec2ffd51095e59802d5c9147a6d6771893c2424296f190bf043e25d7c8b12e1",
+      "plan.md": "0737f2d5363be7ee90413b56ab840bb38e4626e308adc449cfd5007695e9737e",
+      "tasks.md": "e5b66c603ab88f5b9d562811f59e55e90ae98e501651658b7bdb571fe40b13d2",
+      "implementation-summary.md": "056764686901a7f61f3ca0f49c110f963e59c2e7ca49d6bef6d3a19f55554d1a"
+    },
+    "last_active_at": null
+  }
+}
