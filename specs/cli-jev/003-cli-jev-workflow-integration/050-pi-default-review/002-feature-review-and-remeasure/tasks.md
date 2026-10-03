@@ -34,8 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Brief the fresh reviewer with the nine features, their last verdicts and the worker rules
-- [ ] T002 Capture the suite baselines before any change
+- [x] T001 Brief the fresh reviewer with the nine features, their last verdicts and the worker rules
+- [x] T002 Capture the suite baselines before any change
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,11 +43,11 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Review and test 032 citation drift and 037 Pi transport
-- [ ] T004 Review and test 035 injection screen, 025 verdict fallback and 024 hallucination grader
-- [ ] T005 Review and test 017 search narrowing, 026 completion claims, 029 P0 reread order and 031 debug next check
-- [ ] T006 Re-measure each feature live, with route counts
-- [ ] T007 Fix each defect found, with a cross-family review
+- [x] T003 Review and test 032 citation drift and 037 Pi transport
+- [x] T004 Review and test 035 injection screen, 025 verdict fallback and 024 hallucination grader
+- [x] T005 Review and test 017 search narrowing, 026 completion claims, 029 P0 reread order and 031 debug next check
+- [x] T006 Re-measure each feature live, with route counts
+- [x] T007 Fix each defect found, with a cross-family review
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +55,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Session reruns each changed suite and checks each verdict line against its run folder
-- [ ] T009 Cross-family review: fix P0 and P1, record P2
-- [ ] T010 Run `validate.sh --strict` on this phase
+- [x] T008 Session reruns each changed suite and checks each verdict line against its run folder
+- [x] T009 Cross-family review: fix P0 and P1, record P2
+- [x] T010 Run `validate.sh --strict` on this phase
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

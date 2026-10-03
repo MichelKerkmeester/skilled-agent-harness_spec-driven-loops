@@ -39,13 +39,15 @@
       "strategy"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+      ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs"
     ],
     "entities": [
       {
@@ -76,6 +78,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-cite-drift-scan.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The nine features with a measured gain or a near miss were last measured through the jev CLI, several on built rows, and 017 dropped from keep to stop on its repeat",
     "created_at": "2026-10-03T17:39:27Z",
-    "last_save_at": "2026-10-03T17:42:05.400Z",
+    "last_save_at": "2026-10-03T20:36:29.725Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c362a8e3983dc2c1cb15e13499f9d657f149684a7508d02400b61ab4e3738f3a",
+    "source_fingerprint": "sha256:25dffa2aeb0d5bb3b2caf3b3a14e3399afdd55d3d8e4e6bae290ac5c7cca4b27",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "684843abe5a57aa8bf9b2b9da38f103dc24e150562c242726f5d051d2940692a",
+      "spec.md": "878077f90309a5a16e59c3bdc2f4c2a398e4e013504d959200fe6d8b8b459026",
       "plan.md": "ccf881f9109789c06bfb04b3a464831926ee58d2e7919c090c1195cba7e999e1",
-      "tasks.md": "e0d23778e2d64934bae2dc55e87ce8890c02ddfa5db312fa49793de49d103589",
-      "implementation-summary.md": "bf6cd7bc1107b7d31a64b29efcefd1c9ed029a93070e7e4896986cf516f99c9d"
+      "tasks.md": "73d5b6cc8a2f2273fed55c92ea56161a2d81083aa18c89d67a2786eaa6fce22d",
+      "implementation-summary.md": "6039c3e5d62a18f261600267b78570897184dcf217b3bfc07f6c4040a3efb1ba"
     },
     "last_active_at": null
   }

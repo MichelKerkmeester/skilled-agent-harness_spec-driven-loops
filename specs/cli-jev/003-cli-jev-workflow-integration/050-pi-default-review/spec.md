@@ -104,7 +104,7 @@ Each child names its exact files in its own spec.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-pi-default-transport/ | Pi answers Jev calls by default when it can, for choice and noul, across the eight scorers | Complete |
-| 2 | 002-feature-review-and-remeasure/ | A fresh Opus reviewer tests, re-measures and fixes the nine features | Planned |
+| 2 | 002-feature-review-and-remeasure/ | A fresh Opus reviewer tests, re-measures and fixes the nine features | Complete |
 
 ### Phase Transition Rules
 
