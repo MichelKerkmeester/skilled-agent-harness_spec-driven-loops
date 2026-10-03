@@ -2,10 +2,6 @@
 title: "Feature Specification: Orchestrator Inline Authority"
 description: "The orchestrator could not write, so a one-line fix cost a fresh agent reloading context it already held; and a leaf agent refused the operator who invoked it, inverting the repository precedence."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
   - "spec core"
 importance_tier: "normal"
 contextType: "general"

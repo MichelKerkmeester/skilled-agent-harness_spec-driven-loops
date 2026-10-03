@@ -3,7 +3,6 @@ title: "Tasks: Phase 014 Code and Documentation Conformance"
 description: "Completed task breakdown for exhaustive package README coverage, reference-document conformance, implementation-alignment evidence, and packet closeout."
 trigger_phrases:
   - "code-and-doc-conformance"
-  - "tasks"
   - "documentation conformance"
 importance_tier: "important"
 contextType: "implementation"

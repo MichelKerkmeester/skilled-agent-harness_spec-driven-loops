@@ -1,6 +1,7 @@
 ---
 title: "Tasks: Phase 8 — Split code-opencode Other-Language & Shared References"
 description: "Task checklist with evidence for the code-opencode non-Rust + shared reference split and router rewire."
+importance_tier: "normal"
 contextType: "implementation"
 trigger_phrases:
   - "task breakdown"

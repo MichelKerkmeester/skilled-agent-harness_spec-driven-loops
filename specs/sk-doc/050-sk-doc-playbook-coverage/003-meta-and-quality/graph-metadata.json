@@ -14,39 +14,45 @@
       "sk-create-manual-testing-playbook playbook",
       "sk-create-quality-control playbook",
       "sk-create-skill playbook",
-      "implementation",
-      "plan",
-      "name",
-      "template",
+      "meta and quality mode playbooks",
       "plan core",
-      "tasks",
       "tasks core",
       "acceptance criteria",
-      "closure gate"
+      "closure gate",
+      "ac traceability",
+      "waiver adr",
+      "implementation summary",
+      "what shipped"
     ],
     "key_topics": [
       "sk-create-manual-testing-playbook",
       "playbook",
       "sk-create-quality-control",
       "sk-create-skill",
-      "implementation",
+      "meta",
+      "quality",
+      "mode",
+      "playbooks",
       "plan",
-      "name",
-      "template",
       "core",
       "tasks",
-      "acceptance",
-      "criteria"
+      "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "specs/sk-doc/z_archive/020-hyphen-naming-convention/002-root-name-consumer-migration/manifest/consumer-manifest.md"
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-quality-control/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md"
     ],
     "entities": [
       {
@@ -80,9 +86,21 @@
         "source": "derived"
       },
       {
-        "name": "consumer-manifest.md",
+        "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": "specs/sk-doc/z_archive/020-hyphen-naming-convention/002-root-name-consumer-migration/manifest/consumer-manifest.md",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
         "source": "derived"
       },
       {
@@ -134,7 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Author",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -146,13 +170,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow An",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -176,19 +194,7 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
+        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -196,7 +202,7 @@
     ],
     "causal_summary": "Each of these takes another mode's output as its input",
     "created_at": "2026-09-01T11:48:00Z",
-    "last_save_at": "2026-09-21T13:42:44.184Z",
+    "last_save_at": "2026-10-03T16:44:29.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b34c9dd0a05f2a5788ae851481469296b7dee965a65e118f6338fcac91ccb4d5",
+    "source_fingerprint": "sha256:b8df104d97bfe3bd4d5681798796c6e639b7ecdd9fe308457b1f12a719429bfa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e725fa71329f84729dc2da259a715539eda3a1d49dee3567d441e24d7601953f",
-      "plan.md": "bbe697a78dfbb0a75bebe21fcebee0f7ae66036a92cf64294cee7d4191ee210e",
-      "tasks.md": "a84e833605536cdf23fe2c1ee86973235b82ad318563c98c4acee8a4032aecf3",
-      "implementation-summary.md": "0ce4047beda6fd23bc8be9168f76354897c67e984ce1b55a6f79748ea2cb1533"
+      "spec.md": "3777a5dc101c3c6d4f6ce8e680b725ac94d38b190ef9dc0ee1d846bb12c1e51f",
+      "plan.md": "c4bc0cb29d1ff84d4a3aef3c50ab47c2b0c34635d775c57bc60c7ad741364989",
+      "tasks.md": "528e62dd50f772c4dc79fb0239108385baf85114b47c9508bc0239f6056ffcbc",
+      "implementation-summary.md": "3977d8548e4176c036b3e5dc9f025cda286565348def51fd35950b5d60860be6"
     },
     "last_active_child_id": null,
     "last_active_at": null

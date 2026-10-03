@@ -40,11 +40,11 @@ Terminal verification + rollup for WS2. Across 007-011, 33 oversized reference/a
 
 | Phase | Scope | Split |
 |---|---|---|
-| 007 | code-opencode Rust | 4 → 21 |
-| 008 | code-opencode other + shared | 9 → 20 |
-| 009 | code-webflow implementation | 11 → 29 |
-| 010 | code-webflow other | 8 → 31 |
-| 011 | code-quality checklist | 1 → 3 |
+| `007-code-opencode-rust-references` | code-opencode Rust | 4 → 21 |
+| `008-code-opencode-other-references` | code-opencode other + shared | 9 → 20 |
+| `009-code-webflow-implementation-references` | code-webflow implementation | 11 → 29 |
+| `010-code-webflow-other-references` | code-webflow other | 8 → 31 |
+| `011-code-quality-and-flagged` | code-quality checklist | 1 → 3 |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -68,7 +68,7 @@ Deterministic line-partition splitter (blank-line preserving after a mid-run fix
 ## Verification
 | Gate | Result |
 |---|---|
-| sk-code-router-sync + surface-slice-sync + code-surface-path-parse | 21/21 |
+| `sk-code-router-sync.vitest.ts` + `surface-slice-sync.vitest.ts` + `code-surface-path-parse.vitest.ts` | 21/21 |
 | Full skill-benchmark suite | 11 failures == clean-HEAD baseline → 0 regressions |
 | Oversized-file census | Only 3 documented exemptions >500 |
 | Part-link resolution | All markdown links resolve |

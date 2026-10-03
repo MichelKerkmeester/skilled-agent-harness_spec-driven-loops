@@ -35,9 +35,12 @@
       "three"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "specs/sk-doc/050-sk-doc-playbook-coverage/001-authoring-surfaces/implementation-summary.md",
+      "specs/sk-doc/050-sk-doc-playbook-coverage/002-artifact-producers/implementation-summary.md",
+      "specs/sk-doc/050-sk-doc-playbook-coverage/003-meta-and-quality/implementation-summary.md"
     ],
     "entities": [
       {
@@ -85,16 +88,16 @@
     ],
     "causal_summary": "Three of the fifteen sk-doc modes carry a manual testing playbook",
     "created_at": "2026-09-01T11:47:59Z",
-    "last_save_at": "2026-09-01T11:49:40.114Z",
+    "last_save_at": "2026-10-03T16:43:39.564Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:8510708f20cd5f9cb947860079269dbb9b7dafef73aaa21d425f1a1d3c599d8e",
+    "source_fingerprint": "sha256:fa035e5ae8a252fed6344790211e7e5ba29781fd2e15c6f5795b080231aeb995",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f6fe3d9836359b4f1212cc5d306514923a499f27d06d5d9f8eaa6c655ab15dda"
+      "spec.md": "f019b7f55ad920e0495fe26c2c4874525dc9db5ccd0ea2ded771117843637933"
     },
     "last_active_child_id": "sk-doc/050-sk-doc-playbook-coverage/003-meta-and-quality",
     "last_active_at": null

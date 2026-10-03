@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Promotion checks score status and thresholds but never `score.candidate`, `score.target` or `score.inputHash`, so a stale score from an earlier revision can authorize promotion of a newer unscored candidate (`F-017-01`, CONFIRMED-WITH-MITIGATION: the benchmark report is target-bound, which mitigates but does not close it)",
     "created_at": "2026-07-31T01:25:21.136Z",
-    "last_save_at": "2026-09-11T16:42:25.768Z",
+    "last_save_at": "2026-10-03T15:25:57.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:e0db1307f06c11ba1bd62bffd7ddacf4a745e37832e84f93900e938e025c233e",
+    "source_fingerprint": "sha256:54d5812bff59e2ea76f245a7c114319092557c33b9d584ed7f9982a38814545d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7b3ea4cb067382108ceea0c65f08c8a67d1ac269d8b141d7d375dcf626bde589",
@@ -222,7 +222,7 @@
       "tasks.md": "fb1d915a088528f82d34ca67c18ec778ba768cc9b3dab10f1ddfb596bf367d36",
       "decision-record.md": "a14580b315bae937462631d3a8438ccfbe3dcfeb178c0231a49823524528880f",
       "implementation-summary.md": "b5a5f1b9b55241efbae2772303871107be8d373edfae5805b3ad65fdcc2e020e",
-      "handover.md": "1c533bef4aef9af3020bc9e3abc56073101195e938a96964da99b0cd6a57f8ce"
+      "handover.md": "22e26cc44eb348570ebbff98868c6fb92657e769cadcc4c356645aa44bbe02b1"
     },
     "last_active_child_id": null,
     "last_active_at": null

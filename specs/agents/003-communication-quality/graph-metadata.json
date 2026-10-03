@@ -13,29 +13,23 @@
     "trigger_phrases": [
       "communication quality",
       "agents.md",
-      "voice",
-      "tone",
-      "specification",
       "agents.md plan",
       "voice reconciliation",
-      "implementation",
-      "plan",
-      "tasks",
       "implementation summary"
     ],
     "key_topics": [
       "communication",
       "quality",
       "agents",
-      "voice",
-      "tone",
-      "specification",
       "plan",
+      "voice",
       "reconciliation",
       "implementation",
-      "tasks",
       "summary",
-      "guidance"
+      "guidance",
+      "root",
+      "scattered",
+      "compressed"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -201,7 +195,7 @@
     ],
     "causal_summary": "Communication guidance in the root `AGENTS.md` is scattered and compressed across §1 (Two registers, Communication, Documentation & Honesty), §4, and §7, with no single home",
     "created_at": "2026-08-07T07:39:47.413Z",
-    "last_save_at": "2026-08-30T15:39:07.002Z",
+    "last_save_at": "2026-10-03T15:11:43.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0684118c1a5cbb1452a5f53392650f09eaf21fe7a6ff61eba645a54498e6d6e1",
+    "source_fingerprint": "sha256:4d97a268d2ef9b849d2aa6e636c5f1110bc32e9e706e3942477617024e39b37b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "88a4271a421ef9bbb0522079de8964497a4a97b900b7e4815372e95d09b052f8",
-      "plan.md": "e53bdd6a55651b2d5ea5ed011c444bc9ef394f02eb479762ee07ae88a85e7378",
-      "tasks.md": "019382114177176357bccaf95b5265d2244864c59da5df240a873dcc62d73d30",
+      "spec.md": "a5151f6746591221409895f47f9a9d21311327c0fcbb6827fa4aa6eec76c44c5",
+      "plan.md": "3cae9a2eeb4f059f66c1eaeb16fc1a37e00ea3742cdccc82d1b0ce8dba1b44cf",
+      "tasks.md": "3c40487d9bb1ebc93ec05c912510a345f00f557000e8dfb02e6de7998948002b",
       "implementation-summary.md": "bd4c5f53fd9e0ba2437751fa7d88f26b97df4d8213fc6093840dfd9485c6c7e1"
     },
     "last_active_child_id": null,

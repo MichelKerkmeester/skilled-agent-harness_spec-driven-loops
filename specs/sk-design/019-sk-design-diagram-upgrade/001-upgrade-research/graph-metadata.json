@@ -45,10 +45,13 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md",
       "research/dispatch-prompt.md",
       "research/orchestration-summary.json",
+      "research/lineages/glm/iterations/iteration-001.md",
+      "research/lineages/sonnet/research.md",
       ".github/workflows/diagram-corpus.yml",
       "feature-catalog/feature-catalog.md"
     ],
@@ -78,6 +81,12 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -99,6 +108,12 @@
         "name": "orchestration-summary.json",
         "kind": "config",
         "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/lineages/glm/iterations/iteration-001.md",
         "source": "derived"
       },
       {
@@ -184,23 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The diagram skill's rules live in prose with nothing holding them, and the chart skill solved",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-09-11T08:31:26.527Z",
+    "last_save_at": "2026-10-03T15:44:29.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +211,15 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "goal.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b6be0edb98b016c0821d8e9db67194b5fcadf5e1ac767d46f65a4f506ecf9114",
+    "source_fingerprint": "sha256:9b4d20a3f8a2fafc32130bb08639be3b850f7393beb82877933f74bc929f1b02",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "33374b8785bff5ae095b9da093e32d9083582831deebc042a555e3ed1e28a7cd",
-      "plan.md": "7f2c8d9507ca7fac6a53ea6cd1cbc59710b19a86cb5aca1a39bf377322a59d93",
+      "plan.md": "a1606059cf95e6fd3c6fccb82c9c290c71927e8089f8db2cf626e1b836f93c06",
       "tasks.md": "1011a9638881802da63e2981f06dad79063e51032c2247e848456ffb8a44d089",
       "implementation-summary.md": "35d268b70e25dab1bf8eb0890206ab9da00df8f7f75f5ab8045de9723b1a7227",
       "research/research.md": "5104677a624467db973ecfd67d6d0c5989fc4bcd18584e5ad28b62d039d0169e"

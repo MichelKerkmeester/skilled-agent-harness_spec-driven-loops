@@ -22,7 +22,7 @@ _memory:
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "001-research-strategy-summary-20260811"
-      parent_session_id: "001-research-strategy-20260811"
+      parent_session_id: null
     completion_pct: 100
     open_questions:
       - "Version-pinned runtime fixture fields and atomic replacement capabilities"

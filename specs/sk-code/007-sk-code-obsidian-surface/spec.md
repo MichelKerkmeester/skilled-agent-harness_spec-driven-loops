@@ -142,7 +142,7 @@ describes something real rather than something aspirational.
 | 8 | [`008-scanners-and-gates`](008-scanners-and-gates/) | The three scanners and the gates runner | Complete |
 | 9 | [`009-banners-and-folder-docs`](009-banners-and-folder-docs/) | Banners, sections, folder docs, stylesheet grammar | Complete |
 | 10 | [`010-kebab-rename`](010-kebab-rename/) | The manifest-driven source rename | Complete |
-| 11 | [`011-changelog-and-verification`](011-changelog-and-verification/) | Changelog, fleet audit, final gates | In Progress |
+| 11 | [`011-changelog-and-verification`](011-changelog-and-verification/) | Changelog, fleet audit, final gates | Complete |
 | 12 | [`012-doc-template-conformance`](012-doc-template-conformance/) | Every packet markdown audited against the sk-doc templates it claims to follow | Complete |
 | 13 | [`013-surface-reality-conformance`](013-surface-reality-conformance/) | Every claim the surface makes about the plugin tree proven true of the tree | Complete |
 

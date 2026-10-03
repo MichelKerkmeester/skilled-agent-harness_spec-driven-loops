@@ -24,7 +24,8 @@
     "sk-vision/001-sk-vision-fork-of-opencode-senses/020-cursor-mcp-decoupling",
     "sk-vision/001-sk-vision-fork-of-opencode-senses/021-mcp-server-process-lifecycle",
     "sk-vision/001-sk-vision-fork-of-opencode-senses/022-opencode-plugin-runtime-resolution",
-    "sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown"
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/024-mcp-retirement-and-hook-adapters"
   ],
   "manual": {
     "depends_on": [],

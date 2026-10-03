@@ -17,6 +17,10 @@
       "extension-integration-suite plan",
       "fakepi integration tests",
       "extension-integration-suite tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "extension-integration-suite implementation summary"
     ],
     "key_topics": [
@@ -28,10 +32,10 @@
       "plan",
       "fakepi",
       "tasks",
-      "implementation",
-      "summary",
-      "pure",
-      "helper"
+      "packet",
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -39,6 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       ".pi/settings.json"
     ],
@@ -59,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -180,26 +191,21 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Pure helper tests can pass while extension registration, lifecycle ordering, command ownership, or status calls are wired incorrectly",
     "created_at": "2026-08-16T09:08:02Z",
-    "last_save_at": "2026-08-30T15:39:09.671Z",
+    "last_save_at": "2026-10-03T16:54:26.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a29967db6d99683f8a6d0e6424f3d31aabf34e6b910b13a93b8a0fb9b1889cd3",
+    "source_fingerprint": "sha256:b3cc08b3e4cb6ba2ad959c86bde38441a5826b654e8759a05344e605f778eff9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6b8c0e62e4a32decc482f00d7a87b3519cbaf41ee2062628b9cc4c08cefd72db",

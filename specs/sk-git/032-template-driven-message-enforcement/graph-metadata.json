@@ -214,7 +214,7 @@
     ],
     "causal_summary": "The sk-git commit contract is written three times: as prose in `SKILL.md` and `assets/commit-message-template.md`, and as hardcoded regexes in `.skilled/scripts/git-hooks/commit-msg`",
     "created_at": "2026-10-01T17:03:25Z",
-    "last_save_at": "2026-10-02T17:38:31.990Z",
+    "last_save_at": "2026-10-03T15:12:13.704Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,11 +225,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:21fb99c080241236abaf781b5d9085dfb13d663d04f4db62b5f729067d56b323",
+    "source_fingerprint": "sha256:dc2c198c467b2c0ee51bf3c097985d7b6cd4783f7e987fdf9cd27462288e330f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "bf5796a37a373cb91115dbf825983ef60b97c2a82cd1457c53f3669cf91a5989",
-      "plan.md": "12863fcd40232389cddc3c61a2d34e28e7132585e4384e6ac73d908474932459",
+      "plan.md": "fe3fb5545f78ae80d5d38064642ce054651ef786ffad83df214a349be301e9da",
       "tasks.md": "b1def416119b91847f14e541b9dc3670a9cde3a4849a4f2a3cc4b13a7aa3f5ea",
       "decision-record.md": "30569418c2e34a16b3e7e0fef73d2e546c3eaad54c5d3d03eb01f3070872e228",
       "implementation-summary.md": "897476dab4f6f2179eb7d6bf064544cee465b1315972c88d4d2de171a628007d"

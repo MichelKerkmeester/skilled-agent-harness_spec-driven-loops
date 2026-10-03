@@ -2,10 +2,6 @@
 title: "Implementation Plan: Correct the deep-loop command contracts to state the real per-command CLI executor sets"
 description: "Read each deep command's own executor resolver, then rewrite that command's contract to match it, citing the enforcing constant; regenerate the derived contract artifacts and prove the drift gate green."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
   - "plan core"
 importance_tier: "normal"
 contextType: "general"

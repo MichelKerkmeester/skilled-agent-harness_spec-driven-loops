@@ -3,8 +3,6 @@ title: "Implementation Summary: Goal-Hook Playbooks and Live Cross-Runtime Valid
 description: "Playbook coverage plus live, canary-proven validation for the cross-runtime goal hook shipped in packet 003, across every goal-capable CLI runtime."
 trigger_phrases:
   - "goal hook validation summary"
-  - "name"
-  - "template"
   - "impl summary core"
 importance_tier: "normal"
 contextType: "implementation"

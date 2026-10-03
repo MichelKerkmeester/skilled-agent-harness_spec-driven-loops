@@ -2,9 +2,6 @@
 title: "Tasks: Orchestrator Inline Authority"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
   - "tasks core"
 importance_tier: "normal"
 contextType: "general"

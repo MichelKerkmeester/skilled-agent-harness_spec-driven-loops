@@ -2,10 +2,6 @@
 title: "Feature Specification: Phase 3: gate-b-realistic-corpus [template:level-3/spec.md]"
 description: "Eight of one hundred and eighty phrasings a person would actually type reach the right mode. The cause is not vocabulary, so no amount of keyword work moves this number."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
   - "spec core"
 importance_tier: "normal"
 contextType: "general"

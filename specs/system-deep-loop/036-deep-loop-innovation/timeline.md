@@ -2,10 +2,7 @@
 title: "036 Deep-Loop-Innovation — Phase Timeline"
 description: "Chronological identity ledger for the system-deep-loop 036-deep-loop-innovation packet: the frozen M0 baseline of original folder identities, the post-consolidation children and the program milestones between them."
 trigger_phrases:
-  - "timeline"
-  - "chronology"
   - "event history"
-  - "milestones"
 importance_tier: "normal"
 contextType: "general"
 ---

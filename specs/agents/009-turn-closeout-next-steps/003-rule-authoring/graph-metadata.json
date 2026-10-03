@@ -46,7 +46,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "repo-rules/handoff-and-questions.md",
+      ".skilled/repo-rules/communication-handoff.md",
       ".pi/PLUGINS.md"
     ],
     "entities": [
@@ -81,9 +81,9 @@
         "source": "derived"
       },
       {
-        "name": "handoff-and-questions.md",
+        "name": "communication-handoff.md",
         "kind": "doc",
-        "path": "repo-rules/handoff-and-questions.md",
+        "path": ".skilled/repo-rules/communication-handoff.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-11T10:54:56Z",
-    "last_save_at": "2026-09-11T17:37:43.134Z",
+    "last_save_at": "2026-10-03T15:43:29.902Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f6b34c5ae7c951f9f5d9076858fa65df75dc19481a5025961b0dc06a0629d2a",
+    "source_fingerprint": "sha256:de1b031facc25de851e018ca3fb44bae19629b265c15b25f3671e08b0fa58b91",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4355b394eec57134cea7f47e47d647ada2b345947df68ac0156eee0b4dd80106",
       "plan.md": "917c373a680e7f1cc8c6efa776e8a595cbb74d0804e4ca3028853f54da6fcb1a",
       "tasks.md": "ea129ab0ab88e139fd66ba3e0a2c520dd433f49eb8f2844071cff602b875cdda",
-      "implementation-summary.md": "3c851bfa1d0b365043d00eb45c21d3b8d6f1d420256453ca8c70c2b20c9c09bc"
+      "implementation-summary.md": "6478f64bd8869900554aaa10c3988c77a2866539434454e06a8d23897ca444fa"
     },
     "last_active_at": null
   }

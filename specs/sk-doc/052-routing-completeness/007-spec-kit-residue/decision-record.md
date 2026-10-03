@@ -2,8 +2,6 @@
 title: "Decision Record: spec-kit test-surface contract questions"
 description: "Eight places where a test and the code it exercises assert opposite contracts, each written up with the evidence for both sides and a recommendation."
 trigger_phrases:
-  - "decision"
-  - "record"
   - "contract question"
   - "test versus code"
   - "decision record"

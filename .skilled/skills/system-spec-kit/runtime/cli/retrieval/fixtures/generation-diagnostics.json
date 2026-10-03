@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 57,
-    "missing-frontmatter": 6668,
-    "ok": 13007,
-    "valid-empty-list": 3519
+    "missing-frontmatter": 6661,
+    "ok": 13053,
+    "valid-empty-list": 3515
   },
-  "documentsScanned": 23251,
+  "documentsScanned": 23286,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,27 +27,27 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "cb6f6909f8a3aff7661c1272a2e35605036da7385bb2f5ddf548995f43082018",
+  "manifestHash": "833fa8ea87ab8eaba9f097871f08630bb583d4159bc59363eff4fe20fe637aab",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
-      "editor-fallback": 3,
-      "folder-token-fallback": 69,
-      "generic-workflow-word": 95,
-      "numeric-only": 52,
-      "prose-sentence": 16,
-      "single-token": 490,
-      "stop-word-only": 10
+      "editor-fallback": 2,
+      "folder-token-fallback": 51,
+      "generic-workflow-word": 78,
+      "numeric-only": 40,
+      "prose-sentence": 10,
+      "single-token": 373,
+      "stop-word-only": 9
     },
     "phrases": {
       "editor-fallback": 2,
-      "folder-token-fallback": 43,
+      "folder-token-fallback": 32,
       "generic-workflow-word": 3,
-      "numeric-only": 33,
-      "ok": 33282,
-      "prose-sentence": 25,
-      "single-token": 194,
-      "stop-word-only": 2
+      "numeric-only": 28,
+      "ok": 33363,
+      "prose-sentence": 19,
+      "single-token": 166,
+      "stop-word-only": 1
     }
   },
   "rows": [
@@ -35941,13 +35941,6 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 3,
-      "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/goal.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 4,
       "path": "specs/hooks/011-pi-fast-mode-w-subagent-support/research/deep-research-dashboard.md",
       "rawKey": "trigger_phrases",
@@ -36799,48 +36792,6 @@
       "path": "specs/sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair/frozen-directory-manifest.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-code/007-sk-code-obsidian-surface/001-surface-design-plan/implementation-summary.md",
-      "reason": "file is empty"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-code/007-sk-code-obsidian-surface/002-repo-convention-audit/implementation-summary.md",
-      "reason": "file is empty"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-code/007-sk-code-obsidian-surface/004-skill-core/implementation-summary.md",
-      "reason": "file is empty"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-code/007-sk-code-obsidian-surface/005-references-stack/implementation-summary.md",
-      "reason": "file is empty"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-code/007-sk-code-obsidian-surface/006-assets-checklists/implementation-summary.md",
-      "reason": "file is empty"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-code/007-sk-code-obsidian-surface/007-manual-testing-playbook/implementation-summary.md",
-      "reason": "file is empty"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/sk-code/007-sk-code-obsidian-surface/008-scanners-and-gates/implementation-summary.md",
-      "reason": "file is empty"
     },
     {
       "category": "valid-empty-list",
@@ -40354,22 +40305,8 @@
     },
     {
       "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution/decision-record.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/011-delete-overengineering/research/research.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 20,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/013-runtime-agent-gateway-alignment/decision-record.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -40391,13 +40328,6 @@
       "category": "valid-empty-list",
       "line": 3,
       "path": "specs/system-deep-loop/036-deep-loop-innovation/016-system-deep-loop-review/review/review-report.md",
-      "rawKey": "trigger_phrases",
-      "reason": "declared empty trigger list"
-    },
-    {
-      "category": "valid-empty-list",
-      "line": 13,
-      "path": "specs/system-deep-loop/036-deep-loop-innovation/017-runtime-latent-issue-remediation/decision-record.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
@@ -67163,6 +67093,10 @@
     },
     {
       "path": "specs/sk-design/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/019-skill-routing-refactor/scratch",
       "reason": "excluded directory"
     },
     {

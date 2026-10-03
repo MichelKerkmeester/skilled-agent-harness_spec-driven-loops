@@ -19,10 +19,10 @@
       "implementation plan",
       "wrapper framework plan",
       "headless stream print capture plan",
-      "tasks",
-      "implementation",
       "wrapper framework tasks",
-      "architecture decision"
+      "architecture decision",
+      "parameterized wrapper entrypoint and incremental capture",
+      "wrapper framework decisions"
     ],
     "key_topics": [
       "cli-output-wrapper-framework",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The wrapper-based runtimes have no native output-transform hook, so the Phase 019 plugin cannot be reused; each of Claude Code, Codex, Devin, Cursor, and Pi currently has no projection path at all",
     "created_at": "2026-08-14T05:39:00.776Z",
-    "last_save_at": "2026-08-30T15:39:11.821Z",
+    "last_save_at": "2026-10-03T15:12:03.052Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16c4cf32cbf797d68cca41a29782a31c340b22ea4b4257f73b29a033b5445364",
+    "source_fingerprint": "sha256:f80c1e70fbabffe60bbbdb27aeedae661a8d57e406a6fba657884ef82963cf49",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5165caa8f2f3319541a5e966fc07367a8e680de6f5d9397a608bdac38d313c8b",
       "plan.md": "bbcbb757cd6571beba85f528a431b95072289a1d78cf0b622d40545819d3b459",
-      "tasks.md": "bfd4fc08567ef37f2a8b8dd72637f292aa9d26468963558b084b24560c6bd5ee",
+      "tasks.md": "cec6cf2a66f3b4a99f5eaa3f4cf51ca25dd816142a115753d8c5c2720d453db8",
       "decision-record.md": "af952c4e52a4f9d7e06694929ead1d5bbd259f56eb06cdbac37718de61e7e5aa",
       "implementation-summary.md": "2a301f16119a5e04d545ab831d7ced12870e631434f36e9c2d407f33e0b07947"
     },

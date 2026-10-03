@@ -12,7 +12,6 @@
   "derived": {
     "trigger_phrases": [
       "cli-hermes executor kind",
-      "buildHermesLineageCommand",
       "hermes fan-out lineage",
       "hermes supported models",
       "implementation plan",
@@ -22,13 +21,13 @@
       "task breakdown",
       "implementation tasks",
       "verification checklist",
-      "task dependencies"
+      "task dependencies",
+      "acceptance criteria"
     ],
     "key_topics": [
       "cli-hermes",
       "executor",
       "kind",
-      "buildhermeslineagecommand",
       "hermes",
       "fan-out",
       "lineage",
@@ -36,7 +35,8 @@
       "models",
       "implementation",
       "plan",
-      "technical"
+      "technical",
+      "approach"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "`/deep:research` and `/deep:review` could dispatch to six CLI kinds but not to Hermes, and nothing in the runtime knew Hermes's dispatch shape, its self-invocation markers or its roster",
     "created_at": "2026-09-14T17:24:45Z",
-    "last_save_at": "2026-09-14T21:16:50.836Z",
+    "last_save_at": "2026-10-03T15:43:38.362Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac72ef4a2a97ed56bb931dae4cb7ed5db6bfbd5ddfbf1c8494f31a8998fd2825",
+    "source_fingerprint": "sha256:b5269b5a1f527cb9c21031d21d5c5a138e14beb0ced57901fd5deaaecf9e90e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7f0df9a6ae9ccc5d76f7d8ef9e39f6a92f4d88da4cba9fec1f3023cb7a10cb0f",
-      "plan.md": "be3878bd7b1ec14fded2435d5735901be1f94dfaf009a6c57dbc8998de080699",
+      "spec.md": "49862b7fc9a48124a1cb9c4890145d39dd501045489eae44ae69a1ea16d1f3c7",
+      "plan.md": "e2c29f36ae79f535d6718af3fbd1b20fa2d9b3d13c6c9a8b550a58f33d429dd9",
       "tasks.md": "9dd5e09dbd8747691fa4cec0cd750c3a8fff6c67900aee0e88dd7363126e5d3c",
-      "implementation-summary.md": "e8aa0f01b6eada93c1a87165e9f59ccc4f41b3a5f8f4ab4b3ea431fe0a2e55ef"
+      "implementation-summary.md": "31820755188a6bdf26478c208f689efccecb280b768cf699d5ab626446e2d2bd"
     },
     "last_active_at": null
   }

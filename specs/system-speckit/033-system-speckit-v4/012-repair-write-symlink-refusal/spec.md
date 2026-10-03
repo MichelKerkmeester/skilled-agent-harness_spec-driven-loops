@@ -14,7 +14,7 @@ contextType: "implementation"
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Refuse symlink traversal in the graph-metadata repair write path
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 ---
 
 <!-- ANCHOR:metadata -->
@@ -22,7 +22,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | 2 |
 | **Priority** | [P0/P1/P2] |
 | **Status** | Complete |
 | **Created** | 2026-08-30 |

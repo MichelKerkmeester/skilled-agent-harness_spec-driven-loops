@@ -98,7 +98,7 @@ Define the smallest complete follow-on that updates every affected oracle, repai
 
 - Implementing any remediation or running the affected suites in this design-authoring packet.
 - Writing or changing `~/.codex/config.toml`, `~/.codex/*.config.toml`, `~/.codex/hooks.json`, Cursor approval state, or any other operator machine-local configuration.
-- Changing the normative D1-D5 scoring formulas or duplicating the [scoring contract](../../../../.opencode/skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md); the follow-on links to that authority.
+- Changing the normative D1-D5 scoring formulas or duplicating the skill-benchmark scoring contract (`scoring-contract.md`, removed when the skill-benchmark lane was retired); the follow-on links to that authority.
 - Rewriting unrelated manual scenarios, historical benchmark records, or the 011 wrapper/results schema.
 - Treating a missing TTY, missing optional host, trust prompt, or unavailable upstream event as a repository defect.
 
@@ -249,5 +249,5 @@ No design question blocks the follow-on. The implementation pass must confirm th
 | `checklist.md` | Evidence-bearing acceptance checks for design, fixes, operator state, and zero-FAIL rerun |
 | [`implementation-summary.md`](./implementation-summary.md) | Design-authored state; remediation remains pending |
 | [`011-playbook-results-automation`](../011-playbook-results-automation/spec.md) | Predecessor wrapper/results contract |
-| [`scoring-contract.md`](../../../../.opencode/skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) | Normative scoring authority used by the rerun |
+| `scoring-contract.md` (removed when the skill-benchmark lane was retired) | Normative scoring authority used by the rerun |
 <!-- /RELATED DOCUMENTS -->

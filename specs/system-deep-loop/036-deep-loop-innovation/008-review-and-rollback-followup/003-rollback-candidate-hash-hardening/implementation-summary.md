@@ -4,7 +4,7 @@ description: "Rollback-candidate.cjs now requires the current target to equal th
 trigger_phrases:
   - "rollback candidate hash hardening implementation summary"
   - "promoted-candidate-only rollback shipped"
-  - "c4fc339e83"
+  - "promoted-candidate-only guard"
 importance_tier: "high"
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/003-rollback-candidate-hash-hardening"

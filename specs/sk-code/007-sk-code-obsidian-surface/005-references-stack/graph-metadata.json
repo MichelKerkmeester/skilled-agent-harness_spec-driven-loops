@@ -18,7 +18,11 @@
       "obsidian surface reference drafting order",
       "obsidian surface subfolder authoring",
       "sk-code-obsidian references tasks",
-      "obsidian surface reference task breakdown"
+      "obsidian surface reference task breakdown",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
     ],
     "key_topics": [
       "sk-code-obsidian",
@@ -40,6 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -59,6 +64,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -174,26 +185,33 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`sk-code-obsidian/SKILL.md` (phase `004-skill-core`) names twelve references in its §2 REFERENCE",
     "created_at": "2026-08-28T18:17:38Z",
-    "last_save_at": "2026-09-03T22:52:21.822Z",
+    "last_save_at": "2026-10-03T16:45:29.414Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e16758bd243dbcad64d12fe182703be1125a1751d20345744246b694b3da115",
+    "source_fingerprint": "sha256:6badad5988edca910d3d221ff1d96dd611e607ef9fbe65eeee2a4bf62a63ad5c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8268e421b0f0b6306e810ddfada29c95ecd0c5fe9a165b45a56fea8cec614c0c",
       "plan.md": "84302479eff3a285655071bacafd4d1bb5d1715e4dbf293bbd75e12023abf188",
       "tasks.md": "aeed36c96a21c8659baa3f4b3b9aa51cb9e5787bba078c083d3c89c61f978bed",
-      "implementation-summary.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "implementation-summary.md": "51d6301259f091442648808fa86b88ddd95367e9a8d56914d5ac54ef53f8ab69"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -3,7 +3,6 @@ title: "Tasks: Phase 030 Local Provider Loader"
 description: "Planned task breakdown for the shared local-provider loader, the two entry-point wirings, the focused tests, and the package-gate and packet closeout."
 trigger_phrases:
   - "local-provider-loader"
-  - "tasks"
   - "localProvider loader tasks"
   - "local LLM easy config build"
 importance_tier: "important"

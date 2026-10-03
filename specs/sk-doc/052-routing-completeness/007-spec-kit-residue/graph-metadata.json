@@ -15,14 +15,14 @@
       "contract questions",
       "049 supersession",
       "coverage graph repoint",
-      "implementation",
-      "plan",
-      "name",
-      "template",
       "plan core",
-      "tasks",
       "adr disposition",
-      "acceptance criteria"
+      "acceptance criteria",
+      "closure gate",
+      "ac traceability",
+      "waiver adr",
+      "packet goal",
+      "durable directive"
     ],
     "key_topics": [
       "spec",
@@ -34,9 +34,9 @@
       "coverage",
       "graph",
       "repoint",
-      "implementation",
       "plan",
-      "name"
+      "core",
+      "adr"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The suite does not complete",
     "created_at": "2026-09-02T16:34:09Z",
-    "last_save_at": "2026-09-11T16:42:14.414Z",
+    "last_save_at": "2026-10-03T15:12:11.956Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5adf9c4b9839dbc46bf83a78c9b10f1b05760e05864b5e141aab8d134b4b6ae2",
+    "source_fingerprint": "sha256:dad7a7f8f8bd6bd510d484ddeda4c0c64d04dc13a58f21f7a894a26889c35104",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b6734f01c178774f03857b3ed9bb64339b8f2a408f4b9e9f20ba54dcc1faa346",
-      "plan.md": "017cabcfcce310bc1e0e12be8caa0b239171e0ec38141cb3421b8cae68efed47",
-      "tasks.md": "7d3f7e25c3eaf584f965726906d1138abac67d31392a1b00e7bb420e54cd5dc7",
-      "decision-record.md": "0ac17dc5b3d45b09057408bfa6cdc11e154bedbcd516156010849c6b66b02b54",
+      "plan.md": "804d00fdf338df814002cef82732aada51554a342a7a363f13d5ea9c10f3c05f",
+      "tasks.md": "e279f299835597a84da2181545356b7d5256ff2eca8e1d6ac5592cfc4e4e7ffb",
+      "decision-record.md": "dc348705fa36f7b1a91997784b2f9ed4e51881e75d9da78777afde405d38e1ba",
       "implementation-summary.md": "30c36de8899046f8be425774fa7d3ca852204d9a7ba701a1ad69658ada00941f"
     },
     "last_active_child_id": null,

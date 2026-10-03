@@ -3,8 +3,6 @@ title: "Tasks: Phase 019 OpenCode Native Plugin"
 description: "Completed task breakdown: plugin authoring, gate wiring, message-id snapshots, and byte-exact restore verification, with the live render confirmation recorded as a manual validation step."
 trigger_phrases:
   - "opencode-native-plugin"
-  - "tasks"
-  - "implementation"
   - "mk-communication-projection plugin tasks"
 importance_tier: "important"
 contextType: "implementation"

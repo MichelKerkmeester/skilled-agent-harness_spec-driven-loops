@@ -11,32 +11,25 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "worktree",
-      "branch",
-      "naming",
-      "grammar",
-      "implementation",
-      "plan",
-      "tasks",
-      "allocator",
-      "decision",
-      "record"
+      "worktree branch naming overhaul spec",
+      "worktree branch naming overhaul plan",
+      "worktree branch naming overhaul tasks",
+      "worktree branch naming overhaul decision record",
+      "worktree branch naming overhaul implementation summary"
     ],
     "key_topics": [
-      "feature",
-      "specification",
       "worktree",
       "branch",
       "naming",
-      "grammar",
-      "implementation",
+      "overhaul",
+      "spec",
       "plan",
       "tasks",
-      "allocator",
       "decision",
-      "record"
+      "record",
+      "implementation",
+      "summary",
+      "owner-first"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -202,7 +195,7 @@
     ],
     "causal_summary": "The owner-first grammar scatters the Git-UI branch tree into a per-skill pile and couples every branch to a single clone-wide 4-digit counter that cannot be scoped per namespace",
     "created_at": "2026-08-16T06:45:24.918Z",
-    "last_save_at": "2026-09-07T16:17:07.032Z",
+    "last_save_at": "2026-10-03T15:12:11.472Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d92b6ef70f702885e7fb4169b704fa680f668451f1a8752b4ca3ad9175ccf139",
+    "source_fingerprint": "sha256:6d335d22dcaf26bcbddb4b120a26d7721a5db57bc7252f425d8490cc371b3720",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "44474651411ac8ba5c0e74b1832f1c4701b9671ed08b4c61c2eca499f88d9b7d",
-      "plan.md": "1f662986de6fcfcce187edfdbf9877856eff2dfa40b2f964d6ced76bece6a8da",
-      "tasks.md": "18dacf5bbb8c7a41f8cedf27f003928257ac8df3258854a80d0e00e7f3be8f7c",
-      "decision-record.md": "6955d436101a39a658070b2aff50bbe7aecc12e88344c4285dced6cf650d077f",
-      "implementation-summary.md": "114a1d556cc3dc496ea215509f794a04dc3a2b66f9d4e051779f4cee71ce48e9"
+      "spec.md": "b63adf4d4250e5630f9f7d21ee9db827f74a4e3c940dcd6def928498d73ca7af",
+      "plan.md": "9da4c04fea421a53dabe2a49fcaff1835f4ccaad7eb8803bc167a78538daf3ba",
+      "tasks.md": "4211ad4ad4817ed750bda0cbb057c761577808ecc9bfdf6a599babd34d551244",
+      "decision-record.md": "4548afba16c104253ff8ea0b211972fed29c9748660571c284724a6dad64f97b",
+      "implementation-summary.md": "e7942c3dbfdeb8ea33c5863990bd95f41d2a4da92d35db0858c2b06d757624d0"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,22 +1,19 @@
-<!-- IF level:3 -->
 ---
-title: "Decision Record: [NAME]"
-description: "Decision record template for documenting architectural choices, alternatives, consequences, and implementation notes."
+title: "Decision Record: Boundaries, Containment and Naming"
+description: "Architecture decisions for this phase, carried over from the ADR section of plan.md."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "name"
-  - "template"
   - "decision record"
+  - "boundaries containment and naming decisions"
+  - "five checks evaluation"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level-3"
-    last_updated_at: "2026-04-11T00:00:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming"
+    last_updated_at: "2026-09-07T18:33:41+02:00"
+    last_updated_by: "spec-validation-backfill"
+    recent_action: "Recorded the plan.md ADRs as decision entries"
+    next_safe_action: "Update entries when an ADR status changes"
     blockers: []
     key_files: []
     session_dedup:
@@ -27,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Decision Record: [NAME]
+# Decision Record: Boundaries, Containment and Naming
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
@@ -35,32 +32,27 @@ _memory:
 
 ---
 
+The decisions below are carried over verbatim from the ADR section of `plan.md`; their status there is the status here.
+
+---
+
 <!-- ANCHOR:adr-001 -->
-## ADR-001: [Decision Title]
+## ADR-001: Consume the shared containment helper; never author a second one
 
 ### Metadata
 
 | Field | Value |
 |-------|-------|
-| **Status** | [Proposed/Accepted/Deprecated/Superseded] |
-| **Date** | [YYYY-MM-DD] |
-| **Deciders** | [Names] |
+| **Status** | Proposed — **[OPERATOR-DECISION: Q3 — containment helper ownership]** |
+| **Date** | 2026-08-29 (first recorded in `plan.md`) |
+| **Deciders** | Not recorded |
 
 ---
 
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-<!-- Voice guide: State the problem directly. "We needed to choose between X and Y because Z"
-     not "A decision was required regarding the selection of an appropriate approach." -->
-
-[What problem or situation required this decision? What was at stake?
-Write in direct, active voice.]
-
-### Constraints
-
-- [Technical constraint with specifics]
-- [Business constraint with specifics]
+Five sites here and four in the security register share one defect class: lexical path comparison where the standard mandates canonical resolution. The security register has the higher-severity instances and is the security-owning program.
 <!-- /ANCHOR:adr-001-context -->
 
 ---
@@ -68,9 +60,7 @@ Write in direct, active voice.]
 <!-- ANCHOR:adr-001-decision -->
 ### Decision
 
-**We chose**: [One-sentence description of the decision, in active voice]
-
-**How it works**: [Implementation approach in 2-3 direct sentences]
+Import the shared helper at all five sites. If it is not available in time, author it in a shared location explicitly designed for the other program to adopt — never a private copy.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---
@@ -78,12 +68,8 @@ Write in direct, active voice.]
 <!-- ANCHOR:adr-001-alternatives -->
 ### Alternatives Considered
 
-| Option | Pros | Cons | Score |
-|--------|------|------|-------|
-| **[Chosen]** | [Advantages] | [Disadvantages] | [X/10] |
-| [Alternative A] | [Advantages] | [Disadvantages] | [Y/10] |
-
-**Why this one**: [Rationale in 1-2 sentences, direct and specific]
+- *Five local fixes*: five implementations of a security primitive, guaranteeing divergence.
+- *Wait indefinitely*: leaves five confirmed containment defects open on an unbounded timeline.
 <!-- /ANCHOR:adr-001-alternatives -->
 
 ---
@@ -91,199 +77,102 @@ Write in direct, active voice.]
 <!-- ANCHOR:adr-001-consequences -->
 ### Consequences
 
-**What improves**:
-- [Specific benefit with measurable impact where possible]
-- [Specific benefit]
-
-**What it costs**:
-- [Specific drawback] . Mitigation: [How to handle it]
-
-**Risks**:
-
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| [Risk with specifics] | [H/M/L] | [Concrete strategy] |
+- One implementation of a security-critical primitive, with one place to fix a future bug in it.
+- A hard dependency edge on another program's schedule, mitigated by the shared-location fallback.
 <!-- /ANCHOR:adr-001-consequences -->
-
----
-
-<!-- ANCHOR:adr-001-five-checks -->
-### Five Checks Evaluation
-
-| # | Check | Result | Evidence |
-|---|-------|--------|----------|
-| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an actual need now?] |
-| 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
-| 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
-| 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
-| 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
-
-**Checks Summary**: [X/5 PASS]
-<!-- /ANCHOR:adr-001-five-checks -->
-
----
-
-<!-- ANCHOR:adr-001-impl -->
-### Implementation
-
-**What changes**:
-- [System/Component with specific change]
-- [System/Component with specific change]
-
-**How to roll back**: [Concrete revert steps, not "revert if needed"]
-<!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
 
 ---
 
-<!--
-Level 3 Decision Record (Addendum): One ADR per major decision.
-Write in human voice: active, direct, specific. No em dashes, no hedging.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-<!-- /IF -->
-
-<!-- IF level:3+ -->
----
-title: "Decision Record: [NAME]"
-description: "not \"A decision was required regarding the selection of an appropriate approach.\" -->"
-trigger_phrases:
-  - "decision"
-  - "record"
-  - "name"
-  - "template"
-  - "decision record"
-importance_tier: "normal"
-contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "system-spec-kit/templates/level-3+"
-    last_updated_at: "2026-04-11T00:00:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 plus template"
-    next_safe_action: "Replace continuity placeholders"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "template-session"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
----
-# Decision Record: [NAME]
-
-<!-- SPECKIT_LEVEL: 3 -->
-<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
-
----
-
-<!-- ANCHOR:adr-001 -->
-## ADR-001: [Decision Title]
+<!-- ANCHOR:adr-002 -->
+## ADR-002: Extract in smallest-safe increments, and accept an intermediate state
 
 ### Metadata
 
 | Field | Value |
 |-------|-------|
-| **Status** | [Proposed/Accepted/Deprecated/Superseded] |
-| **Date** | [YYYY-MM-DD] |
-| **Deciders** | [Names] |
+| **Status** | Proposed |
+| **Date** | 2026-08-29 (first recorded in `plan.md`) |
+| **Deciders** | Not recorded |
 
 ---
 
-<!-- ANCHOR:adr-001-context -->
+<!-- ANCHOR:adr-002-context -->
 ### Context
 
-<!-- Voice guide: State the problem directly. "We needed to choose between X and Y because Z"
-     not "A decision was required regarding the selection of an appropriate approach." -->
-
-[What problem or situation required this decision? What was at stake?
-Write in direct, active voice.]
-
-### Constraints
-
-- [Technical constraint with specifics]
-- [Business constraint with specifics]
-<!-- /ANCHOR:adr-001-context -->
+The MCP entrypoint is 2,288 lines against a 400-line guideline. It is the startup path for a runtime-facing server, so an ordering change is a live outage.
+<!-- /ANCHOR:adr-002-context -->
 
 ---
 
-<!-- ANCHOR:adr-001-decision -->
+<!-- ANCHOR:adr-002-decision -->
 ### Decision
 
-**We chose**: [One-sentence description of the decision, in active voice]
-
-**How it works**: [Implementation approach in 2-3 direct sentences]
-<!-- /ANCHOR:adr-001-decision -->
+Extract cohesive lifecycle domains behind contracts that already exist, one extraction per commit, each verified by a startup-order smoke and MCP runtime verification against a rebuilt `dist`. Stop when the next extraction is no longer safe, and record the resulting line count honestly rather than forcing it to a number.
+<!-- /ANCHOR:adr-002-decision -->
 
 ---
 
-<!-- ANCHOR:adr-001-alternatives -->
+<!-- ANCHOR:adr-002-alternatives -->
 ### Alternatives Considered
 
-| Option | Pros | Cons | Score |
-|--------|------|------|-------|
-| **[Chosen]** | [Advantages] | [Disadvantages] | [X/10] |
-| [Alternative A] | [Advantages] | [Disadvantages] | [Y/10] |
-
-**Why this one**: [Rationale in 1-2 sentences, direct and specific]
-<!-- /ANCHOR:adr-001-alternatives -->
+- *One restructuring commit*: unrevertible at useful granularity on a live startup path.
+- *Leave it entirely*: the finding is confirmed and the guideline is explicit about extracting modules.
+<!-- /ANCHOR:adr-002-alternatives -->
 
 ---
 
-<!-- ANCHOR:adr-001-consequences -->
+<!-- ANCHOR:adr-002-consequences -->
 ### Consequences
 
-**What improves**:
-- [Specific benefit with measurable impact where possible]
-- [Specific benefit]
-
-**What it costs**:
-- [Specific drawback] . Mitigation: [How to handle it]
-
-**Risks**:
-
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| [Risk with specifics] | [H/M/L] | [Concrete strategy] |
-<!-- /ANCHOR:adr-001-consequences -->
+- Every extraction is independently revertible and independently verified.
+- The file will likely still exceed the guideline when this child completes; that intermediate state is recorded as accepted rather than quietly claimed as closed.
+<!-- /ANCHOR:adr-002-consequences -->
+<!-- /ANCHOR:adr-002 -->
 
 ---
 
-<!-- ANCHOR:adr-001-five-checks -->
-### Five Checks Evaluation
+<!-- ANCHOR:adr-003 -->
+## ADR-003: Rebuild before every runtime verification
 
-| # | Check | Result | Evidence |
-|---|-------|--------|----------|
-| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an actual need now?] |
-| 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
-| 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
-| 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
-| 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
+### Metadata
 
-**Checks Summary**: [X/5 PASS]
-<!-- /ANCHOR:adr-001-five-checks -->
+| Field | Value |
+|-------|-------|
+| **Status** | Proposed |
+| **Date** | 2026-08-29 (first recorded in `plan.md`) |
+| **Deciders** | Not recorded |
 
 ---
 
-<!-- ANCHOR:adr-001-impl -->
-### Implementation
+<!-- ANCHOR:adr-003-context -->
+### Context
 
-**What changes**:
-- [System/Component with specific change]
-- [System/Component with specific change]
-
-**How to roll back**: [Concrete revert steps, not "revert if needed"]
-<!-- /ANCHOR:adr-001-impl -->
-<!-- /ANCHOR:adr-001 -->
+Runtime-facing MCP servers and hooks execute built `dist` output. A TypeScript source change that is not rebuilt is verified against the previous build.
+<!-- /ANCHOR:adr-003-context -->
 
 ---
 
-<!--
-Level 3 Decision Record (Addendum): One ADR per major decision.
-Write in human voice: active, direct, specific. No em dashes, no hedging.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-<!-- /IF -->
+<!-- ANCHOR:adr-003-decision -->
+### Decision
+
+Every TypeScript unit in this child rebuilds its owning package before any runtime verification, and the rollback procedure rebuilds too.
+<!-- /ANCHOR:adr-003-decision -->
+
+---
+
+<!-- ANCHOR:adr-003-alternatives -->
+### Alternatives Considered
+
+- *Verify against the existing `dist`*: tests the old code and produces a false green — the exact failure mode child 004 exists to eliminate elsewhere.
+<!-- /ANCHOR:adr-003-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-003-consequences -->
+### Consequences
+
+- Runtime verification means something.
+- Each unit costs a build, which is why units are grouped per package rather than per file.
+<!-- /ANCHOR:adr-003-consequences -->
+<!-- /ANCHOR:adr-003 -->

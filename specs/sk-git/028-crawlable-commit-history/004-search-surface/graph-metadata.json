@@ -198,7 +198,7 @@
     ],
     "causal_summary": "A reader who knows a packet or an ordinal has no documented way to get from it to a commit",
     "created_at": "2026-09-11T07:16:28Z",
-    "last_save_at": "2026-09-11T16:42:15.961Z",
+    "last_save_at": "2026-10-03T15:44:17.520Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ad524088b60c91919f618aeab3debfe72307822675a7e2202cbe84e03917438",
+    "source_fingerprint": "sha256:7d4e0ae133e4b23d232c896220a6a3e85abf4259d54e1b27ec34154b79e3b925",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b57f7761423e6f265ed55b26056192d719a7faa047d2cf063b42fd26e8ffc2da",
-      "plan.md": "fe9684fa828fa6fb79d618868552f23e69e0f31d4b453d026f6ddbe4efb0cea8",
+      "plan.md": "b8da72d322cb7060a3717c237b6152eda40e533c8d44bba60a66a103b16e0d0c",
       "tasks.md": "18d7c1b13c4e607e22a29a8dd797239bcc344be4f4131cc8f9136ac94b14d833",
-      "implementation-summary.md": "47b408ca9c0ca98948d70aac6974c761dee3052dfa9ae7799f07b96dc5d39487"
+      "implementation-summary.md": "98fdda068ff357d8267949271e84d64df4691273cce0a6823a5f38ca13ebc20a"
     },
     "last_active_at": null
   }

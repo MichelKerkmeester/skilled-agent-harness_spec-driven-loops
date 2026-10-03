@@ -2,10 +2,6 @@
 title: "Implementation Plan: Git Hook Gate Reduction"
 description: "Fix the broken gates first, then cut, then downgrade — verifying each CI backstop actually runs before removing its local twin."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
   - "plan core"
 importance_tier: "normal"
 contextType: "general"

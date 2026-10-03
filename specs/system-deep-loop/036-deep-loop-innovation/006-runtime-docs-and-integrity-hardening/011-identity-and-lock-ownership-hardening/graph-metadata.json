@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The authorization gateway skipped identity comparisons when authority bindings and resolver output were absent, allowing caller-supplied identity fields to pass unvalidated",
     "created_at": "2026-08-05T18:42:31.847Z",
-    "last_save_at": "2026-09-11T16:42:26.537Z",
+    "last_save_at": "2026-10-03T15:26:05.785Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,7 +211,7 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:746072057f69f83d0aff5d2b458a5b1ebf24b3c3644a068b4ecb0627a6354e83",
+    "source_fingerprint": "sha256:c7a85d8bb2e2ce441855f91daeb1ce83731ed05db99be75446339f4876438ab2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7b9f65ae22967dcb34edfd150af729cb842ade6ccae14099e7c86f3c9e5492d0",
@@ -219,7 +219,7 @@
       "tasks.md": "1c446a5f4ac6db3ba93c5c5b00113dbe6cdf2c8571370a8ad9e38b1fd0112fc1",
       "decision-record.md": "160dbb38a51eee58d404a611f031bb2c07507d8e469e28ee24346eb2dd258bee",
       "implementation-summary.md": "1d08d063783c14e1e7f435e0674e7bb2c83dbc4c7dba540f627939b771b47d4a",
-      "handover.md": "c3c900292a0f784507ffb6a2bb4d22de739b6447ff363a473e8c70afc1e7737d"
+      "handover.md": "df5a44298817d50f0cb6da038b397a99eceed97d2ad949627cd43b7a75e032f8"
     },
     "last_active_child_id": null,
     "last_active_at": null

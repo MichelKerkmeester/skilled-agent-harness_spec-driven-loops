@@ -16,6 +16,10 @@
       "strict fast-mode env",
       "handoff-contract plan",
       "handoff-contract tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "handoff-contract implementation summary"
     ],
     "key_topics": [
@@ -26,11 +30,11 @@
       "env",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
-      "child",
-      "processes",
-      "need"
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -38,6 +42,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -57,6 +62,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -174,30 +185,25 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Handoff Contract",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Child Pi processes need a stable representation of the parent's fast-mode preference",
     "created_at": "2026-08-16T09:08:02Z",
-    "last_save_at": "2026-08-30T15:39:09.645Z",
+    "last_save_at": "2026-10-03T16:54:26.289Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f1b3f801af8c3dc560943c8c03abedd71eb4a676db188111134f09e6d7f05aa",
+    "source_fingerprint": "sha256:9a68a3531ffc698c0b78c1fae026c6abed7283d82000515091cca52547d2ac63",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ec365985acfa43b1aa42808103d6948e7e813bb3797616b5914218f0e3f53ac1",

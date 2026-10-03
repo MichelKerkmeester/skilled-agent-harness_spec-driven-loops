@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Nothing in a commit today can be looked up the way `sk-git/028` can",
     "created_at": "2026-09-11T07:16:23Z",
-    "last_save_at": "2026-09-11T08:07:44.301Z",
+    "last_save_at": "2026-10-03T15:12:12.176Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,11 +211,11 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:020ebc2c534cfec6270682104b923f7ec722dbfbeebbf36bcb2c830bf647b11d",
+    "source_fingerprint": "sha256:6e7c521948d0aeef2ff555e542fd5a7554c929889d8eeedb273cbb2c90f5d3f4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "90caf4dcb1a49a20501f907e9c0b9ab64389c99c4a45d4e475fe9ccf39a2c729",
-      "plan.md": "cb5d51e36524b05e9e0fe6d5fed51278c807e9ee6f0195ef7de483442b021207",
+      "plan.md": "60abbc09fb0dbe49a141766004afdcba232bc2990bdf8e379b7c44c1e3e9b282",
       "tasks.md": "5a97dfc3cf0e61a519aa2ce6f801f62b4e6ab1cae1444f11b269f390f1b1e901",
       "implementation-summary.md": "16ec047905909bdfcedbfa1672eb4b3f94ab4f0a6d1933b221ae17ef34b7376f",
       "research/research.md": "6231fb735a0dc6dbac9e79a2d3bb35b2f8681bc13c4585085ce3a72e0e073db8"

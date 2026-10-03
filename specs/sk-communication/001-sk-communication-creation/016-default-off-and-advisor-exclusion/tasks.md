@@ -3,7 +3,6 @@ title: "Tasks: Phase 016 Default-Off and Advisor Exclusion"
 description: "Completed task breakdown for the default-off enablement gate, the adjustable advisor route-exclusion, the live routing probe, and packet closeout."
 trigger_phrases:
   - "default-off-and-advisor-exclusion"
-  - "tasks"
   - "enablement gate and advisor exclusion tasks"
 importance_tier: "important"
 contextType: "implementation"

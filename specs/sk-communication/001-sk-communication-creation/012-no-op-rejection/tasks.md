@@ -3,8 +3,6 @@ title: "Tasks: Phase 012 No-Op Rejection"
 description: "Planned task breakdown for no-improvement classification, threshold calibration, typed fallback, and regression verification."
 trigger_phrases:
   - "no-op-rejection"
-  - "tasks"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

@@ -11,14 +11,18 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/028-memory-search-intelligence"
-    last_updated_at: "2026-07-04T14:36:29Z"
-    recent_action: "Implemented all 13 phases of the 016 deep-dive program; shipped, pushed, recursive validate 14/0"
-    next_safe_action: "Run the daemon-side captures (live p50, envelope bytes, embedding reconcile) after a daemon restart"
+    packet_pointer: "system-speckit/028-memory-search-intelligence"
+    last_updated_at: "2026-09-20T07:02:30+02:00"
+    last_updated_by: "spec-validation-backfill"
+    recent_action: "Implemented all 13 phases of the 016 program"
+    next_safe_action: "Run daemon-side captures after a daemon restart"
     completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: timeline | v2.2 -->
 # 028 Chronological Timeline
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
 
 > **Sort key:** git commit order on `system-speckit/028-memory-search-intelligence`, oldest to newest.
 > This is the literal sequence the work landed in, not the candidate or phase numbering from the specs.
@@ -41,10 +45,14 @@ _memory:
 > track's `changelog-00N-root.md` rollup. The before-and-after narrative is in
 > [`before-vs-after.md`](./before-vs-after.md). The dependency order is in
 > `archive/implementation-schedule.md`.
+<!-- /ANCHOR:metadata -->
 
 ---
 
-## 0. The two epochs
+<!-- ANCHOR:timeline -->
+## 2. TIMELINE
+
+### 0. The two epochs
 
 ```
 Epoch one  --  the flat 030 Wave-0 spearhead
@@ -134,7 +142,7 @@ Epoch three  --  the deep review and its remediation (after the build program)
 
 ---
 
-## A. Epoch one: the flat 030 Wave-0 spearhead
+### A. Epoch one: the flat 030 Wave-0 spearhead
 
 The packet opened by shipping the ship-ready candidates the broadening pass confirmed were additive,
 reversible and safe without a schema migration or a measured baseline. Eleven of thirteen candidates
@@ -158,7 +166,7 @@ committed drifted spec-description metadata.
 
 ---
 
-## B. The re-plan into a phased 028
+### B. The re-plan into a phased 028
 
 `25a657074b` re-planned the rest of the roadmap. Instead of one more flat wave, the remaining
 candidates became phased children under 028, organized into five tracks: Spec-Kit Memory MCP, Code
@@ -170,68 +178,68 @@ low-dependency correctness work in parallel.
 
 ---
 
-## C. The implementation waves
+### C. The implementation waves
 
 The build then ran in dependency order, one phase group per commit, each following the same loop: read
 the seam, implement against it, add focused tests, run typecheck and the touched suite and reconcile the
 packet docs.
 
-### 1. `b3a07f8de5` first wave
+#### 1. `b3a07f8de5` first wave
 
 Four low-dependency phases landed together: the Memory recall-to-render trust escaper, the Code Graph
 generation watermark, the Skill Advisor runtime lane-health degrade and the Deep Loop continuity
 threading. This wave closed the highest-risk trust boundary and the hard advisor P0 in one pass.
 
-### 2. `6864cc6a1d` wave two
+#### 2. `6864cc6a1d` wave two
 
 The Code Graph doc-symbol lane and the Memory enrichment lag gauge. The doc lane became queryable
 heading and config-key nodes, and the enrichment health block gained an oldest-pending lag beside the
 shipped pending and failed gauges.
 
-### 3. `7cdfd9cb0c` residual correctness
+#### 3. `7cdfd9cb0c` residual correctness
 
 The two always-on Memory correctness residuals: routing the search-score average through the calibrated
 absolute-relevance scale and deriving the maintenance-marker TTL from the owner-lease constants.
 
-### 4. `a6a4ac628d` gate-zero
+#### 4. `a6a4ac628d` gate-zero
 
 The corpus-reindex embedding-coverage guard at the ablation pre-flight, fail-closed below full coverage
 of the unique golden parent IDs. This is the gate the whole recall-measurement chain depends on, so it
 landed before the harness that consumes it.
 
-### 5. `fb635fb2a4` eval-harness extension
+#### 5. `fb635fb2a4` eval-harness extension
 
 The single-pass diagnostic emit, the three-way label tagging and the three corpus metric lanes for
 gate-verdict confusion, calibration and cold-tier precision. The per-class promotion gate was left
 pending behind its benchmark.
 
-### 6. `ee3c41a80c` edge-staleness and fanout-failure-recovery
+#### 6. `ee3c41a80c` edge-staleness and fanout-failure-recovery
 
 Two phases across two subsystems: the Code Graph dependency-transitivity correctness fix with the
 additive SUPERSEDES rename-lineage edge, and the Deep Loop fanout failure recovery with its bounded
 failure class, transient and fatal classifier, durable retry budget and resume gate.
 
-### 7. `ba3b698dce` release-cleanup scaffold
+#### 7. `ba3b698dce` release-cleanup scaffold
 
 The fifth track landed as a phase-parent scaffold with nine documentation-surface child phases, all
 PENDING, defining cleanup scope only.
 
-### 8. `c49470a44a` advisor RRF spine
+#### 8. `c49470a44a` advisor RRF spine
 
 The Skill Advisor RRF determinism spine, default-off behind its flag, importing the Memory fuser rather
 than forking RRF.
 
-### 9. `d1a1a5ee41` four phases
+#### 9. `d1a1a5ee41` four phases
 
 The Memory retrieval-class routing, the Code Graph walk-order determinism, the Skill Advisor
 embedding-staleness signal and the Deep Loop stop-input corroboration.
 
-### 10. `9ba960d67d` four phases
+#### 10. `9ba960d67d` four phases
 
 The Memory red-team probe gate, the Code Graph parser resilience, the Skill Advisor
 provenance self-boost guard and the Deep Loop fanout determinism Wave-1 tail.
 
-### 11. `a4bcf4bf16` three default-off phases
+#### 11. `a4bcf4bf16` three default-off phases
 
 The last wave of the first build epoch: the Memory summary-fusion shadow lane, the Code Graph
 seeded-PPR ranking and the Skill Advisor conflict re-rank, query-class routing and exact semantic
@@ -244,7 +252,7 @@ rerank, all default-off.
 
 ---
 
-## D. Documentation and changelog generation
+### D. Documentation and changelog generation
 
 `c35cf8fc2d` documented the extended eval and benchmark harness and how it is reached from the command
 surface, recording the corpus metric lanes, the coverage gate and the calibration measurement path that
@@ -255,7 +263,7 @@ leaf changelog per shipped phase under each track's `changelog/` directory, a pe
 
 ---
 
-## D2. The schema cluster, the release-cleanup executions and the benchmark
+### D2. The schema cluster, the release-cleanup executions and the benchmark
 
 The program continued past the changelog generation. The schema-foundation phases landed as code
 behind default-off flags: the Memory bitemporal window and iterative agentic recall at `22ad4ab05b`,
@@ -277,32 +285,7 @@ Wave-0 packet 030.
 
 ---
 
-## E. What shipped versus what is gated
-
-The shipped set is recorded above and detailed in [`before-vs-after.md`](./before-vs-after.md). A gated
-phase is not an unshipped phase. The schema-foundation and shadow phases below shipped their code and
-migrations behind default-off flags, and what stays held is the live promotion or consumer, not the
-code. The Memory bitemporal window, derived-id provenance, semantic edge layer and the Code Graph
-code-edge bitemporal and edge-governance clusters all shipped their schema and default-off reads, held
-back from a live flip until a migration consumer and a benchmark justify it. Needs-benchmark holds the
-seeded-PPR tuning, the Q4-C1 magnitudes, the advisor RRF,
-query-class and exact-rerank live flips, the eval
-calibration A/B promotion and the remaining retention and forgetting promotions. The
-shared-infrastructure chain holds the work
-waiting on the Memory consolidation-cursor clock, the durable advisor calibration substrate and the
-shared Beta posterior. Two roadmap rows are deferred on evidence, the system-kind exclusion and the
-idempotency default-on flip, and three are recorded as held-unbuilt NO-GO or DEFER-speculative, the
-reliability-weighted convergence cluster, the lexical-vector seed union and the as-of-generation hard
-gate. None of the gated work shipped on a structural guess.
-
-This held set describes the state at the close of the build epoch. The keep-off flag reinvestigation in
-Section G later reopened it and resolved four of these holds with a live flip: derived-id provenance and
-confidence calibration on an unqualified win and retention forgetting and world-summary prelude on a
-no-harm guarantee. The rest stay held for the reasons recorded above.
-
----
-
-## F. The deep review and its remediation
+### F. The deep review and its remediation
 
 After the build program landed, the packet ran a four-round deep review with a scoped remediation
 track, the `003-review-remediation` phase parent and its four children for eval-benchmark fidelity,
@@ -338,7 +321,7 @@ nine of nine executed, and flagged the repo-root README rule count for a live re
 
 ---
 
-## G. The keep-off flag-resolution reckoning and the deep-review validation
+### G. The keep-off flag-resolution reckoning and the deep-review validation
 
 The build epoch closed with no default-off flag flipped, so the final arc reopened that verdict and ran
 it to a clean decision. Every 028 flag that benchmarked keep-off was first reinvestigated for a path to
@@ -389,7 +372,7 @@ kept flags and the ten deletions are the corrected closing state.
 
 ---
 
-## H. The TRACK B new-feature research-and-build arc
+### H. The TRACK B new-feature research-and-build arc
 
 The reckoning did not end the campaign, it opened the next one. The ten deletions taught the campaign why a
 lever fails to move live recall, and those teachings were read as a research input rather than a dead end.
@@ -427,7 +410,7 @@ content-attribution and runs a one-shot offline mining pass before any collectio
 
 ---
 
-## I. The TRACK C spec-kit data-quality research-and-scaffold arc
+### I. The TRACK C spec-kit data-quality research-and-scaffold arc
 
 The reckoning's successor is not another shipped wave but a researched one. TRACK B closed on the
 truncation law, the prod-versus-eval fidelity gap where eval-mode recall does not transfer to the prod
@@ -536,7 +519,7 @@ On 2026-06-29 the `mk_code_index` Code Graph MCP server failed to reconnect with
 
 On 2026-07-01 a gpt-5.5-fast (high) cli-opencode drift audit of the whole 028-memory-search-intelligence packet surfaced 75 findings across 63 files, 24 confirmed high or critical drift and bug issues independently re-verified against real files plus 51 unverified medium and low findings from a single sweep pass, and phase `008-drift-audit-remediation` drove every one to a fixed state. The real edits ran inside a git worktree isolated from the live repo, `028-deep-research-wt` cut from HEAD `3b0497f812`, MiMo v2.5 Pro Hyperspeed fixing and gpt-5.5-fast (high) independently re-verifying by reading the post-edit files fresh rather than trusting the fix report, and 42 unique directories were corrected this way with 36 resolved cleanly after one retry round. Six needed a direct manual finish because large multi-section docs repeated the same stale claim deeper in their acceptance-criteria, success-criteria or NFR sections that the automated pass missed the first time, and a verify-logic bug was caught along the way, the verify step had wrongly treated a fix agent's zero-files-changed report as automatically resolved even where confirmed findings still needed real edits, letting 11 directories silently slip through as false resolved until a cross-check against the original findings data caught them and gave them the same manual-fix treatment as the six genuinely-partial ones. Four of the findings were code-gap claims where docs claimed shipped code the audit could not find in the current tree, and 008 correctly verified all four as GENUINELY_ABSENT from the tree without yet having the fuller git history, the changes synced back to the live tree by rsync with a file-by-file diff confirming zero drift, 008 itself 100 percent documentation and metadata with zero application code touched. Phase `009-drift-audit-deep-history-correction` then went further at the operator's request and found the fuller truth behind those four GENUINELY_ABSENT verdicts, three Explore and two Plan deep-research agents with every commit hash and claim independently re-verified showing all four features had actually been built, shadow-shipped, benchmarked against real data and deliberately deleted for cause rather than simply never built. The summary and community fusion lane shipped as two shadow lanes then was rejected at Recall@20 -0.036 for being displacement-only, the seeded-PPR code-graph ranking is the one the operator chose to revisit in 010, the C4 shadow-weight promoter (`shadow-weight-promoter.ts`, 339 lines, committed `7cd16f70fa` alongside `beta-reliability.ts`) was deleted at `6b99eb68d2`, the same commit that removed its only consumer below, and sits blocked separately on an unresolved daemon-reload-semantics question independent of that deletion, and the outcome-weighted ranking store-and-rerank pair (`skill-outcome-store.ts` at 364 lines and `outcome-weighted-rerank.ts` at 124 lines, built `3682ec59da`, wired live-adjacent at `f3a1231c66`, deleted at that same `6b99eb68d2`) measured, in its own delete-commit, an MRR delta of +0.005 to +0.008 against a noise band with a standard deviation of 0.0237, four times larger, and a right-skill@3 of 0.000 across all 90 runs, structurally inert despite being fully wired and the strongest negative result of the four, with the operator explicitly deciding not to revive it. That correction also fixed two places where 008's own pass-1 notes had wrongly said the C4 and outcome-weighted code was never committed when git history shows both were committed then later deleted, and it caught two self-contradictions its own first automated correction pass had left behind, stale no-benchmark-exists and rollback-by-flag language in the seeded-PPR docs and stale never-delivered language in the outcome-weighted docs, both fixed by direct manual edit. Both phases are recorded in [`before-vs-after.md`](./before-vs-after.md) Section 14 and the [028 root changelog](./changelog/changelog-028-root.md). On 2026-07-04 both were re-nested under their data-quality subject parent and renumbered — `008` to `002-spec-data-quality/045-drift-audit-remediation` and `009` to `002-spec-data-quality/046-drift-audit-deep-history-correction`.
 
-On 2026-07-01 phase `system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit` acted on the one explicit revisit signal in the packet's own record, the original seeded-PPR benchmark had called its cut not a refute of PPR as an algorithm but a verdict on this substrate because every CALLS edge carried identical confidence, 0.8 INFERRED heuristic, giving PPR nothing to differentiate on and leaving it tied exactly with the flat walk at delta 0.0000 on every metric at every K. The phase built real per-edge confidence differentiation for CALLS edges behind a new default-off flag, `SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION`, reusing the resolved, ambiguous-skipped and unresolved classification that `cross-file-edge-resolver.ts` already computed for every cross-file CALLS edge but had been discarding after using it only to rewrite target_id, cross-file resolved edges now scoring 0.9 EXTRACTED, cross-file ambiguous 0.3 AMBIGUOUS, same-file single-candidate 0.75 INFERRED and same-file multi-candidate 0.35 AMBIGUOUS, with the flag off every edge still landing on the same constant 0.8 INFERRED as before, proven byte-identical by the existing code-graph vitest suite passing identically via a genuine stash-and-pop comparison. The deleted seeded-PPR module, `computeBoundedPersonalizedPageRank` and its supporting code introduced at `a4bcf4bf16` and deleted at `9af8cca8cb`, was recovered byte-for-byte from git history and rewired through the existing `contextEdgeReliability` blend to consume the new differentiated confidence, catching one real deviation along the way, the first recovery pass had swapped the module's dynamic import of the Memory MCP's compiled walker for a local reimplementation because the dist output was missing from the isolation worktree, a violation of this packet's own ADR-001 against standing up a second graph-walk engine, caught by diffing imports against the pre-deletion original via `git show` and fixed by building the missing dist output and restoring the real shared-substrate import. A fresh full-repo reindex with the flag on landed four distinct confidence values in the live database in place of the uniform 0.8, 892 edges at 0.3, 2267 at 0.35, 16198 at 0.75 and 2838 at 0.9, and the original unmodified `seeded-ppr-impact-benchmark.mjs` harness was re-run against the same 20 labeled queries and the same 0.5-to-0.95 damping sweep with both flags on. The verdict widened rather than reversed the cut, with a real confidence gradient PPR no longer tied the flat walk, it now lost on every metric, precision@3 -0.10, precision@5 -0.04 to -0.06, precision@8 -0.031 to -0.038, recall@3 through recall@8 -0.01 to -0.05, nDCG@3 -0.057, nDCG@5 -0.04 and nDCG@8 -0.03, with the best damping value in the sweep only tying flat nDCG@5 and every other value tested worse, so giving PPR a real gradient to differentiate on made it perform worse than the uniform-weight tie rather than better. Both the new confidence flag and the recovered PPR flag stay default-off with no production behavior changed, verified by a clean `tsc --noEmit` before and after the ADR-001 fix, the existing code-graph vitest suite regression-proven at the same pre-existing baseline with zero new failures via a real stash-and-pop, the recovered module's own 9 unit tests across 2 files passing, and a real fresh reindex plus a real benchmark run rather than a simulated one. This closes the open question the original benchmark record left open, both 009 and 010 pass `validate.sh --strict` at 0 errors and 0 warnings, and nothing above is committed yet, every change is an uncommitted diff in the live tree pending operator review, recorded in [`before-vs-after.md`](./before-vs-after.md) Section 14 and the [010 changelog](../../system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit/implementation-summary.md).
+On 2026-07-01 phase `system-code-graph/001-code-graph-core/010-edge-confidence-and-ppr-revisit` acted on the one explicit revisit signal in the packet's own record, the original seeded-PPR benchmark had called its cut not a refute of PPR as an algorithm but a verdict on this substrate because every CALLS edge carried identical confidence, 0.8 INFERRED heuristic, giving PPR nothing to differentiate on and leaving it tied exactly with the flat walk at delta 0.0000 on every metric at every K. The phase built real per-edge confidence differentiation for CALLS edges behind a new default-off flag, `SPECKIT_CODE_GRAPH_EDGE_CONFIDENCE_DIFFERENTIATION`, reusing the resolved, ambiguous-skipped and unresolved classification that `cross-file-edge-resolver.ts` already computed for every cross-file CALLS edge but had been discarding after using it only to rewrite target_id, cross-file resolved edges now scoring 0.9 EXTRACTED, cross-file ambiguous 0.3 AMBIGUOUS, same-file single-candidate 0.75 INFERRED and same-file multi-candidate 0.35 AMBIGUOUS, with the flag off every edge still landing on the same constant 0.8 INFERRED as before, proven byte-identical by the existing code-graph vitest suite passing identically via a genuine stash-and-pop comparison. The deleted seeded-PPR module, `computeBoundedPersonalizedPageRank` and its supporting code introduced at `a4bcf4bf16` and deleted at `9af8cca8cb`, was recovered byte-for-byte from git history and rewired through the existing `contextEdgeReliability` blend to consume the new differentiated confidence, catching one real deviation along the way, the first recovery pass had swapped the module's dynamic import of the Memory MCP's compiled walker for a local reimplementation because the dist output was missing from the isolation worktree, a violation of this packet's own ADR-001 against standing up a second graph-walk engine, caught by diffing imports against the pre-deletion original via `git show` and fixed by building the missing dist output and restoring the real shared-substrate import. A fresh full-repo reindex with the flag on landed four distinct confidence values in the live database in place of the uniform 0.8, 892 edges at 0.3, 2267 at 0.35, 16198 at 0.75 and 2838 at 0.9, and the original unmodified `seeded-ppr-impact-benchmark.mjs` harness was re-run against the same 20 labeled queries and the same 0.5-to-0.95 damping sweep with both flags on. The verdict widened rather than reversed the cut, with a real confidence gradient PPR no longer tied the flat walk, it now lost on every metric, precision@3 -0.10, precision@5 -0.04 to -0.06, precision@8 -0.031 to -0.038, recall@3 through recall@8 -0.01 to -0.05, nDCG@3 -0.057, nDCG@5 -0.04 and nDCG@8 -0.03, with the best damping value in the sweep only tying flat nDCG@5 and every other value tested worse, so giving PPR a real gradient to differentiate on made it perform worse than the uniform-weight tie rather than better. Both the new confidence flag and the recovered PPR flag stay default-off with no production behavior changed, verified by a clean `tsc --noEmit` before and after the ADR-001 fix, the existing code-graph vitest suite regression-proven at the same pre-existing baseline with zero new failures via a real stash-and-pop, the recovered module's own 9 unit tests across 2 files passing, and a real fresh reindex plus a real benchmark run rather than a simulated one. This closes the open question the original benchmark record left open, both 009 and 010 pass `validate.sh --strict` at 0 errors and 0 warnings, and nothing above is committed yet, every change is an uncommitted diff in the live tree pending operator review, recorded in [`before-vs-after.md`](./before-vs-after.md) Section 14 and the 010 changelog (removed with the system-code-graph decommission).
 
 On 2026-07-03 three standalone packets that belonged inside 028 were adopted as phase children. `030-validate-sh-dist-freshness-and-repo-remediation`, `031-manual-playbook-execution-sweep` and `032-deep-review-followup-hardening` were moved under the packet by `git mv` as children `013`, `014` and `015`, slugs preserved and only the numeric prefix changed, dispatched to gpt-5.5-fast (high) in the live tree with identity metadata regenerated, in-spec self-references repointed and the parent phase map extended, committed `1a9bb12f33` over a recovery baseline `e466586894` that first tracked the previously-untracked 032.
 
@@ -553,3 +536,33 @@ On 2026-07-05 the `005-speckit-surface-alignment` remediation packet was documen
 ---
 
 On 2026-07-11 the packet topology was consolidated after the migration transaction passed all post-apply gates. Current root navigation is `001-release-cleanup`, `002-speckit-memory`, `003-spec-data-quality`, `004-review-remediation`, `005-dark-flag-graduation` and `006-speckit-surface-alignment`. The old root IDs `000` through `005` remain historical aliases wherever they identify dated phases, commands, benchmarks, findings or execution evidence. Current links resolve through the manifest's exact old-to-new mappings, including moved leaves, while numbered changelog support directories retain their historical names by contract. This policy keeps sibling phase IDs contiguous and removes ambiguous current routes without rewriting the evidence that explains what happened under the earlier IDs.
+<!-- /ANCHOR:timeline -->
+
+---
+
+<!-- ANCHOR:milestones -->
+## 3. MILESTONES
+
+### E. What shipped versus what is gated
+
+The shipped set is recorded above and detailed in [`before-vs-after.md`](./before-vs-after.md). A gated
+phase is not an unshipped phase. The schema-foundation and shadow phases below shipped their code and
+migrations behind default-off flags, and what stays held is the live promotion or consumer, not the
+code. The Memory bitemporal window, derived-id provenance, semantic edge layer and the Code Graph
+code-edge bitemporal and edge-governance clusters all shipped their schema and default-off reads, held
+back from a live flip until a migration consumer and a benchmark justify it. Needs-benchmark holds the
+seeded-PPR tuning, the Q4-C1 magnitudes, the advisor RRF,
+query-class and exact-rerank live flips, the eval
+calibration A/B promotion and the remaining retention and forgetting promotions. The
+shared-infrastructure chain holds the work
+waiting on the Memory consolidation-cursor clock, the durable advisor calibration substrate and the
+shared Beta posterior. Two roadmap rows are deferred on evidence, the system-kind exclusion and the
+idempotency default-on flip, and three are recorded as held-unbuilt NO-GO or DEFER-speculative, the
+reliability-weighted convergence cluster, the lexical-vector seed union and the as-of-generation hard
+gate. None of the gated work shipped on a structural guess.
+
+This held set describes the state at the close of the build epoch. The keep-off flag reinvestigation in
+Section G later reopened it and resolved four of these holds with a live flip: derived-id provenance and
+confidence calibration on an unqualified win and retention forgetting and world-summary prelude on a
+no-harm guarantee. The rest stay held for the reasons recorded above.
+<!-- /ANCHOR:milestones -->

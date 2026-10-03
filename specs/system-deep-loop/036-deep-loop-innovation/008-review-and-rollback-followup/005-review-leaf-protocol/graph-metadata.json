@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Two review lineages were rejected because the leaf retyped its artifact directory's track segment, one because it reached the iteration cap without recording a stop reason, and three runtime determinism tests failed on a nested vitest path the workspace hoist removed. The leaf prompt, the agent contract and the tests now say and do what the runner checks.",
     "created_at": "2026-09-20T08:33:39.429Z",
-    "last_save_at": "2026-09-20T08:33:39.429Z",
+    "last_save_at": "2026-10-03T15:12:18.638Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3e94ff7c33b18f99bde12708cd37092a4e0f38ef8116cbb7a74bbec463d445e",
+    "source_fingerprint": "sha256:f5549122f893db05d1edeac7659814cd74cf0cbd478d3a289dd87faf06986f1d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7f735b6bd06c937512c2a200f61971257bac74f613b2b6c1a0e5416bae0fb223",
       "plan.md": "e08b41cfcd46ed16810ef820c3afa8098899fd911c532052d9574baa46293c59",
       "tasks.md": "cb1c44016dbefa460fd165a750a1f5a0f7302868a6c7dbda7be4239f589d2944",
-      "implementation-summary.md": "ff52651c9f3a81ef0f04ac4fe7df868e65858b6df6161b3a0d9e6d06a4ece203"
+      "implementation-summary.md": "570c2ebc97e024bf544beecd6a9413ffad2ebb3b7df32a01597640df3021bfb3"
     },
     "last_active_child_id": null,
     "last_active_at": null

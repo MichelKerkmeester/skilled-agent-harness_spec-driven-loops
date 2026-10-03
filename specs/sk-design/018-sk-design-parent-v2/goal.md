@@ -25,9 +25,6 @@ _memory:
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 
-**The binding goal for the whole packet. Every child `goal.md` inherits these rules; where a child
-disagrees with this file, this file wins.**
-
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
@@ -39,26 +36,18 @@ rather than by configuration.
 
 - `roadmap.md` beside this file: order, what each step breaks, what proves it fixed.
 - `spec.md`: why this reverses `016-deprecate-sk-design-interface` and what stays retired.
-- `scratch/routing-baseline.txt`: the sixteen-phrase measurement taken before anything moved. It is
-  the only record of the prior state and cannot be recaptured.
+- `scratch/routing-baseline.txt`: the sixteen-phrase measurement taken before anything moved; it
+  cannot be recaptured.
 - `scratch/routing-regressions.md`: the one regression this packet owns and the one weakness it
   inherits.
 
 ### Decisions
 
-**A registry row, a vocabulary entry and a green gate prove nothing about whether a request
-arrives.** The baseline already demonstrates this: `sk-doc` carries 27 chart and diagram vocabulary
-strings, including `ascii flowchart` verbatim, and the phrase `ascii flowchart of the approval loop`
-reaches nobody. Every step ends by replaying the sixteen phrases and comparing against the baseline.
+**A registry row, a vocabulary entry or a green gate proves nothing about arrival.** Every step
+ends by replaying the sixteen phrases against the baseline.
 
-Vocabulary that must move the advisor goes in `graph-metadata.json` `intent_signals`. Keywords in
-`description.json` move no score at all; that was measured twice during this packet, not assumed.
-
-### Operator copy
-
-Four modes under one hub, all four carrying the hub's name, and a replay proving nothing stopped
-arriving. Steps 1 to 5 are done and the fleet is measured. Steps 6 to 8 rename the two moved modes
-and their commands, close every gate this packet left red, and broaden fundamentals past screen UI.
+Advisor vocabulary goes in `graph-metadata.json` `intent_signals`; `description.json` keywords move
+no score.
 <!-- /ANCHOR:directive -->
 
 <!-- ANCHOR:binding -->
@@ -68,9 +57,8 @@ and their commands, close every gate this packet left red, and broaden fundament
    commit may leave a skill root without its `SKILL.md`, or a router signal pointing at a packet not
    on disk. A move and its path rewrites land together.
 2. **Moves must be renames.** Verify with `git diff --cached --name-status -M` before committing and
-   require `R` status. A move that records as delete-plus-add loses the history and is not
-   acceptable.
-3. **Scope every git command.** Other sessions have dirty files here; never `git add -A`.
+   require `R` status. A delete-plus-add loses the history and is not acceptable.
+3. **Scope every git command.** Other sessions write here; never `git add -A`.
 4. **The class contract is not negotiable.** `description.json`, `mode-registry.json` and
    `hub-router.json` are required on a hub and forbidden on a standalone;
    `leaf-manifest.config.json` is the mirror. An active root `ROUTER.md` needs `router_state`,
@@ -79,12 +67,11 @@ and their commands, close every gate this packet left red, and broaden fundament
 5. **Comment hygiene is a hard block.** Never a task id, requirement id, phase number or spec path
    in a code comment.
 6. **Do not restore what `016` retired**: the interface mode, the `commands/interface/` surface, or
-   the design-taste layer.
-   *Note: this rule once also forbade renaming modes and commands. The operator reversed that on
-   2026-09-06, and step 6 carries the renames. What `016` retired still stays retired.*
-7. **Run artifacts are evidence, not text to update.** Fan-out logs, iteration deltas and recorded
-   command output describe what was on disk when they were written. A path rewrite that touches them
-   falsifies the record. Live cross-references follow a move; historical evidence does not.
+   the design-taste layer. Renaming modes and commands is allowed since 2026-09-06.
+7. **Run artifacts are evidence, not text to update.** Live cross-references follow a move; fan-out
+   logs, iteration deltas and recorded command output do not.
+
+**Precedence.** Every child `goal.md` inherits these rules; where a child disagrees, this file wins.
 
 ### Escalate rather than continue
 
@@ -165,6 +152,8 @@ step does.
 - **Two gates lie about their own result.** `validate-playbook-topology` prints `verdict=FAIL` and
   exits 0 without `--strict`; `regenerate-skill-derived` defaults to a dry run that reports the
   changes it did not make. Run every gate strictly and confirm a write by re-running the check.
+- **Durable slice cut to fit the 4,000-character budget.** Removed the old author blurb and the
+  operator copy, shortened decision and constraint prose; all seven criteria kept.
 - **The packet closes with one red gate, named.** `sk-doc`'s typed-gold playbook gate fails on four
   fixtures this packet's step 3 invalidated. Every path to green deletes tracked coverage, fabricates
   a scenario under a published id, or splits a benchmarked corpus. Recorded rather than forced.

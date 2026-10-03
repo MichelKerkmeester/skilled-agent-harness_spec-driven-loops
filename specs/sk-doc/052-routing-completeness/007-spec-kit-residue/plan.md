@@ -2,10 +2,6 @@
 title: "Implementation Plan: Phase 7: spec-kit-residue"
 description: "[2-3 sentences: what this implements and the technical approach]"
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
   - "plan core"
 importance_tier: "normal"
 contextType: "general"

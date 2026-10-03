@@ -51,7 +51,6 @@
       ".pi/extensions/README.md",
       ".pi/settings.json",
       ".pi/extensions/pi-cache-optimizer/README.md",
-      ".pi/deep-pi-stats.json",
       ".pi/SYNC.md",
       ".pi/npm/package.json",
       ".opencode/skills/README.txt"
@@ -109,12 +108,6 @@
         "name": "settings.json",
         "kind": "config",
         "path": ".pi/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "deep-pi-stats.json",
-        "kind": "config",
-        "path": ".pi/deep-pi-stats.json",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Measured before this phase was written, the documentation surface is not where one would guess:",
     "created_at": "2026-09-08T18:00:24Z",
-    "last_save_at": "2026-09-09T05:49:43.586Z",
+    "last_save_at": "2026-10-03T15:29:57.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,11 +214,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5820375bc522f18a59b4e5d51395f347e815091711be8f03afa34dae0e7c96a",
+    "source_fingerprint": "sha256:70714e34e17dbaf66ad1329351b29dda38ad800aac63a4852a4a9ebfb499151f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0080fc36b2b566161285eab857fdde4d357082f2ac6e91107851ac13f584677c",
-      "plan.md": "8771d53f7b909e6191daa32b4fcaf02e0ef837386945b83320a60068e6b9495d",
+      "plan.md": "31a012eda2fa84edfa86ad83fc1f6b04110f3bcf8ec36077ba2bd68cc31beaea",
       "tasks.md": "d361fde89cdf7c36c3bc7148ef3a85d9e9844c0040fda8f137eb9b42b1a85286",
       "implementation-summary.md": "a40980ea90cd8bff5f73fabb7c4b8f3976140e9610f5a06f2409206e61b83b9a"
     },

@@ -61,7 +61,7 @@ Every gate that was supposed to keep this repository conformant to the sk-code `
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-07-30 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent** | `sk-code/004-code-conformance-alignment` |

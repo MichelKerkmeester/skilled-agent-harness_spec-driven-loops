@@ -3,7 +3,6 @@ title: "Tasks: Phase 021 Claude Code Wrapper"
 description: "Planned task breakdown for the Claude stream-json adapter mapping, the CLI-output wrapper wiring into projectMessage(), and the enablement-gated fail-open fallback verification."
 trigger_phrases:
   - "claude-code-wrapper"
-  - "tasks"
   - "stream-json adapter"
   - "Claude output projection wrapper"
 importance_tier: "important"

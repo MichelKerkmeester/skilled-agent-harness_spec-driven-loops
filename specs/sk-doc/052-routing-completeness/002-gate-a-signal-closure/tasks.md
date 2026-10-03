@@ -2,9 +2,6 @@
 title: "Tasks: Phase 2: gate-a-signal-closure"
 description: "Every task this phase ran, with the evidence that settles it, from the first Gate A sweep through applying the fixes each unresolved signal was given."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
   - "tasks core"
 importance_tier: "normal"
 contextType: "general"

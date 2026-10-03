@@ -30,7 +30,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
 
 ---
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 012-repair-write-symlink-refusal |
 | **Completed** | 2026-08-30 |
-| **Level** | 1 |
+| **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -3,7 +3,6 @@ title: "Tasks: Phase 029 Local LLM Easy Config"
 description: "Completed research task record for the accepted 5-iteration GROK synthesis, failed GLM leg, containment reverts, and validated ranked recommendation in research/research.md."
 trigger_phrases:
   - "local-llm-easy-config"
-  - "tasks"
   - "research loop execution"
 importance_tier: "important"
 contextType: "research"

@@ -47,7 +47,9 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "scripts/build-subject-plan.py"
+      "scripts/build-subject-plan.py",
+      "scripts/tests/test_build_subject_plan.py",
+      "scratch/briefs/008a-subject-plan.md"
     ],
     "entities": [
       {
@@ -90,6 +92,18 @@
         "name": "build-subject-plan.py",
         "kind": "file",
         "path": "scripts/build-subject-plan.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_build_subject_plan.py",
+        "kind": "file",
+        "path": "scripts/tests/test_build_subject_plan.py",
+        "source": "derived"
+      },
+      {
+        "name": "008a-subject-plan.md",
+        "kind": "doc",
+        "path": "scratch/briefs/008a-subject-plan.md",
         "source": "derived"
       },
       {
@@ -181,23 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "2,466 subjects fail the grammar the hook enforces today, 2,912 carry a packet number or a slash as their scope, 572 run past 100 characters, and none carries a word from the packet it belongs to",
     "created_at": "2026-09-11T17:06:02Z",
-    "last_save_at": "2026-09-25T16:15:22.753Z",
+    "last_save_at": "2026-10-03T15:44:20.747Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c0f15c74116640505742993bc93c802936384bc2058f51b455d4d8c858cc99c9",
+    "source_fingerprint": "sha256:6eaffc6fe5f0fef2d31aeebaa99b4ab195e91dd7c21a38937e9ed95404ed91e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e1ea4a1d0233c17e21ef2384412ff2c0dd972cbff69c514ac53e40d9d7b5797a",
-      "plan.md": "12b5fd0cb15a42252ff8914bf2e5ca3de51057174f0e6a36b6ebcbd7cd34c7f9",
+      "plan.md": "2c463d3e52350857cf15144c763040c967cdd2c18cb5bdad6f202230551e7336",
       "tasks.md": "0f2552245a3825127f0946f9cf6f3ad18906d6494e520ff6d486c8c3eac68d65",
-      "implementation-summary.md": "94819ca0053603306fccf09bb49cbb7c3d8e11c0a7efe23d2f45d85cc2050927"
+      "implementation-summary.md": "6f5f494efe052d843225cfb5c654468704489f21f6acb7d3a3f05bd58da1e214"
     },
     "last_active_at": null
   }

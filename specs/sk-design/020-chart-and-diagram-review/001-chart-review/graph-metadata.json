@@ -45,7 +45,10 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review/lineages/deepseek/iterations/iteration-001.md",
+      "review/lineages/deepseek/review-report.md",
+      "review/orchestration-summary.json"
     ],
     "entities": [
       {
@@ -76,6 +79,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "review/lineages/deepseek/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/lineages/deepseek/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "review/orchestration-summary.json",
         "source": "derived"
       },
       {
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-11T17:13:02Z",
-    "last_save_at": "2026-09-11T18:27:04.987Z",
+    "last_save_at": "2026-10-03T15:44:02.245Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a8adab01706b8814df2ac1de3b19d2ba5b02b5884421f397d9b155807f2a7f9e",
+    "source_fingerprint": "sha256:cedf621b4d18701675bf916dc39cd24f9e431b8d5e679c1e04420d4b767029be",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a3592ba89cb060aa8b574c087a533753e1e86041da0f2d7ea30640083619cc02",
       "plan.md": "086fe61c0354c5bda39c801c3d8ca538d58e6e49300e64d3422d3ce655827421",
       "tasks.md": "98d73161ea8dde21d0878120d12ead6df390400c48e492f8f0396f78a226a67a",
-      "implementation-summary.md": "d4e79cd64c830e78042c4791e8045cb9a47a2466bb93a42c395605781cf9c1d0"
+      "implementation-summary.md": "53f19bfee3707df42da2dabbf668728d7d15e8ef5e39e9f2d089f3e02a7770a5"
     },
     "last_active_at": null
   }

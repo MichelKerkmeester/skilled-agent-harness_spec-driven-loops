@@ -198,7 +198,7 @@
     ],
     "causal_summary": "A retry loop is expensive in a way that is invisible until the bill arrives: the same request is",
     "created_at": "2026-09-08T17:57:03Z",
-    "last_save_at": "2026-09-08T20:24:11.288Z",
+    "last_save_at": "2026-10-03T15:29:45.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,11 +209,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2502eb9bbef6a7365011069e809ea4e347654b07bbc962a3af203b2e70eb4c57",
+    "source_fingerprint": "sha256:3294f831f1eb19f9bacead94187d503d5b8a5562232ea090dffe787fb8db209a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e9b3d1cc90a5c03580555dae3efa06b8e2b4b167596bd65fc811416382d0850d",
-      "plan.md": "ca7926901e1a8ab6c5229be9b37d18931e3b8d40cc1b16ba34c0f33f5ed6c4de",
+      "plan.md": "5694a347ca773b5adef2ffd20d11cb7397a81e5ff14379ff1bbf822168dc87ed",
       "tasks.md": "c018d01ee72708721ef57fce55fb967e2ac2ec4cc1dcba089cdfba0cc01cf147",
       "implementation-summary.md": "5960abea4575ea8e852164312c988b7fa5c53d28342c4dbaa4e6fa978c5d9fc9"
     },

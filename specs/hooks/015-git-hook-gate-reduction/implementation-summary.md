@@ -2,9 +2,6 @@
 title: "Implementation Summary: Git Hook Gate Reduction"
 description: "Four gates cut, two fixed, two downgraded, and a third defect found to be machine-local rather than in the repository."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
   - "impl summary core"
 importance_tier: "normal"
 contextType: "general"

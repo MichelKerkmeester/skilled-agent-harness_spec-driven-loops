@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks/022-smart-rule-injection/002-event-triggered-injection",
+  "spec_folder": "hooks/022-smart-rule-injection/002-event-triggered-injection",
+  "parent_id": "hooks/022-smart-rule-injection",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "event-triggered injection research",
+      "inject on what just happened",
+      "completion event reaches no rules",
+      "measure event frequency from the log",
+      "event-triggered injection plan",
+      "event frequency measurement plan",
+      "deferred candidate record",
+      "event-triggered injection tasks",
+      "event frequency measurement tasks",
+      "event-triggered injection closeout",
+      "event rate measurement finding"
+    ],
+    "key_topics": [
+      "event-triggered",
+      "injection",
+      "research",
+      "inject",
+      "just",
+      "happened",
+      "completion",
+      "event",
+      "reaches",
+      "rules",
+      "measure",
+      "frequency"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-010.md",
+      "research/prior-findings.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "prior-findings.md",
+        "kind": "doc",
+        "path": "research/prior-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Decide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Structural",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Event",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An event carries a moment an always-loaded document cannot know about",
+    "created_at": "2026-10-03T15:32:01.365Z",
+    "last_save_at": "2026-10-03T15:32:33.918Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e058a89b35098ff535fdcdcb81aeb795582ff69b75beb2e504c2495408390335",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d789d8b509b727e5f6691a585498f97812bff1d5b8db1e8097fa8040e7450a41",
+      "plan.md": "8fd915cdd704d3b001e834146ab0fe783a27bb7c6fe29203699edf9490051b79",
+      "tasks.md": "680b3918b3ac8017f062694fe37cada6cfd9e71fe1026c171d690f65af9619ee",
+      "implementation-summary.md": "e96867944b7a174bc505c5e680b4024d4ea6590f7539d25fc4c2934971075225"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

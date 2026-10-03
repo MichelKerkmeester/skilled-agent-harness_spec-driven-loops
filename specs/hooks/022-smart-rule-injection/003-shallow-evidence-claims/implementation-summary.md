@@ -57,6 +57,7 @@ A search that never hit, a read that stopped short, a total carried from another
 ### The Landing Sites
 
 The boundary row in the four-standards table carries the criterion, and the evidence rule's tier mirror carries the same wording so the two tiers cannot drift. The self-lens clause's promotion targets that same table, so both promotions are recorded as landing deliberately together.
+The ten iteration records behind this closeout are `research/iterations/iteration-001.md` through `research/iterations/iteration-010.md`, with the carried-in context in `research/prior-findings.md`.
 
 <!-- /ANCHOR:what-built -->
 

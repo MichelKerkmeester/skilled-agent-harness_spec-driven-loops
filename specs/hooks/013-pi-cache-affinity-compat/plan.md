@@ -2,7 +2,6 @@
 title: "Implementation Plan: pi-cache-optimizer OpenRouter session-affinity compat"
 description: "Add a provider-level sendSessionAffinityHeaders compat override to the openrouter provider in models.json so pi's merge clears the warning for every catalog model, then sweep stale pi-cache-optimizer stats temp files."
 trigger_phrases:
-  - "implementation"
   - "openrouter compat"
   - "session affinity plan"
   - "models.json"

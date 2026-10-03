@@ -1,6 +1,7 @@
 ---
 title: "Implementation Summary: Phase 8 — Split code-opencode Other-Language & Shared References"
 description: "Outcome of splitting 9 code-opencode docs (typescript/shell trios, javascript quality_standards, shared code_organization + universal_patterns) into 20 topic-cohesive parts and rewiring the language RESOURCE_MAPs, shared tier, parent union, TS_TRIO, and playbook expected_resources; 21/21 router guards green, 0 regressions vs baseline."
+importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:

@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift"
     last_updated_at: "2026-10-03T05:27:42Z"
     last_updated_by: "build-orchestrator"
-    recent_action: "Closed the handoff sweep"
+    recent_action: "Recorded the validation-debt sweep"
     next_safe_action: "Parent session reviews and commits"
     blockers: []
     key_files:
@@ -87,6 +87,8 @@ The guard reads its own manifest, `.skilled/commands/doctor/assets/mcp-mutation-
 | `.skilled/commands/doctor/assets/doctor-speckit-presentation.txt` | Modified (closing pass) | Menu option 1 hands release updates to `/doctor:update` instead of `/doctor:rebuild --migrate` |
 | `.skilled/commands/doctor/assets/doctor-mcp-install.yaml`, `doctor-mcp-presentation.txt` | Modified (closing pass) | Credential keys use the doubled-underscore manual name |
 | `.skilled/commands/doctor/speckit.md` | Modified (closing pass) | Description no longer calls it the router for `/doctor` |
+| Seven spec-kit addon and packet-type templates, `check-ai-protocols.sh`, `validation-rules.md`, the scaffold golden snapshot, `check-ledger-stem-producers.vitest.ts` | Modified (validation-debt sweep) | Stop new packets inheriting trigger-phrase debt; phase parents skip the protocol check; census matches the merged vocabulary |
+| About 520 spec documents across 14 tracks (list in `git diff --stat`) | Modified or created (validation-debt sweep) | Each failing folder repaired against its own evidence; child goals authored; `sk-doc/019` custodian record; `sk-doc/050` phases closed |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -141,6 +143,11 @@ A later handoff sweep, run by the parent build orchestrator once every packet ha
 | Closing pass: YAML parse of `doctor-mcp-install.yaml` | `YAML_OK` |
 | Closing pass: four mirror `--check` scripts and `command-catalog-mirror-check.cjs` | PASS: 34, 34 and 34 prompts and 174 mirrors in sync; `STATUS=OK` |
 | Handoff sweep: trigger index `--check --json` | PASS: regenerated (only `manifestHash` changed), then `--check --json` exit 0, `fresh: true`, 23056 documents, 0 missing, 0 stale |
+| Validation-debt sweep: `validate.sh --recursive --strict` over all 153 packets, before | 48 folders failing |
+| Validation-debt sweep: the same run, after | 748 folders `RESULT: PASSED`; the one failure was this folder's own metadata fingerprint, written mid-run and refreshed afterwards |
+| Validation-debt sweep: `npm run test:validation` and the scaffold golden snapshots | 84 of 84 and every gate script pass; snapshots 12 of 12 |
+| Validation-debt sweep: `check-goal.cjs` on hooks/011 (13 folders) and the sk-code/007 leaves | All `RESULT: PASSED (5/5 checks)`; the repo-wide `--all` scan still reports 313 older findings in 68 packets other workstreams own |
+| Validation-debt sweep: route guard, no-spec-imports guard, route-validate and its self-test, catalog mirror, mutation-class guard, description audit, roster mirror, parent-skill check, graph freshness, fable-mode, release-update, contract drift, skill-root metadata, router vocabulary reach, trigger index `--check` | All exit 0; `mcp-doctor.sh --json` exits 1 on one warning, credential variables unset in this shell |
 <!-- /ANCHOR:verification -->
 
 ---

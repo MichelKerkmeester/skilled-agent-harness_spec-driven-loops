@@ -2,10 +2,6 @@
 title: "Implementation Plan: Phase 2: gate-a-signal-closure"
 description: "How the 444-signal sweep was built and read: two declared-signal sources unioned per hub, one daemon call per signal with exit status read from a file, and rank taken from the array order rather than the score field."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
   - "plan core"
 importance_tier: "normal"
 contextType: "general"

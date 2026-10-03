@@ -3,8 +3,6 @@ title: "Tasks: Phase 028 Wiring Docs and Operator Rollout"
 description: "Planned task breakdown for authoring the operator documentation for the wired projection: the enablement guide, the rollout runbook, and the rollback path, conformed to the sk-doc reference standard."
 trigger_phrases:
   - "wiring-docs-and-operator-rollout"
-  - "tasks"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

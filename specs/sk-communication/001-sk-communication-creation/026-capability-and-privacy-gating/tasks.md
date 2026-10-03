@@ -3,7 +3,6 @@ title: "Tasks: Phase 026 Capability and Privacy Gating"
 description: "Planned task breakdown for wiring the compatibility doctor into every activation path as a typed pre-projection gate, failing closed to the exact original on unsafe facts, and verifying the decision, egress, and per-runtime matrices."
 trigger_phrases:
   - "capability-and-privacy-gating"
-  - "tasks"
   - "compatibility doctor pre-projection gate"
   - "original-only fail-closed gate"
 importance_tier: "important"
