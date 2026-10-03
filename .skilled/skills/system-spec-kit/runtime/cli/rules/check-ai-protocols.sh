@@ -137,6 +137,14 @@ run_check() {
     local warnings=()
     local errors=()
 
+    # Phase parents keep plan.md and tasks.md in their child folders under the
+    # lean trio policy, so there is nowhere on the parent to hold the protocol.
+    if is_phase_parent "$folder"; then
+        RULE_STATUS="info"
+        RULE_MESSAGE="Phase parent: AI protocol check skipped (lean trio policy)"
+        return 0
+    fi
+
     # Get declared level from spec.md (fallback to passed level)
     local declared_level
     declared_level=$(_ai_get_declared_level "$folder")
