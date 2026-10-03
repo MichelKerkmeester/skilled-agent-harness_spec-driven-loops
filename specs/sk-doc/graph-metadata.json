@@ -17,7 +17,8 @@
     "sk-doc/059-skill-changelog-retrofit",
     "sk-doc/060-create-goal-mode",
     "sk-doc/061-skilled-release-changelog",
-    "sk-doc/062-doc-validation-off-switches"
+    "sk-doc/062-doc-validation-off-switches",
+    "sk-doc/063-description-budget"
   ],
   "manual": {
     "depends_on": [],
