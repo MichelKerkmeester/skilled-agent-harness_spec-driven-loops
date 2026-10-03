@@ -1,0 +1,67 @@
+{
+  "topic": "Improve, refine and expand the Jev Pi native classifier transport (cli-jev feature 037). The transport is .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs; it measures whether Jev choice questions reach the model through the Jev CLI or Pi classify(). score-clarify-default.cjs and leaf-route-replay.cjs import it; it is off when JEV_TRANSPORT is unset. Recorded verdict: pi-transport adopt, K=111, M=111, coverage=100.0%, agreement=95.5%, median_abs_dp=0.0100, p95_ms=340/387, cost_per_100=0.0022. It shipped as opt-in in phase 038. Answer five questions: result drivers; accuracy/cost levers; measurement trust; other .skilled opportunities; default-on integration needs, cost, and risk.",
+  "maxIterations": 3,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": false
+  },
+  "createdAt": "2026-10-03T04:44:19Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-1791001537618-myd0g9",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null,
+    "label": "luna"
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "iteration-*.md": "write-once",
+    "research.md": "mutable"
+  },
+  "runScope": {
+    "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/085-jev-feature-improvement-research/specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/luna",
+    "stateConfigIsOnlyConfigAuthority": true,
+    "writeConfigRowToStateLog": false
+  }
+}

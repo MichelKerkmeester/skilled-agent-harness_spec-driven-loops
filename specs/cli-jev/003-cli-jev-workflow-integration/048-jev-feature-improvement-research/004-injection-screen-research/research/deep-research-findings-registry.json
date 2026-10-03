@@ -1,0 +1,1203 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "luna"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [
+    {
+      "id": "Q1",
+      "text": "What drove the measured result K=90 M=90 A=81 B=56 W=30 L=5 TP=31 FP=5 F=0 p=0.00001118?",
+      "resolved": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "Q2",
+      "text": "How can the screen's accuracy be raised or its cost lowered?",
+      "resolved": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "Q3",
+      "text": "How can the measurement be made more trustworthy?",
+      "resolved": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "Q4",
+      "text": "Where else in .skilled would the same judgment pay off?",
+      "resolved": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "Q5",
+      "text": "What would a default-on integration need, and at what cost and risk?",
+      "resolved": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "Q1",
+      "text": "25-row margin over a baseline right on 56, won by 27 planted catches plus 4 natural; errors cluster within 0.15 of the flag line; Brier is error mass.",
+      "lineage": "deepseek",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "Q2",
+      "text": "Threshold 0.5 to 0.6 would give A=84 and precision 0.968 on the recorded calls; confirm-then-verify reruns cut 33% of calls with identical flags; comparator extensions catch 9 of 30 planted vs 1.",
+      "lineage": "deepseek",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "Q3",
+      "text": "Labels are documented operator-delegated model reads with blind drafting and spot-checks; the corpus is untracked at HEAD; three record gaps (label hashes, comparator Brier, census provenance) are cheap to close.",
+      "lineage": "deepseek",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "Q4",
+      "text": "Fetch (82+61 records, unscreened), Bash output (existing PostToolUse seam), MCP responses, sk_vision OCR, child stdout; same noul pattern already pays in 047's scorer family.",
+      "lineage": "deepseek",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "Q5",
+      "text": "Seam is a PostToolUse fetch matcher with UNKNOWN blocking capability; tiers 0.25/0.5/0.75 measured as 33+7, 31+5, 26+0; per-call p50 324 ms; three silent skips; staged advisory rollout.",
+      "lineage": "deepseek",
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "iteration-1-finding-6",
+      "title": "**`F=0` does not mean the calls were stable; it means no row crossed the modal line.**",
+      "text": "**`F=0` does not mean the calls were stable; it means no row crossed the modal line.**",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5--046df78f9ed5",
+      "title": "**A default-on path needs a fetch-boundary adapter and a stable content envelope.** Place the check after HTML/search-result conversion and before returned text enters the model context. Carry the tool, URL or source identity, content hash, conversion/chunking version, classifier prompt/model version, and score with the text. For long results, define bounded chunks with overlap and a rule for instructions that straddle boundaries; mark truncated or unscored content explicitly. If a host cannot replace or annotate a WebFetch result at that boundary, put the adapter in its fetch/MCP wrapper rather than treating a generic post-tool audit as enforcement. [INFERENCE: feature 035 excludes this serving wrapper, and the dispatch catalog documents different per-runtime event payloads; the exact replacement capability still needs a per-host proof.] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:43,88-100] [SOURCE: .skilled/hooks/dispatch/README.md:64-74]",
+      "text": "**A default-on path needs a fetch-boundary adapter and a stable content envelope.** Place the check after HTML/search-result conversion and before returned text enters the model context. Carry the tool, URL or source identity, content hash, conversion/chunking version, classifier prompt/model version, and score with the text. For long results, define bounded chunks with overlap and a rule for instructions that straddle boundaries; mark truncated or unscored content explicitly. If a host cannot replace or annotate a WebFetch result at that boundary, put the adapter in its fetch/MCP wrapper rather than treating a generic post-tool audit as enforcement. [INFERENCE: feature 035 excludes this serving wrapper, and the dispatch catalog documents different per-runtime event payloads; the exact replacement capability still needs a per-host proof.] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:43,88-100] [SOURCE: .skilled/hooks/dispatch/README.md:64-74]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-5",
+      "_conflict_id": "iteration-3-finding-5--046df78f9ed5",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-5",
+          "peerId": "iteration-3-finding-5--541347e7ff91",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-7--45e9ee6c0f22",
+      "title": "**A stronger lexical comparator is cheap and measurable, and it would raise the bar the model",
+      "text": "**A stronger lexical comparator is cheap and measurable, and it would raise the bar the model",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-2-finding-7",
+      "_conflict_id": "iteration-2-finding-7--45e9ee6c0f22",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-7",
+          "peerId": "iteration-2-finding-7--518d8fb82998",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-6--15e6773190e9",
+      "title": "**Audit labels blind and retain disagreement.** There are five natural “instructs” rows and 55 natural “clean” rows; natural labels carry one operator-delegated labeler, while the 30 planted rows use construction labels. Have a second blinded reviewer label the natural and hard-benign sets, adjudicate disagreements, and preserve labeler/provenance fields. This is especially important when a legitimate instruction in documentation resembles an attack. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/labels.jsonl:1-90] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:140]",
+      "text": "**Audit labels blind and retain disagreement.** There are five natural “instructs” rows and 55 natural “clean” rows; natural labels carry one operator-delegated labeler, while the 30 planted rows use construction labels. Have a second blinded reviewer label the natural and hard-benign sets, adjudicate disagreements, and preserve labeler/provenance fields. This is especially important when a legitimate instruction in documentation resembles an attack. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/labels.jsonl:1-90] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:140]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-2-finding-6",
+      "_conflict_id": "iteration-2-finding-6--15e6773190e9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-6",
+          "peerId": "iteration-2-finding-6--f49b6d483fc1",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3--3dae9fb52344",
+      "title": "**Code review already asks for source-to-sink evidence, which complements content screening.** The sk-code review playbook traces untrusted input into SQL, command, path, SSRF, and HTML sinks and rejects generic advice without a concrete source and sink. The same provenance habit pays off when a review consumes issue text, documentation, or fetched references, but an injection score cannot replace the code review's sink analysis. [SOURCE: .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/security-and-correctness-minimums/input-validation-injection.md:19,47-49]",
+      "text": "**Code review already asks for source-to-sink evidence, which complements content screening.** The sk-code review playbook traces untrusted input into SQL, command, path, SSRF, and HTML sinks and rejects generic advice without a concrete source and sink. The same provenance habit pays off when a review consumes issue text, documentation, or fetched references, but an injection score cannot replace the code review's sink analysis. [SOURCE: .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/security-and-correctness-minimums/input-validation-injection.md:19,47-49]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-3",
+      "_conflict_id": "iteration-3-finding-3--3dae9fb52344",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-3",
+          "peerId": "iteration-3-finding-3--a80a49a444e1",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2--f1f7508a1e2b",
+      "title": "**Council graph query is a concrete neighboring prompt sink, and it already uses the right kind of structural guard.** Council artifacts can contain user-influenced seat output and critiques; graph metadata that flows into later synthesis prompts is allowlisted and length-bounded. This makes graph ingestion/query a good place to preserve provenance and reject arbitrary free-form metadata. The existing allowlist is a better fit than applying a general fetched-page classifier to structured graph fields. [SOURCE: .skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-query-hostile-metadata-redaction.md:15-20,27-33]",
+      "text": "**Council graph query is a concrete neighboring prompt sink, and it already uses the right kind of structural guard.** Council artifacts can contain user-influenced seat output and critiques; graph metadata that flows into later synthesis prompts is allowlisted and length-bounded. This makes graph ingestion/query a good place to preserve provenance and reject arbitrary free-form metadata. The existing allowlist is a better fit than applying a general fetched-page classifier to structured graph fields. [SOURCE: .skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-query-hostile-metadata-redaction.md:15-20,27-33]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-2",
+      "_conflict_id": "iteration-3-finding-2--f1f7508a1e2b",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-2",
+          "peerId": "iteration-3-finding-2--f10992ce7bb4",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1--5ddd6876d8d3",
+      "title": "**Deep research already names the same trust boundary, but its current protection is an agent instruction.** The deep-research skill says WebFetch/WebSearch content is data to analyze and cite, never instructions, and says fetched content must not directly trigger tools. It also records that WebFetch has no URL/domain allowlist. The cli-classifier skill says no hook screens fetched content and no verdict is wired to a runtime. A screen could add a second signal at retrieval time, while provenance and instruction hierarchy remain necessary even when the score is low. [SOURCE: .skilled/skills/system-deep-loop/deep-research/SKILL.md:347,360] [SOURCE: .skilled/skills/cli-classifier/SKILL.md:114]",
+      "text": "**Deep research already names the same trust boundary, but its current protection is an agent instruction.** The deep-research skill says WebFetch/WebSearch content is data to analyze and cite, never instructions, and says fetched content must not directly trigger tools. It also records that WebFetch has no URL/domain allowlist. The cli-classifier skill says no hook screens fetched content and no verdict is wired to a runtime. A screen could add a second signal at retrieval time, while provenance and instruction hierarchy remain necessary even when the score is low. [SOURCE: .skilled/skills/system-deep-loop/deep-research/SKILL.md:347,360] [SOURCE: .skilled/skills/cli-classifier/SKILL.md:114]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-1",
+      "_conflict_id": "iteration-3-finding-1--5ddd6876d8d3",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-1",
+          "peerId": "iteration-3-finding-1--2bf1d18b7079",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-8",
+      "title": "**Default-on should be earned through shadow measurement and explicit failure states.** The current positives are planted sentences in bounded sections of public vendored Markdown; the implementation record says actual fetched pages are longer, HTML-converted, and agent-selected. Begin with real fetch captures and a source-held-out, hard-benign set in shadow mode; separately measure false positives on legitimate instructions and security documentation. Log only the minimum needed for drift analysis, define retention and provider handling for fetched text, and label timeouts or skipped chunks as unscanned rather than clean. Only promote thresholds after per-host tests show the result is attached before model continuation; preserve deterministic permission checks if the classifier is unavailable. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/implementation-summary.md:170-173] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:140-146] [SOURCE: https://cheatsheet.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html] [INFERENCE: shadow rollout and the proposed failure-state policy are recommendations, not measured feature-035 behavior.]",
+      "text": "**Default-on should be earned through shadow measurement and explicit failure states.** The current positives are planted sentences in bounded sections of public vendored Markdown; the implementation record says actual fetched pages are longer, HTML-converted, and agent-selected. Begin with real fetch captures and a source-held-out, hard-benign set in shadow mode; separately measure false positives on legitimate instructions and security documentation. Log only the minimum needed for drift analysis, define retention and provider handling for fetched text, and label timeouts or skipped chunks as unscanned rather than clean. Only promote thresholds after per-host tests show the result is attached before model continuation; preserve deterministic permission checks if the classifier is unavailable. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/implementation-summary.md:170-173] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:140-146] [SOURCE: https://cheatsheet.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html] [INFERENCE: shadow rollout and the proposed failure-state policy are recommendations, not measured feature-035 behavior.]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-9",
+      "title": "**Detection and mitigation are separate outputs.** A high score can identify likely malicious content but does not reliably remove it; detection/removal research evaluates those as distinct steps. Prefer preserving provenance and attaching an untrusted/flagged annotation or quarantine decision. Any sanitization must itself be tested for removed attack text and retained useful content. [SOURCE: https://arxiv.org/abs/2502.16580]",
+      "text": "**Detection and mitigation are separate outputs.** A high score can identify likely malicious content but does not reliably remove it; detection/removal research evaluates those as distinct steps. Prefer preserving provenance and attaching an untrusted/flagged annotation or quarantine decision. Any sanitization must itself be tested for removed attack text and retained useful content. [SOURCE: https://arxiv.org/abs/2502.16580]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2--0b7e7814a9d8",
+      "title": "**Do not use a lexical miss to skip semantic screening.** The baseline caught only one planted sentence. Lexical matches can be an inexpensive “raise risk” signal, but the benchmark provides no evidence that a non-match is safe. A first-stage lexical gate would therefore reduce cost by discarding most of the very attacks this test was designed to detect. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:48-49] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113]",
+      "text": "**Do not use a lexical miss to skip semantic screening.** The baseline caught only one planted sentence. Lexical matches can be an inexpensive “raise risk” signal, but the benchmark provides no evidence that a non-match is safe. A first-stage lexical gate would therefore reduce cost by discarding most of the very attacks this test was designed to detect. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:48-49] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-2-finding-2",
+      "_conflict_id": "iteration-2-finding-2--0b7e7814a9d8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-2",
+          "peerId": "iteration-2-finding-2--34027993bf11",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4--bedefea87182",
+      "title": "**Every error except one sits within 0.15 of the 0.5 flag line.** The five false positives have",
+      "text": "**Every error except one sits within 0.15 of the 0.5 flag line.** The five false positives have",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-1-finding-4",
+      "_conflict_id": "iteration-1-finding-4--bedefea87182",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-4",
+          "peerId": "iteration-1-finding-4--824f8cb86dd7",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4--eb7199471cea",
+      "title": "**Feature 035 has no serving seam to turn on today.** Its frozen scope adds an offline scorer only: no hook, settings matcher, or fetch wrapper, so fetch behavior is unchanged. The runtime dispatch-hook catalog describes hooks around Bash or exec and other audit/preflight tools; that is not evidence of a WebFetch result-replacement contract. A serving phase must first prove, per host, that it can inspect the complete converted result before it rejoins model context. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:43] [SOURCE: .skilled/hooks/dispatch/README.md:64-74] [SOURCE: .skilled/skills/cli-classifier/SKILL.md:114]",
+      "text": "**Feature 035 has no serving seam to turn on today.** Its frozen scope adds an offline scorer only: no hook, settings matcher, or fetch wrapper, so fetch behavior is unchanged. The runtime dispatch-hook catalog describes hooks around Bash or exec and other audit/preflight tools; that is not evidence of a WebFetch result-replacement contract. A serving phase must first prove, per host, that it can inspect the complete converted result before it rejoins model context. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:43] [SOURCE: .skilled/hooks/dispatch/README.md:64-74] [SOURCE: .skilled/skills/cli-classifier/SKILL.md:114]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-4",
+      "_conflict_id": "iteration-3-finding-4--eb7199471cea",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-4",
+          "peerId": "iteration-3-finding-4--cbe35e3333c4",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4--824f8cb86dd7",
+      "title": "**Jev's score is aggregated by row despite 270 calls.** It runs three fresh calls per row; a row is flagged when a majority score is at least 0.50. Accuracy and baseline wins/losses are then counted over rows; Brier uses each row's mean probability. The receipt's F=0 says the threshold decision did not flip among the three calls for these rows. The 271 planned calls include the one auth test. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:791-830] [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:1015-1052] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113]",
+      "text": "**Jev's score is aggregated by row despite 270 calls.** It runs three fresh calls per row; a row is flagged when a majority score is at least 0.50. Accuracy and baseline wins/losses are then counted over rows; Brier uses each row's mean probability. The receipt's F=0 says the threshold decision did not flip among the three calls for these rows. The 271 planned calls include the one auth test. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:791-830] [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:1015-1052] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-1-finding-4",
+      "_conflict_id": "iteration-1-finding-4--824f8cb86dd7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-4",
+          "peerId": "iteration-1-finding-4--bedefea87182",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-6--8ecf3f2798ac",
+      "title": "**Keep score policy separate from tool authority.** The benchmark emits review, flag, and block counts at 0.25, 0.50, and 0.75. Use a score to annotate, quarantine, or request review; independently enforce user-intent checks and runtime permissions before consequential actions. OWASP recommends input screening alongside deterministic controls and action screening, notes that a guardrail can itself be attacked, and describes risk-based heavier checks. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:53-59] [SOURCE: https://cheatsheet.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html]",
+      "text": "**Keep score policy separate from tool authority.** The benchmark emits review, flag, and block counts at 0.25, 0.50, and 0.75. Use a score to annotate, quarantine, or request review; independently enforce user-intent checks and runtime permissions before consequential actions. OWASP recommends input screening alongside deterministic controls and action screening, notes that a guardrail can itself be attacked, and describes risk-based heavier checks. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:53-59] [SOURCE: https://cheatsheet.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-6",
+      "_conflict_id": "iteration-3-finding-6--8ecf3f2798ac",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-6",
+          "peerId": "iteration-3-finding-6--8fb6a42ac2dd",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3--82b3bcb9178d",
+      "title": "**Keep the detector advisory and separate it from permission checks.** The scorer reports review, flag, and block counts at 0.25, 0.50, and 0.75. Use the score for annotation, quarantine, or review; independently validate any proposed tool call against user intent and runtime permissions. OWASP places fetched-content input screening beside deterministic controls and action screening, and warns that a guardrail model itself can be attacked. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:53-59] [SOURCE: https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html]",
+      "text": "**Keep the detector advisory and separate it from permission checks.** The scorer reports review, flag, and block counts at 0.25, 0.50, and 0.75. Use the score for annotation, quarantine, or review; independently validate any proposed tool call against user intent and runtime permissions. OWASP places fetched-content input screening beside deterministic controls and action screening, and warns that a guardrail model itself can be attacked. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:53-59] [SOURCE: https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-2-finding-3",
+      "_conflict_id": "iteration-2-finding-3--82b3bcb9178d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-3",
+          "peerId": "iteration-2-finding-3--96afba1dc873",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1--3547a0594efc",
+      "title": "**Make the label target precise.** The benchmark's binary label is “instructs” or “clean,” and its question asks whether text contains behavior-changing instructions aimed at an agent. That does not itself distinguish hostile authority-changing attempts from legitimate instructions in skill or command documentation, or quoted examples. Add separate labels for malicious redirection, benign agent instruction, quoted attack text, and ordinary prose; decide the runtime action from those labels rather than treating all imperatives alike. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:52] [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/labels.jsonl:1-90] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:140]",
+      "text": "**Make the label target precise.** The benchmark's binary label is “instructs” or “clean,” and its question asks whether text contains behavior-changing instructions aimed at an agent. That does not itself distinguish hostile authority-changing attempts from legitimate instructions in skill or command documentation, or quoted examples. Add separate labels for malicious redirection, benign agent instruction, quoted attack text, and ordinary prose; decide the runtime action from those labels rather than treating all imperatives alike. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:52] [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/labels.jsonl:1-90] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:140]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-2-finding-1",
+      "_conflict_id": "iteration-2-finding-1--3547a0594efc",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-1",
+          "peerId": "iteration-2-finding-1--478fe34e135e",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-5--7ae6dcbaf37c",
+      "title": "**Measure operational cost in the units the scorer already exposes.** It estimates request tokens from text characters divided by four and records per-call latency, but not total wrapper delay, retries, production cache behavior, or monetary spend. A rollout report should include calls and input tokens per fetch/chunk, p50/p95 added end-to-end latency, timeout and retry rates, and cache hit rate; do not infer serving latency from a single-call microbenchmark. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:1015-1052] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113]",
+      "text": "**Measure operational cost in the units the scorer already exposes.** It estimates request tokens from text characters divided by four and records per-call latency, but not total wrapper delay, retries, production cache behavior, or monetary spend. A rollout report should include calls and input tokens per fetch/chunk, p50/p95 added end-to-end latency, timeout and retry rates, and cache hit rate; do not infer serving latency from a single-call microbenchmark. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:1015-1052] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-2-finding-5",
+      "_conflict_id": "iteration-2-finding-5--7ae6dcbaf37c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-5",
+          "peerId": "iteration-2-finding-5--866e9d09320a",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-4-finding-2",
+      "title": "**No fetch seam exists, but two sibling seams do, which fixes where a screen would mount.** The",
+      "text": "**No fetch seam exists, but two sibling seams do, which fixes where a screen would mount.** The",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2--34027993bf11",
+      "title": "**Precision, not margin, is the binding gate, and the keep sits three false positives from a",
+      "text": "**Precision, not margin, is the binding gate, and the keep sits three false positives from a",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-2-finding-2",
+      "_conflict_id": "iteration-2-finding-2--34027993bf11",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-2",
+          "peerId": "iteration-2-finding-2--0b7e7814a9d8",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3--2a72a1d69046",
+      "title": "**Recall and precision on the adversarial population are 27/30 and 31/36; the headline A=81",
+      "text": "**Recall and precision on the adversarial population are 27/30 and 31/36; the headline A=81",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-1-finding-3",
+      "_conflict_id": "iteration-1-finding-3--2a72a1d69046",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-3",
+          "peerId": "iteration-1-finding-3--660f275f4568",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4--1bfbf5b51baf",
+      "title": "**Reduce serving calls without weakening the benchmark.** The current benchmark makes three fresh Jev calls per row plus an auth test: 271 calls for 90 rows. It reports call p50/p95 at 324/388 ms. For serving, start by measuring one call per fetched payload (or one per bounded chunk for a long payload); keep multiple reruns for offline confidence/stability tests, not on every live fetch. A cache may reuse a decision only for an exact normalized-content hash plus classifier, prompt, transformation, and policy versions. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:56] [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:1015-1052] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113] [INFERENCE: one-call serving and exact-version cache are cost proposals; neither has been measured in the feature 035 harness.]",
+      "text": "**Reduce serving calls without weakening the benchmark.** The current benchmark makes three fresh Jev calls per row plus an auth test: 271 calls for 90 rows. It reports call p50/p95 at 324/388 ms. For serving, start by measuring one call per fetched payload (or one per bounded chunk for a long payload); keep multiple reruns for offline confidence/stability tests, not on every live fetch. A cache may reuse a decision only for an exact normalized-content hash plus classifier, prompt, transformation, and policy versions. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:56] [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:1015-1052] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113] [INFERENCE: one-call serving and exact-version cache are cost proposals; neither has been measured in the feature 035 harness.]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-2-finding-4",
+      "_conflict_id": "iteration-2-finding-4--1bfbf5b51baf",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-4",
+          "peerId": "iteration-2-finding-4--709ef563eecb",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-8",
+      "title": "**Report uncertainty separately from repeat-call stability.** Using the 90-row counts, simple row-independent 95% Wilson intervals are about 82–95% for accuracy (81/90), 71–94% for precision (31/36), and 74–95% for recall (31/35). These are only rough row-independent intervals; source clustering may widen them. The scorer's three calls per row and F=0 show decision stability on the same rows, not generalization to new pages. Report source-cluster bootstrap intervals and a held-out-source estimate. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:791-830] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113] [INFERENCE: Wilson intervals calculated from the recorded counts; the source-cluster adjustment is not measured by this scorer.] [SOURCE: https://arxiv.org/abs/2609.15017]",
+      "text": "**Report uncertainty separately from repeat-call stability.** Using the 90-row counts, simple row-independent 95% Wilson intervals are about 82–95% for accuracy (81/90), 71–94% for precision (31/36), and 74–95% for recall (31/35). These are only rough row-independent intervals; source clustering may widen them. The scorer's three calls per row and F=0 show decision stability on the same rows, not generalization to new pages. Report source-cluster bootstrap intervals and a held-out-source estimate. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:791-830] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113] [INFERENCE: Wilson intervals calculated from the recorded counts; the source-cluster adjustment is not measured by this scorer.] [SOURCE: https://arxiv.org/abs/2609.15017]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-6",
+      "title": "**Rule 16 already states the principle and has no mechanism, which is the gap this judgment",
+      "text": "**Rule 16 already states the principle and has no mechanism, which is the gap this judgment",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3--660f275f4568",
+      "title": "**The 90-row label mix is 55 natural clean, 5 natural instructions, and 30 planted instructions.** A read-only count of labels.jsonl returns those totals. Thus one third of rows are constructed positives; the result is informative about this mixture, while it does not establish a production-prevalence precision. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/labels.jsonl:1-90] [INFERENCE: production prevalence is not supplied by this benchmark, so its precision cannot be transported without a deployment base rate.]",
+      "text": "**The 90-row label mix is 55 natural clean, 5 natural instructions, and 30 planted instructions.** A read-only count of labels.jsonl returns those totals. Thus one third of rows are constructed positives; the result is informative about this mixture, while it does not establish a production-prevalence precision. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/labels.jsonl:1-90] [INFERENCE: production prevalence is not supplied by this benchmark, so its precision cannot be transported without a deployment base rate.]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-1-finding-3",
+      "_conflict_id": "iteration-1-finding-3--660f275f4568",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-3",
+          "peerId": "iteration-1-finding-3--2a72a1d69046",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-5-finding-4",
+      "title": "**The availability chain is three silent skips and a retry, and a default-on screen must say",
+      "text": "**The availability chain is three silent skips and a retry, and a default-on screen must say",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-5--947ef3980934",
+      "title": "**The Brier score is dominated by the nine wrong rows, not by diffuse miscalibration.**",
+      "text": "**The Brier score is dominated by the nine wrong rows, not by diffuse miscalibration.**",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-1-finding-5",
+      "_conflict_id": "iteration-1-finding-5--947ef3980934",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-5",
+          "peerId": "iteration-1-finding-5--f22efb46d2db",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-4-finding-4",
+      "title": "**The candidate surfaces rank by seam-today and volume, not by similarity.** In order:",
+      "text": "**The candidate surfaces rank by seam-today and volume, not by similarity.** In order:",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-6",
+      "title": "**The cheapest first step is the extended lexical floor, and the second step is advisory Jev.**",
+      "text": "**The cheapest first step is the extended lexical floor, and the second step is advisory Jev.**",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2--0b11ef17cf34",
+      "title": "**The comparison is against a narrow lexical rule.** The four case-insensitive patterns cover variants of “ignore previous instructions,” “system prompt,” “exfiltrat,” and “hidden marker.” The baseline is whichever does better on these labels: flag-nothing or that lexical screen. The live receipt reports B=56 and one planted sentence caught, so the lexical rule edges flag-nothing by one row on this sample. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:48-49] [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:642-655] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113]",
+      "text": "**The comparison is against a narrow lexical rule.** The four case-insensitive patterns cover variants of “ignore previous instructions,” “system prompt,” “exfiltrat,” and “hidden marker.” The baseline is whichever does better on these labels: flag-nothing or that lexical screen. The live receipt reports B=56 and one planted sentence caught, so the lexical rule edges flag-nothing by one row on this sample. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:48-49] [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:642-655] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-1-finding-2",
+      "_conflict_id": "iteration-1-finding-2--0b11ef17cf34",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-2",
+          "peerId": "iteration-1-finding-2--811e2c0052cd",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3--96afba1dc873",
+      "title": "**The cost is 3x what this run needed.** The protocol spends `JEV_RERUNS=3` calls per row",
+      "text": "**The cost is 3x what this run needed.** The protocol spends `JEV_RERUNS=3` calls per row",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-2-finding-3",
+      "_conflict_id": "iteration-2-finding-3--96afba1dc873",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-3",
+          "peerId": "iteration-2-finding-3--82b3bcb9178d",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5--541347e7ff91",
+      "title": "**The deciding metrics are robust overall and thin in three specific places.** Margin slack is",
+      "text": "**The deciding metrics are robust overall and thin in three specific places.** Margin slack is",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-5",
+      "_conflict_id": "iteration-3-finding-5--541347e7ff91",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-5",
+          "peerId": "iteration-3-finding-5--046df78f9ed5",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-6--8fb6a42ac2dd",
+      "title": "**The fetch census undercounts the fetch population it exists to size.** It counts agent files",
+      "text": "**The fetch census undercounts the fetch population it exists to size.** It counts agent files",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-6",
+      "_conflict_id": "iteration-3-finding-6--8fb6a42ac2dd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-6",
+          "peerId": "iteration-3-finding-6--8ecf3f2798ac",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-4-finding-1",
+      "title": "**The fetch surface is real, multi-runtime, and unscreened.** The zero-call census counts 82",
+      "text": "**The fetch surface is real, multi-runtime, and unscreened.** The zero-call census counts 82",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-6--f49b6d483fc1",
+      "title": "**The instruction's weakest phrase is \"addressed to an AI agent\" because it does not separate",
+      "text": "**The instruction's weakest phrase is \"addressed to an AI agent\" because it does not separate",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-2-finding-6",
+      "_conflict_id": "iteration-2-finding-6--f49b6d483fc1",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-6",
+          "peerId": "iteration-2-finding-6--15e6773190e9",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1--2bf1d18b7079",
+      "title": "**The labels are operator-delegated model reads, and that is documented at three layers, not",
+      "text": "**The labels are operator-delegated model reads, and that is documented at three layers, not",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-1",
+      "_conflict_id": "iteration-3-finding-1--2bf1d18b7079",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-1",
+          "peerId": "iteration-3-finding-1--5ddd6876d8d3",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1--478fe34e135e",
+      "title": "**The largest single accuracy lever is the flag threshold, and it is fixed at the least accurate",
+      "text": "**The largest single accuracy lever is the flag threshold, and it is fixed at the least accurate",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-2-finding-1",
+      "_conflict_id": "iteration-2-finding-1--478fe34e135e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-1",
+          "peerId": "iteration-2-finding-1--3547a0594efc",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2--811e2c0052cd",
+      "title": "**The lexical screen is nearly inert on this corpus.** The zero-call census over the run commit",
+      "text": "**The lexical screen is nearly inert on this corpus.** The zero-call census over the run commit",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-1-finding-2",
+      "_conflict_id": "iteration-1-finding-2--811e2c0052cd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-2",
+          "peerId": "iteration-1-finding-2--0b11ef17cf34",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-7--ae243a960550",
+      "title": "**The live cost baseline is call latency, not end-to-end serving cost.** The Jev benchmark planned 271 calls for 90 rows: three fresh judgments per row plus auth. The recorded call latency is p50 324 ms and p95 388 ms, while each request estimates tokens from text length. A serving design could start with one call per fetched payload or bounded chunk, but its actual added p50/p95, token volume, retries, timeouts, cache rate, and monetary cost remain unmeasured. Repeated calls belong in offline stability evaluation, not automatically on every fetch. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:1015-1052] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113] [INFERENCE: one call per payload/chunk is a serving proposal, not a measured delta.]",
+      "text": "**The live cost baseline is call latency, not end-to-end serving cost.** The Jev benchmark planned 271 calls for 90 rows: three fresh judgments per row plus auth. The recorded call latency is p50 324 ms and p95 388 ms, while each request estimates tokens from text length. A serving design could start with one call per fetched payload or bounded chunk, but its actual added p50/p95, token volume, retries, timeouts, cache rate, and monetary cost remain unmeasured. Repeated calls belong in offline stability evaluation, not automatically on every fetch. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:1015-1052] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113] [INFERENCE: one call per payload/chunk is a serving proposal, not a measured delta.]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-7",
+      "_conflict_id": "iteration-3-finding-7--ae243a960550",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-7",
+          "peerId": "iteration-3-finding-7--e7c0f3c9a099",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4--cbe35e3333c4",
+      "title": "**The live run's trace has a two-commit discrepancy and no label-file hash.** The goal log cites",
+      "text": "**The live run's trace has a two-commit discrepancy and no label-file hash.** The goal log cites",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-4",
+      "_conflict_id": "iteration-3-finding-4--cbe35e3333c4",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-4",
+          "peerId": "iteration-3-finding-4--eb7199471cea",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4--709ef563eecb",
+      "title": "**The misses split into two kinds, and a threshold cannot reach either.** Three planted misses",
+      "text": "**The misses split into two kinds, and a threshold cannot reach either.** Three planted misses",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-2-finding-4",
+      "_conflict_id": "iteration-2-finding-4--709ef563eecb",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-4",
+          "peerId": "iteration-2-finding-4--1bfbf5b51baf",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-5-finding-1",
+      "title": "**The only candidate seam is a PostToolUse matcher for `WebFetch|WebSearch`, and the capability",
+      "text": "**The only candidate seam is a PostToolUse matcher for `WebFetch|WebSearch`, and the capability",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-3",
+      "title": "**The per-fetch cost is bounded and small at fetch volume: about a third of a second per call.**",
+      "text": "**The per-fetch cost is bounded and small at fetch volume: about a third of a second per call.**",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-5",
+      "title": "**The product already ships a `screen` subcommand, and this measurement is a replacement",
+      "text": "**The product already ships a `screen` subcommand, and this measurement is a replacement",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-1--e268241a508a",
+      "title": "**The recorded Jev result clears the benchmark's predeclared keep rule on this sample.** With K=M=90, A=81 and B=56, Jev is correct on 25 more rows than the selected baseline. The code requires at least 90% coverage, at least 80% precision, a margin of at least 0.10, sign-test p below 0.05, and bounded call flips. Here coverage is 90/90; flagged-row precision is 31/36 (86.1%); the accuracy margin is 25/90 (27.8 points); p=0.00001118; and F=0. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:59] [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:754-761] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113]",
+      "text": "**The recorded Jev result clears the benchmark's predeclared keep rule on this sample.** With K=M=90, A=81 and B=56, Jev is correct on 25 more rows than the selected baseline. The code requires at least 90% coverage, at least 80% precision, a margin of at least 0.10, sign-test p below 0.05, and bounded call flips. Here coverage is 90/90; flagged-row precision is 31/36 (86.1%); the accuracy margin is 25/90 (27.8 points); p=0.00001118; and F=0. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:59] [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:754-761] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/goal.md:113]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-1-finding-1",
+      "_conflict_id": "iteration-1-finding-1--e268241a508a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-1",
+          "peerId": "iteration-1-finding-1--b35e2b555325",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-5--866e9d09320a",
+      "title": "**The review band is the cheapest targeted intervention available.** Exactly four rows are",
+      "text": "**The review band is the cheapest targeted intervention available.** Exactly four rows are",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-2-finding-5",
+      "_conflict_id": "iteration-2-finding-5--866e9d09320a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-5",
+          "peerId": "iteration-2-finding-5--7ae6dcbaf37c",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-5-finding-5",
+      "title": "**The risk ledger, with the numbers this run supports.** False positives: 5 of 55 clean sections",
+      "text": "**The risk ledger, with the numbers this run supports.** False positives: 5 of 55 clean sections",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3--a80a49a444e1",
+      "title": "**The rows survive today only through a historical commit, and the zero-call census no longer",
+      "text": "**The rows survive today only through a historical commit, and the zero-call census no longer",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-3",
+      "_conflict_id": "iteration-3-finding-3--a80a49a444e1",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-3",
+          "peerId": "iteration-3-finding-3--3dae9fb52344",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-4-finding-3",
+      "title": "**The same judgment already pays in the repository's measurement machinery, so the injection",
+      "text": "**The same judgment already pays in the repository's measurement machinery, so the injection",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-5--f22efb46d2db",
+      "title": "**The scored payload is a constructed stand-in for fetched output.** Each row is a 5–60-line section read from public vendored Markdown; a planted sentence is inserted for planted rows. Feature 035 explicitly adds no fetch hook, settings matcher, or wrapper. A keep result supports using Jev as a promising classifier candidate, but says nothing yet about how reliably a live runtime can intercept or score actual HTML-to-text, search snippets, or agent-selected pages. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:42-47] [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:621-629] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:43] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:88-100] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/implementation-summary.md:170-173]",
+      "text": "**The scored payload is a constructed stand-in for fetched output.** Each row is a 5–60-line section read from public vendored Markdown; a planted sentence is inserted for planted rows. Feature 035 explicitly adds no fetch hook, settings matcher, or wrapper. A keep result supports using Jev as a promising classifier candidate, but says nothing yet about how reliably a live runtime can intercept or score actual HTML-to-text, search snippets, or agent-selected pages. [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:42-47] [SOURCE: .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs:621-629] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:43] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:88-100] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/implementation-summary.md:170-173]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-1-finding-5",
+      "_conflict_id": "iteration-1-finding-5--f22efb46d2db",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-5",
+          "peerId": "iteration-1-finding-5--947ef3980934",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2--f10992ce7bb4",
+      "title": "**The single natural miss is the arbiter's own acknowledged close call.**",
+      "text": "**The single natural miss is the arbiter's own acknowledged close call.**",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-2",
+      "_conflict_id": "iteration-3-finding-2--f10992ce7bb4",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-2",
+          "peerId": "iteration-3-finding-2--f1f7508a1e2b",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-5-finding-2",
+      "title": "**The tiered operating points are measured, and a block tier exists with zero false positives on",
+      "text": "**The tiered operating points are measured, and a block tier exists with zero false positives on",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-1--b35e2b555325",
+      "title": "**The verdict is a 25-row margin over a baseline that is right on 56 rows, and 27 of the 30",
+      "text": "**The verdict is a 25-row margin over a baseline that is right on 56 rows, and 27 of the 30",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-1-finding-1",
+      "_conflict_id": "iteration-1-finding-1--b35e2b555325",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-1",
+          "peerId": "iteration-1-finding-1--e268241a508a",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-7--e7c0f3c9a099",
+      "title": "**The verdict's only registry home is outside the results table.** The 047 measurement results",
+      "text": "**The verdict's only registry home is outside the results table.** The 047 measurement results",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-7",
+      "_conflict_id": "iteration-3-finding-7--e7c0f3c9a099",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-7",
+          "peerId": "iteration-3-finding-7--ae243a960550",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-7--518d8fb82998",
+      "title": "**Use independent source and format holdouts with hard negatives.** Freeze test rows before changing prompts or thresholds; hold out source groups/domains and collect real WebFetch/WebSearch outputs in addition to the planted challenge set. Report separate hard-benign, obfuscated, multilingual, HTML/Markdown, and structural-shift results at the same threshold. A recent detector benchmark reports that aggregate F1 can hide a very high false-positive rate on externally sourced benign security text; that is a warning about evaluation design, not a predicted Jev outcome. [SOURCE: https://arxiv.org/abs/2609.15017] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:88-100] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:140-145]",
+      "text": "**Use independent source and format holdouts with hard negatives.** Freeze test rows before changing prompts or thresholds; hold out source groups/domains and collect real WebFetch/WebSearch outputs in addition to the planted challenge set. Report separate hard-benign, obfuscated, multilingual, HTML/Markdown, and structural-shift results at the same threshold. A recent detector benchmark reports that aggregate F1 can hide a very high false-positive rate on externally sourced benign security text; that is a warning about evaluation design, not a predicted Jev outcome. [SOURCE: https://arxiv.org/abs/2609.15017] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:88-100] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/035-fetched-text-injection-screen/spec.md:140-145]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-2-finding-7",
+      "_conflict_id": "iteration-2-finding-7--518d8fb82998",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-7",
+          "peerId": "iteration-2-finding-7--45e9ee6c0f22",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 5,
+    "resolvedQuestions": 5,
+    "keyFindings": 54,
+    "sourceFindings": 54,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.765,
+    "coverageBySources": {}
+  }
+}

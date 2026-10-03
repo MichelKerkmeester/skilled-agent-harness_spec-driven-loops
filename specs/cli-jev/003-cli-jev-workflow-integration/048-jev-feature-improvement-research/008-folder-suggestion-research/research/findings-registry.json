@@ -1,0 +1,616 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "luna"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "iteration-3-finding-4",
+      "title": "**A default-on integration should default to a confirmed suggestion, not an unreviewed path change.** Invoke Jev only for a low-match save with a usable candidate set; pass bounded context and the candidate descriptions; show the suggested folder and a short reason; require the existing explicit selection step before data-path switching. Keep the CLI-explicit and noninteractive behavior stable, and fall back to the deterministic validator if Jev is unavailable, times out, or abstains. Retain the approved-spec-root check before using any returned path. The evaluator currently costs 3 choice calls per row plus one auth check per run; a live one-pass design would cost approximately one choice call per eligible save, with actual token cost and latency still to be measured. Use the three-pass path for offline evaluation, not as the live default. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:1011-1057, 1097-1107, 1115-1140] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec-folder/folder-detector.ts:1151-1168]",
+      "text": "**A default-on integration should default to a confirmed suggestion, not an unreviewed path change.** Invoke Jev only for a low-match save with a usable candidate set; pass bounded context and the candidate descriptions; show the suggested folder and a short reason; require the existing explicit selection step before data-path switching. Keep the CLI-explicit and noninteractive behavior stable, and fall back to the deterministic validator if Jev is unavailable, times out, or abstains. Retain the approved-spec-root check before using any returned path. The evaluator currently costs 3 choice calls per row plus one auth check per run; a live one-pass design would cost approximately one choice call per eligible save, with actual token cost and latency still to be measured. Use the three-pass path for offline evaluation, not as the live default. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:1011-1057, 1097-1107, 1115-1140] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec-folder/folder-detector.ts:1151-1168]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1",
+      "title": "**Candidate recall is a hard ceiling on chooser accuracy.** Jev’s row options are only the current target, listed alternatives, and none-of-these. The content validator considers numbered, non-archived folders but retains only folders scoring above the target, capped at three. The folder validator ranks numbered siblings, caps the list at three, and only offers it when the top alternative beats the current score. If the correct folder is absent, Jev cannot select it. Measure gold-in-candidate-set recall before model accuracy; then improve retrieval with scoped sibling and parent/child candidates, richer folder metadata, and controlled semantic retrieval. Preserve none-of-these as an abstention choice. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:556-567] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts:522-537, 641-668]",
+      "text": "**Candidate recall is a hard ceiling on chooser accuracy.** Jev’s row options are only the current target, listed alternatives, and none-of-these. The content validator considers numbered, non-archived folders but retains only folders scoring above the target, capped at three. The folder validator ranks numbered siblings, caps the list at three, and only offers it when the top alternative beats the current score. If the correct folder is absent, Jev cannot select it. Measure gold-in-candidate-set recall before model accuracy; then improve retrieval with scoped sibling and parent/child candidates, richer folder metadata, and controlled semantic retrieval. Preserve none-of-these as an abstention choice. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:556-567] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec-folder/alignment-validator.ts:522-537, 641-668]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2",
+      "title": "**Jev receives richer semantic input than the validator’s folder-name score.** The validator extracts request/title tokens, optional observation text and filenames, then scores folder-name tokens with a fixed infrastructure bonus (alignment-validator.ts:299-350, 412-470). The Jev arm presents the row state and descriptions of target/alternative folders, asks a fixed choice question, and rotates option order across three calls (score-alignment-suggestion.ts:836-878, 980-989, 1011-1019, 1081-1087, 1115-1139). That gives it evidence about save context and folder meaning that a name-token ranking may miss. This is a plausible explanation for the margin, not a demonstrated cause: the result contains no name-only, description-only or state-only ablation.",
+      "text": "**Jev receives richer semantic input than the validator’s folder-name score.** The validator extracts request/title tokens, optional observation text and filenames, then scores folder-name tokens with a fixed infrastructure bonus (alignment-validator.ts:299-350, 412-470). The Jev arm presents the row state and descriptions of target/alternative folders, asks a fixed choice question, and rotates option order across three calls (score-alignment-suggestion.ts:836-878, 980-989, 1011-1019, 1081-1087, 1115-1139). That gives it evidence about save context and folder meaning that a name-token ranking may miss. This is a plausible explanation for the margin, not a demonstrated cause: the result contains no name-only, description-only or state-only ablation.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3",
+      "title": "**The closest reuse target is skill-advisor routing; trigger retrieval is a second candidate.** system-skill-advisor already embeds prompts, computes a semantic_shadow lane with default weight 0.05, can use exact semantic reranking when candidates are close under RRF, and filters visible recommendations through confidence and uncertainty thresholds. The Jev evaluation method can help test prompt-to-skill destination choices and measure when semantic signals improve over lexical or explicit signals; it should complement the existing scorer and abstention policy. The trigger index has a parallel query-to-document judgment: substring candidate phrases are scored per document and ranked under a result limit, so semantic candidate discovery may help paraphrased triggers. Gate 3 is a policy boundary: its deterministic ordering keeps memory-save and resume rules explicit, so semantic matching should supply context or a suggestion there, never silently grant or suppress a required gate. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:8-18] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:488-499, 766-795, 890-914] [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:549-563] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:155-211] [SOURCE: .skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:782-859]",
+      "text": "**The closest reuse target is skill-advisor routing; trigger retrieval is a second candidate.** system-skill-advisor already embeds prompts, computes a semantic_shadow lane with default weight 0.05, can use exact semantic reranking when candidates are close under RRF, and filters visible recommendations through confidence and uncertainty thresholds. The Jev evaluation method can help test prompt-to-skill destination choices and measure when semantic signals improve over lexical or explicit signals; it should complement the existing scorer and abstention policy. The trigger index has a parallel query-to-document judgment: substring candidate phrases are scored per document and ranked under a result limit, so semantic candidate discovery may help paraphrased triggers. Gate 3 is a policy boundary: its deterministic ordering keeps memory-save and resume rules explicit, so semantic matching should supply context or a suggestion there, never silently grant or suppress a required gate. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/lane-registry.ts:8-18] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts:488-499, 766-795, 890-914] [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:549-563] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:155-211] [SOURCE: .skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:782-859]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4",
+      "title": "**The current evaluator plans 121 calls for 40 callable rows, with repeated sequential inference.** The scorer reports 3 × rows + 1 planned calls: 120 choice calls plus one Jev auth check. It sends the row state and option descriptions, estimates input tokens from their text length, rotates order across three passes, and records wall time, exit status, model, provider, and version. Choice calls run sequentially; exit code 4 triggers one retry after a two-second backoff, and each call has a 90-second timeout. The implementation does not establish a dollar cost, and the packet does not provide per-call logs, so cost should be reported as actual calls, elapsed time, token usage, and provider price rather than inferred dollars. Keep the three-pass protocol for evaluation; a default-on path should test whether one call with abstention and confirmation gives an acceptable latency and quality tradeoff. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:28-67, 1011-1057, 1066-1107, 1115-1140]",
+      "text": "**The current evaluator plans 121 calls for 40 callable rows, with repeated sequential inference.** The scorer reports 3 × rows + 1 planned calls: 120 choice calls plus one Jev auth check. It sends the row state and option descriptions, estimates input tokens from their text length, rotates order across three passes, and records wall time, exit status, model, provider, and version. Choice calls run sequentially; exit code 4 triggers one retry after a two-second backoff, and each call has a 90-second timeout. The implementation does not establish a dollar cost, and the packet does not provide per-call logs, so cost should be reported as actual calls, elapsed time, token usage, and provider price rather than inferred dollars. Keep the three-pass protocol for evaluation; a default-on path should test whether one call with abstention and confirmation gives an acceptable latency and quality tradeoff. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:28-67, 1011-1057, 1066-1107, 1115-1140]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3",
+      "title": "**The fixture does not by itself demonstrate performance on production low-match saves.** The research packet describes 40 rows drawn from real spec folders, while feature 022 says its committed evidence had only two below-50 saves and neither had a paired final folder. Unless the 40 rows are verified save events with known final destinations, this is a folder-choice fixture rather than an observed production evaluation set. Future measurement should collect real low-match saves, retain the final destination, and stratify the results by validateContentAlignment versus validateFolderAlignment, project, and folder family. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research/spec.md:60, 72] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md:79-89]",
+      "text": "**The fixture does not by itself demonstrate performance on production low-match saves.** The research packet describes 40 rows drawn from real spec folders, while feature 022 says its committed evidence had only two below-50 saves and neither had a paired final folder. Unless the 40 rows are verified save events with known final destinations, this is a folder-choice fixture rather than an observed production evaluation set. Future measurement should collect real low-match saves, retain the final destination, and stratify the results by validateContentAlignment versus validateFolderAlignment, project, and folder family. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research/spec.md:60, 72] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md:79-89]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5",
+      "title": "**The main default-on risks are bad destinations, context exposure, untrusted input, and latency.** The scorer feeds row.state to the choice process and includes folder descriptions in the options; those fields may carry private or instruction-like content. Minimize and redact context, delimit it as data, keep paths and descriptions trusted by the application, and validate the final path against approved roots. Log model/provider/version, eligible-save count, abstentions, operator acceptance or correction, timeout, and p50/p95 latency. Set an explicit latency budget and rollback switch before rollout. Do not claim a dollar budget until actual token use and provider pricing are recorded. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:830-878, 980-989, 1097-1107] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec-folder/folder-detector.ts:1151-1155]",
+      "text": "**The main default-on risks are bad destinations, context exposure, untrusted input, and latency.** The scorer feeds row.state to the choice process and includes folder descriptions in the options; those fields may carry private or instruction-like content. Minimize and redact context, delimit it as data, keep paths and descriptions trusted by the application, and validate the final path against approved roots. Log model/provider/version, eligible-save count, abstentions, operator acceptance or correction, timeout, and p50/p95 latency. Set an explicit latency budget and rollback switch before rollout. Do not claim a dollar budget until actual token use and provider pricing are recorded. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:830-878, 980-989, 1097-1107] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec-folder/folder-detector.ts:1151-1155]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-1",
+      "title": "**The recorded result is a large head-to-head gain over the selected baseline.** The packet reports K=40, M=40, A=39, B=30, W=10, L=1, F=0, p=0.0059, baseline=top, with the target right on 0 of 40 rows (008-folder-suggestion-research/spec.md:72). By the scorer’s definitions, Jev is right on 39/40 (97.5%), while the top alternative baseline is right on 30/40 (75%); the net gain is 9 rows, or 22.5 percentage points. With 10 wins and 1 loss among disagreements, the sign-test tail is 12/2048 = 0.005859375, which rounds to the reported p. All rows were measured, the gain exceeds the 10-point margin, and the flip count is within the 10% limit (score-alignment-suggestion.ts:653-690). The target’s zero correct answers makes this a Jev-versus-top comparison; it does not measure an improvement over the target.",
+      "text": "**The recorded result is a large head-to-head gain over the selected baseline.** The packet reports K=40, M=40, A=39, B=30, W=10, L=1, F=0, p=0.0059, baseline=top, with the target right on 0 of 40 rows (008-folder-suggestion-research/spec.md:72). By the scorer’s definitions, Jev is right on 39/40 (97.5%), while the top alternative baseline is right on 30/40 (75%); the net gain is 9 rows, or 22.5 percentage points. With 10 wins and 1 loss among disagreements, the sign-test tail is 12/2048 = 0.005859375, which rounds to the reported p. All rows were measured, the gain exceeds the 10-point margin, and the flip count is within the 10% limit (score-alignment-suggestion.ts:653-690). The target’s zero correct answers makes this a Jev-versus-top comparison; it does not measure an improvement over the target.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1",
+      "title": "**The reported comparison is conditional on a baseline selected from the same labels.** chooseBaseline counts how often each row’s effective label matches the target and the first alternative, then chooses the more accurate column. The supplied result says the target is right on zero rows and baseline=top is right on 30, so the comparison is Jev against that selected top alternative. The reported sign-test value matches the 10 wins and 1 loss among disagreements, but the source code selects the comparator on the evaluated labels themselves. Treat p=0.0059 as evidence for this corpus and comparator; a future generalization claim should predeclare target and top comparisons or select a comparator on development rows and report on held-out rows. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:579-592, 653-690] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research/spec.md:72]",
+      "text": "**The reported comparison is conditional on a baseline selected from the same labels.** chooseBaseline counts how often each row’s effective label matches the target and the first alternative, then chooses the more accurate column. The supplied result says the target is right on zero rows and baseline=top is right on 30, so the comparison is Jev against that selected top alternative. The reported sign-test value matches the 10 wins and 1 loss among disagreements, but the source code selects the comparator on the evaluated labels themselves. Treat p=0.0059 as evidence for this corpus and comparator; a future generalization claim should predeclare target and top comparisons or select a comparator on development rows and report on held-out rows. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:579-592, 653-690] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research/spec.md:72]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2",
+      "title": "**The row schema cannot establish independent gold-label provenance.** A row stores id, path, target, alternatives, state, gold, and label, with no adjudicator, decision time, provenance, or final-folder field. effectiveLabel trusts a nonempty label, then falls back to gold if it names an offered option. The transcript exporter sets gold from the recorded event pick and leaves label blank. Those mechanics do not show how this particular fixture was labeled; they mean the reported counts alone cannot show that each answer is an independently adjudicated final destination. Preserve the source event, final saved folder, label author and rationale, timestamp, and disagreement history for each row. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:508-567, 1354-1375]",
+      "text": "**The row schema cannot establish independent gold-label provenance.** A row stores id, path, target, alternatives, state, gold, and label, with no adjudicator, decision time, provenance, or final-folder field. effectiveLabel trusts a nonempty label, then falls back to gold if it names an offered option. The transcript exporter sets gold from the recorded event pick and leaves label blank. Those mechanics do not show how this particular fixture was labeled; they mean the reported counts alone cannot show that each answer is an independently adjudicated final destination. Preserve the source event, final saved folder, label author and rationale, timestamp, and disagreement history for each row. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:508-567, 1354-1375]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2",
+      "title": "**The two save paths impose different rollout boundaries.** An explicit CLI folder reaches validateContentAlignment and logs a better match as ALIGNMENT_BYPASSED, preserving the requested path. The data path validates sibling folders and returns a selected alternative when the operator chooses one. Feature 022 likewise documents that only the data path can switch. A first default-on suggestion should therefore run only on eligible low-match data saves, while a CLI-explicit path can display an advisory without changing the target unless the caller explicitly opts into a change. Noninteractive calls should retain the current folder. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec-folder/folder-detector.ts:1032-1049, 1148-1168] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md:86-89]",
+      "text": "**The two save paths impose different rollout boundaries.** An explicit CLI folder reaches validateContentAlignment and logs a better match as ALIGNMENT_BYPASSED, preserving the requested path. The data path validates sibling folders and returns a selected alternative when the operator chooses one. Feature 022 likewise documents that only the data path can switch. A first default-on suggestion should therefore run only on eligible low-match data saves, while a CLI-explicit path can display an advisory without changing the target unless the caller explicitly opts into a change. Noninteractive calls should retain the current folder. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec-folder/folder-detector.ts:1032-1049, 1148-1168] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/022-alignment-folder-suggestion/spec.md:86-89]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3",
+      "title": "**The two save validators do not produce equivalent judgments.** validateContentAlignment combines conversation topics with observation keywords from up to ten observations; validateFolderAlignment uses conversation topics only (alignment-validator.ts:477-491, 601-613). Their low-match candidate lists also differ: the content path keeps only higher-scoring alternatives, while the folder path ranks siblings and presents the list only when its top entry beats the current folder (alignment-validator.ts:522-537, 641-684). A measured result should therefore identify the path and row construction, rather than treating “alignment on saves” as one uniform population. Feature 022 also documents that the CLI and data save paths differ, and says only the data path can switch to a selected alternative (022-alignment-folder-suggestion/spec.md:86-89).",
+      "text": "**The two save validators do not produce equivalent judgments.** validateContentAlignment combines conversation topics with observation keywords from up to ten observations; validateFolderAlignment uses conversation topics only (alignment-validator.ts:477-491, 601-613). Their low-match candidate lists also differ: the content path keeps only higher-scoring alternatives, while the folder path ranks siblings and presents the list only when its top entry beats the current folder (alignment-validator.ts:522-537, 641-684). A measured result should therefore identify the path and row construction, rather than treating “alignment on saves” as one uniform population. Feature 022 also documents that the CLI and data save paths differ, and says only the data path can switch to a selected alternative (022-alignment-folder-suggestion/spec.md:86-89).",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4",
+      "title": "**“Keep” is a scorer gate, not approval to serve the suggestion.** The feature contract explicitly says a keep serves nothing; a later phase and operator decision are needed (022-alignment-folder-suggestion/spec.md:184-208). This makes the result evidence for further measured consideration, not evidence that default-on behavior is already safe.",
+      "text": "**“Keep” is a scorer gate, not approval to serve the suggestion.** The feature contract explicitly says a keep serves nothing; a later phase and operator decision are needed (022-alignment-folder-suggestion/spec.md:184-208). This makes the result evidence for further measured consideration, not evidence that default-on behavior is already safe.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "F1-06",
+      "title": "121 calls, all exit 0; 120 measured; wall p50 324ms; no pick flips on any row.",
+      "text": "121 calls, all exit 0; 120 measured; wall p50 324ms; no pick flips on any row.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/deltas/iter-001.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-04",
+      "title": "81/120 calls at pick_prob 1.0; confidence-gated passes would cut to 70 calls (-42%) but needs keep-rule amendment.",
+      "text": "81/120 calls at pick_prob 1.0; confidence-gated passes would cut to 70 calls (-42%) but needs keep-rule amendment.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/deltas/iter-002.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-08",
+      "title": "Adjacent pay-off: disagreement sets can repair the deterministic ranker; no pipeline exists today.",
+      "text": "Adjacent pay-off: disagreement sets can repair the deterministic ranker; no pipeline exists today.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/deltas/iter-004.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-07",
+      "title": "All spots share one cost unit, one gate set and the tiebreak-not-first-responder posture (047 D6).",
+      "text": "All spots share one cost unit, one gate set and the tiebreak-not-first-responder posture (047 D6).",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/deltas/iter-004.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-02",
+      "title": "Auto-detect computes low-confidence near-ties and already falls through on them; no third answer exists.",
+      "text": "Auto-detect computes low-confidence near-ties and already falls through on them; no third answer exists.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/deltas/iter-004.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-06",
+      "title": "Backend pinned (jev 0.6.2, jev-1.13.0) but scorer revision and tokens unpinned; no commit pair on Jev lines per REQ-007.",
+      "text": "Backend pinned (jev 0.6.2, jev-1.13.0) but scorer revision and tokens unpinned; no commit pair on Jev lines per REQ-007.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/deltas/iter-003.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-03",
+      "title": "baseline=top is forced: target==label 0/40, alternatives[0]==label 30/40.",
+      "text": "baseline=top is forced: target==label 0/40, alternatives[0]==label 30/40.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/deltas/iter-001.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-08",
+      "title": "Checklist: T1/T2 corpus, keep on real corpus, controls, consent+timeout+kill switch+policy, shadow S1, then S2; D6 amendment required.",
+      "text": "Checklist: T1/T2 corpus, keep on real corpus, controls, consent+timeout+kill switch+policy, shadow S1, then S2; D6 amendment required.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/deltas/iter-005.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-03",
+      "title": "Child-resolution ambiguity is refused with a Did-you-mean list.",
+      "text": "Child-resolution ambiguity is refused with a Did-you-mean list.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/deltas/iter-004.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-04",
+      "title": "Corpus is a built fixture: wrong target per row, exactly 3 alternatives, label==own folder 40/40; repo copy has null labels.",
+      "text": "Corpus is a built fixture: wrong target per row, exactly 3 alternatives, label==own folder 40/40; repo copy has null labels.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/deltas/iter-001.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-07",
+      "title": "Existing strengths: preregistered keep rule, baseline-before-calls, gates, options_hash, dormant arm.",
+      "text": "Existing strengths: preregistered keep rule, baseline-before-calls, gates, options_hash, dormant arm.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/deltas/iter-003.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-01",
+      "title": "Four copies of the judgment in the save flow; CLI alignment and auto-detect ranking built, data-path pick and explicit-CLI suppressed.",
+      "text": "Four copies of the judgment in the save flow; CLI alignment and auto-detect ranking built, data-path pick and explicit-CLI suppressed.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/deltas/iter-004.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-02",
+      "title": "Gate stack reusable: version 0.6.2, auth, payload acceptance, skip-on-failure; 90s timeout is batch-scale.",
+      "text": "Gate stack reusable: version 0.6.2, auth, payload acceptance, skip-on-failure; 90s timeout is batch-scale.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/deltas/iter-005.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-01",
+      "title": "Integration target is the low/infrastructure branch with alternatives on both save paths; explicit-CLI stays suppressed.",
+      "text": "Integration target is the low/infrastructure branch with alternatives on both save paths; explicit-CLI stays suppressed.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/deltas/iter-005.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-01",
+      "title": "Jev recovered all 10 baseline errors and lost 1 of 30 baseline-right rows; accuracy ceiling is 1 row here.",
+      "text": "Jev recovered all 10 baseline errors and lost 1 of 30 baseline-right rows; accuracy ceiling is 1 row here.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/deltas/iter-002.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-04",
+      "title": "Label==own folder 40/40 and states paraphrase label folder material; no leak/distractor controls exist.",
+      "text": "Label==own folder 40/40 and states paraphrase label folder material; no leak/distractor controls exist.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/deltas/iter-003.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-03",
+      "title": "Labels from delegated arbiter, draft id+label only, no 022 decisions log, no labeler field in schema.",
+      "text": "Labels from delegated arbiter, draft id+label only, no 022 decisions log, no labeler field in schema.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/deltas/iter-003.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-07",
+      "title": "Latency on a save decides the design, not tokens; no dollar figure derivable from this run.",
+      "text": "Latency on a save decides the design, not tokens; no dollar figure derivable from this run.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/deltas/iter-005.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-02",
+      "title": "Lost row's correct option was the only one whose description collapsed to bare name (001-deep-research duplicated in 9 dirs).",
+      "text": "Lost row's correct option was the only one whose description collapsed to bare name (001-deep-research duplicated in 9 dirs).",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/deltas/iter-002.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-03",
+      "title": "Option text is one description.json line; keywords unused; fallback undetected.",
+      "text": "Option text is one description.json line; keywords unused; fallback undetected.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/deltas/iter-002.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-06",
+      "title": "Pay-off order: auto-detect near-ties > data-path non-interactive > child ambiguity > memory tie; explicit CLI stays suppressed.",
+      "text": "Pay-off order: auto-detect near-ties > data-path non-interactive > child ambiguity > memory tie; explicit CLI stays suppressed.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/deltas/iter-004.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-03",
+      "title": "Per-fire ~0.3-1.0s and ~0.3-0.8k planned tokens; price and fire frequency UNKNOWN.",
+      "text": "Per-fire ~0.3-1.0s and ~0.3-0.8k planned tokens; price and fire frequency UNKNOWN.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/deltas/iter-005.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-05",
+      "title": "Per-save cost unit ~1.0s of model wall for one row (3 x p50 324ms); 39.8s batch wall is serial artifact.",
+      "text": "Per-save cost unit ~1.0s of model wall for one row (3 x p50 324ms); 39.8s batch wall is serial artifact.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/deltas/iter-002.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-04",
+      "title": "Predecessor-memory tie returns null.",
+      "text": "Predecessor-memory tie returns null.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/deltas/iter-004.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-08",
+      "title": "Ranked levers: A1 path-resolved descriptions, C1 confidence-gated passes, C3 walk removal, C4 margin gate; effects quantified where measured.",
+      "text": "Ranked levers: A1 path-resolved descriptions, C1 confidence-gated passes, C3 walk removal, C4 margin gate; effects quantified where measured.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/deltas/iter-002.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-05",
+      "title": "results.md records fixture provenance and arbiter labeling; 042 had ruled 022 row-less.",
+      "text": "results.md records fixture provenance and arbiter labeling; 042 had ruled 022 row-less.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/deltas/iter-001.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-06",
+      "title": "Risk register: wrong redirect, premature generalization, privacy, latency, hard-block policy, injection, cost telemetry.",
+      "text": "Risk register: wrong redirect, premature generalization, privacy, latency, hard-block policy, injection, cost telemetry.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/deltas/iter-005.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-08",
+      "title": "Row states paraphrase the label folder's own phase material; option text is that folder's description.json.",
+      "text": "Row states paraphrase the label folder's own phase material; option text is that folder's description.json.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/deltas/iter-001.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-07",
+      "title": "Run-level gates exist (headroom, jev gate); validator alternative scores are stdout-only, so no save-level margin gate is possible today.",
+      "text": "Run-level gates exist (headroom, jev gate); validator alternative scores are stdout-only, so no save-level margin gate is possible today.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/deltas/iter-002.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-05",
+      "title": "Scored corpus and run dir live outside repo; repo copy has null labels; no hash pin in results.md or report.json.",
+      "text": "Scored corpus and run dir live outside repo; repo copy has null labels; no hash pin in results.md or report.json.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/deltas/iter-003.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-01",
+      "title": "Scored corpus is a 047 fixture, not the transcript draw 022 spec defines; external validity untested.",
+      "text": "Scored corpus is a 047 fixture, not the transcript draw 022 spec defines; external validity untested.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/deltas/iter-003.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-05",
+      "title": "Sibling features 019/020/021 already monetize the pattern; 022 is the folder-domain copy.",
+      "text": "Sibling features 019/020/021 already monetize the pattern; 022 is the folder-domain copy.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/deltas/iter-004.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-02",
+      "title": "Sign test is the binding pass: binomTail(11,10)=12/2048=0.005859; kill/margin/flips pass.",
+      "text": "Sign test is the binding pass: binomTail(11,10)=12/2048=0.005859; kill/margin/flips pass.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/deltas/iter-001.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-07",
+      "title": "Single loss f022-001: Jev chose 007-classifier-deep-research 3x (probs .52/.58/.48) vs label 001-deep-research.",
+      "text": "Single loss f022-001: Jev chose 007-classifier-deep-research 3x (probs .52/.58/.48) vs label 001-deep-research.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/deltas/iter-001.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-04",
+      "title": "Six missing prerequisites: consent storage, save-time timeout, non-interactive policy, kill switch, observability, pre-default evidence gate.",
+      "text": "Six missing prerequisites: consent storage, save-time timeout, non-interactive policy, kill switch, observability, pre-default evidence gate.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/deltas/iter-005.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-02",
+      "title": "Target arm dead (0/40), so the run compares only against the top alternative despite the spec's two-free-answer baseline.",
+      "text": "Target arm dead (0/40), so the run compares only against the top alternative despite the spec's two-free-answer baseline.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/deltas/iter-003.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-05",
+      "title": "Three shapes: S1 flag-gated interactive suggestion (first), S2 default-on interactive, S3 non-interactive adoption (separate policy).",
+      "text": "Three shapes: S1 flag-gated interactive suggestion (first), S2 default-on interactive, S3 non-interactive adoption (separate policy).",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/deltas/iter-005.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-06",
+      "title": "Token/cost receipt absent: est_input_tokens=32927 planned; calls.jsonl has no token fields.",
+      "text": "Token/cost receipt absent: est_input_tokens=32927 planned; calls.jsonl has no token fields.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/deltas/iter-002.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-08",
+      "title": "Trust fixes ranked T1-T7: real corpus, adjudicate discordants, provenance, hash pins, report n, negative controls, rerun.",
+      "text": "Trust fixes ranked T1-T7: real corpus, adjudicate discordants, provenance, hash pins, report n, negative controls, rerun.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/deltas/iter-003.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-01",
+      "title": "Verdict comes from modal picks over 3 rotated passes judged by four ordered rules.",
+      "text": "Verdict comes from modal picks over 3 rotated passes judged by four ordered rules.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/deltas/iter-001.jsonl",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 53,
+    "sourceFindings": 53,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.755,
+    "coverageBySources": {}
+  }
+}

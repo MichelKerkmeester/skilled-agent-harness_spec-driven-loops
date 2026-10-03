@@ -1,0 +1,13 @@
+{
+  "stem": "deep_research.synthesis_complete",
+  "scope": {
+    "runId": "fanout-luna-1791001537618-myd0g9",
+    "lineageId": "fanout-luna-1791001537618-myd0g9"
+  },
+  "data": {
+    "totalIterations": 3,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "stopReason": "maxIterationsReached"
+  }
+}

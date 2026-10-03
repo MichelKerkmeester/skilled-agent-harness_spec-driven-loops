@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/007-clarify-default-improvements",
+  "description": "Phase 7: clarify-default-improvements",
+  "keywords": [
+    "phase",
+    "clarify-default-improvements"
+  ],
+  "lastUpdated": "2026-10-03T05:30:08.477Z",
+  "specId": "007",
+  "folderSlug": "clarify-default-improvements",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "049-jev-feature-improvement-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

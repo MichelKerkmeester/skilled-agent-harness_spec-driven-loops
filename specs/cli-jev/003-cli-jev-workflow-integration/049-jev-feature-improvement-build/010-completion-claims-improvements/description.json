@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/010-completion-claims-improvements",
+  "description": "Phase 10: completion-claims-improvements",
+  "keywords": [
+    "phase",
+    "completion-claims-improvements"
+  ],
+  "lastUpdated": "2026-10-03T05:30:10.929Z",
+  "specId": "010",
+  "folderSlug": "completion-claims-improvements",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "049-jev-feature-improvement-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

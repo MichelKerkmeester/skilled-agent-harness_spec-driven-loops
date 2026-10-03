@@ -1,0 +1,4 @@
+{"type":"iteration","iteration":1,"run":1,"status":"insight","newInfoRatio":0.64,"ruledOut":[],"timestamp":"2026-10-02T23:35:28.414Z"}
+{"type":"iteration","iteration":2,"run":2,"status":"insight","newInfoRatio":0.58,"ruledOut":[],"timestamp":"2026-10-02T23:44:00.533Z"}
+{"type":"iteration","iteration":3,"run":3,"status":"insight","newInfoRatio":0.62,"ruledOut":[],"timestamp":"2026-10-02T23:51:09.835Z"}
+{"type":"event","event":"synthesis_complete","stem":"deep_research.synthesis_complete","lineageId":"fanout-luna-1790983140371-hbgkgw","runId":"fanout-luna-1790983140371-hbgkgw","answeredCount":5,"stopReason":"maxIterationsReached","totalIterations":3,"totalQuestions":5,"timestamp":"2026-10-02T23:56:55.305Z"}
