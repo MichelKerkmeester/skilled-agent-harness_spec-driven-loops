@@ -1566,6 +1566,33 @@ function loadDeltaPayloads(deltaDir, researchDir) {
     });
 }
 
+function collectDeltaIterationRecords(deltaPayloads) {
+  const byIteration = new Map();
+
+  for (const payload of deltaPayloads) {
+    const iterationRecord = (Array.isArray(payload) ? payload : []).find(
+      (record) => record && typeof record === 'object' && !Array.isArray(record) && record.type === 'iteration',
+    );
+    if (!iterationRecord) {
+      continue;
+    }
+
+    const iterationNumber = readIterationNumber(iterationRecord);
+    if (iterationNumber === null || byIteration.has(iterationNumber)) {
+      continue;
+    }
+    byIteration.set(iterationNumber, iterationRecord);
+  }
+
+  return byIteration;
+}
+
+function mergeDeltaIterationRecord(stateRecord, deltaIterations) {
+  const iterationNumber = readIterationNumber(stateRecord);
+  const deltaRecord = iterationNumber === null ? null : deltaIterations.get(iterationNumber);
+  return deltaRecord ? { ...deltaRecord, ...stateRecord } : stateRecord;
+}
+
 function loadDeltaSources(deltaDir, researchDir, lineage) {
   if (!fs.existsSync(deltaDir)) {
     return [];
@@ -2941,7 +2968,14 @@ function reduceResearchState(specFolder, options = {}) {
   // records (type:'progress') are additive liveness signals — they reset the
   // no-progress watchdog but MUST NOT count as iterations or completion events.
   const completionBearingRecords = filterCompletionBearingRecords(parsedRecords);
-  const records = completionBearingRecords.filter((record) => record.type === 'iteration');
+  // The state log's iteration rows are a thin projection rebuilt by the append gateway; the
+  // delta file holds the full record the leaf wrote. Merge the delta in with the projected
+  // fields winning, and reuse the same payloads for resource-map emission below.
+  const deltaPayloads = loadDeltaPayloads(deltaDir, researchDir);
+  const deltaIterations = collectDeltaIterationRecords(deltaPayloads);
+  const records = completionBearingRecords
+    .filter((record) => record.type === 'iteration')
+    .map((record) => mergeDeltaIterationRecord(record, deltaIterations));
   const mainEvents = completionBearingRecords.filter((record) => record.type === 'event');
   const pivotEvents = loadPivotEventRecords(researchDir);
   const events = mainEvents.concat(pivotEvents);
@@ -3042,23 +3076,20 @@ function reduceResearchState(specFolder, options = {}) {
   if (emitResourceMapOutput) {
     if (getResourceMapEmitSetting(config) === false) {
       resourceMapSkipReason = 'config.resource_map.emit=false';
+    } else if (!deltaPayloads.length) {
+      resourceMapSkipReason = 'no delta files found';
     } else {
-      const deltaPayloads = loadDeltaPayloads(deltaDir, researchDir);
-      if (!deltaPayloads.length) {
-        resourceMapSkipReason = 'no delta files found';
-      } else {
-        resourceMap = emitResourceMap({
-          shape: 'research',
-          deltas: deltaPayloads,
-          packet: {
-            title: config.topic || path.basename(resolvedSpecFolder),
-            specFolder: resolvedSpecFolder,
-          },
-          scope: `research convergence output for ${path.basename(resolvedSpecFolder)}`,
-          createdAt: new Date().toISOString(),
-        });
-        resourceMapSkipped = false;
-      }
+      resourceMap = emitResourceMap({
+        shape: 'research',
+        deltas: deltaPayloads,
+        packet: {
+          title: config.topic || path.basename(resolvedSpecFolder),
+          specFolder: resolvedSpecFolder,
+        },
+        scope: `research convergence output for ${path.basename(resolvedSpecFolder)}`,
+        createdAt: new Date().toISOString(),
+      });
+      resourceMapSkipped = false;
     }
   }
 

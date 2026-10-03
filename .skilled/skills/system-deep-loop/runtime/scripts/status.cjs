@@ -118,6 +118,7 @@ async function main() {
   if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council' && loopType !== 'context') throw inputError('loopType must be "research", "review", "council", or "context"');
 
   const ns = { specFolder, loopType, sessionId };
+  const readOnly = args.readOnly === true;
   let db = null;
 
   try {
@@ -125,6 +126,7 @@ async function main() {
     db = isCouncil
       ? await import('../lib/council/council-graph-db.ts')
       : await import('../lib/coverage-graph/coverage-graph-db.ts');
+    if (readOnly) db.openReadOnlyDb();
     installSignalHandlers(() => db?.closeDb());
     maybeThrowTestFault();
     if (isCouncil) {
@@ -135,6 +137,7 @@ async function main() {
       const data = {
         namespace: ns,
         scopeMode: 'session',
+        ...(readOnly ? { readOnly: true, databasePresent: db.isReadOnlyDbPresent() } : {}),
         readiness,
         sourceOfTruth: 'derived_from_ai_council_artifacts',
         notes: [
@@ -162,7 +165,7 @@ async function main() {
         momentum: null,
       };
       const payload = { status: 'ok', data, schemaVersion: data.schemaVersion, rowCount: data.totalNodes + data.totalEdges };
-      appendStatusObservabilityEvent(db, payload, ns);
+      if (!readOnly) appendStatusObservabilityEvent(db, payload, ns);
       jsonOut(payload);
       return;
     }
@@ -174,6 +177,7 @@ async function main() {
     const data = {
       namespace: ns,
       scopeMode: 'session',
+      ...(readOnly ? { readOnly: true, databasePresent: db.isReadOnlyDbPresent() } : {}),
       notes: ['Status metrics were computed from the session-scoped subgraph only.'],
       totalNodes: nodes.length,
       totalEdges: edges.length,
@@ -192,7 +196,7 @@ async function main() {
       momentum: null,
     };
     const payload = { status: 'ok', data, schemaVersion: data.schemaVersion, rowCount: data.totalNodes + data.totalEdges };
-    appendStatusObservabilityEvent(db, payload, ns);
+    if (!readOnly) appendStatusObservabilityEvent(db, payload, ns);
     jsonOut(payload);
   } finally {
     db?.closeDb();

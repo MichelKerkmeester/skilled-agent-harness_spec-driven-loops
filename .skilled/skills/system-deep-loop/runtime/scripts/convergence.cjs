@@ -677,6 +677,7 @@ async function main() {
   }
 
   const ns = { specFolder, loopType, sessionId };
+  const readOnly = args.readOnly === true;
   let db = null;
 
   try {
@@ -684,19 +685,25 @@ async function main() {
     db = isCouncil
       ? await import('../lib/council/council-graph-db.ts')
       : await import('../lib/coverage-graph/coverage-graph-db.ts');
+    if (readOnly) db.openReadOnlyDb();
     installSignalHandlers(() => db?.closeDb());
     maybeThrowTestFault();
     if (isCouncil) {
-      if (asBoolean(args.persistSnapshot) && !args.roundId) {
+      const persistCouncilSnapshot = asBoolean(args.persistSnapshot) && !readOnly;
+      if (persistCouncilSnapshot && !args.roundId) {
         throw inputError('--round-id is required when --persist-snapshot is true for council convergence');
       }
       const councilConvergence = require('../lib/council/convergence.cjs');
       const data = await councilConvergence.evaluateCouncilConvergence(ns, {
         roundId: args.roundId,
-        persistSnapshot: asBoolean(args.persistSnapshot),
+        persistSnapshot: persistCouncilSnapshot,
       });
+      if (readOnly) {
+        data.readOnly = true;
+        data.databasePresent = db.isReadOnlyDbPresent();
+      }
       const payload = councilConvergence.bridgePayload(data);
-      appendConvergenceObservabilityEvent(db, payload, ns);
+      if (!readOnly) appendConvergenceObservabilityEvent(db, payload, ns);
       jsonOut(payload);
       return;
     }
@@ -726,12 +733,13 @@ async function main() {
         trace: [],
         namespace: ns,
         scopeMode: 'session',
+        ...(readOnly ? { readOnly: true, databasePresent: db.isReadOnlyDbPresent() } : {}),
         nodeCount: 0,
         edgeCount: 0,
       };
       if (convergenceModeConfig.mode === 'divergent') data.convergenceMode = convergenceModeConfig.mode;
       const payload = { status: 'ok', data, graph_decision: data.decision, graph_decision_json: JSON.stringify(data.decision), graph_signals_json: {}, graph_blockers_json: [], graph_blockers_csv: '', graph_stop_blocked: false, graph_trace_json: [], graph_convergence_score: 0, graph_score_delta: null, graph_score_delta_json: 'null' };
-      appendConvergenceObservabilityEvent(db, payload, ns);
+      if (!readOnly) appendConvergenceObservabilityEvent(db, payload, ns);
       jsonOut(payload);
       return;
     }
@@ -814,7 +822,8 @@ async function main() {
           return typeof latest === 'number' && typeof previous === 'number' ? [[key, latest - previous]] : [];
         }));
 
-    const snapshotPersisted = asBoolean(args.persistSnapshot) && args.iteration !== undefined;
+    const persistSnapshot = !readOnly && asBoolean(args.persistSnapshot);
+    const snapshotPersisted = persistSnapshot && args.iteration !== undefined;
     if (snapshotPersisted) {
       // Snapshot writes share the deep-loop graph DB with upsert.cjs, so they
       // must take the same writer lock to avoid a concurrent-write race.
@@ -846,10 +855,11 @@ async function main() {
       momentum,
       namespace: ns,
       scopeMode: 'session',
+      ...(readOnly ? { readOnly: true, databasePresent: db.isReadOnlyDbPresent() } : {}),
       notes: ['Convergence signals were computed from the session-scoped subgraph only.'],
       snapshotPersistence: snapshotPersisted
         ? 'persisted'
-        : asBoolean(args.persistSnapshot) ? 'skipped_missing_iteration' : 'not_requested',
+        : persistSnapshot ? 'skipped_missing_iteration' : 'not_requested',
       nodeCount: stats.totalNodes,
       edgeCount: stats.totalEdges,
       lastIteration: stats.lastIteration,
@@ -873,7 +883,7 @@ async function main() {
     };
     if (improvementEffect) payload.graph_improvement_effect_json = improvementEffect;
     if (observationThreshold) payload.graph_observation_threshold_json = observationThreshold;
-    appendConvergenceObservabilityEvent(db, payload, ns);
+    if (!readOnly) appendConvergenceObservabilityEvent(db, payload, ns);
     jsonOut(payload);
   } finally {
     db?.closeDb();
