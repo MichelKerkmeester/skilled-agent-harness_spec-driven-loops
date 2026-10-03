@@ -151,7 +151,7 @@ The baseline audit, the routing baseline and every gate's exit code were recorde
 | REQ-005 audit states its surface | Met | docstring, workflow yaml, frontmatter-templates paragraph; no `goal-opencode.md` or `vision.md` under `.claude/commands` |
 | REQ-006 accepted invocation | Met | 0 matches for the rejected form |
 | REQ-007 mirrors in sync | Met | every sync `--check` exit 0; catalog STATUS=OK |
-| REQ-008 compiled routing fresh | Not met | `compiled-route-guard.cjs` exit 1, five hubs stale-manifest until the pre-commit re-mint |
+| REQ-008 compiled routing fresh | Met | the pre-commit hook re-minted all five hubs at commit `4ffc4097b7`; `compiled-route-guard.cjs` reports them fresh (mcp-tooling, untouched by this packet, is stale from an earlier commit) |
 | REQ-009 packet validates | Met | `validate.sh --recursive --strict` RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
