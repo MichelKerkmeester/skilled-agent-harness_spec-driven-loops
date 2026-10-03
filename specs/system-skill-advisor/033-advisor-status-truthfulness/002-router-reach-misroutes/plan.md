@@ -38,14 +38,14 @@ Establish live truth first: run the probe over every hub with no filter and no l
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -165,9 +165,9 @@ Phase 1 (Setup: live pre-check) ──► Phase 2 (Run + fix reproduced) ──�
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Backup created (if data changes): not applicable, no data changes
+- [x] Feature flag configured: not applicable
+- [x] Monitoring alerts set: not applicable
 
 ### Rollback Procedure
 1. Stop editing vocabulary; the current on-disk declarations remain usable.
@@ -240,7 +240,7 @@ Phase 1 (Setup: live pre-check) ──► Phase 2 (Run + fix reproduced) ──�
 
 ### ADR-001: Verify live before fixing any recorded misroute
 
-**Status**: Proposed
+**Status**: Accepted
 
 **Context**: The audit's 14 wrong-hub and 18 outranked phrases were scored from a degraded local-scorer envelope with `advisor generation: unknown`. Live probes of the three cited examples at planning time showed each reaching its expected hub, so the recorded list is not reliable as a fix list.
 

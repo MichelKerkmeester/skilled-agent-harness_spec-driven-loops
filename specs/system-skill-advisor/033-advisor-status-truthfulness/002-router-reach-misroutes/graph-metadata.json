@@ -39,13 +39,21 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "scratch/live-fleet.log",
+      "scratch/reproduction.md",
+      "scratch/verification.log",
+      "scratch/verification-degraded-attempt.log",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts",
       ".skilled/bin/skill-advisor.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/router-reach-allowlist.json"
     ],
@@ -78,6 +86,54 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "live-fleet.log",
+        "kind": "file",
+        "path": "scratch/live-fleet.log",
+        "source": "derived"
+      },
+      {
+        "name": "reproduction.md",
+        "kind": "doc",
+        "path": "scratch/reproduction.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification.log",
+        "kind": "file",
+        "path": "scratch/verification.log",
+        "source": "derived"
+      },
+      {
+        "name": "verification-degraded-attempt.log",
+        "kind": "file",
+        "path": "scratch/verification-degraded-attempt.log",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "local-native-approved-divergences.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+        "source": "derived"
+      },
+      {
+        "name": "python-ts-parity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/python-ts-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-corpus-parity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/legacy/advisor-corpus-parity.vitest.ts",
         "source": "derived"
       },
       {
@@ -145,59 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Probe",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Probe",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The source audit's fleet run reported `checked=7 hub(s), wrong-hub=14, outranked=18, no-reach=221, allowed=8, probe-error=0`, `advisor generation: unknown`, `RESULT: FAILED` (`specs/system-speckit/048-doctor-command-audit/008-router-reach/scratch/doctor-run.log:303-305`)",
     "created_at": "2026-10-03T05:27:36Z",
-    "last_save_at": "2026-10-03T05:51:01.604Z",
+    "last_save_at": "2026-10-03T07:58:39.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +215,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3dc8dfb03fe80f187033995daaf7290b456bab0b26c7cb33d12e120a46d1a85d",
+    "source_fingerprint": "sha256:8a5bc03827cca3d93a1250d6c5b9ae12d4b705a2366132ec6ca0f14ee30f65f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "465d84711d181bfa830acff6ccea52955ba643341bbb4cd997ef53a52fd46154",
-      "plan.md": "49273fe716badf43032925b622189a6951545a0f37d800a4497e70a0d7ce6b77",
-      "tasks.md": "d459e83262240355b6ed31c7aa606aa46f8ab321ce54dac6bfe9fec3b12e3347",
-      "implementation-summary.md": "18c8c014ba48c8e3095d66373848ad9ff3c68fb75753fd58ff13f6f636556b3a"
+      "spec.md": "a69895777b732228d6f68f6af2d635aa9558a7764dd0cac02fb6b5f28264de7e",
+      "plan.md": "25dffcaaa74f9217b3570c5dfd2a374a95fc8c609435d5c5fd72cba8882e78cc",
+      "tasks.md": "472336ad7496db07efb109c3353b0f2cc995e2cbcfd3553b3dea2b4584b8c489",
+      "implementation-summary.md": "96198493e31c39085f814572be6f3325eb543d50d9d8fe6c04fc209673587ed2"
     },
     "last_active_at": null
   }

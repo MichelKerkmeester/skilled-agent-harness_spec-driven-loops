@@ -219,8 +219,12 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
     // move is an improvement: pythonCorrect rising with tsAlsoCorrect rising and
     // the regression list a subset of the one above is the shape of a good move.
     // A pythonCorrect drop, or a new id in regressionIds, is a regression to fix.
-    expect(pythonCorrect).toBe(106);
-    expect(tsAlsoCorrect).toBe(99);
+    // 106 -> 107 and 99 -> 100: the skill-graph status and indexer now share
+    // one sanitizer-versioned content-hash recipe, and the sk-code description
+    // names its languages (TypeScript, Python, shell, JSON) instead of relying
+    // on incidental tokens. The regression list above is unchanged.
+    expect(pythonCorrect).toBe(107);
+    expect(tsAlsoCorrect).toBe(100);
     expect(regressions).toBe(ACCEPTED_PARITY_REGRESSION_IDS.length);
     expect(regressionIds).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
     expect(tsAbstainsOnPythonCorrect).toBe(0);

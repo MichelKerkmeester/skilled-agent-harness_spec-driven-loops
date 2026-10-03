@@ -32,6 +32,14 @@ freshness_doctor_invariant: |
     - MISSING: a skill id on disk but absent from SQLite.
     - FAMILY MISMATCH: same id, different family across sources.
     - NULL derived.generated_at: identities never V2-sync-stamped.
+    - STALE COMPILED: the compiled json's generated_at is older than the newest
+      derived.generated_at or derived.last_updated_at stamp on disk (both stamps named).
+    - DEGRADED: a source is absent or unreadable, so the checks that need it did not run;
+      the line names the source and the skipped checks (an absent SQLite leaves only the
+      compiled-json-vs-disk comparison).
+  The disk scan is depth-1: only direct children of .skilled/skills are read, so nested
+  folders are never visited. Family comparisons print `skill <id> (family disk=<f> ...)`
+  so a family that shares a skill id's name cannot read as the id.
   It reads via stdlib node:sqlite (read-only), NEVER writes, NEVER re-indexes, and NEVER
   self-heals — the canonical reindex stays operator-owned. It always exits 0 (informational).
 
@@ -84,7 +92,7 @@ workflow:
   phase_1_report:
     purpose: "Present the drift report and the final status."
     activities:
-      - "Print the drift report (source sizes + zombie/ghost/mismatch/missing/null-stamp sets)."
+      - "Print the drift report (source sizes, scan rule, stale-compiled and degraded lines, zombie/ghost/mismatch/missing/null-stamp sets)."
       - "Note that every finding is report-only; the reindex is operator-gated."
 
 # ─────────────────────────────────────────────────────────────────

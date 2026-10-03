@@ -2,7 +2,7 @@
 // MODULE: Advisor Status Tests
 // ───────────────────────────────────────────────────────────────
 
-import { mkdtempSync, mkdirSync, utimesSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, utimesSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import Database from 'better-sqlite3';
@@ -11,6 +11,8 @@ import { describe, expect, it } from 'vitest';
 
 import { handleAdvisorStatus, readAdvisorStatus } from '../../handlers/advisor-status.js';
 import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
+import { computeSkillMetadataContentHash } from '../../lib/skill-graph/skill-graph-db.js';
+import { AdvisorStatusOutputSchema } from '../../schemas/advisor-tool-schemas.js';
 
 const ADVISOR_DB_RELATIVE_PATH = join(
   '.skilled',
@@ -30,11 +32,16 @@ function workspace(name: string): string {
   return root;
 }
 
-function writeGeneration(root: string, state: 'live' | 'stale' | 'absent' | 'unavailable', generation = 1): void {
+function writeGeneration(
+  root: string,
+  state: 'live' | 'stale' | 'absent' | 'unavailable',
+  generation = 1,
+  sourceSignature: string | null = null,
+): void {
   writeFileSync(join(root, '.skilled', 'skills', '.state', 'advisor', 'skill-graph-generation.json'), `${JSON.stringify({
     generation,
     updatedAt: '2026-04-20T00:00:00.000Z',
-    sourceSignature: null,
+    sourceSignature,
     reason: `${state.toUpperCase()}_FIXTURE`,
     state,
   })}\n`, 'utf8');
@@ -42,6 +49,29 @@ function writeGeneration(root: string, state: 'live' | 'stale' | 'absent' | 'una
 
 function writeDb(root: string): void {
   writeFileSync(join(root, ADVISOR_DB_RELATIVE_PATH), '', 'utf8');
+}
+
+function writeIndexDb(root: string, contentHash: string | null): void {
+  const database = new Database(join(root, ADVISOR_DB_RELATIVE_PATH));
+  try {
+    database.exec(`
+      CREATE TABLE skill_nodes (
+        id TEXT PRIMARY KEY,
+        source_path TEXT,
+        content_hash TEXT
+      );
+    `);
+    database.prepare(`
+      INSERT INTO skill_nodes (id, source_path, content_hash)
+      VALUES (?, ?, ?)
+    `).run(
+      'alpha',
+      join('.skilled', 'skills', 'alpha', 'graph-metadata.json'),
+      contentHash,
+    );
+  } finally {
+    database.close();
+  }
 }
 
 function writeHealthDb(root: string): void {
@@ -113,6 +143,58 @@ describe('advisor_status handler', () => {
     expect(status.skillCount).toBe(1);
     expect(status.laneWeights.explicit_author).toBe(0.42);
     expect(status.semanticLaneHealth).toBeUndefined();
+  });
+
+  it('reports fresh index hashes without changing a live generation', () => {
+    const root = workspace('index-fresh');
+    const metadataPath = join(root, '.skilled', 'skills', 'alpha', 'graph-metadata.json');
+    const contentHash = computeSkillMetadataContentHash(readFileSync(metadataPath, 'utf8'));
+    writeIndexDb(root, contentHash);
+    writeGeneration(root, 'live', 3, computeAdvisorSourceSignature(root));
+
+    const status = readAdvisorStatus({ workspaceRoot: root });
+
+    expect(status.freshness).toBe('live');
+    expect(status.indexStaleness).toEqual({
+      state: 'fresh',
+      reason: null,
+      trackedSkills: 1,
+      freshSourceFiles: 1,
+      changedSourceFiles: 0,
+      missingSourceFiles: 0,
+      staleSkillIds: [],
+    });
+  });
+
+  it('marks live generations stale when index hashes differ from disk', () => {
+    const root = workspace('index-stale');
+    writeIndexDb(root, 'outdated-hash');
+    writeGeneration(root, 'live', 4, computeAdvisorSourceSignature(root));
+
+    const status = readAdvisorStatus({ workspaceRoot: root });
+
+    expect(status.freshness).toBe('stale');
+    expect(status.trustState.state).toBe('stale');
+    expect(status.indexStaleness).toEqual(expect.objectContaining({
+      state: 'stale',
+      reason: 'source_hash_mismatch',
+      changedSourceFiles: 1,
+    }));
+    expect(status.errors).toContain(
+      'advisor_status index content hashes differ from disk for 1 skill; run advisor_rebuild',
+    );
+  });
+
+  it('reports unavailable index staleness when the database is absent', () => {
+    const root = workspace('index-absent');
+    writeGeneration(root, 'live', 5, computeAdvisorSourceSignature(root));
+
+    const status = readAdvisorStatus({ workspaceRoot: root });
+
+    expect(status.indexStaleness).toEqual(expect.objectContaining({
+      state: 'unavailable',
+      reason: 'database_absent',
+    }));
   });
 
   it('reports semantic-lane health only when requested', () => {
@@ -243,6 +325,35 @@ describe('advisor_status handler', () => {
     expect(raw).not.toContain('secret@example.com');
   });
 
+  it('omits embeddings health when the option is absent', async () => {
+    const root = workspace('embeddings-health-omitted');
+    const response = await handleAdvisorStatus({ workspaceRoot: root });
+    const envelope = JSON.parse(response.content[0].text) as { data: unknown };
+    const status = AdvisorStatusOutputSchema.parse(envelope.data);
+
+    expect(status).not.toHaveProperty('embeddingsHealth');
+  });
+
+  it('returns a schema-valid unavailable model-server state when requested', async () => {
+    const root = workspace('embeddings-health-unavailable');
+    const originalServerUrl = process.env.HF_EMBED_SERVER_URL;
+
+    try {
+      process.env.HF_EMBED_SERVER_URL = join(root, 'missing-hf-embed.sock');
+      const response = await handleAdvisorStatus({
+        workspaceRoot: root,
+        includeEmbeddingsHealth: true,
+      });
+      const envelope = JSON.parse(response.content[0].text) as { data: unknown };
+      const status = AdvisorStatusOutputSchema.parse(envelope.data);
+
+      expect(status.embeddingsHealth?.modelServer.state).toBe('unavailable');
+    } finally {
+      if (originalServerUrl === undefined) delete process.env.HF_EMBED_SERVER_URL;
+      else process.env.HF_EMBED_SERVER_URL = originalServerUrl;
+    }
+  });
+
   // drift: verified against shipped behavior during Unit H
   it('caps metadata scanning when requested to avoid unbounded status walks', () => {
     const root = workspace('scan-cap');
@@ -257,6 +368,20 @@ describe('advisor_status handler', () => {
     expect(status.errors).toEqual([
       expect.stringContaining('metadata scan capped at 1 files'),
     ]);
+  });
+
+  it('counts only depth-one skill roots with graph metadata', () => {
+    const root = workspace('root-only-scan');
+    writeDb(root);
+    writeGeneration(root, 'live', 7);
+    mkdirSync(join(root, '.skilled', 'skills', 'beta'), { recursive: true });
+    writeFileSync(join(root, '.skilled', 'skills', 'beta', 'graph-metadata.json'), '{"skill_id":"beta"}\n', 'utf8');
+    mkdirSync(join(root, '.skilled', 'skills', 'alpha', 'nested'), { recursive: true });
+    writeFileSync(join(root, '.skilled', 'skills', 'alpha', 'nested', 'graph-metadata.json'), '{"skill_id":"nested"}\n', 'utf8');
+
+    const status = readAdvisorStatus({ workspaceRoot: root });
+
+    expect(status.skillCount).toBe(2);
   });
 
   it('probes the env-override artifact path the writer uses, read live', () => {

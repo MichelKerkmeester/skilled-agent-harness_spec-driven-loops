@@ -39,24 +39,28 @@
       "status"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
-      ".skilled/commands/doctor/assets/doctor-skill-advisor.yaml",
-      ".skilled/skills/system-skill-advisor/SKILL.md",
       ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-rebuild.md",
       ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-scan.md",
       ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/lib/embedders/embeddings-health.ts",
       ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
       ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts",
       ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli-manifest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tools/advisor-status.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/embedders/embeddings-health.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
-      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-status.md"
+      ".skilled/skills/system-skill-advisor/runtime/tests/cli-exit-taxonomy.vitest.ts",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-status.md",
+      ".skilled/skills/system-skill-advisor/SKILL.md"
     ],
     "entities": [
       {
@@ -90,24 +94,6 @@
         "source": "derived"
       },
       {
-        "name": "explicit.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-skill-advisor.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-skill-advisor.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "advisor-rebuild.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-rebuild.md",
@@ -123,6 +109,24 @@
         "name": "advisor-scorer.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridge-resolution-guard.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-bridge-resolution-guard.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings-health.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/embedders/embeddings-health.ts",
         "source": "derived"
       },
       {
@@ -144,15 +148,33 @@
         "source": "derived"
       },
       {
+        "name": "embeddings-health.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/embedders/embeddings-health.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "advisor-status.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
         "source": "derived"
       },
       {
+        "name": "cli-exit-taxonomy.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/cli-exit-taxonomy.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "advisor-status.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-status.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
         "source": "derived"
       },
       {
@@ -184,29 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Five gaps were recorded by the doctor command audit and re-verified at planning time",
     "created_at": "2026-10-03T05:27:37Z",
-    "last_save_at": "2026-10-03T05:53:40.771Z",
+    "last_save_at": "2026-10-03T07:58:44.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cf8f5db9de45bc3103bb8b0da7a1d7cc9ab748c0ba511ff9a970487b508f114f",
+    "source_fingerprint": "sha256:83558c4ab4752163e42b444aff4cf18c6cf72d0c73bd697a244a25cc54b53f35",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0ec2ffd51095e59802d5c9147a6d6771893c2424296f190bf043e25d7c8b12e1",
-      "plan.md": "0737f2d5363be7ee90413b56ab840bb38e4626e308adc449cfd5007695e9737e",
-      "tasks.md": "e5b66c603ab88f5b9d562811f59e55e90ae98e501651658b7bdb571fe40b13d2",
-      "implementation-summary.md": "056764686901a7f61f3ca0f49c110f963e59c2e7ca49d6bef6d3a19f55554d1a"
+      "spec.md": "e4b1df75ed63a2916d16f4133928991e8465a94bc628193e07f4eaa641d62159",
+      "plan.md": "4bf5446b56324457ba95a371c7f6642694be2362b2044e7a671951ac9bb4a032",
+      "tasks.md": "814657b06046f7d2a3beb97833adda0cf6614142d95c60e937a47e08a06ed234",
+      "implementation-summary.md": "01362a54cd34f8df8a6a0ebed13de218f98965c99ecf680c325d1cd00801b291"
     },
     "last_active_at": null
   }

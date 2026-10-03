@@ -28,6 +28,8 @@ database availability.
 
 Current runtime behavior is documented in the source files below.
 
+Source staleness compares each indexed node's stored `content_hash` with a fresh hash of the same `graph-metadata.json`, computed with the same sanitizer-versioned recipe the indexer uses (`computeSkillMetadataContentHash` in `runtime/lib/skill-graph/skill-graph-db.ts`), so a current index reports every source as fresh. `advisor_status` reports the same comparison as `indexStaleness`.
+
 ---
 
 ## 3. SOURCE FILES

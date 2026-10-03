@@ -28,6 +28,8 @@ relationships before structural skill queries.
 
 Current runtime behavior is documented in the source files below.
 
+`skill_graph_scan` mutates advisor state, so the CLI refuses the call unless the caller passes `--trusted` or sets `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` in the environment. An untrusted call exits 64 with the message `skill_graph_scan requires --trusted or SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1`. Example: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format text`.
+
 ---
 
 ## 3. SOURCE FILES

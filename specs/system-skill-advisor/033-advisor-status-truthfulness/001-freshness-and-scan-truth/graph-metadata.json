@@ -39,21 +39,28 @@
       "artifact"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
-      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
-      ".skilled/skills/cli-classifier/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+      ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/status.ts",
       ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts",
       ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/handlers/skill-graph-status-hash.vitest.ts",
+      ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/doctor/skill-graph-freshness-panel.vitest.ts",
+      ".skilled/commands/doctor/assets/doctor-skill-graph-freshness.yaml",
       ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-status.md",
-      ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/rebuild-from-source.md"
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-status.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/rebuild-from-source.md",
+      "scratch/baseline.md",
+      "scratch/recon.md",
+      "scratch/verification.md"
     ],
     "entities": [
       {
@@ -87,21 +94,15 @@
         "source": "derived"
       },
       {
-        "name": "skill-graph-freshness.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+        "name": "skill-graph-db.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
         "source": "derived"
       },
       {
-        "name": "skill-graph.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".skilled/skills/cli-classifier/graph-metadata.json",
+        "name": "status.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/status.ts",
         "source": "derived"
       },
       {
@@ -123,15 +124,63 @@
         "source": "derived"
       },
       {
+        "name": "skill-graph-status-hash.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/skill-graph-status-hash.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-freshness.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-freshness-panel.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/doctor/skill-graph-freshness-panel.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-graph-freshness.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-skill-graph-freshness.yaml",
+        "source": "derived"
+      },
+      {
         "name": "advisor-status.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-status.md",
         "source": "derived"
       },
       {
+        "name": "skill-graph-status.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-status.md",
+        "source": "derived"
+      },
+      {
         "name": "rebuild-from-source.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/rebuild-from-source.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.md",
+        "kind": "doc",
+        "path": "scratch/baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "recon.md",
+        "kind": "doc",
+        "path": "scratch/recon.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification.md",
+        "kind": "doc",
+        "path": "scratch/verification.md",
         "source": "derived"
       },
       {
@@ -157,53 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Align",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Layered",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Four reporting defects were recorded by the doctor command audit and re-verified live while planning this phase",
     "created_at": "2026-10-03T05:27:36Z",
-    "last_save_at": "2026-10-03T05:53:39.240Z",
+    "last_save_at": "2026-10-03T07:58:31.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +220,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61d220ce65bb548df0736e60b825a90ad9b2c0d25959bce35f71afe12685c26e",
+    "source_fingerprint": "sha256:80407848d51ef8ef8ac5ae52e6d7018fc45d929457d5d50c5de8ce17f1b8d809",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dadbd415cfe564339a414ca71092c6537b3df0c91eddaa2bd90e25b1d39cd76c",
-      "plan.md": "d1693d8837d07f00b2549a1128af965c237abc7cfc8e7822d246dad262a0a314",
-      "tasks.md": "f1620004055da249475226db35e6771bdc473b694c5cbb0bb404c25dd4a1aa39",
-      "implementation-summary.md": "59ca545f6341980cf6b95ef00dd067ddfbb4dcefea39aba4453412c6c1e93014"
+      "spec.md": "7e6f8b79a205cfea358ea3156c9419e391146d6e2855973b92c75abd1d980935",
+      "plan.md": "ddbfc4596f320a36319232d258578c1f9e68d2e69c7e6dd4728c805efada31d4",
+      "tasks.md": "b28c415584d61722d0a3a3ddfcce9fe2b37bc691e40224556fb0b520c2e9ff9c",
+      "implementation-summary.md": "bb084d9fc479caa821ac20b4d02980e02af8f01f333f5c9f0511a84657951496"
     },
     "last_active_at": null
   }
