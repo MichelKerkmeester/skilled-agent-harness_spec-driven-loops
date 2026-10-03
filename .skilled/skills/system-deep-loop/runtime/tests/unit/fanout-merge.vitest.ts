@@ -1063,7 +1063,13 @@ describe('research synthesis lineage evidence', () => {
   it('keeps confirm-mode resource-map emission bound to the parsed command flag', () => {
     const confirmWorkflow = readFileSync(researchWorkflowPaths[1], 'utf8');
     expect(confirmWorkflow).toContain('resource_map.emit: "{resource_map_emit}"');
-    expect(confirmWorkflow).toContain('"resource_map":{"emit":{resource_map_emit}}');
+    // The run no longer writes the flat state-log row; it opens through the gateway and reads
+    // every bound value, the emission flag included, from the config file the step is handed.
+    const runOpenStep = confirmWorkflow.slice(
+      confirmWorkflow.indexOf('      step_create_state_log:\n'),
+      confirmWorkflow.indexOf('      step_create_strategy:\n'),
+    );
+    expect(runOpenStep).toContain('fs.readFileSync(configPath)');
     expect(confirmWorkflow).not.toContain('resource_map.emit: true');
   });
 });
