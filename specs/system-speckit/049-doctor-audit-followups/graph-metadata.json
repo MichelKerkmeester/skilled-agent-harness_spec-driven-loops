@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups",
+  "spec_folder": "system-speckit/049-doctor-audit-followups",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/049-doctor-audit-followups/001-trigger-index-freshness",
+    "system-speckit/049-doctor-audit-followups/002-release-update-customization-signals",
+    "system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor audit followups",
+      "trigger index freshness",
+      "release update signals",
+      "doctor gates drift"
+    ],
+    "key_topics": [
+      "doctor",
+      "audit",
+      "followups",
+      "trigger",
+      "index",
+      "freshness",
+      "release",
+      "signals",
+      "gates",
+      "drift",
+      "command",
+      "packet"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+      ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md",
+      ".skilled/commands/doctor/scripts/release-update.cjs",
+      ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+      ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
+      ".skilled/commands/doctor/scripts/route-validate.py",
+      ".skilled/commands/doctor/assets/doctor-rebuild-presentation.txt",
+      ".skilled/commands/doctor/scripts/audit_descriptions.py",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-retrieval.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/release-update.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "release-update.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-mcp-mutation-class.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-rebuild-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-rebuild-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "audit_descriptions.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/audit_descriptions.py",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "fable-baseline.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The doctor command audit (packet 048) inspected every doctor target against the current checkout and applied its verdicts, but it deliberately recorded the defects it found in the subsystems the doctors inspect instead of fixing them",
+    "created_at": "2026-10-03T05:27:39Z",
+    "last_save_at": "2026-10-03T05:52:15.303Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:863e37f5026f2a4df3acb9c37739c13ece3824f803346a1f4ced8270461aea79",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "088dd342355d9b09d6cc07b7348c141a5f1f16657286bd28647ff491880fd11e"
+    },
+    "last_active_at": null
+  }
+}

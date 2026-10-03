@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups/002-release-update-customization-signals",
+  "description": "Phase 2: release-update-customization-signals",
+  "keywords": [
+    "phase",
+    "release-update-customization-signals"
+  ],
+  "lastUpdated": "2026-10-03T05:27:41.329Z",
+  "specId": "002",
+  "folderSlug": "release-update-customization-signals",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

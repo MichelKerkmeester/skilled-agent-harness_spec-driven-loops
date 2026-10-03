@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift",
+  "description": "Phase 3: doctor-gates-and-drift",
+  "keywords": [
+    "phase",
+    "doctor-gates-and-drift"
+  ],
+  "lastUpdated": "2026-10-03T05:27:42.128Z",
+  "specId": "003",
+  "folderSlug": "doctor-gates-and-drift",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

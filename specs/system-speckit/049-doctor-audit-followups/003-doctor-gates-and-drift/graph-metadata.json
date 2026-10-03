@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor gates drift",
+      "mutation class coverage",
+      "parent skill fixtures",
+      "route validate activities",
+      "env reference count",
+      "implementation plan",
+      "guard manifest",
+      "fixture resolution",
+      "route validator activities",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist"
+    ],
+    "key_topics": [
+      "doctor",
+      "gates",
+      "drift",
+      "mutation",
+      "class",
+      "coverage",
+      "parent",
+      "skill",
+      "fixtures",
+      "route",
+      "validate",
+      "activities"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
+      ".skilled/commands/doctor/scripts/route-validate.py",
+      ".skilled/commands/doctor/scripts/route-validate.sh",
+      ".skilled/commands/doctor/assets/doctor-rebuild-presentation.txt",
+      ".skilled/commands/doctor/scripts/audit_descriptions.py",
+      ".skilled/skills/sk-doc/scripts/quick_validate.py",
+      ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json",
+      ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+      "specs/system-speckit/048-doctor-command-audit/003-update/spec.md",
+      "specs/system-speckit/048-doctor-command-audit/013-speckit-retrieval/implementation-summary.md",
+      ".skilled/commands/doctor/speckit.md",
+      ".skilled/commands/doctor/scripts/fable-mode-check.cjs",
+      ".skilled/commands/doctor/_routes.yaml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-mcp-mutation-class.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/check-mcp-mutation-class.sh",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/route-validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "route-validate.sh",
+        "kind": "script",
+        "path": ".skilled/commands/doctor/scripts/route-validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-rebuild-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-rebuild-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "audit_descriptions.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/audit_descriptions.py",
+        "source": "derived"
+      },
+      {
+        "name": "quick_validate.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/quick_validate.py",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "fable-baseline.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-speckit-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "fable-mode-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/fable-mode-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nine defects recorded across the audit remain open",
+    "created_at": "2026-10-03T05:27:41Z",
+    "last_save_at": "2026-10-03T05:54:26.782Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:13262d4cc48b014bd04c3d4aca1c35da3abb54376174b651e13d9ed425c3c88e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d23af451cf687aa328f01a2328d62dfce895d05c80ac411f5e1cab8fb074b68b",
+      "plan.md": "eecb567dc3298cca9eb396174a47de6ef4218070d98a3e8789c5e72f0b18c77d",
+      "tasks.md": "628837b0123e315caa207b0b9233dbc40c2dc137fb5ad7dd7fd152fe8b415d7a",
+      "implementation-summary.md": "13caae203899c55b86bc6f51f68717d0b6963f3e1475fc76b673ef014922a572"
+    },
+    "last_active_at": null
+  }
+}
