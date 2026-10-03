@@ -56,10 +56,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `jev-transport.test.mjs` passes, with cases for provider routing, kill-switch precedence and runtime caching
-- [ ] `score-pi-transport.test.mjs` passes, with cases for the paired run and the escalation arm
+- [x] `jev-transport.test.mjs` passes, with cases for provider routing, kill-switch precedence and runtime caching
+- [x] `score-pi-transport.test.mjs` passes, with cases for the paired run and the escalation arm
 - [ ] The paired run's verdict line is in the log
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` on this phase
+- [x] `validate.sh --strict` prints `RESULT: PASSED` on this phase
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,10 +76,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase opened | Done | Spec, plan, tasks and goal authored 2026-10-03 from 048's ranked table |
+| Build | Done | Luna on cli-codex, resumed once after the usage limit, then one fix dispatch; `node --test` on both suites 77 pass (baseline 63) |
+| Cross-family review | Done | DeepSeek on cli-pi: 0 P0, 2 P1 fixed (an omitted `--provider` now follows `JEV_PROVIDER` then `official`; the Pi pin moved to the installed 0.99.2), 2 P2 recorded |
+| Pi replay on 0.99.2 (2026-10-03) | Done | `score-pi-transport.mjs --pi --out ~/.skilled/.labels/runs/049-009-pi-20261003`, exit 0 in 83 s: `verdict pi-transport: adopt K=111 M=103 A=98 coverage=92.8 agreement=95.1 median_abs_dp=0.0100 p95_ms=341/390 cost_per_100=0.0022`. 037 on 0.99.1 read agreement 95.5 and p95 340/387. 8 rows excluded because their cluster changed since the 019 baseline |
+| Paired run with escalation arm | Blocked | `jev auth status --provider openrouter` returns `stored openrouter API key is empty`. The paired run needs the jev CLI on OpenRouter, and 003 D1 gives Jev no secret. Operator decision |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Pi pin follows the installed version | The research asked for a pinned Pi version with a rerun trigger. The first build pinned 0.99.1, which 037 measured, while 0.99.2 is installed, so every call fell back to the CLI. The pin moved to 0.99.2 and the replay above is its rerun |
+| Review P2s | Recorded per 003 D5: the metrics line prints rounded rates while the judge decides on raw counts, and the escalation agreement counts deferred rows as agreeing |
 <!-- /ANCHOR:log -->
