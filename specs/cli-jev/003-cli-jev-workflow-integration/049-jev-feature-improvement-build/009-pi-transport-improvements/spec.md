@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/009-pi-transport-improvements` |
 | **Parent Spec** | ../spec.md |
@@ -73,7 +73,7 @@ The transport honors the caller's provider, can always be switched off, costs on
 
 ### In Scope
 - R1: Make the benchmark's same-day paired run work, and record per-call usage, backend, prompt digest and raw counts
-- R2: Preserve provider intent, or refuse the Pi route when another provider is asked for
+- R2: Preserve provider intent: map each jev provider to the Pi classifier on the same host (`official` to Pi `typesafe`/`jev-latest`, `openrouter` to Pi `openrouter`/`typesafe/jev-1.13`), and keep any other provider on the CLI
 - R3: Let `JEV_TRANSPORT=jev` override a per-call `pi` option
 - R4: Cache the runtime per process, pin the Pi version in the gate, preflight once per process and bound the combined Pi and CLI latency
 - R5: Add a margin-gated escalation arm to the benchmark and confirm it on the paired rerun
@@ -91,6 +91,10 @@ The transport honors the caller's provider, can always be switched off, costs on
 | `.skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs` | Modify | Cases for each new behavior |
 | `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs` | Modify | Paired run, usage and digest records, escalation arm |
 | `.skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs` | Modify | Cases for the paired run and the arm |
+| `.skilled/skills/cli-classifier/benchmark/pi-transport/README.md` | Modify | The provider map and the paired-provider choice |
+| `.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md` | Modify | Gate rows for the mapped Pi classifier |
+| `.skilled/skills/cli-classifier/cli-jev/SKILL.md` | Modify | Gate rows for the mapped Pi classifier |
+| `.skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md` | Modify | Paired run on the official host |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -102,7 +106,7 @@ The transport honors the caller's provider, can always be switched off, costs on
 
 | ID | Requirement | Acceptance Criteria |
 | ---- | ------------- | --------------------- |
-| REQ-001 | A call that asks for a provider other than OpenRouter does not take the Pi route. | A test with `--provider official` asserts the CLI route. |
+| REQ-001 | A call takes the Pi route only on the Pi classifier for its own jev provider: `official` maps to Pi `typesafe`/`jev-latest`, `openrouter` to Pi `openrouter`/`typesafe/jev-1.13`, and any other provider stays on the CLI. | Tests assert each mapping and that `vercel` and `custom` take the CLI route. |
 | REQ-002 | `JEV_TRANSPORT=jev` sends a call to the CLI even when the caller passes `pi`. | A test asserts the CLI route. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -111,7 +115,7 @@ The transport honors the caller's provider, can always be switched off, costs on
 | ---- | ------------- | --------------------- |
 | REQ-003 | The runtime is built once per process, and the Pi gate pins its version. | A test counts runtime builds over three calls and asserts a version mismatch skips Pi. |
 | REQ-004 | The benchmark records per-call usage, backend and prompt digest, and judges on raw counts. | A test reads each from a fixture run. |
-| REQ-005 | A same-day paired run with the escalation arm is recorded. | The verdict line and the arm's agreement sit in the goal log. |
+| REQ-005 | A same-day paired run with the escalation arm is recorded, with both arms on the same host: the jev CLI on `official` and Pi on `typesafe`/`jev-latest`. | The verdict line and the arm's agreement sit in the goal log. |
 <!-- /ANCHOR:requirements -->
 
 ---

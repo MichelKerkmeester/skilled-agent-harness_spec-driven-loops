@@ -643,9 +643,11 @@ function stubPiRuntime(models, classify = () => { throw new Error('the arm must 
   const classifications = [];
   return {
     classifications,
-    getAvailableOfType: async (type, providerId) => models,
+    getAvailableOfType: async (type, providerId) => models.filter((entry) => entry.provider === providerId),
     getModelOfType: (type, providerId, modelId) => (
-      models.some((entry) => entry.id === modelId) ? { type, provider: providerId, id: modelId } : undefined
+      models.some((entry) => entry.provider === providerId && entry.id === modelId)
+        ? { type, provider: providerId, id: modelId }
+        : undefined
     ),
     classify: (model, context, options) => {
       classifications.push({ model, context, options });
@@ -680,8 +682,8 @@ function fullChoiceAnswer(model, context) {
   }
   return Promise.resolve({
     api: 'classifier',
-    provider: 'openrouter',
-    model: 'typesafe/jev-1.13',
+    provider: model.provider,
+    model: model.id,
     answers: {
       answer: {
         type: 'choice',
@@ -709,7 +711,7 @@ async function runArm(options) {
   const errors = [];
   const outDir = tempDir('out');
   const result = await S.runPiArm({
-    env: { PATH: options.bin },
+    env: { PATH: options.bin, JEV_PROVIDER: options.provider ?? 'openrouter' },
     runtime: options.runtime,
     plan: singleCallPlan(),
     timeoutMs: options.timeoutMs,
@@ -748,7 +750,7 @@ test('run_pi_arm_skips_when_the_package_version_is_not_pinned', async () => {
   const lines = [];
   const outDir = tempDir('out');
   const result = await S.runPiArm({
-    env: { PATH: bin },
+    env: { PATH: bin, JEV_PROVIDER: 'openrouter' },
     runtime,
     plan: singleCallPlan(),
     outDir,
@@ -1071,7 +1073,7 @@ test('main_pi_run_prints_columns_metrics_verdict_and_writes_report', async () =>
   const baselineFile = path.join(tempDir('baseline'), 'calls.jsonl');
   fs.writeFileSync(baselineFile, baselineText(2));
   const outDir = tempDir('out');
-  const runtime = censusAndArmRuntime([{ provider: 'openrouter', id: 'typesafe/jev-1.13' }], recordedAnswer);
+  const runtime = censusAndArmRuntime([{ provider: 'typesafe', id: 'jev-latest' }], recordedAnswer);
   const loadCensus = async () => replayCensus(2);
   const { code, lines, errors } = await runMain(['--pi', '--out', outDir], {
     bin,
@@ -1082,6 +1084,7 @@ test('main_pi_run_prints_columns_metrics_verdict_and_writes_report', async () =>
 
   assert.equal(code, 0);
   assert.deepEqual(errors, []);
+  assert.ok(lines.includes('pi gate: model=typesafe/jev-latest available=yes typesafe_models=1'));
   assert.ok(lines.includes('pi: rows=2 calls=6 measured=2 unmeasured=0 timeouts=0 excluded=0'), lines.join('\n'));
 
   // The two columns, the metrics and the verdict print in that order.
@@ -1107,6 +1110,8 @@ test('main_pi_run_prints_columns_metrics_verdict_and_writes_report', async () =>
   assert.equal(report.metrics.K, 2);
   assert.equal(report.metrics.M, 2);
   assert.equal(report.metrics.A, 2);
+  assert.equal(report.pi.provider, 'typesafe');
+  assert.equal(report.pi.model, 'jev-latest');
 });
 
 test('main_paired_run_records_fresh_arms_and_margin_escalation', async () => {
@@ -1115,7 +1120,7 @@ test('main_paired_run_records_fresh_arms_and_margin_escalation', async () => {
   const baselineFile = path.join(tempDir('baseline'), 'calls.jsonl');
   fs.writeFileSync(baselineFile, baselineText(2));
   const outDir = tempDir('out');
-  const runtime = censusAndArmRuntime([{ provider: 'openrouter', id: 'typesafe/jev-1.13' }], recordedAnswer);
+  const runtime = censusAndArmRuntime([{ provider: 'typesafe', id: 'jev-latest' }], recordedAnswer);
   const { code, lines, errors } = await runMain(['--pi', '--cli', '--out', outDir], {
     bin,
     runtime,
@@ -1136,38 +1141,47 @@ test('main_paired_run_records_fresh_arms_and_margin_escalation', async () => {
   assert.equal(report.metrics.A, 2);
   assert.equal(report.escalation.A, 2);
   assert.equal(report.escalation.pi_served, 2);
+  assert.equal(report.pi.provider, 'typesafe');
+  assert.equal(report.pi.model, 'jev-latest');
+  assert.equal(report.cli.provider, 'official');
 
   const records = readCallRecords(outDir);
   const calls = records.filter((record) => record.kind === 'choice');
   const piCalls = calls.filter((record) => record.backend === 'pi');
   const cliCalls = calls.filter((record) => record.backend === 'jev');
   const gateRecords = records.filter((record) => record.kind === 'margin_gate');
+  const modelCheck = records.find((record) => record.kind === 'model_check');
   const runDate = report.run_date;
   const promptDigest = createHash('sha256').update(ARM_PROMPT).digest('hex');
 
   assert.equal(piCalls.length, 6);
   assert.equal(cliCalls.length, 6);
   assert.equal(gateRecords.length, 2);
+  assert.equal(modelCheck.provider, 'typesafe');
+  assert.equal(modelCheck.model, 'jev-latest');
+  assert.equal(modelCheck.classifier_models, 1);
   assert.ok(calls.every((record) => record.replay === 'fresh'));
   assert.ok(calls.every((record) => record.run_date === runDate));
   assert.ok(calls.every((record) => record.prompt_sha256 === promptDigest));
   assert.ok(piCalls.every((record) => record.usage?.cost?.total === 0.0004));
+  assert.ok(piCalls.every((record) => record.provider === 'typesafe'));
+  assert.ok(piCalls.every((record) => record.model === 'jev-latest'));
   assert.ok(cliCalls.every((record) => record.usage?.totalTokens === 12));
-  assert.ok(cliCalls.every((record) => record.provider === 'openrouter'));
+  assert.ok(cliCalls.every((record) => record.provider === 'official'));
   assert.ok(gateRecords.every((record) => record.run_date === runDate));
 });
 
-test('main_paired_run_rejects_an_explicit_provider_mismatch', async () => {
+test('main_paired_run_rejects_a_provider_without_a_pi_mapping', async () => {
   const { bin } = stubPiPackage(tempDir('pi'));
   stubJev(bin);
   const { code, lines, errors } = await runMain(['--pi', '--cli', '--out', tempDir('out')], {
     bin,
-    provider: 'official',
+    provider: 'vercel',
   });
 
   assert.equal(code, 2);
   assert.deepEqual(lines, []);
-  assert.deepEqual(errors, ['paired run requires JEV_PROVIDER=openrouter to compare the same provider']);
+  assert.deepEqual(errors, ['paired run has no Pi classifier mapping for JEV_PROVIDER=vercel']);
   assert.equal(fs.existsSync(path.join(bin, 'invocations.log')), false);
 });
 
@@ -1180,6 +1194,7 @@ test('main_excluded_rows_count_against_coverage', async () => {
   const loadCensus = async () => replayCensus(10, 8);
   const { code, lines, errors } = await runMain(['--pi', '--out', outDir], {
     bin,
+    provider: 'openrouter',
     runtime,
     baselinePath: baselineFile,
     loadCensus,

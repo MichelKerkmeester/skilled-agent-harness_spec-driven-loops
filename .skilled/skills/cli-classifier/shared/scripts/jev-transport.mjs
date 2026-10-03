@@ -30,8 +30,10 @@ import { pathToFileURL } from 'node:url';
 // ───────────────────────────────────────────────────────────────────
 
 const TRANSPORT_ENV = 'JEV_TRANSPORT';
-const PI_PROVIDER = 'openrouter';
-const PI_MODEL_ID = 'typesafe/jev-1.13';
+const PI_CLASSIFIERS = new Map([
+  ['official', { provider: 'typesafe', model: 'jev-latest' }],
+  ['openrouter', { provider: 'openrouter', model: 'typesafe/jev-1.13' }],
+]);
 const PI_PACKAGE_VERSION = '0.99.2';
 const ANSWER_NAME = 'answer';
 const PI_PACKAGE_NAME = '@earendil-works/pi-coding-agent';
@@ -273,9 +275,10 @@ function getCachedPiRuntime(packageDir, createRuntime) {
   return runtimePromise;
 }
 
-async function getPiPreflight(env, deps) {
+async function getPiPreflight(env, deps, jevProvider, classifier) {
   const pathKey = env.PATH ?? '';
-  let preflightPromise = piPreflightPromises.get(pathKey);
+  const preflightKey = JSON.stringify([pathKey, jevProvider]);
+  let preflightPromise = piPreflightPromises.get(preflightKey);
   if (preflightPromise === undefined) {
     preflightPromise = (async () => {
       const pi = resolvePiPackage(env);
@@ -286,29 +289,29 @@ async function getPiPreflight(env, deps) {
         pi.packageDir,
         deps.createRuntime ?? createPiRuntime,
       );
-      const model = runtime.getModelOfType('classifier', PI_PROVIDER, PI_MODEL_ID);
+      const model = runtime.getModelOfType('classifier', classifier.provider, classifier.model);
       if (model === undefined) return { gate: 'model' };
 
       let available = [];
       try {
-        available = await runtime.getAvailableOfType('classifier', PI_PROVIDER);
+        available = await runtime.getAvailableOfType('classifier', classifier.provider);
       } catch {
         available = [];
       }
-      if (!Array.isArray(available) || !available.some((entry) => entry?.id === PI_MODEL_ID)) {
+      if (!Array.isArray(available) || !available.some((entry) => entry?.id === classifier.model)) {
         return { gate: 'credential' };
       }
       return { gate: null, pi, runtime, model };
     })().catch(() => ({ gate: 'package' }));
-    piPreflightPromises.set(pathKey, preflightPromise);
+    piPreflightPromises.set(preflightKey, preflightPromise);
   }
   return preflightPromise;
 }
 
-function reportPiPreflightFailureOnce(env, gate, report) {
-  const pathKey = env.PATH ?? '';
-  if (reportedPiPreflightFailures.has(pathKey)) return;
-  reportedPiPreflightFailures.add(pathKey);
+function reportPiPreflightFailureOnce(env, jevProvider, gate, report) {
+  const failureKey = JSON.stringify([env.PATH ?? '', jevProvider]);
+  if (reportedPiPreflightFailures.has(failureKey)) return;
+  reportedPiPreflightFailures.add(failureKey);
   report(piSkipLine(gate));
 }
 
@@ -417,7 +420,8 @@ export async function spawnClassifierCall(options, deps = {}) {
   const request = choiceRequestFrom(options.args);
   if (request === null) return cli();
   const effectiveProvider = request.provider ?? env.JEV_PROVIDER ?? 'official';
-  if (effectiveProvider !== PI_PROVIDER) return cli();
+  const classifier = PI_CLASSIFIERS.get(effectiveProvider);
+  if (classifier === undefined) return cli();
 
   const route = resolveTransport(options.transport, env);
   if (route.line !== null) report(route.line);
@@ -427,13 +431,16 @@ export async function spawnClassifierCall(options, deps = {}) {
   try {
     const remaining = timeoutMs - (Date.now() - startedAt);
     if (remaining <= 0) return cli();
-    preflight = await promiseWithinTimeout(() => getPiPreflight(env, deps), remaining);
+    preflight = await promiseWithinTimeout(
+      () => getPiPreflight(env, deps, effectiveProvider, classifier),
+      remaining,
+    );
   } catch {
-    reportPiPreflightFailureOnce(env, 'backend', report);
+    reportPiPreflightFailureOnce(env, effectiveProvider, 'backend', report);
     return cli();
   }
   if (preflight.gate !== null) {
-    reportPiPreflightFailureOnce(env, preflight.gate, report);
+    reportPiPreflightFailureOnce(env, effectiveProvider, preflight.gate, report);
     return cli();
   }
 
@@ -459,7 +466,7 @@ export async function spawnClassifierCall(options, deps = {}) {
     return cli();
   }
 
-  const payload = choicePayloadFor(result, request.keys, PI_MODEL_ID);
+  const payload = choicePayloadFor(result, request.keys, classifier.model);
   if (payload === null) {
     report(piSkipLine('backend'));
     return cli();
