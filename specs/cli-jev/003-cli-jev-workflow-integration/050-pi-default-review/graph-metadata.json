@@ -36,7 +36,7 @@
       "binding"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -138,17 +138,17 @@
     ],
     "causal_summary": "Pi answers Jev questions with the same picks as the jev CLI in about half the time, but only when a caller asks for it, and only for `choice` questions in two scorers",
     "created_at": "2026-10-03T17:39:26Z",
-    "last_save_at": "2026-10-03T19:32:35.996Z",
+    "last_save_at": "2026-10-03T20:36:31.663Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:028da386fefacd0301509377c9f8554c20658c2c317d490bd6e40cfe5393c111",
+    "source_fingerprint": "sha256:940e135aeb0a24e6d88e38ed96307a03899e7db4bbbebbd4d1097c15c63dee96",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a6aa0ba6525fc2768cec09eab702bb4fd8077f5f4b6687a44f8926bf9e5694df"
+      "spec.md": "23315e3617bda751cc26a3ea2866e9a7ff4bab31004fa246c70a7101ad3b68af"
     },
     "last_active_at": null
   }

@@ -1266,6 +1266,9 @@ export async function runJevArm(plan, gate, ctx) {
   for (const row of labeled) {
     if (Object.hasOwn(kinds, row.kind)) kinds[row.kind].K += 1;
   }
+  // B counts the comparator that won the baseline on these labels, so the margin
+  // is read against the same method the zero-call run printed.
+  const { baselineMethod } = scoreComparators(labeled, plan.windows);
   const scored = [];
   const outcomes = [];
   for (const row of labeled) {
@@ -1301,8 +1304,9 @@ export async function runJevArm(plan, gate, ctx) {
     if (flagged && drifted) targetCounts.forEach((counts) => { counts.TP += 1; });
     if (flagged && !drifted) targetCounts.forEach((counts) => { counts.FP += 1; });
     const modelRight = flagged === drifted;
-    const comparatorRight = entry !== undefined
-      && flagByIdentifierOverlap(entry.sentence, entry.windowText, row.target) === drifted;
+    const comparatorRight = baselineMethod === 'flag-nothing'
+      ? !drifted
+      : entry !== undefined && flagByIdentifierOverlap(entry.sentence, entry.windowText, row.target) === drifted;
     if (modelRight) targetCounts.forEach((counts) => { counts.A += 1; });
     if (comparatorRight) targetCounts.forEach((counts) => { counts.B += 1; });
     if (modelRight && !comparatorRight) targetCounts.forEach((counts) => { counts.W += 1; });
