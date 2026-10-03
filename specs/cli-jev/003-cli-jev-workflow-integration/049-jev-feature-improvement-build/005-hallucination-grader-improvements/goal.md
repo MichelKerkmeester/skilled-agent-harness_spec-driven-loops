@@ -81,5 +81,5 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Caller and docs added to scope (2026-10-03) | Review P1: `run-benchmark.cjs:457-461` built `criteria` without task, spec or allowlist, so R3's forwarding never reached a real run. Review P2: the playbook still expected `allowlist: 0 of 21` and the catalog lacked the cascade arm. The session added the caller, the playbook census scenario and index, and the catalog entry to Files to Change |
 <!-- /ANCHOR:log -->

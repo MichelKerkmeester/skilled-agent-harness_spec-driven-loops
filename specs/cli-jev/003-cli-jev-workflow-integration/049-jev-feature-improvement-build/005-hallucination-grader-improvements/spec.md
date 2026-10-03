@@ -93,6 +93,9 @@ The grader is measured against a fed baseline, a failure is never read as a scor
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs` | Modify | Context forwarding, per-class report, labels SHA check, cascade arm |
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/dispute.cjs` | Modify | Escalation reachable from the 5-dimension adapter |
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts` | Modify | Cases for each new behavior |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs` | Modify | Forward task, spec and allowlist so the 5-dimension path sees the same context |
+| `.skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/` (census scenario and index) | Modify | Census now prints `allowlist: 21 of 21` |
+| `.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/hallucination-grader-agreement.md` | Modify | Document the cascade arm, per-class lines and labels-SHA refusal |
 <!-- /ANCHOR:scope -->
 
 ---

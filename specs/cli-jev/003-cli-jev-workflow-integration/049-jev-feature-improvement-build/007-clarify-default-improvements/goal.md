@@ -81,5 +81,5 @@ and findings belong here.
 
 | Item | Note |
 |------|------|
-| None yet | |
+| REQ-001 and SC-002 clarified (2026-10-03) | Review P1s. A refused row aborted the whole run, while the spec's purpose, plan and research all say the scorer scores only rows that still clarify. The session, as spec author, ruled the refusal is per row: the row is dropped and reported, and the label gate reads the eligible count. The early stop counted a skipped third vote as agreement, so a replay of the recorded run gave F=9 where the three-call run recorded F=10. SC-002 now asks for the same modal picks with flips over measured votes, not a byte-equal report |
 <!-- /ANCHOR:log -->

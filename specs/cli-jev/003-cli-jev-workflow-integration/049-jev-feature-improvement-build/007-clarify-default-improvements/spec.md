@@ -100,7 +100,7 @@ The clarify scorer scores only rows that still clarify, reports by class and hub
 
 | ID | Requirement | Acceptance Criteria |
 | ---- | ------------- | --------------------- |
-| REQ-001 | A scored row whose replay on the pinned build does not return `clarify` is refused before any call. | A test with a routed row asserts the refusal. |
+| REQ-001 | A scored row whose replay on the pinned build does not return `clarify` is refused before any call. | A test with a routed row asserts that row is refused and reported while the run scores the rows that still clarify. |
 | REQ-002 | `report.json` carries the four digests and the build identity. | A test asserts each field. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -118,7 +118,7 @@ The clarify scorer scores only rows that still clarify, reports by class and hub
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: No non-clarify row can be scored
-- **SC-002**: The recorded run replays byte-equal in fewer calls
+- **SC-002**: The recorded run replays with the same modal picks in fewer calls, with flips counted over measured votes only
 <!-- /ANCHOR:success-criteria -->
 
 ---
