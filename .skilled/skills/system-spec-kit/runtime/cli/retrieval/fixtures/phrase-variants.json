@@ -1,5 +1,5 @@
 {
-  "manifestHash": "73129b571ab540f487fd89bf02ac6ada98799a14688f2f2d64a7519c41a95849",
+  "manifestHash": "ee8e4bb95c0254a5fef3f869eb33b980c67a7485e862b60378327175e7a2d008",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -31166,6 +31166,9 @@
     "deep research executor split": [
       "deep research executor split"
     ],
+    "deep research executor switch": [
+      "deep research executor switch"
+    ],
     "deep research fan out cli devin": [
       "deep research fan-out cli-devin"
     ],
@@ -35591,6 +35594,15 @@
     "doctor update paths": [
       "doctor update paths"
     ],
+    "doctor update perfection": [
+      "doctor update perfection"
+    ],
+    "doctor update perfection findings": [
+      "doctor update perfection findings"
+    ],
+    "doctor update perfection research": [
+      "doctor update perfection research"
+    ],
     "doctor update redesign": [
       "doctor update redesign"
     ],
@@ -35600,11 +35612,29 @@
     "doctor update relevance": [
       "/doctor:update relevance"
     ],
+    "doctor update remediation ranking": [
+      "doctor update remediation ranking"
+    ],
+    "doctor update research": [
+      "doctor update research"
+    ],
+    "doctor update research plan": [
+      "doctor update research plan"
+    ],
+    "doctor update research summary": [
+      "doctor update research summary"
+    ],
+    "doctor update research tasks": [
+      "doctor update research tasks"
+    ],
     "doctor update scaffold": [
       "doctor update scaffold"
     ],
     "doctor update split decision": [
       "doctor update split decision"
+    ],
+    "doctor update stale apply lock": [
+      "doctor update stale apply lock"
     ],
     "doctor update tasks": [
       "doctor update tasks"
@@ -73455,6 +73485,15 @@
     ],
     "release update customization": [
       "release update customization"
+    ],
+    "release update engine audit": [
+      "release-update engine audit"
+    ],
+    "release update engine defects": [
+      "release-update engine defects"
+    ],
+    "release update engine research": [
+      "release-update engine research"
     ],
     "release update signals": [
       "release update signals"
