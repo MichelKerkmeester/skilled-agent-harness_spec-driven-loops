@@ -53,7 +53,7 @@ WHAT THIS SCRIPT DOES:
     2. Creates .utcp_config.json template (if not exists)
     3. Creates .env.example with placeholder API keys (if not exists)
     4. Adds code_mode to opencode.json MCP configuration
-    5. Verifies the embedded MCP server at .skilled/skills/mcp-code-mode/
+    5. Installs dependencies and builds the embedded MCP server, then verifies it
 
 FILES CREATED/MODIFIED:
     .utcp_config.json    - UTCP configuration file (created if missing)
@@ -108,6 +108,11 @@ done
 # 5. MAIN FUNCTIONS
 # ───────────────────────────────────────────────────────────────
 
+# Set by the engine-range check; later steps put this interpreter's directory
+# first on PATH so npm and the build scripts use the Node the server will run
+# under, not the ambient default.
+SERVER_NODE_BIN=""
+
 # The registration this installer writes launches through a resolver, so the
 # host has to own an interpreter the server's declared range accepts. Without
 # this check the install reports success and the failure surfaces later, as a
@@ -149,6 +154,7 @@ process.stdout.write(
     fi
 
     log_info "Server interpreter: ${value} (range: ${detail})"
+    SERVER_NODE_BIN="${value}"
     return 0
 }
 
@@ -264,8 +270,10 @@ VOYAGE_API_KEY=
 "
 
     if [[ -f "${env_file}" ]]; then
-        # Check if Code Mode section already exists
-        if grep -q "CODE MODE MCP" "${env_file}" 2>/dev/null; then
+        # Check if Code Mode section already exists. The shipped file separates
+        # the words with a dash and spaces, the template written below with a
+        # single space, so match any non-alphanumeric run between them.
+        if grep -qE "CODE MODE[^[:alnum:]]*MCP" "${env_file}" 2>/dev/null; then
             log_info ".env.example already contains Code Mode configuration"
             return 0
         fi
@@ -348,6 +356,23 @@ add_to_opencode_json() {
     fi
 }
 
+# Runs one command inside the server directory. The resolved interpreter's
+# directory goes first on PATH so npm and the build scripts use the same Node
+# the server will run under; the ambient PATH is only a warning-worthy
+# fallback, because a mismatch here surfaces later as a server that will not
+# start.
+run_in_mcp_server() {
+    local mcp_server_dir="$1"
+    shift
+
+    if [[ -n "${SERVER_NODE_BIN}" ]]; then
+        (cd "${mcp_server_dir}" && PATH="$(dirname "${SERVER_NODE_BIN}"):${PATH}" "$@")
+    else
+        log_warn "No server interpreter resolved; falling back to the ambient PATH"
+        (cd "${mcp_server_dir}" && "$@")
+    fi
+}
+
 verify_installation() {
     log_step "5" "Verifying installation..."
 
@@ -359,6 +384,8 @@ verify_installation() {
 
     if [[ "${DRY_RUN}" == "true" ]]; then
         log_info "[DRY-RUN] Would verify: ${launcher} and ${entry_point} exist"
+        log_info "[DRY-RUN] Would install dependencies in ${mcp_server_dir} when node_modules is missing"
+        log_info "[DRY-RUN] Would build in ${mcp_server_dir} when dist/index.js is missing or stale"
         return 0
     fi
 
@@ -380,20 +407,47 @@ verify_installation() {
         return 1
     fi
 
-    # Check if node_modules exists, if not run npm install
+    # A missing node_modules is the one case where npm install is the only way
+    # to make the server runnable, so installation belongs to verification
+    # rather than to a separate manual step.
     if [[ ! -d "${mcp_server_dir}/node_modules" ]]; then
         log_info "Installing dependencies in ${mcp_server_dir}..."
-        if ! (cd "${mcp_server_dir}" && npm install --silent); then
+        if ! run_in_mcp_server "${mcp_server_dir}" npm install --silent; then
             log_error "Failed to install dependencies"
             return 1
         fi
         log_success "Dependencies installed"
     fi
 
+    # dist/index.js is what the launcher loads, so it has to be current. A
+    # stale build is indistinguishable from a fresh one at runtime, hence any
+    # build input newer than the entry point forces a rebuild.
+    local needs_build="false"
+    if [[ ! -f "${entry_point}" ]]; then
+        needs_build="true"
+    else
+        local build_input
+        for build_input in index.ts package.json package-lock.json tsconfig.json; do
+            if [[ -f "${mcp_server_dir}/${build_input}" && "${mcp_server_dir}/${build_input}" -nt "${entry_point}" ]]; then
+                needs_build="true"
+                break
+            fi
+        done
+    fi
+
+    if [[ "${needs_build}" == "true" ]]; then
+        log_info "Building embedded MCP server..."
+        if ! run_in_mcp_server "${mcp_server_dir}" npm run build --silent; then
+            log_error "Build failed"
+            return 1
+        fi
+        log_success "Embedded MCP server built"
+    fi
+
     # Check if dist/index.js exists
     if [[ ! -f "${entry_point}" ]]; then
         log_error "Entry point not found: ${entry_point}"
-        log_info "The MCP server may need to be built first"
+        log_info "The build did not produce the entry point"
         return 1
     fi
 

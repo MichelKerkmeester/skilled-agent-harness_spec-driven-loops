@@ -193,7 +193,7 @@ diagnose_code_mode() {
 
     local stale_inputs="" missing_inputs="" source_path source_name
     local -a source_inputs=(
-      "$server_dir/mcp-server/index.ts"
+      "$server_dir/index.ts"
       "$server_dir/package.json"
       "$server_dir/package-lock.json"
       "$server_dir/tsconfig.json"

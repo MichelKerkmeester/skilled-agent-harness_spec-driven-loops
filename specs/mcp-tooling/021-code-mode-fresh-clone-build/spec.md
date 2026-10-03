@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/021-code-mode-fresh-clone-build` |
 <!-- /ANCHOR:metadata -->
@@ -66,7 +66,7 @@ Every requirement below traces to a finding in `specs/system-speckit/048-doctor-
 
 - Track `.skilled/skills/mcp-code-mode/mcp-server/package.json` in git, and align the two skill docs that describe it (`mcp-server/scripts/README.md`, `INSTALL-GUIDE.md`).
 - Make `.skilled/skills/mcp-code-mode/scripts/install.sh` run the embedded server build when `dist/index.js` is missing or older than its build inputs, using the Node interpreter the resolver already selects.
-- Correct `.skilled/skills/mcp-code-mode/scripts/validate_config.py`: per-type required fields for `mcp`, `cli`, `http` and `file` manuals, and manual-name-prefixed credential keys under `--check-env`.
+- Correct `.skilled/skills/mcp-code-mode/scripts/validate_config.py`: per-type required fields for `mcp`, `cli`, `http` and `file` manuals, and credential keys under `--check-env` built the way the SDK builds them (manual name with each `_` doubled, then `_VAR`).
 - Correct the call-template examples in `.skilled/skills/mcp-code-mode/references/configuration.md` to the schemas of the installed packages.
 - Make the doctor prefer a `tomllib`-capable Python for the Codex TOML check (`.skilled/commands/doctor/scripts/mcp-doctor-lib.sh`) and fix the `dist_currentness` build-input path (`.skilled/commands/doctor/scripts/mcp-doctor.sh:196`).
 
@@ -108,7 +108,7 @@ Every requirement below traces to a finding in `specs/system-speckit/048-doctor-
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-003 | `validate_config.py` validates the required fields of each `call_template_type` against the installed transports (MCP `config.mcpServers`, CLI `commands`, HTTP `url`/`http_method`/`content_type`, file `file_path`) instead of requiring `config` everywhere. | `python3 .skilled/skills/mcp-code-mode/scripts/validate_config.py .utcp_config.json` exits 0 with `VALIDATION PASSED`, and the shipped MagicPath CLI manual passes without any change to `.utcp_config.json`. |
-| REQ-004 | `validate_config.py --check-env` compares each `${VAR}` reference against `{manual_name}_{VAR}` in `.env`, matching Code Mode's resolution and the doctor's scan. | With a `.env` holding the nine prefixed keys, `--check-env` exits 0; with one prefixed key removed, it exits non-zero and names the prefixed key. |
+| REQ-004 | `validate_config.py --check-env` and the doctor's credential scan compare each `${VAR}` reference against the manual name with every `_` doubled, then `_`, then the variable (manual `clickup_official` and `${CLICKUP_API_KEY}` give `clickup__official_CLICKUP_API_KEY`; `webflow` gives `webflow_WEBFLOW_TOKEN`). The installed `@utcp/sdk` is the source of truth for this rule (`namespace.replace(/_/g, "__")`, `sdk/dist/index.js:1311-1312`), by operator decision. | With a `.env` holding only the doubled-form keys, `--check-env` exits 0; with one removed, it exits non-zero and names the doubled key; the doctor reports the credential row by the doubled names. |
 | REQ-005 | The doctor's Codex TOML check uses a `tomllib`-capable Python interpreter when one is installed, and keeps a clear WARN when none is. | On a host where `python3` is 3.9 and `python3.11` exists, the `.codex/config.toml:code_mode` result is PASS instead of WARN. |
 | REQ-006 | The doctor's `dist_currentness` check compares `dist/index.js` against the real source file. | After a correct build, `dist_currentness` is PASS and never reports `missing inputs: mcp-server/index.ts`. |
 <!-- /ANCHOR:requirements -->

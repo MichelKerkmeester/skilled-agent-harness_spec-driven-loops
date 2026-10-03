@@ -132,7 +132,7 @@ An unhandled exception stops the entire execution. Wrap multi-step flows in `try
 
 ### The .env Prefix Rule
 
-Code Mode prefixes every environment variable with the manual name from `.utcp_config.json`. If the manual name is `clickup_official` and the config references `${CLICKUP_API_KEY}`, your `.env` file must declare `clickup_official_CLICKUP_API_KEY`. Using the unprefixed form `CLICKUP_API_KEY` produces a runtime error. Run `get_required_keys_for_tool` before a workflow to confirm the exact prefixed variable names a tool expects.
+Code Mode prefixes every environment variable with the manual name from `.utcp_config.json`, doubling each underscore in that name first. If the manual name is `clickup_official` and the config references `${CLICKUP_API_KEY}`, your `.env` file must declare `clickup__official_CLICKUP_API_KEY`. Using the unprefixed form `CLICKUP_API_KEY` produces a runtime error. Run `get_required_keys_for_tool` before a workflow to confirm the exact prefixed variable names a tool expects.
 
 ---
 
@@ -162,7 +162,7 @@ All three MCP tool skills below nest under the `mcp-tooling` parent hub as workf
 |---|---|---|
 | `Tool not found` or `Cannot read properties of undefined` | Missing manual prefix. Calling `myservice.sites_list()` instead of `myservice.myservice_sites_list()` | Use `search_tools()` to get the exact registered name, then `tool_info()` to confirm the callable syntax |
 | `TypeError: myservice.myservice is not a function` | Double-dot notation where an underscore belongs. `manual.manual.tool` instead of `manual.manual_tool` | Replace the second dot with an underscore: `myservice.myservice_sites_list()` |
-| `Variable 'clickup_official_CLICKUP_API_KEY' not found` | `.env` uses the unprefixed key. Code Mode expects `clickup_official_CLICKUP_API_KEY` | Prepend the manual name from `.utcp_config.json` to the key in `.env`. Run `get_required_keys_for_tool` to see the expected names |
+| `Variable 'clickup__official_CLICKUP_API_KEY' not found` | `.env` uses the unprefixed key. Code Mode expects `clickup__official_CLICKUP_API_KEY` | Prepend the manual name with each underscore doubled from `.utcp_config.json` to the key in `.env`. Run `get_required_keys_for_tool` to see the expected names |
 | `Execution timeout exceeded` | Workflow calls more tools than the default 30-second timeout allows | Set `timeout: 60000` for 3 to 5 tools or `timeout: 120000` for 6 or more |
 | Config file not found | `UTCP_CONFIG_FILE` points to a relative path or the file is missing | Use an absolute path in the `UTCP_CONFIG_FILE` value and confirm the file exists with `ls -la` |
 | A tool is missing from `list_tools()` | The tool is a native MCP tool in `opencode.json`. Code Mode only sees `.utcp_config.json` tools | Call native MCP tools directly by their function name without using `call_tool_chain` |

@@ -376,7 +376,7 @@ Use this if the Code Mode source is embedded in your project at `.skilled/skills
 }
 ```
 
-> **Note:** The embedded approach requires running `npm install` in the `mcp-server/` directory first. This is useful for projects that want to bundle the MCP server source for version control and portability.
+> **Note:** The embedded approach requires running `npm install` in the `mcp-server/` directory first, followed by `npm run build`. The build produces `dist/index.js`, which the launcher starts. This is useful for projects that want to bundle the MCP server source for version control and portability.
 
 ### Option C: Configure for VS Code Copilot
 
@@ -426,9 +426,11 @@ Never hardcode API keys directly in `.utcp_config.json`. Always use environment 
 
 Define the actual value in `.env` with the manual name prefix:
 ```bash
-# Code Mode requires prefixed variable names: {manual_name}_{VAR}
+# Code Mode requires prefixed variable names: {manual_name with each _ doubled}_{VAR}
 # If your manual name is "clickup", use:
 clickup_CLICKUP_API_KEY=pk_1234567890_your_actual_key
+# If your manual name is "clickup_official", use:
+clickup__official_CLICKUP_API_KEY=pk_1234567890_your_actual_key
 ```
 
 See the "CRITICAL: Prefixed Environment Variables" section below for full details.
@@ -1249,7 +1251,7 @@ call_tool_chain({
 | `Execution timeout exceeded`                 | Complex operation            | Increase `timeout` parameter              |
 | `UTCP_CONFIG_FILE not set`                   | Missing environment variable | Set path to `.utcp_config.json`           |
 | `Environment variable X not found`           | Missing in .env              | Add variable to `.env` file               |
-| `Variable 'manual_VAR' not found`            | Missing prefixed variable    | Add `{manual}_{VAR}` to `.env`            |
+| `Variable 'manual_VAR' not found`            | Missing prefixed variable    | Add `{manual with each _ doubled}_{VAR}` to `.env`            |
 | `TypeError: X is not a function`             | Wrong naming pattern         | Check exact tool name with `search_tools` |
 | `Failed to start MCP server`                 | Package or auth issue        | Test command manually in terminal         |
 | `Invalid JSON`                               | Config syntax error          | Validate with `python3 -m json.tool`      |
