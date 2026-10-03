@@ -1,0 +1,456 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "Q1",
+      "question": "What drove the measured result?"
+    },
+    {
+      "id": "Q2",
+      "question": "How to raise its accuracy or lower its cost?"
+    },
+    {
+      "id": "Q3",
+      "question": "How to make the measurement more trustworthy?"
+    },
+    {
+      "id": "Q4",
+      "question": "Where else in .skilled would the same judgment pay off?"
+    },
+    {
+      "id": "Q5",
+      "question": "What would a default-on integration need, cost and risk?"
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F1-01",
+      "title": "Recall is zero on the labeled corpus: all 10 label-yes rows are silent, and the scorer attributes none of them to a claim word (\"by word: none\") because no pattern word occurs in any missed tail.",
+      "evidence": "score-completion-claims.mjs:247-268 regexErrors; sentinel:64 pattern; reproduced run: \"regex missed claims: 10 (by word: none)\"",
+      "confidence": "observed",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-02",
+      "title": "Precision is zero too: the detector fired on 7 of 110 rows and every fire was a label-no row (\"rows: 110 fires: 7\", \"regex false fires: 7\") — 7 false positives, 0 true positives on this corpus.",
+      "evidence": "reproduced run stdout; 047 results.md:15",
+      "confidence": "observed",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-03",
+      "title": "The margin check is what stopped the verdict, not the sign test: A-B=9 needs 10*(A-B)>=M=110, i.e. A-B>=11; decideVerdict orders coverage, kill, margin, sign test, so p_win=0.02452 (<0.05) is never reached.",
+      "evidence": "score-completion-claims.mjs:480-489 decideVerdict order; independent evaluate: decideVerdict(...)=\"stop (margin)\"; 047 results.md:15",
+      "confidence": "observed",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-04",
+      "title": "The stats are exact and reproduce: p_win = binomialTail(13,17).num/den = 3214/131072 = 0.0245208740234375 and p_loss = 130238/131072 = 0.9936370849609375, computed in BigInt so no float decides the comparison.",
+      "evidence": "score-completion-claims.mjs:446-456 binomialTail; independent node evaluate of the module functions",
+      "confidence": "observed",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-05",
+      "title": "The word list is the wrong vocabulary for this corpus: completed|resolved|fixed|finished|shipped|released|deployed|implemented|occurred|happened, while the 10 missed tails end with \"Nothing is waiting on you\", \"everything is committed and pushed\", \"Validation passes: 43 PASSED and 0 FAILED\", \"Nothing left on my side\", \"The goal is complete\", \"Nothing remains to build\" — none contain any of the ten words, and occurred|happened are not completion claims at all.",
+      "evidence": "sentinel:60-64 (pattern and its mirrored comment); reproduced missed-claims listing",
+      "confidence": "observed",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-06",
+      "title": "False fires are context-blind: \"Deployed to staging\" (an unchecked checklist item), \"Status | Complete / Completed | Not completed\" (a status table), \"resolved-root=...resolved-target=...\" (variable names), \"re-verifying all gates ... RESULT: FAILED\" (an actual failure report), \"needs supportsDeveloperRole: false\" (a requirement statement), \"deviations get recorded as amendments\" (an open question), \"the whole claim is the before/after delta\" (mid-reasoning). No negation, list-item, code/path, or end-statement check exists.",
+      "evidence": "sentinel:113-119 (trim+slice(400)+test, no context rules); reproduced false-fire listing",
+      "confidence": "observed",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-07",
+      "title": "The regex is a gate, not the decision: evaluateCompletionEvidence returns early unless detectCompletionClaim fires, so a missed claim skips the check-completion.sh / implementation-summary evidence path entirely — zero recall disables the whole sentinel.",
+      "evidence": "sentinel:489-499 (early return on !detectCompletionClaim)",
+      "confidence": "observed",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F1-08",
+      "title": "The corpus is asymmetric by runtime: 110 rows = 50 Pi + 60 Claude; all 10 label-yes rows are Claude turns, so the measured recall is Claude-turn recall and Pi claim endings are not represented among the positives.",
+      "evidence": "computed id-join of 026-rows.jsonl and 026-labels-047.jsonl (yesBySource {\"claude\":10}, bySource {\"pi\":50,\"claude\":60}); 047 results.md:15",
+      "confidence": "observed",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-01",
+      "title": "Threshold is a zero-call accuracy lever: replaying the recorded 3-rerun nouls with a modal yes threshold of 0.7 instead of YES_THRESHOLD=0.5 raises A from 102 to 104, drops L from 4 to 1, reaches A-B=11, and flips the verdict to keep on the same 331 calls (pWin=0.001709, F=0). At 0.6/0.65 the margin still fails at A-B=10.",
+      "evidence": "score-completion-claims.mjs:53-54 YES_THRESHOLD, :465-472 modalCall; replay of ~/.skilled/.labels/runs/047-026-jev-20261002/calls.jsonl with modal per-rerun votes",
+      "confidence": "observed",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-02",
+      "title": "Adding the single word complete to the pattern catches 3 of the 10 missed claims with no new false fire (TP 0->3, FP 7 constant, FN 10->7, accuracy 0.8455->0.8727); the pattern has completed but not complete.",
+      "evidence": "sentinel:64; in-memory replay over 026-rows/026-labels-047",
+      "confidence": "observed",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-03",
+      "title": "End-anchoring the match to the closing 160 characters cuts false fires from 7 to 3 with recall unchanged (accuracy 0.8455->0.8818); the four recovered false fires sat mid-tail (checklist item, status table, variable assignment, failure report), and all seven share those shapes.",
+      "evidence": "sentinel:113-119 tail handling; in-memory replay with a 160-char slice",
+      "confidence": "observed",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-04",
+      "title": "Vocabulary without context rules swings precision: a broad v2 list (complete|done|committed|pushed|passes|green|clean|ready|verified|nothing left) reaches TP 9/10 but FP 18 (accuracy 0.8273, precision 9/27), so any vocabulary expansion must ship with context rules and a threshold.",
+      "evidence": "in-memory replay over the labeled corpus",
+      "confidence": "observed",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-05",
+      "title": "The judge is not a recall fix by itself: 102/110 correct at its 0.5 call rule, yes on 6/10 claims (recall 0.6) and on 4/100 non-claims (yes-precision 0.6); its 13 wins split 7 false-fire rejections plus 6 claim catches, and its 4 losses are boundary rows (including a 0.95 call on a Pi tail that ends in raw output: done / Errors: 0 / RESULT: PASSED, labeled no).",
+      "evidence": "calls.jsonl replay joined to labels; rows pi-cc3cc010bbef, claude-17fb882878fc, pi-6d04941605f5, pi-9a42c7527ae9",
+      "confidence": "observed",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-06",
+      "title": "Reruns are unearned on this corpus: F=0 means every row voted unanimously across all three passes, so one call per row (110+1) would reproduce the same column at a third of the calls; keep reruns only where scores sit near the call threshold.",
+      "evidence": "047 stdout \"flips: 0\"; calls.jsonl (331 measured calls, no split rows)",
+      "confidence": "observed",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-07",
+      "title": "Measured per-call cost: 331 calls, all status=measured; mean 329 ms, p50 320 ms, p95 391 ms; Pi rows p50 319 ms vs Claude 320 ms; estimated payload 24,735 input tokens for ~75 tokens per judgment.",
+      "evidence": "047 stdout payload/latency lines; calls.jsonl latency aggregation",
+      "confidence": "observed",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F2-08",
+      "title": "The transport offers choice (keyed yes/no) and run (batched questions against ONE state), but run does not merge distinct states, so per-row call count is unchanged; the real cost levers are gating the judge (only run it when the regex is silent or ambiguous) and shaping threshold/rerun counts rather than batching rows.",
+      "evidence": "cli-jev/references/cli-reference.md:46-49 (subcommands), :96-98 (run request = state + questions); cli-jev/SKILL.md:1 (batched classification)",
+      "confidence": "observed",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-01",
+      "title": "The positive class is 10 rows from one runtime: all 10 label-yes rows are Claude turns; the 50-row Pi draw held 0 yes and closed 026 at its gate in 042, and the run only became possible when 60 Claude turns supplied 10 positives. Class balance is 1:10, and every judged-column claim metric moves in 10-point steps.",
+      "evidence": "042 spec.md:55 (026 gate: 30 rows, >=5 yes, >=5 no; 50 drawn rows held 0); 047 spec.md:86; computed id-join (yesBySource claude=10)",
+      "confidence": "observed",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-02",
+      "title": "Labels are arbiter-decided, not operator-confirmed per row: 042 ADR-001 replaced the chat review with a fresh Opus 5.5 medium arbiter per feature plus a digest the operator can veto; the two blind drafters (Luna 6 max, SWE 2 max) supplied drafts, and the label file was written by parser from the arbiter output.",
+      "evidence": "042 spec.md:42-44 (operator choices and ADR-001 amendment); 042 implementation-summary.md:57,91",
+      "confidence": "observed",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-03",
+      "title": "The label file drops provenance: 026-labels-047.jsonl rows carry only {id, claim}; no labeler, rubric, timestamp or confidence field, and report.json records only its sha256. A reader of the run alone cannot tell who decided a row or on what evidence.",
+      "evidence": "~/.skilled/.labels/026-labels-047.jsonl (110 rows, two keys); report.json labelsSha256",
+      "confidence": "observed",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-04",
+      "title": "The run is replayable byte-for-byte from recorded artifacts: report.json holds rowsSha256, labelsSha256, census, regex counts, gate, the exact BigInt pWin/pLoss, latency p50/p95 and jevVersion/provider/model; calls.jsonl holds all 331 per-call rows. Replaying them reproduces A=102 B=93 W=13 L=4 F=0 exactly.",
+      "evidence": "~/.skilled/.labels/runs/047-026-jev-20261002/report.json, calls.jsonl; independent replay",
+      "confidence": "observed",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-05",
+      "title": "Corpus-vs-consumer input is not pinned: the scorer reads raw_text tails, while the hooks feed the last assistant message (pi hook claimTextFrom; Claude stdin payload). The rows file carries no field naming the extraction (objective + raw_text only) and no extractor is in the repo, so a reader cannot verify the labels were judged against the same text the detector sees. Rows whose tails are raw output (pi-cc3cc010bbef: \"done / Errors: 0 / RESULT: PASSED\", labeled no) show the boundary matters.",
+      "evidence": "score-completion-claims.mjs:96-126 parseRows (id, raw_text); pi/completion-evidence.ts:27-31; ~/.skilled/.labels/026-rows.jsonl row pi-cc3cc010bbef",
+      "confidence": "observed",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-06",
+      "title": "The verdict is tuned-parameter sensitive and the tuning is post-hoc: replaying the same calls at YES_THRESHOLD 0.7 flips stop (margin) to keep at exact margin equality (A-B=11, 10*11=110). The keep rule and margin line are pre-registered; the call threshold and the pattern vocabulary are not frozen per run.",
+      "evidence": "score-completion-claims.mjs:53-54 (YES_THRESHOLD), :480-489; replay of calls.jsonl at thresholds 0.5/0.6/0.65/0.7",
+      "confidence": "observed",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-07",
+      "title": "No held-out set or live-corpus canary exists: the vitest suite pins synthetic fixtures (400-char edge, flips, margin, keep) with a stub jev and never touches the 110-row corpus, so the live run has no external anchor and Q2 tuning and Q3 measurement share the same rows.",
+      "evidence": ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts:141,312,348,356 (fixture cases), :44-56 (stub jev)",
+      "confidence": "observed",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F3-08",
+      "title": "Cost is recorded but not in the verdict: latency p50/p95 and call counts exist in report.json and stdout, while the keep rule replaces the cost test with a fixed 0.10 accuracy margin (README), so a judge can be nearly break-even and cheap and still stop (margin) — and a default-on decision would need cost in the rule, not beside it.",
+      "evidence": "completion-claim-audit/README.md:39-43 (keep rule and counts); report.json columns.jev.latency; score-completion-claims.mjs:480-489",
+      "confidence": "observed",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-01",
+      "title": "The judgment is consumed by five wired surfaces from one core, so one vocabulary/threshold change lands in all of them: Claude Stop (.claude/settings.json:179), Codex Stop (.codex/hooks.json:136), Devin Stop (.devin/hooks.v1.json:168), Pi turn_end (.pi/extensions/completion-evidence.ts symlink to the runtime hook), OpenCode session.idle (.opencode/plugins/system-completion-sentinel.js).",
+      "evidence": ".claude/settings.json:175-181; .codex/hooks.json:128-140; .devin/hooks.v1.json:160-172; ls -la .pi/extensions/completion-evidence.ts; .opencode/plugins/system-completion-sentinel.js:1-20",
+      "confidence": "observed",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-02",
+      "title": "A sixth adapter is written but unwired: cursor/completion-evidence-response.mjs has no entry in .cursor/hooks.json (no completion match), so Cursor turns are uncovered today; wiring it is the cheapest coverage win in this feature.",
+      "evidence": ".skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs exists; grep completion .cursor/hooks.json -> 0 matches",
+      "confidence": "observed",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-03",
+      "title": "The same core already contains a second, never-scored regex judgment: SPEC_FOLDER_TEXT_PATTERN + resolveSpecFolderFromText decide which packet a claim is checked against, and a wrong resolution produces a false \"no implementation-summary.md\" advisory or a missed packet — the 110-row corpus (each row names its spec in objective) is reusable input for a sibling scorer.",
+      "evidence": "completion-evidence-sentinel.cjs:75,121-132; OpenCode plugin header (recovers a candidate spec folder from text)",
+      "confidence": "observed",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-04",
+      "title": "The audit template is already replicated across .skilled (30+ score-* scripts: score-debug-next-check.mjs, score-residue-flagger.cjs, score-stop-rater.cjs, score-alignment-suggestion.ts, score-jev-tiebreak.mjs, score-clarify-default.cjs, score-goal-lint.cjs, score-fanout-pairs.cjs, score-verdict-fallback.cjs), so the payoff is pointing it at un-scored gate judgments, not rebuilding the harness.",
+      "evidence": "find .skilled -name \"score-*\" (30+ hits); 047 results.md rows for the same family",
+      "confidence": "observed",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-05",
+      "title": "The spec-gate hooks (spec-gate-classify.mjs + spec-gate-enforce.mjs in claude/codex/cursor/devin runtimes) make a per-prompt classification decision at higher volume than completion claims, with the same shared-core shape; they are a natural next surface for the label-gate + Jev scorer, with the caveat that their labels need operator text that is more sensitive than claim tails.",
+      "evidence": ".skilled/skills/system-spec-kit/runtime/hooks/{claude,codex,cursor,devin}/spec-gate-classify.mjs and spec-gate-enforce.mjs; .skilled/hooks/shared/hook-flags.cjs:67 (\"spec-gate\")",
+      "confidence": "observed",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-06",
+      "title": "The fan-out runner already applies the claim-vs-evidence policy at run scope: a self-reported FANOUT_LINEAGE_COMPLETE is refused unless iteration files and state records prove the depth — the same policy the sentinel applies at turn scope. 026's zero-recall finding (self-reports often escape the vocabulary) is shared evidence for both: verify evidence, treat claims as hints only.",
+      "evidence": "fanout-run.cjs:943-1024 (completionFromArtifacts, findMaxIterationsPolicyViolation), :1527 (the self-report line); sentinel:489-499",
+      "confidence": "observed",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-07",
+      "title": "The nearest sibling family is the goal verifier (003): score-verifier-labeled-set.cjs measured \"stop: no headroom\" because its labels had no false-met rate to lower, and its labels live in the same ~/.skilled/.labels store — a shared audit workspace could batch-label sentinel-family judgments (completion claims, spec-folder resolution, goal met) instead of one packet per feature.",
+      "evidence": "047 results.md row 003; .skilled/hooks/goal/lib/score-verifier-labeled-set.cjs; ~/.skilled/.labels/003-verifier-set.jsonl",
+      "confidence": "observed",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F4-08",
+      "title": "Unit economics differ by surface: the completion-claim detector runs per turn (Stop hooks), while the deep-loop scorers judge offline artifacts; the offline template (3 calls/row, reruns, exact tails) fits infrequent verdicts, and the per-turn surface needs a cheaper gate-then-judge cascade — so \"where else it pays off\" splits into offline surfaces (merge/verdict/lint) and per-event surfaces (hooks), not one list.",
+      "evidence": "sentinel consumers (turn-scope) vs deep-loop scorers (run-scope); 047 rows: model-benchmark/merge/stop-rater are offline",
+      "confidence": "observed",
+      "addedAtIteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-01",
+      "title": "Role choice is the first requirement: the same judge can be a regex replacement (3 calls per turn, ~1s serial), an adjudicator behind the existing gate (3 calls per firing turn; the gate fires on 7/110 = 6.4% here), or a shadow scorer (offline, no user effect). The 026 measurement only adjudicates the replacement role.",
+      "evidence": "score-completion-claims.mjs:722-839 runJevArm (3 reruns + auth); census fires 7/110; 047 stdout \"planned calls: jev=331\"",
+      "confidence": "observed",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-02",
+      "title": "Latency budgets differ per surface and must bound the judge: Claude Stop is async with a 10s timeout, Codex/Devin Stop allow 10s, Pi turn_end delivers the advisory to the next turn (non-blocking), and the OpenCode session.idle plugin blocks the whole plugin host — the one surface a synchronous judge needs to budget carefully. The scorer's 90s CALL_TIMEOUT_MS must not be carried into hooks; the sentinel's own durability check runs at a 1.2s default.",
+      "evidence": ".claude/settings.json:180-181 (timeout 10, async true); .codex/hooks.json:139 (timeout 10); .devin/hooks.v1.json:171; pi/completion-evidence.ts:81-97 (deliverAs nextTurn); sentinel:45-53 (host-blocking note), :90-94 (DEFAULT_CHECK_TIMEOUT_MS 1200); score-completion-claims.mjs:78 (CALL_TIMEOUT_MS 90000)",
+      "confidence": "observed",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-03",
+      "title": "Availability and identity must be pinned: without jev on PATH or a credential the arm skips (exit 3 / skip lines), so default-on needs an explicit \"judgment unavailable = fall through to regex-only\" contract, the pinned jev 0.6.2 + model identity, and a requalify rule when the provider/model changes (the scorer already prints \"requalify: model changed\").",
+      "evidence": "score-completion-claims.mjs:650-683 jevGate, :827-833 requalify; 047 stdout jev_version=0.6.2 provider=official model=jev-1.13.0",
+      "confidence": "observed",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-04",
+      "title": "Privacy is a hard gate: the judge forwards the turn tail verbatim to a provider (cli-jev: \"Jev forwards the state verbatim\"), the scorer requires --accept-payload, and 047 required \"Jev gets no secret\" with a secret scan of 0 matches — default-on needs operator consent plus a stripping pass, not a footnote.",
+      "evidence": ".skilled/skills/cli-classifier/cli-jev/SKILL.md (When NOT to use: state is a secret); score-completion-claims.mjs:729 payload line, :971-974 accept-payload gate; 047 spec.md:120 REQ-003",
+      "confidence": "observed",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-05",
+      "title": "Cost is measurable and scales with turns: 331 calls per 110 rows (3 reruns + 1 auth), 24,735 estimated input tokens (~225/turn), p50 320ms / p95 391ms per call. Gate-replacement default-on is ~3 calls and ~1s serial per turn (~3,000 calls per 1,000 turns at these rates). Dedup is at the advisory layer (one per packet+message), not the judgment layer; a text-hash judgment cache would bound repeats.",
+      "evidence": "047 stdout payload/latency/planned-calls lines; calls.jsonl aggregation; sentinel:292-309 applyDedup",
+      "confidence": "observed",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-06",
+      "title": "The failure semantics a judge must inherit already exist: every adapter fails open, advisories never block (the Claude hook header: \"NEVER emits {decision:block}\"), kill switches exist (SYSTEM_COMPLETION_SENTINEL_DISABLED and the \"completion\" hook flag), and the log/dedup/retention sweep is bounded. Additions needed: a strict per-call timeout and a circuit breaker on repeated unavailability.",
+      "evidence": "claude/completion-evidence-stop.cjs:17-20 (advisory rollout, never block); sentinel:489-547 (fail-open paths); hook-flags.cjs:63-69 (completion aliases); sentinel:321-340 (bounded log), :449-474 (sweep)",
+      "confidence": "observed",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-07",
+      "title": "The measurement gate before default-on is not passed: 047 says stop (margin) for replacement, and the passing threshold 0.7 replay is post-hoc at exact margin equality. Default-on requires a pre-registered role/threshold and a held-out keep with cost in the rule; the recorded rowsSha256/labelsSha256/calls.jsonl make an exact re-run possible.",
+      "evidence": "047 results.md:15; calls.jsonl threshold replay; score-completion-claims.mjs:991-1022 (report hashes)",
+      "confidence": "observed",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F5-08",
+      "title": "The highest-value low-risk first step is not the judge: fix the regex (vocabulary plus closing-position anchoring) at zero per-turn cost and no new privacy exposure, keep the judge offline/shadow, and add the sibling judgments (spec-folder resolution) to the same label workspace; the judge stays available for audits and adjudication once a pre-registered held-out keep exists.",
+      "evidence": "F2-01..F2-03 replays; F4-03 spec-folder resolution; F5-04 privacy gate",
+      "confidence": "observed",
+      "addedAtIteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Broad vocabulary expansion without context rules",
+      "reason": "TP 9/10 but FP 18; precision 9/27 (F2-04)"
+    },
+    {
+      "approach": "Per-row batching via jev run",
+      "reason": "run takes one state and many questions; it does not merge distinct states (F2-08)"
+    },
+    {
+      "approach": "Carrying the scorer 90s call timeout into hooks",
+      "reason": "hook budgets are 10s (Claude async, codex, devin) and OpenCode blocks its host (F5-02)"
+    },
+    {
+      "approach": "Default-on judge as the primary gate now",
+      "reason": "047 verdict is stop (margin); the 0.7 threshold pass is post-hoc at exact margin equality (F3-06, F5-07)"
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 40,
+    "convergenceScore": 0.82,
+    "coverageBySources": {
+      "runs_recorded": 331,
+      "corpus_rows": 110
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [
+    "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/001-fanout-merge-improvements",
+    "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements",
+    "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/003-citation-drift-improvements",
+    "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/004-injection-screen-improvements",
+    "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/005-hallucination-grader-improvements",
+    "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/006-verdict-fallback-improvements",
+    "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/007-clarify-default-improvements",
+    "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/008-folder-suggestion-improvements",
+    "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements",
+    "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/010-completion-claims-improvements",
+    "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/011-research-run-init-via-gateway",
+    "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/012-fanout-runner-and-prompt-fixes"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "jev feature improvement build",
+      "deep research run init fix",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "jev",
+      "feature",
+      "improvement",
+      "deep",
+      "research",
+      "run",
+      "init",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-fanout-merge-improvements/goal.md",
+      "002-track-narrowing-improvements/goal.md",
+      "003-citation-drift-improvements/goal.md",
+      "004-injection-screen-improvements/goal.md",
+      "005-hallucination-grader-improvements/goal.md",
+      "006-verdict-fallback-improvements/goal.md",
+      "007-clarify-default-improvements/goal.md",
+      "008-folder-suggestion-improvements/goal.md",
+      "009-pi-transport-improvements/goal.md",
+      "010-completion-claims-improvements/goal.md",
+      "011-research-run-init-via-gateway/goal.md",
+      "012-fanout-runner-and-prompt-fixes/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Each",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 048 gave ten kept or near-kept Jev features a ranked list of ways to improve, refine and expand them",
+    "created_at": "2026-10-03T05:30:02Z",
+    "last_save_at": "2026-10-03T06:37:06.633Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:b3e8d194411b7f406f1692c7cd0d7cab073dfa343766b9afc9771562b68b3ffb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "10389dd3499f2b6d80b1c919b4337141f14098578d958295ae43c82115eef48b"
+    },
+    "last_active_at": null
+  }
+}

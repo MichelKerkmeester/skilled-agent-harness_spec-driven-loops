@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements",
+  "description": "Phase 2: track-narrowing-improvements",
+  "keywords": [
+    "phase",
+    "track-narrowing-improvements"
+  ],
+  "lastUpdated": "2026-10-03T05:30:04.441Z",
+  "specId": "002",
+  "folderSlug": "track-narrowing-improvements",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "049-jev-feature-improvement-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

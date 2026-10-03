@@ -1,0 +1,4 @@
+{"type":"iteration","iteration":1,"run":1,"status":"insight","newInfoRatio":0.9,"ruledOut":[],"timestamp":"2026-10-02T23:33:18.483Z"}
+{"type":"event","event":"resumed","sessionId":"fanout-luna-1790982868742-6zd62o","parentSessionId":"fanout-luna-1790982868742-6zd62o","generation":1,"reason":"Continue detached fan-out lane after repairing its state projection through the documented lineage-local migration.","timestamp":"2026-10-02T23:48:41.038Z"}
+{"type":"iteration","iteration":2,"run":2,"status":"insight","newInfoRatio":0.87,"ruledOut":[],"timestamp":"2026-10-02T23:51:53.851Z"}
+{"type":"iteration","iteration":3,"run":3,"status":"insight","newInfoRatio":0.91,"ruledOut":[],"timestamp":"2026-10-02T23:54:52.023Z"}

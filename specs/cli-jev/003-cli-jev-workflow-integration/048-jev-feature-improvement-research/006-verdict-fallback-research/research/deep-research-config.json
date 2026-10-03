@@ -1,0 +1,38 @@
+{
+  "researchTopic": "Improve, refine and expand the Jev reviewer verdict fallback (cli-jev feature 025). Its scorer is .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs in system-deep-loop/deep-improvement, and it measures the reviewer scorer's deterministic verdict regex (extractVerdict) in the model-benchmark reviewer-regression profile; Jev answers only when the regex finds no verdict. Measured result: verdict jev: keep K=24 M=24 A=24 B=8 W=16 L=0 F=0 p_win=0.00001526, baselines: majority 8 of 24, loose 0 of 24. Fixture corpus of 24 reviewer reports written so the regex misses every one. Real reviewers rarely write verdicts the regex misses. Answer five questions with file:line evidence: what drove this result, how to raise its accuracy or lower its cost, how to make the measurement more trustworthy, where else in .skilled the same judgment would pay off, and what a default-on integration would need, cost and risk.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/006-verdict-fallback-research",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4.1-flash",
+        "reasoningEffort": "max",
+        "iterations": 5,
+        "label": "deepseek",
+        "timeoutSeconds": 3600
+      },
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "max",
+        "serviceTier": "fast",
+        "iterations": 3,
+        "label": "luna",
+        "timeoutSeconds": 3600
+      }
+    ],
+    "concurrency": 2
+  },
+  "status": "complete"
+}

@@ -1,0 +1,29 @@
+{
+  "run_id": "1790994315165-psy9bc",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/007-clarify-default-research",
+  "base_artifact_dir": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/007-clarify-default-research/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [
+    {
+      "label": "luna",
+      "index": 0,
+      "started_at_iso": "2026-10-03T02:23:02.287Z"
+    }
+  ],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  }
+}

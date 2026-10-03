@@ -1,5 +1,5 @@
 {
-  "manifestHash": "33fda55043da40a2bc7e0b21915737184c30dd8d3948624d4d3dcf9b40143424",
+  "manifestHash": "cb6f6909f8a3aff7661c1272a2e35605036da7385bb2f5ddf548995f43082018",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16911,6 +16911,9 @@
     "citation drift build order": [
       "citation drift build order"
     ],
+    "citation drift default on": [
+      "citation drift default-on"
+    ],
     "citation drift keep rule": [
       "citation drift keep rule"
     ],
@@ -16997,6 +17000,9 @@
     ],
     "cite drift scan plan": [
       "cite-drift-scan plan"
+    ],
+    "cite drift scan research": [
+      "cite-drift-scan research"
     ],
     "cite drift scan tasks": [
       "cite-drift-scan tasks"
@@ -23656,6 +23662,9 @@
     "completion evidence sentinel": [
       "completion evidence sentinel"
     ],
+    "completion evidence sentinel regex recall": [
+      "completion evidence sentinel regex recall"
+    ],
     "completion evidence write boundaries": [
       "completion evidence write boundaries"
     ],
@@ -27453,6 +27462,9 @@
     ],
     "d4 grader": [
       "D4 grader"
+    ],
+    "d4 grader default on": [
+      "d4 grader default-on"
     ],
     "d4 grader keep rule": [
       "d4 grader keep rule"
@@ -31429,6 +31441,9 @@
     ],
     "deep research run certificate tasks": [
       "deep-research run certificate tasks"
+    ],
+    "deep research run init fix": [
+      "deep research run init fix"
     ],
     "deep research run now": [
       "deep-research-run-now"
@@ -39884,6 +39899,9 @@
     "fanout merge reconstruction gap": [
       "fanout-merge reconstruction gap"
     ],
+    "fanout merge semantic dedup research": [
+      "fanout merge semantic dedup research"
+    ],
     "fanout merge under count": [
       "fanout merge under-count"
     ],
@@ -40386,6 +40404,9 @@
     ],
     "fetched text injection screen goal": [
       "fetched text injection screen goal"
+    ],
+    "fetched text injection screen research": [
+      "fetched text injection screen research"
     ],
     "fetched text injection screen summary": [
       "fetched text injection screen summary"
@@ -42840,6 +42861,9 @@
     ],
     "gate 1 rewire": [
       "gate 1 rewire"
+    ],
+    "gate 1 track narrowing default on": [
+      "gate 1 track narrowing default-on"
     ],
     "gate 2 artifact trigger": [
       "gate 2 artifact trigger"
@@ -49393,6 +49417,12 @@
     "jev choice near tie cluster": [
       "jev choice near-tie cluster"
     ],
+    "jev citation drift improvement": [
+      "jev citation drift improvement"
+    ],
+    "jev clarify default improvement": [
+      "jev clarify default improvement"
+    ],
     "jev cli": [
       "jev cli"
     ],
@@ -49413,6 +49443,9 @@
     ],
     "jev compaction recall research": [
       "jev compaction recall research"
+    ],
+    "jev completion claim audit improvement": [
+      "jev completion claim audit improvement"
     ],
     "jev council re synthesis": [
       "jev council re-synthesis"
@@ -49441,11 +49474,26 @@
     "jev exit codes": [
       "jev exit codes"
     ],
+    "jev fan out merge improvement": [
+      "jev fan-out merge improvement"
+    ],
+    "jev feature improvement build": [
+      "jev feature improvement build"
+    ],
+    "jev feature improvement research": [
+      "jev feature improvement research"
+    ],
+    "jev feature refinement": [
+      "jev feature refinement"
+    ],
     "jev final synthesis summary": [
       "jev final synthesis summary"
     ],
     "jev flags": [
       "jev flags"
+    ],
+    "jev folder suggestion improvement": [
+      "jev folder suggestion improvement"
     ],
     "jev gate": [
       "jev gate"
@@ -49459,8 +49507,14 @@
     "jev goal verifier shadow": [
       "jev goal verifier shadow"
     ],
+    "jev hallucination grader improvement": [
+      "jev hallucination grader improvement"
+    ],
     "jev hard rules": [
       "jev hard rules"
+    ],
+    "jev injection screen improvement": [
+      "jev injection screen improvement"
     ],
     "jev integration build phases": [
       "jev integration build phases"
@@ -49585,6 +49639,9 @@
     "jev phase reconciliation tasks": [
       "jev phase reconciliation tasks"
     ],
+    "jev pi transport improvement": [
+      "jev pi transport improvement"
+    ],
     "jev prompt card": [
       "jev prompt card"
     ],
@@ -49696,6 +49753,9 @@
     "jev tie break results": [
       "jev tie-break results"
     ],
+    "jev track narrowing improvement": [
+      "jev track narrowing improvement"
+    ],
     "jev transport": [
       "jev transport"
     ],
@@ -49707,6 +49767,9 @@
     ],
     "jev transport comparison goal": [
       "jev transport comparison goal"
+    ],
+    "jev transport default on": [
+      "jev-transport default on"
     ],
     "jev transport mjs": [
       "jev-transport.mjs"
@@ -49752,6 +49815,9 @@
     ],
     "jev vercel openrouter": [
       "jev vercel openrouter"
+    ],
+    "jev verdict fallback improvement": [
+      "jev verdict fallback improvement"
     ],
     "jev verdict lines": [
       "jev verdict lines"
@@ -76753,6 +76819,9 @@
     "reviewer verdict fallback tasks": [
       "reviewer verdict fallback tasks"
     ],
+    "reviewer verdict regex miss": [
+      "reviewer verdict regex miss"
+    ],
     "reviewing a draft rule": [
       "reviewing a draft rule"
     ],
@@ -77526,6 +77595,9 @@
     ],
     "routing clarify default summary": [
       "routing clarify default summary"
+    ],
+    "routing clarify none of these": [
+      "routing clarify none_of_these"
     ],
     "routing completeness": [
       "routing completeness"
@@ -79372,6 +79444,9 @@
     "score alignment suggestion completion criteria": [
       "score-alignment-suggestion completion criteria"
     ],
+    "score alignment suggestion research": [
+      "score-alignment-suggestion research"
+    ],
     "score alignment suggestion status": [
       "score-alignment-suggestion status"
     ],
@@ -79398,6 +79473,9 @@
     ],
     "score clarify default plan": [
       "score-clarify-default plan"
+    ],
+    "score clarify default research": [
+      "score-clarify-default research"
     ],
     "score clarify default status": [
       "score-clarify-default status"
@@ -79440,6 +79518,9 @@
     "score completion claims plan": [
       "score-completion-claims plan"
     ],
+    "score completion claims research": [
+      "score-completion-claims research"
+    ],
     "score completion claims tasks": [
       "score-completion-claims tasks"
     ],
@@ -79457,6 +79538,9 @@
     ],
     "score d4 agreement planned": [
       "score-d4-agreement planned"
+    ],
+    "score d4 agreement research": [
+      "score-d4-agreement research"
     ],
     "score d4 agreement tasks": [
       "score-d4-agreement tasks"
@@ -79494,6 +79578,9 @@
     ],
     "score fanout pairs completion criteria": [
       "score-fanout-pairs completion criteria"
+    ],
+    "score fanout pairs early stop": [
+      "score-fanout-pairs early stop"
     ],
     "score fanout pairs tasks": [
       "score-fanout-pairs tasks"
@@ -79560,6 +79647,9 @@
     ],
     "score pi transport": [
       "score-pi-transport"
+    ],
+    "score pi transport research": [
+      "score-pi-transport research"
     ],
     "score pi transport tests": [
       "score-pi-transport tests"
@@ -79663,6 +79753,9 @@
     "score track narrowing plan": [
       "score-track-narrowing plan"
     ],
+    "score track narrowing research": [
+      "score-track-narrowing research"
+    ],
     "score track narrowing tasks": [
       "score-track-narrowing tasks"
     ],
@@ -79683,6 +79776,9 @@
     ],
     "score verdict fallback planned": [
       "score-verdict-fallback planned"
+    ],
+    "score verdict fallback research": [
+      "score-verdict-fallback research"
     ],
     "score verdict fallback tasks": [
       "score-verdict-fallback tasks"
@@ -88660,6 +88756,9 @@
     ],
     "spec folder": [
       "spec folder"
+    ],
+    "spec folder alignment jev": [
+      "spec folder alignment jev"
     ],
     "spec folder archival": [
       "spec folder archival"
@@ -99241,6 +99340,9 @@
     ],
     "webfetch injection classifier": [
       "webfetch injection classifier"
+    ],
+    "webfetch injection screen default on": [
+      "webfetch injection screen default-on"
     ],
     "webflow animation quality": [
       "webflow animation quality"

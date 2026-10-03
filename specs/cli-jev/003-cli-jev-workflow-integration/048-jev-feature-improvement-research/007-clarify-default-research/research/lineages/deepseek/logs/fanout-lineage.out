@@ -1,0 +1,19 @@
+The lineage is complete and verified. Final state:
+
+**Artifacts — all inside `.../007-clarify-default-research/research/lineages/deepseek/`:**
+
+| Artifact | State |
+|---|---|
+| `iterations/iteration-001..005.md` | 5 files, exact set 1..5, each with Focus/Actions/Findings/Ruled Out/Next Focus/Sources |
+| `deltas/iter-001..005.jsonl` | 47 `type:"finding"` records with source citations |
+| `deep-research-state.jsonl` | config + 5 iteration records (1..5) + `maxIterationsReached` + `synthesis_complete` with `stopReason:"maxIterationsReached"` |
+| `findings-registry.json` | 47 keyFindings, 5 resolved questions, 0 open, 7 ruled-out |
+| `research.md` | Terminal synthesis, ranked 9-item recommendation set, convergence report |
+| `resource-map.md`, `deep-research-strategy.md`, `deep-research-config.json` | Complete |
+| `verification/census/` | Zero-call census + 54-row replay outputs on the current tree |
+
+**What the five iterations found (headline):** the `keep` is faithful and robust but narrow — it beats only the routers' tie-break order (15/54) while always-answering-`none_of_these` scores 34/54 on the same labels; 42 of the 54 fixture rows no longer even produce the `clarify` action the feature describes (only 12 sk-doc rows do, on a tree byte-identical to the measurement commit); served suggestions are wrong 26 of 42 times (19 stably so); and the same judgment was measured twice on the skill advisor and killed both times (002: W=11 L=27; 019: W=13 L=25). The two strongest levers are a byte-equal early stop (118 vs 163 calls) and a trust bundle (digests, row-premise check, do-nothing baseline, shadow-logged real rows) — default-on has no seam, no reader, and fails the do-nothing bar today.
+
+**Verification:** runner-contract checks replicated and passing (forced-depth iteration sets 1..5 on disk and in the log, synthesis stop reason, non-empty `research.md`, non-empty registry); write containment confirmed — `git status` shows no modification outside the lineage by this process (the three modified files outside are pre-existing, mtime before this run started); no nested dispatch, no model call, no out-of-scope command was run.
+
+FANOUT_LINEAGE_COMPLETE:deepseek

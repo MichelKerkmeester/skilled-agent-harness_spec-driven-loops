@@ -1,0 +1,27 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build",
+  "description": "Build the recommendations from 048's research for each kept Jev feature, and fix the deep-research workflow faults found while running it",
+  "keywords": [
+    "recommendations",
+    "research",
+    "kept",
+    "jev",
+    "feature",
+    "deep-research",
+    "workflow",
+    "faults",
+    "found",
+    "while",
+    "running"
+  ],
+  "lastUpdated": "2026-10-03T05:30:02.790Z",
+  "specId": "049",
+  "folderSlug": "jev-feature-improvement-build",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

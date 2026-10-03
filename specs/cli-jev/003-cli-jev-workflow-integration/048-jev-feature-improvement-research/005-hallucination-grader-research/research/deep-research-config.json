@@ -1,0 +1,38 @@
+{
+  "researchTopic": "Improve, refine and expand the Jev hallucination grader (cli-jev feature 024). Its scorer is .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs in system-deep-loop/deep-improvement, and it measures the D4 hallucination dimension of the model-benchmark 5-dimension scorer, run today by deterministic/hallucination-flag.cjs; run-benchmark.cjs already accepts --grader noop|mock|llm. Measured result: verdict jev: keep K=56 M=56 A=55 B=47 W=8 L=0 F=1 p_win=0.003906, baselines: majority 47 of 56, deterministic check 22 of 56. Fixture corpus. 42 honest DeepSeek answers held 0 invented names, so all 9 hallucinations came from 14 deliberately careless answers. Answer five questions with file:line evidence: what drove this result, how to raise its accuracy or lower its cost, how to make the measurement more trustworthy, where else in .skilled the same judgment would pay off, and what a default-on integration would need, cost and risk.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/005-hallucination-grader-research",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4.1-flash",
+        "reasoningEffort": "max",
+        "iterations": 5,
+        "label": "deepseek",
+        "timeoutSeconds": 3600
+      },
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "max",
+        "serviceTier": "fast",
+        "iterations": 3,
+        "label": "luna",
+        "timeoutSeconds": 3600
+      }
+    ],
+    "concurrency": 2
+  },
+  "status": "complete"
+}

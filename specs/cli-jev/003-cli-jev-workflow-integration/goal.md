@@ -44,11 +44,11 @@ _memory:
 
 | ID | Decision |
 |----|---|
-| D1 | Jev only, dormant unless `jev auth status --provider <p>` passes. Jev gets no secret |
-| D2 | `cli-classifier` stays a parent hub for future classifiers |
-| D3 | Run 019 to 047 in parallel when disjoint |
+| D1 | Jev only, dormant unless `jev auth status` passes. Jev gets no secret |
+| D2 | `cli-classifier` stays a parent hub |
+| D3 | Run 019 to 049 in parallel when disjoint |
 | D4 | 003, 006, 019 to 035 stop at their label gate. Only operator-confirmed or -delegated labels count |
-| D5 | Session verifies, commits. Workers: Luna 6 max fast (cli-codex), DeepSeek V4.1 Flash max (cli-pi: Cline, OpenCode Go). No MiMo or Claude leaves except the arbiter. Cross-family review: fix P0 and P1, record P2 |
+| D5 | Session verifies, commits. Workers: Luna 6 max fast (cli-codex), DeepSeek V4.1 Flash max (cli-pi). No MiMo or Claude leaves except the arbiter. Cross-family review: fix P0 and P1, record P2 |
 | D6 | Docs via sk-doc, code via sk-code |
 | D7 | Stop only for an install yes or missing key. Path-scoped commits, main only on the operator's go, no key in a file, no `.env` opened |
 <!-- /ANCHOR:directive -->
@@ -62,53 +62,55 @@ Decisions outrank child goals.
 
 | # | Goal |
 |---|---|
-| 1 | `001-deep-research/goal.md` |
-| 2 | `002-advisor-jev-tiebreak-arm/goal.md` |
-| 3 | `003-goal-verifier-jev-shadow/goal.md` |
-| 4 | `004-deep-research-expansion/goal.md` |
-| 5 | `005-compaction-recall-harness/goal.md` |
-| 6 | `006-goal-criteria-lint/goal.md` |
-| 7 | `007-classifier-deep-research/goal.md` |
-| 8 | `008-cli-classifier-hub/goal.md` |
-| 9 | `009-cli-jev-hub-move/goal.md` |
-| 10 | `010-trigger-index-search-fixes/goal.md` |
-| 11 | `011-spec-validator-fixes/goal.md` |
-| 12 | `012-sk-doc-validator-and-reference-fixes/goal.md` |
-| 13 | `013-sk-prompt-framework-docs/goal.md` |
-| 14 | `014-sk-design-doc-and-routing-check/goal.md` |
-| 15 | `015-fanout-merge-and-steering-fixes/goal.md` |
-| 16 | `016-deem-local-hardening/goal.md` |
-| 17 | `017-deem-search-narrowing-arm/goal.md` |
-| 18 | `018-worktree-provision-shared-link/goal.md` |
-| 19 | `019-advisor-suggested-order/goal.md` |
-| 20 | `020-routing-clarify-default/goal.md` |
-| 21 | `021-stage2-leaf-route-replay/goal.md` |
-| 22 | `022-alignment-folder-suggestion/goal.md` |
-| 23 | `023-reply-harness-blinded-judge/goal.md` |
-| 24 | `024-hallucination-grader/goal.md` |
-| 25 | `025-reviewer-verdict-fallback/goal.md` |
-| 26 | `026-completion-claim-audit/goal.md` |
-| 27 | `027-stop-second-rater/goal.md` |
-| 28 | `028-confirm-mode-stop-hint/goal.md` |
-| 29 | `029-p0-reread-order/goal.md` |
-| 30 | `030-fanout-merge-shadow-record/goal.md` |
-| 31 | `031-debug-next-check/goal.md` |
-| 32 | `032-citation-drift-scan/goal.md` |
-| 33 | `033-validator-residue-flagger/goal.md` |
-| 34 | `034-hvr-reader-needed-lens/goal.md` |
-| 35 | `035-fetched-text-injection-screen/goal.md` |
-| 36 | `036-sk-code-and-sk-doc-alignment/goal.md` |
-| 37 | `037-pi-native-classifier-transport/goal.md` |
-| 38 | `038-pi-classifier-transport-integration/goal.md` |
-| 39 | `039-hub-cleanup/goal.md` |
-| 40 | `040-hard-rules-sidecar/goal.md` |
-| 41 | `041-code-readmes-and-routing-alignment/goal.md` |
-| 42 | `042-label-drafting-and-confirmation/goal.md` |
-| 43 | `043-label-finding-fixes/goal.md` |
-| 44 | `044-deem-answer-shape-fix/goal.md` |
-| 45 | `045-deem-live-runs/goal.md` |
-| 46 | `046-deem-deprecation/goal.md` |
-| 47 | `047-measure-every-jev-feature/goal.md` |
+| 1 | 001-deep-research/goal.md |
+| 2 | 002-advisor-jev-tiebreak-arm/goal.md |
+| 3 | 003-goal-verifier-jev-shadow/goal.md |
+| 4 | 004-deep-research-expansion/goal.md |
+| 5 | 005-compaction-recall-harness/goal.md |
+| 6 | 006-goal-criteria-lint/goal.md |
+| 7 | 007-classifier-deep-research/goal.md |
+| 8 | 008-cli-classifier-hub/goal.md |
+| 9 | 009-cli-jev-hub-move/goal.md |
+| 10 | 010-trigger-index-search-fixes/goal.md |
+| 11 | 011-spec-validator-fixes/goal.md |
+| 12 | 012-sk-doc-validator-and-reference-fixes/goal.md |
+| 13 | 013-sk-prompt-framework-docs/goal.md |
+| 14 | 014-sk-design-doc-and-routing-check/goal.md |
+| 15 | 015-fanout-merge-and-steering-fixes/goal.md |
+| 16 | 016-deem-local-hardening/goal.md |
+| 17 | 017-deem-search-narrowing-arm/goal.md |
+| 18 | 018-worktree-provision-shared-link/goal.md |
+| 19 | 019-advisor-suggested-order/goal.md |
+| 20 | 020-routing-clarify-default/goal.md |
+| 21 | 021-stage2-leaf-route-replay/goal.md |
+| 22 | 022-alignment-folder-suggestion/goal.md |
+| 23 | 023-reply-harness-blinded-judge/goal.md |
+| 24 | 024-hallucination-grader/goal.md |
+| 25 | 025-reviewer-verdict-fallback/goal.md |
+| 26 | 026-completion-claim-audit/goal.md |
+| 27 | 027-stop-second-rater/goal.md |
+| 28 | 028-confirm-mode-stop-hint/goal.md |
+| 29 | 029-p0-reread-order/goal.md |
+| 30 | 030-fanout-merge-shadow-record/goal.md |
+| 31 | 031-debug-next-check/goal.md |
+| 32 | 032-citation-drift-scan/goal.md |
+| 33 | 033-validator-residue-flagger/goal.md |
+| 34 | 034-hvr-reader-needed-lens/goal.md |
+| 35 | 035-fetched-text-injection-screen/goal.md |
+| 36 | 036-sk-code-and-sk-doc-alignment/goal.md |
+| 37 | 037-pi-native-classifier-transport/goal.md |
+| 38 | 038-pi-classifier-transport-integration/goal.md |
+| 39 | 039-hub-cleanup/goal.md |
+| 40 | 040-hard-rules-sidecar/goal.md |
+| 41 | 041-code-readmes-and-routing-alignment/goal.md |
+| 42 | 042-label-drafting-and-confirmation/goal.md |
+| 43 | 043-label-finding-fixes/goal.md |
+| 44 | 044-deem-answer-shape-fix/goal.md |
+| 45 | 045-deem-live-runs/goal.md |
+| 46 | 046-deem-deprecation/goal.md |
+| 47 | 047-measure-every-jev-feature/goal.md |
+| 48 | 048-jev-feature-improvement-research/goal.md |
+| 49 | 049-jev-feature-improvement-build/goal.md |
 <!-- /ANCHOR:binding -->
 
 ---
@@ -116,7 +118,7 @@ Decisions outrank child goals.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 047 are Complete
+- [ ] 002, 003, 005, 006, 008, 009, 016, 017 and 036 to 049 are Complete
 - [x] 019 to 035 are Complete, each at its verdict line or label gate
 - [x] `validate_document.py` exits 0 on each changed skill doc
 - [x] No open P0 or P1, and no changed suite fails beyond its baseline
@@ -271,4 +273,8 @@ and findings belong here.
 | 046 Complete, all criteria met again (2026-10-02) | 046 removed `cli-deem` and every scorer's Deem arm, and `cli-classifier` serves `cli-jev` alone as a parent hub (commits `b946a35518` to `5655e1e388`, P2s in the logs of 046's children). From the final state: 24 inventory suites 0 fail, changed scorer suites 446 of 446, advisor suite 1055 passed with 0 failed, `validate.sh --strict --recursive` passes on this parent, its 46 children and 046's 4 nested children, and `check-goal.cjs` passes on all 51 goals |
 | 047 opened (2026-10-02) | The operator asked for every Jev feature to be measured. Phase 047 added with its goal and bound as row 47, criterion 1 reopened. Recursive strict validation printed `RESULT: PASSED` 48 times with 0 failed, and `check-goal.cjs` passed on all 52 goals. To fit the 4,000-character budget, D2, D3, D5 and D7 lost a few words each with no choice changed |
 | 047 Complete, all criteria met again (2026-10-02) | 047 measured all 15 remaining Jev features: keep 020, 022, 024, 025, 030, kill 006, 027, 028, 033, stop on margin 026, 031, no headroom 003, 005, 021, 034. One scorer fix in 027 (commit `51b2b3bd51`). Recursive strict 48 PASSED 0 FAILED, `check-goal.cjs` 52 of 52. Committed on `worktrees/082-measure-every-jev-feature`, not merged |
+| 048 opened (2026-10-03) | The operator asked for research on every kept feature: DeepSeek 5 iterations and Luna 3 per feature. 048 bound as row 48 with ten children, criterion 1 reopened. To fit the budget, D1 dropped the `--provider` argument, D2 its `cli-jev` mention and D5 its stale provider list, with no choice changed |
+| 048 Complete, all criteria met again (2026-10-03) | All ten children hold a merged `research.md` from DeepSeek (5 iterations) and Luna (3), each with one `synthesis_complete`. Three deep-loop runtime faults are recorded as P2 in 048's log: no producer for `run_initialized` (a config row blocks the first projection), the 15-key init row, and delta field drift in the merge. `validate.sh --strict --recursive` passes on 048 and its 10 children, `check-goal.cjs` passes on all 11 goals. Committed on `worktrees/085-jev-feature-improvement-research`, not merged |
+| 049 opened (2026-10-03) | The operator asked for a phase per researched feature to build its recommendations, and for the workflow faults. 049 bound as row 49 with twelve children, Planned and not released: D3 still ends at 048. To fit the budget, the binding rows dropped their backticks, which `check-goal.cjs` accepts, with no wording changed |
+| Directive amendment: release 049 (2026-10-03) | Source: the operator's "Yes both" to two asks: release 049 for build by extending D3, and merge the worktree branch into main and push it. D3 now runs 019 to 049. Criterion 1 names 036 to 049 and is open until 049 is Complete. Same length, so the slice stays under budget. Rollback: restore sections 1 and 3 from `git show 300058eaaa:specs/cli-jev/003-cli-jev-workflow-integration/goal.md` |
 <!-- /ANCHOR:log -->

@@ -1,0 +1,12 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "run": 2,
+  "status": "complete",
+  "focus": "Runtime accuracy/cost controls and compatible .skilled choice callers",
+  "findingsCount": 8,
+  "newInfoRatio": 0.8,
+  "sessionId": "fanout-luna-1791001537618-myd0g9",
+  "generation": 1,
+  "timestamp": "2026-10-03T04:51:24Z"
+}

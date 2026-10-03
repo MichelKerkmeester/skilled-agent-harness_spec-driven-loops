@@ -1,0 +1,1224 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "luna"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "text": "What drove the measured result (K=56, M=56, A=55, B=47, W=8, L=0, F=1, p_win=0.003906)?",
+      "status": "resolved",
+      "resolvedAtIteration": 1,
+      "evidence": [
+        "047 run report.json/calls.jsonl",
+        "024-labels.jsonl",
+        "score-d4-agreement.cjs:240-258,296-305,344-346",
+        "hallucination-flag.cjs:106,123,154-176",
+        "in-memory reproduction (tp=9 tn=13 fp=34 fn=0)"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "How can grader accuracy be raised or cost lowered?",
+      "status": "resolved",
+      "resolvedAtIteration": 2,
+      "evidence": [
+        "score-d4-agreement.cjs:43,712,996,982-996,841-845",
+        "grader/dispute.cjs:35,52-82,110-130",
+        "grader/prompts/system-grader.md:22-27",
+        "score-model-variant.cjs:217-229",
+        "in-memory reproduction"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "How can the measurement be made more trustworthy?",
+      "status": "resolved",
+      "resolvedAtIteration": 3,
+      "evidence": [
+        "024 spec.md:135,151-160",
+        "042 spec.md:44",
+        "derived: Clopper-Pearson/Bonferroni",
+        "score-d4-agreement.cjs:841-845",
+        "cache.cjs:22-24,52"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "Where else in .skilled would the same invented-name judgment pay off?",
+      "status": "resolved",
+      "resolvedAtIteration": 4,
+      "evidence": [
+        "agents/review.md:351,353,356",
+        "reviewer-scorer.cjs:46-51",
+        "citation-drift-scan.md:19-31",
+        "cli-classifier/mode-registry.json:23,32"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "What would a default-on integration need, cost, and risk?",
+      "status": "resolved",
+      "resolvedAtIteration": 5,
+      "evidence": [
+        "024 goal.md:48,52",
+        "024 spec.md:94",
+        "score-model-variant.cjs:217-229",
+        "run-benchmark.cjs:590-634",
+        "harness.cjs:388-465",
+        "deep-model-benchmark-auto.yaml:233-245"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "iteration-2-finding-5--d9569389e57e",
+      "title": "**A cascade would cut calls only after allowlists land.** Routing only check-flagged rows to the jev arm would today route 43 of 56 rows (34 fp + 9 tp, because fn=0) for 130 calls vs 169, a 23% saving; with populated allowlists the check's false positives shrink toward the builtin-name mass and the routed set approaches the true positives, though the exact figure is unmeasured. The cascade is safe only while the check's sensitivity stays 1.0 on the corpus it gates; on this corpus it is exactly 1.0 (fn=0). [SOURCE: file:.../calls.jsonl] [SOURCE: command:in-memory reproduction (tp=9 tn=13 fp=34 fn=0)] [SOURCE: file:score-d4-agreement.cjs:209-231]",
+      "text": "**A cascade would cut calls only after allowlists land.** Routing only check-flagged rows to the jev arm would today route 43 of 56 rows (34 fp + 9 tp, because fn=0) for 130 calls vs 169, a 23% saving; with populated allowlists the check's false positives shrink toward the builtin-name mass and the routed set approaches the true positives, though the exact figure is unmeasured. The cascade is safe only while the check's sensitivity stays 1.0 on the corpus it gates; on this corpus it is exactly 1.0 (fn=0). [SOURCE: file:.../calls.jsonl] [SOURCE: command:in-memory reproduction (tp=9 tn=13 fp=34 fn=0)] [SOURCE: file:score-d4-agreement.cjs:209-231]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-2-finding-5",
+      "_conflict_id": "iteration-2-finding-5--d9569389e57e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-5",
+          "peerId": "iteration-2-finding-5--2bed62f313aa",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4--e5bbd5856eeb",
+      "title": "**A one-flag default change is not enough.** `run-benchmark.cjs` defaults to the pattern scorer and `grader=noop`; LLM D4 runs only when the 5-dimension path and `--grader llm` are selected ([opt-in defaults](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:569)). The D4 contribution is 15% of the weighted score ([rubric](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:53)). The current caller also drops task, visible specification, and allowlist context before building the virtual fixture ([caller](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:453)); fix that seam before interpreting any default-on score.",
+      "text": "**A one-flag default change is not enough.** `run-benchmark.cjs` defaults to the pattern scorer and `grader=noop`; LLM D4 runs only when the 5-dimension path and `--grader llm` are selected ([opt-in defaults](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:569)). The D4 contribution is 15% of the weighted score ([rubric](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:53)). The current caller also drops task, visible specification, and allowlist context before building the virtual fixture ([caller](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:453)); fix that seam before interpreting any default-on score.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-4",
+      "_conflict_id": "iteration-3-finding-4--e5bbd5856eeb",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-4",
+          "peerId": "iteration-3-finding-4--fe233116d2ce",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-7",
+      "title": "**A production grader failure silently becomes a maximally-hallucinated output.** In the `--grader llm` path, a dispatch or parse failure yields `score: 0.0, parse_status: 'failed'` rather than an unmeasured state, and the harness parse-failure fallback is also score 0.0. With D4 weight 0.15 this drops the weighted total as if the output had invented names, when the truth is the measurement failed. Any accuracy work on the LLM grader should add an explicit unmeasured/retry outcome before it trusts failures as findings. [SOURCE: file:score-model-variant.cjs:217-229] [SOURCE: file:harness.cjs:427-438,458-465] [SOURCE: file:score-model-variant.cjs:53-58]",
+      "text": "**A production grader failure silently becomes a maximally-hallucinated output.** In the `--grader llm` path, a dispatch or parse failure yields `score: 0.0, parse_status: 'failed'` rather than an unmeasured state, and the harness parse-failure fallback is also score 0.0. With D4 weight 0.15 this drops the weighted total as if the output had invented names, when the truth is the measurement failed. Any accuracy work on the LLM grader should add an explicit unmeasured/retry outcome before it trusts failures as findings. [SOURCE: file:score-model-variant.cjs:217-229] [SOURCE: file:harness.cjs:427-438,458-465] [SOURCE: file:score-model-variant.cjs:53-58]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-5",
+      "title": "**A reusable route already exists and is designed for new modes.** The cli-classifier hub registers exactly one transport today (`cli-jev`) and its own description says \"The hub holds cli-jev today; future classifiers join as new modes\". Every feature scorer in the 047 campaign hand-rolls its own jev question; a name-existence classifier mode would give the surfaces above one route and one measurement instead of N prompts. [SOURCE: file:.skilled/skills/cli-classifier/mode-registry.json:23,32] [SOURCE: file:.skilled/skills/cli-classifier/SKILL.md:3]",
+      "text": "**A reusable route already exists and is designed for new modes.** The cli-classifier hub registers exactly one transport today (`cli-jev`) and its own description says \"The hub holds cli-jev today; future classifiers join as new modes\". Every feature scorer in the 047 campaign hand-rolls its own jev question; a name-existence classifier mode would give the surfaces above one route and one measurement instead of N prompts. [SOURCE: file:.skilled/skills/cli-classifier/mode-registry.json:23,32] [SOURCE: file:.skilled/skills/cli-classifier/SKILL.md:3]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-6",
+      "title": "**Allowlists must land first.** The `llm` grader's rubric scores against `fixture.allowlist.cli_flags` and `allowlist.symbols`, and all 21 fixtures carry none; default-on without populated allowlists hands the grader an empty anchor — the same pathology iteration 1 reproduced for the deterministic check. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-grader.md:22-27] [SOURCE: command:in-memory reproduction (fp=34/47)]",
+      "text": "**Allowlists must land first.** The `llm` grader's rubric scores against `fixture.allowlist.cli_flags` and `allowlist.symbols`, and all 21 fixtures carry none; default-on without populated allowlists hands the grader an empty anchor — the same pathology iteration 1 reproduced for the deterministic check. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-grader.md:22-27] [SOURCE: command:in-memory reproduction (fp=34/47)]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5--9653ec8b119f",
+      "title": "**Construct validity: the baseline answers a broader question with the same name.** The check flags every extracted flag or symbol not in the fixture allowlist, and the allowlist is empty on all 21 fixtures, so it flags task-provided names (`compareVersions`, `echo`) and builtins (`split`, `slice`) that the jev question explicitly excludes (\"that the task does not provide\"). B=47 is the majority class, not the check, so the verdict's B is honest to its definition but the check column in the report (22) is not a same-question comparator. Populating allowlists is a trustworthiness fix as well as an accuracy lever: it makes B a real same-question baseline, and the margin 10*(A-B)=80 would face a harder bar. [SOURCE: file:score-d4-agreement.cjs:153-176,214] [SOURCE: command:in-memory reproduction (fp=34/47)] [SOURCE: file:.../024-hallucination-grader/spec.md:153-154]",
+      "text": "**Construct validity: the baseline answers a broader question with the same name.** The check flags every extracted flag or symbol not in the fixture allowlist, and the allowlist is empty on all 21 fixtures, so it flags task-provided names (`compareVersions`, `echo`) and builtins (`split`, `slice`) that the jev question explicitly excludes (\"that the task does not provide\"). B=47 is the majority class, not the check, so the verdict's B is honest to its definition but the check column in the report (22) is not a same-question comparator. Populating allowlists is a trustworthiness fix as well as an accuracy lever: it makes B a real same-question baseline, and the margin 10*(A-B)=80 would face a harder bar. [SOURCE: file:score-d4-agreement.cjs:153-176,214] [SOURCE: command:in-memory reproduction (fp=34/47)] [SOURCE: file:.../024-hallucination-grader/spec.md:153-154]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-5",
+      "_conflict_id": "iteration-3-finding-5--9653ec8b119f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-5",
+          "peerId": "iteration-3-finding-5--bb9f59d0a18e",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-1-finding-1--5bf8f354e968",
+      "title": "**Corpus anatomy.** 56 outputs = 42 honest (all 21 fixtures, run1+run2) + 14 careless (run3 of 14 fixtures). The 9 `hallucinated: yes` labels are exactly the nine `*.run3.md` files for hard/harder/validate fixtures; the other five run3 files are labeled `no`. Every yes and every no row reconciles with a labeled output, dropped=0. [SOURCE: file:~/.skilled/.labels/024-labels.jsonl] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/fixtures/024-outputs/] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:13]",
+      "text": "**Corpus anatomy.** 56 outputs = 42 honest (all 21 fixtures, run1+run2) + 14 careless (run3 of 14 fixtures). The 9 `hallucinated: yes` labels are exactly the nine `*.run3.md` files for hard/harder/validate fixtures; the other five run3 files are labeled `no`. Every yes and every no row reconciles with a labeled output, dropped=0. [SOURCE: file:~/.skilled/.labels/024-labels.jsonl] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/fixtures/024-outputs/] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:13]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-1-finding-1",
+      "_conflict_id": "iteration-1-finding-1--5bf8f354e968",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-1",
+          "peerId": "iteration-1-finding-1--0b76ae8123e6",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-8",
+      "title": "**Cost guards already exist and should stay.** The arm opens only when K>=30, each class >=5, and the baseline has headroom (`10 * baseline.right > 9 * K` opens no arm); the recorded headroom check `470 > 504` passed and spent the planned 169 calls. Caching the jev answers is the remaining cost lever, and it trades directly against the flip measurement: an answer cache keyed by state+model+question freezes one sample. Use it for regression reruns (opt-in), not for agreement claims. [SOURCE: file:score-d4-agreement.cjs:982-996] [SOURCE: file:score-d4-agreement.cjs:841-845] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/implementation-summary.md:81]",
+      "text": "**Cost guards already exist and should stay.** The arm opens only when K>=30, each class >=5, and the baseline has headroom (`10 * baseline.right > 9 * K` opens no arm); the recorded headroom check `470 > 504` passed and spent the planned 169 calls. Caching the jev answers is the remaining cost lever, and it trades directly against the flip measurement: an answer cache keyed by state+model+question freezes one sample. Use it for regression reruns (opt-in), not for agreement claims. [SOURCE: file:score-d4-agreement.cjs:982-996] [SOURCE: file:score-d4-agreement.cjs:841-845] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/implementation-summary.md:81]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-5",
+      "title": "**Cost shape: one grader call per scored output per pass, replicable only through the cache.** The 5-dim scorer builds one grader function and calls it per output (`score-model-variant.cjs:295-306`); the harness caches each result under a run-scoped root keyed by variant, fixture, rubric, dimension, output hash, and model+prompt identity, so repeated scoring of unchanged outputs is free but every new output pays once. Recorded jev arm cost was 169 calls for 56 rows (~93k estimated input tokens). A capability profile shape (4 fixtures x 2 models x 5 samples = 40 outputs) implies 40 D4 calls per uncached 5-dim pass — derived from the profile files, not observed. There is no per-run cost cap in the benchmark runner; the fanout runtime's cost-unit guard (`DEFAULT_MAX_COST_UNITS_PER_LINEAGE = 72`) is the in-repo precedent for one. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:295-306] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs:388-417,458-465] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs:105-135] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/capability-m3-vs-mimo-v2.json] [SOURCE: file:.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1047] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:712]",
+      "text": "**Cost shape: one grader call per scored output per pass, replicable only through the cache.** The 5-dim scorer builds one grader function and calls it per output (`score-model-variant.cjs:295-306`); the harness caches each result under a run-scoped root keyed by variant, fixture, rubric, dimension, output hash, and model+prompt identity, so repeated scoring of unchanged outputs is free but every new output pays once. Recorded jev arm cost was 169 calls for 56 rows (~93k estimated input tokens). A capability profile shape (4 fixtures x 2 models x 5 samples = 40 outputs) implies 40 D4 calls per uncached 5-dim pass — derived from the profile files, not observed. There is no per-run cost cap in the benchmark runner; the fanout runtime's cost-unit guard (`DEFAULT_MAX_COST_UNITS_PER_LINEAGE = 72`) is the in-repo precedent for one. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:295-306] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs:388-417,458-465] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/lib/cache.cjs:105-135] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/capability-m3-vs-mimo-v2.json] [SOURCE: file:.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1047] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:712]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-4",
+      "title": "**Deep-loop evidence files are a high-volume, lower-stake surface.** Research and review iteration files cite `file:line`; dead citations are already caught for tracked docs by the drift scan, while never-existed targets are the complement again. The stake is lower than review findings because iteration evidence is read for synthesis rather than acted on directly, but the volume is high across every loop. [SOURCE: file:.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:21] [SOURCE: file:.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:113-114]",
+      "text": "**Deep-loop evidence files are a high-volume, lower-stake surface.** Research and review iteration files cite `file:line`; dead citations are already caught for tracked docs by the drift scan, while never-existed targets are the complement again. The stake is lower than review findings because iteration evidence is read for synthesis rather than acted on directly, but the volume is high across every loop. [SOURCE: file:.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:21] [SOURCE: file:.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:113-114]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3--a29efba17d53",
+      "title": "**Deep-research synthesis has a natural evidence graph to audit.** Its records distinguish claims from sources and encode SUPPORTS, CONTRADICTS, DERIVED_FROM, and CITES relations ([graph schema](.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:50)); the delta stream carries findings, observations, and ruled-out directions ([delta contract](.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:79)). A claim checker could verify that cited source spans exist and actually support each synthesis claim, especially when a research result is handed to an implementation workflow.",
+      "text": "**Deep-research synthesis has a natural evidence graph to audit.** Its records distinguish claims from sources and encode SUPPORTS, CONTRADICTS, DERIVED_FROM, and CITES relations ([graph schema](.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:50)); the delta stream carries findings, observations, and ruled-out directions ([delta contract](.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:79)). A claim checker could verify that cited source spans exist and actually support each synthesis claim, especially when a research result is handed to an implementation workflow.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-3",
+      "_conflict_id": "iteration-3-finding-3--a29efba17d53",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-3",
+          "peerId": "iteration-3-finding-3--98c6d6e69fbd",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2--f75122121fb5",
+      "title": "**Deep-review findings are a second high-value target.** Every new P0/P1 already requires a claim, evidence references, searched counterevidence, an alternative explanation, severity, confidence, and a downgrade trigger ([claim adjudication](.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl:73)). A source checker could verify that referenced files, lines, symbols, and quoted evidence exist and support the finding before it reaches a release gate. Keep human severity and reasoning review separate; D4's current rubric does not decide whether a code finding is important.",
+      "text": "**Deep-review findings are a second high-value target.** Every new P0/P1 already requires a claim, evidence references, searched counterevidence, an alternative explanation, severity, confidence, and a downgrade trigger ([claim adjudication](.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl:73)). A source checker could verify that referenced files, lines, symbols, and quoted evidence exist and support the finding before it reaches a release gate. Keep human severity and reasoning review separate; D4's current rubric does not decide whether a code finding is important.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-2",
+      "_conflict_id": "iteration-3-finding-2--f75122121fb5",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-2",
+          "peerId": "iteration-3-finding-2--917c0a53a8bc",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5--bb9f59d0a18e",
+      "title": "**Default-on should require explicit data, cost, independence, and failure controls.** The real grader prompt contains fixture metadata and the full candidate output ([prompt assembly](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs:202)); this is hosted grading of benchmark output, so default-on needs a payload policy comparable to the existing `--accept-payload` gate on the Jev measurement ([payload rule](specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md:138)). Keep the runner's different-family check when generator models are declared ([independence gate](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:621)), and expose model/rubric/prompt provenance. For N fixtures and S samples, the primary-grader ceiling is N×S cache misses; the 56-row Jev agreement exercise planned 169 calls (168 judgments plus auth), but is a separate calibration protocol, not the default runner's measured price ([sample loop](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:279), [Jev plan](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:707)). Neither path provides dollar cost here.",
+      "text": "**Default-on should require explicit data, cost, independence, and failure controls.** The real grader prompt contains fixture metadata and the full candidate output ([prompt assembly](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs:202)); this is hosted grading of benchmark output, so default-on needs a payload policy comparable to the existing `--accept-payload` gate on the Jev measurement ([payload rule](specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md:138)). Keep the runner's different-family check when generator models are declared ([independence gate](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:621)), and expose model/rubric/prompt provenance. For N fixtures and S samples, the primary-grader ceiling is N×S cache misses; the 56-row Jev agreement exercise planned 169 calls (168 judgments plus auth), but is a separate calibration protocol, not the default runner's measured price ([sample loop](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:279), [Jev plan](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:707)). Neither path provides dollar cost here.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-5",
+      "_conflict_id": "iteration-3-finding-5--bb9f59d0a18e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-5",
+          "peerId": "iteration-3-finding-5--9653ec8b119f",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-5--2bed62f313aa",
+      "title": "**Do not treat an adaptive one-call policy as validated by this result.** The current `F=1` and `M=56` demonstrate repeat stability on this fixed corpus and three-call configuration; neither estimates single-call error. A cheaper policy is a candidate to measure, not an evidence-backed replacement.",
+      "text": "**Do not treat an adaptive one-call policy as validated by this result.** The current `F=1` and `M=56` demonstrate repeat stability on this fixed corpus and three-call configuration; neither estimates single-call error. A cheaper policy is a candidate to measure, not an evidence-backed replacement.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-2-finding-5",
+      "_conflict_id": "iteration-2-finding-5--2bed62f313aa",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-5",
+          "peerId": "iteration-2-finding-5--d9569389e57e",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-4-finding-3",
+      "title": "**Documentation already has an existence scan, but only for citation-shaped claims.** `cite-drift-scan.mjs` counts `<path>.<ext>:<line>` citations, resolves each against tracked files, refuses untracked/.env targets, and prints dead citations; it even runs its own jev question (\"Does the cited code window still show what the citing sentence claims?\"). A prose claim that a flag or function exists, phrased without a file citation, is outside its scope. That complement is exactly the D4 question, and applying it as an advisory lint over changed docs adds a guard where an author's only current check is care. [SOURCE: file:.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:19-31]",
+      "text": "**Documentation already has an existence scan, but only for citation-shaped claims.** `cite-drift-scan.mjs` counts `<path>.<ext>:<line>` citations, resolves each against tracked files, refuses untracked/.env targets, and prints dead citations; it even runs its own jev question (\"Does the cited code window still show what the citing sentence claims?\"). A prose claim that a flag or function exists, phrased without a file citation, is outside its scope. That complement is exactly the D4 question, and applying it as an advisory lint over changed docs adds a guard where an author's only current check is care. [SOURCE: file:.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:19-31]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-2",
+      "title": "**Failure semantics must change before default-on.** In the current 5-dim path a dispatch or parse failure becomes `score: 0.0` — maximal hallucination for a measurement that did not happen; 024's D1 explicitly left \"the failed grade's 0.0 unchanged\". A default-on grader that can be offline (no credential, no CLI, no network) will silently deflate every affected score unless the dimension gains an unmeasured/unavailable representation that is excluded rather than zeroed, plus a retry path. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/goal.md:48] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:217-229] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs:427-438]",
+      "text": "**Failure semantics must change before default-on.** In the current 5-dim path a dispatch or parse failure becomes `score: 0.0` — maximal hallucination for a measurement that did not happen; 024's D1 explicitly left \"the failed grade's 0.0 unchanged\". A default-on grader that can be offline (no credential, no CLI, no network) will silently deflate every affected score unless the dimension gains an unmeasured/unavailable representation that is excluded rather than zeroed, plus a retry path. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/goal.md:48] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:217-229] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs:427-438]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-4",
+      "title": "**Family collision and credentials already have guard rails — default-on must respect them.** An `llm` grader that shares a model family with any generator is refused unless `--allow-same-family` is passed, with the error naming same-family grading as the score-inflation mechanism. The jev gate skips without a credential, and the Claude dispatch fails without the CLI. A default-on mode therefore needs a stated independent grader model, an explicit degraded/offline story, and no silent fallback to `mock`. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:590-592,621-634] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:436-480]",
+      "text": "**Family collision and credentials already have guard rails — default-on must respect them.** An `llm` grader that shares a model family with any generator is refused unless `--allow-same-family` is passed, with the error naming same-family grading as the score-inflation mechanism. The jev gate skips without a credential, and the Claude dispatch fails without the CLI. A default-on mode therefore needs a stated independent grader model, an explicit degraded/offline story, and no silent fallback to `mock`. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:590-592,621-634] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:436-480]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4--30f986583b28",
+      "title": "**Fixture allowlists are the structural lever.** None of the 21 fixtures carries an `allowlist` key, so the deterministic check's allowlist mechanism is exercised nowhere: it flagged 34 of 47 honest rows, its top false positives being the tasks' own names (`compareVersions`, `lowerBound`, `echo`, `evalExpr`, `isValidIPv4`) and builtins (`expr.slice`, `split`, `tokens.push`, `version.indexOf`). The same corpus also starves the production path: `system-grader.md` tells the grader to compare against `fixture.allowlist.cli_flags` and `allowlist.symbols`, and `buildState` already knows how to include an allowlist in the jev state but only when the key exists. Populating allowlists is therefore a three-way lever: it makes the baseline comparable (B real instead of 22), gives the Claude grader its rubric anchor, and lets `buildState` hand the jev grader the same ground truth. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:83-105,191-192,214] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-grader.md:22-27] [SOURCE: command:in-memory reproduction over 024-outputs (top FP tokens)]",
+      "text": "**Fixture allowlists are the structural lever.** None of the 21 fixtures carries an `allowlist` key, so the deterministic check's allowlist mechanism is exercised nowhere: it flagged 34 of 47 honest rows, its top false positives being the tasks' own names (`compareVersions`, `lowerBound`, `echo`, `evalExpr`, `isValidIPv4`) and builtins (`expr.slice`, `split`, `tokens.push`, `version.indexOf`). The same corpus also starves the production path: `system-grader.md` tells the grader to compare against `fixture.allowlist.cli_flags` and `allowlist.symbols`, and `buildState` already knows how to include an allowlist in the jev state but only when the key exists. Populating allowlists is therefore a three-way lever: it makes the baseline comparable (B real instead of 22), gives the Claude grader its rubric anchor, and lets `buildState` hand the jev grader the same ground truth. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:83-105,191-192,214] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-grader.md:22-27] [SOURCE: command:in-memory reproduction over 024-outputs (top FP tokens)]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-2-finding-4",
+      "_conflict_id": "iteration-2-finding-4--30f986583b28",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-4",
+          "peerId": "iteration-2-finding-4--0acda78198eb",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3--8acb1574cc0f",
+      "title": "**Fixture coverage and the comparator constrain the result.** Feature 024 records zero allowlists across 21 fixtures and says the empty allowlist limits the deterministic check ([fixture risk](specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md:133)). On the supplied 56 labels, majority is correct on 47 while the deterministic check is correct on 22; the scorer selects the better of those two baselines ([baseline selection](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:240)). This makes the reported comparison conservative against the stronger observed baseline, but does not establish real-world prevalence or performance on less obvious unsupported claims. Improve accuracy evidence with fixture-owned, source-verified allowlists and separate slices for invented flags, symbols, and paths.",
+      "text": "**Fixture coverage and the comparator constrain the result.** Feature 024 records zero allowlists across 21 fixtures and says the empty allowlist limits the deterministic check ([fixture risk](specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md:133)). On the supplied 56 labels, majority is correct on 47 while the deterministic check is correct on 22; the scorer selects the better of those two baselines ([baseline selection](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:240)). This makes the reported comparison conservative against the stronger observed baseline, but does not establish real-world prevalence or performance on less obvious unsupported claims. Improve accuracy evidence with fixture-owned, source-verified allowlists and separate slices for invented flags, symbols, and paths.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-2-finding-3",
+      "_conflict_id": "iteration-2-finding-3--8acb1574cc0f",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-3",
+          "peerId": "iteration-2-finding-3--a145755b0932",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-1-finding-8",
+      "title": "**Keep-rule arithmetic, all five checks.** Gates: K=56>=30, yes=9>=5, no=47>=5; headroom `10*47 > 9*56` is false so the arm opened with `planned calls: jev 169`. Verdict: coverage 10*56=560 >= 9*56=504; kill needs p_loss<0.05 but p_loss=1.0 (L=0); margin 10*(55-47)=80 >= 56; sign test 2^-8=0.00390625 < 0.05; flips 10*1 <= 3*56. Keep with no stop reason. [SOURCE: file:score-d4-agreement.cjs:296-305,982-998] [SOURCE: file:.../report.json]",
+      "text": "**Keep-rule arithmetic, all five checks.** Gates: K=56>=30, yes=9>=5, no=47>=5; headroom `10*47 > 9*56` is false so the arm opened with `planned calls: jev 169`. Verdict: coverage 10*56=560 >= 9*56=504; kill needs p_loss<0.05 but p_loss=1.0 (L=0); margin 10*(55-47)=80 >= 56; sign test 2^-8=0.00390625 < 0.05; flips 10*1 <= 3*56. Keep with no stop reason. [SOURCE: file:score-d4-agreement.cjs:296-305,982-998] [SOURCE: file:.../report.json]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-7--9e895239f563",
+      "title": "**Low-confidence recovery exists as a separate module, but the 5dim adapter calls the primary harness directly.** The LLM grader wrapper directly calls `harness.gradeD4` ([adapter](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:218)), while `dispute.cjs` separately supports a skeptic second call on confidence below 0.7 and returns a dispute result ([escalation](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/dispute.cjs:110)). Before default-on, either wire this recovery path with a bounded extra-call budget or make low confidence an explicit abstention; do not imply the prompt's recovery hook is active in the benchmark path.",
+      "text": "**Low-confidence recovery exists as a separate module, but the 5dim adapter calls the primary harness directly.** The LLM grader wrapper directly calls `harness.gradeD4` ([adapter](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:218)), while `dispute.cjs` separately supports a skeptic second call on confidence below 0.7 and returns a dispute result ([escalation](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/dispute.cjs:110)). Before default-on, either wire this recovery path with a bounded extra-call budget or make low confidence an explicit abstention; do not imply the prompt's recovery hook is active in the benchmark path.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-7",
+      "_conflict_id": "iteration-3-finding-7--9e895239f563",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-7",
+          "peerId": "iteration-3-finding-7--e2f594bdd4ad",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-1-finding-9",
+      "title": "**Measurement cost at the recorded run.** 169 calls = 1 auth test + 3 reruns x 56 rows; all 169 measured, 0 unmeasured; estimated input 93,003 tokens by the script's chars/4 estimate; app-call latency p50 326 ms, p95 434 ms, max 648 ms, auth 614 ms. [SOURCE: file:.../calls.jsonl] [SOURCE: file:score-d4-agreement.cjs:43,712,996]",
+      "text": "**Measurement cost at the recorded run.** 169 calls = 1 auth test + 3 reruns x 56 rows; all 169 measured, 0 unmeasured; estimated input 93,003 tokens by the script's chars/4 estimate; app-call latency p50 326 ms, p95 434 ms, max 648 ms, auth 614 ms. [SOURCE: file:.../calls.jsonl] [SOURCE: file:score-d4-agreement.cjs:43,712,996]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-8",
+      "title": "**Noise is already a first-class concern in this system.** The default profile sets `repeatabilityTolerance: 0.03` with a calibration note that \"deltas at or below it should be read as ties, not improvements\", because single-sample cells carry run-to-run noise. A default-on D4 grader introduces exactly that kind of noise into 15% of the weighted score (sampled noul; the recorded arm already shows one flip), so the tolerance framing — or multi-sample D4 with a tie rule — should apply to D4 scores too. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/calls.jsonl] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:53-58]",
+      "text": "**Noise is already a first-class concern in this system.** The default profile sets `repeatabilityTolerance: 0.03` with a calibration note that \"deltas at or below it should be read as ties, not improvements\", because single-sample cells carry run-to-run noise. A default-on D4 grader introduces exactly that kind of noise into 15% of the weighted score (sampled noul; the recorded arm already shows one flip), so the tolerance framing — or multi-sample D4 with a tie rule — should apply to D4 scores too. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/calls.jsonl] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:53-58]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4--ca0821ff7223",
+      "title": "**Noul separation is wide except one sliver.** Over 168 app calls: no-class median 0.07, p95 0.23, max 0.43 (`reviewer-over-read.run2.md`, 0.40/0.38/0.43); yes-class median 0.71, min 0.40 (the miss). Only 8 of 168 calls sit in [0.40, 0.60). The 0.5 majority threshold is not where the noise is, but the one miss lives 0.07-0.10 below it.",
+      "text": "**Noul separation is wide except one sliver.** Over 168 app calls: no-class median 0.07, p95 0.23, max 0.43 (`reviewer-over-read.run2.md`, 0.40/0.38/0.43); yes-class median 0.71, min 0.40 (the miss). Only 8 of 168 calls sit in [0.40, 0.60). The 0.5 majority threshold is not where the noise is, but the one miss lives 0.07-0.10 below it.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-1-finding-4",
+      "_conflict_id": "iteration-1-finding-4--ca0821ff7223",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-4",
+          "peerId": "iteration-1-finding-4--dfa14b7709d1",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-6--89052f692439",
+      "title": "**Requalification checks the model, not the labels.** A rerun reads a stored report only to compare provider/model and print `requalify: model changed`; the labels file's SHA-256 is recorded in the report and printed on the verdict line but never compared across runs. A rerun against a changed label set would silently produce a new verdict whose only trace is the new sha. The production grader cache has a related soft spot: the grader-model build hash is a hardcoded placeholder, mitigated in the harness by a composite identity (model name + system-prompt SHA) but not by a true build hash. [SOURCE: file:score-d4-agreement.cjs:841-845,356,1020-1027] [SOURCE: file:scorer/lib/cache.cjs:22-24,52] [SOURCE: file:scorer/grader/harness.cjs:388-403]",
+      "text": "**Requalification checks the model, not the labels.** A rerun reads a stored report only to compare provider/model and print `requalify: model changed`; the labels file's SHA-256 is recorded in the report and printed on the verdict line but never compared across runs. A rerun against a changed label set would silently produce a new verdict whose only trace is the new sha. The production grader cache has a related soft spot: the grader-model build hash is a hardcoded placeholder, mitigated in the harness by a composite identity (model name + system-prompt SHA) but not by a true build hash. [SOURCE: file:score-d4-agreement.cjs:841-845,356,1020-1027] [SOURCE: file:scorer/lib/cache.cjs:22-24,52] [SOURCE: file:scorer/grader/harness.cjs:388-403]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-6",
+      "_conflict_id": "iteration-3-finding-6--89052f692439",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-6",
+          "peerId": "iteration-3-finding-6--63d17155d379",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-4-finding-1",
+      "title": "**Review findings already promise the property the judgment measures; enforcement is self-attestation.** The review agent contract requires \"All file paths mentioned actually exist (Read to verify; if not found, remove from scope)\", \"All issue citations reference real code with verified file:line locations\", and \"No hallucinated or false-positive issues — all findings traceable to source\". Those are enforced by a self-validation questionnaire, not by an independent judge. A jev name-existence pass over the paths/symbols/flags a review cites would turn a promised property into a measured one, and the review output gates commits and fixes, so the stake is the highest of any surface here. [SOURCE: file:.skilled/agents/review.md:351,353,356] [SOURCE: file:.skilled/skills/sk-code/sk-code-review/SKILL.md:25,45] [SOURCE: file:.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:113-118]",
+      "text": "**Review findings already promise the property the judgment measures; enforcement is self-attestation.** The review agent contract requires \"All file paths mentioned actually exist (Read to verify; if not found, remove from scope)\", \"All issue citations reference real code with verified file:line locations\", and \"No hallucinated or false-positive issues — all findings traceable to source\". Those are enforced by a self-validation questionnaire, not by an independent judge. A jev name-existence pass over the paths/symbols/flags a review cites would turn a promised property into a measured one, and the review output gates commits and fixes, so the stake is the highest of any surface here. [SOURCE: file:.skilled/agents/review.md:351,353,356] [SOURCE: file:.skilled/skills/sk-code/sk-code-review/SKILL.md:25,45] [SOURCE: file:.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:113-118]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3--98c6d6e69fbd",
+      "title": "**Rows are clustered, and the sign test treats them as independent.** The 42 honest rows are two runs of 21 fixtures; the 9 yes rows are one run of 9 fixtures; the discordant set is W+L=8 rows. The exact binomial behind p_win=2^-8 assumes eight independent fair trials, but the effective number of independent units is closer to the fixture count. The same clustering flatters the headline accuracy: 55/56 has a 95% Clopper-Pearson interval of [0.9045, 0.9995], while the sensitivity that carries the verdict, 8/9, spans [0.5175, 0.9972] (derived from the recorded counts; a perfect 9/9 would still only bound the lower end at 0.6637). The report prints one accuracy-style column and no per-class interval. [SOURCE: file:~/.skilled/.labels/024-labels.jsonl] [SOURCE: derived: Clopper-Pearson on recorded counts]",
+      "text": "**Rows are clustered, and the sign test treats them as independent.** The 42 honest rows are two runs of 21 fixtures; the 9 yes rows are one run of 9 fixtures; the discordant set is W+L=8 rows. The exact binomial behind p_win=2^-8 assumes eight independent fair trials, but the effective number of independent units is closer to the fixture count. The same clustering flatters the headline accuracy: 55/56 has a 95% Clopper-Pearson interval of [0.9045, 0.9995], while the sensitivity that carries the verdict, 8/9, spans [0.5175, 0.9972] (derived from the recorded counts; a perfect 9/9 would still only bound the lower end at 0.6637). The report prints one accuracy-style column and no per-class interval. [SOURCE: file:~/.skilled/.labels/024-labels.jsonl] [SOURCE: derived: Clopper-Pearson on recorded counts]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-3",
+      "_conflict_id": "iteration-3-finding-3--98c6d6e69fbd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-3",
+          "peerId": "iteration-3-finding-3--a29efba17d53",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-7--e2f594bdd4ad",
+      "title": "**Run-to-run stability is unmeasured for this feature.** The recorded run is a single execution; the same results table shows 027 ran four times across fix rounds and printed the same A, B, W, L each time, so rerun discipline exists in the campaign. For 024, the one flip (validate-semver.run3: 0.55/0.41/0.54) is direct evidence that sampling noise sits exactly at the decision boundary, and no second execution exists to show the verdict (not just the counts) is stable. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:16] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/calls.jsonl]",
+      "text": "**Run-to-run stability is unmeasured for this feature.** The recorded run is a single execution; the same results table shows 027 ran four times across fix rounds and printed the same A, B, W, L each time, so rerun discipline exists in the campaign. For 024, the one flip (validate-semver.run3: 0.55/0.41/0.54) is direct evidence that sampling noise sits exactly at the decision boundary, and no second execution exists to show the verdict (not just the counts) is stable. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:16] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/calls.jsonl]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-7",
+      "_conflict_id": "iteration-3-finding-7--e2f594bdd4ad",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-7",
+          "peerId": "iteration-3-finding-7--9e895239f563",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-6--63d17155d379",
+      "title": "**Surface uncertainty and retain evidence in the report.** The grader catches errors as D4 score 0.0 ([failure handling](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:218)); with a 0.15 D4 weight, an infrastructure or parse failure can cost up to 15 aggregate points. The grader returns confidence, rationale, evidence, and parse status, but `scoreFixture5dim` returns only numeric dimensions and failure modes ([grader result](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:313), [benchmark row](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:475)). Change failures to an explicit unavailable/inconclusive state and preserve evidence, confidence, and parse status per row before enabling it broadly.",
+      "text": "**Surface uncertainty and retain evidence in the report.** The grader catches errors as D4 score 0.0 ([failure handling](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:218)); with a 0.15 D4 weight, an infrastructure or parse failure can cost up to 15 aggregate points. The grader returns confidence, rationale, evidence, and parse status, but `scoreFixture5dim` returns only numeric dimensions and failure modes ([grader result](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:313), [benchmark row](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:475)). Change failures to an explicit unavailable/inconclusive state and preserve evidence, confidence, and parse status per row before enabling it broadly.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-6",
+      "_conflict_id": "iteration-3-finding-6--63d17155d379",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-6",
+          "peerId": "iteration-3-finding-6--89052f692439",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1--50fa4240210a",
+      "title": "**The agreement arm and the 5-dimension integration do not currently give D4 the same context.** The agreement scorer constructs Jev input from the fixture's task, visible specification, allowlist when present, and output ([input builder](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:188)). The D4 prompt expects the task and allowlist to judge named flags, symbols, and paths ([grader contract](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-grader.md:3)). But `run-benchmark.cjs` sends the 5-dim scorer only acceptance criteria, headings, and patterns ([caller](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:453)); the virtual fixture then defaults allowlist to `{}` and does not carry task or visibleSpec ([virtual fixture](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:269)). This is an actionable accuracy and integration gap: forward task/spec/allowlist through the caller before making LLM D4 routine. The exact accuracy effect is unmeasured.",
+      "text": "**The agreement arm and the 5-dimension integration do not currently give D4 the same context.** The agreement scorer constructs Jev input from the fixture's task, visible specification, allowlist when present, and output ([input builder](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:188)). The D4 prompt expects the task and allowlist to judge named flags, symbols, and paths ([grader contract](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-grader.md:3)). But `run-benchmark.cjs` sends the 5-dim scorer only acceptance criteria, headings, and patterns ([caller](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:453)); the virtual fixture then defaults allowlist to `{}` and does not carry task or visibleSpec ([virtual fixture](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:269)). This is an actionable accuracy and integration gap: forward task/spec/allowlist through the caller before making LLM D4 routine. The exact accuracy effect is unmeasured.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-2-finding-1",
+      "_conflict_id": "iteration-2-finding-1--50fa4240210a",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-1",
+          "peerId": "iteration-2-finding-1--295388db3d82",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-4-finding-2",
+      "title": "**The benchmark's reviewer-output grading is a second seat with fixtures already in place.** `reviewer-scorer.cjs` loads `kind: 'reviewer-prompt'` fixtures with `expectedVerdict`/`expectedFindings`, and the 21-fixture corpus already includes four reviewer fixtures. D4 already exists in the same 5-dim scorer. Extending name-existence grading to reviewer outputs is the same judgment in the seat directly beside the one measured in 047. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:46-51] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/ (reviewer-*.json)] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:53-58]",
+      "text": "**The benchmark's reviewer-output grading is a second seat with fixtures already in place.** `reviewer-scorer.cjs` loads `kind: 'reviewer-prompt'` fixtures with `expectedVerdict`/`expectedFindings`, and the 21-fixture corpus already includes four reviewer fixtures. D4 already exists in the same 5-dim scorer. Extending name-existence grading to reviewer outputs is the same judgment in the seat directly beside the one measured in 047. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:46-51] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/ (reviewer-*.json)] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs:53-58]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-7",
+      "title": "**The blast radius today is advisory.** The autonomous benchmark workflow's candidate step only \"report[s] a promotion recommendation without mutating a canonical target\" and \"must not invoke the promotion helper or create an approval receipt\"; the session outcome enum includes `advisoryOnly`. So a default-on grader changes scores in reports that feed operator decisions — it cannot promote a model by itself. That bounds risk but also means the report numbers are the product; their trustworthiness is the stake. [SOURCE: file:.skilled/commands/deep/assets/deep-model-benchmark-auto.yaml:233-245] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/autonomous-promotion-authority.vitest.ts:11-19]",
+      "text": "**The blast radius today is advisory.** The autonomous benchmark workflow's candidate step only \"report[s] a promotion recommendation without mutating a canonical target\" and \"must not invoke the promotion helper or create an approval receipt\"; the session outcome enum includes `advisoryOnly`. So a default-on grader changes scores in reports that feed operator decisions — it cannot promote a model by itself. That bounds risk but also means the report numbers are the product; their trustworthiness is the stake. [SOURCE: file:.skilled/commands/deep/assets/deep-model-benchmark-auto.yaml:233-245] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/autonomous-promotion-authority.vitest.ts:11-19]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-6",
+      "title": "**The check's 22 was reproduced, and it is an allowlist artifact.** Re-running the check's own `scoreOutput` in memory with `{allowlist:{}}` over the 56 outputs gives tp=9 tn=13 fp=34 fn=0, i.e. exactly 22 right: perfect sensitivity, 21% precision, 34 of 47 honest outputs flagged. The mechanism: none of the 21 fixtures carries an `allowlist` key (0 of 21 confirmed by reading every fixture's keys), and `deterministicCall` hands the check `fixture.allowlist || {}`, so every extracted symbol or flag is unverified. Top false-positive tokens on honest rows include the task's own function names and standard methods: `expr.slice` x5, `split` x5, `tokens.push` x4, `version.indexOf` x4, `core.split` x4, `echo` x3, `compareVersions` x3, `lowerBound` x3, `tokenize` x3, `isValidIPv4` x3. [SOURCE: file:score-d4-agreement.cjs:83-105,214] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/deterministic/hallucination-flag.cjs:106,123,135,154-176] [SOURCE: command:node -e in-memory re-run over 024-outputs]",
+      "text": "**The check's 22 was reproduced, and it is an allowlist artifact.** Re-running the check's own `scoreOutput` in memory with `{allowlist:{}}` over the 56 outputs gives tp=9 tn=13 fp=34 fn=0, i.e. exactly 22 right: perfect sensitivity, 21% precision, 34 of 47 honest outputs flagged. The mechanism: none of the 21 fixtures carries an `allowlist` key (0 of 21 confirmed by reading every fixture's keys), and `deterministicCall` hands the check `fixture.allowlist || {}`, so every extracted symbol or flag is unverified. Top false-positive tokens on honest rows include the task's own function names and standard methods: `expr.slice` x5, `split` x5, `tokens.push` x4, `version.indexOf` x4, `core.split` x4, `echo` x3, `compareVersions` x3, `lowerBound` x3, `tokenize` x3, `isValidIPv4` x3. [SOURCE: file:score-d4-agreement.cjs:83-105,214] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/deterministic/hallucination-flag.cjs:106,123,135,154-176] [SOURCE: command:node -e in-memory re-run over 024-outputs]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1--39bfe4107cf1",
+      "title": "**The closest reuse is already present in sk-doc's citation-drift scan.** It checks whether a cited code window still supports the sentence, compares Jev with two fixed baselines, and uses a labeled sample; its default makes no model calls and writes no file ([scan contract](.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:18)). This is the most direct adjacent fit. Reuse the source-grounded evaluation pattern there, with a citation-support rubric distinct from D4's unsupported-symbol rubric ([scan question and gates](.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:26)).",
+      "text": "**The closest reuse is already present in sk-doc's citation-drift scan.** It checks whether a cited code window still supports the sentence, compares Jev with two fixed baselines, and uses a labeled sample; its default makes no model calls and writes no file ([scan contract](.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:18)). This is the most direct adjacent fit. Reuse the source-grounded evaluation pattern there, with a citation-support rubric distinct from D4's unsupported-symbol rubric ([scan question and gates](.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:26)).",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-3-finding-1",
+      "_conflict_id": "iteration-3-finding-1--39bfe4107cf1",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-1",
+          "peerId": "iteration-3-finding-1--8e8d730d8a84",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3--39be33c492d0",
+      "title": "**The corpus makes the task intentionally high-signal and negative-heavy.** The phase report says 42 honest DeepSeek answers contained zero invented names, while nine hallucinations were found among 14 deliberately careless answers ([measurement statement](specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/005-hallucination-grader-research/spec.md:59)). This composition explains why the 47/56 majority baseline is already strong and why the reported gain is promising on curated fixtures, but it cannot estimate real-use prevalence or performance on subtle hallucinations.",
+      "text": "**The corpus makes the task intentionally high-signal and negative-heavy.** The phase report says 42 honest DeepSeek answers contained zero invented names, while nine hallucinations were found among 14 deliberately careless answers ([measurement statement](specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/005-hallucination-grader-research/spec.md:59)). This composition explains why the 47/56 majority baseline is already strong and why the reported gain is promising on curated fixtures, but it cannot estimate real-use prevalence or performance on subtle hallucinations.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-1-finding-3",
+      "_conflict_id": "iteration-1-finding-3--39be33c492d0",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-3",
+          "peerId": "iteration-1-finding-3--802aae6b8e17",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-9",
+      "title": "**The corpus tests one hallucination family, on cooperative text.** All 9 positives are invented local module paths/helper names produced by the careless run3 prompt on 14 fixtures; there are no planted hallucinations of other kinds (fake packages, URLs, config keys, versions) and no adversarial outputs. The harness hardens against injection-style output (random sentinel markers, explicit data-only instruction), but the agreement corpus contains no such case, so 98% accuracy here says nothing about hostile text. [SOURCE: file:~/.skilled/.labels/024-labels.jsonl] [SOURCE: file:.../047.../scratch/fixtures/024-outputs/] [SOURCE: file:scorer/grader/harness.cjs:98-110,201-220]",
+      "text": "**The corpus tests one hallucination family, on cooperative text.** All 9 positives are invented local module paths/helper names produced by the careless run3 prompt on 14 fixtures; there are no planted hallucinations of other kinds (fake packages, URLs, config keys, versions) and no adversarial outputs. The harness hardens against injection-style output (random sentinel markers, explicit data-only instruction), but the agreement corpus contains no such case, so 98% accuracy here says nothing about hostile text. [SOURCE: file:~/.skilled/.labels/024-labels.jsonl] [SOURCE: file:.../047.../scratch/fixtures/024-outputs/] [SOURCE: file:scorer/grader/harness.cjs:98-110,201-220]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1--295388db3d82",
+      "title": "**The cost is linear in reruns x rows, and the reruns are the block.** The arm plans `3 * K + 1` calls (`planned calls: jev 169` for K=56) at `JEV_RERUNS = 3`; only 1 of the 169 is the auth test. Recorded: ~93,003 estimated input tokens (the script's own chars/4 estimate), all 56 rows measured, app latency p50 326 ms / p95 434 ms. Halving reruns would save 56 calls (33%) but F (flip count) exists only because there are 3 samples. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:43,712,996] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/calls.jsonl]",
+      "text": "**The cost is linear in reruns x rows, and the reruns are the block.** The arm plans `3 * K + 1` calls (`planned calls: jev 169` for K=56) at `JEV_RERUNS = 3`; only 1 of the 169 is the auth test. Recorded: ~93,003 estimated input tokens (the script's own chars/4 estimate), all 56 rows measured, app latency p50 326 ms / p95 434 ms. Halving reruns would save 56 calls (33%) but F (flip count) exists only because there are 3 samples. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:43,712,996] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/calls.jsonl]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-2-finding-1",
+      "_conflict_id": "iteration-2-finding-1--295388db3d82",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-1",
+          "peerId": "iteration-2-finding-1--50fa4240210a",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-1-finding-5--e6e5d9fcba25",
+      "title": "**The current aggregate does not reveal the error classes behind the 55 correct rows.** The reported summary has no per-row confusion matrix or raw output/label pairs in the sources read. Do not infer Jev’s false-positive rate, false-negative rate, or which claim types drove W=8 from A/B/W/L totals alone.",
+      "text": "**The current aggregate does not reveal the error classes behind the 55 correct rows.** The reported summary has no per-row confusion matrix or raw output/label pairs in the sources read. Do not infer Jev’s false-positive rate, false-negative rate, or which claim types drove W=8 from A/B/W/L totals alone.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-1-finding-5",
+      "_conflict_id": "iteration-1-finding-5--e6e5d9fcba25",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-5",
+          "peerId": "iteration-1-finding-5--5bb0fedf0022",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-5-finding-3",
+      "title": "**The defaults are deliberately hermetic and attributed.** `--scorer pattern` and `--grader noop` are the defaults; `--scorer 5dim` and `--grader llm` are opt-in, and both reports and the `benchmark_run` record stamp `scoringMethod` and `grader` so results are attributable. Turning a grader on by default changes what every future run measures and breaks comparability with historical reports unless the change is versioned and re-baselined. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/opt-in-5dim-scorer.md:23-27] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:577,590,737-740]",
+      "text": "**The defaults are deliberately hermetic and attributed.** `--scorer pattern` and `--grader noop` are the defaults; `--scorer 5dim` and `--grader llm` are opt-in, and both reports and the `benchmark_run` record stamp `scoringMethod` and `grader` so results are attributable. Turning a grader on by default changes what every future run measures and breaks comparability with historical reports unless the change is versioned and re-baselined. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/opt-in-5dim-scorer.md:23-27] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs:577,590,737-740]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4--dfa14b7709d1",
+      "title": "**The deterministic comparator appears under-equipped for the current fixture assets.** The checker extracts CLI flags and function-call symbols, then compares them with an allowlist; it does not claim to verify file names ([checker rubric](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/deterministic/hallucination-flag.cjs:9)). The current 21 fixture JSON files contain no allowlist property (read-only corpus census); feature 024 also records the absence of that key when its fixtures were built ([feature 024](specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md:70)). The scorer selects deterministic only when it beats majority, otherwise majority, so B=47 is the stronger baseline here ([baseline selection](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:240)). This points to a weak comparator configuration, not proof that deterministic grading is inherently poor.",
+      "text": "**The deterministic comparator appears under-equipped for the current fixture assets.** The checker extracts CLI flags and function-call symbols, then compares them with an allowlist; it does not claim to verify file names ([checker rubric](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/deterministic/hallucination-flag.cjs:9)). The current 21 fixture JSON files contain no allowlist property (read-only corpus census); feature 024 also records the absence of that key when its fixtures were built ([feature 024](specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md:70)). The scorer selects deterministic only when it beats majority, otherwise majority, so B=47 is the stronger baseline here ([baseline selection](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:240)). This points to a weak comparator configuration, not proof that deterministic grading is inherently poor.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-1-finding-4",
+      "_conflict_id": "iteration-1-finding-4--dfa14b7709d1",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-4",
+          "peerId": "iteration-1-finding-4--ca0821ff7223",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2--863e0db49ec0",
+      "title": "**The grader's single miss is a false negative at the threshold.** A=55 = 47/47 no rows plus 8/9 yes rows. Aggregating calls.jsonl finds exactly one row whose majority call differs from its label: `harder-normalize-path.run3.md` with nouls 0.43/0.43/0.40, called `no` under the `yesVotes >= 2`/0.5 rule. The output invents `splitOnSlashes` and `require('../../lib/path/split')`, so the label is right and the call is wrong. [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/calls.jsonl] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:344-346]",
+      "text": "**The grader's single miss is a false negative at the threshold.** A=55 = 47/47 no rows plus 8/9 yes rows. Aggregating calls.jsonl finds exactly one row whose majority call differs from its label: `harder-normalize-path.run3.md` with nouls 0.43/0.43/0.40, called `no` under the `yesVotes >= 2`/0.5 rule. The output invents `splitOnSlashes` and `require('../../lib/path/split')`, so the label is right and the call is wrong. [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/calls.jsonl] [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:344-346]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-1-finding-2",
+      "_conflict_id": "iteration-1-finding-2--863e0db49ec0",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-2",
+          "peerId": "iteration-1-finding-2--6231d078c9dc",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1--8e8d730d8a84",
+      "title": "**The keep rule is genuinely pre-registered.** The 024 spec fixes it verbatim: \"Keep Rule (fixed 2026-09-29, before any model run)\", with REQ-005 adding that changing it after the first model run voids every earlier verdict. The code carries the same rule as a printed constant, including the power floor (\"a keep needs at least 5 wins with no loss, since 0.5^5 is 0.031\"). The recorded run applied it exactly (iteration 1 re-derived every check). [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md:135,151-160] [SOURCE: file:score-d4-agreement.cjs:35,37,296-305]",
+      "text": "**The keep rule is genuinely pre-registered.** The 024 spec fixes it verbatim: \"Keep Rule (fixed 2026-09-29, before any model run)\", with REQ-005 adding that changing it after the first model run voids every earlier verdict. The code carries the same rule as a printed constant, including the power floor (\"a keep needs at least 5 wins with no loss, since 0.5^5 is 0.031\"). The recorded run applied it exactly (iteration 1 re-derived every check). [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md:135,151-160] [SOURCE: file:score-d4-agreement.cjs:35,37,296-305]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-1",
+      "_conflict_id": "iteration-3-finding-1--8e8d730d8a84",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-1",
+          "peerId": "iteration-3-finding-1--39bfe4107cf1",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2--917c0a53a8bc",
+      "title": "**The labels are one delegated opinion by design.** 047's goal binds labels to \"the operator or 042's delegated arbiter (a fresh Opus 5.5 medium labeler)\"; 042's ADR-001 delegates each feature's row decisions to a fresh Opus 5.5 medium arbiter with blind drafts and an operator-vetoable digest. The 024 row records \"delegated arbiter, blind, 56 rows\". There is no second rater and no adjudication step on the one row where the grader disagreed with the label; the label set's reliability is therefore assumed, not measured. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/goal.md:47] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/spec.md:44] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:13]",
+      "text": "**The labels are one delegated opinion by design.** 047's goal binds labels to \"the operator or 042's delegated arbiter (a fresh Opus 5.5 medium labeler)\"; 042's ADR-001 delegates each feature's row decisions to a fresh Opus 5.5 medium arbiter with blind drafts and an operator-vetoable digest. The 024 row records \"delegated arbiter, blind, 56 rows\". There is no second rater and no adjudication step on the one row where the grader disagreed with the label; the label set's reliability is therefore assumed, not measured. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/goal.md:47] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/spec.md:44] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:13]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-2",
+      "_conflict_id": "iteration-3-finding-2--917c0a53a8bc",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-2",
+          "peerId": "iteration-3-finding-2--f75122121fb5",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2--f1f291dd2207",
+      "title": "**The measured Jev protocol costs 169 planned calls at K=56.** It uses three hosted `noul` calls per labeled row plus one auth test, so this run planned 168 grader calls and one auth call; estimated input tokens are printed, but no dollar estimate is ([cost plan](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:679)). Exit-4 calls can be retried once, which increases realized calls ([retry path](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:777)). Per-call records retain output name, latency, exit code, numeric answer, status, Jev version, provider, and model, not a rationale or supporting claim ([call record](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:761)). A confidence/threshold-based repeat policy could reduce calls on a future run, but it would change the measurement protocol: keep the three-call result as the reference, then compare any one-call or adaptive policy on a separately labeled holdout and report measured calls and latency, not assumed savings.",
+      "text": "**The measured Jev protocol costs 169 planned calls at K=56.** It uses three hosted `noul` calls per labeled row plus one auth test, so this run planned 168 grader calls and one auth call; estimated input tokens are printed, but no dollar estimate is ([cost plan](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:679)). Exit-4 calls can be retried once, which increases realized calls ([retry path](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:777)). Per-call records retain output name, latency, exit code, numeric answer, status, Jev version, provider, and model, not a rationale or supporting claim ([call record](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:761)). A confidence/threshold-based repeat policy could reduce calls on a future run, but it would change the measurement protocol: keep the three-call result as the reference, then compare any one-call or adaptive policy on a separately labeled holdout and report measured calls and latency, not assumed savings.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-2-finding-2",
+      "_conflict_id": "iteration-2-finding-2--f1f291dd2207",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-2",
+          "peerId": "iteration-2-finding-2--23cbdcf64ccb",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-5-finding-1",
+      "title": "**The measured keep covers the jev column, not the `llm` grader.** The 047 result validates the hosted jev backend (jev 0.6.2, provider official, model jev-1.13.0) on this corpus. The `--grader llm` path is a different implementation (Claude CLI with the D4 rubric) that this arm never measured, and the frozen keep rule applies \"per backend column\" (REQ-005). Wiring a jev grader kind was explicitly out of 024's scope (\"Adding a `jev` or `deem` grader kind to the runner... Offline only\"), and D5 says a keep wires nothing: \"a grader kind needs a later phase the operator opens\". Any default-on proposal must therefore pick its backend and measure that backend, not inherit the jev number. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/goal.md:48,52] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md:94,135] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/report.json]",
+      "text": "**The measured keep covers the jev column, not the `llm` grader.** The 047 result validates the hosted jev backend (jev 0.6.2, provider official, model jev-1.13.0) on this corpus. The `--grader llm` path is a different implementation (Claude CLI with the D4 rubric) that this arm never measured, and the frozen keep rule applies \"per backend column\" (REQ-005). Wiring a jev grader kind was explicitly out of 024's scope (\"Adding a `jev` or `deem` grader kind to the runner... Offline only\"), and D5 says a keep wires nothing: \"a grader kind needs a later phase the operator opens\". Any default-on proposal must therefore pick its backend and measure that backend, not inherit the jev number. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/goal.md:48,52] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md:94,135] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/report.json]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-1--0b76ae8123e6",
+      "title": "**The measured win is eight paired cases, not an eight-case raw accuracy delta over every row.** The Jev column has A=55 correct and the selected baseline B=47 correct, so Jev adds eight net correct rows (98.2% versus 83.9%). W=8 and L=0 show all eight discordant pairs favor Jev. The one-sided paired sign tail is 1/256 = 0.003906; the verdict’s gates also require coverage, a margin of at least 10% of measured rows, the sign test, and a rerun-flip ceiling ([scorer](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:276), [verdict gates](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:296)). The sample is small: the p-value is over the eight discordant pairs, not a production-population accuracy interval.",
+      "text": "**The measured win is eight paired cases, not an eight-case raw accuracy delta over every row.** The Jev column has A=55 correct and the selected baseline B=47 correct, so Jev adds eight net correct rows (98.2% versus 83.9%). W=8 and L=0 show all eight discordant pairs favor Jev. The one-sided paired sign tail is 1/256 = 0.003906; the verdict’s gates also require coverage, a margin of at least 10% of measured rows, the sign test, and a rerun-flip ceiling ([scorer](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:276), [verdict gates](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:296)). The sample is small: the p-value is over the eight discordant pairs, not a production-population accuracy interval.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-1-finding-1",
+      "_conflict_id": "iteration-1-finding-1--0b76ae8123e6",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-1",
+          "peerId": "iteration-1-finding-1--5bf8f354e968",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3--802aae6b8e17",
+      "title": "**The one flip.** `validate-semver.run3.md` answered 0.55/0.41/0.54: two yes votes win the call, one dissenting rerun is counted, F = 3-2 = 1. Every other row voted unanimously. [SOURCE: file:.../calls.jsonl] [SOURCE: file:score-d4-agreement.cjs:346]",
+      "text": "**The one flip.** `validate-semver.run3.md` answered 0.55/0.41/0.54: two yes votes win the call, one dissenting rerun is counted, F = 3-2 = 1. Every other row voted unanimously. [SOURCE: file:.../calls.jsonl] [SOURCE: file:score-d4-agreement.cjs:346]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-1-finding-3",
+      "_conflict_id": "iteration-1-finding-3--802aae6b8e17",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-3",
+          "peerId": "iteration-1-finding-3--39be33c492d0",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-6",
+      "title": "**The production grader already has a dispute hook the agreement arm lacks.** `dispute.cjs` escalates to an adversarial second call when confidence < 0.7 or the recent dispute rate > 0.15, and reports median + dispute delta (threshold 0.15). The jev arm has no escalation; its miss sat entirely below 0.5, i.e. in the band a confidence-aware policy would re-ask. 8 of 168 recorded calls (4.8%) lie in [0.40, 0.60), so a rebate call on borderline rows is a small cost increment, but it is a new measurement shape. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/dispute.cjs:35,52-82,110-130] [SOURCE: file:.../calls.jsonl]",
+      "text": "**The production grader already has a dispute hook the agreement arm lacks.** `dispute.cjs` escalates to an adversarial second call when confidence < 0.7 or the recent dispute rate > 0.15, and reports median + dispute delta (threshold 0.15). The jev arm has no escalation; its miss sat entirely below 0.5, i.e. in the band a confidence-aware policy would re-ask. 8 of 168 recorded calls (4.8%) lie in [0.40, 0.60), so a rebate call on borderline rows is a small cost increment, but it is a new measurement shape. [SOURCE: file:.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/dispute.cjs:35,52-82,110-130] [SOURCE: file:.../calls.jsonl]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4--0acda78198eb",
+      "title": "**The protocol has useful guardrails, but its p-value is narrow evidence.** The label file is hashed; the run requires at least 30 labeled matched outputs and at least five in each class; Jev needs three finite scores per row and uses their modal class ([label and verdict gates](specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md:134), [vote logic](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:316)). The keep rule is fixed and includes coverage, a margin, an exact paired sign test, and a rerun-flip limit ([gates](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:296)). Here the sign test has eight discordant pairs, all Jev wins; p=0.003906 therefore supports this paired fixture result, not a production accuracy interval. A stronger next measurement should use blind independent labels with adjudication, a predeclared baseline, an untouched holdout from multiple task/model sources, and a confusion table by claim type. Keep the current label hash and three-call stability measure so the new evidence remains auditable.",
+      "text": "**The protocol has useful guardrails, but its p-value is narrow evidence.** The label file is hashed; the run requires at least 30 labeled matched outputs and at least five in each class; Jev needs three finite scores per row and uses their modal class ([label and verdict gates](specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/spec.md:134), [vote logic](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:316)). The keep rule is fixed and includes coverage, a margin, an exact paired sign test, and a rerun-flip limit ([gates](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:296)). Here the sign test has eight discordant pairs, all Jev wins; p=0.003906 therefore supports this paired fixture result, not a production accuracy interval. A stronger next measurement should use blind independent labels with adjudication, a predeclared baseline, an untouched holdout from multiple task/model sources, and a confusion table by claim type. Keep the current label hash and three-call stability measure so the new evidence remains auditable.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-2-finding-4",
+      "_conflict_id": "iteration-2-finding-4--0acda78198eb",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-4",
+          "peerId": "iteration-2-finding-4--30f986583b28",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-3-finding-8",
+      "title": "**The receipts that do exist are strong and should be credited.** Labels SHA-256 on the verdict line and in the report; per-call `calls.jsonl` with noul, status, wall time, provider, model, and jev version; strict label parsing that exits 2 on a bad value, duplicate, or non-JSON row; a payload gate that refuses untracked outputs without `--accept-payload`; skip paths that leave the rest of the output byte-identical. The gaps are in what the report does not surface (per-class counts, unmeasured count in the printed line, threshold sensitivity, intervals), not in what it refuses to hide. [SOURCE: file:score-d4-agreement.cjs:139-163,356,436-480,1020-1027] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/report.json]",
+      "text": "**The receipts that do exist are strong and should be credited.** Labels SHA-256 on the verdict line and in the report; per-call `calls.jsonl` with noul, status, wall time, provider, model, and jev version; strict label parsing that exits 2 on a bad value, duplicate, or non-JSON row; a payload gate that refuses untracked outputs without `--accept-payload`; skip paths that leave the rest of the output byte-identical. The gaps are in what the report does not surface (per-class counts, unmeasured count in the printed line, threshold sensitivity, intervals), not in what it refuses to hide. [SOURCE: file:score-d4-agreement.cjs:139-163,356,436-480,1020-1027] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/report.json]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-9",
+      "title": "**The remaining trust debt is the measurement's, and it would circulate with the default.** Default-on would put this judgment in front of every benchmark reader; Q3's caveats travel with it: single-labeler labels with no adjudication, fixture-clustered rows treated as independent, a nominal p_win above a 15-feature Bonferroni threshold, and a corpus covering one hallucination family on cooperative text. The 024 goal already conditions wiring on a later operator-opened phase; that phase should carry the Q3 fixes, not just the wiring. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/goal.md:52] [SOURCE: derived: iteration-3 findings]",
+      "text": "**The remaining trust debt is the measurement's, and it would circulate with the default.** Default-on would put this judgment in front of every benchmark reader; Q3's caveats travel with it: single-labeler labels with no adjudication, fixture-clustered rows treated as independent, a nominal p_win above a 15-feature Bonferroni threshold, and a corpus covering one hallucination family on cooperative text. The 024 goal already conditions wiring on a later operator-opened phase; that phase should carry the Q3 fixes, not just the wiring. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/024-hallucination-grader/goal.md:52] [SOURCE: derived: iteration-3 findings]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4--fe233116d2ce",
+      "title": "**The significance is per-column, not family-wise.** 047 measured 15 features in the same campaign, on top of the parent's 23 Jev integrations. A strict Bonferroni threshold is 0.003333 at k=15 and 0.002273 at k=22; p_win=0.00390625 sits above both. Across 15 independent tests at nominal 0.05 the chance of at least one false keep is 0.5367 (derived). The pre-registered per-scorer rule and the five-win floor mitigate cherry-picking, but the keep should be cited as a per-column nominal result, not a family-wide discovery. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/spec.md:62] [SOURCE: derived: Bonferroni and family-wise arithmetic]",
+      "text": "**The significance is per-column, not family-wise.** 047 measured 15 features in the same campaign, on top of the parent's 23 Jev integrations. A strict Bonferroni threshold is 0.003333 at k=15 and 0.002273 at k=22; p_win=0.00390625 sits above both. Across 15 independent tests at nominal 0.05 the chance of at least one false keep is 0.5367 (derived). The pre-registered per-scorer rule and the five-win floor mitigate cherry-picking, but the keep should be cited as a per-column nominal result, not a family-wide discovery. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/spec.md:62] [SOURCE: derived: Bonferroni and family-wise arithmetic]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-3-finding-4",
+      "_conflict_id": "iteration-3-finding-4--fe233116d2ce",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-3-finding-4",
+          "peerId": "iteration-3-finding-4--e5bbd5856eeb",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3--a145755b0932",
+      "title": "**The threshold sliver is real but tiny.** Majority-of-3 at 0.5: the single miss is 0.43/0.43/0.40 and the worst no row is 0.40/0.38/0.43; a per-value threshold at 0.42 would fix the miss on this corpus with no no-row flip (the worst no row would cast 1 of 3 yes votes). The supporting margin is one row and at most 0.03 noul, so this is a hypothesis for a fresh agreement run with a held-out split, not a patch to apply on this corpus' evidence. [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/calls.jsonl] [SOURCE: file:score-d4-agreement.cjs:344-346]",
+      "text": "**The threshold sliver is real but tiny.** Majority-of-3 at 0.5: the single miss is 0.43/0.43/0.40 and the worst no row is 0.40/0.38/0.43; a per-value threshold at 0.42 would fix the miss on this corpus with no no-row flip (the worst no row would cast 1 of 3 yes votes). The supporting margin is one row and at most 0.03 noul, so this is a hypothesis for a fresh agreement run with a held-out split, not a patch to apply on this corpus' evidence. [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/calls.jsonl] [SOURCE: file:score-d4-agreement.cjs:344-346]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-2-finding-3",
+      "_conflict_id": "iteration-2-finding-3--a145755b0932",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-3",
+          "peerId": "iteration-2-finding-3--8acb1574cc0f",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2--23cbdcf64ccb",
+      "title": "**The tie rule is silently specificity-favoring.** `yesVotes >= 2` maps a 1-1-1 tie to `no`, and `no` is the 47-row majority class; the recorded corpus has zero such ties and exactly one 2-1 flip. A 4th call only on ties (or on rows whose votes straddle the threshold) is a bounded accuracy lever, not a blanket rerun increase. [SOURCE: file:score-d4-agreement.cjs:344-346] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/calls.jsonl]",
+      "text": "**The tie rule is silently specificity-favoring.** `yesVotes >= 2` maps a 1-1-1 tie to `no`, and `no` is the 47-row majority class; the recorded corpus has zero such ties and exactly one 2-1 flip. A 4th call only on ties (or on rows whose votes straddle the threshold) is a bounded accuracy lever, not a blanket rerun increase. [SOURCE: file:score-d4-agreement.cjs:344-346] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/calls.jsonl]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-2-finding-2",
+      "_conflict_id": "iteration-2-finding-2--23cbdcf64ccb",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-2-finding-2",
+          "peerId": "iteration-2-finding-2--f1f291dd2207",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2--6231d078c9dc",
+      "title": "**Three-call majority voting limits single-call noise, and F=1 is one dissenting vote.** A row is measured only with three finite answers; the scorer takes the majority class and counts votes that dissent from that class ([summarizer](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:315)). Here F=1 is not an F1 metric. The grading prompt supplies each answer with its task, visible specification, and allowlist when present ([prompt state](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:188)). That is a plausible mechanism for identifying unsupported names, but the aggregate result alone cannot attribute individual wins to a particular prompt feature.",
+      "text": "**Three-call majority voting limits single-call noise, and F=1 is one dissenting vote.** A row is measured only with three finite answers; the scorer takes the majority class and counts votes that dissent from that class ([summarizer](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:315)). Here F=1 is not an F1 metric. The grading prompt supplies each answer with its task, visible specification, and allowlist when present ([prompt state](.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs:188)). That is a plausible mechanism for identifying unsupported names, but the aggregate result alone cannot attribute individual wins to a particular prompt feature.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ],
+      "_conflictOf": "iteration-1-finding-2",
+      "_conflict_id": "iteration-1-finding-2--6231d078c9dc",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-2",
+          "peerId": "iteration-1-finding-2--863e0db49ec0",
+          "peerLineages": [
+            "deepseek"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-2-finding-9",
+      "title": "**Unverified levers, named as such.** Multi-row batched calls and a cheaper `JEV_PROVIDER` are plausible but unmeasured; both change the arm's contract and would need a new agreement run before any verdict uses them. [SOURCE: file:score-d4-agreement.cjs:437] — UNKNOWN: no batching or alternate-provider experiment exists in the repo.",
+      "text": "**Unverified levers, named as such.** Multi-row batched calls and a cheaper `JEV_PROVIDER` are plausible but unmeasured; both change the arm's contract and would need a new agreement run before any verdict uses them. [SOURCE: file:score-d4-agreement.cjs:437] — UNKNOWN: no batching or alternate-provider experiment exists in the repo.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-6",
+      "title": "**Where the judgment does not fit.** Forward-looking planning documents (spec.md, plan.md, tasks.md) legitimately name files and symbols that do not exist yet; a name-existence judgment over them would flag the normal case and must not be applied as a defect check. And any adoption of the judgment over code answers must carry a populated allowlist of provided names, or it repeats the empty-allowlist false-positive trap documented in iterations 1 and 2 (34 of 47 honest rows flagged). [SOURCE: file:.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:23] [SOURCE: derived: iteration-1/2 reproduction]",
+      "text": "**Where the judgment does not fit.** Forward-looking planning documents (spec.md, plan.md, tasks.md) legitimately name files and symbols that do not exist yet; a name-existence judgment over them would flag the normal case and must not be applied as a defect check. And any adoption of the judgment over code answers must carry a populated allowlist of provided names, or it repeats the empty-allowlist false-positive trap documented in iterations 1 and 2 (34 of 47 honest rows flagged). [SOURCE: file:.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:23] [SOURCE: derived: iteration-1/2 reproduction]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-5--5bb0fedf0022",
+      "title": "**Why the baseline was majority, not the check.** `chooseBaseline` picks the deterministic check only when `checkRight >= majorityRight`; here 22 < 47, so the baseline method is `majority` with class `no`, right on 47 of 56. W=8/L=0 follow mechanically: the baseline never answers `yes`, so each of the 8 caught yes rows is a win, while its only label-wrong calls sit on no rows where the grader is also right. [SOURCE: file:score-d4-agreement.cjs:240-258] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/report.json]",
+      "text": "**Why the baseline was majority, not the check.** `chooseBaseline` picks the deterministic check only when `checkRight >= majorityRight`; here 22 < 47, so the baseline method is `majority` with class `no`, right on 47 of 56. W=8/L=0 follow mechanically: the baseline never answers `yes`, so each of the 8 caught yes rows is a win, while its only label-wrong calls sit on no rows where the grader is also right. [SOURCE: file:score-d4-agreement.cjs:240-258] [SOURCE: file:~/.skilled/.labels/runs/047-024-jev-20261002/report.json]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ],
+      "_conflictOf": "iteration-1-finding-5",
+      "_conflict_id": "iteration-1-finding-5--5bb0fedf0022",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iteration-1-finding-5",
+          "peerId": "iteration-1-finding-5--e6e5d9fcba25",
+          "peerLineages": [
+            "luna"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "id": "iteration-1-finding-7",
+      "title": "**Why the grader wins where the check loses.** `buildState` gives the grader task + visibleSpec + output (no allowlist here either), so it can see that `compareVersions(...)` or `evalExpr(...)` is the function the task asked for, while the check has no such context and only compares tokens against an empty allowlist. The fp mass in finding 6 and the grader's 47/47 specificity are the same fact from two sides. [SOURCE: file:score-d4-agreement.cjs:188-195] [SOURCE: file:.../hallucination-flag.cjs:153-176]",
+      "text": "**Why the grader wins where the check loses.** `buildState` gives the grader task + visibleSpec + output (no allowlist here either), so it can see that `compareVersions(...)` or `evalExpr(...)` is the function the task asked for, while the check has no such context and only compares tokens against an empty allowlist. The fp mass in finding 6 and the grader's 47/47 specificity are the same fact from two sides. [SOURCE: file:score-d4-agreement.cjs:188-195] [SOURCE: file:.../hallucination-flag.cjs:153-176]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-check-ceiling",
+      "text": "Reading 'deterministic check 22 of 56' as the check's realistic ceiling",
+      "reason": "It is the check with its allowlist input empty, which the fixture corpus guarantees.",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-threshold-patch",
+      "text": "Retuning the 0.5 threshold on this corpus' own evidence",
+      "reason": "Post-hoc, one-row margin (0.03 noul); threshold policy belongs in a fresh held-out agreement run.",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 59,
+    "sourceFindings": 59,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.855,
+    "coverageBySources": {}
+  }
+}

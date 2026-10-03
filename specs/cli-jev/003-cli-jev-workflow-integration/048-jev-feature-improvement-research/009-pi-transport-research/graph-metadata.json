@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/findings-registry.json",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+      ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+      "research/lineages/deepseek/deep-research-state.jsonl",
+      "research/lineages/luna/deep-research-state.jsonl",
+      "research/lineages/deepseek/research.md",
+      "research/lineages/luna/research.md",
+      "research/fanout-attribution.md",
+      "research/resource-map.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "score-pi-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "jev-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/lineages/deepseek/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Jev Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 037 measured the Jev Pi native classifier transport at verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 medianabsdp=0.0100 p95ms=340/387 costper100=0.0022",
+    "created_at": "2026-10-02T21:59:49Z",
+    "last_save_at": "2026-10-03T05:04:10.164Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:ab537b7dd817b4995114f3183eee402d0ebed0dd3888029762bb5060d6d7bd24",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "996d5e297ac6cfd1c0ea9be07139f00a526c32dc1d6368f840f61cdbb27daba6",
+      "plan.md": "411d59da53481ea52a1b5a9d11c68965ff374a016207331687550dea38f70588",
+      "tasks.md": "3199eb3a0e1d5e98aeb45257f2aa99e80bbc9dfa2840f62d7daea06db4b5b17b",
+      "implementation-summary.md": "b782c22d90f8b4e42db7a8390a3593dc0df966fbf8f15a2d182fe6b495dea097",
+      "research/research.md": "c571dbc66ff0c479396aaf8b6334c77f8d3c79a469160e1d392da8f93c532a54"
+    },
+    "last_active_at": null
+  }
+}

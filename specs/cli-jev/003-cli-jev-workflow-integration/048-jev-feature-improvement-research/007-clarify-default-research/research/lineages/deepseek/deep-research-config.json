@@ -1,0 +1,21 @@
+{
+  "topic": "Improve, refine and expand the Jev routing clarify default (cli-jev feature 020): the scorer .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs and the compiled router .skilled/bin/compiled-route.cjs, measured at verdict jev: keep K=54 M=54 A=28 B=15 W=17 L=4 F=10 p=0.003599 on a 54-prompt fixture corpus.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": { "convergenceMode": "default" },
+  "resource_map": { "emit": true },
+  "lineage": {
+    "sessionId": "fanout-deepseek-1790983928753-i9b9tl",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "executor": { "kind": "cli-pi", "model": "deepseek-v4.1-flash", "reasoningEffort": "max" },
+  "createdAt": "2026-10-03T00:06:44Z",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/007-clarify-default-research",
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

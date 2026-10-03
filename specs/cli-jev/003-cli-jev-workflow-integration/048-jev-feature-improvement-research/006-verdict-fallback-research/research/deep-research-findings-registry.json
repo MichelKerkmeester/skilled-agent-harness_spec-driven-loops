@@ -1,0 +1,457 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "luna"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "iteration-3-finding-3",
+      "title": "**A trustworthy follow-up needs a natural-use census plus a separately labeled miss sample.** Count hits and misses across ordinary consecutive or randomly sampled reviewer reports, across reviewer/model versions, before enriching the corpus with stress cases. The feature already supports zero-call counts from outputs and report verdict-method counts. Estimate miss prevalence from the full census, then estimate fallback quality on a held-out sample of natural misses; keep the constructed 24-row corpus as a stress set. Blind two human readers to Jev's answer and adjudicate disagreements, labeling explicit PASS/FAIL/BLOCK separately from no decision or ambiguous wording. Report prevalence and conditional accuracy separately, since whole-run uplift depends on both. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/reviewer-verdict-fallback.md:28-40] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/spec.md:83-97] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:190-204]",
+      "text": "**A trustworthy follow-up needs a natural-use census plus a separately labeled miss sample.** Count hits and misses across ordinary consecutive or randomly sampled reviewer reports, across reviewer/model versions, before enriching the corpus with stress cases. The feature already supports zero-call counts from outputs and report verdict-method counts. Estimate miss prevalence from the full census, then estimate fallback quality on a held-out sample of natural misses; keep the constructed 24-row corpus as a stress set. Blind two human readers to Jev's answer and adjudicate disagreements, labeling explicit PASS/FAIL/BLOCK separately from no decision or ambiguous wording. Report prevalence and conditional accuracy separately, since whole-run uplift depends on both. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/reviewer-verdict-fallback.md:28-40] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/spec.md:83-97] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:190-204]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-5",
+      "title": "**Cache only exact, versioned repeats if duplicate misses occur.** Reviewer reports currently retain a truncated 16-character output hash rather than the output body. An integration cache could key a full content digest together with question/options digest, Jev version, provider, and model, and store only the accepted choice plus provenance. The current 16-hex output hash is not a full-content cache key. Since real misses are rare, measure duplicate frequency before building a cache. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:190-204] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:845-849]",
+      "text": "**Cache only exact, versioned repeats if duplicate misses occur.** Reviewer reports currently retain a truncated 16-character output hash rather than the output body. An integration cache could key a full content digest together with question/options digest, Jev version, provider, and model, and store only the accepted choice plus provenance. The current 16-hex output hash is not a full-content cache key. Since real misses are rare, measure duplicate frequency before building a cache. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:190-204] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:845-849]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5",
+      "title": "**Default-on wiring requires a separate integration decision and a privacy/failure contract.** The current reviewer scorer invokes only its opt-in llm grader after a deterministic miss; feature 025 explicitly excludes a Jev grader setting, classifier output in the reviewer report, a global switch, and shared client. A later phase should first establish natural miss prevalence and held-out quality, then specify the provider/version and credential policy, data-owner approval for sending reviewer text off-machine, one-call behavior, and transparent unknown/abstain behavior for timeout, invalid choice, or no explicit verdict. Keep the deterministic result when it parses; do not silently turn backend failure into BLOCK or an alternate grader result. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:155-187] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/spec.md:91-97] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/reviewer-verdict-fallback.md:38-40]",
+      "text": "**Default-on wiring requires a separate integration decision and a privacy/failure contract.** The current reviewer scorer invokes only its opt-in llm grader after a deterministic miss; feature 025 explicitly excludes a Jev grader setting, classifier output in the reviewer report, a global switch, and shared client. A later phase should first establish natural miss prevalence and held-out quality, then specify the provider/version and credential policy, data-owner approval for sending reviewer text off-machine, one-call behavior, and transparent unknown/abstain behavior for timeout, invalid choice, or no explicit verdict. Keep the deterministic result when it parses; do not silently turn backend failure into BLOCK or an alternate grader result. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:155-187] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/spec.md:91-97] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/reviewer-verdict-fallback.md:38-40]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1",
+      "title": "**Fix the source format before adding more judgment.** The reviewer schema already says output should include a parseable line such as VERDICT: FAIL, and the existing pattern accepts that form case-insensitively. Have the reviewer producer emit a typed verdict field or enforce this line as a format requirement. This reduces misses at near-zero marginal inference cost and keeps the deterministic parser as the first choice. Do not broaden the regex to any occurrence of pass/fail/block in prose: that could turn a mention or example into a verdict. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-schema.md:80-88] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:117-123]",
+      "text": "**Fix the source format before adding more judgment.** The reviewer schema already says output should include a parseable line such as VERDICT: FAIL, and the existing pattern accepts that form case-insensitively. Have the reviewer producer emit a typed verdict field or enforce this line as a format requirement. This reduces misses at near-zero marginal inference cost and keeps the deterministic parser as the first choice. Do not broaden the regex to any occurrence of pass/fail/block in prose: that could turn a mention or example into a verdict. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-fixtures/reviewer-schema.md:80-88] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:117-123]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2",
+      "title": "**Preserve the fallback's narrow question.** The current question asks which verdict the reviewer output gives, with options for approval, rejection, and inability to give a verdict. Keep Jev classifying the reviewer's stated language; it should not inspect or reassess the change. Some regex misses may contain no explicit decision, which is not the same as an explicit BLOCK. Add an abstain/unclear path that leaves the scorer at unknown unless the text states one of the three verdicts, then label that class in measurement. The existing option descriptions should remain mutually exclusive and cover the states Jev can return. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:34-42] [SOURCE: .skilled/skills/cli-classifier/cli-jev/references/integration-patterns.md:61-72]",
+      "text": "**Preserve the fallback's narrow question.** The current question asks which verdict the reviewer output gives, with options for approval, rejection, and inability to give a verdict. Keep Jev classifying the reviewer's stated language; it should not inspect or reassess the change. Some regex misses may contain no explicit decision, which is not the same as an explicit BLOCK. Add an abstain/unclear path that leaves the scorer at unknown unless the text states one of the three verdicts, then label that class in measurement. The existing option descriptions should remain mutually exclusive and cover the states Jev can return. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:34-42] [SOURCE: .skilled/skills/cli-classifier/cli-jev/references/integration-patterns.md:61-72]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3",
+      "title": "**Reduce calls in production, retain permutations as a measurement tool.** The benchmark asks each output in three rotated option orders and includes one authentication test. That means 72 judgments plus one auth call for K=24. One judgment per production miss would plan 24 plus one auth check (25 total), a reduction of 48/73 or about 66%. Keep the three orders for offline robustness checks, or repeat a sampled subset after a version/prompt change. This sacrifices an individual-output order-flip signal in production, so the reduced policy needs its own labeled holdout before promotion. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:700-708] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:775-794] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:1071-1077]",
+      "text": "**Reduce calls in production, retain permutations as a measurement tool.** The benchmark asks each output in three rotated option orders and includes one authentication test. That means 72 judgments plus one auth call for K=24. One judgment per production miss would plan 24 plus one auth check (25 total), a reduction of 48/73 or about 66%. Keep the three orders for offline robustness checks, or repeat a sampled subset after a version/prompt change. This sacrifices an individual-output order-flip signal in production, so the reduced policy needs its own labeled holdout before promotion. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:700-708] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:775-794] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:1071-1077]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1",
+      "title": "**The 24-row result is conditional on a deliberately selected miss set, and its labels answer a narrower question than reviewer correctness.** All 24 fixture reports were chosen because the regex missed them; the blind arbiter matched the author's intended verdict on all 24. The feature contract says the label is what the reviewer decided and warns against treating expectedVerdict as truth because a reviewer can be wrong. This supports accurate extraction of intended wording on this corpus, not a 100% production accuracy or miss-rate claim. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:14] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/spec.md:71,96-97]",
+      "text": "**The 24-row result is conditional on a deliberately selected miss set, and its labels answer a narrower question than reviewer correctness.** All 24 fixture reports were chosen because the regex missed them; the blind arbiter matched the author's intended verdict on all 24. The feature contract says the label is what the reviewer decided and warns against treating expectedVerdict as truth because a reviewer can be wrong. This supports accurate extraction of intended wording on this corpus, not a 100% production accuracy or miss-rate claim. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:14] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/spec.md:71,96-97]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2",
+      "title": "**The baseline was weak by construction on this balanced three-label set.** The report says majority=8/24 and loose=0/24. With three labels across 24 rows, a largest class of 8 means the labels split 8/8/8. The scorer chooses the better of majority and the last whole pass/fail/block word; here majority was the better zero-call rule. The output rows themselves were not in the repository evidence, so why the loose rule scored zero cannot be confirmed from the summary alone. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:14] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:270-310]",
+      "text": "**The baseline was weak by construction on this balanced three-label set.** The report says majority=8/24 and loose=0/24. With three labels across 24 rows, a largest class of 8 means the labels split 8/8/8. The scorer chooses the better of majority and the last whole pass/fail/block word; here majority was the better zero-call rule. The output rows themselves were not in the repository evidence, so why the loose rule scored zero cannot be confirmed from the summary alone. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:14] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:270-310]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4",
+      "title": "**The benchmark establishes conditional fallback competence, not production coverage.** The profile names four built-in reviewer fixtures. The feature-025 spec reports 8 fixture cases and 8 regex hits, so the fallback would not run on those known cases; it also says the current tree lacks recorded live reviewer outputs and that live runs retain only output hashes. The user-provided premise that ordinary reviewers rarely miss the pattern therefore materially lowers expected call volume, but the 24 selected misses do not estimate the miss rate. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/reviewer-regression.json:7-13] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/spec.md:68-74]",
+      "text": "**The benchmark establishes conditional fallback competence, not production coverage.** The profile names four built-in reviewer fixtures. The feature-025 spec reports 8 fixture cases and 8 regex hits, so the fallback would not run on those known cases; it also says the current tree lacks recorded live reviewer outputs and that live runs retain only output hashes. The user-provided premise that ordinary reviewers rarely miss the pattern therefore materially lowers expected call volume, but the 24 selected misses do not estimate the miss rate. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/assets/model-benchmark/benchmark-profiles/reviewer-regression.json:7-13] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/spec.md:68-74]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-6",
+      "title": "**The call cost can be bounded, but neither dollar cost nor production volume is established.** At 24 selected misses the three-order benchmark plans 73 calls including auth; one production judgment per miss would plan 25, about 66% fewer. The table reports 334 ms p50 and 377 ms p95 per measured call, but no billing or natural miss rate. Budget calls as natural reports multiplied by observed miss prevalence, then include provider pricing, token usage, retries, and latency from a real gated run before estimating dollars. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:700-708,775-794,1071-1077] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:14]",
+      "text": "**The call cost can be bounded, but neither dollar cost nor production volume is established.** At 24 selected misses the three-order benchmark plans 73 calls including auth; one production judgment per miss would plan 25, about 66% fewer. The table reports 334 ms p50 and 377 ms p95 per measured call, but no billing or natural miss rate. Budget calls as natural reports multiplied by observed miss prevalence, then include provider pricing, token usage, retries, and latency from a real gated run before estimating dollars. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:700-708,775-794,1071-1077] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:14]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-1",
+      "title": "**The corpus was selected for the exact condition that activates the fallback.** The scorer counts a row as a hit if extractVerdict returns a verdict and retains only rows where it returns null; the regex itself accepts a standalone pass, fail, or block line with an optional verdict/result/status prefix, and the last match wins. Thus K=24 is a deliberately enriched miss set, not 24 randomly drawn reviewer outputs. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:212-219] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:117-123]",
+      "text": "**The corpus was selected for the exact condition that activates the fallback.** The scorer counts a row as a hit if extractVerdict returns a verdict and retains only rows where it returns null; the regex itself accepts a standalone pass, fail, or block line with an optional verdict/result/status prefix, and the last match wins. Thus K=24 is a deliberately enriched miss set, not 24 randomly drawn reviewer outputs. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:212-219] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:117-123]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2",
+      "title": "**The independent measurement unit is the reviewer report, not each Jev call.** The scorer asks each report in three rotated option orders, and the reported K remains 24. Those repeated calls test position stability; they do not turn the corpus into 72 independent reviewer examples. Keep paired report-level accuracy and the flip count separate, and report uncertainty over reports or reviewer lineages. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:775-815] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:317-356] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:14]",
+      "text": "**The independent measurement unit is the reviewer report, not each Jev call.** The scorer asks each report in three rotated option orders, and the reported K remains 24. Those repeated calls test position stability; they do not turn the corpus into 72 independent reviewer examples. Keep paired report-level accuracy and the flip count separate, and report uncertainty over reports or reviewer lineages. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:775-815] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:317-356] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:14]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-5",
+      "title": "**The measured cost scales with misses and deliberately includes repeat judgments.** The Jev arm asks each miss in three rotated option orders and prints planned calls as 3*K+1 for the auth check. For K=24 that is 73 planned calls; the evidence table reports p50 334 ms and p95 377 ms. Its input-token estimate is based on payload characters divided by four, but this evidence does not provide provider billing, output tokens, or retry incidence, so no dollar estimate is supported. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:700-708] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:775-794] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:1071-1077] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:14]",
+      "text": "**The measured cost scales with misses and deliberately includes repeat judgments.** The Jev arm asks each miss in three rotated option orders and prints planned calls as 3*K+1 for the auth check. For K=24 that is 73 planned calls; the evidence table reports p50 334 ms and p95 377 ms. Its input-token estimate is based on payload characters divided by four, but this evidence does not provide provider billing, output tokens, or retry incidence, so no dollar estimate is supported. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:700-708] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:775-794] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:1071-1077] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:14]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3",
+      "title": "**The paired result is strong on those 24 labels, with order stability.** K=24 and M=24 mean every planned row was measured; A=24 Jev picks matched the supplied label, B=8 baseline picks matched, W=16 rows were Jev-only wins, L=0 were baseline-only wins, and F=0 means no non-modal answer among the three rotations. With 16 discordant rows and no losses, the exact one-sided binomial tail is 1/65,536 = 0.00001526. The pre-registered checks also pass coverage, margin, sign test, and flips, which yields keep. This p-value tests paired improvement over the selected baseline under its sign-test model; it is not a confidence interval for overall reviewer accuracy. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:317-356] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:405-431] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:14]",
+      "text": "**The paired result is strong on those 24 labels, with order stability.** K=24 and M=24 mean every planned row was measured; A=24 Jev picks matched the supplied label, B=8 baseline picks matched, W=16 rows were Jev-only wins, L=0 were baseline-only wins, and F=0 means no non-modal answer among the three rotations. With 16 discordant rows and no losses, the exact one-sided binomial tail is 1/65,536 = 0.00001526. The pre-registered checks also pass coverage, margin, sign test, and flips, which yields keep. This p-value tests paired improvement over the selected baseline under its sign-test model; it is not a confidence interval for overall reviewer accuracy. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:317-356] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:405-431] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:14]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4",
+      "title": "**The strongest neighboring opportunities are bounded judgments with direct comparative evidence, not a universal fallback.** The hallucination grader kept on 56 labeled answers, beating its majority and deterministic baselines; the fan-out merge shadow kept on 60 real recorded pairs. By contrast, completion-claim audit stopped on margin, stop second-rater was killed on 25 real lineages, and debug next-check stopped on margin. Reuse the census, operator-label, paired-baseline, and explicit-gate pattern for other semantic gaps, but require each task's own representative labels and keep rule. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:13,15-19] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/hallucination-grader-agreement.md:18-40] [SOURCE: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:812-815]",
+      "text": "**The strongest neighboring opportunities are bounded judgments with direct comparative evidence, not a universal fallback.** The hallucination grader kept on 56 labeled answers, beating its majority and deterministic baselines; the fan-out merge shadow kept on 60 real recorded pairs. By contrast, completion-claim audit stopped on margin, stop second-rater was killed on 25 real lineages, and debug next-check stopped on margin. Reuse the census, operator-label, paired-baseline, and explicit-gate pattern for other semantic gaps, but require each task's own representative labels and keep rule. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:13,15-19] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/hallucination-grader-agreement.md:18-40] [SOURCE: .skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:812-815]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4",
+      "title": "**Treat probabilities as an unvalidated signal.** The scorer records Jev's probability for its selected key, but the code does not use that value to gate, abstain, or retry. Do not add a confidence cutoff until calibration is measured against labels. A safer early retry policy is a fixed, pre-registered small audit sample, with disagreements measured separately from the main one-call result. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:809-815]",
+      "text": "**Treat probabilities as an unvalidated signal.** The scorer records Jev's probability for its selected key, but the code does not use that value to gate, abstain, or retry. Do not add a confidence cutoff until calibration is measured against labels. A safer early retry policy is a fixed, pre-registered small audit sample, with disagreements measured separately from the main one-call result. [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:809-815]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "deepseek-i2-f4",
+      "title": "A cache precedent exists in the same pipeline and is unused here",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i3-f4",
+      "title": "Both baselines sit at their floor by construction",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i2-f3",
+      "title": "Cost is unrecorded even though the client reports usage",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i5-f1",
+      "title": "Default-on has one concrete home and it is inert today",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i5-f6",
+      "title": "Final ranked recommendations issued",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i1-f5",
+      "title": "Jev scored a unanimous stable column on this population",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i3-f2",
+      "title": "Labels are author intent re-read with no per-row decisions record",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i1-f6",
+      "title": "Labels equal the author's intent on all 24 rows",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i3-f6",
+      "title": "Natural-miss prevalence is unmeasured and no instrument produces it",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i2-f2",
+      "title": "Order rotation bought no accuracy on this corpus",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i5-f3",
+      "title": "Reference-design cost is small at benchmark volume and the one-call variant is recomputable",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i4-f5",
+      "title": "Runtime completion detection is a deliberate non-candidate",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i1-f2",
+      "title": "The chosen baseline is the majority class at exactly K/3",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i1-f3",
+      "title": "The corpus hard-codes the miss and disables the loose rule",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i3-f1",
+      "title": "The corpus is synthetic and built to defeat both zero-call readers",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i4-f3",
+      "title": "The deliverable extractor has an explicit low-confidence fall-through",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i4-f1",
+      "title": "The direct production home is the reviewer grader slot",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i1-f1",
+      "title": "The keep clears every gate, with the sign test binding",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i3-f3",
+      "title": "The keep's uncertainty is wide at 24 rows",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i1-f4",
+      "title": "The measured population is the outputs file, not the fixtures",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i3-f7",
+      "title": "The measurement's mechanical foundations are sound",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i5-f5",
+      "title": "The measurement-to-integration loop is designed end to end and unexercised",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i5-f2",
+      "title": "The minimum integration surface is small and enumerable",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i2-f6",
+      "title": "The production grader path is process-heavy versus the hosted Jev arm",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i2-f1",
+      "title": "The protocol costs 3 calls per miss plus an auth call, serially",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i2-f5",
+      "title": "The regex is narrower than plausible natural formats and this corpus cannot price a widening",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i3-f5",
+      "title": "The report records corpus identity but not instrument identity or provenance",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i4-f2",
+      "title": "The residue flagger emits its own miss list",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i4-f6",
+      "title": "The reusable assets are the discipline, not the transport",
+      "confidence": "medium",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i5-f4",
+      "title": "The risk ledger is ordered by corpus validity first",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "deepseek-i4-f4",
+      "title": "Two more sub-scorers carry the shape, one Jev-validated",
+      "confidence": "high",
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 0,
+    "resolvedQuestions": 0,
+    "keyFindings": 47,
+    "sourceFindings": 47,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.31,
+    "coverageBySources": {}
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/005-hallucination-grader-research",
+  "description": "Phase 047 measured the Jev hallucination grader at verdict jev: keep K=56 M=56 A=55 B=47 W=8 L=0 F=1 pwin=0.003906, baselines: majority 47 of 56,",
+  "keywords": [
+    "phase",
+    "measured",
+    "jev",
+    "hallucination",
+    "grader",
+    "verdict",
+    "keep",
+    "pwin",
+    "baselines",
+    "majority"
+  ],
+  "lastUpdated": "2026-10-02T22:02:44.975Z",
+  "specId": "005",
+  "folderSlug": "hallucination-grader-research",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "048-jev-feature-improvement-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

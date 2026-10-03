@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/006-verdict-fallback-research",
+  "description": "Phase 047 measured the Jev reviewer verdict fallback at verdict jev: keep K=24 M=24 A=24 B=8 W=16 L=0 F=0 pwin=0.00001526, baselines: majority 8 of",
+  "keywords": [
+    "phase",
+    "measured",
+    "jev",
+    "reviewer",
+    "verdict",
+    "fallback",
+    "keep",
+    "pwin",
+    "baselines",
+    "majority"
+  ],
+  "lastUpdated": "2026-10-02T22:02:46.404Z",
+  "specId": "006",
+  "folderSlug": "verdict-fallback-research",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "048-jev-feature-improvement-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

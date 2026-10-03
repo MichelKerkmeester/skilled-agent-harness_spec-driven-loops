@@ -1,0 +1,73 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    "What drove the measured Jev result?",
+    "How can accuracy improve or cost fall?",
+    "How can the measurement become more trustworthy?",
+    "Where else in .skilled would the same judgment pay off?",
+    "What would default-on integration need, cost, and risk?"
+  ],
+  "keyFindings": [
+    {"id": "deepseek-i1-f1", "title": "The keep clears every gate, with the sign test binding", "confidence": "high"},
+    {"id": "deepseek-i1-f2", "title": "The chosen baseline is the majority class at exactly K/3", "confidence": "high"},
+    {"id": "deepseek-i1-f3", "title": "The corpus hard-codes the miss and disables the loose rule", "confidence": "high"},
+    {"id": "deepseek-i1-f4", "title": "The measured population is the outputs file, not the fixtures", "confidence": "high"},
+    {"id": "deepseek-i1-f5", "title": "Jev scored a unanimous stable column on this population", "confidence": "high"},
+    {"id": "deepseek-i1-f6", "title": "Labels equal the author's intent on all 24 rows", "confidence": "high"},
+    {"id": "deepseek-i2-f1", "title": "The protocol costs 3 calls per miss plus an auth call, serially", "confidence": "high"},
+    {"id": "deepseek-i2-f2", "title": "Order rotation bought no accuracy on this corpus", "confidence": "high"},
+    {"id": "deepseek-i2-f3", "title": "Cost is unrecorded even though the client reports usage", "confidence": "high"},
+    {"id": "deepseek-i2-f4", "title": "A cache precedent exists in the same pipeline and is unused here", "confidence": "high"},
+    {"id": "deepseek-i2-f5", "title": "The regex is narrower than plausible natural formats and this corpus cannot price a widening", "confidence": "high"},
+    {"id": "deepseek-i2-f6", "title": "The production grader path is process-heavy versus the hosted Jev arm", "confidence": "high"},
+    {"id": "deepseek-i3-f1", "title": "The corpus is synthetic and built to defeat both zero-call readers", "confidence": "high"},
+    {"id": "deepseek-i3-f2", "title": "Labels are author intent re-read with no per-row decisions record", "confidence": "high"},
+    {"id": "deepseek-i3-f3", "title": "The keep's uncertainty is wide at 24 rows", "confidence": "high"},
+    {"id": "deepseek-i3-f4", "title": "Both baselines sit at their floor by construction", "confidence": "high"},
+    {"id": "deepseek-i3-f5", "title": "The report records corpus identity but not instrument identity or provenance", "confidence": "high"},
+    {"id": "deepseek-i3-f6", "title": "Natural-miss prevalence is unmeasured and no instrument produces it", "confidence": "high"},
+    {"id": "deepseek-i3-f7", "title": "The measurement's mechanical foundations are sound", "confidence": "high"},
+    {"id": "deepseek-i4-f1", "title": "The direct production home is the reviewer grader slot", "confidence": "high"},
+    {"id": "deepseek-i4-f2", "title": "The residue flagger emits its own miss list", "confidence": "high"},
+    {"id": "deepseek-i4-f3", "title": "The deliverable extractor has an explicit low-confidence fall-through", "confidence": "high"},
+    {"id": "deepseek-i4-f4", "title": "Two more sub-scorers carry the shape, one Jev-validated", "confidence": "high"},
+    {"id": "deepseek-i4-f5", "title": "Runtime completion detection is a deliberate non-candidate", "confidence": "high"},
+    {"id": "deepseek-i4-f6", "title": "The reusable assets are the discipline, not the transport", "confidence": "medium"},
+    {"id": "deepseek-i5-f1", "title": "Default-on has one concrete home and it is inert today", "confidence": "high"},
+    {"id": "deepseek-i5-f2", "title": "The minimum integration surface is small and enumerable", "confidence": "high"},
+    {"id": "deepseek-i5-f3", "title": "Reference-design cost is small at benchmark volume and the one-call variant is recomputable", "confidence": "high"},
+    {"id": "deepseek-i5-f4", "title": "The risk ledger is ordered by corpus validity first", "confidence": "high"},
+    {"id": "deepseek-i5-f5", "title": "The measurement-to-integration loop is designed end to end and unexercised", "confidence": "high"},
+    {"id": "deepseek-i5-f6", "title": "Final ranked recommendations issued", "confidence": "high"}
+  ],
+  "ruledOutDirections": [
+    "Treat the 8-case fixture census as the fallback population.",
+    "Treat loose 0 of 24 as a property of the loose rule alone.",
+    "Treat p_win=0.00001526 as an error probability.",
+    "Treat the three-order protocol as free accuracy on this population.",
+    "Treat a regex widening as measurable on the current corpus.",
+    "Treat the printed token estimate as measured cost.",
+    "Treat 24 of 24 as establishing a usable precision level.",
+    "Treat the two zero-call baselines as realistic competitors.",
+    "Treat the labels as independent ground truth.",
+    "Treat already-measured 047 features as transfer answers.",
+    "Replace the artifact-based completion check with a model read.",
+    "Flip the grader default on the current corpus."
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 31,
+    "convergenceScore": 0,
+    "coverageBySources": {
+      "scorer": 5,
+      "run-artifacts": 3,
+      "corpus-and-labels": 2,
+      "client-and-dispatch": 2,
+      "provenance-records": 1,
+      "cross-surface-parsers": 1,
+      "workflow-yaml": 1
+    }
+  }
+}

@@ -1,0 +1,538 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "luna"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [
+    {
+      "id": "oq-1",
+      "text": "Does the operator accept the 95.5-on-one-row margin as sufficient for wider adoption, or does the corpus need same-day, repeated, or labeled measurement first?",
+      "raisedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "oq-2",
+      "text": "Is the OpenRouter data path acceptable for every caller versus the official provider, and who owns that decision?",
+      "raisedAtIteration": 5,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "oq-3",
+      "text": "Which is the first production adopter: routing-accuracy harnesses (volume), deep-loop runtime scorers (critical path, blocked by type), or sk-doc noul callers (cheapest, blocked by type)?",
+      "raisedAtIteration": 4,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "oq-4",
+      "text": "Does the escalation threshold ship as 0.10 (7 rows deferred, 99.1 percent simulated) or 0.05 (2 rows, 96.4 percent)?",
+      "raisedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "text": "What drove the measured result (K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022)?",
+      "status": "resolved",
+      "resolvedAtIteration": 1,
+      "evidence": [
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:70-73,992-993,1054-1055,1075-1081",
+        "037 scratch/live-run/calls.jsonl + report.json",
+        "019 scratch/w4-session/jev-run/calls.jsonl",
+        "recomputation: 106/111 agreement, median_abs_dp 0.0100 over 1689 differences, p50/p95 249/340 vs 326/387"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "How to raise its accuracy or lower its cost?",
+      "status": "resolved",
+      "resolvedAtIteration": 2,
+      "evidence": [
+        "policy simulation: 1/2/3 calls = 92.8/94.6/95.5; early stop 228 calls = 94.6",
+        "margin-gated escalation: 7 rows deferred at 0.10 = 99.1 percent with 104/111 Pi-served",
+        "catalog prices: jev-1.13 $0.042/M; span-01 $0.02/M; span-01-lite free",
+        "~533 input tokens per call implied; ~$0.0075 per 333-call replay",
+        "docs/cli.md:178 codemode 4-at-a-time parallelism"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "How to make the measurement more trustworthy?",
+      "status": "resolved",
+      "resolvedAtIteration": 3,
+      "evidence": [
+        "Clopper-Pearson 95 percent CI 106/111 = [89.8,98.5], 105/111 = [88.6,98.0]",
+        "score-pi-transport.mjs:1304-1340 both-sides path never run",
+        "no usage field in calls.jsonl (cost unreproducible)",
+        "plan checks key set only; no prompt digest on either side",
+        "Pi gate unpinned vs CLI gate pin jev 0.6.2 (score-jev-tiebreak.mjs:25,1119-1124)"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "Where else in .skilled the same judgment would pay off?",
+      "status": "resolved",
+      "resolvedAtIteration": 4,
+      "evidence": [
+        "7 choice call sites: verdict-fallback:783, severity-replay:1070, jev-tiebreak:1005, debug-next-check:733, track-narrowing:1327, alignment-suggestion.ts:1083",
+        "noul: cite-drift-scan:1081, goal-lint:313, severity-replay:1118, fanout-pairs:985, residue-flagger:1093, completion-claims:784, jev-tiebreak:928",
+        "score: stop-rater:1090",
+        "dispatch-audit.mjs:236-241 visibility gap",
+        "no accuracy gain anywhere; operational only"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "What would a default-on integration need, cost and risk?",
+      "status": "resolved",
+      "resolvedAtIteration": 5,
+      "evidence": [
+        "resolveTransport default at jev-transport.mjs:59-65; doc table cli-jev/SKILL.md:245-250",
+        "per-call runtime construction jev-transport.mjs:349-366",
+        "one-row margin + overlapping CIs; unpinned Pi identity; never-live transport",
+        "data path: official vs openrouter (report.json; 037 spec.md:77)",
+        "failure path doubles worst-case latency; no circuit breaker"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "iteration-1-finding-3",
+      "title": "**Agreement only narrowly clears the threshold.** The reported 95.5% implies 106 of 111 matching top choices (rounded to one decimal); five rows differ. One additional mismatch would mean 105/111, about 94.6%, below the 95% keep rule. This is arithmetic derived from the report’s rounded percentage, not a separately reported count. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:46-67] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:72-74]",
+      "text": "**Agreement only narrowly clears the threshold.** The reported 95.5% implies 106 of 111 matching top choices (rounded to one decimal); five rows differ. One additional mismatch would mean 105/111, about 94.6%, below the 95% keep rule. This is arithmetic derived from the report’s rounded percentage, not a separately reported count. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:46-67] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:72-74]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2",
+      "title": "**All 111 rows were measured, with 333 calls per arm and no reported timeouts or exclusions.** The report records K=111, M=111, 100% coverage, Pi p95=340 ms and recorded CLI p95=387 ms. At 0.8785×, the reported latency comparison is inside the 1.5× bound. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:16-29] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:31-54]",
+      "text": "**All 111 rows were measured, with 333 calls per arm and no reported timeouts or exclusions.** The report records K=111, M=111, 100% coverage, Pi p95=340 ms and recorded CLI p95=387 ms. At 0.8785×, the reported latency comparison is inside the 1.5× bound. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:16-29] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:31-54]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2",
+      "title": "**CLI agreement is not ground-truth accuracy.** Hold out a frozen, domain-representative set with independent human/adjudicated choices, blind reviewers to backend, and report per-backend accuracy plus calibration and paired disagreement. Use an untouched holdout after tuning; size it to distinguish acceptable degradation and report confidence intervals. Keep coverage, correctness, agreement, and option-order robustness as separate measures. The existing three rotations expose option-order sensitivity and should remain in the confirmatory run. [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/README.md:3-9] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:575-601] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1031-1057]",
+      "text": "**CLI agreement is not ground-truth accuracy.** Hold out a frozen, domain-representative set with independent human/adjudicated choices, blind reviewers to backend, and report per-backend accuracy plus calibration and paired disagreement. Use an untouched holdout after tuning; size it to distinguish acceptable degradation and report confidence intervals. Keep coverage, correctness, agreement, and option-order robustness as separate measures. The existing three rotations expose option-order sensitivity and should remain in the confirmatory run. [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/README.md:3-9] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:575-601] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1031-1057]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5",
+      "title": "**Default-on needs explicit semantics, release gates, and rollback.** Before changing the unset route, preserve the caller’s requested provider or limit Pi to an explicit compatible provider/model; the present adapter discards --provider and pins OpenRouter. Require a same-day paired run with labeled quality bounds, explicit coverage/latency/cost limits, and a bounded total timeout across Pi plus fallback. Keep an explicit CLI rollback; because the current per-call transport option takes precedence over JEV_TRANSPORT, decide precedence so an emergency environment kill switch can actually force CLI. Start with a canary over the two confirmed sk-doc choice callers and retain opt-in until the gate passes. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:32-36] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:55-64] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:87-93] [SOURCE: .skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:29-64] [SOURCE: .skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:72-80]",
+      "text": "**Default-on needs explicit semantics, release gates, and rollback.** Before changing the unset route, preserve the caller’s requested provider or limit Pi to an explicit compatible provider/model; the present adapter discards --provider and pins OpenRouter. Require a same-day paired run with labeled quality bounds, explicit coverage/latency/cost limits, and a bounded total timeout across Pi plus fallback. Keep an explicit CLI rollback; because the current per-call transport option takes precedence over JEV_TRANSPORT, decide precedence so an emergency environment kill switch can actually force CLI. Start with a canary over the two confirmed sk-doc choice callers and retain opt-in until the gate passes. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:32-36] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:55-64] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:87-93] [SOURCE: .skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:29-64] [SOURCE: .skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:72-80]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-7",
+      "title": "**Do not extend to noul or score from these examples.** Feature 038 records some mixed-question callers, but the shipped adapter and measured benchmark are choice-only. Every other question type needs its own request mapping and independent evaluation. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:99-104] [SOURCE: .skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:41-46]",
+      "text": "**Do not extend to noul or score from these examples.** Feature 038 records some mixed-question callers, but the shipped adapter and measured benchmark are choice-only. Every other question type needs its own request mapping and independent evaluation. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:99-104] [SOURCE: .skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:41-46]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4",
+      "title": "**Fallback keeps callers operational but can add work on failure.** Missing Pi package/model/credential, classifier error, timeout, or unmappable result falls back to the CLI. The adapter makes one Pi classify call under the caller timeout and has no retry inside it; a failed Pi attempt followed by CLI can still add both request cost and elapsed time. Track success/fallback reason and total end-to-end latency, not only successful Pi latency. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:325-395] [SOURCE: .skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:48-64]",
+      "text": "**Fallback keeps callers operational but can add work on failure.** Missing Pi package/model/credential, classifier error, timeout, or unmappable result falls back to the CLI. The adapter makes one Pi classify call under the caller timeout and has no retry inside it; a failed Pi attempt followed by CLI can still add both request cost and elapsed time. Track success/fallback reason and total end-to-end latency, not only successful Pi latency. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:325-395] [SOURCE: .skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:48-64]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3",
+      "title": "**Instrumentation must compare total work on both paths.** Report the frozen corpus/census identity, code and runtime versions, provider/model, per-row outcome, missing maps, timeouts, p50/p95 with uncertainty, and matched Pi-versus-CLI disagreements. Record Pi calls, CLI calls, provider usage cost on both sides, fallback count/reason, and end-to-end wall time; otherwise the current Pi-side cost and latency columns omit the value of a CLI comparison and the work after a Pi failure. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:16-44] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1031-1087] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:373-395]",
+      "text": "**Instrumentation must compare total work on both paths.** Report the frozen corpus/census identity, code and runtime versions, provider/model, per-row outcome, missing maps, timeouts, p50/p95 with uncertainty, and matched Pi-versus-CLI disagreements. Record Pi calls, CLI calls, provider usage cost on both sides, fallback count/reason, and end-to-end wall time; otherwise the current Pi-side cost and latency columns omit the value of a CLI comparison and the work after a Pi failure. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:16-44] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1031-1087] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:373-395]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-7",
+      "title": "**Keep other question types out of this rollout.** Both the scored corpus and adapter are scoped to choice; feature 038 explicitly excludes noul and score pending their own mapping and run. The six other choice sites found in iteration 2 are candidates for later per-owner evaluation, not proof that one default safely covers all of .skilled. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:99-104] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:71-80]",
+      "text": "**Keep other question types out of this rollout.** Both the scored corpus and adapter are scoped to choice; feature 038 explicitly excludes noul and score pending their own mapping and run. The six other choice sites found in iteration 2 are candidates for later per-owner evaluation, not proof that one default safely covers all of .skilled. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:99-104] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:71-80]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-6",
+      "title": "**Operational risk is concentrated in provider drift and fallback behavior.** Pi may not be installed, the fixed model may be unavailable, credentials may not resolve, or classify may fail; the caller then proceeds on CLI. This is resilient for output shape, but under default-on it can create repeated skip noise and add a second attempt. Require per-caller tests for all gates and the output contract, plus telemetry that avoids logging credentials or sensitive request text. The integration spec already calls for stubbed backends and a test per gate. [SOURCE: .skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:48-70] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:89-104]",
+      "text": "**Operational risk is concentrated in provider drift and fallback behavior.** Pi may not be installed, the fixed model may be unavailable, credentials may not resolve, or classify may fail; the caller then proceeds on CLI. This is resilient for output shape, but under default-on it can create repeated skip noise and add a second attempt. Require per-caller tests for all gates and the output contract, plus telemetry that avoids logging credentials or sensitive request text. The integration spec already calls for stubbed backends and a test per gate. [SOURCE: .skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:48-70] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:89-104]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2",
+      "title": "**Provider intent needs an explicit compatibility rule before widening or defaulting.** The parser consumes --provider but discards its value, while the Pi route is fixed to OpenRouter and typesafe/jev-1.13. A caller that requests another provider could silently receive a different backend if Pi is enabled. Preserve the CLI route for unsupported or explicitly different providers, or add an explicit allowlisted mapping and report the resolved backend. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:32-36] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:87-93] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:356-370]",
+      "text": "**Provider intent needs an explicit compatibility rule before widening or defaulting.** The parser consumes --provider but discards its value, while the Pi route is fixed to OpenRouter and typesafe/jev-1.13. A caller that requests another provider could silently receive a different backend if Pi is enabled. Preserve the CLI route for unsupported or explicitly different providers, or add an explicit allowlisted mapping and report the resolved backend. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:32-36] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:87-93] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:356-370]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1",
+      "title": "**The adapter is a deliberately narrow seam.** It routes only a recognized choice command shape to Pi, preserves caller state as request context, and passes option descriptions in submitted order. Unknown flags and non-choice invocations remain on the CLI. This supports reuse where callers already have that shape, not blanket replacement of every Jev call. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:71-80] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:87-138] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:331-338]",
+      "text": "**The adapter is a deliberately narrow seam.** It routes only a recognized choice command shape to Pi, preserves caller state as request context, and passes option descriptions in submitted order. Unknown flags and non-choice invocations remain on the CLI. This supports reuse where callers already have that shape, not blanket replacement of every Jev call. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:71-80] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:87-138] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:331-338]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-6",
+      "title": "**The best near-term reuse candidates are other real choice scorers.** Highest fit is system-skill-advisor’s score-suggested-order, whose source shape is the benchmark’s own choice replay. Further candidates are score-jev-tiebreak, system-spec-kit’s score-track-narrowing and score-debug-next-check, and system-deep-loop’s score-verdict-fallback and score-severity-replay. Their cited loops build choice arguments; each still needs a provider check, an adapter-compatible stdin/timeout seam, and stub-backed parity tests. The two existing imports remain the only confirmed transport callers. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs:454-467] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs:1002-1011] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1324-1333] [SOURCE: .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs:730-739] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:775-785] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs:1067-1074] [SOURCE: .skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:72-80]",
+      "text": "**The best near-term reuse candidates are other real choice scorers.** Highest fit is system-skill-advisor’s score-suggested-order, whose source shape is the benchmark’s own choice replay. Further candidates are score-jev-tiebreak, system-spec-kit’s score-track-narrowing and score-debug-next-check, and system-deep-loop’s score-verdict-fallback and score-severity-replay. Their cited loops build choice arguments; each still needs a provider check, an adapter-compatible stdin/timeout seam, and stub-backed parity tests. The two existing imports remain the only confirmed transport callers. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs:454-467] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs:1002-1011] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1324-1333] [SOURCE: .skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs:730-739] [SOURCE: .skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:775-785] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/score-severity-replay.cjs:1067-1074] [SOURCE: .skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:72-80]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-8",
+      "title": "**The candidate inventory has an internal count conflict.** Feature 038 says its grep found 21 direct-spawn script files while the owner breakdown names 20. Its follow-up table shows 13 examples. Treat that table as a shortlist, not a complete census, and rerun a reproducible read-only inventory before planning broad wiring. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:106-124]",
+      "text": "**The candidate inventory has an internal count conflict.** Feature 038 says its grep found 21 direct-spawn script files while the owner breakdown names 20. Its follow-up table shows 13 examples. Treat that table as a shortlist, not a complete census, and rerun a reproducible read-only inventory before planning broad wiring. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:106-124]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3",
+      "title": "**The current answer contract catches incomplete results but leaves quality checks to measurement.** It rejects a choice outside the submitted keys and requires a finite probability for every key. It does not itself bound values to [0,1], check their sum, or check whether the selected choice matches the largest probability. Add diagnostics for these conditions and define tie handling before treating such outputs as valid; do not label those checks as accuracy without human or adjudicated truth labels. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:141-172]",
+      "text": "**The current answer contract catches incomplete results but leaves quality checks to measurement.** It rejects a choice outside the submitted keys and requires a finite probability for every key. It does not itself bound values to [0,1], check their sum, or check whether the selected choice matches the largest probability. Add diagnostics for these conditions and define tie handling before treating such outputs as valid; do not label those checks as accuracy without human or adjudicated truth labels. [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:141-172]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-5",
+      "title": "**The current measured cost is small but one-sided.** The live replay makes 333 Pi calls for 111 rows because each planned choice is evaluated across three rotations; this is appropriate for option-order robustness, but an exploratory screen could use one randomized order and reserve three rotations for confirmation. Production transport performs one Pi classify call per eligible choice, and falls back only after a Pi gate/error; no CLI unit-cost comparison exists, so cost savings are unknown. [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:575-599] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:16-26] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:373-395]",
+      "text": "**The current measured cost is small but one-sided.** The live replay makes 333 Pi calls for 111 rows because each planned choice is evaluated across three rotations; this is appropriate for option-order robustness, but an exploratory screen could use one randomized order and reserve three rotations for confirmation. Production transport performs one Pi classify call per eligible choice, and falls back only after a Pi gate/error; no CLI unit-cost comparison exists, so cost savings are unknown. [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:575-599] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:16-26] [SOURCE: .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:373-395]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1",
+      "title": "**The current replay is not a same-day paired transport test.** The scorer uses the recorded advisor-suggested-order calls as its baseline, and the default Pi-only replay labels the CLI column as recorded; a fresh CLI arm is an explicit option. Feature 038 confirms that the reported 387 ms CLI p95 came from the older 019 run, with a different provider/model pairing. A follow-up should run both arms against the same frozen rows and versions in the same window; if provider/model cannot be held equal, label the result an end-to-end backend comparison rather than a transport effect. [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:76-80] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1112-1155] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1330-1351] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:41-50]",
+      "text": "**The current replay is not a same-day paired transport test.** The scorer uses the recorded advisor-suggested-order calls as its baseline, and the default Pi-only replay labels the CLI column as recorded; a fresh CLI arm is an explicit option. Feature 038 confirms that the reported 387 ms CLI p95 came from the older 019 run, with a different provider/model pairing. A follow-up should run both arms against the same frozen rows and versions in the same window; if provider/model cannot be held equal, label the result an end-to-end backend comparison rather than a transport effect. [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:76-80] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1112-1155] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1330-1351] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:41-50]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4",
+      "title": "**The measured Pi usage rate supports a bounded planning estimate.** At the recorded $0.0022399 per 100 Pi calls, 100,000 eligible calls would be about $2.24 and one million about $22.40 at the same model, usage mix, and pricing. These are linear estimates of the Pi arm only; caller volume, CLI cost, fallback cost, and future provider/model pricing are not present, so total rollout cost and savings remain unknown. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:16-29]",
+      "text": "**The measured Pi usage rate supports a bounded planning estimate.** At the recorded $0.0022399 per 100 Pi calls, 100,000 eligible calls would be about $2.24 and one million about $22.40 at the same model, usage mix, and pricing. These are linear estimates of the Pi arm only; caller volume, CLI cost, fallback cost, and future provider/model pricing are not present, so total rollout cost and savings remain unknown. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:16-29]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-1",
+      "title": "**The outcome follows three fixed gates.** The scorer requires at least 90% coverage, at least 95% top-choice agreement, and Pi p95 latency no higher than 1.5 times the CLI p95. The judge checks those in that order; cost is printed but does not affect adoption. [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:69-74] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1060-1087]",
+      "text": "**The outcome follows three fixed gates.** The scorer requires at least 90% coverage, at least 95% top-choice agreement, and Pi p95 latency no higher than 1.5 times the CLI p95. The judge checks those in that order; cost is printed but does not affect adoption. [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:69-74] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1060-1087]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-5",
+      "title": "**The reported Pi cost is not a comparative cost result.** Pi reports $0.0022399 per 100 calls, while the CLI cost is null; the scorer’s judge never uses cost. It therefore supports a Pi-side usage estimate, not a claim that Pi is cheaper than the CLI or that cost drove adoption. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:24-26] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:39-44] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1083-1087]",
+      "text": "**The reported Pi cost is not a comparative cost result.** Pi reports $0.0022399 per 100 calls, while the CLI cost is null; the scorer’s judge never uses cost. It therefore supports a Pi-side usage estimate, not a claim that Pi is cheaper than the CLI or that cost drove adoption. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:24-26] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:39-44] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1083-1087]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-6",
+      "title": "**The research packet mislabels both the scorer path and measured phase.** Its scope calls shared/scripts/jev-transport.mjs the scorer and says Phase 047 measured the result. The README and repository place the scorer at benchmark/pi-transport/score-pi-transport.mjs; the cited run is in feature 037, and phase 038 says it adopted feature 037’s verdict. Treat the packet’s “047” and scorer label as metadata/terminology errors; the report supports the metric values independently. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/spec.md:45-72] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/README.md:7-34] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:41-48]",
+      "text": "**The research packet mislabels both the scorer path and measured phase.** Its scope calls shared/scripts/jev-transport.mjs the scorer and says Phase 047 measured the result. The README and repository place the scorer at benchmark/pi-transport/score-pi-transport.mjs; the cited run is in feature 037, and phase 038 says it adopted feature 037’s verdict. Treat the packet’s “047” and scorer label as metadata/terminology errors; the report supports the metric values independently. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/spec.md:45-72] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/README.md:7-34] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:41-48]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4",
+      "title": "**The verdict is parity plus operational bounds, not proof of higher correctness.** The benchmark compares the Pi top choice with the CLI top choice; its README says it rebuilds the advisor’s recorded choice questions and asks Pi, and the phase 038 spec says the CLI latency side is the older recorded 019 run. The report also pairs OpenRouter Pi typesafe/jev-1.13 with official CLI jev-1.13.0, so provider/model and time are confounded with transport. No independent labeled answers appear in the report. [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/README.md:3-9] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:41-50] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:16-44]",
+      "text": "**The verdict is parity plus operational bounds, not proof of higher correctness.** The benchmark compares the Pi top choice with the CLI top choice; its README says it rebuilds the advisor’s recorded choice questions and asks Pi, and the phase 038 spec says the CLI latency side is the older recorded 019 run. The report also pairs OpenRouter Pi typesafe/jev-1.13 with official CLI jev-1.13.0, so provider/model and time are confounded with transport. No independent labeled answers appear in the report. [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/README.md:3-9] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:41-50] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/037-pi-native-classifier-transport/scratch/live-run/report.json:16-44]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-8",
+      "title": "**Three source-description conflicts should remain attached to any decision.** The current packet calls jev-transport.mjs the scorer and says Phase 047 measured the result, while the executable scorer is score-pi-transport.mjs and the cited artifact is feature 037; phase 038 is the integration phase. The phase 038 inventory also says 21 direct-spawn files versus 20 named by owner breakdown. Correct those references and recount before using the inventory as a rollout denominator. These conflicts limit provenance and exhaustiveness claims, not the values independently present in report.json. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/spec.md:45-72] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/README.md:7-34] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:41-50] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:106-124]",
+      "text": "**Three source-description conflicts should remain attached to any decision.** The current packet calls jev-transport.mjs the scorer and says Phase 047 measured the result, while the executable scorer is score-pi-transport.mjs and the cited artifact is feature 037; phase 038 is the integration phase. The phase 038 inventory also says 21 direct-spawn files versus 20 named by owner breakdown. Correct those references and recount before using the inventory as a rollout denominator. These conflicts limit provenance and exhaustiveness claims, not the values independently present in report.json. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/spec.md:45-72] [SOURCE: .skilled/skills/cli-classifier/benchmark/pi-transport/README.md:7-34] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:41-50] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration/spec.md:106-124]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "F-3-01",
+      "title": "Adopt and keep-cli are statistically indistinguishable at n=111",
+      "text": "Exact 95 percent CI: 106/111 = [89.8, 98.5]; 105/111 = [88.6, 98.0]. The rule needs a stability margin, wider measurement, or a within-noise outcome.",
+      "iteration": 3,
+      "sources": [
+        "Clopper-Pearson recomputation over 037 scratch/live-run/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-04",
+      "title": "Agreement is a mean-of-orders construct: per-order 95.2 vs mean 95.5",
+      "text": "rr-iter3-127 has identical per-order picks on both sides yet counts as a disagreement because averaged means cross (0.023 vs 0.010).",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1042-1056"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-03",
+      "title": "All five disagreements are near-ties; 99 decisive rows agree 100 percent",
+      "text": "The disagreement set is contained in the 12 rows with either-side top-2 mean margin under 0.10; three flip on gaps under 0.07.",
+      "iteration": 1,
+      "sources": [
+        "037 scratch/live-run/calls.jsonl",
+        "019 scratch/w4-session/jev-run/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-2-05",
+      "title": "Catalog price table for every available classifier arm",
+      "text": "jev-1.13 and its siblings $0.042/M in, $0 out; span-01 $0.02/M; span-01-lite and :free $0; solar-decide $0.05/M; jev-1.13-free $0 needs Zen; direct typesafe needs TYPESAFE_API_KEY.",
+      "iteration": 2,
+      "sources": [
+        "~/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/bundle/chunks/chunk-3YAHQSW6.js"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-07",
+      "title": "Cost figure unreproducible from the run records",
+      "text": "cost_per_100 reads in-process usage.cost.total; calls.jsonl stores no usage, so 0.0022 lives only in report.json.",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:616-618",
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:756-758"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-3-05",
+      "title": "Input drift between recording and replay is undetectable",
+      "text": "The plan checks only the option key set; neither side stores a comparable prompt digest; a prompt edit would silently compare different questions.",
+      "iteration": 3,
+      "sources": [
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:575-602"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-2-04",
+      "title": "Margin-gated escalation is the one agreement-raising policy on record",
+      "text": "Defer sub-0.10-margin rows (7) to the CLI: 99.1 percent agreement while Pi serves 104/111 rows; a 0.05 gate defers 2 rows for 96.4 percent.",
+      "iteration": 2,
+      "sources": [
+        "037 scratch/live-run/calls.jsonl",
+        "019 scratch/w4-session/jev-run/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-4-06",
+      "title": "Pi-native calls are invisible to dispatch auditing",
+      "text": "dispatch-audit classifies jev choice|noul|score|run and jev-mcp as cli-classifier dispatches; adopting the transport narrows what the audit sees.",
+      "iteration": 4,
+      "sources": [
+        ".skilled/hooks/dispatch/lib/dispatch-audit.mjs:236-241"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-05",
+      "title": "rr-iter3-125 CLI top is an exact tie settled by option order",
+      "text": "system-deep-loop and none both 0.3166667; topKey keeps the earlier submitted key and none is appended last.",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs:118-124"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-5-02",
+      "title": "The default path would pay runtime construction and gates per call",
+      "text": "createPiRuntime plus model/credential gates run per call with no caching; the measured 260 ms is the benchmark's once-per-run runtime and the transport never made a live call.",
+      "iteration": 5,
+      "sources": [
+        ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:349-366",
+        "038 implementation-summary.md"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-2-01",
+      "title": "The three rotations are load-bearing for the verdict",
+      "text": "1 call 103/111 = 92.8; 2 calls 105/111 = 94.6; 3 calls 106/111 = 95.5. Any rotation cut flips to keep-cli.",
+      "iteration": 2,
+      "sources": [
+        "037 scratch/live-run/calls.jsonl",
+        "019 scratch/w4-session/jev-run/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-01",
+      "title": "Verdict arithmetic: 106/111 = 95.5, one row above keep-cli at 94.6",
+      "text": "The keep rule judges coverage >= 90, agreement >= 95, latency <= 1.5x in order; adopt is one row from failure and latency/coverage never bound.",
+      "iteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:70-73",
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1075-1081"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 4,
+    "resolvedQuestions": 5,
+    "keyFindings": 34,
+    "sourceFindings": 34,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.36,
+    "coverageBySources": {}
+  }
+}
