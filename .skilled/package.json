@@ -1,13 +1,13 @@
 {
   "type": "module",
   "dependencies": {
-    "@opencode-ai/plugin": "1.18.32"
+    "@opencode-ai/plugin": "1.18.33"
   },
   "devDependencies": {
-    "@types/node": "^26.6.2",
+    "@types/node": "^26.6.3",
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
-    "vitest": "^5.0.1"
+    "vitest": "^5.0.2"
   },
   "overrides": {
     "vite": "^8.1.2",
