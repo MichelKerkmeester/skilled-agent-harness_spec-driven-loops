@@ -34,8 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read 048's research for this feature and the scorer's keep rule
-- [ ] T002 Capture the suite baseline before any change
+- [x] T001 Read 048's research for this feature and the scorer's keep rule
+- [x] T002 Capture the suite baseline before any change
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,12 +43,12 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Restore the untracked corpus rows and pin their digest
-- [ ] T004 Add label and planted hashes, Brier, recall split and close-call flags to the report
-- [ ] T005 Move the flag line to 0.6 and adopt confirm-then-verify reruns
-- [ ] T006 Harden the lexical comparator and report the hybrid floor
-- [ ] T007 Add the reworded and review-band question arms
-- [ ] T008 Record the amendment, then re-measure with `--out`
+- [x] T003 Restore the untracked corpus rows and pin their digest
+- [x] T004 Add label and planted hashes, Brier, recall split and close-call flags to the report
+- [x] T005 Move the flag line to 0.6 and adopt confirm-then-verify reruns
+- [x] T006 Harden the lexical comparator and report the hybrid floor
+- [x] T007 Add the reworded and review-band question arms
+- [x] T008 Record the amendment, then re-measure with `--out`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -56,9 +56,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Run the scorer's tests
-- [ ] T010 Confirm a changed corpus row is refused
-- [ ] T011 Run `validate.sh --strict` on this phase
+- [x] T009 Run the scorer's tests
+- [x] T010 Confirm a changed corpus row is refused
+- [x] T011 Run `validate.sh --strict` on this phase
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,9 +66,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
