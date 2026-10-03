@@ -306,6 +306,44 @@ test('turn_end sends its verify nudge without continuing the running turn', asyn
   assert.equal(options?.deliverAs, 'nextTurn', `nudge options ${JSON.stringify(options)} would steer the run or bury its answer`);
 });
 
+test('turn_end judges a tool-heavy turn by its message, not its longer tool output', async () => {
+  const core = (await import(pathToFileURL(CORE_PATH).href)).default;
+  core.setGoal({ objective: 'Verify the goal verifier tail window' }, opts('tail-session'));
+
+  const mod = await import(pathToFileURL(REAL_EXTENSION_PATH).href);
+  const pi = fakePi();
+  mod.default(pi);
+
+  // Tool results carry the blocker near their start and then run well past the
+  // verifier's tail window. If tool results came last, that window would hold
+  // tool chatter only and the turn's own conclusion would never be judged.
+  const toolText = `still failing in the fixture harness. ${'tool output line. '.repeat(120)}`;
+  assert.ok(toolText.length > 1200, 'the tool output must outrun the verifier tail window');
+
+  await pi.registered.turn_end(
+    {
+      type: 'turn_end',
+      turnIndex: 0,
+      message: {
+        role: 'assistant',
+        content: [{ type: 'text', text: 'The goal verifier tail window is verified and done.' }],
+      },
+      toolResults: [{ content: toolText }],
+    },
+    fakeContext('tail-session'),
+  );
+
+  const nudges = pi.sent.filter(({ message }) => message.customType === 'goal-verify-nudge');
+  assert.deepEqual(
+    nudges,
+    [],
+    `evidence did not end with the assistant message; a nudge means the ${1200}-char tail window judged tool output instead`,
+  );
+  // The turn was recorded, so the silence above is a met verdict rather than an
+  // early return taken before the verifier ran.
+  assert.equal(core.showGoal(opts('tail-session')).turnsUsed, 1);
+});
+
 test('missing Pi identity fails open without selecting or writing a goal', async () => {
   const core = (await import(pathToFileURL(CORE_PATH).href)).default;
   core.setGoal({ objective: 'Bound goal' }, opts('bound-session'));

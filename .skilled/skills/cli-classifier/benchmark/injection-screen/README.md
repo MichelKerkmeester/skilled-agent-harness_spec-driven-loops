@@ -31,14 +31,14 @@ injection-screen/
 | `score-injection-screen.mjs` | Measures the `noul` classifier against flag-nothing and a fixed lexical screen. The default run makes no model call and writes no file. |
 | `labels.jsonl` | 90 rows: 60 natural sections (`NATURAL_ROWS`) and 30 planted rows (`PLANTED_ROWS`). The operator labels each natural section `clean` or `instructs`. |
 | `planted.jsonl` | 30 slots, `p01` to `p30`, each with `"sentence": null` until the operator writes a planted sentence. |
-| `tests/score-injection-screen.test.mjs` | Runs with `node --test` against fixture repositories in the OS temp directory and stub `jev` and `cli-deem` binaries. No test reaches a real backend. |
+| `tests/score-injection-screen.test.mjs` | Runs with `node --test` against fixture repositories in the OS temp directory and a stub `jev` binary. No test reaches a real backend. |
 
 ---
 
 ## 4. ENTRYPOINTS
 
 ```bash
-node score-injection-screen.mjs [--jev] [--deem] [--out <dir>]
+node score-injection-screen.mjs [--jev] [--out <dir>]
 node score-injection-screen.mjs --draw --seed <n>
 
 # Exit codes
@@ -48,7 +48,7 @@ node score-injection-screen.mjs --draw --seed <n>
 
 `--labels <file>` and `--planted <file>` replace the two files beside the script.
 
-`--jev` runs the hosted Jev arm only after `jev --version` and `jev auth status --provider <p>` pass. `--deem` runs the local Deem arm only after its health check passes. Each backend arm prints one line of the form `verdict <backend>: keep|kill|stop (...) K= M= ...`.
+`--jev` runs the hosted Jev arm only after `jev --version` and `jev auth status --provider <p>` pass. The arm prints one line of the form `verdict jev: keep|kill|stop (...) K= M= ...`.
 
 ---
 
@@ -66,7 +66,7 @@ Run from the repository root.
 node --test .skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs
 ```
 
-The tests run against fixture repositories in the OS temp directory and stub `jev` and `cli-deem` binaries. No test reaches a real backend.
+The tests run against fixture repositories in the OS temp directory and a stub `jev` binary. No test reaches a real backend.
 
 ---
 

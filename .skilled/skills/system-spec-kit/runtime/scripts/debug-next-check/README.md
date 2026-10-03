@@ -19,7 +19,7 @@ Current state:
 
 - One ESM module with a CLI entry point and exported functions the sibling test suite calls directly.
 - The census prints counts, repository paths and lowercase hex digests only. Row text never reaches a line, and the report holds no fixture path and no row text.
-- No model call happens unless `--jev` or `--deem` is passed, and each arm runs only behind its own gate.
+- No model call happens unless `--jev` is passed, and the arm runs only behind its own gate.
 
 ---
 
@@ -27,9 +27,9 @@ Current state:
 
 | File | Responsibility |
 |---|---|
-| `score-debug-next-check.mjs` | Argument parsing, the seam search, the mined corpus count, the fixture reader, the constant baselines, the label gate, both backend gates and arms, the keep rule verdict and the report. |
+| `score-debug-next-check.mjs` | Argument parsing, the seam search, the mined corpus count, the fixture reader, the constant baselines, the label gate, the backend gate and arm, the keep rule verdict and the report. |
 
-The module is laid out in named zones: imports, constants, git helpers, seam search, mined corpus, repository path guard, fixture reader, constant baselines, payload gate and call log, Jev gate and arm, Deem gate and arm, keep rule and verdict, report, CLI, main.
+The module is laid out in named zones: imports, constants, git helpers, seam search, mined corpus, repository path guard, fixture reader, constant baselines, payload gate and call log, Jev gate and arm, keep rule and verdict, report, CLI, main.
 
 ---
 
@@ -41,10 +41,10 @@ The module is laid out in named zones: imports, constants, git helpers, seam sea
 | Fixture rows | One JSON object per line carrying `id`, `symptom`, `claim`, `evidence`, `label` and `jev_ok`. `label` is one of `read_code`, `run_test`, `reproduce`, `instrument`. Any other field refuses the row. |
 | Seam search | `git grep -l next_check` over tracked files, leaving out the generated retrieval fixtures, this scorer's own paths, and the tracked `specs/` documents. |
 | Mined corpus | Counts tracked debug-delegation files outside the template tree and the numbered hypothesis headings under `specs/`. Zero is a result, not an error. |
-| Model calls | None by default. `--jev` calls the Jev CLI behind its version and credential gate. `--deem` calls the local Deem CLI behind its health check. |
+| Model calls | None by default. `--jev` calls the Jev CLI behind its version and credential gate. |
 | Payload | A Jev call carries rows marked `jev_ok` only. Every other row stays home and is logged as `unmeasured_withheld` without its text. |
 | Writes | `calls.jsonl` and `report.json` under `--out`, and nothing else. A missing or empty `--out` keeps no log and writes no report. |
-| Arm directories | `--jev` and `--deem` both refuse to run without `--out`, so no call can start without a record of it. |
+| Arm directories | `--jev` refuses to run without `--out`, so no call can start without a record of it. |
 | Exit codes | `0` for a printed census or a stopped label gate, `2` for a refused command line or fixture. |
 
 Main flow:
@@ -66,9 +66,6 @@ headroom and label gate -> keep rule line
       │
       ▼
 payloadSplit -> jevGate -> runJevArm
-      │
-      ▼
-deemGate -> runDeemArm
       │
       ▼
 modalPick -> summarizeColumn -> decideVerdict
@@ -95,19 +92,18 @@ A keep holds only for the backend it was measured on. When a new column names an
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `node score-debug-next-check.mjs [--fixture <file>] [--jev] [--deem] [--out <dir>]` | CLI | Runs the census, then whichever arm its switch asks for. |
+| `node score-debug-next-check.mjs [--fixture <file>] [--jev] [--out <dir>]` | CLI | Runs the census, then the arm its switch asks for. |
 | `--fixture` | CLI flag | Labels the rows the census scores. Refused when it resolves inside the repository. |
-| `--jev`, `--deem` | CLI flag | Adds that backend column. Both need `--out`. |
+| `--jev` | CLI flag | Adds the Jev column. It needs `--out`. |
 | `main(argv, deps)` | Function | Runs the census end to end and returns the exit code. Its root, writers, environment, timeout and backoff dependencies are replaceable in tests. |
 | `parseCliArgs`, `isEntryPoint` | Function | Switch parsing with no positionals, and the symlink-safe entry check. |
 | `seamSearch`, `minedCorpus` | Function | The caller seam hits and the corpus counts the repository itself can contribute. |
 | `isInsideRepository`, `readFixture`, `sha256Hex` | Function | The device and inode containment guard, the fixture reader with its row schema, and the fixture digest. |
 | `constantAccuracies`, `chooseBaseline`, `payloadSplit`, `createCallLog` | Function | The four constant accuracies, the strongest constant with a tie going to `read_code`, the payload split, and the append-only call log. |
 | `which`, `jevGate`, `spawnCall`, `stateText`, `rotateOptions`, `parseChoiceAnswer`, `runJevArm` | Function | Executable discovery, the Jev version and credential gate, the bounded child process, the labeled state text, the option rotation, the answer parser, and the arm that runs one auth test then one choice call per accepted row per option order. |
-| `deemCommand`, `readDeemHealth`, `deemGate`, `runDeemArm` | Function | cli-deem discovery with the repository copy as fallback, the health check that accepts the pinned model and both commits, the skip line, and the local arm. |
 | `binomialTail`, `modalPick`, `decideVerdict`, `formatP`, `summarizeColumn`, `verdictLine`, `buildReport` | Function | The exact tail, the modal pick, the verdict order, the printed probability, the column counts, the verdict line and the report body. |
 
-An arm stops on exit 2, 3 or 130. A stop prints its line and the rows that finished, and leaves the column and the verdict unprinted. A call that hits the timeout bound is recorded as `unmeasured_timeout` and does not stop the arm. Exit 4 gets one retry after the backoff, because a dropped connection is not a judgment, and the Deem arm rechecks health first and stops when the server is gone or the model commit changed mid-run.
+An arm stops on exit 2, 3 or 130. A stop prints its line and the rows that finished, and leaves the column and the verdict unprinted. A call that hits the timeout bound is recorded as `unmeasured_timeout` and does not stop the arm. Exit 4 gets one retry after the backoff, because a dropped connection is not a judgment.
 
 ---
 
@@ -119,7 +115,7 @@ Run from `.skilled/skills/system-spec-kit/runtime`:
 npm test -- --run tests/debug-next-check.vitest.ts
 ```
 
-Expected result: the suite passes. Its fixtures are synthetic and stub `jev` and `cli-deem` binaries sit first on `PATH`, so the run needs no live backend and no key.
+Expected result: the suite passes. Its fixtures are synthetic and a stub `jev` binary sits first on `PATH`, so the run needs no live backend and no key.
 
 ---
 

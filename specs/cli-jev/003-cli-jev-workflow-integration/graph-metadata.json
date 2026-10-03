@@ -44,7 +44,13 @@
     "cli-jev/003-cli-jev-workflow-integration/038-pi-classifier-transport-integration",
     "cli-jev/003-cli-jev-workflow-integration/039-hub-cleanup",
     "cli-jev/003-cli-jev-workflow-integration/040-hard-rules-sidecar",
-    "cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment"
+    "cli-jev/003-cli-jev-workflow-integration/041-code-readmes-and-routing-alignment",
+    "cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation",
+    "cli-jev/003-cli-jev-workflow-integration/043-label-finding-fixes",
+    "cli-jev/003-cli-jev-workflow-integration/044-deem-answer-shape-fix",
+    "cli-jev/003-cli-jev-workflow-integration/045-deem-live-runs",
+    "cli-jev/003-cli-jev-workflow-integration/046-deem-deprecation",
+    "cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature"
   ],
   "manual": {
     "depends_on": [],
@@ -86,7 +92,6 @@
       "specs/cli-jev/003-cli-jev-workflow-integration/goal.md",
       "specs/cli-jev/003-cli-jev-workflow-integration/001-deep-research/spec.md",
       "007-classifier-deep-research/research/research.md",
-      "007-classifier-deep-research/context/deem-local.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
@@ -99,7 +104,8 @@
       "006-goal-criteria-lint/goal.md",
       "007-classifier-deep-research/goal.md",
       "008-cli-classifier-hub/goal.md",
-      "009-cli-jev-hub-move/goal.md"
+      "009-cli-jev-hub-move/goal.md",
+      "010-trigger-index-search-fixes/goal.md"
     ],
     "entities": [
       {
@@ -112,12 +118,6 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "specs/cli-jev/003-cli-jev-workflow-integration/goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "deem-local.md",
-        "kind": "doc",
-        "path": "007-classifier-deep-research/context/deem-local.md",
         "source": "derived"
       },
       {
@@ -213,17 +213,17 @@
     ],
     "causal_summary": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
     "created_at": "2026-09-26T15:37:28Z",
-    "last_save_at": "2026-10-01T07:47:58.253Z",
+    "last_save_at": "2026-10-02T20:39:14.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:55affd1455535816e09a151ef94a45438ed89539f9fbe4959e73c9be86fbc325",
+    "source_fingerprint": "sha256:27190e59ea9ad4c0892d4b753a52197a8bdbb52636e2eebf44ad38921b96d899",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c3d24a1f5b8e7bbeb94150c5053d448bb38df9cb702f3e04298237ea006f8957"
+      "spec.md": "0b421fbd575493d658ec0da2561c769b192e34dd99e943168628e404be8eaa20"
     },
     "last_active_child_id": "cli-jev/003-cli-jev-workflow-integration/007-classifier-deep-research",
     "last_active_at": "2026-09-27T09:37:40.643Z"

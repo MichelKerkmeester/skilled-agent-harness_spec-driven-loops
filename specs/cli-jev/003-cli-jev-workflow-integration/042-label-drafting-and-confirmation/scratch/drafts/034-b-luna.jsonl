@@ -1,0 +1,50 @@
+{"row":"FA01","label":"no","reason":"The pixel sizes form a genuine numeric range."}
+{"row":"FA02","label":"no","reason":"Cart to confirmation is an ordered checkout flow."}
+{"row":"FA03","label":"no","reason":"The type sizes form a genuine numeric range."}
+{"row":"FA04","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA05","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA06","label":"no","reason":"The letter-spacing values form a genuine numeric range."}
+{"row":"FA07","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA08","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA09","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA10","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA11","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA12","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA13","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA14","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA15","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA16","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA17","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA18","label":"no","reason":"The endpoints describe a meaningful inward import direction."}
+{"row":"FA19","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA20","label":"no","reason":"The endpoints mark a meaningful expansion in task coverage."}
+{"row":"FA21","label":"no","reason":"The passage has no from X to Y range construction."}
+{"row":"FA22","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA23","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA24","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA25","label":"no","reason":"Body to display headings is a meaningful typographic range."}
+{"row":"FA26","label":"no","reason":"The option count is a range without a from X to Y construction."}
+{"row":"FA27","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA28","label":"no","reason":"The endpoints mark an ordered range in the document."}
+{"row":"FA29","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA30","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA31","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA32","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA33","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA34","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA35","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA36","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA37","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA38","label":"no","reason":"The numbered steps form an ordered span, not a false range."}
+{"row":"FA39","label":"no","reason":"Medium to SemiBold is a meaningful font-weight progression."}
+{"row":"FA40","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA41","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA42","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA43","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA44","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA45","label":"no","reason":"Wrong to right is a meaningful correctness progression."}
+{"row":"FA46","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA47","label":"no","reason":"Stuck to termination describes an ordered process transition."}
+{"row":"FA48","label":"no","reason":"The passage uses a between construction, not from X to Y."}
+{"row":"FA49","label":"no","reason":"No from X to Y construction appears."}
+{"row":"FA50","label":"no","reason":"The values form a genuine numeric range."}

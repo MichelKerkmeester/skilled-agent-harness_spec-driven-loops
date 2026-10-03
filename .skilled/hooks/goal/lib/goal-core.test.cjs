@@ -645,6 +645,50 @@ test('verifyGoalHeuristic returns not-met when evidence contains blocking langua
   assert.equal(result.verdict, 'not-met');
 });
 
+test('verifyGoalHeuristic returns not-met when evidence carries a bare fail count', () => {
+  const result = core.verifyGoalHeuristic({
+    goal: { ...FIXTURE_GOAL, objective: 'close the battery checklist items' },
+    transcriptText: '1 P0 fail (CHK-006). Marking the 5 passing items in the battery checklist done.',
+  });
+  assert.equal(result.verdict, 'not-met');
+});
+
+test('verifyGoalHeuristic returns not-met when evidence carries a plural failures count', () => {
+  for (const text of [
+    '1 P0 failures (CHK-006). Marking the 5 passing items in the battery checklist done.',
+    '2 failures in the battery checklist run. Marking the 5 passing items done.',
+  ]) {
+    const result = core.verifyGoalHeuristic({
+      goal: { ...FIXTURE_GOAL, objective: 'close the battery checklist items' },
+      transcriptText: text,
+    });
+    assert.equal(result.verdict, 'not-met');
+  }
+});
+
+test('verifyGoalHeuristic does not treat a zero fail count as blocking', () => {
+  const nodeTestSummary = core.verifyGoalHeuristic({
+    goal: { ...FIXTURE_GOAL, objective: 'close the battery checklist items' },
+    transcriptText: 'ℹ pass 25\nℹ fail 0\nAll battery checklist items done and verified.',
+  });
+  assert.equal(nodeTestSummary.verdict, 'met');
+  for (const tail of ['fail: 0', '0 fail', 'fails=0', '0 failures', 'failures: 0']) {
+    const result = core.verifyGoalHeuristic({
+      goal: { ...FIXTURE_GOAL, objective: 'close the battery checklist items' },
+      transcriptText: `Battery checklist items done and verified; ${tail}.`,
+    });
+    assert.equal(result.verdict, 'met');
+  }
+});
+
+test('verifyGoalHeuristic returns not-met when evidence carries a bare fails verdict', () => {
+  const result = core.verifyGoalHeuristic({
+    goal: { ...FIXTURE_GOAL, objective: 'close the battery checklist items' },
+    transcriptText: 'The battery checklist items are done, but the review step fails.',
+  });
+  assert.equal(result.verdict, 'not-met');
+});
+
 test('verifyGoalHeuristic returns unclear for short or off-topic evidence', () => {
   const short = core.verifyGoalHeuristic({ goal: FIXTURE_GOAL, transcriptText: 'ok' });
   assert.equal(short.verdict, 'unclear');
@@ -653,6 +697,53 @@ test('verifyGoalHeuristic returns unclear for short or off-topic evidence', () =
     transcriptText: 'Finished cleaning up the kitchen and everything is done now.',
   });
   assert.equal(offTopic.verdict, 'unclear');
+});
+
+test('verifyGoalHeuristic reads the transcript tail, so a long transcript ending in completion evidence is met', () => {
+  const completion = 'The widget shipping work is done and tests passed for the widget shipping change.';
+  const transcriptText = `${'x'.repeat(3000)} ${completion}`;
+  const result = core.verifyGoalHeuristic({ goal: FIXTURE_GOAL, transcriptText });
+  assert.equal(result.verdict, 'met');
+});
+
+test('verifyGoalHeuristic returns not-met when the tail of a long transcript carries blocking language', () => {
+  const transcriptText = `the widget shipping is done ${'x'.repeat(3000)} Still blocked on the widget shipping, cannot finish yet.`;
+  const result = core.verifyGoalHeuristic({ goal: FIXTURE_GOAL, transcriptText });
+  assert.equal(result.verdict, 'not-met');
+});
+
+test('verifyGoalHeuristic keeps the truncated reason for a short transcript that itself ends in ellipsis', () => {
+  const result = core.verifyGoalHeuristic({
+    goal: FIXTURE_GOAL,
+    transcriptText: 'The widget shipping work is underway and the last checks are running...',
+  });
+  assert.equal(result.verdict, 'unclear');
+  assert.equal(result.reason, 'Evidence appears truncated before it proves completion');
+});
+
+test('verifyGoalHeuristic never reports a long transcript as truncated unless its own tail says so', () => {
+  const completion = 'The widget shipping work is done and tests passed for the widget shipping change.';
+  const pad = (tail) => `${'x'.repeat(3000)} ${tail}`;
+
+  assert.equal(
+    core.verifyGoalHeuristic({ goal: FIXTURE_GOAL, transcriptText: pad(completion) }).verdict,
+    'met',
+  );
+  const headWordOnly = core.verifyGoalHeuristic({
+    goal: FIXTURE_GOAL,
+    transcriptText: `the earlier log was truncated ${'x'.repeat(2000)} ${completion}`,
+  });
+  assert.equal(headWordOnly.verdict, 'met');
+  assert.notEqual(headWordOnly.reason, 'Evidence appears truncated before it proves completion');
+
+  for (const tail of [
+    'the widget shipping checks are still running...',
+    'the earlier output was truncated so the checks were rerun',
+  ]) {
+    const result = core.verifyGoalHeuristic({ goal: FIXTURE_GOAL, transcriptText: pad(tail) });
+    assert.equal(result.verdict, 'unclear');
+    assert.equal(result.reason, 'Evidence appears truncated before it proves completion');
+  }
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

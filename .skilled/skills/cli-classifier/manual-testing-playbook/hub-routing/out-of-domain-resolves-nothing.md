@@ -23,7 +23,7 @@ This scenario validates that a request with no classifier signal produces no `cl
 
 ### Why This Matters
 
-A hub that routes too broadly takes requests that belong elsewhere. The `cli-classifier` vocabulary names Jev or Deem in every multi-word phrase, and `routerPolicy.defaultMode` is `null`, so ordinary judgment words alone must not reach either transport.
+A hub that routes too broadly takes requests that belong elsewhere. The `cli-classifier` vocabulary names Jev in its multi-word phrases, and `routerPolicy.defaultMode` is `null`, so ordinary judgment words alone must not reach the current mode. Future classifier modes need their own explicit signals.
 
 ---
 

@@ -2,7 +2,7 @@
 name: sk-doc
 description: "Documentation & component authoring hub: skills, agents, commands, READMEs, catalogs, playbooks, changelogs, goals, frontmatter."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.2.5.0
+version: 2.2.6.0
 metadata:
   author: OpenCode
   family: sk-util
@@ -156,7 +156,7 @@ sk-doc/
 Each packet is self-contained (its own `SKILL.md`, `README.md`, `changelog/`, and moved `references/`/`assets/`/`scripts/`) and carries **no** `graph-metadata.json`, so the advisor discovers exactly one `sk-doc` identity.
 
 ### Shared backbone
-`shared/` holds the universal sk-create-quality-control pipeline consumed by every packet: generic validator scripts (`shared/scripts/`), cross-cutting standards and vocabulary (`shared/references/`), and shared templates (`shared/assets/`). The generic validator `shared/scripts/cite-drift-scan.mjs` counts and resolves the `<path>.<ext>:<line>` citations in every tracked skill doc and makes zero model calls by default, while `--jev` and `--deem` each run one backend and need `--out <dir>` so every call is recorded. The `sk-doc/scripts/` root directory keeps facade symlinks pointing inward to `shared/` and the owning packets so tool paths resolve. There are no hub-root `assets/` or `references/` aggregation directories: consumers reference each packet's own `assets/`/`references/` or the `shared/` backbone directly.
+`shared/` holds the universal sk-create-quality-control pipeline consumed by every packet: generic validator scripts (`shared/scripts/`), cross-cutting standards and vocabulary (`shared/references/`), and shared templates (`shared/assets/`). The generic validator `shared/scripts/cite-drift-scan.mjs` counts and resolves the `<path>.<ext>:<line>` citations in every tracked skill doc and makes zero model calls by default, while `--jev` runs the backend and needs `--out <dir>` so every call is recorded. The `sk-doc/scripts/` root directory keeps facade symlinks pointing inward to `shared/` and the owning packets so tool paths resolve. There are no hub-root `assets/` or `references/` aggregation directories: consumers reference each packet's own `assets/`/`references/` or the `shared/` backbone directly.
 
 ---
 

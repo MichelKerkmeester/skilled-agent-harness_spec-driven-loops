@@ -7,7 +7,7 @@
 // credential and writes no file.
 //
 // Usage:
-//   node cite-drift-scan.mjs [--draw --seed <n>] [--jev] [--deem] [--out <dir>] [--labels <file>]
+//   node cite-drift-scan.mjs [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>]
 //
 // Exit codes: 0 = report printed, a skipped or stopped arm included; 2 = bad
 // invocation or unreadable input, refused before any call.
@@ -43,7 +43,7 @@ export const CITATION_RE = /(?<![\w./-])([A-Za-z0-9_./-]+\.(?:ts|cjs|mjs|js|py|m
 export const FENCE_RE = /^\s*(?:```|~~~)/;
 
 /** Usage line printed when an invocation misses an input. */
-export const USAGE = 'usage: node cite-drift-scan.mjs [--draw --seed <n>] [--jev] [--deem] [--out <dir>] [--labels <file>]';
+export const USAGE = 'usage: node cite-drift-scan.mjs [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>]';
 
 // A large tree's `git ls-files -z` output runs far past Node's 1 MB default.
 const GIT_MAX_BUFFER = 268435456;
@@ -709,20 +709,16 @@ export function decideVerdict({ backend, K, M, A, B, W, L, TP, FP, F }) {
 
 /**
  * The notice a column prints before its verdict when the report an earlier run
- * left behind names another identity: a changed Deem commit pair, or a changed
- * Jev provider or model. Null when no earlier column exists or it matches the
- * identity this run used.
+ * left behind names another identity: a changed Jev provider or model. Null
+ * when no earlier column exists or it matches the identity this run used.
  * @param {string} backend
  * @param {object|null} stored Parsed report from an earlier run.
- * @param {{ modelCommit?: string, sourceCommit?: string, provider?: string, model?: string }} identity
+ * @param {{ provider?: string, model?: string }} identity
  * @returns {string|null}
  */
 function requalifyNotice(backend, stored, identity) {
   const prior = stored?.columns?.[backend];
   if (prior === undefined || prior === null) return null;
-  if (backend === 'deem' && (prior.modelCommit !== identity.modelCommit || prior.sourceCommit !== identity.sourceCommit)) {
-    return 'requalify: model commit changed';
-  }
   if (backend === 'jev' && (prior.provider !== identity.provider || prior.model !== identity.model)) {
     return 'requalify: model changed';
   }
@@ -732,10 +728,9 @@ function requalifyNotice(backend, stored, identity) {
 /**
  * One column's verdict line: the verdict, every count, the sign test's p at
  * four significant digits, the labels hash and the column's identity suffix.
- * The flips count belongs to a Jev column, so a Deem column prints n/a. A
- * stored report that names another identity puts its requalify notice on the
- * line ahead of the verdict.
- * @param {{ backend: string, verdict: string, K: number, M: number, A: number, B: number, W: number, L: number, TP: number, FP: number, F: number, p: number, stored?: object|null, model?: string, modelCommit?: string, sourceCommit?: string, provider?: string }} summary
+ * The flips count is the Jev column's own. A stored report that names another
+ * identity puts its requalify notice on the line ahead of the verdict.
+ * @param {{ backend: string, verdict: string, K: number, M: number, A: number, B: number, W: number, L: number, TP: number, FP: number, F: number, p: number, stored?: object|null, model?: string, provider?: string }} summary
  * @param {string} labelsSha Truncated hash of the labels the column measured.
  * @param {string} [suffix] Column identity text, appended when non-empty.
  * @returns {string}
@@ -743,7 +738,7 @@ function requalifyNotice(backend, stored, identity) {
 export function verdictLine(summary, labelsSha, suffix = '') {
   const { backend, verdict, K, M, A, B, W, L, TP, FP, F, p } = summary;
   let line = `verdict ${backend}: ${verdict} K=${K} M=${M} A=${A} B=${B} W=${W} L=${L}`
-    + ` TP=${TP} FP=${FP} F=${backend === 'jev' ? F : 'n/a'} p=${p.toPrecision(4)} labels_sha256=${labelsSha}`;
+    + ` TP=${TP} FP=${FP} F=${F} p=${p.toPrecision(4)} labels_sha256=${labelsSha}`;
   if (typeof suffix === 'string' && suffix !== '') line += ` ${suffix}`;
   const notice = requalifyNotice(backend, summary.stored, summary);
   return notice === null ? line : `${notice}\n${line}`;
@@ -784,23 +779,8 @@ export function nearestRank(values, q) {
 }
 
 // ───────────────────────────────────────────────────────────────────
-// 6. DEEM ARM
+// 6. BACKEND PROCESS HELPERS
 // ───────────────────────────────────────────────────────────────────
-
-// The gate reads the local model's health once and passes no key; a failed
-// check skips the arm, and one noul call per row is all the arm sends.
-
-/** Pinned Deem model name the health check accepts. */
-export const DEEM_MODEL = 'deem-0.8-v1';
-
-/** Deem noul p50 in milliseconds, from deem-local.md, used for the wall-time estimate. */
-export const DEEM_P50_MS = 60.5;
-
-/** Bounds the health spawn; cli-deem bounds its own HTTP health request. */
-export const HEALTH_TIMEOUT_MS = 10000;
-
-/** Repo copy of the cli-deem entry point, run under node when none is on PATH. */
-const REPO_CLI_DEEM = path.join(REPO_ROOT, '.skilled', 'skills', 'cli-classifier', 'cli-deem', 'scripts', 'cli-deem.mjs');
 
 /**
  * First executable file of this name on PATH, or null when none is executable.
@@ -824,103 +804,6 @@ export function which(name, env) {
     }
   }
   return null;
-}
-
-/**
- * cli-deem on PATH when that file is executable, otherwise the repo copy under node.
- * @param {{ PATH?: string }} env Environment whose PATH is searched.
- * @returns {string[]} Command and leading arguments for one call.
- */
-export function deemCommand(env) {
-  const onPath = which('cli-deem', env);
-  if (onPath !== null) return [onPath];
-  return [process.execPath, REPO_CLI_DEEM];
-}
-
-/**
- * One health check. An unreachable binary, a stub backend or a wrong model is
- * a failed check the caller prints as a skip.
- * @param {string[]} cmd Command from deemCommand.
- * @param {Record<string, string|undefined>} env Environment for the call.
- * @returns {{ ok: true, backend: string, model: string, modelCommit: string, sourceCommit: string } | { ok: false, reason: string, found: unknown }}
- */
-export function readDeemHealth(cmd, env) {
-  const result = spawnSync(cmd[0], [...cmd.slice(1), 'health'], {
-    env,
-    encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'pipe'],
-    timeout: HEALTH_TIMEOUT_MS,
-  });
-  let errorText = (result.stderr ?? '').trim();
-  try {
-    errorText = JSON.parse(errorText).error;
-  } catch {
-    // Leave the trimmed stderr when it is not JSON.
-  }
-
-  if (result.error || result.status === 4) {
-    return { ok: false, reason: 'not reachable', found: errorText };
-  }
-  if (result.status === 3) {
-    let reason = 'bad health response';
-    if (typeof errorText === 'string' && errorText.includes('stub')) reason = 'stub backend';
-    else if (typeof errorText === 'string' && errorText.includes('refused model')) reason = 'model';
-    return { ok: false, reason, found: errorText };
-  }
-  if (result.status === 0) {
-    const stdoutText = (result.stdout ?? '').trim();
-    let body;
-    try {
-      body = JSON.parse(stdoutText);
-    } catch {
-      return { ok: false, reason: 'bad health response', found: stdoutText };
-    }
-    const backend = body?.backend;
-    if (typeof backend === 'string' && backend.includes('stub')) {
-      return { ok: false, reason: 'stub backend', found: backend };
-    }
-    if (backend !== 'torch' && !(typeof backend === 'string' && backend.startsWith('ensemble:'))) {
-      return { ok: false, reason: 'bad health response', found: String(backend) };
-    }
-    const model = body?.model;
-    if (model !== DEEM_MODEL) {
-      return { ok: false, reason: 'model', found: String(model) };
-    }
-    const modelCommit = body?.model_commit;
-    const sourceCommit = body?.source_commit;
-    if (
-      body?.ok !== true
-      || typeof modelCommit !== 'string'
-      || modelCommit === ''
-      || typeof sourceCommit !== 'string'
-      || sourceCommit === ''
-    ) {
-      return { ok: false, reason: 'bad health response', found: stdoutText };
-    }
-    return { ok: true, backend, model, modelCommit, sourceCommit };
-  }
-  return { ok: false, reason: 'bad health response', found: `exit ${result.status}: ${errorText}` };
-}
-
-/**
- * Prints the health line, or a skip line when the check fails. A refused model
- * or a body that does not fit prints the response it read beside the skip.
- * @param {{ out: (line: string) => void, env: Record<string, string|undefined> }} ctx Line writer and environment.
- * @returns {{ passed: boolean, cmd: string[], reason?: string }}
- */
-export function deemGate(ctx) {
-  const cmd = deemCommand(ctx.env);
-  const health = readDeemHealth(cmd, ctx.env);
-  if (health.ok) {
-    ctx.out(`deem: health backend=${health.backend} model=${health.model} model_commit=${health.modelCommit} source_commit=${health.sourceCommit}`);
-    return { passed: true, cmd, ...health };
-  }
-  const skipLine = `deem arm skipped: ${health.reason}`;
-  ctx.out(skipLine);
-  if (health.reason === 'model' || health.reason === 'bad health response') {
-    ctx.out(`deem: found=${JSON.stringify(health.found)}`);
-  }
-  return { passed: false, cmd, reason: skipLine };
 }
 
 /**
@@ -1014,172 +897,6 @@ function parseNoul(stdout) {
   const value = parsed?.answers?.answer?.noul;
   if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 1) return null;
   return value;
-}
-
-/**
- * One noul call per labeled row whose sentence and window the recorded commit
- * still holds, with one calls.jsonl record per spawn and one retry behind a
- * fresh health check when a call exits 4. A stop prints the line and the rows
- * that finished, and leaves the column and verdict unprinted.
- * @param {{ rows: Array<object>, windows: Map<string, { sentence: string, windowText: string }>, labelsSha: string }} plan
- * @param {{ cmd: string[], model: string, modelCommit: string, sourceCommit: string }} gate Passing deemGate result.
- * @param {{ out: (line: string) => void, env: Record<string, string|undefined>, timeoutMs: number, callLog: { append: (record: object) => void }, stored: object|null }} ctx Line writer, environment, timeout, call log and an earlier run's report.
- * @returns {Promise<{ column: object } | { stopped: string, partialRows: number }>}
- */
-export async function runDeemArm(plan, gate, ctx) {
-  const labeled = plan.rows.filter((row) => row.verdict !== null && row.verdict !== undefined);
-  const ready = [];
-  for (const row of labeled) {
-    const entry = plan.windows.get(row.id);
-    // A row whose document or target the recorded commit does not hold has no
-    // state to send, so it stays unmeasured and costs no call.
-    if (entry === undefined || entry.sentence === '' || entry.windowText === '') continue;
-    ready.push({ row, entry });
-  }
-  const K = labeled.length;
-  ctx.out(`deem: nothing leaves the machine; planned calls: ${ready.length}; estimated wall time: ${(ready.length * DEEM_P50_MS / 1000).toFixed(1)} s at ${DEEM_P50_MS} ms per call, the noul p50 in deem-local.md`);
-
-  const results = new Map();
-  const wallTimes = [];
-  let finished = 0;
-
-  const stop = (line) => {
-    ctx.out(line);
-    ctx.out(`deem: partial rows=${finished}`);
-    return { stopped: line, partialRows: finished };
-  };
-
-  for (const { row, entry } of ready) {
-    const state = JSON.stringify({ sentence: entry.sentence, target: row.target, window: entry.windowText });
-    const callArgs = [...gate.cmd.slice(1), 'noul', '-q', INSTRUCTION];
-
-    let call = await spawnCall(gate.cmd[0], callArgs, state, ctx.env, ctx.timeoutMs);
-    wallTimes.push(call.wallMs);
-
-    if (!call.timedOut && call.code === 4) {
-      ctx.callLog.append({
-        rowId: row.id,
-        rerun: 0,
-        wallMs: call.wallMs,
-        exitCode: call.code,
-        backend: 'deem',
-        probability: null,
-        flag: null,
-        status: 'unmeasured',
-        modelId: gate.model,
-        modelCommit: gate.modelCommit,
-        sourceCommit: gate.sourceCommit,
-      });
-      const health = readDeemHealth(gate.cmd, ctx.env);
-      if (!health.ok) return stop('deem arm stopped: server gone');
-      if (health.modelCommit !== gate.modelCommit || health.sourceCommit !== gate.sourceCommit) {
-        return stop('deem arm stopped: model commit changed mid-run');
-      }
-
-      call = await spawnCall(gate.cmd[0], callArgs, state, ctx.env, ctx.timeoutMs);
-      wallTimes.push(call.wallMs);
-    }
-
-    let probability = null;
-    let flag = null;
-    let status = 'unmeasured';
-    let stopLine = null;
-    if (call.timedOut) {
-      status = 'unmeasured_timeout';
-    } else if (call.code === 0) {
-      probability = parseNoul(call.stdout);
-      if (probability === null) {
-        status = 'unmeasured';
-      } else {
-        status = 'measured';
-        flag = probability < FLAG_THRESHOLD;
-      }
-    } else if (call.code === 2) {
-      stopLine = 'deem arm stopped: usage error';
-    } else if (call.code === 3) {
-      stopLine = 'deem arm stopped: backend refused';
-    } else if (call.code === 130) {
-      stopLine = 'deem arm stopped: interrupted';
-    }
-
-    ctx.callLog.append({
-      rowId: row.id,
-      rerun: 0,
-      wallMs: call.wallMs,
-      exitCode: call.code,
-      backend: 'deem',
-      probability,
-      flag,
-      status,
-      modelId: gate.model,
-      modelCommit: gate.modelCommit,
-      sourceCommit: gate.sourceCommit,
-    });
-    if (stopLine !== null) return stop(stopLine);
-    results.set(row.id, { probability, flag, status });
-    finished += 1;
-  }
-
-  let M = 0;
-  let A = 0;
-  let B = 0;
-  let W = 0;
-  let L = 0;
-  let TP = 0;
-  let FP = 0;
-  const scored = [];
-  for (const { row, entry } of ready) {
-    const result = results.get(row.id);
-    if (result === undefined || result.status !== 'measured') continue;
-    M += 1;
-    const drifted = row.verdict !== 'supports';
-    const flagged = result.flag === true;
-    if (flagged && drifted) TP += 1;
-    if (flagged && !drifted) FP += 1;
-    const modelRight = flagged === drifted;
-    if (modelRight) A += 1;
-    const comparatorRight = flagByIdentifierOverlap(entry.sentence, entry.windowText, row.target) === drifted;
-    if (comparatorRight) B += 1;
-    if (modelRight && !comparatorRight) W += 1;
-    if (!modelRight && comparatorRight) L += 1;
-    scored.push({ probability: result.probability, actual: drifted ? 0 : 1 });
-  }
-
-  const { verdict, p } = decideVerdict({ backend: 'deem', K, M, A, B, W, L, TP, FP, F: 0 });
-  const latency = { p50: nearestRank(wallTimes, 0.5), p95: nearestRank(wallTimes, 0.95) };
-  ctx.out(`column deem: rows=${K} measured=${M} unmeasured=${K - M} latency_p50_ms=${latency.p50 ?? 'none'} latency_p95_ms=${latency.p95 ?? 'none'}`);
-  const brier = brierScore(scored);
-  ctx.out(`brier deem: ${brier === null ? 'none' : brier.toFixed(4)}`);
-  ctx.out('flips: not applicable (deem noul)');
-
-  const line = verdictLine(
-    { backend: 'deem', verdict, K, M, A, B, W, L, TP, FP, F: 0, p, stored: ctx.stored, model: gate.model, modelCommit: gate.modelCommit, sourceCommit: gate.sourceCommit },
-    plan.labelsSha,
-    `model=${gate.model} model_commit=${gate.modelCommit} source_commit=${gate.sourceCommit}`,
-  );
-  for (const text of line.split('\n')) ctx.out(text);
-
-  return {
-    column: {
-      backend: 'deem',
-      verdict,
-      K,
-      M,
-      A,
-      B,
-      W,
-      L,
-      TP,
-      FP,
-      F: 0,
-      p,
-      latency,
-      model: gate.model,
-      modelCommit: gate.modelCommit,
-      sourceCommit: gate.sourceCommit,
-      line,
-    },
-  };
 }
 
 /**
@@ -1530,7 +1247,6 @@ export async function main(argv, deps = {}) {
         draw: { type: 'boolean' },
         seed: { type: 'string' },
         jev: { type: 'boolean' },
-        deem: { type: 'boolean' },
         out: { type: 'string' },
         labels: { type: 'string' },
       },
@@ -1542,8 +1258,8 @@ export async function main(argv, deps = {}) {
   const { values } = parsed;
   const labelsPath = values.labels ?? LABELS_PATH;
 
-  if ((values.jev === true || values.deem === true) && (typeof values.out !== 'string' || values.out === '')) {
-    err('--deem and --jev need --out <dir> so every call is recorded');
+  if (values.jev === true && (typeof values.out !== 'string' || values.out === '')) {
+    err('--jev needs --out <dir> so every call is recorded');
     return 2;
   }
 
@@ -1617,7 +1333,7 @@ export async function main(argv, deps = {}) {
     out(line);
   }
 
-  const armsRequested = values.jev === true || values.deem === true;
+  const armsRequested = values.jev === true;
   let callLog = null;
   let stored = null;
   if (armsRequested) {
@@ -1629,8 +1345,8 @@ export async function main(argv, deps = {}) {
   const stopped = {};
   const skipped = {};
 
-  // The Jev arm runs first, on its own gate; a failed check never starts the
-  // other backend.
+  // The Jev arm runs on its own gate; a failed check prints its skip line and
+  // leaves every earlier line as it was.
   if (values.jev === true) {
     const check = jevGate({ out, env, timeoutMs });
     if (!check.passed) {
@@ -1650,31 +1366,6 @@ export async function main(argv, deps = {}) {
         columns.jev = result.column;
       } else {
         stopped.jev = { line: result.stopped, partialRows: result.partialRows };
-      }
-    }
-  }
-
-  // A switch runs its gate whenever it is set; a failed check prints its skip
-  // line and leaves every earlier line as it was.
-  if (values.deem === true) {
-    const check = deemGate({ out, env });
-    if (!check.passed) {
-      skipped.deem = check.reason;
-    } else if (summary.gate !== 'planned') {
-      const line = `deem arm skipped: ${summary.gate === 'stop' ? 'label gate' : summary.gate}`;
-      out(line);
-      skipped.deem = line;
-    } else {
-      const labelsSha = labelsText === null ? 'none' : sha256Hex(labelsText).slice(0, 12);
-      const result = await runDeemArm(
-        { rows: labelRows, windows, labelsSha },
-        check,
-        { out, env, timeoutMs, callLog, stored },
-      );
-      if (result.stopped === undefined) {
-        columns.deem = result.column;
-      } else {
-        stopped.deem = { line: result.stopped, partialRows: result.partialRows };
       }
     }
   }

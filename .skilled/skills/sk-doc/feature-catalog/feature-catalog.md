@@ -50,7 +50,7 @@ Replays each parent hub's stage-two keyword block against the committed gold wit
 
 #### Current Reality
 
-`leaf-route-replay.cjs` in `sk-create-skill` runs each parent hub's `INTENT_SIGNALS` and `RESOURCE_MAP` blocks over the 56-row committed gold, one row per committed scenario that carries a prompt and leaf pairs, and prints per-hub precision, recall, F1 and exact match with zero model calls. sk-code's gold row prints `surface slice not replayed` and stays unscored, and `cli-classifier` prints `stage1-only`. `--transcripts <dir>` recounts each hub's router-file reads behind the block as counts and bytes per hub and week, and `--prose <file>` compares the keyword arm with the pairs a prose transcript records under the coverage rule `10*P >= 9*N` and prints `replay verdict: keep`, `drop` or `stop (prose arm covers <P> of <N> rows)`. The tie-break arms stay dormant until `--jev` or `--deem` with `--out <dir>` run behind their own gates, Jev first, and end each column in `verdict <jev|deem>: <keep|kill|stop (<reason>)>` under the keep rule. A `keep` serves nothing.
+`leaf-route-replay.cjs` in `sk-create-skill` runs each parent hub's `INTENT_SIGNALS` and `RESOURCE_MAP` blocks over the 56-row committed gold, one row per committed scenario that carries a prompt and leaf pairs, and prints per-hub precision, recall, F1 and exact match with zero model calls. sk-code's gold row prints `surface slice not replayed` and stays unscored, and `cli-classifier` prints `stage1-only`. `--transcripts <dir>` recounts each hub's router-file reads behind the block as counts and bytes per hub and week, and `--prose <file>` compares the keyword arm with the pairs a prose transcript records under the coverage rule `10*P >= 9*N` and prints `replay verdict: keep`, `drop` or `stop (prose arm covers <P> of <N> rows)`. The tie-break arm stays dormant until `--jev` with `--out <dir>` runs behind its gate and ends the column in `verdict jev: <keep|kill|stop (<reason>)>` under the keep rule. A `keep` serves nothing.
 
 #### Source Files
 
@@ -82,7 +82,7 @@ Counts how often compiled hubs answer clarify with zero model calls and judges a
 
 #### Current Reality
 
-`score-clarify-default.cjs` in `sk-create-skill` replays the committed canary cases, hub playbook scenarios and routing-corpus prompts through each hub's compiled engine, read only, and prints clarify counts per hub and source. It writes unlabeled clarify rows for the operator. `--score` stops below 30 labeled rows, and past that gate `--jev` and `--deem` each earn a verdict against the router's first alternative that serves nothing.
+`score-clarify-default.cjs` in `sk-create-skill` replays the committed canary cases, hub playbook scenarios and routing-corpus prompts through each hub's compiled engine, read only, and prints clarify counts per hub and source. It writes unlabeled clarify rows for the operator. `--score` stops below 30 labeled rows, and past that gate `--jev` earns a verdict against the router's first alternative that serves nothing.
 
 #### Source Files
 
@@ -128,7 +128,7 @@ Reports the dead file-and-line citations in the tracked skill docs, where the ta
 
 #### Current Reality
 
-`cite-drift-scan.mjs` in `sk-doc`'s shared scripts counts the file-and-line citations in the prose of every tracked skill doc at `HEAD`, resolves each against the tracked files and prints one `cite dead: <doc>:<line> -> <target>:<line>` line per dead citation, where the target is missing on disk or the cited line sits past its end. The default run makes zero model calls and writes no file. `--jev` and `--deem` each run one backend and each needs `--out <dir>` so every call is recorded, with the Jev gate and arm first when both are set.
+`cite-drift-scan.mjs` in `sk-doc`'s shared scripts counts the file-and-line citations in the prose of every tracked skill doc at `HEAD`, resolves each against the tracked files and prints one `cite dead: <doc>:<line> -> <target>:<line>` line per dead citation, where the target is missing on disk or the cited line sits past its end. The default run makes zero model calls and writes no file. `--jev` runs one backend and needs `--out <dir>` so every call is recorded.
 
 #### Source Files
 
@@ -138,11 +138,11 @@ See [`document-validation/citation-drift-scan.md`](document-validation/citation-
 
 #### Description
 
-Measures offline whether a Jev or Deem `noul` flags three reader-needed Human Voice Rules tells better than the scanner's floor, which flags none of them.
+Measures offline whether a Jev `noul` flags three reader-needed Human Voice Rules tells better than the scanner's floor, which flags none of them.
 
 #### Current Reality
 
-`hvr_reader_lens.py` in `sk-create-with-human-voice`'s scripts gives the three reader-needed tells their first measurement: synonym cycling, significance inflation and false ranges, which `hvr_scan.py` leaves to a reader. The census walks the tracked `*.md` files under `.skilled/skills/` outside `/changelog/`, `/fixtures/` and `node_modules`, reads each file at the recorded commit and runs the unchanged `hvr_scan.py --json` over a temporary copy of that committed text outside the repository, so uncommitted edits never change it. The default run makes no model call, writes no file and holds no credential. `--draw --seed <n>` writes `hvr-reader-lens-labels.jsonl`, 150 rows, 50 per category, each with an empty label the operator fills with `yes` or `no`, and until every row carries one the run stops at `stop: fewer than 150 labeled rows`. `--jev` and `--deem` each measure one backend and each needs `--out <dir>` so every call is recorded, with the Jev gate and arm first when both are set.
+`hvr_reader_lens.py` in `sk-create-with-human-voice`'s scripts gives the three reader-needed tells their first measurement: synonym cycling, significance inflation and false ranges, which `hvr_scan.py` leaves to a reader. The census walks the tracked `*.md` files under `.skilled/skills/` outside `/changelog/`, `/fixtures/` and `node_modules`, reads each file at the recorded commit and runs the unchanged `hvr_scan.py --json` over a temporary copy of that committed text outside the repository, so uncommitted edits never change it. The default run makes no model call, writes no file and holds no credential. `--draw --seed <n>` writes `hvr-reader-lens-labels.jsonl`, 150 rows, 50 per category, each with an empty label the operator fills with `yes` or `no`, and until every row carries one the run stops at `stop: fewer than 150 labeled rows`. `--jev` measures one backend and needs `--out <dir>` so every call is recorded.
 
 #### Source Files
 

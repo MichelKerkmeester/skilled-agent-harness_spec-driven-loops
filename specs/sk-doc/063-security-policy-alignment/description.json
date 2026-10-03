@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/063-security-policy-alignment",
+  "description": "Align SECURITY.md with sk-doc and expand it",
+  "keywords": [
+    "align",
+    "security",
+    "sk-doc",
+    "expand"
+  ],
+  "lastUpdated": "2026-10-02T10:45:38.052Z",
+  "specId": "063",
+  "folderSlug": "security-policy-alignment",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

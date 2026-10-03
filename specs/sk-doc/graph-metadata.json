@@ -18,7 +18,8 @@
     "sk-doc/060-create-goal-mode",
     "sk-doc/061-skilled-release-changelog",
     "sk-doc/062-doc-validation-off-switches",
-    "sk-doc/063-description-budget"
+    "sk-doc/063-security-policy-alignment",
+    "sk-doc/064-description-budget"
   ],
   "manual": {
     "depends_on": [],

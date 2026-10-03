@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 811,
+  "derived_count": 809,
   "directories": [
     ".",
     ".claude/commands/create",
@@ -81,8 +81,6 @@
     ".skilled/skills/cli-classifier/benchmark/pi-transport",
     ".skilled/skills/cli-classifier/benchmark/pi-transport/tests",
     ".skilled/skills/cli-classifier/benchmark/reports",
-    ".skilled/skills/cli-classifier/cli-deem",
-    ".skilled/skills/cli-classifier/cli-deem/scripts",
     ".skilled/skills/cli-classifier/cli-jev",
     ".skilled/skills/cli-classifier/cli-jev/benchmark",
     ".skilled/skills/cli-classifier/cli-jev/benchmark/reports",

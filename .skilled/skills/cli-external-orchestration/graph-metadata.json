@@ -42,7 +42,7 @@
       {
         "target": "cli-classifier",
         "weight": 0.4,
-        "context": "The classifier hub supplies typed judgment transports, hosted Jev and local Deem, beside this hub's external executor dispatch"
+        "context": "The classifier hub supplies the hosted Jev judgment transport beside this hub's external executor dispatch"
       }
     ],
     "conflicts_with": [],

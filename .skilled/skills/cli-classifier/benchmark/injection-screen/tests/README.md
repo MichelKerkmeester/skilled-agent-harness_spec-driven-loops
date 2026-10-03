@@ -1,6 +1,6 @@
 ---
 title: "Injection screen tests"
-description: "Node test cases for the injection-screen scorer, run against fixture repositories and stub jev and cli-deem binaries."
+description: "Node test cases for the injection-screen scorer, run against fixture repositories and a stub jev binary."
 trigger_phrases:
   - "injection screen tests"
   - "score-injection-screen tests"
@@ -15,7 +15,7 @@ trigger_phrases:
 
 `tests/` holds one self-running Node test file for the injection-screen scorer. It drives `score-injection-screen.mjs` through the exports that file publishes and through its `main` entrypoint, then asserts the printed lines, the exit codes and the written files.
 
-Every case runs against a fixture repository in the OS temp directory and stub `jev` and `cli-deem` binaries placed first on `PATH`. No case reaches a real backend, and the file holds no credential.
+Every case runs against a fixture repository in the OS temp directory and a stub `jev` binary placed first on `PATH`. No case reaches a real backend, and the file holds no credential.
 
 ---
 
@@ -23,7 +23,7 @@ Every case runs against a fixture repository in the OS temp directory and stub `
 
 | File | Responsibility |
 |---|---|
-| `score-injection-screen.test.mjs` | Tests tracked paths and head commit, the fetch census, section splitting, corpus walking and its dotenv refusal, lexical hits, seeded draws, planted insertion, the 90-row label gate, baseline headroom, the keep, kill and stop verdict rules, and both backend gates and arms on stub binaries. |
+| `score-injection-screen.test.mjs` | Tests tracked paths and head commit, the fetch census, section splitting, corpus walking and its dotenv refusal, lexical hits, seeded draws, planted insertion, the 90-row label gate, baseline headroom, the keep, kill and stop verdict rules, and the backend gate and arm on a stub binary. |
 
 ---
 

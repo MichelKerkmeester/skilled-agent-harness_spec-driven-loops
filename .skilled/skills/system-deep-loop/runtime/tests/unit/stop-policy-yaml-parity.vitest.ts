@@ -55,7 +55,9 @@ describe('stop policy parity across runtime-loop workflows', () => {
   for (const file of RUNTIME_LOOP_YAMLS) {
     it(`${file} records, reads and honors stop_policy`, () => {
       const text = readFileSync(resolve(ASSETS, file), 'utf8');
-      expect(text).toContain('"stopPolicy":"{stop_policy}"');
+      // Research also writes it into its line-one state row; review keeps it in
+      // the config file alone, because its state log is a gateway projection.
+      expect(text).toMatch(/"stopPolicy":"\{stop_policy\}"|stopPolicy: "\{stop_policy\}"/);
       expect(text).toMatch(/- stop_policy: "Extract stopPolicy from deep-(research|review)-config\.json/);
       expect(stepText(text, 'step_check_convergence')).toContain(STOP_CLAUSE);
       // A clause nested under the convergence-off branch is skipped in the default mode.

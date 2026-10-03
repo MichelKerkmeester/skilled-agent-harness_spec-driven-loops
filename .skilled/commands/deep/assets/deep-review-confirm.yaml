@@ -442,9 +442,49 @@ workflow:
         output: "{state_paths.config}"
 
       step_create_state_log:
-        action: "Initialize JSONL state log with config record including review fields and lineage metadata"
-        note: "Reuse review_dimensions_json from step_normalize_review_dimensions. Never re-normalize or wrap the raw template value."
-        content: '{"type":"config","mode":"review","reviewTarget":"{review_target}","reviewTargetType":"{review_target_type}","reviewDimensions":{review_dimensions_json},"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":{max_iterations},"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"stopPolicy":"{stop_policy}","createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}"}'
+        action: "Open the run in the ledger: record deep_review.run_initialized through the append gateway, which writes the state log's first row"
+        note: |
+          The state log is a projection the gateway rebuilds from the ledger, so this step never writes
+          it directly. A config row written beside the ledger carries keys the projection cannot
+          rebuild, and the projection refuses to drop them, so every later append in the run would
+          commit to the ledger and then exit 2. Recording the run's opening as a ledger event makes
+          the projected config row the state log's first row from the start. The full config stays
+          in deep-review-config.json, which is what the reducer reads.
+        command: |
+          GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
+          [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
+          EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-review-run-open.XXXXXX")"
+          node -e '
+            const fs = require("fs"), crypto = require("crypto");
+            const [configPath, workflowPath] = process.argv.slice(1);
+            const sha = (bytes) => crypto.createHash("sha256").update(bytes).digest("hex");
+            const raw = fs.readFileSync(configPath);
+            const config = JSON.parse(raw);
+            const targetTypes = { files: "file", file: "file", directory: "directory", "spec-folder": "directory", track: "directory", repository: "repository" };
+            const lineageModes = { new: "fresh", fresh: "fresh", restart: "restart", resume: "resume" };
+            process.stdout.write(JSON.stringify({
+              stem: "deep_review.run_initialized",
+              scope: { runId: config.sessionId, sessionId: config.sessionId, generation: Number(config.generation) || 1 },
+              data: {
+                target: {
+                  targetId: "review-target",
+                  targetType: targetTypes[config.reviewTargetType] || "artifact",
+                  artifactRef: "deep-review-config.json#reviewTarget",
+                  sourceDigest: sha(String(config.reviewTarget)),
+                  contentDigest: sha(raw),
+                },
+                lineageMode: lineageModes[config.lineageMode] || "fresh",
+                maxIterations: Number(config.maxIterations),
+                convergencePolicyVersion: "convergence-policy@" + ((config.antiConvergence && config.antiConvergence.convergenceMode) || "default"),
+                reviewModeContractDigest: sha(fs.readFileSync(workflowPath)),
+                initialReleaseReadinessState: "not-assessed",
+              },
+            }));
+          ' "{state_paths.config}" ".skilled/commands/deep/assets/deep-review-confirm.yaml" > "$EVENT_FILE" || { rm -f "$EVENT_FILE"; exit 1; }
+          node "$GATEWAY" --mode review --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
+          STATUS=$?
+          rm -f "$EVENT_FILE"
+          exit "$STATUS"
         output: "{state_paths.state_log}"
 
       step_create_findings_registry:

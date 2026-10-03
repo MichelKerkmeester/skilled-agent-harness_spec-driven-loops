@@ -369,11 +369,11 @@ See [`review-dimensions/maintainability.md`](review-dimensions/maintainability.m
 
 #### Description
 
-Measures offline whether a Jev or Deem answer flags operator-labeled defect rows from the committed review corpus better than flag-nothing.
+Measures offline whether a Jev answer flags operator-labeled defect rows from the committed review corpus better than flag-nothing.
 
 #### How It Works
 
-`scripts/score-residue-flagger.cjs` makes zero model calls by default and writes no file: the default run prints the finding-table census, and no arm runs until 100 rows in the labels file carry a label. The two switches `--jev` and `--deem` each run one arm behind its own gate and need `--out <dir>` so every call is recorded, and the measurement adds no review dimension.
+`scripts/score-residue-flagger.cjs` makes zero model calls by default and writes no file: the default run prints the finding-table census, and no arm runs until 100 rows in the labels file carry a label. The `--jev` switch runs one arm behind its own gate and needs `--out <dir>` so every call is recorded, and the measurement adds no review dimension.
 
 #### Source Files
 

@@ -266,7 +266,7 @@ Desired user-visible outcome: the user gets the mechanical number and a reader's
 Verify the zero-call run prints the census and the stop line and calls no backend, and that a stub-backend run adds only its skip line.
 
 #### Scenario Contract
-Prompt: `Run the reader-needed lens with the two stubs first on PATH, once with no switch and once with --deem, and tell me what it printed and whether anything left the machine.`
+Prompt: `Run the reader-needed lens with the stub first on PATH, once with no switch and once with --jev, and tell me what it printed and whether anything left the machine.`
 
 The default run makes no model call, writes no file and holds no credential. Before the operator's labels exist it stops at the label gate with `stop: fewer than 150 labeled rows`, so a transcript that quotes a measurement from it has read the sample frame as a result. No run has printed a `verdict` line.
 

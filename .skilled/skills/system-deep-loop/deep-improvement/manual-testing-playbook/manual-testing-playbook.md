@@ -296,9 +296,9 @@ Expected signals: Exit code is 1 (not 0); Output is valid JSON (no stack trace);
 `run-benchmark.cjs` refuses an unknown `--grader` value before any profile loads, and `score-d4-agreement.cjs` prints its census without a model call and skips a stub backend by name.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate that an unknown grader kind stops the benchmark runner at startup, that the D4 agreement census makes no model call and that a stub Deem backend is skipped by name. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+Prompt summary: As a manual-testing orchestrator, validate that an unknown grader kind stops the benchmark runner at startup, that the D4 agreement census makes no model call and that a stub Jev backend is skipped by name. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
 
-Expected signals: The runner exits 2 and names `'jev'` with the usage line. The plain census exits 0 with `allowlist: 0 of 21` and `stop: fewer than 30 labeled outputs` and calls no stub. The `--deem` run adds only `deem arm skipped: stub backend`.
+Expected signals: The runner exits 2 and names `'jev'` with the usage line. The plain census exits 0 with `allowlist: 0 of 21` and `stop: fewer than 30 labeled outputs` and calls no stub. The `--jev` run adds the `jev: path=` identity line, `jev arm skipped: version` and a `jev: found=""` line.
 
 #### Test Execution
 > **Feature File:** [5D-051](../manual-testing-playbook/five-d-scorer/unknown-grader-and-d4-census.md)
@@ -808,12 +808,12 @@ Expected signals: `report.json` contains `outcomeScoreDelta`, `fixtureDeltas[]`,
 ### MB-052 | Zero-Call Fixture Census and Stub-Backend Skip
 
 #### Description
-`score-verdict-fallback.cjs` prints its fixture census without a model call and skips a stub Deem backend by name.
+`score-verdict-fallback.cjs` prints its fixture census without a model call and skips a stub Jev backend by name.
 
 #### Scenario Contract
-Prompt summary: As a manual-testing orchestrator, validate that the verdict fallback census makes no model call and that a stub Deem backend is skipped by name. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
+Prompt summary: As a manual-testing orchestrator, validate that the verdict fallback census makes no model call and that a stub Jev backend is skipped by name. Return a concise operator-facing PASS/FAIL verdict with the decisive evidence.
 
-Expected signals: The plain census exits 0 with `fixture cases: 8 hits: 8 misses: 0` and `stop: fewer than 12 labeled regex-miss outputs` and calls no stub. The `--deem` run adds only `deem arm skipped: stub backend`.
+Expected signals: The plain census exits 0 with `fixture cases: 8 hits: 8 misses: 0` and `stop: fewer than 12 labeled regex-miss outputs` and calls no stub. The `--jev` run adds the `jev: path=` identity line and `jev arm skipped: no credential`.
 
 #### Test Execution
 > **Feature File:** [MB-052](../manual-testing-playbook/model-benchmark-mode/verdict-fallback-census.md)
