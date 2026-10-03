@@ -36,24 +36,95 @@ const route = () => ({ decision: { action: 'route' } });
 const modes = () => new Set(['mode-a', 'mode-b']);
 
 const SCRIPT = path.join(__dirname, '..', 'score-clarify-default.cjs');
+const TEST_REPO_ROOT = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-router-repo-'));
+const TEST_ROUTER_FILE = path.join(
+  TEST_REPO_ROOT,
+  '.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs'
+);
+fs.mkdirSync(path.dirname(TEST_ROUTER_FILE), { recursive: true });
+fs.writeFileSync(TEST_ROUTER_FILE, 'module.exports = {};\n');
+const TEST_CHILD_ROOT = path.join(
+  TEST_REPO_ROOT,
+  '.skilled/bin/lib/compiled-routing/test-router-child'
+);
+fs.mkdirSync(path.join(TEST_CHILD_ROOT, 'lib'), { recursive: true });
+fs.mkdirSync(path.join(TEST_CHILD_ROOT, 'harness'), { recursive: true });
+fs.writeFileSync(path.join(TEST_CHILD_ROOT, 'lib/canary-router.cjs'), 'module.exports = {};\n');
+fs.writeFileSync(
+  path.join(TEST_CHILD_ROOT, 'harness/build-artifacts.cjs'),
+  'module.exports = {};\n'
+);
 
-function writeRowsFile(dir, labels) {
+const skillsRoot = path.join(TEST_REPO_ROOT, '.skilled/skills/hub-x');
+fs.mkdirSync(skillsRoot, { recursive: true });
+fs.writeFileSync(path.join(skillsRoot, 'mode-registry.json'), JSON.stringify({ modes: [
+  { workflowMode: 'mode-a', packet: 'mode-a-packet' },
+  { workflowMode: 'mode-b', packet: 'mode-b-packet' }
+] }));
+for (const [packet, description] of [['mode-a-packet', 'Mode A'], ['mode-b-packet', 'Mode B']]) {
+  const packetRoot = path.join(skillsRoot, packet);
+  fs.mkdirSync(packetRoot, { recursive: true });
+  fs.writeFileSync(
+    path.join(packetRoot, 'SKILL.md'),
+    '---\ndescription: ' + description + '\n---\n'
+  );
+}
+
+const testRouter = {
+  HUB_CHILD: { 'hub-x': 'test-router-child' },
+  loadHubEngine(hub) {
+    if (hub !== 'hub-x') throw new Error('unknown hub: ' + hub);
+    return {
+      snapshot: { policy: { effectivePolicyHash: 'policy-test', activationGeneration: 7 } },
+      evaluate: (_snapshot, input) => {
+        if (input.prompt.startsWith('route ')) return route();
+        if (input.prompt.startsWith('changed ')) {
+          return clarify(['mode-b', 'mode-a', 'none_of_these']);
+        }
+        return clarify(['mode-a', 'mode-b', 'none_of_these']);
+      }
+    };
+  }
+};
+
+test.after(() => fs.rmSync(TEST_REPO_ROOT, { recursive: true, force: true }));
+
+function writeRowsFile(dir, labels, promptForRow = null) {
   const lines = labels.map((label, i) => JSON.stringify({
     id: 'r' + i,
-    hub: 'cli-external-orchestration',
+    hub: 'hub-x',
     source: 'canary',
-    prompt: 'row ' + i + ' pick=' + (label === 'first' ? 'cli-claude-code' : 'cli-codex') + ' first=cli-claude-code',
-    alternatives: ['cli-claude-code', 'cli-codex'],
+    prompt: promptForRow
+      ? promptForRow(i, label)
+      : 'row ' + i + ' pick=' + (label === 'first' ? 'mode-a' : 'mode-b') + ' first=mode-a',
+    alternatives: ['mode-a', 'mode-b'],
     gold: null,
-    label: label === 'second' ? 'cli-codex' : label === 'first' ? 'cli-claude-code' : ''
+    label: label === 'second' ? 'mode-b'
+      : label === 'first' ? 'mode-a'
+        : label === 'none' ? 'none_of_these' : '',
+    label_approver: '',
+    decision_reference: ''
   }));
   const file = path.join(dir, 'rows.jsonl');
   fs.writeFileSync(file, lines.join('\n') + '\n');
   return file;
 }
 
-function runScript(args) {
-  return spawnSync(process.execPath, [SCRIPT, ...args], { encoding: 'utf8' });
+async function runScript(args, options = {}) {
+  const stdout = [];
+  const stderr = [];
+  const status = await S.main(args, {
+    out: (line) => stdout.push(line),
+    err: (line) => stderr.push('[score-clarify-default] ' + line),
+    repoRoot: TEST_REPO_ROOT,
+    compiledRouter: testRouter,
+    env: options.env || process.env
+  });
+  return {
+    status,
+    stdout: stdout.length ? stdout.join('\n') + '\n' : '',
+    stderr: stderr.length ? stderr.join('\n') + '\n' : ''
+  };
 }
 
 function makeStubs(opts = {}) {
@@ -65,7 +136,15 @@ function makeStubs(opts = {}) {
     '    text=$(cat)',
     '    case "$text" in *fail*) exit 1 ;; esac',
     '    if [ -n "$STUB_CHOICE_EXIT" ]; then exit "$STUB_CHOICE_EXIT"; fi',
-    '    if [ "$STUB_PICK" = "first" ]; then',
+    '    if [ "$STUB_PICK" = "disagree" ]; then',
+    '      count=$(cat "$STUB_LOG.choice-count" 2>/dev/null || echo 0)',
+    '      if [ $((count % 3)) -eq 1 ]; then',
+    "        key=$(printf '%s' \"$text\" | sed -n 's/.*pick=\\([^ ]*\\).*/\\1/p')",
+    '      else',
+    "        key=$(printf '%s' \"$text\" | sed -n 's/.*first=\\([^ ]*\\).*/\\1/p')",
+    '      fi',
+    '      printf "%s\\n" "$((count + 1))" > "$STUB_LOG.choice-count"',
+    '    elif [ "$STUB_PICK" = "first" ]; then',
     "      key=$(printf '%s' \"$text\" | sed -n 's/.*first=\\([^ ]*\\).*/\\1/p')",
     '    else',
     "      key=$(printf '%s' \"$text\" | sed -n 's/.*pick=\\([^ ]*\\).*/\\1/p')",
@@ -104,8 +183,7 @@ function makeStubs(opts = {}) {
 }
 
 function runWithStubs(stubs, args, extraEnv = {}) {
-  return spawnSync(process.execPath, [SCRIPT, ...args], {
-    encoding: 'utf8',
+  return runScript(args, {
     env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, ...extraEnv }
   });
 }
@@ -185,12 +263,29 @@ test('census keeps checklist alternatives apart and writes no row for them', () 
   assert.deepEqual(rows, []);
 });
 
-test('rowLines writes every label empty', () => {
+test('rowLines writes empty label provenance fields', () => {
   const row = { id: 'a', hub: 'h', source: 'canary', prompt: 'p', alternatives: ['m1', 'm2'], gold: 'm2' };
   const parsed = JSON.parse(S.rowLines([row])[0]);
 
-  assert.deepEqual(parsed, { ...row, label: '' });
-  assert.deepEqual(Object.keys(parsed), ['id', 'hub', 'source', 'prompt', 'alternatives', 'gold', 'label']);
+  assert.deepEqual(parsed, { ...row, label: '', label_approver: '', decision_reference: '' });
+  assert.deepEqual(Object.keys(parsed), [
+    'id', 'hub', 'source', 'prompt', 'alternatives', 'gold', 'label',
+    'label_approver', 'decision_reference'
+  ]);
+});
+
+test('labelRows preserves approver and decision reference fields', () => {
+  const row = {
+    id: 'a', hub: 'hub-x', source: 'canary', prompt: 'p', alternatives: ['mode-a', 'mode-b'],
+    gold: null,
+    label: 'mode-b',
+    label_approver: 'reviewer@example.test',
+    decision_reference: 'decision-42'
+  };
+
+  const { labeled } = S.labelRows([row]);
+  assert.equal(labeled[0].label_approver, 'reviewer@example.test');
+  assert.equal(labeled[0].decision_reference, 'decision-42');
 });
 
 test('parseArgs reads both census flags and refuses an unknown flag or a missing value', () => {
@@ -203,12 +298,12 @@ test('parseArgs reads both census flags and refuses an unknown flag or a missing
   assert.equal(S.parseArgs(['--rows-out']).error, 'missing value for --rows-out');
 });
 
-test('the Jev arm refuses to run without an output directory', () => {
+test('the Jev arm refuses to run without an output directory', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   const stubs = makeStubs();
   try {
     const file = writeRowsFile(dir, Array(30).fill('second'));
-    const result = runWithStubs(stubs, ['--score', file, '--jev']);
+    const result = await runWithStubs(stubs, ['--score', file, '--jev']);
 
     assert.equal(result.status, 2);
     assert.equal(result.stdout, '');
@@ -271,11 +366,11 @@ test('the transcript count prints counts and no transcript text', { timeout: 120
   }
 });
 
-test('the gate stops at 29 labeled rows', () => {
+test('the gate stops at 29 labeled rows', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   try {
     const file = writeRowsFile(dir, [...Array(29).fill('second'), '', '', '']);
-    const result = runScript(['--score', file]);
+    const result = await runScript(['--score', file]);
 
     assert.equal(result.status, 0);
     assert.ok(result.stdout.includes('rows: 32 labeled=29 operator=29 committed_gold=0'));
@@ -286,12 +381,14 @@ test('the gate stops at 29 labeled rows', () => {
   }
 });
 
-test('the Jev arm stops at the label gate without invoking the stub', () => {
+test('the Jev arm stops at the label gate without invoking the stub', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   const stubs = makeStubs();
   try {
     const file = writeRowsFile(dir, Array(29).fill('second'));
-    const result = runWithStubs(stubs, ['--score', file, '--jev', '--out', path.join(dir, 'out')]);
+    const result = await runWithStubs(stubs, [
+      '--score', file, '--jev', '--out', path.join(dir, 'out')
+    ]);
 
     assert.equal(result.status, 0);
     assert.ok(result.stdout.includes('stop: fewer than 30 labeled rows (29 labeled)'));
@@ -302,15 +399,20 @@ test('the Jev arm stops at the label gate without invoking the stub', () => {
   }
 });
 
-test('30 labeled rows pass the gate and print the fixed rule lines', () => {
+test('30 labeled rows print baselines and class-by-hub results', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   try {
     const file = writeRowsFile(dir, Array(30).fill('second'));
-    const result = runScript(['--score', file]);
+    const result = await runScript(['--score', file]);
 
     assert.equal(result.status, 0);
     assert.ok(!result.stdout.includes('stop: fewer'));
     assert.ok(result.stdout.includes('baseline: first alternative right on 0/30'));
+    assert.ok(result.stdout.includes('baseline: second alternative right on 30/30'));
+    assert.ok(result.stdout.includes('baseline: always none right on 0/30'));
+    assert.ok(result.stdout.includes(
+      'result: hub=hub-x class=mode rows=30 first=0/30 second=30/30 always_none=0/30'
+    ));
     assert.ok(result.stdout.includes('margin: 0.10'));
     assert.ok(result.stdout.includes('keep rule: coverage 10*M >= 9*K, kill P(X >= L) <= 0.05, margin 10*(A-B) >= M, sign test p < 0.05, flips 10*F <= 3*M'));
     assert.ok(result.stdout.includes('headroom: a 10-point gain fits above 0/30'));
@@ -320,7 +422,130 @@ test('30 labeled rows pass the gate and print the fixed rule lines', () => {
   }
 });
 
-test("a label outside the row's alternatives exits 2 and names the row", () => {
+test('class and hub results separate named-mode labels from none labels', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  try {
+    const file = writeRowsFile(dir, [...Array(15).fill('none'), ...Array(15).fill('second')]);
+    const result = await runScript(['--score', file]);
+
+    assert.equal(result.status, 0);
+    assert.ok(result.stdout.includes('baseline: always none right on 15/30'));
+    assert.ok(result.stdout.includes('result: hub=hub-x class=mode rows=15'));
+    assert.ok(result.stdout.includes('result: hub=hub-x class=none rows=15'));
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('a row that no longer clarifies is refused while the rest are scored', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  try {
+    const promptForRow = (i) => i === 0
+      ? 'route this request'
+      : 'row ' + i + ' pick=mode-b first=mode-a';
+    const file = writeRowsFile(dir, Array(31).fill('second'), promptForRow);
+    const result = await runScript(['--score', file]);
+
+    assert.equal(result.status, 0);
+    assert.ok(result.stdout.includes('replay refused: r0 (route)'));
+    assert.ok(result.stdout.includes('rows: 31 labeled=30 operator=30 committed_gold=0'));
+    assert.ok(result.stdout.includes('baseline: second alternative right on 30/30'));
+    assert.ok(result.stdout.includes('result: hub=hub-x class=mode rows=30'));
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('a row that no longer clarifies is dropped before the Jev arm calls on it', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const promptForRow = (i) => i === 0
+      ? 'route this request'
+      : 'row ' + i + ' pick=mode-b first=mode-a';
+    const file = writeRowsFile(dir, Array(31).fill('second'), promptForRow);
+    const out = path.join(dir, 'out');
+    const result = await runWithStubs(stubs, ['--score', file, '--jev', '--out', out]);
+
+    assert.equal(result.status, 0);
+    assert.ok(result.stdout.includes('replay refused: r0 (route)'));
+    assert.ok(result.stdout.includes('jev: calls=61 choice_calls=60 early_stops=30'));
+
+    const calls = fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8')
+      .trim().split('\n').map((line) => JSON.parse(line));
+    assert.ok(!calls.some((call) => call.row_id === 'r0'));
+    assert.ok(calls.some((call) => call.row_id === 'r1'));
+
+    const choiceCalls = fs.readFileSync(stubs.log, 'utf8')
+      .split('\n')
+      .filter((line) => line.startsWith('jev choice '));
+    assert.equal(choiceCalls.length, 60);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
+test('a replay with changed alternatives is refused', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  try {
+    const promptForRow = (i) => i === 0
+      ? 'changed alternatives'
+      : 'row ' + i + ' pick=mode-b first=mode-a';
+    const file = writeRowsFile(dir, Array(30).fill('second'), promptForRow);
+    const result = await runScript(['--score', file]);
+
+    assert.equal(result.status, 2);
+    assert.equal(result.stdout, '');
+    assert.ok(result.stderr.includes('row r0 replay alternatives changed'));
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('score report records replay identity and four digests', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const file = writeRowsFile(dir, [...Array(15).fill('none'), ...Array(15).fill('second')]);
+    const rows = fs.readFileSync(file, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    rows[0].label_approver = 'reviewer@example.test';
+    rows[0].decision_reference = 'decision-42';
+    fs.writeFileSync(file, rows.map((row) => JSON.stringify(row)).join('\n') + '\n');
+    const out = path.join(dir, 'out');
+    const result = await runWithStubs(
+      stubs,
+      ['--score', file, '--jev', '--out', out],
+      { STUB_AUTH_EXIT: '3' }
+    );
+
+    assert.equal(result.status, 0);
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    for (const name of ['rows', 'labels', 'options', 'scorer']) {
+      assert.match(report.digests[name].sha256, /^[a-f0-9]{64}$/);
+    }
+    assert.equal(report.digests.rows.count, 30);
+    assert.equal(report.digests.labels.count, 30);
+    assert.equal(report.digests.options.count, 3);
+    assert.equal(report.rows[0].replay.action, 'clarify');
+    assert.equal(report.rows[0].replay.policyHash, 'policy-test');
+    assert.equal(report.rows[0].replay.generation, 7);
+    assert.equal(report.labels[0].label_approver, 'reviewer@example.test');
+    assert.equal(report.labels[0].decision_reference, 'decision-42');
+    assert.match(report.buildIdentity['hub-x'].buildId, /^[a-f0-9]{64}$/);
+    assert.equal(report.buildIdentity['hub-x'].policyHash, 'policy-test');
+    assert.equal(report.buildIdentity['hub-x'].generation, 7);
+    assert.deepEqual(report.resultsByClassAndHub.map((result) => result.class), ['mode', 'none']);
+    assert.equal(report.resultsByClassAndHub[0].hub, 'hub-x');
+    assert.deepEqual(report.baselines.secondAlternative, { correct: 15, total: 30 });
+    assert.deepEqual(report.baselines.alwaysNone, { correct: 15, total: 30 });
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
+test("a label outside the row's alternatives exits 2 and names the row", async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   try {
     const file = writeRowsFile(dir, Array(30).fill('second'));
@@ -328,7 +553,7 @@ test("a label outside the row's alternatives exits 2 and names the row", () => {
     rows[4].label = 'cli-bogus';
     fs.writeFileSync(file, rows.map((row) => JSON.stringify(row)).join('\n') + '\n');
 
-    const result = runScript(['--score', file]);
+    const result = await runScript(['--score', file]);
 
     assert.equal(result.status, 2);
     assert.equal(result.stdout, '');
@@ -338,11 +563,11 @@ test("a label outside the row's alternatives exits 2 and names the row", () => {
   }
 });
 
-test('a baseline above nine tenths prints no headroom', () => {
+test('a baseline above nine tenths prints no headroom', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   try {
     const file = writeRowsFile(dir, [...Array(28).fill('first'), 'second', 'second']);
-    const result = runScript(['--score', file]);
+    const result = await runScript(['--score', file]);
 
     assert.equal(result.status, 0);
     assert.ok(result.stdout.includes('no headroom: the first alternative is right on 28/30, above 0.90'));
@@ -396,14 +621,18 @@ test('scoreColumn counts measured, unstable and flips', () => {
   );
 });
 
-test('a jev without a credential prints its identity and one skip line', () => {
+test('a jev without a credential prints its identity and one skip line', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   const stubs = makeStubs();
   try {
     const file = writeRowsFile(dir, Array(30).fill('second'));
     const identity = 'jev: path=' + path.join(stubs.dir, 'jev') + ' provider=official';
-    const base = runWithStubs(stubs, ['--score', file]);
-    const result = runWithStubs(stubs, ['--score', file, '--jev', '--out', path.join(dir, 'out')], { STUB_AUTH_EXIT: '3' });
+    const base = await runWithStubs(stubs, ['--score', file]);
+    const result = await runWithStubs(
+      stubs,
+      ['--score', file, '--jev', '--out', path.join(dir, 'out')],
+      { STUB_AUTH_EXIT: '3' }
+    );
 
     assert.equal(result.status, 0);
     assert.ok(result.stdout.includes(identity));
@@ -415,19 +644,25 @@ test('a jev without a credential prints its identity and one skip line', () => {
   }
 });
 
-test('jev off PATH and a wrong jev version each skip', () => {
+test('jev off PATH and a wrong jev version each skip', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   const absent = makeStubs({ jev: false });
   const stubs = makeStubs();
   try {
     const file = writeRowsFile(dir, Array(30).fill('second'));
 
-    const missing = runWithStubs(absent, ['--score', file, '--jev', '--out', path.join(dir, 'out')]);
+    const missing = await runWithStubs(absent, [
+      '--score', file, '--jev', '--out', path.join(dir, 'out')
+    ]);
     assert.equal(missing.status, 0);
     assert.ok(missing.stdout.includes('jev: path=none provider=official'));
     assert.ok(missing.stdout.includes('jev arm skipped: jev not on PATH'));
 
-    const wrong = runWithStubs(stubs, ['--score', file, '--jev', '--out', path.join(dir, 'out')], { STUB_JEV_VERSION: 'jev 0.5.0' });
+    const wrong = await runWithStubs(
+      stubs,
+      ['--score', file, '--jev', '--out', path.join(dir, 'out')],
+      { STUB_JEV_VERSION: 'jev 0.5.0' }
+    );
     assert.equal(wrong.status, 0);
     assert.ok(wrong.stdout.includes('jev arm skipped: version'));
     assert.ok(wrong.stdout.includes('jev: found="jev 0.5.0" path=' + path.join(stubs.dir, 'jev')));
@@ -438,26 +673,114 @@ test('jev off PATH and a wrong jev version each skip', () => {
   }
 });
 
-test('a jev stub that answers the label keeps', { timeout: 120000 }, () => {
+test('two agreeing orders keep only the two measured votes', { timeout: 120000 }, async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   const stubs = makeStubs();
   try {
     const file = writeRowsFile(dir, Array(30).fill('second'));
     const out = path.join(dir, 'out');
-    const result = runWithStubs(stubs, ['--score', file, '--jev', '--out', out]);
+    const result = await runWithStubs(stubs, ['--score', file, '--jev', '--out', out]);
 
     assert.equal(result.status, 0);
-    assert.ok(result.stdout.includes('planned_calls=91'));
+    assert.ok(result.stdout.includes('planned_calls=61 max_calls=91'));
     assert.ok(result.stdout.includes('jev: auth_test provider=official model=stub-jev-model'));
     assert.ok(result.stdout.includes('verdict jev: keep K=30 M=30 A=30 B=0 W=30 L=0 F=0 p=9.313e-10 jev_version=0.6.2 provider=official model=stub-jev-model'));
-    assert.equal(fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8').trim().split('\n').length, 91);
+    assert.ok(result.stdout.includes('jev: calls=61 choice_calls=60 early_stops=30'));
+    const callLines = fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8').trim().split('\n');
+    assert.equal(callLines.length, 61);
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    assert.deepEqual(report.columns.jev.picks.r0, ['mode-b', 'mode-b']);
+    assert.ok(report.columns.jev.inferredThirdOrderIds.includes('r0'));
+    const inputRows = fs.readFileSync(file, 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line));
+    const labeled = S.labelRows(inputRows).labeled;
+    const inferredPicks = new Map(Object.entries(report.columns.jev.picks));
+    const referenceCounts = S.scoreColumn(labeled, inferredPicks);
+    for (const key of ['K', 'M', 'A', 'B', 'W', 'L', 'F']) {
+      assert.equal(report.columns.jev[key], referenceCounts[key]);
+    }
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
     fs.rmSync(stubs.dir, { recursive: true, force: true });
   }
 });
 
-test('four failing Jev rows in thirty stop on coverage', { timeout: 120000 }, () => {
+test('an early stop keeps two measured votes and adds no flip', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const file = writeRowsFile(dir, Array(30).fill('second'));
+    const out = path.join(dir, 'out');
+    const result = await runWithStubs(stubs, ['--score', file, '--jev', '--out', out]);
+
+    assert.equal(result.status, 0);
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    // The stub answers both measured orders with the row's pick, so the row
+    // stops before the third order and keeps only those two measured votes.
+    assert.deepEqual(report.columns.jev.picks.r0, ['mode-b', 'mode-b']);
+    // Every row early stops on two agreeing votes, so the class and hub Jev
+    // totals must count those rows instead of dropping them as unmeasured.
+    assert.ok(result.stdout.includes(
+      'result: hub=hub-x class=mode rows=30 first=0/30 second=30/30 always_none=0/30 jev=30/30 accuracy=1.0000'
+    ));
+
+    const rows = fs.readFileSync(file, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    const labeled = S.labelRows(rows).labeled;
+    const earlyCounts = S.scoreColumn(labeled, new Map([['r0', ['mode-b', 'mode-b']]]));
+    const forcedCounts = S.scoreColumn(labeled, new Map([['r0', ['mode-b', 'mode-b', 'mode-a']]]));
+
+    // A forced third call that differs shares the modal pick of the two
+    // agreeing votes, so the early stop agrees on the pick and adds no flip
+    // for the vote it never measured.
+    assert.equal(earlyCounts.A, 1);
+    assert.equal(earlyCounts.A, forcedCounts.A);
+    assert.equal(earlyCounts.F, 0);
+    assert.equal(forcedCounts.F, 1);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
+test('two disagreeing orders trigger the third call', { timeout: 120000 }, async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
+  const stubs = makeStubs();
+  try {
+    const file = writeRowsFile(dir, Array(30).fill('second'));
+    const out = path.join(dir, 'out');
+    const result = await runWithStubs(
+      stubs,
+      ['--score', file, '--jev', '--out', out],
+      { STUB_PICK: 'disagree' }
+    );
+
+    assert.equal(result.status, 0);
+    assert.ok(result.stdout.includes('planned_calls=61 max_calls=91'));
+    assert.ok(result.stdout.includes('jev: calls=91 choice_calls=90 early_stops=0'));
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    assert.deepEqual(report.columns.jev.picks.r0, ['mode-a', 'mode-b', 'mode-a']);
+    assert.deepEqual(report.columns.jev.inferredThirdOrderIds, []);
+    const inputRows = fs.readFileSync(file, 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line));
+    const labeled = S.labelRows(inputRows).labeled;
+    const recordedPicks = new Map(Object.entries(report.columns.jev.picks));
+    const referenceCounts = S.scoreColumn(labeled, recordedPicks);
+    for (const key of ['K', 'M', 'A', 'B', 'W', 'L', 'F']) {
+      assert.equal(report.columns.jev[key], referenceCounts[key]);
+    }
+    const callLines = fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8').trim().split('\n');
+    assert.equal(callLines.length, 91);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.rmSync(stubs.dir, { recursive: true, force: true });
+  }
+});
+
+test('four failing Jev rows in thirty stop on coverage', { timeout: 120000 }, async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   const stubs = makeStubs();
   try {
@@ -466,7 +789,9 @@ test('four failing Jev rows in thirty stop on coverage', { timeout: 120000 }, ()
     for (let i = 0; i < 4; i += 1) rows[i].prompt += ' fail';
     fs.writeFileSync(file, rows.map((row) => JSON.stringify(row)).join('\n') + '\n');
 
-    const result = runWithStubs(stubs, ['--score', file, '--jev', '--out', path.join(dir, 'out')]);
+    const result = await runWithStubs(stubs, [
+      '--score', file, '--jev', '--out', path.join(dir, 'out')
+    ]);
 
     assert.equal(result.status, 0);
     assert.ok(result.stdout.includes('verdict jev: stop (coverage) K=30 M=26'));
@@ -476,12 +801,16 @@ test('four failing Jev rows in thirty stop on coverage', { timeout: 120000 }, ()
   }
 });
 
-test('a rejected key stops the jev arm with no verdict', () => {
+test('a rejected key stops the jev arm with no verdict', async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'clarify-score-'));
   const stubs = makeStubs();
   try {
     const file = writeRowsFile(dir, Array(30).fill('second'));
-    const result = runWithStubs(stubs, ['--score', file, '--jev', '--out', path.join(dir, 'out')], { STUB_CHOICE_EXIT: '3' });
+    const result = await runWithStubs(
+      stubs,
+      ['--score', file, '--jev', '--out', path.join(dir, 'out')],
+      { STUB_CHOICE_EXIT: '3' }
+    );
 
     assert.equal(result.status, 0);
     assert.ok(result.stdout.includes('jev arm stopped: key rejected'));
@@ -491,4 +820,43 @@ test('a rejected key stops the jev arm with no verdict', () => {
     fs.rmSync(dir, { recursive: true, force: true });
     fs.rmSync(stubs.dir, { recursive: true, force: true });
   }
+});
+
+test('a replay of the recorded three-order run matches every full modal pick within 118 calls', () => {
+  const fixture = path.join(__dirname, 'fixtures', '047-020-recorded-picks.jsonl');
+  const records = fs.readFileSync(fixture, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+
+  const byRow = new Map();
+  for (const record of records) {
+    if (!byRow.has(record.row_id)) byRow.set(record.row_id, []);
+    byRow.get(record.row_id).push(record);
+  }
+
+  let choiceCalls = 0;
+  let matched = 0;
+  for (const orders of byRow.values()) {
+    orders.sort((a, b) => a.order - b.order);
+    const full = orders.map((record) => record.pick);
+
+    // The arm measures orders in turn and stops once two measured orders agree,
+    // so only the votes it actually measured decide the row's pick.
+    const replay = [];
+    for (let i = 0; i < orders.length; i += 1) {
+      if (i >= 2 && S.modalPick(replay).pick !== null) break;
+      replay.push(orders[i].pick);
+      choiceCalls += 1;
+    }
+
+    assert.equal(
+      S.modalPick(replay).pick,
+      S.modalPick(full).pick,
+      'modal pick of row ' + orders[0].row_id
+    );
+    if (S.modalPick(replay).pick === S.modalPick(full).pick) matched += 1;
+  }
+
+  assert.equal(byRow.size, 54);
+  assert.equal(matched, 54);
+  // Every measured order is one choice call; the one auth test adds the final call.
+  assert.ok(choiceCalls + 1 <= 118, 'choice calls ' + choiceCalls + ' plus the auth call must total 118 or fewer');
 });
