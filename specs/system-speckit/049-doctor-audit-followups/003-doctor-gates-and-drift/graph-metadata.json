@@ -60,7 +60,7 @@
       ".skilled/skills/system-spec-kit/runtime/cli/metrics/README.md",
       "specs/system-speckit/048-doctor-command-audit/003-update/spec.md",
       "specs/system-speckit/048-doctor-command-audit/013-speckit-retrieval/implementation-summary.md",
-      "scratch/findings-recheck.md"
+      ".skilled/scripts/git-hooks/tests/pre-commit.test.sh"
     ],
     "entities": [
       {
@@ -160,9 +160,9 @@
         "source": "derived"
       },
       {
-        "name": "findings-recheck.md",
-        "kind": "doc",
-        "path": "scratch/findings-recheck.md",
+        "name": "pre-commit.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nine defects recorded across the audit remain open",
     "created_at": "2026-10-03T05:27:41Z",
-    "last_save_at": "2026-10-03T07:21:12.253Z",
+    "last_save_at": "2026-10-03T10:31:04.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b73f955850f5fa5a79a82eb424c8eb90734f0b325a55d4a8edc2b632c0b38a1",
+    "source_fingerprint": "sha256:ba6186ed54fee5fb6bf097418731242ce285e6d703d0949cecf5d459296e1b15",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a787caa3754704ff331c38c6c338aecdb1a703f47c5856717e80092e03b52806",
       "plan.md": "1a81ffffec78c028dbac7e9e55ba37e684b4f0899d4c43aa35699f8d45e59fed",
-      "tasks.md": "193f1c6c9573c9000fd40624d7d90ed13b92cf72c48184ded149aebf489ce6b6",
+      "tasks.md": "9af2d1a291af65e619cb4b7a705ab33c0375d4480a1b65c0d041b4da33581031",
       "decision-record.md": "d563294f39e197fe319613ce7a5c803b6ead727455954e3179af48e293f31bcf",
-      "implementation-summary.md": "91283339e0a12f333c5b0d2472e65c54917081d49d1aa15eead71a44f9d0c983"
+      "implementation-summary.md": "be6637df74d2aa4e56eeaabde59b80d9a743b63168795eef72b08af731343ce0"
     },
     "last_active_at": null
   }

@@ -529,7 +529,7 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 - `/speckit:save` returns a save plan by default. Its apply and full-auto modes refresh packet metadata through the continuity writer `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`
 - Recovery is the continuity ladder that `/speckit:resume` owns, not a session lookup
 - `/speckit:search` runs the two lexical lanes
-- `/doctor speckit-retrieval` checks that the index and the recipes are still healthy
+- `/doctor:speckit speckit-retrieval` checks that the index and the recipes are still healthy
 - The skill advisor owns the shared model server and embedding provider
 
 ---
@@ -1192,15 +1192,15 @@ The active autonomous loop families (the improvement family carries two lanes). 
 &nbsp;
 #### DOCTOR
 
-Four commands cover every spec-kit diagnostic surface. Run `/doctor` with no target to see the interactive menu. Upgrade users see "Update everything to match latest release" as option 1.
+Five commands cover every spec-kit diagnostic surface. Run `/doctor:speckit` with no target to see the interactive menu. Upgrade users see "Update everything to match latest release" as option 1.
 
-**`/doctor <target>` (router)**
+**`/doctor:speckit <target>` (router)**
 
 - Single entry point for 9 targets: `speckit-retrieval` (checks the trigger index, its lookup and the ripgrep recipes), `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `router-reach`, `fable-mode`, `runtime-mirrors`
 - Argv-positional dispatch via `.skilled/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
 - Each target loads its own self-contained YAML workflow under `assets/doctor-<target>.yaml`
 - Interactive menu when no target supplied. Tier 2 per-target prompt when a required flag is missing
-- Examples: `/doctor skill-advisor --dry-run`, `/doctor router-reach`, `/doctor fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
+- Examples: `/doctor:speckit skill-advisor --dry-run`, `/doctor:speckit router-reach`, `/doctor:speckit fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
 - `--target=<name>` is preserved as a compatibility alias for flag-only invocation
 
 **`/doctor:mcp install|debug`** - MCP infrastructure repair

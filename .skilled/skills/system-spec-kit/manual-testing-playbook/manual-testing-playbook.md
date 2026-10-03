@@ -38,7 +38,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook is the operator-facing manual validation directory for the `system-spec-kit` engine: validation and its rules, templates and level contracts, scaffolding and `create.sh`, the continuity writer and `generate-context`, generated graph metadata and `description.json`, derived-packet repair, phase decomposition, spec-folder discovery, the surviving hooks and plugins, and the surviving `/doctor` routes. It preserves each scenario's original ID and links every entry to a dedicated file carrying the full execution contract.
+This playbook is the operator-facing manual validation directory for the `system-spec-kit` engine: validation and its rules, templates and level contracts, scaffolding and `create.sh`, the continuity writer and `generate-context`, generated graph metadata and `description.json`, derived-packet repair, phase decomposition, spec-folder discovery, the surviving hooks and plugins, and the surviving `/doctor:speckit` routes. It preserves each scenario's original ID and links every entry to a dedicated file carrying the full execution contract.
 
 ### What This Playbook No Longer Covers
 

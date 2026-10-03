@@ -128,7 +128,7 @@ Three `lib/` modules reach back into `scripts/`: `deep-loop/jsonl-repair.ts` and
 
 The deep-loop dispatch guard checks Task dispatches to deep-loop agents. It flags or blocks a Deep Route header whose mode disagrees with `mode-registry.json`, and repeated non-command dispatches to command-owned loop executors. The policy core is `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs`. Claude reaches it through the PreToolUse Task hook and OpenCode through `.skilled/plugins/system-deep-loop-guard.js`, which never writes to stdout or stderr and turns a denial into a thrown error.
 
-Other consumers call the runtime directly: the `/deep:*` workflow YAMLs through JSON-stdout scripts, `/doctor deep-loop` against `deep-loop-graph.sqlite`, and the system-spec-kit Vitest config, which also discovers `runtime/tests/`. The call shapes and risks are in `runtime/references/integration-points.md`.
+Other consumers call the runtime directly: the `/deep:*` workflow YAMLs through JSON-stdout scripts, `/doctor:speckit deep-loop` against `deep-loop-graph.sqlite`, and the system-spec-kit Vitest config, which also discovers `runtime/tests/`. The call shapes and risks are in `runtime/references/integration-points.md`.
 
 ---
 

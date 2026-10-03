@@ -149,7 +149,7 @@ function tableRows(text) {
 
 // A row names a command either by its invocation id or by its file path. The
 // doctor router is the reason both count: it ships as doctor/speckit.md but is
-// invoked as `/doctor <target>`, so its index row names the backing file.
+// invoked as `/doctor:speckit <target>`, so its index row names the backing file.
 function catalogNames(rows, command) {
   return rows.includes(command.id) || rows.includes(command.rel);
 }

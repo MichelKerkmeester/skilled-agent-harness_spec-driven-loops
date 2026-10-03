@@ -245,7 +245,7 @@
       },
       "routing_source": "manifest",
       "timeout_bounds": { "warm_probe_timeout_ms": 500 },
-      "invocation_aliases": ["/doctor <target>", "/doctor list", "/doctor ?", "/doctor:mcp <install|debug>", "/doctor:rebuild", "/doctor:update [check|align|apply] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]"],
+      "invocation_aliases": ["/doctor:speckit <target>", "/doctor:speckit list", "/doctor:speckit ?", "/doctor:mcp <install|debug>", "/doctor:rebuild", "/doctor:update [check|align|apply] [flags]", "/doctor:env [list | <section> | <VARIABLE>] [--dry-run]"],
       "workflow_schema_ref": null
     },
     "deep": {

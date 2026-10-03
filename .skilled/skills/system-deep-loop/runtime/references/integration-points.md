@@ -60,11 +60,11 @@ Research graph semantics: `loopType` is `research`; node kinds include `QUESTION
 
 ## 4. DOCTOR CONSUMER
 
-`/doctor deep-loop` treats the runtime SQLite store as a mutating diagnostic route.
+`/doctor:speckit deep-loop` calls status, query and convergence with `--read-only`. Its route is `add-only` only because the workflow writes its packet-local state log.
 
 | Route | Target | Mutation class |
 |---|---|---|
-| `deep-loop` | `.skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite` | `mutates` |
+| `deep-loop` | `.skilled/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite` (read through `--read-only`) | `add-only` (packet-local state log only) |
 
 Doctor integration patterns:
 
@@ -156,7 +156,7 @@ The following consumers were surfaced by a deep-research audit and were absent f
 |---|----------|------|-------------------|
 | 1 | `/deep:ai-council` command | `.skilled/commands/deep/assets/deep_ai_council_{auto,confirm}.yaml` | Loads 3 `lib/council/*.cjs` modules via require() for multi-seat dispatch + round-state JSONL + adjudicator scoring |
 | 2 | `deep-ai-council` orchestration | `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-{session,topic}.cjs` | 8 require() calls across all 5 `lib/council/*.cjs` modules |
-| 3 | `/doctor` route manifest | `.skilled/commands/doctor/_routes.yaml:88-104` | gate3_location + 4 script_invocations + 4 trigger_phrases routing operator commands to runtime/ scripts |
+| 3 | `/doctor:speckit` route manifest | `.skilled/commands/doctor/_routes.yaml:50-65` | Deep-loop entry has 3 `script_invocations` and 4 `trigger_phrases`. All three calls use `--read-only` |
 | 4 | `/doctor:rebuild` command | `.skilled/commands/doctor/rebuild.md` + `.skilled/commands/doctor/assets/doctor-rebuild.yaml` | References deep-loop scripts plus the `.pre-doctor-rebuild.*.bak` backup-pattern reads |
 | 6 | Legacy MCP server READMEs | `.skilled/skills/system-spec-kit/runtime/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the runtime move |
 | 7 | Doctor + deep-improvement | `.skilled/commands/doctor/assets/doctor-deep-loop.yaml` + `doctor-rebuild.yaml` + `.skilled/skills/system-deep-loop/deep-improvement/scripts/lib/README.md:26` | Cross-references to deep-loop runtime from doctor command assets and the deep-improvement script-lib documentation |
