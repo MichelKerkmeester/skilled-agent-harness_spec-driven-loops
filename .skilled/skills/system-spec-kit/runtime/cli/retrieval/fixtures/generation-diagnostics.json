@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 57,
     "missing-frontmatter": 6641,
-    "ok": 12830,
+    "ok": 12846,
     "valid-empty-list": 3519
   },
-  "documentsScanned": 23047,
+  "documentsScanned": 23063,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c85d31423e6f02e6ade140ab68f0cca8b9c60bef4f86285172f9e489da893e6d",
+  "manifestHash": "bd90cc312441ba0d787fecbfd85e45246c934436d97f7fc8ed5607d98e6a4a5c",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -42,7 +42,7 @@
       "editor-fallback": 2,
       "generic-workflow-word": 3,
       "numeric-only": 33,
-      "ok": 33154,
+      "ok": 33158,
       "prose-sentence": 25,
       "single-token": 237,
       "stop-word-only": 2
@@ -66178,6 +66178,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/scratch",
       "reason": "excluded directory"
     },
@@ -67883,6 +67891,10 @@
     },
     {
       "path": "specs/system-deep-loop/039-review-state-init-and-dispatch/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/040-cli-pi-opencode-go-route/scratch",
       "reason": "excluded directory"
     },
     {
