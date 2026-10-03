@@ -75,7 +75,8 @@ A fan-out run merges every finding a lineage writes, fails fast on a refusal tha
 - The iteration prompt pack restates that a delta finding's text goes in `label`
 - The runner classifies a lineage that stopped on a gateway projection refusal as non-retryable
 - The iteration prompt pack tells a fan-out lineage to record a contradiction as a finding and continue, since no operator is present
-- The iteration prompt pack gives the lineage directory as an absolute path for every write
+- The iteration prompt pack tells the lineage to write each artifact at the exact lineage path it is given, never a bare filename or a rebuilt path
+- The runner hands each lineage its directory as an absolute path, so the verbatim paths cannot land at the repository root
 
 ### Out of Scope
 - The config-row fault itself - child 011 owns it
@@ -87,9 +88,10 @@ A fan-out run merges every finding a lineage writes, fails fast on a refusal tha
 | ----------- | ------------- | ------------- |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Modify | Read `claim` and `summary`, warn on unreadable finding rows |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts` | Modify | Cases for the new fields and the warning |
-| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Projection refusal is non-retryable |
-| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | Case for the refusal classification |
-| `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` | Modify | Field name, contradiction handling, absolute lineage path |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | Projection refusal is non-retryable, absolute lineage directory |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts` | Modify | Cases for the refusal classification and the absolute lineage directory |
+| `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl` | Modify | Field name, contradiction handling, verbatim lineage-path rule |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts` | Modify | Render assertions for the three iteration-prompt instructions |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -108,7 +110,8 @@ A fan-out run merges every finding a lineage writes, fails fast on a refusal tha
 | ID | Requirement | Acceptance Criteria |
 | ---- | ------------- | --------------------- |
 | REQ-002 | A lineage stopped by a gateway projection refusal is not retried. | A test feeds the refusal and asserts one attempt and a non-retryable class. |
-| REQ-003 | The prompt pack states the `label` field, the contradiction rule and the absolute lineage path. | A read of the rendered prompt shows all three. |
+| REQ-003 | The prompt pack states the `label` field, the contradiction rule and the verbatim lineage-path rule. | A render test asserts all three instructions in the rendered prompt. |
+| REQ-004 | The runner resolves the lineage directory to an absolute path before it builds the lineage prompt. | A test builds a lineage prompt from a relative base directory and asserts the absolute lineage path. |
 <!-- /ANCHOR:requirements -->
 
 ---

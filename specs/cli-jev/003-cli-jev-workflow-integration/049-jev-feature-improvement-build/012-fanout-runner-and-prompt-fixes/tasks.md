@@ -44,8 +44,8 @@ contextType: "general"
 ## Phase 2: Implementation
 
 - [ ] T003 Read `claim` and `summary` in the merge and warn on unreadable finding rows
-- [ ] T004 Classify a gateway projection refusal as non-retryable in the runner
-- [ ] T005 Add the field name, contradiction rule and absolute path to the iteration prompt pack
+- [ ] T004 Classify a gateway projection refusal as non-retryable in the runner, and resolve the lineage directory to an absolute path before the prompt is built
+- [ ] T005 Add the field name, contradiction rule and verbatim lineage-path rule to the iteration prompt pack, with render assertions
 - [ ] T006 Rebase onto the `fanout-run.cjs` change from `system-deep-loop/040-cli-pi-opencode-go-route` if it has landed
 <!-- /ANCHOR:phase-2 -->
 
