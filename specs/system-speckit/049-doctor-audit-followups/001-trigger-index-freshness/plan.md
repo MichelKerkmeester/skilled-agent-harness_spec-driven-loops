@@ -38,14 +38,14 @@ Regenerate the committed index and sidecars with the existing generator, make th
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Every finding is re-checked against the current tree and still holds, or is marked resolved
-- [ ] The generator's `--check` output is captured before the change as the baseline
-- [ ] `/doctor:rebuild`'s generator leg and its write targets are confirmed
+- [x] Every finding is re-checked against the current tree and still holds, or is marked resolved (`scratch/findings-recheck.md`)
+- [x] The generator's `--check` output is captured before the change as the baseline (`scratch/baseline-check.json`)
+- [x] `/doctor:rebuild`'s generator leg and its write targets are confirmed (`scratch/findings-recheck.md`)
 
 ### Definition of Done
-- [ ] All acceptance criteria met with the named command output
-- [ ] The index and all three sidecars carry one `manifestHash`
-- [ ] Retrieval vitest suites, `node --test`, and `route-validate.sh` pass
+- [x] All acceptance criteria met with the named command output (seven Met, one Superseded by ADR-002)
+- [x] The index and all three sidecars carry one `manifestHash` (`scratch/manifest-hash-compare.txt`)
+- [x] Retrieval vitest suites, `node --test`, and `route-validate.sh` pass (the retrieval code has vitest suites only; the cli vitest project and `route-validate.sh` pass)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -171,9 +171,9 @@ Setup (baseline capture) ──► Core (generator + asset + docs) ──► Ver
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] The four committed artifacts are captured before regeneration
-- [ ] The pre-change `phraseQuality` bucket is captured for diffing
-- [ ] The doctor asset's current phase text is captured
+- [x] The four committed artifacts are captured before regeneration (git holds them at HEAD `1f7746def8`)
+- [x] The pre-change `phraseQuality` bucket is captured for diffing (`scratch/baseline-phrase-quality.json`)
+- [x] The doctor asset's current phase text is captured (git holds it at HEAD `1f7746def8`)
 
 ### Rollback Procedure
 1. `git checkout --` the four artifacts and the edited source files
@@ -255,7 +255,7 @@ Setup (baseline capture) ──► Core (generator + asset + docs) ──► Ver
 
 ### ADR-001: Make folder-token-fallback reachable in generation by sharing the validator's derivation
 
-**Status**: Proposed
+**Status**: Accepted. The bucket gained the `folder-token-fallback` key with no schema change, since its keys are dynamic and no shape assertion lists them. Counting rule when owners disagree: `documents` counts each owner under its own class, and `phrases` counts the phrase once, as `folder-token-fallback` when any owner's folder repeats it. After regeneration the committed bucket reads 43 phrases over 69 documents.
 
 **Context**: `generate-trigger-index.mjs:260` judges normalized phrases with no folder context, so `folder-token-fallback` can never appear in the committed `phraseQuality` bucket, while the per-document validator reports it. One phrase therefore gets two labels depending on which reader looks, and `README.md:93`'s promise that the bucket counts every class is false.
 

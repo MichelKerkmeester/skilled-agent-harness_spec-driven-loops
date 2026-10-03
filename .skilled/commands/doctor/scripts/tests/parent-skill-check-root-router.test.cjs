@@ -66,6 +66,13 @@ function installContractLibrary(hubRoot) {
   fs.copyFileSync(REAL_ROOT_CONTRACT_LIB_PATH, path.join(libDir, 'skill-root-metadata-contract.cjs'));
   fs.copyFileSync(REAL_ROOT_ROUTER_CONTRACT_LIB_PATH, path.join(libDir, 'root-router-contract.cjs'));
   fs.copyFileSync(REAL_S_CLASS_DEFAULTS_PATH, path.join(libDir, 's-class-config-defaults.json'));
+  // The copied contract libraries require @spec-kit/shared, which the real tree
+  // resolves through sk-doc's node_modules link. Recreate that link beside the
+  // copied sk-doc tree so the fixture loads the same module graph; realpathSync
+  // throws when the real link is absent, so a missing install fails loudly.
+  const sharedLink = path.join(path.dirname(hubRoot), 'sk-doc', 'node_modules', '@spec-kit', 'shared');
+  fs.mkdirSync(path.dirname(sharedLink), { recursive: true });
+  fs.symlinkSync(fs.realpathSync(path.join(REAL_SK_DOC_ROOT, 'node_modules', '@spec-kit', 'shared')), sharedLink, 'dir');
 }
 
 function writePacketCompanions(packetDir, packetSkillName) {
@@ -196,7 +203,7 @@ function buildCleanFixture({ routerContent = stage1Router() } = {}) {
   writeJson(path.join(hubRoot, 'hub-router.json'), baseHubRouter());
   writeJson(path.join(hubRoot, 'description.json'), { name: basename, description: 'fixture hub', version: '0.0.0', keywords: ['fixture'] });
   writeJson(path.join(hubRoot, 'command-metadata.json'), []);
-  fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nallowed-tools: [Read]\n---\n# demo-hub\n');
+  fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nversion: 1.0.0.0\nallowed-tools: [Read]\n---\n# demo-hub\n');
   fs.writeFileSync(path.join(hubRoot, 'ROUTER.md'), routerContent);
   fs.mkdirSync(path.join(hubRoot, 'changelog'), { recursive: true });
   fs.writeFileSync(path.join(hubRoot, 'changelog', 'CHANGELOG.md'), '# Changelog\n');

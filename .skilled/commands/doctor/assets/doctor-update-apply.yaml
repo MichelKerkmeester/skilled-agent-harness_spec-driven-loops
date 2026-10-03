@@ -43,17 +43,17 @@ user_inputs:
 
 field_handling:
   defaults:
-    decisions_empty: "use latest alignment run with no file decisions, as the engine defines"
+    decisions_empty: "use the latest alignment run with no file decisions; when no run exists, the engine plans from the current check and writes only update and new units"
     dry_run_empty: false
     release_empty: engine_default_from_plan
     scope_empty: all
   engine_mapping:
-    dry_run: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json --dry-run [--decisions <path>] [--release <tag>] [--scope <value>]"
-    apply: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json [--decisions <path>] [--release <tag>] [--scope <value>]"
+    dry_run: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json --dry-run [--decisions <path>] [--release <tag>] [--scope <value>] [--include-prerelease]"
+    apply: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json [--decisions <path>] [--release <tag>] [--scope <value>] [--include-prerelease]"
     rollback: "node .skilled/commands/doctor/scripts/release-update.cjs rollback --repo . --run <runDir> --json"
   engine_plan_fields: [command, dryRun, writes, skippedUnits, appliedUnits, followUps]
   engine_apply_fields: [command, runDir, release, written, added, deleted, skippedUnits, appliedUnits, followUps]
-  follow_up_fields: [regenerateHubs, reinstallHooks, runtimeMirrors, rebuildDatabases]
+  follow_up_fields: [regenerateHubs, regenerate, reinstallHooks, runtimeMirrors, rebuildDatabases]
 
 mutation_boundaries:
   allowed_targets:
@@ -94,7 +94,7 @@ workflow:
     checks:
       - "Confirm current directory is inside the intended git repository and the engine exists."
       - "Resolve the selected run from --decisions or the engine's latest-run rule; confirm its plan belongs to this repository and matches any supplied release."
-      - "If no alignment run exists, stop without running apply and direct the operator to create one with /doctor:update align. The current engine requires an alignment run even when only update or new units need writes."
+      - "If no alignment run exists and no --decisions path was given, continue: the engine plans from the current check, writes only update and new units, re-verifies each local file against its base under the lock, and records plan.json and rollback.json in a new run directory. Customized or conflicting units are skipped with reason no decisions; direct the operator to /doctor:update align for those. A --decisions path with no plan.json beside it is refused by the engine."
       - "Confirm .skilled/release/.apply.lock does not exist. If present, refuse and do not remove it."
       - "Confirm the run directory and state-log target pass the canonical path validator and are gitignored."
     clean_targets: "The engine's apply --dry-run is authoritative for selected target cleanliness, drift, marker/hash validity and lock absence. A refusal stops before startup approval and before release-managed writes."
@@ -102,7 +102,7 @@ workflow:
 
   phase_2_engine_dry_run:
     approval: none
-    command: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json --dry-run [--decisions <path>] [--release <tag>] [--scope <value>]"
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json --dry-run [--decisions <path>] [--release <tag>] [--scope <value>] [--include-prerelease]"
     flag_rule: "Include only bound optional flags. This command writes no release files, rollback record or lock."
     checks:
       - "Parse the complete writes, skippedUnits, appliedUnits and followUps arrays."
@@ -118,7 +118,7 @@ workflow:
 
   phase_4_engine_apply:
     approval: "Requires the one startup approval. No further startup approval is requested for the exact displayed plan."
-    command: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json [--decisions <path>] [--release <tag>] [--scope <value>]"
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json [--decisions <path>] [--release <tag>] [--scope <value>] [--include-prerelease]"
     engine_guarantees:
       - "Acquire .skilled/release/.apply.lock and refuse if it already exists."
       - "Write <runDir>/rollback.json before the first target file write."

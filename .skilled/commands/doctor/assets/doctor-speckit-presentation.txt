@@ -1,6 +1,6 @@
-# /doctor Presentation Contract
+# /doctor:speckit Presentation Contract
 
-This file is the single source of truth for user-facing presentation in `/doctor <target>`: startup questions, subsystem manifest display, setup dashboards, diagnostic dashboards, result templates, troubleshooting, and next-step text. The command router owns target resolution and asset routing only. The workflow YAML owns execution behavior.
+This file is the single source of truth for user-facing presentation in `/doctor:speckit <target>`: startup questions, subsystem manifest display, setup dashboards, diagnostic dashboards, result templates, troubleshooting, and next-step text. The command router owns target resolution and asset routing only. The workflow YAML owns execution behavior.
 
 ## 1. Startup Presentation
 
@@ -28,7 +28,7 @@ Accepted answers:
 
 | Answer | Result |
 |--------|--------|
-| `1` | Abort `/doctor`; display `Switch to /doctor:rebuild --migrate for upgrade migration. Exiting /doctor.` |
+| `1` | Abort `/doctor:speckit`; display `Switch to /doctor:rebuild --migrate for upgrade migration. Exiting /doctor:speckit.` |
 | `2` | target = `speckit-retrieval` |
 | `6` | target = `deep-loop` |
 | `7` | target = `skill-advisor` |
@@ -38,7 +38,7 @@ Accepted answers:
 | `11` | target = `fable-mode` |
 | `12` | target = `runtime-mirrors` |
 | `13` | target = `router-reach` |
-| `0` | Abort `/doctor`; display `Switch to /doctor:rebuild for full sweep. Exiting /doctor.` |
+| `0` | Abort `/doctor:speckit`; display `Switch to /doctor:rebuild for full sweep. Exiting /doctor:speckit.` |
 | `H` | Show the help block, then ask the startup prompt again |
 | `X`, empty, `cancel` | `STATUS=CANCEL` |
 
@@ -76,14 +76,14 @@ Press 1-2, 6-13, H, 0, or X.
 ```text
 Unknown target: [target]
 Valid targets: speckit-retrieval, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, router-reach, fable-mode, runtime-mirrors
-Try: /doctor list
+Try: /doctor:speckit list
 STATUS=FAIL ERROR="unknown_target"
 ```
 
 ### Cross-Target Flag Failure
 
 ```text
-Flag '[flag]' is not valid for target '[target]'. Did you mean `/doctor [suggested-target] [flag]`?
+Flag '[flag]' is not valid for target '[target]'. Did you mean `/doctor:speckit [suggested-target] [flag]`?
 STATUS=FAIL ERROR="cross_target_flag_injection"
 ```
 

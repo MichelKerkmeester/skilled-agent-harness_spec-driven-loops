@@ -24,9 +24,11 @@ Accepted flags by action:
 
 | Action | Flags |
 |--------|-------|
-| check | `--json`, `--release=<tag>`, `--scope=all|<unit,...>`, `--offline` |
-| align | `--release=<tag>`, `--scope=all|<unit,...>`, `--offline`, `--dry-run` |
-| apply | `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit,...>` |
+| check | `--json`, `--release=<tag>`, `--scope=all|<unit,...>`, `--offline`, `--include-prerelease` |
+| align | `--release=<tag>`, `--scope=all|<unit,...>`, `--offline`, `--dry-run`, `--include-prerelease` |
+| apply | `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit,...>`, `--include-prerelease` |
+
+Latest-upstream resolution takes stable `vN.N.N.N` tags only. `--include-prerelease` also admits `vN.N.N.N-<pre>` tags; both compare version segments as numbers. A tag named with `--release` is used as given.
 
 Bare `/doctor:update` runs `check`. There are no `:auto` or `:confirm` suffixes.
 
@@ -54,6 +56,8 @@ Next steps
 [action-specific next step]
 ```
 
+Files the engine classes `generated` (a leaf manifest, the trigger index and its sidecars, or a graph-metadata change inside its `derived` block) were rewritten by a generator, not edited by an author. They never make a unit customized; show them in the class counts and never offer a decision for them.
+
 Show a row for each unit that is not `current` or `local`, grouped by status. Combine `current` and `local` into the quiet line and include both counts. Include counts for statuses with no matching unit as zero in the summary when the engine report provides status counts. Preserve an unexpected unit status visibly as `unknown`. Show available changelog highlights from the selected release and unit. If upstream latest is unavailable, display `UNKNOWN` and its engine error when present.
 
 ### Check next steps
@@ -72,7 +76,15 @@ No selected units need an update.
 When offering apply without a decisions file, add this note if no earlier alignment run is known:
 
 ```text
-The engine needs an alignment run to hold its apply plan. If none exists, /doctor:update apply will stop and direct you to run /doctor:update align first.
+No alignment run is needed for update and new units. /doctor:update apply plans from the current check, writes only those units, and re-checks each file against its base before writing. Customized or conflicting units are skipped until /doctor:update align records decisions for them.
+```
+
+When the report's `baseRecording.needed` is true, add:
+
+```text
+[count] unit(s) have no recorded base, so their status rests on an inferred base. This is normal right after copying or installing .skilled/. Record the release this tree was installed from, with your approval, by running:
+node .skilled/commands/doctor/scripts/release-update.cjs record-base --release <installed-release>
+It writes .skilled/release/base.json. Commit that file, then run /doctor:update again.
 ```
 
 If the report is unknown, end with:
@@ -186,7 +198,7 @@ Run directory: [runDir]
 
 Applied units: [list or none]
 Skipped units: [unit and reason, or none]
-Follow-up checks: [regenerate hubs, hooks, runtime mirrors, databases]
+Follow-up checks: [regenerate hubs, generated files and their generators, hooks, runtime mirrors, databases]
 Targets modified since alignment: [none or engine refusal]
 ```
 

@@ -3,15 +3,16 @@
 # check-mcp-mutation-class.sh — Mutation-class contract guard for the
 #                               mcp-* install / doctor surface
 # ====================================================================
-# Enforces the read-only / mutating contract declared in the install
-# doctor manifest. Two real bugs shipped because nothing held the line:
+# Enforces the read-only / mutating contract declared in the guard's own
+# mutation-class manifest. Two real bugs shipped because nothing held the line:
 #   - a doctor.sh that connected to every MCP server (read-only violated)
 #   - an install.sh that wiped a global cache under --dry-run
 # This check is the net so a "read-only" doctor that later grows a
 # network or mutation call fails before it merges.
 #
-# Manifest (source of truth for declared class):
-#   .skilled/commands/doctor/assets/doctor-mcp-install.yaml
+# Manifest (source of truth for declared class, owned by this guard so
+# its coverage does not shrink when an install workflow narrows):
+#   .skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml
 #     servers[*].install_script + .install_script_mutation_class
 #     cli_skill_diagnostics[*].install_script / .doctor_script
 #       + their *_mutation_class fields
@@ -31,6 +32,7 @@
 #     node --check, --version/--help probes, pip --version, grep/cat...).
 #   mutating scripts (installers) — only assert they ARE labeled
 #     `mutating` in the manifest. Mutation is expected; not forbidden.
+#   Every manifest-listed script must exist; a missing file fails.
 #
 # Exit codes:
 #   0 — contract holds
@@ -41,7 +43,7 @@
 set -euo pipefail
 
 ROOT="${1:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}"
-MANIFEST="$ROOT/.skilled/commands/doctor/assets/doctor-mcp-install.yaml"
+MANIFEST="$ROOT/.skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml"
 
 command -v python3 >/dev/null 2>&1 || { echo "ERROR: python3 required" >&2; exit 2; }
 [ -f "$MANIFEST" ] || { echo "ERROR: manifest not found: $MANIFEST" >&2; exit 2; }
@@ -207,11 +209,12 @@ while IFS=$'\t' read -r path klass origin; do
       ;;
     mutating)
       # Installers: only assert the label is present (it is, since klass==mutating).
-      # Mutation is expected here; do not scan/forbid. Just confirm the file exists.
+      # Mutation is expected here; do not scan/forbid. The file must exist.
       if [ -f "$path" ]; then
         printf '  PASS  %s  [mutating — installer, label present]\n' "$rel"
       else
-        printf '  PASS  %s  [mutating — declared, file absent (optional installer)]\n' "$rel"
+        printf '  FAIL  %s  [declared mutating but file is missing]\n' "$rel"
+        overall_exit=1
       fi
       ;;
     none)

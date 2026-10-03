@@ -26,16 +26,17 @@ const DIVERGENCE_FILE = path.join(RELEASE_DIR, 'divergence.json');
 const LOCK_FILE = path.join(RELEASE_DIR, '.apply.lock');
 const CONFLICT_MARKER_RE = /^(?:<<<<<<<|=======|>>>>>>>)(?: |$)/m;
 const MAX_MERGE_CELLS = 4000000;
-const USAGE = 'Usage: release-update.cjs <check|align|decide|apply|rollback> [options]';
+const USAGE = 'Usage: release-update.cjs <check|align|decide|apply|rollback|record-base> [options]';
 const HELP_FLAGS = new Set(['--help', '-h']);
 const objectFormats = new Map();
 
 const COMMAND_OPTIONS = {
-  check: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json']),
-  align: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'out', 'dry-run']),
+  check: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'include-prerelease']),
+  align: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'out', 'dry-run', 'include-prerelease']),
   decide: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'run', 'path', 'decision', 'unit', 'defer']),
-  apply: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'decisions', 'dry-run']),
+  apply: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'decisions', 'dry-run', 'include-prerelease']),
   rollback: new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'run']),
+  'record-base': new Set(['repo', 'remote', 'release', 'scope', 'offline', 'json', 'dry-run', 'include-prerelease']),
 };
 
 const COMMAND_PURPOSES = {
@@ -44,16 +45,37 @@ const COMMAND_PURPOSES = {
   decide: 'Record one file decision, or defer one unit, inside an alignment run.',
   apply: 'Write the accepted release files and update the base and divergence records.',
   rollback: 'Restore the paths an alignment run recorded in its rollback plan.',
+  'record-base': 'Record every unit of a named release as the base, for a copied or fresh install.',
 };
+
+// Artifacts a generator writes from local sources. A difference confined to
+// these bytes is regeneration, not authorship: it never makes a unit
+// customized, apply never merges it, and the owning generator reruns after
+// apply. `scope: 'file'` means the generator owns the whole file; `scope:
+// 'derived'` means it owns only the top-level `derived` key of a JSON document,
+// so an edit anywhere else in that file is still an authored change.
+const LEAF_MANIFEST_GENERATOR = 'node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --write <skill-dir>';
+const SKILL_DERIVED_GENERATOR = 'node .skilled/skills/sk-doc/sk-create-skill/scripts/regenerate-skill-derived.cjs --root <skill-dir> --write';
+const TRIGGER_INDEX_GENERATOR = 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs';
+const GENERATED_ARTIFACTS = [
+  { pattern: /^\.skilled\/skills\/.+\/leaf-manifest\.json$/, scope: 'file', generator: LEAF_MANIFEST_GENERATOR },
+  { pattern: /^\.skilled\/skills\/.+\/graph-metadata\.json$/, scope: 'derived', generator: SKILL_DERIVED_GENERATOR },
+  { pattern: /^\.skilled\/skills\/system-spec-kit\/runtime\/data\/trigger-index\.json$/, scope: 'file', generator: TRIGGER_INDEX_GENERATOR },
+  {
+    pattern: /^\.skilled\/skills\/system-spec-kit\/runtime\/cli\/retrieval\/fixtures\/(?:corpus-manifest|generation-diagnostics|phrase-variants)\.json$/,
+    scope: 'file',
+    generator: TRIGGER_INDEX_GENERATOR,
+  },
+];
 
 // Options come from COMMAND_OPTIONS so the help text cannot drift from the parser.
 function helpText() {
   const names = Object.keys(COMMAND_OPTIONS);
   const lines = [USAGE, '', 'Subcommands:'];
-  for (const name of names) lines.push('  ' + name.padEnd(9) + COMMAND_PURPOSES[name]);
+  for (const name of names) lines.push('  ' + name.padEnd(12) + COMMAND_PURPOSES[name]);
   lines.push('', 'Accepted options:');
   for (const name of names) {
-    lines.push('  ' + name.padEnd(9) + [...COMMAND_OPTIONS[name]].map((option) => '--' + option).join(' '));
+    lines.push('  ' + name.padEnd(12) + [...COMMAND_OPTIONS[name]].map((option) => '--' + option).join(' '));
   }
   lines.push(
     '',
@@ -61,6 +83,16 @@ function helpText() {
     '  run directory   ' + RUNS_DIR + '/<release>-<utc-stamp>/',
     '  base manifest   ' + BASE_FILE,
     '  divergence log  ' + DIVERGENCE_FILE,
+    '',
+    'Release policy:',
+    '  Latest-upstream resolution takes stable vN.N.N.N tags only. --include-prerelease',
+    '  also admits vN.N.N.N-<pre> tags; both orders compare numeric segments. A tag named',
+    '  with --release is used as given.',
+    '',
+    'Apply without an alignment run:',
+    '  With no run directory, apply plans from the current check and writes only update',
+    '  and new units, re-verifying each local file against its base at write time.',
+    '  Customized units still need align and a --decisions file.',
     '',
     'Exit codes:',
     '  0  the command completed; a check report is printed whatever the release status',
@@ -148,9 +180,13 @@ function sortTags(tags) {
   return [...new Set(tags)].sort(compareVersions);
 }
 
-function latestTag(tags) {
-  const stable = sortTags(tags.filter(stableReleaseTag));
-  return stable.length ? stable[stable.length - 1] : null;
+function acceptsTag(includePrerelease) {
+  return (tag) => (includePrerelease ? Boolean(parseVersion(tag)) : stableReleaseTag(tag));
+}
+
+function latestTag(tags, includePrerelease = false) {
+  const accepted = sortTags(tags.filter(acceptsTag(includePrerelease)));
+  return accepted.length ? accepted[accepted.length - 1] : null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -280,7 +316,7 @@ function blobBytes(repo, entry) {
 
 function tagNames(repo) {
   const output = git(repo, ['for-each-ref', '--format=%(refname:short)', 'refs/tags']);
-  return output.split(/\r?\n/).filter((tag) => stableReleaseTag(tag));
+  return output.split(/\r?\n/).filter((tag) => Boolean(parseVersion(tag)));
 }
 
 function remoteTags(repo, remote) {
@@ -291,7 +327,7 @@ function remoteTags(repo, remote) {
   }
   const tags = new Set();
   for (const line of result.value.split(/\r?\n/)) {
-    const match = /^[0-9a-f]+\s+refs\/tags\/(v\d+\.\d+\.\d+\.\d+)(?:\^\{\})?$/.exec(line);
+    const match = /^[0-9a-f]+\s+refs\/tags\/(v\d+\.\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?)(?:\^\{\})?$/.exec(line);
     if (match) tags.add(match[1]);
   }
   return { known: true, tags: [...tags], error: null };
@@ -527,6 +563,45 @@ function applyScope(units, scope) {
   return units.filter((unit) => wanted.has(unit.name));
 }
 
+function generatedArtifact(filePath) {
+  return GENERATED_ARTIFACTS.find((artifact) => artifact.pattern.test(filePath)) || null;
+}
+
+function jsonWithoutDerived(bytes) {
+  if (!bytes) return null;
+  try {
+    const document = JSON.parse(Buffer.from(bytes).toString('utf8'));
+    if (!document || typeof document !== 'object' || Array.isArray(document)) return null;
+    const { derived, ...authored } = document;
+    return JSON.stringify(authored);
+  } catch {
+    return null;
+  }
+}
+
+// Reclassify a differing file that only a generator changed. Returns null when
+// the generic class stands: an authored edit stays local-only or a conflict.
+// Content is read only for the derived-block rule, so a whole-file artifact
+// costs no extra git process.
+function regeneratedClass(artifact, base, local, release, classification, contentOf) {
+  if (!artifact || !local || !['local-only', 'conflict'].includes(classification.class)) return null;
+  const marked = { class: 'generated', conflictKind: null, generator: artifact.generator };
+  if (artifact.scope === 'file') {
+    if (classification.class === 'local-only' || release) return marked;
+    return null;
+  }
+  if (!base) return null;
+  const baseAuthored = jsonWithoutDerived(contentOf(base));
+  if (baseAuthored === null || baseAuthored !== jsonWithoutDerived(contentOf(local))) return null;
+  if (!release) return null;
+  const releaseAuthored = jsonWithoutDerived(contentOf(release));
+  if (releaseAuthored === null) return null;
+  if (releaseAuthored === baseAuthored) return marked;
+  // The release changed authored fields while the local change stayed inside
+  // the derived block: take the release bytes, then regenerate the block.
+  return { class: 'take-release', conflictKind: null, regenerate: true, generator: artifact.generator };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 6. RELEASE AND BASE RESOLUTION
 // ─────────────────────────────────────────────────────────────────────────────
@@ -542,12 +617,14 @@ function loadJson(filePath, fallback) {
 
 function releaseContext(repo, options) {
   const head = git(repo, ['rev-parse', 'HEAD']).trim();
-  const localTags = tagNames(repo);
-  const upstream = options.offline
+  const accepts = acceptsTag(options.includePrerelease);
+  const localTags = tagNames(repo).filter(accepts);
+  const fetchedUpstream = options.offline
     ? { known: false, tags: [], error: 'offline mode' }
     : remoteTags(repo, options.remote);
-  const localLatest = latestTag(localTags);
-  const upstreamLatest = upstream.known ? latestTag(upstream.tags) : null;
+  const upstream = { ...fetchedUpstream, tags: fetchedUpstream.tags.filter(accepts) };
+  const localLatest = latestTag(localTags, options.includePrerelease);
+  const upstreamLatest = upstream.known ? latestTag(upstream.tags, options.includePrerelease) : null;
   const release = options.release || upstreamLatest || localLatest;
   const commits = new Map();
   const releaseCommit = release
@@ -699,7 +776,7 @@ function hasPresentEntry(files) {
 function unitStatus(files, base, local, release) {
   if (base.source === 'none') return 'blocked';
   const classes = files.map((file) => file.class);
-  const changed = classes.filter((kind) => kind !== 'same');
+  const changed = classes.filter((kind) => kind !== 'same' && kind !== 'generated');
   const baseHadFiles = hasPresentEntry(base.files);
   const releaseHasFiles = hasPresentEntry(release);
   if (baseHadFiles && !releaseHasFiles) return 'removed';
@@ -759,12 +836,17 @@ function buildReport(repo, options) {
       const local = localUnit.get(filePath) || null;
       const baseEntry = baseFiles.get(filePath) || null;
       const releaseEntry = releaseUnit.get(filePath) || null;
-      const classification = classifyDetailed(
+      const generic = classifyDetailed(
         repo,
         baseEntry,
         local,
         releaseEntry,
       );
+      const artifact = generic.class === 'same' ? null : generatedArtifact(filePath);
+      const contentOf = (entry) => entry.content || blobBytes(repo, entry);
+      const classification = (artifact
+        && regeneratedClass(artifact, baseEntry, local, releaseEntry, generic, contentOf))
+        || generic;
       const ledgerEntry = ledger.find((entry) => (
         entry.path === filePath
         && entry.localBlob === (local && local.blob)
@@ -786,6 +868,9 @@ function buildReport(repo, options) {
       globalFiles.push(report);
     }
     const status = unitStatus(fileReports, base, localUnit, releaseUnit);
+    const regenerate = fileReports
+      .filter((file) => file.class === 'generated' || file.regenerate)
+      .map((file) => ({ path: file.path, generator: file.generator }));
     const changelogs = fileReports
       .filter((file) => /(^|\/)(?:changelog|changelogs)(?:\/|\.|$)/i.test(file.path)
         && file.class === 'take-release')
@@ -803,6 +888,7 @@ function buildReport(repo, options) {
       baseTree: unitTreeFingerprint(baseFiles),
       releaseTree: unitTreeFingerprint(releaseUnit),
       classCounts: countClasses(fileReports),
+      regenerate,
       files: fileReports,
       changelogs,
     });
@@ -822,6 +908,14 @@ function buildReport(repo, options) {
     status = 'unknown';
     for (const unit of reports) if (unit.status === 'current') unit.status = 'unknown';
   }
+  const unrecorded = reports.filter((unit) => unit.baseSource === 'inferred' || unit.baseSource === 'none');
+  const baseRecording = {
+    needed: unrecorded.length > 0,
+    units: unrecorded.map((unit) => unit.name),
+    action: unrecorded.length
+      ? 'node .skilled/commands/doctor/scripts/release-update.cjs record-base --release <installed-release>'
+      : null,
+  };
   return {
     schemaVersion: 1,
     command: 'check',
@@ -837,6 +931,7 @@ function buildReport(repo, options) {
     },
     checkout: { ...checkout, dirty },
     status,
+    baseRecording,
     units: reports,
     files: globalFiles,
     counts: { units: reports.length, files: globalFiles.length },
@@ -967,7 +1062,7 @@ function makePlan(repo, options) {
   const proposals = [];
   for (const unit of report.units) {
     for (const file of unit.files) {
-      const shouldExplain = file.class !== 'same'
+      const shouldExplain = file.class !== 'same' && file.class !== 'generated'
         && ['customized', 'conflict', 'removed'].includes(unit.status);
       const rec = recommendation(file, unit);
       if (file.class === 'take-release' && unit.status === 'customized') {
@@ -1180,26 +1275,47 @@ function decisionTarget(repo, run, file, record) {
 
 function latestRun(repo) {
   const directory = path.join(repo, RUNS_DIR);
-  if (!fs.existsSync(directory)) throw new Error('no release alignment run exists');
+  if (!fs.existsSync(directory)) return null;
   const runs = fs.readdirSync(directory, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => path.join(directory, entry.name))
     .filter((entry) => fs.existsSync(path.join(entry, 'plan.json')))
     .sort((a, b) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs);
-  if (!runs.length) throw new Error('no release alignment run exists');
-  return runs[0];
+  return runs.length ? runs[0] : null;
 }
 
-function resolveApplyRun(repo, decisionsPath) {
+// With no alignment run, apply plans from the current check. Such a plan holds
+// no decisions, so it can write only update and new units; their take-release
+// files equal their base by definition, and assertPlanFresh re-reads each one
+// under the lock, so a file edited since the check is refused, not overwritten.
+function planWithoutRun(repo, options) {
+  const { plan } = makePlan(repo, { ...options, out: undefined });
+  return {
+    runDir: plan.runDir,
+    plan,
+    decisions: { schemaVersion: 1, files: {}, deferredUnits: [] },
+    withoutRun: true,
+  };
+}
+
+function resolveApplyRun(repo, options) {
+  const decisionsPath = options.decisions;
   if (!decisionsPath) {
-    const run = loadRun(latestRun(repo), repo);
+    const latest = latestRun(repo);
+    if (!latest) return planWithoutRun(repo, options);
+    const run = loadRun(latest, repo);
     run.decisions = { schemaVersion: 1, files: {}, deferredUnits: [] };
     return run;
   }
   const absolutePath = path.resolve(repo, decisionsPath);
-  const run = loadRun(path.dirname(absolutePath), repo);
+  const runDir = path.dirname(absolutePath);
+  if (!fs.existsSync(path.join(runDir, 'plan.json'))) {
+    throw new Error('a decisions file needs its alignment run: no plan.json beside ' + absolutePath
+      + '; run align first and decide inside that run');
+  }
+  const run = loadRun(runDir, repo);
   run.decisionsPath = absolutePath;
-  run.decisions = readRunJson(path.dirname(absolutePath), path.basename(absolutePath), null);
+  run.decisions = readRunJson(runDir, path.basename(absolutePath), null);
   if (!run.decisions) throw new Error('decision file is missing or invalid');
   return run;
 }
@@ -1390,7 +1506,7 @@ function writeAtomic(repo, filePath, entry, content) {
 }
 
 function applyPlan(repo, options) {
-  const run = resolveApplyRun(repo, options.decisions);
+  const run = resolveApplyRun(repo, options);
   if (!run.plan || run.plan.repo !== repo) throw new Error('alignment plan belongs to another repository');
   if (options.release && options.release !== run.plan.release) {
     throw new Error('--release does not match the alignment plan');
@@ -1419,10 +1535,12 @@ function applyPlan(repo, options) {
       after: write.after ? { mode: write.after.mode, blob: write.after.blob } : null,
     })),
   };
+  const regenerate = regenerateFollowUps(run.plan, prepared.appliedUnits);
   if (options.dryRun) {
     return {
       command: 'apply',
       dryRun: true,
+      withoutRun: Boolean(run.withoutRun),
       writes: prepared.writes.map((write) => ({
         path: write.path,
         mode: write.after && write.after.mode,
@@ -1430,7 +1548,7 @@ function applyPlan(repo, options) {
       })),
       skippedUnits: prepared.skippedUnits,
       appliedUnits: prepared.appliedUnits,
-      followUps: followUps(prepared.writes),
+      followUps: followUps(prepared.writes, regenerate),
     };
   }
   const acquired = acquireLock(repo);
@@ -1442,6 +1560,11 @@ function applyPlan(repo, options) {
       }
     }
     fs.mkdirSync(path.join(repo, RELEASE_DIR), { recursive: true });
+    if (run.withoutRun) {
+      // The plan lives beside its rollback record so rollback works the same way.
+      assertRunDirectory(run.runDir);
+      writeRunFile(run.runDir, 'plan.json', JSON.stringify(run.plan, null, 2) + '\n');
+    }
     writeRunFile(run.runDir, 'rollback.json', JSON.stringify(rollback, null, 2) + '\n');
     for (const write of prepared.writes) {
       writeAtomic(repo, write.path, write.after, write.after && write.after.content);
@@ -1456,13 +1579,29 @@ function applyPlan(repo, options) {
     written: prepared.writes.filter((write) => write.after).map((write) => write.path),
     added: prepared.writes.filter((write) => write.after && !write.before).map((write) => write.path),
     deleted: prepared.writes.filter((write) => !write.after).map((write) => write.path),
+    withoutRun: Boolean(run.withoutRun),
     skippedUnits: prepared.skippedUnits,
     appliedUnits: prepared.appliedUnits,
-    followUps: followUps(prepared.writes),
+    followUps: followUps(prepared.writes, regenerate),
   };
 }
 
-function followUps(writes) {
+// Generated files of the applied units, grouped by the generator that rewrites
+// them. Apply never writes these bytes; it names who regenerates them.
+function regenerateFollowUps(plan, appliedUnits) {
+  const applied = new Set(appliedUnits);
+  const byGenerator = new Map();
+  for (const file of plan.files) {
+    if (!applied.has(file.unit) || !(file.class === 'generated' || file.regenerate) || !file.generator) continue;
+    if (!byGenerator.has(file.generator)) byGenerator.set(file.generator, []);
+    byGenerator.get(file.generator).push(file.path);
+  }
+  return [...byGenerator.entries()]
+    .map(([generator, paths]) => ({ generator, paths: paths.sort() }))
+    .sort((a, b) => a.generator.localeCompare(b.generator));
+}
+
+function followUps(writes, regenerate = []) {
   const regenerateHubs = new Set();
   let reinstallHooks = false;
   let runtimeMirrors = false;
@@ -1481,9 +1620,51 @@ function followUps(writes) {
   }
   return {
     regenerateHubs: [...regenerateHubs].sort(),
+    regenerate,
     reinstallHooks,
     runtimeMirrors,
     rebuildDatabases: true,
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. BASE RECORDING
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A copied or freshly installed tree has no shared release history, so check can
+// only infer its base. Recording every unit of the release it was installed from
+// gives the first check `recorded` evidence instead.
+function recordBase(repo, options) {
+  const localTags = tagNames(repo).filter(acceptsTag(options.includePrerelease));
+  const release = options.release || latestTag(localTags, options.includePrerelease);
+  if (!release) {
+    throw new Error('no local release tag exists; name the release this tree was installed from with --release');
+  }
+  const commit = tagCommit(repo, release, options.remote, !options.offline, new Map());
+  if (!commit) throw new Error('release tag could not be resolved: ' + release);
+  const releaseFiles = commitFiles(repo, commit);
+  const units = applyScope(enumerateUnits([...releaseFiles.keys()]), options.scope);
+  if (!units.length) throw new Error('release ' + release + ' holds no .skilled units to record');
+  const headFiles = commitFiles(repo, 'HEAD');
+  if (pathDirtyAgainstHead(repo, BASE_FILE, headFiles)) {
+    throw new Error('base manifest has staged or unstaged changes against HEAD: ' + BASE_FILE
+      + '; commit or discard it before recording again');
+  }
+  const existing = loadJson(safeResolve(repo, BASE_FILE), { schemaVersion: 1, units: {} });
+  const next = { schemaVersion: 1, units: { ...(existing.units || {}) } };
+  for (const unit of units) {
+    next.units[unit.name] = { release, tree: unitTreeFingerprint(entriesForUnit(releaseFiles, unit)) };
+  }
+  if (!options.dryRun) {
+    writeAtomic(repo, BASE_FILE, { mode: '100644' }, jsonBytes(next));
+  }
+  return {
+    command: 'record-base',
+    dryRun: Boolean(options.dryRun),
+    release,
+    releaseCommit: commit,
+    baseFile: BASE_FILE,
+    units: units.map((unit) => unit.name),
   };
 }
 
@@ -1515,7 +1696,7 @@ function rollbackPlan(repo, runPath) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 9. CLI PARSING AND OUTPUT
+// 10. CLI PARSING AND OUTPUT
 // ─────────────────────────────────────────────────────────────────────────────
 
 function parseArgs(argv) {
@@ -1526,7 +1707,8 @@ function parseArgs(argv) {
   const valueOptions = new Set([
     'repo', 'remote', 'release', 'scope', 'out', 'run', 'path', 'decision', 'unit', 'decisions',
   ]);
-  const booleanOptions = new Set(['offline', 'json', 'dry-run', 'defer']);
+  const booleanOptions = new Set(['offline', 'json', 'dry-run', 'defer', 'include-prerelease']);
+  const booleanKeys = { 'dry-run': 'dryRun', 'include-prerelease': 'includePrerelease' };
   const seenOptions = new Set();
   for (let index = 1; index < argv.length; index += 1) {
     const token = argv[index];
@@ -1540,7 +1722,7 @@ function parseArgs(argv) {
     seenOptions.add(key);
     if (booleanOptions.has(key)) {
       if (equal >= 0) throw Object.assign(new Error('--' + key + ' does not take a value'), { usage: true });
-      options[key === 'dry-run' ? 'dryRun' : key] = true;
+      options[booleanKeys[key] || key] = true;
       continue;
     }
     if (!valueOptions.has(key)) throw Object.assign(new Error('unsupported option: --' + key), { usage: true });
@@ -1574,6 +1756,9 @@ function plainSummary(result) {
       'upstream: ' + result.upstream.latest,
       'status: ' + result.status,
       ...result.units.map((unit) => unit.name + ': ' + unit.status + ' (' + unit.baseSource + ')'),
+      ...(result.baseRecording && result.baseRecording.needed
+        ? ['base: ' + result.baseRecording.units.length + ' unit(s) have no recorded base; run ' + result.baseRecording.action]
+        : []),
     ].join('\n');
   }
   return JSON.stringify(result, null, 2);
@@ -1603,6 +1788,8 @@ function runCommand(argv) {
         : proposeDecision(run, normalizedDecisionPath(options.path, run.plan), options.decision);
     } else if (options.command === 'apply') {
       result = applyPlan(repo, options);
+    } else if (options.command === 'record-base') {
+      result = recordBase(repo, options);
     } else {
       result = rollbackPlan(repo, options.run);
     }
@@ -1638,13 +1825,14 @@ function main(argv = process.argv.slice(2)) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 10. EXPORTS
+// 11. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   classifyFile,
   compareVersions,
   enumerateUnits,
+  latestTag,
   main,
   parseVersion,
   runCommand,

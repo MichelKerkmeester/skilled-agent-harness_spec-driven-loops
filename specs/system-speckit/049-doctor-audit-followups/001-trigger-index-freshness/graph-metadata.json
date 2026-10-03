@@ -39,28 +39,28 @@
       "regeneration"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
-      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/trigger-index.vitest.ts",
       ".skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml",
+      ".skilled/commands/doctor/_routes.yaml",
       ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "scratch/findings-recheck.md",
+      "scratch/ripgrep-retest.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
       "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md",
-      "runtime/data/trigger-index.json",
-      ".skilled/commands/doctor/rebuild.md",
-      ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
-      ".skilled/commands/doctor/scripts/route-validate.sh",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh"
+      "scratch/baseline-check.json"
     ],
     "entities": [
       {
@@ -88,33 +88,15 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-index.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
-        "source": "derived"
-      },
-      {
-        "name": "corpus-manifest.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "generation-diagnostics.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
-        "source": "derived"
-      },
-      {
-        "name": "phrase-variants.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
         "source": "derived"
       },
       {
@@ -136,6 +118,12 @@
         "source": "derived"
       },
       {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
         "name": "retrieval-conventions.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
@@ -148,27 +136,45 @@
         "source": "derived"
       },
       {
-        "name": "rebuild.md",
-        "kind": "doc",
-        "path": ".skilled/commands/doctor/rebuild.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-rebuild.yaml",
+        "name": "trigger-index.json",
         "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-rebuild.yaml",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
         "source": "derived"
       },
       {
-        "name": "route-validate.sh",
-        "kind": "script",
-        "path": ".skilled/commands/doctor/scripts/route-validate.sh",
+        "name": "findings-recheck.md",
+        "kind": "doc",
+        "path": "scratch/findings-recheck.md",
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "name": "ripgrep-retest.md",
+        "kind": "doc",
+        "path": "scratch/ripgrep-retest.md",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "generation-diagnostics.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-variants.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-check.json",
+        "kind": "config",
+        "path": "scratch/baseline-check.json",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`generate-trigger-index.mjs --check --json` exits 1 on this checkout: the committed index is stale (176 documents differ, 175 indexed paths are missing, 23,052 documents scanned in the planning run) and the corpus manifest hash has moved past the index's",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-03T05:54:23.643Z",
+    "last_save_at": "2026-10-03T07:21:09.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,15 +218,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:afa04e13cca25826adfcd7d9b72c07dac8b8e6750edaf9b5c51b06a08643d69c",
+    "source_fingerprint": "sha256:1ec3730e0ab088634c89b5b07bad5ae8fdb70f19542148f1bcf1466b83836973",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f406fce31816bb6630e130f54b4adccca41a98ddb43da81f64288392289e75f2",
-      "plan.md": "b7cd824ee201cb45135fb08573b57963c869a03dfd24be4cda343bf0d2c5b651",
-      "tasks.md": "783e3087728559a89dd8f628b433dd24e7855ff07753f570b031df7d9c5d1cb1",
-      "implementation-summary.md": "56b5f841034d8e2bc1caa6cc523e4bcbc7ea5be1f0beab582d6c10511360ff48"
+      "spec.md": "c6742fb4c79935f38ff3527577d74f716867799e3e09c8cba2f44953a72d08f1",
+      "plan.md": "7d53774596a9b7dc0e2c0f0685d79a65b84e3b6e5bdbb7e853bbb4fb0bcd6823",
+      "tasks.md": "9fc40a3842db551c3eae9f868c737e4ad08e01e3d057d1a18c098f62f832c391",
+      "decision-record.md": "e430c1af861544c9682ee770427d8ceebacbf38a119f8a81759c2906c0799190",
+      "implementation-summary.md": "77128807c48674f51efbbf7b8b82c5317a936ee3a58354b22fc24a33a1787051"
     },
     "last_active_at": null
   }

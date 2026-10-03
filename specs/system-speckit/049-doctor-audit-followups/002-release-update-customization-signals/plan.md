@@ -38,14 +38,14 @@ Extend the engine's per-file classification with a generated-file class that is 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The current `check --json` output is captured as the baseline
-- [ ] The generator scripts that write each generated artifact are inventoried
-- [ ] `provenance.ts`'s hash input is read and quoted in the evaluation
+- [x] The current `check --json` output is captured as the baseline (summary in `scratch/measurement.md`; the 21 MB report is kept outside the packet)
+- [x] The generator scripts that write each generated artifact are inventoried (`scratch/generated-inventory.md`)
+- [x] `provenance.ts`'s hash input is read and quoted in the evaluation (`scratch/provenance-input.md`, ADR-003)
 
 ### Definition of Done
-- [ ] All acceptance criteria met with the named command output
-- [ ] The engine suite reports zero failures with the new cases
-- [ ] The measurement is recorded in `scratch/` with its method
+- [x] All acceptance criteria met with the named command output
+- [x] The engine suite reports zero failures with the new cases (22 of 22, `scratch/engine-tests.log`)
+- [x] The measurement is recorded in `scratch/` with its method (`scratch/measurement.md`)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -169,9 +169,9 @@ Setup (baseline + writer walk) ──► Core (engine changes) ──► Verify 
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Baseline `check --json` output captured
-- [ ] The current `base.json` and `divergence.json` contents are recorded
-- [ ] The engine suite passes before the first change
+- [x] Baseline `check --json` output captured
+- [x] The current `base.json` and `divergence.json` contents are recorded (neither exists in this checkout: `.skilled/release/` is absent)
+- [x] The engine suite passes before the first change (16 of 16)
 
 ### Rollback Procedure
 1. Revert the engine and workflow files
@@ -253,7 +253,7 @@ Setup (baseline + writer walk) ──► Core (engine changes) ──► Verify 
 
 ### ADR-001: Generated files are a separate class, regenerated after apply
 
-**Status**: Proposed
+**Status**: Accepted. The inventory is a path list plus one content rule (`scratch/generated-inventory.md`); a generated file never makes its unit customized, apply never writes it, and `followUps.regenerate` names its generator. A whole-file artifact has no authored part, so it is always regenerated; a `graph-metadata.json` with an edit outside `derived` keeps its authored class.
 
 **Context**: A locally regenerated `graph-metadata.json` or leaf manifest differs from its release copy, so the current three-way class reads it as `local-only` and its unit as customized. No author edited those bytes; a generator wrote them from local sources.
 
@@ -273,7 +273,7 @@ Setup (baseline + writer walk) ──► Core (engine changes) ──► Verify 
 
 ### ADR-002: Record the base at install through an explicit engine action
 
-**Status**: Proposed
+**Status**: Accepted, as the `record-base` subcommand. Its default release is the newest local stable tag; a copied tree with no tags must name one with `--release`, which the engine asks for instead of guessing. It refuses while `base.json` has uncommitted changes. `check` reports `baseRecording` and the router, check workflow and presentation tell the operator to run it on first use.
 
 **Context**: `baseForUnit` infers a base from ancestry or the closest tag when no record exists. A copied `.skilled/` tree with no shared history can only infer, and a non-git checkout cannot infer at all.
 
@@ -293,7 +293,7 @@ Setup (baseline + writer walk) ──► Core (engine changes) ──► Verify 
 
 ### ADR-003: Evaluate provenance_fingerprint as a pre-filter and record the decision
 
-**Status**: Proposed
+**Status**: Rejected as a pre-filter. Payload, from `provenance.ts:95-116`: one key per bucket holding `normalizeBucket(values)`, plus `dependencies` as `{ path, hash, exists }` entries sorted by `path`, hashed as `sha256(JSON.stringify(payload))` (`scratch/provenance-input.md`). Why rejected: the question the engine asks is "did only a generator change these bytes", and the structural rule answers it directly by comparing the JSON outside `derived` against the base. The generated-class engine case proves that rule without the fingerprint. The fingerprint hashes source dependencies, so using it would mean re-running the advisor's TypeScript extraction inside a CommonJS release script to recompute it, and it still could not speak for files outside the derived block. No engine change depends on it.
 
 **Context**: `provenance_fingerprint` is deterministic from source bytes: `computeProvenanceFingerprint` hashes a payload of normalized bucket values plus dependencies sorted by path, each `{path, hash, exists}` (`provenance.ts:95-116`), and the schema locks it as `sha256:` hex (`skill-derived-v2.ts:45`). The research left open whether it can pre-filter customization.
 

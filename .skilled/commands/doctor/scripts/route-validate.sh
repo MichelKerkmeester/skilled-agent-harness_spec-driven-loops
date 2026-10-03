@@ -135,11 +135,28 @@ routes:
     trigger_phrases: ["fixture read-only write"]
 EOF
 
-  # NOTE: fixtures 4-6 are single-route manifests, so each also trips assertion J
+  # Fixture 7: workflow activity coverage (assertion L). The route names a real
+  # script that its workflow YAML never invokes
+  cat > "$TMPDIR_FIX/activity-missing.yaml" <<'EOF'
+schema_version: 1
+routes:
+  - target: deep-loop
+    yaml: doctor-deep-loop.yaml
+    setup_vars: [execution_mode]
+    allowed_flags: []
+    mutating: read-only
+    gate3_location: "n/a"
+    mcp_tools: []
+    trigger_phrases: ["fixture activity missing"]
+    script_invocations:
+      - 'python3 .skilled/commands/doctor/scripts/route-validate.py'
+EOF
+
+  # NOTE: fixtures 4-7 are single-route manifests, so each also trips assertion J
   # (target-set parity against the real 9-route speckit.md/presentation) in
   # addition to the assertion it targets — that is expected; self-test only
   # requires a non-zero exit, matching the isolation level of fixtures 1-3.
-  for fixture in missing-key missing-asset duplicate-target missing-script target-set-mismatch read-only-with-write; do
+  for fixture in missing-key missing-asset duplicate-target missing-script target-set-mismatch read-only-with-write activity-missing; do
     echo "INFO: Self-test: $fixture (should fail)…"
     if ROUTES_FILE="$TMPDIR_FIX/$fixture.yaml" bash "$0" >/dev/null 2>&1; then
       echo "SELF-TEST FAIL: $fixture should have caused non-zero exit" >&2
@@ -148,6 +165,17 @@ EOF
       echo "PASS: Self-test: $fixture correctly rejected"
     fi
   done
+
+  # Fixture 7 must fail on its own rule, not only on the parity mismatch every
+  # single-route fixture also trips.
+  echo "INFO: Self-test: activity-missing names rule L1…"
+  activity_out="$(ROUTES_FILE="$TMPDIR_FIX/activity-missing.yaml" bash "$0" 2>&1 || true)"
+  if printf '%s\n' "$activity_out" | grep -q "FAIL: L1:"; then
+    echo "PASS: Self-test: activity-missing reported L1"
+  else
+    echo "SELF-TEST FAIL: activity-missing did not report L1" >&2
+    exit 1
+  fi
 
   echo "INFO: All self-tests passed."
   exit 0

@@ -34,7 +34,7 @@ The doctor command audit recorded nine defects in the doctor's own gates and tex
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `worktrees/079-doctor-command-audit` |
 | **Parent Spec** | ../spec.md |

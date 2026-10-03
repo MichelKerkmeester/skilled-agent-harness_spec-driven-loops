@@ -38,14 +38,14 @@ Give the mutation-class guard its own manifest so its coverage stops depending o
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Every finding is re-checked against the current tree and still holds, or is marked resolved
-- [ ] The old guard manifest rows are recovered from git history for the three skills
-- [ ] The three failing test suites are captured with their exact error
+- [x] Every finding is re-checked against the current tree and still holds, or is marked resolved
+- [x] The old guard manifest rows are recovered from git history for the three skills
+- [x] The three failing test suites are captured with their exact error
 
 ### Definition of Done
-- [ ] All acceptance criteria met with the named command output
-- [ ] The guard, the three test suites, `route-validate.sh --self-test`, and both edited closed packets pass
-- [ ] The recorded parity comparison is in `scratch/`
+- [x] All acceptance criteria met with the named command output
+- [x] The guard, the three test suites, `route-validate.sh --self-test`, and both edited closed packets pass
+- [x] The recorded parity comparison is in `scratch/`
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -172,9 +172,9 @@ Setup (re-check + recover rows) ──► Core (guard + fixtures + validator + t
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] The three failing suites' output is captured
-- [ ] The old manifest rows are recovered from git history
-- [ ] The current presentation text is captured before rewording
+- [x] The three failing suites' output is captured
+- [x] The old manifest rows are recovered from git history
+- [x] The current presentation text is captured before rewording
 
 ### Rollback Procedure
 1. Revert the changed scripts and texts
@@ -258,7 +258,7 @@ Setup (re-check + recover rows) ──► Core (guard + fixtures + validator + t
 
 ### ADR-001: The generic /doctor forms adopt the registered nested command name
 
-**Status**: Proposed
+**Status**: Accepted (the presentation, `_routes.yaml` header and rebuild presentation now say `/doctor:speckit`)
 
 **Context**: The presentation uses `/doctor <target>`, `/doctor list` and `/doctor [suggested-target]` (`doctor-speckit-presentation.txt:3,31,41,79,86`), but no root `.skilled/commands/doctor.md` or `.opencode/commands/doctor.md` exists. The router file is `.skilled/commands/doctor/speckit.md`, and the command contract lists it among the doctor family's routers; sibling files such as `speckit/save.md` register as `/speckit:save`.
 
@@ -277,7 +277,7 @@ Setup (re-check + recover rows) ──► Core (guard + fixtures + validator + t
 
 ### ADR-002: The mutation-class guard owns its manifest
 
-**Status**: Proposed
+**Status**: Accepted, with one change: the file is `assets/mcp-mutation-class-manifest.yaml`, because the planned `doctor-mcp-mutation-manifest.yaml` name falls inside the `assets/doctor-mcp-*.yaml` set another packet owns
 
 **Context**: The guard reads `servers:` and `cli_skill_diagnostics:` from `doctor-mcp-install.yaml`. Narrowing that workflow to Code Mode removed the Figma, Chrome DevTools and ClickUp rows, so the guard silently stopped checking them even though their scripts still exist.
 
@@ -297,7 +297,7 @@ Setup (re-check + recover rows) ──► Core (guard + fixtures + validator + t
 
 ### ADR-003: The fixture supplies the shared package through an explicit resolution path
 
-**Status**: Proposed
+**Status**: Accepted (each suite's helper symlinks the real package; the build also found a second fixture gap, a missing four-part SKILL.md version for check 13a, and fixed it in the same helpers)
 
 **Context**: The three suites copy `root-router-contract.cjs` and its siblings into a temp hub, then load them through the checker. The copied contract library requires `@spec-kit/shared/frontmatter/parse-frontmatter.js`; from a temp directory that resolution fails, which is the observed `FAIL: 12-lib` message. The real tree resolves it through `.skilled/skills/sk-doc/node_modules/@spec-kit`.
 

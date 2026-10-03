@@ -34,6 +34,7 @@ user_inputs:
   release: "[RELEASE] optional tag"
   scope: "[SCOPE] optional all or comma-separated unit names"
   offline: "[OFFLINE] boolean"
+  include_prerelease: "[INCLUDE_PRERELEASE] boolean"
 
 field_handling:
   defaults:
@@ -48,6 +49,7 @@ field_handling:
     release: "--release <tag> when supplied"
     scope: "--scope <value> when supplied"
     offline: "--offline when requested"
+    include_prerelease: "--include-prerelease when requested; latest-upstream resolution otherwise takes stable vN.N.N.N tags only, and a tag named with --release is used as given"
     repository: "--repo ."
   status_values:
     unit: [current, local, update, new, customized, conflict, removed, blocked, unknown]
@@ -86,8 +88,8 @@ workflow:
 
   phase_2_engine_check:
     approval: none
-    command: "node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json [--release <tag>] [--scope <value>] [--offline]"
-    flag_rule: "Include optional flags only when their input is bound; check accepts --json, --release, --scope and --offline."
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json [--release <tag>] [--scope <value>] [--offline] [--include-prerelease]"
+    flag_rule: "Include optional flags only when their input is bound; check accepts --json, --release, --scope, --offline and --include-prerelease."
     parse_json_fields:
       - schemaVersion
       - command
@@ -104,11 +106,13 @@ workflow:
       - checkout.behindBy
       - checkout.dirty
       - status
+      - baseRecording
       - units
       - files
       - counts
-    file_fields: [path, unit, class, conflictKind, base, local, release]
-    unit_fields: [name, prefix, kind, status, baseSource, baseRelease, baseTree, releaseTree, classCounts, files, changelogs]
+    file_fields: [path, unit, class, conflictKind, regenerate, generator, base, local, release]
+    unit_fields: [name, prefix, kind, status, baseSource, baseRelease, baseTree, releaseTree, classCounts, regenerate, files, changelogs]
+    generated_class: "A file whose difference only a generator made (a leaf manifest, the trigger index and its sidecars, or a graph-metadata change confined to its derived block) reports class generated. It never makes its unit customized; apply leaves its bytes alone and names its generator under followUps.regenerate."
     exit_policy: "Exit 0 means a report was produced, not that upstream is known. Exit 2 is usage failure. Keep UNKNOWN explicit for unavailable upstream or unknown status."
     on_failure: "Present the command output and exit code, then stop without writing a file."
 
@@ -129,6 +133,7 @@ workflow:
       update_or_new_only: "Offer /doctor:update apply, noting that a decision file is optional when no align decisions are needed."
       removed_or_blocked_or_unknown: "Show the status-specific explanation and do not imply automatic application is safe."
       databases: "Name /doctor:rebuild for database regeneration after applying a release."
+      base_recording: "When baseRecording.needed is true (a unit's baseSource is inferred or none, as on a copied or freshly installed tree), name baseRecording.action and ask the operator for the release the tree was installed from. Recording writes the git-tracked .skilled/release/base.json, so it needs the operator's approval like any other write; check itself never runs it."
       no_changes: "Report that the selected units are current or local."
 
   phase_5_terminal_status:

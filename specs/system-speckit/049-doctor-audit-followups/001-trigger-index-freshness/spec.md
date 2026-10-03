@@ -34,7 +34,7 @@ The trigger index at `.skilled/skills/system-spec-kit/runtime/data/trigger-index
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `worktrees/079-doctor-command-audit` |
 | **Parent Spec** | ../spec.md |

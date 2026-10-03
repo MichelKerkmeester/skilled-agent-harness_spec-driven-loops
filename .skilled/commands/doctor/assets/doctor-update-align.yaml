@@ -50,6 +50,7 @@ field_handling:
     release: "--release <tag> when supplied"
     scope: "--scope <value> when supplied"
     offline: "--offline when requested"
+    include_prerelease: "--include-prerelease when requested; without it latest-upstream resolution takes stable tags only"
     dry_run: "--dry-run when requested"
   accepted_decisions: [adopt-release, keep-local, merge, use-proposal]
   defer: "Use decide --unit <unit> --defer; do not invent a file decision for the deferred unit."
@@ -89,7 +90,7 @@ workflow:
 
   phase_2_engine_align:
     approval: none
-    command: "node .skilled/commands/doctor/scripts/release-update.cjs align --repo . --json [--release <tag>] [--scope <value>] [--offline] [--dry-run]"
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs align --repo . --json [--release <tag>] [--scope <value>] [--offline] [--dry-run] [--include-prerelease]"
     flag_rule: "Include only bound optional flags. Do not pass --out; use the engine's default unique run path below .skilled/release/runs."
     parse_json_fields: [command, repo, release, releaseCommit, head, upstream, checkout, status, units, files, evidenceFiles, proposalFiles, runDir, externalRunDir, dryRun]
     dry_run_rule: "When dryRun is true, show the plan only. It creates no run directory, evidence, proposals or decisions, so do not ask for decisions or offer an apply handoff."
