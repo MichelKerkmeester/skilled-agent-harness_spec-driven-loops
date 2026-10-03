@@ -88,9 +88,9 @@ Traversal uses BFS with `maxDepth=2` and `maxBreadth=4`, decaying signal by `1/(
 
 ## 6. EXPLICIT AUTHOR LANE
 
-The explicit author lane uses curated `TOKEN_BOOSTS` and `PHRASE_BOOSTS` mappings for high-confidence routing, plus pattern-based disambiguation rules. Token boosts map single tokens to skill scores (e.g., `git` to sk-git at 1.0, `readme` to sk-doc at 0.95) defined in `runtime/lib/scorer/lanes/explicit.ts:8-90`.
+The explicit author lane uses curated `TOKEN_BOOSTS` and `PHRASE_BOOSTS` mappings for high-confidence routing, plus pattern-based disambiguation rules. Token boosts map single tokens to skill scores (e.g., `git` to sk-git at 1.0, `readme` to sk-doc at 0.95) defined in `runtime/lib/scorer/lanes/explicit.ts:27-107`.
 
-Phrase boosts handle multi-word patterns (e.g., `deep research` to deep-research at 1.3, `chrome devtools` to mcp-chrome-devtools at 1.0) defined in `runtime/lib/scorer/lanes/explicit.ts:92-186`. Review-plus-write disambiguation applies +3.0 to sk-code when both `review` and write verbs appear together, anchoring the explicit lane on the code hub so its router selects the implement mode rather than the code-review mode (`runtime/lib/scorer/lanes/explicit.ts:295-303`).
+Phrase boosts handle multi-word patterns (e.g., `deep-research` to system-deep-loop at 1.3, `deep research` to system-deep-loop at 1.0, `chrome devtools` to mcp-tooling at 1.0) defined in `runtime/lib/scorer/lanes/explicit.ts:115-246`. Every `PHRASE_BOOSTS` amount must lie in the closed interval [-1.0, 2.0], declared as `PHRASE_BOOST_BOUND` at `runtime/lib/scorer/lanes/explicit.ts:108-113` and pinned by `runtime/tests/command-bridge-resolution-guard.vitest.ts`; it is the same range the doctor proposal validator uses; the lane still clamps each emitted score to at most 1. Review-plus-write disambiguation applies +3.0 to sk-code when both `review` and write verbs appear together, anchoring the explicit lane on the code hub so its router selects the implement mode rather than the code-review mode (`runtime/lib/scorer/lanes/explicit.ts:313-322`; the +3.0 push is at line 321).
 
 ---
 

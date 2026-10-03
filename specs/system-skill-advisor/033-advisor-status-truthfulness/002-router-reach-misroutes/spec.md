@@ -33,7 +33,7 @@ The doctor's router-reach probe recorded 14 wrong-hub and 18 outranked phrases a
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/002-router-reach-misroutes` |
 | **Parent Spec** | ../spec.md |

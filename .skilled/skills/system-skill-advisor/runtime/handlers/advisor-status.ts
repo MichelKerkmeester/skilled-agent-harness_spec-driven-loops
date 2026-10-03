@@ -6,16 +6,22 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import { existsSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import Database from 'better-sqlite3';
 
 import { computeAdvisorSourceSignature } from '../lib/freshness.js';
 import { readSkillGraphGeneration } from '../lib/freshness/generation.js';
 import { checkSqliteIntegrity } from '../lib/freshness/sqlite-integrity.js';
-import { isGenuineCorruptionReason, resolveSkillGraphDbDir, DB_FILENAME } from '../lib/skill-graph/skill-graph-db.js';
+import {
+  computeSkillMetadataContentHash,
+  isGenuineCorruptionReason,
+  resolveSkillGraphDbDir,
+  DB_FILENAME,
+} from '../lib/skill-graph/skill-graph-db.js';
 import { createTrustState } from '../lib/freshness/trust-state.js';
 import { getAdapter } from '../lib/embedders/registry.js';
+import { readEmbeddingsHealth } from '../lib/embedders/embeddings-health.js';
 import { getSemanticShadowRuntimeHealth } from '../lib/scorer/lanes/semantic-shadow.js';
 import { readAdvisorEmbeddingStaleness } from '../lib/scorer/projection.js';
 import { DEFAULT_SCORER_WEIGHTS } from '../lib/scorer/weights-config.js';
@@ -37,6 +43,7 @@ import type {
 // ───────────────────────────────────────────────────────────────────
 
 type HandlerResponse = { content: Array<{ type: string; text: string }> };
+type IndexStaleness = NonNullable<AdvisorStatusOutput['indexStaleness']>;
 
 const SKILL_ROOT = join('.skilled', 'skills');
 const DEFAULT_MAX_METADATA_FILES = 5_000;
@@ -205,31 +212,125 @@ function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
   }
 }
 
+function readIndexStaleness(dbPath: string, workspaceRoot: string): IndexStaleness {
+  const unavailable = (reason: string): IndexStaleness => ({
+    state: 'unavailable',
+    reason,
+    trackedSkills: 0,
+    freshSourceFiles: 0,
+    changedSourceFiles: 0,
+    missingSourceFiles: 0,
+    staleSkillIds: [],
+  });
+  if (!existsSync(dbPath)) return unavailable('database_absent');
+
+  let database: Database.Database | null = null;
+  let result = unavailable('index_read_failed');
+  try {
+    database = new Database(dbPath, { readonly: true, fileMustExist: true });
+    if (!tableExists(database, 'skill_nodes')) {
+      result = unavailable('index_rows_absent');
+    } else {
+      const columns = database.pragma('table_info(skill_nodes)') as Array<{ name: string }>;
+      const hasSourceColumns = columns.some((column) => column.name === 'source_path')
+        && columns.some((column) => column.name === 'content_hash');
+      if (!hasSourceColumns) {
+        result = unavailable('index_rows_absent');
+      } else {
+        const rows = database.prepare(`
+          SELECT id, source_path, content_hash
+          FROM skill_nodes
+          ORDER BY id
+        `).all() as Array<{
+          id: string;
+          source_path: string | null;
+          content_hash: string | null;
+        }>;
+        if (rows.length === 0) {
+          result = unavailable('index_rows_absent');
+        } else {
+          let freshSourceFiles = 0;
+          let changedSourceFiles = 0;
+          let missingSourceFiles = 0;
+          const staleSkillIds: string[] = [];
+
+          for (const row of rows) {
+            if (!row.source_path || row.source_path.trim().length === 0) {
+              missingSourceFiles++;
+              staleSkillIds.push(row.id);
+              continue;
+            }
+
+            let content: string;
+            try {
+              content = readFileSync(resolve(workspaceRoot, row.source_path), 'utf8');
+            } catch (error: unknown) {
+              if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
+                missingSourceFiles++;
+                staleSkillIds.push(row.id);
+                continue;
+              }
+              throw error;
+            }
+
+            if (row.content_hash === null
+              || computeSkillMetadataContentHash(content) !== row.content_hash) {
+              changedSourceFiles++;
+              staleSkillIds.push(row.id);
+              continue;
+            }
+
+            freshSourceFiles++;
+          }
+
+          const stale = changedSourceFiles + missingSourceFiles > 0;
+          result = {
+            state: stale ? 'stale' : 'fresh',
+            reason: stale ? 'source_hash_mismatch' : null,
+            trackedSkills: rows.length,
+            freshSourceFiles,
+            changedSourceFiles,
+            missingSourceFiles,
+            staleSkillIds: staleSkillIds.slice(0, 25),
+          };
+        }
+      }
+    }
+  } catch {
+    result = unavailable('index_read_failed');
+  } finally {
+    try {
+      database?.close();
+    } catch {
+      result = unavailable('index_read_failed');
+    }
+  }
+
+  return result;
+}
+
 function scanSkillMetadataFiles(
   skillRoot: string,
   maxFiles = DEFAULT_MAX_METADATA_FILES,
 ): { count: number; maxMtimeMs: number; truncated: boolean } {
   if (!existsSync(skillRoot)) return { count: 0, maxMtimeMs: 0, truncated: false };
-  const pending = [skillRoot];
+  const skillRoots = readdirSync(skillRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && !entry.name.startsWith('.'))
+    .sort((left, right) => left.name.localeCompare(right.name));
   let count = 0;
   let newest = 0;
   let truncated = false;
-  while (pending.length > 0) {
-    const current = pending.pop();
-    if (!current) continue;
-    for (const entry of readdirSync(current, { withFileTypes: true })) {
-      const entryPath = join(current, entry.name);
-      if (entry.isDirectory()) {
-        pending.push(entryPath);
-      } else if (entry.isFile() && entry.name === 'graph-metadata.json') {
-        count += 1;
-        newest = Math.max(newest, statSync(entryPath).mtimeMs);
-        if (count >= maxFiles) {
-          truncated = true;
-          return { count, maxMtimeMs: newest, truncated };
-        }
-      }
+  for (const entry of skillRoots) {
+    const metadataPath = join(skillRoot, entry.name, 'graph-metadata.json');
+    if (!existsSync(metadataPath)) continue;
+    const metadataStat = statSync(metadataPath);
+    if (!metadataStat.isFile()) continue;
+    if (count >= maxFiles) {
+      truncated = true;
+      break;
     }
+    count++;
+    newest = Math.max(newest, metadataStat.mtimeMs);
   }
   return { count, maxMtimeMs: newest, truncated };
 }
@@ -274,7 +375,15 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
     if (sourceScan.truncated) {
       errors.push(`advisor_status metadata scan capped at ${sourceScan.count} files`);
     }
+    const indexStaleness = readIndexStaleness(dbPath, workspaceRoot);
+    if (indexStaleness.state === 'stale') {
+      const staleSkillCount = indexStaleness.changedSourceFiles + indexStaleness.missingSourceFiles;
+      errors.push(
+        `advisor_status index content hashes differ from disk for ${staleSkillCount} skill${staleSkillCount === 1 ? '' : 's'}; run advisor_rebuild`,
+      );
+    }
     const sourceChanged = generation.state === 'stale'
+      || indexStaleness.state === 'stale'
       || (
         generation.sourceSignature
           ? computeAdvisorSourceSignature(workspaceRoot) !== generation.sourceSignature
@@ -321,6 +430,7 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
       lastGenerationBump: generation.updatedAt === new Date(0).toISOString() ? null : generation.updatedAt,
       lastScanAt: generation.updatedAt === new Date(0).toISOString() ? null : generation.updatedAt,
       skillCount: sourceScan.count,
+      indexStaleness,
       laneWeights: DEFAULT_SCORER_WEIGHTS,
       ...((args.includeSemanticHealth || args.debug) ? { semanticLaneHealth: readSemanticLaneHealth(dbPath) } : {}),
       ...(daemonPid ? { daemonPid } : {}),
@@ -362,7 +472,11 @@ export async function handleAdvisorStatus(args: unknown): Promise<HandlerRespons
   // The diagnostic surface opts into the artifact integrity probe by default
   // so operators see on-disk corruption; explicit input can still override it.
   const parsed = AdvisorStatusInputSchema.parse(args);
-  const data = readAdvisorStatus({ ...parsed, checkArtifactIntegrity: parsed.checkArtifactIntegrity ?? true });
+  const status = readAdvisorStatus({ ...parsed, checkArtifactIntegrity: parsed.checkArtifactIntegrity ?? true });
+  // Keep the bounded probe on this async command path, away from the synchronous recommend reader.
+  const data = parsed.includeEmbeddingsHealth === true
+    ? AdvisorStatusOutputSchema.parse({ ...status, embeddingsHealth: await readEmbeddingsHealth() })
+    : status;
   return {
     content: [{
       type: 'text',
@@ -370,4 +484,3 @@ export async function handleAdvisorStatus(args: unknown): Promise<HandlerRespons
     }],
   };
 }
-

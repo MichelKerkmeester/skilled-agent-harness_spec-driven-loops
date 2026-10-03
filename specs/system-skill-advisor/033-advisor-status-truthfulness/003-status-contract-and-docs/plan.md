@@ -38,14 +38,14 @@ Fix the contracts where they are read. The trusted gate lands on the mutating co
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -170,9 +170,9 @@ Phase 1 (Setup: reader + source inventory) ──► Phase 2 (Docs + bound + hea
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Backup created (if data changes): not applicable, no data changes
+- [x] Feature flag configured: not applicable, the health surface is opt-in per call
+- [x] Monitoring alerts set: not applicable, diagnostic surface
 
 ### Rollback Procedure
 1. Disable the health option at the call site; the plain status path is unaffected.
@@ -248,7 +248,7 @@ Phase 1 (Setup: reader + source inventory) ──► Phase 2 (Docs + bound + hea
 
 ### ADR-001: Embeddings health is opt-in, fail-soft and separate from the semantic lane object
 
-**Status**: Proposed
+**Status**: Accepted
 
 **Context**: The retired embeddings doctor expected `data.embeddings.provider` and `data.embeddings.modelServer` from `advisor_status`, which no longer exists; the current `semanticLaneHealth` object carries the embedder's name, coverage and dim check but no provider resolution or model-server state. The CLI manifest does not even accept `includeSemanticHealth`, so the existing object is unreachable through the CLI.
 

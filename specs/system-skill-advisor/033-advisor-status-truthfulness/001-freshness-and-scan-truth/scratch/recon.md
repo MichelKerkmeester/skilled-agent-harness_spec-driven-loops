@@ -1,0 +1,8 @@
+# Recon: the four recorded findings against current code
+
+1. Freshness vs staleness. Confirmed, with a sharper root cause than the audit recorded. The indexer stores `skill_nodes.content_hash = sha256("skill-metadata-boundary:v1\n" + content)` (`runtime/lib/skill-graph/skill-graph-db.ts`, `indexSkillMetadata`), while `skill_graph_status` compared the stored hash with `sha256(raw file)` (`runtime/handlers/skill-graph/status.ts`, `summarizeSourceStaleness`). A probe over all 14 rows: raw recipe matched 0/14, versioned recipe matched 14/14. So the index was current and `changedSourceFiles: 14` was a false positive produced by the status recipe, while `advisor_status` never read the stored hashes at all.
+2. `skillCount` 20 for 14 skills. Confirmed: `scanSkillMetadataFiles` walked the whole tree; 14 depth-1 roots carry `graph-metadata.json`, the other 6 are spec-kit test fixtures.
+3. Compiled graph older than its sources. Confirmed: `generated_at 2026-09-29T07:49:34Z` vs `cli-classifier` `derived.last_updated_at 2026-09-29T09:00:00Z`; `fromCompiledJson` reported only ghosts and family mismatches.
+4. Absent SQLite. Confirmed: `fromSqlite` returns `absent`, the SQLite sets are skipped, exit 0, no marker. Also confirmed the inert `z_archive` claim (depth-1 scan does the excluding) and the family/id namespace overlap.
+
+Build check: `npm run build` in the runtime package exits 0; the CLI shim refuses a stale dist with exit 69 (observed in `tests/cli-exit-taxonomy.vitest.ts` before a rebuild) and accepts the fresh build. The live daemon keeps old code until it restarts; it was restarted with SIGTERM to its own `advisor-server.js` process and respawned on the next call.

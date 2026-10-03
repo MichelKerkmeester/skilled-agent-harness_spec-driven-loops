@@ -2,16 +2,6 @@
   "schemaVersion": 1,
   "entries": [
     {
-      "id": "harder:00b82eb94d58",
-      "corpus": "harder",
-      "promptHash": "sha256:00b82eb94d58d743bbca3348c0be25235af0347a9714a5a9e4d68374ce8483ac",
-      "gold": "mcp-code-mode",
-      "localTop": "none",
-      "nativeTop": "sk-code",
-      "reason": "divergence captured 2026-07-06: local abstains at strict thresholds where native routes to sk-code",
-      "approvedAt": "2026-07-06"
-    },
-    {
       "id": "harder:4798f04a4216",
       "corpus": "harder",
       "prompt": "Stage a structured design deliberation with separate seats and converge on the least risky option.",
@@ -224,16 +214,6 @@
       "nativeTop": "sk-code",
       "reason": "local abstains after the model-alias resolver was removed with the prompt model-profile packet, dropping its sk-prompt false positive on a fixture-generation prompt; native is gold-correct here, so the disagreement is local giving up rather than native drifting",
       "approvedAt": "2026-09-01"
-    },
-    {
-      "id": "rr-iter3-066",
-      "corpus": "labeled",
-      "promptHash": "sha256:16a1968df998a78a4d4afc58d179218b2c035de8bd1a6c033f5ef2c6fe46f8c9",
-      "gold": "sk-doc",
-      "localTop": "sk-code",
-      "nativeTop": "sk-doc",
-      "reason": "divergence captured 2026-07-06: local/native routing disagreement (local=sk-code, native=sk-doc)",
-      "approvedAt": "2026-07-06"
     },
     {
       "id": "rr-iter3-067",
@@ -713,17 +693,6 @@
       "nativeTop": "sk-doc",
       "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
       "approvedAt": "2026-08-15"
-    },
-    {
-      "id": "rr-hub6-204",
-      "corpus": "labeled",
-      "prompt": "Run an agentic browser session with aside mcp through Code Mode and save the screenshots.",
-      "gold": "mcp-tooling",
-      "promptHash": "sha256:33cdf36f2e5e6bfc4519399de41a6b53ff8ea200217a799fb5164c125d40b70b",
-      "localTop": "sk-code",
-      "nativeTop": "mcp-code-mode",
-      "reason": "current-state capture after the MCP tooling hub reconciliation; browser and connector labels use the current hub identity",
-      "approvedAt": "2026-09-22"
     },
     {
       "id": "rr-iter2-034",

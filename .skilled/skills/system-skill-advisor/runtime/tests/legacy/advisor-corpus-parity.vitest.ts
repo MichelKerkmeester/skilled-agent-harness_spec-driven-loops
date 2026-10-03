@@ -149,8 +149,12 @@ describe('advisor 195-prompt corpus regression-protection parity', () => {
       // diff to show for it. Re-baseline only after checking the move is an
       // improvement — a pythonCorrect drop, or an id appearing in the regression
       // list that is not accepted above, is a regression to fix, not to record.
-      expect(pythonCorrect).toBe(112);
-      expect(hookPreservedPythonCorrect).toBe(108);
+      // 112 -> 113 and 108 -> 109: the sk-code description now names its
+      // languages (TypeScript, Python, shell, JSON), which restores a JSON-edit
+      // prompt the shorter wording lost, and the native scorer keeps it too.
+      // The accepted regression list is unchanged.
+      expect(pythonCorrect).toBe(113);
+      expect(hookPreservedPythonCorrect).toBe(109);
       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
       expect(
         regressions.map((regression) => regression.id),

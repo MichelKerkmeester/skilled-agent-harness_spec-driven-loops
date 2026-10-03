@@ -33,7 +33,7 @@ The advisor answers three different questions with one word. `advisor_status` ca
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/001-freshness-and-scan-truth` |
 | **Parent Spec** | ../spec.md |

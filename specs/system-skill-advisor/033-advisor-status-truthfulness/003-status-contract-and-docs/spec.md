@@ -33,7 +33,7 @@ Five recorded contract gaps let an operator be surprised by behavior the code al
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/003-status-contract-and-docs` |
 | **Parent Spec** | ../spec.md |

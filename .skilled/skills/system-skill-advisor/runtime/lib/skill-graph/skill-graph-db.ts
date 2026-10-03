@@ -681,6 +681,13 @@ function computeContentHash(content: string): string {
   return createHash('sha256').update(content).digest('hex');
 }
 
+/** Keep indexed metadata hashes aligned with the sanitizer policy version. */
+export function computeSkillMetadataContentHash(content: string): string {
+  return createHash('sha256')
+    .update(`${SKILL_METADATA_SANITIZER_VERSION}\n${content}`)
+    .digest('hex');
+}
+
 function encodeEmbedding(vector: Float32Array | readonly number[]): Buffer {
   const array = vector instanceof Float32Array ? vector : Float32Array.from(vector);
   return Buffer.from(array.buffer, array.byteOffset, array.byteLength);
@@ -971,7 +978,7 @@ export function indexSkillMetadata(skillDir: string): SkillGraphIndexResult {
       continue;
     }
 
-    const contentHash = computeContentHash(`${SKILL_METADATA_SANITIZER_VERSION}\n${content}`);
+    const contentHash = computeSkillMetadataContentHash(content);
     parsedMetadata.push(parseSkillMetadata(sourcePath, parsedJson, contentHash));
     skillMetadataPaths.push(sourcePath);
   }

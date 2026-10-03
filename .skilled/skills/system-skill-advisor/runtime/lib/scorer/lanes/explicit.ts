@@ -105,6 +105,12 @@ const TOKEN_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'gate-3-classifier': [['sk-code', 0.95]],
   'negative-trigger': [['sk-code', 0.8]],
 };
+// Every PHRASE_BOOSTS amount must lie in the closed interval [-1.0, 2.0], the
+// same range the doctor skill-advisor proposal validator enforces
+// (`phrase_boost_range` in .skilled/commands/doctor/assets/doctor-skill-advisor.yaml).
+// Negative values are allowed for suppressive disambiguation, and the lane still
+// clamps each emitted score to at most 1.
+export const PHRASE_BOOST_BOUND = { min: -1.0, max: 2.0 } as const;
 
 export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   '/create:agent': [['create:agent', 1.6], ['sk-doc', 0.45]],

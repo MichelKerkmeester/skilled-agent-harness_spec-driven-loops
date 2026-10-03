@@ -38,14 +38,14 @@ Align the two freshness models by surfacing the content-hash comparison the grap
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Tests passing (if applicable)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -167,9 +167,9 @@ Phase 1 (Setup: baseline capture) ──► Phase 2 (Implement: status + panel) 
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Backup created (if data changes)
-- [ ] Feature flag configured
-- [ ] Monitoring alerts set
+- [x] Backup created (if data changes): not applicable, no data changes
+- [x] Feature flag configured: not applicable, additive diagnostic field
+- [x] Monitoring alerts set: not applicable, diagnostic surface
 
 ### Rollback Procedure
 1. Stop using the changed status surface; the prior build remains on disk until the runtime is rebuilt.
@@ -241,11 +241,13 @@ Phase 1 (Setup: baseline capture) ──► Phase 2 (Implement: status + panel) 
 
 ### ADR-001: Content-hash index staleness is the truth signal the status surface reports
 
-**Status**: Proposed
+**Status**: Accepted
 
 **Context**: `advisor_status` answers `live` from the generation signature while `skill_graph_status` answers changed hashes for the same files. The generation signature proves the sources have not changed since the last generation publish; it does not prove the index was built from those sources. The operator needs one answer.
 
 **Decision**: Reuse the stored `skill_nodes.content_hash` comparison as the index-staleness evidence on the status surface. Keep `freshness` for the generation verdict and surface the index disagreement either by downgrading `live` to `stale` or by reporting an explicit staleness object; the implementation picks the shape that keeps the strict schema and the existing tests truthful, and pins it.
+
+**Implementation note**: Recon found the comparison itself was wrong. `skill_graph_status` hashed the raw file while the indexer stores a hash of the sanitizer version line plus the file, so all 14 sources looked changed against a current index. The recipe now lives in one exported function, `computeSkillMetadataContentHash`, shared by the indexer, `skill_graph_status` and the new `indexStaleness` field. The chosen shape is the explicit `indexStaleness` object plus a `live` to `stale` downgrade when it reports `stale`.
 
 **Consequences**:
 - A `live` answer now implies both a current generation and an index that matches disk.
