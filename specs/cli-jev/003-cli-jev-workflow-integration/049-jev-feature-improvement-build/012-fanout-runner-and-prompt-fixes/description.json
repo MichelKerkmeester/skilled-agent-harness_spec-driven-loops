@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/012-fanout-runner-and-prompt-fixes",
+  "description": "Phase 12: fanout-runner-and-prompt-fixes",
+  "keywords": [
+    "phase",
+    "fanout-runner-and-prompt-fixes"
+  ],
+  "lastUpdated": "2026-10-03T05:30:12.555Z",
+  "specId": "012",
+  "folderSlug": "fanout-runner-and-prompt-fixes",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "049-jev-feature-improvement-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
