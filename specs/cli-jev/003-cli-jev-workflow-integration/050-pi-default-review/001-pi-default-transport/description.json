@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport",
+  "description": "Phase 1: pi-default-transport",
+  "keywords": [
+    "phase",
+    "pi-default-transport"
+  ],
+  "lastUpdated": "2026-10-03T17:39:27.680Z",
+  "specId": "001",
+  "folderSlug": "pi-default-transport",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "050-pi-default-review"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

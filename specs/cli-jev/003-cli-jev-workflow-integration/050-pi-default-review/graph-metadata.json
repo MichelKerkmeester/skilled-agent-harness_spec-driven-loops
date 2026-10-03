@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/050-pi-default-review",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/050-pi-default-review",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration",
+  "children_ids": [
+    "cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport",
+    "cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi default transport",
+      "jev feature review",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "default",
+      "transport",
+      "jev",
+      "feature",
+      "review",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+      "001-pi-default-transport/goal.md",
+      "002-feature-review-and-remeasure/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "jev-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Make Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Answer Jev",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Opus",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Pi answers Jev questions with the same picks as the jev CLI in about half the time, but only when a caller asks for it, and only for `choice` questions in two scorers",
+    "created_at": "2026-10-03T17:39:26Z",
+    "last_save_at": "2026-10-03T17:42:07.418Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:16e7816feb49332f0f86f14cfe5755ca0122f153e984c966851d7d6fef93b9b4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "43d3af335189d4e8dad570b5d157214485735eaa9580bd2835ff23d732f51370"
+    },
+    "last_active_at": null
+  }
+}
