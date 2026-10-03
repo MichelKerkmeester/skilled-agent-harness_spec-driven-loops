@@ -127,7 +127,7 @@ bash .skilled/commands/doctor/scripts/route-validate.sh --self-test
 | `fable-mode-check.cjs` | Read-only report. |
 | `audit_descriptions.py` | Read-only audit. |
 | `agent-roster-mirror-check.cjs`, `command-catalog-mirror-check.cjs` | Read-only reports. |
-| `release-update.cjs` | `check` and `align --dry-run` are read-only. `align` writes a run directory. `apply`, `rollback` and `record-base` write framework files and release records under a lock. |
+| `release-update.cjs` | `check` and `align --dry-run` are read-only. `align` writes a run directory. `apply`, `rollback` and `record-base` write framework files and release records under a lock. The `unlock` subcommand removes a lock only when its owner process is gone. |
 
 Do not invoke a mutating path from a route classified as read-only.
 
