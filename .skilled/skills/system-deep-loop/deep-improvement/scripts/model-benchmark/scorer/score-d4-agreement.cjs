@@ -46,7 +46,7 @@ const DEFAULT_FIXTURES_DIR = path.resolve(__dirname, '../../../assets/model-benc
 // The deterministic check the baseline column runs.
 const HALLUCINATION_CHECK = path.join(__dirname, 'deterministic', 'hallucination-flag.cjs');
 // The usage line printed whenever the run cannot start.
-const USAGE = 'usage: score-d4-agreement.cjs --outputs <dir> [--fixtures <dir>] [--labels <file>] [--jev] [--out <dir>] [--accept-payload]';
+const USAGE = 'usage: score-d4-agreement.cjs --outputs <dir> [--fixtures <dir>] [--labels <file>] [--jev] [--cascade] [--out <dir>] [--accept-payload]';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. CENSUS
@@ -319,14 +319,94 @@ function formatP(p) {
  * class named at least twice, and the reruns that dissent from it add to the
  * flip count, so an unstable call is never hidden.
  *
- * @param {'jev'} backend - Backend name, printed on the verdict line
+ * @param {'jev'|'cascade'} backend - Backend name, printed on the verdict line
  * @param {Array<{ file: string, label: 'yes'|'no' }>} rows - Labeled rows, in file order
  * @param {Map<string, Array<number|null>>} answers - Output file name -> submitted answers
  * @param {Map<string, 'yes'|'no'>} baselineCalls - Output file name -> baseline call
  * @param {string} labelsSha - Label digest printed on the verdict line
  * @param {string} suffix - Backend identity appended to the line when non-empty
- * @returns {{ backend: string, K: number, M: number, unmeasured: number, A: number, B: number, W: number, L: number, F: number|null, pWin: number, pLoss: number, outcome: string, reason: string|null, line: string }} Column summary
+ * @returns {{ backend: string, K: number, M: number, unmeasured: number, A: number, B: number, W: number, L: number, F: number|null, pWin: number, pLoss: number, perClass: object, outcome: string, reason: string|null, line: string }} Column summary
  */
+function binomialMass(successes, trials, probability) {
+  if (probability === 0) return successes === 0 ? 1 : 0;
+  if (probability === 1) return successes === trials ? 1 : 0;
+  let logCombination = 0;
+  for (let i = 1; i <= successes; i += 1) {
+    logCombination += Math.log(trials - successes + i) - Math.log(i);
+  }
+  return Math.exp(
+    logCombination
+      + successes * Math.log(probability)
+      + (trials - successes) * Math.log1p(-probability),
+  );
+}
+
+function binomialCdf(successes, trials, probability) {
+  let total = 0;
+  for (let value = 0; value <= successes; value += 1) {
+    total += binomialMass(value, trials, probability);
+  }
+  return total;
+}
+
+function binomialUpperTail(successes, trials, probability) {
+  let total = 0;
+  for (let value = successes; value <= trials; value += 1) {
+    total += binomialMass(value, trials, probability);
+  }
+  return total;
+}
+
+function clopperPearsonInterval(successes, trials) {
+  if (trials === 0) return { lower: null, upper: null };
+  const tail = 0.025;
+  let lower = 0;
+  let upper = 1;
+  if (successes > 0) {
+    let low = 0;
+    let high = 1;
+    for (let i = 0; i < 60; i += 1) {
+      const middle = (low + high) / 2;
+      if (binomialUpperTail(successes, trials, middle) < tail) low = middle;
+      else high = middle;
+    }
+    lower = (low + high) / 2;
+  }
+  if (successes < trials) {
+    let low = 0;
+    let high = 1;
+    for (let i = 0; i < 60; i += 1) {
+      const middle = (low + high) / 2;
+      if (binomialCdf(successes, trials, middle) > tail) low = middle;
+      else high = middle;
+    }
+    upper = (low + high) / 2;
+  }
+  return { lower, upper };
+}
+
+function summarizePerClass(rows, predictions) {
+  const result = { confidenceLevel: 0.95, method: 'clopper-pearson' };
+  for (const label of ['yes', 'no']) {
+    const measuredRows = rows.filter((row) => row.label === label && predictions.has(row.file));
+    const correct = measuredRows.filter((row) => predictions.get(row.file) === row.label).length;
+    result[label] = {
+      correct,
+      total: measuredRows.length,
+      accuracy: measuredRows.length > 0 ? correct / measuredRows.length : null,
+      interval: clopperPearsonInterval(correct, measuredRows.length),
+    };
+  }
+  return result;
+}
+
+function formatClassResult(backend, label, stats) {
+  const rate = stats.accuracy === null ? 'none' : stats.accuracy.toFixed(3);
+  const lower = stats.interval.lower === null ? 'none' : stats.interval.lower.toFixed(3);
+  const upper = stats.interval.upper === null ? 'none' : stats.interval.upper.toFixed(3);
+  return `class ${backend} ${label}: ${stats.correct}/${stats.total} (${rate}) 95% CI [${lower}, ${upper}]`;
+}
+
 function summarizeColumn(backend, rows, answers, baselineCalls, labelsSha, suffix) {
   const expected = JEV_RERUNS;
   const K = rows.length;
@@ -336,6 +416,7 @@ function summarizeColumn(backend, rows, answers, baselineCalls, labelsSha, suffi
   let W = 0;
   let L = 0;
   let F = 0;
+  const predictions = new Map();
   for (const row of rows) {
     const values = answers.get(row.file);
     if (!Array.isArray(values) || values.length !== expected) continue;
@@ -343,6 +424,7 @@ function summarizeColumn(backend, rows, answers, baselineCalls, labelsSha, suffi
     M += 1;
     const yesVotes = values.filter((value) => value >= 0.5).length;
     const call = yesVotes >= 2 ? 'yes' : 'no';
+    predictions.set(row.file, call);
     F += expected - (yesVotes >= 2 ? yesVotes : expected - yesVotes);
     const columnRight = call === row.label;
     const baselineRight = baselineCalls.get(row.file) === row.label;
@@ -355,7 +437,23 @@ function summarizeColumn(backend, rows, answers, baselineCalls, labelsSha, suffi
   const outcomeText = verdict.reason === null ? verdict.outcome : `stop (${verdict.reason})`;
   let line = `verdict ${backend}: ${outcomeText} K=${K} M=${M} A=${A} B=${B} W=${W} L=${L} F=${F} p_win=${formatP(verdict.pWin)} p_loss=${formatP(verdict.pLoss)} labels_sha256=${labelsSha}`;
   if (typeof suffix === 'string' && suffix.length > 0) line += ` ${suffix}`;
-  return { backend, K, M, unmeasured: K - M, A, B, W, L, F, pWin: verdict.pWin, pLoss: verdict.pLoss, outcome: verdict.outcome, reason: verdict.reason, line };
+  return {
+    backend,
+    K,
+    M,
+    unmeasured: K - M,
+    A,
+    B,
+    W,
+    L,
+    F,
+    pWin: verdict.pWin,
+    pLoss: verdict.pLoss,
+    perClass: summarizePerClass(rows, predictions),
+    outcome: verdict.outcome,
+    reason: verdict.reason,
+    line,
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -433,12 +531,12 @@ function trackedFiles(dir, names) {
  * @returns {{ passed: boolean, path: string | null, provider: string, untracked: number, reason?: string }}
  *   True when the gate passed; a failed gate carries the skip line it printed.
  */
-function jevGate(ctx) {
+function jevGate(ctx, backend = 'jev') {
   const provider = ctx.env.JEV_PROVIDER || 'official';
   const jevPath = which('jev', ctx.env);
   ctx.out(`jev: path=${jevPath ?? 'none'} provider=${provider}`);
   if (jevPath === null) {
-    const skipLine = 'jev arm skipped: jev not on PATH';
+    const skipLine = `${backend} arm skipped: jev not on PATH`;
     ctx.out(skipLine);
     return { passed: false, path: jevPath, provider, untracked: 0, reason: skipLine };
   }
@@ -453,7 +551,7 @@ function jevGate(ctx) {
   const trimmed = (version.stdout ?? '').trim();
   const found = trimmed === '' ? '' : trimmed.split('\n')[0];
   if (found !== JEV_VERSION) {
-    const skipLine = 'jev arm skipped: version';
+    const skipLine = `${backend} arm skipped: version`;
     ctx.out(skipLine);
     ctx.out(`jev: found=${JSON.stringify(found)} path=${jevPath}`);
     return { passed: false, path: jevPath, provider, untracked: 0, reason: skipLine };
@@ -461,7 +559,7 @@ function jevGate(ctx) {
 
   const auth = spawnSync(jevPath, ['auth', 'status', '--provider', provider], opts);
   if (auth.status !== 0) {
-    const skipLine = 'jev arm skipped: no credential';
+    const skipLine = `${backend} arm skipped: no credential`;
     ctx.out(skipLine);
     return { passed: false, path: jevPath, provider, untracked: 0, reason: skipLine };
   }
@@ -472,7 +570,7 @@ function jevGate(ctx) {
     untracked = ctx.labeledFiles.filter((name) => !tracked.has(name)).length;
   }
   if (untracked > 0 && ctx.acceptPayload !== true) {
-    const skipLine = 'jev arm skipped: payload not accepted';
+    const skipLine = `${backend} arm skipped: payload not accepted`;
     ctx.out(skipLine);
     return { passed: false, path: jevPath, provider, untracked, reason: skipLine };
   }
@@ -609,12 +707,13 @@ function readStoredReport(outDir) {
  *   baseline: { method: 'check'|'majority', majorityClass: 'yes'|'no', checkRight: number, majorityRight: number, right: number },
  *   gateLine: string,
  *   labelsSha: string | null,
- *   jev?: object
+ *   jev?: object,
+ *   cascade?: object
  * }} parts
  * @returns {object} Report object ready for JSON.stringify.
  */
 function buildReport(parts) {
-  const { census, labeled, baseline, gateLine, labelsSha, jev } = parts;
+  const { census, labeled, baseline, gateLine, labelsSha, jev, cascade } = parts;
   const report = {
     question: QUESTION,
     labelsSha256: labelsSha,
@@ -634,7 +733,7 @@ function buildReport(parts) {
     requalify: {},
   };
 
-  for (const [backend, arm] of [['jev', jev]]) {
+  for (const [backend, arm] of [['jev', jev], ['cascade', cascade]]) {
     if (!arm) continue;
     if (typeof arm.skipped === 'string') {
       report.skipped[backend] = arm.skipped;
@@ -660,10 +759,17 @@ function buildReport(parts) {
       pWin: column.pWin,
       pLoss: column.pLoss,
       unmeasured: column.unmeasured,
+      perClass: column.perClass,
       latency: column.latency,
     };
 
-    if (backend === 'jev') {
+    if (backend === 'cascade') {
+      report.columns[backend].routedRows = column.routedRows;
+      report.columns[backend].modelCalls = column.modelCalls;
+      report.columns[backend].plannedCalls = column.plannedCalls;
+    }
+
+    if (backend === 'jev' || backend === 'cascade') {
       report.columns[backend].jevVersion = column.jevVersion;
       report.columns[backend].provider = column.provider;
       report.columns[backend].model = column.model;
@@ -676,8 +782,9 @@ function buildReport(parts) {
 
 
 /**
- * The Jev arm: one auth test, then JEV_RERUNS hosted noul calls per labeled
- * row, since the hosted noul is sampled once per call. A measured call is
+ * The model arm: one auth test, then JEV_RERUNS hosted noul calls per routed
+ * row, since the hosted noul is sampled once per call. Cascade routes only
+ * check-flagged rows and uses the deterministic no result for the rest. A measured call is
  * exit 0 with a finite noul in [0, 1]; exit 0 without one is a failed
  * measurement. An exit-4 call waits and retries once, and a stop line ends
  * the arm with the row count it finished. The payload is the benchmark
@@ -686,6 +793,7 @@ function buildReport(parts) {
  * @param {{
  *   rows: Array<{ file: string, label: 'yes'|'no', state: string }>,
  *   baselineCalls: Map<string, 'yes'|'no'>,
+ *   checkCalls: Map<string, 'yes'|'no'>,
  *   labelsSha: string
  * }} plan Labeled rows with their state text, the baseline calls and the label
  *   digest.
@@ -701,22 +809,28 @@ function buildReport(parts) {
  *   stored: object | null
  * }} ctx Line writer, environment, per-call timeout, retry wait, call log and
  *   the stored report.
+ * @param {'jev'|'cascade'} [backend='jev'] Select all rows or check-flagged rows.
  * @returns {{ column: object, requalify: string | null } | { stopped: string, partialRows: number }}
  *   The finished column or the stop line with the rows finished.
  */
-async function runJevArm(plan, gate, ctx) {
+async function runJevArm(plan, gate, ctx, backend = 'jev') {
+  const routedRows = backend === 'cascade'
+    ? plan.rows.filter((row) => plan.checkCalls.get(row.file) === 'yes')
+    : plan.rows;
   const jevVersion = JEV_VERSION.split(' ')[1];
   let chars = 0;
-  for (const row of plan.rows) chars += row.state.length + QUESTION.length;
+  for (const row of routedRows) chars += row.state.length + QUESTION.length;
   chars *= JEV_RERUNS;
-  ctx.out(`jev: payload: ${gate.untracked === 0 ? 'committed' : 'untracked'} benchmark outputs and fixture task text; planned calls: ${JEV_RERUNS * plan.rows.length + 1}; estimated input tokens: ${Math.ceil(chars / 4)}`);
+  const plannedCalls = JEV_RERUNS * routedRows.length + 1;
+  ctx.out(`${backend}: payload: ${gate.untracked === 0 ? 'committed' : 'untracked'} benchmark outputs and fixture task text; planned calls: ${plannedCalls}; estimated input tokens: ${Math.ceil(chars / 4)}`);
 
   const wallTimes = [];
   let finished = 0;
+  let modelCalls = 0;
 
   function stop(line) {
     ctx.out(line);
-    ctx.out(`jev: partial rows=${finished}`);
+    ctx.out(`${backend}: partial rows=${finished}`);
     return { stopped: line, partialRows: finished };
   }
 
@@ -733,7 +847,7 @@ async function runJevArm(plan, gate, ctx) {
     if (typeof parsed?.model === 'string') model = parsed.model;
   }
   ctx.callLog.append({
-    backend: 'jev',
+    backend,
     output: null,
     rerun: null,
     attempt: 1,
@@ -750,7 +864,7 @@ async function runJevArm(plan, gate, ctx) {
     if (auth.code === 130) return stop('jev arm stopped: interrupted');
     return stop('jev arm stopped: auth test failed');
   }
-  ctx.out(`jev: auth test provider=${gate.provider} model=${model}`);
+  ctx.out(`${backend}: auth test provider=${gate.provider} model=${model}`);
 
   const answers = new Map();
 
@@ -760,7 +874,7 @@ async function runJevArm(plan, gate, ctx) {
    */
   function record(row, rerun, attempt, r, noul, status) {
     return {
-      backend: 'jev',
+      backend,
       output: row.file,
       rerun,
       attempt,
@@ -774,11 +888,12 @@ async function runJevArm(plan, gate, ctx) {
     };
   }
 
-  for (const row of plan.rows) {
+  for (const row of routedRows) {
     const values = [];
     for (let rerun = 1; rerun <= JEV_RERUNS; rerun += 1) {
       const callArgs = ['noul', '--provider', gate.provider, '-q', QUESTION];
       let attempt = 1;
+      modelCalls += 1;
       let r = await spawnCall(gate.path, callArgs, row.state, ctx.env, ctx.timeoutMs);
       wallTimes.push(r.wallMs);
 
@@ -786,6 +901,7 @@ async function runJevArm(plan, gate, ctx) {
         ctx.callLog.append(record(row, rerun, attempt, r, null, 'unmeasured'));
         await new Promise((resolve) => setTimeout(resolve, ctx.backoffMs));
         attempt = 2;
+        modelCalls += 1;
         r = await spawnCall(gate.path, callArgs, row.state, ctx.env, ctx.timeoutMs);
         wallTimes.push(r.wallMs);
       }
@@ -825,8 +941,14 @@ async function runJevArm(plan, gate, ctx) {
     finished += 1;
   }
 
+  if (backend === 'cascade') {
+    for (const row of plan.rows) {
+      if (!answers.has(row.file)) answers.set(row.file, Array(JEV_RERUNS).fill(plan.checkCalls.get(row.file) === 'yes' ? 1 : 0));
+    }
+  }
+
   const column = summarizeColumn(
-    'jev',
+    backend,
     plan.rows,
     answers,
     plan.baselineCalls,
@@ -837,11 +959,19 @@ async function runJevArm(plan, gate, ctx) {
     p50: nearestRank(wallTimes, 0.5),
     p95: nearestRank(wallTimes, 0.95),
   };
-  ctx.out(`column jev: K=${column.K} measured=${column.M} unmeasured=${column.unmeasured} latency_p50_ms=${latency.p50 ?? 'none'} latency_p95_ms=${latency.p95 ?? 'none'}`);
-  const storedJev = ctx.stored?.columns?.jev;
+  ctx.out(`column ${backend}: K=${column.K} measured=${column.M} unmeasured=${column.unmeasured} latency_p50_ms=${latency.p50 ?? 'none'} latency_p95_ms=${latency.p95 ?? 'none'}`);
+  if (backend === 'cascade') {
+    ctx.out(`cascade: routed ${routedRows.length} of ${plan.rows.length} check-flagged outputs; model calls=${modelCalls}`);
+  }
+  for (const label of ['yes', 'no']) ctx.out(formatClassResult(backend, label, column.perClass[label]));
+  const storedArm = ctx.stored?.columns?.[backend];
   let requalify = null;
-  if (storedJev && (storedJev.provider !== gate.provider || storedJev.model !== model)) {
-    requalify = 'requalify: model changed';
+  if (storedArm) {
+    const reasons = [];
+    if (storedArm.provider !== gate.provider || storedArm.model !== model) reasons.push('model changed');
+    if (reasons.length > 0) requalify = `requalify: ${reasons.join(', ')}`;
+  }
+  if (requalify !== null) {
     ctx.out(requalify);
   }
   ctx.out(column.line);
@@ -853,6 +983,9 @@ async function runJevArm(plan, gate, ctx) {
       jevVersion,
       provider: gate.provider,
       model,
+      routedRows: routedRows.length,
+      modelCalls,
+      plannedCalls,
     },
     requalify,
   };
@@ -897,6 +1030,7 @@ async function main(argv, deps = {}) {
         out: { type: 'string' },
 
         jev: { type: 'boolean' },
+        cascade: { type: 'boolean' },
         'accept-payload': { type: 'boolean' },
       },
     });
@@ -909,8 +1043,14 @@ async function main(argv, deps = {}) {
     err(USAGE);
     return 2;
   }
-  if (values.jev === true && (typeof values.out !== 'string' || values.out === '')) {
-    err('--jev needs --out <dir> so every call is recorded');
+  const runJev = values.jev === true;
+  const runCascade = values.cascade === true;
+  const runModelArms = runJev || runCascade;
+  if (runModelArms && (typeof values.out !== 'string' || values.out === '')) {
+    const message = runJev && runCascade
+      ? '--jev and --cascade need --out <dir> so every call is recorded'
+      : (runCascade ? '--cascade needs --out <dir> so every call is recorded' : '--jev needs --out <dir> so every call is recorded');
+    err(message);
     return 2;
   }
 
@@ -993,28 +1133,68 @@ async function main(argv, deps = {}) {
     gateLine = 'no headroom';
   } else {
     gate = 'open';
-    gateLine = `planned calls: jev ${3 * K + 1}`;
+    const planned = [];
+    if (runJev || !runCascade) planned.push(`jev ${JEV_RERUNS * K + 1}`);
+    if (runCascade) {
+      const routed = rows.filter((row) => row.check === 'yes').length;
+      planned.push(`cascade ${JEV_RERUNS * routed + 1}`);
+    }
+    gateLine = `planned calls: ${planned.join('; ')}`;
   }
   out(gateLine);
 
-  const stored = values.jev === true ? readStoredReport(values.out) : null;
+  const stored = runModelArms ? readStoredReport(values.out) : null;
+  const requestedBackends = [];
+  if (runJev) requestedBackends.push('jev');
+  if (runCascade) requestedBackends.push('cascade');
+  const changedLabelArms = Object.prototype.hasOwnProperty.call(stored || {}, 'labelsSha256')
+    ? requestedBackends.filter((backend) => stored?.columns?.[backend]
+      && stored.labelsSha256 !== labelsSha)
+    : [];
+  if (changedLabelArms.length > 0) {
+    err(`requalify refused: labels SHA changed for ${changedLabelArms.join(', ')}`);
+    return 2;
+  }
   const callLog = createCallLog(values.out);
-  const plan = gate === 'open' ? { rows: rows.map((row) => ({ file: row.file, label: row.label, state: buildState(row.fixture, fs.readFileSync(row.outputPath, 'utf8')) })), baselineCalls: baseline.calls, labelsSha } : null;
+  const plan = gate === 'open'
+    ? {
+      rows: rows.map((row) => ({ file: row.file, label: row.label, state: buildState(row.fixture, fs.readFileSync(row.outputPath, 'utf8')) })),
+      baselineCalls: baseline.calls,
+      checkCalls: new Map(rows.map((row) => [row.file, row.check])),
+      labelsSha,
+    }
+    : null;
 
   let jevResult;
-  if (values.jev === true) {
-    const jevCheck = jevGate({ out, env, timeoutMs, outputsDir: values.outputs, labeledFiles: rows.map((row) => row.file), acceptPayload: values['accept-payload'] === true });
+  let cascadeResult;
+  if (runModelArms) {
+    const gateBackend = runJev ? 'jev' : 'cascade';
+    const jevCheck = jevGate({ out, env, timeoutMs, outputsDir: values.outputs, labeledFiles: rows.map((row) => row.file), acceptPayload: values['accept-payload'] === true }, gateBackend);
+    let skipped = null;
     if (!jevCheck.passed) {
-      jevResult = { skipped: jevCheck.reason };
+      skipped = jevCheck.reason;
     } else if (gate !== 'open') {
-      const line = gate === 'headroom' ? 'jev arm skipped: no headroom' : 'jev arm skipped: label gate';
-      out(line);
-      jevResult = { skipped: line };
+      skipped = gate === 'headroom' ? 'no headroom' : 'label gate';
+    }
+    if (skipped !== null) {
+      if (runJev) {
+        const line = skipped.startsWith('jev arm skipped:') ? skipped : `jev arm skipped: ${skipped}`;
+        if (jevCheck.passed) out(line);
+        jevResult = { skipped: line };
+      }
+      if (runCascade) {
+        const reason = skipped.replace(/^(?:jev|cascade) arm skipped:\s*/, '');
+        const line = `cascade arm skipped: ${reason}`;
+        if (runJev || jevCheck.passed) out(line);
+        cascadeResult = { skipped: line };
+      }
     } else {
-      jevResult = await runJevArm(plan, jevCheck, { out, env, timeoutMs, backoffMs, callLog, stored });
+      const armContext = { out, env, timeoutMs, backoffMs, callLog, stored };
+      if (runJev) jevResult = await runJevArm(plan, jevCheck, armContext);
+      if (runCascade) cascadeResult = await runJevArm(plan, jevCheck, armContext, 'cascade');
     }
   }
-  if (values.jev === true) {
+  if (runModelArms) {
     const report = buildReport({
       census: { outputs: outputs.length, matched: matched.length, unmatched: unmatched.length, fixtures: fixtures.total, allowlist: fixtures.withAllowlist },
       labeled: { K, yes, no, dropped: labels.size - K },
@@ -1022,6 +1202,7 @@ async function main(argv, deps = {}) {
       gateLine,
       labelsSha,
       jev: jevResult,
+      cascade: cascadeResult,
     });
     fs.mkdirSync(values.out, { recursive: true });
     fs.writeFileSync(path.join(values.out, 'report.json'), JSON.stringify(report, null, 2) + '\n');

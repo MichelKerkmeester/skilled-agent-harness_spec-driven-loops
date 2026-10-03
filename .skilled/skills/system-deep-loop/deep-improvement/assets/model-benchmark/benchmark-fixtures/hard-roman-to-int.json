@@ -29,5 +29,6 @@
     { "name": "non-canonical VIIII is invalid", "args": ["VIIII"], "expect": null }
   ],
   "expectedDifficulty": "adversarial",
-  "saturation": { "status": "active" }
+  "saturation": { "status": "active" },
+  "allowlist": {"cli_flags":[],"symbols":["romanToInt"]}
 }

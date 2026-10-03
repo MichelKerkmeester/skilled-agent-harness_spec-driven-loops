@@ -39,5 +39,6 @@
       ],
       "reviewer_output": "VERDICT: FAIL\nFinding: validation evidence is stale; re-run validation for the changed YAML."
     }
-  ]
+  ],
+  "allowlist": {"cli_flags":[],"symbols":[]}
 }

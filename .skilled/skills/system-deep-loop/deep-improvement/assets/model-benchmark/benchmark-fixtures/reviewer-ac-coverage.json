@@ -39,5 +39,6 @@
       ],
       "reviewer_output": "VERDICT: FAIL\nFinding: coverage has a blank row and an unrationalized manual item."
     }
-  ]
+  ],
+  "allowlist": {"cli_flags":[],"symbols":[]}
 }
