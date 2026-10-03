@@ -81,9 +81,13 @@ const TITLE_STOPWORDS = new Set([
 // noul counts as "same" from one half upward.
 const NOUL_QUESTION = 'Do these two findings describe the same problem?';
 
-// The orders one pair is asked in. The hosted model samples once per call, so
-// the first order repeats and no answer is reused.
-const JEV_ORDERS = ['AB', 'BA', 'AB'];
+// The first two orders swap the findings; only a split pays for a third order.
+const JEV_INITIAL_ORDERS = ['AB', 'BA'];
+const JEV_MAX_ORDERS = 3;
+
+// Zero-call comparators and the displayed calibration cuts stay fixed across runs.
+const LEXICAL_JACCARD_AT = 0.4;
+const CUT_SWEEP = [0.4, 0.45, 0.5];
 
 // The pinned client version the gate accepts.
 const JEV_VERSION = 'jev 0.6.2';
@@ -517,23 +521,48 @@ function mergeDecision(loop, la, fa, lb, fb, dedup) {
  * signal only where folding measurably helps.
  *
  * @param {Array<Object>} labeled - Classed pair records, each carrying the operator's `label`
- * @returns {{method: 'dedup-on'|'dedup-off', onRight: number, offRight: number, right: number}} The better setting and its right count
+ * @returns {{method: 'dedup-on'|'dedup-off', onRight: number, offRight: number,
+ *   right: number, rows: Array<{name: string, right: number, total: number,
+ *     method?: 'dedup-on'|'dedup-off', rule?: string, threshold?: number}>}} Baseline scores
  */
 function readBaseline(labeled) {
   let onRight = 0;
   let offRight = 0;
+  let constantSameRight = 0;
+  let lexicalRight = 0;
+  let total = 0;
   for (const pair of Array.isArray(labeled) ? labeled : []) {
     const label = pair && pair.label;
     if (label !== 'same' && label !== 'different') continue;
+    total += 1;
     const onDecision = mergeDecision(pair.loop, pair.la, pair.a, pair.lb, pair.b, true);
     const offDecision = mergeDecision(pair.loop, pair.la, pair.a, pair.lb, pair.b, false);
     if (onDecision === label) onRight += 1;
     if (offDecision === label) offRight += 1;
+    if (label === 'same') constantSameRight += 1;
+
+    const textA = typeof pair.textA === 'string' ? pair.textA : findingText(pair.a);
+    const textB = typeof pair.textB === 'string' ? pair.textB : findingText(pair.b);
+    const lexicalDecision = overlap(contentTokens(textA), contentTokens(textB)) >= LEXICAL_JACCARD_AT
+      ? 'same'
+      : 'different';
+    if (lexicalDecision === label) lexicalRight += 1;
   }
   // A tie keeps the shipped default: dedup is off unless a run opts in, so the
   // baseline claims folding helps only when it measurably reads more pairs right.
   const method = onRight > offRight ? 'dedup-on' : 'dedup-off';
-  return { method, onRight, offRight, right: method === 'dedup-on' ? onRight : offRight };
+  const right = method === 'dedup-on' ? onRight : offRight;
+  return {
+    method,
+    onRight,
+    offRight,
+    right,
+    rows: [
+      { name: 'merge-oracle', method, right, total },
+      { name: 'constant-same', rule: 'always same', right: constantSameRight, total },
+      { name: 'lexical-jaccard', threshold: LEXICAL_JACCARD_AT, right: lexicalRight, total },
+    ],
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -665,7 +694,10 @@ function gateState(labels, pairIndex, baseline) {
   if (baseline.right > HEADROOM * labeled) {
     return { kind: 'headroom', line: 'no headroom' };
   }
-  return { kind: 'open', line: `planned calls: jev ${3 * labeled + 1}` };
+  return {
+    kind: 'open',
+    line: `planned calls: jev up to ${JEV_MAX_ORDERS * labeled + 1} (two initial orders, third on split)`,
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -855,13 +887,12 @@ function createCallLog(outDir) {
 }
 
 /**
- * The Jev arm: the published pairs first, then one auth test under the
- * provider the gate passed and one call per fixed order, so the hosted model
- * is sampled three times and no answer is reused. A pair whose registries are
- * not both at origin/main is withheld whole and gets no call. A call that
+ * The Jev arm: the published pairs first, then one auth test and two swapped
+ * orders per pair. A third order is requested only when the first two disagree at one of the
+ * displayed cuts; its presentation is selected by stable pair identity. A pair whose registries
+ * are not both at origin/main is withheld whole and gets no call. A call that
  * exits without a finite noul stays unmeasured, an exit-4 call waits once and
- * retries, and a stop line ends the arm with the pairs it finished. A finished
- * column prints the verdict line the Keep Rule read.
+ * retries, and a stop line ends the arm with the pairs it finished.
  *
  * @param {{ rows: Array<{ key: string, label: string, textA: string,
  *   textB: string, registries?: string[] }>,
@@ -914,9 +945,10 @@ async function runJevArm(plan, gate, ctx) {
   for (const row of callable) {
     const textA = typeof row.textA === 'string' ? row.textA : '';
     const textB = typeof row.textB === 'string' ? row.textB : '';
-    for (const order of JEV_ORDERS) chars += stateText(textA, textB, order).length + NOUL_QUESTION.length;
+    for (const order of JEV_INITIAL_ORDERS) chars += stateText(textA, textB, order).length + NOUL_QUESTION.length;
+    chars += stateText(textA, textB, tieBreakOrder(row.key)).length + NOUL_QUESTION.length;
   }
-  ctx.out(`jev: payload: published fan-out finding text; planned calls: ${JEV_ORDERS.length * callable.length + 1}; estimated input tokens: ${Math.ceil(chars / 4)}`);
+  ctx.out(`jev: payload: published fan-out finding text; planned calls: up to ${JEV_MAX_ORDERS * callable.length + 1}; estimated input tokens: up to ${Math.ceil(chars / 4)}`);
 
   let finished = 0;
   let model = 'unknown';
@@ -976,69 +1008,81 @@ async function runJevArm(plan, gate, ctx) {
   }
   ctx.out(`jev: auth test provider=${gate.provider} model=${model}`);
 
-  for (const row of callable) {
+  async function ask(row, order) {
     const textA = typeof row.textA === 'string' ? row.textA : '';
     const textB = typeof row.textB === 'string' ? row.textB : '';
-    const values = [];
-    for (const order of JEV_ORDERS) {
-      const state = stateText(textA, textB, order);
-      const args = ['noul', '--provider', gate.provider, '-q', NOUL_QUESTION];
-      let call = await spawnCall(gate.path, args, state, ctx.env, timeoutMs);
+    const state = stateText(textA, textB, order);
+    const args = ['noul', '--provider', gate.provider, '-q', NOUL_QUESTION];
+    let call = await spawnCall(gate.path, args, state, ctx.env, timeoutMs);
 
-      if (!call.timedOut && call.code === 4) {
-        ctx.callLog.append(record(row, order, call, null, 'unmeasured'));
-        await new Promise((resolve) => setTimeout(resolve, backoffMs));
-        call = await spawnCall(gate.path, args, state, ctx.env, timeoutMs);
-      }
-
-      let probability = null;
-      let status = 'unmeasured';
-      let stopLine = null;
-      if (call.timedOut) {
-        status = 'unmeasured_timeout';
-      } else if (call.code === 0) {
-        let parsed;
-        try {
-          parsed = JSON.parse(call.stdout);
-        } catch {
-          // A body that does not parse is an unmeasured call, not a crash.
-        }
-        const value = parsed?.answers?.answer?.noul;
-        if (Number.isFinite(value) && value >= 0 && value <= 1) {
-          probability = value;
-          status = 'measured';
-        }
-      } else if (call.code === 2) {
-        stopLine = 'jev arm stopped: usage error';
-      } else if (call.code === 3) {
-        stopLine = 'jev arm stopped: key rejected';
-      } else if (call.code === 130) {
-        stopLine = 'jev arm stopped: interrupted';
-      }
-
-      ctx.callLog.append(record(row, order, call, probability, status));
-      if (stopLine !== null) return stop(stopLine);
-      values.push(probability);
+    if (!call.timedOut && call.code === 4) {
+      ctx.callLog.append(record(row, order, call, null, 'unmeasured'));
+      await new Promise((resolve) => setTimeout(resolve, backoffMs));
+      call = await spawnCall(gate.path, args, state, ctx.env, timeoutMs);
     }
+
+    let probability = null;
+    let status = 'unmeasured';
+    let stopLine = null;
+    if (call.timedOut) {
+      status = 'unmeasured_timeout';
+    } else if (call.code === 0) {
+      let parsed;
+      try {
+        parsed = JSON.parse(call.stdout);
+      } catch {
+        // A body that does not parse is an unmeasured call, not a crash.
+      }
+      const value = parsed?.answers?.answer?.noul;
+      if (Number.isFinite(value) && value >= 0 && value <= 1) {
+        probability = value;
+        status = 'measured';
+      }
+    } else if (call.code === 2) {
+      stopLine = 'jev arm stopped: usage error';
+    } else if (call.code === 3) {
+      stopLine = 'jev arm stopped: key rejected';
+    } else if (call.code === 130) {
+      stopLine = 'jev arm stopped: interrupted';
+    }
+
+    ctx.callLog.append(record(row, order, call, probability, status));
+    return { probability, stopLine };
+  }
+
+  for (const row of callable) {
+    const values = [];
+    for (const order of JEV_INITIAL_ORDERS) {
+      const result = await ask(row, order);
+      if (result.stopLine !== null) return stop(result.stopLine);
+      values.push(result.probability);
+    }
+
+    const needsThird = CUT_SWEEP.some((cut) => pairDecision(values, cut)?.needsThird === true);
+    if (needsThird) {
+      const result = await ask(row, tieBreakOrder(row.key));
+      if (result.stopLine !== null) return stop(result.stopLine);
+      values.push(result.probability);
+    }
+
     answers.set(row.key, values);
     finished += 1;
   }
 
-  const column = summarizeColumn(
-    'jev',
-    plan.rows,
-    answers,
-    plan.baselineCalls,
-    `jev_version=${jevVersion} provider=${gate.provider} model=${model}`,
-  );
+  const suffix = `jev_version=${jevVersion} provider=${gate.provider} model=${model}`;
+  const cutSweep = CUT_SWEEP.map((cut) => summarizeColumn('jev', plan.rows, answers, plan.baselineCalls, suffix, cut));
+  const column = cutSweep.find((entry) => entry.cut === SAME_AT) ?? cutSweep[cutSweep.length - 1];
   const storedJev = ctx.stored?.columns?.jev;
   let requalify = null;
   if (storedJev && (storedJev.provider !== gate.provider || storedJev.model !== model)) {
     requalify = 'requalify: model changed';
     ctx.out(requalify);
   }
-  ctx.out(column.line);
-  return { column: { ...column, jevVersion, provider: gate.provider, model }, requalify };
+  for (const sweepColumn of cutSweep) ctx.out(sweepColumn.line);
+  return {
+    column: { ...column, cutSweep, jevVersion, provider: gate.provider, model },
+    requalify,
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1084,8 +1128,48 @@ function nearestRank(values, q) {
 // and decides which side of a pair the column's judgment falls on; keeping it
 // here leaves no caller free to score with its own threshold.
 const SAME_AT = 0.5;
+const RUBRIC = {
+  question: NOUL_QUESTION,
+  sameAt: SAME_AT,
+  cuts: CUT_SWEEP,
+  lexicalJaccardAt: LEXICAL_JACCARD_AT,
+  initialOrders: JEV_INITIAL_ORDERS,
+  maximumOrders: JEV_MAX_ORDERS,
+  thirdWhen: 'initial orders disagree at any displayed cut',
+  symmetricTiebreak: 'sha256 pair-key parity selects the third order',
+};
 
 const USAGE = 'usage: score-fanout-pairs.cjs [--out <dir>] [--labels <file>] [--write-pair-sheet <path>] [--jev]';
+
+/**
+ * Resolve the calls available for one pair, requesting a third only when the
+ * first two measured answers disagree at the selected cut.
+ *
+ * @param {Array<number|null>} values - Measured answer probabilities in call order
+ * @param {number} [cut] - Probability at or above which one call says `same`
+ * @returns {{decision: 'same'|'different'|null, needsThird: boolean}|null} Pick state
+ */
+function pairDecision(values, cut = SAME_AT) {
+  if (!Array.isArray(values) || (values.length !== 2 && values.length !== JEV_MAX_ORDERS)) return null;
+  if (!values.every((value) => Number.isFinite(value) && value >= 0 && value <= 1)) return null;
+  const sameVotes = values.filter((value) => value >= cut).length;
+  if (values.length === 2 && sameVotes === 1) return { decision: null, needsThird: true };
+  const decision = values.length === 2
+    ? (sameVotes === 2 ? 'same' : 'different')
+    : (sameVotes >= 2 ? 'same' : 'different');
+  return { decision, needsThird: false };
+}
+
+/**
+ * Select a repeat order from stable pair identity so a split does not always
+ * give the same finding the first position.
+ *
+ * @param {string} key - Canonical pair key
+ * @returns {'AB'|'BA'} Repeat order for the third call
+ */
+function tieBreakOrder(key) {
+  return Number.parseInt(sha256Hex(key)[0], 16) % 2 === 0 ? 'AB' : 'BA';
+}
 
 /**
  * Exact one-sided chance of `successes` or more in `trials` fair coin flips.
@@ -1137,11 +1221,9 @@ function formatP(p) {
 }
 
 /**
- * One column's counts and verdict line. A pair is measured only when its
- * answer array holds exactly one answer per order and every answer is a finite
- * probability in [0, 1]; every other pair stays unmeasured and out of the
- * counts. The modal answer decides the call, and the flips check reads the
- * measured calls the column actually made.
+ * One column's counts and verdict line. A pair is measured when the first two
+ * orders agree or all three orders are available with finite probabilities.
+ * An unresolved split at a displayed cut stays unmeasured for that cut.
  *
  * @param {'jev'} backend - Backend name, printed on the verdict line
  * @param {Array<{ key: string, label: string }>} rows - Labeled pairs, in file order
@@ -1150,10 +1232,10 @@ function formatP(p) {
  *   Pair key -> the baseline's call, with the setting it was read under riding
  *   on the map so the line can name the baseline it beat
  * @param {string} suffix - Backend identity appended to the line when non-empty
+ * @param {number} [cut] - Probability threshold for a call to vote `same`
  * @returns {Object} Counts plus the verdict `line`
  */
-function summarizeColumn(backend, rows, answers, baselineCalls, suffix) {
-  const expected = JEV_ORDERS.length;
+function summarizeColumn(backend, rows, answers, baselineCalls, suffix, cut = SAME_AT) {
   const baselineMethod = baselineCalls && typeof baselineCalls.method === 'string' ? baselineCalls.method : 'dedup-off';
   const labeled = Array.isArray(rows) ? rows : [];
   const K = labeled.length;
@@ -1163,16 +1245,18 @@ function summarizeColumn(backend, rows, answers, baselineCalls, suffix) {
   let W = 0;
   let L = 0;
   let F = 0;
+  let C = 0;
 
   for (const row of labeled) {
     const values = answers instanceof Map ? answers.get(row.key) : undefined;
-    if (!Array.isArray(values) || values.length !== expected) continue;
-    if (!values.every((value) => Number.isFinite(value) && value >= 0 && value <= 1)) continue;
+    const pair = pairDecision(values, cut);
+    if (pair === null || pair.needsThird || pair.decision === null) continue;
     M += 1;
 
-    const sameVotes = values.filter((value) => value >= SAME_AT).length;
-    const call = sameVotes >= 2 ? 'same' : 'different';
-    F += expected - (call === 'same' ? sameVotes : expected - sameVotes);
+    const sameVotes = values.filter((value) => value >= cut).length;
+    const call = pair.decision;
+    C += values.length;
+    F += call === 'same' ? values.length - sameVotes : sameVotes;
 
     const columnRight = call === row.label;
     const baselineRight = baselineCalls instanceof Map && baselineCalls.get(row.key) === row.label;
@@ -1182,13 +1266,13 @@ function summarizeColumn(backend, rows, answers, baselineCalls, suffix) {
     if (baselineRight && !columnRight) L += 1;
   }
 
-  const C = expected * M;
   const verdict = decideVerdict({ backend, K, M, A, B, W, L, F, C });
   const outcomeText = verdict.reason === null ? verdict.outcome : `stop (${verdict.reason})`;
-  let line = `verdict ${backend}: ${outcomeText} K=${K} M=${M} A=${A} B=${B} W=${W} L=${L} F=${F} p=${formatP(verdict.p)} baseline=${baselineMethod} reader=none named`;
+  let line = `verdict ${backend}: ${outcomeText} cut=${cut} K=${K} M=${M} A=${A} B=${B} W=${W} L=${L} F=${F} C=${C} p=${formatP(verdict.p)} baseline=${baselineMethod} reader=none named`;
   if (typeof suffix === 'string' && suffix.length > 0) line += ` ${suffix}`;
   return {
     backend,
+    cut,
     K,
     M,
     unmeasured: K - M,
@@ -1197,6 +1281,7 @@ function summarizeColumn(backend, rows, answers, baselineCalls, suffix) {
     W,
     L,
     F,
+    C,
     p: verdict.p,
     outcome: verdict.outcome,
     reason: verdict.reason,
@@ -1205,22 +1290,25 @@ function summarizeColumn(backend, rows, answers, baselineCalls, suffix) {
 }
 
 /**
- * Assemble the recorded report from one run: the question, the census, the
- * labeled counts, the baseline, the gate line and one bucket per arm. A
+ * Assemble reproducibility hashes, the question, the census, labeled counts,
+ * oracle decisions, baseline rows, the gate line and one bucket per arm. A
  * skipped arm lands in `skipped`, a stopped arm in `stopped` with the pairs it
- * finished, and a finished column in `columns` with its verdict line, so the
- * report never claims a verdict an arm did not print.
+ * finished, and a finished column in `columns` with its verdict line.
  *
- * @param {{ question: string, census: Object, labeled: Object, baseline: Object,
- *   gate: string, jev?: Object }} parts - Run results
+ * @param {Object} parts - Run results and reproducibility metadata
  * @returns {Object} Report object ready for JSON.stringify
  */
 function buildReport(parts) {
   const report = {
     question: parts.question,
+    labelDigest: parts.labelDigest ?? null,
+    rubric: parts.rubric,
+    rubricHash: parts.rubricHash,
+    scorerHash: parts.scorerHash,
     census: parts.census,
     labeled: parts.labeled,
     baseline: parts.baseline,
+    oracle: parts.oracle,
     gate: parts.gate,
     columns: {},
     stopped: {},
@@ -1401,6 +1489,7 @@ async function main(argv, deps = {}) {
 
   let labels = new Map();
   let dropped = 0;
+  let labelText = null;
   if (typeof values.labels === 'string' && values.labels !== '') {
     let text;
     try {
@@ -1409,6 +1498,7 @@ async function main(argv, deps = {}) {
       err(`cannot read labels: ${error instanceof Error ? error.message : String(error)}`);
       return 2;
     }
+    labelText = text;
     try {
       labels = parseLabels(text, pairIndex);
     } catch (error) {
@@ -1435,9 +1525,19 @@ async function main(argv, deps = {}) {
     }
   }
   const baselineCalls = new Map();
+  const oracleDecisions = [];
   for (const pair of labeledPairs) {
-    baselineCalls.set(pair.key, mergeDecision(pair.loop, pair.la, pair.a, pair.lb, pair.b, baseline.method === 'dedup-on'));
+    const dedupOn = mergeDecision(pair.loop, pair.la, pair.a, pair.lb, pair.b, true);
+    const dedupOff = mergeDecision(pair.loop, pair.la, pair.a, pair.lb, pair.b, false);
+    const decision = baseline.method === 'dedup-on' ? dedupOn : dedupOff;
+    baselineCalls.set(pair.key, decision);
+    oracleDecisions.push({ key: pair.key, label: pair.label, dedupOn, dedupOff, decision });
   }
+  const oracle = {
+    method: baseline.method,
+    decisions: oracleDecisions,
+    dropouts: oracleDecisions.filter((entry) => entry.decision === 'undecidable'),
+  };
   // The arms read one calls map; the setting those calls were taken under
   // rides on it so each verdict line can name the baseline it was read against.
   baselineCalls.method = baseline.method;
@@ -1475,9 +1575,14 @@ async function main(argv, deps = {}) {
   if (values.jev === true) {
     const report = buildReport({
       question: NOUL_QUESTION,
+      labelDigest: labelText === null ? null : sha256Hex(labelText),
+      rubric: RUBRIC,
+      rubricHash: sha256Hex(JSON.stringify(RUBRIC)),
+      scorerHash: sha256Hex(fs.readFileSync(__filename)),
       census,
       labeled: { K: labels.size, dropped },
       baseline,
+      oracle,
       gate: gate.line,
       jev: jevResult,
     });
@@ -1521,6 +1626,8 @@ module.exports = {
   readStoredReport,
   nearestRank,
   binomialTail,
+  pairDecision,
+  tieBreakOrder,
   decideVerdict,
   formatP,
   summarizeColumn,

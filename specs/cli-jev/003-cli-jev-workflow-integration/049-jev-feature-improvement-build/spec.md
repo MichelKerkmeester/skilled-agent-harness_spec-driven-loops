@@ -104,7 +104,7 @@ Each child names its exact files in its own spec.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-fanout-merge-improvements/ | Build 048's ranked fixes for the Jev fan-out merge (030): honest baselines, two-call early stop, self-describing report | Planned |
+| 1 | 001-fanout-merge-improvements/ | Build 048's ranked fixes for the Jev fan-out merge (030): honest baselines, two-call early stop, self-describing report | Complete |
 | 2 | 002-track-narrowing-improvements/ | Build 048's ranked fixes for the Jev spec-track narrowing (017): pinned record, no `--out` overwrite, per-track and slack reporting | Planned |
 | 3 | 003-citation-drift-improvements/ | Build 048's ranked fixes for the Jev citation drift scan (032): min-rerun flag, live column, hash checks, one read per document | Planned |
 | 4 | 004-injection-screen-improvements/ | Build 048's ranked fixes for the Jev injection screen (035): corpus provenance, trust package, flag line 0.6, fewer calls | Planned |
