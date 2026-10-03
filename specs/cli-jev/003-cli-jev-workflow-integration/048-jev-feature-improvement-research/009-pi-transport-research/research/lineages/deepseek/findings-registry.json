@@ -1,0 +1,199 @@
+{
+  "mergedFrom": ["deepseek"],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    }
+  },
+  "loopType": "research",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research",
+  "lineageDir": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/lineages/deepseek",
+  "sessionId": "fanout-deepseek-1790986325077-da6hri",
+  "openQuestions": [
+    {
+      "id": "oq-1",
+      "text": "Does the operator accept the 95.5-on-one-row margin as sufficient for wider adoption, or does the corpus need same-day, repeated, or labeled measurement first?",
+      "raisedAtIteration": 3
+    },
+    {
+      "id": "oq-2",
+      "text": "Is the OpenRouter data path acceptable for every caller versus the official provider, and who owns that decision?",
+      "raisedAtIteration": 5
+    },
+    {
+      "id": "oq-3",
+      "text": "Which is the first production adopter: routing-accuracy harnesses (volume), deep-loop runtime scorers (critical path, blocked by type), or sk-doc noul callers (cheapest, blocked by type)?",
+      "raisedAtIteration": 4
+    },
+    {
+      "id": "oq-4",
+      "text": "Does the escalation threshold ship as 0.10 (7 rows deferred, 99.1 percent simulated) or 0.05 (2 rows, 96.4 percent)?",
+      "raisedAtIteration": 2
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q1",
+      "text": "What drove the measured result (K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022)?",
+      "status": "resolved",
+      "resolvedAtIteration": 1,
+      "evidence": [
+        ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:70-73,992-993,1054-1055,1075-1081",
+        "037 scratch/live-run/calls.jsonl + report.json",
+        "019 scratch/w4-session/jev-run/calls.jsonl",
+        "recomputation: 106/111 agreement, median_abs_dp 0.0100 over 1689 differences, p50/p95 249/340 vs 326/387"
+      ],
+      "_lineages": ["deepseek"]
+    },
+    {
+      "id": "q2",
+      "text": "How to raise its accuracy or lower its cost?",
+      "status": "resolved",
+      "resolvedAtIteration": 2,
+      "evidence": [
+        "policy simulation: 1/2/3 calls = 92.8/94.6/95.5; early stop 228 calls = 94.6",
+        "margin-gated escalation: 7 rows deferred at 0.10 = 99.1 percent with 104/111 Pi-served",
+        "catalog prices: jev-1.13 $0.042/M; span-01 $0.02/M; span-01-lite free",
+        "~533 input tokens per call implied; ~$0.0075 per 333-call replay",
+        "docs/cli.md:178 codemode 4-at-a-time parallelism"
+      ],
+      "_lineages": ["deepseek"]
+    },
+    {
+      "id": "q3",
+      "text": "How to make the measurement more trustworthy?",
+      "status": "resolved",
+      "resolvedAtIteration": 3,
+      "evidence": [
+        "Clopper-Pearson 95 percent CI 106/111 = [89.8,98.5], 105/111 = [88.6,98.0]",
+        "score-pi-transport.mjs:1304-1340 both-sides path never run",
+        "no usage field in calls.jsonl (cost unreproducible)",
+        "plan checks key set only; no prompt digest on either side",
+        "Pi gate unpinned vs CLI gate pin jev 0.6.2 (score-jev-tiebreak.mjs:25,1119-1124)"
+      ],
+      "_lineages": ["deepseek"]
+    },
+    {
+      "id": "q4",
+      "text": "Where else in .skilled the same judgment would pay off?",
+      "status": "resolved",
+      "resolvedAtIteration": 4,
+      "evidence": [
+        "7 choice call sites: verdict-fallback:783, severity-replay:1070, jev-tiebreak:1005, debug-next-check:733, track-narrowing:1327, alignment-suggestion.ts:1083",
+        "noul: cite-drift-scan:1081, goal-lint:313, severity-replay:1118, fanout-pairs:985, residue-flagger:1093, completion-claims:784, jev-tiebreak:928",
+        "score: stop-rater:1090",
+        "dispatch-audit.mjs:236-241 visibility gap",
+        "no accuracy gain anywhere; operational only"
+      ],
+      "_lineages": ["deepseek"]
+    },
+    {
+      "id": "q5",
+      "text": "What would a default-on integration need, cost and risk?",
+      "status": "resolved",
+      "resolvedAtIteration": 5,
+      "evidence": [
+        "resolveTransport default at jev-transport.mjs:59-65; doc table cli-jev/SKILL.md:245-250",
+        "per-call runtime construction jev-transport.mjs:349-366",
+        "one-row margin + overlapping CIs; unpinned Pi identity; never-live transport",
+        "data path: official vs openrouter (report.json; 037 spec.md:77)",
+        "failure path doubles worst-case latency; no circuit breaker"
+      ],
+      "_lineages": ["deepseek"]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F-1-01",
+      "title": "Verdict arithmetic: 106/111 = 95.5, one row above keep-cli at 94.6",
+      "text": "The keep rule judges coverage >= 90, agreement >= 95, latency <= 1.5x in order; adopt is one row from failure and latency/coverage never bound.",
+      "iteration": 1,
+      "sources": [".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:70-73", ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1075-1081"]
+    },
+    {
+      "id": "F-1-03",
+      "title": "All five disagreements are near-ties; 99 decisive rows agree 100 percent",
+      "text": "The disagreement set is contained in the 12 rows with either-side top-2 mean margin under 0.10; three flip on gaps under 0.07.",
+      "iteration": 1,
+      "sources": ["037 scratch/live-run/calls.jsonl", "019 scratch/w4-session/jev-run/calls.jsonl"]
+    },
+    {
+      "id": "F-1-04",
+      "title": "Agreement is a mean-of-orders construct: per-order 95.2 vs mean 95.5",
+      "text": "rr-iter3-127 has identical per-order picks on both sides yet counts as a disagreement because averaged means cross (0.023 vs 0.010).",
+      "iteration": 1,
+      "sources": [".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:1042-1056"]
+    },
+    {
+      "id": "F-1-05",
+      "title": "rr-iter3-125 CLI top is an exact tie settled by option order",
+      "text": "system-deep-loop and none both 0.3166667; topKey keeps the earlier submitted key and none is appended last.",
+      "iteration": 1,
+      "sources": [".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs:118-124"]
+    },
+    {
+      "id": "F-1-07",
+      "title": "Cost figure unreproducible from the run records",
+      "text": "cost_per_100 reads in-process usage.cost.total; calls.jsonl stores no usage, so 0.0022 lives only in report.json.",
+      "iteration": 1,
+      "sources": [".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:616-618", ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:756-758"]
+    },
+    {
+      "id": "F-2-01",
+      "title": "The three rotations are load-bearing for the verdict",
+      "text": "1 call 103/111 = 92.8; 2 calls 105/111 = 94.6; 3 calls 106/111 = 95.5. Any rotation cut flips to keep-cli.",
+      "iteration": 2,
+      "sources": ["037 scratch/live-run/calls.jsonl", "019 scratch/w4-session/jev-run/calls.jsonl"]
+    },
+    {
+      "id": "F-2-04",
+      "title": "Margin-gated escalation is the one agreement-raising policy on record",
+      "text": "Defer sub-0.10-margin rows (7) to the CLI: 99.1 percent agreement while Pi serves 104/111 rows; a 0.05 gate defers 2 rows for 96.4 percent.",
+      "iteration": 2,
+      "sources": ["037 scratch/live-run/calls.jsonl", "019 scratch/w4-session/jev-run/calls.jsonl"]
+    },
+    {
+      "id": "F-2-05",
+      "title": "Catalog price table for every available classifier arm",
+      "text": "jev-1.13 and its siblings $0.042/M in, $0 out; span-01 $0.02/M; span-01-lite and :free $0; solar-decide $0.05/M; jev-1.13-free $0 needs Zen; direct typesafe needs TYPESAFE_API_KEY.",
+      "iteration": 2,
+      "sources": ["~/.local/lib/node_modules/@earendil-works/pi-coding-agent/dist/bundle/chunks/chunk-3YAHQSW6.js"]
+    },
+    {
+      "id": "F-3-01",
+      "title": "Adopt and keep-cli are statistically indistinguishable at n=111",
+      "text": "Exact 95 percent CI: 106/111 = [89.8, 98.5]; 105/111 = [88.6, 98.0]. The rule needs a stability margin, wider measurement, or a within-noise outcome.",
+      "iteration": 3,
+      "sources": ["Clopper-Pearson recomputation over 037 scratch/live-run/calls.jsonl"]
+    },
+    {
+      "id": "F-3-05",
+      "title": "Input drift between recording and replay is undetectable",
+      "text": "The plan checks only the option key set; neither side stores a comparable prompt digest; a prompt edit would silently compare different questions.",
+      "iteration": 3,
+      "sources": [".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs:575-602"]
+    },
+    {
+      "id": "F-4-06",
+      "title": "Pi-native calls are invisible to dispatch auditing",
+      "text": "dispatch-audit classifies jev choice|noul|score|run and jev-mcp as cli-classifier dispatches; adopting the transport narrows what the audit sees.",
+      "iteration": 4,
+      "sources": [".skilled/hooks/dispatch/lib/dispatch-audit.mjs:236-241"]
+    },
+    {
+      "id": "F-5-02",
+      "title": "The default path would pay runtime construction and gates per call",
+      "text": "createPiRuntime plus model/credential gates run per call with no caching; the measured 260 ms is the benchmark's once-per-run runtime and the transport never made a live call.",
+      "iteration": 5,
+      "sources": [".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:349-366", "038 implementation-summary.md"]
+    }
+  ],
+  "stats": {
+    "iterations": 5,
+    "findingsTotal": 54,
+    "newInfoRatioTrend": [0.85, 0.8, 0.75, 0.7, 0.65],
+    "stopReason": "maxIterationsReached"
+  }
+}

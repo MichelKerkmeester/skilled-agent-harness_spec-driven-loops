@@ -1,0 +1,784 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "luna"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [
+    {
+      "id": "q-accuracy",
+      "text": "How well does Jev choose a valid mode on eligible, replay-verified clarify rows?",
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "q-provenance",
+      "text": "Were labels operator-confirmed as required, and is that provenance recorded?",
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "q-volume-cost",
+      "text": "How often does a live user encounter a qualifying clarification, and what does each provider request cost?",
+      "_lineages": [
+        "luna"
+      ]
+    }
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "iteration-3-finding-1",
+      "title": "**021 leaf-route replay is the closest adjacent evaluation surface, but it shows the same data scarcity.** It asks Jev to choose among candidate leaf intents and uses three option rotations; its fixed gate requires five improvable ties. The 047 results report only 2 tied rows among 58 scored playbook rows, so it stopped before any model call. It is the best next related evaluation once more replay-verified ties exist, not a positive Jev result today. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs:32-46`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:11`]",
+      "text": "**021 leaf-route replay is the closest adjacent evaluation surface, but it shows the same data scarcity.** It asks Jev to choose among candidate leaf intents and uses three option rotations; its fixed gate requires five improvable ties. The 047 results report only 2 tied rows among 58 scored playbook rows, so it stopped before any model call. It is the best next related evaluation once more replay-verified ties exist, not a positive Jev result today. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs:32-46`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:11`]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2",
+      "title": "**022 alignment suggestion is a nearby, higher-impact destination choice, but its keep is not clean evidence of choosing the right destination.** Its scorer measures below-50 alignment events and asks Jev to choose a listed spec folder. The 047 report says the 40-row fixture made the target wrong on every row; Jev's 39/40 is therefore compared with the top alternative (30/40), not with the true target. It merits a better-grounded follow-up fixture, especially because choosing the wrong spec destination can misplace work. [SOURCE: `.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:5-7,58-67,1115-1140`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:12`]",
+      "text": "**022 alignment suggestion is a nearby, higher-impact destination choice, but its keep is not clean evidence of choosing the right destination.** Its scorer measures below-50 alignment events and asks Jev to choose a listed spec folder. The 047 report says the 40-row fixture made the target wrong on every row; Jev's 39/40 is therefore compared with the top alternative (30/40), not with the true target. It merits a better-grounded follow-up fixture, especially because choosing the wrong spec destination can misplace work. [SOURCE: `.skilled/skills/system-spec-kit/runtime/cli/evals/score-alignment-suggestion.ts:5-7,58-67,1115-1140`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:12`]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3",
+      "title": "**031 debug-next-check is another cost-sensitive judgment, but its recorded Jev run loses to the deterministic baseline.** The task is to choose the cheapest next check for a debug hypothesis. Jev scored 27/36 against `read_code` at 29/36, with W=6 and L=8; the run stopped on margin. This is a useful negative result: a semantic suggestion does not automatically save investigation time. [SOURCE: `.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs:5-8,68-84`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:19`]",
+      "text": "**031 debug-next-check is another cost-sensitive judgment, but its recorded Jev run loses to the deterministic baseline.** The task is to choose the cheapest next check for a debug hypothesis. Jev scored 27/36 against `read_code` at 29/36, with W=6 and L=8; the run stopped on margin. This is a useful negative result: a semantic suggestion does not automatically save investigation time. [SOURCE: `.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs:5-8,68-84`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:19`]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-6",
+      "title": "**A default-on rollout first needs a corrected holdout, an eligibility gate, and a later scope amendment.** Eligibility must require a compiled `action: clarify`, at least two valid mode alternatives, and an enabled hub whose choices are mode routes (not mcp bundles or checklist items). Before default-on, test actual mode-selection lift separately from abstention, by hub and on held-out replay-verified rows, then run a shadow period that measures user acceptance and overrides. The existing feature spec excludes a live judgment, changed response contract, shared client/global switch, and dollar figure, so this requires an owner-approved follow-up phase rather than treating the current keep as authorization. [SOURCE: `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:70,88-104,150-166`; `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:106-155`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10-12`]",
+      "text": "**A default-on rollout first needs a corrected holdout, an eligibility gate, and a later scope amendment.** Eligibility must require a compiled `action: clarify`, at least two valid mode alternatives, and an enabled hub whose choices are mode routes (not mcp bundles or checklist items). Before default-on, test actual mode-selection lift separately from abstention, by hub and on held-out replay-verified rows, then run a shadow period that measures user acceptance and overrides. The existing feature spec excludes a live judgment, changed response contract, shared client/global switch, and dollar figure, so this requires an owner-approved follow-up phase rather than treating the current keep as authorization. [SOURCE: `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:70,88-104,150-166`; `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:106-155`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10-12`]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-6",
+      "title": "**A keep does not yet authorize a served default.** The feature spec explicitly says keep serves nothing and leaves a live front-door judgment out of scope. The runtime wrapper exposes `action`, selection kind, targets, policy hash, and generation but drops clarify alternatives; the front door prints that wrapper result. A serving seam and an explicit later integration decision are still required. [SOURCE: `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:97-104,150-166,212-214`; `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:96-108`; `.skilled/bin/compiled-route.cjs:26-51`]",
+      "text": "**A keep does not yet authorize a served default.** The feature spec explicitly says keep serves nothing and leaves a live front-door judgment out of scope. The runtime wrapper exposes `action`, selection kind, targets, policy hash, and generation but drops clarify alternatives; the front door prints that wrapper result. A serving seam and an explicit later integration decision are still required. [SOURCE: `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:97-104,150-166,212-214`; `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:96-108`; `.skilled/bin/compiled-route.cjs:26-51`]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5",
+      "title": "**A safe future contract is a validated optional suggestion attached to `action: clarify`, never an automatic route.** The runtime should expose the exact mode alternatives on a supported clarify, and an optional `suggestedMode` should be accepted only if it is one of those alternatives and is bound to the same hub, policy hash, and generation. Keep the action/authority as clarify/withheld and let the user confirm. `none_of_these`, a malformed or uncalibrated answer, provider failure, timeout, missing credentials, or a changed policy must leave the original clarification unchanged. The current keep includes 12 `none_of_these` answers, which cannot be preselected modes, and the 020 scope says the model must not replace the deterministic router. [SOURCE: `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:96-108`; `.skilled/bin/compiled-route.cjs:38-51`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:97-104,150-166`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev-20261002/report.json:5-18`]",
+      "text": "**A safe future contract is a validated optional suggestion attached to `action: clarify`, never an automatic route.** The runtime should expose the exact mode alternatives on a supported clarify, and an optional `suggestedMode` should be accepted only if it is one of those alternatives and is bound to the same hub, policy hash, and generation. Keep the action/authority as clarify/withheld and let the user confirm. `none_of_these`, a malformed or uncalibrated answer, provider failure, timeout, missing credentials, or a changed policy must leave the original clarification unchanged. The current keep includes 12 `none_of_these` answers, which cannot be preselected modes, and the 020 scope says the model must not replace the deterministic router. [SOURCE: `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:96-108`; `.skilled/bin/compiled-route.cjs:38-51`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:97-104,150-166`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev-20261002/report.json:5-18`]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3",
+      "title": "**A stronger accuracy measure must separate choosing a mode from abstaining.** Keep `none_of_these` as a safe abstention outcome, but report it separately from mode-selection accuracy and from the first-alternative baseline. On rows eligible to receive a default, score only named mode labels; also publish abstention precision/recall, false-default rate, coverage, and per-hub confusion counts. Preserve the 3-rotation measurement as an order-bias check; the scorer takes the modal result only when at least 2 of 3 agree. The five-hub sample sizes (11, 12, 7, 11, 13) are too small and uneven to support a pooled result as a substitute for hub-level reporting. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:597-612,642-672,1006-1053`; `/Users/michelkerkmeester/.skilled/.labels/020-rows.jsonl:1-54`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10`]",
+      "text": "**A stronger accuracy measure must separate choosing a mode from abstaining.** Keep `none_of_these` as a safe abstention outcome, but report it separately from mode-selection accuracy and from the first-alternative baseline. On rows eligible to receive a default, score only named mode labels; also publish abstention precision/recall, false-default rate, coverage, and per-hub confusion counts. Preserve the 3-rotation measurement as an order-bias check; the scorer takes the modal result only when at least 2 of 3 agree. The five-hub sample sizes (11, 12, 7, 11, 13) are too small and uneven to support a pooled result as a substitute for hub-level reporting. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:597-612,642-672,1006-1053`; `/Users/michelkerkmeester/.skilled/.labels/020-rows.jsonl:1-54`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10`]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4",
+      "title": "**At least 19/54 rows do not match the ordinary tie-to-clarify surface described by feature 020.** The fixture has 12 mcp-tooling and 7 sk-code rows. Feature 020 says mcp-tooling never clarifies and sk-code has no clarify branch; current mcp source routes near ties as bundles, while current sk-code source also routes ordinary near ties as bundles and only calls its clarify helper when a `clarify` constraint is present. The score row shape contains no constraints and the score path never replays the engine, so these rows are not demonstrated eligible ordinary clarify examples. The sk-code spec statement is also too broad: a controlled clarify branch does exist. The other 35 rows remain unverified by the score command as well. [SOURCE: `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:70,88-93`; `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/003-mcp-tooling/lib/router.cjs:107-116,130-157`; `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs:165-180,221-263`; `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:1156-1205`]",
+      "text": "**At least 19/54 rows do not match the ordinary tie-to-clarify surface described by feature 020.** The fixture has 12 mcp-tooling and 7 sk-code rows. Feature 020 says mcp-tooling never clarifies and sk-code has no clarify branch; current mcp source routes near ties as bundles, while current sk-code source also routes ordinary near ties as bundles and only calls its clarify helper when a `clarify` constraint is present. The score row shape contains no constraints and the score path never replays the engine, so these rows are not demonstrated eligible ordinary clarify examples. The sk-code spec statement is also too broad: a controlled clarify branch does exist. The other 35 rows remain unverified by the score command as well. [SOURCE: `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:70,88-93`; `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/003-mcp-tooling/lib/router.cjs:107-116,130-157`; `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs:165-180,221-263`; `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:1156-1205`]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2",
+      "title": "**Current input validation checks label membership, not the evidence chain for a row or label.** `readRows` parses JSONL; `labelRows` accepts a `label` or `gold` if it is among the alternatives or `none_of_these`. It does not require a router build fingerprint, replay result, labeler, second draft, operator approval receipt, or reason. The label card says its schema has no labeler field and only operator-confirmed values may enter `label`; the result table says “delegated arbiter.” The stdout's `operator=54` is only the count of rows whose value came from `label`, as the scorer code confirms. This leaves confirmation provenance UNKNOWN; it does not prove the labels were not approved. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:445-485,1175-1178`; `specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch/evidence/card-020.md:71-84`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev.stdout.txt:1-4`]",
+      "text": "**Current input validation checks label membership, not the evidence chain for a row or label.** `readRows` parses JSONL; `labelRows` accepts a `label` or `gold` if it is among the alternatives or `none_of_these`. It does not require a router build fingerprint, replay result, labeler, second draft, operator approval receipt, or reason. The label card says its schema has no labeler field and only operator-confirmed values may enter `label`; the result table says “delegated arbiter.” The stdout's `operator=54` is only the count of rows whose value came from `label`, as the scorer code confirms. This leaves confirmation provenance UNKNOWN; it does not prove the labels were not approved. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:445-485,1175-1178`; `specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch/evidence/card-020.md:71-84`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev.stdout.txt:1-4`]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-7",
+      "title": "**Default-on financial and latency cost are still unknown; the benchmark provides only a sizing point.** Current data is 3 serial Jev choices per row, about 19,446 estimated input tokens per 54 rows, and about 0.98 seconds for three median calls per prompt (an inference from the 327.5 ms per-call median, not measured end-to-end latency). A useful cost model is eligible clarifications per month × choices per clarification × measured input/output tokens × the configured provider tariff, plus fixed service overhead. The 90-second benchmark timeout is not suitable as a user-facing latency budget by itself. The spec says real clarify rate is not measured and transcript text needs payload acceptance/redaction; any default-on path must measure volume, enforce a short deadline and call budget, avoid logging prompt text, and preserve the existing clarification on failure. [SOURCE: `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev.stdout.txt:9-12`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl:1-163`; `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:47-54,1006-1053`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:89,97-104,198-204,212`]",
+      "text": "**Default-on financial and latency cost are still unknown; the benchmark provides only a sizing point.** Current data is 3 serial Jev choices per row, about 19,446 estimated input tokens per 54 rows, and about 0.98 seconds for three median calls per prompt (an inference from the 327.5 ms per-call median, not measured end-to-end latency). A useful cost model is eligible clarifications per month × choices per clarification × measured input/output tokens × the configured provider tariff, plus fixed service overhead. The 90-second benchmark timeout is not suitable as a user-facing latency budget by itself. The spec says real clarify rate is not measured and transcript text needs payload acceptance/redaction; any default-on path must measure volume, enforce a short deadline and call budget, avoid logging prompt text, and preserve the existing clarification on failure. [SOURCE: `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev.stdout.txt:9-12`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl:1-163`; `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:47-54,1006-1053`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:89,97-104,198-204,212`]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-6",
+      "title": "**Lowering cost safely requires validating a cheaper inference mode before adopting it.** A production request should run only after the current router returns a genuine mode `clarify` with valid alternatives. The benchmark's 3 rotations guard against option order, so replacing them with one call would reduce benchmark-style calls from 3 to 1 per eligible event (an inferred 67% choice-call reduction) but would abandon that measured stability check. Compare single-call, randomized-order suggestions against the 3-call reference on a held-out eligible set first. For a user-facing route, add a strict latency budget, rate limit, and fail-open behavior that leaves the existing clarification intact on timeout, missing credential, malformed pick, or `none_of_these`. Monthly cost then depends on the unmeasured number of eligible clarifications and actual provider usage rates. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:47-54,1006-1053`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:97-104,198-204`]",
+      "text": "**Lowering cost safely requires validating a cheaper inference mode before adopting it.** A production request should run only after the current router returns a genuine mode `clarify` with valid alternatives. The benchmark's 3 rotations guard against option order, so replacing them with one call would reduce benchmark-style calls from 3 to 1 per eligible event (an inferred 67% choice-call reduction) but would abandon that measured stability check. Compare single-call, randomized-order suggestions against the 3-call reference on a held-out eligible set first. For a user-facing route, add a strict latency budget, rate limit, and fail-open behavior that leaves the existing clarification intact on timeout, missing credential, malformed pick, or `none_of_these`. Monthly cost then depends on the unmeasured number of eligible clarifications and actual provider usage rates. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:47-54,1006-1053`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:97-104,198-204`]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2",
+      "title": "**Most measured advantage comes from rejecting both options.** Recomputing modal picks from the calls and joining them to labels gives Jev 12/34 on `none_of_these` versus 0/34 for the first-alternative baseline. On the 20 named-mode labels, Jev is 16/20 and the baseline is 15/20. Of Jev's 17 wins, 12 are `none_of_these` wins (about 71%); all four losses are on named-mode rows. Thus the headline is evidence that Jev often recognizes that neither candidate fits this fixture, while its net advantage at naming a mode is one row in this sample. [SOURCE: `/Users/michelkerkmeester/.skilled/.labels/020-rows.jsonl:1-54`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl:1-163`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev-20261002/report.json:5-18`]",
+      "text": "**Most measured advantage comes from rejecting both options.** Recomputing modal picks from the calls and joining them to labels gives Jev 12/34 on `none_of_these` versus 0/34 for the first-alternative baseline. On the 20 named-mode labels, Jev is 16/20 and the baseline is 15/20. Of Jev's 17 wins, 12 are `none_of_these` wins (about 71%); all four losses are on named-mode rows. Thus the headline is evidence that Jev often recognizes that neither candidate fits this fixture, while its net advantage at naming a mode is one row in this sample. [SOURCE: `/Users/michelkerkmeester/.skilled/.labels/020-rows.jsonl:1-54`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl:1-163`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev-20261002/report.json:5-18`]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-5",
+      "title": "**Observed benchmark cost is 3 choices per row, but live monthly spend cannot be inferred yet.** The stdout records 163 planned calls (162 choices plus one auth check) and 19,446 estimated input tokens. All 163 call rows are marked measured. Choice-call latency is 327.5 ms median, 380 ms nearest-rank p95, 448 ms maximum, and 53,734 ms summed across calls. The scorer serially rotates three option orders, and its per-call timeout is 90 seconds. These are scorer-run measurements, not compiled-route end-to-end latency. The call log has no billed-token or dollar field, the feature spec says real clarify rate was not measured, and the front door persists no events. Exact per-request and monthly dollar cost are therefore UNKNOWN. [SOURCE: `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev.stdout.txt:9-12`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl:1-163`; `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:47-54,1006-1053`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:72,89,198-200,212`]",
+      "text": "**Observed benchmark cost is 3 choices per row, but live monthly spend cannot be inferred yet.** The stdout records 163 planned calls (162 choices plus one auth check) and 19,446 estimated input tokens. All 163 call rows are marked measured. Choice-call latency is 327.5 ms median, 380 ms nearest-rank p95, 448 ms maximum, and 53,734 ms summed across calls. The scorer serially rotates three option orders, and its per-call timeout is 90 seconds. These are scorer-run measurements, not compiled-route end-to-end latency. The call log has no billed-token or dollar field, the feature spec says real clarify rate was not measured, and the front door persists no events. Exact per-request and monthly dollar cost are therefore UNKNOWN. [SOURCE: `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev.stdout.txt:9-12`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl:1-163`; `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:47-54,1006-1053`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:72,89,198-200,212`]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1",
+      "title": "**The 54-row result is an exploratory tie fixture, not the committed-corpus sample feature 020 specified.** The spec reports just 2 mode-clarify rows across 359 committed prompts, with no gold in alternatives, and says committed sources alone cannot reach the 30-label gate. Its scope calls for replaying committed canaries, playbooks, and 241 routing-corpus prompts. The 047 result instead describes 54 prompts authored by Luna 6 to produce ties across five hubs; the hidden rows are all `source: \"fixture-047\"`, have `gold: null`, and are labeled. This is not evidence that the fixture is useless, but it changes the target population and should be reported as a synthetic feasibility result until replay-verified traffic is measured. [SOURCE: `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:74,88-94`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10`; `/Users/michelkerkmeester/.skilled/.labels/020-rows.jsonl:1-54`]",
+      "text": "**The 54-row result is an exploratory tie fixture, not the committed-corpus sample feature 020 specified.** The spec reports just 2 mode-clarify rows across 359 committed prompts, with no gold in alternatives, and says committed sources alone cannot reach the 30-label gate. Its scope calls for replaying committed canaries, playbooks, and 241 routing-corpus prompts. The 047 result instead describes 54 prompts authored by Luna 6 to produce ties across five hubs; the hidden rows are all `source: \"fixture-047\"`, have `gold: null`, and are labeled. This is not evidence that the fixture is useless, but it changes the target population and should be reported as a synthetic feasibility result until replay-verified traffic is measured. [SOURCE: `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:74,88-94`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10`; `/Users/michelkerkmeester/.skilled/.labels/020-rows.jsonl:1-54`]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4",
+      "title": "**The current output contract cannot support a mode suggestion, and the 020 spec explicitly leaves that integration out of scope.** The runtime wrapper evaluates the hub but returns only `hubId`, `action`, selection kind, targets, policy hash, and generation; the front door serializes that output and catches resolver failures by returning a legacy sentinel. The feature spec says its keep serves nothing, keeps a live judgment and output change out of scope, and says the router owner must add a seam before any serving decision. [SOURCE: `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:96-108`; `.skilled/bin/compiled-route.cjs:26-51`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:97-104,150-166,212-214`]",
+      "text": "**The current output contract cannot support a mode suggestion, and the 020 spec explicitly leaves that integration out of scope.** The runtime wrapper evaluates the hub but returns only `hubId`, `action`, selection kind, targets, policy hash, and generation; the front door serializes that output and catches resolver failures by returning a legacy sentinel. The feature spec says its keep serves nothing, keeps a live judgment and output change out of scope, and says the router owner must add a seam before any serving decision. [SOURCE: `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:96-108`; `.skilled/bin/compiled-route.cjs:26-51`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:97-104,150-166,212-214`]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/luna/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-5",
+      "title": "**The fixture-source and label-provenance claims need reconciliation before the result is used as rollout evidence.** The results table and scorer stdout describe committed canary, playbook, and routing-corpus prompts, while every row in the scored file has `source: \"fixture-047\"` and no `gold`. The 042 label card says the row shape has no labeler field and only operator-confirmed values may reach `label`; the run report calls the labeler a delegated arbiter. The scorer's `operator=54` counter only counts values read from `label`, not who confirmed them. This does not prove labels were unconfirmed, but independent provenance cannot be established from these artifacts. Claims about accuracy therefore remain conditional on both fixture eligibility and label validity. [SOURCE: `/Users/michelkerkmeester/.skilled/.labels/020-rows.jsonl:1-54`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev.stdout.txt:1-12`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10`; `specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch/evidence/card-020.md:71-84`; `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:1175-1178`]",
+      "text": "**The fixture-source and label-provenance claims need reconciliation before the result is used as rollout evidence.** The results table and scorer stdout describe committed canary, playbook, and routing-corpus prompts, while every row in the scored file has `source: \"fixture-047\"` and no `gold`. The 042 label card says the row shape has no labeler field and only operator-confirmed values may reach `label`; the run report calls the labeler a delegated arbiter. The scorer's `operator=54` counter only counts values read from `label`, not who confirmed them. This does not prove labels were unconfirmed, but independent provenance cannot be established from these artifacts. Claims about accuracy therefore remain conditional on both fixture eligibility and label validity. [SOURCE: `/Users/michelkerkmeester/.skilled/.labels/020-rows.jsonl:1-54`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev.stdout.txt:1-12`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10`; `specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch/evidence/card-020.md:71-84`; `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:1175-1178`]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-1",
+      "title": "**The keep is arithmetically correct under the frozen rule, but it counts abstaining as a correct answer.** `M=K=54` passes coverage; `A-B=13`, so `10*(A-B)=130 >= 54`; `W=17, L=4` yields the reported one-sided paired sign probability `0.003599`; and `10*F=100 <= 3*M=162`. Jev is correct on 28 rows, the first alternative on 15, with 17 Jev-only wins and 4 baseline-only wins. The rule treats `none_of_these` as a valid label and increments abstentions separately. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:621-672`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev-20261002/report.json:2-18`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:150-166`]",
+      "text": "**The keep is arithmetically correct under the frozen rule, but it counts abstaining as a correct answer.** `M=K=54` passes coverage; `A-B=13`, so `10*(A-B)=130 >= 54`; `W=17, L=4` yields the reported one-sided paired sign probability `0.003599`; and `10*F=100 <= 3*M=162`. Jev is correct on 28 rows, the first alternative on 15, with 17 Jev-only wins and 4 baseline-only wins. The rule treats `none_of_these` as a valid label and increments abstentions separately. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:621-672`; `/Users/michelkerkmeester/.skilled/.labels/runs/047-020-jev-20261002/report.json:2-18`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:150-166`]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4",
+      "title": "**The measurement becomes auditable if row creation and scoring share a replay proof.** Build the benchmark from the scorer's existing census path, and require each row to carry the selected hub, source identity, compiled generation or policy hash, evaluated prompt inputs/constraints, `action: clarify`, and the exact two-or-more mode alternatives returned. Reject a row if its proof does not match the pinned router build or if it is a checklist clarification. Add label provenance fields for both blind drafts, the adjudicated value, approver, and decision reference; keep an immutable held-out split. This directly addresses the current distinction where census extracts clarify alternatives but score-only loading trusts the supplied file. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:106-155,445-485,1156-1205`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:88-94`; `specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/spec.md:82-91`]",
+      "text": "**The measurement becomes auditable if row creation and scoring share a replay proof.** Build the benchmark from the scorer's existing census path, and require each row to carry the selected hub, source identity, compiled generation or policy hash, evaluated prompt inputs/constraints, `action: clarify`, and the exact two-or-more mode alternatives returned. Reject a row if its proof does not match the pinned router build or if it is a checklist clarification. Add label provenance fields for both blind drafts, the adjudicated value, approver, and decision reference; keep an immutable held-out split. This directly addresses the current distinction where census extracts clarify alternatives but score-only loading trusts the supplied file. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:106-155,445-485,1156-1205`; `specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:88-94`; `specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/spec.md:82-91`]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/luna/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3",
+      "title": "**The recorded score run did not verify that its supplied rows were actual compiled-router clarifications.** The separate `runCensus` path calls each engine with `evaluate(snapshot, { prompt })`, reads its `clarify.alternatives`, and keeps mode alternatives; `runScoreCommand` instead reads the supplied rows, validates labels against those rows, and sends their prompts straight to Jev. The recorded command was `--score ... --jev --out`. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:106-155,445-485,1156-1205`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10`]",
+      "text": "**The recorded score run did not verify that its supplied rows were actual compiled-router clarifications.** The separate `runCensus` path calls each engine with `evaluate(snapshot, { prompt })`, reads its `clarify.alternatives`, and keeps mode alternatives; `runScoreCommand` instead reads the supplied rows, validates labels against those rows, and sends their prompts straight to Jev. The recorded command was `--score ... --jev --out`. [SOURCE: `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:106-155,445-485,1156-1205`; `specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:10`]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/luna/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "F-1-01",
+      "iteration": 1,
+      "text": "Verdict arithmetic: sign test on 21 discordant rows (P(X>=17)=0.003599), margin 130>=54, flips 100<=162; carried by A-B=13 and W/L=17/4.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/report.json"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-02",
+      "iteration": 1,
+      "text": "34/54 none rows make the first-alternative baseline structurally 0/34 there, so B=15 is a floor any none-shaped gain clears.",
+      "sources": [
+        "~/.skilled/.labels/020-rows.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-03",
+      "iteration": 1,
+      "text": "A=28 = 12 none-row recognitions + 16 mode-row rights; W=17 = 12 + 5 tie-break-beating wins; L=4 = f020-008,010,029,050.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-04",
+      "iteration": 1,
+      "text": "22/34 none rows still got a mode suggestion; misses cluster sk-design 9/9, cli-external 7/11, mcp-tooling 3/9, sk-doc 3/5; none-pick precision 12/12, recall 35 percent; 19 of 26 wrong picks unanimous.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-05",
+      "iteration": 1,
+      "text": "Loss rows share one shape: the prompt's surface noun draws the surface mode while the label follows the requested action.",
+      "sources": [
+        "~/.skilled/.labels/020-rows.jsonl",
+        ".skilled/skills/sk-code/sk-code-opencode/SKILL.md:5"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-06",
+      "iteration": 1,
+      "text": "Pick probabilities do not separate right from wrong (0.678 vs 0.688), so no threshold gate is available.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-07",
+      "iteration": 1,
+      "text": "10 of 54 rows split 2-1 across the three cyclic orders; 8 dissent on the order-1 rotation.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-08",
+      "iteration": 1,
+      "text": "Transport clean: 163 measured calls, wall sum 54.1s, mean 332ms, p50 328ms, p95 380ms, est 19446 input tokens.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-09",
+      "iteration": 1,
+      "text": "The first-alternative baseline is the routers' tieBreak declaration order, not a decision.",
+      "sources": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/lib/router.cjs:199-210"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-10",
+      "iteration": 1,
+      "text": "Always-none scores 34/54 against Jev's 28/54 on the same labels; the keep rule compares only against the 15/54 tie-break baseline.",
+      "sources": [
+        "~/.skilled/.labels/020-rows.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-11",
+      "iteration": 1,
+      "text": "Fixture is not census output and only 12 of its 54 rows reproduce a clarify action; committed-corpus census still reproduces (clarify 3).",
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:106-158"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-1-12",
+      "iteration": 1,
+      "text": "The 42 route rows take the explicit-multi-mode branch: both named modes hit explicit alias detectors and return as an orderedBundle before the ambiguity test.",
+      "sources": [
+        ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/004-cli-external-orchestration/lib/router.cjs:175-186"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-2-01",
+      "iteration": 2,
+      "text": "Early stop after two agreeing orders: 118 calls vs 163 (-27.6%), picks and verdict byte-equal.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-2-02",
+      "iteration": 2,
+      "text": "Two calls with disagreement answered none_of_these: A=31 (from 28), W=22, L=6, 109 calls (-33%).",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-2-03",
+      "iteration": 2,
+      "text": "Single-order accuracy 28/54, 28/54, 29/54; all keep; extra calls buy stability, not accuracy.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-2-04",
+      "iteration": 2,
+      "text": "Accuracy ceiling: perfect none-recall gives A=50/54; all 22 misses are two-mode co-requests.",
+      "sources": [
+        "~/.skilled/.labels/020-rows.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-2-05",
+      "iteration": 2,
+      "text": "The instruction and none option text are frozen by REQ-006 and never name the both-and case that all misses are.",
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:144"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-2-06",
+      "iteration": 2,
+      "text": "Loss rows share a surface-noun fix: answer the requested action, treat a named tool or surface as context.",
+      "sources": [
+        "~/.skilled/.labels/020-rows.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-2-07",
+      "iteration": 2,
+      "text": "Live cost is latency-dominated: ~119 tokens and ~332 ms per call; early stop ~0.72 s per clarify.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev.stdout.txt"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-2-08",
+      "iteration": 2,
+      "text": "A two-order shape redefines F and unstable, re-opening the frozen Keep Rule.",
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:642-677"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-3-01",
+      "iteration": 3,
+      "text": "All six counts recompute independently from calls+labels and the sign test recomputes to 0.003599; the verdict line is faithful to its inputs.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-3-02",
+      "iteration": 3,
+      "text": "The options digest reproduces from the tree: count=36 sha256=df8ed1dfd6bfb016cccfedefa37c8d43ade0528b4e043c5457bccb4d806ac073.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev.stdout.txt"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-3-03",
+      "iteration": 3,
+      "text": "Labels = fixture modulo labels and match the arbiter draft 54/54. Digests the run omits: rows fd9acdfd, fixture 94a66cd7, labels projection 0e1f4f3c, arbiter draft 9974f80d.",
+      "sources": [
+        "~/.skilled/.labels/020-rows.jsonl",
+        "~/.skilled/.labels/drafts/020-arbiter.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-3-04",
+      "iteration": 3,
+      "text": "report.json proves only K, B and the column block: no rows hash, no labels digest, no options digest, no tree identity, no labeler.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/report.json"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-3-05",
+      "iteration": 3,
+      "text": "The scorer never replays the row's prompt; a zero-call action check would catch non-clarify rows (42 of 54 do not clarify on the frozen routers).",
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:445-497"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-3-06",
+      "iteration": 3,
+      "text": "Baseline framing invites a false positive: the only incumbent is the 15/54 tie-break order while always-none scores 34/54.",
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:150-166"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-3-07",
+      "iteration": 3,
+      "text": "One arbiter read only, no two-draft pair kept for 020, no labeler field, decision rule recorded as UNDEFINED; the same two-mode shape is labeled none in one hub and a mode in another.",
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/decision-record.md"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-3-08",
+      "iteration": 3,
+      "text": "No class floor in the gate: K>=30 with one-sided coverage means a pure-none corpus keeps with no evidence the suggestion class is right.",
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:44-54"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-3-09",
+      "iteration": 3,
+      "text": "F conflates position sensitivity with noise (8 of 10 splits dissent on the order-1 rotation, unstable=0); one repeated order per row would separate them.",
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:849-860"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-3-10",
+      "iteration": 3,
+      "text": "Production base rate absent: real clarify rate not measured; census gives 3 clarify rows over 361 prompts; --transcripts counts lines without text.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev.stdout.txt"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-3-11",
+      "iteration": 3,
+      "text": "Census is tree-dependent to two prompts: 361/240/3 today vs 359/239/3 at the 2026-09-29 build, same unparsed=24 and clarify_mode=2.",
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/goal.md"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-4-01",
+      "iteration": 4,
+      "text": "Four hubs can still present a mode-alternative clarify: cli-external (7 modes), sk-doc (15), sk-design (4), sk-code (5). system-deep-loop and sk-code's policy card list checklist sentences; cli-classifier has one mode so its branch is unreachable; mcp-tooling never clarifies.",
+      "sources": [
+        ".skilled/skills/cli-classifier/mode-registry.json:23"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-4-02",
+      "iteration": 4,
+      "text": "Per-hub accuracy on the fixture differs sharply: sk-doc 9/13, mcp-tooling 9/12, sk-code 4/7, cli-external 4/11, sk-design 2/11. Expansion must be per hub; sk-design is contraindicated.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-4-03",
+      "iteration": 4,
+      "text": "The advisor measured the same judgment twice and killed it: 002 pick-first (Jev W=11 L=27, p_loss=0.0069; Deem W=8 L=30); 019 whole-cluster (Jev W=13 L=25 p=0.9832, MRR 0.7260 vs 0.7811).",
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/002-advisor-jev-tiebreak-arm/implementation-summary.md:90",
+        "specs/cli-jev/003-cli-jev-workflow-integration/019-advisor-suggested-order/goal.md:97"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-4-04",
+      "iteration": 4,
+      "text": "Sibling keep with a strong comparator: 022 A=39 vs B=30 W=10 L=1 p=0.0059 (comparator 30/40) against 020's 15/54.",
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:12"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-4-05",
+      "iteration": 4,
+      "text": "The reusable asset is the measurement kit (census, digests, exact BigInt tail, modal pick, scorer, verdict); 002/019/021 rebuilt their own.",
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:1307-1345"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-4-06",
+      "iteration": 4,
+      "text": "Real corpora rarely reach the surface: 2 mode-alternative clarify rows over 361 committed prompts; 021's tie-break arms never ran (2 tied rows of 58, no headroom).",
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:11"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-4-07",
+      "iteration": 4,
+      "text": "Checklist clarifies need a different option producer; the census separates clarify_mode from clarify_checklist and describeModes only understands mode keys.",
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs:89-104"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-5-01",
+      "iteration": 5,
+      "text": "The seam is missing: compiledRoute drops clarify.alternatives/question and the front door prints only the normalized decision, so no caller can carry a suggestion.",
+      "sources": [
+        ".skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:96-108"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-5-02",
+      "iteration": 5,
+      "text": "No reader exists; a keep serves nothing and 047 D6 says no Jev arm joins a default path. Default-on is a new phase with a named reader, a scope amendment and the operator's call.",
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:166"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-5-03",
+      "iteration": 5,
+      "text": "Determinism cost: three fresh calls per row, no cache, 10/54 rows split across orders; a live suggestion can flip between runs unless cached by prompt+option identity.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-5-04",
+      "iteration": 5,
+      "text": "Route stays deterministic and fails safe to legacy; the suggestion belongs beside the clarify action as advisory text, never as a replacement.",
+      "sources": [
+        ".skilled/bin/compiled-route.cjs:39-51"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-5-05",
+      "iteration": 5,
+      "text": "Cost: ~119 tokens and 332 ms per call (p95 380 ms); 3-call clarify ~357 tokens ~1 s; early stop ~2.2 calls ~0.72 s; real cost is synchronous latency plus network dependency.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev.stdout.txt"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-5-06",
+      "iteration": 5,
+      "text": "Payload class changes live: user prompt text leaves the machine; the 020 risks table requires a payload/redaction gate; Jev receives no key.",
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:199"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-5-07",
+      "iteration": 5,
+      "text": "Risk register: 42/54 rows get a mode suggestion, 16 right (38.1%), 26 wrong; 19 stable-wrong (45.2% of served); none-pick precision 12/12 recall 35%; always-none 34/54 beats Jev 28/54; per-hub 9/13 vs 2/11.",
+      "sources": [
+        "~/.skilled/.labels/runs/047-020-jev-20261002/calls.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-5-08",
+      "iteration": 5,
+      "text": "Tiers: T0 trust fixes + transcript rate; T1 shadow logging whose real user picks become free labels; T2 gated annotation (unanimous mode pick, per-hub allowlist, sk-design excluded); T3 model decides clarify stays excluded.",
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/020-routing-clarify-default/spec.md:99-103"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "F-5-09",
+      "iteration": 5,
+      "text": "The honest bar for any future default-on is the strongest simple policy (always-ask/always-none), not the tie-break order; on the present fixture the suggestion fails that bar by six rows.",
+      "sources": [
+        "~/.skilled/.labels/020-rows.jsonl"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 3,
+    "resolvedQuestions": 0,
+    "keyFindings": 66,
+    "sourceFindings": 66,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.355,
+    "coverageBySources": {}
+  }
+}

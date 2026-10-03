@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research",
+  "description": "Phase 047 measured the Jev completion-claim audit at verdict jev: stop (margin) K=110 M=110 A=102 B=93 W=13 L=4 F=0 pwin=0.02452",
+  "keywords": [
+    "phase",
+    "measured",
+    "jev",
+    "completion-claim",
+    "audit",
+    "verdict",
+    "stop",
+    "margin",
+    "pwin"
+  ],
+  "lastUpdated": "2026-10-02T22:02:52.147Z",
+  "specId": "010",
+  "folderSlug": "completion-claims-research",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "048-jev-feature-improvement-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

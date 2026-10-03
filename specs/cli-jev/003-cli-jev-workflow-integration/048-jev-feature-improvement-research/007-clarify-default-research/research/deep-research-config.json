@@ -1,0 +1,38 @@
+{
+  "researchTopic": "Improve, refine and expand the Jev routing clarify default (cli-jev feature 020). Its scorer is .skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs in sk-doc/sk-create-skill, and it measures the compiled router (.skilled/bin/compiled-route.cjs) that every parent hub uses, when it returns a clarify between two modes of one hub. Measured result: verdict jev: keep K=54 M=54 A=28 B=15 W=17 L=4 F=10 p=0.003599, baseline: first alternative right on 15 of 54. Fixture corpus of 54 prompts written to tie. 34 of 54 were labeled none_of_these, and most of Jev's gain came from recognizing those. Answer five questions with file:line evidence: what drove this result, how to raise its accuracy or lower its cost, how to make the measurement more trustworthy, where else in .skilled the same judgment would pay off, and what a default-on integration would need, cost and risk.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/007-clarify-default-research",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4.1-flash",
+        "reasoningEffort": "max",
+        "iterations": 5,
+        "label": "deepseek",
+        "timeoutSeconds": 3600
+      },
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "max",
+        "serviceTier": "fast",
+        "iterations": 3,
+        "label": "luna",
+        "timeoutSeconds": 3600
+      }
+    ],
+    "concurrency": 2
+  },
+  "status": "complete"
+}

@@ -1,0 +1,38 @@
+{
+  "researchTopic": "Improve, refine and expand the Jev Pi native classifier transport (cli-jev feature 037). Its scorer is .skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs in cli-classifier, and it measures how Jev choice questions reach the model: through the jev CLI or through Pi's native classify(); score-clarify-default.cjs and leaf-route-replay.cjs import the transport, off while JEV_TRANSPORT is unset. Measured result: verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100 p95_ms=340/387 cost_per_100=0.0022. Shipped as an opt-in transport in phase 038. Only two callers use it, and only for choice questions. Answer five questions with file:line evidence: what drove this result, how to raise its accuracy or lower its cost, how to make the measurement more trustworthy, where else in .skilled the same judgment would pay off, and what a default-on integration would need, cost and risk.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4.1-flash",
+        "reasoningEffort": "max",
+        "iterations": 5,
+        "label": "deepseek",
+        "timeoutSeconds": 3600
+      },
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "max",
+        "serviceTier": "fast",
+        "iterations": 3,
+        "label": "luna",
+        "timeoutSeconds": 3600
+      }
+    ],
+    "concurrency": 2
+  },
+  "status": "complete"
+}

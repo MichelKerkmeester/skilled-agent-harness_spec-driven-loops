@@ -1,0 +1,38 @@
+{
+  "researchTopic": "Improve, refine and expand the Jev completion-claim audit (cli-jev feature 026). Its scorer is .skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs in system-spec-kit, and it measures the completion sentinel's detectCompletionClaim regex, which decides whether an agent's last 400 characters claim the work is done. Measured result: verdict jev: stop (margin) K=110 M=110 A=102 B=93 W=13 L=4 F=0 p_win=0.02452. Real data: 50 Pi turns and 60 Claude turns. The win is significant but its 0.08 gain falls under the 0.10 margin. The regex missed all 10 labeled claims. Answer five questions with file:line evidence: what drove this result, how to raise its accuracy or lower its cost, how to make the measurement more trustworthy, where else in .skilled the same judgment would pay off, and what a default-on integration would need, cost and risk.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4.1-flash",
+        "reasoningEffort": "max",
+        "iterations": 5,
+        "label": "deepseek",
+        "timeoutSeconds": 3600
+      },
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "max",
+        "serviceTier": "fast",
+        "iterations": 3,
+        "label": "luna",
+        "timeoutSeconds": 3600
+      }
+    ],
+    "concurrency": 2
+  },
+  "status": "complete"
+}

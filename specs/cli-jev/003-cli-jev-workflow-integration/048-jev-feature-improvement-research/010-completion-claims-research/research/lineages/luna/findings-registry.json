@@ -1,0 +1,246 @@
+{
+  "openQuestions": [
+    {
+      "id": "residual-live-misses",
+      "question": "Which exact wording or tail positions caused the ten live missed claims, and what are the true runtime-specific live cost and warning rates?",
+      "status": "blocked-missing-external-artifacts"
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q1-score",
+      "question": "What drove the reported verdict and what can the available evidence establish?",
+      "status": "answered-with-limits",
+      "iteration": 1,
+      "answer": "The paired edge is significant but the 8.18-point gain misses the 10-point margin; aggregate data cannot attribute the ten misses."
+    },
+    {
+      "id": "q2-accuracy-cost",
+      "question": "How can claim accuracy improve while keeping measurement and serving costs bounded?",
+      "status": "answered-with-limits",
+      "iteration": 2,
+      "answer": "Use adjudicated misses to build a high-recall candidate layer, never gate on the current regex, and evaluate any cheaper call schedule as a new pre-registered protocol."
+    },
+    {
+      "id": "q3-trust",
+      "question": "What would make the labels, corpus and verdict more trustworthy?",
+      "status": "answered-with-limits",
+      "iteration": 2,
+      "answer": "Reject duplicate IDs, audit semantic fixture labels, double-label/adjudicate, preserve hashes and model provenance, stratify by runtime and account for session clustering."
+    },
+    {
+      "id": "q4-reuse",
+      "question": "Where else in .skilled would evidence-backed completion judgment help?",
+      "status": "answered",
+      "iteration": 3,
+      "answer": "Reuse the evidence contract at explicit closure points: check-completion.sh before done, acceptance-criteria packet closure, and manual-testing success signals; keep the shared advisory core across adapters."
+    },
+    {
+      "id": "q5-default-on",
+      "question": "What would default-on integration require, cost and risk?",
+      "status": "answered-with-limits",
+      "iteration": 3,
+      "answer": "Do not enable Jev now: stop (margin), no named reader. A future phase needs keep, consent, minimal payload, short fail-open async work, kill switch/dedup, and per-runtime call/token/latency/utility measures."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "luna-i001-f001",
+      "title": "Significant paired edge, insufficient margin",
+      "summary": "Jev gains 9/110=8.18 points; W=13/L=4 gives p_win=0.02452, but the 10-point margin requires at least 11 net rows.",
+      "evidence": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research/spec.md:60",
+        "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/spec.md:146-153"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "luna-i001-f002",
+      "title": "Full measurement coverage and unanimous Jev reruns",
+      "summary": "K=M=110; F=0 means all three Jev calls agreed with the modal output on each row, not that labels are valid.",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs:508-531"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "luna-i001-f003",
+      "title": "Baseline is lexical and tail-bounded",
+      "summary": "Ten exact tokens are searched in the last 400 characters; token presence does not encode claim intent.",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs:64-70",
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs:113-119"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "luna-i001-f004",
+      "title": "Row-level causes remain unavailable",
+      "summary": "The real corpus and external report are absent from this packet, preventing per-row attribution or replication.",
+      "evidence": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research/spec.md:60-78"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "luna-i001-f005",
+      "title": "Feature spec cites an obsolete sentinel path",
+      "summary": "The spec path differs from the scorer import path; behavior evidence comes from the actual runtime/hooks/lib module.",
+      "evidence": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/spec.md:69",
+        ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs:39-45"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "luna-i002-f001",
+      "title": "Two happy-fixture labels conflict with the scorer question",
+      "summary": "The failure occurred and outage happened rows are labeled yes though they do not claim completion; this limits synthetic fixture validity, not the absent live labels.",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/labels-happy-rows.jsonl:9-10",
+        ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures/labels-happy.jsonl:9-10",
+        ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs:68-69"
+      ],
+      "iteration": 2
+    },
+    {
+      "id": "luna-i002-f002",
+      "title": "Duplicate row or label IDs can silently collapse/overwrite",
+      "summary": "Rows are accumulated without uniqueness validation then collapsed into a Map; duplicate labels overwrite with Map.set.",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs:103-125",
+        ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs:172-194",
+        ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs:910-924"
+      ],
+      "iteration": 2
+    },
+    {
+      "id": "luna-i002-f003",
+      "title": "Missed-claim word census uses substring attribution",
+      "summary": "firstClaimWord can misattribute substring matches; headline errors remain unaffected.",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs:223-235",
+        ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs:260-267"
+      ],
+      "iteration": 2
+    },
+    {
+      "id": "luna-i002-f004",
+      "title": "Jev's current measurement costs 331 calls at K=110",
+      "summary": "One auth test plus 3 uncached calls per label; reduce future evaluation cost only under a newly pre-registered protocol.",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs:712-729",
+        "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/spec.md:138-140"
+      ],
+      "iteration": 2
+    },
+    {
+      "id": "luna-i002-f005",
+      "title": "Hash provenance does not establish representative or valid labels",
+      "summary": "Report hashes exist but external artifacts, sampling frame, second annotator and per-runtime results are unavailable.",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs:988-1009",
+        "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/spec.md:87-95"
+      ],
+      "iteration": 2
+    },
+    {
+      "id": "luna-i003-f001",
+      "title": "The existing completion evidence core spans six advisory runtime adapters",
+      "summary": "The current regex-based completion hook is enabled by default but only logs advice; this is not a model-backed Jev deployment.",
+      "evidence": [
+        ".skilled/hooks/completion/README.md:18-22",
+        ".skilled/hooks/completion/README.md:60-72",
+        ".skilled/hooks/completion/README.md:109-120"
+      ],
+      "iteration": 3
+    },
+    {
+      "id": "luna-i003-f002",
+      "title": "Explicit closure gates are the strongest reuse points",
+      "summary": "check-completion.sh, acceptance-criteria closure and manual-testing validation already have evidence to inspect.",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/references/workflows/execution-methods.md:54-66",
+        ".skilled/skills/system-spec-kit/runtime/cli/lib/validator-registry.json:88-97",
+        ".skilled/commands/create/assets/create-manual-testing-playbook-auto.yaml:412-415"
+      ],
+      "iteration": 3
+    },
+    {
+      "id": "luna-i003-f003",
+      "title": "The present stop-margin result blocks default-on Jev serving",
+      "summary": "Feature 026 requires a later phase, keep and named reader; a keep itself does not serve a detector.",
+      "evidence": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research/spec.md:60",
+        "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/spec.md:91-96",
+        "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/spec.md:157-161"
+      ],
+      "iteration": 3
+    },
+    {
+      "id": "luna-i003-f004",
+      "title": "Future serving needs explicit payload consent and non-blocking evidence delivery",
+      "summary": "Operator text requires redaction/acceptance; keep fail-open, kill switch/dedup, minimal input and a named reader. Runtime documentation conflicts on Pi visibility: the completion README says the next-turn advisory is model-visible, the injection contract says none enters context, and the Pi adapter calls sendMessage with deliverAs nextTurn.",
+      "evidence": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/spec.md:87-96",
+        "specs/cli-jev/003-cli-jev-workflow-integration/026-completion-claim-audit/spec.md:128-140",
+        ".skilled/hooks/completion/README.md:20, 43-46",
+        ".skilled/hooks/injection-contract.md:237-241",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/completion-evidence.ts:72-86"
+      ],
+      "iteration": 3
+    },
+    {
+      "id": "luna-i003-f005",
+      "title": "Offline call count is measurable; live volume, price and latency are unknown",
+      "summary": "110 labels imply 331 calls under the existing protocol; no supported dollar or monthly live-cost estimate is available.",
+      "evidence": [
+        ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs:712-729",
+        ".skilled/skills/system-spec-kit/runtime/hooks/lib/completion-evidence-sentinel.cjs:90-98"
+      ],
+      "iteration": 3
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "Attributing all ten missed labels to vocabulary alone",
+      "reason": "The actual rows and report by-word census are unavailable.",
+      "iteration": 1
+    },
+    {
+      "direction": "Use the current regex as the sole model-call gate",
+      "reason": "The reported regex missed all ten labeled claims, so silent positive rows would not be evaluated.",
+      "iteration": 2
+    },
+    {
+      "direction": "Infer live duplicate rate or annotation validity from synthetic fixtures",
+      "reason": "The fixture is synthetic and the run-specific corpus and labels are not present.",
+      "iteration": 2
+    },
+    {
+      "direction": "Default-on Jev judgment in the present completion hook",
+      "reason": "The measured verdict is stop (margin), and no named live reader is established.",
+      "iteration": 3
+    },
+    {
+      "direction": "Use the current regex as a model-serving gate",
+      "reason": "It reportedly misses all ten labeled positives and would hide those cases from the model.",
+      "iteration": 3
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 1,
+    "resolvedQuestions": 5,
+    "keyFindings": 15,
+    "convergenceScore": 0.8,
+    "coverageBySources": {
+      "feature_spec": 1,
+      "scorer": 1,
+      "sentinel": 1,
+      "synthetic_fixture": 1,
+      "closure_workflows": 1,
+      "runtime_report": 0
+    }
+  }
+}

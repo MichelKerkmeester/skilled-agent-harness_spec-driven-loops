@@ -1,0 +1,101 @@
+{
+  "openQuestions": [
+    "Q1..Q5 answered at decision level; residuals: real-corpus rerun (T1), label adjudication (T2), price/frequency receipts, description-collision confirmation, auto-detect census"
+  ],
+  "resolvedQuestions": [
+    "Q1 What drove the measured result -- resolved in iteration 1 (F1-01..F1-08)",
+    "Q2 How to raise accuracy or lower cost -- resolved in iteration 2 (F2-01..F2-08)",
+    "Q3 How to make the measurement more trustworthy -- resolved in iteration 3 (F3-01..F3-08)",
+    "Q4 Where else in .skilled the same judgment pays off -- resolved in iteration 4 (F4-01..F4-08)",
+    "Q5 What a default-on integration needs, cost and risk -- resolved in iteration 5 (F5-01..F5-08)"
+  ],
+  "keyFindings": [
+    {
+      "id": "F1-02",
+      "claim": "The keep was driven by the sign test: binomTail(11,10)=12/2048=0.005859; coverage/margin/flips passed, kill did not trigger.",
+      "evidence": "score-alignment-suggestion.ts:603-690 + report.json"
+    },
+    {
+      "id": "F1-03",
+      "claim": "baseline=top is forced by the corpus: target right 0/40, top alternative right 30/40.",
+      "evidence": "022-rows.jsonl + stdout.txt"
+    },
+    {
+      "id": "F1-04",
+      "claim": "The scored corpus is a built fixture: wrong target per row, 3 alternatives, label==own folder 40/40; repo copy has null labels.",
+      "evidence": "field diff of the two rows files"
+    },
+    {
+      "id": "F1-06",
+      "claim": "121 calls, all exit 0, 120 measured; no pick flips; wall p50 324ms; sequential sum 39.8s.",
+      "evidence": "calls.jsonl"
+    },
+    {
+      "id": "F2-01",
+      "claim": "Jev recovered all 10 baseline errors and lost 1 of 30 baseline-right rows; accuracy ceiling on this corpus is one row.",
+      "evidence": "report.json counts"
+    },
+    {
+      "id": "F2-02",
+      "claim": "The lost row's correct option was the only option whose description collapsed to a bare name (001-deep-research duplicated in 9 dirs); causal role inferred.",
+      "evidence": "buildDescriber :838-877 + specs walk + calls.jsonl"
+    },
+    {
+      "id": "F2-04",
+      "claim": "81/120 calls at pick_prob 1.0; confidence-gated passes would run 70 calls (-42%) but need a keep-rule amendment.",
+      "evidence": "calls.jsonl derived"
+    },
+    {
+      "id": "F3-01",
+      "claim": "The scored corpus is a 047 fixture, not the transcript draw 022 requires; external validity untested.",
+      "evidence": "022 spec; label-inventory-1.md:254; 047 results.md"
+    },
+    {
+      "id": "F3-02",
+      "claim": "The fixture's dead target column removes one of the two free answers the spec's baseline is defined over.",
+      "evidence": "022 spec :118; stdout"
+    },
+    {
+      "id": "F3-03",
+      "claim": "Labels are from a delegated arbiter with no labeler field, no 022 decisions log, no recorded input set.",
+      "evidence": "drafts file; card-022 §5"
+    },
+    {
+      "id": "F4-02",
+      "claim": "Folder auto-detection already computes low-confidence near-ties (quality tie / <10 gap) and falls through with no third answer.",
+      "evidence": "folder-detector.ts:300-325, :1247-1350"
+    },
+    {
+      "id": "F5-04",
+      "claim": "Six prerequisites missing for default-on: consent storage, save-time timeout, non-interactive policy, kill switch, observability, non-fixture evidence gate.",
+      "evidence": "iteration-005"
+    },
+    {
+      "id": "F5-05",
+      "claim": "Recommended shape: flag-gated interactive suggestion first; default-on and non-interactive adoption only after corpus work and shadow data.",
+      "evidence": "iteration-005; 047 D6"
+    }
+  ],
+  "ruledOutDirections": [
+    "One fixed pass as the scoring protocol (kills W/L basis and F)",
+    "Order-rotation reduction as an accuracy lever (F=0 on this corpus)",
+    "Quoting '+97.5 points over the default' (target failure was manufactured by the fixture)",
+    "Discarding the verdict because the corpus is a fixture (the arithmetic is sound; the inference is the defect)",
+    "Model pick overriding the below-20 non-interactive hard block",
+    "Default-on as the immediate next step (fails 047 D6 and the prerequisite list)"
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 13,
+    "convergenceScore": 0.81,
+    "coverageBySources": {
+      "scorer": 5,
+      "validator": 4,
+      "corpus_and_run_evidence": 6,
+      "packet_history": 4,
+      "code_call_sites": 5
+    }
+  }
+}

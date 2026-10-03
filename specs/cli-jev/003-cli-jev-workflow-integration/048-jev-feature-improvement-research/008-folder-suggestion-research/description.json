@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research",
+  "description": "Phase 047 measured the Jev spec-folder suggestion at verdict jev: keep K=40 M=40 A=39 B=30 W=10 L=1 F=0 p=0.0059 baseline=top, target right 0 of 40",
+  "keywords": [
+    "phase",
+    "measured",
+    "jev",
+    "spec-folder",
+    "suggestion",
+    "verdict",
+    "keep",
+    "baseline",
+    "top",
+    "target",
+    "right"
+  ],
+  "lastUpdated": "2026-10-02T22:02:49.267Z",
+  "specId": "008",
+  "folderSlug": "folder-suggestion-research",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "048-jev-feature-improvement-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
