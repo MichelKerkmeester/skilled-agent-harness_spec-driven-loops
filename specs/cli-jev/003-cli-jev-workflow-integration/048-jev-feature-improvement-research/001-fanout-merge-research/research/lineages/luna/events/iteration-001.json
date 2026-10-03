@@ -1,0 +1,29 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "run": 1,
+  "mode": "research",
+  "status": "complete",
+  "focus": "Trace the production merge rule, pair population, and verdict arithmetic",
+  "findingsCount": 6,
+  "newInfoRatio": 0.95,
+  "noveltyJustification": "The source trace explains the 41-pair win, the pair-class limitation, and the exact denominators behind F and p.",
+  "keyQuestions": [
+    "What drove the measured keep result?",
+    "What does the score establish about the production merge?"
+  ],
+  "answeredQuestions": [
+    "What drove the measured keep result?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Treat the keep result as evidence that near-line dedup is accurate",
+      "reason": "No near-line candidates appeared in the measured 60-pair set.",
+      "evidence": "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch/evidence/labels/030-decisions.md:7"
+    }
+  ],
+  "sessionId": "fanout-luna-1790978645433-doul78",
+  "lineageId": "luna",
+  "generation": 1,
+  "timestamp": "2026-10-02T22:23:00Z"
+}

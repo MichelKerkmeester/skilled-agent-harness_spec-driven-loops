@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements",
+  "spec_folder": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements",
+  "parent_id": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "feature specification",
+      "problem statement",
+      "requirements and scope",
+      "success criteria",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "feature",
+      "specification",
+      "problem",
+      "statement",
+      "requirements",
+      "scope",
+      "success",
+      "criteria",
+      "implementation",
+      "plan",
+      "technical",
+      "approach"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/research.md",
+      ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+      ".skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "jev-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "jev-transport.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-pi-transport.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-pi-transport.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Jev Pi",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Feature 037 adopted the Pi transport by one row, on a comparison whose CLI arm was a day older and used another provider",
+    "created_at": "2026-10-03T05:30:09Z",
+    "last_save_at": "2026-10-03T05:37:56.410Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a683e60c430c7188e6c3e98940aaca64cfb07cfc7a560f8a18218a7a3086a608",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c2854b96217aa3feff8e5933b9d7c411453f5db2d25f142eec7cc17f7bf9fd36",
+      "plan.md": "5b5c656d4c4db85f56e5d4dc5e8b1d977b4d007bf88640588b7a5ef1677d5773",
+      "tasks.md": "ddf17d7c57764bdb850f88a419819828ce02d8e92cce81caf55efae37ca06cdc",
+      "implementation-summary.md": "9f5cfc3d14a896d3a83d4838a730761e9dff1da9727c71883837aaa5a1aa8ff7"
+    },
+    "last_active_at": null
+  }
+}

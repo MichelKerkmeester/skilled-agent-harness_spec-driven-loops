@@ -1,0 +1,30 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "run": 2,
+  "mode": "research",
+  "status": "complete",
+  "focus": "Audit label provenance, pair sampling, order stability, and call cost",
+  "findingsCount": 6,
+  "newInfoRatio": 0.82,
+  "noveltyJustification": "This pass traced label authority, the lexical candidate boundary, private artifact provenance, and the 181-call cost to source records and code.",
+  "keyQuestions": [
+    "How trustworthy is the measurement?",
+    "How can accuracy improve or call cost fall?"
+  ],
+  "answeredQuestions": [
+    "How trustworthy is the measurement and what would make a follow-up stronger?",
+    "How can production call cost fall without weakening the existing scorer protocol?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Treat the current score as validated for every merge candidate or price it in dollars",
+      "reason": "The measured population is narrow, and the repository result does not include actual provider spend or all row-level artifacts.",
+      "evidence": "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch/evidence/labels/030-decisions.md:3-20"
+    }
+  ],
+  "sessionId": "fanout-luna-1790978645433-doul78",
+  "lineageId": "luna",
+  "generation": 1,
+  "timestamp": "2026-10-02T22:26:29Z"
+}

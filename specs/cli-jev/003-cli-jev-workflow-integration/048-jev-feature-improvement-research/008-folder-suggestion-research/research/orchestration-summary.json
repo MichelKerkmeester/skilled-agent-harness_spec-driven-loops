@@ -1,0 +1,48 @@
+{
+  "run_id": "1790993641275-joymxn",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research",
+  "base_artifact_dir": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research/research",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 1,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "luna",
+      "state_log": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/008-folder-suggestion-research/research/lineages/luna/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-10-03T02:51:10.974Z",
+        "end_at_iso": "2026-10-03T03:27:38.690Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 5
+      },
+      "sample": [
+        {
+          "index": 0,
+          "reason": "before_window",
+          "timestamp": "2026-10-03T02:32:07.342Z",
+          "deltaMs": 1023632
+        }
+      ]
+    }
+  ]
+}

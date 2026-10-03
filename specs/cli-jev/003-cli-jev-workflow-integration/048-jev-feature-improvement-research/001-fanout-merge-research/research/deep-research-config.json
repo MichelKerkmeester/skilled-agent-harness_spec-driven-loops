@@ -1,0 +1,38 @@
+{
+  "researchTopic": "Improve, refine and expand the Jev fan-out merge (cli-jev feature 030). Its scorer is .skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs in system-deep-loop, and it measures the merge step of /deep:research and /deep:review fan-out runs, which decides whether two findings from parallel lineages are the same finding (fanout-merge.cjs and the fan-out runner in .skilled/skills/system-deep-loop/runtime/scripts/). Measured result: verdict jev: keep K=60 M=60 A=53 B=12 W=44 L=3 F=3 p=1.232e-10 on 60 recorded fan-out pairs labeled by a delegated arbiter. Real data and the largest win measured. The merge's own rule was right only on the 12 pairs labeled different. Answer five questions with file:line evidence: what drove this result, how to raise its accuracy or lower its cost, how to make the measurement more trustworthy, where else in .skilled the same judgment would pay off, and what a default-on integration would need, cost and risk.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/001-fanout-merge-research",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4.1-flash",
+        "reasoningEffort": "max",
+        "iterations": 5,
+        "label": "deepseek",
+        "timeoutSeconds": 3600
+      },
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "max",
+        "serviceTier": "fast",
+        "iterations": 3,
+        "label": "luna",
+        "timeoutSeconds": 3600
+      }
+    ],
+    "concurrency": 2
+  },
+  "status": "complete"
+}

@@ -1,0 +1,313 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "Q1",
+      "text": "What drove the measured result?",
+      "answer": "Pre-registered keep rule over a 31/40-drifted sample vs a weak comparator; precision 1.00, recall 0.839; replay exact.",
+      "iteration": 1
+    },
+    {
+      "id": "Q2",
+      "text": "How can accuracy rise or cost fall?",
+      "answer": "Aggregation (min<0.5 TP 27 FP 0; mean<0.6 acc 0.925), payload unit fix, census read waste 8,667->82, adaptive reruns.",
+      "iteration": 2
+    },
+    {
+      "id": "Q3",
+      "text": "How can the measurement be more trustworthy?",
+      "answer": "Per-kind reporting (live-only p=0.0156), kappa 0.79-1.00, per-row outcome record, comparator fix, test sign/flip paths.",
+      "iteration": 3
+    },
+    {
+      "id": "Q4",
+      "text": "Where else would the judgment pay off?",
+      "answer": "specs (12,092 citing docs) via ACs and evidence citations; in-scope sk-code docs; mirrors null; classify illustrative refs first.",
+      "iteration": 4
+    },
+    {
+      "id": "Q5",
+      "text": "What would a default-on integration need, cost and risk?",
+      "answer": "Reader + advisory policy; periodic cadence; frozen benchmark labels; widened requalification; per-row record; risk register.",
+      "iteration": 5
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "DS-1-F01",
+      "title": "Keep rule's own alphabet: all five checks fixed pre-run and all pass",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:82,700-708",
+      "iteration": 1
+    },
+    {
+      "id": "DS-1-F02",
+      "title": "Margin rests on a weak comparator: identifier-overlap 13/40, flag-nothing 9/40",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:552-564,607-631",
+      "iteration": 1
+    },
+    {
+      "id": "DS-1-F03",
+      "title": "A=35 is relative superiority: precision 26/26, recall 26/31",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:700-708",
+      "iteration": 1
+    },
+    {
+      "id": "DS-1-F04",
+      "title": "calls.jsonl + labels replay the published column exactly",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1148-1175",
+      "iteration": 1
+    },
+    {
+      "id": "DS-1-F05",
+      "title": "Constructed rows are not the easy half: live 19/20 vs constructed 16/20",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:456-477",
+      "iteration": 1
+    },
+    {
+      "id": "DS-1-F06",
+      "title": "p=2.384e-7 is exactly 2^-22, the W/L sign test",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:681-691",
+      "iteration": 1
+    },
+    {
+      "id": "DS-1-F07",
+      "title": "F=3 is three 2-1 rerun splits; one supports rerun at exactly 0.5",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:962",
+      "iteration": 1
+    },
+    {
+      "id": "DS-1-F08",
+      "title": "Row set is 9 supports / 31 drifted",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-labels.jsonl",
+      "iteration": 1
+    },
+    {
+      "id": "DS-2-F01",
+      "title": "Model arm cheap: 121 calls, 40.9s, ~40.7k planned input tokens",
+      "evidence": "~/.skilled/.labels/runs/032-jev-20261001/calls.jsonl",
+      "iteration": 2
+    },
+    {
+      "id": "DS-2-F02",
+      "title": "Census reads 8,667 docs to find citations in 82 (0.95%)",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:251-261",
+      "iteration": 2
+    },
+    {
+      "id": "DS-2-F03",
+      "title": "Zero-call accuracy win: min<0.5 TP 27 FP 0; mean<0.6 acc 0.925",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1157-1174",
+      "iteration": 2
+    },
+    {
+      "id": "DS-2-F04",
+      "title": "Payload flaw: single-line unit; 3/20 live rows carry no claim",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1030",
+      "iteration": 2
+    },
+    {
+      "id": "DS-2-F05",
+      "title": "Only new FP under mean<0.6 is live-18; strict < is load-bearing",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:76",
+      "iteration": 2
+    },
+    {
+      "id": "DS-2-F06",
+      "title": "Adaptive reruns: 12/40 in band; ~65 calls vs 121",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:962",
+      "iteration": 2
+    },
+    {
+      "id": "DS-2-F07",
+      "title": "Instruction hash/keep rule pre-registered; requalification watches only provider/model",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:719-726",
+      "iteration": 2
+    },
+    {
+      "id": "DS-3-F01",
+      "title": "Pooled p dominated by constructed half; each half alone passes all five checks",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:700-708",
+      "iteration": 3
+    },
+    {
+      "id": "DS-3-F02",
+      "title": "Binary label reliability kappa 0.793-1.000; labels sha matches report",
+      "evidence": "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch/compare/032-split.jsonl",
+      "iteration": 3
+    },
+    {
+      "id": "DS-3-F03",
+      "title": "Jev's doubtful live answers land on the live blind-rater splits",
+      "evidence": "specs/cli-jev/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/scratch/drafts/032-idmap.json",
+      "iteration": 3
+    },
+    {
+      "id": "DS-3-F04",
+      "title": "Comparator blind to same-file moved windows: 20/20 token presence",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:540-564",
+      "iteration": 3
+    },
+    {
+      "id": "DS-3-F05",
+      "title": "Replay needs calls.jsonl; recommend per-row outcome file",
+      "evidence": "~/.skilled/.labels/runs/032-jev-20261001/report.json",
+      "iteration": 3
+    },
+    {
+      "id": "DS-3-F06",
+      "title": "Dead citations only in the sandboxed CP-050 fixture",
+      "evidence": "~/.skilled/.labels/runs/032-jev.stdout.txt",
+      "iteration": 3
+    },
+    {
+      "id": "DS-3-F07",
+      "title": "No tests for sign/flip paths; .state census defect live",
+      "evidence": ".skilled/skills/sk-doc/scripts/tests/test-cite-drift-scan.mjs",
+      "iteration": 3
+    },
+    {
+      "id": "DS-4-F01",
+      "title": "specs holds 12,092 docs with file:line citations (7,203 outside z_archive) vs 82 in the skills tree",
+      "evidence": "specs/**/*.md (git grep census)",
+      "iteration": 4
+    },
+    {
+      "id": "DS-4-F02",
+      "title": "Neighbors check less: AC coverage proves the line exists only; catalog validator checks path only",
+      "evidence": "check-ac-coverage.sh:425-455; validate_catalog_package.py:487-505",
+      "iteration": 4
+    },
+    {
+      "id": "DS-4-F03",
+      "title": "Mirrors/root docs/repo-rules carry 1-3 line citations total; dialect is path-only refs (43,523)",
+      "evidence": "per-corpus scans",
+      "iteration": 4
+    },
+    {
+      "id": "DS-4-F04",
+      "title": "41% of in-scope citations are invisible (44 ambiguous + 103 unresolved), dominated by illustrative examples",
+      "evidence": "~/.skilled/.labels/runs/032-jev.stdout.txt",
+      "iteration": 4
+    },
+    {
+      "id": "DS-4-F05",
+      "title": "Expansion cost bounded on the model side; read side is the bottleneck; per-corpus draws",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:430-480",
+      "iteration": 4
+    },
+    {
+      "id": "DS-4-F06",
+      "title": "Ranked surfaces: spec AC citations, spec evidence citations, in-scope sk-code docs, hub path-only refs",
+      "evidence": "032 run stdout",
+      "iteration": 4
+    },
+    {
+      "id": "DS-5-F01",
+      "title": "Documented surface, no reader: needs a consumer and an advisory-only policy",
+      "evidence": ".skilled/skills/sk-doc/README.md:191",
+      "iteration": 5
+    },
+    {
+      "id": "DS-5-F02",
+      "title": "Cost: minutes per run today; model cost flat in corpus size; periodic advisory feasible, per-commit not",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1036",
+      "iteration": 5
+    },
+    {
+      "id": "DS-5-F03",
+      "title": "Label lifecycle bottleneck: draw refusal, commit-pinned rows, human gate; frozen benchmark + re-draws",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1274-1287",
+      "iteration": 5
+    },
+    {
+      "id": "DS-5-F04",
+      "title": "Qualification must widen beyond provider/model to instruction/rule/row hashes",
+      "evidence": ".skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:719-726",
+      "iteration": 5
+    },
+    {
+      "id": "DS-5-F05",
+      "title": "A reader needs per-row outcomes and kind split; report is aggregate-only",
+      "evidence": "~/.skilled/.labels/runs/032-jev-20261001/report.json",
+      "iteration": 5
+    },
+    {
+      "id": "DS-5-F06",
+      "title": "Risk register: claim-less rows, flips, silent skips, doc-text leakage, untested branches, moving surface",
+      "evidence": "iterations 1-4",
+      "iteration": 5
+    },
+    {
+      "id": "DS-5-F07",
+      "title": "Recommended shape: advisory periodic benchmark-anchored scan; expansion after illustrative classifier",
+      "evidence": "research.md R1-R12",
+      "iteration": 5
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "direction": "Construction rows inflate the headline accuracy",
+      "reason": "Kind split shows the opposite",
+      "iteration": 1
+    },
+    {
+      "direction": "The result is a threshold artifact",
+      "reason": "Five checks fixed pre-run and pass independently",
+      "iteration": 1
+    },
+    {
+      "direction": "Fewer reruns will fix the misses",
+      "reason": "First-rerun-only scoring is worse (acc 0.850)",
+      "iteration": 2
+    },
+    {
+      "direction": "The misses are pure model error",
+      "reason": "live-17 is a payload flaw",
+      "iteration": 2
+    },
+    {
+      "direction": "The keep is an artifact of the constructed half",
+      "reason": "Each half alone passes all five checks",
+      "iteration": 3
+    },
+    {
+      "direction": "The blind labels are unreliable",
+      "reason": "Binary kappa 0.793-1.000",
+      "iteration": 3
+    },
+    {
+      "direction": "Expand to runtime mirrors and repo rules",
+      "reason": "1-3 line-anchored citations total",
+      "iteration": 4
+    },
+    {
+      "direction": "Path-only references are the same judgment",
+      "reason": "No window to judge support",
+      "iteration": 4
+    },
+    {
+      "direction": "Wire the scan into the pre-commit hook",
+      "reason": "Minutes per run; model arm needs labels and a credential",
+      "iteration": 5
+    },
+    {
+      "direction": "Auto-label the draw with a model",
+      "reason": "The draw and gate exist to keep labels human",
+      "iteration": 5
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 35,
+    "convergenceScore": 0.89,
+    "coverageBySources": {
+      "artifacts": 8,
+      "source": 6,
+      "replay": 5,
+      "git": 5,
+      "scans": 4
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "researchTopic": "Improve, refine and expand the Jev fetched-text injection screen (cli-jev feature 035). Its scorer is .skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs in cli-classifier, and it measures text agents fetch with WebFetch or WebSearch, which nothing screens today; the comparator is a four-pattern lexical screen. Measured result: verdict jev: keep K=90 M=90 A=81 B=56 W=30 L=5 TP=31 FP=5 F=0 p=0.00001118, brier 0.0652. 60 natural rows plus 30 planted injection sentences. The lexical screen caught 1 of 30 planted sentences. Answer five questions with file:line evidence: what drove this result, how to raise its accuracy or lower its cost, how to make the measurement more trustworthy, where else in .skilled the same judgment would pay off, and what a default-on integration would need, cost and risk.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/004-injection-screen-research",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4.1-flash",
+        "reasoningEffort": "max",
+        "iterations": 5,
+        "label": "deepseek",
+        "timeoutSeconds": 3600
+      },
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "max",
+        "serviceTier": "fast",
+        "iterations": 3,
+        "label": "luna",
+        "timeoutSeconds": 3600
+      }
+    ],
+    "concurrency": 2
+  },
+  "status": "complete"
+}
