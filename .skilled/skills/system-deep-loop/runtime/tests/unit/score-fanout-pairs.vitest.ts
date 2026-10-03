@@ -571,6 +571,54 @@ const JEV_STUB = `case "$1" in
 esac
 exit 0`;
 
+const JEV_SPLIT_STUB = `case "$1" in
+  --version) echo 'jev 0.6.2'; exit 0;;
+  auth)
+    if [ "$2" = test ]; then echo '{"model":"stub-model"}'; exit 0; fi
+    exit 0;;
+  noul)
+    COUNT_FILE="$D/noul-count"
+    COUNT=$(cat "$COUNT_FILE" 2>/dev/null || echo 0)
+    COUNT=$((COUNT + 1))
+    echo "$COUNT" > "$COUNT_FILE"
+    if [ "$((COUNT % 3))" -eq 2 ]; then VALUE=0.1; else VALUE=0.9; fi
+    printf '{"answers":{"answer":{"noul":%s}}}\\n' "$VALUE"
+    exit 0;;
+esac
+exit 0`;
+
+const JEV_CUT_SPLIT_STUB = `case "$1" in
+  --version) echo 'jev 0.6.2'; exit 0;;
+  auth)
+    if [ "$2" = test ]; then echo '{"model":"stub-model"}'; exit 0; fi
+    exit 0;;
+  noul)
+    COUNT_FILE="$D/noul-count"
+    COUNT=$(cat "$COUNT_FILE" 2>/dev/null || echo 0)
+    COUNT=$((COUNT + 1))
+    echo "$COUNT" > "$COUNT_FILE"
+    if [ "$COUNT" -eq 2 ]; then VALUE=0.45; else VALUE=0.44; fi
+    printf '{"answers":{"answer":{"noul":%s}}}\\n' "$VALUE"
+    exit 0;;
+esac
+exit 0`;
+
+// Archived answer percentages keep the replay independent from credentials and live services.
+const RECORDED_ORDER_PERCENTAGES = [
+  [89, 92, 88], [53, 88, 53], [45, 58, 45], [37, 55, 42], [65, 59, 68],
+  [12, 12, 11], [68, 86, 71], [86, 83, 85], [67, 73, 68], [93, 96, 94],
+  [69, 72, 70], [17, 15, 17], [13, 12, 14], [16, 16, 16], [89, 73, 89],
+  [86, 85, 83], [90, 94, 90], [84, 65, 82], [78, 90, 77], [74, 78, 73],
+  [63, 85, 60], [76, 75, 76], [75, 81, 74], [93, 91, 93], [82, 86, 83],
+  [20, 22, 19], [68, 59, 67], [18, 18, 18], [11, 9, 12], [84, 92, 82],
+  [63, 68, 61], [94, 96, 93], [73, 64, 71], [66, 69, 67], [81, 86, 82],
+  [60, 78, 66], [56, 85, 57], [71, 83, 71], [19, 18, 18], [44, 45, 44],
+  [90, 95, 89], [58, 63, 58], [74, 61, 74], [14, 13, 13], [54, 50, 57],
+  [94, 95, 93], [89, 94, 89], [93, 93, 93], [52, 74, 48], [88, 94, 89],
+  [79, 85, 81], [93, 82, 93], [94, 94, 92], [92, 89, 91], [93, 95, 94],
+  [45, 44, 48], [64, 68, 66], [93, 82, 92], [94, 94, 94], [91, 89, 91],
+] as const;
+
 /** The stub directory first on PATH, so the gate finds the stub and never a live client. */
 function stubEnv(stub: string): NodeJS.ProcessEnv {
   return { ...process.env, PATH: `${stub}${path.delimiter}${process.env.PATH ?? ''}` };
@@ -627,6 +675,89 @@ describe('score-fanout-pairs jev gate and arm', () => {
     expect(logged.filter((line) => line.startsWith('noul'))).toEqual([]);
   });
 
+  it('stops after two agreeing orders', async () => {
+    const stub = stubDir({ jev: JEV_STUB });
+    const row = armPair(0);
+    const calls: Record<string, any>[] = [];
+
+    await pairs.runJevArm(
+      { rows: [row], baselineCalls: new Map() },
+      { path: path.join(stub, 'jev'), provider: 'official' },
+      {
+        out: () => {},
+        env: stubEnv(stub),
+        timeoutMs: 5000,
+        backoffMs: 1,
+        callLog: { append: (record: Record<string, any>) => calls.push(record) },
+        stored: null,
+        publishedAt: () => true,
+      },
+    );
+
+    expect(calls.filter((record) => record.pair_key === row.key).map((record) => record.order)).toEqual(['AB', 'BA']);
+    const logged = fs.readFileSync(path.join(stub, 'jev.log'), 'utf8').trim().split('\n');
+    expect(logged.filter((line) => line.startsWith('noul'))).toHaveLength(2);
+  });
+
+  it('uses a pair-symmetric third order only after a split', async () => {
+    const stub = stubDir({ jev: JEV_SPLIT_STUB });
+    const candidates = Array.from({ length: 128 }, (_, index) => armPair(index));
+    const rows = ['AB', 'BA'].map((order) => candidates.find((row) => pairs.tieBreakOrder(row.key) === order));
+    expect(rows.every(Boolean)).toBe(true);
+    const splitRows = rows as Record<string, any>[];
+    const calls: Record<string, any>[] = [];
+
+    await pairs.runJevArm(
+      { rows: splitRows, baselineCalls: new Map(splitRows.map((row) => [row.key, 'different'])) },
+      { path: path.join(stub, 'jev'), provider: 'official' },
+      {
+        out: () => {},
+        env: stubEnv(stub),
+        timeoutMs: 5000,
+        backoffMs: 1,
+        callLog: { append: (record: Record<string, any>) => calls.push(record) },
+        stored: null,
+        publishedAt: () => true,
+      },
+    );
+
+    for (const row of splitRows) {
+      const orders = calls.filter((record) => record.pair_key === row.key).map((record) => record.order);
+      expect(orders).toEqual(['AB', 'BA', pairs.tieBreakOrder(row.key)]);
+    }
+    const logged = fs.readFileSync(path.join(stub, 'jev.log'), 'utf8').trim().split('\n');
+    expect(logged.filter((line) => line.startsWith('noul'))).toHaveLength(6);
+  });
+
+  it('requests a third order when the first two answers split at a displayed cut', async () => {
+    const stub = stubDir({ jev: JEV_CUT_SPLIT_STUB });
+    const row = armPair(0);
+    const calls: Record<string, any>[] = [];
+
+    expect((pairs.pairDecision([0.44, 0.45], 0.5) as Record<string, any>).needsThird).toBe(false);
+    expect((pairs.pairDecision([0.44, 0.45], 0.45) as Record<string, any>).needsThird).toBe(true);
+    const result = await pairs.runJevArm(
+      { rows: [row], baselineCalls: new Map([[row.key, 'different']]) },
+      { path: path.join(stub, 'jev'), provider: 'official' },
+      {
+        out: () => {},
+        env: stubEnv(stub),
+        timeoutMs: 5000,
+        backoffMs: 1,
+        callLog: { append: (record: Record<string, any>) => calls.push(record) },
+        stored: null,
+        publishedAt: () => true,
+      },
+    ) as Record<string, any>;
+
+    expect(calls.filter((record) => record.pair_key === row.key).map((record) => record.order)).toEqual(
+      ['AB', 'BA', pairs.tieBreakOrder(row.key)],
+    );
+    expect(result.column.cutSweep.map((column: Record<string, any>) => column.M)).toEqual([1, 1, 1]);
+    const logged = fs.readFileSync(path.join(stub, 'jev.log'), 'utf8').trim().split('\n');
+    expect(logged.filter((line) => line.startsWith('noul'))).toHaveLength(3);
+  });
+
   it('jev arm prints keep', async () => {
     const stub = stubDir({ jev: JEV_STUB });
     const rows = [0, 1, 2, 3, 4].map((index) => armPair(index));
@@ -653,7 +784,7 @@ describe('score-fanout-pairs jev gate and arm', () => {
     expect(verdict).toContain('reader=none named');
     expect(verdict).toContain('jev_version=0.6.2 provider=official model=stub-model');
     const logged = fs.readFileSync(path.join(stub, 'jev.log'), 'utf8').trim().split('\n');
-    expect(logged.filter((line) => line.startsWith('noul'))).toHaveLength(15);
+    expect(logged.filter((line) => line.startsWith('noul'))).toHaveLength(10);
   });
 
   it('jev arm requalifies only when the stored model differs', async () => {
@@ -688,6 +819,44 @@ describe('score-fanout-pairs jev gate and arm', () => {
 });
 
 describe('score-fanout-pairs keep rule and report', () => {
+  it('replays every recorded modal pick with fewer order calls', () => {
+    expect(RECORDED_ORDER_PERCENTAGES).toHaveLength(60);
+    const cuts = [0.4, 0.45, 0.5];
+    const fullPicks: Array<Array<string | null>> = [];
+    const earlyPicks: Array<Array<string | null>> = [];
+    let agreeingFirstPairs = 0;
+    let earlyCalls = 0;
+
+    for (const percentages of RECORDED_ORDER_PERCENTAGES) {
+      const values = percentages.map((percentage) => percentage / 100);
+      const firstTwoValues = values.slice(0, 2);
+      const defaultDecision = pairs.pairDecision(firstTwoValues, 0.5) as Record<string, any>;
+      const needsThird = cuts.some((cut) => (pairs.pairDecision(firstTwoValues, cut) as Record<string, any>).needsThird);
+      const usedValues = needsThird ? values : firstTwoValues;
+      if (!defaultDecision.needsThird) agreeingFirstPairs += 1;
+      earlyCalls += usedValues.length;
+      earlyPicks.push(cuts.map((cut) => (pairs.pairDecision(usedValues, cut) as Record<string, any>).decision));
+      fullPicks.push(cuts.map((cut) => (pairs.pairDecision(values, cut) as Record<string, any>).decision));
+    }
+
+    expect(agreeingFirstPairs).toBe(58);
+    expect(earlyCalls).toBe(124);
+    expect(earlyCalls + 1).toBeLessThan(RECORDED_ORDER_PERCENTAGES.length * 3 + 1);
+    expect(earlyPicks).toEqual(fullPicks);
+  });
+
+  it('prints verdicts at the three calibration cuts', () => {
+    const row = armPair(0);
+    const answers = new Map([[row.key, [0.45, 0.46]]]);
+    const baselineCalls = new Map([[row.key, 'different']]);
+    const cuts = [0.4, 0.45, 0.5];
+    const columns = cuts.map((cut) => pairs.summarizeColumn('jev', [row], answers, baselineCalls, '', cut) as Record<string, any>);
+
+    expect(columns.map((column) => column.cut)).toEqual(cuts);
+    expect(columns.map((column) => column.A)).toEqual([1, 1, 0]);
+    expect(columns.map((column) => column.line.match(/cut=[0-9.]+/)?.[0])).toEqual(['cut=0.4', 'cut=0.45', 'cut=0.5']);
+  });
+
   it('verdict prints keep', () => {
     const rows = [0, 1, 2, 3, 4].map((index) => armPair(index));
     const answers = new Map(rows.map((row) => [row.key, [0.9, 0.9, 0.9]]));
@@ -764,12 +933,26 @@ describe('score-fanout-pairs keep rule and report', () => {
       label: index < 9 || index >= 25 ? 'different' : 'same',
     }));
     fs.writeFileSync(sheetPath, `${labelRows.map((row) => JSON.stringify(row)).join('\n')}\n`, 'utf8');
+    const reviewLeft = { findingId: 'R-1', severity: 'P1', disposition: 'resolved', summary: 'shared problem alpha' };
+    const reviewRight = { findingId: 'R-2', severity: 'P1', disposition: 'resolved', summary: 'shared problem beta' };
+    const reviewPaths = writeRun(root, 'review', 'pair-dropout', [
+      { label: 'review-left', findings: [reviewLeft] },
+      { label: 'review-right', findings: [reviewRight] },
+    ]);
+    const dropoutKey = pairs.pairKey(
+      'review',
+      'pair-dropout',
+      { ...reviewLeft, _lineage: 'review-left' },
+      { ...reviewRight, _lineage: 'review-right' },
+    ) as string;
+    fs.appendFileSync(sheetPath, `${JSON.stringify({ pair_key: dropoutKey, label: 'same' })}\n`, 'utf8');
     const tracked = Array.from({ length: 40 }, (_, index) => [
       `pair-${index + 1}/research/lineages/la/findings-registry.json`,
       `pair-${index + 1}/research/lineages/lb/findings-registry.json`,
     ]).flat();
+    tracked.push(...reviewPaths);
 
-    const { code } = await runMain(
+    const { code, lines } = await runMain(
       ['--jev', '--out', outDir, '--labels', sheetPath],
       stubEnv(stub),
       { root, listTracked: () => tracked, git: () => ({ status: 0, error: null }) },
@@ -779,10 +962,28 @@ describe('score-fanout-pairs keep rule and report', () => {
     const report = JSON.parse(fs.readFileSync(path.join(outDir, 'report.json'), 'utf8')) as Record<string, any>;
     expect(report.columns.jev.line.startsWith('verdict jev: ')).toBe(true);
     expect(report.columns.jev.line).toContain('reader=none named');
+    expect(report.baseline.rows.map((row: Record<string, any>) => row.name)).toEqual(
+      expect.arrayContaining(['merge-oracle', 'constant-same', 'lexical-jaccard']),
+    );
+    expect(report.baseline.rows.every((row: Record<string, any>) => row.total === 41)).toBe(true);
+    expect(report.labelDigest).toBe(pairs.sha256Hex(fs.readFileSync(sheetPath)));
+    expect(report.rubricHash).toBe(pairs.sha256Hex(JSON.stringify(report.rubric)));
+    expect(report.scorerHash).toBe(pairs.sha256Hex(fs.readFileSync(path.join(TEST_DIR, '../../scripts/score-fanout-pairs.cjs'))));
+    expect(report.oracle.decisions).toHaveLength(41);
+    expect(report.oracle.decisions).toContainEqual(expect.objectContaining({
+      key: dropoutKey,
+      decision: 'undecidable',
+      dedupOn: 'undecidable',
+      dedupOff: 'undecidable',
+    }));
+    expect(report.oracle.dropouts.map((row: Record<string, any>) => row.key)).toEqual([dropoutKey]);
+    expect(report.columns.jev.cutSweep.map((column: Record<string, any>) => column.cut)).toEqual([0.4, 0.45, 0.5]);
+    expect(lines.filter((line) => line.startsWith('verdict jev: ')).map((line) => line.match(/cut=[0-9.]+/)?.[0]))
+      .toEqual(['cut=0.4', 'cut=0.45', 'cut=0.5']);
     const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n')
       .map((line) => JSON.parse(line) as Record<string, any>);
-    expect(calls).toHaveLength(121);
+    expect(calls).toHaveLength(83);
     expect(calls.filter((call) => call.pair_key === null)).toHaveLength(1);
-    expect(calls.filter((call) => call.pair_key !== null)).toHaveLength(120);
+    expect(calls.filter((call) => call.pair_key !== null)).toHaveLength(82);
   }, 30000);
 });
