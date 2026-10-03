@@ -1,0 +1,82 @@
+======================================================================
+Skill/Command/Agent Description Budget Audit
+======================================================================
+
+Items audited:  62
+  - skills:     14
+  - commands:   36
+  - agents:     12 (unique names)
+
+Project total:         6330 chars
+Project soft-ceiling:  5600 chars
+Headroom:              -730 chars under ceiling
+Default Claude Code budget: 8000 chars (built-ins consume the 2400-char headroom)
+
+Top 70 by length:
+STATUS     CHARS  SURFACE   NAME
+----------------------------------------------------------------------
+OK           130  skill     system-spec-kit
+OK           128  skill     sk-doc
+OK           128  skill     sk-prompt
+OK           127  skill     sk-code
+OK           127  agent     design  (mirrored: 2 surfaces)
+OK           126  skill     cli-classifier
+OK           125  skill     mcp-code-mode
+OK           124  skill     cli-external-orchestration
+OK           122  skill     sk-git
+OK           122  skill     sk-vision
+OK           121  skill     cli-orca
+OK           121  agent     ai-council  (mirrored: 2 surfaces)
+OK           119  skill     sk-design
+OK           118  skill     mcp-tooling
+OK           117  agent     context  (mirrored: 2 surfaces)
+OK           116  skill     system-skill-advisor
+OK           116  agent     markdown  (mirrored: 2 surfaces)
+OK           115  agent     review  (mirrored: 2 surfaces)
+OK           110  command   create/goal
+OK           110  command   create/skill-parent
+OK           109  command   speckit/search
+OK           108  command   create/diff
+OK           107  command   deep/agent-improvement
+OK           107  command   deep/model-benchmark
+OK           107  command   design/diagram
+OK           107  command   speckit/implement
+OK           105  command   deep/research
+OK           105  command   speckit/plan
+OK           104  command   create/agent
+OK           103  command   vision
+OK           102  command   speckit/complete
+OK           101  command   create/readme
+OK           101  command   design/extract
+OK           101  command   doctor/rebuild
+OK           100  command   deep/review
+OK           100  command   prompt/improve
+OK            99  command   create/with-human-voice
+OK            99  command   deep/ai-council
+OK            99  command   design/chart
+OK            98  agent     deep-improvement  (mirrored: 2 surfaces)
+OK            97  command   create/changelog
+OK            97  command   create/manual-testing-playbook
+OK            97  command   create/repo-rule
+OK            96  command   create/skill
+OK            95  agent     debug  (mirrored: 2 surfaces)
+OK            94  agent     code  (mirrored: 2 surfaces)
+OK            93  skill     system-deep-loop
+OK            93  agent     orchestrate  (mirrored: 2 surfaces)
+OK            92  command   doctor/speckit
+OK            91  agent     prompt-improver  (mirrored: 2 surfaces)
+OK            90  command   speckit/resume
+OK            89  command   create/feature-catalog
+OK            88  agent     deep-research  (mirrored: 2 surfaces)
+OK            85  agent     deep-review  (mirrored: 2 surfaces)
+OK            81  command   create/command
+OK            77  command   doctor/mcp
+OK            77  command   doctor/update
+OK            77  command   speckit/save
+OK            72  command   create/benchmark
+OK            71  command   doctor/env
+OK            62  command   agent-router
+OK            32  command   goal-opencode
+
+WARN: project total 6330 > soft ceiling 5600
+exit=0

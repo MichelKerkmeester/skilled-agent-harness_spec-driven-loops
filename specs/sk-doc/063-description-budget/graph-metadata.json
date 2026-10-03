@@ -39,16 +39,12 @@
       "surface"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".skilled/commands/goal-opencode.md",
-      ".skilled/commands/vision.md",
-      ".skilled/commands/doctor/assets/doctor-skill-budget.yaml",
-      ".skilled/skills/sk-doc/shared/assets/skill-contract.json",
       ".skilled/skills/sk-code/SKILL.md",
       ".skilled/agents/design.md",
       ".claude/agents/design.md",
@@ -57,10 +53,14 @@
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/sk-doc/SKILL.md",
       ".skilled/skills/sk-design/SKILL.md",
+      ".skilled/commands/doctor/scripts/audit_descriptions.py",
+      ".skilled/commands/doctor/assets/doctor-skill-budget.yaml",
+      ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
       ".skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md",
       ".skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md",
-      ".skilled/commands/doctor/scripts/audit_descriptions.py",
-      ".skilled/skills/sk-doc/command-metadata.json"
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
+      ".skilled/skills/sk-doc/shared/assets/skill-contract.json",
+      ".pi/agents/design.md"
     ],
     "entities": [
       {
@@ -88,30 +88,6 @@
         "source": "derived"
       },
       {
-        "name": "goal-opencode.md",
-        "kind": "doc",
-        "path": ".skilled/commands/goal-opencode.md",
-        "source": "derived"
-      },
-      {
-        "name": "vision.md",
-        "kind": "doc",
-        "path": ".skilled/commands/vision.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-skill-budget.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-skill-budget.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "skill-contract.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/shared/assets/skill-contract.json",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/SKILL.md",
@@ -121,6 +97,24 @@
         "name": "design.md",
         "kind": "doc",
         "path": ".skilled/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit_descriptions.py",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/audit_descriptions.py",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-budget.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-skill-budget.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "quick_validate.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/quick_validate.py",
         "source": "derived"
       },
       {
@@ -136,19 +130,25 @@
         "source": "derived"
       },
       {
-        "name": "audit_descriptions.py",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/audit_descriptions.py",
+        "name": "skill-md-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
         "source": "derived"
       },
       {
-        "name": "command-metadata.json",
+        "name": "skill-contract.json",
         "kind": "config",
-        "path": ".skilled/skills/sk-doc/command-metadata.json",
+        "path": ".skilled/skills/sk-doc/shared/assets/skill-contract.json",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -178,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Seven authored descriptions sit over their soft target and the project total runs 1,251 characters over its 5,600 ceiling",
     "created_at": "2026-10-03T05:27:42Z",
-    "last_save_at": "2026-10-03T05:43:28.794Z",
+    "last_save_at": "2026-10-03T08:02:37.580Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:86693b65cef9449698c0caf9e9e54b70154348f4e259bd2da9f7e7d112cb8e04",
+    "source_fingerprint": "sha256:47b934823b5bbf195096691469a1363ce2ff695092df32ea54dea8076ebc7cc3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d0e19695ac2c6dbae5e35b4655ae5f6a4aac721e6a0f35c743ab129437a3fe75",
+      "spec.md": "196e76e080b3705821f93a5d2875ba7063c6f7f94feaa9dd60154bd9471bc447",
       "plan.md": "3cb64bdb245e0df5f6ed829be4bf2efef1fef818160b880b937b25d60b0ad7e5",
-      "tasks.md": "2a9534e66a0562053998878e0ffdc0ee9e54fc54a7f0b8631f64516da48a1aa1",
-      "implementation-summary.md": "d437ddeac0525ffd30115d8e4a9c41106a3c36fd97624e291e60e449997fc3f1"
+      "tasks.md": "ae5325cd708127a2bb87d61e79b1c8e6af3a843b4331e37eb49f49ea27b24f6a",
+      "implementation-summary.md": "123e24c68586d65f4beb766526e787b3ebea318454f245e4903bb71c07061507"
     },
     "last_active_at": null
   }

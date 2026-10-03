@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | In Progress |
 | **Created** | 2026-10-03 |
 | **Branch** | `worktrees/079-doctor-command-audit` |
 <!-- /ANCHOR:metadata -->
@@ -167,7 +167,7 @@ Every authored description is at or under its 5,600-character project budget wit
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- The per-item soft targets (130/110) and the 5,600 project ceiling cannot both hold for 62 items: at target the fleet totals 7,340. If the rule-bound pass cannot reach 5,600 without cutting KEEP-class content, which does the operator prefer: a higher ceiling, lower per-item targets, or a smaller fleet?
+- The per-item soft targets (130/110) and the 5,600 project ceiling cannot both hold for 62 items: at target the fleet totals 7,340. If the rule-bound pass cannot reach 5,600 without cutting KEEP-class content, which does the operator prefer: a higher ceiling, lower per-item targets, or a smaller fleet? **Answered 2026-10-03:** the operator raised the ceiling to 6,400 and ruled out further trimming.
 - `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` lists `/doctor <target>` in the doctor family's `invocation_aliases`, while the router resolves as `/doctor:speckit` and the doctor's own assets use `/doctor:speckit <target>`. This packet adopts the finding's accepted form; should the family contract be corrected in its own packet?
 - Should the audit also print a Claude-visible subtotal that excludes the two runtime-exclusive commands, or is one authoring-surface total enough once its stated purpose names the surface? Deferred here; the reword keeps one number.
 <!-- /ANCHOR:questions -->

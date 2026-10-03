@@ -86,7 +86,7 @@ SKILL.md architecture follows progressive disclosure:
 
 > **Hard rules**: not a frontmatter key. They live in `hard-rules.json` beside the skill's `SKILL.md`, a JSON array of `{id, check, message, severity}` objects that the dispatch preflight reads.
 
-> **Description budget & trim style**: see [`frontmatter-templates.md` § Description Budget & Trim Style](../../../sk-create-frontmatter/assets/frontmatter-templates.md). Total project descriptions must stay under ~5,600 chars or Claude Code will silently drop the longest from auto-discovery. Authoring rules: drop product/stack enumerations, drop marketing prose, and keep skill name, primary verb, domain noun, and mode suffixes (`:auto`/`:confirm`).
+> **Description budget & trim style**: see [`frontmatter-templates.md` § Description Budget & Trim Style](../../../sk-create-frontmatter/assets/frontmatter-templates.md). Total project descriptions must stay under the ~6,400-char project ceiling, which keeps headroom below the 8,000-char default where Claude Code silently drops the longest from auto-discovery. Authoring rules: drop product/stack enumerations, drop marketing prose, and keep skill name, primary verb, domain noun, and mode suffixes (`:auto`/`:confirm`).
 
 ### Template
 

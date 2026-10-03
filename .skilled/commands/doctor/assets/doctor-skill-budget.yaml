@@ -2,7 +2,7 @@
 # DOCTOR: SKILL BUDGET WORKFLOW (INTERACTIVE READ-ONLY MODE)
 # ─────────────────────────────────────────────────────────────────
 role: Expert Operator running description-budget audit in interactive mode
-purpose: Read-only audit of skill, command, and agent description budgets with optional fail-over checkpoint
+purpose: Read-only audit of the authored skill, command, and agent description budget (includes the runtime-exclusive goal-opencode and vision commands, which Claude Code never loads) with optional fail-over checkpoint
 action: Run audit_descriptions.py -> present report -> prompt for optional fail-over check -> final status
 
 # ─────────────────────────────────────────────────────────────────
@@ -21,8 +21,8 @@ operating_mode:
 # SKILL-BUDGET AUDIT INVARIANT
 # ─────────────────────────────────────────────────────────────────
 skill_budget_doctor_invariant: |
-  Skill-budget doctor is strictly read-only. It walks the project surfaces that
-  feed Claude Code's available-skills metadata (skills, commands, agents) and
+  Skill-budget doctor is strictly read-only. It walks the authored skill, command
+  and agent surfaces (a superset of Claude Code's available-skills metadata) and
   reports per-item char counts, top-N bloated items, project total, and headroom
   under the configured ceiling. It NEVER modifies frontmatter, never re-indexes
   the advisor, and never writes to spec packet docs. Exit code is non-zero only
@@ -57,7 +57,7 @@ field_handling:
     json_output_empty: false
     top_n_empty: 10
     fail_over_empty: null
-    project_ceiling_empty: 5600
+    project_ceiling_empty: 6400
   validation:
     execution_mode_must_be: INTERACTIVE
     top_n_minimum: 1

@@ -1,6 +1,6 @@
 ---
 name: cli-classifier
-description: "Routes classifier judgment requests to the cli-jev (hosted Jev) or cli-deem (local Deem) transport through mode-registry.json. Holds no packet-local logic."
+description: "Routes classifier judgment requests to the cli-jev (hosted Jev) or cli-deem (local Deem) transport through mode-registry.json."
 allowed-tools: [Read, Bash, Grep, Glob]
 version: 0.6.0.0
 ---

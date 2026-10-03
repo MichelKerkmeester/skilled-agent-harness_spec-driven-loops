@@ -1,0 +1,13 @@
+== pi/sync-agents-pi.cjs --check exit=0 :: [pi-agent-sync] PASS: 12 agents are in sync. 
+== pi/sync-prompts-pi.cjs --check exit=0 :: [pi-prompt-sync] PASS: 34 prompts are in sync. 
+== codex/sync-agents.cjs --check exit=0 :: [codex-agent-sync] PASS: 12 agents are in sync. 
+== codex/sync-prompts.cjs --check exit=0 :: [codex-prompt-sync] PASS: 34 prompts are in sync. 
+== hermes/sync-skills-hermes.cjs --check exit=0 :: PASS: 71 Hermes skill copies in sync 
+== hermes/sync-prompts-hermes.cjs --check exit=0 :: [hermes-prompt-sync] PASS: 34 prompts are in sync. 
+== runtime-mirrors/sync-runtime-mirrors.cjs --check exit=0 :: [runtime-mirror-sync] PASS: 174 mirrors across 8 trees are in sync. 
+== command-catalog-mirror-check exit=0 ::  STATUS=OK command-catalog-mirror: every catalog and hub metadata covers the command tree 
+== compiled-route-guard exit=1 ::   cli-classifier              stale-manifest   cli-external-orchestration  stale-manifest   mcp-tooling                 fresh   sk-code                     stale-manifest   sk-design                   stale-manifest   sk-doc                      stale-manifest   system-deep-loop            fresh  5 hub(s) need attention. Re-mint: cli-classifier, cli-external-orchestration, sk-code, sk-design, sk-doc 
+== route-validate exit=0 :: ───────────────────────────────────────────────────────────────── OK: route-validate — 9 routes validated, 2 warnings 
+== rg 'doctor skill-budget :auto' .skilled: 0 matches
+== rg 'doctor:speckit skill-budget' sk-doc: .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md .skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md 
+== .claude/commands goal-opencode/vision: ls: .claude/commands/goal-opencode.md: No such file or directory ls: .claude/commands/vision.md: No such file or directory 
