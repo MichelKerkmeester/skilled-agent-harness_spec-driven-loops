@@ -155,6 +155,9 @@ describe('prompt-pack', () => {
     });
 
     expect(researchRendered).toContain('Research Topic: Deep loop coverage');
+    expect(researchRendered).toContain('put the finding statement there');
+    expect(researchRendered).toContain('NO OPERATOR IS PRESENT');
+    expect(researchRendered).toContain('WRITE UNDER THE LINEAGE DIRECTORY');
     expect(researchRendered).toContain('Runtime helper ownership?');
     expect(researchRendered).toContain('State Log: .skilled/skills/system-deep-loop/deep-research/runtime/state.jsonl');
     expect(reviewRendered).toContain('Dimension: traceability');

@@ -256,7 +256,7 @@ function loadDeltaFindings(root, lineageDir, label) {
     const fileRun = Number(nameMatch[1]);
     const sourceRelative = path.relative(root, realFile).replace(/\\/g, '/');
     const lines = fs.readFileSync(realFile, 'utf8').split(/\r?\n/);
-    lines.forEach((line) => {
+    lines.forEach((line, rowIndex) => {
       if (!line.trim()) return;
       let record;
       try {
@@ -268,8 +268,18 @@ function loadDeltaFindings(root, lineageDir, label) {
       if (!record || typeof record !== 'object' || record.type !== 'finding') return;
       const iterationNumber = Number(record.iteration);
       const run = Number.isFinite(iterationNumber) ? Math.floor(iterationNumber) : fileRun;
-      const text = firstNonEmptyString([record.title, record.label, record.finding, record.text]);
+      // `claim` is the field a reasoning-model lineage writes its finding body under; `summary`
+      // is its condensed restatement. Both carry the same durable text the other aliases do,
+      // and a finding whose text is unreadable would otherwise be dropped without a trace.
+      const text = firstNonEmptyString([record.title, record.label, record.finding, record.text, record.claim, record.summary]);
       if (!text) {
+        process.stderr.write(JSON.stringify({
+          type: 'delta_finding_unreadable',
+          severity: 'warn',
+          source: sourceRelative,
+          row: rowIndex + 1,
+          message: `Delta finding row ${rowIndex + 1} in ${sourceRelative} carries no readable finding text (checked title, label, finding, text, claim, summary); it is dropped from reconstruction.`,
+        }) + '\n');
         remember(run, null);
         return;
       }

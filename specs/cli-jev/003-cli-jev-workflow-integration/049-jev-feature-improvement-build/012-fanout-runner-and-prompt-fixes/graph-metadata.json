@@ -39,7 +39,7 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,10 +48,11 @@
       "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
       ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts"
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
     ],
     "entities": [
       {
@@ -97,18 +98,6 @@
         "source": "derived"
       },
       {
-        "name": "fanout-run.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "prompt-pack-iteration.md.tmpl",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
@@ -121,7 +110,31 @@
         "source": "derived"
       },
       {
+        "name": "deep-research.contract.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -146,12 +159,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 048 hit four more fan-out faults",
     "created_at": "2026-10-03T05:30:11Z",
-    "last_save_at": "2026-10-03T12:39:23.352Z",
+    "last_save_at": "2026-10-03T12:44:57.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ffc14315485d5888a4556f18ee98f310ce4d78f04fe920d7f8e5bf084e60f998",
+    "source_fingerprint": "sha256:519dbf0c06f7fcbdc7195eb956bb9dad906588cc7603cc79bf8d2f49c9ce8cfb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "32fb687e31348359ddbdf2dc5199b903bdb7e18a881d4e9f7f4eb61544ad158c",
+      "spec.md": "381bc954c871d25ef3ced17253e38d0473d757461e03941b47853d3468b6a194",
       "plan.md": "7a84a4e7476c63cd61933b3aad23751c50b39bf920767b4733fb384da3badf0d",
-      "tasks.md": "e4bbbbbb2750bd0f3a07f5a83f30f9daa9bb54f53c36e3b9f253be8f38494776",
-      "implementation-summary.md": "d59f71fd109d5e08a180f0b4ecc1699e986770a57ad6594303071e761e668b57"
+      "tasks.md": "5f76361d0765ce49546152bffb400c6798ca35986d0c1cceadae13639a95758d",
+      "implementation-summary.md": "dc4a9f9dd9f85b38c3870e2cb550d603a43cf0df2722051fb0b97ce5b09ecd42"
     },
     "last_active_at": null
   }

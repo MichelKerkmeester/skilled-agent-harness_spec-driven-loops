@@ -34,8 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read 048's goal log for the four faults and their evidence
-- [ ] T002 Capture the suite baseline before any change
+- [x] T001 Read 048's goal log for the four faults and their evidence
+- [x] T002 Capture the suite baseline before any change
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,10 +43,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Read `claim` and `summary` in the merge and warn on unreadable finding rows
-- [ ] T004 Classify a gateway projection refusal as non-retryable in the runner, and resolve the lineage directory to an absolute path before the prompt is built
-- [ ] T005 Add the field name, contradiction rule and verbatim lineage-path rule to the iteration prompt pack, with render assertions
-- [ ] T006 Rebase onto the `fanout-run.cjs` change from `system-deep-loop/040-cli-pi-opencode-go-route` if it has landed
+- [x] T003 Read `claim` and `summary` in the merge and warn on unreadable finding rows
+- [B] T004 Classify a gateway projection refusal as non-retryable in the runner, and resolve the lineage directory to an absolute path before the prompt is built (blocked: `fanout-run.cjs` carries another session's uncommitted 040 change)
+- [x] T005 Add the field name, contradiction rule and verbatim lineage-path rule to the iteration prompt pack, with render assertions
+- [B] T006 Rebase onto the `fanout-run.cjs` change from `system-deep-loop/040-cli-pi-opencode-go-route` if it has landed (blocked: `fanout-run.cjs` carries another session's uncommitted 040 change)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -54,9 +54,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T007 Run the merge and runner suites
-- [ ] T008 Re-merge 048's 008 lineages from their original delta rows
-- [ ] T009 Run `validate.sh --strict` on this phase
+- [x] T007 Run the merge and runner suites
+- [x] T008 Re-merge 048's 008 lineages from their original delta rows
+- [x] T009 Run `validate.sh --strict` on this phase
 <!-- /ANCHOR:phase-3 -->
 
 ---

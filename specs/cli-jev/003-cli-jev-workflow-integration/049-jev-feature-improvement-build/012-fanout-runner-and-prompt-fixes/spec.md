@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/012-fanout-runner-and-prompt-fixes` |
 | **Parent Spec** | ../spec.md |
