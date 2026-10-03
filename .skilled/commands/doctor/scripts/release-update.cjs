@@ -56,6 +56,7 @@ const COMMAND_OPTIONS = {
   unlock: new Set(['repo', 'json', 'dry-run']),
   'record-base': new Set([
     'repo', 'remote', 'release', 'scope', 'offline', 'json', 'dry-run', 'include-prerelease',
+    'trust-release',
   ]),
 };
 
@@ -497,8 +498,10 @@ function matchUnitRef(ref, units, remedy, usage = false) {
 
 function enumerateUnits(inputPaths) {
   const rawPaths = inputPaths.map((entry) => (typeof entry === 'string' ? entry : entry.path));
+  // The release directory holds engine records and run state, never framework content.
   const paths = [...new Set(rawPaths)]
-    .filter((filePath) => typeof filePath === 'string' && filePath.startsWith('.skilled/'));
+    .filter((filePath) => typeof filePath === 'string' && filePath.startsWith('.skilled/')
+      && !filePath.startsWith(RELEASE_DIR + '/'));
   // Keyed by kind and name: a skill hub may share its name with a top-level
   // directory such as hooks, and neither may hide the other.
   const units = new Map();
@@ -552,6 +555,16 @@ function enumerateUnits(inputPaths) {
 function sameState(left, right) {
   if (!left || !right) return !left && !right;
   return left.mode === right.mode && left.blob === right.blob;
+}
+
+// Record-base and base inference must agree on what nearest means.
+function unitDistance(localEntries, releaseEntries) {
+  const paths = new Set([...localEntries.keys(), ...releaseEntries.keys()]);
+  let distance = 0;
+  for (const filePath of paths) {
+    if (!sameState(localEntries.get(filePath), releaseEntries.get(filePath))) distance += 1;
+  }
+  return distance;
 }
 
 function isBinary(entry) {
@@ -738,6 +751,19 @@ function loadJson(filePath, fallback) {
   }
 }
 
+// base.json is a shared tracked file, and git reads a value that starts with a dash
+// as an option.
+function persistedRemote(repo) {
+  const base = loadJson(safeResolve(repo, BASE_FILE), {});
+  const remote = base && base.remote;
+  if (typeof remote !== 'string' || !remote) return null;
+  if (remote.startsWith('-')) {
+    throw new Error('base.json remote must name a remote or a repository URL, not an option: '
+      + remote);
+  }
+  return remote;
+}
+
 function releaseContext(repo, options) {
   const head = git(repo, ['rev-parse', 'HEAD']).trim();
   const accepts = acceptsTag(options.includePrerelease);
@@ -750,6 +776,11 @@ function releaseContext(repo, options) {
   const upstreamLatest = upstream.known
     ? latestTag(upstream.tags, options.includePrerelease)
     : null;
+  const upstreamError = upstream.known && !upstreamLatest
+    ? 'remote ' + options.remote + ' lists no '
+      + (options.includePrerelease ? '' : 'stable ')
+      + 'vN.N.N.N release tags, so name the framework repository with --remote'
+    : upstream.error;
   const release = options.release || upstreamLatest || localLatest;
   const commits = new Map();
   const releaseCommit = release
@@ -772,7 +803,7 @@ function releaseContext(repo, options) {
     upstream: {
       status: upstream.known && upstreamLatest ? 'known' : 'unknown',
       latest: upstreamLatest || 'unknown',
-      error: upstream.error,
+      error: upstreamError,
     },
     release,
     releaseCommit,
@@ -805,7 +836,10 @@ function baseForUnit(repo, unit, context, recorded, options) {
     if (commit) {
       const files = entriesForUnit(commitFiles(repo, commit), unit);
       const tree = unitTreeFingerprint(files);
-      if (!record.tree || record.tree === tree) {
+      if (!record.tree) {
+        return { source: 'recorded-unverified', release: record.release, commit, files };
+      }
+      if (record.tree === tree) {
         return { source: 'recorded', release: record.release, commit, files };
       }
     }
@@ -825,11 +859,7 @@ function baseForUnit(repo, unit, context, recorded, options) {
     const commit = tagCommit(repo, tag, options.remote, !options.offline, context.commits);
     if (!commit) continue;
     const files = entriesForUnit(commitFiles(repo, commit), unit);
-    const paths = new Set([...local.keys(), ...files.keys()]);
-    let distance = 0;
-    for (const filePath of paths) {
-      if (!sameState(local.get(filePath), files.get(filePath))) distance += 1;
-    }
+    const distance = unitDistance(local, files);
     if (!best || distance < best.distance
       || distance === best.distance && compareVersions(tag, best.release) > 0) {
       best = { source: 'inferred', release: tag, commit, files, distance };
@@ -1014,10 +1044,12 @@ function buildReport(repo, options) {
   const ledger = ledgerEntries(repo);
   const reports = [];
   const globalFiles = [];
+  const presentLocalUnits = new Set();
   for (const unit of units) {
     const base = baseForUnit(repo, unit, context, recorded, options);
     const baseFiles = base.files;
     const localUnit = entriesForUnit(context.localMap, unit);
+    if (hasPresentEntry(localUnit)) presentLocalUnits.add(unitKey(unit));
     const releaseUnit = entriesForUnit(context.targetMap, unit);
     const paths = [...new Set([...baseFiles.keys(), ...localUnit.keys(), ...releaseUnit.keys()])]
       .sort();
@@ -1101,14 +1133,16 @@ function buildReport(repo, options) {
     status = 'unknown';
     for (const unit of reports) if (unit.status === 'current') unit.status = 'unknown';
   }
-  const unrecorded = reports.filter((unit) => (
-    unit.baseSource === 'inferred' || unit.baseSource === 'none'
-  ));
+  const unrecorded = reports.filter((unit) => presentLocalUnits.has(unit.key)
+    && ['inferred', 'none', 'recorded-unverified'].includes(unit.baseSource));
+  const remoteFlag = options.remoteSource === 'flag'
+    ? ' --remote ' + shellQuote(options.remote)
+    : '';
   const baseRecording = {
     needed: unrecorded.length > 0,
     units: unrecorded.map((unit) => unit.key),
     action: unrecorded.length
-      ? SCRIPT_COMMAND + ' record-base --release <installed-release>'
+      ? SCRIPT_COMMAND + ' record-base --release <installed-release>' + remoteFlag
       : null,
   };
   return {
@@ -1741,7 +1775,9 @@ function prepareWrites(repo, run, scope) {
   // plan knows, so a record for a unit outside this plan keeps its own kind.
   const knownUnits = [...enumerateUnits([...headFiles.keys()]), ...run.plan.units];
   const baseUnits = normalizeBaseUnits(oldBase.units, uniqueUnits(knownUnits));
-  const newBase = { schemaVersion: 1, units: baseUnits };
+  const newBase = { schemaVersion: 1 };
+  if (typeof oldBase.remote === 'string') newBase.remote = oldBase.remote;
+  newBase.units = baseUnits;
   for (const key of appliedUnits) {
     const unit = unitMap.get(key);
     if (unit) newBase.units[key] = { release: run.plan.release, tree: unit.releaseTree };
@@ -1899,13 +1935,26 @@ function unlockStale(repo, options) {
   return result;
 }
 
-// Node skips finally on these signals, so defer them for lock cleanup; unlock recovers from SIGKILL or power loss.
+// Node skips finally on these signals, so defer them until lock cleanup, then re-raise.
+// Unlock recovers from SIGKILL or power loss.
 function deferSignals() {
   const signals = ['SIGINT', 'SIGTERM', 'SIGHUP'];
-  const listener = () => {};
-  for (const signal of signals) process.on(signal, listener);
+  let receivedSignal = null;
+  const listeners = new Map();
+  for (const signal of signals) {
+    const listener = () => {
+      if (!receivedSignal) receivedSignal = signal;
+    };
+    listeners.set(signal, listener);
+    process.on(signal, listener);
+  }
   return () => {
-    for (const signal of signals) process.removeListener(signal, listener);
+    setImmediate(() => {
+      for (const [signal, listener] of listeners) {
+        process.removeListener(signal, listener);
+      }
+      if (receivedSignal) process.kill(process.pid, receivedSignal);
+    });
   };
 }
 
@@ -2095,7 +2144,8 @@ function followUps(writes, regenerate = []) {
 // only infer its base. Recording every unit of the release it was installed from
 // gives the first check `recorded` evidence instead.
 function recordBase(repo, options) {
-  const localTags = tagNames(repo).filter(acceptsTag(options.includePrerelease));
+  const accepts = acceptsTag(options.includePrerelease);
+  const localTags = tagNames(repo).filter(accepts);
   const release = options.release || latestTag(localTags, options.includePrerelease);
   if (!release) {
     throw new Error('no local release tag exists;'
@@ -2106,6 +2156,46 @@ function recordBase(repo, options) {
   const releaseFiles = commitFiles(repo, commit);
   const units = applyScope(enumerateUnits([...releaseFiles.keys()]), options.scope);
   if (!units.length) throw new Error('release ' + release + ' holds no .skilled units to record');
+  if (!options.trustRelease) {
+    const listing = options.offline
+      ? { known: false, tags: [], error: 'offline mode' }
+      : remoteTags(repo, options.remote);
+    if (!listing.known) {
+      throw new Error('cannot list release tags (' + listing.error + '), so release ' + release
+        + ' cannot be checked against nearer releases. Pass --trust-release to record it unchecked');
+    }
+    const candidateTags = sortTags([...new Set([...localTags, ...listing.tags])].filter(accepts));
+    const commits = new Map([[release, commit]]);
+    const filesByTag = new Map([[release, releaseFiles]]);
+    const localTree = localFiles(repo, [...releaseFiles.keys()]);
+    const nearerReleases = [];
+    for (const unit of units) {
+      const localUnit = entriesForUnit(localTree, unit);
+      const namedDistance = unitDistance(localUnit, entriesForUnit(releaseFiles, unit));
+      let nearest = null;
+      for (const tag of candidateTags) {
+        if (tag === release) continue;
+        const candidateCommit = tagCommit(repo, tag, options.remote, !options.offline, commits);
+        if (!candidateCommit) continue;
+        if (!filesByTag.has(tag)) filesByTag.set(tag, commitFiles(repo, candidateCommit));
+        const candidateFiles = entriesForUnit(filesByTag.get(tag), unit);
+        const distance = unitDistance(localUnit, candidateFiles);
+        if (!nearest || distance < nearest.distance
+          || distance === nearest.distance && compareVersions(tag, nearest.tag) > 0) {
+          nearest = { tag, distance };
+        }
+      }
+      if (nearest && nearest.distance < namedDistance) {
+        nearerReleases.push(unitKey(unit) + ' is nearest ' + nearest.tag + ' ('
+          + nearest.distance + ' files differ, against ' + namedDistance + ' from ' + release + ')');
+      }
+    }
+    if (nearerReleases.length) {
+      throw new Error('release ' + release + ' is not the nearest release to this tree: '
+        + nearerReleases.join('; ') + '. Name the release this tree was installed from, or pass '
+        + '--trust-release to record ' + release + ' anyway');
+    }
+  }
   const headFiles = commitFiles(repo, 'HEAD');
   if (pathDirtyAgainstHead(repo, BASE_FILE, headFiles)) {
     throw new Error('base manifest has staged or unstaged changes against HEAD: ' + BASE_FILE
@@ -2118,19 +2208,42 @@ function recordBase(repo, options) {
     ...enumerateUnits([...headFiles.keys()]),
   ]);
   const nextUnits = normalizeBaseUnits(existing.units, knownUnits, recording);
-  const next = { schemaVersion: 1, units: nextUnits };
+  const next = { schemaVersion: 1 };
+  const remote = options.remoteSource === 'flag'
+    ? options.remote
+    : typeof existing.remote === 'string' ? existing.remote : null;
+  if (typeof remote === 'string') next.remote = remote;
+  next.units = nextUnits;
   for (const unit of units) {
     next.units[unitKey(unit)] = {
       release,
       tree: unitTreeFingerprint(entriesForUnit(releaseFiles, unit)),
     };
   }
+  if (readLockState(repo).state !== 'absent') throw lockConflictError(repo);
   if (!options.dryRun) {
-    writeAtomic(repo, BASE_FILE, { mode: '100644' }, jsonBytes(next));
+    const restoreSignals = deferSignals();
+    let acquired;
+    try {
+      acquired = acquireLock(repo, { command: 'record-base', runDir: null });
+    } catch (error) {
+      restoreSignals();
+      throw error;
+    }
+    try {
+      writeAtomic(repo, BASE_FILE, { mode: '100644' }, jsonBytes(next));
+    } finally {
+      try {
+        fs.rmSync(acquired, { force: true });
+      } finally {
+        restoreSignals();
+      }
+    }
   }
   return {
     command: 'record-base',
     dryRun: Boolean(options.dryRun),
+    verified: !options.trustRelease,
     release,
     releaseCommit: commit,
     baseFile: BASE_FILE,
@@ -2207,13 +2320,19 @@ function parseArgs(argv) {
   if (!command) throw usageError('missing subcommand');
   if (!COMMAND_OPTIONS[command]) throw usageError('unknown subcommand: ' + command);
   const options = {
-    command, remote: 'origin', scope: 'all', offline: false, json: false, dryRun: false,
+    command, scope: 'all', offline: false, json: false, dryRun: false,
   };
   const valueOptions = new Set([
     'repo', 'remote', 'release', 'scope', 'out', 'run', 'path', 'decision', 'unit', 'decisions',
   ]);
-  const booleanOptions = new Set(['offline', 'json', 'dry-run', 'defer', 'include-prerelease']);
-  const booleanKeys = { 'dry-run': 'dryRun', 'include-prerelease': 'includePrerelease' };
+  const booleanOptions = new Set([
+    'offline', 'json', 'dry-run', 'defer', 'include-prerelease', 'trust-release',
+  ]);
+  const booleanKeys = {
+    'dry-run': 'dryRun',
+    'include-prerelease': 'includePrerelease',
+    'trust-release': 'trustRelease',
+  };
   const seenOptions = new Set();
   for (let index = 1; index < argv.length; index += 1) {
     const token = argv[index];
@@ -2236,6 +2355,9 @@ function parseArgs(argv) {
       throw usageError('--' + key + ' requires a value');
     }
     options[key] = value;
+  }
+  if (options.remote && options.remote.startsWith('-')) {
+    throw usageError('--remote must name a remote or a repository URL, not an option');
   }
   if (options.release && !parseVersion(options.release)) {
     throw usageError('--release must be a version tag');
@@ -2283,6 +2405,12 @@ function runCommand(argv) {
     if (isHelpRequest(argv)) return { exitCode: 0, help: helpText(), json: false };
     options = parseArgs(argv);
     const repo = resolveRepo(options.repo);
+    if (COMMAND_OPTIONS[options.command].has('remote')) {
+      const flagRemote = options.remote;
+      const baseRemote = flagRemote ? null : persistedRemote(repo);
+      options.remoteSource = flagRemote ? 'flag' : baseRemote ? 'base' : 'default';
+      options.remote = flagRemote || baseRemote || 'origin';
+    }
     let result;
     if (options.command === 'check') {
       result = buildReport(repo, options);

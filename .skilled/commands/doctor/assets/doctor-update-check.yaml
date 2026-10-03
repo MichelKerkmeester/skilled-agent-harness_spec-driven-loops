@@ -36,6 +36,7 @@ user_inputs:
   json: "[JSON] boolean"
   release: "[RELEASE] optional tag"
   scope: "[SCOPE] optional all or comma-separated units, each a plain name or a kind:name key (skill:hub-a, directory:hooks); a name that two kinds share needs the kind:name form"
+  remote: "[REMOTE] optional framework remote name or repository URL"
   offline: "[OFFLINE] boolean"
   include_prerelease: "[INCLUDE_PRERELEASE] boolean"
 
@@ -45,12 +46,14 @@ field_handling:
     json_empty: false
     release_empty: engine_default
     scope_empty: all
+    remote_empty: base_json_remote_or_origin
     offline_empty: false
   engine_mapping:
     command: "node .skilled/commands/doctor/scripts/release-update.cjs check"
     json: "Always pass --json for parsing; when the user supplied --json, return the parsed report as JSON instead of the prose dashboard."
     release: "--release <tag> when supplied"
     scope: "--scope <value> when supplied"
+    remote: "Pass --remote <value> when supplied. Otherwise use the remote recorded in base.json, then origin."
     offline: "--offline when requested"
     include_prerelease: "--include-prerelease when requested; latest-upstream resolution otherwise takes stable vN.N.N.N tags only, and a tag named with --release is used as given"
     repository: "--repo ."
@@ -91,8 +94,8 @@ workflow:
 
   phase_2_engine_check:
     approval: none
-    command: "node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json [--release <tag>] [--scope <value>] [--offline] [--include-prerelease]"
-    flag_rule: "Include optional flags only when their input is bound; check accepts --json, --release, --scope, --offline and --include-prerelease."
+    command: "node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --json [--release <tag>] [--scope <value>] [--remote <value>] [--offline] [--include-prerelease]"
+    flag_rule: "Include optional flags only when their inputs are bound; check accepts --json, --release, --scope, --remote, --offline and --include-prerelease."
     parse_json_fields:
       - schemaVersion
       - command
@@ -137,7 +140,7 @@ workflow:
       update_or_new_only: "Offer /doctor:update apply, noting that a decision file is optional when no align decisions are needed."
       removed_or_blocked_or_unknown: "Show the status-specific explanation and do not imply automatic application is safe."
       databases: "Name /doctor:rebuild for database regeneration after applying a release."
-      base_recording: "When baseRecording.needed is true (a unit's baseSource is inferred or none, as on a copied or freshly installed tree), name baseRecording.action and ask the operator for the release the tree was installed from. Recording writes the git-tracked .skilled/release/base.json, so it needs the operator's approval like any other write; check itself never runs it."
+      base_recording: "When baseRecording.needed is true (at least one unit with local files has baseSource inferred, none or recorded-unverified), name baseRecording.action and ask the operator for the release the tree was installed from. Recording writes the git-tracked .skilled/release/base.json, so it needs the operator's approval like any other write; check itself never runs it."
       no_changes: "Report that the selected units are current or local."
 
   phase_5_terminal_status:

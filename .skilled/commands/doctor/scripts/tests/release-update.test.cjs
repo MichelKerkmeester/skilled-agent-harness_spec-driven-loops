@@ -566,7 +566,8 @@ test('a copied tree reports a recorded base after record-base', () => {
     assert.equal(unit(after.document, key).baseSource, 'recorded', key);
   }
   assert.equal(unit(after.document, 'hub-a').status, 'update');
-  assert.deepEqual(after.document.baseRecording.units, ['skill:hub-d']);
+  assert.deepEqual(after.document.baseRecording.units, []);
+  assert.equal(after.document.baseRecording.needed, false);
 
   const again = runCli(vendor, ...recordArgs);
   assert.equal(again.exitCode, 1);
@@ -686,7 +687,8 @@ test('a name-only base.json record reads as the one unit with that name and is r
   writeBase(fixture.operator, { 'hub-a': { release: 'v1.0.0.0' } });
   const report = runCli(fixture.operator, 'check');
   assert.equal(report.exitCode, 0, JSON.stringify(report.document));
-  assert.equal(unit(report.document, 'hub-a').baseSource, 'recorded');
+  assert.equal(unit(report.document, 'hub-a').baseSource, 'recorded-unverified');
+  assert.ok(report.document.baseRecording.units.includes('skill:hub-a'));
   const applied = runCli(fixture.operator, 'apply');
   assert.equal(applied.exitCode, 0, JSON.stringify(applied.document));
   const base = readJson(path.join(fixture.operator, '.skilled/release/base.json'));
@@ -1151,13 +1153,51 @@ test('a signal while the apply lock is held cannot strand the lock', () => {
     '--json',
   ], { encoding: 'utf8' });
   const lock = path.join(fixture.operator, '.skilled/release/.apply.lock');
-  assert.equal(applied.signal, null);
-  assert.equal(applied.status, 0, applied.stderr);
+  assert.ok(applied.signal === 'SIGTERM' || applied.status === 143,
+    JSON.stringify({ status: applied.status, signal: applied.signal, stderr: applied.stderr }));
   assert.equal(fs.existsSync(lock), false);
   assert.match(readText(fixture.operator, HUB_A_FILE), /Release line/);
 
-  const result = JSON.parse(applied.stdout);
-  const rolledBack = runCli(fixture.operator, 'rollback', '--run', result.runDir);
+  const runsDir = path.join(fixture.operator, '.skilled/release/runs');
+  const runDir = path.join(runsDir, fs.readdirSync(runsDir)[0]);
+  assert.equal(fs.existsSync(path.join(runDir, 'rollback.json')), true);
+  const rolledBack = runCli(fixture.operator, 'rollback', '--run', runDir);
+  assert.equal(rolledBack.exitCode, 0, JSON.stringify(rolledBack.document));
+  assert.match(readText(fixture.operator, HUB_A_FILE), /Base line/);
+});
+
+test('a signal deferred during apply still ends the process after the lock is released', () => {
+  const fixture = makeFixture();
+  ignoreRuns(fixture.operator);
+  const preload = path.join(fixture.root, 'terminate-on-lock.cjs');
+  fs.writeFileSync(preload, [
+    "const fs = require('node:fs');",
+    'const originalOpenSync = fs.openSync;',
+    'fs.openSync = function openSync(filePath, flags, ...args) {',
+    '  const descriptor = originalOpenSync.call(fs, filePath, flags, ...args);',
+    "  if (filePath.endsWith('.apply.lock') && flags === 'wx') process.kill(process.pid, 'SIGTERM');",
+    '  return descriptor;',
+    '};',
+  ].join('\n') + '\n');
+
+  const applied = spawnSync(process.execPath, [
+    '--require',
+    preload,
+    SCRIPT_PATH,
+    'apply',
+    '--repo',
+    fixture.operator,
+    '--json',
+  ], { encoding: 'utf8' });
+  const lock = path.join(fixture.operator, '.skilled/release/.apply.lock');
+  assert.equal(fs.existsSync(lock), false);
+  assert.ok(applied.signal === 'SIGTERM' || applied.status === 143,
+    JSON.stringify({ status: applied.status, signal: applied.signal, stderr: applied.stderr }));
+
+  const runsDir = path.join(fixture.operator, '.skilled/release/runs');
+  const runDir = path.join(runsDir, fs.readdirSync(runsDir)[0]);
+  assert.equal(fs.existsSync(path.join(runDir, 'rollback.json')), true);
+  const rolledBack = runCli(fixture.operator, 'rollback', '--run', runDir);
   assert.equal(rolledBack.exitCode, 0, JSON.stringify(rolledBack.document));
   assert.match(readText(fixture.operator, HUB_A_FILE), /Base line/);
 });
@@ -1379,6 +1419,118 @@ test('vendored tree infers the release base without shared history', () => {
   assert.equal(report.document.upstream.latest, 'v1.1.0.0');
   assert.equal(unit(report.document, 'hub-a').baseSource, 'inferred');
   assert.equal(unit(report.document, 'hub-a').status, 'update');
+});
+
+test('a copied tree names its framework remote once and later checks use it', () => {
+  const fixture = makeFixture();
+  const vendor = makeVendor(fixture, 'vendor-remote');
+  const emptyRemote = path.join(fixture.root, 'operator-upstream.git');
+  git(fixture.root, ['init', '--bare', '-q', emptyRemote]);
+  git(vendor, ['remote', 'add', 'origin', emptyRemote]);
+
+  const withoutFrameworkRemote = runCli(vendor, 'check');
+  assert.equal(withoutFrameworkRemote.exitCode, 0,
+    JSON.stringify(withoutFrameworkRemote.document));
+  assert.equal(withoutFrameworkRemote.document.upstream.status, 'unknown');
+  assert.match(withoutFrameworkRemote.document.upstream.error,
+    /lists no stable vN\.N\.N\.N release tags/);
+
+  const namedRemote = runCli(vendor, 'check', '--remote', fixture.upstream);
+  assert.equal(namedRemote.exitCode, 0, JSON.stringify(namedRemote.document));
+  assert.ok(namedRemote.document.baseRecording.action.includes('--remote'));
+
+  const recorded = runCli(vendor, 'record-base', '--release', 'v1.0.0.0',
+    '--remote', fixture.upstream);
+  assert.equal(recorded.exitCode, 0, JSON.stringify(recorded.document));
+  const basePath = path.join(vendor, '.skilled/release/base.json');
+  assert.equal(readJson(basePath).remote, fixture.upstream);
+  commitAll(vendor, 'record the framework remote');
+
+  const after = runCli(vendor, 'check');
+  assert.equal(after.exitCode, 0, JSON.stringify(after.document));
+  assert.equal(after.document.upstream.latest, 'v1.1.0.0');
+  assert.equal(unit(after.document, 'skill:hub-a').status, 'update');
+  assert.equal(unit(after.document, 'skill:hub-a').baseSource, 'recorded');
+
+  const rejectedFlag = runCli(vendor, 'check', '--remote=-uevil');
+  assert.equal(rejectedFlag.exitCode, 2);
+
+  const base = readJson(basePath);
+  base.remote = '-uevil';
+  fs.writeFileSync(basePath, JSON.stringify(base, null, 2) + '\n');
+  const rejectedRecord = runCli(vendor, 'check');
+  assert.equal(rejectedRecord.exitCode, 1);
+  assert.match(rejectedRecord.document.error, /base\.json remote/);
+});
+
+test('the shipped release ignore rule covers runs and the apply lock but not base records', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'release-update-ignore-'));
+  fixtureRoots.add(root);
+  git(root, ['init', '-q']);
+  const ignoreSource = path.join(__dirname, '..', '..', '..', '..', 'release', '.gitignore');
+  const ignoreTarget = path.join(root, '.skilled/release/.gitignore');
+  fs.mkdirSync(path.dirname(ignoreTarget), { recursive: true });
+  fs.copyFileSync(ignoreSource, ignoreTarget);
+
+  for (const filePath of ['.skilled/release/runs/x', '.skilled/release/.apply.lock']) {
+    const result = spawnSync('git', ['check-ignore', '-q', filePath], {
+      cwd: root,
+      encoding: 'utf8',
+    });
+    assert.equal(result.status, 0, filePath);
+  }
+  for (const filePath of ['.skilled/release/base.json', '.skilled/release/divergence.json']) {
+    const result = spawnSync('git', ['check-ignore', '-q', filePath], {
+      cwd: root,
+      encoding: 'utf8',
+    });
+    assert.equal(result.status, 1, filePath);
+  }
+});
+
+test('a copied tree needs no further base recording after record-base and a commit', () => {
+  const fixture = makeFixture();
+  const vendor = makeVendor(fixture, 'vendor-base-recorded');
+  const recorded = runCli(vendor, 'record-base', '--release', 'v1.0.0.0',
+    '--remote', fixture.upstream);
+  assert.equal(recorded.exitCode, 0, JSON.stringify(recorded.document));
+  commitAll(vendor, 'record the installed framework base');
+
+  const checked = runCli(vendor, 'check', '--remote', fixture.upstream);
+  assert.equal(checked.exitCode, 0, JSON.stringify(checked.document));
+  assert.equal(checked.document.baseRecording.needed, false);
+  assert.deepEqual(checked.document.baseRecording.units, []);
+  assert.equal(checked.document.units.some((entry) => entry.key === 'directory:release'), false);
+});
+
+test('record-base refuses a release that is not the nearest to the local tree', () => {
+  const fixture = makeFixture();
+  const vendor = makeVendor(fixture, 'vendor-nearest-release');
+  const refused = runCli(vendor, 'record-base', '--release', 'v1.1.0.0',
+    '--remote', fixture.upstream);
+  assert.equal(refused.exitCode, 1);
+  assert.match(refused.document.error, /not the nearest/);
+  assert.match(refused.document.error, /skill:hub-a/);
+  assert.match(refused.document.error, /v1\.0\.0\.0/);
+  assert.equal(fs.existsSync(path.join(vendor, '.skilled/release/base.json')), false);
+
+  const dryRun = runCli(vendor, 'record-base', '--release', 'v1.0.0.0',
+    '--remote', fixture.upstream, '--dry-run');
+  assert.equal(dryRun.exitCode, 0, JSON.stringify(dryRun.document));
+  assert.equal(dryRun.document.verified, true);
+
+  const trusted = runCli(vendor, 'record-base', '--release', 'v1.1.0.0',
+    '--remote', fixture.upstream, '--trust-release');
+  assert.equal(trusted.exitCode, 0, JSON.stringify(trusted.document));
+  assert.equal(trusted.document.verified, false);
+
+  const offline = runCli(fixture.operator, 'record-base', '--release', 'v1.0.0.0', '--offline');
+  assert.equal(offline.exitCode, 1);
+  assert.match(offline.document.error, /--trust-release/);
+  const offlineTrusted = runCli(fixture.operator, 'record-base', '--release', 'v1.0.0.0',
+    '--offline', '--trust-release');
+  assert.equal(offlineTrusted.exitCode, 0, JSON.stringify(offlineTrusted.document));
+  assert.equal(offlineTrusted.document.verified, false);
 });
 
 test('record-base --dry-run names the units it would record and writes nothing', () => {

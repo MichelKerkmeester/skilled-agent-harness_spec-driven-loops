@@ -24,9 +24,9 @@ Accepted flags by action:
 
 | Action | Flags |
 |--------|-------|
-| check | `--json`, `--release=<tag>`, `--scope=all|<unit-key,...>`, `--offline`, `--include-prerelease` |
-| align | `--release=<tag>`, `--scope=all|<unit-key,...>`, `--offline`, `--dry-run`, `--include-prerelease` |
-| apply | `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit-key,...>`, `--include-prerelease` |
+| check | `--json`, `--release=<tag>`, `--scope=all|<unit-key,...>`, `--offline`, `--include-prerelease`, `--remote=<name-or-url>` |
+| align | `--release=<tag>`, `--scope=all|<unit-key,...>`, `--offline`, `--dry-run`, `--include-prerelease`, `--remote=<name-or-url>` |
+| apply | `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit-key,...>`, `--include-prerelease`, `--offline`, `--remote=<name-or-url>` |
 
 Latest-upstream resolution takes stable `vN.N.N.N` tags only. `--include-prerelease` also admits `vN.N.N.N-<pre>` tags; both compare version segments as numbers. A tag named with `--release` is used as given.
 
@@ -82,9 +82,14 @@ No alignment run is needed for update and new units. /doctor:update apply plans 
 When the report's `baseRecording.needed` is true, add:
 
 ```text
-[count] unit(s) have no recorded base, so their status rests on an inferred base. This is normal right after copying or installing .skilled/. Record the release this tree was installed from, with your approval, by running:
-node .skilled/commands/doctor/scripts/release-update.cjs record-base --release <installed-release>
+[count] unit(s) have no verified recorded base, so their status rests on an inferred or unverified base. This is normal right after copying or installing .skilled/.
+Record-base refuses a release that is farther from this tree than another release, and names the nearest one. Record the release this tree was installed from, with your approval, by running:
+node .skilled/commands/doctor/scripts/release-update.cjs record-base --release <installed-release> [--remote <framework-remote>]
 It writes .skilled/release/base.json. Commit that file, then run /doctor:update again.
+```
+
+```text
+This checkout's remote lists no framework release tags. If .skilled/ was copied from the framework, name the framework repository with --remote=<name-or-url>. When the base is recorded with --remote, .skilled/release/base.json keeps that remote, and later commands use it without the flag.
 ```
 
 If the report is unknown, end with:
@@ -94,6 +99,21 @@ Upstream status is UNKNOWN. The report cannot confirm that this checkout is curr
 ```
 
 ## 3. Align Evidence Cards and Decision Batches
+
+### Run-root ignore error
+
+When `git check-ignore` does not match the run root, show:
+
+```text
+The release run root is not ignored by git in this checkout.
+Add these two lines to .skilled/release/.gitignore:
+  runs/
+  .apply.lock
+Or add these two lines to the repository .gitignore:
+  .skilled/release/runs/
+  .skilled/release/.apply.lock
+Commit the ignore file, then run /doctor:update again.
+```
 
 Present one consolidated batch per `customized`, `conflict` or `removed` unit. Show each non-same file's complete evidence card before asking for the batch response.
 
@@ -184,6 +204,21 @@ No run directory or decisions file was written. No apply handoff is available ye
 ```
 
 ## 4. Apply Plan and Startup Approval
+
+### Run-root ignore error
+
+When `git check-ignore` does not match the run root, show:
+
+```text
+The release run root is not ignored by git in this checkout.
+Add these two lines to .skilled/release/.gitignore:
+  runs/
+  .apply.lock
+Or add these two lines to the repository .gitignore:
+  .skilled/release/runs/
+  .skilled/release/.apply.lock
+Commit the ignore file, then run /doctor:update again.
+```
 
 Show the engine dry-run plan before asking for approval:
 

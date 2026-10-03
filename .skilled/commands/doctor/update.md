@@ -15,7 +15,7 @@ Do not dispatch agents from this Markdown file. Do not edit workflow YAML while 
 
 Load the presentation contract before showing action errors, startup questions, dashboards, evidence cards, approval prompts, results or next steps. Bare `/doctor:update` runs the read-only `check` action. The command is confirm-only and has no `:auto` or `:confirm` suffix.
 
-Reject an unknown action or any flag that is invalid for the selected action before loading that action's YAML. Normalize equals-form values such as `--release=<tag>`, `--scope=<value>` and `--decisions=<path>` to the engine's separate flag and value form. Do not pass router-only arguments to the engine.
+Reject an unknown action or any flag that is invalid for the selected action before loading that action's YAML. Normalize equals-form values such as `--release=<tag>`, `--scope=<value>`, `--decisions=<path>` and `--remote=<name-or-url>` to the engine's separate flag and value form. Do not pass router-only arguments to the engine.
 
 ---
 
@@ -33,9 +33,9 @@ Reject an unknown action or any flag that is invalid for the selected action bef
 ## 3. MODE ROUTING
 
 - Resolve the first positional token as `check`, `align` or `apply`; when absent, select `check`.
-- `check` accepts `--json`, `--release=<tag>`, `--scope=all|<unit,...>`, `--offline` and `--include-prerelease`.
-- `align` accepts `--release=<tag>`, `--scope=all|<unit,...>`, `--offline`, `--dry-run` and `--include-prerelease`.
-- `apply` accepts `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit,...>` and `--include-prerelease`.
+- `check` accepts `--json`, `--release=<tag>`, `--scope=all|<unit,...>`, `--offline`, `--include-prerelease` and `--remote=<name-or-url>`.
+- `align` accepts `--release=<tag>`, `--scope=all|<unit,...>`, `--offline`, `--dry-run`, `--include-prerelease` and `--remote=<name-or-url>`.
+- `apply` accepts `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit,...>`, `--include-prerelease`, `--offline` and `--remote=<name-or-url>`.
 - A `--scope` unit is a plain name or a `<kind>:<name>` key such as `skill:hub-a` or `directory:hooks`; a name that two kinds share needs the key form, and the engine rejects it otherwise.
 - Reject cross-action and unknown flags before loading a workflow YAML. Do not infer confirmation suffixes or modes.
 - Follow the selected workflow's state-log schema and terminal-status rules. If an owned asset is missing, stop and report its path.
