@@ -15,6 +15,8 @@ trigger_phrases:
 
 `debug-next-check/` holds one operator-run script. `score-debug-next-check.mjs` measures offline whether a model choice of the cheapest next check for a debug hypothesis beats the best constant answer on operator-labeled rows.
 
+The measurement was retired on 2026-10-03 at a stop. The last run printed `verdict jev: stop (margin) K=36 M=36 A=26 B=29 W=6 L=9 F=9 p=0.8491 baseline=read_code` (run `050-031-jev-20261003` in the operator's local labels store, 108 calls). Jev picked the labeled next check on 26 of 36 rows, fewer than the 29 the constant `read_code` answer gets right, and a keep needs at least 33. The script and its suite stay in place as the record of that measurement, and no further run is planned.
+
 Current state:
 
 - One ESM module with a CLI entry point and exported functions the sibling test suite calls directly.

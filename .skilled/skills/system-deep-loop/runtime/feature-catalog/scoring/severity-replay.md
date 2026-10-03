@@ -52,7 +52,7 @@ The arm sits behind its switch and `--out <dir>`. A closed gate prints `jev arm 
 
 Refusals exit 2 before any census line. `--jev` without `--out` prints `--jev needs --out <dir> so every call is recorded`. A `--write-label-sheet` path inside the repository prints `refusing to write the label sheet inside the repository` and writes no file. A bad labels row prints its row and its fault, for example `labels row 3: label must be "", real, P1, P2 or not_a_finding, got "x"` or `labels row 3: duplicate row <key>`.
 
-The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
+The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. The feature is retired, and the implementation stays as the record of its measurement.
 
 ---
 

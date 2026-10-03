@@ -15,6 +15,8 @@ trigger_phrases:
 
 `completion-claim-audit/` holds one operator-run script. `score-completion-claims.mjs` scores the completion-claim detector against turns an operator has labeled `yes` or `no`, counts how the detector fires, and works out whether a model judge would beat the plain pattern by enough to be worth its cost.
 
+The audit was retired on 2026-10-03 with no headroom. The shipped detector, the audit's own baseline, is right on 101 of 110 labeled turns, so a judged column would need 112 of 110 to clear the ten-point margin. The last run stopped before any call and printed `jev arm skipped: no headroom` (run `050-026-jev-20261003` in the operator's local labels store). The script and its suite stay in place as the record of that measurement, and no further run is planned.
+
 Current state:
 
 - One ESM module with a CLI entry point and exported functions the sibling test suite calls directly.

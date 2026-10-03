@@ -26,11 +26,11 @@ The scorer measures whether a model's choice of the cheapest next check beats th
 
 Operators run the exact prompt and command sequence for `463` and confirm the expected signals without contradictory evidence.
 
-- Objective: confirm that a default run with a stub first on the path prints the census lines, starts no stub and exits 0, that the 29-row run prints its census, fixture and baseline lines and a last line `stop: fewer than 30 labeled rows` and starts no stub, that the 30-row run adds the `keep rule:` line without a backend, that the stub logs stay empty, that the two working-tree status captures match, and that the suite reports 27 passed
+- Objective: confirm that a default run with a stub first on the path prints the census lines, starts no stub and exits 0, that the 29-row run prints its census, fixture and baseline lines and a last line `stop: fewer than 30 labeled rows` and starts no stub, that the 30-row run adds the `keep rule:` line without a backend, that the stub logs stay empty, that the two working-tree status captures match, and that the suite reports 28 passed
 - Real user request: `Does a model pick a better next check than the best constant answer, and can I find out without calling a model?`
 - Prompt: `Run the debug next check census with a stub first on the path, run it on a 29-row fixture and on a 30-row fixture, confirm nothing was called or changed, then run its test suite.`
 - Expected execution process: the working-tree status is captured, a stub `jev` executable that logs every call is placed first on `PATH`, a 29-row and a 30-row fixture are generated under `/tmp` with labels cycling the four constants and every `jev_ok` false, the scorer runs with no switch, the stub logs are read, the scorer runs over the 29-row fixture and over the 30-row fixture with `--out` and no arm switch, the stub logs are read again, the status is captured again and compared and the vitest suite runs.
-- Expected signals: step 4 prints `seam: none` (or one `seam: <path>` line per tracked hit), then `mined: debug_delegation=1 hypothesis_files=0` and `mined rows: 0`, and exits 0. Step 5 prints nothing. Step 6 prints the same census lines, then `fixture: rows=29 sha256=<hex>`, `labels: read_code=8 run_test=7 reproduce=7 instrument=7`, `constant read_code: 8/29`, `constant run_test: 7/29`, `constant reproduce: 7/29`, `constant instrument: 7/29`, `baseline: read_code 8/29` and a last line `stop: fewer than 30 labeled rows`, with no fixture row text on stdout and exit 0. Step 7 prints the same census lines, `fixture: rows=30 sha256=<hex>`, `labels: read_code=8 run_test=8 reproduce=7 instrument=7`, `constant read_code: 8/30`, `constant run_test: 8/30`, `constant reproduce: 7/30`, `constant instrument: 7/30`, `baseline: read_code 8/30` and one line starting `keep rule:`, and exits 0. Step 8 prints nothing. Step 9 prints nothing. Step 10 reports 27 passed and exits 0.
+- Expected signals: step 4 prints `seam: none` (or one `seam: <path>` line per tracked hit), then `mined: debug_delegation=1 hypothesis_files=0` and `mined rows: 0`, and exits 0. Step 5 prints nothing. Step 6 prints the same census lines, then `fixture: rows=29 sha256=<hex>`, `labels: read_code=8 run_test=7 reproduce=7 instrument=7`, `constant read_code: 8/29`, `constant run_test: 7/29`, `constant reproduce: 7/29`, `constant instrument: 7/29`, `baseline: read_code 8/29` and a last line `stop: fewer than 30 labeled rows`, with no fixture row text on stdout and exit 0. Step 7 prints the same census lines, `fixture: rows=30 sha256=<hex>`, `labels: read_code=8 run_test=8 reproduce=7 instrument=7`, `constant read_code: 8/30`, `constant run_test: 8/30`, `constant reproduce: 7/30`, `constant instrument: 7/30`, `baseline: read_code 8/30` and one line starting `keep rule:`, and exits 0. Step 8 prints nothing. Step 9 prints nothing. Step 10 reports 28 passed and exits 0.
 - Desired user-visible outcome: the census counts, the label-gate stop line, the keep-rule line and a statement that nothing was called or changed, with the evidence.
 - Pass/fail: PASS if every signal holds. FAIL if a line is missing, step 5 prints a log line, step 6 prints anything beyond its last line, step 8 prints anything, step 9 shows a change or a test fails.
 
@@ -57,7 +57,7 @@ Operators run the exact prompt and command sequence for `463` and confirm the ex
 
 ### Expected
 
-Step 4 prints the census lines the scenario contract names and exits 0. Step 5 prints nothing. Step 6 prints the census, fixture, label, constant and baseline lines the scenario contract names, then `stop: fewer than 30 labeled rows`, and exits 0. Step 7 prints those lines for 30 rows, then one line starting `keep rule:`, and exits 0. Step 8 prints nothing. Step 9 prints nothing. Step 10 reports 27 passed and exits 0.
+Step 4 prints the census lines the scenario contract names and exits 0. Step 5 prints nothing. Step 6 prints the census, fixture, label, constant and baseline lines the scenario contract names, then `stop: fewer than 30 labeled rows`, and exits 0. Step 7 prints those lines for 30 rows, then one line starting `keep rule:`, and exits 0. Step 8 prints nothing. Step 9 prints nothing. Step 10 reports 28 passed and exits 0.
 
 ### Evidence
 
@@ -92,7 +92,7 @@ Capture step 4's stdout and exit status, step 5's empty output, step 6's last li
 | File | Role |
 |---|---|
 | `.skilled/skills/system-spec-kit/runtime/scripts/debug-next-check/score-debug-next-check.mjs` | Prints the census lines, the label-gate stop line and the arm lines, and writes the report |
-| `.skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts` | Twenty-seven cases over the census, the fixture reader and the arm, with a stub `jev` binary first on the path |
+| `.skilled/skills/system-spec-kit/runtime/tests/debug-next-check.vitest.ts` | Twenty-eight cases over the census, the fixture reader and the arm, with a stub `jev` binary first on the path |
 
 Provenance: runtime/tests/debug-next-check.vitest.ts
 
