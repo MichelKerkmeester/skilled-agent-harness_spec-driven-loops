@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/007-clarify-default-research",
+  "description": "Phase 047 measured the Jev routing clarify default at verdict jev: keep K=54 M=54 A=28 B=15 W=17 L=4 F=10 p=0.003599, baseline: first alternative",
+  "keywords": [
+    "phase",
+    "measured",
+    "jev",
+    "routing",
+    "clarify",
+    "default",
+    "verdict",
+    "keep",
+    "baseline",
+    "first",
+    "alternative"
+  ],
+  "lastUpdated": "2026-10-02T22:02:47.823Z",
+  "specId": "007",
+  "folderSlug": "clarify-default-research",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "048-jev-feature-improvement-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

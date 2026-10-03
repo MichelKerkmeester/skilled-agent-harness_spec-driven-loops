@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/009-pi-transport-improvements",
+  "description": "Phase 9: pi-transport-improvements",
+  "keywords": [
+    "phase",
+    "pi-transport-improvements"
+  ],
+  "lastUpdated": "2026-10-03T05:30:10.113Z",
+  "specId": "009",
+  "folderSlug": "pi-transport-improvements",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "049-jev-feature-improvement-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

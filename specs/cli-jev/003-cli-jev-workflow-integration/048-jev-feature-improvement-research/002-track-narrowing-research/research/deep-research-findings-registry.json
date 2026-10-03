@@ -1,0 +1,950 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "luna"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "max"
+    }
+  },
+  "openQuestions": [
+    {
+      "id": "question-1-what-drove-the-benchmark-result-and-which-data-model-or-metric-choices-explain-i",
+      "inboxId": null,
+      "text": "What drove the benchmark result, and which data, model, or metric choices explain it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "question-2-which-changes-can-raise-accuracy-or-lower-cost-without-weakening-the-route",
+      "inboxId": null,
+      "text": "Which changes can raise accuracy or lower cost without weakening the route?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "question-3-how-can-a-new-measurement-better-represent-real-gate-1-requests-and-produce-trus",
+      "inboxId": null,
+      "text": "How can a new measurement better represent real Gate 1 requests and produce trustworthy estimates?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "question-4-which-other-skilled-routing-or-classification-decisions-could-benefit-from-measu",
+      "inboxId": null,
+      "text": "Which other .skilled routing or classification decisions could benefit from measured judging?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "question-5-what-controls-cost-fallback-and-risks-would-default-on-integration-require",
+      "inboxId": null,
+      "text": "What controls, cost, fallback, and risks would default-on integration require?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "_lineages": [
+        "luna"
+      ]
+    }
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [
+    {
+      "id": "iteration-4-finding-7",
+      "title": "A lower-risk insertion than Gate 1 serving exists inside retrieval itself: trigger-phrase quality. The index generator already buckets rejected phrases per class and collects their owning documents (`phraseQuality`). [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:256] A judgment over phrase text (keep/reject/rewrite) would improve the lookup lane offline, at index-generation time, with no per-prompt latency and no user-visible failure mode — and it improves the very baseline the narrowing is measured against.",
+      "text": "A lower-risk insertion than Gate 1 serving exists inside retrieval itself: trigger-phrase quality. The index generator already buckets rejected phrases per class and collects their owning documents (`phraseQuality`). [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:256] A judgment over phrase text (keep/reject/rewrite) would improve the lookup lane offline, at index-generation time, with no per-prompt latency and no user-visible failure mode — and it improves the very baseline the narrowing is measured against.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-7",
+      "title": "Abstention is high and concentrated: 57 of 256 rows (22 percent) voted `none`, 32 of those in three tracks (sk-design 16). A default-on arm must define the abstain behavior — ask the user, or fall back to lexical — and it must not count abstention as a pick. The mean `noneProb` on those rows is 0.475, so the model is often not ambivalent when it abstains.",
+      "text": "Abstention is high and concentrated: 57 of 256 rows (22 percent) voted `none`, 32 of those in three tracks (sk-design 16). A default-on arm must define the abstain behavior — ask the user, or fall back to lexical — and it must not count abstention as a pick. The mean `noneProb` on those rows is 0.475, so the model is often not ambivalent when it abstains.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-2",
+      "title": "Abstention is lost information, not latent right answers. Offline replay of the 57 rows whose modal pick was `none`: zero of them had the gold track submitted in any of the three orders. Excluding the `none`-modal rows, pick accuracy is 97/199 = 48.7 percent — below half even on the decided subset. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl] Any amendment that simply ignores `none` votes or counts abstention neutrally recovers nothing; the 57 rows need better inputs (question text, candidate set) to become pickable at all.",
+      "text": "Abstention is lost information, not latent right answers. Offline replay of the 57 rows whose modal pick was `none`: zero of them had the gold track submitted in any of the three orders. Excluding the `none`-modal rows, pick accuracy is 97/199 = 48.7 percent — below half even on the decided subset. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl] Any amendment that simply ignores `none` votes or counts abstention neutrally recovers nothing; the 57 rows need better inputs (question text, candidate set) to become pickable at all.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-8",
+      "title": "Amendment cost is concrete: the contract is pinned by a 978-line test suite across ten describes (test set, lookup baseline, ripgrep baseline, options and summary, paraphrase probes, verdict, entry point, jev gate, jev arm). [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts:184] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts:502] and by the module note that normalization, fixtures and recorded relations move together. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs:7] The rule's own comment states any call-shape or keep-rule change is an amendment, not a tuning. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:53]",
+      "text": "Amendment cost is concrete: the contract is pinned by a 978-line test suite across ten describes (test set, lookup baseline, ripgrep baseline, options and summary, paraphrase probes, verdict, entry point, jev gate, jev arm). [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts:184] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts:502] and by the module note that normalization, fixtures and recorded relations move together. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs:7] The rule's own comment states any call-shape or keep-rule change is an amendment, not a tuning. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:53]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-6",
+      "title": "Baseline fairness is a mixed picture worth stating precisely. The measurement compares against the stronger of the two lexical methods by construction (method is `ripgrep` because 68 > 17), which is fair. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:628] But only the path-only recipe of the documented set is used; `structuredRecipe`, `structuredCappedRecipe` and `countRecipe` exist and are unused here. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:28] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:96] A gain that survives a structured-recipe baseline is a stronger claim than one measured against token plurality alone.",
+      "text": "Baseline fairness is a mixed picture worth stating precisely. The measurement compares against the stronger of the two lexical methods by construction (method is `ripgrep` because 68 > 17), which is fair. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:628] But only the path-only recipe of the documented set is used; `structuredRecipe`, `structuredCappedRecipe` and `countRecipe` exist and are unused here. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:28] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:96] A gain that survives a structured-recipe baseline is a stronger claim than one measured against token plurality alone.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-5",
+      "title": "Cost is dominated by the 17-option block, not by the questions. From the run's own payload estimate (905,891 input tokens over 811 calls) and the option construction: per call is about 4,474 characters (~1,118 tokens), the option block is 4,330 characters (96.8 percent), and the average question is about 108 characters (~3 percent). [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1240] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:585] A two-stage design — shortlist N candidate tracks with the existing lexical lanes, then ask the model among N+1 options — cuts per-call input roughly in proportion: 5 options is about 1,408 characters (~352 tokens), a 68 percent input reduction, and removes distractor options the model currently must discount. It also changes `CHOICE_INSTRUCTION`, the option set and therefore the keep rule, so it is an amendment. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:53]",
+      "text": "Cost is dominated by the 17-option block, not by the questions. From the run's own payload estimate (905,891 input tokens over 811 calls) and the option construction: per call is about 4,474 characters (~1,118 tokens), the option block is 4,330 characters (96.8 percent), and the average question is about 108 characters (~3 percent). [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1240] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:585] A two-stage design — shortlist N candidate tracks with the existing lexical lanes, then ask the model among N+1 options — cuts per-call input roughly in proportion: 5 options is about 1,408 characters (~352 tokens), a 68 percent input reduction, and removes distractor options the model currently must discount. It also changes `CHOICE_INSTRUCTION`, the option set and therefore the keep rule, so it is an amendment. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:53]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-8",
+      "title": "Cost structure is per-CLI-invocation. The plan is 3 orders x (256 rows + 14 gold-bearing probes) + 1 auth test = 811 calls, estimated 905,891 input tokens, wall time 1339.6 s; latency is captured per `spawnCall` wall clock, including the auth test and any retry attempt, and reported at nearest-rank p50/p95. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1247] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1332] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:986] The p50 330 ms and p95 391 ms are therefore single-call subprocess+provider wall times, roughly 1.7x to 2x the cold lookup's own 200 ms p95 budget. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/measure-cold-lookup.mjs:43]",
+      "text": "Cost structure is per-CLI-invocation. The plan is 3 orders x (256 rows + 14 gold-bearing probes) + 1 auth test = 811 calls, estimated 905,891 input tokens, wall time 1339.6 s; latency is captured per `spawnCall` wall clock, including the auth test and any retry attempt, and reported at nearest-rank p50/p95. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1247] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1332] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:986] The p50 330 ms and p95 391 ms are therefore single-call subprocess+provider wall times, roughly 1.7x to 2x the cold lookup's own 200 ms p95 budget. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/measure-cold-lookup.mjs:43]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-10",
+      "title": "Failure semantics exist for the offline arm and need serving equivalents: exit 2 stops on usage error, exit 3 on a rejected key, exit 130 on interrupt, a timeout kills the child, and exit 4 retries once after a 2 s backoff. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1335] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1365] A serving caller needs a short timeout, a fail-open policy to the lexical result, and no silent substitution (the hub's own rule: transports never fail over silently).",
+      "text": "Failure semantics exist for the offline arm and need serving equivalents: exit 2 stops on usage error, exit 3 on a rejected key, exit 130 on interrupt, a timeout kills the child, and exit 4 retries once after a 2 s backoff. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1335] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1365] A serving caller needs a short timeout, a fail-open policy to the lexical result, and no silent substitution (the hub's own rule: transports never fail over silently).",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-2",
+      "title": "Gate 1 itself has three ready-made insertion surfaces, all currently lexical. The root `AGENTS.md` Gate 1 instruction calls the trigger-index lookup and the same pointer is mirrored to every runtime. [SOURCE: file:AGENTS.md:65] The `/speckit:search` front door is built on exactly the two lanes the narrowing is measured against (trigger-index lookup plus one ripgrep recipe). [SOURCE: file:.skilled/commands/speckit/search.md:2] [SOURCE: file:.skilled/commands/speckit/search.md:77] and it declares the semantic capabilities it cannot provide: \"Capabilities that lived in the retired database — semantic matching, fusion, decay, access tracking, session dedup, causal traversal, epistemic baselines, ablations and dashboards — are declared unsupported rather than approximated.\" [SOURCE: file:.skilled/commands/speckit/search.md:138] The system-spec-kit skill states the same Gate 1 contract in two places. [SOURCE: file:.skilled/skills/system-spec-kit/SKILL.md:462] [SOURCE: file:.skilled/skills/system-spec-kit/SKILL.md:568] A track pick here lands on every runtime and on the search front door at once; it is the highest-reach placement available.",
+      "text": "Gate 1 itself has three ready-made insertion surfaces, all currently lexical. The root `AGENTS.md` Gate 1 instruction calls the trigger-index lookup and the same pointer is mirrored to every runtime. [SOURCE: file:AGENTS.md:65] The `/speckit:search` front door is built on exactly the two lanes the narrowing is measured against (trigger-index lookup plus one ripgrep recipe). [SOURCE: file:.skilled/commands/speckit/search.md:2] [SOURCE: file:.skilled/commands/speckit/search.md:77] and it declares the semantic capabilities it cannot provide: \"Capabilities that lived in the retired database — semantic matching, fusion, decay, access tracking, session dedup, causal traversal, epistemic baselines, ablations and dashboards — are declared unsupported rather than approximated.\" [SOURCE: file:.skilled/commands/speckit/search.md:138] The system-spec-kit skill states the same Gate 1 contract in two places. [SOURCE: file:.skilled/skills/system-spec-kit/SKILL.md:462] [SOURCE: file:.skilled/skills/system-spec-kit/SKILL.md:568] A track pick here lands on every runtime and on the search front door at once; it is the highest-reach placement available.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-7",
+      "title": "Label quality is unaudited. Gold is the track segment of the row's own folder path, so it is structural — but no wrong pick is ever adjudicated, and a packet description that legitimately spans two tracks is scored wrong with no appeal path. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:946] The sibling measurement in this family shows why this matters: feature 022's fixture was built \"from real spec folders\" and \"the fixture's target was the wrong folder on every row\", so its result could only compare Jev with the top alternative. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md]",
+      "text": "Label quality is unaudited. Gold is the track segment of the row's own folder path, so it is structural — but no wrong pick is ever adjudicated, and a packet description that legitimately spans two tracks is scored wrong with no appeal path. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:946] The sibling measurement in this family shows why this matters: feature 022's fixture was built \"from real spec folders\" and \"the fixture's target was the wrong folder on every row\", so its result could only compare Jev with the top alternative. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-2",
+      "title": "Margin and sign test are not independent evidence: A minus B is identically W minus L, because each discordant row contributes +1 to both (backend right, baseline wrong) or -1 to both (baseline right, backend wrong). [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:948] With A-B = 29 and W-L = 29 the rule scores the same difference twice, once against a magnitude floor (25.6 rows) and once for its sign-test tail. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:882] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:883]",
+      "text": "Margin and sign test are not independent evidence: A minus B is identically W minus L, because each discordant row contributes +1 to both (backend right, baseline wrong) or -1 to both (baseline right, backend wrong). [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:948] With A-B = 29 and W-L = 29 the rule scores the same difference twice, once against a magnitude floor (25.6 rows) and once for its sign-test tail. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:882] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:883]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-5",
+      "title": "Model-change detection is print-only and one-directional. `requalify: model changed` prints when the stored report's provider or model differs from the current one; a same-model rerun is a silent overwrite, and nothing requires a re-run on a changed model. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1394] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1396] The verdict's validity window (jev 0.6.2, official, jev-1.13.0) is embedded in the line but enforced nowhere. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1132]",
+      "text": "Model-change detection is print-only and one-directional. `requalify: model changed` prints when the stored report's provider or model differs from the current one; a same-model rerun is a silent overwrite, and nothing requires a re-run on a changed model. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1394] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1396] The verdict's validity window (jev 0.6.2, official, jev-1.13.0) is embedded in the line but enforced nowhere. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1132]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-4",
+      "title": "Option rotation is not the accuracy tax it might appear to be. Per-order right counts are flat — 94, 95, 96 of 256 for orders 0, 1, 2 — and per-order `none` counts are 58, 56, 57. The 47 flips are mostly hard rows whose answer is not stable across orders, not a systematic position effect. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl] A 2-order design would reduce flips and cost but would also cut stability evidence; the modal rule already needs three orders to mean anything. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:843]",
+      "text": "Option rotation is not the accuracy tax it might appear to be. Per-order right counts are flat — 94, 95, 96 of 256 for orders 0, 1, 2 — and per-order `none` counts are 58, 56, 57. The 47 flips are mostly hard rows whose answer is not stable across orders, not a systematic position effect. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl] A 2-order design would reduce flips and cost but would also cut stability evidence; the modal rule already needs three orders to mean anything. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:843]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-9",
+      "title": "Privacy and credential semantics are already written down for measurement and must be inherited by a serving path. The measurement payload is \"committed packet descriptions, fixture probe text and track descriptions\", and the script \"holds and reads no credential\"; jev resolves its own. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1247] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:7] A default-on arm would send the user's prompt text to the provider, which is a new data-flow fact for the operator to accept explicitly, consistent with D1's \"Jev gets no secret\".",
+      "text": "Privacy and credential semantics are already written down for measurement and must be inherited by a serving path. The measurement payload is \"committed packet descriptions, fixture probe text and track descriptions\", and the script \"holds and reads no credential\"; jev resolves its own. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1247] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:7] A default-on arm would send the user's prompt text to the provider, which is a new data-flow fact for the operator to accept explicitly, consistent with D1's \"Jev gets no secret\".",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-8",
+      "title": "Probe trust is bounded and declared: probe gold is recomputed from the current index rather than the fixture's captured paths, probes never decide the verdict, and gold-less probes leave the denominator — 6 of 20 left it in the recorded run. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:700] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:791]",
+      "text": "Probe trust is bounded and declared: probe gold is recomputed from the current index rather than the fixture's captured paths, probes never decide the verdict, and gold-less probes leave the denominator — 6 of 20 left it in the recorded run. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:700] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:791]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-9",
+      "title": "Ranked by reach and readiness: (1) Gate 1 no-hit assist (every runtime, search front door, no semantic alternative exists today — findings 1, 2, 8); (2) packet/spec-folder suggestion (finer judgment, existing label gate and corpus — finding 3); (3) advisor near-tie ordering (existing eval and probability-ordering implementation — finding 5); (4) trigger-phrase quality judging (offline, lowest risk, improves the baseline — finding 7); (5) share the I3 trust upgrades across the scorer family (finding 6).",
+      "text": "Ranked by reach and readiness: (1) Gate 1 no-hit assist (every runtime, search front door, no semantic alternative exists today — findings 1, 2, 8); (2) packet/spec-folder suggestion (finer judgment, existing label gate and corpus — finding 3); (3) advisor near-tie ordering (existing eval and probability-ordering implementation — finding 5); (4) trigger-phrase quality judging (offline, lowest risk, improves the baseline — finding 7); (5) share the I3 trust upgrades across the scorer family (finding 6).",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-4",
+      "title": "Reusing an `--out` directory silently destroys earlier evidence. The call log is created with `fs.writeFileSync(filePath, '')` on first append, truncating any prior `calls.jsonl`, and the report is overwritten with `fs.writeFileSync` at the end of every run. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1113] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1672] The 017 session already recorded this as an unchased P2: \"a reused `--out` dir truncates earlier records\". [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/scratch/w3-session/session-evidence.md:181]",
+      "text": "Reusing an `--out` directory silently destroys earlier evidence. The call log is created with `fs.writeFileSync(filePath, '')` on first append, truncating any prior `calls.jsonl`, and the report is overwritten with `fs.writeFileSync` at the end of every run. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1113] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1672] The 017 session already recorded this as an unchased P2: \"a reused `--out` dir truncates earlier records\". [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/scratch/w3-session/session-evidence.md:181]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-1",
+      "title": "Serving is an operator decision by construction, and this packet cannot make it. The 017 record is explicit: \"This keep serves nothing, because serving a pick needs a later phase, and opening one is the operator's call.\" [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/implementation-summary.md:66] This phase's spec puts changing any live workflow and re-measuring out of scope. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/spec.md:77] Default-on is therefore a proposal for a later build phase, and the deliverable here is a ranked, evidence-cited brief.",
+      "text": "Serving is an operator decision by construction, and this packet cannot make it. The 017 record is explicit: \"This keep serves nothing, because serving a pick needs a later phase, and opening one is the operator's call.\" [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/implementation-summary.md:66] This phase's spec puts changing any live workflow and re-measuring out of scope. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/spec.md:77] Default-on is therefore a proposal for a later build phase, and the deliverable here is a ranked, evidence-cited brief.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-3",
+      "title": "The 256 questions are a hash-ordered stratified sample of packet `description.json` texts, capped at 20 per track. `buildTestSet` walks each track for directories holding `description.json`, skips `z_archive`, `scratch`, `research`, `context`, classifies each description, sorts survivors by SHA-256 of the folder path, and slices to `MAX_ROWS_PER_TRACK = 20`. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:51] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:42] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:330] The recorded census kept 256 rows out of 1727 usable: `system-speckit` had 1009 usable and contributed 20, `system-deep-loop` 261 to 20, `hooks` 103 to 20, while `cli-orca` contributed its single usable row. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt] So per-track accuracy at the low end rests on one or a dozen author-written descriptions, and 85 percent of usable candidate text is discarded by the cap.",
+      "text": "The 256 questions are a hash-ordered stratified sample of packet `description.json` texts, capped at 20 per track. `buildTestSet` walks each track for directories holding `description.json`, skips `z_archive`, `scratch`, `research`, `context`, classifies each description, sorts survivors by SHA-256 of the folder path, and slices to `MAX_ROWS_PER_TRACK = 20`. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:51] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:42] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:330] The recorded census kept 256 rows out of 1727 usable: `system-speckit` had 1009 usable and contributed 20, `system-deep-loop` 261 to 20, `hooks` 103 to 20, while `cli-orca` contributed its single usable row. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt] So per-track accuracy at the low end rests on one or a dozen author-written descriptions, and 85 percent of usable candidate text is discarded by the cap.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-1",
+      "title": "The 256 rows are 16 strongly heterogeneous clusters, not exchangeable draws. Per-track Jev modal accuracy from the recorded calls spans sk-design 3/20 (0.15) and sk-communication 4/20 (0.20) up to sk-git 12/15 (0.80), mcp-tooling 5/6 (0.83) and cli-orca 1/1. Per-track abstention spans 0.00 to 0.80: sk-design abstained on 16 of its 20 questions, sk-doc and sk-communication on 8 each — 32 of the 57 total abstentions sit in three tracks. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl] The sign test is an exact one-sided tail over row counts and treats rows as independent. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:813] Rows inside one track share a track description, a shared option text and often near-identical vocabulary, so the effective independent unit count is closer to 16 than 256 and the reported p is optimistic as usually read.",
+      "text": "The 256 rows are 16 strongly heterogeneous clusters, not exchangeable draws. Per-track Jev modal accuracy from the recorded calls spans sk-design 3/20 (0.15) and sk-communication 4/20 (0.20) up to sk-git 12/15 (0.80), mcp-tooling 5/6 (0.83) and cli-orca 1/1. Per-track abstention spans 0.00 to 0.80: sk-design abstained on 16 of its 20 questions, sk-doc and sk-communication on 8 each — 32 of the 57 total abstentions sit in three tracks. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl] The sign test is an exact one-sided tail over row counts and treats rows as independent. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:813] Rows inside one track share a track description, a shared option text and often near-identical vocabulary, so the effective independent unit count is closer to 16 than 256 and the reported p is optimistic as usually read.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-6",
+      "title": "The accuracy risk is the dominant product risk: the pick would be wrong more often than right. Row accuracy is 37.9 percent (97/256); on decided rows it is 48.7 percent; a row-level binomial 95 percent interval on 97/256 is roughly [32 percent, 44 percent], and the clustered structure from iteration 3 makes the effective uncertainty wider, not narrower. Default-on converts Gate 1's current fail-open no-hit into a wrong-answer mode; the mitigation is to serve only where the lexical lanes are empty and to define `none` as a first-class outcome.",
+      "text": "The accuracy risk is the dominant product risk: the pick would be wrong more often than right. Row accuracy is 37.9 percent (97/256); on decided rows it is 48.7 percent; a row-level binomial 95 percent interval on 97/256 is roughly [32 percent, 44 percent], and the clustered structure from iteration 3 makes the effective uncertainty wider, not narrower. Default-on converts Gate 1's current fail-open no-hit into a wrong-answer mode; the mitigation is to serve only where the lexical lanes are empty and to define `none` as a first-class outcome.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-6",
+      "title": "The corpus cap has cheap power on the table. 256 rows were kept out of 1,727 usable descriptions; `system-speckit` alone had 1,009 usable and contributed 20, and `cli-orca` contributed 1. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt] Raising the cap or raising K spends calls (~3 per row, ~330 ms and ~1.1k tokens each) to buy statistical power and per-track resolution, not pick accuracy. Tracks with 1-12 rows cannot support any per-track claim today.",
+      "text": "The corpus cap has cheap power on the table. 256 rows were kept out of 1,727 usable descriptions; `system-speckit` alone had 1,009 usable and contributed 20, and `cli-orca` contributed 1. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt] Raising the cap or raising K spends calls (~3 per row, ~330 ms and ~1.1k tokens each) to buy statistical power and per-track resolution, not pick accuracy. Tracks with 1-12 rows cannot support any per-track claim today.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-2",
+      "title": "The fleet policy a default-on arm must obey already exists at the parent: D1 is \"Jev only, dormant unless `jev auth status` passes. Jev gets no secret\", amended in spirit to \"Jev first, else Deem, dormant unless one is available\". [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/goal.md:47] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/goal.md:238] The scorer's own gate already implements the same shape for measurement: PATH check, exact version `jev 0.6.2`, `auth status` exit 0, and one skip line for each failure. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1146]",
+      "text": "The fleet policy a default-on arm must obey already exists at the parent: D1 is \"Jev only, dormant unless `jev auth status` passes. Jev gets no secret\", amended in spirit to \"Jev first, else Deem, dormant unless one is available\". [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/goal.md:47] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/goal.md:238] The scorer's own gate already implements the same shape for measurement: PATH check, exact version `jev 0.6.2`, `auth status` exit 0, and one skip line for each failure. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1146]",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-4",
+      "title": "The headline cost is latency on the prompt critical path. One call is p50 330 ms / p95 391 ms, against the 200 ms p95-and-max budget the cold lookup lane already holds itself to — so a call roughly doubles the entire current Gate 1 lexical budget, not just an incremental slice. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/measure-cold-lookup.mjs:43] Mitigations that keep the budget: call only when the lexical lanes return nothing or tie (Gate 1 treats no rows as a clean no-hit today), or run advisory/off-path first.",
+      "text": "The headline cost is latency on the prompt critical path. One call is p50 330 ms / p95 391 ms, against the 200 ms p95-and-max budget the cold lookup lane already holds itself to — so a call roughly doubles the entire current Gate 1 lexical budget, not just an incremental slice. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/measure-cold-lookup.mjs:43] Mitigations that keep the budget: call only when the lexical lanes return nothing or tie (Gate 1 treats no rows as a clean no-hit today), or run advisory/off-path first.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-7",
+      "title": "The Jev column counts abstention and instability as error, by construction. A row is measured only with one string answer per order; the pick is the modal key and needs at least two of three orders agreeing, else it is unstable and wrong; an abstained `none` pick is wrong; every missing vote also adds to flips. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:937] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:857] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:946] The recorded column reads `measured=256 unmeasured=0 unstable=3 abstained=57 flip_rate=0.0612`, so of the 159 wrong rows 57 are explicit `None of these tracks` votes and 3 are 1-1-1 splits — both counted against A. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt]",
+      "text": "The Jev column counts abstention and instability as error, by construction. A row is measured only with one string answer per order; the pick is the modal key and needs at least two of three orders agreeing, else it is unstable and wrong; an abstained `none` pick is wrong; every missing vote also adds to flips. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:937] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:857] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:946] The recorded column reads `measured=256 unmeasured=0 unstable=3 abstained=57 flip_rate=0.0612`, so of the 159 wrong rows 57 are explicit `None of these tracks` votes and 3 are 1-1-1 splits — both counted against A. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-1",
+      "title": "The judgment is currently served nowhere, which is the first and largest payoff gap. The 017 phase recorded it explicitly: \"This keep serves nothing, because serving a pick needs a later phase, and opening one is the operator's call.\" [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/implementation-summary.md:66] The narrowing is a measured capability with no caller.",
+      "text": "The judgment is currently served nowhere, which is the first and largest payoff gap. The 017 phase recorded it explicitly: \"This keep serves nothing, because serving a pick needs a later phase, and opening one is the operator's call.\" [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/implementation-summary.md:66] The narrowing is a measured capability with no caller.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-1",
+      "title": "The keep rule's margin condition is exactly a 10-point-gain floor: `10*(A-B) >= M` is `A >= B + M/10`, and the recorded headroom line declares the target as `a 10-point gain fits above 68/256`. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:883] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt] Jev's 97/256 is an 11.3-point gain (37.9 percent vs 26.6 percent), so the feature passed a 10.0-point bar by 1.3 points. Accuracy work should target the 2-of-3 modal pick and the abstain boundary, because ~4 rows move the verdict.",
+      "text": "The keep rule's margin condition is exactly a 10-point-gain floor: `10*(A-B) >= M` is `A >= B + M/10`, and the recorded headroom line declares the target as `a 10-point gain fits above 68/256`. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:883] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt] Jev's 97/256 is an 11.3-point gain (37.9 percent vs 26.6 percent), so the feature passed a 10.0-point bar by 1.3 points. Accuracy work should target the 2-of-3 modal pick and the abstain boundary, because ~4 rows move the verdict.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-5",
+      "title": "The lookup baseline is structurally blind at this task. `scorePhrase` requires a single normalized phrase key to cover at least 80 percent of the query tokens, where keys are `trigger_phrases` frontmatter, and the candidate gate drops query tokens shorter than 3 characters and keeps only the first 8. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs:146] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs:19] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs:22] Worse for this measurement, `lookupPick` skips every index row inside the question's own packet folder and takes the first positive-score row outside it, removing the strongest self-signal by design. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:456] Result: 17/256 right (0.0664), below a coin toss per track. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt]",
+      "text": "The lookup baseline is structurally blind at this task. `scorePhrase` requires a single normalized phrase key to cover at least 80 percent of the query tokens, where keys are `trigger_phrases` frontmatter, and the candidate gate drops query tokens shorter than 3 characters and keeps only the first 8. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs:146] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs:19] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs:22] Worse for this measurement, `lookupPick` skips every index row inside the question's own packet folder and takes the first positive-score row outside it, removing the strongest self-signal by design. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:456] Result: 17/256 right (0.0664), below a coin toss per track. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-6",
+      "title": "The measurement pattern itself is a reusable kit already applied to five or more classifiers, not just routing: fetch-text injection screening against a fixed lexical screen, completion-claim auditing against a regex, and hallucination grading against majority and rule baselines all share the frozen-keep-rule, three-order, call-log shape. [SOURCE: file:.skilled/skills/cli-classifier/feature-catalog/measurements/injection-screen-measurement.md:18] [SOURCE: file:.skilled/skills/cli-classifier/feature-catalog/measurements/injection-screen-measurement.md:36] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md] The trust upgrades from iteration 3 — row pinning, versioned out dirs, cluster-aware slack — pay off multiplied across every one of these scores if applied once to the shared pattern.",
+      "text": "The measurement pattern itself is a reusable kit already applied to five or more classifiers, not just routing: fetch-text injection screening against a fixed lexical screen, completion-claim auditing against a regex, and hallucination grading against majority and rule baselines all share the frozen-keep-rule, three-order, call-log shape. [SOURCE: file:.skilled/skills/cli-classifier/feature-catalog/measurements/injection-screen-measurement.md:18] [SOURCE: file:.skilled/skills/cli-classifier/feature-catalog/measurements/injection-screen-measurement.md:36] [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md] The trust upgrades from iteration 3 — row pinning, versioned out dirs, cluster-aware slack — pay off multiplied across every one of these scores if applied once to the shared pattern.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-7",
+      "title": "The question family is the accuracy gap the probes already expose. On the 14 gold-bearing Latin paraphrase probes, Jev's modal pick was `none` on 9 and correct on 2; ripgrep was right on 8. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl] The paraphrase failure is predominantly abstention, matching finding 2. The fixture holds 120 probe rows (latin/cjk x exact/paraphrase/distractor) but the scorer loads only latin paraphrase and uses latin exact only as gold donor. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:731] A second question family (the frozen `prompt-set.json` fixture, or real session prompts) would test the input distribution Gate 1 actually sees before any integration. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/prompt-set.json]",
+      "text": "The question family is the accuracy gap the probes already expose. On the 14 gold-bearing Latin paraphrase probes, Jev's modal pick was `none` on 9 and correct on 2; ripgrep was right on 8. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl] The paraphrase failure is predominantly abstention, matching finding 2. The fixture holds 120 probe rows (latin/cjk x exact/paraphrase/distractor) but the scorer loads only latin paraphrase and uses latin exact only as gold donor. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:731] A second question family (the frozen `prompt-set.json` fixture, or real session prompts) would test the input distribution Gate 1 actually sees before any integration. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/prompt-set.json]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-4",
+      "title": "The questions are descriptions, not the prompts Gate 1 actually sees. Rows carry the packet description text verbatim as the question. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:340] The paraphrase probe line in the same recorded run reads `paraphrase probes: total=20 gold-less=6 lookup=0/14 ripgrep=8/14 jev=2/14` — on the 14 gold-bearing Latin paraphrase probes, ripgrep beats Jev 8 to 2. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt] The scorer loads only `locale=latin`, `variant=paraphrase` probes from the 120-row fixture and only latin exact rows as gold donors; the CJK and distractor rows are unused. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:731] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:725] The accuracy ranking between Jev and ripgrep flips by input family, which is the first-order explanation of both the keep and the \"under half\" reading.",
+      "text": "The questions are descriptions, not the prompts Gate 1 actually sees. Rows carry the packet description text verbatim as the question. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:340] The paraphrase probe line in the same recorded run reads `paraphrase probes: total=20 gold-less=6 lookup=0/14 ripgrep=8/14 jev=2/14` — on the 14 gold-bearing Latin paraphrase probes, ripgrep beats Jev 8 to 2. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt] The scorer loads only `locale=latin`, `variant=paraphrase` probes from the 120-row fixture and only latin exact rows as gold donors; the CJK and distractor rows are unused. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:731] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:725] The accuracy ranking between Jev and ripgrep flips by input family, which is the first-order explanation of both the keep and the \"under half\" reading.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-3",
+      "title": "The recorded probabilities are unused and buy a small, real gain with zero calls. Each call record stores `pickProb` and `noneProb`. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1357] Offline, replacing the modal-key vote with the argmax of summed `pickProb` across the three orders raises A from 97 to 98 on the same 811 recorded calls, with one row gained and none lost. Scoring never reads those fields today. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:937] Calibration data is also available: mean `pickProb` on submitted picks is 0.641, mean `noneProb` on `none` picks is 0.475. A probability-aware aggregation and a calibrated abstain boundary are the two highest-leverage accuracy changes that need no new measurement runs.",
+      "text": "The recorded probabilities are unused and buy a small, real gain with zero calls. Each call record stores `pickProb` and `noneProb`. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1357] Offline, replacing the modal-key vote with the argmax of summed `pickProb` across the three orders raises A from 97 to 98 on the same 811 recorded calls, with one row gained and none lost. Scoring never reads those fields today. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:937] Calibration data is also available: mean `pickProb` on submitted picks is 0.641, mean `noneProb` on `none` picks is 0.475. A probability-aware aggregation and a calibrated abstain boundary are the two highest-leverage accuracy changes that need no new measurement runs.",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-2-finding-9",
+      "title": "The recorded run is mechanically clean, which matters for cost realism: all 811 calls were measured on attempt 1 with exit code 0 — no retries, no timeouts, no partial rows — so p50 330 ms and p95 391 ms represent uncontaminated single-call cost. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl]",
+      "text": "The recorded run is mechanically clean, which matters for cost realism: all 811 calls were measured on attempt 1 with exit code 0 — no retries, no timeouts, no partial rows — so p50 330 ms and p95 391 ms represent uncontaminated single-call cost. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl]",
+      "addedAtIteration": 2,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-002.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-6",
+      "title": "The ripgrep baseline counts token presence, it does not rank relevance. `ripgrepPick` runs the path-only recipe per token — `rg --no-config --hidden --fixed-strings --ignore-case --files-with-matches --max-count 1` over `specs` — then scores every matched file by how many question tokens it contains, keeps files at the top score, and picks the track with the most such files, ties by code-unit track name. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:516] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:119] Tokens like `spec`, `doc` or `the` clear the 3-character floor and match whole trees, so the winner is a plurality over noisy file lists; 68/256 right. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:475]",
+      "text": "The ripgrep baseline counts token presence, it does not rank relevance. `ripgrepPick` runs the path-only recipe per token — `rg --no-config --hidden --fixed-strings --ignore-case --files-with-matches --max-count 1` over `specs` — then scores every matched file by how many question tokens it contains, keeps files at the top score, and picks the track with the most such files, ties by code-unit track name. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:516] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs:119] Tokens like `spec`, `doc` or `the` clear the 3-character floor and match whole trees, so the winner is a plurality over noisy file lists; 68/256 right. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:475]",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-3",
+      "title": "The row set is not pinned anywhere. `report.json` stores only `testSet: { K, counts }` — no row ids, no question texts, no gold list. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1474] `calls.jsonl` stores row ids and picks but not the question text. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1305] Questions are re-derived from live `description.json` files at every run. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1589] Two runs can both report K=256 while the underlying rows have changed, and nothing in the report can prove otherwise. The probe fixture pins its own `promptSetHash` (`ae62945484...`), but the scorer never reads or checks it; the trigger-index manifest's `promptSetHash` stays `null` until a parity consumer pins a prompt set there. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md:79]",
+      "text": "The row set is not pinned anywhere. `report.json` stores only `testSet: { K, counts }` — no row ids, no question texts, no gold list. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1474] `calls.jsonl` stores row ids and picks but not the question text. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1305] Questions are re-derived from live `description.json` files at every run. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1589] Two runs can both report K=256 while the underlying rows have changed, and nothing in the report can prove otherwise. The probe fixture pins its own `promptSetHash` (`ae62945484...`), but the scorer never reads or checks it; the trigger-index manifest's `promptSetHash` stays `null` until a parity consumer pins a prompt set there. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/semantic-probes.json] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md:79]",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-3",
+      "title": "The same judgment at finer granularity is already measured and operator-labeled: the save-time spec-folder suggestion (feature 022). `score-alignment-suggestion.ts` replays `validateContentAlignment` and `validateFolderAlignment`, runs the same label gate, the same frozen keep-rule shape — including a one-sided loss test — and a live arm only behind `--jev`. [SOURCE: file:.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:28] [SOURCE: file:.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:42] Its recorded verdict is `keep K=40 A=39 B=30`. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md] Track narrowing is the coarse version of the same destination-picking task; the folder suggestion reaches it with a labeling pipeline already in place.",
+      "text": "The same judgment at finer granularity is already measured and operator-labeled: the save-time spec-folder suggestion (feature 022). `score-alignment-suggestion.ts` replays `validateContentAlignment` and `validateFolderAlignment`, runs the same label gate, the same frozen keep-rule shape — including a one-sided loss test — and a live arm only behind `--jev`. [SOURCE: file:.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:28] [SOURCE: file:.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:42] Its recorded verdict is `keep K=40 A=39 B=30`. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md] Track narrowing is the coarse version of the same destination-picking task; the folder suggestion reaches it with a labeling pipeline already in place.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-4",
+      "title": "The same judgment on near-tied mode selection is measured: the clarify default (feature 020). `score-clarify-default.cjs` counts compiled-hub clarifies, extracts alternatives in router order with a `gold` or operator `label`, stops under 30 labeled rows, uses the router's first alternative as baseline, and runs the choice three times in rotated option order with a `none_of_these` class — the identical geometry to the track narrowing's three orders and `none` option. [SOURCE: file:.skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md:30] Its recorded verdict is `keep K=54 A=28 B=15`, with most gain from recognizing the none class. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md]",
+      "text": "The same judgment on near-tied mode selection is measured: the clarify default (feature 020). `score-clarify-default.cjs` counts compiled-hub clarifies, extracts alternatives in router order with a `gold` or operator `label`, stops under 30 labeled rows, uses the router's first alternative as baseline, and runs the choice three times in rotated option order with a `none_of_these` class — the identical geometry to the track narrowing's three orders and `none` option. [SOURCE: file:.skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md:30] Its recorded verdict is `keep K=54 A=28 B=15`, with most gain from recognizing the none class. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md]",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-8",
+      "title": "The serving substrate already exists and is deliberately opt-in. The `cli-classifier` hub exposes `mode cli-jev` as a read-and-bash-only transport that \"selects a value and never mutates this workspace\", with the policy that \"transports never fail over silently\". [SOURCE: file:.skilled/skills/cli-classifier/SKILL.md:22] [SOURCE: file:.skilled/skills/cli-classifier/SKILL.md:24] The Pi route sits behind `JEV_TRANSPORT` with the CLI as default and fallback, and was measured as adopt: `K=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100`, cost 0.0022 per 100 calls. [SOURCE: file:.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:32] [SOURCE: file:.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:79] So default-on track picking needs a caller, a policy and a budget — not new transport plumbing.",
+      "text": "The serving substrate already exists and is deliberately opt-in. The `cli-classifier` hub exposes `mode cli-jev` as a read-and-bash-only transport that \"selects a value and never mutates this workspace\", with the policy that \"transports never fail over silently\". [SOURCE: file:.skilled/skills/cli-classifier/SKILL.md:22] [SOURCE: file:.skilled/skills/cli-classifier/SKILL.md:24] The Pi route sits behind `JEV_TRANSPORT` with the CLI as default and fallback, and was measured as adopt: `K=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100`, cost 0.0022 per 100 calls. [SOURCE: file:.skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs:32] [SOURCE: file:.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:79] So default-on track picking needs a caller, a policy and a budget — not new transport plumbing.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-3",
+      "title": "The serving substrate is built and measured; what is missing is a caller and a policy. The `cli-classifier` hub exposes `mode cli-jev` as a read/bash-only transport that never fails over silently. [SOURCE: file:.skilled/skills/cli-classifier/SKILL.md:22] [SOURCE: file:.skilled/skills/cli-classifier/SKILL.md:24] The Pi route behind `JEV_TRANSPORT` measured `adopt K=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100`, latency p95 340/387 ms and cost 0.0022 per 100 calls, for `choice` questions only. [SOURCE: file:.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:79] A track pick would reuse this path; the integration work is policy (when to call, what to do with `none`, how to fall back), telemetry and requalification.",
+      "text": "The serving substrate is built and measured; what is missing is a caller and a policy. The `cli-classifier` hub exposes `mode cli-jev` as a read/bash-only transport that never fails over silently. [SOURCE: file:.skilled/skills/cli-classifier/SKILL.md:22] [SOURCE: file:.skilled/skills/cli-classifier/SKILL.md:24] The Pi route behind `JEV_TRANSPORT` measured `adopt K=111 coverage=100.0 agreement=95.5 median_abs_dp=0.0100`, latency p95 340/387 ms and cost 0.0022 per 100 calls, for `choice` questions only. [SOURCE: file:.skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md:79] A track pick would reuse this path; the integration work is policy (when to call, what to do with `none`, how to fall back), telemetry and requalification.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-4-finding-5",
+      "title": "The skill advisor's near-tie cluster is the closest same-judgment, same-tooling surface, and it already implements probability aggregation. The suggested-order eval measures whether a Jev order of the advisor's near-tie cluster beats the best zero-call order across 241 skill-firing prompts, under a 2,200 ms budget, using per-row mean probability with ties kept in scorer order and `none` deferring to the scorer's order. [SOURCE: file:.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md:26] [SOURCE: file:.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md:28] [SOURCE: file:.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md:38] That is exactly the mean-probability aggregation which iteration 2 showed buys +1 row on the track call log; the advisor eval is the precedent for adopting it.",
+      "text": "The skill advisor's near-tie cluster is the closest same-judgment, same-tooling surface, and it already implements probability aggregation. The suggested-order eval measures whether a Jev order of the advisor's near-tie cluster beats the best zero-call order across 241 skill-firing prompts, under a 2,200 ms budget, using per-row mean probability with ties kept in scorer order and `none` deferring to the scorer's order. [SOURCE: file:.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md:26] [SOURCE: file:.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md:28] [SOURCE: file:.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md:38] That is exactly the mean-probability aggregation which iteration 2 showed buys +1 row on the track call log; the advisor eval is the precedent for adopting it.",
+      "addedAtIteration": 4,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-004.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-1",
+      "title": "The verdict is four conditions checked in order: coverage, margin, sign test, flips. `decideVerdict` returns `stop` at the first failed condition and `keep` only when all four pass. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:880] The fixed rule line is `coverage 10*M >= 9*K, margin 10*(A-B) >= M, sign test p < 0.05, flips 10*F <= 3*M` with `margin: 0.10`. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:59] For the recorded numbers: coverage 2560 >= 2304 passes; margin 290 >= 256 passes with only 34 units (3.4 rows) of slack; p 0.006330 < 0.05 passes; flips 470 <= 768 passes. The keep rests on the margin condition, and a four-row swing would flip the verdict to `stop (margin)`.",
+      "text": "The verdict is four conditions checked in order: coverage, margin, sign test, flips. `decideVerdict` returns `stop` at the first failed condition and `keep` only when all four pass. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:880] The fixed rule line is `coverage 10*M >= 9*K, margin 10*(A-B) >= M, sign test p < 0.05, flips 10*F <= 3*M` with `margin: 0.10`. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:59] For the recorded numbers: coverage 2560 >= 2304 passes; margin 290 >= 256 passes with only 34 units (3.4 rows) of slack; p 0.006330 < 0.05 passes; flips 470 <= 768 passes. The keep rests on the margin condition, and a four-row swing would flip the verdict to `stop (margin)`.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-2",
+      "title": "The verdict sits 3.4 rows above its own failure line and the report does not surface that slack. The margin condition fails below A-B = 25.6; the recorded A-B is 29. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:883] The report columns carry K, M, A, B, W, L, F, p, unstable, abstained and latency, but no distance-to-threshold for any condition. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1498] A single rerun or a few re-worded descriptions flips `keep` to `stop (margin)` with no visible warning.",
+      "text": "The verdict sits 3.4 rows above its own failure line and the report does not surface that slack. The margin condition fails below A-B = 25.6; the recorded A-B is 29. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:883] The report columns carry K, M, A, B, W, L, F, p, unstable, abstained and latency, but no distance-to-threshold for any condition. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1498] A single rerun or a few re-worded descriptions flips `keep` to `stop (margin)` with no visible warning.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-1-finding-9",
+      "title": "The verdict's own record line is the only durable artifact of the row set: `report.json` stores counts (K, per-track counts, baselines, columns) but not the 256 row ids or question texts; `calls.jsonl` stores row ids and picks but not question text. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1472] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1305] That matters for Q3 and is carried forward.",
+      "text": "The verdict's own record line is the only durable artifact of the row set: `report.json` stores counts (K, per-track counts, baselines, columns) but not the 256 row ids or question texts; `calls.jsonl` stores row ids and picks but not question text. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1472] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1305] That matters for Q3 and is carried forward.",
+      "addedAtIteration": 1,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-001.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-8",
+      "title": "The verdict's validity window is exactly as wide as the artifacts it names and no wider. The column is bound to `jev 0.6.2`, provider `official`, model `jev-1.13.0`; the option set is hashed (`optionSetSha256`) and changes whenever any track description changes, because the hash is over the description pairs. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:585] Requalification is print-only and provider/model-scoped, and the row set itself is unpinned (iteration 3). A serving rollout therefore needs a requalification trigger — model, version, or option-set hash changed — before it can rely on the measured margin.",
+      "text": "The verdict's validity window is exactly as wide as the artifacts it names and no wider. The column is bound to `jev 0.6.2`, provider `official`, model `jev-1.13.0`; the option set is hashed (`optionSetSha256`) and changes whenever any track description changes, because the hash is over the description pairs. [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:585] Requalification is print-only and provider/model-scoped, and the row set itself is unpinned (iteration 3). A serving rollout therefore needs a requalification trigger — model, version, or option-set hash changed — before it can rely on the measured margin.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-5-finding-5",
+      "title": "Token cost is small per call but concentrated in the options: about 1,118 input tokens per call, 96.8 percent of it the 17-option block. The full measurement run was 811 calls / 905,891 input tokens / 1339.6 s wall. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt] The sibling transport reports 0.0022 cost per 100 calls, which makes money cost a secondary concern; the two-stage shortlist from iteration 2 is the lever that cuts this payload if volume ever matters.",
+      "text": "Token cost is small per call but concentrated in the options: about 1,118 input tokens per call, 96.8 percent of it the 17-option block. The full measurement run was 811 calls / 905,891 input tokens / 1339.6 s wall. [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt] The sibling transport reports 0.0022 cost per 100 calls, which makes money cost a secondary concern; the two-stage shortlist from iteration 2 is the lever that cuts this payload if volume ever matters.",
+      "addedAtIteration": 5,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-005.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "iteration-3-finding-9",
+      "title": "What is already trustworthy: the run was mechanically clean — 811 of 811 calls measured on attempt 1 with exit 0, so p50 330 ms and p95 391 ms carry no retry contamination — and the p-value is computed exactly in BigInt with no float comparison at the threshold (`20n * num < den`). [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:832] The exactness of the tail is not the issue; the independence assumption and the unpinned row set are.",
+      "text": "What is already trustworthy: the run was mechanically clean — 811 of 811 calls measured on attempt 1 with exit 0, so p50 330 ms and p95 391 ms carry no retry contamination — and the p-value is computed exactly in BigInt with no float comparison at the threshold (`20n * num < den`). [SOURCE: file:specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl] [SOURCE: file:.skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:832] The exactness of the tail is not the issue; the independence assumption and the unpinned row set are.",
+      "addedAtIteration": 3,
+      "_iteration_source": "lineages/deepseek/iterations/iteration-003.md",
+      "_reconstructed_from_state": true,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-1-f1-the-256-row-test-set-is-a-capped-packet-description-proxy-feature-017-turns-e",
+      "text": "**F1 — The 256-row test set is a capped packet-description proxy** Feature 017 turns each packet description into a question and uses its track as the gold label. The 20-row per-track cap is selected by a deterministic hash of the packet path. This intentionally balances the option set but cannot represent real Gate 1 request frequency: system-speckit had 1,009 usable rows and system-deep-loop 261, yet each contributes 20; cli-orca contributes one and mcp-tooling six. The run tests broad track coverage on repository prose, not measured traffic prevalence. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md:83] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md:64] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:298-357] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt:2-18]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 83, 88, 103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md: lines 64-72.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 298-357, 843-858, 880-886, 927-977, 1098-1119, 1234-1248, 1261-1290, 1301-1321, 1324-1393.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt: lines 1-34.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "steer.md: checked before iteration 1; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-2-f2-the-keep-verdict-is-a-paired-gain-over-a-weak-baseline-not-a-high-accuracy-re",
+      "text": "**F2 — The keep verdict is a paired gain over a weak baseline, not a high-accuracy result** Jev is correct on 97/256 (37.9%) versus ripgrep on 68/256 (26.6%), a derived net gain of 29 rows or 11.3 percentage points; 78 rows favor Jev and 49 favor ripgrep. The exact one-sided sign test is p=0.006330, so the relative lift is supported on this sample while 159/256 Jev picks still miss the gold track. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt:19-23,33] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json:120-126,140-163] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:927-977]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 83, 88, 103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md: lines 64-72.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 298-357, 843-858, 880-886, 927-977, 1098-1119, 1234-1248, 1261-1290, 1301-1321, 1324-1393.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt: lines 1-34.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "steer.md: checked before iteration 1; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-3-f3-all-four-preregistered-keep-gates-pass-at-full-measurement-coverage-m-k-256-g",
+      "text": "**F3 — All four preregistered keep gates pass at full measurement coverage** M=K=256 gives 100% coverage. A-B=29 clears the required ten-point margin because 10 times 29 equals 290, which is at least 256; p=0.006330 clears 0.05; and F=47 clears the flip bound because 10 times 47 equals 470, which is at most 3 times 256. The verdict is internally consistent with its frozen rule, but the rule is relative and does not require a minimum absolute accuracy. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt:22-23,32-33] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md:69] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:880-886,927-975]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 83, 88, 103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md: lines 64-72.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 298-357, 843-858, 880-886, 927-977, 1098-1119, 1234-1248, 1261-1290, 1301-1321, 1324-1393.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt: lines 1-34.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "steer.md: checked before iteration 1; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-4-f4-f-47-is-a-vote-level-disagreement-count-while-unstable-and-abstained-are-sepa",
+      "text": "**F4 — F=47 is a vote-level disagreement count, while unstable and abstained are separate row counts** Each question is asked in three option orders and reduced to its modal answer. F adds three minus the modal vote count per measured row; it is not 47 distinct rows that changed answer. The reported 47 nonmodal votes yield a 6.12% vote flip rate, only three rows have no two-vote mode, and 57 rows choose none. Those 57 abstentions are not correct track predictions under the exact-match metric. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md:68-72] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:843-858,927-976] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt:25-26,32-33]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 83, 88, 103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md: lines 64-72.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 298-357, 843-858, 880-886, 927-977, 1098-1119, 1234-1248, 1261-1290, 1301-1321, 1324-1393.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt: lines 1-34.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "steer.md: checked before iteration 1; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-5-f5-the-secondary-paraphrase-result-points-in-the-opposite-direction-and-is-exclu",
+      "text": "**F5 — The secondary paraphrase result points in the opposite direction and is excluded from keep** Of 20 Latin probes, six have no gold label; on the 14 scored probes Jev gets two right while ripgrep gets eight. The spec explicitly makes this line secondary and non-verdict-bearing. It is a concrete warning that success on repository packet descriptions may not transfer to paraphrased Gate 1 requests. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md:88] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt:34] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json:131-138]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 83, 88, 103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md: lines 64-72.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 298-357, 843-858, 880-886, 927-977, 1098-1119, 1234-1248, 1261-1290, 1301-1321, 1324-1393.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt: lines 1-34.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "steer.md: checked before iteration 1; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-6-f6-the-measured-arm-repeats-a-large-option-payload-three-times-per-row-every-tes",
+      "text": "**F6 — The measured arm repeats a large option payload three times per row** Every test row and scored probe receives three choice calls over the 16 track descriptions plus none, with no answer cache. The 811 total planned Jev invocations include 810 choices plus one auth test; estimated input is 905,891 tokens. The report contains token estimates and timing, not a dollar charge. A one-call production path or shorter candidate profiles could lower work, but must be remeasured because the three orders currently provide the reported stability check. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md:67-69] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1234-1248,1261-1290,1324-1393] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt:25-33] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md:103]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 83, 88, 103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md: lines 64-72.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 298-357, 843-858, 880-886, 927-977, 1098-1119, 1234-1248, 1261-1290, 1301-1321, 1324-1393.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt: lines 1-34.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "steer.md: checked before iteration 1; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-7-f7-the-call-log-records-choices-but-not-the-question-payload-itself-each-jsonl-c",
+      "text": "**F7 — The call log records choices but not the question payload itself** Each JSONL call row keeps rowId, option order, attempt, pick and probabilities, status, version, provider, model, and wall time. It does not keep submitted question text or a digest of that text, so exact prompt reconstruction depends on the source descriptions still matching the measured snapshot. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1098-1119,1301-1321]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 83, 88, 103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/plan.md: lines 64-72.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 298-357, 843-858, 880-886, 927-977, 1098-1119, 1234-1248, 1261-1290, 1301-1321, 1324-1393.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt: lines 1-34.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "steer.md: checked before iteration 1; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-1-f8-improve-accuracy-by-separating-candidate-recall-track-choice-and-abstention-t",
+      "text": "**F8 — Improve accuracy by separating candidate recall, track choice, and abstention** The Jev arm currently chooses among 16 track descriptions plus none; the keep statistic scores only the final exact track match, while the secondary paraphrase probe scored Jev 2/14 against ripgrep 8/14. A useful next experiment should first report whether the correct track is present in any candidate set, then judge top-1 accuracy, per-track confusion, and none/multi-track handling separately. Add short, contrastive track profiles and real aliases only where error analysis identifies missing distinctions. These are proposed changes; the recorded run does not yet establish which will improve accuracy. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:585-631] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json:131-138]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 38-61, 234-270, 456-465, 585-631, 1059-1119, 1234-1248, 1258-1265, 1301-1321, 1324-1393.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs: lines 132-210.",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md: lines 25-45.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 83, 88, 103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl: lines 1-811.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt: lines 25-34.",
+        "steer.md: checked before iteration 2; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-2-f9-put-a-calibrated-selective-path-between-the-lexical-baseline-and-jev-the-curr",
+      "text": "**F9 — Put a calibrated selective path between the lexical baseline and Jev** The current experiment asks Jev for every row, with three order variants. A production experiment could keep a high-confidence lexical route, invoke Jev only on ambiguous requests, and preserve broad retrieval when neither path clears a validated threshold. This can reduce calls while limiting the cost of an incorrect narrowing decision; thresholds and fallback conditions must be measured on held-out requests, because the current data do not establish safe lexical confidence cutoffs. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:456-465,585-631,1324-1393]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 38-61, 234-270, 456-465, 585-631, 1059-1119, 1234-1248, 1258-1265, 1301-1321, 1324-1393.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs: lines 132-210.",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md: lines 25-45.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 83, 88, 103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl: lines 1-811.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt: lines 25-34.",
+        "steer.md: checked before iteration 2; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-3-f10-the-current-three-order-protocol-is-evaluation-repetition-not-a-proven-produ",
+      "text": "**F10 — The current three-order protocol is evaluation repetition, not a proven production requirement** The log has 768 test calls (256 rows × 3), 42 scored-probe calls (14 × 3), and one auth check: 811 total. The scored test arm therefore uses three choice calls per question to measure order sensitivity. A one-choice serving path would use roughly one third as many choice calls per question, and shorter descriptions or fewer candidates may reduce input tokens; neither saving nor the effect on accuracy was measured here. The existing run estimates 905,891 input tokens, and Feature 017 explicitly excludes dollar-cost accounting. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1234-1248,1261-1290,1324-1393] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl:1-811] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt:25-33] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md:103]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 38-61, 234-270, 456-465, 585-631, 1059-1119, 1234-1248, 1258-1265, 1301-1321, 1324-1393.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs: lines 132-210.",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md: lines 25-45.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 83, 88, 103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl: lines 1-811.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt: lines 25-34.",
+        "steer.md: checked before iteration 2; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-4-f11-build-a-request-holdout-with-independently-adjudicated-labels-packet-descrip",
+      "text": "**F11 — Build a request holdout with independently adjudicated labels** Packet descriptions are convenient proxy questions, but the opposite paraphrase result shows that proxy accuracy may not transfer to Gate 1 traffic. Collect a consented, redacted sample of actual routing requests and final intended destinations; label none and genuinely cross-track requests explicitly; double-label ambiguous rows and adjudicate disagreements. Freeze the corpus and split by source/packet or time before prompt/model tuning, then report per-track precision/recall, coverage, abstention, confusion, and paired confidence intervals against ripgrep. This would address representativeness and label leakage risks without using the evaluation set to tune the prompt. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md:83,88] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:234-270,298-357]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 38-61, 234-270, 456-465, 585-631, 1059-1119, 1234-1248, 1258-1265, 1301-1321, 1324-1393.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs: lines 132-210.",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md: lines 25-45.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 83, 88, 103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl: lines 1-811.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt: lines 25-34.",
+        "steer.md: checked before iteration 2; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-5-f12-keep-prompts-private-while-making-the-run-reproducible-the-call-records-incl",
+      "text": "**F12 — Keep prompts private while making the run reproducible** The call records include option order, attempt, outcome and probabilities, model/provider/version, and wall time, but do not capture the submitted question or a prompt digest. Preserve no raw prompt by default; add a keyed or salted prompt digest, corpus snapshot identifier, prompt-template and option-set hashes, scorer commit, CLI/model version, and explicit retry/timeout outcome. That would let reviewers tie results to the tested inputs and exact configuration while lowering exposure of user text. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1098-1119,1301-1321]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 38-61, 234-270, 456-465, 585-631, 1059-1119, 1234-1248, 1258-1265, 1301-1321, 1324-1393.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs: lines 132-210.",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md: lines 25-45.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 83, 88, 103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl: lines 1-811.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt: lines 25-34.",
+        "steer.md: checked before iteration 2; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-6-f13-report-latency-by-path-because-the-aggregate-is-not-live-request-latency-a-n",
+      "text": "**F13 — Report latency by path, because the aggregate is not live-request latency** A nearest-rank recomputation from calls.jsonl gives test-choice p50/p95 of 330/390 ms, probe-choice 315/370 ms, and the single auth check 438 ms; the report's aggregate p95 is 391 ms. The aggregate mixes tests, probes, and auth, and the measurement is per jev subprocess call rather than full hook-to-search time. Track cold and warm end-to-end request latency, including hook startup, lookup, Jev invocation and fallback, with per-class sample counts and percentile method. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl:1-811] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json:120-163] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1059-1096,1258-1265,1324-1393]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 38-61, 234-270, 456-465, 585-631, 1059-1119, 1234-1248, 1258-1265, 1301-1321, 1324-1393.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs: lines 132-210.",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md: lines 25-45.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 83, 88, 103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl: lines 1-811.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt: lines 25-34.",
+        "steer.md: checked before iteration 2; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-3-1-f14-the-skill-advisor-s-near-tie-route-is-the-strongest-adjacent-candidate-the-s",
+      "text": "**F14 — The skill advisor’s near-tie route is the strongest adjacent candidate** The skill advisor already chooses among skill hubs and has an offline near-tie Jev evaluator. Its documented holdout top-1 is 53/70; the evaluator’s default is a zero-call census, and its Jev arm only runs behind --jev after backend checks, with --out required for call records. This is a high-value next place to test measured judging because its present routing result and holdout are concrete; the 53/70 figure alone does not show that Jev improves it. [SOURCE: .skilled/skills/system-skill-advisor/README.md:229-230] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs:6-8,23-35]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/README.md: lines 229-230.",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs: lines 6-8, 23-35.",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md: lines 21-25, 33-43, 53-58.",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md: lines 139-141.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs: lines 132-169, 197-210.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 1098-1119, 1234-1248, 1258-1265, 1301-1321, 1324-1393.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 69-71, 86, 92-103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl: lines 1-811.",
+        "steer.md: checked before iteration 3; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-3-2-f15-jev-can-choose-a-spec-track-but-it-cannot-repair-a-retrieval-miss-inside-tha",
+      "text": "**F15 — Jev can choose a spec track, but it cannot repair a retrieval miss inside that track** Feature 017 says Jev chooses among the 16 spec tracks plus none; lookup and ripgrep then search within the selected track, and reranking is explicitly out of scope. The trigger-index lookup returns an empty result when no query token clears its candidate floor. Therefore, invest in measured track choice only for track-selection errors; for paraphrases that produce no useful index candidate or for a wrong within-track document, improve retrieval/index recall separately. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md:69-71,86,94,98] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:132-169,197-210]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/README.md: lines 229-230.",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs: lines 6-8, 23-35.",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md: lines 21-25, 33-43, 53-58.",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md: lines 139-141.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs: lines 132-169, 197-210.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 1098-1119, 1234-1248, 1258-1265, 1301-1321, 1324-1393.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 69-71, 86, 92-103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl: lines 1-811.",
+        "steer.md: checked before iteration 3; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-3-3-f16-a-default-on-hook-needs-a-fail-open-contract-and-a-bounded-request-path-exis",
+      "text": "**F16 — A default-on hook needs a fail-open contract and a bounded request path** Existing skill-advisor hooks keep prompts moving on timeouts, failures, and no route; they expose a kill switch, send bounded prompt text over stdin, never persist raw prompts in diagnostics, and fall back when routing fails. The default Jev integration should preserve those properties, use a per-runtime latency budget rather than add a second full hook timeout, and return to broad retrieval for none, low confidence, unsupported input, missing binary/auth, timeout, or invalid output. This is a recommendation based on the current hook contract; Jev’s production hook behavior is not implemented or measured. [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:21-25,33-43,53-58] [SOURCE: .skilled/skills/system-skill-advisor/ARCHITECTURE.md:139-141]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/README.md: lines 229-230.",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs: lines 6-8, 23-35.",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md: lines 21-25, 33-43, 53-58.",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md: lines 139-141.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs: lines 132-169, 197-210.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 1098-1119, 1234-1248, 1258-1265, 1301-1321, 1324-1393.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 69-71, 86, 92-103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl: lines 1-811.",
+        "steer.md: checked before iteration 3; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-3-4-f17-keep-the-current-arm-offline-until-an-independent-request-holdout-supports-s",
+      "text": "**F17 — Keep the current arm offline until an independent request holdout supports safe narrowing** Feature 017 explicitly leaves hooks, Gate 1 changes, and served narrowing for a later phase. Its measured Jev arm gets 97/256 exact tracks (37.9%), versus ripgrep’s 68/256 (26.6%); relative improvement does not establish that 159 Jev misses are safe to hide behind a narrower search. Before enabling hard narrowing by default, require a frozen real-request holdout, minimum absolute accuracy and per-track recall criteria, calibrated abstention, shadow comparison, staged canary, and a fast kill switch. Set actual release thresholds from product loss tolerance rather than inferring them from p=0.006330. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md:92-95] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json:120-126,140-163] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:25,35-40]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/README.md: lines 229-230.",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs: lines 6-8, 23-35.",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md: lines 21-25, 33-43, 53-58.",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md: lines 139-141.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs: lines 132-169, 197-210.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 1098-1119, 1234-1248, 1258-1265, 1301-1321, 1324-1393.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 69-71, 86, 92-103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl: lines 1-811.",
+        "steer.md: checked before iteration 3; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-3-5-f18-the-current-evidence-prices-benchmark-work-in-calls-tokens-and-subprocess-ti",
+      "text": "**F18 — The current evidence prices benchmark work in calls, tokens, and subprocess time, not dollars or serving volume** The recorded evaluation has 811 Jev invocations: 810 choices from three orders over 256 test rows and 14 scored probes, plus one auth test; estimated input was 905,891 tokens. Per-call nearest-rank p50/p95 was 330/390 ms for test choices and 315/370 ms for probes, while auth took 438 ms; this is not end-to-end hook latency. A one-choice serving arm would use one third the choices per ambiguous request versus the three-order test arm, but production request volume, the eligible ambiguity rate, token mix, pricing, and cold-start cost are unknown. Feature 017 excludes dollar accounting. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl:1-811] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json:120-163] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1234-1248,1258-1265,1324-1393] [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md:103]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/README.md: lines 229-230.",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs: lines 6-8, 23-35.",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md: lines 21-25, 33-43, 53-58.",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md: lines 139-141.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs: lines 132-169, 197-210.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 1098-1119, 1234-1248, 1258-1265, 1301-1321, 1324-1393.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 69-71, 86, 92-103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl: lines 1-811.",
+        "steer.md: checked before iteration 3; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-3-6-f19-minimize-prompt-disclosure-and-version-drift-at-the-jev-boundary-the-evaluat",
+      "text": "**F19 — Minimize prompt disclosure and version drift at the Jev boundary** The evaluator sends the question text, one fixed instruction, and the track option keys/descriptions; it does not send files or paths unless the question itself contains them. Keep raw prompts out of durable telemetry, minimize or redact prompt content where possible, use a protected digest for reproducibility, and pin and report Jev/model and option-set versions. The configured backend’s data retention and network boundary are not established by these sources and must be verified before a default-on rollout. [SOURCE: specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md:96,101] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1098-1119,1234-1248,1301-1321]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/README.md: lines 229-230.",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs: lines 6-8, 23-35.",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md: lines 21-25, 33-43, 53-58.",
+        ".skilled/skills/system-skill-advisor/ARCHITECTURE.md: lines 139-141.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs: lines 132-169, 197-210.",
+        ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs: lines 1098-1119, 1234-1248, 1258-1265, 1301-1321, 1324-1393.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/spec.md: lines 69-71, 86, 92-103.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/report.json: lines 120-163.",
+        "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl: lines 1-811.",
+        "steer.md: checked before iteration 3; absent."
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "keyFindings": 65,
+    "sourceFindings": 65,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.695,
+    "coverageBySources": {}
+  }
+}

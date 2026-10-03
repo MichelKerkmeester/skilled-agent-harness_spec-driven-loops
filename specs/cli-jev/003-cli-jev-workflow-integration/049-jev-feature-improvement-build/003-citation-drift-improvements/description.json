@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/003-citation-drift-improvements",
+  "description": "Phase 3: citation-drift-improvements",
+  "keywords": [
+    "phase",
+    "citation-drift-improvements"
+  ],
+  "lastUpdated": "2026-10-03T05:30:05.256Z",
+  "specId": "003",
+  "folderSlug": "citation-drift-improvements",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "049-jev-feature-improvement-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

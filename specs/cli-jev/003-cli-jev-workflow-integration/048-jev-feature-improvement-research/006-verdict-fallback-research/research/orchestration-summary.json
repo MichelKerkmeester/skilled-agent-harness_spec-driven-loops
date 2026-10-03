@@ -1,0 +1,60 @@
+{
+  "run_id": "1790983140371-hbgkgw",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/006-verdict-fallback-research",
+  "base_artifact_dir": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/006-verdict-fallback-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 1,
+  "failed": 1,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek",
+      "state_log": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/006-verdict-fallback-research/research/lineages/deepseek/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-10-02T23:19:00.376Z",
+        "end_at_iso": "2026-10-03T00:11:59.748Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 3,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-10-03T00:25:00.000Z",
+          "deltaMs": 660252
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-10-03T00:40:00.000Z",
+          "deltaMs": 1560252
+        },
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-10-03T00:50:00.000Z",
+          "deltaMs": 2160252
+        }
+      ]
+    }
+  ]
+}

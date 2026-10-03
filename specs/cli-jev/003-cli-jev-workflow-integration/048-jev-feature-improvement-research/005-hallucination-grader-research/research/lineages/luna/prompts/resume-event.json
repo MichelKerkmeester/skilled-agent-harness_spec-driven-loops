@@ -1,0 +1,1 @@
+{"type":"event","event":"resumed","mode":"research","sessionId":"fanout-luna-1790982868742-6zd62o","parentSessionId":"fanout-luna-1790982868742-6zd62o","lineageMode":"resume","continuedFromRun":1,"generation":1,"reason":"Continue detached fan-out lane after repairing its state projection through the documented lineage-local migration.","timestamp":"2026-10-02T23:48:32Z"}

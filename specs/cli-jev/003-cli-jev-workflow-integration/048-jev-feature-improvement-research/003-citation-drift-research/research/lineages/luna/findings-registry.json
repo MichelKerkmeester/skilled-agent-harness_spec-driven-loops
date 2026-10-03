@@ -1,0 +1,351 @@
+{
+  "sessionId": "fanout-luna-1790979783604-glohfs",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-in-the-scorer-sample-and-paired-comparison-drove-the-recorded-result-and-wh",
+      "inboxId": null,
+      "text": "What in the scorer, sample, and paired comparison drove the recorded result, and what does it not establish?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-which-changes-could-raise-semantic-accuracy-or-reduce-jev-call-cost-while-retain",
+      "inboxId": null,
+      "text": "Which changes could raise semantic accuracy or reduce Jev call cost while retaining the zero-call structural scan?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-what-label-sampling-and-reporting-changes-would-make-the-measurement-more-trustw",
+      "inboxId": null,
+      "text": "What label, sampling, and reporting changes would make the measurement more trustworthy?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-where-else-inside-skilled-would-claim-to-source-semantic-judgment-produce-useful",
+      "inboxId": null,
+      "text": "Where else inside `.skilled` would claim-to-source semantic judgment produce useful signal?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-what-would-a-default-on-integration-require-cost-and-risk",
+      "inboxId": null,
+      "text": "What would a default-on integration require, cost, and risk?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-what-in-the-scorer-sample-and-paired-comparison-drove-the-recorded-result-and-wh",
+      "inboxId": null,
+      "text": "What in the scorer, sample, and paired comparison drove the recorded result, and what does it not establish?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-which-changes-could-raise-semantic-accuracy-or-reduce-jev-call-cost-while-retain",
+      "inboxId": null,
+      "text": "Which changes could raise semantic accuracy or reduce Jev call cost while retaining the zero-call structural scan?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-what-label-sampling-and-reporting-changes-would-make-the-measurement-more-trustw",
+      "inboxId": null,
+      "text": "What label, sampling, and reporting changes would make the measurement more trustworthy?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-where-else-inside-skilled-would-claim-to-source-semantic-judgment-produce-useful",
+      "inboxId": null,
+      "text": "Where else inside `.skilled` would claim-to-source semantic judgment produce useful signal?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-what-would-a-default-on-integration-require-cost-and-risk",
+      "inboxId": null,
+      "text": "What would a default-on integration require, cost, and risk?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "How can label quality, sample representativeness, uncertainty reporting, and cost controls improve without weakening the deterministic zero-call scan?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What lifecycle, consent, privacy, and latency controls would a default-on semantic arm require?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which other `.skilled` checks make decisions about meaning that deterministic rules cannot settle?",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What would a default-on lifecycle, consent, privacy, latency, budget, and failure policy need to specify?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Which other `.skilled` tools make a semantic judgment that deterministic rules cannot settle?",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What independent live-only holdout performance and operating budget would justify changing the default contract?",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "What provider retention and exact historical output contents applied to the 047 run? The packet note and inspected call logger do not agree.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "What in the scorer, sample, and paired comparison drove the recorded result, and what does it not establish?",
+    "Which changes could raise semantic accuracy or reduce Jev call cost while retaining the zero-call structural scan?",
+    "What label, sampling, and reporting changes would make the measurement more trustworthy?",
+    "Where else inside `.skilled` would claim-to-source semantic judgment produce useful signal?",
+    "What would a default-on integration require, cost, and risk?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-f-3-is-the-sum-of-dissenting-rerun-votes-from-each-row-s-modal-flag-not-three-ba",
+      "text": "`F=3` is the sum of dissenting rerun votes from each row's modal flag, not three bad labels or three flipped rows. With 3 reruns per row, that is 3 dissenting votes among 120 measured votes (2.5%). The keep gate permits up to 10% of rerun votes to dissent: `10*F <= 3*M` (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1009-1014,1157-1164,82`). This disambiguates the packet's “flip rate” wording (`specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/goal.md:55`).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-tp-26-and-fp-0-mean-every-row-jev-flagged-as-drifted-was-labeled-drifted-with-a-",
+      "text": "`TP=26` and `FP=0` mean every row Jev flagged as drifted was labeled drifted. With `A=35`, these counts imply 9 true negatives and 5 false negatives; precision is 1.0, while recall is 26/31 (about 0.84). This is derived from the scorer's definitions of flagged drift, correctness, and confusion counts (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1157-1174`). A zero false-positive count on 40 rows is encouraging but too small to establish a production false-alarm rate.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-w-22-and-l-0-count-discordant-paired-outcomes-where-jev-alone-was-right-or-the-c",
+      "text": "`W=22` and `L=0` count discordant paired outcomes where Jev alone was right or the comparator alone was right; the other 18 rows were ties (derived from `M=40`). The scorer's exact one-sided binomial sign test uses only discordant pairs, so `p = 1/2^22 = 2.384e-7` supports an advantage over this comparator on this sample, not a general claim about future documents (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:674-690,700-707`).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-the-deterministic-scan-and-jev-answer-different-questions-the-scan-checks-whethe",
+      "text": "The deterministic scan and Jev answer different questions. The scan checks whether a prose citation resolves to a tracked file and whether its line is in range, while Jev judges whether the cited window supports the claim; the default scan makes zero calls (`.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:18-20,26,30`). Keep those as separate outputs: structural dead-citation detection remains cheap and exhaustive, while semantic support is an optional or separately gated judgment.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-the-keep-gates-all-pass-with-room-coverage-is-40-40-precision-is-26-26-0-margin-",
+      "text": "The keep gates all pass with room: coverage is 40/40; precision is 26/(26+0); margin is 35−13=22 correct rows against a required 4; the paired sign test is below .05; and the rerun dissent rate is 2.5% against a 10% cap (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:82,700-707`). The recorded run identifies the commit, 121 logged subprocess calls, median/p95 latency of 326/423 ms, Brier score .1053, labels hash, Jev version, provider, and model (`specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/goal.md:122`).",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-the-result-is-a-paired-comparison-on-one-40-row-labeled-set-k-40-is-the-labeled-",
+      "text": "The result is a paired comparison on one 40-row labeled set. `K=40` is the labeled-row count and `M=40` the rows measured; `A=35` is Jev's number correct and `B=13` is the better baseline's number correct. The baseline is the stronger of flag-nothing and identifier overlap, selected on the same rows (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:607-630`). Thus Jev scored 87.5% and identifier overlap 32.5%, a 55-point accuracy gap on this sample.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-the-sample-is-mixed-rather-than-a-production-prevalence-sample-20-operator-label",
+      "text": "The sample is mixed rather than a production-prevalence sample: 20 operator-labeled live citations plus 20 constructed cases whose window is moved 60 lines down within its own file and labeled contradictory by construction (`.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:28`). The reported run is tied to one commit and one labels hash (`specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/goal.md:122`). It demonstrates strong discrimination on this small fixed benchmark; it does not estimate how often citations drift in ordinary docs or guarantee the same rates across skills, claim types, or future revisions.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-do-not-count-silent-skips-as-successful-semantic-coverage-the-feature-descriptio",
+      "text": "**Do not count silent skips as successful semantic coverage.** The feature description says a gated Jev arm can skip for missing credentials, label gate, no headroom, or low power and that a skipped/stopped invocation exits 0 (`.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:30`). For any scheduled or default-on path, make the report distinguish completed, skipped, stopped, and partial; surface the reason and measured-row denominator in a status that cannot be mistaken for a semantic pass.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-make-the-gold-set-more-representative-and-auditable-the-current-draw-uses-a-seed",
+      "text": "**Make the gold set more representative and auditable.** The current draw uses a seeded selection from tracked skill docs, at most one pick per skill per pass, 20 live rows and 20 constructed rows (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:371-388,422-479`). The constructed rows are assigned `verdict: contradicts` and `labeler: construction` automatically (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:404-419`), while live labels are left for an operator (`.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:28`). Keep synthetic stress cases, but report them separately from live citations; enlarge the live set across claim types and skills; blind two human annotators to model/baseline outputs and adjudicate disagreements. A +60-line move may usually break support, but construction alone does not prove each moved window is truly contradictory, so validate a sample of those labels before treating them as gold.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-measure-generalization-and-uncertainty-explicitly-the-label-gate-is-exactly-40-a",
+      "text": "**Measure generalization and uncertainty explicitly.** The label gate is exactly 40, and the keep rule reports a point estimate plus an exact paired sign-test p-value; the recorded result is tied to one commit and a fixed labels hash (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:70-82,674-707`; `specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/goal.md:122`). Keep the paired baseline, add a held-out commit or held-out skill split, report live and constructed strata separately, and show confidence intervals for precision, recall, accuracy, and paired gain alongside the p-value. The script already reports Brier score and per-call latency (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:748-767,1177-1188`); retain these and add uncertainty/calibration slices by claim type. The Brier score .1053 and zero observed false positives are useful, but 40 rows do not make those rates precise.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-reduce-jev-calls-only-through-a-measured-staged-policy-the-arm-makes-one-auth-te",
+      "text": "**Reduce Jev calls only through a measured staged policy.** The arm makes one auth test plus 3 `noul` calls per ready labeled row, with one retry when a call exits 4 (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1008-1015,1021-1036,1047-1071,1081-1105`). For 40 rows that is 121 planned calls before retries, matching the recorded 121 (`specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/goal.md:122`). A cost-saving experiment is one initial call per row, with repeat calls reserved for probabilities near 0.5 or unstable rows; compare its accuracy, stability, coverage, and Brier score against the existing three-vote policy on a separate holdout before adopting it. A content-addressed cache keyed by commit, claim/window hashes, prompt, provider, and model could avoid duplicate calls, but would reduce independent rerun evidence and needs an explicit freshness/privacy policy.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-the-deterministic-census-also-has-a-measurable-cost-target-the-packet-records-ab",
+      "text": "**The deterministic census also has a measurable cost target.** The packet records about 171 seconds for the default zero-call scan (`specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/goal.md:90,119`). `readCommittedLines` starts `git show` for a commit/path read (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:314-325`); `readWindow` calls that reader (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:338-344`), and `buildWindows` caches citing docs but reads each target window through `readWindow` (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:574-585`). Inference: memoizing committed blobs by `(commit,path)` across census, sample, and window construction, then profiling the end-to-end scan, should reduce repeated Git process overhead without making a model call or changing verdict logic.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-treat-backend-transmission-as-sensitive-even-when-local-logs-are-metadata-only-t",
+      "text": "**Treat backend transmission as sensitive even when local logs are metadata-only.** The Jev arm constructs JSON containing the citing sentence, target path, and window and passes it to `jev noul` (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1025-1032,1081-1087`). The checked-in call logger records row id, rerun, wall time, status, probability/flag, provider, version, and model rather than that JSON (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1059-1071,1127-1139`), while the packet says the call output contains doc text and stays outside the repo (`specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/goal.md:122`). This is a provenance/retention discrepancy to resolve before default-on use. Irrespective of local logging, the request sends document content to the configured backend; preserve the tracked-file boundary, minimize/redact payloads where possible, and define retention and access controls.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-use-the-row-hashes-as-checks-not-just-metadata-drawn-rows-store-a-commit-plus-sh",
+      "text": "**Use the row hashes as checks, not just metadata.** Drawn rows store a commit plus short hashes for the citing sentence and selected window (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:404-419`). `buildWindows` reads those locations at the stored commit but does not compare reconstructed text with `claim_sha12` or `window_sha12` (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:574-585`). Recommendation: fail closed or mark a row stale when either hash differs, and preserve the full labels-file digest in the report. This guards against edited locators/labels that retain a plausible commit field.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-availability-and-result-semantics-need-explicit-controls-the-gate-pins-jev-cli-v",
+      "text": "**Availability and result semantics need explicit controls.** The gate pins Jev CLI version 0.6.2, checks a configured provider (default `official`) and credential, and skips on a missing binary/version/credential (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:954-1005`). A per-call timeout is 90 seconds and exit code 4 can add one retry (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:75-76,1008-1015,1085-1105`). The feature documentation says a skipped or stopped Jev arm may still exit 0 (`.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:30`). Default-on reporting therefore needs machine-visible `completed`, `skipped`, `partial`, and `failed` statuses; a per-run call/time budget and circuit breaker; a visible opt-out; and semantics that never label an unavailable run as a clean result.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-content-handling-is-a-release-gate-each-jev-request-includes-the-citing-sentence",
+      "text": "**Content handling is a release gate.** Each Jev request includes the citing sentence, target path, and cited window (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1025-1032,1081-1087`). The packet says the output holds doc text and was kept outside the repository (`specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/goal.md:122`), but the checked-in call logger serializes row identity and call metadata rather than the prompt payload (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1059-1071,1127-1139`). Reconcile the historical artifact and current logging claim before rollout. Regardless, the request transmits repository content to the provider; define path allowlists, redaction, data-retention rules, provider approval, audit retention, and access controls. Do not infer provider-side retention from local logger fields.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-default-on-is-a-contract-change-not-a-safe-toggle-of-the-existing-benchmark-arm-",
+      "text": "**Default-on is a contract change, not a safe toggle of the existing benchmark arm.** The citation feature's goal explicitly says the default run makes zero model calls (`specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/goal.md:44`), the catalog says it makes no call and writes no file (`.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:26`), and the Jev arm currently requires an explicit `--jev` plus `--out` (`.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1261-1263,1336-1363`). A default-on rollout therefore needs the feature contract, command surface, privacy notice, and opt-out behavior deliberately amended. Keep the deterministic census independently usable and preserve it as the no-model path.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-goal-criteria-already-provide-a-close-tested-pattern-goal-criteria-lint-flags-wh",
+      "text": "**Goal criteria already provide a close, tested pattern.** `goal-criteria-lint` flags whether completion criteria are self-contained and checkable without another file, using lexical rules and no model call in its default path (`.skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md:18-20,28`). Its feature already includes 98 operator-delegated labels, a Wilson interval and stale-label reporting, then an opt-in Jev arm with two questions and three reruns per labeled criterion (`.skilled/skills/sk-doc/feature-catalog/document-validation/goal-criteria-lint.md:30-32`). Reuse its label-quality and confidence-reporting lessons; do not duplicate a second evaluator for the same kind of checkability judgment.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-separate-benchmark-mode-from-a-production-semantic-scan-the-measured-labels-are-",
+      "text": "**Separate benchmark mode from a production semantic scan.** The measured labels are a fixed 40-row mixed evaluation set; the live run used 121 calls and records one commit/model identity (`specs/cli-jev/003-cli-jev-workflow-integration/032-citation-drift-scan/goal.md:122`). Those labels are for scoring against known outcomes, not a gold set for every current citation. A production arm needs an explicit definition of which current, in-range citations it judges, a content hash for cache freshness, a distinct result status, and a human-reviewable output. On the only measured benchmark, cost was 1 auth plus 3 calls per row (121 total), with p50 326 ms and p95 423 ms per recorded call; the default structural scan itself took about 171 seconds in an earlier run (`goal.md:90,119,122`; `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1008-1036,1177-1188`). Cost generalizes as roughly `3N+1` planned calls for N eligible rows before retries. For scale only, an earlier census listed 208 in-range citations; applying the benchmark's three calls to all 208 would imply 625 calls, an unmeasured extrapolation, not a current bill or latency promise (`goal.md:90`). Dollar cost is UNKNOWN without the provider's billing terms.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-the-nearest-adjacent-use-is-acceptance-criteria-evidence-support-ac-coverage-cou",
+      "text": "**The nearest adjacent use is acceptance-criteria evidence support.** `AC_COVERAGE` counts Tested or Partially covered criteria when a Verification cell has a `file:line` citation; it checks whether the locator resolves, and even an unresolved citation still contributes to its covered count (`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:95,101-103`). The implementation checks path and line existence (`.skilled/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh:438-457`) and reports the count against a coverage floor (`.skilled/skills/system-spec-kit/runtime/cli/rules/check-ac-coverage.sh:567-589`). A bounded Jev advisory could judge whether the cited evidence actually demonstrates the criterion, prioritizing resolved evidence for rows marked Tested/Partially covered. Keep the existing deterministic coverage result intact and never let the semantic result alone close a packet.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-use-advisory-human-review-for-semantic-findings-the-scan-s-deterministic-dead-ci",
+      "text": "**Use advisory human review for semantic findings.** The scan's deterministic dead-citation output is direct and should remain independent (`.skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md:18-20,26`). Semantic flags can be wrong and current evidence is a small benchmark, so default-on results should explain the cited sentence/window, probability, model identity, and uncertainty, and route questionable support to an author or reviewer. Do not auto-rewrite citations or block validation until a representative holdout and an explicit acceptance threshold support that use.",
+      "addedAtIteration": 3,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 7,
+    "keyFindings": 21,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.85,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/085-jev-feature-improvement-research/specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/003-citation-drift-research/research/lineages/luna/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

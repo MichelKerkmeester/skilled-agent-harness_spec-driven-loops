@@ -1,0 +1,27 @@
+{
+  "label": "deepseek",
+  "sessionId": "fanout-deepseek-1790979783604-cne6rp",
+  "executor": "cli-pi",
+  "model": "deepseek-v4.1-flash",
+  "status": "fulfilled",
+  "stopReason": "maxIterationsReached",
+  "stopPolicy": "max-iterations",
+  "iterationsCompleted": 5,
+  "newInfoRatioTrend": [0.90, 0.72, 0.62, 0.58, 0.55],
+  "averageNewInfoRatio": 0.674,
+  "questionsAnswered": 5,
+  "keyFindings": 16,
+  "openQuestions": 4,
+  "artifactDir": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/lineages/deepseek",
+  "artifacts": [
+    "research.md",
+    "resource-map.md",
+    "findings-registry.json",
+    "deep-research-dashboard.md",
+    "deep-research-strategy.md",
+    "deep-research-state.jsonl",
+    "iterations/iteration-001.md through iteration-005.md",
+    "deltas/iter-001.jsonl through iter-005.jsonl"
+  ],
+  "completedAt": "2026-10-02T22:58:00Z"
+}

@@ -1,0 +1,385 @@
+{
+  "openQuestions": [
+    {
+      "id": "kq-near-line",
+      "text": "What is the merge collapse rule's real behavior on near-line pairs?",
+      "status": "unknown",
+      "note": "Zero near-line pairs exist in the tracked corpus; the class needs a manufactured set to reach a label gate."
+    },
+    {
+      "id": "kq-label-contract",
+      "text": "Does the arbiter mean \"same problem\" or \"same finding\" when labeling?",
+      "status": "partial",
+      "note": "3 of 12 different labels are near-verbatim restatements confidently read as same; a second rater and a pre-registered question contract are required."
+    },
+    {
+      "id": "kq-live-volume",
+      "text": "How many candidate pairs does a typical live fan-out run produce before commit?",
+      "status": "unknown",
+      "note": "The tracked corpus gives ~1.2 pairs per run; live pre-commit runs are invisible to the census and to the publication guard."
+    },
+    {
+      "id": "kq-threshold-generalization",
+      "text": "Does SAME_AT 0.4-0.45 generalize beyond the 60 recorded pairs?",
+      "status": "partial",
+      "note": "0.4 scores 57/60 post-hoc with flat specificity; a held-out pre-registered batch is required."
+    },
+    {
+      "id": "kq-reader",
+      "text": "Who reads the shadow record?",
+      "status": "unknown",
+      "note": "reader=none named on every verdict line; the record names the synthesis step and the system-deep-loop owner as candidates only."
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "q1-driver",
+      "answer": "The verdict was driven by corpus geometry: a single cross-body class with zero near-line pairs, a merge baseline that is structurally constant on that class, a 48:12 label split, and a per-pair record of 44/48 sensitivity and 9/12 specificity.",
+      "resolvedInRun": 1,
+      "source": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:345-354"
+    },
+    {
+      "id": "q2-levers",
+      "answer": "Accuracy: symmetric tiebreak (+2) and SAME_AT 0.4 post-hoc (+4). Cost: decision-equivalent early stop removes 58 of 181 calls with an identical verdict.",
+      "resolvedInRun": 2,
+      "source": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:86-87"
+    },
+    {
+      "id": "q3-trust",
+      "answer": "The keep is frame-dependent: stop (margin) against constant-same and against a lexical tie. Four labeled pairs are oracle-undecidable, 8 of 12 different labels are trivial dimension pairs from one run, and 3 labels are contested by confident near-verbatim reads.",
+      "resolvedInRun": 3,
+      "source": "~/.skilled/.labels/030-labels.jsonl"
+    },
+    {
+      "id": "q4-surfaces",
+      "answer": "Highest payoff: the merge's own exact-id question and ruled-out streams; then claim-continuity semantic candidates (contract already exists), conditional-fanin agreement, and contradiction-supersession candidate generation.",
+      "resolvedInRun": 4,
+      "source": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:759-787"
+    },
+    {
+      "id": "q5-integration",
+      "answer": "Needs a named reader, a phase amendment, a byte-identical fallback, a pair-keyed cache/guard decision and a pair cap. T0 census now, T1 shadow next, T3 model-as-collapse stays dropped. Measured risk: 6.4% false-merge on declared-same calls.",
+      "resolvedInRun": 5,
+      "source": ".skilled/commands/deep/assets/deep-research-auto.yaml:1945-1953"
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ro-near-line-claim",
+      "direction": "The verdict evidences the merge 0.15 threshold behavior",
+      "reason": "Zero near-line pairs exist in the tracked corpus",
+      "lineage": "deepseek"
+    },
+    {
+      "id": "ro-dedup-superiority",
+      "direction": "Near-duplicate dedup would have beaten the shipped default",
+      "reason": "Both settings decide identically on all 124 classed pairs",
+      "lineage": "deepseek"
+    },
+    {
+      "id": "ro-more-calls",
+      "direction": "More calls per pair raise accuracy",
+      "reason": "57 of 60 pairs were unanimous after two calls; the third caused two misses",
+      "lineage": "deepseek"
+    },
+    {
+      "id": "ro-threshold-fp",
+      "direction": "Raising the threshold removes the false-merges",
+      "reason": "False-merges sit at 0.59-0.93; specificity flat 0.35-0.5",
+      "lineage": "deepseek"
+    },
+    {
+      "id": "ro-repo-repro",
+      "direction": "The verdict is reproducible from the repository",
+      "reason": "Labels and calls live outside the repo by design",
+      "lineage": "deepseek"
+    },
+    {
+      "id": "ro-clean-labels",
+      "direction": "All 60 labels are clean oracle-scorable comparisons",
+      "reason": "4 oracle-undecidable and 3 contested of the different set",
+      "lineage": "deepseek"
+    },
+    {
+      "id": "ro-only-merge",
+      "direction": "The judgment is only useful inside the fan-out merge",
+      "reason": "Four adjacent consumers resolve identity by key or hash today",
+      "lineage": "deepseek"
+    },
+    {
+      "id": "ro-model-in-matcher",
+      "direction": "A model must be embedded in deterministic matchers",
+      "reason": "claim-continuity accepts candidate evidence by contract",
+      "lineage": "deepseek"
+    },
+    {
+      "id": "ro-model-collapse",
+      "direction": "Flip the model on as the collapse decision",
+      "reason": "Dropped in the phase record; false-merge rate not characterized on clean gold",
+      "lineage": "deepseek"
+    },
+    {
+      "id": "ro-guard-unchanged",
+      "direction": "Default-on under the unchanged publication guard",
+      "reason": "Live pre-commit pairs are withheld as unmeasured_unpublished",
+      "lineage": "deepseek"
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-single-class",
+      "title": "The labeled corpus is 100% cross-body; the near-line class has zero pairs in the tracked corpus.",
+      "text": "The labeled corpus is 100% cross-body; the near-line class has zero pairs in the tracked corpus.",
+      "addedAtIteration": 1,
+      "_source": "~/.skilled/.labels/runs/047-030-jev.stdout.txt"
+    },
+    {
+      "id": "f-iter001-constant-baseline",
+      "title": "The merge baseline answers different on all 124 classed pairs under both dedup settings, so B=12 is the constant-different score on the 12 different labels.",
+      "text": "The merge baseline answers different on all 124 classed pairs under both dedup settings, so B=12 is the constant-different score on the 12 different labels.",
+      "addedAtIteration": 1,
+      "_source": "~/.skilled/.labels/runs/047-030-jev-20261002/report.json"
+    },
+    {
+      "id": "f-iter001-label-split",
+      "title": "The 48 same / 12 different label split sets the W=44/L=3 asymmetry arithmetically.",
+      "text": "The 48 same / 12 different label split sets the W=44/L=3 asymmetry arithmetically.",
+      "addedAtIteration": 1,
+      "_source": "~/.skilled/.labels/030-labels.jsonl"
+    },
+    {
+      "id": "f-iter001-tail-math",
+      "title": "The printed p is the exact binomial tail for 44 of 47 disagreements: 17344/2^47 = 1.2324e-10.",
+      "text": "The printed p is the exact binomial tail for 44 of 47 disagreements: 17344/2^47 = 1.2324e-10.",
+      "addedAtIteration": 1,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:1099-1129"
+    },
+    {
+      "id": "f-iter001-error-shape",
+      "title": "Jev scores sensitivity 44/48, specificity 9/12, precision 44/47; the four same misses sit just under 0.5 and the three different misses are confident false-merges at 0.68-0.93.",
+      "text": "Jev scores sensitivity 44/48, specificity 9/12, precision 44/47; the four same misses sit just under 0.5 and the three different misses are confident false-merges at 0.68-0.93.",
+      "addedAtIteration": 1,
+      "_source": "~/.skilled/.labels/runs/047-030-jev-20261002/calls.jsonl"
+    },
+    {
+      "id": "f-iter001-tiebreak-bias",
+      "title": "The AB repeat in the AB/BA/AB order breaks 1-1 ties toward AB and caused two of the four same-labeled misses.",
+      "text": "The AB repeat in the AB/BA/AB order breaks 1-1 ties toward AB and caused two of the four same-labeled misses.",
+      "addedAtIteration": 1,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:86-87"
+    },
+    {
+      "id": "f-iter001-stability",
+      "title": "F=3 of 180 calls: 57 pairs answered 3-0 and 3 answered 2-1, so the errors are not sampling noise.",
+      "text": "F=3 of 180 calls: 57 pairs answered 3-0 and 3 answered 2-1, so the errors are not sampling noise.",
+      "addedAtIteration": 1,
+      "_source": "~/.skilled/.labels/runs/047-030-jev-20261002/report.json"
+    },
+    {
+      "id": "f-iter001-cost",
+      "title": "The measured run cost 181 calls, 11752 estimated input tokens and 58.2 s summed call wall for 60 pairs; the census is zero-call and reproducible.",
+      "text": "The measured run cost 181 calls, 11752 estimated input tokens and 58.2 s summed call wall for 60 pairs; the census is zero-call and reproducible.",
+      "addedAtIteration": 1,
+      "_source": "~/.skilled/.labels/runs/047-030-jev.stdout.txt"
+    },
+    {
+      "id": "f-iter002-early-stop",
+      "title": "Early stop after agreeing AB+BA removes 58 of 181 calls (-32%) with identical decisions, counts and verdict.",
+      "text": "Early stop after agreeing AB+BA removes 58 of 181 calls (-32%) with identical decisions, counts and verdict.",
+      "addedAtIteration": 2,
+      "_source": "~/.skilled/.labels/runs/047-030-jev-20261002/calls.jsonl"
+    },
+    {
+      "id": "f-iter002-tiebreak-bias",
+      "title": "The AB-repeat tiebreak decided both recorded 1-1 splits against the label; a symmetric rule scores A=55 instead of 53.",
+      "text": "The AB-repeat tiebreak decided both recorded 1-1 splits against the label; a symmetric rule scores A=55 instead of 53.",
+      "addedAtIteration": 2,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:86-87"
+    },
+    {
+      "id": "f-iter002-threshold",
+      "title": "SAME_AT 0.4 scores 57/60 versus 53/60 at 0.5; specificity is unchanged across 0.35-0.5.",
+      "text": "SAME_AT 0.4 scores 57/60 versus 53/60 at 0.5; specificity is unchanged across 0.35-0.5.",
+      "addedAtIteration": 2,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:1086"
+    },
+    {
+      "id": "f-iter002-calibration",
+      "title": "Calibration bins under 0.3 are 0% same and 0.4-0.6 is 7/7 same; the three false-merges at 0.59-0.93 are cut-insensitive model errors.",
+      "text": "Calibration bins under 0.3 are 0% same and 0.4-0.6 is 7/7 same; the three false-merges at 0.59-0.93 are cut-insensitive model errors.",
+      "addedAtIteration": 2,
+      "_source": "~/.skilled/.labels/runs/047-030-jev-20261002/calls.jsonl"
+    },
+    {
+      "id": "f-iter002-call-economics",
+      "title": "Judgment calls run at mean 323 ms against a 90 s timeout and about 65 input tokens each; early stop cuts both by roughly a third.",
+      "text": "Judgment calls run at mean 323 ms against a 90 s timeout and about 65 input tokens each; early stop cuts both by roughly a third.",
+      "addedAtIteration": 2,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:93"
+    },
+    {
+      "id": "f-iter002-lexical-tie",
+      "title": "Zero-call Jaccard 0.4 and containment 0.6 over the same text both score 53/60, tying the shipped model column on the labeled set.",
+      "text": "Zero-call Jaccard 0.4 and containment 0.6 over the same text both score 53/60, tying the shipped model column on the labeled set.",
+      "addedAtIteration": 2,
+      "_source": "~/.skilled/.labels/030-labels.jsonl"
+    },
+    {
+      "id": "f-iter002-order-asymmetry",
+      "title": "Mean BA minus AB is +0.029 with median absolute delta 0.04; a symmetric two-order aggregate keeps noise averaging without the position tilt.",
+      "text": "Mean BA minus AB is +0.029 with median absolute delta 0.04; a symmetric two-order aggregate keeps noise averaging without the position tilt.",
+      "addedAtIteration": 2,
+      "_source": "~/.skilled/.labels/runs/047-030-jev-20261002/calls.jsonl"
+    },
+    {
+      "id": "f-iter003-frame-dependence",
+      "title": "Keep survives only against the structurally blind baseline; vs constant-same or lexical zero-call rules the Keep Rule prints stop (margin).",
+      "text": "Keep survives only against the structurally blind baseline; vs constant-same or lexical zero-call rules the Keep Rule prints stop (margin).",
+      "addedAtIteration": 3,
+      "_source": "~/.skilled/.labels/030-labels.jsonl"
+    },
+    {
+      "id": "f-iter003-oracle-dropouts",
+      "title": "Four of 60 labeled pairs are oracle-undecidable, all labeled same and all called same by Jev; the scorer counts them as baseline misses.",
+      "text": "Four of 60 labeled pairs are oracle-undecidable, all labeled same and all called same by Jev; the scorer counts them as baseline misses.",
+      "addedAtIteration": 3,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:488-508"
+    },
+    {
+      "id": "f-iter003-different-class-composition",
+      "title": "Eight of the twelve different labels are bare dimension-name pairs from one review run, so specificity is earned mostly on trivial pairs.",
+      "text": "Eight of the twelve different labels are bare dimension-name pairs from one review run, so specificity is earned mostly on trivial pairs.",
+      "addedAtIteration": 3,
+      "_source": "~/.skilled/.labels/030-labels.jsonl"
+    },
+    {
+      "id": "f-iter003-contested-labels",
+      "title": "Three different labels are near-verbatim restatements that the model confidently called same; a relabel would move the column to 56/60, and the gold-versus-question contract is untested.",
+      "text": "Three different labels are near-verbatim restatements that the model confidently called same; a relabel would move the column to 56/60, and the gold-versus-question contract is untested.",
+      "addedAtIteration": 3,
+      "_source": "~/.skilled/.labels/runs/047-030-jev-20261002/calls.jsonl"
+    },
+    {
+      "id": "f-iter003-label-identity",
+      "title": "The report records no label digest, labeler or per-pair oracle decision; requalify pins the model but not the gold.",
+      "text": "The report records no label digest, labeler or per-pair oracle decision; requalify pins the model but not the gold.",
+      "addedAtIteration": 3,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:1475-1486"
+    },
+    {
+      "id": "f-iter003-artifact-split",
+      "title": "The pair sheet refuses in-repo paths by design, so the census is reproducible in-tree while the verdict is not; the pair universe is commit-scoped through git ls-files.",
+      "text": "The pair sheet refuses in-repo paths by design, so the census is reproducible in-tree while the verdict is not; the pair universe is commit-scoped through git ls-files.",
+      "addedAtIteration": 3,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:560-565"
+    },
+    {
+      "id": "f-iter003-protocol",
+      "title": "A trustworthy protocol is assembly not machinery: pre-registered baselines, a second rater on the different class, class stratification, label digest and per-pair decisions, and an oracle-dropout bucket.",
+      "text": "A trustworthy protocol is assembly not machinery: pre-registered baselines, a second rater on the different class, class stratification, label digest and per-pair decisions, and an oracle-dropout bucket.",
+      "addedAtIteration": 3,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:1226-1247"
+    },
+    {
+      "id": "f-iter004-question-streams",
+      "title": "The merge's question and direction streams match by exact id only; ruledOutDirections drops a second lineage's attribution entirely.",
+      "text": "The merge's question and direction streams match by exact id only; ruledOutDirections drops a second lineage's attribution entirely.",
+      "addedAtIteration": 4,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:759-787"
+    },
+    {
+      "id": "f-iter004-resolved-stream",
+      "title": "The review resolved-findings stream repeats cross-body blindness on a second collection.",
+      "text": "The review resolved-findings stream repeats cross-body blindness on a second collection.",
+      "addedAtIteration": 4,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:876-897"
+    },
+    {
+      "id": "f-iter004-claim-continuity",
+      "title": "claim-continuity already accepts semantic candidate decisions (equivalent|distinct|topical_only) but has no producer; the judgment can arrive as evidence without touching the matcher.",
+      "text": "claim-continuity already accepts semantic candidate decisions (equivalent|distinct|topical_only) but has no producer; the judgment can arrive as evidence without touching the matcher.",
+      "addedAtIteration": 4,
+      "_source": ".skilled/skills/system-deep-loop/runtime/lib/claim-continuity/claim-matching.ts:109-123"
+    },
+    {
+      "id": "f-iter004-conditional-fanin",
+      "title": "conditional-fanin marks agreement only on identical agreementKey, so substantively agreeing branches read as no agreement; the shadow adapter is the measurement seam.",
+      "text": "conditional-fanin marks agreement only on identical agreementKey, so substantively agreeing branches read as no agreement; the shadow adapter is the measurement seam.",
+      "addedAtIteration": 4,
+      "_source": ".skilled/skills/system-deep-loop/runtime/lib/conditional-fanin/sufficiency.ts:22-34"
+    },
+    {
+      "id": "f-iter004-contradiction",
+      "title": "contradiction-supersession canonicalizes pair identity but callers supply the judgment that a pair contradicts; a model judgment is the missing candidate generator.",
+      "text": "contradiction-supersession canonicalizes pair identity but callers supply the judgment that a pair contradicts; a model judgment is the missing candidate generator.",
+      "addedAtIteration": 4,
+      "_source": ".skilled/skills/system-deep-loop/runtime/lib/contradiction-supersession/event-registry.ts:157-181"
+    },
+    {
+      "id": "f-iter004-reuse-kit",
+      "title": "score-fanout-pairs exports the classifier, oracle, label gate, Keep Rule and report builder, making the measurement protocol portable to any new surface.",
+      "text": "score-fanout-pairs exports the classifier, oracle, label gate, Keep Rule and report builder, making the measurement protocol portable to any new surface.",
+      "addedAtIteration": 4,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:1495-1529"
+    },
+    {
+      "id": "f-iter005-constraints",
+      "title": "Default-on needs a named reader, a phase and an amendment; 030 drops a model as the merge decision and every verdict line says reader=none named.",
+      "text": "Default-on needs a named reader, a phase and an amendment; 030 drops a model as the merge decision and every verdict line says reader=none named.",
+      "addedAtIteration": 5,
+      "_source": "specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/spec.md:93"
+    },
+    {
+      "id": "f-iter005-hermetic-step",
+      "title": "The live merge is a hermetic zero-network synthesis step in both workflows; a default-on call must degrade byte-identically to today's output.",
+      "text": "The live merge is a hermetic zero-network synthesis step in both workflows; a default-on call must degrade byte-identically to today's output.",
+      "addedAtIteration": 5,
+      "_source": ".skilled/commands/deep/assets/deep-research-auto.yaml:1945-1953"
+    },
+    {
+      "id": "f-iter005-publication-guard",
+      "title": "The origin/main publication guard withholds live pre-commit pairs as unmeasured_unpublished, so default-on with today's guard measures nothing live.",
+      "text": "The origin/main publication guard withholds live pre-commit pairs as unmeasured_unpublished, so default-on with today's guard measures nothing live.",
+      "addedAtIteration": 5,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:886-911"
+    },
+    {
+      "id": "f-iter005-determinism",
+      "title": "No answer cache by design plus atomic deterministic registry writes means a model in the merge needs a pair-keyed cache with its own identity and invalidation.",
+      "text": "No answer cache by design plus atomic deterministic registry writes means a model in the merge needs a pair-keyed cache with its own identity and invalidation.",
+      "addedAtIteration": 5,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/score-fanout-pairs.cjs:84-87"
+    },
+    {
+      "id": "f-iter005-cost-model",
+      "title": "323 ms and 65 input tokens per call, 2-3 calls per pair; 124 pairs over 104 runs at ~1.2 per run with a labeled maximum of 10; no cap exists on merge-side pair spend.",
+      "text": "323 ms and 65 input tokens per call, 2-3 calls per pair; 124 pairs over 104 runs at ~1.2 per run with a labeled maximum of 10; no cap exists on merge-side pair spend.",
+      "addedAtIteration": 5,
+      "_source": "~/.skilled/.labels/runs/047-030-jev-20261002/calls.jsonl"
+    },
+    {
+      "id": "f-iter005-risk-register",
+      "title": "Measured risk: 3 of 47 same-calls falsely merged, 4 of 48 same pairs missed, tiebreak caused 2 of those; review count bindings change under collapse even when the verdict class survives.",
+      "text": "Measured risk: 3 of 47 same-calls falsely merged, 4 of 48 same pairs missed, tiebreak caused 2 of those; review count bindings change under collapse even when the verdict class survives.",
+      "addedAtIteration": 5,
+      "_source": ".skilled/commands/deep/assets/deep-review-auto.yaml:2129-2132"
+    },
+    {
+      "id": "f-iter005-tiers",
+      "title": "Integration tiers: T0 zero-call census default-on today; T1 default-on shadow with a named reader; T2 non-collapsing annotation; T3 model-as-collapse stays dropped.",
+      "text": "Integration tiers: T0 zero-call census default-on today; T1 default-on shadow with a named reader; T2 non-collapsing annotation; T3 model-as-collapse stays dropped.",
+      "addedAtIteration": 5,
+      "_source": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs:967-995"
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 5,
+    "resolvedQuestions": 5,
+    "keyFindings": 35,
+    "sourceFindings": 35,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.8,
+    "coverageBySources": {}
+  }
+}

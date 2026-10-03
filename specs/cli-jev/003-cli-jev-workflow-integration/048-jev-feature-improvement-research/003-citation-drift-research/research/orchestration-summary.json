@@ -1,0 +1,48 @@
+{
+  "run_id": "1790979783604-glohfs",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/003-citation-drift-research",
+  "base_artifact_dir": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/003-citation-drift-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek",
+      "state_log": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/003-citation-drift-research/research/lineages/deepseek/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-10-02T22:23:03.609Z",
+        "end_at_iso": "2026-10-02T23:32:08.161Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 1,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-10-02T23:40:00Z",
+          "deltaMs": 351839
+        }
+      ]
+    }
+  ]
+}

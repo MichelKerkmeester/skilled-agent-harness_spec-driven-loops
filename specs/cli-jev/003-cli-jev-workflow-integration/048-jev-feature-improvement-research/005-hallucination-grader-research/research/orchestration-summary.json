@@ -1,0 +1,54 @@
+{
+  "run_id": "1790982868742-6zd62o",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/005-hallucination-grader-research",
+  "base_artifact_dir": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/005-hallucination-grader-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 1,
+  "failed": 1,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 1
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 1,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek",
+      "state_log": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/005-hallucination-grader-research/research/lineages/deepseek/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-10-02T23:14:28.746Z",
+        "end_at_iso": "2026-10-03T00:12:04.718Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 2,
+        "untimestamped": 1,
+        "unparseable": 0,
+        "total": 8
+      },
+      "sample": [
+        {
+          "index": 6,
+          "reason": "after_window",
+          "timestamp": "2026-10-03T00:18:00Z",
+          "deltaMs": 235282
+        },
+        {
+          "index": 7,
+          "reason": "after_window",
+          "timestamp": "2026-10-03T00:25:00Z",
+          "deltaMs": 655282
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "sessionId": "fanout-deepseek-1790979783604-cne6rp",
+  "lineageLabel": "deepseek",
+  "generation": 1,
+  "status": "COMPLETE",
+  "stopReason": "maxIterationsReached",
+  "metrics": {
+    "iterationsCompleted": 5,
+    "keyFindings": 16,
+    "openQuestions": 4,
+    "resolvedQuestions": 5,
+    "averageNewInfoRatio": 0.674
+  },
+  "resolvedQuestions": [
+    "Q1: What drove the measured result?",
+    "Q2: How to raise accuracy or lower cost?",
+    "Q3: How to make the measurement more trustworthy?",
+    "Q4: Where else in .skilled would the same judgment pay off?",
+    "Q5: What would a default-on integration need, cost and risk?"
+  ],
+  "openQuestions": [
+    "The Gate 1 no-hit rate is unmeasured, so the fraction of prompts a no-hit-only trigger would serve is unknown.",
+    "pickProb calibration (mean 0.641) is observed but not validated for a confidence threshold.",
+    "Run-to-run variance is unknown until a repeat run exists.",
+    "The 6 gold-less paraphrase probes are dropped from the denominator; which cases, and why, is unrecorded."
+  ],
+  "keyFindings": [
+    {
+      "id": "ds-kf-001",
+      "iteration": 1,
+      "summary": "The keep's binding condition is the margin: A-B=29 over a 25.6-row floor (3.4 rows of slack); a four-row swing flips the verdict.",
+      "evidence": [".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:880", ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:883"]
+    },
+    {
+      "id": "ds-kf-002",
+      "iteration": 1,
+      "summary": "Margin and sign test score the same quantity: A-B is identically W-L, so the rule's four conditions are not independent evidence.",
+      "evidence": [".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:948"]
+    },
+    {
+      "id": "ds-kf-003",
+      "iteration": 1,
+      "summary": "The 256 questions are a hash-ordered 20-per-track sample of packet descriptions (256 of 1,727 usable); 85 percent of usable text is discarded and small tracks rest on as little as one row.",
+      "evidence": [".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:42", ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:330"]
+    },
+    {
+      "id": "ds-kf-004",
+      "iteration": 1,
+      "summary": "Questions are descriptions, not Gate 1 prompts; on the 14 gold-bearing paraphrase probes ripgrep beats Jev 8-2 and Jev abstains on 9.",
+      "evidence": ["specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/stdout.txt"]
+    },
+    {
+      "id": "ds-kf-005",
+      "iteration": 1,
+      "summary": "Both baselines are structurally handicapped: lookup needs 80 percent single-phrase coverage with own-folder self-exclusion (17/256); ripgrep counts token presence by file plurality (68/256).",
+      "evidence": [".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/normalize.mjs:146", ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:456", ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:512"]
+    },
+    {
+      "id": "ds-kf-006",
+      "iteration": 2,
+      "summary": "Zero of the 57 none-modal rows had the gold track picked in any order; decided-subset accuracy is 48.7 percent. Abstentions are lost, not latent.",
+      "evidence": ["specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl"]
+    },
+    {
+      "id": "ds-kf-007",
+      "iteration": 2,
+      "summary": "Summing recorded pickProb across orders instead of the modal key raises A from 97 to 98 with no losses; the probability fields are recorded but never scored.",
+      "evidence": [".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1357", "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl"]
+    },
+    {
+      "id": "ds-kf-008",
+      "iteration": 2,
+      "summary": "Per-call payload is ~1,118 tokens, 96.8 percent option block; a 5-option two-stage shortlist would cut input ~68 percent (call-shape amendment).",
+      "evidence": [".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1240", ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:53"]
+    },
+    {
+      "id": "ds-kf-009",
+      "iteration": 2,
+      "summary": "Option rotation is not a material accuracy tax: per-order right counts 94/95/96, abstains 58/56/57.",
+      "evidence": ["specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl"]
+    },
+    {
+      "id": "ds-kf-010",
+      "iteration": 3,
+      "summary": "Rows are 16 heterogeneous clusters, not 256 exchangeable draws: per-track accuracy 0.15-1.00, abstention 0-0.80, sk-design alone 16/20 abstains.",
+      "evidence": [".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:813", "specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/scratch/w3-build/runs/jev-live-1/out/calls.jsonl"]
+    },
+    {
+      "id": "ds-kf-011",
+      "iteration": 3,
+      "summary": "The row set is unpinned: report stores counts only, calls store no question text, questions are re-derived per run, fixture promptSetHash is never checked.",
+      "evidence": [".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1474", ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1589", ".skilled/skills/system-spec-kit/runtime/cli/retrieval/README.md:79"]
+    },
+    {
+      "id": "ds-kf-012",
+      "iteration": 3,
+      "summary": "Out-dir reuse truncates calls.jsonl and overwrites report.json; already logged as an unchased P2 in the 017 session.",
+      "evidence": [".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1113", "specs/cli-jev/003-cli-jev-workflow-integration/scratch/w3-session/session-evidence.md:181"]
+    },
+    {
+      "id": "ds-kf-013",
+      "iteration": 4,
+      "summary": "The judgment is served nowhere; Gate 1 (all runtimes plus /speckit:search, which declares semantic matching unsupported) is the highest-reach insertion.",
+      "evidence": ["specs/cli-jev/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm/implementation-summary.md:66", ".skilled/commands/speckit/search.md:138", "AGENTS.md:65"]
+    },
+    {
+      "id": "ds-kf-014",
+      "iteration": 4,
+      "summary": "Sibling surfaces already apply the same judgment and pattern: spec-folder suggestion (keep K=40 A=39 B=30), clarify default (keep K=54 A=28 B=15), advisor suggested-order (probability aggregation, 2,200 ms budget), injection screen and completion claims.",
+      "evidence": [".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md:42", ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/clarify-default-measurement.md:30", ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/suggested-order-eval.md:28"]
+    },
+    {
+      "id": "ds-kf-015",
+      "iteration": 5,
+      "summary": "Default-on needs a caller policy, not plumbing: cli-jev transport and JEV_TRANSPORT exist; D1 (dormant unless auth passes, no secret) governs availability; a call at p50 330 ms roughly doubles the 200 ms lookup budget.",
+      "evidence": ["specs/cli-jev/003-cli-jev-workflow-integration/goal.md:47", ".skilled/skills/cli-classifier/SKILL.md:22", ".skilled/skills/system-spec-kit/runtime/cli/retrieval/measure-cold-lookup.mjs:43"]
+    },
+    {
+      "id": "ds-kf-016",
+      "iteration": 5,
+      "summary": "The verdict is bound to jev 0.6.2/official/jev-1.13.0 and the hashed option set; requalification is print-only, so rollout needs an explicit trigger. Wrong picks (37.9 percent row / 48.7 percent decided) are the dominant product risk.",
+      "evidence": [".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:585", ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs:1394"]
+    }
+  ]
+}

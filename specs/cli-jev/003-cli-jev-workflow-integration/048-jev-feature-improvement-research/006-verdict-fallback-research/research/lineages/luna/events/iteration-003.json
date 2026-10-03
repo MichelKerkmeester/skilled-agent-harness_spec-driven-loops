@@ -1,0 +1,77 @@
+{
+  "type": "iteration",
+  "iteration": 3,
+  "run": 3,
+  "runId": "fanout-luna-1790983140371-hbgkgw",
+  "sessionId": "fanout-luna-1790983140371-hbgkgw",
+  "lineageId": "fanout-luna-1790983140371-hbgkgw",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "status": "insight",
+  "newInfoRatio": 0.62,
+  "noveltyJustification": "Added report-level sampling validity, a naturalistic measurement design, adjacent positive and negative decision outcomes, and a concrete integration/privacy gate while refining prior prevalence and cost findings.",
+  "focus": "Determine what evidence makes the result representative, map neighboring bounded judgments, and define default-on integration requirements, costs, and risks.",
+  "findingsCount": 6,
+  "keyFindings": [
+    {
+      "id": "f-iter003-001",
+      "label": "The 24-row benchmark is a deliberately selected regex-miss corpus; its blind labels matched author-intended verdicts, which is evidence about extraction on those rows rather than production prevalence or reviewer correctness.",
+      "severity": "P1",
+      "evidenceRefs": ["results.md:14", "025-reviewer-verdict-fallback/spec.md:71,96-97"]
+    },
+    {
+      "id": "f-iter003-002",
+      "label": "The report is the independent sample unit: three option rotations measure within-report position stability, not 72 independent reviewer examples.",
+      "severity": "P1",
+      "evidenceRefs": ["score-verdict-fallback.cjs:775-815", "score-verdict-fallback.cjs:317-356", "results.md:14"]
+    },
+    {
+      "id": "f-iter003-003",
+      "label": "Improve external validity with a zero-call census of ordinary reports, a separate held-out sample of natural misses, blind human labels for stated verdict versus no-decision text, and separate prevalence from conditional accuracy.",
+      "severity": "P1",
+      "evidenceRefs": ["reviewer-verdict-fallback.md:28-40", "025-reviewer-verdict-fallback/spec.md:83-97", "reviewer-scorer.cjs:190-204"]
+    },
+    {
+      "id": "f-iter003-004",
+      "label": "The hallucination grader and fan-out merge show measured kept judgments, while completion-claim audit, stop second-rater, and debug next-check show stop or kill outcomes; reuse the evaluation pattern per task, not a universal fallback.",
+      "severity": "P1",
+      "evidenceRefs": ["results.md:13,15-19", "hallucination-grader-agreement.md:18-40", "manual-testing-playbook.md:812-815"]
+    },
+    {
+      "id": "f-iter003-005",
+      "label": "A Jev path is absent from reviewer-scorer.cjs and explicitly out of scope for feature 025; default-on use needs a later integration phase with naturalistic evidence, provider/version and credential policy, payload approval, and fail-closed unknown/abstain behavior.",
+      "severity": "P1",
+      "evidenceRefs": ["reviewer-scorer.cjs:155-187", "025-reviewer-verdict-fallback/spec.md:91-97", "reviewer-verdict-fallback.md:38-40"]
+    },
+    {
+      "id": "f-iter003-006",
+      "label": "One call per actual miss would cut the selected K=24 plan from 73 to 25 including auth, but natural miss rate and dollar price remain unmeasured; budget from observed prevalence, tokens, billing, retries, and latency.",
+      "severity": "P2",
+      "evidenceRefs": ["score-verdict-fallback.cjs:700-708,775-794,1071-1077", "results.md:14"]
+    }
+  ],
+  "sourcesQueried": [
+    ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/reviewer-scorer.cjs:117-123,155-204",
+    ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs:212-219,317-356,700-708,775-815,840-849,1071-1077",
+    ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/model-benchmark-mode/reviewer-verdict-fallback.md:28-40",
+    ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/hallucination-grader-agreement.md:18-40",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-claim-audit.md:20-36",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/debug-next-check.md:18-40",
+    ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/manual-testing-playbook.md:812-815",
+    ".skilled/skills/system-deep-loop/runtime/README.md:49-52",
+    "specs/cli-jev/003-cli-jev-workflow-integration/047-measure-every-jev-feature/scratch/evidence/results.md:13-19",
+    "specs/cli-jev/003-cli-jev-workflow-integration/025-reviewer-verdict-fallback/spec.md:68-97",
+    "Luna steer.md checked before iteration 3; absent",
+    "Luna config, state log, strategy, and earlier iteration files read before iteration 3"
+  ],
+  "toolsUsed": ["read-only rg, nl, sed, cat"],
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write"
+  }
+}

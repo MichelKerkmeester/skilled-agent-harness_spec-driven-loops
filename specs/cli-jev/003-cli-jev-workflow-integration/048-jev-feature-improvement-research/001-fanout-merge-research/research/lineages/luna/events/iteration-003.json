@@ -1,0 +1,30 @@
+{
+  "type": "iteration",
+  "iteration": 3,
+  "run": 3,
+  "mode": "research",
+  "status": "complete",
+  "focus": "Map adjacent uses and default-on integration requirements, costs, and risks",
+  "findingsCount": 7,
+  "newInfoRatio": 0.76,
+  "noveltyJustification": "This pass located the gap between a measured shadow arm and the deterministic production merge, quantified the candidate-pair cost shape, and found two unrelated .skilled surfaces that use identifier-based rather than semantic deduplication.",
+  "keyQuestions": [
+    "Where else in .skilled would the same judgment pay off?",
+    "What would default-on integration require, cost, and risk?"
+  ],
+  "answeredQuestions": [
+    "Which adjacent .skilled surfaces are worth evaluating with their own labels?",
+    "What architecture, gates, costs, failure behavior, and risks would default-on integration need?"
+  ],
+  "ruledOut": [
+    {
+      "approach": "Flip SPECKIT_FANOUT_NEAR_DUP_DEDUP as the implementation of default-on Jev",
+      "reason": "The flag only controls same-body title-aware matching; the measured Jev advantage is cross-body and the result has no promotion authority.",
+      "evidence": "specs/cli-jev/003-cli-jev-workflow-integration/030-fanout-merge-shadow-record/spec.md:93-96,156-158"
+    }
+  ],
+  "sessionId": "fanout-luna-1790978645433-doul78",
+  "lineageId": "luna",
+  "generation": 1,
+  "timestamp": "2026-10-02T22:30:48Z"
+}

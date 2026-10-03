@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research",
+  "description": "Phase 047 measured the Jev Pi native classifier transport at verdict pi-transport: adopt K=111 M=111 coverage=100.0 agreement=95.5 medianabsdp=0.0100",
+  "keywords": [
+    "phase",
+    "measured",
+    "jev",
+    "native",
+    "classifier",
+    "transport",
+    "verdict",
+    "pi-transport",
+    "adopt",
+    "coverage",
+    "agreement",
+    "medianabsdp"
+  ],
+  "lastUpdated": "2026-10-02T22:02:50.703Z",
+  "specId": "009",
+  "folderSlug": "pi-transport-research",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration",
+    "048-jev-feature-improvement-research"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

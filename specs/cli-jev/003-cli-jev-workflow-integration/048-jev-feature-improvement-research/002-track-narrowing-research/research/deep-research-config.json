@@ -1,0 +1,38 @@
+{
+  "researchTopic": "Improve, refine and expand the Jev spec-track narrowing (cli-jev feature 017). Its scorer is .skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs in system-spec-kit, and it measures Gate 1 retrieval, where ripgrep and the committed trigger-index lookup find which specs/<track>/ a request belongs to. Measured result: verdict jev: keep K=256 M=256 A=97 B=68 W=78 L=49 F=47 p=0.006330, p50 330 ms, p95 391 ms. Real data. Jev names the right track more often than ripgrep, but both are right on well under half of the 256 questions. Answer five questions with file:line evidence: what drove this result, how to raise its accuracy or lower its cost, how to make the measurement more trustworthy, where else in .skilled the same judgment would pay off, and what a default-on integration would need, cost and risk.",
+  "specFolder": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "resource_map": {
+    "emit": true
+  },
+  "fanout": {
+    "executors": [
+      {
+        "kind": "cli-pi",
+        "model": "deepseek-v4.1-flash",
+        "reasoningEffort": "max",
+        "iterations": 5,
+        "label": "deepseek",
+        "timeoutSeconds": 3600
+      },
+      {
+        "kind": "cli-codex",
+        "model": "gpt-6-luna",
+        "reasoningEffort": "max",
+        "serviceTier": "fast",
+        "iterations": 3,
+        "label": "luna",
+        "timeoutSeconds": 3600
+      }
+    ],
+    "concurrency": 2
+  },
+  "status": "complete"
+}
