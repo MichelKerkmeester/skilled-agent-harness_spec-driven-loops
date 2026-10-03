@@ -39,16 +39,16 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts"
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/score-track-narrowing.vitest.ts",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md"
     ],
     "entities": [
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Feature 017 kept at 97 against 68 of 256 with only 3.4 rows of margin slack",
     "created_at": "2026-10-03T05:30:03Z",
-    "last_save_at": "2026-10-03T05:37:46.379Z",
+    "last_save_at": "2026-10-03T10:32:51.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e412062628fdfb1e141eab73d645888c5303978b47b452f44397f4e0f6a9a488",
+    "source_fingerprint": "sha256:cb84f7010c1019a25c81c60e071c1539fbdf6b76c0234f505e130c7167413c39",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1ffdeefbdef53209a10f70ad62692b7c63d41cad6b680b4685a09999bf457203",
+      "spec.md": "c50f516561ed6a44b1a3122c08327846923e796a4ce300e61bca1bedce31104a",
       "plan.md": "71d143c20a383bcf8ff445421a94404d47224ec80eb2edf6ac95f358c5db6c23",
-      "tasks.md": "6310be33a239d1d5cea112fb415944a79995cd364458ba08d16dd42cb8580d83",
-      "implementation-summary.md": "4b770e6f75029b86b87539775fe7272c087aaa2807c63e35752a3eb3aa9f718a"
+      "tasks.md": "9b49c84dc628dcb03a337dbee34a01101e7ad995b10409c29e309af35a6cae9f",
+      "implementation-summary.md": "458c442216155567fb96861bfb6d348383292642961a8c9411e7db866bce7b61"
     },
     "last_active_at": null
   }
