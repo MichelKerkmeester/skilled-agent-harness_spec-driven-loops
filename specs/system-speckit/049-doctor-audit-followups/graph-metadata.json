@@ -8,7 +8,8 @@
     "system-speckit/049-doctor-audit-followups/002-release-update-customization-signals",
     "system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift",
     "system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance",
-    "system-speckit/049-doctor-audit-followups/005-doctor-update-research"
+    "system-speckit/049-doctor-audit-followups/005-doctor-update-research",
+    "system-speckit/049-doctor-audit-followups/006-doctor-update-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -37,7 +38,7 @@
       "packet"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
@@ -154,6 +155,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -176,26 +183,20 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Purpose Plan",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The doctor command audit (packet 048) inspected every doctor target against the current checkout and applied its verdicts, but it deliberately recorded the defects it found in the subsystems the doctors inspect instead of fixing them",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-03T20:44:47.390Z",
+    "last_save_at": "2026-10-03T21:53:20.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e3c578303805bdd30e819caf213c4d1c4561854f7f575718aea793aaa435e7ca",
+    "source_fingerprint": "sha256:cb922301a779524e2b57fc870a1f9eadf77d0b2f7eb03425e8b9e1e8418b048a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ab440815aed00c454728343de1abd1cbf2d20b8db036e828f220eba525c8c482"
+      "spec.md": "72c808b68bb159aa1cf9d742b1fb8a7c8c2ea56bbe2ff09447a3667b6a7edda7"
     },
     "last_active_child_id": "system-speckit/049-doctor-audit-followups/005-doctor-update-research",
     "last_active_at": "2026-10-03T20:43:10.206Z"
