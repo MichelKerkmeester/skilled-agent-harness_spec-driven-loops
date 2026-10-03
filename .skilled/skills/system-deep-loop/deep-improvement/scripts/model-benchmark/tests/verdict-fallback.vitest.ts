@@ -19,6 +19,8 @@ import { afterEach, describe, expect, it } from 'vitest';
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
 const vf = require(path.join(TEST_DIR, '../lib/score-verdict-fallback.cjs')) as Record<string, any>;
+const reviewerScorer = require(path.join(TEST_DIR, '../lib/reviewer-scorer.cjs')) as Record<string, any>;
+const REVIEWER_PROFILE = path.resolve(TEST_DIR, '../../../assets/model-benchmark/benchmark-profiles/reviewer-regression.json');
 
 const tempDirs: string[] = [];
 
@@ -122,6 +124,99 @@ describe('score-verdict-fallback fixtures', () => {
     expect(census.noOutput).toBe(1);
     expect(fs.readdirSync(stubs).filter((name) => name.endsWith('.log'))).toEqual([]);
   });
+
+  it('loads inline miss fixtures from reviewer-regression', () => {
+    const cases = vf.loadFixtureCases(REVIEWER_PROFILE);
+    const census = vf.censusFixtures(cases);
+
+    expect(census).toEqual({ total: 10, hits: 8, misses: 2, noOutput: 0 });
+    expect(cases.slice(-2).map((entry: any) => entry.fixtureId)).toEqual([
+      'reviewer-miss-unsafe-evidence',
+      'reviewer-miss-no-decision',
+    ]);
+  });
+});
+
+describe('reviewer-scorer verdict parsing and grader', () => {
+  it.each([
+    ['**VERDICT: FAIL**', 'fail'],
+    ['Verdict: **FAIL**', 'fail'],
+    ['# VERDICT: FAIL', 'fail'],
+    ['Final verdict: pass', 'pass'],
+    ['Verdict: FAIL (stale evidence)', 'fail'],
+  ])('reads the strict text form %s', (output, expected) => {
+    expect(reviewerScorer.extractVerdict(output)).toEqual({ verdict: expected, method: 'pattern' });
+  });
+
+  it('rejects verdict mentions and examples away from the whole-line contract', () => {
+    expect(reviewerScorer.extractVerdict('The reviewer wrote VERDICT: FAIL in an example.').verdict).toBe(null);
+    expect(reviewerScorer.extractVerdict('Do not use this example:\n> VERDICT: FAIL').verdict).toBe(null);
+    expect(reviewerScorer.extractVerdict('```text\nVERDICT: FAIL\n```').verdict).toBe(null);
+    expect(reviewerScorer.extractVerdict('The verdict is not pass.').verdict).toBe(null);
+  });
+
+  it('asks the reviewer prompt for a typed JSON verdict', () => {
+    const prompt = reviewerScorer.buildReviewerPrompt({ prompt_template: 'Review {{input}}', input: 'the change' });
+
+    expect(prompt).toContain('top-level "verdict" field set to PASS, FAIL, BLOCK, or ABSTAIN');
+    expect(prompt).toContain('findings in a "findings" array');
+  });
+
+  it('reads the typed verdict before conflicting text and fails closed on an invalid typed value', () => {
+    const parsed = reviewerScorer.extractVerdict('{"verdict":"FAIL","note":"VERDICT: PASS"}');
+    const invalid = reviewerScorer.extractVerdict('{"verdict":"uncertain","note":"VERDICT: PASS"}');
+
+    expect(parsed).toEqual({ verdict: 'fail', method: 'typed' });
+    expect(invalid).toEqual({ verdict: null, method: 'typed-invalid' });
+  });
+
+  it('the opted-in Jev grader can abstain on no-decision prose', () => {
+    let calls = 0;
+    const scored = reviewerScorer.scoreReviewerOutput(
+      'The available material does not support a conclusion about this change.',
+      { expectedVerdict: 'abstain' },
+      { grader: 'jev', jevChoice: () => { calls += 1; return 'abstain'; } },
+    );
+
+    expect(calls).toBe(1);
+    expect(scored).toMatchObject({ extractedVerdict: 'abstain', verdictMethod: 'jev-grader', verdictOk: true });
+  });
+
+  it('keeps unknown Jev grader answers unresolved', () => {
+    const scored = reviewerScorer.scoreReviewerOutput(
+      'The reviewer output has no decision.',
+      { expectedVerdict: 'pass' },
+      { grader: 'jev', jevChoice: () => 'maybe' },
+    );
+
+    expect(scored).toMatchObject({ extractedVerdict: null, verdictMethod: 'jev-grader', verdictOk: false });
+  });
+
+  it('runs opt-in Jev grading only on the two regression miss fixtures', () => {
+    const fixtureOnly = reviewerScorer.runReviewerBenchmark({ profile: REVIEWER_PROFILE, grader: 'noop' });
+    const graded: string[] = [];
+    const jevRun = reviewerScorer.runReviewerBenchmark({
+      profile: REVIEWER_PROFILE,
+      grader: 'jev',
+      jevChoice: (output: string) => {
+        graded.push(output);
+        return output.includes('stale') ? 'fail' : 'abstain';
+      },
+    });
+
+    expect(fixtureOnly.totals.fixtures).toBe(4);
+    expect(fixtureOnly.rows.map((row: any) => row.id)).not.toContain('reviewer-miss-no-decision');
+    expect(graded).toHaveLength(2);
+    expect(jevRun.rows.find((row: any) => row.id === 'reviewer-miss-no-decision').per_test[0].extractedVerdict).toBe('abstain');
+  });
+
+  it('a noop run scores the four profile fixtures at aggregate 100 with benchmark-pass', () => {
+    const noopRun = reviewerScorer.runReviewerBenchmark({ profile: REVIEWER_PROFILE, grader: 'noop' });
+
+    expect(noopRun.totals.fixtures).toBe(4);
+    expect(noopRun.aggregateScore).toBe(100);
+    expect(noopRun.recommendation).toBe('benchmark-pass');
+  });
 });
 
 describe('score-verdict-fallback outputs', () => {
@@ -167,6 +262,7 @@ describe('score-verdict-fallback reports', () => {
         per_test: [
           { name: 'pattern case', verdictMethod: 'pattern' },
           { name: 'grader case', verdictMethod: 'llm-grader' },
+          { name: 'Jev grader case', verdictMethod: 'jev-grader' },
           { name: 'silent case', verdictMethod: 'none' },
         ],
       },
@@ -180,7 +276,7 @@ describe('score-verdict-fallback reports', () => {
     const census = vf.censusReports([reports]);
 
     expect(census).toEqual([
-      { path: path.join(reports, 'reviewer-report.json'), pattern: 1, llmGrader: 1, none: 1 },
+      { path: path.join(reports, 'reviewer-report.json'), pattern: 1, llmGrader: 1, jevGrader: 1, none: 1 },
     ]);
   });
 });
@@ -572,14 +668,14 @@ echo '{"answers":{"answer":{"choice":"pass"}}}'`;
 
     expect(code).toBe(0);
     expect(lines).toContain(`jev: path=${path.join(stubs, 'jev')} provider=official`);
-    expect(lines.some((line) => /^jev: payload: untracked reviewer outputs; planned calls: 37; estimated input tokens: \d+$/.test(line))).toBe(true);
+    expect(lines.some((line) => /^jev: payload: untracked reviewer outputs; planned calls: 13; estimated input tokens: \d+$/.test(line))).toBe(true);
     expect(lines).toContain('jev: auth test provider=official model=stub-model');
     expect(lines.some((line) => /^column jev: K=12 measured=12 unmeasured=0 latency_p50_ms=\d+ latency_p95_ms=\d+$/.test(line))).toBe(true);
     expect(lines.some((line) => line.startsWith('verdict jev: '))).toBe(true);
 
     const log = fs.readFileSync(path.join(stubs, 'jev.log'), 'utf8').trim().split('\n');
     expect(log.slice(0, 3)).toEqual(['--version', 'auth status --provider official', 'auth test --provider official']);
-    expect(log).toHaveLength(39);
+    expect(log).toHaveLength(15);
   });
 
   it('exit 3 prints no credential', async () => {
@@ -679,7 +775,7 @@ case "$digit" in
   3) pick=block ;;
   *) pick=unknown ;;
 esac
-echo '{"answers":{"answer":{"choice":"'$pick'"}}}'`;
+echo '{"answers":{"answer":{"choice":"'$pick'"}},"usage":{"input_tokens":10,"output_tokens":2}}'`;
   const LABELS = ['pass', 'pass', 'pass', 'pass', 'pass', 'fail', 'fail', 'fail', 'fail', 'block', 'block', 'block'];
 
   function armRows(digits: string[]): Array<{ id: string; output: string; label: string }> {
@@ -706,7 +802,7 @@ echo '{"answers":{"answer":{"choice":"'$pick'"}}}'`;
     const out = tempDir('vf-out-');
     const sha = vf.sha256Hex(fs.readFileSync(outputs));
 
-    const { code, lines } = await runMain(['--outputs', outputs, '--jev', '--accept-payload', '--out', out], env);
+    const { code, lines } = await runMain(['--outputs', outputs, '--jev', '--audit-orders', '--accept-payload', '--out', out], env);
 
     return { code, lines, out, stubs, sha };
   }
@@ -737,12 +833,27 @@ echo '{"answers":{"answer":{"choice":"'$pick'"}}}'`;
       jevVersion: '0.6.2',
       provider: 'official',
       model: 'stub-model',
+      usageTokens: null,
     });
     expect(calls.slice(1, 4)).toEqual([
-      { backend: 'jev', output: 'row-1', order: 1, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model' },
-      { backend: 'jev', output: 'row-1', order: 2, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model' },
-      { backend: 'jev', output: 'row-1', order: 3, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model' },
+      { backend: 'jev', output: 'row-1', order: 1, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model', usageTokens: { input: 10, output: 2, total: 12 } },
+      { backend: 'jev', output: 'row-1', order: 2, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model', usageTokens: { input: 10, output: 2, total: 12 } },
+      { backend: 'jev', output: 'row-1', order: 3, attempt: 1, wallMs: expect.any(Number), exitCode: 0, pick: 'pass', pickProb: null, status: 'measured', jevVersion: '0.6.2', provider: 'official', model: 'stub-model', usageTokens: { input: 10, output: 2, total: 12 } },
     ]);
+    expect(calls[1].usageTokens).toEqual({ input: 10, output: 2, total: 12 });
+
+    const report = JSON.parse(fs.readFileSync(path.join(run.out, 'report.json'), 'utf8'));
+    expect(report.commit).toMatch(/^[a-f0-9]{40}$/);
+    expect(report.scorerVersion).toBe(vf.SCORER_VERSION);
+    expect(report.columns.jev.usageTokens).toEqual({ input: 360, output: 72, total: 432, callsWithUsage: 36, callsWithoutUsage: 0 });
+    expect(report.columns.jev.intervals.method).toBe('wilson-95');
+    expect(report.columns.jev.intervals.accuracy).toMatchObject({ n: 12, successes: 12 });
+    expect(report.columns.jev.intervals.perClass).toMatchObject({ pass: { n: 5, successes: 5 }, fail: { n: 4, successes: 4 }, block: { n: 3, successes: 3 } });
+    expect(report.columns.jev.confusion).toEqual({
+      pass: { pass: 5, fail: 0, block: 0, abstain: 0, unknown: 0 },
+      fail: { pass: 0, fail: 4, block: 0, abstain: 0, unknown: 0 },
+      block: { pass: 0, fail: 0, block: 3, abstain: 0, unknown: 0 },
+    });
   });
 
   it('report requalifies a changed Jev identity before its verdict', async () => {
@@ -774,5 +885,56 @@ echo '{"answers":{"answer":{"choice":"'$pick'"}}}'`;
     expect(run.lines).toContain(
       `verdict jev: stop (flips) K=12 M=12 A=12 B=5 W=7 L=0 F=12 p_win=0.007813 p_loss=1.000 labels_sha256=${run.sha} jev_version=0.6.2 provider=official model=stub-model`,
     );
+  });
+
+  it('records an explicit abstain for no-decision text', async () => {
+    const rows = armRows(Array(12).fill('111')).map((row) => ({ ...row, output: 'NO_DECISION: the available material is inconclusive.' }));
+    const outputs = writeOutputs(rows);
+    const stubs = stubDir({ jev: `case "$1" in
+  --version) echo 'jev 0.6.2'; exit 0 ;;
+  auth) if [ "$2" = test ]; then echo '{"model":"stub-model"}'; fi; exit 0 ;;
+esac
+p=$(cat)
+case "$p" in *NO_DECISION*) pick=abstain;; *) pick=pass;; esac
+echo '{"answers":{"answer":{"choice":"'$pick'"}}}'` });
+    const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    delete env.JEV_PROVIDER;
+    const out = tempDir('vf-out-');
+
+    const { code } = await runMain(['--outputs', outputs, '--jev', '--accept-payload', '--out', out], env);
+    const calls = readCalls(out).slice(1);
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+
+    expect(code).toBe(0);
+    expect(calls).toHaveLength(12);
+    expect(calls.every((call) => call.pick === 'abstain' && call.status === 'measured')).toBe(true);
+    expect(report.columns.jev.confusion.pass.abstain).toBe(5);
+    expect(report.columns.jev.confusion.fail.abstain).toBe(4);
+    expect(report.columns.jev.confusion.block.abstain).toBe(3);
+  });
+
+  it('leaves an unknown answer unmeasured and stops on coverage', async () => {
+    const rows = armRows(Array(12).fill('111')).map((row) => ({ ...row, output: 'UNKNOWN: no usable verdict.' }));
+    const outputs = writeOutputs(rows);
+    const stubs = stubDir({ jev: `case "$1" in
+  --version) echo 'jev 0.6.2'; exit 0 ;;
+  auth) if [ "$2" = test ]; then echo '{"model":"stub-model"}'; fi; exit 0 ;;
+esac
+echo '{"answers":{"answer":{"choice":"maybe"}}}'` });
+    const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    delete env.JEV_PROVIDER;
+    const out = tempDir('vf-out-');
+
+    const { code, lines } = await runMain(['--outputs', outputs, '--jev', '--accept-payload', '--out', out], env);
+    const calls = readCalls(out).slice(1);
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+
+    expect(code).toBe(0);
+    expect(lines.some((line) => line.startsWith('verdict jev: stop (coverage)'))).toBe(true);
+    expect(calls).toHaveLength(12);
+    expect(calls.every((call) => call.pick === null && call.status === 'unmeasured')).toBe(true);
+    expect(report.columns.jev.M).toBe(0);
+    expect(report.columns.jev.unmeasured).toBe(12);
+    expect(report.columns.jev.confusion.pass.unknown).toBe(5);
   });
 });
