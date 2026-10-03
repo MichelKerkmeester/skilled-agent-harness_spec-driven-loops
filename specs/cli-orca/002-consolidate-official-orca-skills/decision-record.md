@@ -7,6 +7,22 @@ trigger_phrases:
   - "class-S classification"
 importance_tier: "important"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "cli-orca/002-consolidate-official-orca-skills"
+    last_updated_at: "2026-09-20T13:07:56+02:00"
+    last_updated_by: "spec-validation-backfill"
+    recent_action: "Recorded nine accepted ADRs for the cli-orca extraction"
+    next_safe_action: "None; all nine ADRs accepted"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "cli-orca-002-decision-record"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
 # Decision Record: Consolidate Official Orca Skills Into Standalone cli-orca
 

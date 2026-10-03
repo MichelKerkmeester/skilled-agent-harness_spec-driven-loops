@@ -2,9 +2,6 @@
 title: "Tasks: Prevent a cli-codex fan-out lineage from nesting codex exec per iteration, and make write containment preserve concurrent operator edits instead of erasing them"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
   - "tasks core"
 importance_tier: "normal"
 contextType: "general"

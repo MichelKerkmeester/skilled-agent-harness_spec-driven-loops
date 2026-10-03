@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-skill-advisor/033-advisor-status-truthfulness/002-router-reach-misroutes",
+  "description": "Phase 2: router-reach-misroutes",
+  "keywords": [
+    "phase",
+    "router-reach-misroutes"
+  ],
+  "lastUpdated": "2026-10-03T05:27:37.643Z",
+  "specId": "002",
+  "folderSlug": "router-reach-misroutes",
+  "parentChain": [
+    "system-skill-advisor",
+    "033-advisor-status-truthfulness"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

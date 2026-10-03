@@ -3,12 +3,7 @@ title: "Feature Specification: AGENTS.md Bloat Audit [specs/agents/004-agents-md
 description: "Read-only deep-research audit of the root AGENTS.md for removable or reducible bloat: redundancy across sections, over-long prose, content already authoritative in referenced files, verbose tables/examples, and low-value boilerplate. Produces a ranked findings report with rationale and rough line savings."
 trigger_phrases:
   - "agents.md bloat"
-  - "redundancy"
-  - "compress"
-  - "authoritative"
   - "line savings"
-  - "boilerplate"
-  - "audit"
 importance_tier: "normal"
 contextType: "specification"
 _memory:

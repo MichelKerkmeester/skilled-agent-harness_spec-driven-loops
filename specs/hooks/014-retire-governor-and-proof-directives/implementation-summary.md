@@ -2,9 +2,6 @@
 title: "Implementation Summary: Retire the Governor and Proof-Over-Appearance Directives"
 description: "Two constant directives removed from the canonical renderer and both fallback emitters; the one with an enforcing gate stays."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
   - "impl summary core"
 importance_tier: "normal"
 contextType: "general"

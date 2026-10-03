@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-design/019-sk-design-diagram-upgrade"
     last_updated_at: "2026-09-10T20:00:00Z"
     last_updated_by: "claude-conductor"
-    recent_action: "Five phases executed: 52 defects fixed over two rounds, ten systemic patterns settled, the corpus merged into one library, DESIGN.md theming added, captures made full page, and three capture reviews run"
-    next_safe_action: "Close the thirteen label masks the widened clearance rule found, then run a fourth capture review"
+    recent_action: "Executed rounds one and two; ran three capture reviews"
+    next_safe_action: "Close thirteen label masks, then run a fourth capture review"
     blockers: []
     key_files:
       - "specs/sk-design/019-sk-design-diagram-upgrade/001-upgrade-research/research/research.md"
@@ -28,16 +28,14 @@ _memory:
 # Goal: bring sk-design-diagram to the chart standard
 
 <!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
-
-> Everything above the log is DURABLE. Keep it short: the runtime goal surfaces cap what they hold.
+<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
 ---
 
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** Every rule the diagram skill states is held by a check, its files are generated from one palette source that a Style Reference can replace, the corpus is one adjustable form library rather than templates beside examples, and what no check can see is read by an eye on a schedule.
+**Objective:** Every diagram-skill rule is held by a check, files generate from one replaceable palette, the corpus is one form library, and an eye reads on a schedule what no check sees.
 
 ### Decisions
 
@@ -45,27 +43,23 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | One skin per file; all skins in one palette source. No `prefers-color-scheme` blocks |
-| D2 | The Google Fonts link stays, on a one-entry allowlist; fallback chains are documented, not added |
+| D1 | One skin per file, all in one palette source; no `prefers-color-scheme` blocks |
+| D2 | Google Fonts stays on a one-entry allowlist |
 | D3 | Onboarding stays; an applicator is added |
-| D4 | Order is forced: decisions → applicator → repaint → checker → eye |
-| D5 | The 4px rule exempts font sizes and derived offsets; it binds new files and ratchets legacy ones |
-| D6 | Markers: a starter defines the trio, a delivery keeps what it draws. Ids unique per file |
-| D7 | Nodes carry `data-diagram-node`; budgets count tagged nodes |
-| D8 | The accent stays `#eb6c36`; its 2.86:1 is a recorded departure |
-| D9 | `#3d4460` is a type-scoped role; sketchy is descoped |
-| D10 | Findings are reconciled into one fact base before a decision is signed |
-| D11 | Phase docs are authored by Sonnet 5 xhigh markdown agents under an Opus xhigh orchestrator |
-| D12 | Nothing changes in the chart skill. Comment hygiene is a hard block |
-| D13 | One form library: templates and examples merge into `assets/diagrams/`. Every file is a worked diagram to copy and adjust, not a strict template; the four skin starters live there as forms |
-| D14 | A Style Reference themes a delivery: a local `DESIGN.md` (generated or hand-written) is applied to a copy. The packet carries one stock reference whose provenance says it was written from this palette, not measured. Extraction stays with `sk-design-md-generator` |
-| D15 | Implementation runs on DeepSeek V4.1 Flash at max thinking through cli-pi and llmgateway. Every brief is pre-planned and improved through `sk-prompt` before dispatch |
-| D16 | Every review finding ends as a fix with evidence or a recorded reason. A doc-versus-corpus contradiction is resolved in one direction and the losing side is edited |
-| D17 | Captures are full page. The shared renderer gains an opt-in flag rather than changing what the chart skill shoots |
-
-### Operator copy
-
-The operator holds this directive as the session objective. Whenever anything above the log changes, resend this file in chat.
+| D4 | Forced order: decisions → applicator → repaint → checker → eye |
+| D5 | 4px grid: font sizes and derived offsets exempt; binds new files, ratchets legacy |
+| D6 | Starters define the marker trio, deliveries keep what they draw; ids unique per file |
+| D7 | Nodes carry `data-diagram-node`; budgets count tagged ones |
+| D8 | Accent stays `#eb6c36`; its 2.86:1 is a recorded departure |
+| D9 | `#3d4460` is a type-scoped role; sketchy descoped |
+| D10 | Findings reconcile into one fact base before signing |
+| D11 | Sonnet agents write phase docs for an Opus orchestrator |
+| D12 | The chart skill is untouched; comment hygiene is a hard block |
+| D13 | Templates and examples merge into one library, `assets/diagrams/` |
+| D14 | A local `DESIGN.md` themes a copy; the stock one is written from this palette; `sk-design-md-generator` extracts |
+| D15 | DeepSeek V4.1 Flash via cli-pi implements; briefs go through `sk-prompt` |
+| D16 | Every review finding ends fixed with evidence or a recorded reason; contradictions edit the losing side |
+| D17 | Full-page captures via an opt-in renderer flag; chart captures unchanged |
 <!-- /ANCHOR:directive -->
 
 ---
@@ -77,19 +71,19 @@ The operator holds this directive as the session objective. Whenever anything ab
 
 | Phase | Goal document |
 |-------|---------------|
-| 001-upgrade-research | `001-upgrade-research/goal.md` |
-| 002-skin-contract | `002-skin-contract/goal.md` |
-| 003-applicator-and-sentinels | `003-applicator-and-sentinels/goal.md` |
-| 004-corpus-and-catalog | `004-corpus-and-catalog/goal.md` |
-| 005-checker-mutations-and-ci | `005-checker-mutations-and-ci/goal.md` |
-| 006-capture-and-judgment | `006-capture-and-judgment/goal.md` |
-| 007-manual-review-remediation | `007-manual-review-remediation/goal.md` |
-| 008-doctrine-reconciliation | `008-doctrine-reconciliation/goal.md` |
-| 009-one-form-library | `009-one-form-library/goal.md` |
-| 010-design-md-style-reference | `010-design-md-style-reference/goal.md` |
-| 011-full-page-capture | `011-full-page-capture/goal.md` |
+| 001 | `001-upgrade-research/goal.md` |
+| 002 | `002-skin-contract/goal.md` |
+| 003 | `003-applicator-and-sentinels/goal.md` |
+| 004 | `004-corpus-and-catalog/goal.md` |
+| 005 | `005-checker-mutations-and-ci/goal.md` |
+| 006 | `006-capture-and-judgment/goal.md` |
+| 007 | `007-manual-review-remediation/goal.md` |
+| 008 | `008-doctrine-reconciliation/goal.md` |
+| 009 | `009-one-form-library/goal.md` |
+| 010 | `010-design-md-style-reference/goal.md` |
+| 011 | `011-full-page-capture/goal.md` |
 
-**Precedence.** Decisions outrank child detail; child detail outranks any summary. Name a conflict rather than resolving it silently.
+**Precedence.** Decisions outrank child detail, which outranks any summary. Name a conflict; never resolve it silently.
 
 **Stop.** Only the criteria below decide done.
 <!-- /ANCHOR:binding -->
@@ -99,22 +93,17 @@ The operator holds this directive as the session objective. Whenever anything ab
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-**Round one — met, and still true from the final state.**
-
-- [x] The corpus checker prints `RESULT: PASSED`; the mutation suite passes with its completeness guard
-- [x] `--default` reproduces every form byte for byte, and every literal is a role of that file's skin
+- [x] The corpus checker prints `RESULT: PASSED`; the mutation suite and its completeness guard pass
+- [x] `--default` reproduces every form byte for byte; every literal is a role of its file's skin
 - [x] Versions follow the Frontmatter Versioning Standard under a bumped anchor; CI green on a push
 - [x] A dated capture-review report exists with no hand-authored markdown
 - [x] `validate.sh` reports `RESULT: PASSED` for the packet, recursively
-
-**Round two — the manual review, the merge and the Style Reference.**
-
-- [x] Every one of the 34 manual-review findings is fixed with evidence, or recorded with a reason a reader can check
-- [x] Each systemic pattern S1–S9 is resolved in one direction, the losing document or file is edited, and no document states a value the corpus does not hold
-- [x] `assets/diagrams/` is the only form directory; no path, document, script, test or workflow still names `assets/examples` or `assets/templates`
-- [x] `apply-design-md.cjs --default` derives the stock palette exactly, and a second reference re-themes a copy through the same gates
-- [ ] Captures are full page: no committed screenshot is cut off, and CAP-001 re-runs with its findings closed
-- [ ] From the final state: checker `RESULT: PASSED`, suite green, `--default` byte-identical, CI green on a push, and `validate.sh --strict --recursive` PASSED for all twelve folders
+- [x] All 34 manual-review findings are fixed with evidence or carry a checkable reason
+- [x] Each systemic pattern S1-S9 is resolved one way, losing side edited; no document states a value the corpus lacks
+- [x] `assets/diagrams/` is the only form directory; nothing names `assets/examples` or `assets/templates`
+- [x] `apply-design-md.cjs --default` derives the stock palette exactly; a second reference re-themes a copy through the gates
+- [ ] No committed screenshot is cut off; CAP-001 re-runs with its findings closed
+- [ ] From the final state: checker `RESULT: PASSED`, suite green, `--default` byte-identical, CI green, and `validate.sh --strict --recursive` PASSED for all twelve folders
 <!-- /ANCHOR:completion -->
 
 ---
@@ -169,4 +158,5 @@ The operator holds this directive as the session objective. Whenever anything ab
 | A swimlane label overflowed its mask under a substituted font | Never real. The method counted ink anywhere in a margin, so an antialias shift on a neighbouring stroke read as a spill. Per glyph there is eleven units of slack |
 | Three keyed legend fills are one grey and must be stepped apart | The measurement was right and the conclusion wrong. Those node types are separated by stroke, and each swatch carries its own |
 | Masks must clear a stroke by six | The prose is in rendered pixels and the drawings in user units, which scale up about a quarter. Four units is the floor, six to ten the band |
+| The durable slice fit the 4,000-character budget | Not until it was cut: the old author blockquote and operator copy went, decision and criterion wording shortened, and the binding rows labelled by number; all eleven criteria kept |
 <!-- /ANCHOR:log -->

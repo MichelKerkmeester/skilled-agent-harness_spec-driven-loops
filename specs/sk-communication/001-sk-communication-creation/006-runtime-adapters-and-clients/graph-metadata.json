@@ -15,14 +15,13 @@
       "portable cli projection",
       "implementation phase",
       "implementation plan",
-      "tasks",
-      "implementation",
       "architecture decision",
-      "use client-owned presentation whenever native interception is not explicitly safe",
+      "client-owned presentation",
       "implementation status",
       "current state",
       "phase 006 handover",
-      "runtime adapters handover"
+      "runtime adapters handover",
+      "start evaluation and observability"
     ],
     "key_topics": [
       "runtime-adapters-and-clients",
@@ -32,11 +31,11 @@
       "implementation",
       "phase",
       "plan",
-      "tasks",
       "architecture",
       "decision",
       "client-owned",
-      "presentation"
+      "presentation",
+      "status"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "Integrate the projection core with six CLIs through their safest supported event and presentation boundaries",
     "created_at": "2026-08-11T10:04:31Z",
-    "last_save_at": "2026-09-11T16:41:54.164Z",
+    "last_save_at": "2026-10-03T15:43:47.413Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +207,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:691c0a63ead5dd21e6476c15cdfefe0d5f0875fc75be60cdc2d905c5adb1cb50",
+    "source_fingerprint": "sha256:f808715d07a264ccc988b6e14832a105019d2d2a3fc0d04481e18ba3b7184528",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "97b647f6a39495cf8a9bb4563f40fde2801c2eb2dcbc53341c0a89d4ea219231",
       "plan.md": "9702a181c0a72d95b057bf9c1d9ee70ec5d5fc8190576f65f6d98d0b137da6cd",
-      "tasks.md": "caa5d17c397c66fdfa054fba2599485e6e1f3133cd015e1a3e264534f375414c",
-      "decision-record.md": "ef4bd1bff60b154c4869ea6fb16242a42e242d3041a28409ff072f90989a2c7e",
-      "implementation-summary.md": "8eb7cb7ebf55b7a56a04c44942e72814604148d01c92f941d1d3934676c385bb",
+      "tasks.md": "bba0eb1bbe55added028fca067757c5c3512dc8ceccdc5dcc8e8c1d0081fa9c6",
+      "decision-record.md": "3dd36b9e4726220ddb644a0a57d120158645f49fab5bab7391df99fb7b437b57",
+      "implementation-summary.md": "5d70f123aa55ec675cf5e467c1c4f7a4d590dd8668888ebe72c561086db07241",
       "handover.md": "6985581578156906d0cabc335b5cfc02853ac52c09baa61864c825a6b16271c1"
     },
     "last_active_child_id": null,

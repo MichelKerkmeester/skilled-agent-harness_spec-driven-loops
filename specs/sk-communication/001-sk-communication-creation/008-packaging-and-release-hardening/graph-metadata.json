@@ -15,14 +15,13 @@
       "portable cli projection",
       "implementation phase",
       "implementation plan",
-      "tasks",
-      "implementation",
       "architecture decision",
-      "gate release with a dated support matrix and fail-closed compatibility doctor",
+      "dated support matrix release gate",
       "implementation status",
       "current state",
       "phase 008 handover",
-      "packaging release handover"
+      "packaging release handover",
+      "parent release decision"
     ],
     "key_topics": [
       "packaging-and-release-hardening",
@@ -32,11 +31,11 @@
       "implementation",
       "phase",
       "plan",
-      "tasks",
       "architecture",
       "decision",
-      "gate",
-      "release"
+      "dated",
+      "support",
+      "matrix"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "Package the system with explicit provider privacy choices, a tested compatibility matrix, diagnostics, rollback, and six-runtime release gates",
     "created_at": "2026-08-11T10:04:33Z",
-    "last_save_at": "2026-09-11T16:41:54.229Z",
+    "last_save_at": "2026-10-03T15:43:51.106Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +206,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:019821187ad1fcbc05f60280f0887719278137d7ab1a67d6b0231c0dc6c455d2",
+    "source_fingerprint": "sha256:3bb364122dfb648c54816e9c06f8e5817118891ddf458387bf126e584092b1eb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ef94277a4866bd96c2fa66bff8865ca4f0e949fa82a496933025e949c70f2163",
       "plan.md": "1183c6c542315368080a32833202314dd08ea59007e50632b0009c9415f29cfe",
-      "tasks.md": "6fcc61869bbe7f1f040a02bbd9c06f0aba9bcb67434d3b4a7c2f7783dc259b41",
-      "decision-record.md": "181f6252cb88104f0ec66b2051f2048ecd1651bab84e53a41bdcf5a7e7543f7e",
-      "implementation-summary.md": "70300a98abf72d349d64643d8d65717c4fa15f35be204c135644fb31f4017769",
+      "tasks.md": "24f7022468dfc218221b69d14b3ce02b0ae993756894f6158864b117562ac3da",
+      "decision-record.md": "a2d558b9f74209522c664ec122c65191a87bed7fa61a48db7f9057718730722c",
+      "implementation-summary.md": "10e917f51f1a49b918d1e769be3b892c4c5393903098eca418ee62341ac28e21",
       "handover.md": "f056ae5f5a9c1cd4062a639c506b7b6951f603a78dd63d743bb040ab9f9bea73"
     },
     "last_active_child_id": null,

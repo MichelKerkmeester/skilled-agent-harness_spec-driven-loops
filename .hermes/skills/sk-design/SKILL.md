@@ -1,6 +1,6 @@
 ---
 name: sk-design
-description: Design parent hub. Routes one design identity to the mode that owns the decision being asked for, starting with sk-design-fundamentals.
+description: "Design parent hub. Routes one design identity to the mode that owns the decision, starting with sk-design-fundamentals."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 2.0.0.0
 metadata:

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "In progress: the second-pass subject plan builder and its tests exist; push, remap and hooks are not yet done."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-git/028-crawlable-commit-history/008-second-pass-subjects-and-attribution"
-    last_updated_at: "2026-09-11T17:06:04Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-09-12T11:47:31+02:00"
+    last_updated_by: "spec-validation-backfill"
+    recent_action: "Built the subject plan builder and its tests"
+    next_safe_action: "Run the residual swarm, then the callback and hooks"
     blockers: []
     key_files: []
     session_dedup:
@@ -48,18 +48,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The first tool of the second rewrite pass, not the pass itself. This phase is In Progress: the subject plan builder and its tests exist, and the push, the citation remap and the hook changes are not yet recorded as done.
 
-### Phase 1: second-pass-subjects-and-attribution
+### Phase 8: second-pass-subjects-and-attribution
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`scripts/build-subject-plan.py` reads subject, body and changed paths for a pinned tip in one `git log` pass, joins each commit with the first pass's packet plan, applies subject rules R1 to R7, and writes one JSON object per commit plus a before-and-after review table. A commit the rules cannot resolve becomes a residual row carrying the reason and the context a later judge needs.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `scripts/build-subject-plan.py` | Created | Rules R1 to R7, residual marking, review table |
+| `scripts/tests/test_build_subject_plan.py` | Created | Tests for the plan builder |
+| `scratch/briefs/008a-subject-plan.md`, `008b-swarm-shard.md`, `008c-callback-and-hooks.md` | Created | Dispatch briefs for the plan, the residual swarm and the callback and hook changes |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +68,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Not delivered yet. The briefs split the pass into the subject plan, a swarm that judges residuals, and the callback and hook changes; only the first has an artifact on disk.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +78,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Rules first, judgment only for residuals | A human rewrite of 9,000 subjects is not deterministic (spec out-of-scope) |
+| Prose that mentions Anthropic is listed, not stripped | The spec leaves that call to the operator |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +89,8 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Second-pass criterion in `../goal.md` | Open: not yet met on origin |
+| Plan builder tests | Not recorded in this packet |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +98,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **The phase docs are mostly scaffold.** `tasks.md` and `acceptance-criteria.md` still hold template rows, so this summary records only what exists on disk.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -37,7 +37,7 @@ Copy this template to `.env` in your project root, then replace placeholder valu
 # Copy this to .env and fill in your actual credentials
 #
 # ⚠️ CRITICAL: Code Mode uses PREFIXED variable names!
-# Format: {manual_name}_{VAR} where manual_name is from .utcp_config.json
+# Format: {manual_name with each _ doubled}_{VAR} where manual_name is from .utcp_config.json
 # Example: If your config has "name": "clickup", use clickup_CLICKUP_API_KEY
 
 # ClickUp Configuration
@@ -87,7 +87,7 @@ myservice_MYSERVICE_API_TOKEN=your_myservice_token_here
 
 **Format (Code Mode prefixed):**
 ```bash
-# Code Mode requires prefixed variable names: {manual_name}_{VAR}
+# Code Mode requires prefixed variable names: {manual_name with each _ doubled}_{VAR}
 clickup_CLICKUP_API_KEY=pk_1234567890_ABCDEFGHIJKLMNOP
 clickup_CLICKUP_TEAM_ID=12345678
 ```
@@ -107,7 +107,7 @@ clickup_CLICKUP_TEAM_ID=12345678
 
 **Format (Code Mode prefixed):**
 ```bash
-# Code Mode requires prefixed variable names: {manual_name}_{VAR}
+# Code Mode requires prefixed variable names: {manual_name with each _ doubled}_{VAR}
 figma_FIGMA_API_KEY=figd_abcdefghijklmnopqrstuvwxyz1234567890
 ```
 
@@ -127,7 +127,7 @@ figma_FIGMA_API_KEY=figd_abcdefghijklmnopqrstuvwxyz1234567890
 
 **Format (Code Mode prefixed):**
 ```bash
-# Code Mode requires prefixed variable names: {manual_name}_{VAR}
+# Code Mode requires prefixed variable names: {manual_name with each _ doubled}_{VAR}
 notion_NOTION_TOKEN=ntn_1234567890abcdefghijklmnopqrstuvwxyz
 ```
 
@@ -147,7 +147,7 @@ notion_NOTION_TOKEN=ntn_1234567890abcdefghijklmnopqrstuvwxyz
 
 **Format (Code Mode prefixed):**
 ```bash
-# Code Mode requires prefixed variable names: {manual_name}_{VAR}
+# Code Mode requires prefixed variable names: {manual_name with each _ doubled}_{VAR}
 github_GITHUB_TOKEN=ghp_1234567890abcdefghijklmnopqrstuvwxyz
 ```
 
@@ -166,7 +166,7 @@ github_GITHUB_TOKEN=ghp_1234567890abcdefghijklmnopqrstuvwxyz
 
 **Format (Code Mode prefixed):**
 ```bash
-# Code Mode requires prefixed variable names: {manual_name}_{VAR}
+# Code Mode requires prefixed variable names: {manual_name with each _ doubled}_{VAR}
 myservice_MYSERVICE_API_TOKEN=your_myservice_api_token_here
 ```
 
@@ -190,11 +190,12 @@ myservice_MYSERVICE_API_TOKEN=your_myservice_api_token_here
 
 ### Code Mode Prefixes All Environment Variables
 
-**⚠️ IMPORTANT**: Code Mode automatically prefixes all environment variables with the `{manual_name}_` from your `.utcp_config.json` configuration.
+**⚠️ IMPORTANT**: Code Mode automatically prefixes all environment variables with the `{manual_name}_` from your `.utcp_config.json` configuration, doubling each underscore in the manual name first.
 
 **The Pattern:**
 ```
-{manual_name}_{VARIABLE_NAME}
+{manual_name with each _ doubled}_{VARIABLE_NAME}
+# Example: "clickup_official" + ${CLICKUP_API_KEY} -> clickup__official_CLICKUP_API_KEY
 ```
 
 **Example:**

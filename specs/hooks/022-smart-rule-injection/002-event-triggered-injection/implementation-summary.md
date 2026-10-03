@@ -57,6 +57,7 @@ An existing gate advisory looked like the cleanest fit until its state log was r
 ### Deferred
 
 A narrow git branch-name allocation guard survives as the only candidate with a real moment behind it. It is deferred pending measurement, not encoded.
+The ten iteration records behind this closeout are `research/iterations/iteration-001.md` through `research/iterations/iteration-010.md`, with the carried-in context in `research/prior-findings.md`.
 
 <!-- /ANCHOR:what-built -->
 
@@ -89,6 +90,7 @@ Ten research iterations ran on DeepSeek V4.1 Flash at max thinking through `cli-
 | Author test | No surface outside the model can compose a question; recorded as structural |
 | Rate | The gate advisory's firing count and gate lifetime were read from its state log |
 | Deferred candidate | The branch-name guard names the measurement that must precede encoding |
+| Round record | `research/iterations/iteration-010.md` confirms both refusals and the measured death of the gate-advisory candidate |
 
 <!-- /ANCHOR:verification -->
 

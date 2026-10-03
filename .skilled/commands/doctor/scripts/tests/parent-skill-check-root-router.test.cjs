@@ -1,16 +1,16 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ parent-skill-check-root-router.test — coverage for the check-12 contract  ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Parent Skill Check Root Router Test
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 /**
  * Covers the root-router two-state check (12) in parent-skill-check.cjs: a
  * canon-clean hub with a compliant stage1-only or active root ROUTER.md passes
  * at exit 0, and each of the eight negative shapes fails at exactly its stable
- * RRC code with a nonzero exit. The fixtures carry isolated copies of the real
- * contract libraries at the sibling sk-doc topology the checker resolves from,
- * so nothing here touches a live hub.
+ * RRC code with a nonzero exit. The checker resolves the contract libraries
+ * from the repository root, so the temp fixtures are audited against the same
+ * code as a live hub, and nothing here touches one.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -30,21 +30,19 @@ const { spawnSync } = require('node:child_process');
 const CHECKER_PATH = path.join(__dirname, '..', 'parent-skill-check.cjs');
 const REAL_SK_DOC_ROOT = path.join(__dirname, '..', '..', '..', '..', 'skills', 'sk-doc');
 const REAL_GENERATOR_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
-const REAL_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'leaf-resource-contract.cjs');
-const REAL_ROOT_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'skill-root-metadata-contract.cjs');
-const REAL_ROOT_ROUTER_CONTRACT_LIB_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 'root-router-contract.cjs');
-const REAL_S_CLASS_DEFAULTS_PATH = path.join(REAL_SK_DOC_ROOT, 'sk-create-skill', 'scripts', 'lib', 's-class-config-defaults.json');
 
 const MODE_A = 'demo-alpha';
 const MODE_B = 'demo-beta';
 
+// Every temp fixture root this run creates, removed when the process exits.
+const FIXTURE_ROOTS = [];
+process.on('exit', () => {
+  for (const root of FIXTURE_ROOTS) fs.rmSync(root, { recursive: true, force: true });
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. FIXTURE HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
-
-function readJson(p) {
-  return JSON.parse(fs.readFileSync(p, 'utf8'));
-}
 
 function writeJson(p, data) {
   fs.writeFileSync(p, JSON.stringify(data, null, 2));
@@ -52,20 +50,10 @@ function writeJson(p, data) {
 
 function makeTempHubDir() {
   const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'parent-skill-check-root-router-'));
+  FIXTURE_ROOTS.push(fixtureRoot);
   const hubRoot = path.join(fixtureRoot, 'demo-hub');
   fs.mkdirSync(hubRoot);
   return hubRoot;
-}
-
-function installContractLibrary(hubRoot) {
-  const scriptsDir = path.join(path.dirname(hubRoot), 'sk-doc', 'sk-create-skill', 'scripts');
-  const libDir = path.join(scriptsDir, 'lib');
-  fs.mkdirSync(libDir, { recursive: true });
-  fs.copyFileSync(REAL_GENERATOR_PATH, path.join(scriptsDir, 'generate-leaf-manifest.cjs'));
-  fs.copyFileSync(REAL_CONTRACT_LIB_PATH, path.join(libDir, 'leaf-resource-contract.cjs'));
-  fs.copyFileSync(REAL_ROOT_CONTRACT_LIB_PATH, path.join(libDir, 'skill-root-metadata-contract.cjs'));
-  fs.copyFileSync(REAL_ROOT_ROUTER_CONTRACT_LIB_PATH, path.join(libDir, 'root-router-contract.cjs'));
-  fs.copyFileSync(REAL_S_CLASS_DEFAULTS_PATH, path.join(libDir, 's-class-config-defaults.json'));
 }
 
 function writePacketCompanions(packetDir, packetSkillName) {
@@ -88,6 +76,7 @@ function baseRegistry() {
         toolSurface,
         packet: 'create-skill',
         packetSkillName: 'create-skill',
+        aliases: ['alpha thing'],
         grandfatheredFolderMismatch: false,
         advisorRouting: { routingClass: 'metadata' },
       },
@@ -98,6 +87,7 @@ function baseRegistry() {
         toolSurface,
         packet: 'pkg-two',
         packetSkillName: 'pkg-two',
+        aliases: ['beta thing'],
         grandfatheredFolderMismatch: false,
         advisorRouting: { routingClass: 'metadata' },
       },
@@ -194,9 +184,9 @@ function buildCleanFixture({ routerContent = stage1Router() } = {}) {
   fs.writeFileSync(path.join(hubRoot, 'graph-metadata.json'), JSON.stringify({ skill_id: basename, family: 'sk-hub' }, null, 2));
   writeJson(path.join(hubRoot, 'mode-registry.json'), baseRegistry());
   writeJson(path.join(hubRoot, 'hub-router.json'), baseHubRouter());
-  writeJson(path.join(hubRoot, 'description.json'), { name: basename, description: 'fixture hub', version: '0.0.0', keywords: ['fixture'] });
+  writeJson(path.join(hubRoot, 'description.json'), { name: basename, description: 'fixture hub', version: '1.0.0.0', keywords: ['fixture'] });
   writeJson(path.join(hubRoot, 'command-metadata.json'), []);
-  fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nallowed-tools: [Read]\n---\n# demo-hub\n');
+  fs.writeFileSync(path.join(hubRoot, 'SKILL.md'), '---\nname: demo-hub\nversion: 1.0.0.0\nallowed-tools: [Read]\n---\n# demo-hub\n');
   fs.writeFileSync(path.join(hubRoot, 'ROUTER.md'), routerContent);
   fs.mkdirSync(path.join(hubRoot, 'changelog'), { recursive: true });
   fs.writeFileSync(path.join(hubRoot, 'changelog', 'CHANGELOG.md'), '# Changelog\n');
@@ -212,11 +202,8 @@ function buildCleanFixture({ routerContent = stage1Router() } = {}) {
   writePacketCompanions(packetA, 'create-skill');
   writePacketCompanions(packetB, 'pkg-two');
 
-  installContractLibrary(hubRoot);
-
-  const generatorPath = path.join(path.dirname(hubRoot), 'sk-doc', 'sk-create-skill', 'scripts', 'generate-leaf-manifest.cjs');
   // eslint-disable-next-line global-require, import/no-dynamic-require
-  const generator = require(generatorPath);
+  const generator = require(REAL_GENERATOR_PATH);
   fs.writeFileSync(path.join(hubRoot, 'leaf-manifest.json'), generator.buildManifestBytes(hubRoot));
 
   return hubRoot;
@@ -226,11 +213,10 @@ function buildCleanFixture({ routerContent = stage1Router() } = {}) {
 // 4. RUNNER
 // ─────────────────────────────────────────────────────────────────────────────
 
-function runChecker(hubRoot, envOverrides) {
-  const result = spawnSync(process.execPath, [CHECKER_PATH, hubRoot], {
-    encoding: 'utf8',
-    env: { ...process.env, ...envOverrides },
-  });
+function runChecker(hubRoot) {
+  const env = { ...process.env };
+  delete env.PARENT_HUB_CHECK_STRICT;
+  const result = spawnSync(process.execPath, [CHECKER_PATH, hubRoot], { encoding: 'utf8', env });
   return { status: result.status, stdout: `${result.stdout || ''}${result.stderr || ''}` };
 }
 
@@ -248,7 +234,7 @@ function assertOnlyRouterViolation(stdout, code, label) {
 
 function testStage1OnlyPasses() {
   const hubRoot = buildCleanFixture();
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assert.match(result.stdout, /PASS: 12a-router-contract: root ROUTER\.md conforms to the two-state contract \(stage1-only\)/);
   assert.doesNotMatch(result.stdout, /FAIL: 12a-router-contract:/);
   assert.equal(result.status, 0, `expected a stage1-only fixture to exit 0:\n${result.stdout}`);
@@ -256,7 +242,7 @@ function testStage1OnlyPasses() {
 
 function testActivePasses() {
   const hubRoot = buildCleanFixture({ routerContent: activeRouter() });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assert.match(result.stdout, /PASS: 12a-router-contract: root ROUTER\.md conforms to the two-state contract \(active\)/);
   assert.doesNotMatch(result.stdout, /FAIL: 12a-router-contract:/);
   assert.equal(result.status, 0, `expected an active fixture to exit 0:\n${result.stdout}`);
@@ -269,7 +255,7 @@ function testActivePasses() {
 function testMissingRouterFailsRRC001() {
   const hubRoot = buildCleanFixture();
   fs.rmSync(path.join(hubRoot, 'ROUTER.md'));
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-001', 'missing root router');
   assert.notEqual(result.status, 0);
 }
@@ -278,7 +264,7 @@ function testMalformedStateFailsRRC002() {
   const hubRoot = buildCleanFixture({
     routerContent: stage1Router().replace(/router_state: stage1-only\n/, ''),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-002', 'malformed state');
   assert.notEqual(result.status, 0);
 }
@@ -287,7 +273,7 @@ function testDualSourceFailsRRC003() {
   const hubRoot = buildCleanFixture();
   fs.mkdirSync(path.join(hubRoot, 'shared', 'references'), { recursive: true });
   fs.writeFileSync(path.join(hubRoot, 'shared', 'references', 'smart-routing.md'), '# legacy\n');
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-003', 'dual source');
   assert.notEqual(result.status, 0);
 }
@@ -299,7 +285,7 @@ function testKeyMismatchFailsRRC004() {
       '',
     ),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-004', 'active key mismatch');
   assert.notEqual(result.status, 0);
 }
@@ -311,7 +297,7 @@ function testStage1NonEmptyFailsRRC005() {
       'INTENT_SIGNALS = {\n    "ALPHA": {"weight": 4, "keywords": ["alpha intent"]},\n}',
     ),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-005', 'stage1-only non-empty maps');
   assert.notEqual(result.status, 0);
 }
@@ -320,7 +306,7 @@ function testUnresolvedLeafFailsRRC006() {
   const hubRoot = buildCleanFixture({
     routerContent: activeRouter({ pathForBeta: 'pkg-two/references/missing.md' }),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-006', 'unresolved leaf');
   assert.notEqual(result.status, 0);
 }
@@ -329,7 +315,7 @@ function testMissingSkillPointerFailsRRC007() {
   const hubRoot = buildCleanFixture({
     routerContent: stage1Router().replace(/skill_pointer: SKILL.md\n/, ''),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-007', 'missing skill pointer');
   assert.notEqual(result.status, 0);
 }
@@ -338,7 +324,7 @@ function testLegacyStageTwoDefaultFailsRRC008() {
   const hubRoot = buildCleanFixture({
     routerContent: activeRouter({ defaults: '["shared/references/smart-routing.md"]' }),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-008', 'legacy stage-two default residue');
   assert.notEqual(result.status, 0);
 }
@@ -351,7 +337,7 @@ function testStage1MissingIntentSignalsFailsRRC002() {
   const hubRoot = buildCleanFixture({
     routerContent: stage1Router().replace('INTENT_SIGNALS = {}', ''),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-002', 'stage1-only missing INTENT_SIGNALS declaration');
   assert.notEqual(result.status, 0);
 }
@@ -360,7 +346,7 @@ function testStage1MissingResourceMapFailsRRC002() {
   const hubRoot = buildCleanFixture({
     routerContent: stage1Router().replace('RESOURCE_MAP = {}', ''),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-002', 'stage1-only missing RESOURCE_MAP declaration');
   assert.notEqual(result.status, 0);
 }
@@ -369,7 +355,7 @@ function testStage1MissingDefaultResourceFailsRRC002() {
   const hubRoot = buildCleanFixture({
     routerContent: stage1Router().replace('DEFAULT_RESOURCE = []', ''),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-002', 'stage1-only missing DEFAULT_RESOURCE declaration');
   assert.notEqual(result.status, 0);
 }
@@ -378,7 +364,7 @@ function testStage1MissingSharedControlsFailsRRC002() {
   const hubRoot = buildCleanFixture({
     routerContent: stage1Router().replace('SHARED_CONTROL_RESOURCES = []', ''),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-002', 'stage1-only missing SHARED_CONTROL_RESOURCES declaration');
   assert.notEqual(result.status, 0);
 }
@@ -387,7 +373,7 @@ function testStage1UnbalancedIntentSignalsFailsRRC002() {
   const hubRoot = buildCleanFixture({
     routerContent: stage1Router().replace('INTENT_SIGNALS = {}', 'INTENT_SIGNALS = {'),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-002', 'stage1-only unbalanced INTENT_SIGNALS');
   assert.notEqual(result.status, 0);
 }
@@ -396,7 +382,7 @@ function testStage1MalformedDefaultResourceFailsRRC002() {
   const hubRoot = buildCleanFixture({
     routerContent: stage1Router().replace('DEFAULT_RESOURCE = []', 'DEFAULT_RESOURCE = ['),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-002', 'stage1-only unbalanced DEFAULT_RESOURCE');
   assert.notEqual(result.status, 0);
 }
@@ -405,7 +391,7 @@ function testVersionNotFourPartFailsRRC002() {
   const hubRoot = buildCleanFixture({
     routerContent: stage1Router().replace('version: 1.0.0.0', 'version: 1.0.0'),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-002', 'non-four-part version');
   assert.notEqual(result.status, 0);
 }
@@ -414,7 +400,7 @@ function testSkillPointerNotRootFailsRRC007() {
   const hubRoot = buildCleanFixture({
     routerContent: stage1Router().replace('skill_pointer: SKILL.md', 'skill_pointer: ../sibling/SKILL.md'),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-007', 'non-root skill pointer');
   assert.notEqual(result.status, 0);
 }
@@ -426,7 +412,7 @@ function testActiveEmptyResourceListFailsRRC004() {
       '    "BETA": [],\n',
     ),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-004', 'active key with empty resource list');
   assert.notEqual(result.status, 0);
 }
@@ -435,7 +421,7 @@ function testSharedControlTraversalFailsRRC004() {
   const hubRoot = buildCleanFixture({
     routerContent: activeRouter({ sharedControls: '["shared/../../outside.md"]' }),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-004', 'shared-control path traversal');
   assert.notEqual(result.status, 0);
 }
@@ -444,7 +430,7 @@ function testMappedPathTraversalFailsRRC006() {
   const hubRoot = buildCleanFixture({
     routerContent: activeRouter({ pathForBeta: '../outside.md' }),
   });
-  const result = runChecker(hubRoot, { PARENT_HUB_CHECK_STRICT: '1' });
+  const result = runChecker(hubRoot);
   assertOnlyRouterViolation(result.stdout, 'RRC-006', 'mapped resource path traversal');
   assert.notEqual(result.status, 0);
 }

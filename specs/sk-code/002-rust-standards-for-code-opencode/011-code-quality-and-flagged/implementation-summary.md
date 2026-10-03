@@ -68,7 +68,7 @@ Fixed (blank-line-preserving) slicer; `rewire_paths.py` for the RESOURCE_MAP quo
 ## Verification
 | Gate | Result |
 |---|---|
-| 3 hub router guards | 21/21 |
+| 3 hub router guards (`sk-code-router-sync.vitest.ts`, `surface-slice-sync.vitest.ts`, `code-surface-path-parse.vitest.ts`) | 21/21 |
 | Dangling grep (code-quality checklist) | Clean |
 | Part internal links | All resolve (0 broken) |
 | Full skill-benchmark suite | 11 failures == baseline → 0 regressions |

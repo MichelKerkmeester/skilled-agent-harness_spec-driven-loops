@@ -5,7 +5,7 @@ trigger_phrases:
   - "sk-create-manual-testing-playbook playbook"
   - "sk-create-quality-control playbook"
   - "sk-create-skill playbook"
-  - "playbooks for the modes that act on another mode's output"
+  - "meta and quality mode playbooks"
 importance_tier: "high"
 contextType: "general"
 ---
@@ -19,11 +19,11 @@ contextType: "general"
 
 ## EXECUTIVE SUMMARY
 
-[2-3 sentence high-level overview for stakeholders who need quick context]
+This phase gives the modes that act on another mode's output (`sk-create-manual-testing-playbook`, `sk-create-quality-control`, `sk-create-skill`) a manual testing playbook each, so an operator has a written scenario that says what the mode doing its job looks like. The three packages were authored and committed in `ad9d93df3be` (2026-09-01) under another packet; this phase records that delivery against its own requirements.
 
-**Key Decisions**: [Major decision 1], [Major decision 2]
+**Key Decisions**: Scenario frontmatter follows the operator-scenario contract with the Lane C benchmark fields omitted; every mode carries scenarios in both directions, one it must act on and one it must leave alone.
 
-**Critical Dependencies**: [Blocking dependency]
+**Critical Dependencies**: The package validator `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs`, read on its operator count rather than its exit status.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -32,15 +32,15 @@ contextType: "general"
 | Field | Value |
 |-------|-------|
 | **Level** | 3 |
-| **Priority** | [P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-09-01 |
-| **Branch** | `scaffold/003-meta-and-quality` |
+| **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 3 |
 | **Predecessor** | 002-artifact-producers |
 | **Successor** | None |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | Each package validates as an operator-scenario package: `PASS` with a non-zero `operator` count and `routing_gold_excluded=0` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -50,20 +50,20 @@ contextType: "general"
 
 This is **Phase 3** of the Give every sk-doc mode the manual testing playbook it lacks specification.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: The `manual-testing-playbook/` package of `sk-create-manual-testing-playbook`, `sk-create-quality-control`, `sk-create-skill`. No mode behaviour changes.
 
 **Dependencies**:
-- [To be defined during planning]
+- The operator-scenario contract owned by `sk-create-manual-testing-playbook` and its validator.
 
 **Deliverables**:
-- [To be defined during planning]
+- `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/`
+- `.skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/`
+- `.skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/`
 
-**Changelog**:
-- When this phase closes, refresh the matching file in ../changelog/ using the parent packet number plus this phase folder name.
+**Delivery record**: The packages landed in commit `ad9d93df3be` under `sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc`. This phase did not author them; it records them. See `implementation-summary.md`.
 <!-- /ANCHOR:phase-context -->
 
 ---
-
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
@@ -144,8 +144,8 @@ These three modes can be checked by an operator following a written scenario.
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [System/API] | [What if blocked] | [Fallback plan] |
-| Risk | [Risk description] | [High/Med/Low] | [Mitigation strategy] |
+| Dependency | `validate-playbook-package.cjs` | Without it no package can be checked against the contract | Run it per package with `--package <root>` and read the summary line |
+| Risk | A package whose scenarios carry the routing-gold signature is excluded, giving `operator=0`, status `SKIP` and exit zero | High: a sweep that reads exit status calls it clean | Every package is judged on its `operator` count and `routing_gold_excluded=0`, never on exit status |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -154,26 +154,18 @@ These three modes can be checked by an operator following a written scenario.
 
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
-### Performance
-- **NFR-P01**: [Response time target - e.g., <200ms p95]
-
-### Security
-- **NFR-S01**: [Auth requirement - e.g., JWT tokens required]
-
 ### Reliability
-- **NFR-R01**: [Uptime target - e.g., 99.9%]
+- **NFR-R01**: A package validates the same way on every run: the validator reads files only and writes nothing.
+
+### Maintainability
+- **NFR-M01**: Each scenario names its exact prompt, command sequence and PASS/FAIL line, so an operator needs no outside context to run it.
 
 ---
 
 ## 8. EDGE CASES
 
-### Data Boundaries
-- Empty input: [How system handles]
-- Maximum length: [Limit and behavior]
-
-### Error Scenarios
-- External service failure: [Fallback behavior]
-- Network timeout: [Retry strategy]
+- A package with zero operator scenarios exits zero with status `SKIP`; the requirement rejects that outcome explicitly (REQ-002).
+- A scenario later retired with its feature leaves the package smaller but still valid; the validator count is read at the time of closure.
 
 ---
 
@@ -181,12 +173,12 @@ These three modes can be checked by an operator following a written scenario.
 
 | Dimension | Score | Triggers |
 |-----------|-------|----------|
-| Scope | [/25] | [Files: X, LOC: Y, Systems: Z] |
-| Risk | [/25] | [Auth: Y/N, API: Y/N, Breaking: Y/N] |
-| Research | [/20] | [Investigation needs] |
-| Multi-Agent | [/15] | [Workstreams: X] |
-| Coordination | [/15] | [Dependencies: X] |
-| **Total** | **[/100]** | **Level 3** |
+| Scope | 8/25 | Three packages of markdown, no code |
+| Risk | 6/25 | No runtime surface; the SKIP-at-exit-zero trap |
+| Research | 4/20 | Each mode's current behaviour, read from its SKILL.md and references |
+| Multi-Agent | 3/15 | One lineage per package |
+| Coordination | 3/15 | Independent of the sibling phases |
+| **Total** | **24/100** | **Level 3 (inherited from the packet scaffold)** |
 
 ---
 
@@ -194,32 +186,32 @@ These three modes can be checked by an operator following a written scenario.
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
-| R-001 | [Risk] | [H/M/L] | [H/M/L] | [Strategy] |
+| R-001 | A fully excluded package reads as clean | H | M | Assert `operator` greater than zero per package |
+| R-002 | A playbook asserts a bug because the mode was edited while writing it | M | L | Out of scope: no mode behaviour changes in this phase |
 
 ---
 
 ## 11. USER STORIES
 
-### US-001: [Title] (Priority: P0)
+### US-001: Check a mode against a written scenario (Priority: P0)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As an** operator, **I want** a scenario for each of these modes with an exact prompt and a PASS/FAIL line, **so that** I can tell whether the mode still does its job.
 
-**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+**Acceptance criteria:** see `acceptance-criteria.md` (AC-001, AC-002).
 
 ---
 
-### US-002: [Title] (Priority: P1)
+### US-002: Catch over-reach as well as under-reach (Priority: P1)
 
-**As a** [user type], **I want** [needed behavior], **so that** [benefit].
+**As an** operator, **I want** each mode to carry a scenario it must leave alone, **so that** a mode that starts acting outside its job also fails.
 
-**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+**Acceptance criteria:** see `acceptance-criteria.md` (AC-003).
 
 ---
 
 ## 12. OPEN QUESTIONS
 
-- [Question 1 requiring clarification]
-- [Question 2 requiring clarification]
+None.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -229,23 +221,5 @@ These three modes can be checked by an operator following a written scenario.
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Verification Checklist**: See `tasks.md`
-- **Decision Records**: See `decision-record.md`
-
----
-
-
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-REQUIREMENT_PLACEHOLDER
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
-**Given**
--->
+- **Acceptance Criteria**: See `acceptance-criteria.md`
+- **Implementation Summary**: See `implementation-summary.md`

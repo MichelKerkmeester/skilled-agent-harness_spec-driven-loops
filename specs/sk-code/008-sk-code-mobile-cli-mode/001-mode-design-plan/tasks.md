@@ -2,12 +2,7 @@
 title: "Tasks — sk-code Mobile-CLI mode — design plan [sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan/tasks]"
 description: "Task ledger for sk-code Mobile-CLI mode — design plan (plan-only)."
 trigger_phrases:
-  - "tasks"
-  - "code"
-  - "mobile"
-  - "cli"
-  - "mode"
-  - "001"
+  - "mode design plan tasks"
 importance_tier: "normal"
 contextType: "planning"
 _memory:

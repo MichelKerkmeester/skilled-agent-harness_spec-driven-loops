@@ -17,8 +17,6 @@
       "CLI-output wrapper cursor",
       "cursor runtime adapter seam",
       "implementation plan",
-      "tasks",
-      "implementation",
       "implementation summary"
     ],
     "key_topics": [
@@ -191,7 +189,7 @@
     ],
     "causal_summary": "Cursor exposes only input, tool, and lifecycle hooks, and none of them rewrite the rendered assistant answer, so projection cannot hook the rendered output natively",
     "created_at": "2026-08-14T05:38:37.896Z",
-    "last_save_at": "2026-08-30T15:39:11.853Z",
+    "last_save_at": "2026-10-03T15:12:03.145Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bae53f9caeb7fe99b9e02cf3428e48de02557179d66ccf12a4191f58d6a53d90",
+    "source_fingerprint": "sha256:605e32d333c7964777cbd259be12e1ca62017982a2493c5337ac54485ac582d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c7b364190e02c72c3d19834386afb38a1b31c90d99faa2d790f02955cfb02f04",
       "plan.md": "a402a26259822dbce6bfd5e8c3577c0595fcfe314c797ad639ef1e1a77a1dafe",
-      "tasks.md": "c42ffe4d6cb214ca766b5fde66164a9c430196b9993d67ef49ee2b1462236522",
+      "tasks.md": "002e1015684a153ac2d82091bf527cba2a4fd0ea10ca1cba5c5aa9e1254f39cc",
       "implementation-summary.md": "81b260b3b386de87addbb4a3777de19937fd5fb908e4a5408f57716429247ca5"
     },
     "last_active_child_id": null,

@@ -3,7 +3,7 @@
 # ─────────────────────────────────────────────────────────────────
 role: Expert Operator running the skill-graph freshness diagnostic in interactive mode
 purpose: Read-only 3-way diff of the three skill-graph representations that drift while the canonical reindex is operator-gated — the Python-compiled scripts/skill-graph.json, the SQLite skill-graph.sqlite the daemon reads, and the on-disk graph-metadata.json source of truth
-action: Run skill-graph-freshness.cjs -> present the drift report (zombie / ghost / family mismatch / missing / null-timestamp) -> final status
+action: Run skill-graph-freshness.cjs -> present the drift report (unreadable / zombie / ghost / family mismatch / missing / null-timestamp) -> final status
 
 # ─────────────────────────────────────────────────────────────────
 # OPERATING MODE
@@ -29,11 +29,28 @@ freshness_doctor_invariant: |
   sources and names the stale set:
     - ZOMBIE:  a skill id present in SQLite but not on disk.
     - GHOST:   a skill id present in the compiled json but not on disk.
-    - MISSING: a skill id on disk but absent from SQLite.
+    - MISSING: a skill id on disk but absent from SQLite, and separately a skill id on
+      disk but absent from the compiled json.
+    - UNREADABLE graph-metadata: a skill folder whose graph-metadata.json is malformed or
+      has no string skill_id, named by folder; that name is never reported as a zombie or
+      a ghost, because unreadable metadata is not evidence the skill left the disk.
     - FAMILY MISMATCH: same id, different family across sources.
     - NULL derived.generated_at: identities never V2-sync-stamped.
+    - STALE COMPILED: the compiled json's generated_at is older than the newest
+      derived.generated_at or derived.last_updated_at stamp on disk (both stamps named).
+    - DEGRADED: a source is absent or unreadable, or the compiled json has a missing or
+      empty families object, so the checks that need it did not run; the line names the
+      source, the skipped checks and the comparisons that did run ("compiled json vs disk
+      only", "SQLite vs disk only", or "no source comparison ran").
+  The disk scan is depth-1: only direct children of .skilled/skills are read, so nested
+  folders are never visited. Family comparisons print `skill <id> (family disk=<f> ...)`
+  so a family that shares a skill id's name cannot read as the id.
   It reads via stdlib node:sqlite (read-only), NEVER writes, NEVER re-indexes, and NEVER
   self-heals — the canonical reindex stays operator-owned. It always exits 0 (informational).
+  Two environment overrides point it at a fixture tree: SKILL_GRAPH_FRESHNESS_ROOT replaces
+  the repository root (default: the nearest ancestor of the script holding .git), and
+  SYSTEM_SKILL_ADVISOR_DB_DIR names the directory holding skill-graph.sqlite (default: the
+  advisor runtime's database/ directory). A /doctor run sets neither.
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -84,7 +101,7 @@ workflow:
   phase_1_report:
     purpose: "Present the drift report and the final status."
     activities:
-      - "Print the drift report (source sizes + zombie/ghost/mismatch/missing/null-stamp sets)."
+      - "Print the drift report (source sizes, scan rule, stale-compiled and degraded lines, unreadable/zombie/ghost/mismatch/missing/null-stamp sets)."
       - "Note that every finding is report-only; the reindex is operator-gated."
 
 # ─────────────────────────────────────────────────────────────────

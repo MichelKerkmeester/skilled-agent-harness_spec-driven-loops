@@ -2,9 +2,6 @@
 title: "Implementation Summary"
 description: "Every /deep:* contract now states the executor set its own runtime accepts and cites the constant enforcing it, replacing a three-item list that hid four working executors and advertised one that throws."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
   - "impl summary core"
 importance_tier: "normal"
 contextType: "general"

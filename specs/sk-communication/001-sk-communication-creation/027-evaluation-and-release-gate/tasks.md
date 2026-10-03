@@ -3,7 +3,6 @@ title: "Tasks: Phase 027 Evaluation and Release Gate"
 description: "Planned task breakdown for the reject-only evaluation consult, the dated rollout gate, and end-to-end verification."
 trigger_phrases:
   - "evaluation-and-release-gate"
-  - "tasks"
   - "non-inferiority consult and rollout gate tasks"
 importance_tier: "important"
 contextType: "implementation"

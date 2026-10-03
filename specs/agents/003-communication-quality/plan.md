@@ -5,8 +5,6 @@ trigger_phrases:
   - "communication quality"
   - "agents.md plan"
   - "voice reconciliation"
-  - "implementation"
-  - "plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:

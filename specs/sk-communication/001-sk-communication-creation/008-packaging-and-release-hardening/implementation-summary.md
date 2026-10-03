@@ -23,7 +23,7 @@ _memory:
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "phase-008-implementation-20260812"
-      parent_session_id: "phase-008-scaffold-20260811"
+      parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions:

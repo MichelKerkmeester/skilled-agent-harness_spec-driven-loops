@@ -3,8 +3,6 @@ title: "Tasks: Phase 025 Cursor Output Wrapper"
 description: "Planned task breakdown for wiring Cursor into the Phase 020 CLI-output wrapper, confirming the cursor-agent print flag, and verifying the adapter mapping, enablement gate, and fail-open fallback."
 trigger_phrases:
   - "cursor-wrapper"
-  - "tasks"
-  - "implementation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

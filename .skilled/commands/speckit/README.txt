@@ -139,7 +139,7 @@ deep/                 # Deep workflows (research, review, AI council)
     ├── deep-review-confirm.yaml
     └── deep-ai-council-auto.yaml
 
-> Note: `/doctor skill-advisor` previously lived under `speckit/`; it is now organized under `.skilled/commands/doctor/` alongside `mcp_install` and `mcp_debug` since it tunes runtime configuration rather than driving the spec workflow.
+> Note: `/doctor:speckit skill-advisor` previously lived under `speckit/`. It is now organized under `.skilled/commands/doctor/` alongside `/doctor:mcp install|debug`, since it tunes runtime configuration rather than driving the spec workflow.
 ```
 
 `save` and `search` keep the direct-dispatch asset-naming convention they carried before joining this folder: `save-presentation.txt` and `search-presentation.txt` drop the family prefix because the bare command name already reads unambiguously, unlike `plan`, `implement`, `complete` and `resume`, which need the `speckit-` prefix to stay distinctive.
@@ -255,10 +255,10 @@ Each mode-pair command maps to a YAML workflow file in `assets/`:
 /speckit:complete "Add WebSocket support" :auto :with-research
 
 # Check that the trigger index and the retrieval conventions are healthy
-/doctor speckit-retrieval
+/doctor:speckit speckit-retrieval
 
-# Optimize skill advisor scoring (now under /doctor:* group, not speckit)
-/doctor skill-advisor :auto
+# Optimize skill advisor scoring through the doctor router
+/doctor:speckit skill-advisor
 ```
 
 Both retrieval mechanisms behind `search` are runnable by hand, which is the point — you can check exactly what the command saw:
@@ -298,8 +298,7 @@ The retired continuity server exposed 41 tools across seven layers. They are rep
 | Resume and context assembly | The continuity ladder: `handover.md`, then `_memory.continuity`, then packet-first spec docs and bounded anchors. No session inference | `/speckit:resume` |
 | Continuity frontmatter writing | `generate-context.js`, keeping atomic same-directory update and lock semantics | `/speckit:save` |
 | Index maintenance | `generate-trigger-index.mjs` | (script) |
-| Index and convention health | Trigger-index and retrieval-convention diagnostics | `/doctor speckit-retrieval` |
-| Embedder and model-server status | The skill advisor, which owns the shared model server | `/doctor embeddings` |
+| Index and convention health | Trigger-index and retrieval-convention diagnostics | `/doctor:speckit speckit-retrieval` |
 
 ### Declared Losses
 
@@ -320,7 +319,7 @@ These had no replacement, and no recipe approximates one. `search` reports them 
 | `/speckit:search` | Trigger index + 4 ripgrep recipes | none (read-only) |
 | `/speckit:save` | `generate-context.js` | continuity frontmatter, `description.json`, `graph-metadata.json` |
 | `/speckit:resume` | continuity ladder + scoped ripgrep recipe | none |
-| `/doctor speckit-retrieval` | index probe + recipe probe | packet-scratch report only |
+| `/doctor:speckit speckit-retrieval` | index probe + recipe probe | packet-scratch report only |
 
 > **Note:** Every mechanism above is a local script or a `rg` invocation the operator can run by hand. Nothing in this command group depends on a background service, so a stopped daemon is not a degraded session.
 
@@ -377,7 +376,7 @@ For the free-text lane, you do not: `rg` reads the files directly, so an edit is
 | Complete takes too long | Full lifecycle runs all phases | Use specific commands (plan, implement) for faster execution |
 | "No match" from search | The phrase is not written in the searched roots | Rephrase with wording that appears in the documents, or widen the roots. Exit `1` means the command worked and found nothing |
 | Search reports an error with stderr | Ripgrep exited `2` or higher: a search root that does not exist, or a malformed pattern | Read the stderr. Exit `1` and exit `2` both produce empty stdout, so the exit status is the only discriminator |
-| Trigger lookup fails with an error | The generated index is missing or unreadable | Run `/doctor speckit-retrieval`, then regenerate with `generate-trigger-index.mjs` |
+| Trigger lookup fails with an error | The generated index is missing or unreadable | Run `/doctor:speckit speckit-retrieval`, then regenerate with `generate-trigger-index.mjs` |
 | A new document never matches a trigger prompt | Its `trigger_phrases` are absent, generic, or the index predates the edit | Add distinctive phrases per `retrieval-conventions.md` Section 8, then regenerate the index |
 | A recipe returns an unexpected output shape | Two output-mode flags were combined; the last one wins silently | Use exactly one output mode per invocation |
 

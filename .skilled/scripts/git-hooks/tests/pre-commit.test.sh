@@ -439,6 +439,20 @@ else
   echo "FAIL  the mutation-class guard never ran for the .skilled script"; FAIL=$((FAIL + 1))
 fi
 
+# ── 29b. staging only the guard's own manifest reaches the mutation-class guard ──
+setup_gate_fixture
+mkdir -p "$TMP/.opencode/commands/doctor/scripts"
+printf '%s\n' 'echo called >> "$1/guard-calls.log"' \
+  > "$TMP/.opencode/commands/doctor/scripts/check-mcp-mutation-class.sh"
+stage_new ".skilled/commands/doctor/assets/mcp-mutation-class-manifest.yaml" "servers: []"
+SPECKIT_SKIP_MCP_MUTATION_CLASS=0 run_hook; RC=$?
+check "a staged mutation-class manifest passes the mutation-class gate" 0 "$RC"
+if [[ -s "$TMP/guard-calls.log" ]]; then
+  echo "PASS  the mutation-class guard ran for the staged manifest"; PASS=$((PASS + 1))
+else
+  echo "FAIL  the mutation-class guard never ran for the staged manifest"; FAIL=$((FAIL + 1))
+fi
+
 # ── 30. a missing mutation-class guard blocks a staged doctor script where the toolchain ships ──
 setup_gate_fixture toolchain
 stage_new ".opencode/skills/mcp-tooling/mcp-x/scripts/doctor.sh" "doctor"

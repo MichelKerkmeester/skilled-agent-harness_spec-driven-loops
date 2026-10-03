@@ -11,32 +11,28 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
       "spec core",
-      "implementation",
-      "plan",
       "plan core",
-      "tasks",
       "tasks core",
       "acceptance criteria",
-      "closure gate"
+      "closure gate",
+      "ac traceability",
+      "waiver adr",
+      "impl summary core"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
       "spec",
       "core",
-      "implementation",
       "plan",
       "tasks",
       "acceptance",
       "criteria",
-      "closure"
+      "closure",
+      "gate",
+      "traceability",
+      "waiver",
+      "adr",
+      "impl"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -200,7 +196,7 @@
     ],
     "causal_summary": "The orchestrator held no write capability in any of its four runtime dialects, and its prose forbade direct execution outright",
     "created_at": "2026-08-31T06:37:55Z",
-    "last_save_at": "2026-08-31T11:37:34.510Z",
+    "last_save_at": "2026-10-03T15:11:43.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +206,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:905cd0d2d0b0263a6bcc7a7dd996e33483ed23f0bdbc069545e0030b2248c7fd",
+    "source_fingerprint": "sha256:e2fb10b30b0ab492148eafb5e2187b853678830dd8d3bb544686fcf614257ada",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "64df884942c9410d30b0bec7923e2f3b2b4a97dcf111df4cce4d436e0e9b157e",
-      "plan.md": "7d8bc6dc9480489865e9214966632626c770cf0ace6074eafff801cccbe77b52",
-      "tasks.md": "fcbe8facdf77b1b122feb8bd890a822be8f66a4372152a67010f11c8d902b848",
-      "implementation-summary.md": "1deb61dcc8f4b21b76da23d9c00af8cb5fcd9a0582570df776f7183907fee404"
+      "spec.md": "5e2ddbf637c98beb553c203c6ecbff8574e562ed2f7c6d2e0e741cdb13157fa4",
+      "plan.md": "b0e7fdc2a5519a624133c2e8b619eb7ea7104f28d677d8ffa604e610e84c2b5f",
+      "tasks.md": "58a0d22249ff3b17e0bfd25b16fb2f4c8cc71049b92a6a52e388f6cac3c12737",
+      "implementation-summary.md": "3cdab68de84cb776d2d753b26a9ff968d4a5a6721b93aa33f7c0de305c721c1d"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -2,9 +2,6 @@
 title: "Implementation Summary: Orchestrator Inline Authority"
 description: "Bounded write capability for the orchestrator, and a caller gate that no longer refuses the operator who invoked it."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
   - "impl summary core"
 importance_tier: "normal"
 contextType: "general"

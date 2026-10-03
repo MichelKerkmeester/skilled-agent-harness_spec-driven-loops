@@ -16,13 +16,12 @@
       "prompt-pack direct append fix",
       "review alignment projection refresh",
       "check-agent-gateway fail closed",
-      "implementation",
-      "plan",
-      "gateway",
-      "015",
-      "task",
-      "breakdown",
-      "state"
+      "gateway contract remediation plan",
+      "gateway contract remediation tasks",
+      "gateway contract remediation adr",
+      "single canonical state-write path decision",
+      "projection refresh vs gateway receipt decision",
+      "implementation summary"
     ],
     "key_topics": [
       "gateway",
@@ -204,7 +203,7 @@
     ],
     "causal_summary": "Ten confirmed findings, all cited to shipped source in `014`'s registry:",
     "created_at": "2026-08-25T17:42:50.623Z",
-    "last_save_at": "2026-08-30T15:39:22.286Z",
+    "last_save_at": "2026-10-03T15:12:19.737Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f0783e2b279b2054a46ddc2e7af5621705c5f5c108d38b9ff6c0c0784ac719a",
+    "source_fingerprint": "sha256:42bafcf3e630c46ec46fb46b148d401c33e073e858fef66ee1c9c3fa6f892276",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f285e281679096d352fd8ce3d0755d6fbe9529680fef88fbe8e6219e2f3b0851",
-      "plan.md": "a6482930a24d017cc05d377cd808af11e0c72d783ceeb9bc44f8229f537cbcb5",
-      "tasks.md": "542c2a258bdd500e9e7b23179f73370cf805c535f459306eba387ce68fa126d3",
+      "plan.md": "3a978090d42c9c41226d78ebce0685aa823a1643fc802ed2dbcf1972ecb128a9",
+      "tasks.md": "315a61f1531c119466869a9777227559acd68bf78902b1e82268954ac83eb0c5",
       "decision-record.md": "9331ce8bc93a409b6fded0e2084cb0bba2d8bdf815b78aa76e6fd963921632ec",
-      "implementation-summary.md": "845f467ce746a4093a72ed48afd77ce62fdb1042df10530b6ce05a4735596a7a"
+      "implementation-summary.md": "46c396874d87114e5b3a1e1f12721ba836e86e28d03260cc0d37b9a5ca4e5887"
     },
     "last_active_child_id": null,
     "last_active_at": null

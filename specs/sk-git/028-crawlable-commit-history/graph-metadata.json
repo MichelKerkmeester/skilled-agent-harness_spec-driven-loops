@@ -192,19 +192,19 @@
         "source": "derived"
       },
       {
-        "name": "deepseek-v4.1-flash",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
         "name": "file",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -212,14 +212,14 @@
     ],
     "causal_summary": "sk-git's commit contract produces readable conventional commits, but nothing in a commit is addressable the way a spec packet is",
     "created_at": "2026-09-11T07:16:22Z",
-    "last_save_at": "2026-09-20T04:54:53.935Z",
+    "last_save_at": "2026-10-03T15:44:15.577Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:99a89c1bb801660ebd23688ac1e95661a8774e46de3501f34b259ed578c63def",
+    "source_fingerprint": "sha256:988787434fc649bce945eb9989d0e1dd7d1b61b0daec747c4b830b9d3aaa0150",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "12b344047a9e87080fae9473d260807325e9c3e5e774ee018230813f23d80beb"

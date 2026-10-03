@@ -3,7 +3,6 @@ title: "Tasks: Packaging and Activation Fixes"
 description: "Task breakdown for install-built output, packed operator files, and a real LM Studio enablement example."
 trigger_phrases:
   - "packaging-and-activation-fixes"
-  - "tasks"
   - "communication projection package activation"
 importance_tier: "important"
 contextType: "implementation"

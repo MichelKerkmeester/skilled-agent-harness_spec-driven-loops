@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/048-doctor-command-audit/013-speckit-retrieval",
+  "description": "`/doctor:speckit speckit-retrieval` checks the trigger index and the ripgrep retrieval recipes",
+  "keywords": [
+    "doctor",
+    "speckit",
+    "speckit-retrieval",
+    "checks",
+    "trigger",
+    "index",
+    "ripgrep",
+    "retrieval",
+    "recipes"
+  ],
+  "lastUpdated": "2026-10-02T16:13:28.726Z",
+  "specId": "013",
+  "folderSlug": "speckit-retrieval",
+  "parentChain": [
+    "system-speckit",
+    "048-doctor-command-audit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

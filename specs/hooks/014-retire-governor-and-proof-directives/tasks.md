@@ -2,9 +2,6 @@
 title: "Tasks: Retire the Governor and Proof-Over-Appearance Directives"
 description: "Work items and verification for removing two constant directives from every runtime's prompt injection."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
   - "tasks core"
 importance_tier: "normal"
 contextType: "general"

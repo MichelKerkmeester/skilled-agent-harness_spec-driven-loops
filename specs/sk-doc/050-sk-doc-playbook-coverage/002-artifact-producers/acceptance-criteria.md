@@ -10,18 +10,21 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/002-artifact-producers"
-    last_updated_at: "2026-09-01T11:48:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    packet_pointer: "sk-doc/050-sk-doc-playbook-coverage/002-artifact-producers"
+    last_updated_at: "2026-10-03T12:00:00Z"
+    last_updated_by: "spec-validation-backfill"
+    recent_action: "Closed the phase from commit ad9d93df3be, which added the three playbook packages"
+    next_safe_action: "None: phase closed; reopen only if a package stops validating"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/"
+      - ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/"
+      - ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[SESSION-ID]"
+      session_id: "spec-validation-backfill-002-artifact-producers"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,10 +42,10 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
-**Date:** 2026-09-01
+**Packet:** sk-doc/050-sk-doc-playbook-coverage/002-artifact-producers
+**Level:** 3
+**Status:** Complete
+**Date:** 2026-10-03
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -52,9 +55,13 @@ _memory:
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it.
 
+Each package was run as `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package <playbook root>` on 2026-10-03; the packages themselves were added in commit `ad9d93df3be`.
+
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the packages for `sk-create-benchmark`, `sk-create-changelog`, `sk-create-feature-catalog`, When each is validated with `--package`, Then each reports `PASS` with a non-zero `operator` count and `routing_gold_excluded=0` | `.skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md:1` reports `PASS ... operator=5 routing_gold_excluded=0`; `.skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md:1` reports `PASS ... operator=12 routing_gold_excluded=0`; `.skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md:1` reports `PASS ... operator=6 routing_gold_excluded=0` | Met | - |
+| AC-002 | REQ-002 | Given a fully excluded package exits zero with `operator=0` and status `SKIP`, When a package is judged, Then the verdict rests on the summary line's status and `operator` count, not the exit status | Status is `SKIP` only when no operator file exists (`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:741`); the summary line printing `operator=` comes from `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:794`. Observed counts: `sk-create-benchmark` operator=5, `sk-create-changelog` operator=12, `sk-create-feature-catalog` operator=6 | Met | - |
+| AC-003 | REQ-003 | Given each mode's package, When its scenarios are read, Then at least one scenario the mode must act on and one it must leave alone exist, each with its own PASS/FAIL line | `sk-create-benchmark`: must act `.skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/family-routing/promote-mcp-result.md:31`, must leave alone `.skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/family-routing/leave-in-flight-benchmark.md:31`; `sk-create-changelog`: must act `.skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/topology/route-global-component.md:31`, must leave alone `.skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/prepare-release-notes.md:31`; `sk-create-feature-catalog`: must act `.skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/catalog-structure/create-root-catalog-package.md:31`, must leave alone `.skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/scope-and-validation/leave-execution-matrices-to-playbook.md:31` | Met | - |
 
 ### Status values
 
@@ -79,8 +86,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+All three criteria are Met on the package validator's summary lines and on the scenario files, for packages that commit `ad9d93df3be` added. SC-003 (fleet connectivity gate) is a success criterion with no requirement row and was not re-run for this closure.
 <!-- /ANCHOR:closure -->

@@ -51,6 +51,7 @@
       "spec.md",
       "goal.md",
       ".opencode/commands/design/diagram.md",
+      "001-upgrade-research/goal.md",
       "002-skin-contract/goal.md",
       "003-applicator-and-sentinels/goal.md",
       "004-corpus-and-catalog/goal.md",
@@ -118,19 +119,13 @@
         "source": "derived"
       },
       {
-        "name": "Style Reference",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
         "name": "Decisions Frozen",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "The Google Fonts",
+        "name": "Google Fonts",
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
@@ -148,6 +143,12 @@
         "source": "derived"
       },
       {
+        "name": "cli-pi",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "evidence",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -156,14 +157,14 @@
     ],
     "causal_summary": "`sk-design-diagram` is where `sk-design-chart` stood before its v1.9.0.0: a good editorial design",
     "created_at": "2026-09-10T17:17:40Z",
-    "last_save_at": "2026-09-11T08:32:37.395Z",
+    "last_save_at": "2026-10-03T15:44:00.387Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:8bbef7835c446a992381bebd2bb86df814c99979730a4dc577c7b974514a69f0",
+    "source_fingerprint": "sha256:819c280948fe4d19918606ea87bec2a25eca3736a4a38b1d4274240f5f09dd08",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "daf26781f73f1e12f4c3d659019c4cbea3e6b3fd7e3a1b21f7417066df89fd69"

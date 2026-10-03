@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`CacheStats` (`index.ts:265`) holds `day`, `totalRequests`, `hitRequests`, `cachedInputTokens`,",
     "created_at": "2026-09-08T17:57:02Z",
-    "last_save_at": "2026-09-08T20:24:09.893Z",
+    "last_save_at": "2026-10-03T15:29:41.787Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,11 +209,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce2e8d38f1e6188aee43b568b858210d516e1cee7510306c85fe6dcae35885bf",
+    "source_fingerprint": "sha256:de24963a0cef3874f393d1938a99b570132a6b39075ce75271390b268b36523e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c867240aed016aa48155afa9418c08b8dfdd76a8660f03cbb7946f6de12ee7b0",
-      "plan.md": "397df0599a9961fa59372ee7ae7d6dbfdf7e0ed231b69078e4f7c9514cc512dc",
+      "plan.md": "390593e79ab0b2a0e630dca107fd20ff74f11ff15567e38ba1211fef8f0261e4",
       "tasks.md": "32e12417285b909e3c9b7bafe523bc0a49e8ae4a230e3c103510ede323c34e8d",
       "implementation-summary.md": "07e8e090313655586a442ae3a0d39d0de43ea4260d206937745c492a114f464a"
     },

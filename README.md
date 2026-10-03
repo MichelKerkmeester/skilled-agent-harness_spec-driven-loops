@@ -529,8 +529,8 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 - `/speckit:save` returns a save plan by default. Its apply and full-auto modes refresh packet metadata through the continuity writer `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`
 - Recovery is the continuity ladder that `/speckit:resume` owns, not a session lookup
 - `/speckit:search` runs the two lexical lanes
-- `/doctor speckit-retrieval` checks that the index and the recipes are still healthy
-- Embeddings live with the shared model server for the skill advisor, reachable through `/doctor embeddings`
+- `/doctor:speckit speckit-retrieval` checks that the index and the recipes are still healthy
+- The skill advisor owns the shared model server and embedding provider
 
 ---
 
@@ -714,7 +714,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 ├── compat/     stable compatibility entry for compiled consumers and the Python shim
 ├── config/     route exclusions
 ├── data/       the default prompt policy that skips casual prompts
-├── database/   SQLite skill graph and doctor-update state
+├── database/   SQLite skill graph and doctor-rebuild state
 ├── handlers/   the nine command handlers
 ├── lib/        scorer, normalizer, freshness, cache
 ├── schemas/    JSON + Zod schemas
@@ -1192,31 +1192,40 @@ The active autonomous loop families (the improvement family carries two lanes). 
 &nbsp;
 #### DOCTOR
 
-Three commands cover every spec-kit diagnostic surface. Run `/doctor` with no target to see the interactive menu. Upgrade users see "Update everything to match latest release" as option 1.
+Five commands cover every spec-kit diagnostic surface. Run `/doctor:speckit` with no target to see the interactive menu. Its option 1 hands release updates to `/doctor:update`.
 
-**`/doctor <target>` (router)**
+**`/doctor:speckit <target>` (router)**
 
-- Single entry point for 10 targets: `speckit-retrieval` (checks the trigger index, its lookup and the ripgrep recipes), `embeddings`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `router-reach`, `fable-mode`, `runtime-mirrors`
+- Single entry point for 9 targets: `speckit-retrieval` (checks the trigger index, its lookup and the ripgrep recipes), `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `router-reach`, `fable-mode`, `runtime-mirrors`
 - Argv-positional dispatch via `.skilled/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
 - Each target loads its own self-contained YAML workflow under `assets/doctor-<target>.yaml`
 - Interactive menu when no target supplied. Tier 2 per-target prompt when a required flag is missing
-- Examples: `/doctor skill-advisor --dry-run`, `/doctor embeddings`, `/doctor fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
+- Examples: `/doctor:speckit skill-advisor --dry-run`, `/doctor:speckit router-reach`, `/doctor:speckit fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
 - `--target=<name>` is preserved as a compatibility alias for flag-only invocation
 
 **`/doctor:mcp install|debug`** - MCP infrastructure repair
 
-- `install`. Fresh install or reinstall of the Code Mode MCP server from its install guide. Handles old-conflicting-with-new (clean reinstall with venv/node_modules removal)
+- `install`. Installs dependencies and builds Code Mode when its `dist` is missing or stale, configures `.utcp_config.json` manuals and registers Code Mode in the seven project runtime configs, each write after its own approval
 - `debug`. Diagnoses Code Mode with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
 
-**`/doctor:update`** - multi-subsystem orchestrator
+**`/doctor:rebuild`** - multi-subsystem rebuild orchestrator
 
-- Dependency-safe rebuild across trigger index → skill-graph → advisor → deep-loop
-- One lock (`system-skill-advisor/runtime/database/.doctor-update.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-update.last-run.json`)
+- Dependency-safe rebuild across trigger index → skill-graph → advisor
+- One lock (`system-skill-advisor/runtime/database/.doctor-rebuild.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-rebuild.last-run.json`)
 - Tier-aware mid-run prompts: SHORT steps auto-acknowledge. The LONG-POLE trigger-index regeneration gets an explicit ETA prompt (Q-LONG, 1-5 min)
-- Additional gates: Q-PROBE (active MCP clients warning, NOT suppressed by `--force`), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
+- Additional gates: Q-PROBE (skill-advisor daemon notice, informational), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
 - Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle packet schema migration. Wall-clock 8-25 min
 
-The 13 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
+**`/doctor:update [check|align|apply]`** - release-aware spec-kit updater with a read-only check, an alignment step that writes only inside its run directory, and a dry-run plan followed by one approval before applying and verifying release files.
+
+**`/doctor:env [list | <section> | <VARIABLE>] [--dry-run]`** - guided environment switches
+
+- Reads the switch list from `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` at run time, so a newly documented switch shows up without a command change
+- Shows each switch's default, type, description and source, and reports whether it is set in the process, `hook-flags.env`, `.env` or Claude settings, by name only, never by value
+- Saves a preference only after showing the exact line and destination and getting an explicit yes. `--dry-run` shows the same preview and writes nothing
+- Explains secrets and per-invocation switches without asking for or saving their values. A per-invocation switch is shown as a one-command prefix
+
+The 16 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 
 &nbsp;
 #### UTILITY

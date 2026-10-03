@@ -100,6 +100,7 @@ Edited on Public main, which every project reads live through `.skilled`, at the
 ## Known Limitations
 
 1. **Stdin must be closed.** A hand-run `pi -p` with an open stdin printed nothing for 400 seconds. The runtime passes empty input, so deep-loop runs are not affected.
+2. **The selector mechanism changed when the doctor-audit branch merged (2026-10-03).** That branch had added the same opencode-go route plus a `cline-pass/deepseek-v4.1-flash` route, with an explicit `PI_MODEL_SELECTORS` map in `fanout-run.cjs` in place of the prefix test this packet describes. The map carries both routes. The opencode-go literal still dispatches as `--model opencode-go/deepseek-v4.1-flash` at `--thinking max`, and this packet's test still passes.
 <!-- /ANCHOR:limitations -->
 
 ---

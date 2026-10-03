@@ -2,9 +2,6 @@
 title: "Tasks: Git Hook Gate Reduction"
 description: "Work items and verification for cutting four gates, fixing three, and downgrading two."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
   - "tasks core"
 importance_tier: "normal"
 contextType: "general"

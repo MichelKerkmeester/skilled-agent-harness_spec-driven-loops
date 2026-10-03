@@ -1,6 +1,7 @@
 ---
 title: "Tasks: Phase 7 — Split code-opencode Rust References"
 description: "Task checklist with evidence for the code-opencode Rust reference split + router rewire."
+importance_tier: "normal"
 contextType: "implementation"
 trigger_phrases:
   - "task breakdown"

@@ -11,32 +11,24 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
       "spec core",
-      "implementation",
-      "plan",
       "plan core",
-      "tasks",
       "tasks core",
-      "summary",
       "impl summary core"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
       "spec",
       "core",
-      "implementation",
       "plan",
       "tasks",
-      "summary",
       "impl",
-      "every"
+      "summary",
+      "every",
+      "deep",
+      "presentation",
+      "contract",
+      "documented",
+      "executor"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -52,9 +44,6 @@
       ".opencode/commands/deep/assets/deep-ai-council-confirm.yaml",
       ".opencode/commands/deep/assets/deep-model-benchmark-presentation.txt",
       ".opencode/commands/deep/assets/deep-agent-improvement-presentation.txt",
-      ".opencode/commands/deep/assets/deep-skill-benchmark-presentation.txt",
-      ".opencode/commands/deep/assets/deep-skill-benchmark-confirm.yaml",
-      ".opencode/commands/deep/skill-benchmark.md",
       ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md",
@@ -130,24 +119,6 @@
         "source": "derived"
       },
       {
-        "name": "deep-skill-benchmark-presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/deep/assets/deep-skill-benchmark-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "deep-skill-benchmark-confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep-skill-benchmark-confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/skill-benchmark.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
@@ -206,11 +177,29 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Every `/deep:` presentation contract documented the executor field as `native | cli-opencode | cli-claude-code`",
     "created_at": "2026-08-31T08:33:25Z",
-    "last_save_at": "2026-09-05T09:54:55.490Z",
+    "last_save_at": "2026-10-03T15:12:19.941Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e09fe1e8118a0c628716b852982ef06468411e4e898b8fa227344f37b4817060",
+    "source_fingerprint": "sha256:6228d61e64f528c9e18c3700491c9841e665bbcdf628f3ceb185c0fac325b298",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "92752ca80b22532e9bb9893f55a95b7684fccf5be24b2eec3815e2244d60b317",
-      "plan.md": "94800c27ce220122c25e527330851729d4ed7aae876c6a75fd0f3f82d5182d4b",
-      "tasks.md": "0243f484d2c004c4033bfac182ff15d386f811ce242f20a05b4e90393d3e8ccb",
-      "implementation-summary.md": "f1a621d312effdf07584a94fc136c4107e3d90396f33b4f417df51c2dc92de18"
+      "spec.md": "8c54268a41d94cfa576e1c50481e81a51b3219a5885495dc17c0c3315090b0e5",
+      "plan.md": "dd8e730048465ab5ed9aafe385375ba91557324021e4f661f29ac30c2a253522",
+      "tasks.md": "0942240474093e7faf48027942737a4c1ecf1f1f2de228ff3bb3d076790b60ad",
+      "implementation-summary.md": "1950e75ddcff5142a9859de3a13744b32479d7efeb25c81a8d3dca0f5b5007ee"
     },
     "last_active_child_id": null,
     "last_active_at": null

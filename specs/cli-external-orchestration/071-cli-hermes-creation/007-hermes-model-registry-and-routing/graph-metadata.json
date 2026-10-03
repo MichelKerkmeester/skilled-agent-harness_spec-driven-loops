@@ -54,8 +54,7 @@
       ".codex/agents/prompt-improver.toml",
       ".opencode/skills/sk-prompt/SKILL.md",
       ".opencode/skills/sk-prompt/assets/cli-prompt-quality-card.md",
-      ".opencode/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md",
-      "scratch/offroster/runner.log"
+      ".opencode/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md"
     ],
     "entities": [
       {
@@ -131,12 +130,6 @@
         "source": "derived"
       },
       {
-        "name": "runner.log",
-        "kind": "file",
-        "path": "scratch/offroster/runner.log",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 wrote the allowlist, but nothing had shown the runner refusing an off-roster id, the prompt-improver eligibility tables did not know `cli-hermes` existed, and the prompt-card drift guard skipped the new packet",
     "created_at": "2026-09-14T17:24:48Z",
-    "last_save_at": "2026-09-14T19:42:17.349Z",
+    "last_save_at": "2026-10-03T15:11:43.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,11 +215,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0056fa868015ac5cc99ea01b20369ddadf6ebfed967779ae74973625236e8f36",
+    "source_fingerprint": "sha256:585fdc67d3ba83b08509e994d0f7e9288b36f35b2e136f7735031b65caac8cd0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f76a3e436313cd8afd05849a6ee051772325cce630c072cda2018d44985ede09",
-      "plan.md": "0c5c1c51c91fc5f8da08ae8e97204599abfa44da796ca04a0f95e2c138ff5ba6",
+      "plan.md": "a8abff05222f937dbf76909a096a418ed00a5254f75615e64084ab11889e7760",
       "tasks.md": "b8974be2844b7e0630dcce50679d83ee8e54ec90337cbcbd1234076a0fb52419",
       "implementation-summary.md": "9cf3a2191e63f17f8332dcfe723fe0fd2dcead1591966cad84d907a6e0817731"
     },

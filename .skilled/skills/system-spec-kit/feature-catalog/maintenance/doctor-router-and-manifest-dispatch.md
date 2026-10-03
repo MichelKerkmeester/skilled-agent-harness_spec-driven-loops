@@ -1,6 +1,6 @@
 ---
 title: "Doctor router and manifest-driven dispatch"
-description: "Argv-positional /doctor router that dispatches to per-subsystem YAML workflows via a canonical _routes.yaml manifest. Shipped in 013 phases 004 + 005 to consolidate 10 /doctor:* commands into 3 markdown files."
+description: "Argv-positional /doctor:speckit router that dispatches to nine per-subsystem YAML workflows via the canonical _routes.yaml manifest."
 trigger_phrases:
   - "doctor router and manifest-driven dispatch"
   - "_routes.yaml"
@@ -16,9 +16,9 @@ version: 1.6.0.12
 
 ## 1. OVERVIEW
 
-`/doctor <target>` is the single entry point for per-subsystem maintenance diagnostics in the spec-kit ecosystem. It dispatches to one of nine subsystem YAML workflows (speckit-retrieval, embeddings, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, fable-mode, runtime-mirrors) by reading the canonical route manifest `.skilled/commands/doctor/_routes.yaml`. Two companion commands round out the surface: `/doctor:mcp <install|debug>` for MCP-server infrastructure repair, and `/doctor:update` for the cross-subsystem rebuild orchestrator.
+`/doctor:speckit <target>` is the single entry point for per-subsystem maintenance diagnostics in the spec-kit ecosystem. It dispatches to one of nine subsystem YAML workflows (speckit-retrieval, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, router-reach, fable-mode, runtime-mirrors) by reading the canonical route manifest `.skilled/commands/doctor/_routes.yaml`. Four standalone companions round out the five-command surface: `/doctor:rebuild` for the cross-subsystem rebuild orchestrator, `/doctor:update` for release updates, `/doctor:mcp install|debug` for MCP infrastructure repair and `/doctor:env` for environment diagnostics.
 
-The router shipped as a hard cutover in `010-doctor-update-orchestrator` phases 004 + 005, replacing 10 standalone `/doctor:<name>` commands with 3 markdown files (`doctor.md`, `doctor/mcp.md`, `doctor/update.md`). Each subsystem keeps its existing YAML workflow under `assets/doctor_<target>.yaml` — only the markdown command surface was consolidated.
+The router shipped as a hard cutover in `010-doctor-update-orchestrator` phases 004 + 005, replacing 10 standalone `/doctor:<name>` commands with 3 markdown files (`doctor.md`, `doctor/mcp.md`, `doctor/rebuild.md`). Each subsystem keeps its existing YAML workflow under `assets/doctor_<target>.yaml` — only the markdown command surface was consolidated.
 
 ---
 
@@ -26,11 +26,11 @@ The router shipped as a hard cutover in `010-doctor-update-orchestrator` phases 
 
 ### Trigger / Auto-Fire Path
 
-Manual slash command. `/doctor` with no arguments shows an interactive subsystem menu; `/doctor list` (or `/doctor ?`) prints the SUBSYSTEM MANIFEST table and exits.
+Manual slash command. `/doctor:speckit` with no target shows an interactive subsystem menu. `/doctor:speckit list` or `/doctor:speckit ?` prints the SUBSYSTEM MANIFEST table and exits.
 
 ### Class
 
-Manual. The router is operator-driven; no automation triggers it. `/doctor:update` (the orchestrator) and `/doctor:mcp` (MCP infra repair) are also operator-driven companions.
+Manual. The router is operator-driven; no automation triggers it. `/doctor:rebuild` (the orchestrator) and `/doctor:mcp` (MCP infra repair) are also operator-driven companions.
 
 ### Routing Contract
 
@@ -42,7 +42,7 @@ The router parses the FIRST positional argument as the target name, then runs a 
 
 ### Mutation Boundaries
 
-The router itself never mutates anything. Each YAML workflow declares its own mutation class in `_routes.yaml`: read-only (embeddings, skill-budget), add-only (speckit-retrieval, deep-loop), or mutates (skill-advisor); see `mutating:` per target in the manifest. The combined GATE 3 STATUS table in `doctor.md` cites each target's specific mutation location.
+The router itself never mutates anything. Each YAML workflow declares its own mutation class in `_routes.yaml`: read-only (skill-budget, parent-skill, skill-graph-freshness, router-reach, fable-mode, runtime-mirrors), add-only (speckit-retrieval, deep-loop), or mutates (skill-advisor); see `mutating:` per target in the manifest. Each route's `gate3_location` names its specific mutation location.
 
 ---
 
@@ -54,7 +54,7 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 |------|------|
 | `.skilled/commands/doctor/speckit.md` | Router entry point: target resolution, per-target flag parser, YAML handoff |
 | `.skilled/commands/doctor/mcp.md` | MCP infrastructure command: `install` / `debug` sub-action dispatch |
-| `.skilled/commands/doctor/update.md` | Multi-subsystem orchestrator (unchanged from 013) |
+| `.skilled/commands/doctor/rebuild.md` | Multi-subsystem rebuild orchestrator |
 | `.skilled/commands/doctor/_routes.yaml` | Canonical route manifest (7 routes + 2 MCP sub-routes) |
 | `.skilled/commands/doctor/scripts/route-validate.sh` | CI assertion bash wrapper |
 | `.skilled/commands/doctor/scripts/route-validate.py` | Python core asserting manifest consistency |
@@ -64,7 +64,7 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 
 | Path | Role |
 |------|------|
-| `.claude/commands/doctor/speckit.md` + `.claude/commands/doctor/{mcp,update}.md` | Auto-synced from `.skilled` (APFS clone) |
+| `.claude/commands/doctor/speckit.md` + `.claude/commands/doctor/{mcp,rebuild}.md` | Auto-synced from `.skilled` (APFS clone) |
 | `.skilled/prompts` | Symlink to `.skilled/commands` |
 
 ### Specification
@@ -80,7 +80,7 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 ## 4. KEY BEHAVIORS
 
 1. **Target-first parsing** — the positional target is parsed BEFORE any `--flag`. Global flag pre-parse is forbidden; each target's flag schema is disjoint and per-target parsing is the only safe order.
-2. **Interactive fallback** — invoking `/doctor` with no positional target presents the SUBSYSTEM MANIFEST menu.
+2. **Interactive fallback**: invoking `/doctor:speckit` with no target presents the SUBSYSTEM MANIFEST menu.
 3. **Hard cutover end state** — the 9 legacy `/doctor:<name>` markdown files were deleted in 013 Phase 5 (commit `1b8d4d691`). No shim aliases. Skill Advisor lexical routing absorbs the historical trigger phrases.
 4. **YAML workflows untouched** — the consolidation collapsed only the markdown surface; per-target workflow YAMLs in `assets/` remain stable and self-sufficient.
 
@@ -95,6 +95,6 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 
 - `_routes.yaml` is the single source of truth for routing metadata.
 - The router's frontmatter `allowed-tools` is the UNION of all per-target tool sets (unavoidable; the OpenCode runner does not support lazy authorization per-route).
-- `/doctor:update` and `/doctor:mcp` are intentional colon-form survivors of the consolidation.
+- `/doctor:rebuild` and `/doctor:mcp` are intentional colon-form survivors of the consolidation.
 - `route-validate.sh` exits 0 on a clean manifest and non-zero on any structural violation.
 

@@ -2,10 +2,6 @@
 title: "Implementation Plan: Phase 1: transport-and-baseline"
 description: "The approach taken to name the governing routing transport: three reads of the dispatch chain rather than an output comparison, one gate-text fix verified against a cold daemon, and two reading rules frozen for later phases."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
   - "plan core"
 importance_tier: "normal"
 contextType: "general"

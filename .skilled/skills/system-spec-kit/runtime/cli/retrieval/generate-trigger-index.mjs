@@ -52,6 +52,7 @@ import { EXCLUSIONS, IGNORED_PATHS, corpusRootsFor, walkCorpus } from './lib/cor
 import { CATEGORY, MALFORMED_CATEGORIES, readTriggerPhrases } from './lib/frontmatter.mjs';
 import { compareDocumentPhrases, indexedPhrasesFor } from './lib/freshness.mjs';
 import { compareCodeUnits, NORMALIZATION } from './lib/normalize.mjs';
+import { packetFolderTokens } from './lib/grep-convention.mjs';
 import { judgeTriggerPhrase } from './lib/phrase-judge.mjs';
 import { loadIndex } from './lookup-trigger-index.mjs';
 import { findRepoRoot as resolveRepoRoot } from '../../hooks/lib/workspace/repo-root.mjs';
@@ -253,17 +254,36 @@ export function buildIndex(options) {
   // convention bans single-token, numeric-only, generic and stop-word phrases,
   // and until this bucket existed nothing in the generation path said how many
   // of them the committed index carried.
+  //
+  // Each owning document is judged with its own packet-folder tokens, from the
+  // same derivation the per-document validator uses, so a document lands in the
+  // class the validator gives it. Folder context only ever separates
+  // folder-token-fallback from single-token. Counting rule when owners disagree:
+  // `documents` counts each owner under its own class, and `phrases` counts the
+  // phrase once, as folder-token-fallback when any owner's folder repeats it.
   const phraseQualityPhrases = {};
   /** @type {Map<string, Set<string>>} */
   const phraseQualityOwners = new Map();
-  for (const [normalized, entry] of phrases) {
-    const verdict = judgeTriggerPhrase(normalized);
-    const bucket = verdict ? verdict.negativeClass : 'ok';
-    phraseQualityPhrases[bucket] = (phraseQualityPhrases[bucket] ?? 0) + 1;
-    if (!verdict) continue;
+  const addOwner = (bucket, owner) => {
     let owners = phraseQualityOwners.get(bucket);
     if (!owners) { owners = new Set(); phraseQualityOwners.set(bucket, owners); }
-    for (const owner of entry.paths) owners.add(owner);
+    owners.add(owner);
+  };
+  for (const [normalized, entry] of phrases) {
+    const verdict = judgeTriggerPhrase(normalized);
+    let bucket = verdict ? verdict.negativeClass : 'ok';
+    if (bucket === 'single-token') {
+      const ownerClasses = new Set();
+      for (const owner of entry.paths) {
+        const ownerVerdict = judgeTriggerPhrase(normalized, { folderTokens: packetFolderTokens(owner) });
+        ownerClasses.add(ownerVerdict.negativeClass);
+        addOwner(ownerVerdict.negativeClass, owner);
+      }
+      if (ownerClasses.has('folder-token-fallback')) bucket = 'folder-token-fallback';
+    } else if (verdict) {
+      for (const owner of entry.paths) addOwner(bucket, owner);
+    }
+    phraseQualityPhrases[bucket] = (phraseQualityPhrases[bucket] ?? 0) + 1;
   }
   const phraseQuality = {
     documents: Object.fromEntries(

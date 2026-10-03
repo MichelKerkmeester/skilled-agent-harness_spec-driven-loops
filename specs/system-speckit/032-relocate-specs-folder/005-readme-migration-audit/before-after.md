@@ -11,13 +11,26 @@ contextType: "reference"
 
 # Before vs After: README Migration Audit
 
-Every row below is the literal text that changed, pulled from `git show` on the two commits that shipped this phase — not a paraphrase. Commits: `bbb156b7e7b` (18/20 findings, F001-F019) and `b5032f24a9` (the remaining F012 and F020, fixed on request after an initial deferral).
+<!-- ANCHOR:metadata -->
+## 1. METADATA
 
-**Context**: `003-migration-execution` flipped the specs-root topology — `specs/` is now the canonical physical tree, `.opencode/specs` is a relative symlink (`.opencode/specs -> ../specs`) kept for backward compatibility. This audit found 20 places where docs and two guard scripts still described or enforced the *pre-flip* layout.
+Every row below is the literal text that changed, pulled from `git show` on the two commits that shipped this phase — not a paraphrase. Commits: `bbb156b7e7b` (18/20 findings, F001-F019) and `b5032f24a9` (the remaining F012 and F020, fixed on request after an initial deferral).
+<!-- /ANCHOR:metadata -->
 
 ---
 
-## 1. CANONICAL-ROOT EXAMPLES (F001, F004, F006, F007, F008, F010, F011, F012)
+<!-- ANCHOR:summary -->
+## 2. SUMMARY
+
+**Context**: `003-migration-execution` flipped the specs-root topology — `specs/` is now the canonical physical tree, `.opencode/specs` is a relative symlink (`.opencode/specs -> ../specs`) kept for backward compatibility. This audit found 20 places where docs and two guard scripts still described or enforced the *pre-flip* layout.
+<!-- /ANCHOR:summary -->
+
+---
+
+<!-- ANCHOR:comparison -->
+## 3. COMPARISON
+
+### 1. CANONICAL-ROOT EXAMPLES (F001, F004, F006, F007, F008, F010, F011, F012)
 
 Command examples and pointers that told a reader to use the legacy path. Straight prefix swap, `.opencode/specs/` → `specs/`, no logic change.
 
@@ -44,30 +57,30 @@ Command examples and pointers that told a reader to use the legacy path. Straigh
 
 ---
 
-## 2. INVERTED OR CONTRADICTORY CLAIMS (F002, F003, F005, F018, F019)
+### 2. INVERTED OR CONTRADICTORY CLAIMS (F002, F003, F005, F018, F019)
 
 These weren't just stale — they described the *wrong order*, or contradicted the code they were documenting.
 
-### F002 — `scripts/core/README.md:142`, contradicted shipped code
+#### F002 — `scripts/core/README.md:142`, contradicted shipped code
 
 **Before**: "resolves the active specs directories canonical-first (`.opencode/specs` before legacy `specs`, with legacy read fallback)"
 **After**: "resolves the active specs directories canonical-first (`specs` before legacy `.opencode/specs`, with legacy read fallback)"
 
 The real order, straight from `config.ts:321-326`: `['specs', '.opencode/specs']`. The doc had it backwards — not just outdated, actively wrong about which root wins.
 
-### F003 — `scripts/sweep/README.md:12`, inverted labels
+#### F003 — `scripts/sweep/README.md:12`, inverted labels
 
 **Before**: "walks every spec folder under `.opencode/specs` (and legacy `specs`)"
 **After**: "walks every spec folder under `specs` (and legacy `.opencode/specs`)"
 
-### F018/F019 — `system-spec-kit/README.md:846`, missing the compat-symlink note entirely
+#### F018/F019 — `system-spec-kit/README.md:846`, missing the compat-symlink note entirely
 
 **Before**: `| .opencode/specs/ | all spec folders created by Spec Kit |`
 **After**: `| specs/ | all spec folders created by Spec Kit (\`.opencode/specs\` is a compat symlink to this same tree) |`
 
 This was the only reference-table row naming the canonical root at all, and it named the wrong one with no mention that `.opencode/specs` is now just an alias. Fixing it closed both F018 (family inconsistency vs. `templates/README.md`, which was already correct) and F019 (no live README explained the symlink relationship) in one edit.
 
-### F005 — `mcp-server/README.md:109` + `mcp-server/benchmarks/README.md` (historical rows preserved)
+#### F005 — `mcp-server/README.md:109` + `mcp-server/benchmarks/README.md` (historical rows preserved)
 
 **Before**: "`includeSpecDocs=true` for `.opencode/specs/` documents"
 **After**: "`includeSpecDocs=true` for `specs/` documents"
@@ -76,11 +89,11 @@ This was the only reference-table row naming the canonical root at all, and it n
 
 ---
 
-## 3. FUNCTIONAL FIXES — TWO GUARD SCRIPTS THAT ENFORCED THE OLD TOPOLOGY (F013, F017)
+### 3. FUNCTIONAL FIXES — TWO GUARD SCRIPTS THAT ENFORCED THE OLD TOPOLOGY (F013, F017)
 
 Everything above is prose. These two are code, and both had a real behavioral gap — not just a stale comment.
 
-### F013 — `check-no-spec-imports.cjs`: the durable no-spec-import guard only checked the legacy alias
+#### F013 — `check-no-spec-imports.cjs`: the durable no-spec-import guard only checked the legacy alias
 
 **Before**:
 ```js
@@ -115,7 +128,7 @@ function underSpecs(abs) {
 
 **Verified two ways**: both no-spec-import fixtures still behave correctly post-fix (positive fixture fails with the expected violation, negative fixture stays clean), and a `git stash` A/B on just this file confirmed the one violation the fixed guard now surfaces elsewhere (`compiled-route-guard.cjs:41`) is pre-existing — it fires identically under the original unmodified code, so it's a separate, out-of-scope issue, not something this fix introduced.
 
-### F017 — `memory-drift-marker.sh`: the drift-marker pathspec pointed at the symlink, not the tree
+#### F017 — `memory-drift-marker.sh`: the drift-marker pathspec pointed at the symlink, not the tree
 
 **Before**:
 ```bash
@@ -135,7 +148,7 @@ Two READMEs describing this same function (`scripts/git-hooks/lib/README.md`, `s
 
 ---
 
-## 4. SPEC-DOC SELF-CORRECTIONS (F015, F016)
+### 4. SPEC-DOC SELF-CORRECTIONS (F015, F016)
 
 The packet's own `spec.md`/`plan.md` had two small internal-consistency problems, found by the review auditing its own scoping documents.
 
@@ -148,7 +161,7 @@ After: reworded to cite the *exact reproducible command* and treat the number as
 
 ---
 
-## 5. F020 — CLOSED HISTORICAL PACKET, FIXED ON REQUEST
+### 5. F020 — CLOSED HISTORICAL PACKET, FIXED ON REQUEST
 
 `specs/system-speckit/026-.../003-continuity-refactor-gates/prompts/README.md` — 12 ready-to-paste example commands, all using the legacy prefix:
 
@@ -165,19 +178,14 @@ After: reworded to cite the *exact reproducible command* and treat the number as
 This was initially deferred (a closed historical packet, migration-owner decision per the review's own recommendation), then fixed after the operator explicitly asked for it.
 
 **What's still broken in that file, deliberately left alone**: the fixed paths reference a track name (`system-spec-kit`) and folder depth (2 levels under `026-...`) that predate a *later, unrelated* document reorganization — the real packet today lives under `system-speckit` (no hyphen before "kit") at 3 levels of depth. These example commands still won't resolve as written even after this fix. That's a document-reorganization drift, not a specs-root topology issue, and out of this packet's scope.
+<!-- /ANCHOR:comparison -->
 
 ---
 
-## 6. NOT A FINDING — CONFIRMED CORRECT, LEFT UNTOUCHED
+<!-- ANCHOR:net-effect -->
+## 4. NET EFFECT
 
-The review's "research angle" mandate meant checking prose and diagrams beyond the literal string, not just trusting a grep hit. Two categories of `.opencode/specs` mentions were checked and confirmed as *already correct*, not fixed:
-
-- **The negative-test fixture** (`sk-doc/scripts/tests/code-folder/negative/durability-leak/README.md`) exists specifically to assert against a legacy-path string as test input. "Fixing" it would break the test it's built to run.
-- **18 directory-tree-fence candidates** from a repo-wide sweep (any code block mentioning both `.opencode/` and `specs/`) — every one was a canonical `specs/...` example path sitting next to an unrelated `.opencode/skills/.../scripts/...` invocation path in the same fence. No genuine staleness found beyond the 20 confirmed findings.
-
----
-
-## 7. FINAL COUNT
+### 7. FINAL COUNT
 
 | Metric | Value |
 |---|---|
@@ -188,7 +196,19 @@ The review's "research angle" mandate meant checking prose and diagrams beyond t
 | Deferred, then reversed on operator request | 2 (F012, F020) |
 | False positives ruled out (research-angle sweep) | 18 |
 | `validate.sh --recursive --strict` | 0 errors / 0 warnings, all 6 folders in `032-relocate-specs-folder` |
+<!-- /ANCHOR:net-effect -->
 
 ---
 
+<!-- ANCHOR:notes-caveats -->
+## 5. NOTES & CAVEATS
+
+### 6. NOT A FINDING — CONFIRMED CORRECT, LEFT UNTOUCHED
+
+The review's "research angle" mandate meant checking prose and diagrams beyond the literal string, not just trusting a grep hit. Two categories of `.opencode/specs` mentions were checked and confirmed as *already correct*, not fixed:
+
+- **The negative-test fixture** (`sk-doc/scripts/tests/code-folder/negative/durability-leak/README.md`) exists specifically to assert against a legacy-path string as test input. "Fixing" it would break the test it's built to run.
+- **18 directory-tree-fence candidates** from a repo-wide sweep (any code block mentioning both `.opencode/` and `specs/`) — every one was a canonical `specs/...` example path sitting next to an unrelated `.opencode/skills/.../scripts/...` invocation path in the same fence. No genuine staleness found beyond the 20 confirmed findings.
+
 *Source commits: reachable `851041efbd` (the rebased/superseded `bbb156b7e7b`, F001-F019), `b5032f24a9` (F012, F020). Full finding registry: `review/lineages/deepseek-flash/review-report.md`. Task-level evidence: `tasks.md`. Narrative summary: `implementation-summary.md`.*
+<!-- /ANCHOR:notes-caveats -->

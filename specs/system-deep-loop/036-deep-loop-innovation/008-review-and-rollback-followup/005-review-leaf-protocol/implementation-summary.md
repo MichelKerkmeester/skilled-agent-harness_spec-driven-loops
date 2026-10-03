@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 043-review-leaf-protocol |
+| **Spec Folder** | 005-review-leaf-protocol |
 | **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

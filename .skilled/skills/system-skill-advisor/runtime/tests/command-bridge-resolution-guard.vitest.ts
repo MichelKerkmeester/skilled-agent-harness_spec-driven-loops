@@ -21,7 +21,7 @@ import { describe, expect, it } from 'vitest';
 
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 import { BASE_ALIAS_GROUPS, SKILL_ALIAS_GROUPS } from '../lib/scorer/aliases.js';
-import { PHRASE_BOOSTS } from '../lib/scorer/lanes/explicit.js';
+import { PHRASE_BOOST_BOUND, PHRASE_BOOSTS } from '../lib/scorer/lanes/explicit.js';
 import { COMMAND_BRIDGES } from '../lib/scorer/projection.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -103,5 +103,34 @@ describe('command-bridge → live-command resolution guard', () => {
       .filter(({ line }) => /\/deep:start-[a-z-]+-loop/.test(line))
       .map(({ lineNo }) => lineNo);
     expect(deadLines, `retired dead ids in skill_advisor.py at lines ${JSON.stringify(deadLines)}`).toEqual([]);
+  });
+});
+
+describe('phrase boost bound', () => {
+  it('keeps every PHRASE_BOOSTS amount inside the declared closed interval', () => {
+    const violations: string[] = [];
+    for (const [phrase, boosts] of Object.entries(PHRASE_BOOSTS)) {
+      for (const [skillId, amount] of boosts) {
+        const insideRange =
+          Number.isFinite(amount)
+          && amount >= PHRASE_BOOST_BOUND.min
+          && amount <= PHRASE_BOOST_BOUND.max;
+        if (!insideRange) violations.push(`${phrase} -> ${skillId}=${amount}`);
+      }
+    }
+    expect(violations, 'PHRASE_BOOSTS values must lie in [-1.0, 2.0]').toEqual([]);
+  });
+
+  it('matches the interval the doctor skill-advisor asset declares', () => {
+    const asset = readFileSync(
+      resolve(repoRoot, '.skilled/commands/doctor/assets/doctor-skill-advisor.yaml'),
+      'utf8',
+    );
+    const match = /phrase_boost_range:\s*"\[([^,]+),\s*([^\]]+)\]"/.exec(asset);
+    if (match === null) {
+      expect.fail('doctor asset must declare phrase_boost_range: "[min, max]"');
+    }
+    expect(Number(match[1])).toBe(PHRASE_BOOST_BOUND.min);
+    expect(Number(match[2])).toBe(PHRASE_BOOST_BOUND.max);
   });
 });

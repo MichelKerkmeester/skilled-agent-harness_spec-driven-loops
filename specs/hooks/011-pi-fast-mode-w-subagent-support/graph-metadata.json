@@ -19,6 +19,8 @@
       "fast mode subagent handoff",
       "openai fast mode fork",
       "011-pi-fast-mode-w-subagent-support",
+      "pi fast mode subagent goal",
+      "fast mode fork goal",
       "research",
       "synthesis",
       "fast",
@@ -35,10 +37,10 @@
       "openai",
       "fork",
       "011-pi-fast-mode-w-subagent-support",
+      "goal",
       "research",
       "synthesis",
-      "fast-mode",
-      "engine"
+      "fast-mode"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -48,21 +50,20 @@
       "research/research.md",
       ".pi/settings.json",
       ".pi/PLUGINS.md",
-      "context/README.md",
+      "001-fork-and-package/goal.md",
+      "002-subagent-handoff/goal.md",
+      "003-integration-and-tests/goal.md",
       "research/iterations/iteration-001.md",
       "research/deep-research-config.json",
       "research/iterations/iteration-003.md",
       "research/iterations/iteration-004.md",
       "research/iterations/iteration-005.md",
-      "context/pi-openai-fast-mode/tsconfig.json",
-      "context/pi-openai-fast-mode/package.json",
-      "context/pi-gpt-fast-mode/package.json",
-      "context/pi-fast-mode/package.json",
       "research/iterations/iteration-007.md",
       "research/iterations/iteration-008.md",
       "research/iterations/iteration-009.md",
       "research/iterations/iteration-002.md",
-      ".pi/SYNC.md"
+      ".pi/SYNC.md",
+      "specs/hooks/011-pi-fast-mode-w-subagent-support/research/iterations/iteration-001.md"
     ],
     "entities": [
       {
@@ -96,12 +97,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "context/README.md",
-        "source": "derived"
-      },
-      {
         "name": "iteration-001.md",
         "kind": "doc",
         "path": "research/iterations/iteration-001.md",
@@ -129,18 +124,6 @@
         "name": "iteration-005.md",
         "kind": "doc",
         "path": "research/iterations/iteration-005.md",
-        "source": "derived"
-      },
-      {
-        "name": "tsconfig.json",
-        "kind": "config",
-        "path": "context/pi-openai-fast-mode/tsconfig.json",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "context/pi-openai-fast-mode/package.json",
         "source": "derived"
       },
       {
@@ -208,11 +191,29 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "footers",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "next",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The fast-mode engine, child-process handoff, and installed-environment proof span separate ownership boundaries",
     "created_at": "2026-08-16T07:07:46Z",
-    "last_save_at": "2026-09-03T22:15:41.236Z",
+    "last_save_at": "2026-10-03T16:56:07.239Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +221,7 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a9459e8f4e37464f3b0a220ed284345c9237bc1e6fcd23c4171bf0bef1b26492",
+    "source_fingerprint": "sha256:998cf4651199fa0d42327a6701ce4919009e8a23ec92effbd6ffa98a8ae49c95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "81981fb2eb8aed0c507da762f709d277bb73155aa5afa94dbbae683764bb4635",

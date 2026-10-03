@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Research on deep-loop result presentation; verdict deep-loop-contracts-only, so no repo rule was authored."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -11,8 +11,8 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "agents/009-turn-closeout-next-steps/006-synthesis-presentation"
-    last_updated_at: "2026-09-11T14:02:47Z"
-    last_updated_by: "template-author"
+    last_updated_at: "2026-09-11T19:44:00+02:00"
+    last_updated_by: "spec-validation-backfill"
     recent_action: "Phase closed; work recorded in tasks.md with evidence"
     next_safe_action: "None; phase complete and validated"
     blockers: []
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-006-synthesis-presentation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,6 +41,7 @@ _memory:
 | **Spec Folder** | 006-synthesis-presentation |
 | **Completed** | 2026-09-11 |
 | **Level** | 2 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,18 +49,19 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Research, and a verdict that moved the work elsewhere. Asked whether deep-loop runs should report what they found rather than an iteration count and four paths, the four tests returned `deep-loop-contracts-only`: the fix belongs in the deep-loop presentation contracts, not in a repo rule.
 
-### Phase 1: synthesis-presentation
+### Phase 6: synthesis-presentation
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The brief required a per-mode table, because the six deep-loop modes produce different things and a single generic answer would have failed. Two modes returned a noun other than recommendations, and the skill-benchmark row found a router boundary forbidding the fix there.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `spec.md` | Created | The brief, with the required per-mode table |
+| `research/lineages/` | Created (by the runner) | Four iterations and the synthesis |
+| `research/orchestration-summary.json` | Created (by the runner) | Run outcome |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +69,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+A snapshot of the whole working tree was taken first, a 171,000-line patch covering all 97 dirty entries, then four iterations ran at max effort. The containment guard reverted 19 files, which the recovery patch restored.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +79,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| No rule authored | The four-part refusal test returned `deep-loop-contracts-only`, and the operator took the verdict |
+| Snapshot before dispatch | The runner's containment guard reverts dirty files outside the lineage |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +90,10 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Citation spot-check | PASS, four opened, all resolved |
+| Reverted files restored | PASS, 19 files back, no pre-dispatch entry missing |
+| `invocation-metadata.json` | Records the dispatch at max effort |
+| `acceptance-criteria.md` AC-001 | Met |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +101,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **The fix itself is not here.** Editing the deep-loop presentation contracts belongs to the sibling deep-loop packet.
 <!-- /ANCHOR:limitations -->
 
 ---

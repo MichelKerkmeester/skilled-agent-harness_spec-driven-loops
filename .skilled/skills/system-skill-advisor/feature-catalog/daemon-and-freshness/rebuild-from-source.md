@@ -21,7 +21,7 @@ Ensure the advisor never gets stuck in an unrecoverable state when SQLite storag
 
 ## 2. HOW IT WORKS
 
-`lib/freshness/rebuild-from-source.ts` detects a corrupt or unreadable SQLite store via the daemon lifecycle, then walks `.skilled/skills/*/SKILL.md` plus each `graph-metadata.json`, applies the auto-indexing derivation pipeline and republishes a fresh snapshot. Throughout the rebuild, readers see `unavailable` trust state and fail-open responses rather than exceptions. Rebuild is also the canonical recovery path for the H5 operator playbook.
+`lib/freshness/rebuild-from-source.ts` detects a corrupt or unreadable SQLite store via the daemon lifecycle, then walks `.skilled/skills/*/SKILL.md` plus each `graph-metadata.json`, applies the auto-indexing derivation pipeline and republishes a fresh snapshot. Throughout the rebuild, readers see `unavailable` trust state and fail-open responses rather than exceptions. Rebuild is also the canonical recovery path for the H5 operator playbook. After a rebuild the stored content hashes match the source files on disk, which is the comparison `advisor_status.indexStaleness` and `skill_graph_status.staleness` read. A `stale` index verdict therefore clears once `advisor_rebuild` completes.
 
 ---
 

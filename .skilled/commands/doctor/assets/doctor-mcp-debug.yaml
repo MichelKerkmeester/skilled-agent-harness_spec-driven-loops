@@ -1,266 +1,124 @@
-# ─────────────────────────────────────────────────────────────────
-# MCP DOCTOR: INTERACTIVE DIAGNOSTIC WORKFLOW
-# ─────────────────────────────────────────────────────────────────
-role: MCP Diagnostic Specialist
-purpose: Diagnose, investigate, and repair MCP server connection issues
-action: Run 5-step interactive diagnostic with guided repair
+role: Code Mode diagnostic specialist
+purpose: Diagnose Code Mode build, UTCP configuration, credentials, and runtime registration
+action: Run read-only diagnostics and offer individually approved repairs
 
-# ─────────────────────────────────────────────────────────────────
-# OPERATING MODE
-# ─────────────────────────────────────────────────────────────────
 operating_mode:
   workflow: sequential_5_step
-  compliance: MANDATORY
   execution: interactive
-  workflow_compliance: MANDATORY
-  workflow_execution: interactive
-  approvals: per_failure
-  tracking: pass_warn_fail_per_check
+  approvals: per_repair
   validation: post_repair_reverify
   intent: DEBUG
 
-# ─────────────────────────────────────────────────────────────────
-# MCP-DEBUG DOCTOR INVARIANT
-# ─────────────────────────────────────────────────────────────────
-mcp_debug_doctor_invariant: |
-  MCP debug workflows run the mcp-doctor.sh diagnostic script against all
-  supported servers (code-mode), cross-reference
-  each failure with its install guide, and apply guided repairs ONLY when
-  --fix is passed AND the user approves the proposed repair. No silent
-  mutation: every config edit, env change, or build step requires explicit
-  per-server approval. Post-repair re-verification is mandatory.
+scope:
+  component: Code Mode
+  install_guide: .skilled/skills/mcp-code-mode/INSTALL-GUIDE.md
+  diagnostic_script: .skilled/commands/doctor/scripts/mcp-doctor.sh
+  runtime_config_files:
+    - opencode.json
+    - .mcp.json
+    - .claude/mcp.json
+    - .codex/config.toml
+    - .cursor/mcp.json
+    - .pi/mcp.json
+    - .devin/mcp_config.json
 
-# ─────────────────────────────────────────────────────────────────
-# UPSTREAM ASSETS
-# ─────────────────────────────────────────────────────────────────
-upstream_assets:
-  contract: "local command design contract"
-  files:
-    spec: "spec.md"
-    decision_record: "decision-record.md"  # ADRs covering MCP server install + repair
-  install_guides:
-    code_mode: ".skilled/skills/mcp-code-mode/INSTALL-GUIDE.md"
-  scripts:
-    diagnostic: ".skilled/commands/doctor/scripts/mcp-doctor.sh"
-    library: ".skilled/commands/doctor/scripts/mcp-doctor-lib.sh"
-  pass_policy:
-    require_user_approval_per_fix: true
-    reverify_after_each_fix: true
-
-# ─────────────────────────────────────────────────────────────────
-# USER INPUTS
-# ─────────────────────────────────────────────────────────────────
-user_inputs:
-  fix: "[FIX] boolean"  # if true, offer guided repairs after diagnostic
-  server_filter: "[SERVER_FILTER] string|null"  # restrict to one server name; null = all 5
-
-# ─────────────────────────────────────────────────────────────────
-# FIELD HANDLING
-# ─────────────────────────────────────────────────────────────────
-field_handling:
-  defaults:
-    fix_empty: "false"
-    server_filter_empty: null  # diagnose all supported servers when unset
-  fix_policy:
-    true: "after diagnostic, prompt per failed server for guided repair"
-    false: "diagnostic only; emit recommendations without writes"
-  server_filter_policy:
-    null: "diagnose all 5 MCP servers"
-    set: "restrict diagnostic + repair to the named server only"
-
-# ─────────────────────────────────────────────────────────────────
-# ARGUMENT PARSING
-# ─────────────────────────────────────────────────────────────────
-arguments:
-  fix_mode:
+inputs:
+  fix:
     flag: "--fix"
     default: false
-    effect: "Skip interactive prompts for failures; auto-repair all"
-  server_filter:
-    flag: "--server"
-    value: "<name>"
-    default: null
-    effect: "Only diagnose the specified server"
+    effect: "Offer approved repairs for reported build or runtime wiring failures."
 
-# ─────────────────────────────────────────────────────────────────
-# REFERENCE: INSTALL GUIDES
-# ─────────────────────────────────────────────────────────────────
-install_guides:
-  code_mode: .skilled/skills/mcp-code-mode/INSTALL-GUIDE.md
+invariants:
+  - "Run the doctor script with --json only; never pass --fix or another argument to the script."
+  - "Do not repair credentials or write credential values. Report expected key names and presence only."
+  - "Obtain explicit approval for each proposed write, even when --fix is set."
+  - "Stop build repairs when .skilled/skills/mcp-code-mode/mcp-server/package.json is missing."
+  - "Preserve the doctor output shape: status, exitCode, summary, checks[]."
 
-# ─────────────────────────────────────────────────────────────────
-# REFERENCE: CONFIG FILES
-# ─────────────────────────────────────────────────────────────────
-config_files:
-  - { path: "opencode.json", format: "json-mcp", label: "OpenCode" }
-  - { path: ".claude/mcp.json", format: "json-mcpServers", label: "Claude Code" }
-  - { path: "", format: "toml", label: "" }
-  - { path: ".vscode/mcp.json", format: "json-mcpServers", label: "VS Code / Copilot" }
-
-# ─────────────────────────────────────────────────────────────────
-# REFERENCE: REPAIR ACTIONS
-# ─────────────────────────────────────────────────────────────────
 repair_actions:
-  code_mode:
-    dist_missing:
-      command: "cd .skilled/skills/mcp-code-mode/mcp-server && npm install && npm run build"
-      description: "Install dependencies and rebuild dist"
-    node_modules_missing:
-      command: "cd .skilled/skills/mcp-code-mode/mcp-server && npm install"
-      description: "Install node_modules"
+  install_dependencies:
+    command: "cd .skilled/skills/mcp-code-mode/mcp-server && npm install"
+    condition: "package.json exists and node_modules is missing"
+  rebuild:
+    command: "cd .skilled/skills/mcp-code-mode/mcp-server && npm run build"
+    condition: "package.json exists and dist/index.js is missing or stale"
+  runtime_wiring:
+    condition: "A supported runtime config is invalid or lacks the Code Mode launcher and UTCP_CONFIG_FILE entry"
+    files: [opencode.json, .mcp.json, .claude/mcp.json, .codex/config.toml, .cursor/mcp.json, .pi/mcp.json, .devin/mcp_config.json]
+    entry:
+      command: node
+      launcher: .skilled/bin/mcp-code-mode-launcher.cjs
+      env:
+        UTCP_CONFIG_FILE: .utcp_config.json
 
-# ─────────────────────────────────────────────────────────────────
-# WORKFLOW
-# ─────────────────────────────────────────────────────────────────
 workflow:
-
   step_1_diagnose:
-    name: "Run Diagnostic"
-    purpose: "Execute mcp-doctor.sh and capture structured results"
+    purpose: Collect structured Code Mode health results
     activities:
-      - "Parse user arguments (--fix, --server) from command invocation"
-      - "Build the shell command: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json [--server <name>]"
-      - "Execute the command and capture JSON output"
-      - "Parse JSON into structured results: status, summary (pass/warn/fail counts), checks array"
-      - "Store results for subsequent steps"
-    command: "bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json {server_flag}"
-    outputs:
-      - diagnostic_json: "Parsed JSON results"
-      - exit_code: "0=healthy, 1=warnings, 2=failures"
-      - fail_list: "Array of checks with status FAIL"
-      - warn_list: "Array of checks with status WARN"
-    on_healthy:
-      action: "Skip to step_5_summary"
-      message: "All MCP servers healthy. No issues found."
+      - "Run bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json."
+      - "Parse status, exitCode, summary, and checks[]."
+      - "Treat exit code 0 as healthy, 1 as warnings, and 2 as failures. Exit code 3 means the script was invoked wrongly and printed no report; stop and report it."
+      - "Do not pass the command's --fix flag to the script."
+    command: "bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json"
+    outputs: [diagnostic_json, fail_list, warn_list]
+    on_healthy: "Skip to step_5_summary."
 
   step_2_present:
-    name: "Present Findings"
-    purpose: "Show the user a clear breakdown of what was found"
+    purpose: Show the health state and identify actionable findings
     activities:
-      - "Display a formatted summary table:"
-      - "  | Server | Status | Issues |"
-      - "  For each server, aggregate its checks into PASS/WARN/FAIL"
-      - "List each FAIL with its detail and the recommended fix from repair_actions"
-      - "List each WARN with its detail"
-      - "If exit_code == 0: congratulate and skip to step_5"
-      - "If exit_code == 1 (warnings only): show warnings, ask if user wants to investigate"
-      - "If exit_code == 2 (failures): show failures, proceed to step_3"
+      - "Display one Code Mode row with PASS, WARN, or FAIL and a concise summary."
+      - "List each failed or warning check with its detail."
+      - "Explain that stale build status is determined by source timestamps and that a present dist/index.js is syntax-checked."
+      - "Show the INFO result that Hermes registration is user-level in ~/.hermes/config.yaml and is not checked."
+      - "When --fix is absent, offer to explain repair steps without making changes."
+      - "When --fix is present, offer repair actions one at a time and wait for approval for each."
     checkpoint:
-      enabled: true
-      condition: "exit_code > 0"
-      prompt: |
-        {fail_count} failure(s) and {warn_count} warning(s) found.
+      condition: "At least one actionable FAIL exists and --fix is present."
+      prompt: "Review the findings. Choose a proposed repair individually, skip it, or stop."
 
-        A) Fix all issues automatically
-        B) Walk through each issue interactively
-        C) Show detailed report and stop
-      options:
-        - { key: "A", action: "set fix_mode=true, goto step_3" }
-        - { key: "B", action: "goto step_3 (interactive per-issue)" }
-        - { key: "C", action: "goto step_5_summary" }
-
-  step_3_investigate:
-    name: "Investigate & Fix"
-    purpose: "For each failure, investigate root cause and apply targeted repair"
+  step_3_investigate_and_repair:
+    purpose: Diagnose the cause and apply only an approved repair
+    condition: "The user selects a repair and explicitly approves it."
     activities:
-      - "FOR EACH check with status FAIL:"
-      - "  1. Identify the server and check name from the result"
-      - "  2. Load the corresponding install guide section (Troubleshooting)"
-      - "     Read: {install_guides[server]} — focus on the troubleshooting section"
-      - "  3. Cross-reference the failure detail with known repair actions"
-      - "  4. If fix_mode == true: execute repair command immediately"
-      - "  5. If fix_mode == false (interactive):"
-      - "     Present the issue, root cause hypothesis, and proposed fix"
-      - "     Ask: Fix now? [Y/n/skip]"
-      - "       Y → execute repair command"
-      - "       n → skip this issue"
-      - "       skip → skip all remaining issues"
-      - "  6. Record repair result (success/failure)"
-    per_issue_prompt: |
-      Issue: {check.server} — {check.check}
+      - "Read the relevant troubleshooting guidance from the Code Mode install guide."
+      - "For missing package.json, report that build repair cannot continue and stop."
+      - "For missing dependencies, propose repair_actions.install_dependencies."
+      - "For missing or stale build output, propose repair_actions.rebuild."
+      - "For invalid runtime wiring, propose a minimal edit to only the affected supported runtime file."
+      - "Do not change .utcp_config.json or .env during debug repairs; explain missing credential keys by name and presence only."
+      - "Use node to validate JSON edits. Use Python tomllib to validate Codex TOML when available; otherwise report unvalidated and never claim PASS."
+      - "Record the approved action and its command result."
+    approval_prompt: |
+      Finding: {check.check}
       Detail: {check.detail}
-      Root cause: {hypothesis}
-      Proposed fix: {repair_action.description}
-      Command: {repair_action.command}
+      Proposed repair: {repair.description}
+      Command or file change: {repair.command_or_change}
 
-      Fix now? [Y/n/skip]
-    deep_investigation:
-      trigger: "When the failure doesn't match any known repair_action"
-      activities:
-        - "Read the full install guide for the failing server"
-        - "Read the relevant config file and check for syntax errors"
-        - "Read the server's entry point file to check for import errors"
-        - "If the detail mentions ERR_MODULE_NOT_FOUND and @spec-kit/shared, use the server's shared_dependency_missing repair action"
-        - "Check if node_modules or .venv exists and has expected contents"
-        - "Formulate a custom repair plan and present to user"
-    outputs:
-      - repairs_attempted: "Count of repairs run"
-      - repairs_succeeded: "Count of successful repairs"
-      - repairs_failed: "Count of failed repairs"
+      Apply this repair? [Y/n]
+    outputs: [repairs_attempted, repairs_succeeded, repairs_failed]
 
   step_4_verify:
-    name: "Re-verify"
-    purpose: "Run diagnostics again after repairs to confirm fixes worked"
+    purpose: Confirm the result after each approved repair
     condition: "repairs_attempted > 0"
     activities:
-      - "Re-run: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json {server_flag}"
-      - "Compare new results with original results"
-      - "Identify which failures are now resolved"
-      - "Identify any remaining or new issues"
-      - "Present verification results"
-    command: "bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json {server_flag}"
-    outputs:
-      - verification_json: "Post-repair diagnostic results"
-      - resolved_count: "Number of issues fixed"
-      - remaining_count: "Number of issues still present"
-    checkpoint:
-      enabled: true
-      condition: "remaining_count > 0"
-      prompt: |
-        Verification complete: {resolved_count} fixed, {remaining_count} remaining.
-
-        A) Investigate remaining issues
-        B) Accept current state
-      options:
-        - { key: "A", action: "goto step_3 (for remaining issues only)" }
-        - { key: "B", action: "goto step_5_summary" }
+      - "Run bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json again."
+      - "Compare the new checks with the original diagnostic results."
+      - "Report resolved, remaining, and new findings for Code Mode."
+    command: "bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json"
+    outputs: [verification_json, resolved_count, remaining_count]
 
   step_5_summary:
-    name: "Summary"
-    purpose: "Final report with actionable next steps"
+    purpose: Report final Code Mode status and next steps
     activities:
-      - "Display final status: healthy / partially fixed / issues remain"
-      - "If all healthy: show the full PASS report"
-      - "If issues remain: list each with manual resolution steps"
-      - "Suggest next steps:"
-      - "  - Restart your AI client to pick up repaired MCP servers"
-      - "  - For persistent issues, check the install guide: /mcp_doctor --server <name>"
-      - "  - For config wiring issues, manually edit the config file"
-    report_format: |
-      ## MCP Doctor — Final Report
+      - "Display before and after status for the checks that were repaired."
+      - "List remaining failures, warnings, and any unvalidated runtime config."
+      - "Report credential key names with present or missing status only; never show values."
+      - "For remaining findings, point to the Code Mode install guide or the affected config path."
+    report_fields: [status, checks, repairs_attempted, repairs_succeeded, repairs_failed, next_steps]
 
-      | Server | Before | After | Status |
-      |--------|--------|-------|--------|
-      | System Code Graph | {before} | {after} | {status} |
-      | Code Mode | {before} | {after} | {status} |
-
-      **Config wiring:** {config_summary}
-
-      ### Next Steps
-      {next_steps}
-
-# ─────────────────────────────────────────────────────────────────
-# ERROR HANDLING
-# ─────────────────────────────────────────────────────────────────
 error_handling:
-  script_not_found:
-    check: "ls .skilled/commands/doctor/scripts/mcp-doctor.sh"
-    on_fail: "STOP — diagnostic script missing. Run: bash .skilled/commands/doctor/scripts/mcp-doctor.sh --help to verify installation."
-  node_not_found:
-    check: "command -v node"
-    on_fail: "WARN — Node.js not found. All 5 MCP servers cannot be checked. Install Node.js >=20.11.0."
-  json_parse_error:
-    on_fail: "Fall back to human-readable mode: bash .skilled/commands/doctor/scripts/mcp-doctor.sh (without --json)"
-  repair_fails:
-    max_retries: 1
-    on_exhaust: "Present manual resolution steps from install guide"
+  script_not_found: "Stop and report .skilled/commands/doctor/scripts/mcp-doctor.sh is missing."
+  node_not_found: "Report that Node.js 24 is required for Code Mode checks and repairs."
+  json_parse_error: "Stop and report that the diagnostic JSON could not be parsed."
+  script_usage_error: "Exit code 3 means a bad argument or a --root that is not a directory; stop and report the script's stderr."
+  repair_fails: "Record the command result and offer the documented manual resolution; do not retry without a new approval."

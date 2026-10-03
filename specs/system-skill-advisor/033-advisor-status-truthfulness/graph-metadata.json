@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/033-advisor-status-truthfulness",
+  "spec_folder": "system-skill-advisor/033-advisor-status-truthfulness",
+  "parent_id": null,
+  "children_ids": [
+    "system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth",
+    "system-skill-advisor/033-advisor-status-truthfulness/002-router-reach-misroutes",
+    "system-skill-advisor/033-advisor-status-truthfulness/003-status-contract-and-docs"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor status truthfulness",
+      "skill graph freshness",
+      "router reach misroutes",
+      "advisor embeddings health"
+    ],
+    "key_topics": [
+      "advisor",
+      "status",
+      "truthfulness",
+      "skill",
+      "graph",
+      "freshness",
+      "router",
+      "reach",
+      "misroutes",
+      "embeddings",
+      "health",
+      "doctor"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".skilled/skills/cli-classifier/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts",
+      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
+      ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-rebuild.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-scan.md",
+      ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/system-skill-advisor/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/cli-classifier/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-status.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-status.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-freshness.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-rebuild.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-rebuild.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-scan.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-scan.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-scorer.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/scoring/advisor-scorer.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The doctor command audit (`specs/system-speckit/048-doctor-command-audit`) recorded that several advisor reporting surfaces disagree with what is actually on disk",
+    "created_at": "2026-10-03T05:27:36Z",
+    "last_save_at": "2026-10-03T07:29:42.512Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:04cf256ac2a83a31c364aa505f4b41fc9c50349ae33e08f475fcd0a29a198737",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9778567ebacccd0f9e306b18d65af8885996f5d32ae96201dc709a7c47065b6d"
+    },
+    "last_active_at": null
+  }
+}

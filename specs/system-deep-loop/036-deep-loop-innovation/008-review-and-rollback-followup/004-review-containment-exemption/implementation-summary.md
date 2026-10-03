@@ -4,7 +4,7 @@ description: "write-containment.ts now exempts runtime/database telemetry and de
 trigger_phrases:
   - "review containment exemption implementation summary"
   - "isRegenerableRuntimeState shipped"
-  - "1fb79e0106"
+  - "partition before revert"
 importance_tier: "high"
 contextType: "implementation"
 parent: "system-deep-loop/036-deep-loop-innovation/008-review-and-rollback-followup/004-review-containment-exemption"

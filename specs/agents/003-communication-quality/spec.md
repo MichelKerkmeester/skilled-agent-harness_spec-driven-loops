@@ -4,9 +4,6 @@ description: "Add a curated Communication Quality section to the universal AGENT
 trigger_phrases:
   - "communication quality"
   - "agents.md"
-  - "voice"
-  - "tone"
-  - "specification"
 importance_tier: "normal"
 contextType: "general"
 _memory:

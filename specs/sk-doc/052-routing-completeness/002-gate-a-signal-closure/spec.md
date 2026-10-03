@@ -2,10 +2,6 @@
 title: "Feature Specification: Phase 2: gate-a-signal-closure"
 description: "Across five hubs 234 of 444 declared signals resolved to exactly one mode. The distribution was the finding rather than the total, and the fixes each unresolved signal was given have now been applied and measured at 345 of 388."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
   - "spec core"
 importance_tier: "normal"
 contextType: "general"

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Four-iteration deep review of sk-design-chart; verdict CONDITIONAL, findings verified in the parent synthesis."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -10,11 +10,11 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-chart-review"
-    last_updated_at: "2026-09-11T17:13:03Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "sk-design/020-chart-and-diagram-review/001-chart-review"
+    last_updated_at: "2026-09-11T21:26:45+02:00"
+    last_updated_by: "spec-validation-backfill"
+    recent_action: "Recorded the review iterations and the verdict"
+    next_safe_action: "Fill spec, tasks and criteria from the review"
     blockers: []
     key_files: []
     session_dedup:
@@ -48,18 +48,20 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+A four-iteration deep review of `sk-design-chart` with a verdict: CONDITIONAL. The corpus check, the applicator and the 84-test proof suite are green and honest about the corpus; what fails is the packet's account of itself.
 
 ### Phase 1: chart-review
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The iterations covered correctness and security, traceability and maintainability, coverage and proof quality, and release readiness and usability. The confirmed chart findings in `../synthesis.md` include the release checklist rows an operator cannot use, the theming guide overstating what `--default` does, and a workflow that verifies a delivery with a command that never opens it.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `review/lineages/deepseek/iterations/iteration-001.md` to `iteration-004.md` | Created (by the loop) | The four review iterations |
+| `review/lineages/deepseek/review-report.md` | Created (by the loop) | The lineage report |
+| `review/orchestration-summary.json` | Created (by the runner) | Run outcome across lineages |
+| `../synthesis.md` | Created | Verified findings and the verdict for both packets |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +69,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Three lineages were launched; only the DeepSeek V4.1 Flash lineage (`review/lineages/deepseek`, `cli-pi`, `reasoningEffort: max`) wrote iteration reports. The GPT-5.6-LUNA lineage wrote only `invocation-metadata.json` and the second DeepSeek lineage (`review/lineages/ds4`) wrote state lines and no reports, so both were dropped. Every P1 was re-opened at the file and line it names before the parent `../synthesis.md` repeats it.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +79,8 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Keep the single producing lineage and say so | The findings rest on one model's reading, so each P1 was re-verified at its line instead of being tallied |
+| Review only, no fixes | The packet's job was a verdict; remediation is separate work |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +90,9 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Iteration reports present | PASS, `iteration-001.md` to `iteration-004.md` in the DeepSeek lineage |
+| P1 findings re-opened at their cited lines | PASS, recorded in `../synthesis.md` |
+| `review/orchestration-summary.json` | Records `succeeded: 0`, `failed: 1` for the runner's own lineage accounting |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +100,8 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **One model's reading.** The LUNA and second DeepSeek lineages produced no reports.
+2. **This phase's planning docs were never filled.** `spec.md`, `tasks.md` and `acceptance-criteria.md` still hold the scaffold; the record of the work is the review tree and `../synthesis.md`.
 <!-- /ANCHOR:limitations -->
 
 ---

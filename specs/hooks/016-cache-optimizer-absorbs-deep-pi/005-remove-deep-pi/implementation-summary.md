@@ -87,8 +87,8 @@ extension and would otherwise have gone red looking like an unrelated regression
 | Check | Result |
 |-------|--------|
 | Extension suite | exit 0, 92 passing, tsc clean |
-| Provenance | Clean, one fork; re-recorded after 002-004 changed the surviving fork |
-| Spec-kit parity suite | 103 passing |
+| Provenance (`check-vendored-fork-provenance.mjs`) | Clean, one fork; re-recorded after 002-004 changed the surviving fork |
+| Spec-kit parity suite (`hook-adapter-path-parity.vitest.ts`) | 103 passing |
 | Live Pi session | Zero extension-load failures, no mention of the retired extension |
 | Historical records | No changelog, benchmark report outside the extension, prior packet or the dispatch audit log was modified |
 <!-- /ANCHOR:verification -->

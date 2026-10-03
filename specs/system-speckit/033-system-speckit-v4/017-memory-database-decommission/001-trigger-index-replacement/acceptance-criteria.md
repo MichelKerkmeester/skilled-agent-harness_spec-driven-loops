@@ -17,8 +17,8 @@ _memory:
     next_safe_action: "Meet, waive or supersede the open criteria"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/scripts/retrieval/generate-trigger-index.mjs"
-      - ".opencode/skills/system-spec-kit/data/trigger-index.json"
+      - ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+      - ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planning-session"

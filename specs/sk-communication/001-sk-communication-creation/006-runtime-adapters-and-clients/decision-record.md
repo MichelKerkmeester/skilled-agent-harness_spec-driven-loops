@@ -4,7 +4,7 @@ description: "Architecture decision for Phase 006: use client-owned presentation
 trigger_phrases:
   - "runtime-adapters-and-clients"
   - "architecture decision"
-  - "use client-owned presentation whenever native interception is not explicitly safe"
+  - "client-owned presentation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

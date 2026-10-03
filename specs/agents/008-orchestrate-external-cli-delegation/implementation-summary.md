@@ -2,9 +2,6 @@
 title: "Implementation Summary"
 description: "The orchestrate agent now carries one opt-in rule for external CLI delegation, applied by hand to both real definitions and propagated to all six runtime surfaces."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
   - "impl summary core"
 importance_tier: "normal"
 contextType: "general"

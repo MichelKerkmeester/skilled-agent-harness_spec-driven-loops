@@ -16,7 +16,6 @@
       "package relocation evidence",
       "implementation plan",
       "package relocation plan",
-      "tasks",
       "package relocation tasks",
       "implementation status",
       "current state"
@@ -41,8 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-communication/README.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -67,12 +65,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-communication/README.md",
         "source": "derived"
       },
       {
@@ -188,11 +180,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Preserving Relocation",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The package lived under a generic `packages/` root even though it is owned and consumed exclusively by the sk-communication skill, unlike system skills (for example, system-spec-kit) that bundle their code inside the skill directory",
     "created_at": "2026-08-13T17:02:13.812Z",
-    "last_save_at": "2026-09-03T22:17:03.163Z",
+    "last_save_at": "2026-10-03T15:12:01.853Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e3f441ae870bd6c5f3a40f9662b29e2ac65aff34d3b35ae10793f369401bbe5",
+    "source_fingerprint": "sha256:2d3308ec22cca0fb31145ec08cecff95e3642ae19bfe41e4f172c1355fe2dbe1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f15056bf5ae4cd633f9718181c55d6aead131ce65a61f54a743e5c7c70ffe81",
       "plan.md": "f6fd9e488715e6357e773b81ad7a68755c0fbc6ab29a4f309532a2c9ab2776a9",
-      "tasks.md": "1571ccf660e30db5f561d4abdabff401f7585d4568b95345141aa98bde3671b5",
+      "tasks.md": "03b127b55a3f80a391182746ced75981d0baa5fb34c1ae83905d0e28f4088f2b",
       "implementation-summary.md": "64c2e11b84917ec5322bfa943b5464d7fbf73d36f70e6172024827953f7c5736"
     },
     "last_active_child_id": null,

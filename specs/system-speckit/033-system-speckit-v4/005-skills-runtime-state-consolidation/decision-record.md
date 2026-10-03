@@ -2,10 +2,6 @@
 title: "Decision Record: Consolidate the seven dot-state directories under .opencode/skills into a single .state subfolder"
 description: "Decision record template for documenting architectural choices, alternatives, consequences, and implementation notes."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "name"
-  - "template"
   - "decision record"
 importance_tier: "normal"
 contextType: "general"

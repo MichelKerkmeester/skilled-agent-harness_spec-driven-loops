@@ -32,19 +32,21 @@
   "phraseQuality": {
     "documents": {
       "editor-fallback": 3,
+      "folder-token-fallback": 69,
       "generic-workflow-word": 95,
       "numeric-only": 52,
       "prose-sentence": 16,
-      "single-token": 508,
+      "single-token": 490,
       "stop-word-only": 10
     },
     "phrases": {
       "editor-fallback": 2,
+      "folder-token-fallback": 43,
       "generic-workflow-word": 3,
       "numeric-only": 33,
       "ok": 33158,
       "prose-sentence": 25,
-      "single-token": 237,
+      "single-token": 194,
       "stop-word-only": 2
     }
   },

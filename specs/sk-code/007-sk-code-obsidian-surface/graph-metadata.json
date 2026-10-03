@@ -52,7 +52,20 @@
       "spec.md",
       "goal.md",
       "roadmap.md",
-      "002-repo-convention-audit/audit.json"
+      "002-repo-convention-audit/audit.json",
+      "001-surface-design-plan/goal.md",
+      "002-repo-convention-audit/goal.md",
+      "003-hub-wiring/goal.md",
+      "004-skill-core/goal.md",
+      "005-references-stack/goal.md",
+      "006-assets-checklists/goal.md",
+      "007-manual-testing-playbook/goal.md",
+      "008-scanners-and-gates/goal.md",
+      "009-banners-and-folder-docs/goal.md",
+      "010-kebab-rename/goal.md",
+      "011-changelog-and-verification/goal.md",
+      "012-doc-template-conformance/goal.md",
+      "013-surface-reality-conformance/goal.md"
     ],
     "entities": [
       {
@@ -134,6 +147,12 @@
         "source": "derived"
       },
       {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "no",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -144,27 +163,21 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "it",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Code work on this plugin resolves to the `UNKNOWN` surface",
     "created_at": "2026-08-28T18:17:35Z",
-    "last_save_at": "2026-09-20T04:54:52.774Z",
+    "last_save_at": "2026-10-03T16:49:44.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:10eae7773680c8a6c648c72eb5c8bd96e7d175e54d8ca27a41cf8b0e84eeacb8",
+    "source_fingerprint": "sha256:3ae38e47617d5012c35471503622122443df0be7172d2bcceb5d31882500df09",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f217ba9a5b9134f75009037fecfe9dbc5e4d0ffcaeb2130679cd91c019f6a411"
+      "spec.md": "1cfd2f60edafd2a44225a991c09b45457e88f54afffff5dc4093f9ea7140768d"
     },
     "last_active_child_id": "sk-code/007-sk-code-obsidian-surface/009-banners-and-folder-docs",
     "last_active_at": null

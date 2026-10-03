@@ -2,10 +2,6 @@
 title: "Feature Specification: Correct the deep-loop command contracts to state the real per-command CLI executor sets"
 description: "The deep-loop command contracts named a three-item CLI executor set while each command runtime accepts a different, larger set; one contract also advertised an executor its resolver rejects. This packet makes every contract state its own runtime's accepted set and cite the constant that enforces it."
 trigger_phrases:
-  - "feature"
-  - "specification"
-  - "name"
-  - "template"
   - "spec core"
 importance_tier: "normal"
 contextType: "general"

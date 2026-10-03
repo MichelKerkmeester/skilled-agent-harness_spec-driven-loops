@@ -2,7 +2,7 @@
 # DOCTOR: PARENT SKILL WORKFLOW (INTERACTIVE READ-ONLY MODE)
 # ─────────────────────────────────────────────────────────────────
 role: Expert Operator running the parent-skill structural audit in interactive mode
-purpose: Read-only audit of the "parent skill with nested mode packets" pattern — single hub identity, non-discoverable packets, and a registry-backed routing contract
+purpose: Read-only audit of parent-skill structure, routing manifests, root metadata, router contracts, and version consistency
 action: Run parent-skill-check.cjs against the target parent-skill dir -> present per-invariant PASS/FAIL report -> final status
 
 # ─────────────────────────────────────────────────────────────────
@@ -21,42 +21,25 @@ operating_mode:
 # PARENT-SKILL AUDIT INVARIANT
 # ─────────────────────────────────────────────────────────────────
 parent_skill_doctor_invariant: |
-  Parent-skill doctor is strictly read-only. It inspects a parent skill that
-  routes to nested mode packets and asserts the structure that keeps the hub a
-  single advisor identity. The audit runs the full canon on every parent hub
-  (no basename gating):
-    1. EXACTLY ONE graph-metadata.json (the hub's), whose skill_id equals the
-       directory name and whose family is in the allowed set.
-    2. NO graph-metadata.json inside any mode packet or shared/.
-    3. mode-registry.json exists; every mode's packet resolves to a sub-dir and
-       carries the two-axis discriminator — workflowMode plus packetKind
-       ("workflow" | "surface") plus backendKind — with runtimeLoopType present
-       only when the runtime-loop extension is declared. Every mode carries a
-       toolSurface and grandfatheredFolderMismatch; workflow modes carry an
-       advisorRouting block with a valid routingClass; surface packets are
-       read-only evidence-base with a metadata routingClass.
-    4. The CI drift-guard test (registry projection == hardcoded advisor maps)
-       is wired when any mode routes lexically or via alias-fold; optionally the
-       registry's lexical projection is cross-checked against the advisor's live
-       DEEP_ROUTING_MODE_BY_KEY.
-    5-9. Canon — FAIL by default now that every hub carries the fields
-       (PARENT_HUB_CHECK_STRICT=0 downgrades these to advisory WARN for a
-       work-in-progress hub): hub-router.json validity (routerSignals ↔ registry
-       workflowModes, typed classes and resource paths resolve, tieBreak covers
-       every mode); registry ↔ directory reverse consistency; changelog shape
-       (real files, no symlinks) at both hub and packet level; description.json
-       presence; and a hub playbook plus a benchmark baseline.
-  It NEVER writes files, mutates graph metadata, re-indexes the advisor, or
-  edits the audited skill. Exit code is non-zero when any invariant fails,
-  including checks 5-9 (canon by default; PARENT_HUB_CHECK_STRICT=0 downgrades
-  5-9 to advisory WARN for a work-in-progress hub still being scaffolded).
+  The audit runs the fleet-wide root-metadata gate before the selected parent
+  hub checker. The fleet gate checks each skill root's metadata class, nested
+  identity files, generated leaf-manifest freshness and reachability, and root
+  router contract. The parent checker verifies the selected hub's registry and
+  directory consistency, mode routing contract, changelog shape, root
+  description, playbook, benchmark baseline, and routing-version consistency.
+  A mode packet may use packetKind "workflow", "surface", or "transport".
+  Nested graph-metadata.json and description.json files are prohibited.
+  PARENT_HUB_CHECK_STRICT=0 downgrades only advisory findings;
+  hard failures remain failures. Both checks are read-only and report their
+  individual exit codes.
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
 # ─────────────────────────────────────────────────────────────────
 upstream_assets:
-  contract: "local command design contract"
+  contract: "skill-root metadata and parent-skill audit contracts"
   audit_script: ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+  root_metadata_gate: ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs"
   reference_implementation: ".skilled/skills/system-deep-loop"
   reference_doc: ".skilled/skills/sk-doc/sk-create-skill/references/README.md"
 
@@ -94,25 +77,28 @@ mutation_boundaries:
 # ─────────────────────────────────────────────────────────────────
 workflow:
   phase_0_audit:
-    purpose: "Run the parent-skill structural audit (read-only)."
+    purpose: "Run the fleet metadata gate and selected parent-skill structural audit (read-only)."
     activities:
       - "Resolve parent_skill_dir (default to upstream_assets.reference_implementation when empty)."
-      - "Execute upstream_assets.audit_script via Bash with parent_skill_dir as the first positional argument."
-      - "Capture stdout and exit code."
+      - "Execute upstream_assets.root_metadata_gate via Bash with no --fix flag."
+      - "Execute upstream_assets.audit_script via Bash with parent_skill_dir as the first positional argument, even when the fleet gate reports findings."
+      - "Capture stdout and exit code separately for both checks."
     outputs:
-      - per_invariant_report
-      - exit_code
+      - fleet_metadata_report
+      - fleet_metadata_exit_code
+      - parent_skill_report
+      - parent_skill_exit_code
 
   phase_1_report:
     purpose: "Present the per-invariant PASS/FAIL report and the final status."
     activities:
-      - "Print the audit report."
-      - "Map exit code 0 to STATUS=OK, exit code 1 to STATUS=FAIL, exit code 2 to STATUS=ERROR (target missing)."
+      - "Print both reports and their exit codes."
+      - "Map both exit codes 0 to STATUS=OK; any exit code 1 to STATUS=FAIL; any exit code 2 to STATUS=ERROR."
 
 # ─────────────────────────────────────────────────────────────────
 # OUTPUT FORMAT
 # ─────────────────────────────────────────────────────────────────
 output_format: |
-  STATUS=OK when every invariant passes (audit script exits 0).
-  STATUS=FAIL ERROR="parent-skill invariant failed" when the audit script exits 1.
-  STATUS=ERROR ERROR="parent skill directory not found" when the audit script exits 2.
+  STATUS=OK when both checks exit 0.
+  STATUS=FAIL ERROR="parent-skill invariant failed" when either check exits 1 and neither exits 2.
+  STATUS=ERROR ERROR="parent-skill audit could not run" when either check exits 2.

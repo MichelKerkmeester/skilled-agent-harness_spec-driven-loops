@@ -2,9 +2,6 @@
 title: "Tasks: Phase 1: transport-and-baseline"
 description: "Every task this phase ran, marked done with the evidence that settles it: a command and its output, a file and line, or a commit."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
   - "tasks core"
 importance_tier: "normal"
 contextType: "general"

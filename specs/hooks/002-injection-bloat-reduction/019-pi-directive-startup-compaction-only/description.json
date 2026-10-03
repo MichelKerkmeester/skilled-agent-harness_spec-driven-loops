@@ -1,0 +1,27 @@
+{
+  "specFolder": "hooks/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only",
+  "description": "Deliver Pi advisor directives at startup and compaction only, deduping the directives-only fallback to once per boundary",
+  "keywords": [
+    "deliver",
+    "advisor",
+    "directives",
+    "startup",
+    "compaction",
+    "only",
+    "deduping",
+    "directives-only",
+    "fallback",
+    "per",
+    "boundary"
+  ],
+  "lastUpdated": "2026-10-03T14:45:17.237Z",
+  "specId": "019",
+  "folderSlug": "pi-directive-startup-compaction-only",
+  "parentChain": [
+    "hooks",
+    "002-injection-bloat-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -2,12 +2,7 @@
 title: "Implementation Summary"
 description: "Level 3 implementation summary for the naming overhaul: what was built, how it was delivered, key decisions, verification evidence, and known limitations."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "worktree"
-  - "branch"
-  - "naming"
-  - "grammar"
+  - "worktree branch naming overhaul implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

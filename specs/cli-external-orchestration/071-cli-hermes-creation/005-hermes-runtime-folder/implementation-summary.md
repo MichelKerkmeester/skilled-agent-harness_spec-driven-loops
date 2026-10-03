@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "cli-external-orchestration/071-cli-hermes-creation/005-hermes-runtime-folder"
     last_updated_at: "2026-09-14T20:40:00Z"
     last_updated_by: "claude-fable-5-1"
-    recent_action: "Skills surface regenerated as markdown-only copies of all 56 skills; live preload proven; earlier: redesigned to per-skill links"
+    recent_action: "Regenerated skills surface as markdown-only copies; live preload proven"
     next_safe_action: "None; phase closed"
     blockers: []
     key_files:

@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 048-fanout-convergence-mode-flag |
+| **Spec Folder** | 008-fanout-convergence-mode-flag |
 | **Status** | Complete |
 | **Completed** | 2026-09-11 |
 | **Level** | 1 |

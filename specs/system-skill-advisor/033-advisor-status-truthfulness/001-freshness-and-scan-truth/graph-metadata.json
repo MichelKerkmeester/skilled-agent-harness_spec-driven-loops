@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth",
+  "spec_folder": "system-skill-advisor/033-advisor-status-truthfulness/001-freshness-and-scan-truth",
+  "parent_id": "system-skill-advisor/033-advisor-status-truthfulness",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor status freshness",
+      "skill count scan truth",
+      "skill graph freshness panel",
+      "degraded sqlite artifact",
+      "implementation plan",
+      "technical approach",
+      "architecture decisions",
+      "testing strategy",
+      "task breakdown",
+      "implementation tasks",
+      "verification checklist",
+      "task dependencies"
+    ],
+    "key_topics": [
+      "advisor",
+      "status",
+      "freshness",
+      "skill",
+      "count",
+      "scan",
+      "truth",
+      "graph",
+      "panel",
+      "degraded",
+      "sqlite",
+      "artifact"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+      ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/status.ts",
+      ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts",
+      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/handlers/skill-graph-status-hash.vitest.ts",
+      ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/doctor/skill-graph-freshness-panel.vitest.ts",
+      ".skilled/commands/doctor/assets/doctor-skill-graph-freshness.yaml",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-status.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-status.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/rebuild-from-source.md",
+      "scratch/baseline.md",
+      "scratch/recon.md",
+      "scratch/verification.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-db.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/skill-graph/skill-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "status.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/handlers/skill-graph/status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-status.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-status.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-status-hash.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/handlers/skill-graph-status-hash.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-freshness.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-freshness-panel.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/doctor/skill-graph-freshness-panel.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-graph-freshness.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-skill-graph-freshness.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-status.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-status.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-status.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/skill-graph-status.md",
+        "source": "derived"
+      },
+      {
+        "name": "rebuild-from-source.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/daemon-and-freshness/rebuild-from-source.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.md",
+        "kind": "doc",
+        "path": "scratch/baseline.md",
+        "source": "derived"
+      },
+      {
+        "name": "recon.md",
+        "kind": "doc",
+        "path": "scratch/recon.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification.md",
+        "kind": "doc",
+        "path": "scratch/verification.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four reporting defects were recorded by the doctor command audit and re-verified live while planning this phase",
+    "created_at": "2026-10-03T05:27:36Z",
+    "last_save_at": "2026-10-03T15:12:20.613Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:16785cbf7cca910854ba2dbd132c2e53538ad8cf24dffe2db5c272d45ee31fae",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7e6f8b79a205cfea358ea3156c9419e391146d6e2855973b92c75abd1d980935",
+      "plan.md": "7be20f6d27fae100a2f07d008f55527a53b32f6b5c33dec734f2630a0eaf9d13",
+      "tasks.md": "b28c415584d61722d0a3a3ddfcce9fe2b37bc691e40224556fb0b520c2e9ff9c",
+      "implementation-summary.md": "83bd2375430b90e8227a59c77d7db830bf9fa2c35b8e7f79c0c1a0260150bb92"
+    },
+    "last_active_at": null
+  }
+}

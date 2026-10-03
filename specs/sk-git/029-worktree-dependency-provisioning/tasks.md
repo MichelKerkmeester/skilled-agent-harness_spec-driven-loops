@@ -30,7 +30,7 @@ _memory:
 ---
 
 <!-- ANCHOR:notation -->
-## TASK NOTATION
+## Task Notation
 
 `[ ]` open · `[x]` done, with the evidence that closed it.
 <!-- /ANCHOR:notation -->
@@ -38,7 +38,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-1 -->
-## PHASE 1: SETUP
+## Phase 1: Setup
 
 - [x] T1 `scripts/worktree-provision-paths.txt` lists 9 packages, covering all six levels that failed in practice.
 <!-- /ANCHOR:phase-1 -->
@@ -46,7 +46,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## PHASE 2: IMPLEMENTATION
+## Phase 2: Implementation
 
 - [x] T2 `provision` installs missing, skips present, reports each, exits non-zero on any failure. First run: 3 installed, 6 present, 0 failed.
 - [x] T3 `create` parses `--no-provision` and calls the step otherwise.
@@ -57,7 +57,7 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-3 -->
-## PHASE 3: VERIFICATION
+## Phase 3: Verification
 
 - [x] T6 `bash -n` clean on the allocator.
 - [x] T7 Worktree 051 created via `create`; advisor runtime built (dist produced) and CLI answered 9 commands, no manual install.
@@ -68,7 +68,7 @@ _memory:
 ---
 
 <!-- ANCHOR:completion -->
-## COMPLETION CRITERIA
+## Completion Criteria
 
 Every task above closed with evidence, and the success criteria in `spec.md` met.
 <!-- /ANCHOR:completion -->
@@ -76,7 +76,7 @@ Every task above closed with evidence, and the success criteria in `spec.md` met
 ---
 
 <!-- ANCHOR:cross-refs -->
-## CROSS-REFERENCES
+## Cross-References
 
 - `spec.md` — the problem and its requirements.
 - `plan.md` — the phases these tasks implement.

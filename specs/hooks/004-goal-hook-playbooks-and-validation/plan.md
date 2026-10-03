@@ -5,7 +5,6 @@ trigger_phrases:
   - "goal hook playbook plan"
   - "goal hook validation plan"
   - "cross runtime goal hook proof method"
-  - "name"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

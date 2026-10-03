@@ -7,9 +7,9 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import { mkdirSync, statSync } from 'node:fs';
+import { existsSync, mkdirSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { DatabaseSync, type SQLInputValue } from 'node:sqlite';
+import { DatabaseSync, type DatabaseSyncOptions, type SQLInputValue } from 'node:sqlite';
 import { fileURLToPath } from 'node:url';
 
 // ───────────────────────────────────────────────────────────────────
@@ -199,8 +199,8 @@ interface CouncilStatement {
 class CouncilDatabase {
   readonly raw: DatabaseSync;
 
-  constructor(filePath: string) {
-    this.raw = new DatabaseSync(filePath);
+  constructor(filePath: string, options?: DatabaseSyncOptions) {
+    this.raw = options ? new DatabaseSync(filePath, options) : new DatabaseSync(filePath);
   }
 
   exec(sql: string): void {
@@ -243,6 +243,8 @@ let db: CouncilDatabase | null = null;
 let dbPath: string | null = null;
 let statementDb: CouncilDatabase | null = null;
 const preparedStatements = new Map<string, CouncilStatement>();
+let readOnly = false;
+let readOnlyPresent = false;
 
 /**
  * Initialize (or get) the council graph database.
@@ -285,6 +287,70 @@ export function initDb(dbDir: string = COUNCIL_GRAPH_STORAGE_DIR): CouncilDataba
 }
 
 /**
+ * Open the council graph database for read-only queries.
+ *
+ * Never creates a directory or a database file. An absent database is served
+ * from an in-memory schema so queries return empty rows without touching disk.
+ *
+ * @param dbDir - Directory for the database file.
+ * @returns Whether the on-disk database file was present.
+ */
+export function openReadOnlyDb(dbDir: string = COUNCIL_GRAPH_STORAGE_DIR): { present: boolean } {
+  if (db && readOnly) return { present: readOnlyPresent };
+
+  if (db) {
+    db.close();
+    db = null;
+    dbPath = null;
+    statementDb = null;
+    preparedStatements.clear();
+  }
+
+  const path = join(dbDir, DB_FILENAME);
+  if (existsSync(path)) {
+    // A read-only connection to a WAL database recreates missing -wal/-shm
+    // side files on its first query, so an immutable URI keeps the open free
+    // of filesystem writes whenever both side files are absent.
+    const sideFilesAbsent = !existsSync(`${path}-wal`) && !existsSync(`${path}-shm`);
+    const target = sideFilesAbsent ? `file:${path}?immutable=1` : path;
+    try {
+      db = new CouncilDatabase(target, { readOnly: true });
+    } catch {
+      db = new CouncilDatabase(path, { readOnly: true });
+    }
+    dbPath = path;
+    readOnlyPresent = true;
+  } else {
+    db = new CouncilDatabase(':memory:');
+    db.exec(SCHEMA_SQL);
+    db.prepare('INSERT INTO council_schema_version (version) VALUES (?)').run(SCHEMA_VERSION);
+    dbPath = null;
+    readOnlyPresent = false;
+  }
+
+  readOnly = true;
+  return { present: readOnlyPresent };
+}
+
+/**
+ * Report whether the active connection is a read-only one.
+ *
+ * @returns True when openReadOnlyDb opened the current connection.
+ */
+export function isReadOnlyDb(): boolean {
+  return readOnly;
+}
+
+/**
+ * Report whether the read-only open found the database file on disk.
+ *
+ * @returns True when the read-only connection is backed by a database file.
+ */
+export function isReadOnlyDbPresent(): boolean {
+  return readOnlyPresent;
+}
+
+/**
  * Get the current database instance (lazy-initializes if needed).
  *
  * @returns The Database instance.
@@ -305,6 +371,8 @@ export function closeDb(): void {
     statementDb = null;
     preparedStatements.clear();
   }
+  readOnly = false;
+  readOnlyPresent = false;
 }
 
 /**

@@ -45,7 +45,9 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review/lineages/deepseek/iterations/iteration-001.md",
+      "review/orchestration-summary.json"
     ],
     "entities": [
       {
@@ -76,6 +78,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "review/lineages/deepseek/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "review/orchestration-summary.json",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-11T17:13:03Z",
-    "last_save_at": "2026-09-11T18:28:20.159Z",
+    "last_save_at": "2026-10-03T15:44:04.042Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c3fcd1b5bdb345ebe41d1444658de7305aac79e8735d10969346f5b901989ec",
+    "source_fingerprint": "sha256:d5833760ea55a04cfe42e367a4882f2c8d8979808b5a23adf1537538ae4f6a54",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "662eb05761fcba977a8a1c36248a4bdda7500a43999d4b1d255fe18d2d0e5ffe",
       "plan.md": "3125a6e2fbc792ad374bc970ac3e19d024322398764a359323a88c765b9ad04e",
       "tasks.md": "9f3674cd760a6895caf6459865171d15b9f5d012abf1bb05b6cbc2721882ae14",
-      "implementation-summary.md": "f592a12c1ba53260fd4c23e164a5d404fa16178618650a959a65d923ebdec0c5"
+      "implementation-summary.md": "4e895606d07614484cfe9e0122988e367629d91cd6839d5ff91c6fe5edd9b1db"
     },
     "last_active_at": null
   }

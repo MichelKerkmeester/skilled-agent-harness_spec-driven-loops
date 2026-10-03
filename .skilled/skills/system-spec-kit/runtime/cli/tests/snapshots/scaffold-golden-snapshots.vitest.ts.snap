@@ -6,7 +6,7 @@ title: "Before/After Record: [NAME]"
 description: "Level-agnostic record of what changed, why it changed and the resulting effect."
 trigger_phrases:
   - "before after"
-  - "comparison"
+  - "change comparison"
   - "change record"
   - "migration comparison"
 importance_tier: "normal"
@@ -81,11 +81,9 @@ exports[`manifest template golden snapshots > renders each lazy add-on template 
 title: "Decision Record: [NAME]"
 description: "Decision record template for documenting architectural choices, alternatives, consequences and implementation notes."
 trigger_phrases:
-  - "decision"
-  - "record"
-  - "name"
-  - "template"
   - "decision record"
+  - "architecture decision"
+  - "decision rationale"
 importance_tier: "normal"
 contextType: "general"
 _memory:
@@ -301,7 +299,7 @@ exports[`manifest template golden snapshots > renders each lazy add-on template 
 title: "Roadmap: [NAME]"
 description: "Level-agnostic forward plan for near-term, next-step and later work."
 trigger_phrases:
-  - "roadmap"
+  - "roadmap plan"
   - "forward plan"
   - "now next later"
   - "strategic milestones"
@@ -363,10 +361,10 @@ exports[`manifest template golden snapshots > renders each lazy add-on template 
 title: "Timeline: [NAME]"
 description: "Level-agnostic chronological record of events, outcomes and milestones."
 trigger_phrases:
-  - "timeline"
-  - "chronology"
+  - "packet timeline"
+  - "event chronology"
   - "event history"
-  - "milestones"
+  - "milestone dates"
 importance_tier: "normal"
 contextType: "general"
 ---
@@ -3376,11 +3374,10 @@ exports[`review and research packet scaffolds > renders the review report and re
 title: "Research Record: [NAME] [template:research/spec.md]"
 description: "[What is being researched and why. 2-3 sentences naming the question, the surfaces it touches and the decision the findings inform.]"
 trigger_phrases:
-  - "research"
   - "research record"
-  - "investigation"
   - "research question"
   - "research findings"
+  - "investigation notes"
 importance_tier: "normal"
 contextType: "research"
 _memory:

@@ -8,7 +8,7 @@ trigger_phrases:
   - "coverage graph script exit codes"
 importance_tier: important
 contextType: implementation
-version: 1.4.0.2
+version: 1.4.0.3
 ---
 
 # Deep Loop Runtime Script Interface Contract
@@ -50,6 +50,14 @@ Every script follows the same lifecycle: parse CLI args, re-exec through the TSX
 - Script errors may write diagnostic stack JSON to stderr.
 - Workflow YAML should parse stdout, not stderr.
 
+### Read-Only Mode
+
+- `status.cjs`, `query.cjs` and `convergence.cjs` accept `--read-only`. Each selects the coverage database except for `--loop-type council`, which selects the council database. Existing files use the module's read-only SQLite opener. When both WAL side files are absent, coverage opens a header-adjusted byte buffer and council tries an immutable URI. Otherwise, both open the database path as read-only. If the council URI open fails, it falls back to a read-only path open.
+- An absent database is served from `:memory:` after the opener creates its schema and version row there. The opener creates no directory or on-disk database file and returns `databasePresent: false`. Status reports zero counts, query returns empty query results, coverage convergence returns `CONTINUE` and council convergence returns `STOP_BLOCKED`. Successful responses put `readOnly: true` and the boolean `databasePresent` in `data`.
+- For an existing database, the main database file is opened read-only. The opener does not apply schema SQL or update the on-disk version row, and it creates no directory or main database file. Status and convergence skip observability event appends. Query has no append path. Convergence also skips snapshot creation. Both modules' source comments warn that path-opening a WAL database can recreate missing `-wal` or `-shm` files on first query. The buffer and immutable URI avoid that path when both side files are absent. The council opener also falls back to the path if its immutable URI open fails, so the code does not guarantee zero side-file writes in every path-open case.
+- In convergence, `--read-only` disables `--persist-snapshot`. Nonempty coverage and council results report `data.snapshotPersistence: "not_requested"` even if persistence was requested. Empty coverage returns before adding that field. Empty council returns before persistence and its persistence field. Council also does not require `--round-id` when read-only mode disables persistence.
+- `upsert.cjs` has no read-only mode.
+
 ### Exit-Code Matrix
 
 | Exit code | Meaning | Source condition |
@@ -75,7 +83,7 @@ Every script follows the same lifecycle: parse CLI args, re-exec through the TSX
 
 Source: `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs`
 
-Additional args: `--iteration`, `--persist-snapshot`.
+Additional args: `--iteration`, `--persist-snapshot`, `--read-only`.
 
 Workflow-facing fields: `graph_decision`, `graph_signals_json`, `graph_blockers_json`, `graph_stop_blocked`, `graph_convergence_score`.
 
@@ -95,7 +103,7 @@ Behavior: Requires at least one node or edge, validates kinds and relations by l
 
 Source: `.skilled/skills/system-deep-loop/runtime/scripts/query.cjs`
 
-Additional args: `--query-type`, optional `--limit`, `--node-id`, `--max-depth`.
+Additional args: `--query-type`, optional `--limit`, `--node-id`, `--max-depth`, `--read-only`.
 
 Workflow-facing fields: `data.queryType`, `data.namespace`, query-specific arrays.
 
@@ -105,7 +113,7 @@ Behavior: Supports uncovered questions, coverage gaps, unverified claims, contra
 
 Source: `.skilled/skills/system-deep-loop/runtime/scripts/status.cjs`
 
-Additional args: none beyond namespace args.
+Additional args: `--read-only`.
 
 Workflow-facing fields: `schemaVersion`, `rowCount`, counts, breakdowns, signals.
 
@@ -125,17 +133,24 @@ Visible anchors:
 - `scripts/status.cjs` closes after status assembly.
 - `tests/lifecycle/db-open-close.vitest.ts` covers lifecycle behavior.
 
+### Database Directory Environment Variables
+
+| Variable | Points to | Default when unset |
+|---|---|---|
+| `DEEP_LOOP_COVERAGE_DB_DIR` | Directory containing `deep-loop-graph.sqlite` | `.skilled/skills/system-deep-loop/runtime/database` |
+| `DEEP_LOOP_COUNCIL_DB_DIR` | Directory containing `council-graph.sqlite` | `.skilled/skills/system-deep-loop/runtime/database` |
+
 ---
 
 ## 5. PERMISSIONS-GATE RELATIONSHIP
 
-`permissions-gate` is not called directly by the scripts, and it has zero production callers anywhere today — `evaluateToolCall` and `evaluatePreDispatchToolCalls` are not wired into any executor dispatch path. The matching logic (tool/bash-command-to-operation-class mapping, glob specificity, default-deny) is built and unit-tested. Script execution is an `execute` operation that the gate's design would allow only for runtime-owned script paths, once it is connected and a permission matrix is active; today no permission matrix is consulted before scripts run.
+`permissions-gate` is not called directly by the scripts, and it has zero production callers anywhere today. `evaluateToolCall` and `evaluatePreDispatchToolCalls` are not wired into any executor dispatch path. The matching logic (tool/bash-command-to-operation-class mapping, glob specificity, default-deny) is built and unit-tested. Script execution is an `execute` operation that the gate's design would allow only for runtime-owned script paths, once it is connected and a permission matrix is active. Today no permission matrix is consulted before scripts run.
 
 Relevant source:
 
 - `lib/deep-loop/permissions-gate.ts` maps tools and bash commands to operation classes.
 - `SKILL.md` states direct `.cjs` invocation is the supported consumer path.
-- `/doctor deep-loop` marks the DB route as mutating before snapshots or repair.
+- `/doctor:speckit deep-loop` calls status, query and convergence with `--read-only`. Its route is `add-only` only because the workflow writes its packet-local state log.
 
 ---
 
@@ -160,6 +175,6 @@ Relevant source:
 | `scripts/query.cjs` | Read script and query-type dispatch. |
 | `scripts/status.cjs` | Health script and schema/count reporting. |
 | `lib/coverage-graph/coverage-graph-db.ts` | DB lifecycle owner. |
-| `lib/deep-loop/permissions-gate.ts` | Pre-dispatch execute/write matching logic; built and tested, zero production callers — not wired into dispatch. |
+| `lib/deep-loop/permissions-gate.ts` | Pre-dispatch execute/write matching logic is built and tested. It has zero production callers and is not wired into dispatch. |
 | `tests/integration/*-script.vitest.ts` | Script-level regression coverage. |
 | `tests/lifecycle/db-open-close.vitest.ts` | DB lifecycle regression coverage. |

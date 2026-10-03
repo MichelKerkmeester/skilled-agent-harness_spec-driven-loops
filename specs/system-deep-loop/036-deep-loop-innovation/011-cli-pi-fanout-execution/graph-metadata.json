@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Amendment (from Phase-1 reproduction)",
     "created_at": "2026-08-16T13:47:37.884Z",
-    "last_save_at": "2026-09-20T04:36:14.190Z",
+    "last_save_at": "2026-10-03T15:27:29.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b42526592f75fa1f419ff5aa3b880d63eaf953eb8463e2a8e10468a0b96bdeb4",
+    "source_fingerprint": "sha256:9a1eaa452170ad96a59f9ed671ceaccbcc7f0e530e64ebeb85ac8d07427bdc9d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "58c7b649fedfa20d961a4d08d983f85b75edce19f00835820aca6c6e048fb843",
       "plan.md": "fe65e92aa8ce08c25dde6725da307ae10a30f61ae2ad7b736bed38fcfd0b7c47",
       "tasks.md": "bdf128274fb68249b1c6f657d9769cd98894e58ea11517355aece9da5b659768",
-      "decision-record.md": "d118fed5d1d485a42fa29eb12da3a834b04dd82f30db82cc62f7a89e8dfa9b5f",
+      "decision-record.md": "2df94fee1809c8f6d4409bb31afca54e9a319749871cd954a1ae9618a7511ef3",
       "implementation-summary.md": "e58e298d6778fd18a468fb9792be17789786c0568932d5600bb46207a0c84d75"
     },
     "last_active_child_id": null,

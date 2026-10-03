@@ -2,7 +2,6 @@
 title: "Tasks: AGENTS.md Bloat Audit"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
-  - "tasks"
   - "agents.md bloat audit"
 importance_tier: "normal"
 contextType: "implementation"

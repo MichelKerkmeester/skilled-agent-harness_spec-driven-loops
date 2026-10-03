@@ -2,12 +2,7 @@
 title: "Tasks: Containment Auto-Scope for [system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope/tasks]"
 description: "Task breakdown for auto-resolving the containment repo root to the artifact's real worktree."
 trigger_phrases:
-  - "tasks"
-  - "containment"
-  - "auto"
-  - "scope"
-  - "for"
-  - "021"
+  - "containment auto-scope tasks"
 importance_tier: "important"
 contextType: "general"
 _memory:

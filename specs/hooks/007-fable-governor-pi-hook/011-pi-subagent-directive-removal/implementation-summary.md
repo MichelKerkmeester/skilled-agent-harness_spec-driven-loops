@@ -38,6 +38,7 @@ _memory:
 
 # Implementation Summary: Pi Subagent Directive Removal
 
+<!-- ANCHOR:what-built -->
 ## 1. WHAT CHANGED
 
 | Surface | Change |
@@ -49,7 +50,9 @@ _memory:
 | `injection-contract.md` | Pi-only directive ownership bullet replaced by the forwarder-only statement. |
 | `.pi/PLUGINS.md` | `pi-subagents (v0.50.0)` plugin entry removed. |
 | `.pi/SYNC.md` | Package-discovery sentence now records that the package is no longer installed. |
+<!-- /ANCHOR:what-built -->
 
+<!-- ANCHOR:verification -->
 ## 2. EVIDENCE
 
 ```text
@@ -65,9 +68,12 @@ $ npx vitest run .opencode/skills/system-skill-advisor/mcp-server/tests/hooks/pr
   Test Files  1 passed (1)
       Tests  3 passed (3)
 ```
+<!-- /ANCHOR:verification -->
 
+<!-- ANCHOR:limitations -->
 ## 3. RESIDUAL
 
 - The dispatch enforcement hook itself still denies unsatisfied cli-* dispatch at the tool-call boundary (raw-user authorization), which is intentional and unchanged.
 - The cli-pi skill packet and manual-testing-playbook PI-009 still document the community package as third-party reference material.
 - Historical specs (002-injection-bloat-reduction, 031-cli-pi-creation, 007 phase 003/004) retain their archival references.
+<!-- /ANCHOR:limitations -->

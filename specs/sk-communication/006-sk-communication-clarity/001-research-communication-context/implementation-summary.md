@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Two model-family lineages classed every rule in three communication sources against the repository stack, with cited evidence."
 trigger_phrases:
   - "implementation summary"
   - "what shipped"
@@ -41,6 +41,7 @@ _memory:
 | **Spec Folder** | 001-research-communication-context |
 | **Completed** | 2026-09-12 |
 | **Level** | 2 |
+| **Status** | Complete |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,18 +49,20 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Per-source recommendation sets for the three vendored communication sources, each recommendation classed against this repository's own rules and cited to the line it rests on, from two model families. Phase 002 decided from these findings rather than from impressions.
 
 ### Phase 1: research-communication-context
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+Every rule in `../context/clarity.md`, `../context/claude-style-patch-main/` and `../context/i-have-adhd-main/` is classed covered, partial, new or contradicting, the four conflicts sit on one contradiction page, and the 29 merged candidates each name an owning surface or none-today. The ADHD source's mechanism half (session hook, runtime mirrors, eval harness and release gate) is covered as mechanism, not only as prose.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `research/research.md` | Created (by the loop) | DeepSeek V4.1 Flash synthesis over ten iterations |
+| `research/iterations/` | Created (by the loop) | Ten iteration files |
+| `research/luna-fanout/lineages/luna/research.md` | Created (by the loop) | GPT-5.6 LUNA synthesis, 743 lines, with its disagreement section |
+| `spec.md` | Modified | Generated findings fence written back by spec anchoring |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +70,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+Two lineages, convergence disabled: DeepSeek V4.1 Flash through `cli-pi` at max effort for ten iterations, and GPT-5.6 LUNA through `cli-codex` at max effort on the fast tier for five. The repository stayed frozen outside this phase folder while a lineage was live, because the runner reverts out-of-lineage changes.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +80,9 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Two executor families | One lens on a judgment question is not a finding |
+| Disagreements listed, never tallied | A count across models hides the reason they differ |
+| Adoption left to phase 002 | Deciding here would let a delegate decide a repository question |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +92,11 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| `research/deep-research-state.jsonl` iteration count | PASS, ten iteration records, no convergence stop |
+| Sampled citation | PASS, `communication.md:104-106` resolves to the em dash ban at the run's commit |
+| Second lineage | PASS, LUNA research.md section 6 lists eight disagreements with reasons |
+| Scoped diff | PASS, only research artifacts under this folder changed |
+| `acceptance-criteria.md` AC-001 to AC-007 | All Met |
 <!-- /ANCHOR:verification -->
 
 ---

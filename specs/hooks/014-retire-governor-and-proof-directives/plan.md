@@ -2,10 +2,6 @@
 title: "Implementation Plan: Retire the Governor and Proof-Over-Appearance Directives"
 description: "Canonical owner first, then both fallback mirrors, then the assertions — with the suites run in between so the failures are observed."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
   - "plan core"
 importance_tier: "normal"
 contextType: "general"

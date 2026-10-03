@@ -34,7 +34,7 @@ from datetime import datetime, timezone
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 ROOT26 = os.path.dirname(SCRIPT_DIR)  # scratch/ -> 027 root (realpath; resolves the specs/ symlink)
-PACKET = "system-spec-kit/027-xce-research-based-refinement"
+PACKET = "system-speckit/027-xce-research-based-refinement"
 SEP = "\x01"  # commit-line marker unlikely to appear in a path
 
 
@@ -286,13 +286,18 @@ _memory:
   continuity:
     packet_pointer: "{PACKET}"
     last_updated_at: "{gen}"
+    last_updated_by: "gen-timeline"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: timeline | v2.2 -->
 # 027 Chronological Timeline
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 027 root). -->
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
 
 > **Generated:** {gen} — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
@@ -314,10 +319,14 @@ _memory:
 > **Most recent live spec folder:** `{newest}`
 > **Oldest live spec folder:** `{oldest}`
 > **Counts:** {len(live_s)} live spec folders · {len(arch_s)} archived (`z_archive/`).
+<!-- /ANCHOR:metadata -->
 
 ---
 
-## 0. Most recent 15 (quick answer to "what was worked on last")
+<!-- ANCHOR:timeline -->
+## 2. TIMELINE
+
+### 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
 {top15}
@@ -325,7 +334,7 @@ _memory:
 
 ---
 
-## A. Tracks — newest activity → oldest
+### A. Tracks — newest activity → oldest
 
 The six top-level themed tracks, ordered by most recent git activity. `Born` uses `--follow` so it
 traces through the reorg `git mv` history to each track's true origin.
@@ -337,7 +346,7 @@ traces through the reorg `git mv` history to each track's true origin.
 
 ---
 
-## B. All live spec folders — newest → oldest
+### B. All live spec folders — newest → oldest
 
 Every directory containing `spec.md` under the live tree (excludes `z_archive/` and `.backup-*`
 snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-summary.md` is present
@@ -349,7 +358,7 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 
 ---
 
-## C. Archived spec folders (`z_archive/`)
+### C. Archived spec folders (`z_archive/`)
 
 Superseded / merged packets, preserved for provenance. Same sort. Resolve their original phase
 identities via [`context-index.md`](./context-index.md).
@@ -358,9 +367,14 @@ identities via [`context-index.md`](./context-index.md).
 {block(arch_s)}
 ```
 
+<!-- /ANCHOR:timeline -->
+
 ---
 
-## D. Spec folder → changelog (generated link index)
+<!-- ANCHOR:milestones -->
+## 3. MILESTONES
+
+### D. Spec folder → changelog (generated link index)
 
 Every live spec folder linked to its packet changelog(s), in the same newest → oldest order as §B.
 This is the connection between "what was worked on when" (§B) and "what shipped" (the changelogs).
@@ -369,6 +383,7 @@ parents link their `-root.md` rollup, which indexes the child phase changelogs (
 changelogs the rollup covers). Links resolve relative to this file.
 
 {section_d(live_s, clmap)}
+<!-- /ANCHOR:milestones -->
 """)
 
 

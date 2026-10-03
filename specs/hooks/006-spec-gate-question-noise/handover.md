@@ -2,13 +2,8 @@
 title: "Session Handover - Pi Hook Latency & Gate-3 Question Noise"
 description: "Handover for three threads: 036 committed post-wipe, 037 spec-gate question-noise implemented+validated (commit pending), 038 fresh-session latency proposal (pending decision)."
 trigger_phrases:
-  - "session"
-  - "handover"
-  - "resume"
-  - "continue work"
-  - "036"
-  - "037"
-  - "038"
+  - "pi hook latency handover"
+  - "gate-3 question noise handover"
 importance_tier: "high"
 contextType: "general"
 _memory:

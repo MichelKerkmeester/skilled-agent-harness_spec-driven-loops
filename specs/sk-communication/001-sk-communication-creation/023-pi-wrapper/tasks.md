@@ -3,8 +3,6 @@ title: "Tasks: Phase 023 Pi Wrapper"
 description: "Planned task breakdown for the Pi turn_end-mutation probe, the validated-path wiring (turn_end extension or Phase 020 wrapper in pi print mode), the enablement gate, and the exact-original fallback verification."
 trigger_phrases:
   - "pi-wrapper"
-  - "tasks"
-  - "implementation"
   - "pi output projection tasks"
   - "turn_end mutation probe tasks"
 importance_tier: "important"

@@ -1,5 +1,6 @@
 {
-  "target": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/144-operate-like-fable-5/002-fable-mode-efficiency-research/research",
+  "target": null,
+  "targetStatus": "retired: the research corpus this snapshot was measured from has been deleted; the aggregate below stays the captured comparison baseline",
   "generatedFrom": "deep-loop state (json stream + iteration markdown)",
   "lineages": [
     {

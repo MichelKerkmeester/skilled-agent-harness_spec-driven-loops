@@ -1,6 +1,6 @@
 ---
 title: "DOC-345 -- Version migration 3.3.0.0 to 3.4.1.0"
-description: "Manual scenario validating /doctor:update --migrate two-hop migration from v3.3.0.0 to v3.4.1.0 with legacy files flagged but not deleted."
+description: "Manual scenario validating /doctor:rebuild --migrate two-hop migration from v3.3.0.0 to v3.4.1.0 with legacy files flagged but not deleted."
 version: 1.6.0.6
 id: doctor-commands-version-migration-3-3-0-0-to-3-4-1-0
 expected_workflow_mode: UNKNOWN
@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates the end-to-end declared migration path from `3.3.0.0` to `3.4.1.0`. The operator starts from a fresh clone at tag `v3.3.0.0`, updates to current, runs `/doctor:update --migrate`, and verifies the manifest chain `3.3.0.0 -> 3.4.0.0 -> 3.4.1.0`.
+This scenario validates the end-to-end declared migration path from `3.3.0.0` to `3.4.1.0`. The operator starts from a fresh clone at tag `v3.3.0.0`, updates to current, runs `/doctor:rebuild --migrate`, and verifies the manifest chain `3.3.0.0 -> 3.4.0.0 -> 3.4.1.0`.
 
 Legacy `memory/*.md` files must be detected and recommended for cleanup, not deleted. If no `v3.3.0.0` fixture or tag is available, this scenario is truthfully `SKIP` — the missing fixture is the named blocker.
 
@@ -21,9 +21,9 @@ Legacy `memory/*.md` files must be detected and recommended for cleanup, not del
 
 - Objective: Two-hop version migration from `3.3.0.0` to `3.4.1.0`.
 - Playbook ID: DOC-345.
-- Real user request: `Simulate a new user at v3.3.0.0. They git-pull to current. Run /doctor:update --migrate.`
-- Prompt: `Simulate a new user at v3.3.0.0. They git-pull to current. Run /doctor:update --migrate.`
-- Preconditions: A fresh clone or fixture at tag `v3.3.0.0` exists; after updating to current, the runtime can invoke `/doctor:update --migrate`.
+- Real user request: `Simulate a new user at v3.3.0.0. They git-pull to current. Run /doctor:rebuild --migrate.`
+- Prompt: `Simulate a new user at v3.3.0.0. They git-pull to current. Run /doctor:rebuild --migrate.`
+- Preconditions: A fresh clone or fixture at tag `v3.3.0.0` exists; after updating to current, the runtime can invoke `/doctor:rebuild --migrate`.
 - Expected execution process: Create the `v3.3.0.0` fixture, pull or switch to current code, run migration, verify two-hop state log, and confirm legacy files remain present but flagged.
 - Expected signals: manifest chain `3.3.0.0 -> 3.4.0.0 -> 3.4.1.0`, legacy `memory/*.md` files detected but not deleted, new schema active, and final status OK.
 - Desired user-visible outcome: A migration verdict proving the declared chain completes and legacy cleanup remains opt-in.
@@ -37,7 +37,7 @@ Legacy `memory/*.md` files must be detected and recommended for cleanup, not del
 ### Prompt
 
 ```
-Simulate a new user at v3.3.0.0. They git-pull to current. Run /doctor:update --migrate.
+Simulate a new user at v3.3.0.0. They git-pull to current. Run /doctor:rebuild --migrate.
 ```
 
 ### Commands
@@ -48,8 +48,8 @@ Simulate a new user at v3.3.0.0. They git-pull to current. Run /doctor:update --
 4. Confirm doctor update commands are absent or not yet current in the pre-upgrade checkout.
 5. Create or verify representative legacy `memory/*.md` files if the fixture does not already contain them.
 6. Update the clone to current `3.4.1.0` code.
-7. Run `/doctor:update --migrate` through the real runtime.
-8. Capture migration output, legacy detection output, and `.doctor-update.last-run.json`.
+7. Run `/doctor:rebuild --migrate` through the real runtime.
+8. Capture migration output, legacy detection output, and `.doctor-rebuild.last-run.json`.
 9. Verify new schema state and confirm legacy files still exist unless a separate cleanup command was run.
 
 ### Expected
@@ -60,7 +60,7 @@ The command reads `migration-manifest.json`, recognizes `3.3.0.0` as a valid sou
 
 - Fixture proof showing source checkout or tag `v3.3.0.0`.
 - Migration manifest excerpt showing the `3.3.0.0 -> 3.4.0.0 -> 3.4.1.0` chain.
-- `/doctor:update --migrate` transcript.
+- `/doctor:rebuild --migrate` transcript.
 - State log showing the two-hop migration and executed migration IDs or fallback operations.
 - Legacy `memory/*.md` files present before and after, plus output flagging them for optional cleanup.
 - New schema evidence for current DBs and required metadata files.
@@ -72,19 +72,19 @@ The command reads `migration-manifest.json`, recognizes `3.3.0.0` as a valid sou
 
 ### Failure Triage
 
-If no fixture exists, do not fabricate the scenario; record `SKIP` naming the missing fixture as the blocker. If legacy files are deleted, inspect ADR-008 handling and `doctor-update.yaml` Phase 9 cleanup gating. If the chain omits `3.4.0.0`, inspect `migration-manifest.json` `upgrade_paths` for `3.3.0.0`.
+If no fixture exists, do not fabricate the scenario; record `SKIP` naming the missing fixture as the blocker. If legacy files are deleted, inspect ADR-008 handling and `doctor-rebuild.yaml` Phase 9 cleanup gating. If the chain omits `3.4.0.0`, inspect `migration-manifest.json` `upgrade_paths` for `3.3.0.0`.
 
 ---
 
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Command entrypoint: [.skilled/commands/doctor/update.md](../../../../commands/doctor/update.md)
-- Matching YAML asset: [.skilled/commands/doctor/assets/doctor-update.yaml](../../../../commands/doctor/assets/doctor-update.yaml)
+- Command entrypoint: [.skilled/commands/doctor/rebuild.md](../../../../commands/doctor/rebuild.md)
+- Matching YAML asset: [.skilled/commands/doctor/assets/doctor-rebuild.yaml](../../../../commands/doctor/assets/doctor-rebuild.yaml)
 - Migration manifest: [specs/system-speckit/026-graph-and-context-optimization/.../scratch/migration-manifest.json](../../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json)
 - Decision context: local doctor command ADRs
 
-Provenance: manual only - /doctor:update --migrate
+Provenance: manual only - /doctor:rebuild --migrate
 
 ---
 
@@ -93,8 +93,8 @@ Provenance: manual only - /doctor:update --migrate
 - Group: Doctor commands
 - Playbook ID: DOC-345
 - Feature name: Version migration 3.3.0.0 to 3.4.1.0
-- Command mode: `/doctor:update --migrate`
-- YAML asset: `doctor-update.yaml`
+- Command mode: `/doctor:rebuild --migrate`
+- YAML asset: `doctor-rebuild.yaml`
 - Manifest asset: `migration-manifest.json`
 - Migration chain: `3.3.0.0 -> 3.4.0.0 -> 3.4.1.0`
 - Runtime policy: Real fixture-based migration only.

@@ -12,8 +12,6 @@
   "derived": {
     "trigger_phrases": [
       "pi-cache-optimizer",
-      "sendSessionAffinityHeaders",
-      "openrouter",
       "glm-5.3-flash",
       "session affinity",
       "models.json",
@@ -21,13 +19,13 @@
       "stats tmp sweep",
       "compat override",
       "x-session-id",
-      "implementation",
-      "openrouter compat"
+      "openrouter compat",
+      "session affinity plan",
+      "tmp sweep",
+      "openrouter compat tasks"
     ],
     "key_topics": [
       "pi-cache-optimizer",
-      "sendsessionaffinityheaders",
-      "openrouter",
       "glm-5",
       "3-flash",
       "session",
@@ -36,7 +34,9 @@
       "json",
       "cache",
       "optimizer",
-      "warning"
+      "warning",
+      "stats",
+      "tmp"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `pi-cache-optimizer` extension flags every OpenRouter `openai-completions` model whose merged compat lacks `sendSessionAffinityHeaders`",
     "created_at": "2026-08-29T17:40:45Z",
-    "last_save_at": "2026-09-10T20:43:35.082Z",
+    "last_save_at": "2026-10-03T15:11:49.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +203,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:679fbf6f9af02d6be99357ce892ae950a594238861ba2911ad539d879453a12b",
+    "source_fingerprint": "sha256:e640daa02fb8950e87632a5469effb7252a5e897ee2217a1c30b17553dfb241f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b176c8fde246ae8e90520f2c7db646ce912f9bb13897d9f542444316bdb27e47",
-      "plan.md": "ab26be221ca28826081632e366160676f82aa84e20ea733965973ad144df2cb6",
+      "spec.md": "05a142a5413b46b18e22e2767444be660c72ed88deaf68370bc2c4964cfcfb54",
+      "plan.md": "a8af23998ea8291892b575e25f7f59c75e84c848408fd222d071256521cefcba",
       "tasks.md": "b09683a22069a06ba176404d3dbbd8bd3d8c39dbd73c6ac39e70139608e51116",
       "implementation-summary.md": "05244e01aa1755863f26c605b3b83b9198f614a2bbf19c532b22fbf878741d78"
     },

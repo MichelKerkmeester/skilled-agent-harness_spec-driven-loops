@@ -1,19 +1,21 @@
 ---
-description: Rebuild spec-kit runtime databases in dependency-safe order through the interactive confirm workflow.
-argument-hint: "[--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap]"
+description: Route /doctor:update check, align or apply operations for a spec-kit release.
+argument-hint: "[check|align|apply] [--json] [--release=<tag>] [--scope=all|<unit,...>] [--offline] [--dry-run] [--decisions=<path>] [--include-prerelease]"
 allowed-tools: Read, Bash, Grep, Glob
 ---
 <!-- skill_agent: system-spec-kit -->
 
 # /doctor:update Router
 
-This command is a thin router. It resolves update flags and setup values, then loads the update workflow YAML and the presentation contract.
+This command routes release-aware check, align and apply workflows. It parses and validates action flags before loading a workflow YAML.
 
 ## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Do not edit workflow YAML while executing this command.
 
-Load the presentation contract before showing startup questions, mid-run prompts, dashboards, validation displays, result summaries, or restart-required text.
+Load the presentation contract before showing action errors, startup questions, dashboards, evidence cards, approval prompts, results or next steps. Bare `/doctor:update` runs the read-only `check` action. The command is confirm-only and has no `:auto` or `:confirm` suffix.
+
+Reject an unknown action or any flag that is invalid for the selected action before loading that action's YAML. Normalize equals-form values such as `--release=<tag>`, `--scope=<value>` and `--decisions=<path>` to the engine's separate flag and value form. Do not pass router-only arguments to the engine.
 
 ---
 
@@ -22,49 +24,45 @@ Load the presentation contract before showing startup questions, mid-run prompts
 | Purpose | Asset |
 |---------|-------|
 | Presentation source of truth | `.skilled/commands/doctor/assets/doctor-update-presentation.txt` |
-| Update workflow | `.skilled/commands/doctor/assets/doctor-update.yaml` |
+| Check workflow | `.skilled/commands/doctor/assets/doctor-update-check.yaml` |
+| Align workflow | `.skilled/commands/doctor/assets/doctor-update-align.yaml` |
+| Apply workflow | `.skilled/commands/doctor/assets/doctor-update-apply.yaml` |
 
 ---
 
 ## 3. MODE ROUTING
 
-- This command is always interactive; deleted mode suffixes are invalid.
-- Snapshot every SQLite database before mutation unless `--no-snapshot` was explicitly passed.
-- If runtime bootstrap changes layout or build artifacts, stop with `STATUS=RESTART_REQUIRED`; start a fresh OpenCode process and rerun with `--resume-bootstrap`.
-- `--migrate` reads the migration manifest and refuses on gaps; this command does not create or edit that manifest.
-- `--cleanup-legacy` prompts per manifest-listed legacy file; no silent deletion.
-- Acquire the update flock before probes or mutations that can enter the database rebuild path.
-- Every terminal path writes the update state log defined by the YAML workflow.
-- If any referenced asset is missing, stop and report the missing path.
-- The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
+- Resolve the first positional token as `check`, `align` or `apply`; when absent, select `check`.
+- `check` accepts `--json`, `--release=<tag>`, `--scope=all|<unit,...>`, `--offline` and `--include-prerelease`.
+- `align` accepts `--release=<tag>`, `--scope=all|<unit,...>`, `--offline`, `--dry-run` and `--include-prerelease`.
+- `apply` accepts `--decisions=<path>`, `--dry-run`, `--release=<tag>`, `--scope=all|<unit,...>` and `--include-prerelease`.
+- A `--scope` unit is a plain name or a `<kind>:<name>` key such as `skill:hub-a` or `directory:hooks`; a name that two kinds share needs the key form, and the engine rejects it otherwise.
+- Reject cross-action and unknown flags before loading a workflow YAML. Do not infer confirmation suffixes or modes.
+- Follow the selected workflow's state-log schema and terminal-status rules. If an owned asset is missing, stop and report its path.
+- The YAML owns workflow behavior. The presentation asset owns visible wording and layout.
 
 ---
 
 ## 4. EXECUTION TARGETS
 
 1. Read `.skilled/commands/doctor/assets/doctor-update-presentation.txt`.
-2. Parse `$ARGUMENTS` for supported flags: `--force`, `--no-snapshot`, `--cleanup-legacy`, `--migrate`, `--keep-snapshots`, and `--resume-bootstrap`.
-3. Bind setup values: `execution_mode`, `intent`, `force`, `no_snapshot`, `cleanup_legacy`, `migrate`, `keep_snapshots`, `resume_bootstrap`, and internal `skip_status_check` (fixed `false`; no user flag).
-4. If `--force` is absent, ask the presentation contract's initial confirmation prompt and wait.
-5. If `--force` is present, auto-answer the initial confirmation as proceed; the active-MCP-client prompt still fires when the workflow detects active clients.
-6. Load `.skilled/commands/doctor/assets/doctor-update.yaml` only after every setup value is bound.
-7. Execute the YAML phase by phase.
-8. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, restart-required display, and next-step text.
+2. Parse `$ARGUMENTS`, select the action, normalize its values and reject unsupported or cross-action flags before loading YAML.
+3. Bind only that action's inputs, then load its matching workflow YAML.
+4. Execute the selected YAML phase by phase and pass only engine-supported flags to `release-update.cjs`.
+5. Use the presentation asset for action errors, prompts, dashboards, evidence cards, plans, results and next steps.
 
 ---
 
 ## 5. PRESENTATION BOUNDARY
 
-The following content lives only in `.skilled/commands/doctor/assets/doctor-update-presentation.txt`:
-
-- Initial confirmation and mid-run prompt catalog.
-- Cross-subsystem health dashboard layout.
-- Status output, state-log, snapshot, restart-required, and failure display templates.
-- Related-command and next-step display text.
+All visible text and layouts live only in `.skilled/commands/doctor/assets/doctor-update-presentation.txt`, including action and flag errors, the check dashboard, align decision batches, apply approval and recovery prompts, result templates and next steps.
 
 ---
 
 ## 6. WORKFLOW SUMMARY
 
-The `doctor-update.yaml` workflow rebuilds the spec-kit runtime databases in dependency-safe order under interactive confirmation, snapshotting each SQLite database before mutation unless `--no-snapshot` is passed, and writing an update state log on every terminal path. A layout- or artifact-changing bootstrap ends with `STATUS=RESTART_REQUIRED` so a fresh process reruns with `--resume-bootstrap`. All visible wording is owned by the presentation contract.
+`check` reports release position and per-unit status without changing checkout files. `align` gathers explicit decisions into an ignored run directory and never writes outside it. `apply` previews the plan, requests one approval before its first write, applies selected decisions and verifies the resulting checkout; with no unapplied alignment run at the current HEAD it writes only update and new units. The three workflows share the release-update engine while retaining action-specific input and mutation boundaries.
 
+Release policy: latest-upstream resolution takes stable tags only unless `--include-prerelease` is passed, and both orders compare version segments as numbers. Generated files (leaf manifests, the trigger index and its sidecars, and graph-metadata `derived` blocks) never count as customizations; apply names their generators instead of writing them.
+
+First run after copying or installing `.skilled/`: `check` reports `baseRecording.needed` and names the engine's `record-base --release <installed-release>` action. With the operator's approval, run it once and commit `.skilled/release/base.json`, so later checks compare against a recorded base instead of an inferred one.
