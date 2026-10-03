@@ -171,7 +171,7 @@ Find which Jev-powered skills, workflows and logic earn a place in `.skilled`. E
 | 47 | 047-measure-every-jev-feature/ | Give each of the 15 features without a Jev measurement a live Jev verdict or a zero-call bound from confirmed labels, then resend the benefit overview. | Complete |
 | 48 | 048-jev-feature-improvement-research/ | Research how to improve, refine and expand the ten kept or near-kept Jev features, one child each, with a DeepSeek and a Luna lineage. Ten child phases. | Complete |
 | 49 | 049-jev-feature-improvement-build/ | Build the recommendations from 048's research that need no new labels, corpus or default-on switch, one child per feature, and fix the deep-research workflow faults 048 hit. Twelve child phases. | Complete |
-| 50 | 050-pi-default-review/ | Make Pi the default Jev transport when it can answer, for choice and noul, then have a fresh Opus reviewer test, re-measure and fix the nine features with a measured gain or a near miss. Two child phases. | Planned |
+| 50 | 050-pi-default-review/ | Make Pi the default Jev transport when it can answer, for choice and noul, then have a fresh Opus reviewer test, re-measure and fix the nine features with a measured gain or a near miss. Two child phases. | Complete |
 
 ### Phase Transition Rules
 
