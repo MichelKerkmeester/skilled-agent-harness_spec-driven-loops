@@ -119,6 +119,12 @@
         "source": "derived"
       },
       {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "the",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -141,27 +147,21 @@
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "2. BINDING",
-        "kind": "heading",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 048 gave ten kept or near-kept Jev features a ranked list of ways to improve, refine and expand them",
     "created_at": "2026-10-03T05:30:02Z",
-    "last_save_at": "2026-10-03T16:14:21.427Z",
+    "last_save_at": "2026-10-03T16:41:07.821Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:58c2178f3ff1e6996ddf0c395a4adc26dc320cacf6729b0507ef440f0f6e71dd",
+    "source_fingerprint": "sha256:dbebe1cb3d46e8932370a9323b67e65a6b6da1b5ed6de0db0cf0ee5bacf1e64d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5297aa66fa487dced3dae5b17ff430a2cbcf351f60ee98726ba89e3a3ef7d925"
+      "spec.md": "582f295393af7a8377ecd822379af0be733ef96d679422e05f7006d11c2fb3b3"
     },
     "last_active_at": null
   }
