@@ -21,7 +21,8 @@ The transport answers one `choice` or `noul` question through either the `jev` C
 classifier runtime. With no transport named it tries Pi and falls back to the CLI, it keeps the CLI's
 result shape on both backends, and a Pi gate failure on a route that named Pi prints exactly one skip
 line before the CLI runs, so a caller changes no parsing either way. Every outcome names the route that
-answered, `pi` or `jev`.
+answered, `pi` or `jev`, and the model that answered: Pi's `<provider>/<model>` such as
+`typesafe/jev-latest`, the CLI's printed `model`, or `null` when neither names one.
 
 ---
 
@@ -44,9 +45,10 @@ unset. The environment read is the `env` object the caller already passes to `je
 
 The Pi route is entered when the arguments are the declared `choice` shape,
 `choice [--provider <p>] [-q <text>] (-o <key>=<desc>)+`, or the declared `noul` shape,
-`noul -q|--question <text> [--provider <name>]`, with the state on stdin. Any other flag keeps the call
-on the CLI: `auth`, `score`, `run` and a call with an unmappable flag are spawned there unchanged and
-print nothing, because those have no transport decision to make.
+`noul -q|--question <text> [--provider <name>]`, with the state on stdin. Pi receives that state as
+`{ text: <stdin> }`, because its state must be a JSON object, and that key's answers came closer to the
+CLI's bare-string answers than the earlier `request` key's. Any other flag keeps the call on the CLI: `auth`, `score`, `run` and a call with an unmappable
+flag are spawned there unchanged and print nothing, because those have no transport decision to make.
 
 ### Gates And Fallback
 
@@ -71,8 +73,9 @@ receives a CLI-shaped outcome. On the automatic route a failed preflight falls b
 line, and a failure after the gates pass falls back on either route. The call itself is
 `runtime.classify(model, context, { signal })` under the caller's own timeout, and no retry runs inside
 the transport. The answer is written back on stdout as `answers.answer.choice` with
-`answers.answer.probabilities`, or `answers.answer.noul` as a probability, a top-level `model`, compact
-JSON with a trailing newline, and exit code 0.
+`answers.answer.probabilities`, or `answers.answer.noul` as a probability, a top-level `model`, `usage`
+with `input_tokens` and `output_tokens` when Pi reports token counts, compact JSON with a trailing
+newline, and exit code 0.
 
 ### Credentials
 

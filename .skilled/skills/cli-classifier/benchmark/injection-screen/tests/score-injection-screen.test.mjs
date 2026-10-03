@@ -129,6 +129,48 @@ function stubEnv(bin, extra = {}) {
   return { ...cleanEnv(), PATH: `${bin}${path.delimiter}${process.env.PATH}`, ...extra, JEV_TRANSPORT: 'jev' };
 }
 
+// A stand-in Pi install whose classifier answers from a snippet, so a Pi route
+// can be exercised offline. The binary must be first on PATH: the transport
+// climbs from it to the package that names pi, then imports that package's dist.
+function fakePiBin(answerSource) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'fakepi-'));
+  fs.mkdirSync(path.join(root, 'bin'));
+  fs.mkdirSync(path.join(root, 'dist'));
+  fs.writeFileSync(path.join(root, 'bin', 'pi'), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+  fs.writeFileSync(path.join(root, 'package.json'), JSON.stringify({ name: '@earendil-works/pi-coding-agent', version: '0.99.2', type: 'module' }));
+  fs.writeFileSync(path.join(root, 'dist', 'index.js'), `
+export class ModelRuntime {
+  static create() {
+    return {
+      getModelOfType: (type, provider, id) => ({ type, provider, id }),
+      getAvailableOfType: async () => [{ id: 'jev-latest' }, { id: 'typesafe/jev-1.13' }],
+      classify: async (model, context) => {
+        const text = String(context.state.request ?? Object.values(context.state)[0] ?? '');
+        const question = context.questions.answer;
+        ${answerSource}
+        return { api: 'typesafe-system-one', provider: model.provider, model: model.id, answers: { answer }, stopReason: 'stop', timestamp: 0,
+          usage: { input: 100, output: 10, cacheRead: 0, cacheWrite: 0, totalTokens: 110, cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 } } };
+      },
+    };
+  }
+}
+`);
+  return path.join(root, 'bin');
+}
+
+// The Pi stand-in's own answer rule, mirroring the stub: a planted directive scores high.
+const PI_ANSWER_SOURCE = `
+        const answer = question.type === 'choice'
+          ? { type: 'choice', choice: Object.keys(question.criteria)[0],
+              probabilities: Object.fromEntries(Object.keys(question.criteria).map((key) => [key, 0.5])), confidence: 0.9 }
+          : { type: 'bool', probability: text.includes('PLANTED-DIRECTIVE') ? 0.9 : 0.1 };
+`;
+
+// A Pi stand-in that cannot answer a planted row, so the transport falls back to the CLI there.
+const PI_NAN_ANSWER_SOURCE = `
+        const answer = { type: 'bool', probability: text.includes('PLANTED-DIRECTIVE') ? Number.NaN : 0.1 };
+`;
+
 // One arm plan: the labeled fixture's scored rows and the chosen baseline's flags.
 async function armPlan(root) {
   const f = await labeledFixture(root);
@@ -170,7 +212,9 @@ if (args[0] === 'noul') {
     noul = question === env.STUB_REVIEW_QUESTION ? 0.9 : 0.4;
   }
   if (env.STUB_REWORDED_NOUL && question === env.STUB_REWORDED_QUESTION) noul = Number(env.STUB_REWORDED_NOUL);
-  process.stdout.write(JSON.stringify({ answers: { answer: { noul } } }) + '\n');
+  const payload = { answers: { answer: { noul } } };
+  if (env.STUB_NOUL_MODEL) payload.model = env.STUB_NOUL_MODEL;
+  process.stdout.write(JSON.stringify(payload) + '\n');
   process.exit(0);
 }
 process.exit(2);
@@ -670,6 +714,96 @@ test('Jev judgment call records include the selected transport', async () => {
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
     fs.rmSync(bin, { recursive: true, force: true });
+    fs.rmSync(outDir, { recursive: true, force: true });
+  }
+});
+
+test('a noul answer names itself in the verdict and in every judgment record', async () => {
+  const root = makeRepo(corpusFiles());
+  const bin = makeStubs();
+  const outDir = tempDir('jev-model-out');
+  try {
+    const plan = await armPlan(root);
+    const lines = [];
+    const out = (line) => lines.push(line);
+    const env = stubEnv(bin, { STUB_NOUL_MODEL: 'stub-answer-model' });
+    const gate = S.jevGate({ out, env, timeoutMs: 20000 });
+    const result = await S.runJevArm(plan, gate, {
+      out, env, timeoutMs: 20000, backoffMs: 1, callLog: S.createCallLog(outDir), stored: null,
+    });
+    assert.equal(result.column.model, 'stub-answer-model');
+    assert.ok(lines.at(-1).endsWith('model=stub-answer-model'));
+    const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    const judgments = calls.filter((call) => call.rowId !== null);
+    assert.equal(judgments.length, 180);
+    assert.ok(judgments.every((call) => call.model === 'stub-answer-model'));
+    const authCalls = calls.filter((call) => call.kind === 'auth_test');
+    assert.equal(authCalls.length, 1);
+    assert.equal(authCalls[0].model, 'stub-model');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+    fs.rmSync(bin, { recursive: true, force: true });
+    fs.rmSync(outDir, { recursive: true, force: true });
+  }
+});
+
+test('the pi route records the answering model and never falls back to the CLI', async () => {
+  const root = makeRepo(corpusFiles());
+  const bin = makeStubs();
+  const piBin = fakePiBin(PI_ANSWER_SOURCE);
+  const outDir = tempDir('jev-pi-out');
+  try {
+    const plan = await armPlan(root);
+    const lines = [];
+    const out = (line) => lines.push(line);
+    const env = { ...cleanEnv(), PATH: `${piBin}${path.delimiter}${bin}${path.delimiter}${process.env.PATH}`, JEV_TRANSPORT: 'pi' };
+    const gate = S.jevGate({ out, env, timeoutMs: 20000 });
+    const result = await S.runJevArm(plan, gate, {
+      out, env, timeoutMs: 20000, backoffMs: 1, callLog: S.createCallLog(outDir), stored: null,
+    });
+    assert.equal(result.column.model, 'typesafe/jev-latest');
+    assert.ok(lines.at(-1).endsWith('model=typesafe/jev-latest'));
+    const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    const judgments = calls.filter((call) => call.rowId !== null);
+    assert.equal(judgments.length, 180);
+    assert.ok(judgments.every((call) => call.transport === 'pi' && call.model === 'typesafe/jev-latest'));
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+    fs.rmSync(bin, { recursive: true, force: true });
+    fs.rmSync(path.dirname(piBin), { recursive: true, force: true });
+    fs.rmSync(outDir, { recursive: true, force: true });
+  }
+});
+
+test('a CLI fallback adds its answering model to the verdict', async () => {
+  const root = makeRepo(corpusFiles());
+  const bin = makeStubs();
+  const piBin = fakePiBin(PI_NAN_ANSWER_SOURCE);
+  const outDir = tempDir('jev-mixed-out');
+  try {
+    const plan = await armPlan(root);
+    const lines = [];
+    const out = (line) => lines.push(line);
+    const env = {
+      ...cleanEnv(),
+      PATH: `${piBin}${path.delimiter}${bin}${path.delimiter}${process.env.PATH}`,
+      JEV_TRANSPORT: 'pi',
+      STUB_NOUL_MODEL: 'stub-answer-model',
+    };
+    const gate = S.jevGate({ out, env, timeoutMs: 20000 });
+    const result = await S.runJevArm(plan, gate, {
+      out, env, timeoutMs: 20000, backoffMs: 1, callLog: S.createCallLog(outDir), stored: null,
+    });
+    assert.equal(result.column.model, 'stub-answer-model+typesafe/jev-latest');
+    assert.ok(lines.at(-1).endsWith('model=stub-answer-model+typesafe/jev-latest'));
+    const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    const judgments = calls.filter((call) => call.rowId !== null);
+    assert.ok(judgments.some((call) => call.transport === 'pi' && call.model === 'typesafe/jev-latest'));
+    assert.ok(judgments.some((call) => call.transport === 'jev' && call.model === 'stub-answer-model'));
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+    fs.rmSync(bin, { recursive: true, force: true });
+    fs.rmSync(path.dirname(piBin), { recursive: true, force: true });
     fs.rmSync(outDir, { recursive: true, force: true });
   }
 });

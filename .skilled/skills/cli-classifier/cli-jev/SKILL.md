@@ -282,10 +282,16 @@ route that named Pi the failure prints exactly one line and then runs the CLI:
 
 The call is `runtime.classify(model, context, { signal })` under the caller's own timeout, and its answer
 is written back on stdout in the CLI's shape: `answers.answer.choice` with `answers.answer.probabilities`,
-`answers.answer.noul` as a probability, a top-level `model`, compact JSON with a trailing newline, and
+`answers.answer.noul` as a probability, a top-level `model`, `usage` with `input_tokens` and
+`output_tokens` when Pi reports token counts, compact JSON with a trailing newline, and
 exit code 0. A caller keeps its parsing. No retry runs inside the transport. A failed preflight on the
 automatic route falls back to the CLI with no line, and a failure after the gates pass falls back on
-either route.
+either route. Pi receives the stdin text as `state: { text: <stdin> }`, because its state must be a JSON
+object while the CLI sends the bare string. Measured against the CLI's answers on recorded rows, the
+`text` key came closer to them than the earlier `request` key. Every outcome also names the route that answered as
+`transport` and the model that answered as `model`, which is `<provider>/<model>` from Pi's result when
+Pi answered, such as `typesafe/jev-latest`, the `model` field the CLI printed when the CLI answered, or
+`null` when neither names one.
 
 **Credentials stay in Pi's store.** The transport calls `ModelRuntime.create()` and lets Pi resolve its
 own credential. It reads no `.env`, prints no environment variable and copies no key into Pi's options.
