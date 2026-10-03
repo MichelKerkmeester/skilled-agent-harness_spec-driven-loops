@@ -34,8 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read 048's research for this feature and the D4 keep rule
-- [ ] T002 Capture the suite baseline before any change
+- [x] T001 Read 048's research for this feature and the D4 keep rule
+- [x] T002 Capture the suite baseline before any change
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,12 +43,12 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Add `allowlist` to the 21 benchmark fixtures
-- [ ] T004 Replace the 0.0 failure score with an unmeasured state and one retry
-- [ ] T005 Forward task, spec and allowlist into the 5-dimension path
-- [ ] T006 Wire `dispute.cjs` escalation into the 5-dimension adapter
-- [ ] T007 Add per-class intervals, the labels SHA check and the cascade arm
-- [ ] T008 Record the amendment, then repeat the run with `--out`
+- [x] T003 Add `allowlist` to the 21 benchmark fixtures
+- [x] T004 Replace the 0.0 failure score with an unmeasured state and one retry
+- [x] T005 Forward task, spec and allowlist into the 5-dimension path
+- [x] T006 Wire `dispute.cjs` escalation into the 5-dimension adapter
+- [x] T007 Add per-class intervals, the labels SHA check and the cascade arm
+- [x] T008 Record the amendment, then repeat the run with `--out`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -56,9 +56,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Run the model-benchmark suite
-- [ ] T010 Count fixtures with an allowlist
-- [ ] T011 Run `validate.sh --strict` on this phase
+- [x] T009 Run the model-benchmark suite
+- [x] T010 Count fixtures with an allowlist
+- [x] T011 Run `validate.sh --strict` on this phase
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,9 +66,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

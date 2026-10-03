@@ -61,13 +61,13 @@ const completionState = require('../../cli/lib/completion-state.cjs');
 // module does not export the constant, and this sentinel must stay a plain
 // CommonJS file with no compiled-TypeScript dependency, so the value is
 // duplicated here rather than imported. Keep both copies byte-identical.
-const COMPLETION_CLAIM_PATTERN = /\b(completed|resolved|fixed|finished|shipped|released|deployed|implemented|occurred|happened)\b/i;
+const COMPLETION_CLAIM_PATTERN = /\b(completed|complete|resolved|fixed|finished|shipped|released|deployed|implemented|occurred|happened)\b/i;
 
 // A completion claim is anchored to the trailing slice of the turn rather than
 // tested against the whole message, so a claim word used in passing mid-turn
 // narration ("I fixed the earlier typo, now let me look at...") does not fire
 // the same as a turn that actually ends on the claim.
-const CLAIM_ANCHOR_TAIL_CHARS = 400;
+const CLAIM_ANCHOR_TAIL_CHARS = 160;
 
 // Best-effort packet resolution from free text (the OpenCode adapter's own
 // use: session.idle hands over neither the last message nor the active
@@ -110,12 +110,69 @@ const CHECKLIST_ADVISE_STATUSES = new Set([
 // 3. HELPERS -- claim + packet detection
 // ───────────────────────────────────────────────────────────────────
 
+function stripNonNarrativeContexts(text) {
+  const lines = text.split('\n');
+  const proseLines = [];
+  let fenceCharacter = null;
+  let fenceWidth = 0;
+  let inTable = false;
+
+  const tableDivider = /^\s*\|?\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)+\|?\s*$/;
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+    const fence = /^\s{0,3}(`{3,}|~{3,})/.exec(line);
+    if (fence) {
+      const character = fence[1][0];
+      if (fenceCharacter === null) {
+        fenceCharacter = character;
+        fenceWidth = fence[1].length;
+      } else if (character === fenceCharacter && fence[1].length >= fenceWidth) {
+        fenceCharacter = null;
+        fenceWidth = 0;
+      }
+      proseLines.push(' '.repeat(line.length));
+      continue;
+    }
+    if (fenceCharacter !== null) {
+      proseLines.push(' '.repeat(line.length));
+      continue;
+    }
+
+    const trimmed = line.trim();
+    if (/^(?:[-*+]\s+)?\[[ xX]\]\s+/i.test(trimmed)) {
+      proseLines.push(' '.repeat(line.length));
+      continue;
+    }
+    const hasTableSeparators = line.includes('|');
+    const beginsTable = hasTableSeparators && tableDivider.test(lines[index + 1] ?? '');
+    if (tableDivider.test(line) || /^\|/.test(trimmed) || beginsTable || (inTable && hasTableSeparators)) {
+      inTable = true;
+      proseLines.push(' '.repeat(line.length));
+      continue;
+    }
+    if (trimmed === '' || !hasTableSeparators) inTable = false;
+    if (/^(?: {4,}|\t)/.test(line)) {
+      proseLines.push(' '.repeat(line.length));
+      continue;
+    }
+
+    const proseLine = line.replace(/`+[^`\n]*`+/g, (match) => ' '.repeat(match.length));
+    if (/^\s*(?:[-*+]\s+)?(?:(?:const|let|var)\s+)?[A-Za-z_$][\w.$-]*\s*(?:=|:)\s*/.test(proseLine)) {
+      proseLines.push(' '.repeat(line.length));
+      continue;
+    }
+    proseLines.push(proseLine);
+  }
+
+  return proseLines.join('\n');
+}
+
 function detectCompletionClaim(text) {
   if (typeof text !== 'string') return false;
   const trimmed = text.trim();
   if (!trimmed) return false;
-  const tail = trimmed.slice(-CLAIM_ANCHOR_TAIL_CHARS);
-  return COMPLETION_CLAIM_PATTERN.test(tail);
+  const filtered = stripNonNarrativeContexts(trimmed);
+  return COMPLETION_CLAIM_PATTERN.test(filtered.slice(-CLAIM_ANCHOR_TAIL_CHARS));
 }
 
 function resolveSpecFolderFromText(text) {
@@ -553,6 +610,7 @@ function evaluateCompletionEvidence(request = {}) {
 module.exports = {
   // constants
   COMPLETION_CLAIM_PATTERN,
+  CLAIM_ANCHOR_TAIL_CHARS,
   SPEC_FOLDER_TEXT_PATTERN,
   STATE_DIR_RELATIVE_PATH,
   LOG_RELATIVE_PATH,

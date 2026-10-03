@@ -16,7 +16,7 @@ This scenario validates that `score-pi-transport.mjs` prints its transport censu
 
 ### Why This Matters
 
-The scorer can send the advisor's recorded prompts to a paid OpenRouter classifier, and the `--pi` and `--cli` arms spend money. The default run must print what is installed and call no model, and an armed switch without `--out` must refuse before it prints a line. A run that called the model, started an arm or wrote a file would break the zero-call census rule the sibling scorers follow.
+The paired run uses the same Jev provider host for both arms. With the default `JEV_PROVIDER=official`, the CLI uses the official provider and Pi uses `typesafe/jev-latest`; `openrouter` maps to Pi `openrouter/typesafe/jev-1.13`. `vercel` and `custom` have no Pi mapping, so the paired run refuses them. The `--pi` and `--cli` arms can spend money. The default census must call no model, and an armed switch without `--out` must refuse before it prints a line.
 
 ---
 

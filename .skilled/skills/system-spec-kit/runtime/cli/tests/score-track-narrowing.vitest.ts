@@ -23,9 +23,11 @@ import {
   NONE_DESCRIPTION,
   NONE_KEY,
   ORDERS,
+  SHORTLIST_SIZE,
   baselineLines,
   buildOptions,
   buildTestSet,
+  clusterBootstrapInterval,
   classifyDescription,
   columnLine,
   headroomLines,
@@ -35,6 +37,7 @@ import {
   main,
   modalPick,
   nearestRank,
+  pinRowSet,
   probeGold,
   probeHits,
   probeLine,
@@ -624,6 +627,35 @@ describe('score-track-narrowing verdict', () => {
   });
 });
 
+describe('score-track-narrowing cluster bootstrap', () => {
+  it('resamples whole tracks deterministically and handles an empty measured set', () => {
+    const rows = [
+      { id: 'a1', track: 'alpha' },
+      { id: 'a2', track: 'alpha' },
+      { id: 'b1', track: 'beta' },
+      { id: 'b2', track: 'beta' },
+      { id: 'g1', track: 'gamma' },
+    ];
+    const picks = new Map([
+      ['a1', 'alpha'], ['a2', 'alpha'], ['b1', 'alpha'], ['b2', 'alpha'], ['g1', 'gamma'],
+    ]);
+    const baselinePicks = new Map([
+      ['a1', 'beta'], ['a2', 'beta'], ['b1', 'beta'], ['b2', 'beta'], ['g1', 'gamma'],
+    ]);
+
+    const first = clusterBootstrapInterval(rows, picks, baselinePicks);
+    const repeated = clusterBootstrapInterval(rows, picks, baselinePicks);
+    const empty = clusterBootstrapInterval(rows, new Map(), baselinePicks);
+
+    expect(first.clusterCount).toBe(3);
+    expect(first.replicates).toBe(1000);
+    expect(first.estimate).toBe(0);
+    expect(first.lower).toBeLessThanOrEqual(first.upper ?? Infinity);
+    expect(repeated).toEqual(first);
+    expect(empty).toMatchObject({ clusterCount: 0, estimate: null, lower: null, upper: null });
+  });
+});
+
 // ───────────────────────────────────────────────────────────────────
 // 9. ENTRY POINT
 // ───────────────────────────────────────────────────────────────────
@@ -735,6 +767,196 @@ function keepCorpus(root: string, marker = ''): { indexPath: string; probesPath:
     probesPath: path.join(root, 'probes.json'),
   };
 }
+
+function writeRecordedCalls(root: string): { path: string; records: Record<string, unknown>[] } {
+  for (let number = 4; number <= 10; number += 1) {
+    const nn = String(number).padStart(3, '0');
+    packet(root, `specs/alpha-track/${nn}-extra`, `quartz lantern extra sample ${number} glows`);
+    packet(root, `specs/beta/${nn}-extra`, `ember harbor extra sample ${number} drifts`);
+  }
+  const rows = buildTestSet(root, { hubNames: [] }).rows;
+  const records: Record<string, unknown>[] = [{
+    backend: 'jev',
+    kind: 'auth_test',
+    rowId: null,
+    order: null,
+    attempt: 1,
+    wallMs: 20,
+    exitCode: 0,
+    pick: null,
+    pickProb: null,
+    noneProb: null,
+    status: 'measured',
+    jevVersion: 'jev 0.6.2',
+    provider: 'official',
+    model: 'replay-model',
+  }];
+  const alphaFirst = rows.find((row) => row.track === 'alpha-track' && row.question.includes('number one'));
+  const betaFirst = rows.find((row) => row.track === 'beta' && row.question.includes('number one'));
+
+  for (const row of rows) {
+    for (let order = 0; order < ORDERS; order += 1) {
+      let pick = row.track;
+      let pickProb = 0.8;
+      let noneProb = 0.05;
+      if (row.id === alphaFirst?.id) {
+        const choices = ['beta', 'beta', 'alpha-track'];
+        const confidences = [0.4, 0.4, 0.85];
+        pick = choices[order];
+        pickProb = confidences[order];
+        noneProb = [0.1, 0.1, 0.05][order];
+      } else if (row.id === betaFirst?.id) {
+        const choices = [NONE_KEY, NONE_KEY, 'beta'];
+        const confidences = [0.6, 0.6, 0.45];
+        pick = choices[order];
+        pickProb = confidences[order];
+        noneProb = [0.6, 0.6, 0.2][order];
+      }
+      records.push({
+        backend: 'jev',
+        kind: 'test',
+        rowId: row.id,
+        order,
+        attempt: 1,
+        wallMs: 30 + order,
+        exitCode: 0,
+        pick,
+        pickProb,
+        noneProb,
+        status: 'measured',
+        jevVersion: 'jev 0.6.2',
+        provider: 'official',
+        model: 'replay-model',
+      });
+    }
+  }
+  const filePath = path.join(root, 'calls.jsonl');
+  fs.writeFileSync(filePath, `${records.map((record) => JSON.stringify(record)).join('\n')}\n`);
+  write(root, 'report.json', JSON.stringify({ testSet: { K: rows.length } }));
+  return { path: filePath, records };
+}
+
+describe('score-track-narrowing recorded replay', () => {
+  it('pins the run and reports measured arms without invoking Jev', async () => {
+    const root = tempDir('score-track-narrowing-');
+    const { indexPath, probesPath } = keepCorpus(root);
+    const recorded = writeRecordedCalls(root);
+    const out = tempDir('stn-replay-out-');
+    const deps = {
+      repoRoot: root,
+      indexPath,
+      probesPath,
+      hubNames: [],
+      env: { ...process.env, PATH: '/no-executable' },
+    };
+
+    const run = await runMain(['--replay', recorded.path, '--out', out], deps);
+    const reportText = fs.readFileSync(path.join(out, 'report.json'), 'utf8');
+    const report = JSON.parse(reportText);
+
+    expect(run.code).toBe(0);
+    expect(run.lines).toContain(
+      'verdict jev: keep K=20 M=20 A=18 B=0 W=18 L=0 F=2 p=0.000003815 jev_version=0.6.2 provider=official model=replay-model',
+    );
+    expect(run.lines).toContain(
+      'verdict probability-aware: keep K=20 M=20 A=19 B=0 W=19 L=0 F=2 p=0.000001907',
+    );
+    expect(run.lines).toContain('decided-subset probability-aware: 19/19 accuracy=1.0000');
+    expect(run.lines).toContain('margin slack probability-aware: 17.0 rows');
+    expect(run.lines).toContain(
+      'verdict one-call: keep K=20 M=20 A=18 B=0 W=18 L=0 F=0 p=0.000003815',
+    );
+    expect(run.lines).toContain(
+      'shortlist arm: candidates=2 calls_per_row=1 accuracy=not-measured reason=the replay contains no responses to a five-track option list',
+    );
+    expect(run.lines).toContain(
+      'per-track jev: gold=beta rows=10 measured=10 correct=9 wrong=0 abstained=1 confusion={"beta":9,"none":1}',
+    );
+    expect(run.lines.some((line) => line.startsWith('bootstrap probability-aware vs baseline: accuracy_delta_95_ci=['))).toBe(true);
+    expect(report.dataPin.rowCount).toBe(20);
+    expect(report.dataPin.optionSetSha256).toBe(report.optionSetSha256);
+    expect(report.dataPin.rowSetSha256).toMatch(/^[0-9a-f]{64}$/);
+    expect(report.dataPin.rows).toHaveLength(20);
+    expect(report.dataPin.rows.every((row: { questionSha256: string }) => /^[0-9a-f]{64}$/.test(row.questionSha256))).toBe(true);
+    expect(report.modelTuple).toEqual({
+      jevVersion: 'jev 0.6.2',
+      provider: 'official',
+      model: 'replay-model',
+    });
+    expect(report.analysis.shortlist.candidateTracks).toBe(Math.min(SHORTLIST_SIZE, 2));
+    expect(fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8'))
+      .toBe(fs.readFileSync(recorded.path, 'utf8'));
+
+    const reportBefore = fs.readFileSync(path.join(out, 'report.json'), 'utf8');
+    const callsBefore = fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8');
+    const second = await runMain(['--replay', recorded.path, '--out', out], deps);
+    const missing = await runMain(['--replay', path.join(root, 'missing.jsonl')], deps);
+    write(root, 'report.json', JSON.stringify({ testSet: { K: 21 } }));
+    const inconsistent = await runMain(['--replay', recorded.path], deps);
+
+    expect(second.code).toBe(2);
+    expect(second.errs).toEqual(['--out directory already holds a run']);
+    expect(fs.readFileSync(path.join(out, 'report.json'), 'utf8')).toBe(reportBefore);
+    expect(fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8')).toBe(callsBefore);
+    expect(missing.code).toBe(2);
+    expect(inconsistent.code).toBe(2);
+    expect(inconsistent.errs).toEqual([
+      'sibling report records 21 rows but the call log identifies 20',
+    ]);
+  });
+
+  it('scores the recorded row set when the corpus grows and reports rows that no longer match', async () => {
+    const root = tempDir('score-track-narrowing-');
+    const { indexPath, probesPath } = keepCorpus(root);
+    const recorded = writeRecordedCalls(root);
+    const recordedTestSet = buildTestSet(root, { hubNames: [] });
+    const recordedOptions = buildOptions(recordedTestSet.tracks);
+    write(root, 'report.json', JSON.stringify({
+      dataPin: pinRowSet(recordedTestSet, recordedOptions),
+    }));
+    const recordedK = recordedTestSet.rows.length;
+    const recordedM = new Set(recorded.records
+      .filter((record) => record.backend === 'jev' && record.kind === 'test' && record.status === 'measured')
+      .map((record) => record.rowId)).size;
+    for (let number = 11; number <= 22; number += 1) {
+      const folder = String(number).padStart(3, '0');
+      packet(root, `specs/alpha-track/${folder}-extra`, `quartz lantern unrecorded sample ${number} glows`);
+      packet(root, `specs/beta/${folder}-extra`, `ember harbor unrecorded sample ${number} drifts`);
+    }
+    const liveTestSet = buildTestSet(root, { hubNames: [] });
+    expect(liveTestSet.counts['alpha-track'].usable).toBe(22);
+    expect(liveTestSet.counts.beta.usable).toBe(22);
+    const deps = {
+      repoRoot: root,
+      indexPath,
+      probesPath,
+      hubNames: [],
+      env: { ...process.env, PATH: '/no-executable' },
+    };
+
+    const replay = await runMain(['--replay', recorded.path], deps);
+    const verdict = replay.lines.find((line) => line.startsWith('verdict jev:'));
+
+    expect(replay.code).toBe(0);
+    expect(verdict).toContain(`K=${recordedK} M=${recordedM}`);
+
+    const changedRow = recordedTestSet.rows[0];
+    expect(changedRow).toBeDefined();
+    if (!changedRow) throw new Error('recorded fixture must contain a row');
+    packet(root, changedRow.folder, 'replacement quiet harbor calibrates drifting night signals');
+    const out = tempDir('stn-replay-drop-out-');
+    const changedReplay = await runMain(['--replay', recorded.path, '--out', out], deps);
+    const changedReport = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+
+    expect(changedReplay.code).toBe(0);
+    expect(changedReplay.lines.some((line) => line.includes(`replay row dropped: ${changedRow.id}`))).toBe(true);
+    expect(changedReport.replay.droppedRows).toEqual([
+      { id: changedRow.id, reason: 'question changed' },
+    ]);
+    expect(changedReport.testSet.K).toBe(recordedK - 1);
+    expect(changedReport.columns.jev.M).toBe(recordedM - 1);
+  });
+});
 
 // ───────────────────────────────────────────────────────────────────
 // 10. JEV GATE
@@ -951,7 +1173,7 @@ describe('score-track-narrowing jev arm', () => {
     expect(r.lines.some((line) => line.startsWith('verdict jev:'))).toBe(false);
   });
 
-  it('prints requalify when the stored jev model differs', async () => {
+  it('refuses an output directory containing a prior report before calling Jev', async () => {
     const root = tempDir('score-track-narrowing-');
     const { indexPath, probesPath } = keepCorpus(root);
     const stubs = stubDir({ jev: JEV });
@@ -970,9 +1192,10 @@ describe('score-track-narrowing jev arm', () => {
       env,
     });
 
-    expect(r.code).toBe(0);
-    const verdictIndex = r.lines.findIndex((line) => line.startsWith('verdict jev:'));
-    expect(verdictIndex).toBeGreaterThan(0);
-    expect(r.lines[verdictIndex - 1]).toBe('requalify: model changed');
+    expect(r.code).toBe(2);
+    expect(r.errs).toEqual(['--out directory already holds a run']);
+    expect(fs.existsSync(path.join(stubs, 'jev.log'))).toBe(false);
+    expect(JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8')))
+      .toEqual({ columns: { jev: { provider: 'official', model: 'old-model' } } });
   });
 });

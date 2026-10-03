@@ -11,17 +11,18 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements"
-    last_updated_at: "2026-10-03T05:30:04Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-10-03T12:00:00Z"
+    last_updated_by: "claude-opus-5-5-049"
+    recent_action: "All completion criteria met with evidence"
+    next_safe_action: "None. The phase is Complete"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-spec-kit/runtime/cli/retrieval/score-track-narrowing.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "claude-opus-5-5-049"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,10 +57,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `score-track-narrowing.vitest.ts` passes, with cases for the `--out` guard, the pins and the new tables
-- [ ] A replay of the recorded 047 run prints the same verdict line plus the three extra arms
-- [ ] The repeat run's verdict line and bootstrap interval are in the log
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` on this phase
+- [x] `score-track-narrowing.vitest.ts` passes, with cases for the `--out` guard, the pins and the new tables
+- [x] A replay of the recorded 047 run prints the same verdict line plus the three extra arms
+- [x] The repeat run's verdict line and bootstrap interval are in the log
+- [x] `validate.sh --strict` prints `RESULT: PASSED` on this phase
 <!-- /ANCHOR:completion -->
 
 ---
@@ -76,10 +77,15 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase opened | Done | Spec, plan, tasks and goal authored 2026-10-03 from 048's ranked table |
+| Build | Done | Luna on cli-codex; suite 28 passed |
+| Cross-family review | Done | DeepSeek on cli-pi: 0 P0, 2 P1 (replay fixed by Luna, repeat run below), 5 P2 recorded |
+| Replay check (2026-10-03) | Done | 017's recording replays at K=256 M=256 A=97 with 0 dropped rows |
+| Repeat run (2026-10-03) | Done | Amendment: report pins, probability-aware and one-call arms, per-track table, bootstrap. `verdict jev: stop (margin) K=270 M=270 A=106 B=82 W=80 L=56 F=48 p=0.02409`; probability-aware `stop (margin) A=102`, decided subset 102/203, margin slack -7.0 rows; one-call `stop (margin) A=103 F=0`; bootstrap 95% CI [-0.1185, 0.2760], 16 clusters, 1,000 replicates. Run folder `~/.skilled/.labels/runs/049-002-jev-20261003` |
+| Validate | Done | `validate.sh --strict` RESULT: PASSED |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Repeat verdict differs from 017 | 017 recorded keep on 256 rows; the repeat on 270 rows stops on margin. Recorded, not chased: the corpus and the baseline moved, which is what a repeat exists to catch |
 <!-- /ANCHOR:log -->

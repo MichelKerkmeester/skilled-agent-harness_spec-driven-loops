@@ -4,11 +4,13 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const crypto = require('crypto');
+const { spawnSync } = require('node:child_process');
 
 const dispatcher = require('../dispatch-model.cjs');
 const { DEFAULT_PROFILES_DIR, fixturePathFor } = require('../../lib/profile-resolve.cjs');
+const REPO_ROOT = path.resolve(__dirname, '../../../../../../..');
 
-const VERDICTS = new Set(['pass', 'fail', 'block']);
+const VERDICTS = new Set(['pass', 'fail', 'block', 'abstain']);
 const SAFE_FIXTURE_ID = /^[A-Za-z0-9._-]+$/;
 
 function parseArgs(argv) {
@@ -61,7 +63,9 @@ function assertSafeFixtureId(id) {
 function resolveMaybeRelative(value, baseDir) {
   if (path.isAbsolute(value)) return value;
   const fromCwd = path.resolve(process.cwd(), value);
-  return fs.existsSync(fromCwd) ? fromCwd : path.resolve(baseDir, value);
+  if (fs.existsSync(fromCwd)) return fromCwd;
+  const fromRepoRoot = path.resolve(REPO_ROOT, value);
+  return fs.existsSync(fromRepoRoot) ? fromRepoRoot : path.resolve(baseDir, value);
 }
 
 function loadProfile(profileArg, profilesDir) {
@@ -70,7 +74,7 @@ function loadProfile(profileArg, profilesDir) {
   return { data: readJson(profilePath), path: profilePath };
 }
 
-function loadReviewerFixtures(profile, profilePath, fixtureDirArg) {
+function loadReviewerFixtures(profile, profilePath, fixtureDirArg, grader) {
   const profileDir = path.dirname(profilePath);
   const fixtureDir = resolveMaybeRelative(
     fixtureDirArg || profile.fixtureDir || (profile.benchmark && profile.benchmark.fixtureDir),
@@ -82,6 +86,13 @@ function loadReviewerFixtures(profile, profilePath, fixtureDirArg) {
     : fs.readdirSync(fixtureDir).filter((entry) => entry.endsWith('.json')).map((entry) => path.join(fixtureDir, entry));
   const fixtures = files.map((filePath) => ({ filePath, fixture: readJson(filePath) }))
     .filter((entry) => isReviewerFixture(entry.fixture));
+  // Miss fixtures have no reviewer_output resolvable by a noop run, so they only
+  // join the corpus when the opted-in Jev grader can actually classify them.
+  if (grader === 'jev') {
+    for (const fixture of Array.isArray(profile.missCaseFixtures) ? profile.missCaseFixtures : []) {
+      if (isReviewerFixture(fixture)) fixtures.push({ filePath: null, fixture });
+    }
+  }
   return { fixtures, fixtureDir };
 }
 
@@ -107,18 +118,31 @@ function applyCase(fixture, testCase) {
 function buildReviewerPrompt(fixtureCase) {
   const inputText = inputToText(fixtureCase.input);
   const input = fixtureCase.input && typeof fixtureCase.input === 'object' ? fixtureCase.input : {};
-  return String(fixtureCase.prompt_template || '')
+  const prompt = String(fixtureCase.prompt_template || '')
     .replace(/{{\s*input\s*}}/g, inputText)
     .replace(/{{\s*diff\s*}}/g, String(input.diff || ''))
     .replace(/{{\s*state_ref\s*}}/g, String(input.state_ref || ''))
     .replace(/{{\s*review_focus\s*}}/g, String(input.review_focus || fixtureCase.review_focus || ''));
+  return `${prompt}\n\nReturn one JSON object with a top-level "verdict" field set to PASS, FAIL, BLOCK, or ABSTAIN, and put findings in a "findings" array. Do not add prose outside the JSON object.`;
 }
 
 function extractVerdict(text) {
   const raw = String(text || '');
-  const matches = [...raw.matchAll(/^\s*(?:(?:verdict|result|status)\s*[:=-]\s*)?(pass|fail|block)\b\s*[.!]?\s*$/gim)];
+  try {
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed === 'object' && !Array.isArray(parsed) && Object.prototype.hasOwnProperty.call(parsed, 'verdict')) {
+      const verdict = normalizeVerdict(parsed.verdict);
+      return verdict
+        ? { verdict, method: 'typed' }
+        : { verdict: null, method: 'typed-invalid' };
+    }
+  } catch {
+    // Plain reviewer output uses the anchored text forms below.
+  }
+  const textBody = raw.replace(/```[\s\S]*?```/g, '');
+  const matches = [...textBody.matchAll(/^[ \t]{0,3}(?:#{1,6}[ \t]*)?(?:\*\*)?(?:(?:final[ \t]+)?verdict|result|status)[ \t]*[:=-][ \t]*(?:\*\*)?(pass|fail|block|abstain)\b(?:\*\*)?(?:[ \t]+\([^()\n]{1,160}\))?[.!]?[ \t]*(?:\*\*)?[ \t]*$|^[ \t]{0,3}(?:\*\*)?(pass|fail|block|abstain)(?:\*\*)?[.!]?[ \t]*$/gim)];
   const finalMatch = matches.at(-1);
-  if (finalMatch) return { verdict: normalizeVerdict(finalMatch[1]), method: 'pattern' };
+  if (finalMatch) return { verdict: normalizeVerdict(finalMatch[1] || finalMatch[2]), method: 'pattern' };
   return { verdict: null, method: 'none' };
 }
 
@@ -153,6 +177,35 @@ function dispatchPrompt(prompt, opts) {
 }
 
 function classifyWithGrader(output, opts) {
+  if (opts.grader === 'jev') {
+    let value = null;
+    if (typeof opts.jevChoice === 'function') {
+      value = opts.jevChoice(String(output || ''), opts);
+    } else {
+      const provider = opts.provider || process.env.JEV_PROVIDER || 'official';
+      const prompt = 'Classify the reviewer output into exactly one verdict: PASS, FAIL, BLOCK, or ABSTAIN. Use ABSTAIN when it does not state a decision.';
+      const result = spawnSync('jev', [
+        'choice', '--provider', provider, '-q', prompt,
+        '-o', 'pass=The reviewer approves the change',
+        '-o', 'fail=The reviewer rejects the change and names what must change',
+        '-o', 'block=The reviewer cannot give a verdict because a blocker remains',
+        '-o', 'abstain=The reviewer output does not state a decision',
+      ], {
+        input: String(output || ''),
+        encoding: 'utf8',
+        timeout: opts.timeout_ms || 90000,
+        env: opts.env || process.env,
+      });
+      if (!result.error && result.status === 0) {
+        try {
+          value = JSON.parse(result.stdout).answers?.answer?.choice;
+        } catch {
+          value = null;
+        }
+      }
+    }
+    return { verdict: normalizeVerdict(value), method: 'jev-grader' };
+  }
   if (opts.grader !== 'llm') return { verdict: null, method: 'none' };
   const prompt = [
     'Classify the reviewer output into exactly one verdict: PASS, FAIL, or BLOCK.',
@@ -168,7 +221,7 @@ function classifyWithGrader(output, opts) {
 
 function scoreReviewerOutput(output, fixtureCase, opts) {
   let extracted = extractVerdict(output);
-  if (!extracted.verdict) extracted = classifyWithGrader(output, opts || {});
+  if (!extracted.verdict && extracted.method !== 'typed-invalid') extracted = classifyWithGrader(output, opts || {});
   const expectedVerdict = normalizeVerdict(fixtureCase.expectedVerdict);
   const verdictOk = extracted.verdict === expectedVerdict;
   const findingChecks = (fixtureCase.expectedFindings || []).map((finding) => ({
@@ -232,7 +285,7 @@ function scoreReviewerFixture(fixture, opts) {
       D1: passRate,
       D2: perTest.every((entry) => entry.findingsOk) ? 1 : 0,
       D3: fixture.input_kind === 'diff' || fixture.input_kind === 'state_ref' ? 1 : 0,
-      D4: perTest.some((entry) => entry.verdictMethod === 'llm-grader') ? 1 : 0,
+      D4: perTest.some((entry) => entry.verdictMethod === 'llm-grader' || entry.verdictMethod === 'jev-grader') ? 1 : 0,
       D5: perTest.every((entry) => entry.extractedVerdict) ? 1 : 0,
     },
     per_test: perTest,
@@ -245,7 +298,10 @@ function runReviewerBenchmark(opts) {
   if (!opts.profile) throw new Error('reviewer-scorer: --profile is required');
   const loaded = loadProfile(opts.profile, opts.profilesDir || DEFAULT_PROFILES_DIR);
   const profile = loaded.data;
-  const reviewer = loadReviewerFixtures(profile, loaded.path, opts.fixtureDir);
+  if (opts.grader === 'jev' && !(Array.isArray(profile.optInGraders) && profile.optInGraders.includes('jev'))) {
+    throw new Error('reviewer-scorer: jev grader is not opted in by this profile');
+  }
+  const reviewer = loadReviewerFixtures(profile, loaded.path, opts.fixtureDir, opts.grader);
   const rows = reviewer.fixtures.map((entry) => scoreReviewerFixture(entry.fixture, opts));
   const aggregateScore = rows.length ? Math.round(rows.reduce((sum, row) => sum + row.score, 0) / rows.length) : 0;
   return {
@@ -279,7 +335,7 @@ function main() {
   }
   const outputPath = args.output || (args['outputs-dir'] ? path.join(args['outputs-dir'], 'reviewer-report.json') : null);
   if (!outputPath) {
-    process.stderr.write('usage: reviewer-scorer.cjs --profile <path-or-id> --outputs-dir <path> [--output <path>] [--grader noop|mock|llm]\n');
+    process.stderr.write('usage: reviewer-scorer.cjs --profile <path-or-id> --outputs-dir <path> [--output <path>] [--grader noop|mock|llm|jev]\n');
     process.exit(2);
   }
   const report = runReviewerBenchmark({
@@ -296,6 +352,9 @@ function main() {
     mock: args.mock === true || args.mock === 'true',
     mock_mode: args['mock-mode'],
     state_dir: args['state-dir'],
+    jevChoice: undefined,
+    provider: args.provider,
+    timeout_ms: args.timeout,
   });
   writeJson(outputPath, report);
   if (args['state-log']) {

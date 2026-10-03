@@ -27,6 +27,7 @@ const LINEAGE_FAILURE_CLASSES = Object.freeze({
   EXIT: 'exit',
   SALVAGE_MISS: 'salvage_miss',
   ARTIFACT_MISS: 'artifact_miss',
+  PROJECTION_REFUSAL: 'projection_refusal',
 });
 const LINEAGE_RETRY_VERDICTS = Object.freeze({
   TRANSIENT: 'transient',
@@ -161,7 +162,7 @@ function normalizeSalvageSummary(value) {
 }
 
 /**
- * Classify a lineage failure using only bounded process and salvage signals.
+ * Classify a lineage failure using bounded process, salvage, and gateway signals.
  *
  * @param {Error|Object} error - Error object from a failed lineage worker.
  * @returns {{failure_class:string,retry_verdict:string,retryable:boolean,exit_code:number|null,timed_out:boolean,salvage:{salvaged:number,failed:number}|null}}
@@ -170,10 +171,13 @@ function classifyLineageFailure(error) {
   const timedOut = Boolean(error && typeof error === 'object' && error.timedOut === true);
   const exitCode = error && typeof error === 'object' ? readFiniteInteger(error.exitCode) : null;
   const salvage = error && typeof error === 'object' ? normalizeSalvageSummary(error.salvage) : null;
+  const projectionRefusal = Boolean(error && typeof error === 'object' && error.projectionRefused === true);
 
   let failureClass = LINEAGE_FAILURE_CLASSES.EXIT;
   if (timedOut) {
     failureClass = LINEAGE_FAILURE_CLASSES.TIMEOUT;
+  } else if (projectionRefusal) {
+    failureClass = LINEAGE_FAILURE_CLASSES.PROJECTION_REFUSAL;
   } else if (salvage && salvage.failed > 0 && salvage.salvaged === 0) {
     failureClass = LINEAGE_FAILURE_CLASSES.SALVAGE_MISS;
   } else if (salvage && salvage.failed > 0) {

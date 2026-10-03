@@ -42,6 +42,26 @@ export const CITATION_RE = /(?<![\w./-])([A-Za-z0-9_./-]+\.(?:ts|cjs|mjs|js|py|m
 /** Opening or closing line of a fenced block; fenced lines carry no prose. */
 export const FENCE_RE = /^\s*(?:```|~~~)/;
 
+/** Markdown paragraphs stop at blank lines, fences and headings. */
+function paragraphClaim(lines, lineIndex) {
+  const isBoundary = (line) => line.trim() === '' || FENCE_RE.test(line) || /^\s{0,3}#{1,6}(?:\s|$)/.test(line);
+  let start = lineIndex;
+  let end = lineIndex;
+  while (start > 0 && !isBoundary(lines[start - 1])) start -= 1;
+  while (end + 1 < lines.length && !isBoundary(lines[end + 1])) end += 1;
+  return lines.slice(start, end + 1).join('\n').trim();
+}
+
+/** Evidence-only pointers have no proposition for a live draw to assess. */
+function hasClaim(claim) {
+  const text = claim
+    .replace(CITATION_RE, ' ')
+    .replace(/(?:\*\*)?(?:evidence|source|reference)(?:\*\*)?\s*[:：-]?/gi, ' ')
+    .replace(/[`*_]/g, ' ')
+    .trim();
+  return /[\p{L}\p{N}]/u.test(text);
+}
+
 /** Usage line printed when an invocation misses an input. */
 export const USAGE = 'usage: node cite-drift-scan.mjs [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>]';
 
@@ -71,6 +91,10 @@ export const LABEL_GATE = 40;
 
 /** A yes probability below this reads as a flagged, drifted window. */
 export const FLAG_THRESHOLD = 0.5;
+
+/** Extra reruns are limited to first scores close enough to change the flag. */
+const ADAPTIVE_RERUN_MIN = 0.35;
+const ADAPTIVE_RERUN_MAX = 0.65;
 
 /** Bounds one model call; a spawn past this is unmeasured, not an answer. */
 export const CALL_TIMEOUT_MS = 90000;
@@ -137,10 +161,11 @@ export function listTrackedFiles(repoRoot) {
 /**
  * Citations in the prose of a document: every `path:line` or `path:line-end`
  * span outside a fenced block, one entry per occurrence in source order. The
- * sentence is the trimmed line that carries the citation.
+ * sentence is the trimmed line that carries the citation; claim is its full
+ * paragraph, which gives the reader the context the pointer depends on.
  * @param {string} text
  * @param {string} doc Repo-relative path of the citing document.
- * @returns {Array<{ doc: string, line: number, sentence: string, target: string, targetLine: number, targetLineEnd: number|null }>}
+ * @returns {Array<{ doc: string, line: number, sentence: string, claim: string, target: string, targetLine: number, targetLineEnd: number|null }>}
  */
 export function extractCitations(text, doc) {
   const citations = [];
@@ -158,6 +183,7 @@ export function extractCitations(text, doc) {
         doc,
         line: index + 1,
         sentence: line.trim(),
+        claim: paragraphClaim(lines, index),
         target: match[1],
         targetLine: Number(match[2]),
         targetLineEnd: match[3] === undefined ? null : Number(match[3]),
@@ -228,12 +254,27 @@ export function resolveCitation(citation, { tracked, repoRoot, skillRoot = null 
   return { status: 'unresolved', path: null, endLine: null };
 }
 
+/** Read one committed path once when census and draw share their cache. */
+function readCommittedText(repoRoot, commit, filePath, readCache) {
+  const cacheKey = `${commit}:${filePath}`;
+  if (readCache?.has(cacheKey)) return readCache.get(cacheKey);
+  const shown = spawnSync('git', ['-C', repoRoot, 'show', `${commit}:${filePath}`], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+    maxBuffer: GIT_MAX_BUFFER,
+  });
+  const text = shown.error || shown.status !== 0 ? null : (shown.stdout ?? '');
+  readCache?.set(cacheKey, text);
+  return text;
+}
+
 /**
  * Per-skill census over every tracked skill markdown document, read through the
  * committed tree. Reports citation counts by status, the dead list (missing
  * plus past_end) and the refused count.
  * @param {string} repoRoot
  * @param {Set<string>} tracked
+ * @param {Map<string, string|null>} [readCache]
  * @returns {{
  *   commit: string,
  *   perSkill: Array<{ skill: string, citations: number, in_range: number, past_end: number, ambiguous: number, unresolved: number, dead: number }>,
@@ -242,7 +283,7 @@ export function resolveCitation(citation, { tracked, repoRoot, skillRoot = null 
  *   refused: number
  * }}
  */
-export function buildCensus(repoRoot, tracked) {
+export function buildCensus(repoRoot, tracked, readCache = new Map()) {
   const commit = headCommit(repoRoot);
   const perSkill = new Map();
   const totals = { citations: 0, in_range: 0, past_end: 0, ambiguous: 0, unresolved: 0, refused: 0, missing: 0 };
@@ -252,18 +293,14 @@ export function buildCensus(repoRoot, tracked) {
     .filter((entry) => entry.startsWith('.skilled/skills/') && entry.endsWith('.md'))
     .sort();
   for (const doc of docs) {
-    const shown = spawnSync('git', ['-C', repoRoot, 'show', `HEAD:${doc}`], {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'ignore'],
-      maxBuffer: GIT_MAX_BUFFER,
-    });
+    const text = readCommittedText(repoRoot, commit, doc, readCache);
     // A path the index tracks but HEAD does not hold has nothing committed to scan.
-    if (shown.error || shown.status !== 0) continue;
+    if (text === null) continue;
     const skill = doc.split('/')[2];
     const counts = perSkill.get(skill)
       ?? { citations: 0, in_range: 0, past_end: 0, ambiguous: 0, unresolved: 0, refused: 0, missing: 0 };
     const skillRoot = `.skilled/skills/${skill}`;
-    for (const citation of extractCitations(shown.stdout, doc)) {
+    for (const citation of extractCitations(text, doc)) {
       const { status } = resolveCitation(citation, { tracked, repoRoot, skillRoot });
       counts.citations += 1;
       counts[status] += 1;
@@ -309,16 +346,12 @@ export function buildCensus(repoRoot, tracked) {
  * @param {string} repoRoot
  * @param {string} commit
  * @param {string} filePath Repo-relative tracked path.
+ * @param {Map<string, string|null>} [readCache]
  * @returns {string[]|null}
  */
-function readCommittedLines(repoRoot, commit, filePath) {
-  const shown = spawnSync('git', ['-C', repoRoot, 'show', `${commit}:${filePath}`], {
-    encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'ignore'],
-    maxBuffer: GIT_MAX_BUFFER,
-  });
-  if (shown.error || shown.status !== 0) return null;
-  const text = shown.stdout ?? '';
+function readCommittedLines(repoRoot, commit, filePath, readCache) {
+  const text = readCommittedText(repoRoot, commit, filePath, readCache);
+  if (text === null) return null;
   if (text === '') return [];
   const lines = text.split(/\r?\n/);
   if (lines[lines.length - 1] === '') lines.pop();
@@ -333,10 +366,11 @@ function readCommittedLines(repoRoot, commit, filePath) {
  * @param {string} filePath Repo-relative tracked path.
  * @param {number} start First line, 1-based.
  * @param {number} end Last line, inclusive.
+ * @param {Map<string, string|null>} [readCache]
  * @returns {string[]}
  */
-export function readWindow(repoRoot, commit, filePath, start, end) {
-  const lines = readCommittedLines(repoRoot, commit, filePath);
+export function readWindow(repoRoot, commit, filePath, start, end, readCache) {
+  const lines = readCommittedLines(repoRoot, commit, filePath, readCache);
   if (lines === null) return [];
   const first = Math.max(1, start);
   const last = Math.min(lines.length, end);
@@ -366,9 +400,10 @@ function mulberry32(seed) {
  * @param {{ perSkill: Array<{ skill: string }> }} census
  * @param {string} repoRoot
  * @param {string} commit
+ * @param {Map<string, string|null>} readCache
  * @returns {Map<string, Array<object>>}
  */
-function inRangePools(census, repoRoot, commit) {
+function inRangePools(census, repoRoot, commit, readCache) {
   const tracked = listTrackedFiles(repoRoot);
   const pools = new Map(census.perSkill.map((entry) => [entry.skill, []]));
   const docs = [...tracked]
@@ -378,7 +413,7 @@ function inRangePools(census, repoRoot, commit) {
     const skill = doc.split('/')[2];
     const pool = pools.get(skill);
     if (pool === undefined) continue;
-    const lines = readCommittedLines(repoRoot, commit, doc);
+    const lines = readCommittedLines(repoRoot, commit, doc, readCache);
     if (lines === null) continue;
     const skillRoot = `.skilled/skills/${skill}`;
     for (const citation of extractCitations(lines.join('\n'), doc)) {
@@ -411,7 +446,8 @@ function drawRow(entry, kind, windowStart, windowEnd, windowLines, ordinal, comm
     window_start: windowStart,
     window_end: windowEnd,
     commit,
-    claim_sha12: sha256Hex(entry.sentence).slice(0, 12),
+    claim_unit: 'paragraph',
+    claim_sha12: sha256Hex(entry.claim).slice(0, 12),
     window_sha12: sha256Hex(windowLines.join('\n')).slice(0, 12),
     kind,
     verdict: kind === 'constructed' ? 'contradicts' : null,
@@ -424,19 +460,19 @@ function drawRow(entry, kind, windowStart, windowEnd, windowLines, ordinal, comm
  * constructed rows whose window moved down the same file, so a labelled set
  * holds known-drifted windows beside citations that may still hold. One pick
  * per skill per pass keeps a large skill from crowding out a smaller one.
- * @param {{ census: object, repoRoot: string, commit: string, seed: number }} input
+ * @param {{ census: object, repoRoot: string, commit: string, seed: number, readCache?: Map<string, string|null> }} input
  * @returns {Array<object>}
  */
-export function drawRows({ census, repoRoot, commit, seed }) {
-  const pools = inRangePools(census, repoRoot, commit);
+export function drawRows({ census, repoRoot, commit, seed, readCache = new Map() }) {
+  const pools = inRangePools(census, repoRoot, commit, readCache);
   const random = mulberry32(seed);
   const lineCache = new Map();
   const linesOf = (filePath) => {
-    if (!lineCache.has(filePath)) lineCache.set(filePath, readCommittedLines(repoRoot, commit, filePath));
+    if (!lineCache.has(filePath)) lineCache.set(filePath, readCommittedLines(repoRoot, commit, filePath, readCache));
     return lineCache.get(filePath);
   };
 
-  const passes = (count, build) => {
+  const passes = (count, build, isEligible = () => true) => {
     const rows = [];
     let progressed = true;
     while (rows.length < count && progressed) {
@@ -446,6 +482,7 @@ export function drawRows({ census, repoRoot, commit, seed }) {
         if (pool.length === 0) continue;
         const entry = pool.splice(Math.floor(random() * pool.length), 1)[0];
         progressed = true;
+        if (!isEligible(entry)) continue;
         const row = build(entry, rows.length + 1);
         if (row !== null) rows.push(row);
       }
@@ -458,9 +495,9 @@ export function drawRows({ census, repoRoot, commit, seed }) {
     if (lines === null) return null;
     const start = Math.max(1, entry.targetLine - WINDOW_RADIUS_LINES);
     const end = Math.min(lines.length, entry.targetLine + WINDOW_RADIUS_LINES);
-    const windowLines = readWindow(repoRoot, commit, entry.path, start, end);
+    const windowLines = readWindow(repoRoot, commit, entry.path, start, end, readCache);
     return drawRow(entry, 'live', start, end, windowLines, ordinal, commit);
-  });
+  }, (entry) => hasClaim(entry.claim));
   if (live.length < LIVE_ROWS) throw new Error(`draw: ${live.length} live citations, need ${LIVE_ROWS}`);
 
   const constructed = passes(CONSTRUCTED_ROWS, (entry, ordinal) => {
@@ -471,7 +508,7 @@ export function drawRows({ census, repoRoot, commit, seed }) {
     if (Math.min(direct, lines.length - direct) < CONSTRUCT_MIN_GAP_LINES) return null;
     const start = Math.max(1, centre - WINDOW_RADIUS_LINES);
     const end = Math.min(lines.length, centre + WINDOW_RADIUS_LINES);
-    const windowLines = readWindow(repoRoot, commit, entry.path, start, end);
+    const windowLines = readWindow(repoRoot, commit, entry.path, start, end, readCache);
     return drawRow(entry, 'constructed', start, end, windowLines, ordinal, commit);
   });
   if (constructed.length < CONSTRUCTED_ROWS) throw new Error(`draw: ${constructed.length} constructed citations, need ${CONSTRUCTED_ROWS}`);
@@ -564,25 +601,46 @@ export function flagByIdentifierOverlap(sentence, windowText, target) {
 }
 
 /**
- * Sentence and window text of every labels row, read at the commit the row
- * recorded so a later edit cannot move a window. A row whose document or target
- * the commit does not hold contributes empty text and is never flagged.
+ * Sentence, row-selected claim unit and window text of every labels row, read
+ * at the recorded commit so a later edit cannot move the measured text.
  * @param {string} repoRoot
  * @param {Array<object>} rows
- * @returns {Map<string, { sentence: string, windowText: string }>}
+ * @param {Map<string, string|null>} [readCache]
+ * @returns {Map<string, { sentence: string, claim: string, windowText: string }>}
  */
-function buildWindows(repoRoot, rows) {
+function buildWindows(repoRoot, rows, readCache = new Map()) {
   const docs = new Map();
   const windows = new Map();
   for (const row of rows) {
     const docKey = `${row.commit}:${row.doc}`;
-    if (!docs.has(docKey)) docs.set(docKey, readCommittedLines(repoRoot, row.commit, row.doc));
+    if (!docs.has(docKey)) docs.set(docKey, readCommittedLines(repoRoot, row.commit, row.doc, readCache));
     const lines = docs.get(docKey);
-    const sentence = lines === null ? '' : lines[row.doc_line - 1] ?? '';
-    const windowText = readWindow(repoRoot, row.commit, row.target, row.window_start, row.window_end).join('\n');
-    windows.set(row.id, { sentence, windowText });
+    const sentence = lines === null ? '' : (lines[row.doc_line - 1] ?? '').trim();
+    const claimUnit = row.claim_unit === undefined ? 'line' : row.claim_unit;
+    if (claimUnit !== 'line' && claimUnit !== 'paragraph') {
+      throw new Error(`labels row ${row.id}: invalid claim unit`);
+    }
+    const claim = lines === null ? '' : claimUnit === 'paragraph'
+      ? paragraphClaim(lines, row.doc_line - 1)
+      : sentence;
+    const windowText = readWindow(repoRoot, row.commit, row.target, row.window_start, row.window_end, readCache).join('\n');
+    windows.set(row.id, { sentence, claim, windowText });
   }
   return windows;
+}
+
+/** Refuse stale label text before any comparator or model score is produced. */
+function validateLabelHashes(rows, windows) {
+  for (const row of rows) {
+    const entry = windows.get(row.id);
+    if (entry === undefined) throw new Error(`labels row ${row.id}: citation text unavailable`);
+    if (row.claim_sha12 !== sha256Hex(entry.claim).slice(0, 12)) {
+      throw new Error(`labels row ${row.id}: claim hash mismatch`);
+    }
+    if (row.window_sha12 !== sha256Hex(entry.windowText).slice(0, 12)) {
+      throw new Error(`labels row ${row.id}: window hash mismatch`);
+    }
+  }
 }
 
 /**
@@ -713,7 +771,7 @@ export function decideVerdict({ backend, K, M, A, B, W, L, TP, FP, F }) {
  * when no earlier column exists or it matches the identity this run used.
  * @param {string} backend
  * @param {object|null} stored Parsed report from an earlier run.
- * @param {{ provider?: string, model?: string }} identity
+ * @param {{ provider?: string, model?: string, instructionSha256?: string, keepRuleSha256?: string, rowSetSha256?: string }} identity
  * @returns {string|null}
  */
 function requalifyNotice(backend, stored, identity) {
@@ -722,7 +780,43 @@ function requalifyNotice(backend, stored, identity) {
   if (backend === 'jev' && (prior.provider !== identity.provider || prior.model !== identity.model)) {
     return 'requalify: model changed';
   }
+  const previousMeasurement = stored?.measurement ?? {};
+  if (backend === 'jev' && previousMeasurement.instructionSha256 !== identity.instructionSha256) {
+    return 'requalify: instruction changed';
+  }
+  if (backend === 'jev' && previousMeasurement.keepRuleSha256 !== identity.keepRuleSha256) {
+    return 'requalify: keep rule changed';
+  }
+  if (backend === 'jev' && previousMeasurement.rowSetSha256 !== identity.rowSetSha256) {
+    return 'requalify: row set changed';
+  }
   return null;
+}
+
+/** Fingerprint the exact prompt, decision rule and labeled row identities. */
+function measurementIdentity(rows) {
+  const rowSet = rows.map((row) => ({
+    id: row.id ?? null,
+    kind: row.kind ?? null,
+    doc: row.doc ?? null,
+    doc_line: row.doc_line ?? null,
+    target: row.target ?? null,
+    target_line: row.target_line ?? null,
+    window_start: row.window_start ?? null,
+    window_end: row.window_end ?? null,
+    commit: row.commit ?? null,
+    claim_unit: row.claim_unit ?? 'line',
+    claim_sha12: row.claim_sha12 ?? null,
+    window_sha12: row.window_sha12 ?? null,
+    verdict: row.verdict ?? null,
+  })).sort((left, right) => (left.id < right.id ? -1 : left.id > right.id ? 1 : 0));
+  const counts = labelCounts(rows);
+  return {
+    instructionSha256: sha256Hex(INSTRUCTION),
+    keepRuleSha256: sha256Hex(KEEP_RULE_LINE),
+    rowSetSha256: sha256Hex(JSON.stringify(rowSet)),
+    rowKinds: { live: counts.live, constructed: counts.constructed },
+  };
 }
 
 /**
@@ -730,7 +824,7 @@ function requalifyNotice(backend, stored, identity) {
  * four significant digits, the labels hash and the column's identity suffix.
  * The flips count is the Jev column's own. A stored report that names another
  * identity puts its requalify notice on the line ahead of the verdict.
- * @param {{ backend: string, verdict: string, K: number, M: number, A: number, B: number, W: number, L: number, TP: number, FP: number, F: number, p: number, stored?: object|null, model?: string, provider?: string }} summary
+ * @param {{ backend: string, verdict: string, K: number, M: number, A: number, B: number, W: number, L: number, TP: number, FP: number, F: number, p: number, stored?: object|null, model?: string, provider?: string, instructionSha256?: string, keepRuleSha256?: string, rowSetSha256?: string }} summary
  * @param {string} labelsSha Truncated hash of the labels the column measured.
  * @param {string} [suffix] Column identity text, appended when non-empty.
  * @returns {string}
@@ -918,10 +1012,10 @@ export function readStoredReport(outDir) {
  * The report.json body: the census totals, the label set, the comparator
  * scores that gated the run, one entry per backend in columns, stopped and
  * skipped, and the keep rule the columns were measured against.
- * @param {{ census: object, labels: { path: string, sha256: string, rows: number, labeled: number }, comparators: object, columns?: object, stopped?: object, skipped?: object }} input
+ * @param {{ census: object, labels: { path: string, sha256: string, rows: number, labeled: number }, comparators: object, measurement?: object, columns?: object, stopped?: object, skipped?: object }} input
  * @returns {object}
  */
-export function buildReport({ census, labels, comparators, columns = {}, stopped = {}, skipped = {} }) {
+export function buildReport({ census, labels, comparators, measurement = {}, columns = {}, stopped = {}, skipped = {} }) {
   return {
     census: census.total,
     commit: census.commit,
@@ -941,6 +1035,7 @@ export function buildReport({ census, labels, comparators, columns = {}, stopped
     winnable: comparators.winnable,
     keepRule: KEEP_RULE_LINE,
     margin: MARGIN_LINE,
+    measurement,
     columns,
     stopped,
     skipped,
@@ -958,7 +1053,7 @@ export function buildReport({ census, labels, comparators, columns = {}, stopped
 /** Pinned jev version the gate accepts. */
 export const JEV_VERSION = 'jev 0.6.2';
 
-/** Calls per row, so a repeated answer can be told from a flip. */
+/** Maximum calls per row; only a borderline screen uses all three. */
 export const JEV_RERUNS = 3;
 
 /** Wait behind the one retry an exit 4 earns. */
@@ -1006,17 +1101,13 @@ export function jevGate(ctx) {
 }
 
 /**
- * One auth test, then three noul calls per labeled row whose sentence and
- * window the recorded commit still holds, with one calls.jsonl record per
- * spawn and one backoff retry when a call exits 4. A row is measured only
- * when every rerun returned a probability, its flag is the modal flag over
- * those reruns, and the votes the modal flag lacks count as flips. A stop
- * prints the line and the rows that finished, and leaves the column and
- * verdict unprinted.
- * @param {{ rows: Array<object>, windows: Map<string, { sentence: string, windowText: string }>, labelsSha: string }} plan
+ * Screen each labeled claim once and rerun only scores in the adaptive band.
+ * A row's flag uses its lowest probability while its modal flag and dissent
+ * count remain available for reporting. A stop leaves the column unprinted.
+ * @param {{ rows: Array<object>, windows: Map<string, { sentence: string, claim?: string, windowText: string }>, labelsSha: string }} plan
  * @param {{ path: string, provider: string }} gate Passing jevGate result.
  * @param {{ out: (line: string) => void, env: Record<string, string|undefined>, timeoutMs: number, backoffMs: number, callLog: { append: (record: object) => void }, stored: object|null }} ctx Line writer, environment, timeout, retry wait, the call log and an earlier run's report.
- * @returns {Promise<{ column: object } | { stopped: string, partialRows: number }>}
+ * @returns {Promise<{ column: object, outcomes: Array<object> } | { stopped: string, partialRows: number }>}
  */
 export async function runJevArm(plan, gate, ctx) {
   const labeled = plan.rows.filter((row) => row.verdict !== null && row.verdict !== undefined);
@@ -1024,16 +1115,17 @@ export async function runJevArm(plan, gate, ctx) {
   let chars = 0;
   for (const row of labeled) {
     const entry = plan.windows.get(row.id);
-    // A row whose document or target the recorded commit does not hold has no
-    // state to send, so it stays unmeasured and costs no call.
-    if (entry === undefined || entry.sentence === '' || entry.windowText === '') continue;
-    const state = JSON.stringify({ sentence: entry.sentence, target: row.target, window: entry.windowText });
-    ready.push({ row, entry, state });
+    // Main validates the selected claim unit and window hashes before this arm.
+    const claim = entry?.claim ?? entry?.sentence ?? '';
+    if (entry === undefined || claim === '' || entry.windowText === '') continue;
+    const state = JSON.stringify({ claim, target: row.target, window: entry.windowText });
+    ready.push({ row, state });
     chars += state.length + INSTRUCTION.length;
   }
   const K = labeled.length;
-  chars *= JEV_RERUNS;
-  ctx.out(`jev: payload: committed skill-doc sentences and tracked-file windows; planned calls: ${JEV_RERUNS * K + 1}; estimated input tokens: ${Math.ceil(chars / 4)}`);
+  const identity = measurementIdentity(labeled);
+  const maxChars = chars * JEV_RERUNS;
+  ctx.out(`jev: payload: committed skill-doc claims and tracked-file windows; planned calls: ${ready.length} screening + up to ${ready.length * (JEV_RERUNS - 1)} adaptive + 1 auth; estimated input tokens (max): ${Math.ceil(maxChars / 4)}`);
 
   const wallTimes = [];
   let finished = 0;
@@ -1077,12 +1169,13 @@ export async function runJevArm(plan, gate, ctx) {
   ctx.out(`jev: auth test provider=${gate.provider} model=${model}`);
 
   const answers = new Map();
-  for (const { row, entry, state } of ready) {
+  for (const { row, state } of ready) {
     const callArgs = ['noul', '--provider', gate.provider, '-q', INSTRUCTION];
     const reruns = [];
     let stopLine = null;
+    let rerunLimit = 1;
 
-    for (let rerun = 0; rerun < JEV_RERUNS; rerun += 1) {
+    for (let rerun = 0; rerun < rerunLimit; rerun += 1) {
       let call = await spawnCall(gate.path, callArgs, state, ctx.env, ctx.timeoutMs);
       wallTimes.push(call.wallMs);
 
@@ -1139,49 +1232,100 @@ export async function runJevArm(plan, gate, ctx) {
       });
       if (stopLine !== null) return stop(stopLine);
       reruns.push({ probability, flag, measured: status === 'measured' });
+      if (rerun === 0 && status === 'measured'
+        && probability >= ADAPTIVE_RERUN_MIN && probability <= ADAPTIVE_RERUN_MAX) {
+        rerunLimit = JEV_RERUNS;
+      }
     }
 
     answers.set(row.id, reruns);
     finished += 1;
   }
 
-  let M = 0;
-  let A = 0;
-  let B = 0;
-  let W = 0;
-  let L = 0;
-  let TP = 0;
-  let FP = 0;
-  let F = 0;
+  const emptyCounts = () => ({ K: 0, M: 0, A: 0, B: 0, W: 0, L: 0, TP: 0, FP: 0, F: 0 });
+  const totals = emptyCounts();
+  totals.K = K;
+  const kinds = { live: emptyCounts(), constructed: emptyCounts() };
+  for (const row of labeled) {
+    if (Object.hasOwn(kinds, row.kind)) kinds[row.kind].K += 1;
+  }
   const scored = [];
-  for (const { row, entry } of ready) {
-    const reruns = answers.get(row.id);
-    if (reruns === undefined || !reruns.every((rerun) => rerun.measured)) continue;
-    M += 1;
+  const outcomes = [];
+  for (const row of labeled) {
+    const entry = plan.windows.get(row.id);
+    const reruns = answers.get(row.id) ?? [];
+    const measured = reruns.length > 0 && reruns.every((rerun) => rerun.measured);
+    if (!measured) {
+      outcomes.push({
+        id: row.id,
+        kind: row.kind ?? null,
+        verdict: row.verdict,
+        measured: false,
+        probabilities: reruns.map((rerun) => rerun.probability),
+        minimumProbability: null,
+        modalFlag: null,
+        flagged: null,
+      });
+      continue;
+    }
     const votes = reruns.filter((rerun) => rerun.flag === true).length;
-    const top = Math.max(votes, JEV_RERUNS - votes);
-    F += JEV_RERUNS - top;
-    const flagged = 2 * votes > JEV_RERUNS;
+    const top = Math.max(votes, reruns.length - votes);
+    const modalFlag = votes > reruns.length / 2;
+    const minimumProbability = Math.min(...reruns.map((rerun) => rerun.probability));
+    const flagged = minimumProbability < FLAG_THRESHOLD;
+    const dissent = reruns.length - top;
+    const kindCounts = Object.hasOwn(kinds, row.kind) ? kinds[row.kind] : undefined;
+    const targetCounts = [totals, kindCounts].filter((counts) => counts !== undefined);
+    for (const counts of targetCounts) {
+      counts.M += 1;
+      counts.F += dissent;
+    }
     const drifted = row.verdict !== 'supports';
-    if (flagged && drifted) TP += 1;
-    if (flagged && !drifted) FP += 1;
+    if (flagged && drifted) targetCounts.forEach((counts) => { counts.TP += 1; });
+    if (flagged && !drifted) targetCounts.forEach((counts) => { counts.FP += 1; });
     const modelRight = flagged === drifted;
-    if (modelRight) A += 1;
-    const comparatorRight = flagByIdentifierOverlap(entry.sentence, entry.windowText, row.target) === drifted;
-    if (comparatorRight) B += 1;
-    if (modelRight && !comparatorRight) W += 1;
-    if (!modelRight && comparatorRight) L += 1;
-    for (const rerun of reruns) scored.push({ probability: rerun.probability, actual: drifted ? 0 : 1 });
+    const comparatorRight = entry !== undefined
+      && flagByIdentifierOverlap(entry.sentence, entry.windowText, row.target) === drifted;
+    if (modelRight) targetCounts.forEach((counts) => { counts.A += 1; });
+    if (comparatorRight) targetCounts.forEach((counts) => { counts.B += 1; });
+    if (modelRight && !comparatorRight) targetCounts.forEach((counts) => { counts.W += 1; });
+    if (!modelRight && comparatorRight) targetCounts.forEach((counts) => { counts.L += 1; });
+    outcomes.push({
+      id: row.id,
+      kind: row.kind ?? null,
+      verdict: row.verdict,
+      measured: true,
+      probabilities: reruns.map((rerun) => rerun.probability),
+      minimumProbability,
+      modalFlag,
+      flagged,
+    });
+    const meanProbability = reruns.reduce((sum, rerun) => sum + rerun.probability, 0) / reruns.length;
+    scored.push({ probability: meanProbability, actual: drifted ? 0 : 1 });
   }
 
+  const { M, A, B, W, L, TP, FP, F } = totals;
   const { verdict, p } = decideVerdict({ backend: 'jev', K, M, A, B, W, L, TP, FP, F });
   const latency = { p50: nearestRank(wallTimes, 0.5), p95: nearestRank(wallTimes, 0.95) };
   ctx.out(`column jev: rows=${K} measured=${M} unmeasured=${K - M} latency_p50_ms=${latency.p50 ?? 'none'} latency_p95_ms=${latency.p95 ?? 'none'}`);
+  for (const [kind, counts] of Object.entries(kinds)) {
+    ctx.out(`column jev.${kind}: rows=${counts.K} measured=${counts.M} unmeasured=${counts.K - counts.M} A=${counts.A} B=${counts.B} W=${counts.W} L=${counts.L} TP=${counts.TP} FP=${counts.FP}`);
+  }
+  const liveSign = binomialTail(kinds.live.W, kinds.live.W + kinds.live.L);
+  ctx.out(`sign test jev.live: W=${kinds.live.W} L=${kinds.live.L} p=${liveSign.p.toPrecision(4)}`);
   const brier = brierScore(scored);
   ctx.out(`brier jev: ${brier === null ? 'none' : brier.toFixed(4)}`);
 
   const line = verdictLine(
-    { backend: 'jev', verdict, K, M, A, B, W, L, TP, FP, F, p, stored: ctx.stored, provider: gate.provider, model },
+    {
+      backend: 'jev', verdict, K, M, A, B, W, L, TP, FP, F, p,
+      stored: ctx.stored,
+      provider: gate.provider,
+      model,
+      instructionSha256: identity.instructionSha256,
+      keepRuleSha256: identity.keepRuleSha256,
+      rowSetSha256: identity.rowSetSha256,
+    },
     plan.labelsSha,
     `jev_version=0.6.2 provider=${gate.provider} model=${model}`,
   );
@@ -1205,8 +1349,15 @@ export async function runJevArm(plan, gate, ctx) {
       jevVersion: '0.6.2',
       provider: gate.provider,
       model,
+      instructionSha256: identity.instructionSha256,
+      keepRuleSha256: identity.keepRuleSha256,
+      rowSetSha256: identity.rowSetSha256,
+      live: { ...kinds.live },
+      constructed: { ...kinds.constructed },
+      liveSignTest: { W: kinds.live.W, L: kinds.live.L, p: liveSign.p },
       line,
     },
+    outcomes,
   };
 }
 
@@ -1287,8 +1438,9 @@ export async function main(argv, deps = {}) {
   }
 
   let census;
+  const readCache = new Map();
   try {
-    census = buildCensus(repoRoot, listTrackedFiles(repoRoot));
+    census = buildCensus(repoRoot, listTrackedFiles(repoRoot), readCache);
   } catch (error) {
     err(error instanceof Error ? error.message : String(error));
     return 2;
@@ -1297,7 +1449,7 @@ export async function main(argv, deps = {}) {
   if (values.draw === true) {
     let rows;
     try {
-      rows = drawRows({ census, repoRoot, commit: census.commit, seed });
+      rows = drawRows({ census, repoRoot, commit: census.commit, seed, readCache });
       fs.writeFileSync(labelsPath, `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`);
     } catch (error) {
       err(error instanceof Error ? error.message : String(error));
@@ -1327,7 +1479,14 @@ export async function main(argv, deps = {}) {
   for (const entry of census.dead) {
     out(`cite dead: ${entry.doc}:${entry.line} -> ${entry.target}:${entry.targetLine}`);
   }
-  const windows = buildWindows(repoRoot, labelRows);
+  let windows;
+  try {
+    windows = buildWindows(repoRoot, labelRows, readCache);
+    validateLabelHashes(labelRows, windows);
+  } catch (error) {
+    err(error instanceof Error ? error.message : String(error));
+    return 2;
+  }
   const summary = summaryLines({ rows: labelRows, windows });
   for (const line of summary.lines) {
     out(line);
@@ -1344,6 +1503,7 @@ export async function main(argv, deps = {}) {
   const columns = {};
   const stopped = {};
   const skipped = {};
+  let outcomes = [];
 
   // The Jev arm runs on its own gate; a failed check prints its skip line and
   // leaves every earlier line as it was.
@@ -1364,6 +1524,7 @@ export async function main(argv, deps = {}) {
       );
       if (result.stopped === undefined) {
         columns.jev = result.column;
+        outcomes = result.outcomes;
       } else {
         stopped.jev = { line: result.stopped, partialRows: result.partialRows };
       }
@@ -1382,6 +1543,10 @@ export async function main(argv, deps = {}) {
         labeled: labelCounts(labelRows).labeled,
       },
       comparators,
+      measurement: {
+        ...measurementIdentity(labelRows.filter((row) => row.verdict !== null && row.verdict !== undefined)),
+        outcomes,
+      },
       columns,
       stopped,
       skipped,

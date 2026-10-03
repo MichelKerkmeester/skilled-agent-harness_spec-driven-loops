@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 57,
     "missing-frontmatter": 6661,
-    "ok": 13058,
+    "ok": 13062,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23291,
+  "documentsScanned": 23295,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "40a0d9f3bf9da8987b6c04a48b7b1307874d265ddc5ac446a5b864d1f81ed8ce",
+  "manifestHash": "73129b571ab540f487fd89bf02ac6ada98799a14688f2f2d64a7519c41a95849",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -65564,6 +65564,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
       "path": ".skilled/skills/sk-doc/sk-create-with-human-voice/scripts/tests/fixtures",
       "reason": "excluded directory"
     },
@@ -67985,6 +67989,10 @@
     },
     {
       "path": "specs/system-deep-loop/039-review-state-init-and-dispatch/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/040-cli-pi-opencode-go-route/scratch",
       "reason": "excluded directory"
     },
     {

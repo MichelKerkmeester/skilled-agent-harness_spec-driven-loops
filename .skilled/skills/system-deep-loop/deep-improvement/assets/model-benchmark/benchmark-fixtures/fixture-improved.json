@@ -10,5 +10,6 @@
     "delta: 0.08",
     "details.gateResults.improvementGate: passed",
     "benchmark-pass: true"
-  ]
+  ],
+  "allowlist": {"cli_flags":[],"symbols":[]}
 }

@@ -11,15 +11,15 @@ _memory:
     packet_pointer: "cli-jev/003-cli-jev-workflow-integration/049-jev-feature-improvement-build"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
-    recent_action: "Initialize phase-parent continuity block"
-    next_safe_action: "Plan or resume a child phase folder"
+    recent_action: "All 12 child phases Complete"
+    next_safe_action: "None. The phase is Complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -104,18 +104,18 @@ Each child names its exact files in its own spec.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-fanout-merge-improvements/ | Build 048's ranked fixes for the Jev fan-out merge (030): honest baselines, two-call early stop, self-describing report | Planned |
-| 2 | 002-track-narrowing-improvements/ | Build 048's ranked fixes for the Jev spec-track narrowing (017): pinned record, no `--out` overwrite, per-track and slack reporting | Planned |
-| 3 | 003-citation-drift-improvements/ | Build 048's ranked fixes for the Jev citation drift scan (032): min-rerun flag, live column, hash checks, one read per document | Planned |
-| 4 | 004-injection-screen-improvements/ | Build 048's ranked fixes for the Jev injection screen (035): corpus provenance, trust package, flag line 0.6, fewer calls | Planned |
-| 5 | 005-hallucination-grader-improvements/ | Build 048's ranked fixes for the Jev hallucination grader (024): allowlists, unmeasured failures, shared context | Planned |
-| 6 | 006-verdict-fallback-improvements/ | Build 048's ranked fixes for the Jev verdict fallback (025): typed verdict, wider parser, abstain outcome | Planned |
-| 7 | 007-clarify-default-improvements/ | Build 048's ranked fixes for the Jev clarify default (020): replay-verified rows, digests, class and hub baselines | Planned |
-| 8 | 008-folder-suggestion-improvements/ | Build 048's ranked fixes for the Jev folder suggestion (022): path-resolved descriptions, candidate recall, pins | Planned |
-| 9 | 009-pi-transport-improvements/ | Build 048's ranked fixes for the Pi classifier transport (037): provider intent, kill switch, cached runtime, paired benchmark | Planned |
-| 10 | 010-completion-claims-improvements/ | Build 048's ranked fixes for the completion-claim audit (026): sentinel regex, scorer repairs, Cursor wiring | Planned |
-| 11 | 011-research-run-init-via-gateway/ | Fix the deep-research run open: record `run_initialized` through the gateway so a run's first append projects | Planned |
-| 12 | 012-fanout-runner-and-prompt-fixes/ | Fix the fan-out runner, merge and lineage prompt faults 048 hit | Planned |
+| 1 | 001-fanout-merge-improvements/ | Build 048's ranked fixes for the Jev fan-out merge (030): honest baselines, two-call early stop, self-describing report | Complete |
+| 2 | 002-track-narrowing-improvements/ | Build 048's ranked fixes for the Jev spec-track narrowing (017): pinned record, no `--out` overwrite, per-track and slack reporting | Complete |
+| 3 | 003-citation-drift-improvements/ | Build 048's ranked fixes for the Jev citation drift scan (032): min-rerun flag, live column, hash checks, one read per document | Complete |
+| 4 | 004-injection-screen-improvements/ | Build 048's ranked fixes for the Jev injection screen (035): corpus provenance, trust package, flag line 0.6, fewer calls | Complete |
+| 5 | 005-hallucination-grader-improvements/ | Build 048's ranked fixes for the Jev hallucination grader (024): allowlists, unmeasured failures, shared context | Complete |
+| 6 | 006-verdict-fallback-improvements/ | Build 048's ranked fixes for the Jev verdict fallback (025): typed verdict, wider parser, abstain outcome | Complete |
+| 7 | 007-clarify-default-improvements/ | Build 048's ranked fixes for the Jev clarify default (020): replay-verified rows, digests, class and hub baselines | Complete |
+| 8 | 008-folder-suggestion-improvements/ | Build 048's ranked fixes for the Jev folder suggestion (022): path-resolved descriptions, candidate recall, pins | Complete |
+| 9 | 009-pi-transport-improvements/ | Build 048's ranked fixes for the Pi classifier transport (037): provider intent, kill switch, cached runtime, paired benchmark | Complete |
+| 10 | 010-completion-claims-improvements/ | Build 048's ranked fixes for the completion-claim audit (026): sentinel regex, scorer repairs, Cursor wiring | Complete |
+| 11 | 011-research-run-init-via-gateway/ | Fix the deep-research run open: record `run_initialized` through the gateway so a run's first append projects | Complete |
+| 12 | 012-fanout-runner-and-prompt-fixes/ | Fix the fan-out runner, merge and lineage prompt faults 048 hit | Complete |
 
 ### Phase Transition Rules
 

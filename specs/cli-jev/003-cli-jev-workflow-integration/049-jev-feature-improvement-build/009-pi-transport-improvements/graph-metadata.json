@@ -39,18 +39,22 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/research.md",
       ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs",
       ".skilled/skills/cli-classifier/shared/scripts/tests/jev-transport.test.mjs",
       ".skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs",
-      ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs"
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs",
+      ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
+      ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+      ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
+      ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/009-pi-transport-research/research/research.md"
     ],
     "entities": [
       {
@@ -105,6 +109,30 @@
         "name": "score-pi-transport.test.mjs",
         "kind": "file",
         "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/score-pi-transport.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/benchmark/pi-transport/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-transport-integration.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/feature-catalog/measurements/pi-transport-integration.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-transport-comparison.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-classifier/manual-testing-playbook/measurements/pi-transport-comparison.md",
         "source": "derived"
       },
       {
@@ -172,35 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Feature 037 adopted the Pi transport by one row, on a comparison whose CLI arm was a day older and used another provider",
     "created_at": "2026-10-03T05:30:09Z",
-    "last_save_at": "2026-10-03T05:37:56.410Z",
+    "last_save_at": "2026-10-03T15:11:04.133Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a683e60c430c7188e6c3e98940aaca64cfb07cfc7a560f8a18218a7a3086a608",
+    "source_fingerprint": "sha256:0a11a33711812feb19475dc24c5657771efd52316ce1bd305cce358be7b26d67",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2854b96217aa3feff8e5933b9d7c411453f5db2d25f142eec7cc17f7bf9fd36",
+      "spec.md": "d8b8325e4c4283f81d30eb1b502c02055bf8778feee17a3f9c433091efde1859",
       "plan.md": "5b5c656d4c4db85f56e5d4dc5e8b1d977b4d007bf88640588b7a5ef1677d5773",
-      "tasks.md": "ddf17d7c57764bdb850f88a419819828ce02d8e92cce81caf55efae37ca06cdc",
-      "implementation-summary.md": "9f5cfc3d14a896d3a83d4838a730761e9dff1da9727c71883837aaa5a1aa8ff7"
+      "tasks.md": "554b582742ef8596e39f71cec581e6f9ee48f2a9c7a49a91af5948e7e2fea659",
+      "implementation-summary.md": "19a6c171844dc1b519fc075cca90ae6fbc867e3c4484ea73cae212c0e38199ec"
     },
     "last_active_at": null
   }

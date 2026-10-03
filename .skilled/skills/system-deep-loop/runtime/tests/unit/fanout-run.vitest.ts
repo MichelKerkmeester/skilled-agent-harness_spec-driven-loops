@@ -157,7 +157,7 @@ function writeStubBinary(binDir: string, name: string): string {
   return stubPath;
 }
 
-function writeNativeOpencodeStubBinary(binDir: string): string {
+function writeNativeOpencodeStubBinary(binDir: string, captureCommand = false): string {
   const stubPath = join(binDir, 'opencode');
   writeFileSync(
     stubPath,
@@ -167,6 +167,7 @@ function writeNativeOpencodeStubBinary(binDir: string): string {
       'lineage_dir=$(printf "%s\\n" "$payload" | sed -n "s/.*--fanout-lineage-artifact-dir=//p" | sed "s/[[:space:]].*//" | head -n 1)',
       'if [ -n "$lineage_dir" ]; then',
       '  mkdir -p "$lineage_dir"',
+      ...(captureCommand ? ['  printf "%s\\n" "$payload" > "$lineage_dir/native-command.capture"'] : []),
       '  printf "ok\\n" > "$lineage_dir/research.md"',
       '  printf "ok\\n" > "$lineage_dir/review-report.md"',
       'fi',
@@ -182,6 +183,29 @@ function writeNativeOpencodeStubBinary(binDir: string): string {
 function writeNoArtifactStubBinary(binDir: string, name: string): string {
   const stubPath = join(binDir, name);
   writeFileSync(stubPath, '#!/bin/sh\necho "stub-done-without-artifact"\nexit 0\n', { mode: 0o755 });
+  return stubPath;
+}
+
+function writeProjectionRefusalStubBinary(binDir: string, name: string): string {
+  const stubPath = join(binDir, name);
+  writeFileSync(
+    stubPath,
+    [
+      '#!/bin/sh',
+      'lineage_dir=$(dirname "$SPECKIT_OPENCODE_STATE_DIR")',
+      'printf "attempt\\n" >> "$lineage_dir/projection-attempts.log"',
+      'node - "$lineage_dir" <<\'NODE\'',
+      'const fs = require("node:fs");',
+      'const path = require("node:path");',
+      'const record = { at: new Date().toISOString(), mode: "deep-research", phase: "projection", code: "PROJECTION_FAILED", reason: "stub projection refresh failed", stem: "deep_research.iteration_recorded" };',
+      'fs.appendFileSync(path.join(process.argv.at(-1), "gateway-refusals.jsonl"), JSON.stringify(record) + "\\n");',
+      'NODE',
+      'echo "stub-projection-refused"',
+      'exit 0',
+      '',
+    ].join('\n'),
+    { mode: 0o755 },
+  );
   return stubPath;
 }
 
@@ -1971,6 +1995,18 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     expect(command.effectiveConfig.model).toBe('deepseek-v4.1-flash');
   });
 
+  it('routes the opencode-go DeepSeek literal as its own selector, pinned to max', () => {
+    const binDir = makeTempDir('fanout-run-pi-opencode-go-');
+    writeStubBinary(binDir, 'pi');
+    const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
+    const command = buildLineageCommand(
+      { kind: 'cli-pi', model: 'opencode-go/deepseek-v4.1-flash', reasoningEffort: 'high' },
+      'p', 'workspace-write', 'default', opts,
+    ) as { args: string[]; effectiveConfig: { model: string; reasoningEffort: string | null } };
+    expect(command.args).toEqual(['-p', '--offline', '--model', 'opencode-go/deepseek-v4.1-flash', '--thinking', 'max', 'p']);
+    expect(command.effectiveConfig.reasoningEffort).toBe('max');
+  });
+
   it('pins cli-pi deepseek-v4.1-flash to --thinking max even when a lower effort is requested', () => {
     const binDir = makeTempDir('fanout-run-pi-flash-max-');
     writeStubBinary(binDir, 'pi');
@@ -2426,6 +2462,37 @@ describe('fanout-run.cjs — module basics', () => {
     expect(summary.succeeded).toBe(1);
     expect(summary.failed).toBe(0);
     expect(summary.gauges).toEqual({ lag: 0, pending: 0, failed: 0 });
+  });
+
+  it('passes the absolute lineage path to native dispatch when the base path is relative', async () => {
+    const binDir = makeTempDir('fanout-run-native-relative-bin-');
+    writeNativeOpencodeStubBinary(binDir, true);
+    const specFolder = 'specs/test-fanout-run-native-relative';
+    const relativeBaseDir = join(specFolder, 'research', 'artifacts');
+    const config = JSON.stringify({
+      executors: [{ label: 'native-relative', kind: 'native', count: 1 }],
+      concurrency: 1,
+    });
+
+    const { hermetic, result } = await spawnFanout('native-relative-lineage', [
+      '--spec-folder',
+      specFolder,
+      '--loop-type',
+      'research',
+      '--fanout-config-json',
+      config,
+      '--base-artifact-dir',
+      relativeBaseDir,
+    ], {
+      env: { PATH: `${binDir}:${process.env.PATH ?? ''}` },
+      timeoutMs: 15_000,
+    });
+
+    expect(result.exitCode).toBe(0);
+    const lineageDir = resolve(realpathSync(hermetic.tmpDir), relativeBaseDir, 'lineages', 'native-relative');
+    const nativeCommand = readFileSync(join(lineageDir, 'native-command.capture'), 'utf8');
+    expect(nativeCommand).toContain(`--fanout-lineage-artifact-dir=${lineageDir}`);
+    expect(nativeCommand).toContain(`config.fanout_lineage_artifact_dir: ${lineageDir}`);
   });
 
   it('logs and falls back to flat_pool when wave assignment is requested', async () => {
@@ -3001,6 +3068,67 @@ describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
     expect(ledgerLines.filter((event) => event.event === 'retry_scheduled')).toEqual([
       expect.objectContaining({ label: 'noart', retry_count: 1, failure_class: 'salvage_miss' }),
     ]);
+  });
+
+  it('classifies a current-attempt projection refusal as fatal without retrying', async () => {
+    const binDir = makeTempDir('fanout-run-projection-refusal-bin-');
+    const baseDir = makeTempDir('fanout-run-projection-refusal-base-');
+    writeProjectionRefusalStubBinary(binDir, 'opencode');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'projection-refusal', kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
+      concurrency: 1,
+      maxRetries: 5,
+    });
+    const hermetic = useHermeticEnv('projection-refusal');
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-projection-refusal',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        cwd: hermetic.tmpDir,
+        env: envWithBin(hermetic, binDir),
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(3);
+    const lineageDir = join(baseDir, 'lineages', 'projection-refusal');
+    const refusalLines = readFileSync(join(lineageDir, 'gateway-refusals.jsonl'), 'utf8').trim().split(/\r?\n/);
+    expect(refusalLines).toHaveLength(1);
+    expect(readFileSync(join(lineageDir, 'projection-attempts.log'), 'utf8').trim().split(/\r?\n/))
+      .toHaveLength(1);
+
+    const payload = JSON.parse(result.stdout.split('\n').filter(Boolean).at(-1) ?? '{}') as {
+      results?: Array<{
+        status?: string;
+        retry_attempts?: number;
+        error?: { failure_class?: string; code?: string; reason?: string };
+      }>;
+    };
+    expect(payload.results?.[0]).toMatchObject({
+      status: 'rejected',
+      retry_attempts: 0,
+      error: {
+        failure_class: 'projection_refusal',
+        code: 'PROJECTION_FAILED',
+        reason: 'stub projection refresh failed',
+      },
+    });
+
+    const ledgerLines = readFileSync(join(baseDir, 'orchestration-status.log'), 'utf8')
+      .trim()
+      .split('\n')
+      .map((line) => JSON.parse(line) as Record<string, unknown>);
+    expect(ledgerLines.filter((event) => event.event === 'retry_scheduled')).toHaveLength(0);
   });
 
   it('records exit 2 (some failed) when one of two lineages exits non-zero', async () => {
@@ -4334,10 +4462,10 @@ describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub
   async function runOpencodeEcho(
     lineage: Record<string, unknown>,
     loopType: 'research' | 'review',
+    baseArtifactDir?: string,
   ): Promise<{ stdout: string; baseDir: string }> {
     const binDir = makeTempDir('fanout-run-echo-bin-');
     writeEchoStubBinary(binDir, 'opencode');
-    const baseDir = makeTempDir('fanout-run-echo-base-');
 
     const fanoutConfig = JSON.stringify({
       executors: [{ ...lineage, kind: 'cli-opencode', model: 'opencode-go/glm-5.1', count: 1 }],
@@ -4345,6 +4473,9 @@ describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub
     });
 
     const hermetic = useHermeticEnv(`echo-${String(lineage['label'] ?? 'lineage')}`);
+    const baseDirArgument = baseArtifactDir ?? makeTempDir('fanout-run-echo-base-');
+    const baseDir = isAbsolute(baseDirArgument) ? baseDirArgument : resolve(hermetic.tmpDir, baseDirArgument);
+    mkdirSync(baseDir, { recursive: true });
     await spawnCjs(
       fanoutRunScript,
       [
@@ -4355,7 +4486,7 @@ describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub
         '--fanout-config-json',
         fanoutConfig,
         '--base-artifact-dir',
-        baseDir,
+        baseDirArgument,
       ],
       {
         cwd: hermetic.tmpDir,
@@ -4394,6 +4525,23 @@ describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub
     const { stdout } = await runOpencodeEcho({ label: 'uncapped' }, 'research');
     expect(stdout).not.toContain('config.maxIterations');
     expect(stdout).toContain('(to legal convergence)');
+  });
+
+  it('passes an absolute lineage directory to the prompt when the base artifact dir is relative', async () => {
+    const relativeBaseDir = join(
+      'specs/test-fanout-run-echo',
+      'research',
+      'relative-base-artifacts',
+    );
+    const { stdout, baseDir } = await runOpencodeEcho(
+      { label: 'relative-base' },
+      'research',
+      relativeBaseDir,
+    );
+
+    expect(stdout).toContain(
+      `config.fanout_lineage_artifact_dir: ${resolve(realpathSync(baseDir), 'lineages', 'relative-base')}`,
+    );
   });
 });
 

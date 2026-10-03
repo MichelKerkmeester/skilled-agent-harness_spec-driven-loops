@@ -23,5 +23,6 @@
     { "name": "all duplicates equal target returns 0", "args": [[4, 4, 4, 4], 4], "expect": 0 }
   ],
   "expectedDifficulty": "hard",
-  "saturation": { "status": "active" }
+  "saturation": { "status": "active" },
+  "allowlist": {"cli_flags":[],"symbols":["lowerBound"]}
 }

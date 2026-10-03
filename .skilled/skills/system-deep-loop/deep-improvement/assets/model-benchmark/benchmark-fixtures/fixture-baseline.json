@@ -10,5 +10,6 @@
     "baselineScore: 0.72",
     "thresholdDelta: 0.05",
     "recommendation: keep-baseline"
-  ]
+  ],
+  "allowlist": {"cli_flags":[],"symbols":[]}
 }

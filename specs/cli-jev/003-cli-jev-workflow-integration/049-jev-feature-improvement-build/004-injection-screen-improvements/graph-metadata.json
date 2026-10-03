@@ -39,17 +39,17 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/004-injection-screen-research/research/research.md",
       ".skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs",
       ".skilled/skills/cli-classifier/benchmark/injection-screen/tests/score-injection-screen.test.mjs",
-      ".skilled/skills/cli-classifier/benchmark/injection-screen/README.md"
+      ".skilled/skills/cli-classifier/benchmark/injection-screen/README.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/004-injection-screen-research/research/research.md"
     ],
     "entities": [
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Feature 035 kept strongly, but commit `b0f89ee5f07` untracked its corpus, so the run cannot be reproduced",
     "created_at": "2026-10-03T05:30:05Z",
-    "last_save_at": "2026-10-03T05:37:49.251Z",
+    "last_save_at": "2026-10-03T12:41:42.340Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e857c821eb1af1c4d35051593869f1071777cbe918a3d8da4db9ad37a6f7d0c8",
+    "source_fingerprint": "sha256:9f64f7166609ae2ee9e32cebe44fc94a4dcd6cd80b9d41db18324c121517a4f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "159bb732219628d93257539321a9dbe6a24fecf049295e01dd2464ac2b56ed77",
+      "spec.md": "34a46ac96d73abb17b52e10174609d67b338bc2a19f2c053e944ceeb4ffbbeee",
       "plan.md": "55ff4d0c9ac1a765c38ab29c76db0dc824e5b0f14c448476637dd147aa1d5bb0",
-      "tasks.md": "8ab51094ae0af549e2292ba4381d40d1dfefc2d38b93fae61ec0067c6b8b9f5d",
-      "implementation-summary.md": "cda3ae89be1a6a9bbe66e74ab36c763d4cf59696f498b758295cf814ef15e1a4"
+      "tasks.md": "e554792515fa69225eb517bc7e56b1879a4261e78c19c20d0d31a15f922c9bd7",
+      "implementation-summary.md": "7d5d1e0b9e78b6bb5936fbbee3756e3e7d0bb528d6a27c5e29542fe4405534b1"
     },
     "last_active_at": null
   }

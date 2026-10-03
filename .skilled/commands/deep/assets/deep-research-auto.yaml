@@ -371,62 +371,55 @@ workflow:
         output: "{state_paths.config}"
 
       step_create_state_log:
-        action: "Open the run through the append gateway; the state log's first row is the gateway's projection"
-        # Same parsed --no-resource-map flag honored here so config and state_log agree from line 1.
-        config_record: '{"type":"config","topic":"{research_topic}","maxIterations":{max_iterations},"minIterations":3,"convergenceThreshold":{convergence_threshold},"antiConvergence":{"convergenceMode":"{convergence_mode}","divergent":{}},"stopPolicy":"{stop_policy}","minIdeaObservations":2,"resource_map_present":{resource_map_present},"resource_map":{"emit":{resource_map_emit}},"lineage":{"sessionId":"{session_id_init}","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null},"createdAt":"{ISO_8601_NOW}","specFolder":"{spec_folder}","nextRunAt":null,"remainingDelayMs":null}'
+        action: "Open the research run by appending deep_research.run_initialized through the gateway"
+        note: |
+          The state log is a projection rebuilt by the gateway. Recording the run's opening in
+          the ledger gives every later state append the same authorized, ordered source.
         command: |
           GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
           [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
-          EVENT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-research-run-open.XXXXXX")"
-          RECORD_PATH="$EVENT_DIR/config-record.txt"
-          cat > "$RECORD_PATH" <<'RECORD'
-          {config_record}
-          RECORD
-          node - "$RECORD_PATH" "$EVENT_DIR" <<'EOF' || { rm -rf "$EVENT_DIR"; exit 1; }
-          const { createHash } = require('node:crypto');
-          const { readFileSync, writeFileSync } = require('node:fs');
-          const { join } = require('node:path');
-
-          const recordBytes = readFileSync(process.argv[2]);
-          const record = JSON.parse(recordBytes.toString('utf8'));
-          const lineage = record.lineage && typeof record.lineage === 'object' ? record.lineage : {};
-          const sha256 = (value) => createHash('sha256').update(value).digest('hex');
-
-          // The executor is part of the run's identity: the fingerprint pins which
-          // executor opened the lineage, and an unbound executor keeps the native default.
-          const executorType = "{config.executor.type}";
-          const executorFingerprint = sha256(executorType && !executorType.includes('{') ? executorType : 'native');
-          const sessionId = typeof lineage.sessionId === 'string' ? lineage.sessionId : '';
-
-          writeFileSync(
-            join(process.argv[3], 'run-initialized.json'),
-            JSON.stringify({
+          EVENT_FILE="$(mktemp "${TMPDIR:-/tmp}/deep-research-run-open.XXXXXX")"
+          node -e '
+            const fs = require("fs"), crypto = require("crypto");
+            const [configPath] = process.argv.slice(1);
+            const raw = fs.readFileSync(configPath);
+            const config = JSON.parse(raw);
+            const sha = (value) => crypto.createHash("sha256").update(value).digest("hex");
+            const lineage = config.lineage || {};
+            const sessionId = lineage.sessionId;
+            const lineageId = lineage.parentSessionId || sessionId;
+            const generation = Number(lineage.generation) || 1;
+            const configDigest = sha(raw);
+            const event = {
               stem: "deep_research.run_initialized",
-              scope: { runId: sessionId, lineageId: sessionId },
+              scope: { runId: sessionId, lineageId },
               data: {
-                generation: 1,
-                charterDigest: sha256(recordBytes),
-                configDigest: sha256(recordBytes),
-                executorFingerprint,
-                replayFingerprint: sha256('deep-research-genesis'),
-                maxIterations: record.maxIterations,
-                convergencePolicyVersion: 'research-config@1',
+                generation,
+                charterDigest: sha(Buffer.from(JSON.stringify({
+                  topic: config.topic,
+                  specFolder: config.specFolder || "",
+                }))),
+                configDigest,
+                executorFingerprint: sha(Buffer.from(JSON.stringify(config.executor || {}))),
+                replayFingerprint: sha(Buffer.from(JSON.stringify({
+                  runId: sessionId,
+                  lineageId,
+                  generation,
+                  configDigest,
+                }))),
+                maxIterations: Number(config.maxIterations),
+                convergencePolicyVersion: "convergence-policy@" + (
+                  (config.antiConvergence && config.antiConvergence.convergenceMode) || "default"
+                ),
               },
-            }),
-            'utf8',
-          );
-          EOF
-          for eventFile in "$EVENT_DIR"/*.json; do
-            [ -e "$eventFile" ] || continue
-            node "$GATEWAY" --mode research --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$eventFile"
-            GATEWAY_STATUS=$?
-            if [ "$GATEWAY_STATUS" -ne 0 ]; then
-              rm -rf "$EVENT_DIR"
-              exit "$GATEWAY_STATUS"
-            fi
-          done
-          rm -rf "$EVENT_DIR"
-        on_fail: "Halt. Never write the state log directly."
+            };
+            process.stdout.write(JSON.stringify(event));
+          ' "{state_paths.config}" > "$EVENT_FILE" || { rm -f "$EVENT_FILE"; exit 1; }
+          node "$GATEWAY" --mode research --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$EVENT_FILE"
+          STATUS=$?
+          rm -f "$EVENT_FILE"
+          exit "$STATUS"
+        output: "{state_paths.state_log}"
 
       step_create_strategy:
         action: "Create strategy file from template with initial questions"

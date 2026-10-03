@@ -18,11 +18,14 @@ import fs from 'node:fs';
 import os from 'node:os';
 import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
-import { afterEach, describe, expect, it } from 'vitest';
+import { spawnSync } from 'node:child_process';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
 const d4 = require(path.join(TEST_DIR, '../scorer/score-d4-agreement.cjs')) as Record<string, any>;
+const scoreVariant = require(path.join(TEST_DIR, '../scorer/score-model-variant.cjs')) as Record<string, any>;
+const graderHarness = require(path.join(TEST_DIR, '../scorer/grader/harness.cjs')) as Record<string, any>;
 
 const tempDirs: string[] = [];
 
@@ -33,6 +36,7 @@ function tempDir(prefix: string): string {
 }
 
 afterEach(() => {
+  vi.restoreAllMocks();
   for (const dir of tempDirs.splice(0)) fs.rmSync(dir, { recursive: true, force: true });
 });
 
@@ -105,6 +109,222 @@ function labeledSet(yesFlag: number, yesPlain: number, no: number): { outputs: s
   fs.writeFileSync(labels, `${rows.join('\n')}\n`, 'utf8');
   return { outputs, fixtures, labels };
 }
+
+describe('benchmark fixture allowlists', () => {
+  it('gives all 21 fixtures a symbol and flag allowlist', () => {
+    const fixtures = d4.loadFixtures(d4.DEFAULT_FIXTURES_DIR);
+
+    expect(fixtures.total).toBe(21);
+    expect(fixtures.withAllowlist).toBe(21);
+    for (const fixture of fixtures.byId.values()) {
+      expect(fixture.allowlist).toEqual({
+        cli_flags: expect.any(Array),
+        symbols: expect.any(Array),
+      });
+      if (typeof fixture.fn_name === 'string') {
+        expect(fixture.allowlist.symbols).toContain(fixture.fn_name);
+      }
+    }
+  });
+});
+
+describe('5-dimension D4 grader integration', () => {
+  it('retries a failed grader once and records the result as unmeasured', async () => {
+    const gradeD4 = vi.spyOn(graderHarness, 'gradeD4');
+    gradeD4
+      .mockResolvedValueOnce({ score: 0, confidence: 0, parse_status: 'failed', error: 'bad response' })
+      .mockResolvedValueOnce({ score: 0, confidence: 0, parse_status: 'failed', error: 'bad response' });
+
+    const result = await scoreVariant.score({
+      candidateId: 'failed-grade',
+      outputText: 'A candidate result.',
+      criteria: {},
+      cwd: tempDir('scorer-cwd-'),
+      graderKind: 'mock',
+    });
+
+    expect(gradeD4).toHaveBeenCalledTimes(2);
+    expect(gradeD4.mock.calls[1][0].rubric_version).not.toBe(gradeD4.mock.calls[0][0].rubric_version);
+    expect(result.grader).toMatchObject({
+      score: null,
+      confidence: null,
+      parse_status: 'unmeasured',
+      measured: false,
+      attempts: 2,
+    });
+    expect(result.dimensions.D4).toBeNull();
+    expect(result.unmeasuredDimensions).toContain('D4');
+    expect(result.weightedScoreCoverage).toBeLessThan(1);
+  });
+
+  it('keeps the successful result when the first grader call fails', async () => {
+    const gradeD4 = vi.spyOn(graderHarness, 'gradeD4');
+    gradeD4
+      .mockResolvedValueOnce({ score: 0, confidence: 0, parse_status: 'failed' })
+      .mockResolvedValueOnce({ score: 0.8, confidence: 0.9, parse_status: 'ok' });
+
+    const result = await scoreVariant.score({
+      candidateId: 'retry-grade',
+      outputText: 'A candidate result.',
+      criteria: {},
+      cwd: tempDir('scorer-cwd-'),
+      graderKind: 'mock',
+    });
+
+    expect(gradeD4).toHaveBeenCalledTimes(2);
+    expect(result.grader).toMatchObject({ score: 0.8, retried: true, attempts: 2 });
+    expect(result.dimensions.D4).toBe(0.8);
+  });
+
+  it('forwards task, spec and allowlist into the grader fixture', async () => {
+    const gradeD4 = vi.spyOn(graderHarness, 'gradeD4').mockResolvedValue({
+      score: 0.9,
+      confidence: 0.9,
+      parse_status: 'ok',
+    });
+    const allowlist = { cli_flags: ['--dry-run'], symbols: ['add'] };
+
+    await scoreVariant.score({
+      candidateId: 'context-grade',
+      outputText: 'A candidate result.',
+      criteria: { task: 'Write add(a, b).', spec: 'add(1, 2) returns 3.', allowlist },
+      cwd: tempDir('scorer-cwd-'),
+      graderKind: 'mock',
+    });
+
+    expect(gradeD4).toHaveBeenCalledTimes(1);
+    expect(gradeD4.mock.calls[0][0].fixture).toMatchObject({
+      task: 'Write add(a, b).',
+      spec: 'add(1, 2) returns 3.',
+      visibleSpec: 'add(1, 2) returns 3.',
+      allowlist,
+    });
+  });
+
+  it('forwards a fixture-built criteria so task, visible spec and allowlist reach the grader', async () => {
+    const gradeD4 = vi.spyOn(graderHarness, 'gradeD4').mockResolvedValue({
+      score: 0.9,
+      confidence: 0.9,
+      parse_status: 'ok',
+    });
+    const fixture = d4.loadFixtures(writeFixtures()).byId.get('fx-a');
+
+    const criteria = {
+      acceptance: fixture.acceptance || [],
+      requiredHeadings: fixture.requiredHeadings || [],
+      requiredPatterns: fixture.requiredPatterns || [],
+      task: fixture.task,
+      visibleSpec: fixture.visibleSpec,
+      allowlist: fixture.allowlist || {},
+    };
+
+    await scoreVariant.score({
+      candidateId: 'fixture-context-grade',
+      outputText: 'A candidate result.',
+      criteria,
+      cwd: tempDir('scorer-cwd-'),
+      graderKind: 'mock',
+    });
+
+    expect(gradeD4).toHaveBeenCalledTimes(1);
+    expect(gradeD4.mock.calls[0][0].fixture).toMatchObject({
+      task: 'Write add(a, b).',
+      visibleSpec: 'add(1, 2) is 3',
+      allowlist: { cli_flags: ['--dry-run'], symbols: ['add'] },
+    });
+  });
+
+  it('escalates a low-confidence primary through the dispute grader', async () => {
+    const gradeD4 = vi.spyOn(graderHarness, 'gradeD4');
+    gradeD4
+      .mockResolvedValueOnce({ score: 0.4, confidence: 0.6, parse_status: 'ok' })
+      .mockResolvedValueOnce({ score: 0.9, confidence: 0.8, parse_status: 'ok' });
+
+    const result = await scoreVariant.score({
+      candidateId: 'dispute-grade',
+      outputText: 'A candidate result.',
+      criteria: {},
+      cwd: tempDir('scorer-cwd-'),
+      graderKind: 'mock',
+    });
+
+    expect(gradeD4).toHaveBeenCalledTimes(2);
+    expect(gradeD4.mock.calls[1][0].system_prompt_path).toContain('system-skeptic.md');
+    expect(result.grader).toMatchObject({ score: 0.65, escalated: true, dispute: true });
+  });
+});
+
+// The scorer is synthesized here, but the fixture-to-criteria forwarding under
+// test lives in run-benchmark's 5-dim adapter. That module runs main() on load
+// and exports nothing usable in-process, so the narrowest real entry point is a
+// spawned run with a require-injected spy on the scorer's entry function. The
+// spy records the criteria the adapter builds; a missing task/visibleSpec/
+// allowlist in that record means the adapter dropped production context.
+describe('run-benchmark 5-dim adapter forwards fixture context into the scorer', () => {
+  it('passes the fixture task, visible spec and allowlist through to scorer.score', () => {
+    const work = tempDir('d4-forward-');
+    const fixtureDir = tempDir('d4-forward-fixtures-');
+    fs.writeFileSync(
+      path.join(fixtureDir, 'fx-forward.json'),
+      JSON.stringify({
+        id: 'fx-forward',
+        task: 'Write mul(a, b).',
+        visibleSpec: 'mul(2, 3) is 6',
+        allowlist: { cli_flags: ['--dry-run'], symbols: ['mul'] },
+        acceptance: [],
+        requiredHeadings: [],
+        requiredPatterns: [],
+      }),
+      'utf8',
+    );
+    const outputsDir = tempDir('d4-forward-outputs-');
+    fs.writeFileSync(path.join(outputsDir, 'fx-forward.md'), 'a candidate output\n', 'utf8');
+
+    const recordFile = path.join(work, 'criteria.json');
+    const patchFile = path.join(work, 'spy-scorer.cjs');
+    const scorerPath = path.join(TEST_DIR, '../scorer/score-model-variant.cjs');
+    fs.writeFileSync(
+      patchFile,
+      [
+        "'use strict';",
+        "const fs = require('node:fs');",
+        `const scorer = require(${JSON.stringify(scorerPath)});`,
+        'scorer.score = async (opts) => {',
+        "  fs.writeFileSync(process.env.SCORER_RECORD_FILE, JSON.stringify(opts.criteria));",
+        '  return { weightedScore: 1, dimensions: { D1: 1, D2: 1, D3: 1, D4: 1, D5: 1 }, hard_gate_failed: false };',
+        '};',
+        '',
+      ].join('\n'),
+      'utf8',
+    );
+    const profilePath = path.join(work, 'profile.json');
+    fs.writeFileSync(profilePath, JSON.stringify({ profileId: 'forward-profile', version: 1, fixtureDir }), 'utf8');
+
+    const run = spawnSync(
+      'node',
+      [
+        path.join(TEST_DIR, '../run-benchmark.cjs'),
+        '--profile', profilePath,
+        '--outputs-dir', outputsDir,
+        '--output', path.join(work, 'report.json'),
+        '--scorer=5dim',
+        '--grader=noop',
+      ],
+      {
+        encoding: 'utf8',
+        env: { ...process.env, NODE_OPTIONS: `--require ${patchFile}`, SCORER_RECORD_FILE: recordFile },
+      },
+    );
+
+    expect(run.status).toBe(0);
+    const criteria = JSON.parse(fs.readFileSync(recordFile, 'utf8'));
+    expect(criteria).toMatchObject({
+      task: 'Write mul(a, b).',
+      visibleSpec: 'mul(2, 3) is 6',
+      allowlist: { cli_flags: ['--dry-run'], symbols: ['mul'] },
+    });
+  });
+});
 
 describe('score-d4-agreement census', () => {
   it('lists markdown files sorted by name, folding a run suffix into the id', () => {
@@ -493,6 +713,15 @@ echo "{\\"answers\\":{\\"answer\\":{\\"noul\\":$v}}}"`;
     expect(lines).toContain(
       `verdict jev: keep K=30 M=30 A=30 B=20 W=10 L=0 F=0 p_win=0.0009766 p_loss=1.000 labels_sha256=${sha} jev_version=0.6.2 provider=official model=stub-model`,
     );
+    expect(lines).toContain('class jev yes: 10/10 (1.000) 95% CI [0.692, 1.000]');
+    expect(lines).toContain('class jev no: 20/20 (1.000) 95% CI [0.832, 1.000]');
+
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    expect(report.columns.jev.perClass.method).toBe('clopper-pearson');
+    expect(report.columns.jev.perClass.yes.correct).toBe(10);
+    expect(report.columns.jev.perClass.yes.total).toBe(10);
+    expect(report.columns.jev.perClass.yes.interval.lower).toBeCloseTo(0.692, 3);
+    expect(report.columns.jev.perClass.no.interval.lower).toBeCloseTo(0.832, 3);
 
     const log = fs.readFileSync(path.join(stubs, 'jev.log'), 'utf8').trim().split('\n');
     expect(log).toHaveLength(93);
@@ -508,6 +737,55 @@ echo "{\\"answers\\":{\\"answer\\":{\\"noul\\":$v}}}"`;
     }
   });
 
+  it('reports the check-routed cascade arm and repeats its verdict without requalification', async () => {
+    const set = labeledSet(10, 0, 20);
+    const fixturePath = path.join(set.fixtures, 'fx-b.json');
+    const fixture = JSON.parse(fs.readFileSync(fixturePath, 'utf8'));
+    fixture.allowlist = { cli_flags: [], symbols: [] };
+    fs.writeFileSync(fixturePath, JSON.stringify(fixture, null, 2), 'utf8');
+    for (let i = 1; i <= 10; i += 1) {
+      fs.writeFileSync(path.join(set.outputs, `fx-b.run${i}.md`), 'inventedFunction()\nHALLUCINATED\n', 'utf8');
+    }
+    for (let i = 11; i <= 14; i += 1) {
+      fs.writeFileSync(path.join(set.outputs, `fx-b.run${i}.md`), 'inventedFunction()\nA plain answer.\n', 'utf8');
+    }
+
+    const stubs = stubDir({ jev: JEV });
+    const env = jevEnv(stubs);
+    const out = tempDir('d4-cascade-out-');
+    const args = [
+      '--outputs', set.outputs,
+      '--fixtures', set.fixtures,
+      '--labels', set.labels,
+      '--cascade',
+      '--accept-payload',
+      '--out', out,
+    ];
+    const first = await runMain(args, env);
+
+    expect(first.code).toBe(0);
+    expect(first.lines).toContain('cascade: routed 14 of 30 check-flagged outputs; model calls=42');
+    expect(first.lines).toContain('class cascade yes: 10/10 (1.000) 95% CI [0.692, 1.000]');
+    expect(first.lines).toContain('class cascade no: 20/20 (1.000) 95% CI [0.832, 1.000]');
+    const calls = readCalls(out);
+    expect(calls).toHaveLength(43);
+    expect(calls.filter((call) => call.backend === 'cascade' && call.output !== null)).toHaveLength(42);
+
+    const firstVerdict = first.lines.find((line) => line.startsWith('verdict cascade:'));
+    const firstReport = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    expect(firstReport.columns.cascade.routedRows).toBe(14);
+    expect(firstReport.columns.cascade.modelCalls).toBe(42);
+    expect(firstReport.columns.cascade.M).toBe(30);
+
+    const second = await runMain(args, env);
+    const secondVerdict = second.lines.find((line) => line.startsWith('verdict cascade:'));
+    const secondReport = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    expect(second.code).toBe(0);
+    expect(secondVerdict).toBe(firstVerdict);
+    expect(second.lines.some((line) => line.startsWith('requalify:'))).toBe(false);
+    expect(secondReport.requalify.cascade).toBeNull();
+  }, 20000);
+
   it('malformed Jev answers are failed calls and stop on coverage after requalification', async () => {
     const set = labeledSet(0, 10, 20);
     for (let i = 1; i <= 4; i += 1) fs.appendFileSync(path.join(set.outputs, `fx-b.run${i}.md`), 'MALFORMED\n');
@@ -518,7 +796,10 @@ echo "{\\"answers\\":{\\"answer\\":{\\"noul\\":$v}}}"`;
     const stubs = stubDir({ jev: malformedJev });
     const env = jevEnv(stubs);
     const out = tempDir('d4-out-');
-    fs.writeFileSync(path.join(out, 'report.json'), JSON.stringify({ columns: { jev: { provider: 'openrouter', model: 'stub-model' } } }), 'utf8');
+    fs.writeFileSync(path.join(out, 'report.json'), JSON.stringify({
+      labelsSha256: d4.sha256Hex(fs.readFileSync(set.labels)),
+      columns: { jev: { provider: 'previous-provider', model: 'stub-model' } },
+    }), 'utf8');
 
     const { code, lines } = await runMain(
       ['--outputs', set.outputs, '--fixtures', set.fixtures, '--labels', set.labels, '--jev', '--accept-payload', '--out', out],
@@ -532,7 +813,32 @@ echo "{\\"answers\\":{\\"answer\\":{\\"noul\\":$v}}}"`;
     expect(lines.some((line) => line.startsWith('column jev: K=30 measured=26 unmeasured=4 '))).toBe(true);
     const requalifyIndex = lines.indexOf('requalify: model changed');
     expect(requalifyIndex).toBeGreaterThanOrEqual(0);
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    expect(report.requalify.jev).toBe('requalify: model changed');
     expect(lines[requalifyIndex + 1]).toMatch(/^verdict jev: stop \(coverage\) K=30 M=26 /);
+  });
+
+  it('refuses requalification when the stored label SHA changes', async () => {
+    const set = labeledSet(0, 10, 20);
+    const stubs = stubDir({ jev: JEV });
+    const env = jevEnv(stubs);
+    const out = tempDir('d4-out-');
+    const previousReport = JSON.stringify({
+      labelsSha256: 'previous-label-set',
+      columns: { jev: { provider: 'official', model: 'stub-model' } },
+    });
+    fs.writeFileSync(path.join(out, 'report.json'), previousReport, 'utf8');
+
+    const { code, errs } = await runMain(
+      ['--outputs', set.outputs, '--fixtures', set.fixtures, '--labels', set.labels, '--jev', '--accept-payload', '--out', out],
+      env,
+    );
+
+    expect(code).toBe(2);
+    expect(errs).toContain('requalify refused: labels SHA changed for jev');
+    expect(fs.existsSync(path.join(out, 'calls.jsonl'))).toBe(false);
+    expect(fs.existsSync(path.join(stubs, 'jev.log'))).toBe(false);
+    expect(fs.readFileSync(path.join(out, 'report.json'), 'utf8')).toBe(previousReport);
   });
 
   it('stops on flips when the reruns disagree', async () => {

@@ -34,8 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read 048's research for this feature and the scan's keep rule
-- [ ] T002 Capture the suite baseline before any change
+- [x] T001 Read 048's research for this feature and the scan's keep rule
+- [x] T002 Capture the suite baseline before any change
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,12 +43,12 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Flag on the lowest rerun and keep the modal pick for reporting
-- [ ] T004 Report live and constructed columns with a live-only sign test
-- [ ] T005 Send the enclosing paragraph as the claim and drop claim-less live lines
-- [ ] T006 Validate the claim and window hashes, and widen requalification
-- [ ] T007 Cache document reads and add adaptive reruns in [0.35, 0.65]
-- [ ] T008 Record the amendment, then re-measure with `--out`
+- [x] T003 Flag on the lowest rerun and keep the modal pick for reporting
+- [x] T004 Report live and constructed columns with a live-only sign test
+- [x] T005 Send the enclosing paragraph as the claim and drop claim-less live lines
+- [x] T006 Validate the claim and window hashes, and widen requalification
+- [x] T007 Cache document reads and add adaptive reruns in [0.35, 0.65]
+- [x] T008 Record the amendment, then re-measure with `--out`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -56,9 +56,9 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Run the scan's suite, including new stop-branch cases
-- [ ] T010 Count census reads on a fixture tree
-- [ ] T011 Run `validate.sh --strict` on this phase
+- [x] T009 Run the scan's suite, including new stop-branch cases
+- [x] T010 Count census reads on a fixture tree
+- [x] T011 Run `validate.sh --strict` on this phase
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,9 +66,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---

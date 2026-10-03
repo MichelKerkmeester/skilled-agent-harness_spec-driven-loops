@@ -1,5 +1,5 @@
 {
-  "corpusHash": "07a0872e7a1870cad171482b731b8ba2f9daa864c872f3a4e794c98e395438dc",
+  "corpusHash": "fdf4454682f632743df3f4db25cab3bd8e331c89ac068fb44d186736e012f171",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23291,
+  "includedPathCount": 23295,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13551,6 +13551,10 @@
     "specs/system-deep-loop/039-review-state-init-and-dispatch/plan.md",
     "specs/system-deep-loop/039-review-state-init-and-dispatch/spec.md",
     "specs/system-deep-loop/039-review-state-init-and-dispatch/tasks.md",
+    "specs/system-deep-loop/040-cli-pi-opencode-go-route/implementation-summary.md",
+    "specs/system-deep-loop/040-cli-pi-opencode-go-route/plan.md",
+    "specs/system-deep-loop/040-cli-pi-opencode-go-route/spec.md",
+    "specs/system-deep-loop/040-cli-pi-opencode-go-route/tasks.md",
     "specs/system-deep-loop/041-read-only-and-research-bookkeeping/acceptance-criteria.md",
     "specs/system-deep-loop/041-read-only-and-research-bookkeeping/implementation-summary.md",
     "specs/system-deep-loop/041-read-only-and-research-bookkeeping/plan.md",
@@ -23321,7 +23325,7 @@
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "40a0d9f3bf9da8987b6c04a48b7b1307874d265ddc5ac446a5b864d1f81ed8ce",
+  "manifestHash": "73129b571ab540f487fd89bf02ac6ada98799a14688f2f2d64a7519c41a95849",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -23869,6 +23873,10 @@
     },
     {
       "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -26293,6 +26301,10 @@
     },
     {
       "path": "specs/system-deep-loop/039-review-state-init-and-dispatch/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/040-cli-pi-opencode-go-route/scratch",
       "reason": "excluded directory"
     },
     {

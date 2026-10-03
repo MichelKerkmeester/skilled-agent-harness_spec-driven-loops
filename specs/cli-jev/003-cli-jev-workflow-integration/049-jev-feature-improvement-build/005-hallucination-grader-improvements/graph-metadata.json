@@ -39,18 +39,22 @@
       "approach"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/005-hallucination-grader-research/research/research.md",
       ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs",
       ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/score-d4-agreement.cjs",
       ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/scorer/grader/dispute.cjs",
-      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts"
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+      ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts",
+      ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/five-d-scorer/unknown-grader-and-d4-census.md",
+      ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/hallucination-grader-agreement.md",
+      "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/005-hallucination-grader-research/research/research.md"
     ],
     "entities": [
       {
@@ -102,9 +106,33 @@
         "source": "derived"
       },
       {
+        "name": "run-benchmark.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        "source": "derived"
+      },
+      {
         "name": "d4-agreement.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/d4-agreement.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "unknown-grader-and-d4-census.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/five-d-scorer/unknown-grader-and-d4-census.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "hallucination-grader-agreement.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-improvement/feature-catalog/scoring-system/hallucination-grader-agreement.md",
         "source": "derived"
       },
       {
@@ -172,35 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow Fixtures",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Feature 024 kept, but against a starved baseline: none of the 21 benchmark fixtures carries an allowlist",
     "created_at": "2026-10-03T05:30:06Z",
-    "last_save_at": "2026-10-03T05:37:50.702Z",
+    "last_save_at": "2026-10-03T12:42:45.366Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6f7382b3b81360c8436b3448a046513768a407815b6c2271694ef68a94f141b",
+    "source_fingerprint": "sha256:ebd3954d06229d6ed47180bb3cc46fc43d4529d666f84f604e16df0ba78f799c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ebb6d1d683e51e263e01b5e3a2ffbe9bc07d548b0a7c0b3a765c0231f6b642c2",
+      "spec.md": "72c4ef295b4dd6617ae06f9d8847a0bd8b3d19bda092661dedbef5df17cbb051",
       "plan.md": "91fcae1b662ac81105f42d4e2adacd65f4a1f39f1c82315bef4d0933662588c6",
-      "tasks.md": "664a4ffd3e0720f476e67ac02fb8225e73aca2205f2c7c415608bc7d1e4ca9fb",
-      "implementation-summary.md": "7fb4961cac56c25238aa7034fab5484be6fa2f9f7fc7705d24be2a617e4eb053"
+      "tasks.md": "2e90fd82753a8b782eaf5f5ad453b5383ad8eef5badf16378f34a35ca54664b8",
+      "implementation-summary.md": "261ce435f7389e7eae792af27787a4f21dbb7c8b8f6767d046cceef1dacbbb5f"
     },
     "last_active_at": null
   }

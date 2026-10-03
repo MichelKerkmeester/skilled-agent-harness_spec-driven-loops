@@ -41,7 +41,8 @@
         "postToolUse",
         "beforeSubmitPrompt",
         "beforeMCPExecution",
-        "preCompact"
+        "preCompact",
+        "afterAgentResponse"
       ]
     },
     "devin": {
@@ -241,6 +242,18 @@
             "matcher": null,
             "runner": "node",
             "script": ".skilled/skills/system-spec-kit/runtime/hooks/codex/completion-evidence-stop.cjs",
+            "timeout": 10,
+            "fallback": "envelope"
+          }
+        ],
+        "cursor": [
+          {
+            "event": "afterAgentResponse",
+            "group": 0,
+            "slot": 0,
+            "matcher": null,
+            "runner": "node",
+            "script": ".skilled/skills/system-spec-kit/runtime/hooks/cursor/completion-evidence-response.mjs",
             "timeout": 10,
             "fallback": "envelope"
           }

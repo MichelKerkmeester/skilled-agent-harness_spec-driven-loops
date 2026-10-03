@@ -1063,7 +1063,13 @@ describe('research synthesis lineage evidence', () => {
   it('keeps confirm-mode resource-map emission bound to the parsed command flag', () => {
     const confirmWorkflow = readFileSync(researchWorkflowPaths[1], 'utf8');
     expect(confirmWorkflow).toContain('resource_map.emit: "{resource_map_emit}"');
-    expect(confirmWorkflow).toContain('"resource_map":{"emit":{resource_map_emit}}');
+    // The run no longer writes the flat state-log row; it opens through the gateway and reads
+    // every bound value, the emission flag included, from the config file the step is handed.
+    const runOpenStep = confirmWorkflow.slice(
+      confirmWorkflow.indexOf('      step_create_state_log:\n'),
+      confirmWorkflow.indexOf('      step_create_strategy:\n'),
+    );
+    expect(runOpenStep).toContain('fs.readFileSync(configPath)');
     expect(confirmWorkflow).not.toContain('resource_map.emit: true');
   });
 });
@@ -1610,6 +1616,72 @@ describe('fanout-merge.cjs — script', () => {
     expect(result.exitCode).toBe(3);
     expect(result.stdout).toContain('merged registry must be a real file');
     expect(readFileSync(targetPath, 'utf8')).toBe('outside-bytes\n');
+  });
+
+  it('rebuilds a short registry from delta findings whose text sits under `claim` and counts them all', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-claim-');
+    const lineageDir = join(baseDir, 'lineages', 'deepseek');
+    mkdirSync(join(lineageDir, 'deltas'), { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'iteration', run: 1, iteration: 1, findingsCount: 3, newInfoRatio: 0.9 })}\n`,
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'deltas', 'iter-001.jsonl'),
+      [
+        '{"type":"finding","id":"c1","claim":"Advisor budget widens the completion sentinel","iteration":1}',
+        '{"type":"finding","id":"c2","claim":"Severity rollup must surface unranked tiers","iteration":1}',
+        '{"type":"finding","id":"c3","summary":"Stop path corroborates a self-report against graph novelty","iteration":1}',
+      ].join('\n') + '\n',
+      'utf8',
+    );
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    const merged = JSON.parse(readFileSync(join(baseDir, 'findings-registry.json'), 'utf8')) as {
+      keyFindings: Array<{ title: string }>;
+      metrics: { sourceFindings: number; reconstructionGaps: number };
+    };
+    expect(merged.keyFindings.map((finding) => finding.title).sort()).toEqual([
+      'Advisor budget widens the completion sentinel',
+      'Severity rollup must surface unranked tiers',
+      'Stop path corroborates a self-report against graph novelty',
+    ].sort());
+    expect(merged.metrics).toMatchObject({ sourceFindings: 3, reconstructionGaps: 0 });
+  });
+
+  it('warns with the file and row for a delta finding row it cannot read instead of dropping it in silence', async () => {
+    const baseDir = makeTempDir('fanout-merge-research-unreadable-');
+    const lineageDir = join(baseDir, 'lineages', 'deepseek');
+    mkdirSync(join(lineageDir, 'deltas'), { recursive: true });
+    writeFileSync(
+      join(lineageDir, 'deep-research-state.jsonl'),
+      `${JSON.stringify({ type: 'iteration', run: 1, iteration: 1, findingsCount: 2, newInfoRatio: 0.9 })}\n`,
+      'utf8',
+    );
+    writeFileSync(
+      join(lineageDir, 'deltas', 'iter-001.jsonl'),
+      [
+        '{"type":"finding","id":"ok","claim":"a readable finding","iteration":1}',
+        '{"type":"finding","id":"no-text","verdict":"drop","iteration":1}',
+      ].join('\n') + '\n',
+      'utf8',
+    );
+
+    const result = await spawnCjs(fanoutMergeScript, [
+      '--loop-type', 'research',
+      '--artifact-dir', baseDir,
+    ]);
+
+    expect(result.exitCode, result.stderr).toBe(0);
+    expect(result.stderr).toContain('delta_finding_unreadable');
+    expect(result.stderr).toContain('lineages/deepseek/deltas/iter-001.jsonl');
+    expect(result.stderr).toContain('"row":2');
   });
 });
 

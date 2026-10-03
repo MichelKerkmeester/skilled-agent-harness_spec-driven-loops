@@ -59,7 +59,8 @@ Other: a workflow step plus the deep-loop runtime
 ### Key Components
 - **Merge**: reads `claim` and `summary`, warns on unreadable rows
 - **Runner**: projection refusal is non-retryable
-- **Prompt pack**: field name, contradiction rule, absolute path
+- **Prompt pack**: field name, contradiction rule, verbatim lineage-path rule
+- **Runner**: absolute lineage directory in the lineage prompt
 
 ### Data Flow
 A lineage writes findings and events, the runner classifies its exit, and the merge reads every finding into the registry.

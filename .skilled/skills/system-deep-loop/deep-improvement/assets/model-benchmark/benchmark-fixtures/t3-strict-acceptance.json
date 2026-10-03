@@ -24,5 +24,6 @@
     { "name": "numeric prerelease compared numerically", "args": ["1.0.0-2", "1.0.0-10"], "expect": -1 }
   ],
   "expectedDifficulty": "hard",
-  "saturation": { "status": "active" }
+  "saturation": { "status": "active" },
+  "allowlist": {"cli_flags":[],"symbols":["compareVersions"]}
 }

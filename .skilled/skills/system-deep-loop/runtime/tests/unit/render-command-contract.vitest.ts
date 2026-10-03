@@ -271,7 +271,9 @@ const PARITY_PAIRS = [
     confirm: '.skilled/commands/deep/assets/deep-research-confirm.yaml',
     gatewaySteps: ['step_convergence_report'],
     configBindings: ['lineage.sessionId: "{session_id_init}"'],
-    recordBindings: ['"emit":{resource_map_emit}', '"lineage":{"sessionId":"{session_id_init}"'],
+    // Research opens its run as a gateway event built from the config file, so the
+    // record step binds the event stem and the config it reads, not a flat row.
+    recordBindings: ['stem: "deep_research.run_initialized"', '"{state_paths.config}"'],
   },
 ] as const;
 

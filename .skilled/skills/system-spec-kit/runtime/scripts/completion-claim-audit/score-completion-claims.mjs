@@ -38,11 +38,15 @@ const REPO_ROOT = resolve(SCRIPT_DIR, '..', '..', '..', '..', '..', '..');
 
 const require = createRequire(import.meta.url);
 // Loaded from the sentinel itself so the census can never drift from the Stop hooks' own detector.
-const { COMPLETION_CLAIM_PATTERN, detectCompletionClaim } = require('../../hooks/lib/completion-evidence-sentinel.cjs');
+const {
+  CLAIM_ANCHOR_TAIL_CHARS,
+  COMPLETION_CLAIM_PATTERN,
+  detectCompletionClaim,
+} = require('../../hooks/lib/completion-evidence-sentinel.cjs');
 
 // The census scans the same trailing slice the detector does; both lengths must move together
 // or a row can fire while holding no claim word in the slice.
-export const TAIL_CHARS = 400;
+export const TAIL_CHARS = CLAIM_ANCHOR_TAIL_CHARS;
 
 /** Labeled rows needed before any arm can run; below this the run stops at the gate. */
 export const LABEL_GATE = 30;
@@ -50,17 +54,20 @@ export const LABEL_GATE = 30;
 /** Labeled rows needed in each class, so the sign test reads both sides. */
 export const CLASS_GATE = 5;
 
-/** A score at or above 0.5 is a yes call. */
-export const YES_THRESHOLD = 0.5;
+/** The pre-registered holdout threshold: a score at or above 0.7 is a yes call. */
+export const YES_THRESHOLD = 0.7;
 
-/** One Jev judgment takes three reruns, so a binary call always has a majority. */
+/** Printed with each labeled run so the cutoff is visible before an arm is judged. */
+export const THRESHOLD_LINE = 'judge threshold: 0.70 (pre-registered)';
+
+/** The reference Jev arm takes three reruns, so a binary call always has a majority. */
 export const JEV_RERUNS = 3;
 
 /** The 10-point gain over the regex baseline that the keep rule requires. */
 export const MARGIN_LINE = 'margin: 0.10';
 
 /** Every keep-rule check in its order, restated for the report reader. */
-export const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, then kill when p_loss < 0.05, then margin 10*(A-B) >= M, then sign test p_win < 0.05, then for jev flips 10*F <= 3*M';
+export const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, then kill when p_loss < 0.05, then margin 10*(A-B) >= M, then sign test p_win < 0.05, then for jev flips 10*F <= 3*M, then cost: one-call arm <= K judgments, reference arm = 3*K judgments';
 
 /** Why one keep needs five wins and no loss. */
 export const POWER_LINE = 'power: a keep needs at least 5 wins with no loss, 0.5^5 = 0.03125 < 0.05';
@@ -80,14 +87,21 @@ export const CALL_TIMEOUT_MS = 90000;
 /** Wait before the one retry after a dropped connection, so a busy server is not hit twice at once. */
 export const BACKOFF_MS = 2000;
 
-/** The ten claim words in the detector pattern's own order, parsed from it so no second copy can drift. */
+/** The claim words in the detector pattern's own order, parsed from it so no second copy can drift. */
 const CLAIM_WORDS = COMPLETION_CLAIM_PATTERN.source
   .replace(/^\\b\(/, '')
   .replace(/\)\\b$/, '')
   .split('|');
 
+const BASELINE_TAIL_CHARS = 400;
+const BASELINE_CLAIM_WORDS = CLAIM_WORDS.filter((word) => word !== 'complete');
+const BASELINE_CLAIM_PATTERN = new RegExp(
+  `\\b(${BASELINE_CLAIM_WORDS.join('|')})\\b`,
+  COMPLETION_CLAIM_PATTERN.flags,
+);
+
 /** Usage line for an invocation that misses an input. */
-export const USAGE = 'node scripts/completion-claim-audit/score-completion-claims.mjs --rows <file> [--labels <file>] [--jev] [--out <dir>] [--accept-payload]';
+export const USAGE = 'node scripts/completion-claim-audit/score-completion-claims.mjs --rows <file> [--labels <file>] [--holdout] [--jev [--one-call]] [--out <dir>] [--accept-payload]';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. ROWS
@@ -102,6 +116,7 @@ export const USAGE = 'node scripts/completion-claim-audit/score-completion-claim
  */
 export function parseRows(text) {
   const rows = [];
+  const ids = new Set();
   const lines = text.split('\n');
   lines.forEach((line, index) => {
     if (line.trim() === '') return;
@@ -117,9 +132,13 @@ export function parseRows(text) {
     if (typeof parsed.id !== 'string' || parsed.id === '') {
       throw new Error(`rows row ${index + 1}: id must be a non-empty string`);
     }
+    if (ids.has(parsed.id)) {
+      throw new Error(`rows row ${index + 1}: duplicate id ${parsed.id}`);
+    }
     if (typeof parsed.raw_text !== 'string') {
       throw new Error(`rows row ${index + 1}: raw_text must be a string`);
     }
+    ids.add(parsed.id);
     rows.push({ id: parsed.id, raw_text: parsed.raw_text });
   });
   return rows;
@@ -167,7 +186,7 @@ export function runCensus(rows) {
  * @param {string} text File contents.
  * @param {Set<string>} rowIds Ids the rows file holds; a label for any other id cannot be scored.
  * @returns {Map<string, 'yes'|'no'>} Label by row id, in file order.
- * @throws {Error} `labels row <n>: ...` for the first line that is not JSON, holds another claim value, or names an unknown id.
+ * @throws {Error} `labels row <n>: ...` for malformed, duplicate or unknown ids and invalid claims.
  */
 export function parseLabels(text, rowIds) {
   const labels = new Map();
@@ -182,6 +201,12 @@ export function parseLabels(text, rowIds) {
     }
     if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
       throw new Error(`labels row ${index + 1}: not a JSON object`);
+    }
+    if (typeof parsed.id !== 'string' || parsed.id === '') {
+      throw new Error(`labels row ${index + 1}: id must be a non-empty string`);
+    }
+    if (labels.has(parsed.id)) {
+      throw new Error(`labels row ${index + 1}: duplicate id ${parsed.id}`);
     }
     if (parsed.claim !== 'yes' && parsed.claim !== 'no') {
       throw new Error(`labels row ${index + 1}: claim must be yes or no, got ${JSON.stringify(parsed.claim)}`);
@@ -215,24 +240,38 @@ export function classCounts(labels) {
 }
 
 /**
+ * Selects a deterministic, approximately half-sized holdout within each label class.
+ * Hash ordering makes the split independent of the source file's row order.
+ * @param {Map<string, 'yes'|'no'>} labels Full label set.
+ * @returns {Map<string, 'yes'|'no'>} Holdout labels in original file order.
+ */
+export function holdoutLabels(labels) {
+  const selected = new Set();
+  for (const claim of ['yes', 'no']) {
+    const classIds = [...labels]
+      .filter(([, value]) => value === claim)
+      .map(([id]) => id)
+      .sort((left, right) => {
+        const leftHash = sha256Hex(`${claim}:${left}`);
+        const rightHash = sha256Hex(`${claim}:${right}`);
+        return leftHash.localeCompare(rightHash) || left.localeCompare(right);
+      });
+    classIds.forEach((id, index) => {
+      if (index % 2 === 0) selected.add(id);
+    });
+  }
+  return new Map([...labels].filter(([id]) => selected.has(id)));
+}
+
+/**
  * The claim word a tail holds first by position, pattern order breaking a tie. A silent
  * turn labeled a claim often holds no word at all, and then it is counted without one.
  * @param {string} tail Trailing slice of one turn's text.
  * @returns {string|null} Lowercase claim word, or null when the tail holds none.
  */
 function firstClaimWord(tail) {
-  const lower = tail.toLowerCase();
-  let found = null;
-  let foundAt = -1;
-  for (const word of CLAIM_WORDS) {
-    const at = lower.indexOf(word);
-    if (at === -1) continue;
-    if (found === null || at < foundAt) {
-      found = word;
-      foundAt = at;
-    }
-  }
-  return found;
+  const match = new RegExp(COMPLETION_CLAIM_PATTERN.source, 'i').exec(tail);
+  return match === null ? null : match[1].toLowerCase();
 }
 
 /**
@@ -268,6 +307,35 @@ export function regexErrors(labeled, rowsById) {
 }
 
 /**
+ * Measures the recorded detector changes on the labeled rows without exposing their text.
+ * @param {Map<string, 'yes'|'no'>} labels Label by row id.
+ * @param {Map<string, { id: string, raw_text: string }>} rowsById Rows the labels name.
+ * @returns {Record<string, { claimsCaught: number, falseFires: number }>} Aggregate results by detector arm.
+ */
+export function measureDetectorArms(labels, rowsById) {
+  const arms = [
+    { name: 'today', tailChars: BASELINE_TAIL_CHARS, pattern: BASELINE_CLAIM_PATTERN, filters: false },
+    { name: 'complete', tailChars: BASELINE_TAIL_CHARS, pattern: COMPLETION_CLAIM_PATTERN, filters: false },
+    { name: 'anchor', tailChars: TAIL_CHARS, pattern: BASELINE_CLAIM_PATTERN, filters: false },
+    { name: 'both', tailChars: TAIL_CHARS, pattern: COMPLETION_CLAIM_PATTERN, filters: false },
+    { name: 'shipped', tailChars: TAIL_CHARS, pattern: null, filters: true },
+  ];
+  const results = Object.fromEntries(arms.map(({ name }) => [name, { claimsCaught: 0, falseFires: 0 }]));
+
+  for (const [id, claim] of labels) {
+    const rawText = rowsById.get(id).raw_text;
+    for (const arm of arms) {
+      const fired = arm.filters
+        ? detectCompletionClaim(rawText)
+        : arm.pattern.test(rawText.trim().slice(-arm.tailChars));
+      if (fired && claim === 'yes') results[arm.name].claimsCaught += 1;
+      if (fired && claim === 'no') results[arm.name].falseFires += 1;
+    }
+  }
+  return results;
+}
+
+/**
  * One by-word count list for a scoring line, in pattern order, or `none` when empty.
  * @param {Record<string, number>} counts Word-to-count map.
  * @returns {string} `word=count word=count`, or `none`.
@@ -294,7 +362,7 @@ export function gateLine({ k, counts, b }) {
   if (counts.no < CLASS_GATE) return { line: `stop: fewer than ${CLASS_GATE} labeled no rows`, gate: 'stop' };
   // Above 90 percent regex accuracy a 10-point gain cannot fit, so no arm calls.
   if (10 * b > 9 * k) return { line: 'no headroom', gate: 'no headroom' };
-  return { line: `planned calls: jev=${3 * k + 1}`, gate: 'planned' };
+  return { line: `planned calls: jev=${3 * k + 1} one-call=${k + 1}`, gate: 'planned' };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -649,10 +717,11 @@ export function spawnCall(cmd, args, stdin, env, timeoutMs) {
  */
 export function jevGate(ctx) {
   const provider = ctx.env.JEV_PROVIDER || 'official';
+  const armName = ctx.armName ?? 'jev';
   const path = which('jev', ctx.env);
   ctx.out(`jev: path=${path ?? 'none'} provider=${provider}`);
   if (path === null) {
-    const skipLine = 'jev arm skipped: jev not on PATH';
+    const skipLine = `${armName} arm skipped: jev not on PATH`;
     ctx.out(skipLine);
     return { passed: false, path, provider, reason: skipLine };
   }
@@ -667,7 +736,7 @@ export function jevGate(ctx) {
   const trimmed = (version.stdout ?? '').trim();
   const found = trimmed === '' ? '' : trimmed.split('\n')[0];
   if (found !== JEV_VERSION) {
-    const skipLine = 'jev arm skipped: version';
+    const skipLine = `${armName} arm skipped: version`;
     ctx.out(skipLine);
     ctx.out(`jev: found=${JSON.stringify(found)} path=${path}`);
     return { passed: false, path, provider, reason: skipLine };
@@ -675,7 +744,7 @@ export function jevGate(ctx) {
 
   const auth = spawnSync(path, ['auth', 'status', '--provider', provider], opts);
   if (auth.status !== 0) {
-    const skipLine = 'jev arm skipped: no credential';
+    const skipLine = `${armName} arm skipped: no credential`;
     ctx.out(skipLine);
     return { passed: false, path, provider, reason: skipLine };
   }
@@ -709,24 +778,27 @@ function parseJevNoul(stdout) {
 }
 
 /**
- * One auth test, then three noul calls per labeled row with no answer cache, and one
- * calls.jsonl record per spawn. Exit 4 gets one retry after the backoff, because a
+ * One auth test, then the selected number of noul calls per labeled row with no answer
+ * cache, and one calls.jsonl record per spawn. Exit 4 gets one retry after the backoff, because a
  * dropped connection is not a judgment. Exit 1 and unparseable or out-of-range answers
  * leave the row unmeasured and keep the run going; a stop prints the line and the rows
  * that finished, and leaves the column and verdict unprinted.
  * @param {{ labeled: Map<string, 'yes'|'no'>, rowsById: Map<string, { id: string, raw_text: string }>, labelsSha: string }} plan The labeled rows, the rows they name, and the label set hash.
  * @param {{ path: string, provider: string }} gate Passing jevGate result.
- * @param {{ out: (line: string) => void, env: Record<string, string | undefined>, timeoutMs: number, backoffMs: number, callLog: { append: (record: object) => void }, stored: object | null }} ctx Line writer, environment, per-call timeout, retry wait, the call log and an earlier run's report.
+ * @param {{ out: (line: string) => void, env: Record<string, string | undefined>, timeoutMs: number, backoffMs: number, callLog: { append: (record: object) => void }, stored: object | null, backend?: string, reruns?: number }} ctx Line writer, environment, per-call timeout, retry wait, the call log, an earlier run's report and selected arm settings.
  * @returns {Promise<{ stopped: string, partialRows: number } | { column: object, requalify: string | null }>} The stop report, or the column summary with its line and the requalify line.
  */
 export async function runJevArm(plan, gate, ctx) {
+  const backend = ctx.backend ?? 'jev';
+  const reruns = ctx.reruns ?? (backend === 'jev' ? JEV_RERUNS : 1);
+  const armName = backend === 'jev-one-call' ? 'one-call' : 'jev';
   const K = plan.labeled.size;
   let chars = 0;
   for (const id of plan.labeled.keys()) {
     chars += detectTail(plan.rowsById.get(id).raw_text).length + QUESTION.length;
   }
-  chars *= JEV_RERUNS;
-  ctx.out(`jev: payload: the operator's session text, secrets stripped by the operator; planned calls: ${JEV_RERUNS * K + 1}; estimated input tokens: ${Math.ceil(chars / 4)}`);
+  chars *= reruns;
+  ctx.out(`${armName}: payload: the operator's session text, secrets stripped by the operator; planned calls: ${reruns * K + 1}; estimated input tokens: ${Math.ceil(chars / 4)}`);
 
   const labeled = new Map();
   for (const [id, claim] of plan.labeled) {
@@ -742,7 +814,7 @@ export async function runJevArm(plan, gate, ctx) {
   /** One calls.jsonl record; a row still carries its id when the call failed. */
   function record(rowId, pass, attempt, r, noul, status) {
     return {
-      backend: 'jev',
+      backend,
       rowId,
       pass,
       attempt,
@@ -758,7 +830,7 @@ export async function runJevArm(plan, gate, ctx) {
 
   function stop(line) {
     ctx.out(line);
-    ctx.out(`jev: partial rows=${finished}`);
+    ctx.out(`${armName}: partial rows=${finished}`);
     return { stopped: line, partialRows: finished };
   }
 
@@ -774,16 +846,16 @@ export async function runJevArm(plan, gate, ctx) {
     if (typeof parsed?.model === 'string') model = parsed.model;
   }
   ctx.callLog.append(record(null, null, 1, auth, null, auth.code === 0 ? 'measured' : 'unmeasured'));
-  if (auth.code === 3) return stop('jev arm stopped: key rejected');
-  if (auth.code === 130) return stop('jev arm stopped: interrupted');
-  if (auth.code !== 0) return stop('jev arm stopped: auth test failed');
-  ctx.out(`jev: auth test provider=${gate.provider} model=${model}`);
+  if (auth.code === 3) return stop(`${armName} arm stopped: key rejected`);
+  if (auth.code === 130) return stop(`${armName} arm stopped: interrupted`);
+  if (auth.code !== 0) return stop(`${armName} arm stopped: auth test failed`);
+  ctx.out(`${armName}: auth test provider=${gate.provider} model=${model}`);
 
   for (const id of [...plan.labeled.keys()].sort()) {
     const entry = labeled.get(id);
     const callArgs = ['noul', '--provider', gate.provider, '-q', QUESTION];
     const values = [];
-    for (let pass = 0; pass < JEV_RERUNS; pass += 1) {
+    for (let pass = 0; pass < reruns; pass += 1) {
       let attempt = 1;
       let r = await spawnCall(gate.path, callArgs, entry.tail, ctx.env, ctx.timeoutMs);
       wallTimes.push(r.wallMs);
@@ -805,11 +877,11 @@ export async function runJevArm(plan, gate, ctx) {
         noul = parseJevNoul(r.stdout);
         status = noul === null ? 'unmeasured' : 'measured';
       } else if (r.code === 2) {
-        stopLine = 'jev arm stopped: usage error';
+        stopLine = `${armName} arm stopped: usage error`;
       } else if (r.code === 3) {
-        stopLine = 'jev arm stopped: key rejected';
+        stopLine = `${armName} arm stopped: key rejected`;
       } else if (r.code === 130) {
-        stopLine = 'jev arm stopped: interrupted';
+        stopLine = `${armName} arm stopped: interrupted`;
       }
 
       ctx.callLog.append(record(id, pass, attempt, r, noul, status));
@@ -820,11 +892,11 @@ export async function runJevArm(plan, gate, ctx) {
     finished += 1;
   }
 
-  const summary = summarizeColumn({ backend: 'jev', K, labeled, answers });
+  const summary = summarizeColumn({ backend, K, labeled, answers });
   const latency = { p50: nearestRank(wallTimes, 0.5), p95: nearestRank(wallTimes, 0.95) };
-  ctx.out(`column jev: rows=${K} measured=${summary.M} unmeasured=${K - summary.M} latency_p50_ms=${latency.p50 ?? 'none'} latency_p95_ms=${latency.p95 ?? 'none'}`);
+  ctx.out(`column ${backend}: rows=${K} measured=${summary.M} unmeasured=${K - summary.M} latency_p50_ms=${latency.p50 ?? 'none'} latency_p95_ms=${latency.p95 ?? 'none'}`);
   ctx.out(`flips: ${summary.F}`);
-  const stored = ctx.stored?.columns?.jev;
+  const stored = ctx.stored?.columns?.[backend];
   let requalify = null;
   if (stored && (stored.provider !== gate.provider || stored.model !== model)) {
     requalify = 'requalify: model changed';
@@ -863,7 +935,9 @@ export async function main(argv, deps = {}) {
       options: {
         rows: { type: 'string' },
         labels: { type: 'string' },
+        holdout: { type: 'boolean' },
         jev: { type: 'boolean' },
+        'one-call': { type: 'boolean' },
         out: { type: 'string' },
         'accept-payload': { type: 'boolean' },
       },
@@ -876,6 +950,14 @@ export async function main(argv, deps = {}) {
   }
   if (typeof values.rows !== 'string' || values.rows === '') {
     err('no rows named');
+    return 2;
+  }
+  if (values.holdout === true && values.labels === undefined) {
+    err('--holdout needs --labels <file>');
+    return 2;
+  }
+  if (values['one-call'] === true && values.jev !== true) {
+    err('--one-call needs --jev');
     return 2;
   }
 
@@ -921,12 +1003,17 @@ export async function main(argv, deps = {}) {
       return 2;
     }
     try {
-      labels = parseLabels(labelsText, new Set(rowsById.keys()));
+      const allLabels = parseLabels(labelsText, new Set(rowsById.keys()));
+      labels = values.holdout === true ? holdoutLabels(allLabels) : allLabels;
     } catch (error) {
       err(error instanceof Error ? error.message : String(error));
       return 2;
     }
-    labelsInfo = { rows: labels.size, sha256: sha256Hex(labelsText) };
+    labelsInfo = {
+      rows: labels.size,
+      sha256: sha256Hex(labelsText),
+      split: values.holdout === true ? 'holdout' : null,
+    };
   }
 
   const census = runCensus(rows);
@@ -942,13 +1029,23 @@ export async function main(argv, deps = {}) {
   const k = labels === null ? 0 : labels.size;
   const counts = labels === null ? { yes: 0, no: 0 } : classCounts(labels);
   const errors = regexErrors(labels ?? new Map(), rowsById);
-  out(labelsInfo === null ? 'labels: none' : `labels: rows=${labelsInfo.rows} sha256=${labelsInfo.sha256}`);
+  out(labelsInfo === null
+    ? 'labels: none'
+    : `labels: rows=${labelsInfo.rows}${labelsInfo.split === null ? '' : ` split=${labelsInfo.split}`} sha256=${labelsInfo.sha256}`);
   out(`labeled: ${k} (yes ${counts.yes}, no ${counts.no})`);
+  if (labels !== null) out(THRESHOLD_LINE);
   out(k === 0
     ? 'regex accuracy: n/a (no labels)'
     : `regex accuracy: ${errors.B} of ${k} = ${(errors.B / k).toFixed(4)}`);
   out(`regex false fires: ${errors.falseFires} (by word: ${byWordList(errors.byWord.falseFires)})`);
   out(`regex missed claims: ${errors.missedClaims} (by word: ${byWordList(errors.byWord.missedClaims)})`);
+  const detectorArms = labels === null ? null : measureDetectorArms(labels, rowsById);
+  if (detectorArms !== null) {
+    for (const name of ['today', 'complete', 'anchor', 'both', 'shipped']) {
+      const arm = detectorArms[name];
+      out(`detector arm ${name}: claims_caught=${arm.claimsCaught} false_fires=${arm.falseFires}`);
+    }
+  }
   out(MARGIN_LINE);
   out(KEEP_RULE_LINE);
   out(POWER_LINE);
@@ -965,23 +1062,26 @@ export async function main(argv, deps = {}) {
   // payload is what lets the operator's own rows leave the machine.
   let jevResult;
   if (values.jev === true) {
-    const check = jevGate({ out, env, timeoutMs });
+    const armName = values['one-call'] === true ? 'one-call' : 'jev';
+    const check = jevGate({ out, env, timeoutMs, armName });
     if (!check.passed) {
-      jevResult = { skipped: check.reason };
+      jevResult = { skipped: check.reason, backend: values['one-call'] === true ? 'jev-one-call' : 'jev' };
     } else if (values['accept-payload'] !== true) {
-      const line = 'jev arm skipped: payload not accepted';
+      const line = `${values['one-call'] === true ? 'one-call' : 'jev'} arm skipped: payload not accepted`;
       out(line);
-      jevResult = { skipped: line };
+      jevResult = { skipped: line, backend: values['one-call'] === true ? 'jev-one-call' : 'jev' };
     } else if (gate.gate !== 'planned') {
-      const line = `jev arm skipped: ${gate.gate === 'stop' ? 'label gate' : 'no headroom'}`;
+      const line = `${values['one-call'] === true ? 'one-call' : 'jev'} arm skipped: ${gate.gate === 'stop' ? 'label gate' : 'no headroom'}`;
       out(line);
-      jevResult = { skipped: line };
+      jevResult = { skipped: line, backend: values['one-call'] === true ? 'jev-one-call' : 'jev' };
     } else {
+      const backend = values['one-call'] === true ? 'jev-one-call' : 'jev';
       jevResult = await runJevArm(
         { labeled: labels, rowsById, labelsSha: labelsInfo.sha256 },
         check,
-        { out, env, timeoutMs, backoffMs, callLog, stored },
+        { out, env, timeoutMs, backoffMs, callLog, stored, backend },
       );
+      jevResult.backend = backend;
     }
   }
 
@@ -1001,14 +1101,16 @@ export async function main(argv, deps = {}) {
         byWord: errors.byWord,
       },
       gate: gate.gate,
+      judgeThreshold: YES_THRESHOLD,
       margin: MARGIN_LINE,
       keepRule: KEEP_RULE_LINE,
+      detectorArms,
       columns: {},
       stopped: {},
       skipped: {},
       requalify: {},
     };
-    for (const [backend, arm] of [['jev', jevResult]]) {
+    for (const [backend, arm] of [[jevResult?.backend ?? 'jev', jevResult]]) {
       if (arm === undefined) continue;
       if (arm.skipped !== undefined) report.skipped[backend] = arm.skipped;
       if (arm.stopped !== undefined) report.stopped[backend] = { line: arm.stopped, partialRows: arm.partialRows };

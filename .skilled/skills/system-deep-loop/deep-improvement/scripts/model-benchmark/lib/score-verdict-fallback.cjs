@@ -6,8 +6,8 @@
 'use strict';
 
 /**
- * Measure offline whether a Jev noul that reads a reviewer output and
- * names one of pass, fail or block resolves the outputs the deterministic
+ * Measure offline whether Jev, given a reviewer output, names pass, fail,
+ * block, or abstain for the outputs the deterministic
  * verdict pattern misses, and whether that column clears the keep rule against
  * the operator's labels. The default run makes no model call and writes no
  * file, and the script holds and reads no credential.
@@ -30,22 +30,25 @@ const { DEFAULT_PROFILES_DIR, fixturePathFor } = require('../../lib/profile-reso
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// The one judgment question a noul answers; the arm asks exactly this.
+// The one judgment question the grader answers; the arm asks exactly this.
 const QUESTION = 'Which verdict does this reviewer output give?';
-// The three answer keys and the option text that names each one.
+// The four answer keys distinguish a stated verdict from no decision.
 const OPTION_PAIRS = [
   ['pass', 'The reviewer approves the change'],
   ['fail', 'The reviewer rejects the change and names what must change'],
   ['block', 'The reviewer says it cannot give a verdict'],
+  ['abstain', 'The reviewer output does not state a decision'],
 ];
-// Name order, rotated left by 1, then by 2, so option position cannot decide.
+// Audit rotations check whether option position changes the answer.
 const ORDERS = 3;
+const SERVING_ORDERS = 1;
+const SCORER_VERSION = '1.0.0';
 // Labeled regex-miss outputs below which no arm opens.
 const LABEL_GATE = 12;
 // The margin the keep rule demands between the column and the baseline.
 const MARGIN_LINE = 'margin: 0.10';
 // The keep rule, fixed so a printed verdict can be rechecked by hand.
-const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, kill p_loss < 0.05, margin 10*(A-B) >= M, sign test p_win < 0.05, flips 10*F <= 3*M';
+const KEEP_RULE_LINE = 'keep rule: coverage 10*M >= 9*K, kill p_loss < 0.05, margin 10*(A-B) >= M, sign test p_win < 0.05, flips 10*F <= 3*M (audit only)';
 // The power note, fixed so the five-win floor behind a keep is stated.
 const POWER_LINE = 'power: a keep needs at least 5 wins with no loss, since 0.5^5 is 0.031';
 
@@ -57,7 +60,7 @@ const DEFAULT_PROFILE = path.resolve(__dirname, '../../../assets/model-benchmark
 const REPO_ROOT = path.resolve(__dirname, '../../../../../../..');
 
 // The usage line printed whenever the run cannot start.
-const USAGE = 'usage: score-verdict-fallback.cjs [--profile <path-or-id>] [--outputs <file>] [--reports <dir>]... [--jev] [--out <dir>] [--accept-payload]';
+const USAGE = 'usage: score-verdict-fallback.cjs [--profile <path-or-id>] [--outputs <file>] [--reports <dir>]... [--jev] [--audit-orders] [--out <dir>] [--accept-payload]';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. CENSUS
@@ -123,6 +126,16 @@ function loadFixtureCases(profilePath) {
   const cases = [];
   for (const filePath of files) {
     const fixture = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const visible = Array.isArray(fixture.tests) && fixture.tests.length > 0 ? fixture.tests : [{ name: fixture.id }];
+    const hidden = Array.isArray(fixture.hidden_tests) ? fixture.hidden_tests : [];
+    for (const testCase of visible.concat(hidden)) {
+      const merged = { ...fixture, ...(testCase || {}) };
+      const output = typeof merged.reviewer_output === 'string' && merged.reviewer_output.length > 0 ? merged.reviewer_output : null;
+      cases.push({ fixtureId: fixture.id, name: merged.name || fixture.id, output });
+    }
+  }
+  const inlineFixtures = Array.isArray(profile.missCaseFixtures) ? profile.missCaseFixtures : [];
+  for (const fixture of inlineFixtures) {
     const visible = Array.isArray(fixture.tests) && fixture.tests.length > 0 ? fixture.tests : [{ name: fixture.id }];
     const hidden = Array.isArray(fixture.hidden_tests) ? fixture.hidden_tests : [];
     for (const testCase of visible.concat(hidden)) {
@@ -228,7 +241,7 @@ function censusOutputs(rows) {
  * none.
  *
  * @param {string[]} dirs - Directories each holding a `reviewer-report.json`
- * @returns {Array<{ path: string, pattern: number, llmGrader: number, none: number }>} One census per directory, in argument order
+ * @returns {Array<{ path: string, pattern: number, llmGrader: number, jevGrader: number, none: number }>} One census per directory, in argument order
  * @throws {Error} When a report cannot be read or parsed
  */
 function censusReports(dirs) {
@@ -248,6 +261,7 @@ function censusReports(dirs) {
         : [];
     let pattern = 0;
     let llmGrader = 0;
+    let jevGrader = 0;
     let none = 0;
     for (const row of rows) {
       const perTest = Array.isArray(row?.per_test) ? row.per_test : [];
@@ -255,10 +269,11 @@ function censusReports(dirs) {
         const method = entry?.verdictMethod;
         if (method === 'pattern') pattern += 1;
         else if (method === 'llm-grader') llmGrader += 1;
+        else if (method === 'jev-grader') jevGrader += 1;
         else none += 1;
       }
     }
-    censuses.push({ path: reportPath, pattern, llmGrader, none });
+    censuses.push({ path: reportPath, pattern, llmGrader, jevGrader, none });
   }
   return censuses;
 }
@@ -339,10 +354,10 @@ function binomialTail(successes, trials) {
 
 /**
  * First failed check decides, in this order: coverage, kill, margin, sign
- * test, flips. The loss tail kills before the margin is read, and the flips
- * check binds the arm because it asks every output in three orders.
+ * test, flips. The loss tail kills before the margin is read. F is null for
+ * the one-call serving path, where order instability has not been measured.
  *
- * @param {{ K: number, M: number, A: number, B: number, W: number, L: number, F: number }} counts - Column counts
+ * @param {{ K: number, M: number, A: number, B: number, W: number, L: number, F: number|null }} counts - Column counts
  * @returns {{ outcome: 'keep'|'kill'|'stop', reason: 'coverage'|'margin'|'sign test'|'flips'|null, pWin: number, pLoss: number }} Verdict with both exact tails
  */
 function decideVerdict({ K, M, A, B, W, L, F }) {
@@ -352,7 +367,7 @@ function decideVerdict({ K, M, A, B, W, L, F }) {
   if (20n * loss.num < loss.den) return { outcome: 'kill', reason: null, pWin: win.p, pLoss: loss.p };
   if (!(10 * (A - B) >= M)) return { outcome: 'stop', reason: 'margin', pWin: win.p, pLoss: loss.p };
   if (!(20n * win.num < win.den)) return { outcome: 'stop', reason: 'sign test', pWin: win.p, pLoss: loss.p };
-  if (!(10 * F <= 3 * M)) return { outcome: 'stop', reason: 'flips', pWin: win.p, pLoss: loss.p };
+  if (Number.isFinite(F) && !(10 * F <= 3 * M)) return { outcome: 'stop', reason: 'flips', pWin: win.p, pLoss: loss.p };
   return { outcome: 'keep', reason: null, pWin: win.p, pLoss: loss.p };
 }
 
@@ -365,9 +380,8 @@ function formatP(p) {
 }
 
 /**
- * The key an answer array names at least twice, with the count it reached.
- * Three different keys name no pick at all, which reads as unstable and
- * counts wrong, while the top count still feeds the flip count.
+ * The most common key in an audit's answers, with its count. No key reaching
+ * two votes leaves the row unstable and counts wrong.
  *
  * @param {string[]} answers - Submitted answer keys for one row
  * @returns {{ pick: string|null, top: number }} Modal pick, or null when no key reaches two
@@ -387,12 +401,10 @@ function modalPick(answers) {
 }
 
 /**
- * One column's counts and verdict. A row is measured only when its answer
- * array holds one submitted key per option order; every other row stays
- * unmeasured and never counts. The pick is the key named at least twice, an
- * unstable row counts wrong, the baseline's own pick is compared on the same
- * measured rows, and each row's non-modal orders add to the flip count, so
- * instability is never hidden.
+ * One column's counts and verdict. Serving uses its single answer directly;
+ * audit mode requires complete valid answers and uses the modal key. Unknown
+ * answers stay unmeasured, abstentions remain visible in confusion counts, and
+ * audit order changes add to the flip count.
  *
  * @param {'jev'} backend - Backend name, printed on the verdict line
  * @param {Array<{ id: string, label: 'pass'|'fail'|'block' }>} rows - Labeled rows, in file order
@@ -400,23 +412,50 @@ function modalPick(answers) {
  * @param {Map<string, 'pass'|'fail'|'block'|null>} baselineCalls - Row id -> baseline pick
  * @param {string} labelsSha - Label digest printed on the verdict line
  * @param {string} suffix - Backend identity appended to the line when non-empty
- * @returns {{ backend: string, K: number, M: number, unmeasured: number, A: number, B: number, W: number, L: number, F: number, pWin: number, pLoss: number, outcome: string, reason: string|null, line: string }} Column summary
+ * @param {1|3} ordersPerMiss - One serving response or three audit responses per row
+ * @returns {{ backend: string, K: number, M: number, unmeasured: number, A: number, B: number, W: number, L: number, F: number|null, pWin: number, pLoss: number, outcome: string, reason: string|null, line: string }} Column summary
  */
-function summarizeColumn(backend, rows, answers, baselineCalls, labelsSha, suffix) {
+function wilsonInterval(successes, trials) {
+  if (trials === 0) return { n: 0, successes, lower: null, upper: null };
+  const z = 1.959963984540054;
+  const proportion = successes / trials;
+  const zSquared = z * z;
+  const denominator = 1 + zSquared / trials;
+  const center = (proportion + zSquared / (2 * trials)) / denominator;
+  const margin = (z * Math.sqrt((proportion * (1 - proportion) / trials) + zSquared / (4 * trials * trials))) / denominator;
+  return {
+    n: trials,
+    successes,
+    lower: Math.max(0, center - margin),
+    upper: Math.min(1, center + margin),
+  };
+}
+
+function summarizeColumn(backend, rows, answers, baselineCalls, labelsSha, suffix, ordersPerMiss = ORDERS) {
   const K = rows.length;
   let M = 0;
   let A = 0;
   let B = 0;
   let W = 0;
   let L = 0;
-  let F = 0;
+  let F = ordersPerMiss > 1 ? 0 : null;
+  const confusion = {
+    pass: { pass: 0, fail: 0, block: 0, abstain: 0, unknown: 0 },
+    fail: { pass: 0, fail: 0, block: 0, abstain: 0, unknown: 0 },
+    block: { pass: 0, fail: 0, block: 0, abstain: 0, unknown: 0 },
+  };
+  const allowed = new Set(['pass', 'fail', 'block', 'abstain']);
   for (const row of rows) {
     const values = answers.get(row.id);
-    if (!Array.isArray(values) || values.length !== ORDERS) continue;
-    if (!values.every((value) => value === 'pass' || value === 'fail' || value === 'block')) continue;
+    if (!Array.isArray(values) || values.length !== ordersPerMiss || !values.every((value) => allowed.has(value))) {
+      confusion[row.label].unknown += 1;
+      continue;
+    }
     M += 1;
-    const { pick, top } = modalPick(values);
-    F += ORDERS - top;
+    const { pick, top } = ordersPerMiss === 1 ? { pick: values[0], top: 1 } : modalPick(values);
+    if (F !== null) F += ordersPerMiss - top;
+    const predicted = allowed.has(pick) ? pick : 'unknown';
+    confusion[row.label][predicted] += 1;
     const columnRight = pick === row.label;
     const baselineRight = baselineCalls.get(row.id) === row.label;
     if (columnRight) A += 1;
@@ -426,9 +465,16 @@ function summarizeColumn(backend, rows, answers, baselineCalls, labelsSha, suffi
   }
   const verdict = decideVerdict({ K, M, A, B, W, L, F });
   const outcomeText = verdict.reason === null ? verdict.outcome : `stop (${verdict.reason})`;
-  let line = `verdict ${backend}: ${outcomeText} K=${K} M=${M} A=${A} B=${B} W=${W} L=${L} F=${F} p_win=${formatP(verdict.pWin)} p_loss=${formatP(verdict.pLoss)} labels_sha256=${labelsSha}`;
+  const accuracy = wilsonInterval(A, M);
+  const perClass = {};
+  for (const label of ['pass', 'fail', 'block']) {
+    const total = rows.filter((row) => row.label === label).length;
+    perClass[label] = wilsonInterval(confusion[label][label], total);
+  }
+  const intervals = { method: 'wilson-95', confidence: 0.95, accuracy, perClass };
+  let line = `verdict ${backend}: ${outcomeText} K=${K} M=${M} A=${A} B=${B} W=${W} L=${L} F=${F === null ? 'na' : F} p_win=${formatP(verdict.pWin)} p_loss=${formatP(verdict.pLoss)} labels_sha256=${labelsSha}`;
   if (typeof suffix === 'string' && suffix.length > 0) line += ` ${suffix}`;
-  return { backend, K, M, unmeasured: K - M, A, B, W, L, F, pWin: verdict.pWin, pLoss: verdict.pLoss, outcome: verdict.outcome, reason: verdict.reason, line };
+  return { backend, K, M, unmeasured: K - M, A, B, W, L, F, pWin: verdict.pWin, pLoss: verdict.pLoss, outcome: verdict.outcome, reason: verdict.reason, confusion, intervals, ordersPerMiss, line };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -669,12 +715,11 @@ function readStoredReport(outDir) {
 
 
 /**
- * The Jev arm: one auth test to learn the provider model, then every labeled
- * row asked in each of the three option rotations, one fresh hosted call per
- * order. A measured call is exit 0 with a submitted answer key; exit 4 waits
- * and retries once, a malformed answer or a spent retry leaves that call
- * unmeasured, and a stop line ends the arm with the rows finished. The
- * payload is the reviewer outputs the gate accepted.
+ * The Jev arm: one auth test to learn the provider model, then one call per
+ * labeled row by default. Explicit audit mode runs all three option rotations.
+ * A measured call is exit 0 with a submitted answer key; malformed or unknown
+ * answers stay unmeasured, and a stop line ends the arm with the rows finished.
+ * The payload is the reviewer outputs the gate accepted.
  *
  * @param {{
  *   rows: Array<{ id: string, output: string, label: 'pass'|'fail'|'block' }>,
@@ -689,26 +734,50 @@ function readStoredReport(outDir) {
  *   out: (line: string) => void,
  *   env: Record<string, string | undefined>,
  *   timeoutMs: number,
- *   backoffMs: number,
  *   callLog: { append: (record: object) => void },
- *   stored?: object | null
- * }} ctx Line writer, environment, per-call timeout, retry wait, call log and
- *   the stored report.
+ *   stored?: object | null,
+ *   ordersPerMiss?: 1|3
+ * }} ctx Line writer, environment, per-call timeout, call log, stored report
+ *   and selected serving or audit call count.
  * @returns {{ column: object, requalify: string | null } | { stopped: string, partialRows: number }}
  *   The finished column or the stop line with the rows finished.
  */
 async function runJevArm(plan, gate, ctx) {
   const jevVersion = JEV_VERSION.split(' ')[1];
+  const ordersPerMiss = ctx.ordersPerMiss === ORDERS ? ORDERS : SERVING_ORDERS;
   let chars = 0;
   for (const row of plan.rows) {
     chars += row.output.length + QUESTION.length;
     for (const [key, description] of OPTION_PAIRS) chars += key.length + description.length + 1;
   }
-  chars *= ORDERS;
-  ctx.out(`jev: payload: ${gate.untracked ? 'untracked' : 'committed'} reviewer outputs; planned calls: ${ORDERS * plan.rows.length + 1}; estimated input tokens: ${Math.ceil(chars / 4)}`);
+  chars *= ordersPerMiss;
+  ctx.out(`jev: payload: ${gate.untracked ? 'untracked' : 'committed'} reviewer outputs; planned calls: ${ordersPerMiss * plan.rows.length + 1}; estimated input tokens: ${Math.ceil(chars / 4)}`);
 
   const wallTimes = [];
   let finished = 0;
+  const usageTokens = { input: 0, output: 0, total: 0, callsWithUsage: 0, callsWithoutUsage: 0 };
+
+  function usageFrom(parsed) {
+    const usage = parsed?.usage;
+    if (!usage || typeof usage !== 'object') return null;
+    const input = usage.input_tokens ?? usage.inputTokens ?? usage.prompt_tokens ?? usage.promptTokens;
+    const output = usage.output_tokens ?? usage.outputTokens ?? usage.completion_tokens ?? usage.completionTokens;
+    if (![input, output].some((value) => typeof value === 'number' && Number.isFinite(value))) return null;
+    const inputTokens = typeof input === 'number' && Number.isFinite(input) ? input : 0;
+    const outputTokens = typeof output === 'number' && Number.isFinite(output) ? output : 0;
+    return { input: inputTokens, output: outputTokens, total: inputTokens + outputTokens };
+  }
+
+  function addUsage(value) {
+    if (!value) {
+      usageTokens.callsWithoutUsage += 1;
+      return;
+    }
+    usageTokens.input += value.input;
+    usageTokens.output += value.output;
+    usageTokens.total += value.total;
+    usageTokens.callsWithUsage += 1;
+  }
 
   function stop(line) {
     ctx.out(line);
@@ -741,6 +810,7 @@ async function runJevArm(plan, gate, ctx) {
     jevVersion,
     provider: gate.provider,
     model,
+    usageTokens: null,
   });
   if (auth.code !== 0) {
     if (auth.code === 3) return stop('jev arm stopped: key rejected');
@@ -752,10 +822,10 @@ async function runJevArm(plan, gate, ctx) {
   const answers = new Map();
 
   /**
-   * One calls.jsonl record. A call that led to a stop or a retry carries no
-   * judgment, so its pick and status stay empty.
+   * One calls.jsonl record. A call that led to a stop carries no judgment,
+   * so its pick and status stay empty.
    */
-  function record(row, order, attempt, r, pick, pickProb, status) {
+  function record(row, order, attempt, r, pick, pickProb, status, usage) {
     return {
       backend: 'jev',
       output: row.id,
@@ -769,32 +839,26 @@ async function runJevArm(plan, gate, ctx) {
       jevVersion,
       provider: gate.provider,
       model,
+      usageTokens: usage,
     };
   }
 
   for (const row of plan.rows) {
     const values = [];
-    for (let order = 1; order <= ORDERS; order += 1) {
+    for (let order = 1; order <= ordersPerMiss; order += 1) {
       const optionArgs = [];
       for (let offset = 0; offset < OPTION_PAIRS.length; offset += 1) {
         const [key, description] = OPTION_PAIRS[(offset + order - 1) % OPTION_PAIRS.length];
         optionArgs.push('-o', `${key}=${description}`);
       }
       const callArgs = ['choice', '--provider', gate.provider, '-q', QUESTION, ...optionArgs];
-      let attempt = 1;
-      let r = await spawnCall(gate.path, callArgs, row.output, ctx.env, ctx.timeoutMs);
+      const attempt = 1;
+      const r = await spawnCall(gate.path, callArgs, row.output, ctx.env, ctx.timeoutMs);
       wallTimes.push(r.wallMs);
-
-      if (!r.timedOut && r.code === 4) {
-        ctx.callLog.append(record(row, order, attempt, r, null, null, 'unmeasured'));
-        await new Promise((resolve) => setTimeout(resolve, ctx.backoffMs));
-        attempt = 2;
-        r = await spawnCall(gate.path, callArgs, row.output, ctx.env, ctx.timeoutMs);
-        wallTimes.push(r.wallMs);
-      }
 
       let pick = null;
       let pickProb = null;
+      let usage = null;
       let status = 'unmeasured';
       let stopLine = null;
       if (r.timedOut) {
@@ -806,6 +870,8 @@ async function runJevArm(plan, gate, ctx) {
         } catch {
           // A body that does not parse is a failed measurement, not a crash.
         }
+        usage = usageFrom(parsed);
+        addUsage(usage);
         const value = parsed?.answers?.answer?.choice;
         if (typeof value === 'string' && OPTION_PAIRS.some(([key]) => key === value)) {
           pick = value;
@@ -821,7 +887,8 @@ async function runJevArm(plan, gate, ctx) {
         stopLine = 'jev arm stopped: interrupted';
       }
 
-      ctx.callLog.append(record(row, order, attempt, r, pick, pickProb, status));
+      if (r.code !== 0) addUsage(null);
+      ctx.callLog.append(record(row, order, attempt, r, pick, pickProb, status, usage));
       if (stopLine !== null) return stop(stopLine);
       values.push(pick);
     }
@@ -836,6 +903,7 @@ async function runJevArm(plan, gate, ctx) {
     plan.baselineCalls,
     plan.labelsSha,
     `jev_version=${jevVersion} provider=${gate.provider} model=${model}`,
+    ordersPerMiss,
   );
   const latency = {
     p50: nearestRank(wallTimes, 0.5),
@@ -857,6 +925,7 @@ async function runJevArm(plan, gate, ctx) {
       jevVersion,
       provider: gate.provider,
       model,
+      usageTokens,
     },
     requalify,
   };
@@ -886,7 +955,15 @@ async function runJevArm(plan, gate, ctx) {
  */
 function buildReport(parts) {
   const { census, labeled, baseline, gateLine, labelsSha, jev } = parts;
+  const commitResult = spawnSync('git', ['rev-parse', 'HEAD'], {
+    cwd: REPO_ROOT,
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  const commit = !commitResult.error && commitResult.status === 0 ? commitResult.stdout.trim() : null;
   const report = {
+    commit,
+    scorerVersion: SCORER_VERSION,
     question: QUESTION,
     optionsSha256: sha256Hex(JSON.stringify({ question: QUESTION, options: OPTION_PAIRS })),
     labelsSha256: labelsSha,
@@ -933,6 +1010,10 @@ function buildReport(parts) {
       pLoss: column.pLoss,
       unmeasured: column.unmeasured,
       latency: column.latency,
+      ordersPerMiss: column.ordersPerMiss,
+      usageTokens: column.usageTokens,
+      intervals: column.intervals,
+      confusion: column.confusion,
     };
 
     if (backend === 'jev') {
@@ -965,7 +1046,6 @@ function buildReport(parts) {
  * @param {(line: string) => void} [deps.err] - Line writer. Default writes the line plus '\n' to stderr.
  * @param {Record<string, string | undefined>} [deps.env] - Model arm environment. Default process.env.
  * @param {number} [deps.timeoutMs] - Model arm call timeout. Default 90000.
- * @param {number} [deps.backoffMs] - Model arm retry wait. Default 2000.
  * @returns {Promise<number>} 0 = report printed, 2 = bad invocation or unreadable input
  */
 async function main(argv, deps = {}) {
@@ -973,7 +1053,6 @@ async function main(argv, deps = {}) {
   const err = deps.err ?? ((line) => process.stderr.write(`[score-verdict-fallback] ${line}\n`));
   const env = deps.env ?? process.env;
   const timeoutMs = deps.timeoutMs ?? 90000;
-  const backoffMs = deps.backoffMs ?? 2000;
 
   let parsed;
   try {
@@ -986,6 +1065,7 @@ async function main(argv, deps = {}) {
         outputs: { type: 'string' },
         reports: { type: 'string', multiple: true },
         jev: { type: 'boolean' },
+        'audit-orders': { type: 'boolean' },
 
         out: { type: 'string' },
         'accept-payload': { type: 'boolean' },
@@ -1040,7 +1120,7 @@ async function main(argv, deps = {}) {
     out(`outputs rows: ${outputCensus.total} hits: ${outputCensus.hits} misses: ${outputCensus.misses}`);
   }
   for (const report of reports) {
-    out(`report ${report.path}: pattern=${report.pattern} llm-grader=${report.llmGrader} none=${report.none}`);
+    out(`report ${report.path}: pattern=${report.pattern} llm-grader=${report.llmGrader} jev-grader=${report.jevGrader} none=${report.none}`);
   }
   out(`labeled: ${K} (pass ${pass}, fail ${fail}, block ${block})`);
   out(`baseline majority: ${baseline.majorityClass} right ${baseline.majorityRight} of ${K}`);
@@ -1049,7 +1129,10 @@ async function main(argv, deps = {}) {
   out(`baseline unknown: right 0 of ${K}`);
   out(`question: ${QUESTION}`);
   out(`options: ${OPTION_PAIRS.length} sha256=${sha256Hex(JSON.stringify({ question: QUESTION, options: OPTION_PAIRS }))}`);
-  out(`orders: ${ORDERS}, name order then rotated left by 1 and by 2`);
+  const ordersPerMiss = values['audit-orders'] === true ? ORDERS : SERVING_ORDERS;
+  out(ordersPerMiss === ORDERS
+    ? `orders: ${ORDERS}, name order then rotated left by 1 and by 2 (audit)`
+    : `orders: ${SERVING_ORDERS} per miss (serving); use --audit-orders for three-order comparison`);
   out(MARGIN_LINE);
   out(KEEP_RULE_LINE);
   out(POWER_LINE);
@@ -1073,7 +1156,7 @@ async function main(argv, deps = {}) {
     gateLine = 'no headroom';
   } else {
     gate = 'open';
-    gateLine = `planned calls: jev ${3 * K + 1}`;
+    gateLine = `planned calls: jev ${ordersPerMiss * K + 1}`;
   }
   out(gateLine);
 
@@ -1100,7 +1183,7 @@ async function main(argv, deps = {}) {
       out(line);
       jevResult = { skipped: line };
     } else {
-      jevResult = await runJevArm(plan, jevCheck, { out, env, timeoutMs, backoffMs, callLog, stored });
+      jevResult = await runJevArm(plan, jevCheck, { out, env, timeoutMs, callLog, stored, ordersPerMiss });
     }
   }
 
@@ -1127,7 +1210,7 @@ async function main(argv, deps = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
-  QUESTION, OPTION_PAIRS, ORDERS, LABEL_GATE, MARGIN_LINE, KEEP_RULE_LINE, POWER_LINE,
+  QUESTION, OPTION_PAIRS, ORDERS, SERVING_ORDERS, SCORER_VERSION, LABEL_GATE, MARGIN_LINE, KEEP_RULE_LINE, POWER_LINE,
   JEV_VERSION, DEFAULT_PROFILE, USAGE,
   sha256Hex, resolveProfile, loadFixtureCases, censusFixtures,
   parseOutputs, censusOutputs, censusReports,

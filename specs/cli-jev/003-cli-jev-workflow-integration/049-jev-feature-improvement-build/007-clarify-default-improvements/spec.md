@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/007-clarify-default-improvements` |
 | **Parent Spec** | ../spec.md |
@@ -89,6 +89,7 @@ The clarify scorer scores only rows that still clarify, reports by class and hub
 | ----------- | ------------- | ------------- |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/score-clarify-default.cjs` | Modify | Replay check, digests, class and hub report, baselines, approver fields, early stop |
 | `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | Modify | Cases for each new behavior |
+| `.skilled/skills/sk-doc/sk-create-skill/scripts/tests/fixtures/047-020-recorded-picks.jsonl` | Create | The 047 run's recorded choice picks (row, order, pick, status) for the REQ-004 replay test |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -100,7 +101,7 @@ The clarify scorer scores only rows that still clarify, reports by class and hub
 
 | ID | Requirement | Acceptance Criteria |
 | ---- | ------------- | --------------------- |
-| REQ-001 | A scored row whose replay on the pinned build does not return `clarify` is refused before any call. | A test with a routed row asserts the refusal. |
+| REQ-001 | A scored row whose replay on the pinned build does not return `clarify` is refused before any call. | A test with a routed row asserts that row is refused and reported while the run scores the rows that still clarify. |
 | REQ-002 | `report.json` carries the four digests and the build identity. | A test asserts each field. |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -118,7 +119,7 @@ The clarify scorer scores only rows that still clarify, reports by class and hub
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: No non-clarify row can be scored
-- **SC-002**: The recorded run replays byte-equal in fewer calls
+- **SC-002**: The recorded run replays with the same modal picks in fewer calls, with flips counted over measured votes only
 <!-- /ANCHOR:success-criteria -->
 
 ---

@@ -10,5 +10,6 @@
     "stopReason: blockedStop",
     "failedGates: evidenceGate",
     "sessionOutcome: advisoryOnly"
-  ]
+  ],
+  "allowlist": {"cli_flags":[],"symbols":[]}
 }
