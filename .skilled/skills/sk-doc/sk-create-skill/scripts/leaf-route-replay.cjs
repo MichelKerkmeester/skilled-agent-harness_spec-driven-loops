@@ -30,7 +30,7 @@ const scenarios = require('./validate-compiled-routing-scenarios.cjs');
 const AMBIGUITY_DELTA = 1;
 
 // The seven parent hubs this replay reports, in report order. Each ships a
-// ROUTER.md; cli-classifier declares itself stage1-only.
+// ROUTER.md.
 const HUBS = Object.freeze(['sk-doc', 'mcp-tooling', 'system-deep-loop', 'cli-external-orchestration', 'sk-design', 'sk-code', 'cli-classifier']);
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
 const USAGE = 'usage: leaf-route-replay.cjs [--report <dir>] [--transcripts <dir>] [--prose <file>]';
