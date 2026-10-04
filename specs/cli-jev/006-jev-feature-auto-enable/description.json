@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "cli-jev/006-jev-feature-auto-enable",
+  "description": "Four Jev features have a measured keep verdict: the citation drift check (032), the injection screen (035, 84 against 68 of 90), the reviewer verdict",
+  "keywords": [
+    "four",
+    "jev",
+    "features",
+    "measured",
+    "keep",
+    "verdict",
+    "citation",
+    "drift",
+    "check",
+    "injection",
+    "screen",
+    "against",
+    "reviewer"
+  ],
+  "lastUpdated": "2026-10-04T21:47:37.801Z",
+  "specId": "006",
+  "folderSlug": "jev-feature-auto-enable",
+  "parentChain": [
+    "cli-jev"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,303 @@
+I'll start by reading the deep-research workflow contract and checking the lineage directory state.
+
+The lineage directory exists with pre-created infrastructure. Let me inspect it and read the remaining contract sections.
+
+Now let me look at the spec folder context, the loop protocol for init, and check for steer.md.
+
+The parent run config exists; my lineage needs its own state packet. Let me read the loop protocol and state format references, plus the parent orchestration status.
+
+Now let me understand the append gateway and the fan-out runner's expectations for a lineage.
+
+
+
+
+
+The gateway accepts legacy-format records via an upcast path. Let me check what the fan-out runner expects from my lineage — searching for its validation markers.
+
+
+
+
+
+
+
+
+
+
+
+Let me find the deep-research YAML workflow to understand phase_init, reducer steps, and synthesis requirements.
+
+
+
+
+
+
+
+
+
+
+
+Now let me read the synthesis-closeout script to understand the terminal synthesis event shape.
+
+Let me examine the reducer script the workflow uses and its argument contract.
+
+
+
+
+
+
+
+
+
+
+
+The reducer resolves `{specFolder}/research` — I need to check how it can target my lineage dir directly. Let me read the reducer's main function.
+
+
+
+Let me check how the YAML defines state paths and how the fanout lineage is expected to handle the reducer.
+
+The canonical layout is flat under `{artifact_dir}` = my lineage dir. Let me check prior completed lineage runs elsewhere in the repo for the established convention.
+
+
+
+A completed prior lineage exists — this is the exact convention to follow. Let me study its artifacts.
+
+
+
+The prior lineage shows the exact convention. Let me verify how the ledger schema projects the synthesis event into the state log — checking the registered stems and projection shape.
+
+
+
+
+
+
+
+
+
+The projection contract is critical — the runner reads projected rows. Let me check the registered stems and how legacy rows get upcast, since the projected synthesis row needs a `stopReason`.
+
+Let me read the legacy compatibility upcaster — this determines how my canonical iteration records get projected.
+
+Let me check other completed lineages to see how the registry/state log were produced in the flat layout — especially whether gateway-projected rows look different.
+
+Let me check how the fan-out merge reads lineage artifacts — that tells me exactly what my lineage must leave behind.
+
+Recent precedents exist in `cli-jev/004`. Let me study that lineage layout — it's the closest to my task family.
+
+
+
+This is the exact precedent — same repo family, same executor, run today. Let me study its artifacts: config, deltas, registry, and iteration narrative.
+
+Now let me study the sibling's strategy, registry, iteration narrative, and events layout.
+
+The convention is confirmed: the detached lineage maintains strategy/registry/dashboard directly, keeping reducer shapes. Let me capture the remaining template shapes.
+
+
+
+
+
+
+
+I now have complete knowledge of the expected artifact shapes. Let me set up the task plan and read my packet's spec/plan to align with the deliverable contract.
+
+Spec confirms the deliverable: `research.md` with a ranked next step per non-proven feature. Now let me map the measured-history children (017, 020, 022, 047, 048, 049).
+
+
+
+Prior deep research exists in 048 on exactly my three features. Let me survey those research packets.
+
+
+
+The prior research syntheses exist. Let me read all three — this is the essential grounding for my lineage.
+
+The prior research is rich; my topic adds the new repeat runs and controls. Now let me check the current code state — the gate, its call sites, and what 049 changed.
+
+
+
+
+
+The gate is clear. Now let me examine the four proven features' gate usage patterns and the test coverage — the reference model for how a candidate earns a live path.
+
+Iteration 1 research is nearly complete. One final evidence batch: the auto-grader resolution pattern and the documented switch names.
+
+
+
+Iteration 1 evidence is complete. Now I'll execute phase_init — starting with the clock, directories, and config.
+
+
+
+
+
+Now open the state log through the gateway — mirroring the workflow's own `step_create_state_log` logic.
+
+Gateway receipt confirmed. Let me verify the projected state log and the created ledger infrastructure.
+
+Phase init is complete and verified. Now writing iteration 1's artifacts — narrative and clock read in parallel.
+
+
+
+Now record iteration 1 through the append gateway and verify the projection.
+
+Iteration 1 recorded and projected correctly. Moving to iteration 2 — spec-track narrowing. First, locate the 270-row repeat evidence and the 049 improvements.
+
+
+
+
+
+Iteration 2 evidence found — the repeat run and its verdict. Now let me read the repeat's report and locate the scorer's current keep-rule, bootstrap, and pinning code.
+
+The repeat run's full report is in the stdout file. Let me extract the verdict, arms, bootstrap and per-track data, plus the shared kit functions.
+
+Excellent evidence. One more batch: the test file's coverage and the live Gate 1 lookup surface where track narrowing would plug in.
+
+Now the power computation — the topic's core question for this feature. I'll compute exactly what the margin gate can detect at the repeat's observed effect size.
+
+Power numbers computed — this settles the "power" sub-question concretely. Writing iteration 2's artifacts now.
+
+
+
+
+
+
+
+Iteration 2 recorded. Now iteration 3 — routing clarify default. Survey the 049 improvements and the new evidence.
+
+
+
+
+
+
+
+Let me check the 049/007 goal for the current clarify-rate evidence and confirm the census writes nothing without flags.
+
+
+
+All writes are gated behind explicit output flags — the census run is read-only. Let me run it to confirm today's clarify rate.
+
+
+
+Census confirms 3 of 365 today (2 mode + 1 checklist). Let me verify the score path's write conditions, then replay the 54-row fixture to get today's refusal count.
+
+
+
+
+
+42 of 54 refused today, 12 remain — confirmed live. Now the seam check: what the front door returns on clarify.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Seam confirmed. Quick power computation for the clarify feature, then I'll write iteration 3.
+
+All iteration 3 evidence gathered. Writing the artifacts.
+
+
+
+
+
+Iteration 3 recorded. Now iteration 4 — alignment folder suggestion. Survey the 049/008 build and any recorded control runs.
+
+The distractor control is confirmed in the record. Let me read the scorer's control implementation and keep rule to cite exact lines.
+
+
+
+
+
+
+
+Complete control picture captured. Writing iteration 4's artifacts.
+
+
+
+
+
+
+
+Iteration 4 recorded. Now iteration 5 — cross-feature verification and the decision framework. Let me verify the shared machinery and the proven-features' measured rows.
+
+All cross-feature evidence verified. Writing iteration 5 — the decision framework.
+
+
+
+
+
+All five iterations recorded. Now phase synthesis — compiling `research.md`, the terminal events, and the reducer-shaped files. First, the synthesis document.
+
+Now the terminal synthesis events.
+
+
+
+
+
+State log complete with `stopReason: maxIterationsReached`. Now build the findings registry from the deltas and finalize the packet files.
+
+
+
+Registry built (36 findings: 15 P0, 12 P1, 9 P2). Let me fix the severity counts in research.md and update the strategy's machine-owned sections.
+
+
+
+
+
+Now the dashboard, config finalization, and resource map.
+
+Now the resource map, then final verification.
+
+All artifacts written. Now the final verification — simulating the runner's own checks against the lineage.
+
+All artifact checks pass. Now the containment check — verifying no writes escaped the lineage directory.
+
+
+
+Some outside files show recent mtimes — let me determine whether any content actually changed (git status) versus mtime touches by concurrent processes.
+
+Those are the parent session's in-progress changes (matching spec 006's file list), not mine. The definitive check is the containment baseline snapshot itself — let me compare it against the live tree exactly as the runner will.
+
+
+
+One file differs from the baseline. Let me inspect the diff and determine its origin.
+
+The differing file is concurrent parent-session cleanup (the three deleted 051 files match `git status` deletions) — not a lineage write. Let me check how the runner attributes containment, to understand the impact.
+
+Let me read the write-containment attribution logic to understand how this shared-worktree churn is handled.
+
+
+
+
+
+
+
+The engine has parent-orchestrator handling logic — let me read it (line ~1686).
+
+
+
+Let me check how the runner handles detected violations — whether they fail a lineage or are recorded as advisories.
+
+
+
+
+
+Containment findings are advisories on complete lineages, not failures. Let me check whether the hooks README falls under orchestrator-owned paths (excluded entirely).
+
+
+
+
+
+
+
+Containment resolved: complete lineages keep success with an advisory flag. Let me document the containment note and do the final artifact listing.
+
+
+
+Lineage `deepseek-v4-1-flash-max` complete. Five iterations ran to the cap and were recorded through the append gateway (config row + iterations 1–5 + `synthesis_complete` with `stopReason: maxIterationsReached` + `spec_synthesis_deferred`). 36 findings across the three features; `research.md` carries a ranked next step per non-proven feature, the seven-requirement proof-or-retire standard, the shared-kit amendment set, and the integration order. All runner checks verified: `research.md`, iteration files 1–5, state records 1–5, deltas with matching `findingsCount`, registry with 36 `keyFindings`. Containment: baseline byte-identical except one concurrently-changed parent file (documented as an advisory, not written by this lineage).
+
+FANOUT_LINEAGE_COMPLETE:deepseek-v4-1-flash-max
