@@ -1,7 +1,7 @@
 ---
 title: "464 -- Shared frontmatter value list"
 description: "This scenario validates the shared frontmatter value list for `464`. It focuses on the FRONTMATTER_VALUES helper printing one warning that names the canonical values for a contextType outside the list, staying silent on an alias, and exiting 0 both times."
-version: 1.0.0.0
+version: 2.7.0.2
 ---
 
 # 464 -- Shared frontmatter value list

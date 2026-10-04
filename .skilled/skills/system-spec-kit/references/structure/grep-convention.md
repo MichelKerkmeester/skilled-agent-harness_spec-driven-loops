@@ -11,7 +11,7 @@ trigger_phrases:
   - "retrofit diagnostics schema"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 2.7.0.7
 ---
 
 # Grep Convention for Spec Documents
