@@ -1,11 +1,11 @@
 {
   "counts": {
-    "duplicate-phrase": 57,
-    "missing-frontmatter": 6675,
-    "ok": 13093,
+    "duplicate-phrase": 54,
+    "missing-frontmatter": 6662,
+    "ok": 13049,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23340,
+  "documentsScanned": 23280,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c9421f882790b9580d427d1cc60a537c13fa64e21a293e6e18ea46e4c874f095",
+  "manifestHash": "f00a899fea342527031495196ff9a517137eccced304bf7b8279ef2c66591635",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33415,
+      "ok": 33392,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -32220,12 +32220,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/entry-points-and-modes/residue-flagger-measurement.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/system-deep-loop/deep-review/manual-testing-playbook/fanout/fanout-cli-lineages-review.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -32660,27 +32654,6 @@
       "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/convergence-score-delta.md",
       "rawKey": "trigger_phrases",
       "reason": "duplicate normalized phrase \"convergence score delta\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/severity-replay.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"severity replay\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-hint-replay.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"stop hint replay\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/feature-catalog/scoring/stop-rater-replay.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"stop rater replay\""
     },
     {
       "category": "duplicate-phrase",
@@ -33297,24 +33270,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/severity-replay.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-hint-replay.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/scoring/stop-rater-replay.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/script-entry-points/append-mode-event-script.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -33559,18 +33514,6 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/suggested-order-eval.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/scorer-fusion/tie-break-eval.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/system-skill-advisor/runtime/config/README.md",
       "reason": "no opening frontmatter delimiter"
@@ -33586,18 +33529,6 @@
       "line": 2,
       "path": ".skilled/skills/system-skill-advisor/runtime/tests/helpers/README.md",
       "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/hard-intent-corpus-resweep/research/sweep-results-harder.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/sweep-reports/seeded-corpus-evaluation-sweep/research/sweep-results.md",
-      "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
@@ -34767,12 +34698,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-verification-workflow.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -34786,12 +34711,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-delegation-scaffold-generator.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/debug-next-check.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -64874,24 +64793,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/.skilled/commands/doctor/speckit.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/.skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/containment/quarantine/3/content/README.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": "specs/system-speckit/048-doctor-command-audit/003-update/research/deep-research-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -65752,10 +65653,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit-fixtures",
-      "reason": "excluded directory"
-    },
-    {
       "path": ".skilled/skills/system-spec-kit/runtime/tests/description/fixtures",
       "reason": "excluded directory"
     },
@@ -66365,6 +66262,10 @@
     },
     {
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/050-pi-default-review/002-feature-review-and-remeasure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/scratch",
       "reason": "excluded directory"
     },
     {
