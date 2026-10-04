@@ -1,19 +1,26 @@
 # ─────────────────────────────────────────────────────────────────
 # DOCTOR ROUTER — CANONICAL ROUTE MANIFEST
 # ─────────────────────────────────────────────────────────────────
-# Source of truth for /doctor:speckit <target> dispatch.
-# Read by: .skilled/commands/doctor/speckit.md (the router)
+# Source of truth for the routed doctor commands. Each route names the command
+# that owns it, so one manifest serves every router:
+#   /doctor:speckit         .skilled/commands/doctor/speckit.md
+#   /doctor:skill-advisor   .skilled/commands/doctor/skill-advisor.md
+#   /doctor:deep-loop       .skilled/commands/doctor/deep-loop.md
+#   /doctor:runtime-mirrors .skilled/commands/doctor/runtime-mirrors.md
+#   /doctor:git             .skilled/commands/doctor/git.md
+# A command that owns one route takes no positional target.
 # Validated by: .skilled/commands/doctor/scripts/route-validate.sh
 # Consumed by: NOT currently harvested by either Skill Advisor implementation.
 #   Both harvesters (Python skill_advisor.py:810-871 _DOC_HARVEST_SUBDIRS =
 #   ("references","assets") rooted at SKILLS_DIR; TS doc-frontmatter.ts:23)
 #   walk only .skilled/skills/*/{references,assets}/*.md frontmatter — a
 #   .yaml file under .skilled/commands/doctor/ is out of scope by both file
-#   type and root. /doctor:speckit <target> dispatch is presentation-menu/argv-driven
-#   (see speckit.md), not advisor-driven. The trigger_phrases field below is
+#   type and root. Doctor dispatch is presentation-menu/argv-driven (see each
+#   router), not advisor-driven. The trigger_phrases field below is
 #   retained for a possible future doctor-routes harvester but is inert today.
 #
 # Schema (per route):
+#   command:          string — the doctor command that owns the route
 #   target:           string — positional name the user types
 #   yaml:             string — YAML asset filename in assets/
 #   setup_vars:       list   — variables the router resolves and passes to YAML
@@ -25,12 +32,14 @@
 #                              currently harvested by advisor (see "Consumed by" above)
 #
 # Skill-advisor recommendation tools are registered through system-skill-advisor.
-# To add a new target: append a route here, then re-run route-validate.sh.
+# To add a new target: append a route here with its owning command, list it in
+# that command's router and presentation, then re-run route-validate.sh.
 # To remove a target: delete the route AND its corresponding assets/doctor-<target>.yaml.
 # ─────────────────────────────────────────────────────────────────
 schema_version: 1
 routes:
-  - target: speckit-retrieval
+  - command: /doctor:speckit
+    target: speckit-retrieval
     yaml: doctor-speckit-retrieval.yaml
     setup_vars: [execution_mode, intent]
     allowed_flags: []
@@ -47,7 +56,8 @@ routes:
       - "retrieval conventions doctor"
       - "ripgrep recipe check"
 
-  - target: deep-loop
+  - command: /doctor:deep-loop
+    target: deep-loop
     yaml: doctor-deep-loop.yaml
     setup_vars: [execution_mode, intent, scope]
     allowed_flags: ["--scope=research|review|council|both|all"]
@@ -60,12 +70,13 @@ routes:
       - 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --iteration "{latest_iteration}" --read-only'
     trigger_phrases:
       - "deep-loop coverage"
-      - "deep-loop graph rebuild"
+      - "deep-loop graph empty or stale"
       - "deep-research convergence drift"
       - "deep-review iteration graph"
 
-  - target: skill-advisor
-    yaml: doctor-skill-advisor.yaml
+  - command: /doctor:skill-advisor
+    target: tune
+    yaml: doctor-skill-advisor-tune.yaml
     setup_vars: [execution_mode, scope, skip_tests, dry_run]
     allowed_flags: ["--skip-tests", "--dry-run", "--scope=all|explicit|derived|lexical"]
     mutating: mutates
@@ -84,11 +95,30 @@ routes:
       - 'Warm-only: probe the existing system-skill-advisor IPC socket first. Only when it answers, run node .skilled/bin/skill-advisor.cjs skill_graph_status --format json --warm-only. The flag guarantees no daemon start. Exit 75 means backend unavailable and retryable.'
     trigger_phrases:
       - "skill advisor scoring"
-      - "skill advisor rebuild"
       - "advisor recommendation tuning"
-      - "skill_graph scan"
+      - "skill advisor recommends the wrong skill"
 
-  - target: skill-budget
+  - command: /doctor:skill-advisor
+    target: rebuild
+    yaml: doctor-skill-advisor-rebuild.yaml
+    setup_vars: [execution_mode, dry_run]
+    allowed_flags: ["--dry-run"]
+    mutating: mutates
+    gate3_location: ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite (backed up beside itself before the rebuild)"
+    cli_commands:
+      - 'node .skilled/bin/skill-advisor.cjs advisor_status --format json --warm-only'
+      - 'node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_validate --format json --warm-only'
+    mcp_tools: []   # CLI front door only, no MCP calls
+    trigger_phrases:
+      - "skill advisor rebuild"
+      - "rebuild the skill graph database"
+      - "skill_graph scan"
+      - "new skill not appearing in advisor results"
+
+  - command: /doctor:skill-advisor
+    target: skill-budget
     yaml: doctor-skill-budget.yaml
     setup_vars: [execution_mode, json_output, top_n, fail_over, project_ceiling]
     allowed_flags: ["--json", "--top-n=N", "--fail-over=N", "--project-ceiling=N"]
@@ -104,7 +134,8 @@ routes:
       - "skill char count drift"
       - "frontmatter description trim"
 
-  - target: parent-skill
+  - command: /doctor:skill-advisor
+    target: parent-skill
     yaml: doctor-parent-skill.yaml
     setup_vars: [execution_mode, parent_skill_dir]
     allowed_flags: ["--dir=<path>"]
@@ -125,7 +156,8 @@ routes:
       - "skill root metadata contract"
       - "missing skill json files"
 
-  - target: skill-graph-freshness
+  - command: /doctor:skill-advisor
+    target: skill-graph-freshness
     yaml: doctor-skill-graph-freshness.yaml
     setup_vars: [execution_mode]
     allowed_flags: []
@@ -140,7 +172,8 @@ routes:
       - "compiled vs sqlite vs disk graph drift"
       - "reindex staleness check"
 
-  - target: router-reach
+  - command: /doctor:skill-advisor
+    target: router-reach
     yaml: doctor-router-reach.yaml
     setup_vars: [execution_mode, hub, concurrency]
     allowed_flags: ["--hub=<skill-id>", "--concurrency=<n>"]
@@ -156,22 +189,8 @@ routes:
       - "phrase reaches nobody"
       - "routing residue allowlist"
 
-  - target: fable-mode
-    yaml: doctor-fable-mode.yaml
-    setup_vars: [execution_mode, target_dir, baseline]
-    allowed_flags: ["--dir=<path>", "--baseline=<path>"]
-    mutating: read-only
-    gate3_location: "n/a (read-only behavioral-metric diagnostic; reads deep-loop state + iteration markdown + baseline snapshot, writes no files)"
-    mcp_tools: []   # script-only behavioral-metric read; no MCP calls
-    script_invocations:
-      - 'node .skilled/commands/doctor/scripts/fable-mode-check.cjs --dir "{target_dir}" --baseline "{baseline}"'
-    trigger_phrases:
-      - "fable-5 behavioral metrics"
-      - "fable mode efficiency check"
-      - "tool text ratio diagnostic"
-      - "result-first opener metric"
-
-  - target: runtime-mirrors
+  - command: /doctor:runtime-mirrors
+    target: runtime-mirrors
     yaml: doctor-runtime-mirrors.yaml
     setup_vars: [execution_mode]
     allowed_flags: []
@@ -193,6 +212,45 @@ routes:
       - "command catalog drift"
       - "cursor devin codex sync check"
       - "discovery mirror out of sync"
+
+  - command: /doctor:git
+    target: hooks
+    yaml: doctor-git-hooks.yaml
+    setup_vars: [execution_mode, dry_run]
+    allowed_flags: ["--dry-run"]
+    mutating: mutates
+    gate3_location: "git config speckit.hooks.<key> in the repository's local config or the operator's global config"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/git-hook-gates.cjs list --json'
+      - 'node .skilled/commands/doctor/scripts/git-hook-gates.cjs set <key> on|off --scope local|global --json  # a dry run; the workflow adds --apply only after the plan is approved'
+      - 'bash .skilled/scripts/install-git-hooks.sh --status'
+    trigger_phrases:
+      - "turn off a git hook check"
+      - "disable comment hygiene gate"
+      - "pre-commit gate keeps blocking"
+      - "git hook settings"
+
+  - command: /doctor:git
+    target: standards
+    yaml: doctor-git-standards.yaml
+    setup_vars: [execution_mode, dry_run]
+    allowed_flags: ["--dry-run"]
+    mutating: mutates
+    gate3_location: ".sk-git/ at the repository root (or the directory git config skgit.contractDir names); the shipped sk-git templates are never written"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs status --json'
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs init --json  # a dry run; --apply after approval'
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs set <kind> <dotted.path> <json-value> --json  # a dry run; --apply after approval'
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs disable <kind> --json  # a dry run; --apply after approval'
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs check --json'
+      - 'node .skilled/skills/sk-git/scripts/validate-message.mjs --explain'
+    trigger_phrases:
+      - "change commit message rules"
+      - "allow longer commit subjects"
+      - "stop checking pr descriptions"
+      - "customize sk-git standards"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)
@@ -224,20 +282,9 @@ mcp_subroutes:
       - "mcp-doctor.sh"
 
 # ─────────────────────────────────────────────────────────────────
-# ORCHESTRATOR (not routed through /doctor:speckit, kept here for reference)
-# ─────────────────────────────────────────────────────────────────
-# /doctor:rebuild is a STANDALONE command at .skilled/commands/doctor/rebuild.md.
-# It does NOT route through /doctor:speckit. This block exists for advisor visibility.
+# STANDALONE COMMANDS (own routers, tracked here for visibility)
 # ─────────────────────────────────────────────────────────────────
 standalone:
-  - command: /doctor:rebuild
-    file: .skilled/commands/doctor/rebuild.md
-    yaml: doctor-rebuild.yaml
-    mutating: mutates
-    trigger_phrases:
-      - "rebuild all spec-kit databases"
-      - "doctor rebuild"
-      - "doctor full sync"
   - command: /doctor:update
     file: .skilled/commands/doctor/update.md
     yaml: doctor-update-check.yaml

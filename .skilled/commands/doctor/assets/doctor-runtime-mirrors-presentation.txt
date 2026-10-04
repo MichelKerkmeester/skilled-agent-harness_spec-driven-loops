@@ -1,0 +1,54 @@
+# /doctor:runtime-mirrors Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor:runtime-mirrors`: the argument failure, the per-checker result table, result templates, and next-step text. The command router owns asset routing only. The workflow YAML owns execution behavior.
+
+## 1. Argument Failure
+
+```text
+Unknown argument: [argument]
+/doctor:runtime-mirrors takes no arguments.
+STATUS=FAIL ERROR="unknown_argument"
+```
+
+## 2. Per-Checker Result Table
+
+Render one row per checker the workflow ran, in the workflow's order.
+
+| Surface | Checker | Result | Repair |
+|---------|---------|--------|--------|
+| [surface] | [check-only command] | [in sync|DRIFT|ERROR] | [the checker's write form, or none] |
+
+## 3. Result Templates
+
+### Summary
+
+```text
+DOCTOR DIAGNOSTIC RESULT
+Target: runtime-mirrors
+Status: [OK|DRIFT|ERROR]
+Mutation class: read-only
+Evidence: [N] checkers, [N] in sync, [N] drifting, [N] unable to run
+Recommendation: [the repair command for each drifting surface, or none]
+STATUS=[status]
+```
+
+### Failure Summary
+
+```text
+DOCTOR TARGET FAILED
+Target: runtime-mirrors
+Step: [checker]
+Error: [message]
+Next: [recommended command or manual action]
+STATUS=ERROR ERROR="[message]"
+```
+
+## 4. Troubleshooting Display
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| A checker reports drift | Run the repair command its row names, then rerun `/doctor:runtime-mirrors` |
+| A checker refuses to run | Read its error; a missing build or dependency is reported, never repaired |
+| Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
+
+End interactive presentations with: `What would you like to do next?`

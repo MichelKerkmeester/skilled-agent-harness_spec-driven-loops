@@ -81,9 +81,8 @@ mutated_copy() {
 
 # The copied validator resolves its inputs from these, not from its own location.
 REAL_ENV=(
-  "ROUTER_FILE=$DOCTOR_DIR/speckit.md"
+  "DOCTOR_DIR=$DOCTOR_DIR"
   "ASSETS_DIR=$DOCTOR_DIR/assets"
-  "PRESENTATION_FILE=$DOCTOR_DIR/assets/doctor-speckit-presentation.txt"
   "REPO_ROOT=$REPO_DIR"
 )
 
@@ -115,7 +114,7 @@ check "REPO_ROOT overrides where script_invocations resolve" '[[ "$RC" -eq 1 && 
 run_rv ROUTES_FILE="$WORK/empty.yaml" -- "$SCRIPT"
 check "an empty manifest exits 2 with a message" '[[ "$RC" -eq 2 && "$OUT" == *"ERROR"* && "$OUT" != *Traceback* ]]'
 
-printf -- '- target: memory\n' > "$WORK/list.yaml"
+printf -- '- command: /doctor:speckit\n  target: memory\n' > "$WORK/list.yaml"
 run_rv ROUTES_FILE="$WORK/list.yaml" -- "$SCRIPT"
 check "a top-level list manifest exits 2 with a message" '[[ "$RC" -eq 2 && "$OUT" == *"ERROR"* && "$OUT" != *Traceback* ]]'
 
@@ -142,7 +141,7 @@ check "a duplicated route is caught as C1 drift" '[[ "$RC" -eq 1 && "$OUT" == *"
 # 4. SELF-TEST CATCHES A SILENCED RULE
 # ───────────────────────────────────────────────────────────────
 
-for rule in B2 C1 D1 I1 J1 K1 L1; do
+for rule in B2 B3 C1 D1 I1 J1 K1 L1; do
   MUTANT="$(mutated_copy "$rule")"
   if ! grep -q '(lambda \*_: None)(f"'"$rule"':' "${MUTANT%.sh}.py"; then
     fail "mutation for $rule applied (no fail call found to silence)"

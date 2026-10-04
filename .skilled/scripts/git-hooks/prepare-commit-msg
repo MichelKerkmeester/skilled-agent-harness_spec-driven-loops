@@ -77,6 +77,19 @@ if [[ -n "$REPO_ROOT" && ( -z "$_hook_common" || "$_hook_common" != "$_repo_comm
 fi
 # <<< hook trust
 
+# Gate settings: speckit.hooks.prepareCommitMsg set to off in git config skips the stamp
+# as SPECKIT_SKIP_PREPARE_COMMIT_MSG=1 would. Without the helper the hook runs. Other
+# repositories are never stamped, so they read no setting and print nothing.
+_gate_config="$(cd "$(dirname "$_trust_self")" && pwd -P)/lib/gate-config.sh"
+if _in_toolchain_repo && [[ -r "$_gate_config" ]]; then
+  # shellcheck source=lib/gate-config.sh
+  . "$_gate_config"
+  gate_config_apply prepare-commit-msg
+  if [[ "${SPECKIT_SKIP_PREPARE_COMMIT_MSG:-0}" = "1" ]]; then
+    exit 0
+  fi
+fi
+
 ALLOCATOR="$SOURCE_ROOT/skills/sk-git/scripts/commit-id-naming.sh"
 if [[ ! -f "$ALLOCATOR" ]]; then
   if _in_toolchain_repo; then

@@ -105,7 +105,7 @@ secret_handling:
     State the variable name and identify every source where it is set or unset. Do not ask for its value, retrieve its value, print it, repeat it, or write it. Explain that .env is the location used by Code Mode for provider secrets and that other readers need a shell/runtime export. Do not write .env. If it is also per-invocation, include only the redacted one-command form defined by the presentation contract.
 per_invocation_handling:
   behavior: |
-    Show the one-command usage form from the presentation contract, using the variable's documented one-command context where available. Never ask for a value, save the switch, or write it to any file. For a secret per-invocation variable, keep the value placeholder redacted.
+    Show the one-command usage form from the presentation contract, using the variable's documented one-command context where available. Never ask for a value, save the switch, or write it to any file. For a secret per-invocation variable, keep the value placeholder redacted. For a section 5 SPECKIT_SKIP_* gate, point to /doctor:git hooks, which saves a lasting gate setting in git config; this command still writes nothing for it.
 preference_handling:
   behavior: |
     Show the selected variable's current value by source where set, default, type, description, and documented source. Ask for the desired value and validate it against the documented type and any explicit allowed values in the reference. Do not invent enum values or silently coerce input. If the type or allowed values are ambiguous, explain the ambiguity and make no write for that variable.

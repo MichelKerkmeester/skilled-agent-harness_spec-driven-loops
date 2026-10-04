@@ -189,13 +189,13 @@ node .skilled/bin/skill-advisor.cjs list-tools --format json
 
 The first AI session you open in the main checkout installs this repository's git hooks. From then on git checks every commit and push you make there.
 
-- **pre-commit** blocks code comments that cite spec packets or task ids, and keeps generated mirrors and metadata in step with the files you stage
+- **pre-commit** blocks code comments that cite spec packets or task ids, and keeps generated mirrors and metadata in step with the files you stage. A staged file whose content git cannot read blocks the commit instead of going in unchecked
 - **commit-msg** holds each message to the rules block in sk-git's [commit template](.skilled/skills/sk-git/assets/commit-message-template.md): a `type(scope): summary` subject of at most 100 characters, a prose body, `Spec:` and `Commit-Id:` trailers that search can find, and no `Co-Authored-By` or `Claude-Session` lines
 - **pre-push** blocks a push that deletes more than 100 tracked files, and warns about out-of-date generated metadata, which CI then blocks. It checks the commits the push adds against the same commit rules, so a `--no-verify` commit is caught here, and checks a new branch's name against the [worktree checklist](.skilled/skills/sk-git/assets/worktree-checklist.md). A push to any branch other than `main`, a `skilled/v*` release branch or one on the sk-git allowlist needs your approval for that push, and creating such a branch needs an approval that names it
 
 The hooks are installed for every repository on the machine, but they run this toolchain's scripts only in checkouts that share this repository's git directory, such as its worktrees. Another clone runs its own copies only after `git config --local skilled.trustRepoHooks true`. A `git -c` flag or a `GIT_CONFIG_*` variable does not grant that trust.
 
-The commit, PR and branch rules have no bypass variable. To change them, edit the rules block in the template, and every gate follows it: both hooks, the agent gate that checks `git commit` and `gh pr create` before they run, and the `message-contract` CI check. A repository whose templates carry no rules block is not checked. The other gates' block messages name the variable that lets that one command through, such as `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...`. `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` turns off every pre-commit gate at once, and `SYSTEM_HOOKS_DISABLED=1` also turns off the post-commit live sync, from the environment or from `.skilled/hooks/hook-flags.env`.
+The commit, PR and branch rules have no bypass variable. To change them, edit the rules block in the template, and every gate follows it: both hooks, the agent gate that checks `git commit` and `gh pr create` before they run, and the `message-contract` CI check. `/doctor:git standards` makes that edit in the repository's own `.sk-git/` copies of the templates and refuses a change the gates would reject. A repository whose templates carry no rules block is not checked. The other gates' block messages name the variable that lets that one command through, such as `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...`. To keep one of those gates off without the prefix, set `speckit.hooks.<key>` to `off` in local or global git config, or let `/doctor:git hooks` do it. Only a repository the hooks trust reads that setting. The two per-push approvals cannot be saved. `SYSTEM_GIT_COMMIT_HOOKS_DISABLED=1` turns off every pre-commit gate at once, and `SYSTEM_HOOKS_DISABLED=1` also turns off the post-commit live sync, from the environment or from `.skilled/hooks/hook-flags.env`. A gate whose checker crashes blocks and reports the crash, so a broken check never passes as a clean one.
 
 To stop using the hooks, remove them and switch off the session check that would put them back:
 
@@ -529,7 +529,7 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 - `/speckit:save` returns a save plan by default. Its apply and full-auto modes refresh packet metadata through the continuity writer `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`
 - Recovery is the continuity ladder that `/speckit:resume` owns, not a session lookup
 - `/speckit:search` runs the two lexical lanes
-- `/doctor:speckit speckit-retrieval` checks that the index and the recipes are still healthy
+- `/doctor:speckit` checks that the index and the recipes are still healthy
 - The skill advisor owns the shared model server and embedding provider
 
 ---
@@ -714,7 +714,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 ├── compat/     stable compatibility entry for compiled consumers and the Python shim
 ├── config/     route exclusions
 ├── data/       the default prompt policy that skips casual prompts
-├── database/   SQLite skill graph and doctor-rebuild state
+├── database/   SQLite skill graph
 ├── handlers/   the nine command handlers
 ├── lib/        scorer, normalizer, freshness, cache
 ├── schemas/    JSON + Zod schemas
@@ -1192,29 +1192,33 @@ The active autonomous loop families (the improvement family carries two lanes). 
 &nbsp;
 #### DOCTOR
 
-Five commands cover every spec-kit diagnostic surface. Run `/doctor:speckit` with no target to see the interactive menu. Its option 1 hands release updates to `/doctor:update`.
+Eight commands cover the diagnostic surface, one per owner. The five routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
 
-**`/doctor:speckit <target>` (router)**
+**`/doctor:speckit`** - spec-kit retrieval
 
-- Single entry point for 9 targets: `speckit-retrieval` (checks the trigger index, its lookup and the ripgrep recipes), `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `router-reach`, `fable-mode`, `runtime-mirrors`
-- Argv-positional dispatch via `.skilled/commands/doctor/_routes.yaml` manifest (canonical per-target metadata: setup vars, allowed flags, mutation class, MCP tools, advisor trigger phrases)
-- Each target loads its own self-contained YAML workflow under `assets/doctor-<target>.yaml`
-- Interactive menu when no target supplied. Tier 2 per-target prompt when a required flag is missing
-- Examples: `/doctor:speckit skill-advisor --dry-run`, `/doctor:speckit router-reach`, `/doctor:speckit fable-mode --dir <deep-loop-artifact-dir>` (read-only behavioral-metrics diagnostic)
-- `--target=<name>` is preserved as a compatibility alias for flag-only invocation
+- Checks that the generated trigger index is fresh, that its lookup runs and that the ripgrep recipes return results, then names the regeneration command when the index is stale
+- An old target name such as `/doctor:speckit deep-loop` gets a notice naming the command that owns it now
+
+**`/doctor:skill-advisor <target>`** - skill advisor tuning, rebuild and audits
+
+- `tune` re-tunes the scoring lanes after a per-skill review. `rebuild` rebuilds `skill-graph.sqlite` from the checked-in `graph-metadata.json` files through the advisor CLI, after a backup it restores when the rebuild fails
+- Read-only audits: `skill-graph-freshness`, `router-reach`, `skill-budget` and `parent-skill`
+- Interactive menu when no target is supplied. Examples: `/doctor:skill-advisor rebuild --dry-run`, `/doctor:skill-advisor router-reach --hub=sk-doc`
+
+**`/doctor:deep-loop [--scope=research|review|council|both|all]`** - deep-loop coverage graphs and convergence, read through the loop's own scripts
+
+**`/doctor:runtime-mirrors`** - checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled`, and names the repair command for any that drift
+
+**`/doctor:git <hooks|standards>`** - your own settings for the shipped git hooks and sk-git rules
+
+- `hooks` lists every optional pre-commit, prepare-commit-msg and pre-push gate with its saved setting, and switches one on or off in local or global git config (`speckit.hooks.<key>`) after showing the exact command. The per-push approvals are never saved, and the whole-hook kill switches stay with `/doctor:env`
+- `standards` shows which commit, PR and branch rules are enforced and where they come from, copies the shipped sk-git templates into `.sk-git/` once, then changes a setting, removes one or stops enforcing a kind in those copies, refusing any edit the sk-git validator would reject. The sk-git skill itself is never edited
+- Each change waits for an approval. `--dry-run` shows the plans and writes nothing
 
 **`/doctor:mcp install|debug`** - MCP infrastructure repair
 
 - `install`. Installs dependencies and builds Code Mode when its `dist` is missing or stale, configures `.utcp_config.json` manuals and registers Code Mode in the seven project runtime configs, each write after its own approval
 - `debug`. Diagnoses Code Mode with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
-
-**`/doctor:rebuild`** - multi-subsystem rebuild orchestrator
-
-- Dependency-safe rebuild across trigger index → skill-graph → advisor
-- One lock (`system-skill-advisor/runtime/database/.doctor-rebuild.flock`), one pre-mutation snapshot set, one dependency DAG, one rollback policy, one state log (`.doctor-rebuild.last-run.json`)
-- Tier-aware mid-run prompts: SHORT steps auto-acknowledge. The LONG-POLE trigger-index regeneration gets an explicit ETA prompt (Q-LONG, 1-5 min)
-- Additional gates: Q-PROBE (skill-advisor daemon notice, informational), Q-LEGACY (per-file cleanup with `--cleanup-legacy`), Q-FAIL (step-failure recovery)
-- Use after upgrading spec-kit, after large packet moves or when multiple subsystem doctors would otherwise need to run by hand. Pass `--migrate` to handle packet schema migration. Wall-clock 8-25 min
 
 **`/doctor:update [check|align|apply|rollback|record-base]`** - release-aware spec-kit updater with read-only checks, alignment, a gated apply, rollback recovery and approved base recording.
 
@@ -1225,7 +1229,7 @@ Five commands cover every spec-kit diagnostic surface. Run `/doctor:speckit` wit
 - Saves a preference only after showing the exact line and destination and getting an explicit yes. `--dry-run` shows the same preview and writes nothing
 - Explains secrets and per-invocation switches without asking for or saving their values. A per-invocation switch is shown as a one-command prefix
 
-The 16 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
+The 19 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 
 &nbsp;
 #### UTILITY
@@ -1419,7 +1423,7 @@ cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
 
 - **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md)
 - **Validation.** `SPECKIT_SKIP_VALIDATION=1` switches spec folder validation off and `SKDOC_SKIP_VALIDATION=1` switches off the sk-doc validators. A skipped run says so and exits 0, so it is no evidence that a document is valid. CI sets neither
-- **Git hooks.** The per-gate bypasses such as `SPECKIT_SKIP_COMMENT_HYGIENE=1` are read from the environment only and cover one command. [Git Hooks](#git-hooks) covers turning the hooks off for good
+- **Git hooks.** The per-gate bypasses such as `SPECKIT_SKIP_COMMENT_HYGIENE=1` are read from the environment only and cover one command. `speckit.hooks.<key>` set to `off` in git config keeps one gate off for good, and `/doctor:git hooks` lists the keys. [Git Hooks](#git-hooks) covers turning the hooks off entirely
 - **The full list.** [`.env.example`](.env.example) lists the switches with their defaults. Only Code Mode reads a `.env` file, so a switch written there counts only where your shell or runtime exports it
 
 &nbsp;

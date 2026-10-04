@@ -9,6 +9,16 @@ allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 
 This command is a thin router. It resolves the MCP sub-action and setup values, then loads the matching workflow YAML and the presentation contract.
 
+### MANDATORY INPUT GATE
+
+**STATUS: BLOCKED** until `sub_action` is bound.
+
+1. Parse the first positional token of `$ARGUMENTS` as `sub_action`, before any flag.
+2. Treat an absent or whitespace-only sub-action as missing. Do not infer it from conversation history, open files, earlier runs, runtime config state or repository state.
+3. When it is missing, show the presentation contract's sub-action menu, stop, and wait. Use only `$ARGUMENTS` or that explicit reply.
+
+If this gate was skipped, stop, say so, return to it, and bind the sub-action before loading any workflow.
+
 ## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Do not edit workflow YAML while executing this command.
@@ -34,7 +44,7 @@ Load the presentation contract before showing startup questions, setup dashboard
 - `install` accepts `--runtime <name>`; `debug` accepts `--fix`.
 - If any referenced asset is missing, stop and report the missing path.
 - This command installs and diagnoses Code Mode, its `.utcp_config.json` manuals, credential references, and runtime registrations.
-- Subsystem diagnostics stay under `/doctor:speckit <target>` and `/doctor:rebuild`.
+- Subsystem diagnostics have their own commands: `/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop` and `/doctor:runtime-mirrors`.
 - The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
 
 ---
@@ -42,18 +52,17 @@ Load the presentation contract before showing startup questions, setup dashboard
 ## 4. EXECUTION TARGETS
 
 1. Read `.skilled/commands/doctor/assets/doctor-mcp-presentation.txt`.
-2. Parse the first positional token from `$ARGUMENTS` as `sub_action`.
-3. If `sub_action` is missing, ask the presentation contract's sub-action prompt and wait.
-4. If `sub_action` is not `install` or `debug`, render the presentation contract's unknown-sub-action failure and stop.
-5. Bind the workflow asset:
+2. Take `sub_action` from the input gate.
+3. If `sub_action` is not `install` or `debug`, render the presentation contract's unknown-sub-action failure and stop.
+4. Bind the workflow asset:
    - `install` -> `.skilled/commands/doctor/assets/doctor-mcp-install.yaml`
    - `debug` -> `.skilled/commands/doctor/assets/doctor-mcp-debug.yaml`
-6. Parse remaining flags using only the selected sub-action schema:
+5. Parse remaining flags using only the selected sub-action schema:
    - `install`: optional `--runtime <name>` from `opencode`, `claude`, `codex`, `cursor`, `pi`, or `devin`
    - `debug`: optional `--fix`
-7. Reject cross-sub-action flags before YAML load using the presentation contract's error wording.
-8. Load the selected workflow YAML and execute it step by step.
-9. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, and next-step display.
+6. Reject cross-sub-action flags before YAML load using the presentation contract's error wording.
+7. Load the selected workflow YAML and execute it step by step.
+8. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, and next-step display.
 
 ---
 
@@ -70,4 +79,4 @@ The following content lives only in `.skilled/commands/doctor/assets/doctor-mcp-
 
 ## 6. WORKFLOW SUMMARY
 
-The bound sub-action workflow (`doctor-mcp-install.yaml` for `install`, `doctor-mcp-debug.yaml` for `debug`) drives Code Mode assessment, installation or repair, and verification, rendering every user-facing string through the presentation contract. The health script runs with `--json` and preserves its structured output. Each repair requires explicit approval, including when `--fix` is set. The workflow reports credential reference presence without requesting or writing credential values. Subsystem diagnostics route through `/doctor:speckit <target>` and `/doctor:rebuild`.
+The bound sub-action workflow (`doctor-mcp-install.yaml` for `install`, `doctor-mcp-debug.yaml` for `debug`) drives Code Mode assessment, installation or repair, and verification, rendering every user-facing string through the presentation contract. The health script runs with `--json` and preserves its structured output. Each repair requires explicit approval, including when `--fix` is set. The workflow reports credential reference presence without requesting or writing credential values. Subsystem diagnostics route through `/doctor:speckit`, `/doctor:skill-advisor`, `/doctor:deep-loop` and `/doctor:runtime-mirrors`.

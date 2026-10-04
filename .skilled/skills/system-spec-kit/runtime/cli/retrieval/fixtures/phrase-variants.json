@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dad10eeb3a0fc5454d9da97f48f5e7e12e2f25739205fed47e5e1b178726a579",
+  "manifestHash": "9d137bb43e0d231e36a42e06b4c0799b0816c3f324d3c3c85b1d42e38bdb848f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15289,6 +15289,12 @@
     "changelog described the scaffold": [
       "changelog described the scaffold"
     ],
+    "changelog doctor git hooks findings": [
+      "changelog doctor git hooks findings"
+    ],
+    "changelog doctor git hooks gap": [
+      "changelog doctor git hooks gap"
+    ],
     "changelog draft drift": [
       "changelog draft drift"
     ],
@@ -15404,6 +15410,9 @@
     "changelog readme conformance": [
       "changelog readme conformance"
     ],
+    "changelog research plan": [
+      "changelog research plan"
+    ],
     "changelog retrofit checklist": [
       "changelog retrofit checklist"
     ],
@@ -15487,6 +15496,9 @@
     ],
     "changelog type detection": [
       "changelog type detection"
+    ],
+    "changelog update plan": [
+      "changelog update plan"
     ],
     "changelog v4 style": [
       "changelog v4 style"
@@ -26839,9 +26851,6 @@
     "cross study integration tasks": [
       "cross study integration tasks"
     ],
-    "cross subsystem aligner doctor rebuild": [
-      "cross-subsystem aligner doctor rebuild"
-    ],
     "cross subsystem health dashboard": [
       "cross-subsystem health dashboard"
     ],
@@ -32782,6 +32791,9 @@
     "delete constitutional folder": [
       "delete constitutional folder"
     ],
+    "delete doctor rebuild": [
+      "delete doctor rebuild"
+    ],
     "delete folder": [
       "delete folder"
     ],
@@ -35041,6 +35053,9 @@
       "/doctor causal-graph",
       "doctor causal-graph"
     ],
+    "doctor changelog research": [
+      "doctor changelog research"
+    ],
     "doctor cocoindex": [
       "/doctor cocoindex",
       "doctor cocoindex"
@@ -35079,6 +35094,9 @@
     "doctor command cutover summary": [
       "doctor command cutover summary"
     ],
+    "doctor command pointers in skill readmes": [
+      "doctor command pointers in skill readmes"
+    ],
     "doctor command presentation": [
       "doctor command presentation"
     ],
@@ -35108,6 +35126,9 @@
     ],
     "doctor command security hardening": [
       "doctor command security hardening"
+    ],
+    "doctor command split": [
+      "doctor command split"
     ],
     "doctor command surface": [
       "doctor command surface"
@@ -35144,6 +35165,9 @@
     ],
     "doctor commands inventory and extract tasks": [
       "doctor commands inventory and extract tasks"
+    ],
+    "doctor commands release notes": [
+      "doctor commands release notes"
     ],
     "doctor commands router rewire": [
       "doctor commands router rewire"
@@ -35197,6 +35221,9 @@
     "doctor deep loop audit acceptance": [
       "doctor deep-loop audit acceptance"
     ],
+    "doctor deep loop command": [
+      "doctor deep-loop command"
+    ],
     "doctor deep loop yaml": [
       "doctor-deep-loop.yaml"
     ],
@@ -35205,6 +35232,18 @@
     ],
     "doctor diagnostics dashboard": [
       "doctor diagnostics dashboard"
+    ],
+    "doctor docs and ci fix": [
+      "doctor docs and ci fix"
+    ],
+    "doctor docs and ci fix plan": [
+      "doctor docs and ci fix plan"
+    ],
+    "doctor docs and ci fix summary": [
+      "doctor docs and ci fix summary"
+    ],
+    "doctor docs and ci fix tasks": [
+      "doctor docs and ci fix tasks"
     ],
     "doctor dq route summary": [
       "doctor dq route summary"
@@ -35256,6 +35295,15 @@
     ],
     "doctor gates drift": [
       "doctor gates drift"
+    ],
+    "doctor git command": [
+      "doctor git command"
+    ],
+    "doctor git plan": [
+      "doctor git plan"
+    ],
+    "doctor git summary": [
+      "doctor git summary"
     ],
     "doctor hard cutover": [
       "doctor hard cutover"
@@ -35339,6 +35387,15 @@
     "doctor mutation class read only": [
       "doctor mutation class read-only"
     ],
+    "doctor ownership split": [
+      "doctor ownership split"
+    ],
+    "doctor ownership split plan": [
+      "doctor ownership split plan"
+    ],
+    "doctor ownership split summary": [
+      "doctor ownership split summary"
+    ],
     "doctor parent skill audit": [
       "doctor parent-skill audit"
     ],
@@ -35354,6 +35411,9 @@
     "doctor playbook sed": [
       "doctor playbook sed"
     ],
+    "doctor pointers shipped": [
+      "doctor pointers shipped"
+    ],
     "doctor pollution signal": [
       "doctor pollution signal"
     ],
@@ -35366,6 +35426,9 @@
     "doctor rebuild split": [
       "doctor rebuild split"
     ],
+    "doctor release notes shipped": [
+      "doctor release notes shipped"
+    ],
     "doctor removal tasks": [
       "doctor removal tasks"
     ],
@@ -35377,6 +35440,9 @@
     ],
     "doctor retrieval signals tasks": [
       "doctor retrieval signals tasks"
+    ],
+    "doctor route command owner": [
+      "doctor route command owner"
     ],
     "doctor route degraded adapters": [
       "doctor route degraded adapters"
@@ -35405,8 +35471,20 @@
     "doctor router cutover from legacy files": [
       "doctor router cutover from legacy files"
     ],
+    "doctor router gates": [
+      "doctor router gates"
+    ],
+    "doctor router gates plan": [
+      "doctor router gates plan"
+    ],
+    "doctor router gates summary": [
+      "doctor router gates summary"
+    ],
     "doctor router implementation plan": [
       "doctor router implementation plan"
+    ],
+    "doctor router input gate": [
+      "doctor router input gate"
     ],
     "doctor router phase 1": [
       "doctor router phase 1"
@@ -35465,6 +35543,9 @@
     "doctor scripts verification evidence": [
       "doctor scripts verification evidence"
     ],
+    "doctor scripts yaml dependency": [
+      "doctor-scripts yaml dependency"
+    ],
     "doctor sequential thinking removal": [
       "doctor sequential thinking removal"
     ],
@@ -35485,6 +35566,9 @@
     ],
     "doctor skill advisor command": [
       "doctor skill-advisor command"
+    ],
+    "doctor skill advisor rebuild shipped": [
+      "doctor skill-advisor rebuild shipped"
     ],
     "doctor skill advisor yaml": [
       "doctor-skill-advisor.yaml"
@@ -38965,6 +39049,9 @@
     "extract session data": [
       "extract session data"
     ],
+    "extract structure allowed tools commands": [
+      "extract structure allowed-tools commands"
+    ],
     "extract structure script obsidian": [
       "extract structure script obsidian"
     ],
@@ -38994,6 +39081,12 @@
     ],
     "extractkeywords quality fix plan": [
       "extractKeywords quality fix plan"
+    ],
+    "extractor command allowed tools fix": [
+      "extractor command allowed-tools fix"
+    ],
+    "extractor command exemption plan": [
+      "extractor command exemption plan"
     ],
     "extracttriggersfromcontent cap": [
       "extractTriggersFromContent cap"
@@ -43072,6 +43165,9 @@
     "gate closeout and drift whole system gate changelog": [
       "gate closeout and drift whole system gate changelog"
     ],
+    "gate config helper plan": [
+      "gate config helper plan"
+    ],
     "gate d resume perf hard coded path": [
       "gate-d-resume-perf hard-coded path"
     ],
@@ -43625,6 +43721,9 @@
     "git hook bypass lines shipped": [
       "git hook bypass lines shipped"
     ],
+    "git hook changelog coverage": [
+      "git hook changelog coverage"
+    ],
     "git hook drift": [
       "git hook drift"
     ],
@@ -43648,6 +43747,12 @@
     ],
     "git hook gate reduction": [
       "git hook gate reduction"
+    ],
+    "git hook gate settings": [
+      "git hook gate settings"
+    ],
+    "git hook gate settings shipped": [
+      "git hook gate settings shipped"
     ],
     "git hook lock directory recovery": [
       "git hook lock directory recovery"
@@ -85282,6 +85387,9 @@
     "sk git skill benchmark artifacts": [
       "sk-git skill-benchmark artifacts"
     ],
+    "sk git standards override": [
+      "sk-git standards override"
+    ],
     "sk git v1 0 0 0": [
       "sk-git v1.0.0.0"
     ],
@@ -86664,6 +86772,9 @@
     ],
     "skill advisor readme sweep": [
       "skill advisor README sweep"
+    ],
+    "skill advisor rebuild doctor": [
+      "skill advisor rebuild doctor"
     ],
     "skill advisor recall improvement": [
       "skill advisor recall improvement"
@@ -90367,6 +90478,9 @@
     ],
     "speckit hermes state dir": [
       "SPECKIT_HERMES_STATE_DIR"
+    ],
+    "speckit hooks git config": [
+      "speckit.hooks git config"
     ],
     "speckit index spec docs default corrected": [
       "speckit_index_spec_docs default corrected"
@@ -97854,8 +97968,29 @@
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
     ],
+    "v4 0 0 3 changelog gaps": [
+      "v4.0.0.3 changelog gaps"
+    ],
+    "v4 0 0 3 changelog research": [
+      "v4.0.0.3 changelog research"
+    ],
+    "v4 0 0 3 changelog research summary": [
+      "v4.0.0.3 changelog research summary"
+    ],
+    "v4 0 0 3 changelog update": [
+      "v4.0.0.3 changelog update"
+    ],
+    "v4 0 0 3 changelog update summary": [
+      "v4.0.0.3 changelog update summary"
+    ],
+    "v4 0 0 3 entry edit plan": [
+      "v4.0.0.3 entry edit plan"
+    ],
     "v4 0 0 3 release notes": [
       "v4.0.0.3 release notes"
+    ],
+    "v4 0 0 3 research plan": [
+      "v4.0.0.3 research plan"
     ],
     "v4 changelog": [
       "v4 changelog"
