@@ -1,0 +1,25 @@
+{
+  "specFolder": "agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix",
+  "description": "Devin cuts `AGENTS.md` at byte 16,384, partway through line 175 of 285 (`002-rule-concision-and-loading/prep/evidence-pack.md` §5)",
+  "keywords": [
+    "devin",
+    "cuts",
+    "agents",
+    "byte",
+    "partway",
+    "line",
+    "002-rule-concision-and-loading",
+    "prep",
+    "evidence-pack"
+  ],
+  "lastUpdated": "2026-10-04T14:49:19.501Z",
+  "specId": "003",
+  "folderSlug": "agents-md-delivery-prefix",
+  "parentChain": [
+    "agents",
+    "016-repo-rule-advisor-surfacing"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

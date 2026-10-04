@@ -1,0 +1,78 @@
+{
+  "topic": "Question: how should this repository's repo rules (.skilled/repo-rules/, 13 files, about 27k tokens) be written and loaded to change model behaviour, and at what context cost?",
+  "maxIterations": 2,
+  "minIterations": 2,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": false
+  },
+  "createdAt": "2026-10-04T13:48:57+00:00",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-advocate-1791120151016-ksetij",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-advocate",
+  "reducer": {
+    "enabled": false,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ],
+    "note": "Reducer disabled for this lineage because the standard reducer resolves the spec-folder root rather than the fanout artifact-dir override."
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only-via-gateway",
+    "deep-research-strategy.md": "mutable-lineage-local",
+    "deep-research-dashboard.md": "lineage-local-projection",
+    "findings-registry.json": "lineage-local-projection",
+    "iteration-*.md": "write-once",
+    "research.md": "lineage-local-synthesis"
+  }
+}

@@ -77,6 +77,39 @@ node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.r
   "$CASE_REWORDED/AGENTS.md"
 run_case 1 "iron_law_dropped_verification" node "$CHECKER" --root "$CASE_REWORDED"
 
+# FAIL with a named anchor: text inserted at the top pushes binding clauses past
+# the delivery prefix, so the guard must report which anchor moved out.
+expect_output() {
+  local pattern="$1"
+  local name="$2"
+  shift 2
+  local output
+  set +e
+  output="$("$@" 2>&1)"
+  set -e
+  if printf '%s' "$output" | grep -qF -- "$pattern"; then
+    printf 'PASS %s\n' "$name"
+  else
+    printf 'FAIL %s: output lacks "%s"\n%s\n' "$name" "$pattern" "$output" >&2
+    failures=$((failures + 1))
+  fi
+}
+
+CASE_PAST_CUT="$TMP_DIR/anchor_past_cut"
+seed_tree "$CASE_PAST_CUT"
+node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, "x".repeat(17000) + "\n" + fs.readFileSync(f,"utf8"));' \
+  "$CASE_PAST_CUT/AGENTS.md"
+run_case 1 "delivery_prefix_anchor_past_cut" node "$CHECKER" --root "$CASE_PAST_CUT"
+expect_output '"#### The Four Laws" ends at byte' "delivery_prefix_names_anchor" node "$CHECKER" --root "$CASE_PAST_CUT"
+
+# FAIL: a file over the Codex ceiling, even with every anchor still in the prefix.
+CASE_OVERSIZE="$TMP_DIR/oversize"
+seed_tree "$CASE_OVERSIZE"
+node -e 'const fs=require("fs");const f=process.argv[1];fs.writeFileSync(f, fs.readFileSync(f,"utf8") + "\n" + "y".repeat(33000) + "\n");' \
+  "$CASE_OVERSIZE/AGENTS.md"
+run_case 1 "delivery_prefix_over_ceiling" node "$CHECKER" --root "$CASE_OVERSIZE"
+expect_output 'exceeds the 32768-byte ceiling' "delivery_prefix_names_ceiling" node "$CHECKER" --root "$CASE_OVERSIZE"
+
 if [[ "$failures" -gt 0 ]]; then
   printf '%s rule-canary test case(s) failed\n' "$failures" >&2
   exit 1

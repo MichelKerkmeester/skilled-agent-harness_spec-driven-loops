@@ -1,0 +1,43 @@
+{
+  "topic": "Question: how should this repository's repo rules (.skilled/repo-rules/, 13 files, about 27k tokens) be written and loaded to change model behaviour, and at what context cost? Focus on measured rule compliance and actionable interventions.",
+  "maxIterations": 3,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading",
+  "resource_map_present": false,
+  "resource_map": {"emit": false},
+  "createdAt": "2026-10-04T13:39:11Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-luna-compliance-1791120151016-ksetij",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": false,
+    "note": "Detached fan-out lineage uses its explicit artifact root; reducer resolution and spec anchoring are skipped to preserve the lineage-only write boundary."
+  },
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-compliance"
+}

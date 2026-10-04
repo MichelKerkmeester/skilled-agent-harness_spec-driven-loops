@@ -20,7 +20,7 @@ trigger_phrases:
   - "name the rollback first"
 importance_tier: important
 contextType: reference
-version: 1.0.1.2
+version: 1.0.1.3
 ---
 
 # Rule: Blast radius and reversibility
@@ -49,8 +49,8 @@ One line, before the work: *"Low blast, reversible: one file, no callers outside
 module."* / *"High blast: touches auth middleware and persisted session rows.
 Irreversible once migrated."*
 
-Not ceremony. It is the sentence that makes you notice the migration is one-way before
-you write it, and it tells the operator what they are approving.
+It makes you notice the migration is one-way before you write it, and tells the operator
+what they are approving.
 
 ---
 
@@ -71,13 +71,11 @@ Two traps sit in the middle tier and behave like the bottom one:
 
 The tiers cut both ways. The bottom tier says stop and ask; **the top tier says decide
 and move on.** A change that reverts in one line does not earn a paragraph of
-deliberation, a comparison table, or a question to the operator, deliberating costs
-more than being wrong would. Pick the option you would defend, mark the spot if the
-choice is non-obvious, and keep going.
+deliberation, a comparison table, or a question to the operator. Pick the option you
+would defend, mark the spot if the choice is non-obvious, and keep going.
 
 The failure this prevents is the mirror of the one below: not a risky step taken without
 a rollback, but a cheap step stalled at a fork this table has already priced as free.
-Both are miscalibrations against the same scale.
 
 ---
 
@@ -88,17 +86,15 @@ the backup path, the revert commit, the down migration. If you cannot complete t
 sentence with something real, **you are not ready to act**; that is the finding, and it
 goes to the operator.
 
-At tier 3, **stop and wait for a yes.** Not "I'll proceed unless you object." Wait.
+At tier 3, **stop and wait for a yes.** Not "I'll proceed unless you object."
 
 **Before you stop, finish what the yes does not depend on.** Do every reversible step
 first, so the operator approves a finished, reviewable result and the yes is the last
-step. Stopping on a plan instead leaves the operator approving work they cannot see, and
-leaves the whole task waiting on the answer.
+step.
 
 **Approval does not transfer.** A yes for one destructive action does not cover the next
-one, a later one of the same kind, or a wider version of the same one. A push to a
-non-allowlisted remote branch is tier 3 for exactly this reason: it needs a fresh,
-in-the-moment yes, and a yes for an earlier push is not one.
+one, a later one of the same kind, or a wider version of the same one. Each push to a
+non-allowlisted remote branch needs its own in-the-moment yes.
 
 ---
 
@@ -109,8 +105,7 @@ Before changing anything shared, enumerate what was built against the old shape:
 - Deployed servers and running processes still on the old code.
 - Installed clients, SDKs, and other repositories that pin this interface.
 - Caches, queues, and in-flight messages holding the old format.
-- **Persisted data written by the old code:** the most-missed one, because it outlives
-  every process.
+- **Persisted data written by the old code:** the most-missed one.
 - Saved configuration, environment files, and CI definitions.
 - Documentation and examples that will now be wrong.
 

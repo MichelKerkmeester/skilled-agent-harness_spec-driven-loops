@@ -22,7 +22,7 @@ trigger_phrases:
   - "good stopping point"
 importance_tier: important
 contextType: reference
-version: 1.0.1.0
+version: 1.0.1.1
 ---
 
 # Rule: Scope discipline
@@ -53,8 +53,7 @@ Adjacent problems get named, not fixed.**
 | **Widening** | "While I was in there I also…" | Unreviewable diffs; a fix and an unrelated regression ship together |
 | **Transforming** | Solving the problem you find more interesting than the one asked | The stated problem is still there, and now there is new code too |
 
-Narrowing is the most common and least visible, because it is easy to mistake for
-restraint. Restraint governs *how much you build*, never *how much of the ask you
+Narrowing is easy to mistake for restraint. Restraint governs *how much you build*, never *how much of the ask you
 deliver*.
 
 ---
@@ -65,8 +64,7 @@ Law 2 freezes the scope; this section never widens it, it only says how to read 
 Inside the frozen scope these are the *same* change, not adjacent ones:
 
 - The files named in the request, or the ones it unambiguously implies.
-- **Direct callers the change would break:** a change that leaves the tree broken is
-  not finished.
+- **Direct callers the change would break.**
 - The test covering the behavior you changed.
 - Imports, type signatures, and generated files that mechanically follow.
 
@@ -88,25 +86,20 @@ Anything else is adjacent and goes to §4, including a caller the change does *n
 
 ## 4. THE ADJACENT-DEFECT PROTOCOL
 
-You will find real problems outside scope. Finding them is good; fixing them silently
-is not.
-
 1. **Stop.** Do not edit it.
 2. **Record it** in one line: `file:line, what is wrong, why it is out of scope`.
 3. **Finish the in-scope work.**
 4. **Report it in close-out** as a separate list from what you changed.
 
 Fold it in only if the operator says so, or if leaving it makes the in-scope change
-incorrect, in which case it was never adjacent, it was a caller, and §2 covers it.
+incorrect. Then it was a caller, and §2 covers it.
 
 ---
 
 ## 5. DEVIATING FROM AN APPROVED PLAN
 
 The protocol is `AGENTS.md` §1 PLAN-WORKFLOW LOCK, a hard blocker that outranks this
-file. Read it there. This section deliberately does not restate it: a hard blocker
-copied into a tier-3 document reads as though an operator instruction could outrank it.
-What this file adds is the adjacent case, a frozen **scope** you believe is wrong.
+file. Read it there. What this file adds is the adjacent case, a frozen **scope** you believe is wrong.
 
 ---
 
@@ -121,8 +114,8 @@ The operator decides.
 ## 7. FINISHING
 
 `AGENTS.md` §3 Execution Behavior binds: no early stop, no "natural checkpoint" on
-incomplete work, no asking permission to continue an approved, in-scope step. Two
-things are worth stating in scope terms:
+incomplete work, no asking permission to continue an approved, in-scope step. In scope
+terms:
 
 - **When one part is genuinely blocked, finish every other part in full**, then say
   explicitly what you left out and why. Scaling the work down is the operator's call.
@@ -134,19 +127,17 @@ things are worth stating in scope terms:
 
 ## 8. PLAN BEFORE ACTING
 
-Scope you have not thought through is scope you will discover mid-edit, which is where
-drift starts. Before the first change on any multi-step work, decide three things and
+Before the first change on any multi-step work, decide three things and
 say them:
 
 1. **Which files you will read first.** Reading first is `prevent-overengineering.md` §2's
-   pre-write pass, and it is not repeated here, but *which* files is a scope decision,
-   because the set you read is the set you will feel entitled to change.
-2. **Which tools or commands will do the work.** Naming them up front is what catches
-   the case where the plan needs something outside the frozen scope, while it is still
-   cheap to raise.
-3. **How the result will be verified.** `evidence-and-proof.md` §8 owns the proof plan;
-   what belongs here is that a change with no named check is a change with no defined
-   edge, and an undefined edge is where "while I was in there" gets in.
+   pre-write pass. *Which* files is a scope decision, because the set you read is the set
+   you will feel entitled to change.
+2. **Which tools or commands will do the work.** Naming them catches a plan that needs
+   something outside the frozen scope while it is still cheap to raise.
+3. **How the result will be verified.** `evidence-and-proof.md` §8 owns the proof plan.
+   A change with no named check has no defined edge, and an undefined edge is where
+   "while I was in there" gets in.
 
 Three sentences is a plan. The failure this prevents is not disorganization, it is the
 mid-task realization that the work needs a file nobody scoped, discovered at the moment

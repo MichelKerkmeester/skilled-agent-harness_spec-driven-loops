@@ -1,0 +1,193 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q-1",
+      "text": "What does a full load of the repository rules cost per session and per compaction window?",
+      "status": "resolved",
+      "iteration": 1
+    },
+    {
+      "id": "q-2",
+      "text": "How does prompt caching affect input cost versus context occupancy?",
+      "status": "resolved",
+      "iteration": 1
+    },
+    {
+      "id": "q-3",
+      "text": "What compression range is plausible, and what behavior does compression risk losing?",
+      "status": "resolved",
+      "iteration": 1
+    },
+    {
+      "id": "q-4",
+      "text": "Which cross-lineage claims survive adversarial review?",
+      "status": "resolved",
+      "iteration": 2
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-iter001-001",
+      "label": "A full-load scenario is about 37k estimated input tokens per context window: AGENTS.md 6.8k + REPO RULES.md 3.0k + all 13 rule files 26.8k. For a session that hits Gate 5 and then a substantive reply loading the five reply rules, the measured components total about 20.5k before any other action-triggered rules. The estimate is 4 bytes per token, not tokenizer output.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:19-26",
+        "AGENTS.md:93-101",
+        "AGENTS.md:259-261"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-002",
+      "label": "If a full rule bundle is reloaded after every compaction, each later window adds about 37k tokens; if only the 13 rule bodies are re-read, it adds about 26.8k. The evidence pack counts 104 post-compaction rule re-reads after compaction boundaries, but does not provide each window's file mix or size, so actual cumulative per-session reload cost is UNKNOWN.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:23,26,35-37"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-003",
+      "label": "API prompt caching can discount repeated input and reuse cached KV state for an unchanged prefix; it does not itself shorten the prompt. Inference: cached input cost and context occupancy are separate. This Codex invocation's actual cache-hit rate, context limit, and price for gpt-6-luna are UNKNOWN.",
+      "sources": [
+        "https://developers.openai.com/api/docs/guides/prompt-caching (lines 947, 952-954, 1045-1047, 1533-1535, 1897-1899)",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-advocate/invocation-metadata.json:1"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-004",
+      "label": "A measured 4,984-byte slice of the existing router trigger table is 95.3% smaller by bytes than the 107,092-byte rule corpus, but it is only a route-and-summary proxy. ASSUMPTION: applying the 935-1,784-byte card-size bounds named in steer.md to each of 13 files implies 78.4-88.6% fewer corpus bytes; no rendered-token or behavior-preservation test supports that range.",
+      "sources": [
+        "REPO RULES.md:38-52 (4,984 bytes measured 2026-10-04)",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:23",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-advocate/steer.md:11"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-005",
+      "label": "The current evidence does not establish that full loading improves compliance broadly: table use is 20.3% after reading communication.md versus 11.6% in never-read sessions, while semicolon use is 17.0% after reading communication-prose.md versus 43.7% in never-read sessions. Pattern-based detection and non-randomized sessions limit causal interpretation.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:41-51"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "f-iter001-006",
+      "label": "Whether a blanket 37k-token load is affordable for this model/runtime is UNKNOWN: the evidence pack estimates text size but supplies neither gpt-6-luna's usable context window nor Codex billing/cache telemetry.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:19-26",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-advocate/invocation-metadata.json:1"
+      ],
+      "iteration": 1
+    },
+    {
+      "id": "f-iter002-001",
+      "label": "F24's measured card-size savings may be real, but card-only content drops numbered-body norms in 6 of 13 rules and is partial in 5; the missing semicolon ban is the only observed rule with a read-associated reduction. The 'no measurement needed to start' conclusion is unsafe for a default rollout. Verdict: weakened.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-004.md:49-55",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/swe-2-max/iterations/iteration-002.md:15-25",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md:61-65,81-85",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:46"
+      ],
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-002",
+      "label": "F23's pointer pattern is a sound routing shape, but 'already working' is not established: answer-the-actual-request.md appears in 4 of 82 shell-inclusive session reads, without an opportunity denominator, and another lineage reports an observed 16,384-byte delivery cut before AGENTS.md:261. Verdict: weakened.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-004.md:26-47",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:34-37",
+        "AGENTS.md:259-261"
+      ],
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-003",
+      "label": "F25's wait-for-a-measured-Gate-5-miss rule stands. The 104 post-compaction re-reads and four answer-rule reads are counts, not opportunity-adjusted proof that a needed rule was missed; prior research recommends a logging-only observer first. Verdict: stands.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-004.md:57-65",
+        "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/research.md:21-25,50-54,72-77",
+        "specs/hooks/022-smart-rule-injection/decisions.md:33-36",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:35-37"
+      ],
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-004",
+      "label": "The table claim is descriptive for long, no-tool replies in this sample, not a causal estimate: the after rate is 20.3% of 1,063 replies and never is 11.6% of 86, but the cohorts are not randomized and the table regex flags requested document tables. Verdict: weakened.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:43-51",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/measure-rule-compliance.py:19-39,52-54,82-106"
+      ],
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-005",
+      "label": "The two observations do not support a causal rule that shorter literal prohibitions bind better: a punctuation ban and a table ban differ in rule, task exposure, baseline rate, exception structure, and sample sizes, and neither was randomized. Verdict: refuted as a causal inference; retained only as a hypothesis.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/swe-2-max/iterations/iteration-001.md:65-67",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:43-51",
+        ".skilled/repo-rules/communication.md:91-99",
+        ".skilled/repo-rules/communication-prose.md:101-110"
+      ],
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-006",
+      "label": "On the card conflict, the evidence supports the loss warning over wholesale card-only rollout: the proposed card omits numbered body rules in 6 files, including No semicolon, and is partial in 5. A card plus all self-checks would still be about 72.8% fewer bytes by calculation, but its behavior effect remains unmeasured. Verdict: weakened for F24's cost claim; the card-only safety claim is refuted.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/swe-2-max/iterations/iteration-002.md:15-25",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-004.md:51-55",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md:23",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md:61-65,81-85"
+      ],
+      "iteration": 2
+    },
+    {
+      "id": "f-iter002-007",
+      "label": "A response linter could be cause-independent only if it can prevent or repair the delivered reply with a low-false-positive predicate. The current Claude Stop completion hook is async, completion-claim-specific, advisory-only, and returns approve; a pipe-table check also flags requested tables unless it reads the request and exceptions. We and luna-compliance used the same gpt-6-luna model ID, so my agreement on the false-positive and enforcement caveats is not independent-model corroboration. Verdict: weakened.",
+      "sources": [
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-compliance/iterations/iteration-002.md:31-39",
+        ".claude/settings.json:167-181",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs:5-21,110-139",
+        ".skilled/hooks/completion/README.md:18-20,58-69,128-137",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/measure-rule-compliance.py:19-39",
+        "AGENTS.md:24-29",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-compliance/invocation-metadata.json:1",
+        "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-advocate/invocation-metadata.json:1"
+      ],
+      "iteration": 2
+    }
+  ],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 2,
+    "openQuestions": 0,
+    "resolvedQuestions": 4,
+    "keyFindings": 13,
+    "convergenceScore": 0.84,
+    "coverageBySources": {
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/evidence-pack.md": 11,
+      "AGENTS.md": 4,
+      "https://developers.openai.com/api/docs/guides/prompt-caching": 1,
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-advocate/invocation-metadata.json": 3,
+      "REPO RULES.md": 1,
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-advocate/steer.md": 1,
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/deepseek-v4-1-flash-max/iterations/iteration-004.md": 4,
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/swe-2-max/iterations/iteration-002.md": 2,
+      ".skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md": 2,
+      "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/research.md": 1,
+      "specs/hooks/022-smart-rule-injection/decisions.md": 1,
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/prep/measure-rule-compliance.py": 2,
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/swe-2-max/iterations/iteration-001.md": 1,
+      ".skilled/repo-rules/communication.md": 1,
+      ".skilled/repo-rules/communication-prose.md": 1,
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-compliance/iterations/iteration-002.md": 1,
+      ".claude/settings.json": 1,
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/completion-evidence-stop.cjs": 1,
+      ".skilled/hooks/completion/README.md": 1,
+      "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages/luna-compliance/invocation-metadata.json": 1
+    }
+  }
+}

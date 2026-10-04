@@ -20,9 +20,11 @@ shipped rule.
 
 Corpus figures are deliberately not restated here. To see the current ones, run
 `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` (the
-corpus checker) from the repository root — it reports count parity, link wiring,
-trigger-phrase uniqueness, the line ceiling, frontmatter keys and divider parity for the
-corpus as it stands.
+corpus checker) from the repository root. Its ten checks report count parity, link wiring,
+trigger-phrase uniqueness, the line ceiling, frontmatter keys, divider parity, rule-body
+links, fires-when sections, index summaries against each rule's description, and
+fires-when coverage (every Fires-when bullet named in its router row) for the corpus as it
+stands.
 
 ---
 
