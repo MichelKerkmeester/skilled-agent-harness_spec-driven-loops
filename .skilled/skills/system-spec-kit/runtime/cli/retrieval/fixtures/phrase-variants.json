@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9fb266610c7592183fd7bb0444b850be2ea361ad137f408801edca77c5c70e0b",
+  "manifestHash": "136d35e9799731ff803f0c5131cd5fddb32d6fcfe3df68668f8accb628f86c1f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -67570,8 +67570,8 @@
     "pi only hook": [
       "pi-only hook"
     ],
-    "pi openai codex opencode go minimax llmgateway": [
-      "pi openai-codex opencode-go minimax llmgateway"
+    "pi openai opencode go minimax llmgateway": [
+      "pi openai opencode-go minimax llmgateway"
     ],
     "pi openrouter roster": [
       "pi openrouter roster"
