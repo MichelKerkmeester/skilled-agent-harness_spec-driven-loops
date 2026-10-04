@@ -181,11 +181,13 @@ jobs:
       # checks require @spec-kit/shared through the workspace link, the hub
       # check loads sk-doc's contract libraries, which import the same package
       # through sk-doc's own install, and the freshness panel suite runs on the
-      # advisor runtime's vitest.
+      # advisor runtime's vitest. The advisor route-contract test parses the
+      # route manifest with the yaml package declared in .skilled/package.json.
       - name: Install test dependencies
         run: |
           set -euo pipefail
           python3 -m pip install pyyaml==6.0.3
+          npm --prefix .skilled ci
           npm --prefix .opencode/skills/system-spec-kit ci
           ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
           npm --prefix .opencode/skills/sk-doc ci
