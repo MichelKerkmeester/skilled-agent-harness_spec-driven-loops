@@ -815,6 +815,7 @@ const armEnv = (root, extra = {}) => ({
   PATH: `${path.join(root, 'bin')}${path.delimiter}${process.env.PATH ?? ''}`,
   STUB_LOG: path.join(root, 'stub.log'),
   ...extra,
+  JEV_TRANSPORT: 'jev',
 });
 
 const readStubLog = (root) => {
@@ -826,7 +827,12 @@ const readStubLog = (root) => {
 const runWithEnv = async (argv, repoRoot, env) => {
   const lines = [];
   const errors = [];
-  const code = await main(argv, { repoRoot, out: (line) => lines.push(line), err: (line) => errors.push(line), env });
+  const code = await main(argv, {
+    repoRoot,
+    out: (line) => lines.push(line),
+    err: (line) => errors.push(line),
+    env: { ...env, JEV_TRANSPORT: 'jev' },
+  });
   return { code, lines, errors };
 };
 
@@ -1102,6 +1108,82 @@ test('jev uses minimum reruns and adaptively includes the band endpoints', async
     assert.ok(lines.some((line) => line.startsWith('sign test jev.live:')));
     const payloads = fs.readFileSync(inputLogPath, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
     assert.deepEqual(payloads.map((payload) => payload.claim), [claims[0], claims[1], claims[1], claims[1], claims[2], claims[2], claims[2], claims[3], claims[3], claims[3]]);
+  } finally {
+    cleanup(root);
+  }
+});
+
+// B must count the comparator that won the baseline, whichever one it is. The
+// stub answers 0.9 on every call, so the column never flags and A stays fixed.
+test('jev column scores B with the winning baseline comparator', async () => {
+  const { root, commit } = makeGateFixture();
+  try {
+    addStubBin(root);
+    const env = armEnv(root);
+    const gate = jevGate({ out: () => {}, env, timeoutMs: 90000 });
+    const lacksToken = 'The function `vanished` still sits here.';
+    const cases = [
+      {
+        // Identifier overlap wrongly flags both clean rows, so flag-nothing wins.
+        rows: [
+          [gateRow(commit, 'clean-1', 2, 'supports'), lacksToken],
+          [gateRow(commit, 'clean-2', 2, 'supports'), lacksToken],
+          [gateRow(commit, 'drift-1', 4, 'partial'), GATE_CLAIMS.drifted],
+        ],
+        expected: { A: 2, B: 2, W: 0, L: 0 },
+      },
+      {
+        // Identifier overlap catches both drifted rows, so it wins the baseline.
+        rows: [
+          [gateRow(commit, 'clean-1', 2, 'supports'), GATE_CLAIMS.clean],
+          [gateRow(commit, 'drift-1', 4, 'partial'), lacksToken],
+          [gateRow(commit, 'drift-2', 4, 'partial'), lacksToken],
+        ],
+        expected: { A: 1, B: 3, W: 0, L: 2 },
+      },
+    ];
+    for (const { rows, expected } of cases) {
+      const windows = new Map(rows.map(([row, sentence]) => [row.id, { sentence, windowText: GATE_WINDOW_TEXT }]));
+      const result = await runJevArm(
+        { rows: rows.map(([row]) => row), windows, labelsSha: 'abc123abc123' },
+        gate,
+        { out: () => {}, env, timeoutMs: 90000, backoffMs: 1, callLog: { append() {} }, stored: null },
+      );
+      const { A, B, W, L } = result.column;
+      assert.deepEqual({ A, B, W, L }, expected);
+    }
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('Jev judgment call records include the selected transport', async () => {
+  const { root, commit } = makeGateFixture();
+  try {
+    addStubBin(root);
+    const env = armEnv(root);
+    const out = () => {};
+    const row = gateRow(commit, 'transport-record', 2, 'supports');
+    const windows = new Map([[row.id, {
+      sentence: GATE_CLAIMS.clean,
+      claim: 'A short fixture claim.',
+      windowText: GATE_WINDOW_TEXT,
+    }]]);
+    const records = [];
+    const gate = jevGate({ out, env, timeoutMs: 90000 });
+
+    await runJevArm({ rows: [row], windows, labelsSha: 'abc123abc123' }, gate, {
+      out,
+      env,
+      timeoutMs: 90000,
+      backoffMs: 1,
+      callLog: { append(record) { records.push(record); } },
+      stored: null,
+    });
+
+    const judgment = records.find((record) => record.rowId === row.id);
+    assert.ok(judgment);
+    assert.equal(judgment.transport, 'jev');
   } finally {
     cleanup(root);
   }

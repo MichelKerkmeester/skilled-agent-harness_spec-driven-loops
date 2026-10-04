@@ -90,6 +90,7 @@ async function runMain(args, options = {}) {
       ...cleanEnv(),
       PATH: options.bin ? `${options.bin}${path.delimiter}${process.env.PATH}` : process.env.PATH,
       ...(options.env ?? {}),
+      JEV_TRANSPORT: 'jev',
     },
     timeoutMs: 20000,
     backoffMs: 1,
@@ -125,7 +126,7 @@ function stubLog(bin, name) {
 }
 
 function stubEnv(bin, extra = {}) {
-  return { ...cleanEnv(), PATH: `${bin}${path.delimiter}${process.env.PATH}`, ...extra };
+  return { ...cleanEnv(), PATH: `${bin}${path.delimiter}${process.env.PATH}`, ...extra, JEV_TRANSPORT: 'jev' };
 }
 
 // One arm plan: the labeled fixture's scored rows and the chosen baseline's flags.
@@ -641,6 +642,36 @@ test('jev arm sends one --provider on every call and prints a keep verdict', asy
   assert.equal(calls.length, 181);
   assert.ok(calls.every((c) => typeof c.wallMs === 'number' && 'exitCode' in c && c.provider === 'openrouter' && c.model === 'stub-model'));
   assert.ok(calls.filter((call) => call.rowId !== null).every((call) => call.questionId === 'primary'));
+});
+
+test('Jev judgment call records include the selected transport', async () => {
+  const root = makeRepo(corpusFiles());
+  const bin = makeStubs();
+  const outDir = tempDir('jev-transport-out');
+  try {
+    const plan = await armPlan(root);
+    const lines = [];
+    const env = stubEnv(bin);
+    const gate = S.jevGate({ out: (line) => lines.push(line), env, timeoutMs: 20000 });
+    await S.runJevArm(plan, gate, {
+      out: (line) => lines.push(line),
+      env,
+      timeoutMs: 20000,
+      backoffMs: 1,
+      callLog: S.createCallLog(outDir),
+      stored: null,
+    });
+
+    const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8')
+      .trim().split('\n').map((line) => JSON.parse(line));
+    const judgmentCalls = calls.filter((call) => call.rowId !== null);
+    assert.ok(judgmentCalls.length > 0);
+    assert.ok(judgmentCalls.every((call) => call.transport === 'jev'));
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+    fs.rmSync(bin, { recursive: true, force: true });
+    fs.rmSync(outDir, { recursive: true, force: true });
+  }
 });
 
 test('jev adds a third primary call only when the two flags disagree', async () => {

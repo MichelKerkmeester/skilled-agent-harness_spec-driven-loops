@@ -1,11 +1,10 @@
 // ───────────────────────────────────────────────────────────────────
 // MODULE: Jev Transport
 // ───────────────────────────────────────────────────────────────────
-// Answers a jev `choice` question through either the jev CLI or Pi's native
-// classifier runtime, whichever the caller's own option or the caller's own
-// JEV_TRANSPORT value names. The CLI is the default and the fallback: a Pi
-// gate that fails prints exactly one skip line, then the CLI runs, so a caller
-// always receives a CLI-shaped outcome and never loses its bytes.
+// Answers a jev `choice` or `noul` question through Pi's native classifier
+// runtime when its preflight passes, and through the jev CLI otherwise. A call
+// that asks for Pi by name gets one skip line when Pi cannot answer; automatic
+// fallback stays quiet so the default route does not add output to the caller.
 //
 // The module never holds, reads, prints or passes a credential. The Pi route
 // calls ModelRuntime.create() and lets Pi resolve credentials from its own
@@ -56,18 +55,18 @@ function piSkipLine(gate) {
 /**
  * The transport one call uses, from the caller's option and the caller's own
  * environment object. An environment kill switch to the CLI wins; otherwise
- * the option wins over the environment. Only the empty string counts as unset.
+ * the option wins over the environment. No selection means try Pi automatically.
  *
  * @param {'jev' | 'pi' | undefined} option Per-call transport option.
  * @param {{ JEV_TRANSPORT?: string } | undefined} env Environment the caller passes to jev.
- * @returns {{ transport: 'jev' | 'pi', line: string | null }} Route plus the unknown-value line, or null when silent.
+ * @returns {{ transport: 'auto' | 'jev' | 'pi', line: string | null }} Route plus the unknown-value line, or null when silent.
  */
 export function resolveTransport(option, env) {
   const environment = (env ?? {})[TRANSPORT_ENV];
   const requested = environment === 'jev'
     ? 'jev'
     : (option !== undefined && option !== '' ? option : environment);
-  if (requested === undefined || requested === '') return { transport: 'jev', line: null };
+  if (requested === undefined || requested === '') return { transport: 'auto', line: null };
   if (requested === 'jev') return { transport: 'jev', line: null };
   if (requested === 'pi') return { transport: 'pi', line: null };
   return { transport: 'jev', line: `skip: unknown transport '${requested}', using jev CLI` };
@@ -129,16 +128,59 @@ export function choiceRequestFrom(args) {
 }
 
 /**
- * Pi's classifier context for one choice request: the stdin state under the
- * request key, and one named question carrying the caller's own instructions
- * and option descriptions. Criteria are rebuilt in submitted-key order, so the
- * model sees the options in the order the CLI would have offered them.
+ * A supported `noul` invocation, or null when its arguments are not limited to
+ * the question and optional provider. State remains on stdin for either route.
  *
- * @param {{ question: string, keys: string[], criteria: Record<string, string> }} request Parsed choice request.
+ * @param {string[]} args Arguments the caller would pass to `jev`.
+ * @returns {{ type: 'noul', provider?: string, question: string } | null} Parsed request, or null.
+ */
+export function noulRequestFrom(args) {
+  if (!Array.isArray(args) || args[0] !== 'noul') return null;
+
+  let question = '';
+  let hasQuestion = false;
+  let provider;
+  for (let index = 1; index < args.length; index += 1) {
+    const token = args[index];
+    if (token === '--provider') {
+      if (index + 1 >= args.length) return null;
+      provider = args[index + 1];
+      index += 1;
+      continue;
+    }
+    if (token === '-q' || token === '--question') {
+      if (index + 1 >= args.length) return null;
+      question = args[index + 1];
+      hasQuestion = true;
+      index += 1;
+      continue;
+    }
+    return null;
+  }
+
+  if (!hasQuestion) return null;
+  return { type: 'noul', ...(provider === undefined ? {} : { provider }), question };
+}
+
+/**
+ * Pi's classifier context for one choice or yes/no request. It keeps stdin
+ * under the request key, preserves choice criteria order, and uses Pi's public
+ * `bool` question type for yes/no requests.
+ *
+ * @param {{ question: string, keys: string[], criteria: Record<string, string> } | { type: 'noul', question: string }} request Parsed choice or noul request.
  * @param {string} stateText State text the caller feeds to jev on stdin.
- * @returns {{ state: { request: string }, questions: Record<string, { type: 'choice', instructions: string, criteria: Record<string, string> }> }} Context for `classify()`.
+ * @returns {{ state: { request: string }, questions: Record<string, { type: 'choice', instructions: string, criteria: Record<string, string> } | { type: 'bool', instructions: string }> }} Context for `classify()`.
  */
 export function classifierContextFor(request, stateText) {
+  if (request.type === 'noul') {
+    return {
+      state: { request: stateText },
+      questions: {
+        [ANSWER_NAME]: { type: 'bool', instructions: request.question },
+      },
+    };
+  }
+
   const criteria = {};
   for (const key of request.keys) criteria[key] = request.criteria[key];
   return {
@@ -179,6 +221,28 @@ export function choicePayloadFor(answer, keys, model) {
     answers: {
       [ANSWER_NAME]: { choice: picked.choice, probabilities: full, confidence: picked.confidence },
     },
+    model,
+  };
+}
+
+/**
+ * The CLI-shaped payload for one yes/no classifier answer, or null when its
+ * result does not carry a finite probability in the range a probability allows.
+ *
+ * @param {object} answer Result from Pi's classifier runtime.
+ * @param {string} model Model id the Pi route called.
+ * @returns {{ answers: { answer: { noul: number } }, model: string } | null} The CLI payload, or null.
+ */
+export function noulPayloadFor(answer, model) {
+  const picked = answer?.answers?.[ANSWER_NAME];
+  if (picked === null || typeof picked !== 'object' || Array.isArray(picked)) return null;
+  if (picked.type !== 'bool') return null;
+
+  const probability = picked.probability;
+  if (typeof probability !== 'number' || !Number.isFinite(probability) || probability < 0 || probability > 1) return null;
+
+  return {
+    answers: { [ANSWER_NAME]: { noul: probability } },
     model,
   };
 }
@@ -396,14 +460,13 @@ async function spawnCliWithinBudget(options, spawnFn, startedAt, timeoutMs) {
 }
 
 /**
- * One bounded call that reaches the CLI or, when the switch names it and the
- * request is a supported choice, Pi. Pi preflight is cached per process and
- * only its first failure is reported; any CLI fallback receives the remaining
- * call budget. The returned shape is the caller's own spawn contract.
+ * One bounded call that reaches the CLI or, when Pi's cached preflight passes
+ * for a supported request, Pi. Only an explicit Pi route reports a failed gate;
+ * every CLI fallback receives the remaining call budget.
  *
  * @param {{ file: string, args: string[], stdin: string, env?: object, timeoutMs: number, transport?: 'jev' | 'pi', report?: (line: string) => void }} options Call description.
  * @param {{ spawn?: Function, runtime?: object, createRuntime?: (packageDir: string) => Promise<object> | object }} [deps] Test seams for the child spawn and classifier runtime.
- * @returns {Promise<{ code: number|null, stdout: string, stderr: string, wallMs: number, timedOut: boolean }>} The call outcome.
+ * @returns {Promise<{ code: number|null, stdout: string, stderr: string, wallMs: number, timedOut: boolean, transport: 'pi' | 'jev' }>} The call outcome.
  */
 export async function spawnClassifierCall(options, deps = {}) {
   const env = options.env ?? {};
@@ -413,11 +476,14 @@ export async function spawnClassifierCall(options, deps = {}) {
     ? Math.max(0, options.timeoutMs)
     : DEFAULT_TIMEOUT_MS;
   const startedAt = Date.now();
-  const cli = () => spawnCliWithinBudget(options, spawnFn, startedAt, timeoutMs);
+  const cli = async () => ({
+    ...await spawnCliWithinBudget(options, spawnFn, startedAt, timeoutMs),
+    transport: 'jev',
+  });
 
-  // Only a choice request has a transport decision to make, so every other
-  // invocation is spawned on the CLI unchanged and prints nothing.
-  const request = choiceRequestFrom(options.args);
+  // Only supported classifier requests can use Pi. Other invocations run on
+  // the CLI unchanged, which remains the authority for their behavior.
+  const request = choiceRequestFrom(options.args) ?? noulRequestFrom(options.args);
   if (request === null) return cli();
   const effectiveProvider = request.provider ?? env.JEV_PROVIDER ?? 'official';
   const classifier = PI_CLASSIFIERS.get(effectiveProvider);
@@ -425,7 +491,7 @@ export async function spawnClassifierCall(options, deps = {}) {
 
   const route = resolveTransport(options.transport, env);
   if (route.line !== null) report(route.line);
-  if (route.transport !== 'pi') return cli();
+  if (route.transport === 'jev') return cli();
 
   let preflight;
   try {
@@ -436,11 +502,11 @@ export async function spawnClassifierCall(options, deps = {}) {
       remaining,
     );
   } catch {
-    reportPiPreflightFailureOnce(env, effectiveProvider, 'backend', report);
+    if (route.transport === 'pi') reportPiPreflightFailureOnce(env, effectiveProvider, 'backend', report);
     return cli();
   }
   if (preflight.gate !== null) {
-    reportPiPreflightFailureOnce(env, effectiveProvider, preflight.gate, report);
+    if (route.transport === 'pi') reportPiPreflightFailureOnce(env, effectiveProvider, preflight.gate, report);
     return cli();
   }
 
@@ -456,21 +522,23 @@ export async function spawnClassifierCall(options, deps = {}) {
       () => controller.abort(),
     );
   } catch {
-    report(piSkipLine('backend'));
+    if (route.transport === 'pi') report(piSkipLine('backend'));
     return cli();
   }
   const wallMs = Date.now() - startedAt;
 
   if (result?.stopReason === 'error') {
-    report(piSkipLine('backend'));
+    if (route.transport === 'pi') report(piSkipLine('backend'));
     return cli();
   }
 
-  const payload = choicePayloadFor(result, request.keys, classifier.model);
+  const payload = request.type === 'noul'
+    ? noulPayloadFor(result, classifier.model)
+    : choicePayloadFor(result, request.keys, classifier.model);
   if (payload === null) {
-    report(piSkipLine('backend'));
+    if (route.transport === 'pi') report(piSkipLine('backend'));
     return cli();
   }
 
-  return { code: 0, stdout: `${JSON.stringify(payload)}\n`, stderr: '', wallMs, timedOut: false };
+  return { code: 0, stdout: `${JSON.stringify(payload)}\n`, stderr: '', wallMs, timedOut: false, transport: 'pi' };
 }

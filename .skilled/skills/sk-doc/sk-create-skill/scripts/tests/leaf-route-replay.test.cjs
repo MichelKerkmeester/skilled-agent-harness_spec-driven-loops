@@ -374,7 +374,7 @@ test('a jev without a credential skips', () => {
   try {
     const result = S.jevGate({
       out: sinks.out,
-      env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_AUTH_EXIT: '3' }
+      env: { JEV_TRANSPORT: 'jev', PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_AUTH_EXIT: '3' }
     });
 
     assert.equal(result.passed, false);
@@ -392,7 +392,7 @@ test('jev off PATH and wrong version skip', () => {
   const missing = makeStubs({ jev: false });
   const missingSinks = captureSinks();
   try {
-    const result = S.jevGate({ out: missingSinks.out, env: { PATH: missing.dir + ':/usr/bin:/bin', STUB_LOG: missing.log } });
+    const result = S.jevGate({ out: missingSinks.out, env: { JEV_TRANSPORT: 'jev', PATH: missing.dir + ':/usr/bin:/bin', STUB_LOG: missing.log } });
 
     assert.equal(result.passed, false);
     assert.equal(result.path, null);
@@ -409,7 +409,7 @@ test('jev off PATH and wrong version skip', () => {
   try {
     const result = S.jevGate({
       out: sinks.out,
-      env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_JEV_VERSION: 'jev 0.5.0' }
+      env: { JEV_TRANSPORT: 'jev', PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_JEV_VERSION: 'jev 0.5.0' }
     });
 
     assert.equal(result.passed, false);
@@ -568,7 +568,7 @@ test('no headroom at 4 improvable rows', { timeout: 120000 }, async () => {
       out: sinks.out,
       err: sinks.err,
       repoRoot,
-      env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log }
+      env: { JEV_TRANSPORT: 'jev', PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log }
     });
 
     assert.equal(code, 0);
@@ -591,7 +591,7 @@ test('headroom at 5 improvable rows', { timeout: 120000 }, async () => {
       out: sinks.out,
       err: sinks.err,
       repoRoot,
-      env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_AUTH_EXIT: '3' }
+      env: { JEV_TRANSPORT: 'jev', PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_AUTH_EXIT: '3' }
     });
 
     assert.equal(code, 0);
@@ -613,7 +613,7 @@ test('a stopped jev arm prints partial', { timeout: 120000 }, async () => {
       out: sinks.out,
       err: sinks.err,
       repoRoot,
-      env: { PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_CHOICE_EXIT: '3' }
+      env: { JEV_TRANSPORT: 'jev', PATH: stubs.dir + ':/usr/bin:/bin', STUB_LOG: stubs.log, STUB_CHOICE_EXIT: '3' }
     });
 
     assert.equal(code, 0);
