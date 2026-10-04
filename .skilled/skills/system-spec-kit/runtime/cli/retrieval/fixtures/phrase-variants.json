@@ -1,5 +1,5 @@
 {
-  "manifestHash": "44d1bb10bc1cf81427b169ffd1f5bb0df072eb55febd5218e6caf64e56ab9bd2",
+  "manifestHash": "366ce48ca4a9943b62c43ffd87bd9e7939c44e2abcc87a1d1ebeb90474b00bfe",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7201,6 +7201,9 @@
     ],
     "2026 09 27 sk design validation": [
       "2026-09-27 sk-design validation"
+    ],
+    "2026 10 03 injection screen run": [
+      "2026-10-03 injection screen run"
     ],
     "22 scenario release readiness": [
       "22 scenario release readiness"
@@ -17586,6 +17589,9 @@
     "cli classifier 0 7 0 0": [
       "cli-classifier 0.7.0.0"
     ],
+    "cli classifier 0 8 0 0": [
+      "cli-classifier 0.8.0.0"
+    ],
     "cli classifier audit findings": [
       "cli-classifier audit findings"
     ],
@@ -17720,6 +17726,9 @@
     ],
     "cli classifier v0 7 0 0": [
       "cli-classifier v0.7.0.0"
+    ],
+    "cli classifier v0 8 0 0": [
+      "cli-classifier v0.8.0.0"
     ],
     "cli claude code 1 0 0 0": [
       "cli-claude-code 1.0.0.0"
@@ -19061,6 +19070,18 @@
     ],
     "cli jev workflow integration goal": [
       "cli-jev workflow integration goal"
+    ],
+    "cli lineage findings contract": [
+      "cli lineage findings contract"
+    ],
+    "cli lineage findings contract plan": [
+      "cli lineage findings contract plan"
+    ],
+    "cli lineage findings contract summary": [
+      "cli lineage findings contract summary"
+    ],
+    "cli lineage findings contract tasks": [
+      "cli lineage findings contract tasks"
     ],
     "cli lineage nesting": [
       "cli lineage nesting"
@@ -40202,6 +40223,9 @@
     "fanout live web search": [
       "fanout live web search"
     ],
+    "fanout loop prompt output contract": [
+      "fanout loop prompt output contract"
+    ],
     "fanout manifest compiler complete": [
       "fanout manifest compiler complete"
     ],
@@ -41251,6 +41275,18 @@
     ],
     "findings ledger": [
       "findings ledger"
+    ],
+    "findings not enumerated": [
+      "findings not enumerated"
+    ],
+    "findings not enumerated gate": [
+      "findings not enumerated gate"
+    ],
+    "findings not enumerated shipped": [
+      "findings not enumerated shipped"
+    ],
+    "findings not enumerated tasks": [
+      "findings not enumerated tasks"
     ],
     "findings reconciliation": [
       "findings reconciliation"
@@ -48898,6 +48934,9 @@
     "injection refusal ledger tasks": [
       "injection refusal ledger tasks"
     ],
+    "injection screen benchmark report": [
+      "injection screen benchmark report"
+    ],
     "injection screen build order": [
       "injection screen build order"
     ],
@@ -48906,6 +48945,9 @@
     ],
     "injection screen keep rule": [
       "injection screen keep rule"
+    ],
+    "injection screen keep verdict": [
+      "injection screen keep verdict"
     ],
     "injection screen label gate": [
       "injection screen label gate"
@@ -49875,6 +49917,9 @@
     ],
     "jev injection screen improvement": [
       "jev injection screen improvement"
+    ],
+    "jev injection screen result": [
+      "jev injection screen result"
     ],
     "jev integration build phases": [
       "jev integration build phases"
@@ -50889,6 +50934,9 @@
     ],
     "latent failure untraveled path": [
       "latent failure untraveled path"
+    ],
+    "latest iteration record merge": [
+      "latest iteration record merge"
     ],
     "launch wrapper child detection guard hook": [
       "launch wrapper child detection guard hook"
@@ -67255,6 +67303,9 @@
     "pi fast mode w subagent support contract": [
       "pi_fast_mode_w_subagent_support contract"
     ],
+    "pi first jev transport": [
+      "pi-first jev transport"
+    ],
     "pi fork fix plan": [
       "pi fork fix plan"
     ],
@@ -71943,6 +71994,9 @@
     ],
     "reconsolidation quality auto fix default": [
       "reconsolidation quality-auto-fix default"
+    ],
+    "reconstruction gap": [
+      "reconstruction gap"
     ],
     "reconstruction gap tasks": [
       "reconstruction gap tasks"
@@ -93287,6 +93341,9 @@
     ],
     "synthesis artifact staging": [
       "synthesis artifact staging"
+    ],
+    "synthesis closeout count only": [
+      "synthesis closeout count only"
     ],
     "synthesis complete validation": [
       "synthesis_complete validation"

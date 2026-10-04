@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6706,
-    "ok": 13106,
+    "ok": 13113,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23381,
+  "documentsScanned": 23388,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "44d1bb10bc1cf81427b169ffd1f5bb0df072eb55febd5218e6caf64e56ab9bd2",
+  "manifestHash": "366ce48ca4a9943b62c43ffd87bd9e7939c44e2abcc87a1d1ebeb90474b00bfe",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33482,
+      "ok": 33501,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -68270,6 +68270,10 @@
     },
     {
       "path": "specs/system-deep-loop/041-read-only-and-research-bookkeeping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/042-cli-lineage-findings-contract/scratch",
       "reason": "excluded directory"
     },
     {

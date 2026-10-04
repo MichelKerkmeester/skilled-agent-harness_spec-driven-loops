@@ -1,5 +1,5 @@
 {
-  "corpusHash": "28074b50eb772b42dae6298c03553b65399e2dca091988dbca9e85bf1c70b9d7",
+  "corpusHash": "8dfca457c151ec7bb3b98e7100290d3d3e56001b34547a40694d3806912e50e6",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23381,
+  "includedPathCount": 23388,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -114,6 +114,7 @@
     ".skilled/skills/cli-classifier/benchmark/pi-transport/tests/README.md",
     ".skilled/skills/cli-classifier/benchmark/reports/2026-09-20-hub-routing-baseline/skill-benchmark-report.md",
     ".skilled/skills/cli-classifier/benchmark/reports/2026-09-26--manual-testing-playbook--hub-routing-phrasings/skill-benchmark-report.md",
+    ".skilled/skills/cli-classifier/benchmark/reports/2026-10-03--injection-screen--jev-pi-default/skill-benchmark-report.md",
     ".skilled/skills/cli-classifier/benchmark/reports/README.md",
     ".skilled/skills/cli-classifier/changelog/v0.1.0.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.2.0.0.md",
@@ -122,6 +123,7 @@
     ".skilled/skills/cli-classifier/changelog/v0.5.0.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.6.0.0.md",
     ".skilled/skills/cli-classifier/changelog/v0.7.0.0.md",
+    ".skilled/skills/cli-classifier/changelog/v0.8.0.0.md",
     ".skilled/skills/cli-classifier/cli-jev/README.md",
     ".skilled/skills/cli-classifier/cli-jev/SKILL.md",
     ".skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md",
@@ -13605,6 +13607,11 @@
     "specs/system-deep-loop/041-read-only-and-research-bookkeeping/plan.md",
     "specs/system-deep-loop/041-read-only-and-research-bookkeeping/spec.md",
     "specs/system-deep-loop/041-read-only-and-research-bookkeeping/tasks.md",
+    "specs/system-deep-loop/042-cli-lineage-findings-contract/acceptance-criteria.md",
+    "specs/system-deep-loop/042-cli-lineage-findings-contract/implementation-summary.md",
+    "specs/system-deep-loop/042-cli-lineage-findings-contract/plan.md",
+    "specs/system-deep-loop/042-cli-lineage-findings-contract/spec.md",
+    "specs/system-deep-loop/042-cli-lineage-findings-contract/tasks.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/implementation-summary.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/plan.md",
     "specs/system-skill-advisor/017-advisor-audit-and-state-containment/001-state-directory-containment/research/leak-research.md",
@@ -23411,7 +23418,7 @@
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "44d1bb10bc1cf81427b169ffd1f5bb0df072eb55febd5218e6caf64e56ab9bd2",
+  "manifestHash": "366ce48ca4a9943b62c43ffd87bd9e7939c44e2abcc87a1d1ebeb90474b00bfe",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -26419,6 +26426,10 @@
     },
     {
       "path": "specs/system-deep-loop/041-read-only-and-research-bookkeeping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/042-cli-lineage-findings-contract/scratch",
       "reason": "excluded directory"
     },
     {
