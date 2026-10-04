@@ -9,7 +9,8 @@
     "system-deep-loop/038-review-gateway-iteration-record",
     "system-deep-loop/039-review-state-init-and-dispatch",
     "system-deep-loop/040-cli-pi-opencode-go-route",
-    "system-deep-loop/041-read-only-and-research-bookkeeping"
+    "system-deep-loop/041-read-only-and-research-bookkeeping",
+    "system-deep-loop/042-cli-lineage-findings-contract"
   ],
   "manual": {
     "depends_on": [],
