@@ -1,7 +1,7 @@
 ---
 title: "SD-023 -- Shared frontmatter value warning"
 description: "This scenario validates the shared frontmatter value warning for `SD-023`. It focuses on validate_document.py adding one `frontmatter_value_outside_list` warning to a reference copy whose contextType is outside the shared list, with no new blocking error compared with the unedited copy."
-version: 1.0.0.0
+version: 2.3.0.2
 ---
 
 # SD-023 -- Shared frontmatter value warning
