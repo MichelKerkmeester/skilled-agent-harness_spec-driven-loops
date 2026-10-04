@@ -1,5 +1,5 @@
 {
-  "manifestHash": "366ce48ca4a9943b62c43ffd87bd9e7939c44e2abcc87a1d1ebeb90474b00bfe",
+  "manifestHash": "4423f52209fe208f18a4faed0fd9a9a50d733d3892ba1fa32891b556303efd6c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -35259,6 +35259,18 @@
     "doctor confirm dry run plan": [
       "doctor confirm dry-run plan"
     ],
+    "doctor contract fixes": [
+      "doctor contract fixes"
+    ],
+    "doctor contract fixes plan": [
+      "doctor contract fixes plan"
+    ],
+    "doctor contract fixes summary": [
+      "doctor contract fixes summary"
+    ],
+    "doctor contract fixes tasks": [
+      "doctor contract fixes tasks"
+    ],
     "doctor cutover phase 2": [
       "doctor cutover phase 2"
     ],
@@ -35428,6 +35440,9 @@
     "doctor mcp install yaml": [
       "doctor-mcp-install.yaml"
     ],
+    "doctor mcp unknown flag": [
+      "doctor mcp unknown flag"
+    ],
     "doctor memory": [
       "/doctor memory",
       "doctor memory"
@@ -35485,6 +35500,18 @@
     ],
     "doctor playbook deep loop tasks": [
       "doctor-playbook-deep-loop tasks"
+    ],
+    "doctor playbook environment migration": [
+      "doctor playbook environment migration"
+    ],
+    "doctor playbook environment migration plan": [
+      "doctor playbook environment migration plan"
+    ],
+    "doctor playbook environment migration summary": [
+      "doctor playbook environment migration summary"
+    ],
+    "doctor playbook environment migration tasks": [
+      "doctor playbook environment migration tasks"
     ],
     "doctor playbook git": [
       "doctor playbook git"
@@ -35657,6 +35684,9 @@
     "doctor runtime mirrors yaml": [
       "doctor-runtime-mirrors.yaml"
     ],
+    "doctor scenarios test environment": [
+      "doctor scenarios test environment"
+    ],
     "doctor script tests": [
       "doctor script tests"
     ],
@@ -35747,6 +35777,9 @@
     "doctor speckit parent skill relevance": [
       "/doctor:speckit parent-skill relevance"
     ],
+    "doctor speckit phrase quality advisory": [
+      "doctor speckit phrase quality advisory"
+    ],
     "doctor speckit retrieval audit": [
       "doctor speckit-retrieval audit"
     ],
@@ -35785,6 +35818,33 @@
     ],
     "doctor surface authoring handover": [
       "doctor surface authoring handover"
+    ],
+    "doctor test environment research": [
+      "doctor test environment research"
+    ],
+    "doctor test environment research plan": [
+      "doctor test environment research plan"
+    ],
+    "doctor test environment research summary": [
+      "doctor test environment research summary"
+    ],
+    "doctor test environment research tasks": [
+      "doctor test environment research tasks"
+    ],
+    "doctor test environment worktree": [
+      "doctor test environment worktree"
+    ],
+    "doctor test environments": [
+      "doctor test environments"
+    ],
+    "doctor test environments plan": [
+      "doctor test environments plan"
+    ],
+    "doctor test environments summary": [
+      "doctor test environments summary"
+    ],
+    "doctor test environments tasks": [
+      "doctor test environments tasks"
     ],
     "doctor test runner": [
       "doctor test runner"
@@ -35827,6 +35887,9 @@
     ],
     "doctor update fixes summary": [
       "doctor update fixes summary"
+    ],
+    "doctor update fixture scenarios": [
+      "doctor update fixture scenarios"
     ],
     "doctor update handover": [
       "/doctor:update handover"
@@ -35897,8 +35960,17 @@
     "doctor update stale lock": [
       "doctor update stale lock"
     ],
+    "doctor update symlinked folder": [
+      "doctor update symlinked folder"
+    ],
     "doctor update tasks": [
       "doctor update tasks"
+    ],
+    "doctor update test fixture": [
+      "doctor update test fixture"
+    ],
+    "doctor update test worktree": [
+      "doctor update test worktree"
     ],
     "doctor update v3 3 hardening handover": [
       "/doctor:update v3.3 hardening handover"
@@ -73840,6 +73912,18 @@
     "release update signals": [
       "release update signals"
     ],
+    "release update symlink parent": [
+      "release update symlink parent"
+    ],
+    "release update symlink parent plan": [
+      "release update symlink parent plan"
+    ],
+    "release update symlink parent summary": [
+      "release update symlink parent summary"
+    ],
+    "release update symlink parent tasks": [
+      "release update symlink parent tasks"
+    ],
     "release updater over rebuild": [
       "release updater over rebuild"
     ],
@@ -93272,6 +93356,9 @@
     ],
     "symlink not followed": [
       "symlink not followed"
+    ],
+    "symlink parent conflict": [
+      "symlink-parent conflict"
     ],
     "symlink refusal scope": [
       "symlink refusal scope"
