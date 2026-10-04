@@ -103,7 +103,7 @@ Decide, from repository evidence, what should surface repo rules, how to write t
 | 1 | `001-advisor-surfacing/` | Whether the advisor, trigger index or a hook should suggest repo rules | Complete |
 | 2 | `002-rule-concision-and-loading/` | Rule concision, why loaded rules are ignored, and the AGENTS.md, Gate 5 and hook loading design | Complete |
 | 3 | `003-agents-md-delivery-prefix/` | Move every hard blocker and the §8 load line inside Devin's 16,384-byte cut, with a CI guard | Complete |
-| 4 | `004-rule-delivery-instrumentation/` | Offline analyzer for Gate 5 and §8 miss rates and rule-version compliance, plus a committed baseline | Planned |
+| 4 | `004-rule-delivery-instrumentation/` | Offline analyzer for Gate 5 and §8 miss rates and rule-version compliance, plus a committed baseline | Complete |
 | 5 | `005-trigger-coverage-check/` | Tenth repo-rule check: router rows cover each rule's Fires-when bullets | Planned |
 | 6 | `006-rule-concision-rewrites/` | Apparatus-only cuts to all 13 rules with keep and drop ledgers | Planned |
 | 7 | `007-table-wording-experiment/` | Pre-registered ABAB test of short versus current no-table wording | Planned |

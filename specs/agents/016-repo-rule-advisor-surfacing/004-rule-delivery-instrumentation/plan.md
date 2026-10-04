@@ -37,13 +37,13 @@ Extend the existing compliance script instead of adding a runtime hook: Claude C
 
 ### Definition of Ready
 - [x] Problem statement backed by measurement in `002-rule-concision-and-loading`
-- [ ] Predecessor handoff met: `002-rule-concision-and-loading/prep/measure-rule-compliance.py`, the starting point
+- [x] Predecessor handoff met: `002-rule-concision-and-loading/prep/measure-rule-compliance.py`, the starting point
 - [x] Affected files identified by codebase exploration
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests and checks named in the testing strategy pass
-- [ ] spec.md, plan.md and tasks.md synchronized
+- [x] All acceptance criteria met
+- [x] Tests and checks named in the testing strategy pass
+- [x] spec.md, plan.md and tasks.md synchronized
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -64,6 +64,24 @@ Transcript files go through an adapter into normalized events. Measures fold eve
 
 ### Decision
 **ADR-001: Offline analyzer instead of a runtime observer hook.** A logging-only hook beside `spec-gate-enforce` was the 001 recommendation. Extending the script in place covers Claude Code and Codex fully, because both transcripts already carry the tool calls, injections and boundaries a hook would log. A hook fails nothing the analyzer does not already cover for those two, so it is deferred until a needed runtime is shown to keep no transcript.
+
+### Transcript Probe
+
+Every other runtime keeps a readable local transcript, so none of them forces a hook. Probed on 2026-10-04:
+
+- **Devin**: JSON files in `~/.local/share/devin/cli/transcripts/`, 74 of 100 naming this repo.
+- **Cursor**: `agent-transcripts/` under `~/.cursor/projects/<path-slug>/`, three repo-related project folders.
+- **Pi**: session JSONL under `~/.pi/agent/sessions/<path-slug>/`, 39 repo-related folders.
+- **OpenCode**: SQLite at `~/.local/share/opencode/opencode.db`, 413 sessions with a repo directory.
+
+Adapters for these four stay out of scope. Add one when an experiment needs that runtime.
+
+### Measure Definitions
+
+- **Delivery** counts only the channels passed to `--channels`. The default is `read,shell,inject`. A shell command counts as `shell` only when it uses a reading verb, and any other tool input that names a rule path counts as `other`. The evidence pack's split equals `read,shell,other`.
+- **Injection** counts a rule only when the injected text carries the rule's own heading line. A mention of its path is not delivery. On 2026-10-04 no hook injected any rule, so this channel reads 0 until the 008 pilot.
+- **Gate 5** is scoped to the compaction window, because a compaction drops the earlier read. It is reported two ways: the first non-exempt write of each session (the gate's own unit) and every non-exempt write. The every-write unit is what gives AC-002 its denominator of 2.
+- **Reply rules** are checked at the first substantive reply of each window, a miss when `communication.md` or `communication-prose.md` was not delivered earlier in that window.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -157,8 +175,8 @@ Setup ──► Implementation ──► Verification
 ## L2: ENHANCED ROLLBACK
 
 ### Pre-deployment Checklist
-- [ ] Each change lands as its own revertable commit
-- [ ] The checks in the testing strategy pass before the commit
+- [x] Each change lands as its own revertable commit
+- [x] The checks in the testing strategy pass before the commit
 
 ### Rollback Procedure
 1. Revert the commit. Nothing at runtime depends on it.

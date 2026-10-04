@@ -79,6 +79,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase work | Pending | spec.md metadata Status Draft. Criteria trace to acceptance-criteria.md AC-001 to AC-007 |
+| Analyzer and tests | Done | 9/9 pytest; evidence-pack reproduction exact with --until 2026-10-04T13:13:10Z --channels read,shell,other |
 
 ### Deviations and findings
 

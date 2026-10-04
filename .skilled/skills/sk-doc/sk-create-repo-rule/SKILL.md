@@ -177,6 +177,13 @@ not patched. Then edit, and if the change alters *when* the rule fires, change t
 row in the same edit or the router lies silently. Bump `version`. Full ordering and the
 `version` convention: `references/agents-md-integration.md` §4.
 
+To learn whether a revision changed behaviour, measure instead of guessing:
+`python3 .skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py`.
+It reads local Claude Code and Codex transcripts and reports, per runtime, delivery
+receipts by channel and compaction window, the Gate 5 and reply-rule miss rates, and each
+reply prohibition split by the rule's git blob version, every rate with its denominator and
+a Wilson 95% interval. It prints aggregates only, never transcript text.
+
 ### Retire
 
 Pointer first, then index row, then trigger row, then the file — create inverted, so no

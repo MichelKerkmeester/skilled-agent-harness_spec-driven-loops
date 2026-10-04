@@ -59,6 +59,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003 | Given the T003 inventory, When each referenced section is looked up after the rewrite, Then it exists with the same number | `rg` output | Unmet | - |
 | AC-004 | REQ-004 | Given the before table, When the after table is measured, Then the corpus is at or below 91,028 bytes | `wc -c` output | Unmet | - |
 | AC-005 | REQ-005 | Given the diff, When added lines are searched, Then no em dash or semicolon was added | `git diff` filtered to added lines | Unmet | - |
+| AC-006 | REQ-007 | Given the rewritten `communication.md`, When its diff is read, Then it carries the simple-terms clause and no caveat or number rule was weakened | `git diff` of `communication.md` | Unmet | - |
 
 ### Status values
 

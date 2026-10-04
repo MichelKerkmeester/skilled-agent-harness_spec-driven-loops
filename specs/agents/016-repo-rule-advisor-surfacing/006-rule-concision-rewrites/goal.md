@@ -44,7 +44,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Cuts remove apparatus only. No norm changes, no section is renumbered and no loading changes. |
+| D1 | Cuts remove apparatus only. No norm changes except one operator-added communication.md clause: explain complex topics in simple terms from the first explanation, never only after the reader asks. No section is renumbered and no loading changes. |
 | D2 | Every rule is rewritten through sk-doc's sk-create-repo-rule mode, and evidence-and-proof.md and communication.md start from the two swe-2-max drafts. |
 | D3 | Every failure-naming sentence and the three communication.md edge clauses stay. |
 | D4 | Each rule ships in its own commit with a ledger that files every dropped sentence as boilerplate, restatement, rationale or provenance. |
@@ -62,6 +62,7 @@ Frozen choices. Changing one is an amendment.
 - [ ] wc -c puts the 13 rule files at or below 91,028 bytes
 - [ ] git diff filtered to added lines in .skilled/repo-rules/ shows no em dash or semicolon
 - [ ] A phase 004 analyzer report measures a post-change window against the baseline
+- [ ] communication.md carries the simple-terms clause, and the diff shows it keeps every caveat and number rule intact
 <!-- /ANCHOR:completion -->
 
 ---
@@ -78,6 +79,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase work | Pending | spec.md metadata Status Draft. Criteria trace to acceptance-criteria.md AC-001 to AC-005 and spec.md REQ-006 |
+| Simple-terms clause | Pending | operator request 2026-10-04; REQ-007, T005, AC-006 |
 
 ### Deviations and findings
 
