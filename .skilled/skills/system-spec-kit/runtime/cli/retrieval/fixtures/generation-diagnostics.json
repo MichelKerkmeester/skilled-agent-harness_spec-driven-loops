@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 54,
-    "missing-frontmatter": 6662,
-    "ok": 13049,
+    "missing-frontmatter": 6671,
+    "ok": 13050,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23280,
+  "documentsScanned": 23290,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "f00a899fea342527031495196ff9a517137eccced304bf7b8279ef2c66591635",
+  "manifestHash": "dad10eeb3a0fc5454d9da97f48f5e7e12e2f25739205fed47e5e1b178726a579",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -35377,6 +35377,60 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/010-completion-claims-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/review-report.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

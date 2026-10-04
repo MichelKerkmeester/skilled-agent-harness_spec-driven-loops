@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7fb563d85f52c2c2dadc132c4b07951e29b80e95ba8305bce21d0c0317e8a8a0",
+  "corpusHash": "98d7bb5071209772f1ecec3c5da9e68aaf39bc94bb53460fc5d7e889da4b4e69",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23280,
+  "includedPathCount": 23290,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9044,6 +9044,16 @@
     "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/goal.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/implementation-summary.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/plan.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/deep-review-dashboard.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/deep-review-strategy.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/iterations/iteration-001.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/iterations/iteration-002.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/iterations/iteration-003.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/prompts/iteration-1.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/prompts/iteration-2.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/prompts/iteration-3.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/resource-map.md",
+    "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/review/review-report.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/spec.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/051-followups/tasks.md",
     "specs/cli-jev/003-cli-jev-workflow-integration/goal.md",
@@ -23310,7 +23320,7 @@
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f00a899fea342527031495196ff9a517137eccced304bf7b8279ef2c66591635",
+  "manifestHash": "dad10eeb3a0fc5454d9da97f48f5e7e12e2f25739205fed47e5e1b178726a579",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
