@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7880c7af957273804f94fc7b411d03fa79d7244f8af5dd13e521a37e17b9bc0e",
+  "corpusHash": "7e800f5bed2e206774aeec47987c196eb54d70889488f160c46290ddf60e4d79",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23331,
+  "includedPathCount": 23349,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23358,10 +23358,28 @@
     "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/research/deep-research-dashboard.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/research/deep-research-strategy.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/research/iterations/iteration-001.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/research/iterations/iteration-002.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/research/iterations/iteration-003.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/research/prompts/iteration-1.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/research/prompts/iteration-2.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/research/prompts/iteration-3.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/research/research.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/research/resource-map.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7fc8ee1feeed1f949be683f5ff00e186429c93f4d6eb87e7332c2faaa14f664f",
+  "manifestHash": "5143acf4c42d1cc8a8023d833cf8dd1966ff50b8e0310644f8045cbeb7d27bf0",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28777,6 +28795,14 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/scratch",
       "reason": "excluded directory"
     },
     {

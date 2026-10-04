@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/049-doctor-audit-followups/011-changelog-v4003-research",
+  "description": "Phase 11: changelog-v4003-research",
+  "keywords": [
+    "phase",
+    "changelog-v4003-research"
+  ],
+  "lastUpdated": "2026-10-04T08:38:47.384Z",
+  "specId": "011",
+  "folderSlug": "changelog-v4003-research",
+  "parentChain": [
+    "system-speckit",
+    "049-doctor-audit-followups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "04-10-26_09-38__three-deep-research-iterations-on-deepseek-v4-1.md"
+  ]
+}

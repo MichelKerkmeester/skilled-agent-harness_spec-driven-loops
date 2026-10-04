@@ -1,0 +1,341 @@
+{
+  "sessionId": "2026-10-04T08:18:22.744Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-q1-which-doctor-command-changes-in-phases-001-010-of-specs-system-speckit-049-do",
+      "inboxId": null,
+      "text": "Q1: Which doctor command changes in phases 001-010 of specs/system-speckit/049-doctor-audit-followups (and the 048 audit they follow) change what an operator runs or sees, and which of them does .skilled/changelog/skilled/v4.0.0.3.md already mention?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-2-q2-what-does-the-entry-need-about-the-saved-git-hook-gate-settings-speckit-hooks",
+      "inboxId": null,
+      "text": "Q2: What does the entry need about the saved git hook gate settings (speckit.hooks.<key> in git config, read by .skilled/scripts/git-hooks/lib/gate-config.sh from lib/gates.tsv), the new /doctor:git hooks and standards targets, and .sk-git/ rule overrides?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-q3-which-fixes-from-the-hook-hardening-in-specs-sk-git-032-template-driven-messa",
+      "inboxId": null,
+      "text": "Q3: Which fixes from the hook hardening in specs/sk-git/032-template-driven-message-enforcement children 001-003 (commits e5b1ea84c7, 9c99983374, d1fe481584, f7316afc6a) does the Repository Checks section already cover, and which are missing or described differently from what shipped?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-q4-which-statements-in-the-entry-did-later-work-make-wrong-or-stale-for-example-",
+      "inboxId": null,
+      "text": "Q4: Which statements in the entry did later work make wrong or stale (for example /doctor:speckit, /doctor:rebuild, the fable-mode target, hook switch names or counts), and what must Upgrade Notes add?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-which-doctor-command-changes-in-phases-001-010-of-specs-system-speckit-049-do",
+      "inboxId": null,
+      "text": "Q1: Which doctor command changes in phases 001-010 of specs/system-speckit/049-doctor-audit-followups (and the 048 audit they follow) change what an operator runs or sees, and which of them does .skilled/changelog/skilled/v4.0.0.3.md already mention?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-2-q2-what-does-the-entry-need-about-the-saved-git-hook-gate-settings-speckit-hooks",
+      "inboxId": null,
+      "text": "Q2: What does the entry need about the saved git hook gate settings (speckit.hooks.<key> in git config, read by .skilled/scripts/git-hooks/lib/gate-config.sh from lib/gates.tsv), the new /doctor:git hooks and standards targets, and .sk-git/ rule overrides?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-q3-which-fixes-from-the-hook-hardening-in-specs-sk-git-032-template-driven-messa",
+      "inboxId": null,
+      "text": "Q3: Which fixes from the hook hardening in specs/sk-git/032-template-driven-message-enforcement children 001-003 (commits e5b1ea84c7, 9c99983374, d1fe481584, f7316afc6a) does the Repository Checks section already cover, and which are missing or described differently from what shipped?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-q4-which-statements-in-the-entry-did-later-work-make-wrong-or-stale-for-example-",
+      "inboxId": null,
+      "text": "Q4: Which statements in the entry did later work make wrong or stale (for example /doctor:speckit, /doctor:rebuild, the fable-mode target, hook switch names or counts), and what must Upgrade Notes add?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "(New, self-owned) The entry's \"Trigger Lookups Handle No Hits\" paragraph mixes 048-era `--scoring-only` work with 049/001's doctor verdict. Iteration 2 should attribute items correctly between the 048 audit packet and 049 so the added text does not credit the wrong phase.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "(New, self-owned) The precise placement and wording of the added entry sections (at-a-glance bullets, section order, Upgrade Notes list) is not yet fixed.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "(New, self-owned) `ENV-REFERENCE.md` section 5 lists 14 hook switches while `gates.tsv` carries 12 gate rows; iteration 2 should confirm the two counts describe different sets (whole-hook kill switches vs switchable gates) so no count is quoted wrongly.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the added text should note the `cli-jev/003/010` origin of `--scoring-only` inside the existing paragraph or leave that paragraph untouched and only add the doctor-side sentence (new, wording-level).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The precise placement and wording of the added entry sections (at-a-glance bullets, section order, Upgrade Notes list) is still not fixed (carried forward).",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None. All tracked and carried-forward open questions are resolved; the remaining work is implementing the edits, which the research boundaries exclude.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-2-1-10-speckit-skip-gates-all-persistable-yes-in-gates-tsv-comment-hygiene-mirror-pa",
+      "text": "10 `SPECKIT_SKIP_*` gates, all `persistable=yes` in `gates.tsv`: `COMMENT_HYGIENE`, `MIRROR_PARITY`, `CARD_SYNC`, `MCP_MUTATION_CLASS`, `ROUTE_REMINT`, `SPEC_REMINT` (pre-commit), `PREPARE_COMMIT_MSG` (prepare-commit-msg), `PREPUSH_SKILL_GATE`, `PREPUSH_ROUTE_GATE`, `PREPUSH_TRACK_GATE` (pre-push). These are the ones `speckit.hooks.<key>` can switch off, per `gates.tsv` lines 3-5 and `gate-config.sh` lines 5-14.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-2-speckit-allow-approvals-persistable-no-in-gates-tsv-lines-17-18-speckit-allow-",
+      "text": "2 `SPECKIT_ALLOW_*` approvals, `persistable=no` in `gates.tsv` lines 17-18: `SPECKIT_ALLOW_REMOTE_PUSH` and `SPECKIT_ALLOW_MASS_DELETION`. They are per-push approvals and are never read from config, matching `ENV-REFERENCE.md` line 217 (\"The `SPECKIT_ALLOW_*` approvals cannot be saved\").",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-20-adopt-doctor-git-hooks-shows-each-hook-gate-s-saved-value-and-edits-one-after-ap",
+      "text": "**Adopt.** `/doctor:git hooks` shows each hook gate's saved value and edits one after approval; `/doctor:git standards` copies the shipped sk-git templates into `.sk-git/` once and keeps their rules in step.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-23-drop-fable-mode-the-fable-mode-target-is-removed-regenerate-the-trigger-index-wi",
+      "text": "**Drop fable-mode.** The fable-mode target is removed; regenerate the trigger index with its generator script when it goes stale.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-22-record-a-base-once-run-the-updater-s-record-base-before-the-first-check-when-you",
+      "text": "**Record a base once.** Run the updater's `record-base` before the first `check` when you want the base written, add `--include-prerelease` to compare against pre-releases, and expect `apply` to change only fully decided units and record its plan and rollback in a run directory.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-19-repoint-doctor-rebuild-is-gone-rebuild-the-skill-graph-with-doctor-skill-advisor",
+      "text": "**Repoint.** `/doctor:rebuild` is gone; rebuild the skill graph with `/doctor:skill-advisor rebuild`. Reach each router by its own name: `/doctor:skill-advisor`, `/doctor:deep-loop`, `/doctor:runtime-mirrors`. `/doctor:speckit` now checks retrieval only and prints a moved-target notice for old target names.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-21-save-switches-set-speckit-hooks-key-to-off-false-no-or-0-in-local-or-global-git-",
+      "text": "**Save switches.** Set `speckit.hooks.<key>` to `off`, `false`, `no` or `0` in local or global git config. Ten gate switches can be saved; the two `SPECKIT_ALLOW_*` approvals stay per run.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-15-doctor-checks-fail-on-real-drift-phases-003-004-007-commits-cc2d4ea5f2-119c4ffb0",
+      "text": "`#### Doctor Checks Fail on Real Drift` - phases 003, 004, 007, commits `cc2d4ea5f2`, `119c4ffb07`, summaries `003-.../`, `004-.../`, `007-.../`. Covers: the guard-owned `mcp-mutation-class-manifest.yaml`; the `route-validate` command-owner assertion; scripts fixed against false PASS and crashes; the hub-contract check at 21 commands; the mutation-class guard grown from 7 to 21 rows; removal of `mcp-doctor.sh --fix`; one test runner wired into CI; and the speckit contract gaining a shared workflow for `/speckit:plan`, `/speckit:implement` and `/speckit:complete` with `/speckit:resume` keeping its auto/confirm pair.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-14-doctor-gates-refuse-to-guess-phase-010-commit-f4485249ed-skilled-commands-doctor",
+      "text": "`#### Doctor Gates Refuse to Guess` - phase 010, commit `f4485249ed`, `.skilled/commands/doctor/skill-advisor.md`, `.skilled/commands/doctor/mcp.md`. Covers: `/doctor:skill-advisor` and `/doctor:mcp` show their menu and wait when no target is given and never infer a target from the conversation or the repository.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-11-saved-hook-gates-and-the-doctor-git-command-phase-009-commits-e3626413cd-and-d1f",
+      "text": "`#### Saved Hook Gates and the Doctor Git Command` - phase 009, commits `e3626413cd` and `d1fe481584`, files `.skilled/scripts/git-hooks/lib/gates.tsv`, `.skilled/scripts/git-hooks/lib/gate-config.sh`, `.skilled/commands/doctor/git.md`, `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md`. Covers: `speckit.hooks.<key>` set to `off`, `false`, `no` or `0` in local or global git config switches that gate off for the run, with one notice line; command-scope values (`git -c`, `GIT_CONFIG_*`) do not count, and only a repository carrying the installed hooks reads settings. `/doctor:git hooks` lists every gate with local/global/effective value and hook install state and edits one gate after approval. `/doctor:git standards` copies the shipped sk-git templates into `.sk-git/` once without overwriting, edits or removes a rules-block setting or a kind's rules section, rechecks with sk-git's own shape check, reports template prose still stating an old rule, and writes nothing under `--dry-run`.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-the-doctor-splits-into-one-owner-commands-phase-008-commit-46ecac338c-specs-syst",
+      "text": "`#### The Doctor Splits Into One-Owner Commands` - phase 008, commit `46ecac338c`, `specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/implementation-summary.md`, `.skilled/commands/doctor/_routes.yaml`. Covers: `/doctor:speckit` reduced to retrieval with no target and a moved-target notice for old target names; `/doctor:skill-advisor` gains `tune` (the old target) and `rebuild` (backs up and restores `skill-graph.sqlite`); `/doctor:deep-loop` and `/doctor:runtime-mirrors` as one-owner routers; `/doctor:rebuild` and the fable-mode target removed with their workflow, script, test, playbook scenarios and migration leg. Mark the removals with an inline `**Breaking:**` or the Upgrade Notes lines.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-13-the-retrieval-doctor-checks-the-index-phase-001-specs-system-speckit-049-doctor-",
+      "text": "`#### The Retrieval Doctor Checks the Index` - phase 001, `specs/system-speckit/049-doctor-audit-followups/001-trigger-index-freshness/implementation-summary.md`, `.skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml`. Covers: the retrieval doctor's phase 0 runs `generate-trigger-index.mjs --check --json` as its verdict; the new `index_content_stale` signal judges content instead of mtime (mtime demoted to low-severity supporting evidence); `folder-token-fallback` counts through the validator's own `packetFolderTokens`. Do not re-describe `--scoring-only` here; that fact stays in lines 134-136 (see H3).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-12-the-updater-plans-before-it-changes-phases-002-005-006-commits-eb315be211-eaa4b7",
+      "text": "`#### The Updater Plans Before It Changes` - phases 002, 005, 006, commits `eb315be211`, `eaa4b79d26`, `b4e02411d3`, `f67263c396`, summaries `002-.../`, `005-.../`, `006-.../`, `.skilled/commands/doctor/scripts/release-update.cjs`. Covers: a `generated` file class where only a `derived`-block-only `graph-metadata.json` change counts as generated; `record-base` writing `.skilled/release/base.json` with `check` reporting `baseRecording`; `--include-prerelease` with numeric segment ordering; alignment-free `apply` that plans from the current check, writes only update and new units, re-reads each file under the lock and records `plan.json`/`rollback.json` in a run directory; refusal of a decisions file with no alignment run; lock owner and stale recovery plus `unlock`; copied-tree base and `--trust-release`; plan-digest binding plus routed rollback and record-base approval gates; rename linking with an engine/router/workflow contract test.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-16-correct-line-88-see-h3-then-add-the-missing-hook-fixes-after-it-a-new-h4-for-com",
+      "text": "Correct line 88 (see H3), then add the missing hook fixes after it: a new H4 for commit `9c99983374` (a staged file whose content cannot be read blocks, except a submodule entry, and the pre-commit temp directory is removed on any exit) and a new H4 for commit `d1fe481584` (hook docs match the hooks: `ENV-REFERENCE.md` section 5 documents every git-hook variable, and the hook READMEs correct pre-push to warn rather than block, to check only the commits a push adds, and to say a bare `SPECKIT_ALLOW_REMOTE_PUSH=1` cannot create a branch).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-17-fold-032-001-s-remaining-fixes-into-existing-paragraphs-git-c-skgit-contractdir-",
+      "text": "Fold 032/001's remaining fixes into existing paragraphs: `git -c skgit.contractDir` and `GIT_CONFIG_*` no longer disable the message contract, `prepare-commit-msg` strips only `Co-Authored-By:` and `Claude-Session:` lines, the Commit-Id owner and rebased-copy rule, and the push range counting only the commits a push adds (extends line 63).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-line-2-title-the-title-names-three-themes-and-doctor-git-hook-work-appears-in-no",
+      "text": "Line 2, title: the title names three themes and doctor/git-hook work appears in none. Add the doctor theme editorially, for example `v4.0.0.3, Stronger Repository Rules, Clearer Routing, Plain Language and One-Job Doctor Commands`. Final wording is the author's.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-line-20-also-list-add-specs-system-speckit-049-doctor-audit-followups-level-2-op",
+      "text": "Line 20, `> Also:` list: add `specs/system-speckit/049-doctor-audit-followups` (Level 2). Optionally also add `specs/cli-jev/003-cli-jev-workflow-integration/010-trigger-index-search-fixes` (Level 2), which is the origin of the existing trigger-lookup paragraph and is not listed in any changelog today.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-line-3-description-the-frontmatter-description-has-a-250-character-guard-templat",
+      "text": "Line 3, description: the frontmatter description has a 250-character guard (template section 2). The current text is about 205 characters, so the doctor theme must be folded in by rewriting, not appended. Draft: `v4.0.0.3 aligns repository message checks, improves classifier routing and gives the doctor one-job commands, saved git-hook gates and a safer updater. It adds an offline reader check and removes the standalone communication skill.` (about 237 characters).",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-lines-14-16-opening-narrative-add-one-sentence-naming-the-doctor-and-git-hook-th",
+      "text": "Lines 14-16, opening narrative: add one sentence naming the doctor and git-hook theme so the release story matches the glance list and the sections.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-lines-36-37-jev-hub-and-pi-transport-describe-one-routing-improvement-and-merge-",
+      "text": "Lines 36-37 (Jev hub and Pi transport) describe one routing improvement and merge cleanly into one bullet.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-lines-4-8-trigger-phrases-add-one-or-two-2-6-word-phrases-for-the-doctor-surface",
+      "text": "Lines 4-8, trigger phrases: add one or two 2-6-word phrases for the doctor surface, for example `doctor command split` and `saved git hook gates`.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-lines-43-44-machine-like-prose-and-plain-language-fidelity-describe-one-communic",
+      "text": "Lines 43-44 (machine-like prose and plain-language fidelity) describe one communication change and merge cleanly.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-lines-45-and-47-workflow-security-housekeeping-and-deep-review-state-could-stay-",
+      "text": "Lines 45 and 47 (workflow security housekeeping and deep-review state) could stay, but lines 32-35 (repository checks) describe one contract family and can carry two or three items in fewer bullets.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-18-the-entry-s-order-and-nbsp-separators-stay-as-they-are-the-two-new-h4-items-foll",
+      "text": "The entry's order and `&nbsp;` separators stay as they are; the two new H4 items follow the worktree paragraph and sit before the `---` at line 90.",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-the-three-route-bullets-lines-36-38-can-also-become-two-by-folding-mimo-into-the",
+      "text": "The three route bullets (lines 36-38) can also become two by folding MiMo into the classifier bullet.",
+      "addedAtIteration": 3,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 4,
+    "carriedForwardOpenQuestions": 6,
+    "keyFindings": 25,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.5,
+    "coverageBySources": {},
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/079-doctor-command-audit/specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
