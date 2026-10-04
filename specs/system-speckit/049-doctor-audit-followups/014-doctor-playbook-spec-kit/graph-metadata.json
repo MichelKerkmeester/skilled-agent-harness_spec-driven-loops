@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/049-doctor-audit-followups/014-doctor-playbook-spec-kit",
+  "spec_folder": "system-speckit/049-doctor-audit-followups/014-doctor-playbook-spec-kit",
+  "parent_id": "system-speckit/049-doctor-audit-followups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor playbook spec-kit",
+      "doctor speckit scenarios",
+      "doctor update manual test",
+      "doctor-playbook-spec-kit plan",
+      "doctor-playbook-spec-kit tasks",
+      "doctor-playbook-spec-kit summary",
+      "doctor-playbook-spec-kit shipped"
+    ],
+    "key_topics": [
+      "doctor",
+      "playbook",
+      "spec-kit",
+      "speckit",
+      "scenarios",
+      "manual",
+      "test",
+      "doctor-playbook-spec-kit",
+      "plan",
+      "tasks",
+      "summary",
+      "shipped"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+      ".skilled/commands/doctor/speckit.md",
+      ".skilled/commands/doctor/runtime-mirrors.md",
+      ".skilled/commands/doctor/env.md",
+      ".skilled/commands/doctor/update.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/doctor-commands/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "category-overview.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-mirrors.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/runtime-mirrors.md",
+        "source": "derived"
+      },
+      {
+        "name": "env.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/env.md",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "it",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The system-spec-kit playbook's doctor category tests only `/doctor:deep-loop` and `/doctor:skill-advisor rebuild`, which other skills now own",
+    "created_at": "2026-10-04T11:02:47Z",
+    "last_save_at": "2026-10-04T12:56:25.693Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:27ac8d16d3763b23fd75d53e4f87525a0fff386b968af7546a84e62a1f9df4f6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a4456d40570c398d715f27c3059fd2eaba50b5d2b3a6488a3c73fe2313c28739",
+      "plan.md": "458c48637f839d9caefa042c5d420e14e8762206f017a722cf44a7c09e88663a",
+      "tasks.md": "c6a43ae2257c5237fcf5aa1b7273caaaf537ff5891a97e6f3a05329a5372603f",
+      "implementation-summary.md": "3be17a52dc3f8a01678f94ba7ede2ddf69ccb4d05d1a15278e98c8789bd3f845"
+    },
+    "last_active_at": null
+  }
+}

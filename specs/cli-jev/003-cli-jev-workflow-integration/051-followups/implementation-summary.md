@@ -20,7 +20,7 @@ _memory:
       - ".skilled/skills/cli-classifier/shared/scripts/jev-transport.mjs"
       - ".skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:6dd734d9e0079a476c18d2aa11f76079d7fef68c86a497410f01d06e1f80a411"
       session_id: "claude-opus-5-5-049"
       parent_session_id: null
     completion_pct: 100

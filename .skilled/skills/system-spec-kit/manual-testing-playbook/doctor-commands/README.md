@@ -2,7 +2,7 @@
 id: doctor-commands-readme
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
-version: 2.0.0.0
+version: 2.1.0.0
 ---
 
 # Doctor Commands
@@ -13,14 +13,16 @@ Manual testing scenarios for the doctor command surface.
 
 ## Scope
 
-4 scenarios covering the routes that survive the memory decommission:
+13 scenarios covering the four doctor commands this skill owns:
 
-- `/doctor:deep-loop`: 3 scenarios (DOC-331 to DOC-333): lazy-init availability, empty-graph refusal, convergence gold-battery
-- `/doctor:skill-advisor rebuild`: 1 scenario (DOC-348): dry run, backed-up rebuild, restore on failure
+- `/doctor:speckit`: 3 scenarios (DOC-349 to DOC-351): a healthy index, a stale index and a target another command owns now
+- `/doctor:runtime-mirrors`: 2 scenarios (DOC-352 and DOC-353): every mirror in sync, and one drifted mirror
+- `/doctor:env`: 3 scenarios (DOC-354 to DOC-356): inspecting switches, saving a preference behind a yes, and secrets and per-invocation switches that are never saved
+- `/doctor:update`: 5 scenarios (DOC-357 to DOC-361): `check`, `align`, `apply`, `rollback` and `record-base`
 
-The memory and causal-graph doctor scenarios were removed with the memory server they diagnosed. Their former IDs (DOC-323 to DOC-330) are retired and must not be reused. The standalone rebuild-orchestrator and version-migration scenarios were removed with that command, and their former IDs (DOC-338 to DOC-342 and DOC-344 to DOC-347) are retired as well. MCP infrastructure scenarios are not built.
+The other doctor commands are tested in the playbook of the skill they check: `/doctor:skill-advisor` in system-skill-advisor (DOC-348 and DOC-362 to DOC-367), `/doctor:deep-loop` in system-deep-loop (DOC-331 to DOC-333 and DOC-368), `/doctor:git` in sk-git (DOC-369 to DOC-374) and `/doctor:mcp` in mcp-code-mode (DOC-375 to DOC-378). DOC- numbers are shared across those playbooks, so a new doctor scenario takes the next free number in the whole series.
 
-The doctor routers split by owner. `/doctor:speckit` takes no target and diagnoses spec-kit retrieval. `/doctor:skill-advisor <target>` owns six targets: `tune`, `rebuild`, `skill-graph-freshness`, `router-reach`, `skill-budget` and `parent-skill`. `/doctor:deep-loop` and `/doctor:runtime-mirrors` take no target. `/doctor:update`, `/doctor:mcp` and `/doctor:env` are standalone companions.
+The memory and causal-graph doctor scenarios were removed with the memory server they diagnosed. Their former IDs (DOC-323 to DOC-330) are retired and must not be reused. The standalone rebuild-orchestrator and version-migration scenarios were removed with that command, and their former IDs (DOC-338 to DOC-342 and DOC-344 to DOC-347) are retired as well.
 
 ## Harness
 
@@ -28,7 +30,7 @@ Each scenario has a Markdown file named for its topic (`doctor-<short-name>.md`,
 
 ## See Also
 
-- Router source: `.skilled/commands/doctor/deep-loop.md`
+- Router sources: `.skilled/commands/doctor/speckit.md`, `runtime-mirrors.md`, `env.md` and `update.md`
 - Route manifest: `.skilled/commands/doctor/_routes.yaml`
 - CI assertion: `.skilled/commands/doctor/scripts/route-validate.sh`
 - Root playbook index: [`../manual-testing-playbook.md`](../manual-testing-playbook.md)

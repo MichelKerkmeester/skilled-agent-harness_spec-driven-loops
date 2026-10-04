@@ -14,13 +14,23 @@ version: 0.1.0.1
 
 # Question Shaping Card
 
-> A jev call is two inputs and one output. The state is what the model reads; the question is what it
-> answers. Most bad judgments are bad inputs, and the failure is quiet: a fluent answer to a question
-> nobody meant to ask comes back with exit 0.
+Shape a jev question so the value that comes back is usable.
 
 ---
 
-## 1. PICK THE TYPE BEFORE THE WORDS
+## 1. OVERVIEW
+
+### Purpose
+
+A jev call is two inputs and one output. The state is what the model reads; the question is what it answers. Most bad judgments are bad inputs, and the failure is quiet: a fluent answer to a question nobody meant to ask comes back with exit 0.
+
+### Usage
+
+Work through sections 2 to 6 in order before a call: pick the type, scope the state, write the question, write the criteria and check the call. Section 7 lists when not to ask at all.
+
+---
+
+## 2. PICK THE TYPE BEFORE THE WORDS
 
 | You will do this with the answer | Ask | Because |
 |---|---|---|
@@ -34,7 +44,7 @@ Flipping the table is the common mistake: reaching for `noul` and then inventing
 
 ---
 
-## 2. SCOPE THE STATE
+## 3. SCOPE THE STATE
 
 - **Send what answers the question and nothing else.** The state travels verbatim to a provider.
 - **Prefer a file over an inline string** once the state is longer than a line: `-s @path` keeps the
@@ -46,7 +56,7 @@ Flipping the table is the common mistake: reaching for `noul` and then inventing
 
 ---
 
-## 3. WRITE THE QUESTION
+## 4. WRITE THE QUESTION
 
 A question that produces a usable value has four properties:
 
@@ -61,7 +71,7 @@ A question that produces a usable value has four properties:
 
 ---
 
-## 4. WRITE THE CRITERIA
+## 5. WRITE THE CRITERIA
 
 ### For `choice`
 
@@ -86,7 +96,7 @@ A question that produces a usable value has four properties:
 
 ---
 
-## 5. CHECK BEFORE YOU SPEND THE CALL
+## 6. CHECK BEFORE YOU SPEND THE CALL
 
 - [ ] The type matches what I will do with the value.
 - [ ] Exactly one decision is being asked.
@@ -99,7 +109,7 @@ A question that produces a usable value has four properties:
 
 ---
 
-## 6. WHEN NOT TO ASK AT ALL
+## 7. WHEN NOT TO ASK AT ALL
 
 - **The repository can answer it.** A grep, a test run or a read is evidence; a judgment about it is
   a guess that happens to be printed as JSON.
