@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ed8270bae938aaba8d556b3c77cad8467502d84c5183791e7118f31acf00e1b5",
+  "corpusHash": "e88384925dbc7dc2468feaa0d15b71598bea5db42f00bea54258a12bf55d531c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -23371,7 +23371,7 @@
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d20cbadd12e7d3e5faa8f5813ed93c927a5669aa20fb32101ad654d4471a6c1b",
+  "manifestHash": "1b63b23e90c81cce75a50825a924b95fd3794a7ee79844d66c0de4aa6e688ba5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

@@ -106,8 +106,9 @@ workflow:
   phase_5_report:
     purpose: "Summarize every change made in this run"
     activities:
-      - "Render the mutating result: each applied change, its scope, the verification and its undo command, or none"
-      - "Status is OK when every approved change verified, CANCELLED when nothing was approved, FAIL when a write or verification failed"
+      - "When every approved change verified, render the presentation contract's success result with each change, its scope, the verification and its undo command (STATUS=OK)"
+      - "When nothing was approved, render its cancelled result (STATUS=CANCELLED ACTION=cancelled)"
+      - "When a write or verification failed, render its failure result naming the step and any change already applied (STATUS=FAIL)"
 
 # ─────────────────────────────────────────────────────────────────
 # OUTPUT

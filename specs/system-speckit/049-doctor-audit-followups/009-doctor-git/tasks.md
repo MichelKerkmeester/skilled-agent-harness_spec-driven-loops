@@ -62,6 +62,7 @@ contextType: "general"
 - [x] T012 Run every hook suite and the doctor `run-all.sh`
 - [x] T013 Remove the helper call from a scratch copy and confirm the installed-hook case fails
 - [x] T014 Run the route validator, the router generator, the contract schema, the mirror, prompt and catalog checks, the route guard, the link checker and comment hygiene
+- [x] T015 Align the router and presentation with the sk-create-command templates: a mandatory input gate, the full argument table, a numbered workflow summary, least-privilege tools, the four presentation sections and `STATUS=CANCELLED ACTION=cancelled` (`git.md`, `doctor-git-presentation.txt`, both workflows)
 <!-- /ANCHOR:phase-3 -->
 
 ---

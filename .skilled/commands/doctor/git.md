@@ -1,19 +1,29 @@
 ---
 description: "Switch shipped git hook gates on or off, and change the commit, PR and branch rules in .sk-git/."
 argument-hint: "<hooks|standards> [--dry-run] | list | ?"
-allowed-tools: Read, Bash, Grep, Glob, Edit
+allowed-tools: Read, Bash, Edit
 ---
 <!-- skill_agent: sk-git -->
 
 # /doctor:git Router
 
-This command is a thin router. It resolves the target and setup values from `_routes.yaml`, then loads the target workflow YAML and the presentation contract.
+Thin router for the git hook gate settings and the repository's sk-git rules. It resolves the target and setup values from `_routes.yaml`, loads the presentation contract, then executes the target's workflow YAML.
+
+### MANDATORY INPUT GATE
+
+**STATUS: BLOCKED** until `target` is bound.
+
+1. Parse the first positional token of `$ARGUMENTS` as `target`, before any flag. `list`, `?` and `--list` render the route manifest instead of binding a target.
+2. Treat an absent or whitespace-only target as missing. Do not infer it from conversation history, open files, earlier runs or repository state.
+3. When it is missing, show the presentation contract's startup menu, stop, and wait. Use only `$ARGUMENTS` or that explicit reply.
+
+If this gate was skipped, stop, say so, return to it, and bind the target before loading any workflow.
 
 ## 1. ROUTER CONTRACT
 
 Do not dispatch agents from this Markdown file. Do not edit workflow YAML while executing this command.
 
-Load the presentation contract before showing startup questions, setup dashboards, change plans, approval prompts, result summaries, or next-step text.
+Load the presentation contract before showing the startup menu, a dashboard, a change plan, an approval prompt, a result summary, or next-step text.
 
 ---
 
@@ -29,33 +39,32 @@ Load the presentation contract before showing startup questions, setup dashboard
 ## 3. MODE ROUTING
 
 - `_routes.yaml` is the canonical routing and mutation-class manifest; this command owns the routes whose `command` is `/doctor:git`.
-- `execution_mode` is always `INTERACTIVE`.
-- The positional target is parsed before any flag; global flag pre-parse is forbidden.
+- `execution_mode` is always `INTERACTIVE`. No `:auto` or `:confirm` suffix is supported.
 - Unknown or cross-target flags fail before YAML load.
 - The YAML start condition is: target bound, workflow asset exists, presentation asset loaded, and every target setup variable resolved.
 - If any referenced asset is missing, stop and report the missing path.
-- The YAML owns workflow behavior; the presentation Markdown owns visible wording and layout.
 
 ---
 
 ## 4. EXECUTION TARGETS
-
-These existing YAML assets are referenced only. The router must not modify them.
 
 | Target | Workflow |
 |--------|----------|
 | `hooks` | `.skilled/commands/doctor/assets/doctor-git-hooks.yaml` |
 | `standards` | `.skilled/commands/doctor/assets/doctor-git-standards.yaml` |
 
+| Argument | Applies to | Effect |
+|----------|------------|--------|
+| `--dry-run` | `hooks`, `standards` | Show every plan and stop before any write |
+| `list`, `?`, `--list` | the command | Render the route manifest; load no workflow |
+| `--target=<name>` | the command | Compatibility alias for the positional target |
+
 1. Read `.skilled/commands/doctor/assets/doctor-git-presentation.txt`.
 2. Read `.skilled/commands/doctor/_routes.yaml` and keep the `/doctor:git` routes.
-3. Parse the first positional token from `$ARGUMENTS` as `target`; support `list`, `?`, `--list`, and compatibility alias `--target=<name>`.
-4. If target is unresolved, ask the presentation contract's target-resolution prompt and wait.
-5. If target is unknown, render the presentation contract's unknown-target failure and stop.
-6. Resolve `yaml`, `setup_vars`, `allowed_flags`, `mutating`, `mcp_tools`, and script invocations from the route.
-7. Parse remaining flags using only the resolved target's `allowed_flags`; reject cross-target flags using the presentation contract's error wording.
-8. Load the resolved workflow YAML from `.skilled/commands/doctor/assets/<yaml>` and execute it step by step.
-9. Use the presentation contract, not this router, for user prompts, dashboards, result summaries, and next-step display.
+3. If the bound target is unknown, render the presentation contract's unknown-target failure and stop.
+4. Resolve `yaml`, `setup_vars`, `allowed_flags`, `mutating`, `mcp_tools`, and script invocations from the route.
+5. Parse the remaining flags against that route's `allowed_flags`; reject a cross-target flag with the presentation contract's wording.
+6. Load the resolved workflow YAML from `.skilled/commands/doctor/assets/<yaml>` and execute it step by step.
 
 ---
 
@@ -63,13 +72,16 @@ These existing YAML assets are referenced only. The router must not modify them.
 
 The following content lives only in `.skilled/commands/doctor/assets/doctor-git-presentation.txt`:
 
-- Target-resolution menu, help text, accepted answers, and failure wording.
-- Route manifest display for `list`, `?`, or `--list`.
+- The startup menu, help text, accepted answers, and failure wording.
+- The route manifest display for `list`, `?`, or `--list`.
 - The gate table, the hand-off to `/doctor:env`, the standards status, and every change plan and approval prompt.
-- Result templates, troubleshooting, and next-step display text.
+- Success, cancelled and failure result templates, and next-step suggestions.
 
 ---
 
 ## 6. WORKFLOW SUMMARY
 
-The router resolves a `target` against the `/doctor:git` routes in `_routes.yaml` and executes its workflow under an always-interactive mode. `hooks` lists every optional gate in the shipped pre-commit, prepare-commit-msg and pre-push hooks with its saved setting, and switches one on or off in local or global git config behind an approval; the whole-hook kill switches stay with `/doctor:env`, and the per-push approvals are never saved. `standards` shows which commit, PR and branch rules the repository enforces and where they come from, copies the shipped sk-git templates into `.sk-git/` once, and then changes, removes or switches off a rule in those copies behind an approval, never in the sk-git skill itself. `list`, `?`, or `--list` render the route manifest instead of dispatching.
+1. Bind the target through the input gate, then resolve its route from `_routes.yaml`.
+2. `hooks` runs `doctor-git-hooks.yaml`: list the gates and their saved settings, then switch one in local or global git config per approved change.
+3. `standards` runs `doctor-git-standards.yaml`: show the active rules, copy the shipped sk-git templates into `.sk-git/` once, then change those copies per approved change.
+4. Render the result and next step from the presentation contract.

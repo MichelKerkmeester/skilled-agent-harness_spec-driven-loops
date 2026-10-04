@@ -1,10 +1,10 @@
 # /doctor:git Presentation Contract
 
-This file is the single source of truth for user-facing presentation in `/doctor:git <target>`: startup questions, the route manifest display, the gate table, the hand-off to `/doctor:env`, the standards status, change plans and approvals, result templates, troubleshooting, and next-step text. The command router owns target resolution and asset routing only. The workflow YAML owns execution behavior.
+Presentation source of truth for `/doctor:git <target>`. The router owns target resolution and asset loading. Workflow YAML owns execution. This file owns visible prompts, dashboard and checkpoint layout, result displays, and next-step suggestions.
 
-## 1. Startup Presentation
+## 1. STARTUP PRESENTATION
 
-When `$ARGUMENTS` lacks a recognized positional target, ask this prompt first after reading `_routes.yaml`.
+This command is always interactive and has no `:auto` mode, so there is no auto-resolution table. When `$ARGUMENTS` lacks a recognized positional target, this menu is the first visible response. Ask it once, then wait.
 
 ```text
 What do you want to change?
@@ -22,9 +22,9 @@ Accepted answers:
 | `1` | target = `hooks` |
 | `2` | target = `standards` |
 | `H` | Show the help block, then ask the startup prompt again |
-| `X`, empty, `cancel` | `STATUS=CANCEL` |
+| `X`, empty, `cancel` | `STATUS=CANCELLED ACTION=cancelled` |
 
-On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR=unknown_selection`.
+On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR="unknown_selection"`.
 
 ### Help Block
 
@@ -62,7 +62,9 @@ Flag '[flag]' is not valid for target '[target]'. Did you mean `/doctor:git [sug
 STATUS=FAIL ERROR="cross_target_flag_injection"
 ```
 
-## 2. Route Manifest Display
+## 2. DASHBOARD / CHECKPOINT LAYOUT
+
+### Route Manifest Display
 
 Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.yaml`.
 
@@ -71,7 +73,22 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 | `hooks` | `doctor-git-hooks.yaml` | mutates | List the shipped hook gates with their saved settings and switch one on or off in local or global git config |
 | `standards` | `doctor-git-standards.yaml` | mutates | Show the enforced commit, PR and branch rules and change them in the repository's own `.sk-git/` copies |
 
-## 3. Hooks: Gate Table And Hand-Off
+### Setup Dashboard
+
+Render this compact panel after setup and before YAML execution when target resolution or flags were non-trivial.
+
+```text
+DOCTOR ROUTE SETUP
+Target: [target]
+Workflow: .skilled/commands/doctor/assets/[yaml]
+Mutation class: mutates
+Execution mode: INTERACTIVE
+Setup values: [key=value list]
+Presentation: .skilled/commands/doctor/assets/doctor-git-presentation.txt
+Next: load workflow YAML
+```
+
+### Hooks: Gate Table And Hand-Off
 
 Render the script's table as returned, then this block.
 
@@ -96,7 +113,7 @@ Add "global" to change it for every repository on this machine; the default is t
 Reply done to finish without a change.
 ```
 
-## 4. Hooks: Change Plan And Approval
+### Hooks: Change Plan And Approval
 
 ```text
 GATE CHANGE PLAN
@@ -107,7 +124,7 @@ Will run: [the git config command, or nothing to change]
 Bypass for one run without saving: [ENV]=1 git [commit|push] ...
 ```
 
-With `--dry-run`, follow the plan with `Dry run: nothing was written.` and `STATUS=OK`.
+With `--dry-run`, follow the plan with `Dry run: nothing was written.` and continue without asking.
 
 Otherwise ask:
 
@@ -115,7 +132,7 @@ Otherwise ask:
 Apply this change? Reply approve to write it, or no to cancel.
 ```
 
-## 5. Standards: Status
+### Standards: Status
 
 Render the script's status as returned, then:
 
@@ -145,7 +162,7 @@ What should change?
    D) Done
 ```
 
-## 6. Standards: Change Plan And Approval
+### Standards: Change Plan And Approval
 
 ```text
 RULE CHANGE PLAN
@@ -165,7 +182,7 @@ Removes: the "[heading]" section, lines [a]-[b]
 After this, no [kind] rule is checked in this repository. To restore them, delete the file and run init again.
 ```
 
-With `--dry-run`, follow the plan with `Dry run: nothing was written.` and `STATUS=OK`.
+With `--dry-run`, follow the plan with `Dry run: nothing was written.` and continue without asking.
 
 Otherwise ask:
 
@@ -179,56 +196,52 @@ When the plan lists prose to update, ask after the write:
 The template's prose still states the old rule. Update those lines in .sk-git/[file] to match? Reply approve, or no to leave them.
 ```
 
-## 7. Setup Dashboard
+## 3. RESULTS DISPLAY
 
-Render this compact panel after setup and before YAML execution when target resolution or flags were non-trivial.
-
-```text
-DOCTOR ROUTE SETUP
-Target: [target]
-Workflow: .skilled/commands/doctor/assets/[yaml]
-Mutation class: mutates
-Execution mode: INTERACTIVE
-Setup values: [key=value list]
-Presentation: .skilled/commands/doctor/assets/doctor-git-presentation.txt
-Next: load workflow YAML
-```
-
-## 8. Result Templates
-
-### Mutating Target Summary
+### Success
 
 ```text
 DOCTOR MUTATING RESULT
 Target: [target]
 Workflow: [yaml]
-Status: [OK|CANCELLED|FAIL]
-Approved changes: [none|summary]
+Approved changes: [summary, or none in a dry run]
 Changed: [git config key and scope | .sk-git/ files | none]
 Verification: [the re-read setting, or the standards check result]
 Undo: [the git config command that restores the previous value | git checkout or delete-and-init for .sk-git/]
-STATUS=[status]
+STATUS=OK
 ```
 
-### Failure Summary
+### Cancelled
+
+```text
+DOCTOR TARGET CANCELLED
+Target: [target]
+Changed: [changes applied before the cancel, or none]
+STATUS=CANCELLED ACTION=cancelled
+```
+
+### Failure
 
 ```text
 DOCTOR TARGET FAILED
 Target: [target]
 Step: [setup|workflow phase]
 Error: [message]
+Changed: [changes applied before the failure, or none]
 Next: [recommended command or manual action]
 STATUS=FAIL ERROR="[message]"
 ```
 
-## 9. Troubleshooting Display
+## 4. NEXT-STEP SUGGESTIONS
 
-| Situation | Suggested Action |
-|-----------|------------------|
-| A gate still runs after it was switched off | The installed hooks are older than this checkout; run `bash .skilled/scripts/install-git-hooks.sh --status` and update the checkout the hooks link to |
-| A gate is switched off but a teammate's commits still run it | Local and global config are per machine; each person sets their own, or the team relies on CI |
-| A rule change was refused | The sk-git validator rejected the result; read the named setting and pick a value it accepts |
-| Commits fail after a rule edit | Run `/doctor:git standards` and choose Check, or `node .skilled/skills/sk-git/scripts/validate-message.mjs --explain` |
-| `.sk-git/` is ignored | git config `skgit.contractDir` outranks it; unset it or edit the directory it names |
+| Condition | Suggested Command | Reason |
+|-----------|-------------------|--------|
+| A gate still runs after it was switched off | `bash .skilled/scripts/install-git-hooks.sh --status` | The installed hooks may link to an older checkout; update the checkout they link to |
+| A teammate's commits still run a gate you switched off | none; each person runs `/doctor:git hooks` | Local and global config are per machine; CI still enforces the rules |
+| A rule change was refused | `/doctor:git standards` | The sk-git validator rejected the result; pick a value it accepts |
+| Commits fail after a rule edit | `node .skilled/skills/sk-git/scripts/validate-message.mjs --explain` | Shows which template each kind is enforced from |
+| `.sk-git/` is ignored | `git config --unset skgit.contractDir` | That setting outranks `.sk-git/` |
+| Rules changed in `.sk-git/` | `git add .sk-git/ && git commit` | CI and teammates enforce only the committed copies |
+| Every hook should pause, in every repository | `/doctor:env` | The whole-hook kill switches live there |
 
 End interactive presentations with: `What would you like to do next?`
