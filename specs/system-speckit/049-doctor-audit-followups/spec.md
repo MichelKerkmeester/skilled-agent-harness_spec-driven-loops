@@ -142,6 +142,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 16 | 016-doctor-playbook-deep-loop/ | Manual test scenarios for `/doctor:deep-loop` in the system-deep-loop playbook | Complete |
 | 17 | 017-doctor-playbook-git/ | Manual test scenarios for `/doctor:git` in the sk-git playbook | Complete |
 | 18 | 018-doctor-playbook-mcp/ | Manual test scenarios for `/doctor:mcp` in the mcp-code-mode playbook, plus the stale `--server` flag in the route manifest | Complete |
+| 19 | 019-doctor-test-environment-research/ | Research the two doctor contract fixes and a long-lived local test environment for the doctor scenarios | Complete |
 
 ### Phase Transition Rules
 
@@ -171,6 +172,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 015-doctor-playbook-skill-advisor | 016-doctor-playbook-deep-loop | The skill-advisor scenarios are indexed | The deep-loop playbook and topology checks pass once phase 016 lands |
 | 016-doctor-playbook-deep-loop | 017-doctor-playbook-git | The deep-loop scenarios are indexed | The sk-git playbook validator exits 0 once phase 017 lands |
 | 017-doctor-playbook-git | 018-doctor-playbook-mcp | The git scenarios are indexed | `route-validate.sh` and the doctor suites pass once phase 018 lands |
+| 018-doctor-playbook-mcp | 019-doctor-test-environment-research | The doctor scenarios exist in every owning playbook | `research/research.md` gives a cited plan for the fixes and the environment |
 <!-- /ANCHOR:phase-map -->
 
 ---
