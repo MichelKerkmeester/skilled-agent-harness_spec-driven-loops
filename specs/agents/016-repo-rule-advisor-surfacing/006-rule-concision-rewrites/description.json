@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites",
   "description": "Rule statement is 57,847 of 107,092 bytes (54.0%)",
   "keywords": [
@@ -6,7 +7,7 @@
     "statement",
     "bytes"
   ],
-  "lastUpdated": "2026-10-04T14:49:19.525Z",
+  "lastUpdated": "2026-10-04T19:40:29.797Z",
   "specId": "006",
   "folderSlug": "rule-concision-rewrites",
   "parentChain": [
@@ -14,6 +15,5 @@
     "016-repo-rule-advisor-surfacing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -42,7 +42,7 @@ contextType: "implementation"
 ## Phase 2: Implementation
 
 - [ ] T004 Ship `evidence-and-proof.md` from its draft with a ledger
-- [ ] T005 Ship `communication.md` from its draft, restoring the three edge clauses and the failure lines
+- [ ] T005 Ship `communication.md` from its draft, restoring the three edge clauses and the failure lines, and add the simple-terms clause (REQ-007)
 - [ ] T006 [P] Rewrite the remaining 11 rules, one commit and one ledger each
 <!-- /ANCHOR:phase-2 -->
 

@@ -75,6 +75,7 @@ The corpus shrinks by 20% to 28% while every norm, test, exception, Fires-when b
 - Rewrite all 13 rules through `sk-doc`'s `sk-create-repo-rule` mode, starting from the two `swe-2-max` drafts
 - One ledger per rule listing every dropped sentence and its category: boilerplate, restatement, rationale or provenance
 - Restore what the drafts dropped that is not apparatus: the three `communication.md` edge clauses and every failure-naming sentence
+- Add one operator-requested clause to `communication.md`: explain a complex topic in simple terms from the first explanation, not only after the reader asks, without dropping a caveat or number
 
 ### Out of Scope
 - Moving `trigger_phrases` to a sidecar - its only consumer is the checker's checks 3 and 5, and the move would change the checker, template and anatomy for about 6.8 KB read only when a rule loads
@@ -102,6 +103,7 @@ The corpus shrinks by 20% to 28% while every norm, test, exception, Fires-when b
 | REQ-001 | Every imperative, test, exception, Fires-when bullet and self-check item in each rule survives. The ledger lists every dropped sentence with its category |
 | REQ-002 | `check-repo-rules.cjs` passes all ten checks |
 | REQ-003 | No cross-referenced section number changes |
+| REQ-007 | `communication.md` gains the simple-terms clause: a complex topic is explained plainly the first time (what it is, why it matters, what the reader does), a term is used only when needed and defined on first use, and no caveat or number is dropped to get there. This is the only norm change, added at the operator's request |
 
 ### P1 - Required (complete OR user-approved deferral)
 

@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-10-04
 <!-- /ANCHOR:metadata -->
 
@@ -54,13 +54,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given fixtures with distinctive marker strings, When the analyzer runs, Then no marker appears in its output | pytest privacy test | Unmet | - |
-| AC-002 | REQ-002 | Given fixtures with a write before and after a `REPO RULES.md` read, When the analyzer runs, Then it reports one miss and one hit with denominator 2 | pytest | Unmet | - |
-| AC-003 | REQ-003 | Given a fixture with a `Read`, a `cat` and an injection of the same rule across two windows, When the analyzer runs, Then each channel and window is counted | pytest | Unmet | - |
-| AC-004 | REQ-004 | Given two rule versions in git history, When replies fall on each side, Then the split assigns them correctly | pytest with a temporary git repo | Unmet | - |
-| AC-005 | REQ-005 | Given a Codex session fixture, When the analyzer runs, Then it reports a Codex row | pytest | Unmet | - |
-| AC-006 | SC-001 | Given the evidence pack's window and arguments, When the analyzer runs, Then its `Read`-channel counts match | Command output compared with `prep/evidence-pack.md` §3 | Unmet | - |
-| AC-007 | REQ-008 | Given phase 006 has not started, When the baseline is committed, Then `baselines/` holds the report | `git log` on `baselines/` | Unmet | - |
+| AC-001 | REQ-001 | Given fixtures with distinctive marker strings, When the analyzer runs, Then no marker appears in its output | pytest `test_output_carries_no_transcript_text` at `.skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py:75`, passing, text and JSON modes | Met | - |
+| AC-002 | REQ-002 | Given fixtures with a write before and after a `REPO RULES.md` read, When the analyzer runs, Then it reports one miss and one hit with denominator 2 | pytest `test_gate5_counts_a_write_before_and_after_the_index_read` at `.skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py:106`, passing: every-write 1 of 2, first-write 1 of 1 | Met | - |
+| AC-003 | REQ-003 | Given a fixture with a `Read`, a `cat` and an injection of the same rule across two windows, When the analyzer runs, Then each channel and window is counted | pytest `test_channels_and_windows_are_counted_separately` at `.skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py:124`, passing | Met | - |
+| AC-004 | REQ-004 | Given two rule versions in git history, When replies fall on each side, Then the split assigns them correctly | pytest `test_replies_split_by_the_rule_version_live_at_their_time` at `.skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py:158`, passing | Met | - |
+| AC-005 | REQ-005 | Given a Codex session fixture, When the analyzer runs, Then it reports a Codex row | pytest `test_codex_session_produces_a_codex_row` at `.skilled/skills/sk-doc/scripts/tests/test_measure_rule_compliance.py:184`, passing | Met | - |
+| AC-006 | SC-001 | Given the evidence pack's window and arguments, When the analyzer runs, Then its `Read`-channel counts match | `--until 2026-10-04T13:13:10Z --channels read,shell,other` printed table 219/1063/86 and semicolon 37.0% of 138, 17.0% of 1015, 43.7% of 215, matching `../002-rule-concision-and-loading/prep/evidence-pack.md:45` | Met | - |
+| AC-007 | REQ-008 | Given phase 006 has not started, When the baseline is committed, Then `baselines/` holds the report | `specs/agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation/baselines/2026-10-04-baseline.txt:1`, committed with this phase before any 006 rule commit | Met | - |
 
 ### Status values
 
@@ -85,8 +85,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+All seven criteria are met by passing pytest cases, an exact rerun of the evidence pack and the committed baseline. Adapters for Devin, Cursor, Pi and OpenCode were left out, because each keeps a readable transcript and no experiment needs them yet.
 <!-- /ANCHOR:closure -->

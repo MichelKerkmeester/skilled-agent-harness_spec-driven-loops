@@ -45,7 +45,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Each phase passes validate.sh --strict on its own before its successor starts. Only 004 and 005 may start in parallel with the phase before them. |
-| D2 | Build phases 003 to 008 apply the 002 verdict and nothing beyond it. |
+| D2 | Build phases 003 to 008 apply the 002 verdict and nothing beyond it, except one operator-added clause in 006: communication.md asks for complex topics in simple terms from the first explanation. |
 | D3 | No once-per-compaction rule hook is built until a measured miss rate justifies one. |
 | D4 | Rule trigger_phrases stay in rule frontmatter, with no sidecar. |
 | D5 | The 004 baseline is committed before 006 changes any rule. |
@@ -108,6 +108,7 @@ and findings belong here.
 |------|-------|----------|
 | Goal retrofit | Done | Parent and eight phase goals authored on 2026-10-04 from each folder's own spec.md, acceptance-criteria.md where present and tasks.md |
 | Phases 001 and 002 | Complete per the phase map | spec.md Phase Documentation Map. Criteria left unticked until an evaluator confirms them |
+| D2 amendment | Done | operator chose to fold a simple-terms clause for communication.md into 006; D2 and 006 D1 amended, 006 REQ-007 and AC-006 added |
 
 ### Deviations and findings
 

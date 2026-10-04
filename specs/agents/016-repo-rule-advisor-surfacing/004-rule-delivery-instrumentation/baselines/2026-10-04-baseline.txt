@@ -1,0 +1,52 @@
+# Rule delivery and compliance baseline, aggregates only
+# command: python3 .skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py "" 200 2026-09-15 --until 2026-10-04T19:00:00Z
+# repo HEAD at measurement: a7380ece83; analyzer is the version committed with this file
+# caveat: replies cluster by session, so per-reply intervals understate between-session uncertainty
+
+min_reply_chars=400 rates: share of n [Wilson 95% interval]
+
+== claude: sessions=44 (write 17, read-only 27) window=2026-09-15..2026-10-04 malformed=0 unknown=0
+receipts: read=209 shell=398 other=237 inject=0 | delivery counts read,shell,inject
+windows=269 with_receipt=119 mean_distinct_rules=1.62 same_window_repeats=172 cross_window_rereads=261
+gate5 miss: first write 23.5% of 17 [9.6-47.3] | every write 60.0% of 831 [56.7-63.3]
+reply rules miss (first reply per window): write sessions 89.4% of 198 [84.3-93.0] | read-only sessions 85.0% of 20 [64.0-94.8]
+   missing per rule: communication.md 87.6% of 218 [82.6-91.3] | communication-prose.md 89.0% of 218 [84.1-92.5]
+table [communication.md] before=17.3% of 220 [12.9-22.8] after=17.2% of 1306 [15.2-19.3] never=11.6% of 86 [6.4-20.1]
+   decay after delivery: replies 1-3: 22.8% of 145 [16.7-30.2] | replies 4-10: 25.4% of 209 [19.9-31.7] | replies 11-30: 17.2% of 314 [13.4-21.8] | replies 31-+: 13.2% of 638 [10.8-16.0]
+   by rule version: 500bbe3 (from 2026-09-14): 100.0% of 1 [20.7-100.0] | 3eeaf37 (from 2026-09-15): 30.0% of 90 [21.5-40.1] | 0c4903b (from 2026-09-15): 0.0% of 4 [0.0-49.0] | 65aeab9 (from 2026-09-18): 42.1% of 38 [27.9-57.8] | 132ed40 (from 2026-09-20): 17.3% of 934 [15.1-19.9] | 01407ac (from 2026-10-02): 12.1% of 545 [9.6-15.1]
+empty_opener [communication.md] before=0.0% of 220 [0.0-1.7] after=0.0% of 1306 [0.0-0.3] never=0.0% of 86 [0.0-4.3]
+   decay after delivery: replies 1-3: 0.0% of 145 [0.0-2.6] | replies 4-10: 0.0% of 209 [0.0-1.8] | replies 11-30: 0.0% of 314 [0.0-1.2] | replies 31-+: 0.0% of 638 [0.0-0.6]
+   by rule version: 500bbe3 (from 2026-09-14): 0.0% of 1 [0.0-79.3] | 3eeaf37 (from 2026-09-15): 0.0% of 90 [0.0-4.1] | 0c4903b (from 2026-09-15): 0.0% of 4 [0.0-49.0] | 65aeab9 (from 2026-09-18): 0.0% of 38 [0.0-9.2] | 132ed40 (from 2026-09-20): 0.0% of 934 [0.0-0.4] | 01407ac (from 2026-10-02): 0.0% of 545 [0.0-0.7]
+label_first_line [communication.md] before=2.7% of 220 [1.3-5.8] after=2.3% of 1306 [1.6-3.3] never=2.3% of 86 [0.6-8.1]
+   decay after delivery: replies 1-3: 1.4% of 145 [0.4-4.9] | replies 4-10: 1.4% of 209 [0.5-4.1] | replies 11-30: 2.2% of 314 [1.1-4.5] | replies 31-+: 2.8% of 638 [1.8-4.4]
+   by rule version: 500bbe3 (from 2026-09-14): 0.0% of 1 [0.0-79.3] | 3eeaf37 (from 2026-09-15): 1.1% of 90 [0.2-6.0] | 0c4903b (from 2026-09-15): 0.0% of 4 [0.0-49.0] | 65aeab9 (from 2026-09-18): 2.6% of 38 [0.5-13.5] | 132ed40 (from 2026-09-20): 2.8% of 934 [1.9-4.0] | 01407ac (from 2026-10-02): 1.8% of 545 [1.0-3.3]
+em_dash [communication-prose.md] before=1.8% of 169 [0.6-5.1] after=3.7% of 1231 [2.8-4.9] never=6.6% of 212 [4.0-10.8]
+   decay after delivery: replies 1-3: 3.0% of 134 [1.2-7.4] | replies 4-10: 4.7% of 193 [2.5-8.6] | replies 11-30: 9.9% of 262 [6.9-14.1] | replies 31-+: 1.1% of 642 [0.5-2.2]
+   by rule version: 214c002 (from 2026-09-14): 34.6% of 133 [27.0-43.0] | 1dc5b8c (from 2026-09-20): 1.4% of 934 [0.8-2.4] | a8c9b05 (from 2026-10-02): 0.7% of 545 [0.3-1.9]
+semicolon [communication-prose.md] before=34.9% of 169 [28.1-42.4] after=30.7% of 1231 [28.2-33.3] never=42.9% of 212 [36.4-49.7]
+   decay after delivery: replies 1-3: 15.7% of 134 [10.5-22.8] | replies 4-10: 24.4% of 193 [18.8-30.9] | replies 11-30: 26.7% of 262 [21.7-32.4] | replies 31-+: 37.4% of 642 [33.7-41.2]
+   by rule version: 214c002 (from 2026-09-14): 40.6% of 133 [32.6-49.1] | 1dc5b8c (from 2026-09-20): 19.9% of 934 [17.5-22.6] | a8c9b05 (from 2026-10-02): 52.8% of 545 [48.6-57.0]
+table by request: requested 12.5% of 120 [7.7-19.6] | document 100.0% of 1 [20.7-100.0] | other 17.2% of 1491 [15.3-19.2]
+
+== codex: sessions=200 (write 63, read-only 137) window=2026-09-27..2026-10-04 malformed=0 unknown=0
+receipts: read=0 shell=1867 other=92 inject=0 | delivery counts read,shell,inject
+windows=277 with_receipt=173 mean_distinct_rules=4.44 same_window_repeats=636 cross_window_rereads=20
+gate5 miss: first write 7.9% of 63 [3.4-17.3] | every write 27.1% of 875 [24.2-30.1]
+reply rules miss (first reply per window): write sessions 47.2% of 53 [34.4-60.3] | read-only sessions 41.7% of 96 [32.3-51.7]
+   missing per rule: communication.md 43.6% of 149 [35.9-51.6] | communication-prose.md 43.6% of 149 [35.9-51.6]
+table [communication.md] before=n/a after=8.3% of 120 [4.6-14.7] never=48.3% of 29 [31.4-65.6]
+   decay after delivery: replies 1-3: 8.3% of 120 [4.6-14.7] | replies 4-10: n/a | replies 11-30: n/a | replies 31-+: n/a
+   by rule version: 132ed40 (from 2026-09-20): 26.9% of 52 [16.8-40.3] | 01407ac (from 2026-10-02): 10.3% of 97 [5.7-17.9]
+empty_opener [communication.md] before=n/a after=0.0% of 120 [0.0-3.1] never=0.0% of 29 [0.0-11.7]
+   decay after delivery: replies 1-3: 0.0% of 120 [0.0-3.1] | replies 4-10: n/a | replies 11-30: n/a | replies 31-+: n/a
+   by rule version: 132ed40 (from 2026-09-20): 0.0% of 52 [0.0-6.9] | 01407ac (from 2026-10-02): 0.0% of 97 [0.0-3.8]
+label_first_line [communication.md] before=n/a after=6.7% of 120 [3.4-12.6] never=3.4% of 29 [0.6-17.2]
+   decay after delivery: replies 1-3: 6.7% of 120 [3.4-12.6] | replies 4-10: n/a | replies 11-30: n/a | replies 31-+: n/a
+   by rule version: 132ed40 (from 2026-09-20): 1.9% of 52 [0.3-10.1] | 01407ac (from 2026-10-02): 8.2% of 97 [4.2-15.4]
+em_dash [communication-prose.md] before=n/a after=31.7% of 120 [24.0-40.4] never=13.8% of 29 [5.5-30.6]
+   decay after delivery: replies 1-3: 31.7% of 120 [24.0-40.4] | replies 4-10: n/a | replies 11-30: n/a | replies 31-+: n/a
+   by rule version: 1dc5b8c (from 2026-09-20): 11.5% of 52 [5.4-23.0] | a8c9b05 (from 2026-10-02): 37.1% of 97 [28.2-47.0]
+semicolon [communication-prose.md] before=n/a after=88.3% of 120 [81.4-92.9] never=86.2% of 29 [69.4-94.5]
+   decay after delivery: replies 1-3: 88.3% of 120 [81.4-92.9] | replies 4-10: n/a | replies 11-30: n/a | replies 31-+: n/a
+   by rule version: 1dc5b8c (from 2026-09-20): 78.8% of 52 [66.0-87.8] | a8c9b05 (from 2026-10-02): 92.8% of 97 [85.8-96.5]
+table by request: requested 31.9% of 72 [22.3-43.4] | document n/a | other 1.3% of 77 [0.2-7.0]
