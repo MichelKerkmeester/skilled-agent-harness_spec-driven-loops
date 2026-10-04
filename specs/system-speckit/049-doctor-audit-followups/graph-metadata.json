@@ -11,7 +11,8 @@
     "system-speckit/049-doctor-audit-followups/005-doctor-update-research",
     "system-speckit/049-doctor-audit-followups/006-doctor-update-fixes",
     "system-speckit/049-doctor-audit-followups/007-speckit-router-contract-drift",
-    "system-speckit/049-doctor-audit-followups/008-doctor-ownership-split"
+    "system-speckit/049-doctor-audit-followups/008-doctor-ownership-split",
+    "system-speckit/049-doctor-audit-followups/009-doctor-git"
   ],
   "manual": {
     "depends_on": [],
@@ -175,16 +176,16 @@
     ],
     "causal_summary": "The doctor command audit (packet 048) inspected every doctor target against the current checkout and applied its verdicts, but it deliberately recorded the defects it found in the subsystems the doctors inspect instead of fixing them",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-04T06:45:32.011Z",
+    "last_save_at": "2026-10-04T07:35:53.738Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4f3162a684d85e819337d255015823f50a17c19e48bafc1110136c43cde7571a",
+    "source_fingerprint": "sha256:f488c2d61051273e1bbd9c38853aa4602709f249461f06a217b4b3a80a491891",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a6612bb9e74b697d9fcdcbc9e0a287add5fe7bd6a76a83e04e66171c86a64913"
+      "spec.md": "5ac57a42f8967715ff5fedb915d60cd8409fe7fcf9e6296980ab467599512df4"
     },
     "last_active_child_id": "system-speckit/049-doctor-audit-followups/005-doctor-update-research",
     "last_active_at": "2026-10-03T20:43:10.206Z"

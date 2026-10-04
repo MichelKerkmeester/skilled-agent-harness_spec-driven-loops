@@ -1192,7 +1192,7 @@ The active autonomous loop families (the improvement family carries two lanes). 
 &nbsp;
 #### DOCTOR
 
-Seven commands cover the diagnostic surface, one per owner. The four routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
+Eight commands cover the diagnostic surface, one per owner. The five routed ones share the `.skilled/commands/doctor/_routes.yaml` manifest, where each route names its command and carries its setup vars, allowed flags, mutation class and trigger phrases.
 
 **`/doctor:speckit`** - spec-kit retrieval
 
@@ -1209,6 +1209,12 @@ Seven commands cover the diagnostic surface, one per owner. The four routed ones
 
 **`/doctor:runtime-mirrors`** - checks the agent, command, prompt and hook mirrors each runtime directory derives from `.skilled`, and names the repair command for any that drift
 
+**`/doctor:git <hooks|standards>`** - your own settings for the shipped git hooks and sk-git rules
+
+- `hooks` lists every optional pre-commit, prepare-commit-msg and pre-push gate with its saved setting, and switches one on or off in local or global git config (`speckit.hooks.<key>`) after showing the exact command. The per-push approvals are never saved, and the whole-hook kill switches stay with `/doctor:env`
+- `standards` shows which commit, PR and branch rules are enforced and where they come from, copies the shipped sk-git templates into `.sk-git/` once, then changes a setting, removes one or stops enforcing a kind in those copies, refusing any edit the sk-git validator would reject. The sk-git skill itself is never edited
+- Each change waits for an approval. `--dry-run` shows the plans and writes nothing
+
 **`/doctor:mcp install|debug`** - MCP infrastructure repair
 
 - `install`. Installs dependencies and builds Code Mode when its `dist` is missing or stale, configures `.utcp_config.json` manuals and registers Code Mode in the seven project runtime configs, each write after its own approval
@@ -1223,7 +1229,7 @@ Seven commands cover the diagnostic surface, one per owner. The four routed ones
 - Saves a preference only after showing the exact line and destination and getting an explicit yes. `--dry-run` shows the same preview and writes nothing
 - Explains secrets and per-invocation switches without asking for or saving their values. A per-invocation switch is shown as a one-command prefix
 
-The 17 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
+The 19 underlying YAML workflows in `.skilled/commands/doctor/assets/` are self-sufficient. Each declares its own `role/purpose/action/operating_mode` block and runs in phases, and most also declare `upstream_assets`, `user_inputs` and `field_handling`. The `route-validate.{sh,py}` CI script enforces internal consistency on the route manifest.
 
 &nbsp;
 #### UTILITY

@@ -43,7 +43,7 @@ Commands are organized into six groups plus root-level utilities:
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 13 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
 | **deep** | `commands/deep/` | 5 | Deep research, review, AI council and improvement loops |
-| **doctor** | `commands/doctor/` | 7 | Spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, MCP, release-update and environment-switch diagnostics |
+| **doctor** | `commands/doctor/` | 8 | Spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, git hook and standards, MCP, release-update and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 6 | Spec folder workflows (plan, implement, resume, complete), continuity write (save) and lexical retrieval (search) |
@@ -106,6 +106,7 @@ command/
 │   ├── skill-advisor.md      # Skill advisor tune, rebuild and audits
 │   ├── deep-loop.md          # Deep-loop graph and convergence diagnostics
 │   ├── runtime-mirrors.md    # Runtime mirror parity check
+│   ├── git.md                # Git hook gate settings and sk-git standards
 │   ├── mcp.md                # Diagnose/install MCP infrastructure
 │   ├── update.md             # Release-aware framework updater
 │   ├── env.md                # Environment switch inspection
@@ -155,7 +156,7 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 
 ### Doctor Commands
 
-Seven command files cover the diagnostic surface, one per owner. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
+Eight command files cover the diagnostic surface, one per owner. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
@@ -163,6 +164,7 @@ Seven command files cover the diagnostic surface, one per owner. Backed by `_rou
 | Skill Advisor | `/doctor:skill-advisor <target> [flags]` | Re-tune routing, rebuild the skill graph, or audit graph freshness, router reach, description budget and parent-skill structure |
 | Deep-Loop | `/doctor:deep-loop [--scope=<scope>]` | Diagnose deep-loop coverage graphs and convergence for research, review and council runs |
 | Runtime Mirrors | `/doctor:runtime-mirrors` | Check that the agent, command, prompt and hook mirrors are in sync with `.skilled` |
+| Git | `/doctor:git <hooks\|standards> [--dry-run]` | Switch shipped git hook gates on or off in git config, and change the commit, PR and branch rules in `.sk-git/` |
 | MCP Debug | `/doctor:mcp debug [--fix]` | Diagnose Code Mode build, UTCP configuration, credentials, and runtime registration |
 | MCP Install | `/doctor:mcp install [--runtime <name>]` | Install Code Mode and configure its UTCP file and selected runtime |
 | Update | `/doctor:update [check|align|apply|rollback|record-base]` | Release-aware spec-kit updater with read-only check, decision alignment, gated apply, rollback and base-recording workflows |

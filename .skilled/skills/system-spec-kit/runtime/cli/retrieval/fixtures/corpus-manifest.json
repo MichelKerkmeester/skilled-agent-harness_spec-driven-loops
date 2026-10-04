@@ -1,5 +1,5 @@
 {
-  "corpusHash": "43804607111fe4cb34ca9e4257d4ac5cf7a09ac99ff72f6bb3e6733c1232d062",
+  "corpusHash": "ed8270bae938aaba8d556b3c77cad8467502d84c5183791e7118f31acf00e1b5",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26,7 +26,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 23336,
+  "includedPathCount": 23341,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -23363,10 +23363,15 @@
     "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/acceptance-criteria.md",
+    "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9985259f9f415882c970e2e97d52a1b169418498cd5a1e50a955d93f7fccdce2",
+  "manifestHash": "d20cbadd12e7d3e5faa8f5813ed93c927a5669aa20fb32101ad654d4471a6c1b",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28774,6 +28779,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/scratch",
       "reason": "excluded directory"
     },
     {

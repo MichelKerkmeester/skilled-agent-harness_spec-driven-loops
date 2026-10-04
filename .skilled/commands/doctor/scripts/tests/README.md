@@ -33,6 +33,8 @@ Current state:
 | `parent-skill-check-command-column.test.cjs` | `parent-skill-check.cjs` command-column checks |
 | `parent-skill-check-leaf-manifest.test.cjs` | `parent-skill-check.cjs` leaf-manifest checks |
 | `parent-skill-check-root-router.test.cjs` | `parent-skill-check.cjs` root-router checks |
+| `git-hook-gates.test.cjs` | `git-hook-gates.cjs` against throwaway repositories with an isolated global config, and the hook helper reading what it writes |
+| `git-standards.test.cjs` | `git-standards.cjs` against throwaway repositories, each change checked with sk-git's `validate-message.mjs` |
 | `release-update.test.cjs` | `release-update.cjs`, every subcommand against throwaway git repositories |
 | `doctor-update-contract.test.cjs` | Checks the `/doctor:update` router, workflows, presentation and command contract against each other and the engine |
 | `skill-advisor-route-contract.test.cjs` | The advisor commands and flags the doctor routes invoke |

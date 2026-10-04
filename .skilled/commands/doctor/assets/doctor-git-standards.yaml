@@ -1,0 +1,136 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: GIT STANDARDS WORKFLOW (INTERACTIVE MUTATING MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator helping a repository own and adjust its commit, PR and branch rules
+purpose: Show which message and naming rules the repository enforces and where they come from, copy the shipped sk-git templates into .sk-git/ once, then change those copies behind one approval per change
+action: Status -> init when the shipped templates are active -> pick a change -> plan -> approval -> write -> prose follow-up -> check
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: loop_with_approval_per_change
+  compliance: MANDATORY
+  execution: interactive
+  approvals: one_per_change
+  tracking: change_by_change
+  validation: standards_check_after_each_write
+
+# ─────────────────────────────────────────────────────────────────
+# STANDARDS INVARIANT
+# ─────────────────────────────────────────────────────────────────
+standards_invariant: |
+  The rules are the "Enforced rules" JSON block in each sk-git template. The gates
+  (commit-msg, pre-push, the agent gate and CI) read them through message-contract.mjs from
+  git config skgit.contractDir, else .sk-git/ at the repository root, else the shipped
+  sk-git assets. This workflow writes only .sk-git/ or the configured directory, never the
+  shipped assets, so a framework update never overwrites the repository's choices and the
+  repository's choices never leak into the skill. Every rule change goes through
+  git-standards.cjs, which re-validates the whole block with the same shape check the gates
+  use and refuses a result they would reject, so an edit cannot leave every commit blocked.
+  The template prose is the guide an author reads; a rule change that leaves it stating the
+  old rule is reported as drift and offered as a follow-up edit, never silently left.
+  A dry run shows each plan and writes nothing.
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  standards_script: ".skilled/commands/doctor/scripts/git-standards.cjs"
+  contract_module: ".skilled/skills/sk-git/scripts/lib/message-contract.mjs"
+  validator: ".skilled/skills/sk-git/scripts/validate-message.mjs"
+  shipped_templates: ".skilled/skills/sk-git/assets/{commit-message-template,pr-template,worktree-checklist}.md"
+  override_dir: ".sk-git/"
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  execution_mode: "INTERACTIVE"
+  dry_run: "[DRY_RUN] - show each plan and stop before any write (default false)"
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  defaults:
+    dry_run: false
+  validation:
+    execution_mode_must_be: INTERACTIVE
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  allowed_targets:
+    - ".sk-git/commit-message-template.md"
+    - ".sk-git/pr-template.md"
+    - ".sk-git/worktree-checklist.md"
+    - "the directory git config skgit.contractDir names, when it is set"
+  forbidden_targets:
+    - ".skilled/skills/sk-git/**"
+    - ".opencode/skills/sk-git/**"
+    - "git config skgit.contractDir"
+  invariant: "Rules blocks change only through git-standards.cjs with --apply after an approved plan; a prose follow-up edits only the lines its drift findings name."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_1_status:
+    purpose: "Show what is enforced and from where before asking for anything"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/git-standards.cjs status --json and keep the contract directory, its source, whether it is editable, and each kind's state and rule ids"
+      - "Run node .skilled/skills/sk-git/scripts/validate-message.mjs --explain as the gates' own view of the same lookup, and report any disagreement with the status as a FAIL"
+      - "Render the presentation contract's standards status and source list"
+
+  phase_2_init:
+    purpose: "Give the repository its own copies when the shipped templates are active"
+    runs_when: "the status reports no contract directory or the shipped templates as the source"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/git-standards.cjs init --json, which writes nothing, and render the files it would copy"
+      - "If dry_run is true, render the dry-run line and continue to phase_3_choose with nothing editable"
+      - "Ask the presentation's init prompt; on approve run node .skilled/commands/doctor/scripts/git-standards.cjs init --apply --json, on anything else stop with STATUS=CANCELLED"
+      - "Existing files in .sk-git/ are kept, never overwritten; report them"
+
+  phase_3_choose:
+    purpose: "Find out what should change"
+    activities:
+      - "Ask the presentation's change menu; on done, go to phase_7_report"
+      - "For a setting change or removal, ask which kind and which setting, and show the setting's current value from the template's rules block. Translate a plain request (longer subjects, a new type, no Spec check) into the dotted path and JSON value, and show that translation before planning"
+
+  phase_4_plan_and_approval:
+    purpose: "Show exactly what will change, then ask once"
+    activities:
+      - "For a setting: run node .skilled/commands/doctor/scripts/git-standards.cjs set <kind> <dotted.path> <json-value> --json; a removal passes null. Render the presentation's rule change plan with the rules switched on and off and the prose drift"
+      - "For a kind: run node .skilled/commands/doctor/scripts/git-standards.cjs disable <kind> --json and render the presentation's stop-enforcing plan"
+      - "If the script refuses (exit 2), render its reason and return to phase_3_choose"
+      - "If dry_run is true, render the dry-run line and return to phase_3_choose without writing"
+      - "Ask the approval prompt; on anything but approve, record the change as cancelled and return to phase_3_choose"
+
+  phase_5_apply:
+    purpose: "Write the approved change"
+    activities:
+      - "Re-run the same set or disable call with --apply --json"
+      - "Record the undo: git checkout on the file when .sk-git/ is tracked and clean before the change, otherwise the inverse set call"
+
+  phase_6_prose_and_check:
+    purpose: "Keep the template's guidance true to its rules"
+    activities:
+      - "When the plan listed prose to update, ask the presentation's prose prompt. On approve, edit only the prose lines in the .sk-git/ template that the drift findings name, so they state the new rule; never touch the rules block by hand"
+      - "Run node .skilled/commands/doctor/scripts/git-standards.cjs check --json. Exit 0 is clean; exit 1 lists remaining drift, which is reported, not blocked; exit 2 means a broken block and the change is undone with the recorded undo and reported as FAIL"
+      - "Return to phase_3_choose for another change"
+
+  phase_7_report:
+    purpose: "Summarize every change made in this run"
+    activities:
+      - "Render the mutating result: each applied change, the files written, the last check result and the undo for each, or none"
+      - "Remind the operator that .sk-git/ is ordinary repository content: commit it so CI and teammates enforce the same rules"
+      - "Status is OK when every approved change checked clean or with reported drift only, CANCELLED when nothing was approved, FAIL when a write or check failed"
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output:
+  presentation: ".skilled/commands/doctor/assets/doctor-git-presentation.txt"
+  statuses: [OK, CANCELLED, FAIL]

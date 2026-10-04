@@ -214,6 +214,8 @@ Retention, sweep, and warning-log tuning (`SYSTEM_SPEC_GATE_ACTIVE_RETENTION_DAY
 
 Per-invocation switches the git hooks read. Each lets one command through one gate; none of them changes the commit, PR or branch rules, which have no bypass.
 
+Each `SPECKIT_SKIP_*` gate below can also stay off for good: git config `speckit.hooks.<key>` set to `off` in local or global config makes the hook act as if the variable were set, and `/doctor:git hooks` lists the keys and changes them. The `SPECKIT_ALLOW_*` approvals cannot be saved, and the commit, PR and branch rules change through `/doctor:git standards`.
+
 | Variable | Default | Type | Description | Source |
 |----------|---------|------|-------------|--------|
 | `SPECKIT_SKIP_COMMENT_HYGIENE` | unset | `=1` | Skips the pre-commit comment-hygiene gate for this commit. | `.skilled/scripts/git-hooks/pre-commit` |

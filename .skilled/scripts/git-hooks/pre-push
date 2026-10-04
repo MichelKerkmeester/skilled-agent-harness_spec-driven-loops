@@ -139,6 +139,14 @@ while [[ -L "$_self" ]]; do
   case "$_link" in /*) _self="$_link" ;; *) _self="$(dirname "$_self")/$_link" ;; esac
 done
 HOOK_DIR="$(cd "$(dirname "$_self")" && pwd -P)"
+# Gate settings: a gate the operator switched off in git config (speckit.hooks.<key>)
+# runs as if its SPECKIT_SKIP_* variable were set. Without the helper every gate runs.
+# Other repositories run none of these gates, so they read no setting and print nothing.
+if _in_toolchain_repo && [[ -r "$HOOK_DIR/lib/gate-config.sh" ]]; then
+  # shellcheck source=lib/gate-config.sh
+  . "$HOOK_DIR/lib/gate-config.sh"
+  gate_config_apply pre-push
+fi
 CONTRACT_GATE_READY=0
 CONTRACT_GATE_BROKEN=""
 if [[ -f "$HOOK_DIR/lib/message-contract-gate.sh" ]]; then
