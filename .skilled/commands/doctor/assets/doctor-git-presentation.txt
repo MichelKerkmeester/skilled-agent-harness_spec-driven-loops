@@ -1,0 +1,234 @@
+# /doctor:git Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor:git <target>`: startup questions, the route manifest display, the gate table, the hand-off to `/doctor:env`, the standards status, change plans and approvals, result templates, troubleshooting, and next-step text. The command router owns target resolution and asset routing only. The workflow YAML owns execution behavior.
+
+## 1. Startup Presentation
+
+When `$ARGUMENTS` lacks a recognized positional target, ask this prompt first after reading `_routes.yaml`.
+
+```text
+What do you want to change?
+
+   1) Git hook gates                     (switch a shipped pre-commit or pre-push check on or off)
+   2) Commit, PR and branch rules        (the message and naming standards sk-git enforces)
+   H) Help me decide
+   X) Cancel
+```
+
+Accepted answers:
+
+| Answer | Result |
+|--------|--------|
+| `1` | target = `hooks` |
+| `2` | target = `standards` |
+| `H` | Show the help block, then ask the startup prompt again |
+| `X`, empty, `cancel` | `STATUS=CANCEL` |
+
+On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR=unknown_selection`.
+
+### Help Block
+
+```text
+Pick by symptom:
+
+   A pre-commit or pre-push check gets in the way every time  -> 1  Hook gates
+   I want the comment-hygiene or mirror check off for good    -> 1  Hook gates
+   Every hook should stop for a while, in every repository    -> /doctor:env (the kill switches live there)
+   Our team's commit subjects may be longer, or use new types -> 2  Rules
+   We do not want the Spec: trailer checked                   -> 2  Rules
+   PR descriptions should not be checked at all               -> 2  Rules
+
+Quick reference:
+   Hook gates (1) are saved in git config and switch one check on or off
+   Rules (2) live in .sk-git/ templates and change what a commit message, PR or branch must look like
+   The commit-msg hook has no off switch: change or remove its rules with 2
+
+Press 1, 2, H, or X.
+```
+
+### Unknown Target Failure
+
+```text
+Unknown target: [target]
+Valid targets: hooks, standards
+Try: /doctor:git list
+STATUS=FAIL ERROR="unknown_target"
+```
+
+### Cross-Target Flag Failure
+
+```text
+Flag '[flag]' is not valid for target '[target]'. Did you mean `/doctor:git [suggested-target] [flag]`?
+STATUS=FAIL ERROR="cross_target_flag_injection"
+```
+
+## 2. Route Manifest Display
+
+Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.yaml`.
+
+| Target | Workflow | Mutation Class | One-Line Purpose |
+|--------|----------|----------------|------------------|
+| `hooks` | `doctor-git-hooks.yaml` | mutates | List the shipped hook gates with their saved settings and switch one on or off in local or global git config |
+| `standards` | `doctor-git-standards.yaml` | mutates | Show the enforced commit, PR and branch rules and change them in the repository's own `.sk-git/` copies |
+
+## 3. Hooks: Gate Table And Hand-Off
+
+Render the script's table as returned, then this block.
+
+```text
+HOOK INSTALL
+[the install status lines: hooksPath, and each hook as linked, SHADOWED or missing]
+
+SWITCHES THIS COMMAND DOES NOT SAVE
+   remotePush, massDeletion   per-push approvals: set SPECKIT_ALLOW_REMOTE_PUSH=1 or
+                              SPECKIT_ALLOW_MASS_DELETION=1 on that one git push only
+   commit-msg                 has no off switch; change or remove its rules with /doctor:git standards
+   Whole-hook kill switches   SYSTEM_GIT_COMMIT_HOOKS_DISABLED, SYSTEM_GIT_HOOKS_CHECK_DISABLED,
+                              SK_GIT_PREFLIGHT_DISABLED, SYSTEM_GIT_WORKTREE_GUARD_DISABLED:
+                              see and change them with /doctor:env
+```
+
+Then ask:
+
+```text
+Which gate should change? Reply with the key and on or off, for example: cardSync off
+Add "global" to change it for every repository on this machine; the default is this repository only.
+Reply done to finish without a change.
+```
+
+## 4. Hooks: Change Plan And Approval
+
+```text
+GATE CHANGE PLAN
+Gate: [key] ([hook]) - [what it does]
+Now: [on|off] ([default|local config|global config])
+Change: [on|off] in [local|global] config
+Will run: [the git config command, or nothing to change]
+Bypass for one run without saving: [ENV]=1 git [commit|push] ...
+```
+
+With `--dry-run`, follow the plan with `Dry run: nothing was written.` and `STATUS=OK`.
+
+Otherwise ask:
+
+```text
+Apply this change? Reply approve to write it, or no to cancel.
+```
+
+## 5. Standards: Status
+
+Render the script's status as returned, then:
+
+```text
+WHERE THE RULES COME FROM
+   1. git config skgit.contractDir, when set
+   2. .sk-git/ at the repository root
+   3. the shipped sk-git templates (never edited by this command)
+Active: [source]
+```
+
+When the active rules are the shipped templates, offer `init` first:
+
+```text
+The rules in force are the shipped sk-git templates, which this command does not edit.
+Copy them into .sk-git/ so this repository can change its own? Reply approve to copy, or no to stop.
+```
+
+Then ask:
+
+```text
+What should change?
+   1) Change a rule setting      (for example the subject length or the allowed types)
+   2) Remove a rule setting      (switches off the rule that setting enables)
+   3) Stop enforcing a kind      (commit, pr or branch)
+   4) Check the templates        (prose and rules block agree)
+   D) Done
+```
+
+## 6. Standards: Change Plan And Approval
+
+```text
+RULE CHANGE PLAN
+Template: .sk-git/[file]
+Setting: [kind] [dotted.path]: [old value] -> [new value]
+Rules switched on: [ids or none]
+Rules switched off: [ids or none]
+Prose to update: [one line per drift finding, or none]
+```
+
+For a kind being switched off:
+
+```text
+STOP ENFORCING [KIND]
+Template: .sk-git/[file]
+Removes: the "[heading]" section, lines [a]-[b]
+After this, no [kind] rule is checked in this repository. To restore them, delete the file and run init again.
+```
+
+With `--dry-run`, follow the plan with `Dry run: nothing was written.` and `STATUS=OK`.
+
+Otherwise ask:
+
+```text
+Apply this change? Reply approve to write it, or no to cancel.
+```
+
+When the plan lists prose to update, ask after the write:
+
+```text
+The template's prose still states the old rule. Update those lines in .sk-git/[file] to match? Reply approve, or no to leave them.
+```
+
+## 7. Setup Dashboard
+
+Render this compact panel after setup and before YAML execution when target resolution or flags were non-trivial.
+
+```text
+DOCTOR ROUTE SETUP
+Target: [target]
+Workflow: .skilled/commands/doctor/assets/[yaml]
+Mutation class: mutates
+Execution mode: INTERACTIVE
+Setup values: [key=value list]
+Presentation: .skilled/commands/doctor/assets/doctor-git-presentation.txt
+Next: load workflow YAML
+```
+
+## 8. Result Templates
+
+### Mutating Target Summary
+
+```text
+DOCTOR MUTATING RESULT
+Target: [target]
+Workflow: [yaml]
+Status: [OK|CANCELLED|FAIL]
+Approved changes: [none|summary]
+Changed: [git config key and scope | .sk-git/ files | none]
+Verification: [the re-read setting, or the standards check result]
+Undo: [the git config command that restores the previous value | git checkout or delete-and-init for .sk-git/]
+STATUS=[status]
+```
+
+### Failure Summary
+
+```text
+DOCTOR TARGET FAILED
+Target: [target]
+Step: [setup|workflow phase]
+Error: [message]
+Next: [recommended command or manual action]
+STATUS=FAIL ERROR="[message]"
+```
+
+## 9. Troubleshooting Display
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| A gate still runs after it was switched off | The installed hooks are older than this checkout; run `bash .skilled/scripts/install-git-hooks.sh --status` and update the checkout the hooks link to |
+| A gate is switched off but a teammate's commits still run it | Local and global config are per machine; each person sets their own, or the team relies on CI |
+| A rule change was refused | The sk-git validator rejected the result; read the named setting and pick a value it accepts |
+| Commits fail after a rule edit | Run `/doctor:git standards` and choose Check, or `node .skilled/skills/sk-git/scripts/validate-message.mjs --explain` |
+| `.sk-git/` is ignored | git config `skgit.contractDir` outranks it; unset it or edit the directory it names |
+
+End interactive presentations with: `What would you like to do next?`

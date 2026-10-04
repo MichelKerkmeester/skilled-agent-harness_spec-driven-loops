@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9985259f9f415882c970e2e97d52a1b169418498cd5a1e50a955d93f7fccdce2",
+  "manifestHash": "d20cbadd12e7d3e5faa8f5813ed93c927a5669aa20fb32101ad654d4471a6c1b",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13164,6 +13164,11 @@
     "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/acceptance-criteria.md",
+    "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "phrases": {
@@ -21432,7 +21437,8 @@
       13123,
       13129,
       13140,
-      13149
+      13149,
+      13154
     ],
     "ac traceability table": [
       10307,
@@ -21810,7 +21816,8 @@
       13118,
       13123,
       13129,
-      13149
+      13149,
+      13154
     ],
     "acceptance criteria closure gate": [
       12043,
@@ -35548,7 +35555,8 @@
       13123,
       13129,
       13140,
-      13149
+      13149,
+      13154
     ],
     "closure gate blocks evidence": [
       11983
@@ -51870,7 +51878,7 @@
       12251
     ],
     "doctor audit followups": [
-      13154
+      13159
     ],
     "doctor baseline verification": [
       12167
@@ -52117,7 +52125,16 @@
     ],
     "doctor gates drift": [
       13127,
-      13154
+      13159
+    ],
+    "doctor git command": [
+      13157
+    ],
+    "doctor git plan": [
+      13156
+    ],
+    "doctor git summary": [
+      13155
     ],
     "doctor hard cutover": [
       10104
@@ -60946,6 +60963,9 @@
     "gate closeout and drift whole system gate changelog": [
       6728
     ],
+    "gate config helper plan": [
+      13156
+    ],
     "gate d resume perf hard coded path": [
       7644,
       9483
@@ -61555,6 +61575,12 @@
     ],
     "git hook gate reduction": [
       3595
+    ],
+    "git hook gate settings": [
+      13157
+    ],
+    "git hook gate settings shipped": [
+      13155
     ],
     "git hook lock directory recovery": [
       11174
@@ -67944,7 +67970,8 @@
       13122,
       13128,
       13148,
-      13153
+      13153,
+      13158
     ],
     "implementation testing verification phases": [
       830
@@ -95343,7 +95370,7 @@
       13144
     ],
     "release update signals": [
-      13154
+      13159
     ],
     "release updater over rebuild": [
       12995
@@ -107976,6 +108003,9 @@
     "sk git skill benchmark artifacts": [
       1479
     ],
+    "sk git standards override": [
+      13157
+    ],
     "sk git v1 0 0 0": [
       1481
     ],
@@ -113410,6 +113440,9 @@
     "speckit hermes state dir": [
       259
     ],
+    "speckit hooks git config": [
+      13157
+    ],
     "speckit index spec docs default corrected": [
       2220
     ],
@@ -118103,7 +118136,8 @@
       13122,
       13128,
       13148,
-      13153
+      13153,
+      13158
     ],
     "task cache removal": [
       503
@@ -118453,7 +118487,8 @@
       13122,
       13128,
       13148,
-      13153
+      13153,
+      13158
     ],
     "task detail without network": [
       523
@@ -121544,7 +121579,7 @@
     ],
     "trigger index freshness": [
       13116,
-      13154
+      13159
     ],
     "trigger index generator": [
       2388,
@@ -124860,7 +124895,8 @@
       13122,
       13128,
       13148,
-      13153
+      13153,
+      13158
     ],
     "verification class blind to failure class": [
       6989
@@ -125755,7 +125791,8 @@
       13123,
       13129,
       13140,
-      13149
+      13149,
+      13154
     ],
     "wal autocheckpoint 256": [
       9246,

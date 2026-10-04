@@ -30,6 +30,8 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 +-- audit_descriptions.py
 +-- command-catalog-mirror-check.cjs
 +-- check-mcp-mutation-class.sh
++-- git-hook-gates.cjs
++-- git-standards.cjs
 +-- mcp-doctor-lib.sh
 +-- mcp-doctor.sh
 +-- parent-skill-check.cjs
@@ -57,6 +59,8 @@ The scripts validate route manifests, inspect MCP installations, audit parent sk
 | `skill-graph-freshness.cjs` | Compares compiled, SQLite and on-disk skill graph representations without writing. |
 | `audit_descriptions.py` | Audits description lengths across skills, commands and agents. |
 | `agent-roster-mirror-check.cjs` | Verifies every canonical agent reaches all five runtime surfaces, and that mirror surfaces stay symlinked rather than forked. |
+| `git-hook-gates.cjs` | Lists the shipped hook gates from `scripts/git-hooks/lib/gates.tsv` with their saved `speckit.hooks.<key>` values, and sets or unsets one in local or global git config for `/doctor:git hooks`. Refuses the per-push approvals. |
+| `git-standards.cjs` | Shows where a repository's commit, PR and branch rules come from, copies the shipped sk-git templates into `.sk-git/`, and changes a rules block setting or removes a kind's rules section in those copies for `/doctor:git standards`, re-validating each change with sk-git's own contract check. |
 | `command-catalog-mirror-check.cjs` | Compares every command catalog and hub metadata entry back to the command's own frontmatter, which is the one copy nothing else derives from. Structural drift fails; prose divergence reports and fails only under `--strict`. |
 
 ---
@@ -107,6 +111,8 @@ bash .skilled/commands/doctor/scripts/route-validate.sh --self-test
 | `node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs` | Report command-catalog and hub-metadata drift. |
 | `bash .skilled/commands/doctor/scripts/check-mcp-mutation-class.sh` | Check the read-only and mutating classes of MCP doctor and installer scripts. |
 | `node .skilled/commands/doctor/scripts/release-update.cjs check --offline` | Report what a release update would change, without fetching. |
+| `node .skilled/commands/doctor/scripts/git-hook-gates.cjs list` | Show every hook gate and its saved setting. |
+| `node .skilled/commands/doctor/scripts/git-standards.cjs status` | Show which commit, PR and branch rules are enforced, and from where. |
 
 ---
 
@@ -122,6 +128,9 @@ bash .skilled/commands/doctor/scripts/route-validate.sh --self-test
 | `audit_descriptions.py` | Read-only audit. |
 | `agent-roster-mirror-check.cjs`, `command-catalog-mirror-check.cjs` | Read-only reports. |
 | `release-update.cjs` | `check` and `align --dry-run` are read-only. `align` writes a run directory. `apply`, `rollback` and `record-base` write framework files and release records under a lock. The `unlock` subcommand removes a lock only when its owner process is gone. |
+
+| `git-hook-gates.cjs` | `list` is read-only. `set` is a dry run until `--apply`, which writes only `speckit.hooks.<key>` in local or global git config. |
+| `git-standards.cjs` | `status` and `check` are read-only. `init`, `set` and `disable` are dry runs until `--apply`, which writes only `.sk-git/` or the `skgit.contractDir` directory, never the shipped sk-git templates. |
 
 Do not invoke a mutating path from a route classified as read-only.
 
@@ -142,6 +151,7 @@ Each script can be pointed at a fixture tree, which is how the tests run without
 | Script | Override |
 |---|---|
 | `agent-roster-mirror-check.cjs`, `command-catalog-mirror-check.cjs`, `mcp-doctor.sh`, `release-update.cjs` | `--root <dir>` |
+| `git-hook-gates.cjs`, `git-standards.cjs` | `--repo <dir>`. `git-hook-gates.cjs` also reads `GATE_REGISTRY` |
 | `audit_descriptions.py`, `route-validate.sh` | `--repo-root <dir>`. `route-validate.sh` also reads `REPO_ROOT`, `ROUTES_FILE`, `DOCTOR_DIR` and `ASSETS_DIR` |
 | `check-mcp-mutation-class.sh` | the repository root as its first argument |
 | `parent-skill-check.cjs` | `PARENT_HUB_CHECK_COMMANDS_DIR` for the commands tree. `PARENT_HUB_CHECK_STRICT=0` reports advisory findings as warnings, and hard invariants still fail |

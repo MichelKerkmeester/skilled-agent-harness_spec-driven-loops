@@ -7,6 +7,7 @@
 #   /doctor:skill-advisor   .skilled/commands/doctor/skill-advisor.md
 #   /doctor:deep-loop       .skilled/commands/doctor/deep-loop.md
 #   /doctor:runtime-mirrors .skilled/commands/doctor/runtime-mirrors.md
+#   /doctor:git             .skilled/commands/doctor/git.md
 # A command that owns one route takes no positional target.
 # Validated by: .skilled/commands/doctor/scripts/route-validate.sh
 # Consumed by: NOT currently harvested by either Skill Advisor implementation.
@@ -211,6 +212,45 @@ routes:
       - "command catalog drift"
       - "cursor devin codex sync check"
       - "discovery mirror out of sync"
+
+  - command: /doctor:git
+    target: hooks
+    yaml: doctor-git-hooks.yaml
+    setup_vars: [execution_mode, dry_run]
+    allowed_flags: ["--dry-run"]
+    mutating: mutates
+    gate3_location: "git config speckit.hooks.<key> in the repository's local config or the operator's global config"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/git-hook-gates.cjs list --json'
+      - 'node .skilled/commands/doctor/scripts/git-hook-gates.cjs set <key> on|off --scope local|global --json  # a dry run; the workflow adds --apply only after the plan is approved'
+      - 'bash .skilled/scripts/install-git-hooks.sh --status'
+    trigger_phrases:
+      - "turn off a git hook check"
+      - "disable comment hygiene gate"
+      - "pre-commit gate keeps blocking"
+      - "git hook settings"
+
+  - command: /doctor:git
+    target: standards
+    yaml: doctor-git-standards.yaml
+    setup_vars: [execution_mode, dry_run]
+    allowed_flags: ["--dry-run"]
+    mutating: mutates
+    gate3_location: ".sk-git/ at the repository root (or the directory git config skgit.contractDir names); the shipped sk-git templates are never written"
+    mcp_tools: []   # script-only; no MCP calls
+    script_invocations:
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs status --json'
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs init --json  # a dry run; --apply after approval'
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs set <kind> <dotted.path> <json-value> --json  # a dry run; --apply after approval'
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs disable <kind> --json  # a dry run; --apply after approval'
+      - 'node .skilled/commands/doctor/scripts/git-standards.cjs check --json'
+      - 'node .skilled/skills/sk-git/scripts/validate-message.mjs --explain'
+    trigger_phrases:
+      - "change commit message rules"
+      - "allow longer commit subjects"
+      - "stop checking pr descriptions"
+      - "customize sk-git standards"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)

@@ -1,0 +1,117 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: GIT HOOK GATES WORKFLOW (INTERACTIVE MUTATING MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator helping someone switch the shipped git hook gates on or off
+purpose: Show every optional gate in the shipped hooks with its saved setting, then switch one on or off in local or global git config behind one approval per change
+action: Read the gate registry and hook install -> show the table and the switches owned elsewhere -> pick a change -> plan -> approval -> git config write -> re-read
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: loop_with_approval_per_change
+  compliance: MANDATORY
+  execution: interactive
+  approvals: one_per_change
+  tracking: change_by_change
+  validation: re_read_setting_after_write
+
+# ─────────────────────────────────────────────────────────────────
+# GATE INVARIANT
+# ─────────────────────────────────────────────────────────────────
+gate_invariant: |
+  The hooks read speckit.hooks.<key> from local and global git config through
+  .skilled/scripts/git-hooks/lib/gate-config.sh; off, false, no or 0 makes the gate run as
+  if its SPECKIT_SKIP_* variable were set. Command-line config never counts. gates.tsv
+  beside that helper is the only list of gates, and git-hook-gates.cjs is the only writer
+  this workflow uses. Three kinds of switch are out of reach on purpose: the per-push
+  approvals (remotePush, massDeletion) are refused by the script because a saved approval
+  would approve every later push; the commit-msg hook has no off switch, its rules belong
+  to /doctor:git standards; and the whole-hook kill switches in hook-flags.env belong to
+  /doctor:env. In a worktree, local config is the repository's shared config, so a local
+  change applies to every worktree of that repository.
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  gate_script: ".skilled/commands/doctor/scripts/git-hook-gates.cjs"
+  gate_registry: ".skilled/scripts/git-hooks/lib/gates.tsv"
+  hook_reader: ".skilled/scripts/git-hooks/lib/gate-config.sh"
+  hook_installer: ".skilled/scripts/install-git-hooks.sh"
+  kill_switch_owner: "/doctor:env (.skilled/hooks/hook-flags.env)"
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  execution_mode: "INTERACTIVE"
+  dry_run: "[DRY_RUN] - show each plan and stop before any write (default false)"
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  defaults:
+    dry_run: false
+  validation:
+    execution_mode_must_be: INTERACTIVE
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  allowed_targets:
+    - "git config --local speckit.hooks.<key>"
+    - "git config --global speckit.hooks.<key>"
+  forbidden_targets:
+    - ".skilled/scripts/git-hooks/**"
+    - ".skilled/hooks/hook-flags.env"
+    - "any shell profile"
+    - "git config core.hooksPath"
+  invariant: "Every write is one git-hook-gates.cjs set call with --apply, made only after its plan was approved."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_1_read:
+    purpose: "Show the current state before asking for anything"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/git-hook-gates.cjs list --json and keep each gate's key, hook, saved local and global values, effective state and description"
+      - "Run bash .skilled/scripts/install-git-hooks.sh --status and keep the hooksPath line and each hook's linked, SHADOWED or missing state. A SHADOWED hook runs another checkout's copy, which may predate gate settings; say so"
+
+  phase_2_present:
+    purpose: "Render the table and the switches this command does not save"
+    activities:
+      - "Render the presentation contract's gate table and hand-off block, naming /doctor:env for the whole-hook kill switches"
+      - "Ask the presentation contract's change prompt; on done, go to phase_5_report"
+
+  phase_3_plan_and_approval:
+    purpose: "Show exactly what will change, then ask once"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/git-hook-gates.cjs set <key> on|off --scope local|global --json, which writes nothing, and render its plan with the presentation contract's change plan"
+      - "If the script refuses the key (exit 2), render its reason, add the presentation's pointer for that switch, and return to phase_2_present"
+      - "If dry_run is true, render the dry-run line and return to phase_2_present without writing"
+      - "Ask the approval prompt; on anything but approve, record the change as cancelled and return to phase_2_present"
+
+  phase_4_apply_and_verify:
+    purpose: "Write the approved change and prove the hooks will read it"
+    activities:
+      - "Run node .skilled/commands/doctor/scripts/git-hook-gates.cjs set <key> on|off --scope local|global --apply --json"
+      - "Run node .skilled/commands/doctor/scripts/git-hook-gates.cjs list --json and confirm the gate's effective state is the requested one; if it is not, report the scope that still decides it"
+      - "Record the undo command: the same set call with the previous state and scope"
+      - "Return to phase_2_present for another change"
+
+  phase_5_report:
+    purpose: "Summarize every change made in this run"
+    activities:
+      - "Render the mutating result: each applied change, its scope, the verification and its undo command, or none"
+      - "Status is OK when every approved change verified, CANCELLED when nothing was approved, FAIL when a write or verification failed"
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output:
+  presentation: ".skilled/commands/doctor/assets/doctor-git-presentation.txt"
+  statuses: [OK, CANCELLED, FAIL]

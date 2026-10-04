@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9985259f9f415882c970e2e97d52a1b169418498cd5a1e50a955d93f7fccdce2",
+  "manifestHash": "d20cbadd12e7d3e5faa8f5813ed93c927a5669aa20fb32101ad654d4471a6c1b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -35263,6 +35263,15 @@
     "doctor gates drift": [
       "doctor gates drift"
     ],
+    "doctor git command": [
+      "doctor git command"
+    ],
+    "doctor git plan": [
+      "doctor git plan"
+    ],
+    "doctor git summary": [
+      "doctor git summary"
+    ],
     "doctor hard cutover": [
       "doctor hard cutover"
     ],
@@ -43096,6 +43105,9 @@
     "gate closeout and drift whole system gate changelog": [
       "gate closeout and drift whole system gate changelog"
     ],
+    "gate config helper plan": [
+      "gate config helper plan"
+    ],
     "gate d resume perf hard coded path": [
       "gate-d-resume-perf hard-coded path"
     ],
@@ -43672,6 +43684,12 @@
     ],
     "git hook gate reduction": [
       "git hook gate reduction"
+    ],
+    "git hook gate settings": [
+      "git hook gate settings"
+    ],
+    "git hook gate settings shipped": [
+      "git hook gate settings shipped"
     ],
     "git hook lock directory recovery": [
       "git hook lock directory recovery"
@@ -85353,6 +85371,9 @@
     "sk git skill benchmark artifacts": [
       "sk-git skill-benchmark artifacts"
     ],
+    "sk git standards override": [
+      "sk-git standards override"
+    ],
     "sk git v1 0 0 0": [
       "sk-git v1.0.0.0"
     ],
@@ -90441,6 +90462,9 @@
     ],
     "speckit hermes state dir": [
       "SPECKIT_HERMES_STATE_DIR"
+    ],
+    "speckit hooks git config": [
+      "speckit.hooks git config"
     ],
     "speckit index spec docs default corrected": [
       "speckit_index_spec_docs default corrected"

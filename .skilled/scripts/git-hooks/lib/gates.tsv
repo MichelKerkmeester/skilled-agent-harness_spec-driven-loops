@@ -1,0 +1,18 @@
+# Git hook gates that can be switched off. One row per gate, tab-separated:
+#   hook  key  env  persistable  description
+# A persistable gate reads git config speckit.hooks.<key>; off, false, no or 0 in local or
+# global config acts as if <env>=1 were set for that run. A non-persistable row is a per-push
+# approval: it stays a one-command variable so every push gets a fresh decision.
+# The hooks read this file through gate-config.sh and /doctor:git hooks reads it to list gates.
+pre-commit	commentHygiene	SPECKIT_SKIP_COMMENT_HYGIENE	yes	Blocks ephemeral ids such as spec paths and task numbers in staged code comments
+pre-commit	mirrorParity	SPECKIT_SKIP_MIRROR_PARITY	yes	Blocks a commit whose runtime command, agent or prompt mirrors drift from .skilled
+pre-commit	cardSync	SPECKIT_SKIP_CARD_SYNC	yes	Blocks a staged CLI skill or prompt card that leaves the prompt-quality cards out of sync
+pre-commit	mcpMutationClass	SPECKIT_SKIP_MCP_MUTATION_CLASS	yes	Blocks a staged MCP doctor or install script that breaks its read-only or mutating label
+pre-commit	routeRemint	SPECKIT_SKIP_ROUTE_REMINT	yes	Re-mints and stages compiled routing manifests when a hub's sources change
+pre-commit	specRemint	SPECKIT_SKIP_SPEC_REMINT	yes	Re-mints and stages a spec folder's derived metadata when its docs change
+prepare-commit-msg	prepareCommitMsg	SPECKIT_SKIP_PREPARE_COMMIT_MSG	yes	Stamps the Commit-Id trailer and strips runtime attribution lines; commit-msg rules may require the trailer
+pre-push	prepushSkillGate	SPECKIT_SKIP_PREPUSH_SKILL_GATE	yes	Warns, never blocks, when a push carries stale skill-root metadata
+pre-push	prepushRouteGate	SPECKIT_SKIP_PREPUSH_ROUTE_GATE	yes	Blocks a push whose compiled routing manifests are stale
+pre-push	prepushTrackGate	SPECKIT_SKIP_PREPUSH_TRACK_GATE	yes	Blocks a push whose spec track roots are inconsistent
+pre-push	remotePush	SPECKIT_ALLOW_REMOTE_PUSH	no	Approval for one push to a branch outside the remote allowlist
+pre-push	massDeletion	SPECKIT_ALLOW_MASS_DELETION	no	Approval for one push that deletes more files than the mass-deletion threshold

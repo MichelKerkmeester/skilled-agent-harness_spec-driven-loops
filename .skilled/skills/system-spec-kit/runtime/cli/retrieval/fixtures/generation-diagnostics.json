@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 57,
     "missing-frontmatter": 6666,
-    "ok": 13098,
+    "ok": 13103,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23336,
+  "documentsScanned": 23341,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "9985259f9f415882c970e2e97d52a1b169418498cd5a1e50a955d93f7fccdce2",
+  "manifestHash": "d20cbadd12e7d3e5faa8f5813ed93c927a5669aa20fb32101ad654d4471a6c1b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33422,
+      "ok": 33430,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -70451,6 +70451,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/008-doctor-ownership-split/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/009-doctor-git/scratch",
       "reason": "excluded directory"
     },
     {
