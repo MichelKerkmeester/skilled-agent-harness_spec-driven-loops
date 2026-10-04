@@ -203,10 +203,10 @@ workflow:
   phase_2_recommendation:
     purpose: "Translate drift signals into a safe operator action."
     rules:
-      - "If empty_graph=true and lazy_init_available=true -> recommend a coverage-graph rebuild via /doctor:rebuild."
-      - "If missing_convergence_signal > 0 -> recommend a coverage-graph rebuild via /doctor:rebuild."
-      - "If stale_graph=true or orphan_nodes > 0 -> recommend a coverage-graph rebuild via /doctor:rebuild."
-      - "If council graph drift is detected (empty/stale council graph while ai-council artifacts exist) -> recommend a council graph replay via ai-council replay-graph-from-artifacts.cjs (the council graph is not rebuilt by /doctor:rebuild)."
+      - "If empty_graph=true and lazy_init_available=true -> recommend resuming the loop, whose iterations upsert their graph rows, or a manual repair through system-deep-loop/runtime/scripts/upsert.cjs from the iteration records; no whole-graph rebuild tool ships."
+      - "If missing_convergence_signal > 0 -> recommend resuming the loop, whose iterations upsert their graph rows, or a manual repair through system-deep-loop/runtime/scripts/upsert.cjs from the iteration records; no whole-graph rebuild tool ships."
+      - "If stale_graph=true or orphan_nodes > 0 -> recommend resuming the loop, whose iterations upsert their graph rows, or a manual repair through system-deep-loop/runtime/scripts/upsert.cjs from the iteration records; no whole-graph rebuild tool ships."
+      - "If council graph drift is detected (empty/stale council graph while ai-council artifacts exist) -> recommend a council graph replay via ai-council replay-graph-from-artifacts.cjs (the council graph has its own replay)."
       - "If no drift -> status=OK, no action needed."
     outputs:
       - status: OK|EMPTY|STALE|ATTENTION|MISSING|CANCELLED|FAIL
@@ -242,7 +242,7 @@ output_contract:
   state_log:
     path: "<active-spec-folder>/scratch/doctor-deep-loop-state.<timestamp>.json"
     schema:
-      command: "/doctor:speckit deep-loop"
+      command: "/doctor:deep-loop"
       mode: INTERACTIVE
       intent: DIAGNOSE
       timestamp: ISO_8601

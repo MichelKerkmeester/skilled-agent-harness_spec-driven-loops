@@ -108,6 +108,10 @@ For a section 5 git-hook marker, take the value from its documented Type cell (f
 
     [VARIABLE_NAME]=1 git commit ...
 
+For a section 5 `SPECKIT_SKIP_*` gate, add:
+
+    To keep this gate off without the prefix: /doctor:git hooks (saved in git config, not in this file)
+
 Never ask to persist a per-invocation switch. If a variable is both secret and per-invocation, use the redacted secret form above.
 
 ## 4. Preference Destination and Exact Preview

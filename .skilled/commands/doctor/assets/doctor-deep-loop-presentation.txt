@@ -1,0 +1,75 @@
+# /doctor:deep-loop Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor:deep-loop`: the scope prompt, argument failures, the diagnostic dashboard, result templates, and next-step text. The command router owns argument parsing and asset routing only. The workflow YAML owns execution behavior.
+
+## 1. Argument Failure
+
+```text
+Unknown argument: [argument]
+/doctor:deep-loop takes no target. Its only flag is --scope=research|review|council|both|all.
+STATUS=FAIL ERROR="unknown_argument"
+```
+
+## 2. Scope Prompt
+
+Ask only when `--scope` was not passed and the operation needs a scope.
+
+```text
+Which deep-loop history should be checked?
+   1) research
+   2) review
+   3) council
+   4) both research and review
+   5) all loop types
+```
+
+Accept `1-5` or the corresponding name; empty defaults to `all`.
+
+## 3. Setup Dashboard
+
+```text
+DOCTOR ROUTE SETUP
+Target: deep-loop
+Workflow: .skilled/commands/doctor/assets/doctor-deep-loop.yaml
+Mutation class: add-only (state log in the active packet's scratch folder)
+Execution mode: INTERACTIVE
+Scope: [research|review|council|both|all]
+Next: load workflow YAML
+```
+
+## 4. Result Templates
+
+Use the workflow output contract when it provides a stricter report shape.
+
+### Diagnostic Summary
+
+```text
+DOCTOR DIAGNOSTIC RESULT
+Target: deep-loop
+Scope: [scope]
+Status: [OK|EMPTY|STALE|ATTENTION|MISSING|CANCELLED|FAIL]
+Evidence: [graph counts, convergence samples, state log path]
+Recommendation: [operator action or none]
+STATUS=[status]
+```
+
+### Failure Summary
+
+```text
+DOCTOR TARGET FAILED
+Target: deep-loop
+Step: [setup|workflow phase]
+Error: [message]
+Next: [recommended command or manual action]
+STATUS=FAIL ERROR="[message]"
+```
+
+## 5. Troubleshooting Display
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| Coverage graph empty or stale | Resume the loop, whose iterations upsert their graph rows, or repair rows from the iteration records with `system-deep-loop/runtime/scripts/upsert.cjs` |
+| Council graph drift | Replay the council graph from its artifacts with the ai-council replay script |
+| Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
+
+End interactive presentations with: `What would you like to do next?`

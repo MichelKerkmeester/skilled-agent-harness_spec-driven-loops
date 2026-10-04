@@ -4,7 +4,7 @@
 # ───────────────────────────────────────────────────────────────
 # CI assertion script for .skilled/commands/doctor/_routes.yaml.
 # Validates the canonical route manifest against the on-disk YAML
-# assets, the router's frontmatter allowed-tools union, and
+# assets, each owning router's frontmatter allowed-tools union, and
 # internal consistency rules.
 #
 # Usage:
@@ -12,7 +12,7 @@
 #   bash .skilled/commands/doctor/scripts/route-validate.sh --self-test
 #
 # Environment overrides (tests point these at fixtures):
-#   ROUTES_FILE, ROUTER_FILE, ASSETS_DIR, PRESENTATION_FILE, REPO_ROOT
+#   ROUTES_FILE, DOCTOR_DIR, ASSETS_DIR, REPO_ROOT
 #
 # Exit codes:
 #   0  - manifest valid; all assertions pass
@@ -29,13 +29,11 @@ set -euo pipefail
 # ───────────────────────────────────────────────────────────────
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DOCTOR_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+DOCTOR_DIR="${DOCTOR_DIR:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 COMMANDS_DIR="$(cd "$DOCTOR_DIR/.." && pwd)"
 ROOT_DIR="${REPO_ROOT:-$(cd "$COMMANDS_DIR/../.." && pwd)}"
 ROUTES_FILE="${ROUTES_FILE:-$DOCTOR_DIR/_routes.yaml}"
-ROUTER_FILE="${ROUTER_FILE:-$DOCTOR_DIR/speckit.md}"
 ASSETS_DIR="${ASSETS_DIR:-$DOCTOR_DIR/assets}"
-PRESENTATION_FILE="${PRESENTATION_FILE:-$ASSETS_DIR/doctor-speckit-presentation.txt}"
 
 # ───────────────────────────────────────────────────────────────
 # 2. ARGUMENTS
@@ -68,7 +66,7 @@ fi
 # ───────────────────────────────────────────────────────────────
 
 # Validate one fixture and require the rule it targets. Single-route fixtures
-# also trip J1 (target-set parity against the real router), so a bare non-zero
+# also trip J1 (target-set parity against the real routers), so a bare non-zero
 # exit would hide a broken rule or a crash; the rule id must appear in the
 # output and the exit must be the assertion-failure code.
 # Args: $1=fixture name $2=expected rule id $3=assets dir (optional)
@@ -96,7 +94,8 @@ if [[ "$SELF_TEST" == true ]]; then
   cat > "$TMPDIR_FIX/missing-key.yaml" <<'EOF'
 schema_version: 1
 routes:
-  - target: memory
+  - command: /doctor:speckit
+    target: memory
     yaml: doctor-memory.yaml
     # missing: setup_vars, allowed_flags, mutating, gate3_location, mcp_tools, trigger_phrases
 EOF
@@ -105,7 +104,8 @@ EOF
   cat > "$TMPDIR_FIX/missing-asset.yaml" <<'EOF'
 schema_version: 1
 routes:
-  - target: nonexistent
+  - command: /doctor:speckit
+    target: nonexistent
     yaml: doctor_nonexistent.yaml
     setup_vars: [execution_mode]
     allowed_flags: ["--dry-run"]
@@ -119,7 +119,8 @@ EOF
   cat > "$TMPDIR_FIX/duplicate-target.yaml" <<'EOF'
 schema_version: 1
 routes:
-  - target: memory
+  - command: /doctor:speckit
+    target: memory
     yaml: doctor-memory.yaml
     setup_vars: [execution_mode]
     allowed_flags: ["--dry-run"]
@@ -127,7 +128,8 @@ routes:
     gate3_location: "n/a"
     mcp_tools: []
     trigger_phrases: ["one"]
-  - target: memory
+  - command: /doctor:speckit
+    target: memory
     yaml: doctor-memory.yaml
     setup_vars: [execution_mode]
     allowed_flags: ["--dry-run"]
@@ -137,11 +139,27 @@ routes:
     trigger_phrases: ["two"]
 EOF
 
+  # Command names a router that does not exist (B3)
+  cat > "$TMPDIR_FIX/unknown-command.yaml" <<'EOF'
+schema_version: 1
+routes:
+  - command: /doctor:no-such-router
+    target: deep-loop
+    yaml: doctor-deep-loop.yaml
+    setup_vars: [execution_mode]
+    allowed_flags: []
+    mutating: read-only
+    gate3_location: "n/a"
+    mcp_tools: []
+    trigger_phrases: ["fixture unknown command"]
+EOF
+
   # Route to script existence (I1): real yaml asset, bogus script path
   cat > "$TMPDIR_FIX/missing-script.yaml" <<'EOF'
 schema_version: 1
 routes:
-  - target: deep-loop
+  - command: /doctor:deep-loop
+    target: deep-loop
     yaml: doctor-deep-loop.yaml
     setup_vars: [execution_mode]
     allowed_flags: []
@@ -153,11 +171,12 @@ routes:
       - 'node .skilled/commands/doctor/scripts/does-not-exist-fixture.cjs'
 EOF
 
-  # Target-set parity (J1): target name absent from speckit.md and the presentation
+  # Target-set parity (J1): target name absent from speckit.md
   cat > "$TMPDIR_FIX/target-set-mismatch.yaml" <<'EOF'
 schema_version: 1
 routes:
-  - target: totally-different-target
+  - command: /doctor:speckit
+    target: totally-different-target
     yaml: doctor-deep-loop.yaml
     setup_vars: [execution_mode]
     allowed_flags: []
@@ -172,7 +191,8 @@ EOF
   cat > "$TMPDIR_FIX/read-only-with-write.yaml" <<'EOF'
 schema_version: 1
 routes:
-  - target: memory
+  - command: /doctor:speckit
+    target: memory
     yaml: doctor-memory.yaml
     setup_vars: [execution_mode, intent, incremental]
     allowed_flags: ["--incremental=true|false"]
@@ -194,7 +214,8 @@ EOF
   cat > "$TMPDIR_FIX/activity-missing.yaml" <<'EOF'
 schema_version: 1
 routes:
-  - target: deep-loop
+  - command: /doctor:deep-loop
+    target: deep-loop
     yaml: doctor-deep-loop.yaml
     setup_vars: [execution_mode]
     allowed_flags: []
@@ -207,6 +228,7 @@ routes:
 EOF
 
   run_fixture missing-key B2
+  run_fixture unknown-command B3
   run_fixture missing-asset D1
   run_fixture duplicate-target C1
   run_fixture missing-script I1
@@ -224,7 +246,6 @@ fi
 
 exec python3 "$SCRIPT_DIR/route-validate.py" \
   --routes "$ROUTES_FILE" \
-  --router "$ROUTER_FILE" \
+  --doctor-dir "$DOCTOR_DIR" \
   --assets-dir "$ASSETS_DIR" \
-  --presentation "$PRESENTATION_FILE" \
   --repo-root "$ROOT_DIR"

@@ -1,6 +1,6 @@
 ---
 title: "DOC-333 -- Doctor deep-loop convergence"
-description: "Manual scenario validating /doctor:speckit deep-loop gold-battery convergence signals for work packets with three or more iterations."
+description: "Manual scenario validating /doctor:deep-loop gold-battery convergence signals for work packets with three or more iterations."
 version: 1.6.0.8
 id: doctor-commands-doctor-deep-loop-convergence
 expected_workflow_mode: UNKNOWN
@@ -11,23 +11,23 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario validates the `/doctor:speckit deep-loop` post-rebuild gold battery. Any rebuilt work packet with at least three research or review iterations must produce a non-empty `deep_loop_graph_convergence` signal.
+This scenario validates the `/doctor:deep-loop` gold battery. Any work packet whose loop iterations populated the coverage graph, with at least three research or review iterations, must produce a non-empty `deep_loop_graph_convergence` signal.
 
-The test uses a known three-iteration work packet as the target. It proves the rebuilt coverage graph is not merely populated; it is rich enough to answer convergence questions with scores, answered questions, and supported claims.
+The test uses a known three-iteration work packet as the target. It proves the populated coverage graph is not merely present. It is rich enough to answer convergence questions with scores, answered questions, and supported claims.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
-- Objective: Verify post-rebuild convergence signal for a work packet with three or more iterations.
+- Objective: Verify the convergence signal for a work packet with three or more iterations.
 - Playbook ID: DOC-333.
 - Real user request: `Verify deep-loop convergence signal works on a work packet with 3 iterations.`
 - Prompt: `Verify deep-loop convergence signal works on a work packet with 3 iterations.`
-- Preconditions: `deep-loop-graph.sqlite` is populated or rebuildable, and `<spec-folder>` has at least three deep-loop iteration markdown files.
-- Expected execution process: Confirm the target has at least three iterations, run `/doctor:speckit deep-loop --scope=research`, then call `deep_loop_graph_convergence` for the target and latest iteration.
+- Preconditions: `deep-loop-graph.sqlite` holds the rows the loop iterations upserted, and `<spec-folder>` has at least three deep-loop iteration markdown files.
+- Expected execution process: Confirm the target has at least three iterations, run `/doctor:deep-loop --scope=research`, then call `deep_loop_graph_convergence` for the target and latest iteration.
 - Expected signals: Phase 4 gold battery runs; convergence response includes `convergence_score` or equivalent non-empty score plus signal artifacts such as answered questions, supported claims, blockers, or trace payload.
 - Desired user-visible outcome: A concise pass/fail verdict citing the convergence score and the non-empty signal fields.
-- Pass/fail: PASS if the convergence response is non-empty for the target packet after rebuild.
+- Pass/fail: PASS if the convergence response is non-empty for the target packet.
 - Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable; a scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
@@ -46,14 +46,14 @@ Verify deep-loop convergence signal works on a work packet with 3 iterations.
 2. Count source iterations for the target:
    - `find <spec-folder> -path '*/research/iterations/*.md' | sort`
 3. Confirm at least three iteration files are present.
-4. Run `/doctor:speckit deep-loop --scope=research` through the real runtime.
+4. Run `/doctor:deep-loop --scope=research` through the real runtime.
 5. Capture the Phase 4 gold-battery summary from `.skilled/commands/doctor/assets/doctor-deep-loop.yaml`.
 6. Call `deep_loop_graph_convergence({specFolder: "<spec-folder>", loopType: "research", iteration: <latest_iteration>, persistSnapshot: false})`.
 7. Capture the full convergence response and final state-log path.
 
 ### Expected
 
-The apply workflow rebuilds or verifies the graph, then Phase 4 runs the gold battery for packets with at least three iterations. The target packet's convergence call returns a non-empty response containing a score and signal evidence.
+The diagnostic workflow reads the graph without writing to it, then Phase 4 runs the gold battery for packets with at least three iterations. The target packet's convergence call returns a non-empty response containing a score and signal evidence.
 
 Acceptable signal evidence includes answered questions, supported claims, verification coverage, blockers, or typed trace artifacts. An empty object, null score, or empty signal array for the three-iteration packet fails the scenario.
 
@@ -108,7 +108,7 @@ $ find .opencode/specs/system-speckit/028-memory-search-intelligence/002-code-gr
 }
 ```
 
-- `/doctor:speckit deep-loop --scope=research` route/runtime mapping observed in `.skilled/commands/doctor/_routes.yaml`:
+- `/doctor:deep-loop --scope=research` route/runtime mapping observed in `.skilled/commands/doctor/_routes.yaml`:
 
 ```text
 target: deep-loop
@@ -174,7 +174,7 @@ If the convergence call is empty, inspect the state log's inferred `sessionId` a
 ## 4. SOURCE FILES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Command entrypoint: [.skilled/commands/doctor/speckit.md](../../../../commands/doctor/speckit.md)
+- Command entrypoint: [.skilled/commands/doctor/deep-loop.md](../../../../commands/doctor/deep-loop.md)
 - Matching YAML asset: [.skilled/commands/doctor/assets/doctor-deep-loop.yaml](../../../../commands/doctor/assets/doctor-deep-loop.yaml)
 - Design context: local doctor command contract
 - Decision context: local doctor command ADRs
@@ -188,7 +188,7 @@ Provenance: manual only - find <spec-folder> -path '*/research/iterations/*.md' 
 - Group: Doctor commands
 - Playbook ID: DOC-333
 - Feature name: Doctor deep-loop convergence
-- Command mode: `/doctor:speckit deep-loop --scope=research`
+- Command mode: `/doctor:deep-loop --scope=research`
 - YAML asset: `doctor-deep-loop.yaml`
 - Gold battery: non-empty convergence signal for work packets with at least three iterations.
 - Target: work packet with at least three research iterations

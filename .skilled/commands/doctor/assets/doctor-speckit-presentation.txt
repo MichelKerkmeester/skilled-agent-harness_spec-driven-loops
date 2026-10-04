@@ -1,190 +1,75 @@
 # /doctor:speckit Presentation Contract
 
-This file is the single source of truth for user-facing presentation in `/doctor:speckit <target>`: startup questions, subsystem manifest display, setup dashboards, diagnostic dashboards, result templates, troubleshooting, and next-step text. The command router owns target resolution and asset routing only. The workflow YAML owns execution behavior.
+This file is the single source of truth for user-facing presentation in `/doctor:speckit`: the route manifest display, the moved-target notice, setup dashboards, diagnostic dashboards, result templates, troubleshooting, and next-step text. The command router owns route binding and asset routing only. The workflow YAML owns execution behavior.
 
-## 1. Startup Presentation
+## 1. Moved-Target Notice
 
-When `$ARGUMENTS` lacks a recognized positional target, ask this prompt first after reading `_routes.yaml`.
-
-```text
-What do you want to do?
-
-   1) Update to the latest framework release   (check, align, apply)
-   2) Debug retrieval index              (trigger index, ripgrep conventions)
-   6) Debug Deep-Loop history            (research/review/council iteration graphs)
-   7) Re-tune Skill Advisor              (which skill gets recommended)
-   8) Audit Skill Description budget     (char counts, CI-friendly)
-   9) Audit Parent Skill structure       (mode registry, graph metadata)
-   10) Check Skill-Graph freshness       (compiled vs sqlite vs disk drift)
-   11) Audit Fable Mode metrics          (behavioral efficiency signals)
-   12) Check runtime mirrors             (agent, command, prompt, hook parity)
-   13) Check router reach                (declared phrases reach their hub)
-   0) Full sweep - rebuild everything    (no migration, current schema)
-   H) Help me decide
-   X) Cancel
-```
-
-Accepted answers:
-
-| Answer | Result |
-|--------|--------|
-| `1` | Abort `/doctor:speckit`; display `Switch to /doctor:update, which starts with a read-only release check. Exiting /doctor:speckit.` |
-| `2` | target = `speckit-retrieval` |
-| `6` | target = `deep-loop` |
-| `7` | target = `skill-advisor` |
-| `8` | target = `skill-budget` |
-| `9` | target = `parent-skill` |
-| `10` | target = `skill-graph-freshness` |
-| `11` | target = `fable-mode` |
-| `12` | target = `runtime-mirrors` |
-| `13` | target = `router-reach` |
-| `0` | Abort `/doctor:speckit`; display `Switch to /doctor:rebuild for full sweep. Exiting /doctor:speckit.` |
-| `H` | Show the help block, then ask the startup prompt again |
-| `X`, empty, `cancel` | `STATUS=CANCEL` |
-
-On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR=unknown_selection`.
-
-### Help Block
+`/doctor:speckit` diagnoses spec-kit retrieval only. When the positional names a target another doctor command now owns, show this notice and stop without loading any workflow:
 
 ```text
-Pick by symptom:
-
-   Trigger-index lookup returns stale or empty results -> 2  Retrieval index
-   "trigger-index.json missing" warning                -> 2  Retrieval index
-   deep-research/deep-review/ai-council graph empty    -> 6  Deep-Loop
-   Convergence not detected between iterations         -> 6  Deep-Loop
-   Skill Advisor recommends the wrong skill            -> 7  Skill Advisor
-   New skill not appearing in advisor results          -> 7  Skill Advisor
-   Description char-count over hard cap                -> 8  Skill Budget
-   Parent skill graph-metadata or mode registry drift  -> 9  Parent Skill
-   Compiled/sqlite/disk skill-graph disagree           -> 10 Skill-Graph Freshness
-   Fable-5 behavioral metric drift                     -> 11 Fable Mode
-   Runtime agent, command, prompt, or hook drift        -> 12 Runtime Mirrors
-   Declared router phrase reaches the wrong hub         -> 13 Router Reach
-
-Quick reference for confusable pairs:
-   Skill Advisor (7) tunes ROUTING quality (which skill gets picked)
-   Skill Budget (8) audits CHAR COUNTS (frontmatter description size)
-   Retrieval index (2) is the LEXICAL lane (trigger phrases, ripgrep)
-   Router Reach (13) checks whether declared phrases reach the intended hub
-
-Press 1-2, 6-13, H, 0, or X.
+'[target]' moved to [new command].
+Run: [new command] [new target, if any] [the same flags]
+STATUS=CANCEL REASON="target_moved"
 ```
 
-### Unknown Target Failure
+| Old target | New command |
+|------------|-------------|
+| `deep-loop` | `/doctor:deep-loop` |
+| `skill-advisor` | `/doctor:skill-advisor tune` |
+| `skill-budget` | `/doctor:skill-advisor skill-budget` |
+| `parent-skill` | `/doctor:skill-advisor parent-skill` |
+| `skill-graph-freshness` | `/doctor:skill-advisor skill-graph-freshness` |
+| `router-reach` | `/doctor:skill-advisor router-reach` |
+| `runtime-mirrors` | `/doctor:runtime-mirrors` |
+
+`fable-mode` was retired with no replacement; for it, show `'fable-mode' was retired.` followed by `STATUS=CANCEL REASON="target_retired"`.
+
+### Unknown Argument Failure
 
 ```text
-Unknown target: [target]
-Valid targets: speckit-retrieval, deep-loop, skill-advisor, skill-budget, parent-skill, skill-graph-freshness, router-reach, fable-mode, runtime-mirrors
-Try: /doctor:speckit list
-STATUS=FAIL ERROR="unknown_target"
+Unknown argument: [argument]
+/doctor:speckit takes no target. Run it bare, or use list to see what it checks.
+STATUS=FAIL ERROR="unknown_argument"
 ```
 
-### Cross-Target Flag Failure
-
-```text
-Flag '[flag]' is not valid for target '[target]'. Did you mean `/doctor:speckit [suggested-target] [flag]`?
-STATUS=FAIL ERROR="cross_target_flag_injection"
-```
-
-## 2. Subsystem Manifest Display
+## 2. Route Manifest Display
 
 Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.yaml`.
 
 | Target | Workflow | Mutation Class | One-Line Purpose |
 |--------|----------|----------------|------------------|
 | `speckit-retrieval` | `doctor-speckit-retrieval.yaml` | add-only | Diagnose the generated trigger index and the ripgrep retrieval conventions; report staleness and recommend action |
-| `deep-loop` | `doctor-deep-loop.yaml` | add-only | Diagnose deep-loop coverage graphs for research, review, and council |
-| `skill-advisor` | `doctor-skill-advisor.yaml` | mutates | Audit and re-tune skill advisor scoring lanes |
-| `skill-budget` | `doctor-skill-budget.yaml` | read-only | Audit skill, command, and agent description budgets |
-| `parent-skill` | `doctor-parent-skill.yaml` | read-only | Audit parent-skill structure, routing manifests, root metadata, router contract, and version consistency |
-| `skill-graph-freshness` | `doctor-skill-graph-freshness.yaml` | read-only | Diagnose skill-graph representation drift across compiled, sqlite, and disk sources |
-| `fable-mode` | `doctor-fable-mode.yaml` | read-only | Report fable-5 behavioral metric drift against the baseline |
-| `router-reach` | `doctor-router-reach.yaml` | read-only | Ask the live advisor whether every phrase a hub's router advertises actually reaches it |
-| `runtime-mirrors` | `doctor-runtime-mirrors.yaml` | read-only | Detect drift in the agent, command, prompt and hook mirrors the runtime dirs derive from .skilled |
 
 ## 3. Setup Prompts
 
-Ask only prompts needed for unresolved setup variables. Do not split a required setup question into multiple visible turns.
-
-The speckit-retrieval target never regenerates the index itself and asks for no regeneration mode; it names `/doctor:rebuild`, which republishes the whole corpus in one pass.
-
-### Deep-Loop Scope
-
-Ask only when `--scope` was not passed and the operation needs a scope.
-
-```text
-Which deep-loop history should be checked?
-   1) research
-   2) review
-   3) council
-   4) both research and review
-   5) all loop types
-```
-
-Accept `1-5` or the corresponding name; empty defaults to `all`.
-
-### Skill-Advisor Scope
-
-Ask only when `--scope` was not passed and the operation needs a scoring-lane scope.
-
-```text
-Which skill-advisor scoring lanes should be checked?
-   1) all       - explicit, derived, and lexical
-   2) explicit  - TOKEN_BOOSTS and PHRASE_BOOSTS
-   3) derived   - graph-metadata triggers and topics
-   4) lexical   - CATEGORY_HINTS
-```
-
-Accept `1-4` or the corresponding name; empty defaults to `all`.
-
-### Fable Mode Artifact Directory
-
-Ask when `target_dir` was not supplied. Require a deep-loop artifact directory, either one lineage directory or a directory containing `lineages/`. Accept the path passed with `--dir`.
+The retrieval diagnostic asks for no setup value beyond its startup confirmation. It never regenerates the index itself and asks for no regeneration mode; its recommendation names the generator command, `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs`, which republishes the whole corpus in one pass.
 
 ## 4. Setup Dashboard
 
-Render this compact panel after setup and before YAML execution when target resolution or flags were non-trivial.
+Render this compact panel after setup and before YAML execution.
 
 ```text
 DOCTOR ROUTE SETUP
-Target: [target]
-Workflow: .skilled/commands/doctor/assets/[yaml]
-Mutation class: [read-only|add-only|mutates]
+Target: speckit-retrieval
+Workflow: .skilled/commands/doctor/assets/doctor-speckit-retrieval.yaml
+Mutation class: add-only
 Execution mode: INTERACTIVE
-Setup values: [key=value list]
 Presentation: .skilled/commands/doctor/assets/doctor-speckit-presentation.txt
 Next: load workflow YAML
 ```
 
 ## 5. Diagnostic Result Templates
 
-Use the target workflow output contract when it provides a stricter report shape. Use these family templates for summary display and fallback rendering.
+Use the workflow output contract when it provides a stricter report shape. Use these templates for summary display and fallback rendering.
 
-### Read-Only Diagnostic Summary
+### Diagnostic Summary
 
 ```text
 DOCTOR DIAGNOSTIC RESULT
-Target: [target]
-Workflow: [yaml]
-Status: [OK|DEGRADED|STALE|MISSING|ATTENTION|EMPTY|CANCELLED|FAIL]
-Mutation class: read-only
-Evidence: [health checks, counts, sampled records, or report path]
+Target: speckit-retrieval
+Status: [OK|STALE|MISSING|ATTENTION|CANCELLED|FAIL]
+Evidence: [index verdict, lookup exit class, recipe hits, report path]
 Recommendation: [operator action or none]
-STATUS=[status]
-```
-
-### Mutating Target Summary
-
-```text
-DOCTOR MUTATING RESULT
-Target: [target]
-Workflow: [yaml]
-Status: [OK|CANCELLED|FAIL|ROLLED_BACK]
-Approved changes: [none|summary]
-Files modified: [list or none]
-Verification: [checks run and result]
-Rollback: [path or not required]
 STATUS=[status]
 ```
 
@@ -192,7 +77,7 @@ STATUS=[status]
 
 ```text
 DOCTOR TARGET FAILED
-Target: [target]
+Target: speckit-retrieval
 Step: [setup|workflow phase]
 Error: [message]
 Next: [recommended command or manual action]
@@ -203,10 +88,10 @@ STATUS=FAIL ERROR="[message]"
 
 | Situation | Suggested Action |
 |-----------|------------------|
-| Need dependency-safe full rebuild | Use `/doctor:rebuild` |
-| MCP servers are broken | Use `/doctor:mcp debug --fix` |
-| Fresh-install MCP servers | Use `/doctor:mcp install` |
-| Cross-target flag rejected | Use the suggested target from the error |
+| Trigger index stale or missing | Run `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` |
+| Skill advisor routes to the wrong skill | Use `/doctor:skill-advisor` |
+| Deep-loop graph empty or stale | Use `/doctor:deep-loop` |
+| Runtime mirror drift | Use `/doctor:runtime-mirrors` |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
 End interactive presentations with: `What would you like to do next?`

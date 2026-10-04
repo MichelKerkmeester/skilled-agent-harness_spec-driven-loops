@@ -8,14 +8,14 @@
   "skipWorkflowUsageWarning": true,
   "effortLevel": "xhigh",
   "modelSettings": {
-    "claude-fable-5-1": {
-      "effortLevel": "medium"
+    "claude-fable-5-5": {
+      "effortLevel": "low"
     },
     "claude-opus-5-5": {
-      "effortLevel": "xhigh"
+      "effortLevel": "high"
     },
     "claude-sonnet-5-5": {
-      "effortLevel": "xhigh"
+      "effortLevel": "high"
     }
   },
   "autoCompactEnabled": true,

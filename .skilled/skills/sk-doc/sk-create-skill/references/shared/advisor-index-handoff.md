@@ -14,7 +14,7 @@ version: 1.2.0.3
 
 # Advisor Index Handoff
 
-The shared field vocabulary that `/create:skill`, `/create:skill-parent`, `/doctor:speckit skill-advisor`, and `/doctor:speckit parent-skill` all render after touching a skill root, so that scaffolding a skill and diagnosing its advisor state describe the same reality in the same words.
+The shared field vocabulary that `/create:skill`, `/create:skill-parent`, `/doctor:skill-advisor tune`, and `/doctor:skill-advisor parent-skill` all render after touching a skill root, so that scaffolding a skill and diagnosing its advisor state describe the same reality in the same words.
 
 ---
 
@@ -28,6 +28,8 @@ The shared field vocabulary that `/create:skill`, `/create:skill-parent`, `/doct
 - Deciding whether a given create branch renders the full handoff or the narrow leaf-freshness signal only (§4)
 
 > **Advisor refresh is always operator-owned.** No `/create:*` or `/doctor:*` workflow calls `skill_graph_scan` or `advisor_rebuild` as a side effect of scaffolding or diagnosing a skill. Every workflow that touches a skill root reports refresh status as `NOT RUN` and prints the exact command the operator would run — never chains it automatically (research.md Theme B1/B7, "Questions Answered").
+>
+> The one deliberate rebuild is `/doctor:skill-advisor rebuild`. The operator invokes it to run `advisor_rebuild` and then `skill_graph_scan` behind a backup of `skill-graph.sqlite`. It does not touch a skill root and does not render the handoff below.
 
 ---
 
@@ -90,7 +92,7 @@ Every refresh or validation field a create/doctor workflow renders uses exactly 
 | `stale` | Present but predates a later registry/packet change. |
 | `missing` | Not present on disk. |
 
-Doctor severity derivation for `skill_graph_validate` (`pass`/`warn`/`fail`/`unavailable`) and the workflow-level terminal states (`fail`/`partial`/`pass`/`skipped_unverified`) are doctor-specific compositions of this vocabulary, not additional enums — see `doctor-skill-advisor.yaml`'s `phase_4_verify` for the full derivation.
+Doctor severity derivation for `skill_graph_validate` (`pass`/`warn`/`fail`/`unavailable`) and the workflow-level terminal states (`fail`/`partial`/`pass`/`skipped_unverified`) are doctor-specific compositions of this vocabulary, not additional enums — see `doctor-skill-advisor-tune.yaml`'s `phase_4_verify` for the full derivation.
 
 ---
 
@@ -111,7 +113,7 @@ H-only fields render **omitted**, not `N/A` or a false negative, on standalone (
 | Parent `/create:skill-parent` create | Full handoff, H-specific values (`leaf-manifest.json` freshness from the scoped generator this workflow just ran) |
 | Parent `/create:skill-parent` update | Full handoff, H-specific values |
 | Reference-only / asset-only create branches | **Not** the full handoff — only the narrow conditional `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check <skillDir>` leaf-freshness signal, gated on the changed path falling under a configured leaf root |
-| `/doctor:speckit skill-advisor` | Full handoff vocabulary, live values from `skill_graph_validate`/`advisor_rebuild`/`advisor_validate` |
-| `/doctor:speckit parent-skill` | Full handoff vocabulary, read-only. Distinguishes `leaf-manifest.json` missing from stale and points at the scoped generator, never attempts repair |
+| `/doctor:skill-advisor tune` | Full handoff vocabulary, live values from `skill_graph_validate`/`advisor_rebuild`/`advisor_validate` |
+| `/doctor:skill-advisor parent-skill` | Full handoff vocabulary, read-only. Distinguishes `leaf-manifest.json` missing from stale and points at the scoped generator, never attempts repair |
 
 Rendering the full handoff on a reference/asset-only branch would be misleading: those branches touch roots where the H-only fields are forbidden, so most of the handoff would be inapplicable noise around one real signal (research.md Theme F7).

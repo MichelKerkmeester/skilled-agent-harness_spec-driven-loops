@@ -182,4 +182,4 @@ STATUS=FAIL ERROR="<message>"
 
 Rules:
 - Always attach stderr. Exit `1` and exit `2` both produce empty stdout, so stdout alone cannot tell a clean miss from a broken invocation — the exit status is the only discriminator, and hiding stderr destroys the evidence.
-- A missing or unreadable trigger index is an error, not a no-hit. Say the index is absent and name `/doctor:speckit speckit-retrieval` as the diagnostic.
+- A missing or unreadable trigger index is an error, not a no-hit. Say the index is absent and name `/doctor:speckit` as the diagnostic.

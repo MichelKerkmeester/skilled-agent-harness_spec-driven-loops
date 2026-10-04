@@ -1,1 +1,0 @@
-../../.skilled/commands/doctor/rebuild.md
