@@ -4,7 +4,7 @@ description: "Confirm-first grading of every requirement/task against live code 
 trigger_phrases:
   - "per-mode authority flip t001 disposition"
 importance_tier: "critical"
-contextType: "analysis"
+contextType: "research"
 parent: "system-deep-loop/036-deep-loop-innovation/003-staged-state-migration-and-authority-cutover/002-per-mode-authority-flip"
 ---
 

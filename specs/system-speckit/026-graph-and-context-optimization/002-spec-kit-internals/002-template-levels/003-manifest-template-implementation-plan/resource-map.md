@@ -7,7 +7,7 @@ trigger_phrases:
   - "template greenfield blast radius"
   - "system-spec-kit affected files"
 importance_tier: "high"
-contextType: "architecture"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/008-template-levels/003-manifest-template-implementation-plan"

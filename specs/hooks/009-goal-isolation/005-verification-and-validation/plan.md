@@ -5,7 +5,7 @@ trigger_phrases:
   - "goal isolation verification plan"
   - "pi goal rollout gate"
 importance_tier: "important"
-contextType: "verification"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/009-goal-isolation/005-verification-and-validation"

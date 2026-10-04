@@ -7,7 +7,7 @@ trigger_phrases:
   - "resume after substrate wave"
   - "14-local-llama-cpp handover evening"
 importance_tier: "critical"
-contextType: "handover"
+contextType: "general"
 status: "ready_for_handoff"
 ---
 

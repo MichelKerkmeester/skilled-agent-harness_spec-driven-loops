@@ -6,7 +6,7 @@ trigger_phrases:
   - "post-stress follow-up tasks"
   - "v1.0.2 follow-up tasks"
 importance_tier: "important"
-contextType: "tasks-ledger"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/011-research-post-stress-finding-followups"

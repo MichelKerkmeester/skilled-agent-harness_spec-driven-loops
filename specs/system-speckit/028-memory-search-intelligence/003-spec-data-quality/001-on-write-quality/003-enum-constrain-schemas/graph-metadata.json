@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The two zod metadata schemas type their controlled-vocabulary fields as free strings",
     "created_at": "2026-06-27T17:15:33.334Z",
-    "last_save_at": "2026-09-07T16:18:16.640Z",
+    "last_save_at": "2026-10-04T09:23:36.782Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,11 +197,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c499e4f31e9468014e13c9d116f902e718fb74cbaccccabad3a9340dd9b7806",
+    "source_fingerprint": "sha256:c4fb213423209020c805032543256358e3fd93fd73c757f7aa8c9c12da0ffa21",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6c0d32e71fbeb24085eb95cbfeeaca499b8d906f03ae155802eb34894d76decb",
-      "plan.md": "9b458406b030eb75b2d930dac72365c9f4fb22255e699c3260bf186be966a096",
+      "spec.md": "20dd159e8829cd9939d35c77bef5fc8c1356962e116f34712dd469993afa13be",
+      "plan.md": "030a97ac8cc74666f4733e8920b0a3759a4d63d066186ce2ced95dec8c1d5230",
       "tasks.md": "36e1ac6a14f4d1e6e5033f83209642c37e93657a980caec20df9fb1fb2fbd908",
       "implementation-summary.md": "df7409ce17e128535302ef43dd03142b48db73084ffd1419e98720352284a4a4"
     },

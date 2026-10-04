@@ -6,7 +6,7 @@ trigger_phrases:
   - "028 go verdict"
   - "memory cli research outcome"
 importance_tier: "important"
-contextType: "implementation-summary"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/027-xce-research-based-refinement/004-shared-infrastructure/001-mcp-to-cli-tool-transition/001-spec-memory-cli/000-spec-memory-cli-research"

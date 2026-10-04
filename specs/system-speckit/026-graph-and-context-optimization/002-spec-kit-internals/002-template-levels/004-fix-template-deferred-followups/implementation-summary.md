@@ -5,7 +5,7 @@ trigger_phrases:
   - "deferred followups complete"
   - "round 4 complete"
 importance_tier: "important"
-contextType: "implementation-summary"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups"

@@ -7,7 +7,7 @@ trigger_phrases:
   - "prompt-models routingClass decision"
   - "deep-review triage"
 importance_tier: "important"
-contextType: "implementation_plan"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-prompt/007-sk-prompt-parent/007-routing-benchmark-and-review"

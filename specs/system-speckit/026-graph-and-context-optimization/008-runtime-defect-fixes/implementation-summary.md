@@ -6,7 +6,7 @@ trigger_phrases:
   - "bridge repair complete"
   - "026 008 summary"
 importance_tier: "important"
-contextType: "implementation-summary"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/008-runtime-defect-fixes"

@@ -5,7 +5,7 @@ status: "complete"
 trigger_phrases:
   - "goal isolation verification status"
 importance_tier: "important"
-contextType: "verification"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks/009-goal-isolation/005-verification-and-validation"

@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness program"
   - "parallel deep-review program"
 importance_tier: "important"
-contextType: "phase-parent"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits"

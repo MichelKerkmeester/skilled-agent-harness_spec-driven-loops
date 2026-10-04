@@ -7,7 +7,7 @@ trigger_phrases:
   - "memory_context structural routing implementation summary"
   - "code_graph_query channel fusion research complete"
 importance_tier: "important"
-contextType: "implementation-summary"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/027-memory-context-structural-channel-research"

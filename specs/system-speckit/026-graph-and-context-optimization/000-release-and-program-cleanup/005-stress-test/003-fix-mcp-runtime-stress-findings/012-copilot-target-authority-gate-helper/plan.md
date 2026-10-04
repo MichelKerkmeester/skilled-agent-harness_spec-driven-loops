@@ -8,7 +8,7 @@ trigger_phrases:
   - "copilot authority helper plan"
   - "buildCopilotPromptArg plan"
 importance_tier: "important"
-contextType: "implementation-plan"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/012-copilot-target-authority-gate-helper"

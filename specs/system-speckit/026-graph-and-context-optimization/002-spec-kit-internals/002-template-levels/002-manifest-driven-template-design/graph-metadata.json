@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The current template system maintains 86 files (~13K LOC) split across `core/`, `addendum/`, four materialized `levelN/` outputs, `phaseparent/`, cross-cutting templates, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
     "created_at": "2026-05-01T09:15:39Z",
-    "last_save_at": "2026-09-10T20:47:22.021Z",
+    "last_save_at": "2026-10-04T09:20:42.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:56dcfae09f06bb5d739c55b0622a319bd48a9b60b868a2f1fbe38de0640c3321",
+    "source_fingerprint": "sha256:f789d6f9523bbccbbfedd4a09024a3dc86a078bc7bc23bc044c268ad047e1ef8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "467a160da2981ec91a91ee0bb016890b0a2ea23e08927e79e4bb51d488e5c516",
-      "plan.md": "8c4f388350926fdc71b2f2c7b13f8aa650b5bebecb439aeecd566d33066486ef",
-      "tasks.md": "8673ff0a9e25a6d3536485cb497e0d81f758b988fbc40a9e56409fa15de73270",
-      "decision-record.md": "dfeba78cdbbc22343f43550f1213a5583d58839b9e8ceb0f368ab902b9570f63",
-      "implementation-summary.md": "d214eeba212c5b35006abeddf8edf517bd4747dc77fcab934a42a4ca36f13648",
+      "spec.md": "b9def061f6f722ae9b56a3511b316dcad5e3d58ef3f5d1cbac8c2da892ceb158",
+      "plan.md": "2f2861d49e8fa83a3cfa0f3d2ae47ccf1cf3c2a01f78201877b94fecf82cc9cc",
+      "tasks.md": "acaa3815e82251d597d7d8ab6cd0263cfeea8b17758d5209bf2e7ed426991470",
+      "decision-record.md": "a3268babeb7c11d838c660614cccac14f881223aa0e812b933144c61c9219bac",
+      "implementation-summary.md": "4b0e1fc0597a7c6fe03ccc68ac0cca247def5a6af49630fac9d2616a00af9e6b",
       "research/research.md": "968fa4183d6a5d562161b64fdaff432a87212f3c8a96fa87257ff011d3636f0e"
     },
     "last_active_child_id": null,

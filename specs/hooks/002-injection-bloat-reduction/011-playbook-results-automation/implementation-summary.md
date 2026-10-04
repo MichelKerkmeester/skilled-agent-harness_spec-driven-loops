@@ -8,7 +8,7 @@ trigger_phrases:
   - "playbook persistence design"
   - "benchmark artifact automation summary"
 importance_tier: "critical"
-contextType: "implementation-summary"
+contextType: "implementation"
 parent: "hooks"
 _memory:
   continuity:
