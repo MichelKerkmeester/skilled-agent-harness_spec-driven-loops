@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# ───────────────────────────────────────────────────────────────
+# MODULE: Surface Capture Comparer
+# ───────────────────────────────────────────────────────────────
+# Compares the re-run surface capture against the recorded baseline, section by
+# section, normalizing only the scratch paths that legitimately moved. Kept as
+# the raw evidence of the post-migration re-verification report beside this file.
 """Compare the re-run surface capture against the recorded baseline, section by section.
 
 The capture is `### <section>` blocks of raw text. Only the scratch path may differ.

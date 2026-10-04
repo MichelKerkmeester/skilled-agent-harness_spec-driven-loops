@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# MODULE: Dispatch Preflight Boundary Probe
+# ───────────────────────────────────────────────────────────────
+# Second preflight pass: one attempt per hard rule plus the stdin-rule
+# boundaries the first pass surfaced, quoted state values included. Kept as the
+# raw evidence of the post-migration re-verification report beside this file.
 # Second dispatch-gate probe pass: one attempt per hard rule, plus the boundaries of the
 # stdin rule that the first pass surfaced (a quoted state value is not read as inline).
 
