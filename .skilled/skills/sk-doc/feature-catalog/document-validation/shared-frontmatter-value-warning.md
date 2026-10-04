@@ -6,7 +6,7 @@ trigger_phrases:
   - "frontmatter_value_outside_list"
   - "validate_document.py contextType check"
   - "importance_tier value warning"
-version: 1.0.0.0
+version: 2.3.0.2
 ---
 
 # Shared Frontmatter Value Warning (validate_document.py)

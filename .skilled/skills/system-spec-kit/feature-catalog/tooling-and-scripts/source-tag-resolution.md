@@ -7,7 +7,7 @@ trigger_phrases:
   - "check-source-tags-helper.mjs"
   - "SPECKIT_SOURCE_TAG_CUTOFF"
   - "source citation check"
-version: 1.0.0.0
+version: 2.7.0.2
 ---
 
 # Source tag resolution (SOURCE_TAGS)
