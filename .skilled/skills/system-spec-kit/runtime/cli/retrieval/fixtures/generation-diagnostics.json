@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 54,
     "missing-frontmatter": 6716,
-    "ok": 13174,
+    "ok": 13178,
     "valid-empty-list": 3515
   },
-  "documentsScanned": 23459,
+  "documentsScanned": 23463,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4423f52209fe208f18a4faed0fd9a9a50d733d3892ba1fa32891b556303efd6c",
+  "manifestHash": "9fb266610c7592183fd7bb0444b850be2ea361ad137f408801edca77c5c70e0b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -44,7 +44,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 33530,
+      "ok": 33536,
       "prose-sentence": 19,
       "single-token": 166,
       "stop-word-only": 1
@@ -70810,6 +70810,10 @@
     },
     {
       "path": "specs/system-speckit/049-doctor-audit-followups/023-release-update-symlink-parent/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/scratch",
       "reason": "excluded directory"
     },
     {

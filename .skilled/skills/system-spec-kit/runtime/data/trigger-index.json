@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4423f52209fe208f18a4faed0fd9a9a50d733d3892ba1fa32891b556303efd6c",
+  "manifestHash": "9fb266610c7592183fd7bb0444b850be2ea361ad137f408801edca77c5c70e0b",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13237,6 +13237,10 @@
     "specs/system-speckit/049-doctor-audit-followups/023-release-update-symlink-parent/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/023-release-update-symlink-parent/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/023-release-update-symlink-parent/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/024-doctor-docs-alignment/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "phrases": {
@@ -52016,7 +52020,7 @@
       12261
     ],
     "doctor audit followups": [
-      13227
+      13231
     ],
     "doctor baseline verification": [
       12177
@@ -52229,6 +52233,18 @@
       10629,
       10927
     ],
+    "doctor docs alignment": [
+      13229
+    ],
+    "doctor docs alignment plan": [
+      13228
+    ],
+    "doctor docs alignment summary": [
+      13227
+    ],
+    "doctor docs alignment tasks": [
+      13230
+    ],
     "doctor docs and ci fix": [
       13185
     ],
@@ -52302,7 +52318,7 @@
     ],
     "doctor gates drift": [
       13137,
-      13227
+      13231
     ],
     "doctor git command": [
       13167
@@ -95758,7 +95774,7 @@
       13154
     ],
     "release update signals": [
-      13227
+      13231
     ],
     "release update symlink parent": [
       13225
@@ -100125,6 +100141,9 @@
     ],
     "root readme deep research": [
       8206
+    ],
+    "root readme doctor commands": [
+      13229
     ],
     "root readme drift fixed": [
       7098
@@ -121946,7 +121965,7 @@
     ],
     "trigger index freshness": [
       13126,
-      13227
+      13231
     ],
     "trigger index generator": [
       2381,
@@ -123602,6 +123621,9 @@
     ],
     "v4 0 0 2 release notes": [
       45
+    ],
+    "v4 0 0 3 changelog doctor": [
+      13229
     ],
     "v4 0 0 3 changelog gaps": [
       13176

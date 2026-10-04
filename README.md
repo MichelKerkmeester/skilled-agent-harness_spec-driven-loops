@@ -1197,6 +1197,7 @@ Eight commands cover the diagnostic surface, one per owner. The five routed ones
 **`/doctor:speckit`** - spec-kit retrieval
 
 - Checks that the generated trigger index is fresh, that its lookup runs and that the ripgrep recipes return results, then names the regeneration command when the index is stale
+- Reports `OK`, `STALE`, `ATTENTION` or `MISSING`. Weak trigger phrases are listed as advisories and never change the status
 - An old target name such as `/doctor:speckit deep-loop` gets a notice naming the command that owns it now
 
 **`/doctor:skill-advisor <target>`** - skill advisor tuning, rebuild and audits
@@ -1219,8 +1220,11 @@ Eight commands cover the diagnostic surface, one per owner. The five routed ones
 
 - `install`. Installs dependencies and builds Code Mode when its `dist` is missing or stale, configures `.utcp_config.json` manuals and registers Code Mode in the seven project runtime configs, each write after its own approval
 - `debug`. Diagnoses Code Mode with PASS/WARN/FAIL per check. Supports `--fix` for guided repair
+- A flag the chosen sub-action does not accept is refused before any workflow loads, with the flag it does accept
 
 **`/doctor:update [check|align|apply|rollback|record-base]`** - release-aware spec-kit updater with read-only checks, alignment, a gated apply, rollback recovery and approved base recording.
+
+- A release file below a folder the checkout keeps as a symlink is reported as a `symlink-parent` conflict that only keep-local can answer, so the updater never writes through the link
 
 **`/doctor:env [list | <section> | <VARIABLE>] [--dry-run]`** - guided environment switches
 

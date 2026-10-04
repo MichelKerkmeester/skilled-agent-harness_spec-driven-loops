@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4423f52209fe208f18a4faed0fd9a9a50d733d3892ba1fa32891b556303efd6c",
+  "manifestHash": "9fb266610c7592183fd7bb0444b850be2ea361ad137f408801edca77c5c70e0b",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -35304,6 +35304,18 @@
     ],
     "doctor diagnostics dashboard": [
       "doctor diagnostics dashboard"
+    ],
+    "doctor docs alignment": [
+      "doctor docs alignment"
+    ],
+    "doctor docs alignment plan": [
+      "doctor docs alignment plan"
+    ],
+    "doctor docs alignment summary": [
+      "doctor docs alignment summary"
+    ],
+    "doctor docs alignment tasks": [
+      "doctor docs alignment tasks"
     ],
     "doctor docs and ci fix": [
       "doctor docs and ci fix"
@@ -77794,6 +77806,9 @@
     "root readme deep research": [
       "root readme deep research"
     ],
+    "root readme doctor commands": [
+      "root readme doctor commands"
+    ],
     "root readme drift fixed": [
       "root readme drift fixed"
     ],
@@ -98246,6 +98261,9 @@
     ],
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
+    ],
+    "v4 0 0 3 changelog doctor": [
+      "v4.0.0.3 changelog doctor"
     ],
     "v4 0 0 3 changelog gaps": [
       "v4.0.0.3 changelog gaps"
