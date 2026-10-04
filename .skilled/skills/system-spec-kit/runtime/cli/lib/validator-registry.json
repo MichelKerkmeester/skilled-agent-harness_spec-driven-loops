@@ -211,6 +211,31 @@
     "description": "Validates YAML frontmatter structure and required semantic values."
   },
   {
+    "rule_id": "FRONTMATTER_VALUES",
+    "aliases": [
+      "FRONTMATTER_VALUE_LIST",
+      "CONTEXT_TYPE_VALUES"
+    ],
+    "script_path": "rules/check-frontmatter-values.sh",
+    "severity": "warn",
+    "category": "authored_template",
+    "description": "Warns when a packet document's contextType or importance_tier is outside the shared list in sk-doc/sk-create-frontmatter/assets/frontmatter-values.json. Aliases are legal."
+  },
+  {
+    "rule_id": "SOURCE_TAGS",
+    "aliases": [
+      "SOURCE_TAG_RESOLVER",
+      "SOURCE_CITATIONS"
+    ],
+    "script_path": "rules/check-source-tags.sh",
+    "severity": "warn",
+    "category": "authored_template",
+    "flags": [
+      "SPECKIT_SOURCE_TAG_CUTOFF"
+    ],
+    "description": "Warns when a path:line citation inside a [SOURCE: ...] tag in a packet's research or review artifacts names a gone file, a moved file or a line past the end, using sk-doc's citation resolver. Packets created on or before the cutoff are skipped. A pass means the path and line exist, not that they support the claim."
+  },
+  {
     "rule_id": "GREP_CONVENTION",
     "aliases": [
       "GREP",

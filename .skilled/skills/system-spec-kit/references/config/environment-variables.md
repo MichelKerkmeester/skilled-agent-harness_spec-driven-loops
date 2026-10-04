@@ -153,6 +153,7 @@ The live half of the package. `lib/validation/orchestrator.ts` runs the rule set
 | `SPECKIT_CHILD_DRIFT_ENFORCE` | ON | A phase parent whose `graph-metadata.json.children_ids` misses an on-disk child fails `--strict`, and enforce mode fails closed when the child scanner is stale |
 | `SPECKIT_AC_CLOSURE` | ON | Closure gate for Levels 2/3/3+: unmet acceptance criteria block a completion claim, and a waiver must cite an ADR that exists in `decision-record.md` |
 | `SPECKIT_AC_CLOSURE_CUTOFF` | `2026-08-30` | Forward-only rollout boundary; packets created on or before it stay advisory |
+| `SPECKIT_SOURCE_TAG_CUTOFF` | `2026-10-04` | Forward-only boundary for the `SOURCE_TAGS` warning; packets created on or before it are skipped |
 | `SPECKIT_AC_COVERAGE` | ON | Advisory, non-blocking acceptance-criteria coverage scan |
 | `SPECKIT_AC_COVERAGE_FLOOR` | `0.9` | Minimum covered-criteria ratio for that advisory scan |
 

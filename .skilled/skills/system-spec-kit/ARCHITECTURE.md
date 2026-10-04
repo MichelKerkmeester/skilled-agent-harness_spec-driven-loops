@@ -181,7 +181,7 @@ Spec-kit ships a runtime hook surface that wires into each AI client's session l
 
 Spec-kit's quality gates run at three layers.
 
-**Spec folder validation.** `runtime/cli/spec/validate.sh` hands the folder to the compiled engine orchestrator, which dispatches the 40 rules registered in `runtime/cli/lib/validator-registry.json` (20 authored-template, 14 operational-runtime and 6 structural) across required files, anchor structure, frontmatter shape, template source markers, continuity freshness and phase-parent detection. Strict mode treats warnings as failures.
+**Spec folder validation.** `runtime/cli/spec/validate.sh` hands the folder to the compiled engine orchestrator, which dispatches the 42 rules registered in `runtime/cli/lib/validator-registry.json` (22 authored-template, 14 operational-runtime and 6 structural) across required files, anchor structure, frontmatter shape, template source markers, continuity freshness and phase-parent detection. Strict mode decides which rules run, and a folder passes when no rule reports an error, so a warning never fails it.
 
 **Save gate.** Every `/speckit:save` runs through 3 layers: intake validation (input schema + duplicate detection), content router (places content in the right canonical doc), and post-save quality review (DQI scoring + structural lint).
 
