@@ -89,6 +89,7 @@ export function choiceRequestFrom(args) {
   if (!Array.isArray(args) || args[0] !== 'choice') return null;
 
   let question = '';
+  let hasQuestion = false;
   let provider;
   const keys = [];
   const criteria = {};
@@ -104,6 +105,7 @@ export function choiceRequestFrom(args) {
     if (token === '-q' || token === '--question') {
       if (index + 1 >= args.length) return null;
       question = args[index + 1];
+      hasQuestion = true;
       index += 1;
       continue;
     }
@@ -123,6 +125,7 @@ export function choiceRequestFrom(args) {
     return null;
   }
 
+  if (!hasQuestion) return null;
   if (keys.length === 0) return null;
   return { provider, question, keys, criteria };
 }
@@ -164,17 +167,19 @@ export function noulRequestFrom(args) {
 
 /**
  * Pi's classifier context for one choice or yes/no request. It keeps stdin
- * under the request key, preserves choice criteria order, and uses Pi's public
- * `bool` question type for yes/no requests.
+ * under the `text` key, preserves choice criteria order, and uses Pi's public
+ * `bool` question type for yes/no requests. Pi takes a JSON object as state
+ * where the CLI sends the bare string; a neutral key keeps Pi's answers
+ * closest to the CLI's.
  *
  * @param {{ question: string, keys: string[], criteria: Record<string, string> } | { type: 'noul', question: string }} request Parsed choice or noul request.
  * @param {string} stateText State text the caller feeds to jev on stdin.
- * @returns {{ state: { request: string }, questions: Record<string, { type: 'choice', instructions: string, criteria: Record<string, string> } | { type: 'bool', instructions: string }> }} Context for `classify()`.
+ * @returns {{ state: { text: string }, questions: Record<string, { type: 'choice', instructions: string, criteria: Record<string, string> } | { type: 'bool', instructions: string }> }} Context for `classify()`.
  */
 export function classifierContextFor(request, stateText) {
   if (request.type === 'noul') {
     return {
-      state: { request: stateText },
+      state: { text: stateText },
       questions: {
         [ANSWER_NAME]: { type: 'bool', instructions: request.question },
       },
@@ -184,7 +189,7 @@ export function classifierContextFor(request, stateText) {
   const criteria = {};
   for (const key of request.keys) criteria[key] = request.criteria[key];
   return {
-    state: { request: stateText },
+    state: { text: stateText },
     questions: {
       [ANSWER_NAME]: { type: 'choice', instructions: request.question, criteria },
     },
@@ -245,6 +250,25 @@ export function noulPayloadFor(answer, model) {
     answers: { [ANSWER_NAME]: { noul: probability } },
     model,
   };
+}
+
+/**
+ * The CLI-shaped token counts for one Pi answer, or null when Pi reported none.
+ * Both counts must be finite numbers: a reported half would enter a reader as a
+ * missing number, so a partial report is dropped rather than printed.
+ *
+ * @param {{ input?: number, output?: number } | undefined} usage Usage Pi returned with the answer.
+ * @returns {{ input_tokens: number, output_tokens: number } | null} Printed token counts, or null.
+ */
+export function usagePayloadFor(usage) {
+  if (usage === null || typeof usage !== 'object') return null;
+
+  const input = usage.input;
+  const output = usage.output;
+  if (typeof input !== 'number' || !Number.isFinite(input)) return null;
+  if (typeof output !== 'number' || !Number.isFinite(output)) return null;
+
+  return { input_tokens: input, output_tokens: output };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -398,6 +422,25 @@ function promiseWithinTimeout(operation, timeoutMs, onTimeout) {
 // ───────────────────────────────────────────────────────────────────
 
 /**
+ * The model named in the JSON a CLI call printed, or null when that text is not
+ * an object carrying a string `model`. Unparseable text and a result without the
+ * field both name nothing, so both read as null.
+ *
+ * @param {string} stdout Text the CLI printed.
+ * @returns {string | null} The printed model, or null when none can be named.
+ */
+export function cliModelFrom(stdout) {
+  let parsed;
+  try {
+    parsed = JSON.parse(stdout);
+  } catch {
+    return null;
+  }
+  if (parsed === null || typeof parsed !== 'object') return null;
+  return typeof parsed.model === 'string' ? parsed.model : null;
+}
+
+/**
  * One bounded child process. Resolves exactly once with the exit code, the
  * collected output, the wall time, and whether the timeout fired. The timer
  * kills the child and resolves at once, without waiting for close: a
@@ -462,24 +505,28 @@ async function spawnCliWithinBudget(options, spawnFn, startedAt, timeoutMs) {
 /**
  * One bounded call that reaches the CLI or, when Pi's cached preflight passes
  * for a supported request, Pi. Only an explicit Pi route reports a failed gate;
- * every CLI fallback receives the remaining call budget.
+ * every CLI fallback receives the remaining call budget. An omitted `env`
+ * defaults to the process environment, so Pi discovery searches the PATH the
+ * caller runs with instead of an empty one.
  *
  * @param {{ file: string, args: string[], stdin: string, env?: object, timeoutMs: number, transport?: 'jev' | 'pi', report?: (line: string) => void }} options Call description.
  * @param {{ spawn?: Function, runtime?: object, createRuntime?: (packageDir: string) => Promise<object> | object }} [deps] Test seams for the child spawn and classifier runtime.
- * @returns {Promise<{ code: number|null, stdout: string, stderr: string, wallMs: number, timedOut: boolean, transport: 'pi' | 'jev' }>} The call outcome.
+ * @returns {Promise<{ code: number|null, stdout: string, stderr: string, wallMs: number, timedOut: boolean, transport: 'pi' | 'jev', model: string | null }>} The call outcome.
  */
 export async function spawnClassifierCall(options, deps = {}) {
-  const env = options.env ?? {};
+  const env = options.env ?? process.env;
   const report = options.report ?? ((line) => process.stdout.write(`${line}\n`));
   const spawnFn = deps.spawn ?? spawn;
   const timeoutMs = Number.isFinite(options.timeoutMs)
     ? Math.max(0, options.timeoutMs)
     : DEFAULT_TIMEOUT_MS;
   const startedAt = Date.now();
-  const cli = async () => ({
-    ...await spawnCliWithinBudget(options, spawnFn, startedAt, timeoutMs),
-    transport: 'jev',
-  });
+  // The CLI prints the service's own result, so the model that result names is
+  // the one the service answered with.
+  const cli = async () => {
+    const outcome = await spawnCliWithinBudget(options, spawnFn, startedAt, timeoutMs);
+    return { ...outcome, transport: 'jev', model: cliModelFrom(outcome.stdout) };
+  };
 
   // Only supported classifier requests can use Pi. Other invocations run on
   // the CLI unchanged, which remains the authority for their behavior.
@@ -540,5 +587,21 @@ export async function spawnClassifierCall(options, deps = {}) {
     return cli();
   }
 
-  return { code: 0, stdout: `${JSON.stringify(payload)}\n`, stderr: '', wallMs, timedOut: false, transport: 'pi' };
+  // The counts ride the payload the caller already reads. The outcome names Pi's
+  // provider with its model, while the payload's own `model` key keeps the bare
+  // classifier id it has always printed, so a reader keyed on it is unaffected.
+  const usage = usagePayloadFor(result?.usage);
+  if (usage !== null) payload.usage = usage;
+  const answeredProvider = typeof result?.provider === 'string' ? result.provider : classifier.provider;
+  const answeredModel = typeof result?.model === 'string' ? result.model : classifier.model;
+
+  return {
+    code: 0,
+    stdout: `${JSON.stringify(payload)}\n`,
+    stderr: '',
+    wallMs,
+    timedOut: false,
+    transport: 'pi',
+    model: `${answeredProvider}/${answeredModel}`,
+  };
 }

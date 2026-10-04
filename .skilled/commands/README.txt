@@ -43,7 +43,7 @@ Commands are organized into six groups plus root-level utilities:
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 13 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
 | **deep** | `commands/deep/` | 5 | Deep research, review, AI council and improvement loops |
-| **doctor** | `commands/doctor/` | 5 | MCP, Spec Kit, release updates, environment-switch, and subsystem diagnostics |
+| **doctor** | `commands/doctor/` | 8 | Spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, git hook and standards, MCP, release-update and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
 | **speckit** | `commands/speckit/` | 6 | Spec folder workflows (plan, implement, resume, complete), continuity write (save) and lexical retrieval (search) |
@@ -101,10 +101,15 @@ command/
 │   ├── research.md           # Iterative deep research workflow
 │   ├── review.md             # Iterative code review workflow
 │   └── assets/               # YAML workflow definitions
-├── doctor/                   # MCP server diagnostic and install commands
+├── doctor/                   # Diagnostic commands, one per owner
+│   ├── speckit.md            # Spec-kit retrieval diagnostics
+│   ├── skill-advisor.md      # Skill advisor tune, rebuild and audits
+│   ├── deep-loop.md          # Deep-loop graph and convergence diagnostics
+│   ├── runtime-mirrors.md    # Runtime mirror parity check
+│   ├── git.md                # Git hook gate settings and sk-git standards
 │   ├── mcp.md                # Diagnose/install MCP infrastructure
-│   ├── speckit.md            # Spec Kit diagnostics
-│   ├── rebuild.md            # Dependency-safe database rebuild
+│   ├── update.md             # Release-aware framework updater
+│   ├── env.md                # Environment switch inspection
 │   ├── assets/               # YAML workflow definitions
 │   └── scripts/              # Diagnostic scripts
 ├── design/                    # Design extraction commands
@@ -151,14 +156,17 @@ Scaffold OpenCode components using the `sk-doc` skill. Each command supports `:a
 
 ### Doctor Commands
 
-Five command files cover the diagnostic surface. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
+Eight command files cover the diagnostic surface, one per owner. Backed by `_routes.yaml`, `mcp-doctor.sh`, interactive YAML workflows, and the live environment switch reference.
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| Doctor Router | `/doctor:speckit <target> [flags]` (backed by `doctor/speckit.md`) | Single entry point for 9 subsystems (`speckit-retrieval`, `deep-loop`, `skill-advisor`, `skill-budget`, `parent-skill`, `skill-graph-freshness`, `router-reach`, `fable-mode`, `runtime-mirrors`), with argv-positional dispatch via `_routes.yaml` |
+| Spec-Kit Retrieval | `/doctor:speckit` | Diagnose the generated trigger index, its lookup and the ripgrep retrieval recipes |
+| Skill Advisor | `/doctor:skill-advisor <target> [flags]` | Re-tune routing, rebuild the skill graph, or audit graph freshness, router reach, description budget and parent-skill structure |
+| Deep-Loop | `/doctor:deep-loop [--scope=<scope>]` | Diagnose deep-loop coverage graphs and convergence for research, review and council runs |
+| Runtime Mirrors | `/doctor:runtime-mirrors` | Check that the agent, command, prompt and hook mirrors are in sync with `.skilled` |
+| Git | `/doctor:git <hooks\|standards> [--dry-run]` | Switch shipped git hook gates on or off in git config, and change the commit, PR and branch rules in `.sk-git/` |
 | MCP Debug | `/doctor:mcp debug [--fix]` | Diagnose Code Mode build, UTCP configuration, credentials, and runtime registration |
 | MCP Install | `/doctor:mcp install [--runtime <name>]` | Install Code Mode and configure its UTCP file and selected runtime |
-| Rebuild | `/doctor:rebuild [--migrate] [--force]` | Dependency-safe multi-subsystem rebuild orchestrator (trigger index, skill-graph, advisor) |
 | Update | `/doctor:update [check|align|apply|rollback|record-base]` | Release-aware spec-kit updater with read-only check, decision alignment, gated apply, rollback and base-recording workflows |
 | Environment Switches | `/doctor:env [list \| <section> \| <VARIABLE>] [--dry-run]` | Inspect documented environment switches and optionally save a confirmed preference |
 

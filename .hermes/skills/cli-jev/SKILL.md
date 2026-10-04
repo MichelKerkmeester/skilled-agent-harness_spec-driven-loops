@@ -245,44 +245,63 @@ Jev does not dispatch itself. Two bounds apply unchanged by this packet:
 
 ### Transport Selection
 
-A `choice` question can run on either backend. The `jev` CLI is the default and the fallback, and Pi's
-classifier runtime answers only when a caller or the environment asks for it by name. The switch is
-resolved per call in `shared/scripts/jev-transport.mjs` (`resolveTransport`):
+A `choice` or `noul` question can run on either backend. With no transport named, Pi's classifier
+runtime answers when its preflight passes and the `jev` CLI answers otherwise with no skip line. A
+route that names Pi keeps its one skip line when Pi cannot answer. The switch is resolved per call in
+`shared/scripts/jev-transport.mjs` (`resolveTransport`):
 
 | Input | Route |
 |---|---|
-| `JEV_TRANSPORT` unset, `''`, or `jev`, and no `transport` option | the `jev` CLI, silently |
-| `JEV_TRANSPORT=pi`, or the per-call `transport: 'pi'` option | Pi for a `choice` request, otherwise the CLI |
+| `JEV_TRANSPORT` unset or `''`, and no `transport` option | the automatic route: Pi when its preflight passes, otherwise the `jev` CLI with no line |
+| `JEV_TRANSPORT=jev` | the `jev` CLI, silently |
+| `JEV_TRANSPORT=pi`, or the per-call `transport: 'pi'` option | Pi for a `choice` or `noul` request, with one skip line and then the CLI when Pi cannot answer |
 | any other value | one line `skip: unknown transport '<value>', using jev CLI`, then the CLI |
 
-The per-call option wins over the environment, only `''` counts as unset, and an empty `transport`
-option is unset too. The environment being read is the `env` object the caller already passes to `jev`,
-never `process.env`, so a narrow env means the CLI.
+The per-call option wins over the environment, except that a `JEV_TRANSPORT=jev` kill switch forces the
+CLI. Only `''` counts as unset, and an empty `transport` option is unset too. The environment being
+read is the `env` object the caller already passes to `jev`, never `process.env`, so a narrow env
+means the CLI.
 
-**`choice` only.** The Pi route is entered only when the arguments are the declared `choice` shape,
-`choice [--provider <p>] [-q <text>] (-o <key>=<desc>)+` with the state on stdin. Every other invocation,
-including `auth`, `noul`, `score`, `run` and a `choice` call with an unmappable flag, is spawned on the
-CLI unchanged and prints nothing.
+**`choice` and `noul`.** The Pi route is entered when the arguments are the declared `choice` shape,
+`choice [--provider <p>] [-q <text>] (-o <key>=<desc>)+`, or the declared `noul` shape,
+`noul -q|--question <text> [--provider <name>]`, with the state on stdin. Any other flag keeps the call
+on the CLI; every other invocation, including `auth`, `score`, `run` and a call with an unmappable
+flag, is spawned there unchanged and prints nothing.
 
-**Three gates, then the backend.** `ModelRuntime.create()` is imported from the package `pi` resolves
-to. Three gates run in order before any classifier call, and the first failure prints exactly one line
-and then runs the CLI:
+**Provider map.** The transport uses the call's `--provider`, then `JEV_PROVIDER`, defaulting to
+`official`. `official` maps to Pi `typesafe/jev-latest`; `openrouter` maps to Pi
+`openrouter/typesafe/jev-1.13`. `vercel` and `custom` stay on the CLI. The preflight cache is keyed by
+`PATH` and the Jev provider.
+
+**Four gates, then the backend.** `ModelRuntime.create()` is imported from the package `pi` resolves
+to. The gates run in order before any classifier call, and the first failure stops the Pi path. On a
+route that named Pi the failure prints exactly one line and then runs the CLI:
 
 | Gate | Failure line |
 |---|---|
-| package: the package resolves and `ModelRuntime.create()` returns | `skip: pi transport unavailable (package), using jev CLI` |
-| model: `getModelOfType('classifier', 'openrouter', 'typesafe/jev-1.13')` returns a model | `skip: pi transport unavailable (model), using jev CLI` |
-| credential: `getAvailableOfType('classifier', 'openrouter')` lists `typesafe/jev-1.13` | `skip: pi transport unavailable (credential), using jev CLI` |
-| backend: `classify()` throws or errors, or the answer names a key that was not submitted, or a submitted key has no finite probability | `skip: pi transport unavailable (backend), using jev CLI` |
+| package: `resolvePiPackage` resolves, and `ModelRuntime.create()` does not throw | `skip: pi transport unavailable (package), using jev CLI` |
+| version: the resolved package is 0.99.2 | `skip: pi transport unavailable (version), using jev CLI` |
+| model: `getModelOfType('classifier', piProvider, classifierId)` returns the mapped model | `skip: pi transport unavailable (model), using jev CLI` |
+| credential: `getAvailableOfType('classifier', piProvider)` lists the mapped `classifierId` | `skip: pi transport unavailable (credential), using jev CLI` |
+| backend: `classify()` throws or errors, or the answer cannot be read as the submitted question | `skip: pi transport unavailable (backend), using jev CLI` |
 
 The call is `runtime.classify(model, context, { signal })` under the caller's own timeout, and its answer
-is written back on stdout in the CLI's shape: `answers.answer.choice`, `answers.answer.probabilities`, a
-top-level `model`, compact JSON with a trailing newline, and exit code 0. A caller that opts in keeps
-its parsing. No retry runs inside the transport.
+is written back on stdout in the CLI's shape: `answers.answer.choice` with `answers.answer.probabilities`,
+`answers.answer.noul` as a probability, a top-level `model`, `usage` with `input_tokens` and
+`output_tokens` when Pi reports token counts, compact JSON with a trailing newline, and
+exit code 0. A caller keeps its parsing. No retry runs inside the transport. A failed preflight on the
+automatic route falls back to the CLI with no line, and a failure after the gates pass falls back on
+either route. Pi receives the stdin text as `state: { text: <stdin> }`, because its state must be a JSON
+object while the CLI sends the bare string. Measured against the CLI's answers on recorded rows, the
+`text` key came closer to them than the earlier `request` key. Every outcome also names the route that answered as
+`transport` and the model that answered as `model`, which is `<provider>/<model>` from Pi's result when
+Pi answered, such as `typesafe/jev-latest`, the `model` field the CLI printed when the CLI answered, or
+`null` when neither names one.
 
 **Credentials stay in Pi's store.** The transport calls `ModelRuntime.create()` and lets Pi resolve its
 own credential. It reads no `.env`, prints no environment variable and copies no key into Pi's options.
-The `env` object reaches the `jev` child only.
+On `official`, Pi can answer only when the caller's process environment holds `TYPESAFE_API_KEY` or Pi's
+own store holds a `typesafe` key. The `env` object reaches the `jev` child only.
 
 A Pi answer carries the same standing as a CLI answer: evidence about the caller's options, never
 permission to act.

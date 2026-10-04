@@ -33,7 +33,7 @@ The default run makes zero model calls and writes no file. It counts the tracked
 
 ### Backends And Verdict
 
-`--jev` runs only after `jev --version` prints `jev 0.6.2` and `jev auth status --provider P` exits 0. A failed gate prints one skip line and changes nothing. Jev answers each row three times. A missing answer is `unmeasured`, never 0. The column prints `verdict jev: keep`, `kill (precision)` or `stop (<reason>)`. The `--out <dir>` folder receives `calls.jsonl` and `report.json`.
+`--jev` runs only after `jev --version` prints `jev 0.6.2` and `jev auth status --provider P` exits 0. A failed gate prints one skip line and changes nothing. Jev answers each row three times. A missing answer is `unmeasured`, never 0. The column prints `verdict jev: keep`, `kill (precision)` or `stop (<reason>)`. The `--out <dir>` folder receives `calls.jsonl` and `report.json`. A later run into the same folder first keeps the earlier pair as `calls.<n>.jsonl` and `report.<n>.json`, so its requalify check still reads the earlier report. After the Jev column the run prints a probability-aware verdict that flags a row when the mean of its probabilities reaches 0.6, that arm's margin slack and a bootstrap interval that resamples whole source groups. `report.json` pins the scored rows, each with its label and text hash, behind one SHA-256 digest.
 
 ---
 
@@ -44,6 +44,7 @@ The default run makes zero model calls and writes no file. It counts the tracked
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/cli-classifier/benchmark/injection-screen/score-injection-screen.mjs` | Script | Both censuses, the draw, the label gate, the baseline, the arm and the verdict |
+| `.skilled/skills/cli-classifier/shared/scripts/scorer-report.mjs` | Shared | The row pin, the output-directory check, margin slack and the cluster bootstrap the arm reports |
 
 ### Validation And Tests
 

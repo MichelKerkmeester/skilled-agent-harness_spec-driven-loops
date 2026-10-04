@@ -868,6 +868,8 @@ async function runJevArm(plan, gate, ctx, backend = 'jev') {
   ctx.out(`${backend}: auth test provider=${gate.provider} model=${model}`);
 
   const answers = new Map();
+  // Every model that answered a call, so the column can name what answered.
+  const answered = new Set();
 
   /**
    * One calls.jsonl record. A spawn that led to a stop or a retry carries no
@@ -886,7 +888,7 @@ async function runJevArm(plan, gate, ctx, backend = 'jev') {
       status,
       jevVersion,
       provider: gate.provider,
-      model,
+      model: r.model ?? model,
     };
   }
 
@@ -905,6 +907,7 @@ async function runJevArm(plan, gate, ctx, backend = 'jev') {
         report: ctx.out,
       });
       wallTimes.push(r.wallMs);
+      if (typeof r.model === 'string') answered.add(r.model);
 
       if (!r.timedOut && r.code === 4) {
         ctx.callLog.append(record(row, rerun, attempt, r, null, 'unmeasured'));
@@ -920,6 +923,7 @@ async function runJevArm(plan, gate, ctx, backend = 'jev') {
           report: ctx.out,
         });
         wallTimes.push(r.wallMs);
+        if (typeof r.model === 'string') answered.add(r.model);
       }
 
       let noul = null;
@@ -963,13 +967,15 @@ async function runJevArm(plan, gate, ctx, backend = 'jev') {
     }
   }
 
+  // The verdict names the model that answered its calls, joining the names when more than one model answered.
+  const answeringModel = answered.size === 0 ? model : [...answered].sort().join('+');
   const column = summarizeColumn(
     backend,
     plan.rows,
     answers,
     plan.baselineCalls,
     plan.labelsSha,
-    `jev_version=${jevVersion} provider=${gate.provider} model=${model}`,
+    `jev_version=${jevVersion} provider=${gate.provider} model=${answeringModel}`,
   );
   const latency = {
     p50: nearestRank(wallTimes, 0.5),
@@ -984,7 +990,7 @@ async function runJevArm(plan, gate, ctx, backend = 'jev') {
   let requalify = null;
   if (storedArm) {
     const reasons = [];
-    if (storedArm.provider !== gate.provider || storedArm.model !== model) reasons.push('model changed');
+    if (storedArm.provider !== gate.provider || storedArm.model !== answeringModel) reasons.push('model changed');
     if (reasons.length > 0) requalify = `requalify: ${reasons.join(', ')}`;
   }
   if (requalify !== null) {
@@ -998,7 +1004,7 @@ async function runJevArm(plan, gate, ctx, backend = 'jev') {
       latency,
       jevVersion,
       provider: gate.provider,
-      model,
+      model: answeringModel,
       routedRows: routedRows.length,
       modelCalls,
       plannedCalls,

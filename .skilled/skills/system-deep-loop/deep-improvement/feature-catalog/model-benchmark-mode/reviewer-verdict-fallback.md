@@ -39,6 +39,12 @@ The script prints the question every grader answers, `Which verdict does this re
 
 `--jev` needs `--out <dir>`. The arm prints its planned calls before the first one, records every call in `calls.jsonl` and writes `report.json`. A failed check or a closed label gate prints a `jev arm skipped:` line instead and makes no call. A finished arm prints one `verdict jev:` line with `keep`, `kill` or `stop` and its reason. An answer that is not one of the three keys counts as unmeasured and never as a pick.
 
+### Real-Output Capture
+
+`capture-reviewer-outputs.cjs`, beside the scorer, collects the reviewer outputs that real deep-review runs left in this repository, so the regex miss rate on real traffic can be counted and a later labeling pass has rows to read. It walks `specs/`, or each `--root <dir>`, for `review-report*.md` files and for the `iteration-NNN.md` files in the `iterations` folders under a `review/` folder, and leaves out prompt files, research iterations and anything under `node_modules`. A file over `--max-bytes`, 65536 by default, is counted as oversize and not read, because the review files that large are raw CLI transcripts rather than a review. Identical texts collapse to one row that counts its copies.
+
+Each row holds `id`, `sha256`, `kind`, `source`, `copies`, `bytes`, `regexVerdict`, `regexMethod` and `output`, where `regexVerdict` is what the scorer's `extractVerdict` reads from the text, and no row carries a `label`. The rows go to `025-real-outputs.jsonl` in the operator's local labels store, or to `--out <file>`, with file mode 0600, and the run prints one line: `census: rows=<n> regex_misses=<n> regex_hits=<n> (pass <n>, fail <n>, block <n>, abstain <n>) iterations=<n> reports=<n> files=<n> duplicates=<n> oversize=<n> out=<path>`. It makes no model call and spawns no process. The file cannot feed `--outputs` until an operator adds labels, because the scorer refuses a row without one.
+
 ---
 
 ## 3. SOURCE FILES
@@ -48,12 +54,14 @@ The script prints the question every grader answers, `Which verdict does this re
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/score-verdict-fallback.cjs` | Script | Runs the fixture and outputs census, the two baselines, the label gate and the opt-in Jev arm. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/lib/capture-reviewer-outputs.cjs` | Script | Collects real deep-review outputs into an unlabeled, deduplicated JSONL file with the regex verdict per row and a one-line census. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
 | `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/verdict-fallback.vitest.ts` | Vitest | Covers the census, the labels, the baselines, the keep rule, the label gate and the Jev arm against a stub `jev` binary. |
+| `.skilled/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/tests/capture-reviewer-outputs.vitest.ts` | Vitest | Covers the path rules, the dedup and oversize counts, the unlabeled row shape, the census line, the refusals and that no stub `jev` starts. |
 | `.skilled/skills/system-deep-loop/deep-improvement/manual-testing-playbook/model-benchmark-mode/` | Manual playbook | Scenario `MB-052` checks the census on the fixtures and a stub-backend skip. |
 
 ---

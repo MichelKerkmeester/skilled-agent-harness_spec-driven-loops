@@ -202,9 +202,9 @@ workflow:
       rollback_validation: "Verify the engine rollback output, report every restored and skipped path, and confirm .skilled/release/.apply.lock is absent. Do not claim complete rollback when any path remains skipped or failed."
 
   phase_6_rebuild_prompt:
-    approval: "Prompt to run /doctor:rebuild after the battery."
+    approval: "Prompt to run /doctor:skill-advisor rebuild after the battery, so the advisor routes off the applied skill metadata."
     outcomes:
-      rebuilt: "Run /doctor:rebuild and record reindex=rebuilt only after its successful completion is observed."
+      rebuilt: "Run /doctor:skill-advisor rebuild and record reindex=rebuilt only after its successful completion is observed."
       skipped: "Record reindex=skipped and show the stale-index warning."
       failed: "Record reindex=failed, show the stale-index warning and report the failure."
     stale_index_rule: "Skipped or failed database rebuild must never be reported as a silent success."

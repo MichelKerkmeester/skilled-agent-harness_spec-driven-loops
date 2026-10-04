@@ -141,7 +141,7 @@ workflow:
       update_or_new_only: "Offer /doctor:update apply, noting that a decision file is optional when no align decisions are needed."
       removed_or_blocked_or_unknown: "Show the status-specific explanation and do not imply automatic application is safe."
       downgrade: "The selected release is older than the base release recorded for this unit. Apply never writes it. Roll back the apply that took the newer release, or use git, to return to an older release."
-      databases: "Name /doctor:rebuild for database regeneration after applying a release."
+      databases: "Name /doctor:skill-advisor rebuild for the advisor's skill graph after applying a release; the trigger index regenerates through generate-trigger-index.mjs or the next spec commit."
       base_recording: "When baseRecording.needed is true (at least one unit with local files has baseSource inferred, none or recorded-unverified), ask the operator for the release the tree was installed from and name /doctor:update record-base --release=<installed-release> [--remote=<framework-remote>]. Recording writes the git-tracked .skilled/release/base.json, so it needs operator approval; check itself never runs it."
       no_changes: "Report that the selected units are current or local."
 

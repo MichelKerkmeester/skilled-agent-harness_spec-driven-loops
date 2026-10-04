@@ -15,6 +15,7 @@ import { createHash } from 'node:crypto';
 import { accessSync, appendFileSync, constants, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import * as path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
 import { isArchiveFolder, validateContentAlignment, validateFolderAlignment, type AlignmentCollectedData } from '../spec-folder/alignment-validator.js';
@@ -505,6 +506,26 @@ export function listTranscriptFiles(dir: string): string[] {
 // 7. SCORER AND GATE
 // ───────────────────────────────────────────────────────────────────
 
+/** The shared report pieces the classifier scorers export, typed as this scorer calls them. */
+interface ScorerReport {
+  pinRowSet(rows: Array<Record<string, unknown>>): { rowSetSha256: string; rowCount: number; rows: Array<Record<string, unknown>> };
+  outDirectoryHoldsRun(outDir: string | undefined): boolean;
+  probabilityAwarePick(votes: Array<{ pick: string | null; pickProb: number | null }>, noneKey: string | null): string | null;
+  decidedSubset(pairs: Array<{ pick: string | null; gold: string | null }>, noneKey: string | null): { decidedCount: number; decidedCorrect: number; decidedAccuracy: number | null };
+  marginSlack(tally: { A: number; B: number; M: number }): number | null;
+  clusterBootstrapInterval(items: Array<{ cluster: string; delta: number }>, seedText: string): { clusterCount: number; replicates: number; estimate: number | null; lower: number | null; upper: number | null };
+  decidedSubsetLine(name: string, subset: { decidedCount: number; decidedCorrect: number; decidedAccuracy: number | null }): string;
+  marginSlackLine(name: string, slack: number | null): string;
+  bootstrapLine(name: string, bootstrap: { clusterCount: number; replicates: number; lower: number | null; upper: number | null }): string;
+}
+
+// Loaded at run time because the shared module belongs to another skill, outside this package's compile root.
+async function loadScorerReport(): Promise<ScorerReport> {
+  return (await import(
+    pathToFileURL(path.join(REPO_ROOT, '.skilled', 'skills', 'cli-classifier', 'shared', 'scripts', 'scorer-report.mjs')).href
+  )) as ScorerReport;
+}
+
 /** One labeled save row: the folders a save listed plus the label to score against. */
 export interface Row {
   id: string;
@@ -806,6 +827,94 @@ function scorePicks(
   };
 }
 
+/** The probability-aware arm's counts, verdict line and the report pieces that accompany it. */
+interface ProbabilityAwareAnalysis {
+  probabilityAware: VerdictCounts & {
+    verdict: string;
+    p: number;
+    line: string;
+    decidedCount: number;
+    decidedCorrect: number;
+    decidedAccuracy: number | null;
+    marginSlack: number | null;
+  };
+  bootstrap: {
+    clusterCount: number;
+    replicates: number;
+    estimate: number | null;
+    lower: number | null;
+    upper: number | null;
+  };
+}
+
+/**
+ * Scores the probability-aware arm from saved picks: each row's pick is the key its
+ * passes gave the highest summed probability, with every pass's none probability
+ * added to the none key, counted by the same measured-row rule as the gated column
+ * and reported against the baseline it is compared with.
+ */
+export function scoreProbabilityArm(
+  scorerReport: ScorerReport,
+  rows: Row[],
+  picks: Record<string, Array<string | null>>,
+  pickProbs: Record<string, Array<number | null>>,
+  noneProbs: Record<string, Array<number | null>>,
+  chosen: 'target' | 'top'
+): ProbabilityAwareAnalysis {
+  const counts: VerdictCounts = { K: rows.length, M: 0, A: 0, B: 0, W: 0, L: 0, F: 0 };
+  const pairs: Array<{ pick: string | null; gold: string | null }> = [];
+  const items: Array<{ cluster: string; delta: number }> = [];
+  const probabilityPicks = new Map<string, string | null>();
+
+  for (const row of rows) {
+    const rowPicks = picks[row.id];
+    if (rowPicks === undefined || rowPicks.some((pick) => pick === null) || rowPicks.length !== PASSES) {
+      probabilityPicks.set(row.id, null);
+      continue;
+    }
+
+    const pick = scorerReport.probabilityAwarePick(
+      rowPicks.map((rowPick, index) => ({
+        pick: rowPick,
+        pickProb: pickProbs[row.id]?.[index] ?? null,
+        noneProb: noneProbs[row.id]?.[index] ?? null,
+      })),
+      NONE_KEY
+    );
+    if (pick === null) {
+      probabilityPicks.set(row.id, null);
+      continue;
+    }
+    probabilityPicks.set(row.id, pick);
+
+    const { flips } = modalPick(rowPicks);
+    const label = effectiveLabel(row);
+    const baselineAnswer = chosen === 'target' ? row.target : row.alternatives[0];
+    const columnRight = pick === label;
+    const baselineRight = baselineAnswer === label;
+
+    counts.M += 1;
+    counts.F += flips;
+    if (columnRight) counts.A += 1;
+    if (baselineRight) counts.B += 1;
+    if (columnRight && !baselineRight) counts.W += 1;
+    if (baselineRight && !columnRight) counts.L += 1;
+    pairs.push({ pick, gold: label });
+    items.push({ cluster: row.target, delta: Number(columnRight) - Number(baselineRight) });
+  }
+
+  const decided = decideVerdict(counts);
+  const line = verdictLine('probability-aware', counts, decided, chosen, '');
+  const subset = scorerReport.decidedSubset(pairs, NONE_KEY);
+  const slack = scorerReport.marginSlack(counts);
+  const seedText = rows.map((row) => `${row.id}\u0000${probabilityPicks.get(row.id) ?? ''}`).join('\n');
+  const bootstrap = scorerReport.clusterBootstrapInterval(items, seedText);
+  return {
+    probabilityAware: { ...counts, verdict: decided.verdict, p: decided.p, line, ...subset, marginSlack: slack },
+    bootstrap,
+  };
+}
+
 /** Reuses the choices to check whether evaluation changes when target and top labels swap. */
 function swapTargetTopLabels(rows: Row[]): Row[] {
   return rows.map((row) => {
@@ -831,13 +940,14 @@ function distractorStates(rows: Row[]): Row[] {
  * backend identity.
  */
 export function verdictLine(
-  backend: 'jev',
+  backend: 'jev' | 'probability-aware',
   c: VerdictCounts,
   v: { verdict: string; p: number },
   baseline: 'target' | 'top',
   extra: string
 ): string {
-  return `verdict ${backend}: ${v.verdict} K=${c.K} M=${c.M} A=${c.A} B=${c.B} W=${c.W} L=${c.L} F=${c.F} p=${v.p.toFixed(4)} baseline=${baseline} ${extra}`;
+  const suffix = extra === '' ? '' : ` ${extra}`;
+  return `verdict ${backend}: ${v.verdict} K=${c.K} M=${c.M} A=${c.A} B=${c.B} W=${c.W} L=${c.L} F=${c.F} p=${v.p.toFixed(4)} baseline=${baseline}${suffix}`;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -938,15 +1048,16 @@ interface CallRecord {
   provider?: string;
 }
 
-/** One call's classification: the measured pick, or a null pick with why it was not measured. */
+/** One call's classification: the measured pick and probabilities, or a null pick with why it was not measured. */
 interface Classification {
   pick: string | null;
   pickProb: number | null;
+  noneProb: number | null;
   status: string;
 }
 
 /** One call step's outcome for the row loop: the measured pick, or the stop that ended the arm. */
-type StepOutcome = { pick: string | null; probability: number | null } | { stop: string };
+type StepOutcome = { pick: string | null; probability: number | null; noneProbability: number | null } | { stop: string };
 
 /** One arm run's outcome: its verdict line, or the stop line with the rows finished before it. */
 type ArmOutcome =
@@ -956,6 +1067,8 @@ type ArmOutcome =
       counts: VerdictCounts;
       p: number;
       picks: Record<string, Array<string | null>>;
+      pickProbs: Record<string, Array<number | null>>;
+      noneProbs: Record<string, Array<number | null>>;
       discordantRows: DiscordantRow[];
       interval: ConfidenceInterval;
       choiceCalls: number;
@@ -963,7 +1076,7 @@ type ArmOutcome =
   | { stopped: string; partialRows: number; choiceCalls: number };
 
 /** The classification of a call that produced no usable pick. */
-const UNMEASURED: Classification = { pick: null, pickProb: null, status: 'unmeasured' };
+const UNMEASURED: Classification = { pick: null, pickProb: null, noneProb: null, status: 'unmeasured' };
 
 /** Directory entries of `dir`, or none when it cannot be read. */
 function readEntries(dir: string): Dirent[] {
@@ -1140,33 +1253,41 @@ function tryJson(text: string): unknown {
   }
 }
 
-/** Reads `answers.answer.choice` and its probability from a call's stdout JSON. */
-function readAnswer(parsed: unknown): { choice: string | null; probability: number | null } {
-  if (parsed === null || typeof parsed !== 'object') return { choice: null, probability: null };
+/**
+ * Reads `answers.answer.choice` and its probability from a call's stdout JSON, plus the
+ * probability the same answer gave the none key. The probability-aware pick needs the
+ * none probability even when the pick named a real folder, so it cannot be derived from
+ * the chosen option's probability alone.
+ */
+function readAnswer(parsed: unknown): { choice: string | null; probability: number | null; noneProbability: number | null } {
+  if (parsed === null || typeof parsed !== 'object') return { choice: null, probability: null, noneProbability: null };
   const answers = (parsed as Record<string, unknown>).answers;
-  if (answers === null || typeof answers !== 'object') return { choice: null, probability: null };
+  if (answers === null || typeof answers !== 'object') return { choice: null, probability: null, noneProbability: null };
   const answer = (answers as Record<string, unknown>).answer;
-  if (answer === null || typeof answer !== 'object') return { choice: null, probability: null };
+  if (answer === null || typeof answer !== 'object') return { choice: null, probability: null, noneProbability: null };
   const record = answer as Record<string, unknown>;
-  if (typeof record.choice !== 'string') return { choice: null, probability: null };
+  if (typeof record.choice !== 'string') return { choice: null, probability: null, noneProbability: null };
 
   let probability: number | null = null;
+  let noneProbability: number | null = null;
   const probabilities = record.probabilities;
   if (probabilities !== null && typeof probabilities === 'object') {
     const value = (probabilities as Record<string, unknown>)[record.choice];
     if (typeof value === 'number') probability = value;
+    const noneValue = (probabilities as Record<string, unknown>)[NONE_KEY];
+    if (typeof noneValue === 'number') noneProbability = noneValue;
   }
-  return { choice: record.choice, probability };
+  return { choice: record.choice, probability, noneProbability };
 }
 
 /** Classifies one call: only a 0 whose stdout names one of the row's keys is measured. */
 function classifyCall(result: CallResult, keys: string[]): Classification {
-  if (result.timedOut) return { pick: null, pickProb: null, status: 'unmeasured_timeout' };
+  if (result.timedOut) return { pick: null, pickProb: null, noneProb: null, status: 'unmeasured_timeout' };
   if (result.code !== 0) return UNMEASURED;
 
   const answer = readAnswer(tryJson(result.stdout));
   if (answer.choice === null || !keys.includes(answer.choice)) return UNMEASURED;
-  return { pick: answer.choice, pickProb: answer.probability, status: 'measured' };
+  return { pick: answer.choice, pickProb: answer.probability, noneProb: answer.noneProbability, status: 'measured' };
 }
 
 /** Waits `ms` before a retry. */
@@ -1317,16 +1438,20 @@ export async function runArm(
     if (result.code === 2) return { stop: `${backend} arm stopped: usage error` };
     if (result.code === 3) return { stop: 'jev arm stopped: key rejected' };
     if (result.code === 130) return { stop: `${backend} arm stopped: interrupted` };
-    return { pick: step.pick, probability: step.pickProb };
+    return { pick: step.pick, probability: step.pickProb, noneProbability: step.noneProb };
   };
 
   const picks: Record<string, Array<string | null>> = {};
+  const pickProbs: Record<string, Array<number | null>> = {};
+  const noneProbs: Record<string, Array<number | null>> = {};
   for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
     const row = rows[rowIndex];
     const lines = optionLines[rowIndex];
     const optionsHash = createHash('sha256').update(lines.join('\n')).digest('hex').slice(0, 16);
     const keys = rowOptions(row);
     const rowPicks: Array<string | null> = [];
+    const rowProbs: Array<number | null> = [];
+    const rowNoneProbs: Array<number | null> = [];
 
     for (let order = 0; order < PASSES; order++) {
       const step = await runStep(row, order, callArgs(order, lines), optionsHash, keys);
@@ -1336,9 +1461,13 @@ export async function runArm(
         return { stopped: step.stop, partialRows: rowIndex, choiceCalls };
       }
       rowPicks.push(step.pick);
+      rowProbs.push(step.probability);
+      rowNoneProbs.push(step.noneProbability);
       if (confidenceGated && order === 0 && step.probability === 1) break;
     }
     picks[row.id] = rowPicks;
+    pickProbs[row.id] = rowProbs;
+    noneProbs[row.id] = rowNoneProbs;
   }
 
   const counts = countVerdict(rows, picks, chosen, confidenceGated);
@@ -1354,7 +1483,7 @@ export async function runArm(
     ctx.out(`${armName}: discordant row_id=${discordant.rowId} outcome=${discordant.outcome} label=${discordant.label} comparator=${discordant.comparatorPick} model=${discordant.modelPick}`);
   }
   if (confidenceGated) ctx.out(`${armName}: choice_calls=${choiceCalls} full_pass_calls=${rows.length * PASSES} saved=${rows.length * PASSES - choiceCalls}`);
-  return { line, verdict: decided.verdict, counts, p: decided.p, picks, discordantRows, interval, choiceCalls };
+  return { line, verdict: decided.verdict, counts, p: decided.p, picks, pickProbs, noneProbs, discordantRows, interval, choiceCalls };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -1456,6 +1585,12 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
     }
   }
 
+  const scorerReport = jev ? await loadScorerReport() : null;
+  if (scorerReport !== null && scorerReport.outDirectoryHoldsRun(outDir)) {
+    err('--out directory already holds a run');
+    return 2;
+  }
+
   if (transcripts !== undefined && !existsSync(transcripts)) {
     err('transcripts path not found');
     return 2;
@@ -1521,6 +1656,7 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
       confidenceGated?: ArmOutcome;
       negativeControls?: { labelSwap: ArmMetrics; distractorState?: ArmOutcome };
     } = {};
+    let analysis: ProbabilityAwareAnalysis | null = null;
     const armCtx = {
       out,
       env,
@@ -1566,10 +1702,17 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
           armCtx,
           { name: 'negative control distractor-state' }
         );
+        if (scorerReport !== null) {
+          analysis = scoreProbabilityArm(scorerReport, callable, primary.picks, primary.pickProbs, primary.noneProbs, baseline.chosen);
+          out(analysis.probabilityAware.line);
+          out(scorerReport.decidedSubsetLine('probability-aware', analysis.probabilityAware));
+          out(scorerReport.marginSlackLine('probability-aware', analysis.probabilityAware.marginSlack));
+          out(scorerReport.bootstrapLine('probability-aware', analysis.bootstrap));
+        }
       }
     }
 
-    if (jev) {
+    if (jev && scorerReport !== null) {
       mkdirSync(armCtx.outDir, { recursive: true });
       const payload = {
         rows: { total: parsedRows.rows.length, labeled: labeled.length, callable: callable.length, stateNull },
@@ -1580,7 +1723,11 @@ export async function main(argv: string[], deps: MainDeps = {}): Promise<number>
           corpus_sha256: sha256(rowsBytes),
           scorer_sha256: sha256(readFileSync(new URL(import.meta.url))),
         },
+        dataPin: scorerReport.pinRowSet(
+          callable.map((row) => ({ id: row.id, target: row.target, label: effectiveLabel(row), stateSha256: sha256(row.state ?? '') }))
+        ),
         columns,
+        analysis: analysis ?? null,
       };
       const reportFile = path.join(armCtx.outDir, 'report.json');
       writeFileSync(reportFile, `${JSON.stringify(payload, null, 2)}\n`);

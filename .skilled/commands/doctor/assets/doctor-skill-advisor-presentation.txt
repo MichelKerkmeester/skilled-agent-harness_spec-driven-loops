@@ -1,0 +1,203 @@
+# /doctor:skill-advisor Presentation Contract
+
+This file is the single source of truth for user-facing presentation in `/doctor:skill-advisor <target>`: startup questions, the route manifest display, setup prompts, the rebuild plan and approval, diagnostic dashboards, result templates, troubleshooting, and next-step text. The command router owns target resolution and asset routing only. The workflow YAML owns execution behavior.
+
+## 1. Startup Presentation
+
+When `$ARGUMENTS` lacks a recognized positional target, ask this prompt first after reading `_routes.yaml`.
+
+```text
+What do you want to do with the skill advisor?
+
+   1) Re-tune routing                    (which skill gets recommended)
+   2) Rebuild the skill graph            (skill-graph.sqlite from graph-metadata.json)
+   3) Check skill-graph freshness        (compiled vs sqlite vs disk drift)
+   4) Check router reach                 (declared phrases reach their hub)
+   5) Audit description budget           (char counts, CI-friendly)
+   6) Audit parent-skill structure       (mode registry, graph metadata)
+   H) Help me decide
+   X) Cancel
+```
+
+Accepted answers:
+
+| Answer | Result |
+|--------|--------|
+| `1` | target = `tune` |
+| `2` | target = `rebuild` |
+| `3` | target = `skill-graph-freshness` |
+| `4` | target = `router-reach` |
+| `5` | target = `skill-budget` |
+| `6` | target = `parent-skill` |
+| `H` | Show the help block, then ask the startup prompt again |
+| `X`, empty, `cancel` | `STATUS=CANCEL` |
+
+On any other response, re-emit the menu once. On a second invalid response, return `STATUS=FAIL ERROR=unknown_selection`.
+
+### Help Block
+
+```text
+Pick by symptom:
+
+   Advisor recommends the wrong skill                  -> 1  Re-tune routing
+   New skill not appearing in advisor results          -> 2  Rebuild, then 3 to confirm
+   advisor_status reports stale, absent or unavailable -> 2  Rebuild
+   Compiled/sqlite/disk skill-graph disagree           -> 3  Skill-graph freshness
+   Declared router phrase reaches the wrong hub        -> 4  Router reach
+   Description char-count over hard cap                -> 5  Description budget
+   Parent skill graph-metadata or mode registry drift  -> 6  Parent-skill structure
+
+Quick reference for confusable pairs:
+   Re-tune (1) edits scoring lanes after per-skill review; Rebuild (2) only re-derives the graph
+   Freshness (3) reports drift; Rebuild (2) repairs it
+   Description budget (5) audits CHAR COUNTS, not routing quality
+
+Press 1-6, H, or X.
+```
+
+### Unknown Target Failure
+
+```text
+Unknown target: [target]
+Valid targets: tune, rebuild, skill-graph-freshness, router-reach, skill-budget, parent-skill
+Try: /doctor:skill-advisor list
+STATUS=FAIL ERROR="unknown_target"
+```
+
+### Cross-Target Flag Failure
+
+```text
+Flag '[flag]' is not valid for target '[target]'. Did you mean `/doctor:skill-advisor [suggested-target] [flag]`?
+STATUS=FAIL ERROR="cross_target_flag_injection"
+```
+
+## 2. Route Manifest Display
+
+Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.yaml`.
+
+| Target | Workflow | Mutation Class | One-Line Purpose |
+|--------|----------|----------------|------------------|
+| `tune` | `doctor-skill-advisor-tune.yaml` | mutates | Audit and re-tune the advisor's scoring lanes, with per-skill review before any write |
+| `rebuild` | `doctor-skill-advisor-rebuild.yaml` | mutates | Rebuild skill-graph.sqlite from graph-metadata.json through the advisor CLI, behind a backup |
+| `skill-graph-freshness` | `doctor-skill-graph-freshness.yaml` | read-only | Diagnose skill-graph representation drift across compiled, sqlite, and disk sources |
+| `router-reach` | `doctor-router-reach.yaml` | read-only | Ask the live advisor whether every phrase a hub's router advertises actually reaches it |
+| `skill-budget` | `doctor-skill-budget.yaml` | read-only | Audit skill, command, and agent description budgets |
+| `parent-skill` | `doctor-parent-skill.yaml` | read-only | Audit parent-skill structure, routing manifests, root metadata, router contract, and version consistency |
+
+## 3. Setup Prompts
+
+Ask only prompts needed for unresolved setup variables. Do not split a required setup question into multiple visible turns.
+
+### Tune Scope
+
+Ask only when `--scope` was not passed.
+
+```text
+Which scoring lanes should be checked?
+   1) all       - explicit, derived, and lexical
+   2) explicit  - TOKEN_BOOSTS and PHRASE_BOOSTS
+   3) derived   - graph-metadata triggers and topics
+   4) lexical   - CATEGORY_HINTS
+```
+
+Accept `1-4` or the corresponding name; empty defaults to `all`.
+
+### Parent-Skill Directory
+
+Ask only when `--dir` was not passed: `Which parent skill hub should be audited? (path under .skilled/skills/)`. The fleet-wide metadata gate runs either way.
+
+### Router-Reach Scope
+
+`--hub` and `--concurrency` are optional. With neither, the whole fleet is probed at the script's default concurrency; ask nothing.
+
+## 4. Rebuild Plan And Approval
+
+Render the plan after the probe, before any write.
+
+```text
+SKILL GRAPH REBUILD PLAN
+Advisor status: [live|stale|absent|unavailable] (daemon: [running|absent])
+Database: .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite ([size], modified [time] | not present)
+Backup: [backup path | none, no database yet]
+Source: [N] graph-metadata.json files under .skilled/skills/
+Will run:
+   node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true
+   node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted
+```
+
+With `--dry-run`, follow the plan with `Dry run: nothing was written.` and `STATUS=OK`.
+
+Otherwise ask:
+
+```text
+Rebuild the skill graph now? The current database is backed up first and restored if the rebuild fails.
+Reply approve to rebuild, or no to cancel.
+```
+
+## 5. Setup Dashboard
+
+Render this compact panel after setup and before YAML execution when target resolution or flags were non-trivial.
+
+```text
+DOCTOR ROUTE SETUP
+Target: [target]
+Workflow: .skilled/commands/doctor/assets/[yaml]
+Mutation class: [read-only|mutates]
+Execution mode: INTERACTIVE
+Setup values: [key=value list]
+Presentation: .skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt
+Next: load workflow YAML
+```
+
+## 6. Result Templates
+
+Use the target workflow output contract when it provides a stricter report shape. Use these templates for summary display and fallback rendering.
+
+### Read-Only Diagnostic Summary
+
+```text
+DOCTOR DIAGNOSTIC RESULT
+Target: [target]
+Workflow: [yaml]
+Status: [OK|DEGRADED|ATTENTION|CANCELLED|FAIL|ERROR]
+Mutation class: read-only
+Evidence: [checks, counts, failing rows, or report path]
+Recommendation: [operator action or none]
+STATUS=[status]
+```
+
+### Mutating Target Summary
+
+```text
+DOCTOR MUTATING RESULT
+Target: [target]
+Workflow: [yaml]
+Status: [OK|CANCELLED|FAIL|ROLLED_BACK]
+Approved changes: [none|summary]
+Files modified: [list or none]
+Verification: [checks run and result]
+Rollback: [backup path or not required]
+STATUS=[status]
+```
+
+### Failure Summary
+
+```text
+DOCTOR TARGET FAILED
+Target: [target]
+Step: [setup|workflow phase]
+Error: [message]
+Next: [recommended command or manual action]
+STATUS=FAIL ERROR="[message]"
+```
+
+## 7. Troubleshooting Display
+
+| Situation | Suggested Action |
+|-----------|------------------|
+| Advisor CLI exits 75 | The daemon is not running; a warm-only probe never starts it. `rebuild` does not need it |
+| Rebuild failed and was rolled back | Read the failing command's output, fix the named graph-metadata.json, rerun `/doctor:skill-advisor rebuild` |
+| Cross-target flag rejected | Use the suggested target from the error |
+| Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
+
+End interactive presentations with: `What would you like to do next?`

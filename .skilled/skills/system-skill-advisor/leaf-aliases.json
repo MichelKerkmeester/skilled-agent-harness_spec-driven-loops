@@ -206,16 +206,6 @@
   },
   {
     "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/scorer-fusion/suggested-order-eval.md",
-    "diskPath": "feature-catalog/scorer-fusion/suggested-order-eval.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "feature-catalog/scorer-fusion/tie-break-eval.md",
-    "diskPath": "feature-catalog/scorer-fusion/tie-break-eval.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
     "leafResourceId": "feature-catalog/scorer-fusion/weights-config.md",
     "diskPath": "feature-catalog/scorer-fusion/weights-config.md"
   },
@@ -313,6 +303,41 @@
     "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/compat-and-disable/python-shim-stdin.md",
     "diskPath": "manual-testing-playbook/compat-and-disable/python-shim-stdin.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-graph-freshness.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-graph-freshness.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-parent-skill.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-parent-skill.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-rebuild.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-rebuild.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-router-reach.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-router-reach.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-skill-budget.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-skill-budget.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-tune.md",
+    "diskPath": "manual-testing-playbook/doctor-commands/doctor-skill-advisor-tune.md"
   },
   {
     "workflowMode": "system-skill-advisor",
@@ -453,16 +478,6 @@
     "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/scorer-fusion/projection.md",
     "diskPath": "manual-testing-playbook/scorer-fusion/projection.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/scorer-fusion/suggested-order-eval.md",
-    "diskPath": "manual-testing-playbook/scorer-fusion/suggested-order-eval.md"
-  },
-  {
-    "workflowMode": "system-skill-advisor",
-    "leafResourceId": "manual-testing-playbook/scorer-fusion/tie-break-eval.md",
-    "diskPath": "manual-testing-playbook/scorer-fusion/tie-break-eval.md"
   },
   {
     "workflowMode": "system-skill-advisor",

@@ -12,7 +12,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 
-import { buildCensus, corpusDocs, decideVerdict, deriveRedirects, extractCitations, flagByIdentifierOverlap, headCommit, identifierTokens, INSTRUCTION, jevGate, KEEP_RULE_LINE, labelCounts, listTrackedFiles, loadRedirects, main, MARGIN_LINE, parseLabels, resolveCitation, runJevArm, sha256Hex, verdictLine } from '../../shared/scripts/cite-drift-scan.mjs';
+import { ADVISE_OPT_OUT_ENV, buildCensus, corpusDocs, decideVerdict, deriveRedirects, extractCitations, flagByIdentifierOverlap, headCommit, identifierTokens, INSTRUCTION, jevGate, KEEP_RULE_LINE, labelCounts, listTrackedFiles, loadRedirects, main, MARGIN_LINE, parseLabels, resolveCitation, runJevArm, sha256Hex, USAGE, verdictLine } from '../../shared/scripts/cite-drift-scan.mjs';
 
 const ALPHA_DOC = '.skilled/skills/alpha-skill/SKILL.md';
 const ALPHA_SKILL_ROOT = '.skilled/skills/alpha-skill';
@@ -966,15 +966,30 @@ test('comparator no token', () => {
   const sentence = 'A plain sentence carries no code token.';
   assert.deepEqual(identifierTokens(sentence, GATE_TARGET), []);
   assert.equal(flagByIdentifierOverlap(sentence, 'window line 1', GATE_TARGET), false);
-  // The target's own basename is not a token, so naming the file itself never
-  // flags the row on that name.
-  assert.deepEqual(identifierTokens('Read `src/window:4` for the data.', 'src/window'), ['src']);
+  // A path names the cited file, so it carries no claim token.
+  assert.deepEqual(identifierTokens('Read `src/window:4` for the data.', 'src/window'), []);
 });
 
 test('comparator token present', () => {
   const sentence = 'The function `resolves` still sits here.';
   assert.deepEqual(identifierTokens(sentence, GATE_TARGET), ['resolves']);
   assert.equal(flagByIdentifierOverlap(sentence, 'export function resolves() {}', GATE_TARGET), false);
+});
+
+test('comparator drops citation, path and line tokens', () => {
+  const sentence = 'The `scoreRow` helper at `src/lib/score.ts:12` reads `hub-router.json` (`:33`).';
+  assert.deepEqual(identifierTokens(sentence, 'src/lib/score.ts'), ['scoreRow']);
+});
+
+test('comparator drops target path components', () => {
+  const sentence = 'The `sk-design` mode routes to `fundamentals`.';
+  assert.deepEqual(identifierTokens(sentence, '.skilled/skills/sk-design/hub-router.json'), ['fundamentals']);
+});
+
+test('comparator matches whole identifiers only', () => {
+  const sentence = 'The `id` field is read.';
+  assert.equal(flagByIdentifierOverlap(sentence, 'const identifier = valid;', GATE_TARGET), true);
+  assert.equal(flagByIdentifierOverlap(sentence, 'const id = 1;', GATE_TARGET), false);
 });
 
 test('label gate 39', async () => {
@@ -1603,5 +1618,176 @@ test('jev exit 3 after gate', async () => {
   } finally {
     cleanup(root);
     fs.rmSync(labelsPath, { force: true });
+  }
+});
+
+// A transport outcome that names its model is what Pi returns; one that names
+// none is today's CLI route, which falls back to the auth probe's name.
+const fakeOutcome = (probability, extra = {}) => ({
+  code: 0,
+  stdout: `${JSON.stringify({ answers: { answer: { noul: probability } }, ...extra.payload })}\n`,
+  stderr: '',
+  wallMs: 5,
+  timedOut: false,
+  transport: extra.transport ?? 'jev',
+  ...(extra.model === undefined ? {} : { model: extra.model }),
+});
+
+test('jev records the answering model and usage from the transport outcome', async () => {
+  const { root, commit } = makeGateFixture();
+  try {
+    addStubBin(root);
+    const env = armEnv(root);
+    const gate = jevGate({ out: () => {}, env, timeoutMs: 90000 });
+    const rows = [gateRow(commit, 'pi-row', 2, 'supports'), gateRow(commit, 'cli-row', 4, 'partial')];
+    const windows = new Map(rows.map((row) => [row.id, {
+      sentence: row.doc_line === 2 ? GATE_CLAIMS.clean : GATE_CLAIMS.drifted,
+      windowText: GATE_WINDOW_TEXT,
+    }]));
+    const outcomes = [
+      fakeOutcome(0.9, { transport: 'pi', model: 'typesafe/jev-latest', payload: { usage: { input_tokens: 120, output_tokens: 3 } } }),
+      fakeOutcome(0.1),
+    ];
+    const records = [];
+    const result = await runJevArm({ rows, windows, labelsSha: 'abc123abc123' }, gate, {
+      out: () => {},
+      env,
+      timeoutMs: 90000,
+      backoffMs: 1,
+      callLog: { append(record) { records.push(record); } },
+      stored: null,
+      classify: async () => outcomes.shift(),
+    });
+    const byRow = Object.fromEntries(records.filter((record) => record.rowId !== null).map((record) => [record.rowId, record]));
+    assert.equal(byRow['pi-row'].model, 'typesafe/jev-latest');
+    assert.deepEqual(byRow['pi-row'].usage, { input_tokens: 120, output_tokens: 3 });
+    assert.equal(byRow['cli-row'].model, 'stub-model');
+    assert.equal(byRow['cli-row'].usage, null);
+    assert.equal(records.find((record) => record.rowId === null).model, 'stub-model');
+    assert.equal(result.column.model, 'stub-model+typesafe/jev-latest');
+    assert.equal(result.column.authModel, 'stub-model');
+    assert.ok(result.column.line.endsWith('provider=official model=stub-model+typesafe/jev-latest'));
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('jev names the auth model when no outcome names one', async () => {
+  const { root, commit } = makeGateFixture();
+  try {
+    addStubBin(root);
+    const env = armEnv(root);
+    const gate = jevGate({ out: () => {}, env, timeoutMs: 90000 });
+    const row = gateRow(commit, 'cli-only', 2, 'supports');
+    const windows = new Map([[row.id, { sentence: GATE_CLAIMS.clean, windowText: GATE_WINDOW_TEXT }]]);
+    const result = await runJevArm({ rows: [row], windows, labelsSha: 'abc123abc123' }, gate, {
+      out: () => {},
+      env,
+      timeoutMs: 90000,
+      backoffMs: 1,
+      callLog: { append() {} },
+      stored: null,
+      classify: async () => fakeOutcome(0.9),
+    });
+    assert.equal(result.column.model, 'stub-model');
+    assert.ok(result.column.line.endsWith('provider=official model=stub-model'));
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('advise flags a drifted citation, appends its calls and builds no census', async () => {
+  const { root } = makeFixture();
+  const outDir = path.join(root, 'advise-out');
+  try {
+    const env = armEnv(root, { STUB_JEV_PROBABILITIES: '0.1' });
+    const argv = ['--advise', path.join(root, ALPHA_DOC), '--out', outDir];
+    const run = await runWithEnv(argv, root, env);
+    assert.equal(run.code, 0);
+    assert.deepEqual(run.errors, []);
+    assert.deepEqual(run.lines, [
+      `cite-drift advisory: ${ALPHA_DOC}:2 cites src/inside.ts:3, whose window may no longer show the claim (p_yes=0.10)`,
+      `cite-drift advisory: checked=1 flagged=1 unchecked=0 (never blocks; ${ADVISE_OPT_OUT_ENV}=0 skips it)`,
+    ]);
+    await runWithEnv(argv, root, env);
+    const calls = fs.readFileSync(path.join(outDir, 'calls.jsonl'), 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    assert.equal(calls.length, 2);
+    assert.equal(calls[0].mode, 'advise');
+    assert.equal(calls[0].target, 'src/inside.ts');
+    assert.equal(calls[0].flag, true);
+    assert.equal(calls[0].transport, 'jev');
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('advise reruns a borderline score and flags on the lowest', async () => {
+  const { root } = makeFixture();
+  try {
+    const env = armEnv(root, { STUB_JEV_PROBABILITIES: '0.6,0.4,0.9' });
+    const run = await runWithEnv(['--advise', path.join(root, ALPHA_DOC)], root, env);
+    assert.equal(run.code, 0);
+    assert.equal(run.lines[0], `cite-drift advisory: ${ALPHA_DOC}:2 cites src/inside.ts:3, whose window may no longer show the claim (p_yes=0.40)`);
+    assert.equal(readStubLog(root).filter((line) => line.startsWith('jev\tnoul')).length, 3);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('advise is silent without a credential', async () => {
+  const { root } = makeFixture();
+  try {
+    const env = armEnv(root, { STUB_AUTH_STATUS_EXIT: '1' });
+    const run = await runWithEnv(['--advise', path.join(root, ALPHA_DOC)], root, env);
+    assert.equal(run.code, 0);
+    assert.deepEqual(run.lines, []);
+    assert.deepEqual(run.errors, []);
+    assert.deepEqual(readStubLog(root), ['jev\t--version', 'jev\tauth status --provider official']);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('advise opt-out skips everything', async () => {
+  const { root } = makeFixture();
+  const outDir = path.join(root, 'advise-out');
+  try {
+    const env = armEnv(root, { [ADVISE_OPT_OUT_ENV]: '0' });
+    const run = await runWithEnv(['--advise', path.join(root, ALPHA_DOC), '--out', outDir], root, env);
+    assert.equal(run.code, 0);
+    assert.deepEqual(run.lines, []);
+    assert.deepEqual(readStubLog(root), []);
+    assert.ok(!fs.existsSync(outDir));
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('advise without an in-range citation never spawns jev', async () => {
+  const { root } = makeFixture();
+  try {
+    const env = armEnv(root);
+    const run = await runWithEnv(['--advise', path.join(root, '.skilled/skills/beta-skill/SKILL.md')], root, env);
+    assert.equal(run.code, 0);
+    assert.deepEqual(run.lines, []);
+    assert.deepEqual(readStubLog(root), []);
+  } finally {
+    cleanup(root);
+  }
+});
+
+test('advise needs a document and refuses arm switches', async () => {
+  const { root } = makeFixture();
+  try {
+    const env = armEnv(root);
+    for (const argv of [['--advise'], ['--advise', ALPHA_DOC, '--jev'], [ALPHA_DOC]]) {
+      const run = await runWithEnv(argv, root, env);
+      assert.equal(run.code, 2);
+      assert.deepEqual(run.errors, [USAGE]);
+      assert.deepEqual(run.lines, []);
+    }
+    assert.deepEqual(readStubLog(root), []);
+  } finally {
+    cleanup(root);
   }
 });

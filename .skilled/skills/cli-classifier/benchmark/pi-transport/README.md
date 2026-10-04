@@ -17,6 +17,7 @@ The script holds and reads no credential. Pi resolves its own credential from it
 ```text
 pi-transport/
 +-- score-pi-transport.mjs    # Comparison CLI
++-- replay-helpers.mjs       # Rotations, option texts and the CLI call seam
 +-- tests/
 |   `-- score-pi-transport.test.mjs
 `-- README.md
@@ -29,6 +30,7 @@ pi-transport/
 | File | Role |
 |---|---|
 | `score-pi-transport.mjs` | Compares Pi's classifier runtime against the `jev` CLI over the recorded choice calls, at what latency and cost. The default run makes no model call and writes no file. |
+| `replay-helpers.mjs` | Holds the option rotations, the option texts, the probability readers, the `jev` auth gate and the bounded CLI spawn and call log the comparison replays the recorded calls with. It makes no call on import. |
 | `tests/score-pi-transport.test.mjs` | Runs with `node --test`. The cases inject the classifier runtime as a fake object, with a stub `jev` first on `PATH` where a backend would run, so no test reaches a real backend and no test opens a socket. |
 
 ---

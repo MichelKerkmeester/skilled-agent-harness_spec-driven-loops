@@ -9,43 +9,31 @@
  * leaf-route-replay.cjs — replays the committed stage-two keyword block of
  * every parent hub's ROUTER.md against its gold scenarios, read only, and
  * recounts ROUTER.md reads. It makes zero model calls and holds or reads no
- * credential unless a tie-break arm is switched on.
+ * credential.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const { spawn, spawnSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
 const rootRouter = require('./lib/root-router-contract.cjs');
 const leafContract = require('./lib/leaf-resource-contract.cjs');
 const scenarios = require('./validate-compiled-routing-scenarios.cjs');
-const { spawnClassifierCall } = require('../../../cli-classifier/shared/scripts/jev-transport.mjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const NONE_KEY = 'none_of_these';
 const AMBIGUITY_DELTA = 1;
-const HEADROOM_MIN_IMPROVABLE = 5;
-const MARGIN_LINE = 'margin: 0.10';
-const CHOICE_INSTRUCTION = 'Which intent does this request need?';
-const NONE_DESCRIPTION = 'None of these alone';
-const ORDERS = 3;
-
-const JEV_VERSION = 'jev 0.6.2';
-const JEV_TIMEOUT_MS = 90000;
-const BACKOFF_MS = 2000;
 
 // The seven parent hubs this replay reports, in report order. Each ships a
-// ROUTER.md; cli-classifier declares itself stage1-only.
+// ROUTER.md.
 const HUBS = Object.freeze(['sk-doc', 'mcp-tooling', 'system-deep-loop', 'cli-external-orchestration', 'sk-design', 'sk-code', 'cli-classifier']);
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', '..', '..');
-const USAGE = 'usage: leaf-route-replay.cjs [--report <dir>] [--transcripts <dir>] [--prose <file>] [--jev] [--out <dir>]';
+const USAGE = 'usage: leaf-route-replay.cjs [--report <dir>] [--transcripts <dir>] [--prose <file>]';
 
 // A bare keyword like "review" gets swallowed by unrelated longer words
 // ("preview" contains "review"), so match those on word boundaries. The short
@@ -413,9 +401,8 @@ function replayHub(hub, repoRoot) {
 /**
  * Replay every named hub against its own committed gold and report the
  * aggregate. Hub order follows the input list. The returned rows are the
- * scored rows only, each carrying its kept intents, per-intent and union
- * composite keys and its score, so the prose comparison and the tie-break
- * arms consume one shared replay instead of re-running the keyword arm.
+ * composite keys and its score, so the prose comparison consumes one shared
+ * replay instead of re-running the keyword arm.
  *
  * @param {string[]} hubs - Hub ids to replay, in report order.
  * @param {string} repoRoot - Repository root.
@@ -677,90 +664,18 @@ function replayVerdict(rows, prose) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 9. GATES
-// ─────────────────────────────────────────────────────────────────────────────
-
-/**
- * First executable file of this name on PATH, or null when none is
- * executable. Empty PATH entries are skipped. A missing path, a directory, or
- * a file that cannot be executed is not a match.
- *
- * @param {string} name - Executable name to look up.
- * @param {{ PATH?: string }} env - Environment whose PATH is scanned.
- * @returns {string|null} The resolved path, or null.
- */
-function which(name, env) {
-  for (const dir of (env.PATH ?? '').split(path.delimiter)) {
-    if (dir.length === 0) continue;
-    const candidate = path.join(dir, name);
-    try {
-      if (fs.statSync(candidate).isFile()) {
-        fs.accessSync(candidate, fs.constants.X_OK);
-        return candidate;
-      }
-    } catch {
-      continue;
-    }
-  }
-  return null;
-}
-
-/**
- * Identity line, then the pinned version and a credential check. A miss
- * prints a skip line and leaves the report lines already written untouched.
- *
- * @param {{ out: (line: string) => void, env: Record<string, string | undefined> }} ctx - Output sink and environment.
- * @returns {{ passed: boolean, path: string | null, provider: string }} The gate outcome.
- */
-function jevGate(ctx) {
-  const provider = ctx.env.JEV_PROVIDER || 'official';
-  const path = which('jev', ctx.env);
-  ctx.out(`jev: path=${path ?? 'none'} provider=${provider}`);
-  if (path === null) {
-    ctx.out('jev arm skipped: jev not on PATH');
-    return { passed: false, path, provider };
-  }
-
-  const opts = {
-    env: ctx.env,
-    encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'pipe'],
-    timeout: JEV_TIMEOUT_MS,
-  };
-  const version = spawnSync(path, ['--version'], opts);
-  const trimmed = (version.stdout ?? '').trim();
-  const found = trimmed === '' ? '' : trimmed.split('\n')[0];
-  if (found !== JEV_VERSION) {
-    ctx.out('jev arm skipped: version');
-    ctx.out(`jev: found=${JSON.stringify(found)} path=${path}`);
-    return { passed: false, path, provider };
-  }
-
-  const auth = spawnSync(path, ['auth', 'status', '--provider', provider], opts);
-  if (auth.status !== 0) {
-    ctx.out('jev arm skipped: no credential');
-    return { passed: false, path, provider };
-  }
-  return { passed: true, path, provider };
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 10. BASELINE AND VERDICT MATH
+// 9. BASELINE CHOICE
 // ─────────────────────────────────────────────────────────────────────────────
 
 // The kill and sign tests compare exact BigInt tails over 2^n, so no rounding
 // decides either one.
 
 /**
- * Pick the baseline the tie-break arm measures against: the union of every
- * kept intent's leaves, or the leaves of the first tied intent in declaration
- * order, whichever scores higher over the tied rows. A tie goes to the union,
- * which is what the keyword arm already serves unaided. The chosen arm's
- * per-row keys and F1 ride along, so the arms score the baseline this choice
- * was measured on.
- *
- * @param {Array<Object>} rows - The tied scored rows from runReplay.
- * @returns {{ choice: 'union'|'first', baseKeys: Map<string, Set<string>>, baseF1: Map<string, number> }} The chosen baseline.
+ * Pick the baseline for the tied rows: the union of every kept intent's
+ * leaves, or the leaves of the first tied intent in declaration order,
+ * whichever scores higher over those rows. A tie goes to the union, which is
+ * what the keyword arm already serves unaided. The chosen arm's per-row keys
+ * and F1 ride along with the choice.
  */
 function chooseBaseline(rows) {
   const unionKeys = new Map();
@@ -787,479 +702,21 @@ function chooseBaseline(rows) {
   return { choice, baseKeys: choice === 'union' ? unionKeys : firstKeys, baseF1: choice === 'union' ? unionF1 : firstF1 };
 }
 
-/**
- * Rows the baseline does not already get exactly right: a baseline F1 below 1
- * leaves headroom for the tie-break arm to improve on.
- *
- * @param {Map<string, number>} baseF1 - The chosen baseline's per-row F1.
- * @returns {number} The count of rows with baseline F1 below 1.
- */
-function improvableCount(baseF1) {
-  if (!baseF1) return 0;
-  let count = 0;
-  for (const f1 of baseF1.values()) {
-    if (f1 < 1) count += 1;
-  }
-  return count;
-}
-
-/**
- * Exact one-sided binomial tail P(X >= k) for X ~ Binomial(n, 1/2). The
- * coefficients and their sum stay in BigInt, so p is the exact ratio
- * num / 2^n, reported as a number and as its own parts.
- *
- * @param {number} n - Trial count.
- * @param {number} k - Tail start; zero or below covers every outcome.
- * @returns {{ p: number, num: bigint, den: bigint }} The tail probability and its exact num / 2^n ratio.
- */
-function tailP(n, k) {
-  if (n === 0 || k <= 0) return { p: 1, num: 1n, den: 1n };
-  let coefficient = 1n;
-  let num = 0n;
-  for (let i = 0; i <= n; i += 1) {
-    if (i > 0) coefficient = (coefficient * BigInt(n - i + 1)) / BigInt(i);
-    if (i >= k) num += coefficient;
-  }
-  const den = 1n << BigInt(n);
-  return { p: Number(num) / Number(den), num, den };
-}
-
-/**
- * The answer named at least twice, with its count. When no key reaches two
- * names there is no winner: the pick is null and the top count is 0, so an
- * unstable row counts every order as a non-modal pick.
- *
- * @param {Array<string>} answers - Submitted keys in call order.
- * @returns {{ pick: string | null, top: number }} The modal pick and its count, or no pick and top 0.
- */
-function modalPick(answers) {
-  const counts = new Map();
-  for (const key of answers) {
-    counts.set(key, (counts.get(key) || 0) + 1);
-  }
-  let pick = null;
-  let top = 0;
-  for (const [key, count] of counts) {
-    if (count > top) {
-      pick = key;
-      top = count;
-    }
-  }
-  if (top < 2) return { pick: null, top: 0 };
-  return { pick, top };
-}
-
-/**
- * First failed condition decides, in this order: coverage, kill, margin,
- * sign test, flips. The margin compares the column's F1 sum against the
- * baseline's over the measured rows. Every outcome carries p, the sign
- * test's exact tail.
- *
- * @param {{ K: number, M: number, SA: number, SB: number, W: number, L: number, F: number }} counts - The column's counts.
- * @returns {{ outcome: 'keep' | 'kill' | 'stop', reason: 'coverage' | 'margin' | 'sign test' | 'flips' | null, p: number }} The decision.
- */
-function decideVerdict({ K, M, SA, SB, W, L, F }) {
-  const sign = tailP(W + L, W);
-  if (!(10 * M >= 9 * K)) return { outcome: 'stop', reason: 'coverage', p: sign.p };
-  const kill = tailP(W + L, L);
-  if (W + L > 0 && 20n * kill.num <= kill.den) return { outcome: 'kill', reason: null, p: sign.p };
-  if (!(10 * (SA - SB) >= M)) return { outcome: 'stop', reason: 'margin', p: sign.p };
-  if (!(W + L > 0 && 20n * sign.num < sign.den)) return { outcome: 'stop', reason: 'sign test', p: sign.p };
-  if (!(10 * F <= 3 * M)) return { outcome: 'stop', reason: 'flips', p: sign.p };
-  return { outcome: 'keep', reason: null, p: sign.p };
-}
-
-/**
- * @param {number} p - Probability in [0, 1].
- * @returns {string} Four significant digits.
- */
-function formatP(p) {
-  return p.toPrecision(4);
-}
-
-/**
- * One verdict line: the outcome, the counts and the exact p, with the
- * caller's suffix appended when it has one.
- *
- * @param {string} backend - Column name, printed on the line.
- * @param {{ K: number, M: number, SA: number, SB: number, W: number, L: number, F: number }} counts - The column's counts.
- * @param {{ outcome: 'keep' | 'kill' | 'stop', reason: string | null, p: number }} decision - decideVerdict output.
- * @param {string} [suffix] - Appended to the line when non-empty.
- * @returns {string} The verdict line.
- */
-function verdictLine(backend, counts, decision, suffix) {
-  const label = decision.outcome === 'stop' ? 'stop (' + decision.reason + ')' : decision.outcome;
-  let line = 'verdict ' + backend + ': ' + label
-    + ' K=' + counts.K + ' M=' + counts.M + ' SA=' + counts.SA + ' SB=' + counts.SB
-    + ' W=' + counts.W + ' L=' + counts.L + ' F=' + counts.F
-    + ' p=' + formatP(decision.p);
-  if (typeof suffix === 'string' && suffix !== '') line += ' ' + suffix;
-  return line;
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
-// 11. ARMS
-// ─────────────────────────────────────────────────────────────────────────────
-
-/**
- * One bounded child process. Resolves exactly once with the exit code, the
- * collected output, the wall time, and whether the timeout fired. The timer
- * kills the child and resolves at once, without waiting for close: a
- * grandchild can hold the pipes open past the kill. Stdin is closed after the
- * write because the local client reads stdin to EOF and exits 2 on an
- * inherited terminal. A spawn error is code 127 with the message as stderr.
- *
- * @param {string} file - Executable to spawn.
- * @param {Array<string>} args - Arguments after the executable.
- * @param {string} stdinText - Text written to the child's stdin, then closed.
- * @param {Record<string, string | undefined>} env - Child environment.
- * @param {number} timeoutMs - Kill and settle the child after this many milliseconds.
- * @returns {Promise<{ code: number|null, stdout: string, stderr: string, wallMs: number, timedOut: boolean }>} The call outcome.
- */
-function spawnCall(file, args, stdinText, env, timeoutMs) {
-  return new Promise((resolve) => {
-    const start = Date.now();
-    const child = spawn(file, args, { env, stdio: ['pipe', 'pipe', 'pipe'] });
-    let stdout = '';
-    let stderr = '';
-    let settled = false;
-
-    child.stdout.setEncoding('utf8');
-    child.stderr.setEncoding('utf8');
-    child.stdout.on('data', (chunk) => { stdout += chunk; });
-    child.stderr.on('data', (chunk) => { stderr += chunk; });
-    // A child that exits before reading stdin cannot fail the call through
-    // the pipe: its exit code is the outcome the caller needs.
-    child.stdin.on('error', () => {});
-    child.stdin.end(stdinText);
-
-    const timer = setTimeout(() => {
-      child.kill('SIGKILL');
-      settle(null, true);
-    }, timeoutMs);
-
-    function settle(code, timedOut) {
-      if (settled) return;
-      settled = true;
-      clearTimeout(timer);
-      resolve({ code, stdout, stderr, wallMs: Date.now() - start, timedOut });
-    }
-
-    child.on('close', (code) => settle(code === null ? -1 : code, false));
-    child.on('error', (error) => {
-      stderr = error.message;
-      settle(127, false);
-    });
-  });
-}
-
-/**
- * Append one call record as a JSON line to calls.jsonl under outDir. A missing
- * or empty outDir means the run keeps no records, so nothing is created. One
- * line per call keeps a killed arm's earlier records readable.
- *
- * @param {string | null | undefined} outDir - Directory that holds calls.jsonl.
- * @param {object} record - The call record to append.
- * @returns {void}
- */
-function writeCall(outDir, record) {
-  if (typeof outDir === 'string' && outDir !== '') {
-    fs.mkdirSync(outDir, { recursive: true });
-    fs.appendFileSync(path.join(outDir, 'calls.jsonl'), JSON.stringify(record) + '\n');
-  }
-}
-
-/**
- * The three option orders a row is asked in: as given, rotated left by one,
- * rotated left by two. Rotating moves the option texts against the question
- * while the key set stays the same, so a position bias cannot pass as a pick.
- *
- * @param {Array<string>} keys - Option keys in router order.
- * @returns {Array<Array<string>>} The three rotations.
- */
-function rotations(keys) {
-  return [keys, keys.slice(1).concat(keys.slice(0, 1)), keys.slice(2).concat(keys.slice(0, 2))];
-}
-
-/**
- * Flatten one rotation's keys and their option texts into the local client's
- * repeated -o pairs.
- *
- * @param {Array<string>} keys - Option keys in the order this call shows them.
- * @param {Map<string, string>} texts - Key -> option text.
- * @returns {Array<string>} The flat argument list.
- */
-function optionArgs(keys, texts) {
-  const args = [];
-  for (const key of keys) args.push('-o', key + '=' + texts.get(key));
-  return args;
-}
-
-/**
- * Judge one choice call: the pick it named, that pick's probability, and
- * whether the call measured. A timeout is its own status. Any other non-zero
- * exit, an unparseable body, or a choice outside the offered keys is
- * unmeasured.
- *
- * @param {{ code: number|null, stdout: string, timedOut: boolean }} result - One spawnCall outcome.
- * @param {Array<string>} keys - The keys this call offered.
- * @returns {{ pick: string|null, pickProb: number|null, status: string }} The judged fields.
- */
-function judgeChoice(result, keys) {
-  let pick = null;
-  let pickProb = null;
-  let status = 'unmeasured';
-  if (result.timedOut) {
-    status = 'unmeasured_timeout';
-  } else if (result.code === 0) {
-    /** @type {any} */
-    let parsed;
-    try {
-      parsed = JSON.parse(result.stdout);
-    } catch {
-      // Unparseable stdout is an unmeasured call.
-      parsed = undefined;
-    }
-    const choice = parsed?.answers?.answer?.choice;
-    if (keys.includes(choice)) {
-      pick = choice;
-      pickProb = parsed?.answers?.answer?.probabilities?.[pick] ?? null;
-      status = 'measured';
-    }
-  }
-  return { pick, pickProb, status };
-}
-
-/**
- * Resolve each intent key to the option text a choice call shows: its
- * RESOURCE_MAP paths joined by commas, with the none key fixed to its
- * constant. Two keys sharing one text each gain their key, because the local
- * classifier refuses two options with one description.
- *
- * @param {{ resourceMap: Object<string, string[]> }} router - A parsed router.
- * @param {Array<string>} keys - Intent keys to describe.
- * @returns {Map<string, string>} Key -> option text.
- */
-function intentTexts(router, keys) {
-  const texts = new Map();
-  for (const key of keys) {
-    if (key === NONE_KEY) {
-      texts.set(key, NONE_DESCRIPTION);
-      continue;
-    }
-    texts.set(key, (router.resourceMap[key] || []).join(','));
-  }
-
-  const counts = new Map();
-  for (const text of texts.values()) counts.set(text, (counts.get(text) || 0) + 1);
-
-  const described = new Map();
-  for (const [key, text] of texts) described.set(key, counts.get(text) > 1 ? text + ' [' + key + ']' : text);
-  return described;
-}
-
-/**
- * The Jev choice arm: one auth test, then three rotated choice calls per tied
- * row, then the verdict. The payload line prints before any call, so the cost
- * is visible before anything spends. A spawn that exits 4 is recorded as
- * unmeasured and the same call is spawned once more after the backoff; the
- * second result is judged. Exit 2, exit 3 and exit 130 stop the arm. Every
- * spawn reaches calls.jsonl before any stop, so a stopped run keeps its
- * records. A stop prints its line and the finished-row count and returns
- * without a verdict. A pick of none_of_these, and an unstable row, keep the
- * union.
- *
- * @param {Array<{ id: string, hub: string, prompt: string, intents: string[], perIntentKeys: Object<string, string[]>, predKeys: string[], goldKeys: string[] }>} rows - The tied scored rows from runReplay.
- * @param {{ choice: 'union'|'first', baseF1: Map<string, number> }} baseline - The chosen baseline.
- * @param {{ path: string, provider: string }} gate - Passed jev gate result.
- * @param {{ out: (line: string) => void, env: Record<string, string | undefined>, outDir: string | null, repoRoot: string, timeoutMs: number, backoffMs: number }} ctx - Output sink, environment, records directory, repository root, call timeout and exit-4 retry wait.
- * @returns {Promise<Object>} The counts with outcome, reason, p and the verdict line, or `{ stopped }`.
- */
-async function runJevArm(rows, baseline, gate, ctx) {
-  const { out, env, outDir, repoRoot, timeoutMs, backoffMs } = ctx;
-  const K = rows.length;
-  const provider = gate.provider;
-  let model = 'unknown';
-
-  let chars = 0;
-  for (const row of rows) {
-    const keys = [...row.intents, NONE_KEY];
-    const router = parseRouter(fs.readFileSync(path.join(repoRoot, '.skilled', 'skills', row.hub, 'ROUTER.md'), 'utf8'));
-    const texts = intentTexts(router, keys);
-    chars += row.prompt.length + CHOICE_INSTRUCTION.length;
-    for (const key of keys) chars += key.length + texts.get(key).length + 1;
-  }
-  chars *= 3;
-  out(`jev: payload=committed playbook prompts, intent keys and RESOURCE_MAP paths planned_calls=${3 * K + 1} est_input_tokens=${Math.ceil(chars / 4)}`);
-
-  /**
-   * One spawn with the exit-4 retry. The caller's judge records every spawn
-   * before a stop can be reported, so a stop still leaves that call on disk.
-   *
-   * @param {Array<string>} args - Arguments after the executable.
-   * @param {string} text - Text written to the child's stdin.
-   * @param {{ kind: string, row_id: string | null, order: number | null }} fields - The fields that name this spawn in its record.
-   * @returns {Promise<{ code: number|null, stdout: string, stderr: string, wallMs: number, timedOut: boolean }>} The final spawn's result.
-   */
-  async function call(args, text, fields) {
-    let result = await spawnClassifierCall({ file: gate.path, args, stdin: text, env, timeoutMs, report: out });
-    if (result.code === 4) {
-      writeCall(outDir, {
-        kind: fields.kind,
-        backend: 'jev',
-        row_id: fields.row_id,
-        order: fields.order,
-        wall_ms: result.wallMs,
-        exit_code: result.code,
-        pick: null,
-        pick_prob: null,
-        status: 'unmeasured',
-        jev_version: '0.6.2',
-        provider,
-        model
-      });
-      await new Promise((done) => { setTimeout(done, backoffMs); });
-      result = await spawnCall(gate.path, args, text, env, timeoutMs);
-    }
-    return result;
-  }
-
-  /**
-   * Print a stop's line and the rows that finished before it.
-   *
-   * @param {string} line - The stop line to print.
-   * @param {number} finished - Rows that finished before the stop.
-   * @returns {{ stopped: string }} The arm's stop result.
-   */
-  function stop(line, finished) {
-    out(line);
-    out(`jev: partial_rows=${finished}`);
-    return { stopped: line };
-  }
-
-  const auth = await call(['auth', 'test', '--provider', provider], '', { kind: 'auth_test', row_id: null, order: null });
-  if (auth.code === 0) {
-    try {
-      const body = JSON.parse(auth.stdout);
-      if (typeof body.model === 'string') model = body.model;
-    } catch {
-      // A non-JSON body leaves the model unknown.
-    }
-  }
-  writeCall(outDir, {
-    kind: 'auth_test',
-    backend: 'jev',
-    row_id: null,
-    order: null,
-    wall_ms: auth.wallMs,
-    exit_code: auth.code,
-    pick: null,
-    pick_prob: null,
-    status: auth.code === 0 ? 'measured' : 'unmeasured',
-    jev_version: '0.6.2',
-    provider,
-    model
-  });
-  if (auth.code === 3) return stop('jev arm stopped: key rejected', 0);
-  if (auth.code === 130) return stop('jev arm stopped: interrupted', 0);
-  if (auth.code !== 0) return stop('jev arm stopped: auth test failed', 0);
-  out(`jev: auth_test provider=${provider} model=${model}`);
-
-  const picks = new Map();
-  let finished = 0;
-  for (const row of rows) {
-    const keys = [...row.intents, NONE_KEY];
-    const router = parseRouter(fs.readFileSync(path.join(repoRoot, '.skilled', 'skills', row.hub, 'ROUTER.md'), 'utf8'));
-    const texts = intentTexts(router, keys);
-    const rowPicks = [];
-    const orders = rotations(keys);
-
-    for (let order = 0; order < orders.length; order += 1) {
-      const args = ['choice', '--provider', provider, '-q', CHOICE_INSTRUCTION, ...optionArgs(orders[order], texts)];
-      const result = await call(args, row.prompt, { kind: 'choice', row_id: row.id, order });
-      const fields = judgeChoice(result, keys);
-      if (fields.status === 'measured') {
-        try {
-          const body = JSON.parse(result.stdout);
-          if (typeof body.model === 'string') model = body.model;
-        } catch {
-          // judgeChoice already parsed this measured body; a failure here leaves the model as it was.
-        }
-      }
-      writeCall(outDir, {
-        kind: 'choice',
-        backend: 'jev',
-        row_id: row.id,
-        order,
-        wall_ms: result.wallMs,
-        exit_code: result.code,
-        pick: fields.pick,
-        pick_prob: fields.pickProb,
-        status: fields.status,
-        jev_version: '0.6.2',
-        provider,
-        model
-      });
-      /** @type {string | undefined} */
-      let stopLine;
-      if (result.code === 2) stopLine = 'jev arm stopped: usage error';
-      else if (result.code === 3) stopLine = 'jev arm stopped: key rejected';
-      else if (result.code === 130) stopLine = 'jev arm stopped: interrupted';
-      if (stopLine !== undefined) return stop(stopLine, finished);
-      rowPicks.push(fields.pick);
-    }
-
-    picks.set(row.id, rowPicks);
-    finished += 1;
-  }
-
-  let M = 0;
-  let SA = 0;
-  let SB = 0;
-  let W = 0;
-  let L = 0;
-  let F = 0;
-  for (const row of rows) {
-    const answers = picks.get(row.id);
-    if (!Array.isArray(answers) || answers.length !== ORDERS) continue;
-    if (!answers.every((answer) => typeof answer === 'string')) continue;
-    M += 1;
-    const { pick, top } = modalPick(answers);
-    F += ORDERS - top;
-    const picked = pick === null || pick === NONE_KEY ? row.predKeys : (row.perIntentKeys[pick] || []);
-    const columnF1 = scoreRow(picked, row.goldKeys).f1;
-    const baselineF1 = baseline.baseF1.get(row.id);
-    SA += columnF1;
-    SB += baselineF1;
-    if (columnF1 > baselineF1) W += 1;
-    else if (columnF1 < baselineF1) L += 1;
-  }
-  const counts = { K, M, SA, SB, W, L, F };
-  const decision = decideVerdict(counts);
-  const line = verdictLine('jev', counts, decision, 'baseline=' + baseline.choice + ' jev_version=0.6.2 provider=' + provider + ' model=' + model);
-  out(line);
-  return { ...counts, outcome: decision.outcome, reason: decision.reason, p: decision.p, line };
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 12. CLI
+// 10. CLI
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * Parse the replay CLI flags.
  *
  * @param {Array<string>} argv - Arguments after the script name.
- * @returns {{ report: string | null, transcripts: string | null, prose: string | null, jev: boolean, out: string | null, error: string | null }} Parsed flags, or the first argument error.
+ * @returns {{ report: string | null, transcripts: string | null, prose: string | null, error: string | null }} Parsed flags, or the first argument error.
  */
 function parseArgs(argv) {
-  const args = { report: null, transcripts: null, prose: null, jev: false, out: null, error: null };
+  const args = { report: null, transcripts: null, prose: null, error: null };
   for (let i = 0; i < argv.length; i += 1) {
     const token = argv[i];
-    if (token === '--jev') {
-      args.jev = true;
-      continue;
-    }
-    if (token !== '--report' && token !== '--transcripts' && token !== '--prose' && token !== '--out') {
+    if (token !== '--report' && token !== '--transcripts' && token !== '--prose') {
       args.error = 'unknown argument ' + token;
       return args;
     }
@@ -1270,8 +727,7 @@ function parseArgs(argv) {
     }
     if (token === '--report') args.report = value;
     else if (token === '--transcripts') args.transcripts = value;
-    else if (token === '--prose') args.prose = value;
-    else args.out = value;
+    else args.prose = value;
     i += 1;
   }
   return args;
@@ -1280,27 +736,20 @@ function parseArgs(argv) {
 /**
  * Run the replay report: the per-hub and total keyword-arm lines, the read
  * recount behind --transcripts, the replay verdict behind --prose, and the
- * JSON report behind --report. Zero model calls: the tie-break arm stays
- * dormant behind their switches.
+ * JSON report behind --report. Zero model calls.
  *
  * @param {Array<string>} argv - Arguments after the script name.
- * @param {{ out?: (line: string) => void, err?: (line: string) => void, repoRoot?: string, env?: Record<string, string | undefined> }} [deps] - Injectable output sinks, repository root and environment.
+ * @param {{ out?: (line: string) => void, err?: (line: string) => void, repoRoot?: string }} [deps] - Injectable output sinks and repository root.
  * @returns {Promise<number>} The process exit code.
  */
 async function main(argv, deps = {}) {
   const out = deps.out || ((line) => process.stdout.write(line + '\n'));
   const err = deps.err || ((line) => process.stderr.write('[leaf-route-replay] ' + line + '\n'));
-  const env = deps.env || process.env;
 
   const args = parseArgs(argv);
   if (args.error) {
     err('error: ' + args.error);
     err(USAGE);
-    return 2;
-  }
-
-  if (args.jev && !args.out) {
-    err('error: --jev needs --out <dir>');
     return 2;
   }
 
@@ -1348,57 +797,16 @@ async function main(argv, deps = {}) {
     fs.writeFileSync(path.join(args.report, 'report.json'), JSON.stringify(report, null, 2) + '\n');
   }
 
-  if (args.jev) {
-    const tiedRows = replay.rows.filter((row) => row.intents.length >= 2);
-    const baseline = chooseBaseline(tiedRows);
-    out(`tied: K=${tiedRows.length}`);
-    out(`baseline: ${baseline.choice}`);
-    out(MARGIN_LINE);
-    out('keep rule: coverage 10*M >= 9*K, kill P(X >= L) <= 0.05, margin 10*(SA-SB) >= M, sign test p < 0.05, flips 10*F <= 3*M');
-    out('instruction: -q "' + CHOICE_INSTRUCTION + '"');
-
-    const columns = {};
-    if (improvableCount(baseline.baseF1) < HEADROOM_MIN_IMPROVABLE) {
-      out('no headroom');
-    } else {
-      if (args.jev) {
-        const gate = jevGate({ out, env });
-        columns.jev = gate.passed
-          ? await runJevArm(tiedRows, baseline, gate, { out, env, outDir: args.out, repoRoot, timeoutMs: JEV_TIMEOUT_MS, backoffMs: BACKOFF_MS })
-          : { skipped: true };
-      }
-
-    }
-
-    const reportDir = args.report || args.out;
-    fs.mkdirSync(reportDir, { recursive: true });
-    fs.writeFileSync(path.join(reportDir, 'report.json'), JSON.stringify({
-      hubs: replay.hubs,
-      totals: replay.totals,
-      routerReads: readCount,
-      replayVerdict: verdict,
-      columns
-    }, null, 2) + '\n');
-  }
   return 0;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 13. EXPORTS
+// 11. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
-  NONE_KEY,
   AMBIGUITY_DELTA,
   WORD_BOUNDARY_KEYWORDS,
-  HEADROOM_MIN_IMPROVABLE,
-  MARGIN_LINE,
-  CHOICE_INSTRUCTION,
-  NONE_DESCRIPTION,
-  ORDERS,
-  JEV_VERSION,
-  JEV_TIMEOUT_MS,
-  BACKOFF_MS,
   parseRouter,
   keywordHits,
   scoreIntents,
@@ -1415,22 +823,7 @@ module.exports = {
   routerReadLines,
   readProse,
   replayVerdict,
-  which,
-  jevGate,
-  spawnCall,
-  writeCall,
-  rotations,
-  optionArgs,
-  judgeChoice,
-  intentTexts,
-  runJevArm,
   chooseBaseline,
-  improvableCount,
-  tailP,
-  modalPick,
-  decideVerdict,
-  formatP,
-  verdictLine,
   parseArgs,
   main
 };

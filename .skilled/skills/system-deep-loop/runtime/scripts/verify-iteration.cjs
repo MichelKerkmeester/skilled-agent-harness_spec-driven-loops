@@ -31,6 +31,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
+const { parseIterationMarkdownFindings, deltaRowIteration } = require('../lib/deep-loop/iteration-findings.cjs');
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -65,6 +66,7 @@ const REASONS = {
   DELTA_FILE_MISSING: 'delta_file_missing',
   STATE_LOG_MALFORMED: 'state_log_malformed',
   DELTA_FILE_MALFORMED: 'delta_file_malformed',
+  FINDINGS_NOT_ENUMERATED: 'findings_not_enumerated',
   GATEWAY_BYPASS_DETECTED: 'gateway_bypass_detected',
   LEDGER_BACKING_MISSING: 'ledger_backing_missing',
 };
@@ -117,6 +119,95 @@ function readJsonlRecordsDetailed(filePath) {
     }
   }
   return { records, malformedLines };
+}
+
+function hasReadableFindingValue(value) {
+  if (typeof value === 'string') return value.trim() !== '';
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  return [value.title, value.summary, value.text, value.finding, value.description]
+    .some(hasReadableFindingValue);
+}
+
+function hasReadableFindingText(record) {
+  return [record.title, record.label, record.finding, record.text, record.claim, record.summary]
+    .some(hasReadableFindingValue);
+}
+
+function hasReadableResearchCandidate(candidate) {
+  if (typeof candidate === 'string') return candidate.trim() !== '';
+  if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) return false;
+  return [candidate.title, candidate.summary, candidate.text, candidate.finding, candidate.description]
+    .some(hasReadableFindingValue);
+}
+
+function researchFindingEnumerationCounts(record, deltaRecords, narrative, iteration, narrativePath) {
+  const structured = [record.keyFindings, record.findings, record.findingDetails]
+    .find((value) => Array.isArray(value) && value.length > 0);
+  if (structured) return structured.every(hasReadableResearchCandidate) ? [structured.length] : [];
+  const markdownCount = parseIterationMarkdownFindings(narrative, iteration, narrativePath).length;
+  const graphCount = Array.isArray(record.graphEvents)
+    ? record.graphEvents.filter((event) => event?.type === 'node'
+      && event?.kind === 'FINDING'
+      && [event.label, event.title, event.text].some(hasReadableFindingValue)).length
+    : 0;
+  // The merge files a delta row under the row's own iteration and falls back to the
+  // file's number only when the row has none, so count exactly the rows it will
+  // attribute here. A row keyed to another iteration must not satisfy this one.
+  const deltaCount = deltaRecords.filter((row) => row
+    && row.type === 'finding'
+    && hasReadableFindingText(row)
+    && deltaRowIteration(row, iteration) === iteration).length;
+  return [markdownCount, graphCount, deltaCount];
+}
+
+function isRankedReviewFinding(finding, idFields) {
+  return Boolean(finding)
+    && typeof finding === 'object'
+    && !Array.isArray(finding)
+    && ['P0', 'P1', 'P2'].includes(finding.finalSeverity || finding.severity)
+    && idFields.some((field) => typeof finding[field] === 'string' && finding[field].trim() !== '');
+}
+
+// A review findingsCount is the running total of active findings, so an iteration
+// that adds nothing still carries a positive count that earlier iterations listed.
+// The claim this iteration makes is findingsNew, which the contract allows in two
+// shapes: a list of new-finding entries, or a {P0,P1,P2} count object. The total
+// stands in only when a record carries neither.
+function reviewNewFindingsClaim(record) {
+  const added = record.findingsNew;
+  if (Array.isArray(added)) return added.length;
+  if (added && typeof added === 'object') {
+    const counts = ['P0', 'P1', 'P2']
+      .filter((key) => key in added)
+      .map((key) => Number(added[key]))
+      .filter(Number.isFinite);
+    if (counts.length > 0) return Math.floor(counts.reduce((sum, value) => sum + Math.max(0, value), 0));
+  }
+  return Math.floor(Number(record.findingsCount));
+}
+
+// A review count is often the iteration's new findings while findingDetails lists
+// every active one, and the reducer pads totals the details do not cover, so the
+// two are not held equal. A positive claim needs a readable finding behind it, from
+// any source the reducer reads, each read the way the reducer reads it: complete
+// findingDetails, a ranked delta finding row whose numeric iteration is this one,
+// or severity bullets in a narrative named exactly iteration-NNN.md, the only name
+// the reducer loads, parsed by its own parser. Severity is adjudicated first.
+function reviewFindingsAreEnumerated(record, deltaRecords, iteration, narrativePath) {
+  const details = record.findingDetails;
+  if (Array.isArray(details) && details.length > 0
+    && details.every((finding) => isRankedReviewFinding(finding, ['id', 'findingId', 'title']))) {
+    return true;
+  }
+  const listedInDelta = deltaRecords.some((row) => row
+    && row.type === 'finding'
+    && isRankedReviewFinding(row, ['id'])
+    && typeof row.iteration === 'number'
+    && row.iteration === iteration);
+  if (listedInDelta) return true;
+  if (!/^iteration-\d+\.md$/.test(path.basename(narrativePath))) return false;
+  const { parseIterationFile } = require('./reduce-state.cjs');
+  return parseIterationFile(narrativePath).findings.length > 0;
 }
 
 // The narrative file is written as iteration-NNN.md but the leaf may append a
@@ -306,6 +397,25 @@ function verify(loopType, artifactDir, iteration) {
   const deltaRecords = deltaLog.records;
   if (!deltaRecords || !deltaRecords.some((r) => r && r.type === 'iteration')) {
     return { ok: false, reason: REASONS.DELTA_FILE_MISSING, detail: `deltas/iter-${pad3(iteration)}.jsonl missing or has no type=iteration record` };
+  }
+
+  const claimedFindingsCount = loopType === 'review'
+    ? reviewNewFindingsClaim(iterationRecord)
+    : Math.floor(Number(iterationRecord.findingsCount));
+  if (Number.isFinite(claimedFindingsCount) && claimedFindingsCount > 0) {
+    const enumerated = loopType === 'review'
+      ? reviewFindingsAreEnumerated(iterationRecord, deltaRecords, iteration, narrativePath)
+      : researchFindingEnumerationCounts(iterationRecord, deltaRecords, narrative, iteration, narrativePath)
+        .includes(claimedFindingsCount);
+    if (!enumerated) {
+      return {
+        ok: false,
+        reason: REASONS.FINDINGS_NOT_ENUMERATED,
+        detail: loopType === 'review'
+          ? `iteration ${iteration} claims ${claimedFindingsCount} new finding(s) but its findingDetails, delta finding rows and Markdown severity sections list no P0/P1/P2 finding behind it`
+          : `iteration ${iteration} claims findingsCount=${claimedFindingsCount} but its structured state, Markdown, graph events, or delta rows do not enumerate that many findings`,
+      };
+    }
   }
 
   // 4. Route proof, preferring the projection and falling back to the delta the leaf

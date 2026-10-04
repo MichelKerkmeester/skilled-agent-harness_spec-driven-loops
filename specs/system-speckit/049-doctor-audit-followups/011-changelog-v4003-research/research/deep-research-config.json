@@ -1,0 +1,106 @@
+{
+  "topic": "What must be added to or corrected in .skilled/changelog/skilled/v4.0.0.3.md so it covers (a) the doctor command changes in specs/system-speckit/049-doctor-audit-followups phases 001-010: trigger-index freshness, release/update customization signals, doctor gates and drift, doctor script conformance, the /doctor:update research and fixes, the speckit router contract drift, the ownership split of /doctor:speckit into /doctor:skill-advisor, /doctor:deep-loop and /doctor:runtime-mirrors with /doctor:rebuild and the fable-mode target deleted, the new /doctor:git <hooks|standards> command, and the mandatory input gates added to /doctor:skill-advisor and /doctor:mcp; and (b) the git workflow and hook changes: the speckit.hooks.<key> gate settings read by .skilled/scripts/git-hooks/lib/gate-config.sh from lib/gates.tsv, .sk-git/ rule overrides edited by .skilled/commands/doctor/scripts/git-standards.cjs, and the earlier hook hardening in specs/sk-git/032-template-driven-message-enforcement and its children 001-003 (commits e5b1ea84c7, 9c99983374, d1fe481584, f7316afc6a). Compare against what the v4.0.0.3 entry already says, separate missing items from items it states wrongly or that later work made stale (for example references to /doctor:rebuild or /doctor:speckit), and cite a commit, file or spec for each item. Research only; do not edit the changelog.",
+  "maxIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research",
+  "createdAt": "2026-10-04T08:18:22.745Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-pi",
+    "type": "cli-pi",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 1800
+  },
+  "lineage": {
+    "sessionId": "2026-10-04T08:18:22.744Z",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineage",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "status",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "minIterations": 3,
+  "stopPolicy": "max-iterations",
+  "minIdeaObservations": 2,
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null
+}

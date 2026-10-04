@@ -191,6 +191,7 @@ Skill-root metadata ownership follows the [canonical contract](../sk-doc/sk-crea
 | Recommendations omit a newly-added skill | The daemon has not observed the new file yet | Call `advisor_rebuild` or wait for the watcher to fire |
 | CLI reports a mutation `requires --trusted` (exit 64) | The trusted-mutation gate fails closed on untrusted calls | Re-run with `--trusted` or set `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` if you are the maintainer |
 | CLI exits 69 with a stale-build message | The dist build is older than the sources | Rebuild with `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`, then rerun |
+| Routing feels off, or you are not sure the graph is current | Lane weights, graph freshness, router reach, skill budgets or a parent hub may have drifted | Run `/doctor:skill-advisor`. `tune` re-tunes the scoring lanes, `rebuild` rebuilds `skill-graph.sqlite` with a backup, and `skill-graph-freshness`, `router-reach`, `skill-budget` and `parent-skill` are read-only audits |
 
 ---
 
@@ -226,8 +227,6 @@ A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across eve
 | TypeScript build | `npm --prefix .skilled/skills/system-skill-advisor/runtime run typecheck && npm --prefix .skilled/skills/system-skill-advisor/runtime run build` exits 0 |
 | Playbook | Run the manual testing playbook scenarios under `manual-testing-playbook/` in a live session |
 | Validation battery | `node .skilled/bin/skill-advisor.cjs advisor_validate --json '{"confirmHeavyRun":true}' --format json` reports within the dated bounded-delta gate in [`validation-baselines.md`](./references/scoring/validation-baselines.md) |
-| Offline tie-break eval | `node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs` prints a zero-call census of the near-tie cluster with holdout top-1 at 53/70. It stays dormant unless `--jev` is passed, and the switch runs its model arm only when the backend's own checks pass. An arm that will call needs `--out <dir>` for its call records, and exits 2 without it |
-| Offline suggested-order eval | `node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs` prints the same census with holdout top-1 at 53/70, then times the advisor alone inside a child like the prompt hook's and prints a no-headroom stop or the planned calls. It makes no model call unless `--jev` is passed, the switch needs `--out <dir>` and exits 2 without it, and the arm runs only when the backend's own checks pass |
 
 ---
 

@@ -77,6 +77,32 @@ function stubDir(bodies: Record<string, string>): string {
   return dir;
 }
 
+function fakePiBin(answerSource: string): string {
+  const root = tempDir('fakepi-');
+  fs.mkdirSync(path.join(root, 'bin'));
+  fs.mkdirSync(path.join(root, 'dist'));
+  fs.writeFileSync(path.join(root, 'bin', 'pi'), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+  fs.writeFileSync(path.join(root, 'package.json'), JSON.stringify({ name: '@earendil-works/pi-coding-agent', version: '0.99.2', type: 'module' }));
+  fs.writeFileSync(path.join(root, 'dist', 'index.js'), `
+export class ModelRuntime {
+  static create() {
+    return {
+      getModelOfType: (type, provider, id) => ({ type, provider, id }),
+      getAvailableOfType: async () => [{ id: 'jev-latest' }, { id: 'typesafe/jev-1.13' }],
+      classify: async (model, context) => {
+        const text = String(context.state.request ?? Object.values(context.state)[0] ?? '');
+        const question = context.questions.answer;
+        ${answerSource}
+        return { api: 'typesafe-system-one', provider: model.provider, model: model.id, answers: { answer }, stopReason: 'stop', timestamp: 0,
+          usage: { input: 100, output: 10, cacheRead: 0, cacheWrite: 0, totalTokens: 110, cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 } } };
+      },
+    };
+  }
+}
+`);
+  return path.join(root, 'bin');
+}
+
 async function runMain(
   argv: string[],
   env: NodeJS.ProcessEnv = process.env,
@@ -892,4 +918,70 @@ echo "{\\"answers\\":{\\"answer\\":{\\"noul\\":$v}}}"`;
     const log = fs.readFileSync(path.join(stubs, 'jev.log'), 'utf8').trim().split('\n');
     expect(log.some((line) => line.startsWith('noul'))).toBe(false);
   });
+
+  it('names the answering model the CLI printed, and the auth model on the auth-test record', async () => {
+    const set = labeledSet(0, 10, 20);
+    const namingJev = JEV.replace(
+      'echo "{\\"answers\\":{\\"answer\\":{\\"noul\\":$v}}}"',
+      'echo "{\\"answers\\":{\\"answer\\":{\\"noul\\":$v}},\\"model\\":\\"stub-answer-model\\"}"',
+    );
+    const stubs = stubDir({ jev: namingJev });
+    const env = jevEnv(stubs);
+    const out = tempDir('d4-model-out-');
+    const sha = d4.sha256Hex(fs.readFileSync(set.labels));
+
+    const { code, lines } = await runMain(
+      ['--outputs', set.outputs, '--fixtures', set.fixtures, '--labels', set.labels, '--jev', '--accept-payload', '--out', out],
+      env,
+    );
+
+    expect(code).toBe(0);
+    expect(lines).toContain('jev: auth test provider=official model=stub-model');
+    expect(lines).toContain(
+      `verdict jev: keep K=30 M=30 A=30 B=20 W=10 L=0 F=0 p_win=0.0009766 p_loss=1.000 labels_sha256=${sha} jev_version=0.6.2 provider=official model=stub-answer-model`,
+    );
+
+    const calls = readCalls(out);
+    expect(calls.find((call) => call.output === null).model).toBe('stub-model');
+    const judgmentCalls = calls.filter((call) => call.output !== null);
+    expect(judgmentCalls).toHaveLength(90);
+    expect(judgmentCalls.every((call) => call.model === 'stub-answer-model')).toBe(true);
+
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    expect(report.columns.jev.model).toBe('stub-answer-model');
+  });
+
+  it('answers every judgment call on the Pi route and names the Pi model it answered with', async () => {
+    const set = labeledSet(0, 10, 20);
+    const stubs = stubDir({ jev: JEV });
+    const fakePi = fakePiBin("const answer = { type: 'bool', probability: text.includes('HALLUCINATED') ? 0.9 : 0.1 };");
+    const env: NodeJS.ProcessEnv = {
+      ...jevEnv(stubs),
+      PATH: `${fakePi}${path.delimiter}${stubs}${path.delimiter}${process.env.PATH}`,
+      JEV_TRANSPORT: 'pi',
+    };
+    const out = tempDir('d4-pi-out-');
+    const lines: string[] = [];
+    const errs: string[] = [];
+
+    const code = await d4.main(
+      ['--outputs', set.outputs, '--fixtures', set.fixtures, '--labels', set.labels, '--jev', '--accept-payload', '--out', out],
+      {
+        out: (line: string) => lines.push(line),
+        err: (line: string) => errs.push(line),
+        env,
+        timeoutMs: 5000,
+        backoffMs: 1,
+      },
+    );
+
+    expect(code).toBe(0);
+    const verdict = lines.find((line) => line.startsWith('verdict jev:'));
+    expect(verdict?.endsWith('provider=official model=typesafe/jev-latest')).toBe(true);
+
+    const judgmentCalls = readCalls(out).filter((call) => call.output !== null);
+    expect(judgmentCalls).toHaveLength(90);
+    expect(judgmentCalls.every((call) => call.transport === 'pi')).toBe(true);
+    expect(judgmentCalls.every((call) => call.model === 'typesafe/jev-latest')).toBe(true);
+  }, 20000);
 });

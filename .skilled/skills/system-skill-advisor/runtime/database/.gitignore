@@ -9,9 +9,8 @@ skill-graph.json
 .system-skill-advisor-launcher.lockdir/
 .skill-advisor-owner.json
 
-# /doctor:rebuild orchestrator state. It lives here rather than beside the spec-kit
-# mcp-server because this directory is the one /doctor:rebuild already mutates and
-# keeps under version-control hygiene.
+# State the retired /doctor:rebuild orchestrator left here. Still ignored so an older
+# checkout never commits it; /doctor:skill-advisor rebuild writes none of it.
 .doctor-rebuild.*
 
 # Runtime-quarantined SQLite copies (auto-recovery output). Never commit.

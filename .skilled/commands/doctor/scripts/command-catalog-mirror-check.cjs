@@ -179,7 +179,7 @@ function readCommandTree(commandsDir) {
 //
 // A row may instead name the command by its backing file, as any backticked span
 // equal to the file path. The doctor router is the reason the fallback exists:
-// its index row says `/doctor:speckit <target>` (backed by `doctor/speckit.md`).
+// a router row can name a placeholder form, `/doctor:skill-advisor <target>`.
 function catalogEntries(text) {
   const ids = new Set();
   const paths = new Set();

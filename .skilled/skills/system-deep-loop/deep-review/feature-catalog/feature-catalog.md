@@ -18,7 +18,7 @@ Use this catalog as the canonical inventory for the live `deep-review` feature s
 |---|---:|---|
 | Loop lifecycle | 9 features | `SKILL.md`, `references/protocol/loop-protocol.md`, deep-review workflows, fan-out runtime primitives |
 | State management | 7 features | `references/state/state-format.md`, review packet files, reducer outputs |
-| Review dimensions | 5 features | `assets/review-mode-contract.yaml`, `assets/deep-review-strategy.md` |
+| Review dimensions | 4 features | `assets/review-mode-contract.yaml`, `assets/deep-review-strategy.md` |
 | Severity system | 9 features | `references/convergence/convergence.md`, `references/state/state-format.md`, review contract, divergent review pivots |
 
 ---
@@ -362,22 +362,6 @@ Maintainability is the fourth default dimension and covers patterns, documentati
 #### Source Files
 
 See [`review-dimensions/maintainability.md`](review-dimensions/maintainability.md) for full implementation and validation file listings.
-
----
-
-### Residue Flagger Measurement
-
-#### Description
-
-Measures offline whether a Jev answer flags operator-labeled defect rows from the committed review corpus better than flag-nothing.
-
-#### How It Works
-
-`scripts/score-residue-flagger.cjs` makes zero model calls by default and writes no file: the default run prints the finding-table census, and no arm runs until 100 rows in the labels file carry a label. The `--jev` switch runs one arm behind its own gate and needs `--out <dir>` so every call is recorded, and the measurement adds no review dimension.
-
-#### Source Files
-
-See [`review-dimensions/residue-flagger-measurement.md`](review-dimensions/residue-flagger-measurement.md) for full implementation and validation file listings.
 
 ---
 

@@ -383,8 +383,6 @@ Package references:
 - `references/scoring/advisor-scorer.md` — lane attribution, fusion and confidence calibration.
 - `references/scoring/lane-weight-tuning.md` — measured lane-weight change workflow.
 - `references/scoring/validation-baselines.md` — `advisor_validate` baselines and troubleshooting.
-- `runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs`: offline Jev tie-break eval of the near-tie cluster, with a zero-call census by default.
-- `runtime/scripts/routing-accuracy/score-suggested-order.mjs`: offline Jev order of the whole near-tie cluster, with each call timed inside a child like the prompt hook's and a zero-call run by default.
 - `references/graph/skill-graph-query-cookbook.md` — worked `skill_graph_query` examples.
 - `references/graph/skill-graph-drift.md` — detect and reconcile SQLite drift from source files.
 - `references/graph/skill-graph-extraction-plan.md` — extraction history and completion record.

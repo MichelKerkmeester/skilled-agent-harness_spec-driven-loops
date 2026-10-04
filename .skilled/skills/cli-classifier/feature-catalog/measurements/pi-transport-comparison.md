@@ -46,8 +46,8 @@ The keep rule runs three ordered checks over the run's own numbers. Coverage und
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/cli-classifier/benchmark/pi-transport/score-pi-transport.mjs` | Script | The census, the replay plan, both gated arms, the metrics and the verdict |
-| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs` | Shared | The CLI's own option arguments, rotations, top-key tie rule and probability reader |
-| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs` | Shared | The recorded call writer, the shared jev gate and the bounded child spawner |
+| `.skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs` | Shared | The CLI's own option arguments, rotations, top-key tie rule and probability reader |
+| `.skilled/skills/cli-classifier/benchmark/pi-transport/replay-helpers.mjs` | Shared | The recorded call writer, the shared jev gate, the bounded child spawner and the advisor census loader |
 
 ### Validation And Tests
 

@@ -31,12 +31,12 @@ import { parseArgs } from 'node:util';
 // The CLI's own option arguments, rotations, top-key tie rule and probability
 // reader, imported rather than copied so both sides ask the same questions and
 // read a row's maps alike.
-import { nearestRank, optionArgs, readProbabilities, rotations, topKey } from '../../../system-skill-advisor/runtime/scripts/routing-accuracy/score-suggested-order.mjs';
+import { nearestRank, optionArgs, readProbabilities, rotations, topKey } from './replay-helpers.mjs';
 
 // The call log writer, the shared jev gate and the bounded child spawner come
-// from the eval's own module, so a rerun shares the recorded run's call shape
-// and its version and credential rules.
-import { jevGate, spawnCall, writeCall } from '../../../system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs';
+// from the replay helpers, so a rerun shares the recorded run's call shape and
+// its version and credential rules.
+import { jevGate, spawnCall, writeCall } from './replay-helpers.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -55,10 +55,10 @@ const PI_CLASSIFIERS = new Map([
 // recorded file's own text shape so a rerun sits beside it under one value.
 const JEV_VERSION = '0.6.2';
 
-// Copied verbatim from the suggested-order scorer (`score-suggested-order.mjs:25-26`),
-// which keeps both strings module-private. The classifier must be asked the CLI's
-// own question and offered the CLI's own abstain text, or the two sides are not
-// comparable.
+// The CLI's own question and abstain text. The classifier must be asked the
+// CLI's own question and offered the CLI's own abstain text, or the two sides
+// are not comparable; the abstain text also matches the replay helpers' private
+// copy, which the CLI option builder uses.
 export const CHOICE_QUESTION = 'Which skill should handle this request?';
 export const NONE_DESCRIPTION = 'None of these skills fits the request';
 
@@ -478,16 +478,18 @@ export function criteriaMap(optionPairs) {
  * The classifier context Pi receives for one option rotation: the prompt as the
  * state, and one named choice question carrying the CLI's own question text and
  * option descriptions. `keys` fixes the option order, so the JSON object the
- * model sees matches the rotation the CLI was given.
+ * model sees matches the rotation the CLI was given. The prompt sits under the
+ * `text` key, the same key the shared transport sends, so the benchmark asks Pi
+ * what the transport asks it.
  *
  * @param {{ prompt: string, keys: string[], criteria: Record<string, string> }} question One row's prompt, its option keys in rotation order and their descriptions.
- * @returns {{ state: { request: string }, questions: Record<string, { type: 'choice', instructions: string, criteria: Record<string, string> }> }} Context for `classify()`.
+ * @returns {{ state: { text: string }, questions: Record<string, { type: 'choice', instructions: string, criteria: Record<string, string> }> }} Context for `classify()`.
  */
 export function toClassifierContext({ prompt, keys, criteria }) {
   const ordered = {};
   for (const key of keys) ordered[key] = criteria[key];
   return {
-    state: { request: prompt },
+    state: { text: prompt },
     questions: {
       [QUESTION_NAME]: { type: 'choice', instructions: CHOICE_QUESTION, criteria: ordered },
     },
@@ -1336,10 +1338,10 @@ function writeReport(outDir, report) {
 
 // The advisor's census loader is reached only by an armed run: it scores the
 // committed prompts and reads the skill projection, work a census-only run must
-// not pay for. The dynamic import keeps that module and its build output out of
-// this script's own load path.
+// not pay for. The dynamic import keeps the compiled scorer it reads out of the
+// load path until an arm is armed.
 async function loadCensusDefault() {
-  const { loadCensus } = await import('../../../system-skill-advisor/runtime/scripts/routing-accuracy/score-jev-tiebreak.mjs');
+  const { loadCensus } = await import('./replay-helpers.mjs');
   return loadCensus();
 }
 

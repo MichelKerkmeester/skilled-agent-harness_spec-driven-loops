@@ -20,6 +20,13 @@ Exit Codes:
     1 - Invalid (blocking errors found)
     2 - File not found or parse error
 
+Citation drift advisory:
+    The human report ends with any `cite-drift advisory:` lines that
+    cite-drift-scan.mjs --advise prints for the document's file-and-line
+    citations. They never change the exit code, and --json and
+    --blocking-only skip them. SKDOC_CITE_DRIFT_CHECK=0 skips the check;
+    SKDOC_CITE_DRIFT_OUT=<dir> records its model calls in <dir>/calls.jsonl.
+
 Examples:
     python validate_document.py README.md
     python validate_document.py SKILL.md --type skill
@@ -31,6 +38,8 @@ import argparse
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
 from pathlib import Path, PurePosixPath
 from typing import Any, Dict, List, Optional, Tuple
@@ -1762,6 +1771,52 @@ def validate_document(
 # 8. CLI ENTRY POINT
 # ───────────────────────────────────────────────────────────────
 
+# The advisory runs on the human report only: every batch caller in the
+# repository reads --json, and the check makes model calls.
+CITE_DRIFT_SCRIPT = Path(__file__).resolve().parent / 'cite-drift-scan.mjs'
+CITE_DRIFT_OPT_OUT = 'SKDOC_CITE_DRIFT_CHECK'
+CITE_DRIFT_OUT = 'SKDOC_CITE_DRIFT_OUT'
+CITE_DRIFT_PREFIX = 'cite-drift advisory:'
+CITE_DRIFT_TIMEOUT_S = 90
+
+
+def print_cite_drift_advisory(file_path: str) -> None:
+    """Print the citation drift advisory for one validated document.
+
+    The check asks Jev whether each in-range citation in the document still
+    points at code that shows its claim. It never raises and never changes the
+    exit code; a missing node, script, credential or citation prints nothing.
+
+    Args:
+        file_path: The document path as the caller gave it.
+    """
+    if os.environ.get(CITE_DRIFT_OPT_OUT) == '0':
+        return
+    node = shutil.which('node')
+    if node is None or not CITE_DRIFT_SCRIPT.is_file():
+        return
+    command = [node, str(CITE_DRIFT_SCRIPT), '--advise', file_path]
+    out_dir = os.environ.get(CITE_DRIFT_OUT, '')
+    if out_dir:
+        command += ['--out', out_dir]
+    try:
+        proc = subprocess.run(
+            command,
+            stdin=subprocess.DEVNULL,
+            capture_output=True,
+            text=True,
+            timeout=CITE_DRIFT_TIMEOUT_S,
+            check=False,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return
+    lines = [line for line in proc.stdout.splitlines() if line.startswith(CITE_DRIFT_PREFIX)]
+    if lines:
+        print()
+        for line in lines:
+            print(line)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description='Validate markdown documentation against template rules',
@@ -1869,6 +1924,9 @@ def main() -> None:
 
         if result['auto_fixable_count'] > 0 and not args.fix:
             print(f"\n💡 {result['auto_fixable_count']} issues can be auto-fixed. Run with --fix")
+
+        if not args.blocking_only:
+            print_cite_drift_advisory(args.file)
 
     sys.exit(result['exit_code'])
 

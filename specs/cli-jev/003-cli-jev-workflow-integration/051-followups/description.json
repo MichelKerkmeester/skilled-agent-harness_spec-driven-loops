@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "cli-jev/003-cli-jev-workflow-integration/051-followups",
+  "description": "Phase 51: followups",
+  "keywords": [
+    "phase",
+    "followups"
+  ],
+  "lastUpdated": "2026-10-04T12:11:28.007Z",
+  "specId": "051",
+  "folderSlug": "followups",
+  "parentChain": [
+    "cli-jev",
+    "003-cli-jev-workflow-integration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "04-10-26_13-11__deep-review-of-the-jev-killed-code-deletion.md"
+  ]
+}

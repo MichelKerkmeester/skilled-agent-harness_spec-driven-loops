@@ -103,10 +103,7 @@ When a hub's `ROUTER.md` keyword block scores a request, the winning intents pic
 
 ```bash
 node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --report <dir> --transcripts <dir> --prose <file>
-node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --jev --out <dir>
 ```
-
-The tie-break arm stays dormant behind its gate. `--jev` with `--out <dir>` runs its gate and, when it passes, asks the classifier three times per tied row in rotated option order and prints one `verdict` line. A `keep` serves nothing, because no router, map, manifest or playbook is touched.
 
 ---
 
@@ -167,8 +164,8 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 | Package completion | `python3 scripts/validate_skill_package.py <path>` | Ends with `package_skill.py --check: PASS (exit 0)`. Parent hubs also report legacy or compiled-ready state |
 | Strict contract check | `python3 scripts/validate_skill_package.py <path> --strict` | Promotes noncanonical generated paths from advisory to blocking |
 | Structure extraction | `python3 ../shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |
-| Clarify census and scorer | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | `pass 22` and `fail 0` |
-| Leaf-route replay | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | `pass 31` and `fail 0` |
+| Clarify census and scorer | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/score-clarify-default.test.cjs` | `pass 35` and `fail 0` |
+| Leaf-route replay | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | `pass 22` and `fail 0` |
 
 ---
 
@@ -185,4 +182,4 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Scaffold helper for new standalone or parent-hub folders |
 | [`scripts/package_skill.py`](./scripts/package_skill.py) | Validation and packaging helper |
 | [`scripts/score-clarify-default.cjs`](./scripts/score-clarify-default.cjs) | Zero-call clarify census and default-pick scorer |
-| [`scripts/leaf-route-replay.cjs`](./scripts/leaf-route-replay.cjs) | Zero-call Stage-Two leaf-route replay and tie-break scorer |
+| [`scripts/leaf-route-replay.cjs`](./scripts/leaf-route-replay.cjs) | Zero-call Stage-Two leaf-route replay, router-read recount and prose comparison |

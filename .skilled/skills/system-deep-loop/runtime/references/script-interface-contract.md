@@ -150,7 +150,7 @@ Relevant source:
 
 - `lib/deep-loop/permissions-gate.ts` maps tools and bash commands to operation classes.
 - `SKILL.md` states direct `.cjs` invocation is the supported consumer path.
-- `/doctor:speckit deep-loop` calls status, query and convergence with `--read-only`. Its route is `add-only` only because the workflow writes its packet-local state log.
+- `/doctor:deep-loop` calls status, query and convergence with `--read-only`. Its route is `add-only` only because the workflow writes its packet-local state log.
 
 ---
 

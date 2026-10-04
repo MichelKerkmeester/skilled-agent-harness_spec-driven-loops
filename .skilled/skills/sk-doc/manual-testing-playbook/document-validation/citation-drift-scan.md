@@ -97,6 +97,8 @@ Capture the prompt and reply text and the complete output of steps 4 to 8, inclu
 
 Repeat step 6 with `JEV_PROVIDER=openrouter` set and confirm the run adds `jev: path=<path> provider=openrouter` and then `jev arm skipped: no credential`, that the Jev stub log holds `--version` and `auth status --provider openrouter`, and that no file is written. A bad invocation is refused before any call: `--jev` without `--out` exits 2 and prints `--jev needs --out <dir> so every call is recorded`.
 
+The advisory in doc validation stays silent without a credential. With the same stub first on PATH, write a scratch document that holds one in-range citation, such as `.skilled/skills/sk-doc/shared/scripts/cite-drift-scan.mjs:1`, and run `python3 .skilled/skills/sk-doc/scripts/validate_document.py <doc>`. The report carries no `cite-drift advisory:` line, the exit code matches a run with `SKDOC_CITE_DRIFT_CHECK=0`, and the Jev stub log gains only `--version` and `auth status --provider official`. With `SKDOC_CITE_DRIFT_CHECK=0` set, the stub log gains nothing.
+
 ---
 
 ## 4. SOURCE FILES
@@ -114,6 +116,8 @@ Repeat step 6 with `JEV_PROVIDER=openrouter` set and confirm the run adds `jev: 
 |---|---|
 | [`../../shared/scripts/cite-drift-scan.mjs`](../../shared/scripts/cite-drift-scan.mjs) | The counts, the resolution, the label gate and the backend gate |
 | [`../../scripts/tests/test-cite-drift-scan.mjs`](../../scripts/tests/test-cite-drift-scan.mjs) | The extraction, resolution, gate and arm cases on a fixture repository with a stub backend |
+| [`../../shared/scripts/validate_document.py`](../../shared/scripts/validate_document.py) | Runs the advisory check at the end of its human report |
+| [`../../scripts/tests/test_cite_drift_advisory.py`](../../scripts/tests/test_cite_drift_advisory.py) | The advisory's exit code, silence without a credential and opt-out |
 
 ---
 

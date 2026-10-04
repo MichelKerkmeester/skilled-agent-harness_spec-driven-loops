@@ -4,10 +4,12 @@
 // ───────────────────────────────────────────────────────────────────
 // Measures whether a sentence's citation still points at the code window it
 // claims. The default run prints the census and makes no model call, reads no
-// credential and writes no file.
+// credential and writes no file. --advise <doc>... checks only the citations
+// in those documents, stays silent without a stored Jev credential and always
+// exits 0.
 //
 // Usage:
-//   node cite-drift-scan.mjs [--corpus <skills|specs|all>] [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>]
+//   node cite-drift-scan.mjs [--corpus <skills|specs|all>] [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>] | --advise <doc>... [--out <dir>]
 //
 // Exit codes: 0 = report printed, a skipped or stopped arm included; 2 = bad
 // invocation or unreadable input, refused before any call.
@@ -70,7 +72,7 @@ function hasClaim(claim) {
 }
 
 /** Usage line printed when an invocation misses an input. */
-export const USAGE = 'usage: node cite-drift-scan.mjs [--corpus <skills|specs|all>] [--moved] [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>]';
+export const USAGE = 'usage: node cite-drift-scan.mjs [--corpus <skills|specs|all>] [--moved] [--draw --seed <n>] [--jev] [--out <dir>] [--labels <file>] | --advise <doc>... [--out <dir>]';
 
 /** Prefix redirect table beside the script, derived from the git rename record. */
 export const REDIRECTS_PATH = path.join(SCRIPT_DIR, 'cite-drift-redirects.json');
@@ -999,21 +1001,27 @@ export function labelCounts(rows) {
 // 4. COMPARATORS AND LABEL GATE
 // ───────────────────────────────────────────────────────────────────
 
+/** A word inside a code span that names a file rather than code: a slash path, a file name or a bare line reference. */
+const PATH_WORD_RE = /^(?:\S*\/\S*|[\w.-]+\.(?:ts|cjs|mjs|js|py|md|json|sh)(?::\d+(?:-\d+)?)?|:?\d+(?:-\d+)?)[,;.]?$/;
+
 /**
- * Code-shaped tokens of a citing sentence: every backticked span split on
- * non-identifier characters, dropped to two characters or more, with the
- * target's own basename removed. These are the tokens the identifier-overlap
- * comparator looks for in the target's window.
+ * Claim tokens of a citing sentence: the identifiers its backticked spans name
+ * once every citation, path, file name and line reference is removed, kept at
+ * two characters or more, never all digits and never a component of the
+ * target's own path. A token that names the cited file holds across the whole
+ * file, so only the claim's own identifiers can say whether the cited window
+ * still shows it.
  * @param {string} sentence
  * @param {string} target Repo-relative target path.
  * @returns {string[]} Unique tokens in sentence order.
  */
 export function identifierTokens(sentence, target) {
-  const targetBase = path.posix.basename(target);
+  const pathParts = new Set(target.split(/[^A-Za-z0-9_]+/));
   const tokens = [];
   for (const match of sentence.matchAll(/`([^`]+)`/g)) {
-    for (const token of match[1].split(/[^A-Za-z0-9_]+/)) {
-      if (token.length < 2 || token === targetBase || tokens.includes(token)) continue;
+    const words = match[1].replace(CITATION_RE, ' ').split(/\s+/).filter((word) => !PATH_WORD_RE.test(word));
+    for (const token of words.join(' ').split(/[^A-Za-z0-9_]+/)) {
+      if (token.length < 2 || /^\d+$/.test(token) || pathParts.has(token) || tokens.includes(token)) continue;
       tokens.push(token);
     }
   }
@@ -1021,9 +1029,10 @@ export function identifierTokens(sentence, target) {
 }
 
 /**
- * True when the sentence names at least one code token and the window text
- * shows none of them, so the window no longer carries an identifier the
- * sentence cites. A sentence with no such token is never flagged.
+ * True when the sentence names at least one claim token and no identifier of
+ * the window equals any of them. Tokens match whole identifiers, so a token
+ * that appears only inside a longer word is absent. A sentence with no claim
+ * token is never flagged.
  * @param {string} sentence
  * @param {string} windowText The target's cited line -10..+10, clamped.
  * @param {string} target Repo-relative target path.
@@ -1031,7 +1040,9 @@ export function identifierTokens(sentence, target) {
  */
 export function flagByIdentifierOverlap(sentence, windowText, target) {
   const tokens = identifierTokens(sentence, target);
-  return tokens.length > 0 && !tokens.some((token) => windowText.includes(token));
+  if (tokens.length === 0) return false;
+  const windowTokens = new Set(windowText.split(/[^A-Za-z0-9_]+/));
+  return !tokens.some((token) => windowTokens.has(token));
 }
 
 /**
@@ -1389,11 +1400,14 @@ export function spawnCall(file, args, stdinText, env, timeoutMs) {
  * One JSON-line record per model call under outDir. A missing or empty outDir
  * keeps no records, so nothing is created. The file is created empty on the
  * first append, and one line per call keeps a killed arm's earlier records
- * readable.
+ * readable. An advisory log appends instead, so several documents validated
+ * one at a time share one file.
  * @param {string|undefined} outDir Directory that holds calls.jsonl.
+ * @param {{ truncate?: boolean }} [options] True writes the empty file on the
+ *   first append; false appends to what the file already holds.
  * @returns {{ append: (record: object) => void }}
  */
-export function createCallLog(outDir) {
+export function createCallLog(outDir, { truncate = true } = {}) {
   let created = false;
   return {
     append(record) {
@@ -1401,7 +1415,7 @@ export function createCallLog(outDir) {
       const filePath = path.join(outDir, 'calls.jsonl');
       if (!created) {
         fs.mkdirSync(outDir, { recursive: true });
-        fs.writeFileSync(filePath, '');
+        if (truncate) fs.writeFileSync(filePath, '');
         created = true;
       }
       fs.appendFileSync(filePath, `${JSON.stringify(record)}\n`);
@@ -1535,16 +1549,43 @@ export function jevGate(ctx) {
 }
 
 /**
+ * The model that answered one call: the transport outcome's own name when it
+ * carries one, else the fallback the caller passes.
+ * @param {{ model?: unknown }} call Transport outcome.
+ * @param {string} fallback Name used when the outcome carries none.
+ * @returns {string}
+ */
+function answeringModel(call, fallback) {
+  return typeof call.model === 'string' && call.model !== '' ? call.model : fallback;
+}
+
+/**
+ * Token usage an answer's payload carries, or null when it carries none.
+ * @param {string} stdout Raw stdout of one call.
+ * @returns {object|null}
+ */
+function payloadUsage(stdout) {
+  let usage;
+  try {
+    usage = JSON.parse(stdout)?.usage;
+  } catch {
+    return null;
+  }
+  return usage !== null && typeof usage === 'object' && !Array.isArray(usage) ? usage : null;
+}
+
+/**
  * Screen each labeled claim once and rerun only scores in the adaptive band.
  * A row's flag uses its lowest probability while its modal flag and dissent
  * count remain available for reporting. A stop leaves the column unprinted.
  * @param {{ rows: Array<object>, windows: Map<string, { sentence: string, claim?: string, windowText: string }>, labelsSha: string }} plan
  * @param {{ path: string, provider: string }} gate Passing jevGate result.
- * @param {{ out: (line: string) => void, env: Record<string, string|undefined>, timeoutMs: number, backoffMs: number, callLog: { append: (record: object) => void }, stored: object|null }} ctx Line writer, environment, timeout, retry wait, the call log and an earlier run's report.
+ * @param {{ out: (line: string) => void, env: Record<string, string|undefined>, timeoutMs: number, backoffMs: number, callLog: { append: (record: object) => void }, stored: object|null, classify?: Function }} ctx Line writer, environment, timeout, retry wait, the call log, an earlier run's report and an optional classifier seam that defaults to the transport's call.
  * @returns {Promise<{ column: object, outcomes: Array<object> } | { stopped: string, partialRows: number }>}
  */
 export async function runJevArm(plan, gate, ctx) {
   const labeled = plan.rows.filter((row) => row.verdict !== null && row.verdict !== undefined);
+  const classify = ctx.classify ?? spawnClassifierCall;
   const ready = [];
   let chars = 0;
   for (const row of labeled) {
@@ -1603,6 +1644,7 @@ export async function runJevArm(plan, gate, ctx) {
   ctx.out(`jev: auth test provider=${gate.provider} model=${model}`);
 
   const answers = new Map();
+  const answeredBy = new Set();
   for (const { row, state } of ready) {
     const callArgs = ['noul', '--provider', gate.provider, '-q', INSTRUCTION];
     const reruns = [];
@@ -1610,7 +1652,7 @@ export async function runJevArm(plan, gate, ctx) {
     let rerunLimit = 1;
 
     for (let rerun = 0; rerun < rerunLimit; rerun += 1) {
-      let call = await spawnClassifierCall({
+      let call = await classify({
         file: gate.path,
         args: callArgs,
         stdin: state,
@@ -1633,10 +1675,11 @@ export async function runJevArm(plan, gate, ctx) {
           status: 'unmeasured',
           jevVersion: '0.6.2',
           provider: gate.provider,
-          model,
+          model: answeringModel(call, model),
+          usage: payloadUsage(call.stdout),
         });
         await new Promise((resolve) => setTimeout(resolve, ctx.backoffMs));
-        call = await spawnClassifierCall({
+        call = await classify({
           file: gate.path,
           args: callArgs,
           stdin: state,
@@ -1657,6 +1700,7 @@ export async function runJevArm(plan, gate, ctx) {
         if (probability !== null) {
           flag = probability < FLAG_THRESHOLD;
           status = 'measured';
+          answeredBy.add(answeringModel(call, model));
         }
       } else if (call.code === 2) {
         stopLine = 'jev arm stopped: usage error';
@@ -1678,7 +1722,8 @@ export async function runJevArm(plan, gate, ctx) {
         status,
         jevVersion: '0.6.2',
         provider: gate.provider,
-        model,
+        model: answeringModel(call, model),
+        usage: payloadUsage(call.stdout),
       });
       if (stopLine !== null) return stop(stopLine);
       reruns.push({ probability, flag, measured: status === 'measured' });
@@ -1692,6 +1737,10 @@ export async function runJevArm(plan, gate, ctx) {
     finished += 1;
   }
 
+  // The column names every model that answered a measured call, so a route
+  // switch between runs reads as a model change; the auth probe's name stands
+  // in only when no call was measured.
+  const columnModel = answeredBy.size === 0 ? model : [...answeredBy].sort().join('+');
   const emptyCounts = () => ({ K: 0, M: 0, A: 0, B: 0, W: 0, L: 0, TP: 0, FP: 0, F: 0 });
   const totals = emptyCounts();
   totals.K = K;
@@ -1775,13 +1824,13 @@ export async function runJevArm(plan, gate, ctx) {
       backend: 'jev', verdict, K, M, A, B, W, L, TP, FP, F, p,
       stored: ctx.stored,
       provider: gate.provider,
-      model,
+      model: columnModel,
       instructionSha256: identity.instructionSha256,
       keepRuleSha256: identity.keepRuleSha256,
       rowSetSha256: identity.rowSetSha256,
     },
     plan.labelsSha,
-    `jev_version=0.6.2 provider=${gate.provider} model=${model}`,
+    `jev_version=0.6.2 provider=${gate.provider} model=${columnModel}`,
   );
   for (const text of line.split('\n')) ctx.out(text);
 
@@ -1802,7 +1851,8 @@ export async function runJevArm(plan, gate, ctx) {
       latency,
       jevVersion: '0.6.2',
       provider: gate.provider,
-      model,
+      model: columnModel,
+      authModel: model,
       instructionSha256: identity.instructionSha256,
       keepRuleSha256: identity.keepRuleSha256,
       rowSetSha256: identity.rowSetSha256,
@@ -1813,6 +1863,196 @@ export async function runJevArm(plan, gate, ctx) {
     },
     outcomes,
   };
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 8. ADVISORY CHECK
+// ───────────────────────────────────────────────────────────────────
+
+// Doc validation runs this check on the documents it validates. It never
+// blocks: a missing tool, credential or citation is silence, and the caller
+// ignores the exit code.
+
+/** Set to 0 to skip the advisory check entirely. */
+export const ADVISE_OPT_OUT_ENV = 'SKDOC_CITE_DRIFT_CHECK';
+
+/** Every advisory line starts with this, so a caller can forward only these. */
+export const ADVISE_PREFIX = 'cite-drift advisory:';
+
+/** Citations one advisory run asks about at most; the rest count as unchecked. */
+export const ADVISE_MAX_CITATIONS = 20;
+
+/** Wall budget for one advisory run's model calls. */
+export const ADVISE_BUDGET_MS = 60000;
+
+/**
+ * The jev binary and provider when the pinned version answers and a credential
+ * is stored, else null. Prints nothing.
+ * @param {Record<string, string|undefined>} env
+ * @param {number} timeoutMs
+ * @returns {{ path: string, provider: string }|null}
+ */
+function adviseGate(env, timeoutMs) {
+  const provider = env.JEV_PROVIDER || 'official';
+  const jevPath = which('jev', env);
+  if (jevPath === null) return null;
+  const opts = { env, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: timeoutMs };
+  const version = spawnSync(jevPath, ['--version'], opts);
+  if ((version.stdout ?? '').trim().split('\n')[0] !== JEV_VERSION) return null;
+  const auth = spawnSync(jevPath, ['auth', 'status', '--provider', provider], opts);
+  return auth.status === 0 ? { path: jevPath, provider } : null;
+}
+
+/**
+ * In-range citations in the prose of the given documents, read from the
+ * working tree, each with its resolved target. A document outside the
+ * repository resolves its citations from the repository root.
+ * @param {string[]} docs Document paths as the caller gave them.
+ * @param {string} repoRoot
+ * @param {Set<string>} tracked
+ * @returns {Array<object>}
+ */
+function adviseCitations(docs, repoRoot, tracked) {
+  const found = [];
+  for (const doc of docs) {
+    const absolute = path.resolve(doc);
+    let text;
+    try {
+      text = fs.readFileSync(absolute, 'utf8');
+    } catch {
+      continue;
+    }
+    const relative = path.relative(repoRoot, absolute);
+    const inside = relative !== '' && !relative.startsWith('..') && !path.isAbsolute(relative);
+    const docPath = inside ? relative.split(path.sep).join('/') : absolute;
+    const parts = docPath.split('/');
+    const skillRoot = inside && parts[0] === '.skilled' && parts[1] === 'skills' && parts.length > 3
+      ? `.skilled/skills/${parts[2]}`
+      : null;
+    for (const citation of extractCitations(text, docPath)) {
+      const { status, path: resolved } = resolveCitation(citation, { tracked, repoRoot, skillRoot });
+      if (status === 'in_range' && resolved !== null) found.push({ ...citation, path: resolved });
+    }
+  }
+  return found;
+}
+
+/**
+ * The working-tree lines around one cited line, clamped to the file.
+ * @param {string} repoRoot
+ * @param {string} target Repo-relative tracked path.
+ * @param {number} line Cited line, 1-based.
+ * @returns {string} Empty when the file cannot be read.
+ */
+function adviseWindow(repoRoot, target, line) {
+  let text;
+  try {
+    text = fs.readFileSync(path.join(repoRoot, target), 'utf8');
+  } catch {
+    return '';
+  }
+  const lines = text.split(/\r?\n/);
+  if (lines[lines.length - 1] === '') lines.pop();
+  const start = Math.max(1, line - WINDOW_RADIUS_LINES);
+  const end = Math.min(lines.length, line + WINDOW_RADIUS_LINES);
+  return start > end ? '' : lines.slice(start - 1, end).join('\n');
+}
+
+/**
+ * Asks Jev about each in-range citation of the given documents with the
+ * measured protocol: one screening call, two more only when the first score
+ * sits in the adaptive band, and a flag when the lowest score falls below the
+ * threshold. The claim is the citing line, as in the measured labels. Prints
+ * one line per flagged citation and a summary line, each under ADVISE_PREFIX,
+ * and nothing at all when no citation is in range or the gate fails.
+ * @param {string[]} docs Document paths as the caller gave them.
+ * @param {{ repoRoot: string, out: (line: string) => void, env: Record<string, string|undefined>, timeoutMs: number, callLog: { append: (record: object) => void }, classify?: Function }} ctx
+ *   Line writer, environment, per-call timeout, the call log and an optional
+ *   stand-in for the transport's call.
+ * @returns {Promise<number>} Always 0.
+ */
+export async function runAdvise(docs, ctx) {
+  if (ctx.env[ADVISE_OPT_OUT_ENV] === '0') return 0;
+  let citations;
+  try {
+    citations = adviseCitations(docs, ctx.repoRoot, listTrackedFiles(ctx.repoRoot));
+  } catch {
+    return 0;
+  }
+  if (citations.length === 0) return 0;
+  const gate = adviseGate(ctx.env, ctx.timeoutMs);
+  if (gate === null) return 0;
+
+  const classify = ctx.classify ?? spawnClassifierCall;
+  const deadline = Date.now() + ADVISE_BUDGET_MS;
+  const flagged = [];
+  let checked = 0;
+  let stopped = false;
+  for (const citation of citations.slice(0, ADVISE_MAX_CITATIONS)) {
+    if (stopped) break;
+    const windowText = adviseWindow(ctx.repoRoot, citation.path, citation.targetLine);
+    if (windowText === '') continue;
+    const state = JSON.stringify({ claim: citation.sentence, target: citation.path, window: windowText });
+    const probabilities = [];
+    let rerunLimit = 1;
+    for (let rerun = 0; rerun < rerunLimit; rerun += 1) {
+      const remaining = deadline - Date.now();
+      if (remaining <= 0) {
+        stopped = true;
+        break;
+      }
+      const call = await classify({
+        file: gate.path,
+        args: ['noul', '--provider', gate.provider, '-q', INSTRUCTION],
+        stdin: state,
+        env: ctx.env,
+        timeoutMs: Math.min(ctx.timeoutMs, remaining),
+        report: () => {},
+      });
+      const probability = !call.timedOut && call.code === 0 ? parseNoul(call.stdout) : null;
+      let status = 'measured';
+      if (probability === null) status = call.timedOut ? 'unmeasured_timeout' : 'unmeasured';
+      ctx.callLog.append({
+        mode: 'advise',
+        doc: citation.doc,
+        docLine: citation.line,
+        target: citation.path,
+        targetLine: citation.targetLine,
+        rerun,
+        wallMs: call.wallMs,
+        exitCode: call.code,
+        backend: 'jev',
+        transport: call.transport,
+        probability,
+        flag: probability === null ? null : probability < FLAG_THRESHOLD,
+        status,
+        jevVersion: '0.6.2',
+        provider: gate.provider,
+        model: answeringModel(call, 'unknown'),
+        usage: payloadUsage(call.stdout),
+      });
+      // A usage error, a rejected key or an interrupt ends the run; any other
+      // miss leaves only this citation unchecked.
+      if (call.code === 2 || call.code === 3 || call.code === 130) {
+        stopped = true;
+        break;
+      }
+      if (probability === null) break;
+      probabilities.push(probability);
+      if (rerun === 0 && probability >= ADAPTIVE_RERUN_MIN && probability <= ADAPTIVE_RERUN_MAX) {
+        rerunLimit = JEV_RERUNS;
+      }
+    }
+    if (probabilities.length === 0 || probabilities.length < rerunLimit) continue;
+    checked += 1;
+    const lowest = Math.min(...probabilities);
+    if (lowest < FLAG_THRESHOLD) flagged.push({ citation, lowest });
+  }
+  for (const { citation, lowest } of flagged) {
+    ctx.out(`${ADVISE_PREFIX} ${citation.doc}:${citation.line} cites ${citation.path}:${citation.targetLine}, whose window may no longer show the claim (p_yes=${lowest.toFixed(2)})`);
+  }
+  ctx.out(`${ADVISE_PREFIX} checked=${checked} flagged=${flagged.length} unchecked=${citations.length - checked} (never blocks; ${ADVISE_OPT_OUT_ENV}=0 skips it)`);
+  return 0;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -1834,7 +2074,7 @@ export async function runJevArm(plan, gate, ctx) {
  * @param {number} [deps.backoffMs] Retry wait behind an exit 4. Default BACKOFF_MS.
  * @param {Array<{ from: string, to: string }>} [deps.redirects] Redirect rules. Default the table at deps.redirectsPath.
  * @param {string} [deps.redirectsPath] Redirect table. Default REDIRECTS_PATH.
- * @returns {Promise<number>} 0 = report printed, 2 = bad invocation or unreadable input.
+ * @returns {Promise<number>} 0 = report printed, 2 = bad invocation or unreadable input; --advise returns 0 unless the invocation is bad.
  */
 export async function main(argv, deps = {}) {
   const repoRoot = deps.repoRoot ?? REPO_ROOT;
@@ -1849,8 +2089,9 @@ export async function main(argv, deps = {}) {
     parsed = parseArgs({
       args: argv,
       strict: true,
-      allowPositionals: false,
+      allowPositionals: true,
       options: {
+        advise: { type: 'boolean' },
         draw: { type: 'boolean' },
         seed: { type: 'string' },
         jev: { type: 'boolean' },
@@ -1865,7 +2106,27 @@ export async function main(argv, deps = {}) {
     err(error instanceof Error ? error.message : String(error));
     return 2;
   }
-  const { values } = parsed;
+  const { values, positionals } = parsed;
+
+  if (values.advise === true) {
+    if (positionals.length === 0 || values.draw === true || values.jev === true
+      || values.labels !== undefined || values.seed !== undefined) {
+      err(USAGE);
+      return 2;
+    }
+    return runAdvise(positionals, {
+      repoRoot,
+      out,
+      env,
+      timeoutMs,
+      callLog: createCallLog(values.out, { truncate: false }),
+    });
+  }
+  if (positionals.length > 0) {
+    err(USAGE);
+    return 2;
+  }
+
   const labelsPath = values.labels ?? LABELS_PATH;
   const corpus = values.corpus ?? 'skills';
 

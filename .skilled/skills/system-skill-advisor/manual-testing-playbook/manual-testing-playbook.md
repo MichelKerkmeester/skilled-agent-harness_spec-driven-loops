@@ -30,7 +30,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 49 deterministic scenario files across 9 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility.
+This playbook provides 54 deterministic scenario files across 10 categories validating the Skill Advisor surface. Scenario IDs use a multi-prefix scheme: `NC` for the native command surface, `CL` for CLI hooks plus plugin behavior, `CP` for compatibility plus disable controls, `OP` for operator H5 states, `AU` for auto-update daemon behavior, `AI` for auto-indexing, `LC` for lifecycle routing, `SC` for scorer fusion, plus `PC` for Python compatibility, and `DOC` for the `/doctor:skill-advisor` command, whose numbers are shared with the doctor scenarios in other playbooks.
 
 > **Numbering note (gap-09).** The directory layout skips slot `09--*` between `scorer-fusion` and `python-compat`. This mirrors the `feature-catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
@@ -127,7 +127,7 @@ Scenario verdict:
 
 ### Release Readiness Rule
 
-Release is `READY` only when all 49 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
+Release is `READY` only when all 54 scenario files are `PASS` or have an approved `SKIP` with a real blocker and no prompt-safety, rebuild, daemon, indexing, lifecycle, scorer or compatibility failure remains unresolved.
 
 ---
 
@@ -155,8 +155,9 @@ This section records wave planning for the canonical Skill Advisor manual test p
 - **Wave 5**: `AU-001..AU-005` auto-update daemon behavior.
 - **Wave 6**: `AI-001..AI-006` auto-indexing behavior.
 - **Wave 7**: `LC-001..LC-005` lifecycle routing.
-- **Wave 8**: `SC-001..SC-007` scorer fusion.
+- **Wave 8**: `SC-001..SC-005` scorer fusion.
 - **Wave 9**: `PC-001..PC-005` Python compatibility.
+- **Wave 10**: `DOC-348`, `DOC-362..DOC-367` the `/doctor:skill-advisor` command, run in a disposable copy.
 
 ---
 
@@ -263,7 +264,7 @@ This category validates lifecycle routing scenarios `LC-001..LC-005`.
 
 ## 14. SCORER FUSION
 
-This category validates scorer fusion scenarios `SC-001..SC-007`.
+This category validates scorer fusion scenarios `SC-001..SC-005`.
 
 | ID | Scenario | File |
 |---|---|---|
@@ -272,8 +273,6 @@ This category validates scorer fusion scenarios `SC-001..SC-007`.
 | SC-003 | Top-2 Ambiguity Window | [003-ambiguity.md](scorer-fusion/ambiguity.md) |
 | SC-004 | Lane Contribution Attribution | [004-lane-attribution.md](scorer-fusion/lane-attribution.md) |
 | SC-005 | Lane-by-Lane Ablation Protocol | [005-ablation.md](scorer-fusion/ablation.md) |
-| SC-006 | Offline Jev Tie-Break Eval | [tie-break-eval.md](scorer-fusion/tie-break-eval.md) |
-| SC-007 | Offline Suggested-Order Eval | [suggested-order-eval.md](scorer-fusion/suggested-order-eval.md) |
 
 ---
 
@@ -291,7 +290,23 @@ This category validates python compat scenarios `PC-001..PC-005`.
 
 ---
 
-## 16. AUTOMATED TEST CROSS-REFERENCE
+## 16. DOCTOR COMMANDS
+
+This category validates the `/doctor:skill-advisor` scenarios `DOC-348` and `DOC-362..DOC-367`, one per target plus the menu shown when no target is given. Each scenario runs in a disposable copy. The read-only targets must leave every checksum unchanged, and `tune` and `rebuild` write only after an approval. The memory and causal-graph doctor IDs (DOC-323 to DOC-330) and the rebuild-orchestrator IDs (DOC-338 to DOC-342 and DOC-344 to DOC-347) are retired across every playbook.
+
+| ID | Scenario | File |
+|---|---|---|
+| DOC-348 | Doctor skill-advisor rebuild | [doctor-skill-advisor-rebuild.md](doctor-commands/doctor-skill-advisor-rebuild.md) |
+| DOC-362 | Doctor skill-advisor tune | [doctor-skill-advisor-tune.md](doctor-commands/doctor-skill-advisor-tune.md) |
+| DOC-363 | Doctor skill-advisor graph freshness | [doctor-skill-advisor-graph-freshness.md](doctor-commands/doctor-skill-advisor-graph-freshness.md) |
+| DOC-364 | Doctor skill-advisor router reach | [doctor-skill-advisor-router-reach.md](doctor-commands/doctor-skill-advisor-router-reach.md) |
+| DOC-365 | Doctor skill-advisor skill budget | [doctor-skill-advisor-skill-budget.md](doctor-commands/doctor-skill-advisor-skill-budget.md) |
+| DOC-366 | Doctor skill-advisor parent skill | [doctor-skill-advisor-parent-skill.md](doctor-commands/doctor-skill-advisor-parent-skill.md) |
+| DOC-367 | Doctor skill-advisor target menu | [doctor-skill-advisor-target-menu.md](doctor-commands/doctor-skill-advisor-target-menu.md) |
+
+---
+
+## 17. AUTOMATED TEST CROSS-REFERENCE
 
 The active inventory check lives at `.skilled/skills/system-skill-advisor/runtime/tests/manual-testing-playbook.vitest.ts`. It verifies the root playbook rows, the live per-feature file inventory and the scenario package count.
 
@@ -306,7 +321,7 @@ Validator limitation: `validate_document.py` validates this root document and pe
 
 ---
 
-## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Scenario prefix | Category | Feature file directory |
 |---|---|---|
@@ -319,12 +334,13 @@ Validator limitation: `validate_document.py` validates this root document and pe
 | LC | Lifecycle routing | `lifecycle-routing/` |
 | SC | Scorer fusion | `scorer-fusion/` |
 | PC | Python compat | `python-compat/` |
+| DOC | Doctor commands | `doctor-commands/` |
 
 Per-feature files include SOURCE FILES sections with implementation, catalog and test anchors where the source scenario provided them.
 
-### 17.5 Catalog group ↔ playbook category mapping (F37 cross-reference)
+### 18.5 Catalog group ↔ playbook category mapping (F37 cross-reference)
 
-The catalog uses 7 groups; the playbook uses 9 categories. Mapping is intentionally asymmetric, not 1:1. This table documents the relationships so operators can navigate between surfaces without surprise.
+The catalog uses 7 groups; the playbook uses 10 categories. Mapping is intentionally asymmetric, not 1:1. This table documents the relationships so operators can navigate between surfaces without surprise.
 
 | Feature catalog group | Maps to playbook category | Notes |
 |---|---|---|
@@ -336,13 +352,14 @@ The catalog uses 7 groups; the playbook uses 9 categories. Mapping is intentiona
 | `hooks-and-plugin` | `cli-hooks-and-plugin` (primary) plus `compat-and-disable` (rollback states) | Catalog group split across 2 playbook categories: happy-path hook behavior in 02, disable plus rollback flags in 03 |
 | `python-compat` | `python-compat` | 1:1 mapping (note gap-09 is intentional per playbook §1) |
 | (none) | `compat-and-disable` | Compat plus disable flags cut across multiple catalog groups; no single catalog group owns them |
+| (none) | `doctor-commands` | The doctor command is documented in the system-spec-kit feature catalog, not this one |
 | (none) | `operator-h5` | H5 operator state scenarios cut across catalog groups; no single catalog group owns them |
 
 **Why asymmetric**: catalog groups model feature ownership (what the code does), while playbook categories model operator workflow (what an operator validates in one sitting). A single feature group can require multiple operator scenarios that span different runtime contexts (native command surface vs CLI hook vs compat shim). The asymmetry is documented here rather than removed by renumbering because renumbering would break checked-in inventory tests plus deep cross-references in earlier packets.
 
 ---
 
-## 18. LEGACY ID CROSS-REFERENCE
+## 19. LEGACY ID CROSS-REFERENCE
 
 - SAD-001 -> NC-001 (native-cli-tools/native-recommend-happy-path.md)
 - SAD-002 -> NC-004 (native-cli-tools/ambiguous-brief-rendering.md)

@@ -38,7 +38,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook is the operator-facing manual validation directory for the `system-spec-kit` engine: validation and its rules, templates and level contracts, scaffolding and `create.sh`, the continuity writer and `generate-context`, generated graph metadata and `description.json`, derived-packet repair, phase decomposition, spec-folder discovery, the surviving hooks and plugins, and the surviving `/doctor:speckit` routes. It preserves each scenario's original ID and links every entry to a dedicated file carrying the full execution contract.
+This playbook is the operator-facing manual validation directory for the `system-spec-kit` engine: validation and its rules, templates and level contracts, scaffolding and `create.sh`, the continuity writer and `generate-context`, generated graph metadata and `description.json`, derived-packet repair, phase decomposition, spec-folder discovery, the surviving hooks and plugins, and the surviving `/doctor:deep-loop` diagnostic. It preserves each scenario's original ID and links every entry to a dedicated file carrying the full execution contract.
 
 ### What This Playbook No Longer Covers
 
@@ -201,8 +201,6 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | 089 | Code standards alignment | [089](tooling-and-scripts/code-standards-alignment.md) | [code-standards-alignment](../feature-catalog/tooling-and-scripts/code-standards-alignment.md) |
 | 460 | Compaction recall census | [460](tooling-and-scripts/compaction-recall-census.md) | [compaction-recall-census](../feature-catalog/tooling-and-scripts/compaction-recall-census.md) |
 | 461 | Alignment suggestion measurement | [461](tooling-and-scripts/alignment-suggestion-measurement.md) | [alignment-suggestion-measurement](../feature-catalog/tooling-and-scripts/alignment-suggestion-measurement.md) |
-| 462 | Completion claim audit | [462](tooling-and-scripts/completion-claim-audit.md) | [completion-claim-audit](../feature-catalog/tooling-and-scripts/completion-claim-audit.md) |
-| 463 | Debug next check | [463](tooling-and-scripts/debug-next-check.md) | [debug-next-check](../feature-catalog/tooling-and-scripts/debug-next-check.md) |
 | 233 | Completion verification workflow | [233](tooling-and-scripts/completion-verification-workflow.md) | [completion-verification-workflow](../feature-catalog/tooling-and-scripts/completion-verification-workflow.md) |
 | 240 | Core workflow infrastructure | [240](tooling-and-scripts/core-workflow-infrastructure.md) | [core-workflow-infrastructure](../feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md) |
 | DBG-SCAF-001 | Debug-delegation scaffold generator | [DBG-SCAF-001](tooling-and-scripts/debug-delegation-scaffold-generator.md) | [debug-delegation-scaffold-generator](../feature-catalog/tooling-and-scripts/debug-delegation-scaffold-generator.md) |
@@ -248,22 +246,24 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 
 ### 7.2 Doctor Commands
 
-Category notes and the retired ID range: [`doctor-commands/README.md`](doctor-commands/README.md).
+Category notes and the retired ID ranges: [`doctor-commands/README.md`](doctor-commands/README.md). The `/doctor:skill-advisor` scenarios live in the system-skill-advisor playbook, the `/doctor:deep-loop` scenarios in the system-deep-loop playbook, the `/doctor:git` scenarios in the sk-git playbook and the `/doctor:mcp` scenarios in the mcp-code-mode playbook.
 
 | Playbook ID | Scenario | Scenario File | Catalog Entry |
 |---|---|---|---|
-| DOC-331 | Doctor deep-loop lazy init | [DOC-331](doctor-commands/doctor-deep-loop-lazy-init.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-332 | Doctor deep-loop empty, no source | [DOC-332](doctor-commands/doctor-deep-loop-empty-no-source.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-333 | Doctor deep-loop convergence | [DOC-333](doctor-commands/doctor-deep-loop-convergence.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
-| DOC-338 | Doctor rebuild G5 failure injection mid-rebuild | [DOC-338](doctor-commands/doctor-rebuild-g5-confirm-failure-injection.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-339 | Doctor rebuild G6 concurrent refusal | [DOC-339](doctor-commands/doctor-rebuild-g6-concurrent.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-340 | Doctor rebuild G7 SIGINT | [DOC-340](doctor-commands/doctor-rebuild-g7-sigint.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-341 | Doctor rebuild G8 migration gap | [DOC-341](doctor-commands/doctor-rebuild-g8-migration-gap.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-342 | Doctor rebuild G9 dashboard | [DOC-342](doctor-commands/doctor-rebuild-g9-dashboard.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-344 | Doctor rebuild tier-aware default | [DOC-344](doctor-commands/doctor-rebuild-tier-aware-default.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-345 | Version migration 3.3.0.0 to 3.4.1.0 | [DOC-345](doctor-commands/version-migration-3-3-0-0-to-3-4-1-0.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-346 | Version migration cleanup legacy | [DOC-346](doctor-commands/version-migration-cleanup-legacy.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
-| DOC-347 | Version migration no-op | [DOC-347](doctor-commands/version-migration-no-op.md) | [doctor-commands overview](../feature-catalog/doctor-commands/category-overview.md) |
+| DOC-349 | Doctor speckit retrieval healthy | [DOC-349](doctor-commands/doctor-speckit-retrieval-healthy.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-350 | Doctor speckit stale index | [DOC-350](doctor-commands/doctor-speckit-stale-index.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-351 | Doctor speckit moved target | [DOC-351](doctor-commands/doctor-speckit-legacy-target.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-352 | Doctor runtime mirrors in sync | [DOC-352](doctor-commands/doctor-runtime-mirrors-in-sync.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-353 | Doctor runtime mirrors drift | [DOC-353](doctor-commands/doctor-runtime-mirrors-drift.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-354 | Doctor env inspect | [DOC-354](doctor-commands/doctor-env-inspect.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-355 | Doctor env save preference | [DOC-355](doctor-commands/doctor-env-save-preference.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-356 | Doctor env secret and per-invocation switches | [DOC-356](doctor-commands/doctor-env-secret-and-per-invocation.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-357 | Doctor update check | [DOC-357](doctor-commands/doctor-update-check.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-358 | Doctor update align | [DOC-358](doctor-commands/doctor-update-align.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-359 | Doctor update apply | [DOC-359](doctor-commands/doctor-update-apply.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-360 | Doctor update rollback | [DOC-360](doctor-commands/doctor-update-rollback.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-361 | Doctor update record-base | [DOC-361](doctor-commands/doctor-update-record-base.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
+| DOC-379 | Doctor update test environment | [DOC-379](doctor-commands/doctor-update-test-environment.md) | [doctor-router-and-manifest-dispatch](../feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md) |
 
 ### 7.3 Spec-Doc Quality and Metadata
 

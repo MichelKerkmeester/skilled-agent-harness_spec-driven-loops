@@ -1477,6 +1477,32 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
         ``,
       ]
     : [];
+  // Detached executors receive one prompt for the whole loop, so repeat the
+  // mode's artifact contract where the per-iteration prompt would have rendered.
+  const iterationTemplateFile = `.skilled/skills/system-deep-loop/${agentName}/assets/prompt-pack-iteration.md.tmpl`;
+  const leafContract = lineage.kind !== 'native'
+    ? loopType === 'review'
+      ? [
+          `CLI OUTPUT CONTRACT (binds every iteration even though per-iteration prompt rendering is already satisfied):`,
+          `Before iteration 1, read ${iterationTemplateFile} and .skilled/agents/${agentName}.md; follow their OUTPUT CONTRACT for each iteration.`,
+          `- The narrative uses Findings by Severity with numbered findings under P0 Findings, P1 Findings, and P2 Findings.`,
+          `- The canonical iteration state record includes findingDetails with one object per finding, each carrying id, severity, and title.`,
+          `- Use only P0, P1, or P2. A positive findingsCount or findingsSummary needs a non-empty findingDetails that lists the findings behind it.`,
+          `- The delta contains the iteration row followed by one {"type":"finding","id":"<id>","severity":"P0|P1|P2","title":"<text>","file":"<path:line>","iteration":N} row per finding.`,
+          `- End the narrative with exactly one final Review verdict: PASS, CONDITIONAL, or FAIL line.`,
+          `- Read the timestamp from the clock when writing and append the state record immediately after its iteration, never in a batch at the end.`,
+          ``,
+        ]
+      : [
+          `CLI OUTPUT CONTRACT (binds every iteration even though per-iteration prompt rendering is already satisfied):`,
+          `Before iteration 1, read ${iterationTemplateFile} and .skilled/agents/${agentName}.md; follow their OUTPUT CONTRACT for each iteration.`,
+          `- The iteration narrative has a ## Findings section with one numbered line per finding.`,
+          `- The delta contains the iteration row followed by one {"type":"finding","id":"<id>","label":"<text>","iteration":N,"sources":["<path or URL>"]} row per finding.`,
+          `- The canonical state record's findingsCount equals the number of findings enumerated for that iteration.`,
+          `- Read the timestamp from the clock when writing and append the state record immediately after its iteration, never in a batch at the end.`,
+          ``,
+        ]
+    : [];
   const hasIterationCap = typeof lineage.iterations === 'number' && lineage.iterations > 0;
   const stopPolicy = options.stopPolicy || 'convergence';
   const stopClause = hasIterationCap && stopPolicy === 'max-iterations'
@@ -1530,6 +1556,7 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage, r
     ...detachedIntro,
     ``,
     ...inProcessDirective,
+    ...leafContract,
     `Read ${skillFile} and execute the ${loopType} loop with these parameters:`,
     ...params,
     ...setupBindings,
@@ -2581,7 +2608,7 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 }
 
 // Provider that fronts each allowlisted Pi model, captured from `pi --list-models`
-// (openai-codex fronts the GPT-6 tunes; minimax fronts its own family; opencode-go fronts
+// (openai fronts the GPT-6 tunes; minimax fronts its own family; opencode-go fronts
 // Qwen 3.8 Max; DevPass fronts DeepSeek V4 Flash under its bare literal since 2026-09-07, for
 // the same flat-price reason GLM moved there — the direct DeepSeek API provider was retired
 // from the roster — and fronts MiMo since 2026-09-23, when the direct Xiaomi provider left the
@@ -2594,8 +2621,8 @@ const PI_MODEL_PROVIDERS = new Map([
   ['opencode-go/deepseek-v4.1-flash', 'opencode-go'],
   ['cline-pass/deepseek-v4.1-flash', 'cline-pass'],
   ['minimax-m3', 'minimax'],
-  ['gpt-6-luna', 'openai-codex'],
-  ['gpt-6-sol', 'openai-codex'],
+  ['gpt-6-luna', 'openai'],
+  ['gpt-6-sol', 'openai'],
   ['mimo-v2.6-pro', 'llmgateway'],
   ['mimo-v2.6-flash', 'llmgateway'],
   ['qwen3.8-max', 'opencode-go'],

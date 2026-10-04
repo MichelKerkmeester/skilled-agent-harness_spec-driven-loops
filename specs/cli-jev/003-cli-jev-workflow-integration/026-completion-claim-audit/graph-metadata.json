@@ -49,18 +49,18 @@
       ".skilled/skills/system-spec-kit/runtime/scripts/completion-claim-audit/score-completion-claims.mjs",
       "runtime/tests/completion-claim-audit.vitest.ts",
       "runtime/scripts/README.md",
-      "changelog/v4.5.0.0.md",
       "feature-catalog/tooling-and-scripts/completion-claim-audit.md",
       "manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md",
       ".skilled/skills/system-spec-kit/runtime/tests/completion-claim-audit.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/scripts/README.md",
       ".skilled/skills/system-spec-kit/SKILL.md",
       ".skilled/skills/system-spec-kit/README.md",
-      ".skilled/skills/system-spec-kit/changelog/v4.5.0.0.md",
       ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/completion-claim-audit.md",
       ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/completion-claim-audit.md",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md"
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".hermes/skills/system-spec-kit/SKILL.md",
+      ".claude/settings.json"
     ],
     "entities": [
       {
@@ -112,12 +112,6 @@
         "source": "derived"
       },
       {
-        "name": "v4.5.0.0.md",
-        "kind": "doc",
-        "path": "changelog/v4.5.0.0.md",
-        "source": "derived"
-      },
-      {
         "name": "completion-claim-audit.md",
         "kind": "doc",
         "path": "feature-catalog/tooling-and-scripts/completion-claim-audit.md",
@@ -139,6 +133,12 @@
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The completion-evidence sentinel decides that a turn claimed completion when one of ten words, `completed`, `resolved`, `fixed`, `finished`, `shipped`, `released`, `deployed`, `implemented`, `occurred` or `happened`, appears in the last 400 characters of the turn (`.skilled/skills/system-spec-kit/runtime/lib/hooks/completion-evidence-sentinel.cjs:64`, `:70`, `:113-119`)",
     "created_at": "2026-09-29T12:42:38Z",
-    "last_save_at": "2026-09-29T19:12:27.740Z",
+    "last_save_at": "2026-10-03T21:30:41.955Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,7 +220,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:532a3961f3167df630405b1c73eb81a14f5992491278e38860d9680f4431ff33",
+    "source_fingerprint": "sha256:565969bc825c2f30532ec52cd65a18b0009973c3243683a44c083f2498a40826",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "495b3eeae7badf626a65546a319b128d5ee07e30407cd6b13d04c4412b80da16",

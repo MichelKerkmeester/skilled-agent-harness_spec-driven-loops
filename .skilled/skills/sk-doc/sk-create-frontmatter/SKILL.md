@@ -232,7 +232,7 @@ conditional on the question being about `version`.
 - **Value lists.** `assets/frontmatter-values.json` holds the `contextType` and `importance_tier` values and aliases. spec-kit's `shared/context-types.ts` and `FRONTMATTER_VALUES` rule, `../shared/scripts/validate_document.py` and the skill-advisor `check-skill-doc-frontmatter.mjs` read it by path, so moving or reshaping it breaks all four.
 - **Post-edit hook.** `.skilled/hooks/post-edit-quality/` resolves the corpus gate by literal path on every qualifying edit. That path is why the scripts stay in the shared tier.
 - **Templates that cite this contract.** `sk-create-skill`'s manifest, reference and asset templates, the feature-catalog and playbook templates, and the `/create:skill` and `/create:agent` workflow assets all point at `assets/frontmatter-templates.md`. A rule changed here changes what they emit.
-- **Doctor budget audit.** `/doctor:speckit skill-budget` and `.skilled/commands/doctor/scripts/audit_descriptions.py` measure the project against the budget this contract documents.
+- **Doctor budget audit.** `/doctor:skill-advisor skill-budget` and `.skilled/commands/doctor/scripts/audit_descriptions.py` measure the project against the budget this contract documents.
 
 ---
 

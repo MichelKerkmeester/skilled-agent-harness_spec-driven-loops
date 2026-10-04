@@ -19,6 +19,12 @@ const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
+const {
+  parseIterationMarkdownFindings,
+  latestIterationRecords,
+  deltaRowIteration,
+  findingKeys,
+} = require('../lib/deep-loop/iteration-findings.cjs');
 
 const SEVERITY_RANK = { P0: 3, P1: 2, P2: 1 };
 
@@ -184,34 +190,6 @@ function readStateLog(root, stateLogPath, label) {
   return records;
 }
 
-function parseIterationMarkdownFindings(content, run, sourcePath) {
-  const lines = content.split(/\r?\n/);
-  const headingIndex = lines.findIndex((line) => /^##\s+Findings\s*$/i.test(line.trim()));
-  if (headingIndex < 0) return [];
-  const sectionLines = [];
-  for (let index = headingIndex + 1; index < lines.length; index += 1) {
-    const line = lines[index].trim();
-    if (/^##\s+/.test(line)) break;
-    sectionLines.push(line);
-  }
-  const subheadingFindings = sectionLines.flatMap((line) => {
-    const match = line.match(/^###\s+\d+\.\s+(.+)$/);
-    return match ? [match[1]] : [];
-  });
-  const findingTexts = subheadingFindings.length > 0
-    ? subheadingFindings
-    : sectionLines.flatMap((line) => {
-      const match = line.match(/^\d+\.\s+(.+)$/);
-      return match ? [match[1]] : [];
-    });
-  return findingTexts.map((text, index) => ({
-      id: `iteration-${run}-finding-${index + 1}`,
-      title: text,
-      text,
-      addedAtIteration: run,
-      _iteration_source: sourcePath,
-    }));
-}
 
 function loadIterationFindings(root, lineageDir, label) {
   const iterationsDir = path.join(lineageDir, 'iterations');
@@ -266,8 +244,7 @@ function loadDeltaFindings(root, lineageDir, label) {
         return;
       }
       if (!record || typeof record !== 'object' || record.type !== 'finding') return;
-      const iterationNumber = Number(record.iteration);
-      const run = Number.isFinite(iterationNumber) ? Math.floor(iterationNumber) : fileRun;
+      const run = deltaRowIteration(record, fileRun);
       // `claim` is the field a reasoning-model lineage writes its finding body under; `summary`
       // is its condensed restatement. Both carry the same durable text the other aliases do,
       // and a finding whose text is unreadable would otherwise be dropped without a trace.
@@ -768,7 +745,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
 
   for (const { label, registry } of lineageData) {
     if (!registry) continue;
-    for (const q of registry.openQuestions ?? []) {
+    for (const q of (Array.isArray(registry.openQuestions) ? registry.openQuestions : [])) {
       const id = q.id || q.question || q.text;
       if (!id) continue;
       if (!openQuestionsById.has(id)) openQuestionsById.set(id, { ...q, _lineages: [label] });
@@ -780,7 +757,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
     // Resolved questions are produced per-lineage by the research reducer but
     // were previously dropped here, under-reporting answered coverage in the
     // merged registry. Collect them with the same id/_lineages discipline.
-    for (const q of registry.resolvedQuestions ?? []) {
+    for (const q of (Array.isArray(registry.resolvedQuestions) ? registry.resolvedQuestions : [])) {
       const id = q.id || q.question || q.text;
       if (!id) continue;
       if (!resolvedQuestionsById.has(id)) resolvedQuestionsById.set(id, { ...q, _lineages: [label] });
@@ -789,7 +766,7 @@ function mergeResearchRegistries(lineageData, options = {}) {
         addLineage(existing, label);
       }
     }
-    for (const d of registry.ruledOutDirections ?? []) {
+    for (const d of (Array.isArray(registry.ruledOutDirections) ? registry.ruledOutDirections : [])) {
       const id = d.id || d.direction;
       if (!id) continue;
       if (!ruledOutById.has(id)) ruledOutById.set(id, { ...d, _lineages: [label] });
@@ -1022,6 +999,7 @@ function buildAttributionMd(lineageData, loopType) {
  */
 function reconstructReviewRegistryFromState(stateRecords, label) {
   if (!Array.isArray(stateRecords)) return null;
+  stateRecords = latestIterationRecords(stateRecords);
   const openFindings = [];
   const resolvedFindings = [];
   for (const record of stateRecords) {
@@ -1151,6 +1129,7 @@ function researchCandidatesFromIteration(record, iterationFindingsByRun = new Ma
  */
 function rebuildResearchRegistryFromState(stateRecords, label, iterationFindingsByRun = new Map(), deltaFindingsByRun = new Map()) {
   if (!Array.isArray(stateRecords)) return null;
+  stateRecords = latestIterationRecords(stateRecords);
   const keyFindings = [];
   let reconstructionGaps = 0;
   for (const record of stateRecords) {
@@ -1225,6 +1204,61 @@ function countOnlyResearchFindings(stateRecords) {
   }, 0);
 }
 
+// The cross-lineage merge keys a research finding by its id or title and drops any
+// entry with neither, so only such entries count as present in a registry.
+function mergeKeepsResearchFinding(finding) {
+  return Boolean(finding) && typeof finding === 'object' && Boolean(finding.id || finding.title);
+}
+
+function keptResearchFindingKeys(findings) {
+  return new Set(findings.filter(mergeKeepsResearchFinding).flatMap(findingKeys));
+}
+
+// Structured findings a state record lists by name, matched against the registry by
+// the same keys the closeout uses, so a registry the closeout would reject for a
+// missing finding is rebuilt here instead.
+function researchStructuredFindingsMissingFromRegistry(stateRecords, registry) {
+  const registryFindings = [registry?.keyFindings, registry?.findings]
+    .find((value) => Array.isArray(value) && value.length > 0) || [];
+  const registryKeys = keptResearchFindingKeys(registryFindings);
+  return latestIterationRecords(stateRecords).reduce((sum, record) => {
+    if (!record || record.type !== 'iteration') return sum;
+    const structured = [record.keyFindings, record.findings]
+      .find((value) => Array.isArray(value) && value.length > 0);
+    if (!structured) return sum;
+    return sum + structured
+      .map(findingKeys)
+      .filter((keys) => keys.length > 0 && !keys.some((key) => registryKeys.has(key)))
+      .length;
+  }, 0);
+}
+
+// Add the rebuilt findings a kept registry does not already hold, for a registry
+// that is larger than the rebuild but still misses findings the state names. The
+// rebuild's gap survives, and only the added findings raise the source count, which
+// falls back to the registry size the way the cross-lineage merge reads it.
+function appendMissingResearchFindings(registry, reconstructed) {
+  const kept = [registry.keyFindings, registry.findings]
+    .find((value) => Array.isArray(value) && value.length > 0) || [];
+  const keptKeys = keptResearchFindingKeys(kept);
+  const added = reconstructed.keyFindings.filter((finding) => !findingKeys(finding).some((key) => keptKeys.has(key)));
+  const keyFindings = [...kept, ...added];
+  const metrics = registry.metrics && typeof registry.metrics === 'object' ? registry.metrics : {};
+  return {
+    ...registry,
+    keyFindings,
+    metrics: {
+      ...metrics,
+      keyFindings: keyFindings.length,
+      sourceFindings: (Number(metrics.sourceFindings) || kept.length) + added.length,
+      reconstructionGaps: Math.max(
+        Number(metrics.reconstructionGaps) || 0,
+        Number(reconstructed.metrics?.reconstructionGaps) || 0,
+      ),
+    },
+  };
+}
+
 function mergeReconstructedResearchRegistry(registry, reconstructed) {
   if (!registry) return reconstructed;
   return {
@@ -1294,7 +1328,9 @@ async function main() {
     if (!registry && compatibilityRegistryName) {
       registry = readJsonFile(artifactRoot, path.join(lineageDir, compatibilityRegistryName), `lineage ${label} compatibility registry`);
     }
-    const stateRecords = readStateLog(artifactRoot, path.join(lineageDir, stateLogName), `lineage ${label} state log`);
+    const stateRecords = latestIterationRecords(
+      readStateLog(artifactRoot, path.join(lineageDir, stateLogName), `lineage ${label} state log`),
+    );
     const iterationFindingsByRun = loadIterationFindings(artifactRoot, lineageDir, label);
     // Leaf-only review/research lineages (orchestrator-managed direct-leaf convention) may carry
     // active findings only in their state log's findingDetails, with no registry file.
@@ -1306,7 +1342,10 @@ async function main() {
     }
     const registryCount = researchRegistryFindingCount(registry);
     const countOnlyTotal = countOnlyResearchFindings(stateRecords);
-    if (loopType === 'research' && (registryCount === 0 || registryCount < countOnlyTotal)) {
+    const structuredMissing = loopType === 'research'
+      ? researchStructuredFindingsMissingFromRegistry(stateRecords, registry)
+      : 0;
+    if (loopType === 'research' && (registryCount === 0 || registryCount < countOnlyTotal || structuredMissing > 0)) {
       // Reconstruction can throw when one iteration's findingsCount contradicts its
       // structured findings array. That must degrade only this lineage — left
       // uncaught, the throw unwinds out of this per-lineage loop and aborts the merge
@@ -1329,13 +1368,19 @@ async function main() {
       }
       if (reconstructed && (registryCount === 0 || reconstructed.keyFindings.length > registryCount)) {
         registry = mergeReconstructedResearchRegistry(registry, reconstructed);
+      } else if (reconstructed && structuredMissing > 0) {
+        registry = appendMissingResearchFindings(registry, reconstructed);
       } else if (registryCount > 0) {
-        // A kept registry names its gap whether the rebuild came back short or threw.
+        // A kept registry names its gap whether the rebuild came back short or threw,
+        // and never lowers a gap it already recorded.
         registry = {
           ...registry,
           metrics: {
             ...(registry.metrics && typeof registry.metrics === 'object' ? registry.metrics : {}),
-            reconstructionGaps: Math.max(0, countOnlyTotal - registryCount),
+            reconstructionGaps: Math.max(
+              Number(registry.metrics?.reconstructionGaps) || 0,
+              countOnlyTotal - registryCount,
+            ),
           },
         };
       }

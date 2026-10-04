@@ -22,6 +22,7 @@ const path = require('path');
 
 const scenarios = require('./validate-compiled-routing-scenarios.cjs');
 const { spawnClassifierCall } = require('../../../cli-classifier/shared/scripts/jev-transport.mjs');
+const scorerReport = require('../../../cli-classifier/shared/scripts/scorer-report.mjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -915,6 +916,80 @@ function scoreColumn(labeled, answersById) {
 }
 
 /**
+ * Count the probability-aware column: the measure rule is scoreColumn's, but
+ * a counted row's pick is the key its measured votes' probabilities favor
+ * rather than the key they name most often. Each counted row also feeds the
+ * decided-subset tally and one bootstrap delta against the first-alternative
+ * baseline.
+ *
+ * @param {Array<{ id: string, hub: string, alternatives: Array<string>, value: string }>} labeled - Kept rows.
+ * @param {Map<string, Array<string | null>>} picks - Row id to submitted keys in call order.
+ * @param {Map<string, Array<{ pick: string | null, pickProb: number | null, noneProb: number | null }>>} votes - Row id to measured votes and their probabilities.
+ * @returns {{ probabilityAware: object, bootstrap: object }} The probability-aware column and its cluster bootstrap interval.
+ */
+function scoreProbabilityArm(labeled, picks, votes) {
+  const K = labeled.length;
+  const pairs = [];
+  const items = [];
+  const probabilityPicks = new Map();
+  let M = 0;
+  let A = 0;
+  let B = 0;
+  let W = 0;
+  let L = 0;
+  let F = 0;
+
+  for (const row of labeled) {
+    const answers = picks.get(row.id);
+    const pick = scorerReport.probabilityAwarePick(votes.get(row.id), NONE_KEY);
+    probabilityPicks.set(row.id, typeof pick === 'string' ? pick : null);
+    if (!Array.isArray(answers) || answers.length < EARLY_STOP_ORDERS || answers.length > ORDERS) continue;
+    if (!answers.every((answer) => typeof answer === 'string')) continue;
+    if (typeof pick !== 'string') continue;
+
+    M += 1;
+    F += answers.length - modalPick(answers).top;
+    const right = pick === row.value;
+    const baseRight = row.alternatives[0] === row.value;
+    if (right) A += 1;
+    if (baseRight) B += 1;
+    if (right && !baseRight) W += 1;
+    if (baseRight && !right) L += 1;
+    pairs.push({ pick, gold: row.value });
+    items.push({ cluster: row.hub, delta: Number(right) - Number(baseRight) });
+  }
+
+  const counts = { K, M, A, B, W, L, F };
+  const decision = decideVerdict(counts);
+  const subset = scorerReport.decidedSubset(pairs, NONE_KEY);
+  const slack = scorerReport.marginSlack({ A, B, M });
+  const seedText = labeled.map((row) => `${row.id}\u0000${probabilityPicks.get(row.id) ?? ''}`).join('\n');
+  const bootstrap = scorerReport.clusterBootstrapInterval(items, seedText);
+
+  return {
+    probabilityAware: {
+      K,
+      M,
+      A,
+      B,
+      W,
+      L,
+      F,
+      outcome: decision.outcome,
+      reason: decision.reason,
+      p: decision.p,
+      line: verdictLine('probability-aware', counts, decision),
+      decidedCount: subset.decidedCount,
+      decidedCorrect: subset.decidedCorrect,
+      decidedAccuracy: subset.decidedAccuracy,
+      marginSlack: slack,
+      picks: Object.fromEntries(probabilityPicks)
+    },
+    bootstrap
+  };
+}
+
+/**
  * @param {number} p - Probability in [0, 1].
  * @returns {string} Four significant digits.
  */
@@ -1107,18 +1182,19 @@ function optionArgs(keys, texts) {
 }
 
 /**
- * Judge one choice call: the pick it named, that pick's probability, and
- * whether the call measured. A timeout is its own status. Any other non-zero
- * exit, an unparseable body, or a choice outside the offered keys is
- * unmeasured.
+ * Judge one choice call: the pick it named, that pick's probability, the
+ * probability the body gives the none key, and whether the call measured. A
+ * timeout is its own status. Any other non-zero exit, an unparseable body, or
+ * a choice outside the offered keys is unmeasured.
  *
  * @param {{ code: number|null, stdout: string, timedOut: boolean }} result - One spawnCall outcome.
  * @param {Array<string>} keys - The keys this call offered.
- * @returns {{ pick: string|null, pickProb: number|null, status: string }} The judged fields.
+ * @returns {{ pick: string|null, pickProb: number|null, noneProb: number|null, status: string }} The judged fields.
  */
 function judgeChoice(result, keys) {
   let pick = null;
   let pickProb = null;
+  let noneProb = null;
   let status = 'unmeasured';
   if (result.timedOut) {
     status = 'unmeasured_timeout';
@@ -1135,10 +1211,11 @@ function judgeChoice(result, keys) {
     if (keys.includes(choice)) {
       pick = choice;
       pickProb = parsed?.answers?.answer?.probabilities?.[pick] ?? null;
+      noneProb = parsed?.answers?.answer?.probabilities?.[NONE_KEY] ?? null;
       status = 'measured';
     }
   }
-  return { pick, pickProb, status };
+  return { pick, pickProb, noneProb, status };
 }
 
 /**
@@ -1156,7 +1233,7 @@ function judgeChoice(result, keys) {
  * @param {Array<{ id: string, hub: string, prompt: string, alternatives: Array<string>, value: string }>} labeled - Rows carrying a resolvable label.
  * @param {{ path: string, provider: string }} gate - Passed jev gate result.
  * @param {{ out: (line: string) => void, env: Record<string, string | undefined>, outDir: string | null, repoRoot: string, timeoutMs: number, backoffMs: number }} ctx - Output sink, environment, records directory, repository root, call timeout and exit-4 retry wait.
- * @returns {Promise<object>} The counts with outcome, reason, p and the verdict line, or `{ stopped }`.
+ * @returns {Promise<object>} The counts with outcome, reason, p, the verdict line, the arm's analysis and its model tuple, or `{ stopped }`.
  */
 async function runJevArm(labeled, gate, ctx) {
   const { out, env, outDir, repoRoot, timeoutMs, backoffMs } = ctx;
@@ -1192,12 +1269,14 @@ async function runJevArm(labeled, gate, ctx) {
       writeCall(outDir, {
         kind: fields.kind,
         backend: 'jev',
+        transport: result.transport ?? 'jev',
         row_id: fields.row_id,
         order: fields.order,
         wall_ms: result.wallMs,
         exit_code: result.code,
         pick: null,
         pick_prob: null,
+        none_prob: null,
         status: 'unmeasured',
         jev_version: '0.6.2',
         provider,
@@ -1235,12 +1314,14 @@ async function runJevArm(labeled, gate, ctx) {
   writeCall(outDir, {
     kind: 'auth_test',
     backend: 'jev',
+    transport: auth.transport ?? 'jev',
     row_id: null,
     order: null,
     wall_ms: auth.wallMs,
     exit_code: auth.code,
     pick: null,
     pick_prob: null,
+    none_prob: null,
     status: auth.code === 0 ? 'measured' : 'unmeasured',
     jev_version: '0.6.2',
     provider,
@@ -1252,6 +1333,7 @@ async function runJevArm(labeled, gate, ctx) {
   out(`jev: auth_test provider=${provider} model=${model}`);
 
   const picks = new Map();
+  const votes = new Map();
   const inferredThirdOrderIds = [];
   let choiceCalls = 0;
   let finished = 0;
@@ -1259,6 +1341,7 @@ async function runJevArm(labeled, gate, ctx) {
     const keys = [...row.alternatives, NONE_KEY];
     const texts = describeModes(repoRoot, row.hub, keys);
     const rowPicks = [];
+    const rowVotes = [];
     const orders = rotations(keys);
 
     for (let order = 0; order < orders.length; order += 1) {
@@ -1274,7 +1357,10 @@ async function runJevArm(labeled, gate, ctx) {
       if (fields.status === 'measured') {
         try {
           const body = JSON.parse(result.stdout);
-          if (typeof body.model === 'string') model = body.model;
+          // The outcome names the model that answered; the body can name the
+          // configured alias the transport was asked for instead.
+          if (typeof result.model === 'string') model = result.model;
+          else if (typeof body.model === 'string') model = body.model;
         } catch {
           // judgeChoice already parsed this measured body; a failure here leaves the model as it was.
         }
@@ -1282,12 +1368,14 @@ async function runJevArm(labeled, gate, ctx) {
       writeCall(outDir, {
         kind: 'choice',
         backend: 'jev',
+        transport: result.transport ?? 'jev',
         row_id: row.id,
         order,
         wall_ms: result.wallMs,
         exit_code: result.code,
         pick: fields.pick,
         pick_prob: fields.pickProb,
+        none_prob: fields.noneProb,
         status: fields.status,
         jev_version: '0.6.2',
         provider,
@@ -1300,9 +1388,11 @@ async function runJevArm(labeled, gate, ctx) {
       else if (result.code === 130) stopLine = 'jev arm stopped: interrupted';
       if (stopLine !== undefined) return stop(stopLine, finished);
       rowPicks.push(fields.pick);
+      rowVotes.push({ pick: fields.pick, pickProb: fields.pickProb, noneProb: fields.noneProb });
     }
 
     picks.set(row.id, rowPicks);
+    votes.set(row.id, rowVotes);
     finished += 1;
   }
 
@@ -1312,6 +1402,11 @@ async function runJevArm(labeled, gate, ctx) {
   out(line);
   out('jev: calls=' + calls + ' choice_calls=' + choiceCalls
     + ' early_stops=' + inferredThirdOrderIds.length);
+  const analysis = scoreProbabilityArm(labeled, picks, votes);
+  out(analysis.probabilityAware.line);
+  out(scorerReport.decidedSubsetLine('probability-aware', analysis.probabilityAware));
+  out(scorerReport.marginSlackLine('probability-aware', analysis.probabilityAware.marginSlack));
+  out(scorerReport.bootstrapLine('probability-aware', analysis.bootstrap));
   return {
     ...counts,
     outcome: decision.outcome,
@@ -1321,7 +1416,9 @@ async function runJevArm(labeled, gate, ctx) {
     calls,
     choiceCalls,
     inferredThirdOrderIds,
-    picks: Object.fromEntries(picks)
+    picks: Object.fromEntries(picks),
+    modelTuple: { jevVersion: '0.6.2', provider, model },
+    analysis
   };
 }
 
@@ -1530,10 +1627,20 @@ async function runScoreCommand(args, deps) {
       options: digest,
       scorer: { sha256: sha256File(__filename) }
     };
+    const dataPin = scorerReport.pinRowSet(
+      labeled.map((row) => ({
+        id: row.id,
+        hub: row.hub,
+        value: row.value,
+        promptSha256: crypto.createHash('sha256').update(row.prompt).digest('hex')
+      })),
+      { optionSetSha256: digest.sha256 }
+    );
     fs.mkdirSync(args.out, { recursive: true });
     const report = {
       buildIdentity: replay.buildIdentity,
       digests,
+      dataPin,
       rows: rowRecords,
       labels: labelRecords,
       options,
@@ -1577,6 +1684,11 @@ async function main(argv, deps = {}) {
 
   if (args.jev && !args.out) {
     err('error: --jev needs --out <dir>');
+    return 2;
+  }
+
+  if (args.jev && scorerReport.outDirectoryHoldsRun(args.out)) {
+    err('error: --out directory already holds a run');
     return 2;
   }
 
@@ -1679,6 +1791,7 @@ module.exports = {
   modalPick,
   decideVerdict,
   scoreColumn,
+  scoreProbabilityArm,
   formatP,
   verdictLine,
   which,
