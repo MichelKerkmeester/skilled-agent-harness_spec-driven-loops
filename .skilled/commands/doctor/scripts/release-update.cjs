@@ -1005,6 +1005,28 @@ function normalizeBaseUnits(records, units, rewritten = new Set()) {
   return result;
 }
 
+function releaseRenames(repo, baseCommit, releaseCommit, pathspec) {
+  if (!baseCommit || !releaseCommit) return new Map();
+  const result = gitTry(repo, [
+    'diff', '-M', '--name-status', '-z', baseCommit, releaseCommit, '--', pathspec,
+  ]);
+  if (!result.ok) return new Map();
+  const records = result.value.split('\0');
+  const renames = new Map();
+  for (let index = 0; index < records.length;) {
+    const status = records[index++];
+    if (!status) break;
+    if (status.startsWith('R')) {
+      const oldPath = records[index++];
+      const newPath = records[index++];
+      if (oldPath && newPath) renames.set(oldPath, newPath);
+    } else {
+      index += status.startsWith('C') ? 2 : 1;
+    }
+  }
+  return renames;
+}
+
 function buildReport(repo, options) {
   const context = releaseContext(repo, options);
   const recordedRaw = loadJson(path.join(repo, BASE_FILE), { units: {} }).units || {};
@@ -1061,6 +1083,16 @@ function buildReport(repo, options) {
     const localUnit = entriesForUnit(context.localMap, unit);
     if (hasPresentEntry(localUnit)) presentLocalUnits.add(unitKey(unit));
     const releaseUnit = entriesForUnit(context.targetMap, unit);
+    const hasRemovedPaths = [...baseFiles.keys()].some((filePath) => !releaseUnit.has(filePath));
+    const hasAddedPaths = [...releaseUnit.keys()].some((filePath) => !baseFiles.has(filePath));
+    const renames = hasRemovedPaths && hasAddedPaths
+      ? releaseRenames(
+        repo,
+        base.commit,
+        context.releaseCommit,
+        unit.kind === 'root' ? '.skilled' : '.skilled/' + unit.prefix,
+      )
+      : new Map();
     const paths = [...new Set([...baseFiles.keys(), ...localUnit.keys(), ...releaseUnit.keys()])]
       .sort();
     const fileReports = [];
@@ -1098,6 +1130,13 @@ function buildReport(repo, options) {
       };
       fileReports.push(report);
       globalFiles.push(report);
+    }
+    for (const [oldPath, newPath] of renames) {
+      const oldFile = fileReports.find((file) => file.path === oldPath);
+      const newFile = fileReports.find((file) => file.path === newPath);
+      if (!oldFile || !newFile) continue;
+      oldFile.renamedTo = newPath;
+      newFile.renamedFrom = oldPath;
     }
     let status = unitStatus(fileReports, base, localUnit, releaseUnit);
     if (base.release && context.release && !['current', 'local', 'blocked'].includes(status)
@@ -1268,6 +1307,11 @@ function evidenceCard(repo, file, local, unit, merge) {
   const changelogRationale = changelogs.length
     ? changelogs.map((entry) => entry.path + '\n' + entry.content).join('\n\n')
     : 'no added changelog entry for this unit';
+  const rename = file.renamedFrom
+    ? file.renamedFrom + ' -> ' + file.path
+    : file.renamedTo
+      ? file.path + ' -> ' + file.renamedTo
+      : 'none';
   return [
     '# Release evidence: ' + file.path,
     '',
@@ -1280,6 +1324,7 @@ function evidenceCard(repo, file, local, unit, merge) {
     '- Local mode: ' + (file.local ? file.local.mode : 'absent'),
     '- Release blob: ' + (file.release ? file.release.blob : 'absent'),
     '- Release mode: ' + (file.release ? file.release.mode : 'absent'),
+    '- Rename: ' + rename,
     '- Merge summary: ' + (merge ? merge.kind : 'not applicable'),
     '- Changelog rationale: ' + changelogRationale,
     '- Recommended decision: ' + (recommendation(file, unit) || 'review'),

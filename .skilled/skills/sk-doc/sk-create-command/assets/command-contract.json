@@ -200,7 +200,7 @@
       "input": {
         "required": true,
         "gate_owner": "router",
-        "argument_hint": "per-command: <target> [flags] | list | ? (speckit); <install [--runtime <name>]|debug [--fix]> (mcp); [--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap] (rebuild); [check|align|apply] [--json] [--release=<tag>] [--scope=all|<unit,...>] [--offline] [--dry-run] [--decisions=<path>] (update); [list | <section> | <VARIABLE>] [--dry-run] (env)"
+        "argument_hint": "per-command: <target> [flags] | list | ? (speckit); <install [--runtime <name>]|debug [--fix]> (mcp); [--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap] (rebuild); [check|align|apply|rollback|record-base] [--release=<tag>] [--scope=all|<unit,...>] [--remote=<name-or-url>] [--dry-run] [flags] (update); [list | <section> | <VARIABLE>] [--dry-run] (env)"
       },
       "execution_targets": [
         { "selector": "<target> resolved via _routes.yaml", "target": ".skilled/commands/doctor/assets/doctor-<target>.yaml" },

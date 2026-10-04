@@ -48,6 +48,7 @@
       "implementation-summary.md",
       ".skilled/skills/sk-code/sk-code-opencode/assets/checklists/javascript-checklist.md",
       ".skilled/release/.gitignore",
+      ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
       ".skilled/commands/doctor/scripts/release-update.cjs",
       ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
       ".skilled/commands/doctor/update.md",
@@ -59,8 +60,7 @@
       ".skilled/commands/doctor/assets/doctor-update-presentation.txt",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
-      ".skilled/commands/doctor/scripts/README.md",
-      ".skilled/commands/doctor/scripts/tests/README.md"
+      ".skilled/commands/doctor/scripts/README.md"
     ],
     "entities": [
       {
@@ -103,6 +103,12 @@
         "name": ".gitignore",
         "kind": "file",
         "path": ".skilled/release/.gitignore",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-contract.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-update-contract.test.cjs",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/doctor:update` is not safe to build on yet",
     "created_at": "2026-10-03T21:06:40Z",
-    "last_save_at": "2026-10-04T00:24:51.698Z",
+    "last_save_at": "2026-10-04T01:12:15.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c03043316b5144272be14ed9cfcef42eb3ea75df81afca5f8a81fb3177ea7844",
+    "source_fingerprint": "sha256:b886c3e2008073ad1826bcd50937788a32eaf9e035ccb9369871204479f13332",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d22b9ff0f2775959e9b4e5be206c0ca0213ae6815507d7ad6d03a45d4a1f08f2",
       "plan.md": "f95e85645538246705bfe3a329dc1663f19bd6c253b40f9f3b57c786661d9cb2",
-      "tasks.md": "d6723f9dd8b72d951372ef96c289b8ce9f2fb725cd9ad065bb1774514d1c0beb",
+      "tasks.md": "70f571be12eec5fa204faf4c58946c03de580745beee515d227b25027efb1832",
       "implementation-summary.md": "172d9af9cb2009af142a06dbd11e29b4ef9334f75b2127219615cafa9b62bf55"
     },
     "last_active_at": null

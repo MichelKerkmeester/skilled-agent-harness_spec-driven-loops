@@ -54,11 +54,12 @@ field_handling:
     release: "--release <tag> when supplied"
     scope: "--scope <value> when supplied"
     remote: "Pass --remote <value> when supplied. Otherwise use the remote recorded in base.json, then origin."
-    offline: "--offline when requested"
+    offline: "Pass --offline when requested. An offline check reports upstream.status unknown and sets upstream.error to offline mode."
     include_prerelease: "--include-prerelease when requested; latest-upstream resolution otherwise takes stable vN.N.N.N tags only, and a tag named with --release is used as given"
     repository: "--repo ."
   status_values:
     unit: [current, local, update, new, customized, conflict, removed, blocked, downgrade, unknown]
+    report: [current, updates-available, blocked, unknown]
     rule: "Treat only the listed values as known; preserve any unexpected value as UNKNOWN and report it."
 
 mutation_boundaries:
@@ -79,7 +80,7 @@ state_log_schema:
   end: "ISO-8601"
   duration_seconds: "number"
   release: "string|null"
-  upstream_status: "available|unknown|offline"
+  upstream_status: "known|unknown"
   status_counts: "map computed from the units array; counts.units is checked against the row total"
   final_status: "ok|unknown|failed"
 
@@ -116,7 +117,7 @@ workflow:
       - units
       - files
       - counts
-    file_fields: [path, unit, class, conflictKind, regenerate, generator, base, local, release]
+    file_fields: [path, unit, class, conflictKind, regenerate, generator, renamedFrom, renamedTo, base, local, release]
     unit_fields: [key, name, prefix, kind, status, baseSource, baseRelease, baseTree, releaseTree, classCounts, regenerate, files, changelogs]
     unit_identity: "A unit is identified by its key, <kind>:<name> (kind is root, skill, command or directory), because a skill hub may share its name with a top-level directory. file.unit and baseRecording.units hold keys; join files to units on unit.key, never on name alone."
     generated_class: "A file whose difference only a generator made (a leaf manifest, the trigger index and its sidecars, a compiled-route activation manifest, or a graph-metadata change confined to its derived block) reports class generated. It never makes its unit customized; apply leaves its bytes alone and names its generator under followUps.regenerate."
@@ -147,6 +148,11 @@ workflow:
   phase_5_terminal_status:
     approval: none
     fields: [command, start, end, duration_seconds, release, upstream_status, status_counts, final_status]
+    report_status_mapping:
+      current: "STATUS=OK"
+      updates-available: "STATUS=OK"
+      blocked: "STATUS=UNKNOWN and name the blocked units"
+      unknown: "STATUS=UNKNOWN"
     terminal_rule: "Return a terminal status without persisting a log file; the check action's mutation boundary allows no checkout path writes."
 
 terminal_statuses:
