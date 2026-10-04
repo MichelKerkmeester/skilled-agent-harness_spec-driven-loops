@@ -27,7 +27,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 27 deterministic scenarios across 8 categories validating the `mcp-code-mode` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
+This playbook provides 31 deterministic scenarios across 9 categories validating the `mcp-code-mode` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
 
 ### Realistic Test Model
 
@@ -491,7 +491,69 @@ Expected signals: Step 1: unit-test suite reports 16/16 assertions passed with e
 
 ---
 
-## 15. AUTOMATED TEST CROSS-REFERENCE
+## 15. DOCTOR COMMANDS
+
+This category covers 4 scenario summaries for `/doctor:mcp` while the linked feature files remain the canonical execution contract. Run `install` and `debug --fix` against a disposable copy, because both write configuration. Category notes: [doctor-commands/README.md](doctor-commands/README.md).
+
+### DOC-375 | Doctor mcp install
+
+#### Description
+
+Prove the install workflow builds Code Mode when needed, writes the Code Mode manual and registers the selected runtime, with an explicit approval before each write.
+
+#### Scenario Contract
+
+Prompt: `Install Code Mode and register it in my runtime.`
+
+Expected signals: The setup dashboard renders `DOCTOR MCP SETUP` with `Sub-action: install`, `Workflow: .skilled/commands/doctor/assets/doctor-mcp-install.yaml`, `Runtime: claude`, `Fix mode: n/a`, the presentation path and `Next: load workflow YAML`. The assessment block `CODE MODE INSTALL ASSESSMENT` carries one Code Mode row with its Build, UTCP config and Runtime wiring cells, followed by the menu `Assessment complete.
+
+#### Test Execution
+> **Feature File:** [DOC-375](../manual-testing-playbook/doctor-commands/doctor-mcp-install.md)
+
+### DOC-376 | Doctor mcp debug
+
+#### Description
+Prove every check is reported with a PASS, WARN or FAIL status and a detail, that the findings and the Hermes note are shown, and that the run writes nothing.
+
+#### Scenario Contract
+Prompt summary: `Diagnose Code Mode and tell me what is wrong, without changing anything.`
+
+Expected signals: The setup dashboard renders `DOCTOR MCP SETUP` with `Sub-action: debug`, `Workflow: .skilled/commands/doctor/assets/doctor-mcp-debug.yaml`, `Runtime: n/a`, `Fix mode: false`, the presentation path and `Next: load workflow YAML`. Step 1 runs exactly `bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json`, and the `--fix` flag is never passed to the script.
+
+#### Test Execution
+> **Feature File:** [DOC-376](../manual-testing-playbook/doctor-commands/doctor-mcp-debug.md)
+
+### DOC-377 | Doctor mcp debug fix
+
+#### Description
+Prove a failing check is repaired only after explicit approval, that a declined repair changes nothing, and that the approved repair is validated and rechecked.
+
+#### Scenario Contract
+Prompt summary: `Code Mode is broken. Fix it, but ask me before changing anything.`
+
+Expected signals: The setup dashboard renders `DOCTOR MCP SETUP` with `Sub-action: debug`, `Workflow: .skilled/commands/doctor/assets/doctor-mcp-debug.yaml`, `Runtime: n/a` and `Fix mode: true`. Step 1 runs exactly `bash .skilled/commands/doctor/scripts/mcp-doctor.sh --json` and never passes `--fix` or any other argument to the script.
+
+#### Test Execution
+> **Feature File:** [DOC-377](../manual-testing-playbook/doctor-commands/doctor-mcp-debug-fix.md)
+
+### DOC-378 | Doctor mcp target menu
+
+#### Description
+
+Prove a missing sub-action shows the menu and waits for an explicit reply, and that a cross-sub-action flag is refused before any workflow loads.
+
+#### Scenario Contract
+
+Prompt: `Set up or check Code Mode for me.`
+
+Expected signals: The bare `/doctor:mcp` invocation binds no sub-action, and the command does not infer one from conversation history, open files, earlier runs, runtime config state or repository state. The presentation contract's startup menu renders as `What do you want to do with Code Mode?` with the entries `1) Install or configure`, `2) Debug and repair` and `X) Cancel`, and the run stops and waits.
+
+#### Test Execution
+> **Feature File:** [DOC-378](../manual-testing-playbook/doctor-commands/doctor-mcp-target-menu.md)
+
+---
+
+## 16. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
@@ -503,7 +565,7 @@ Expected signals: Step 1: unit-test suite reports 16/16 assertions passed with e
 
 ---
 
-## 16. SCENARIO DIRECTORY
+## 17. SCENARIO DIRECTORY
 
 > Navigation index only. Per-scenario routing gold lives in each feature file's YAML frontmatter (`expected_workflow_mode` + `expected_leaf_resources`); this list is not a machine-parsed routing table.
 
@@ -557,3 +619,10 @@ Expected signals: Step 1: unit-test suite reports 16/16 assertions passed with e
 ### PLUGINS AND HOOKS
 
 - mcp-route-guard: [MCP Route Guard](../manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md)
+
+### DOCTOR COMMANDS
+
+- DOC-375: [Doctor mcp install](../manual-testing-playbook/doctor-commands/doctor-mcp-install.md)
+- DOC-376: [Doctor mcp debug](../manual-testing-playbook/doctor-commands/doctor-mcp-debug.md)
+- DOC-377: [Doctor mcp debug fix](../manual-testing-playbook/doctor-commands/doctor-mcp-debug-fix.md)
+- DOC-378: [Doctor mcp target menu](../manual-testing-playbook/doctor-commands/doctor-mcp-target-menu.md)
