@@ -55,6 +55,10 @@ contextType: "general"
 - [x] T008 Rerun the baseline suites and compare counts
 - [x] T009 Luna read-only review of the code diff, fix any P0 or P1
 - [x] T010 Validate the packet and write the summary
+- [x] T011 Narrow the hub keywords and update the advisor divergence ledger (`SKILL.md`, `local-native-approved-divergences.json`)
+- [x] T012 Add the install step (`README.md`, `SKILL.md`)
+- [x] T013 Check in the injection screen report (`benchmark/reports/2026-10-03--injection-screen--jev-pi-default/`)
+- [x] T014 Release `v0.8.0.0` (`changelog/v0.8.0.0.md` and the hub version fields)
 <!-- /ANCHOR:phase-3 -->
 
 ---

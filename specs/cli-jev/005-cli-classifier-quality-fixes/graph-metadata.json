@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The research in `specs/cli-jev/004-cli-classifier-quality-research/research/research.md` confirmed eleven findings in the shipped cli-classifier work",
     "created_at": "2026-10-04T14:13:20Z",
-    "last_save_at": "2026-10-04T14:34:59.411Z",
+    "last_save_at": "2026-10-04T19:17:28.812Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d3c38434cc4b5c414c2132ffcebc0f0bd8d51c2b2af803d08af33d9b040127e1",
+    "source_fingerprint": "sha256:76b8584c14f06695b3704207a30f381df051277e7d294b4cc95ae122168a403a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1f992e883dcc85546898d49877cacc3f7de2faf7436f943269a3c64eab74ecb4",
+      "spec.md": "b93f9ef8e22c904ae805b56cbd1f30a8869285186a47cba3e713b81e283d5612",
       "plan.md": "2b3254cebf04aab49f9334dc60e0e4ad333bf23e15b37668a482a1925dadd9b3",
-      "tasks.md": "9a5956a1cf0a6ccd55a7a693bbaf8554c0c28eea2555f765a6050e2cd42bbf24",
-      "implementation-summary.md": "96e550f60ec87878868717eacdd233c87cec3d4a2fd4f5c17dfd20396ece4df9"
+      "tasks.md": "227fc2a0693141265fef0ed80b2fff6435658c70dea4f99fe1fe15f473b84c72",
+      "implementation-summary.md": "a85f2ea14e991e41ca2c6eb008c90aee5bc672f0215698ff41e74f75503460d4"
     },
     "last_active_at": null
   }

@@ -50,9 +50,14 @@ Every required finding is fixed and proven by the validator or a failing-first t
 - Guard `choiceRequestFrom` against a missing question and default `spawnClassifierCall` `env` to `process.env`, each with a test (CQ-04, CQ-05).
 - Rewrite `shared/README.md`, fix the 41-case count and the 0.75 review band (CQ-06, CQ-07, CQ-08, CQ-12).
 
+### Amendment (operator, 2026-10-04: "fix optionals")
+- Narrow the hub keywords so a prompt that only says "score" stops reaching cli-classifier, and drop the resolved advisor divergence entry (CQ-11).
+- Add the `jev` install step to the hub README and SKILL (CQ-10).
+- Check the latest live injection screen run into `benchmark/reports/` and index it.
+- Release hub `v0.8.0.0` with a changelog entry and current metadata dates (CQ-09).
+
 ### Out of Scope
-- A `v0.8.0.0` changelog, the hub install line and a checked-in injection screen report - each waits for an operator call.
-- The advisor "score" misroute - it belongs to system-skill-advisor.
+- New live classifier calls. The report curates a run that already exists.
 
 ### Files to Change
 
