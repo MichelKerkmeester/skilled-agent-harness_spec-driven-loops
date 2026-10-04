@@ -397,3 +397,306 @@ describe('verify-iteration ledger-backing gate (structural, default-on)', () => 
     expect(r.ledgerBacking.status).toBe('not-enforced');
   });
 });
+
+describe('verify-iteration findings enumeration', () => {
+  let findingsDir: string;
+
+  beforeEach(() => {
+    findingsDir = fs.mkdtempSync(path.join(os.tmpdir(), 'verify-iter-findings-'));
+    process.env.DEEP_LOOP_LEDGER_BACKING_GATE = '0';
+  });
+
+  afterEach(() => {
+    fs.rmSync(findingsDir, { recursive: true, force: true });
+    delete process.env.DEEP_LOOP_LEDGER_BACKING_GATE;
+  });
+
+  function writeResearchArtifacts(
+    artifactDir: string,
+    record: Record<string, unknown>,
+    narrative: string,
+    deltaRecords: Record<string, unknown>[],
+  ): void {
+    const iteration = Number(record.iteration);
+    const nnn = String(iteration).padStart(3, '0');
+    fs.mkdirSync(path.join(artifactDir, 'iterations'), { recursive: true });
+    fs.mkdirSync(path.join(artifactDir, 'deltas'), { recursive: true });
+    fs.writeFileSync(path.join(artifactDir, 'iterations', `iteration-${nnn}.md`), narrative);
+    fs.writeFileSync(path.join(artifactDir, 'deep-research-state.jsonl'), `${JSON.stringify(record)}\n`);
+    fs.writeFileSync(
+      path.join(artifactDir, 'deltas', `iter-${nnn}.jsonl`),
+      `${deltaRecords.map((delta) => JSON.stringify(delta)).join('\n')}\n`,
+    );
+  }
+
+  function researchRecord(iteration: number, overrides: Record<string, unknown> = {}) {
+    return {
+      type: 'iteration',
+      iteration,
+      mode: 'research',
+      target_agent: 'deep-research',
+      agent_definition_loaded: true,
+      resolved_route: 'Resolved route: mode=research target_agent=deep-research',
+      run: iteration,
+      status: 'complete',
+      ...overrides,
+    };
+  }
+
+  function writeReviewArtifacts(
+    artifactDir: string,
+    record: Record<string, unknown>,
+    narrative: string,
+    extraDeltaRows: Record<string, unknown>[] = [],
+  ): void {
+    const iteration = Number(record.iteration);
+    const nnn = String(iteration).padStart(3, '0');
+    fs.mkdirSync(path.join(artifactDir, 'iterations'), { recursive: true });
+    fs.mkdirSync(path.join(artifactDir, 'deltas'), { recursive: true });
+    fs.writeFileSync(path.join(artifactDir, 'iterations', `iteration-${nnn}.md`), narrative);
+    fs.writeFileSync(path.join(artifactDir, 'deep-review-state.jsonl'), `${JSON.stringify(record)}\n`);
+    fs.writeFileSync(
+      path.join(artifactDir, 'deltas', `iter-${nnn}.jsonl`),
+      [record, ...extraDeltaRows].map((row) => JSON.stringify(row)).join('\n') + '\n',
+    );
+  }
+
+  it('rejects unenumerated research counts and keeps delta, Markdown, zero, and absent cases valid', () => {
+    const countOnlyDir = path.join(findingsDir, 'count-only');
+    const countOnlyRecord = researchRecord(1, { findingsCount: 3 });
+    const noFindingsNarrative = '# Iteration 1\n\n## Actions Taken\nReviewed the target.\n';
+    writeResearchArtifacts(countOnlyDir, countOnlyRecord, noFindingsNarrative, [countOnlyRecord]);
+    const rejected = verify('research', countOnlyDir, 1);
+    expect(rejected.ok).toBe(false);
+    expect(rejected.reason).toBe('findings_not_enumerated');
+
+    const deltaDir = path.join(findingsDir, 'delta-findings');
+    const deltaRecord = researchRecord(1, { findingsCount: 3 });
+    const findingRows = Array.from({ length: 3 }, (_, index) => ({
+      type: 'finding',
+      id: `F${index + 1}`,
+      label: `Research finding ${index + 1}`,
+      iteration: 1,
+      sources: ['src/example.ts'],
+    }));
+    writeResearchArtifacts(deltaDir, deltaRecord, noFindingsNarrative, [deltaRecord, ...findingRows]);
+    expect(verify('research', deltaDir, 1).ok).toBe(true);
+
+    const markdownDir = path.join(findingsDir, 'markdown-findings');
+    const markdownRecord = researchRecord(1, { findingsCount: 3 });
+    const findingsNarrative = [
+      '# Iteration 1',
+      '',
+      '## Findings',
+      '1. First finding',
+      '2. Second finding',
+      '3. Third finding',
+      '',
+      '## Questions Remaining',
+    ].join('\n');
+    writeResearchArtifacts(markdownDir, markdownRecord, findingsNarrative, [markdownRecord]);
+    expect(verify('research', markdownDir, 1).ok).toBe(true);
+
+    const zeroDir = path.join(findingsDir, 'zero-count');
+    const zeroRecord = researchRecord(1, { findingsCount: 0 });
+    writeResearchArtifacts(zeroDir, zeroRecord, noFindingsNarrative, [zeroRecord]);
+    expect(verify('research', zeroDir, 1).ok).toBe(true);
+
+    const absentDir = path.join(findingsDir, 'absent-count');
+    const absentRecord = researchRecord(1);
+    writeResearchArtifacts(absentDir, absentRecord, noFindingsNarrative, [absentRecord]);
+    expect(verify('research', absentDir, 1).ok).toBe(true);
+  });
+
+  it('counts only delta finding rows the merge files under this iteration', () => {
+    const noFindingsNarrative = '# Iteration 1\n\n## Actions Taken\nReviewed the target.\n';
+    const findingRow = (iteration: number | undefined) => ({
+      type: 'finding',
+      id: 'F1',
+      label: 'Research finding',
+      ...(iteration === undefined ? {} : { iteration }),
+      sources: ['src/example.ts'],
+    });
+
+    const foreignDir = path.join(findingsDir, 'foreign-row');
+    const foreignRecord = researchRecord(1, { findingsCount: 1 });
+    writeResearchArtifacts(foreignDir, foreignRecord, noFindingsNarrative, [foreignRecord, findingRow(2)]);
+    const rejected = verify('research', foreignDir, 1);
+    expect(rejected.ok).toBe(false);
+    expect(rejected.reason).toBe('findings_not_enumerated');
+
+    const unkeyedDir = path.join(findingsDir, 'unkeyed-row');
+    const unkeyedRecord = researchRecord(1, { findingsCount: 1 });
+    writeResearchArtifacts(unkeyedDir, unkeyedRecord, noFindingsNarrative, [unkeyedRecord, findingRow(undefined)]);
+    expect(verify('research', unkeyedDir, 1).ok).toBe(true);
+  });
+
+  it('rejects unenumerated review counts and passes matching findingDetails', () => {
+    const verdictNarrative = '# Iteration 1\n\nFindings...\n\nReview verdict: PASS\n';
+    const countOnlyDir = path.join(findingsDir, 'review-count-only');
+    const countOnlyRecord = reviewRecord(1, { findingsCount: 2, findingDetails: [] });
+    writeReviewArtifacts(countOnlyDir, countOnlyRecord, verdictNarrative);
+    const rejected = verify('review', countOnlyDir, 1);
+    expect(rejected.ok).toBe(false);
+    expect(rejected.reason).toBe('findings_not_enumerated');
+
+    const enumeratedDir = path.join(findingsDir, 'review-enumerated');
+    const enumeratedRecord = reviewRecord(1, {
+      findingsCount: 2,
+      findingDetails: [
+        { id: 'R1-P1-001', severity: 'P1', title: 'First review finding' },
+        { id: 'R1-P2-001', severity: 'P2', title: 'Second review finding' },
+      ],
+    });
+    writeReviewArtifacts(enumeratedDir, enumeratedRecord, verdictNarrative);
+    expect(verify('review', enumeratedDir, 1).ok).toBe(true);
+  });
+
+  it('accepts review details that list more findings than the iteration count, with adjudicated severity', () => {
+    const verdictNarrative = '# Iteration 5\n\nFindings...\n\nReview verdict: CONDITIONAL\n';
+    const activeListDir = path.join(findingsDir, 'review-active-list');
+    const activeListRecord = reviewRecord(5, {
+      findingsCount: 1,
+      findingDetails: [
+        { id: 'R2-P0-001', severity: 'P0', title: 'Carried finding' },
+        { findingId: 'R1-P1-001', finalSeverity: 'P1', title: 'Adjudicated finding' },
+        { id: 'R5-P2-001', severity: 'P2', title: 'New finding' },
+      ],
+    });
+    writeReviewArtifacts(activeListDir, activeListRecord, verdictNarrative);
+    expect(verify('review', activeListDir, 5).ok).toBe(true);
+
+    const unreadableDir = path.join(findingsDir, 'review-unreadable');
+    const unreadableRecord = reviewRecord(5, {
+      findingsCount: 1,
+      findingDetails: [{ severity: 'P1' }],
+    });
+    writeReviewArtifacts(unreadableDir, unreadableRecord, verdictNarrative);
+    const rejected = verify('review', unreadableDir, 5);
+    expect(rejected.ok).toBe(false);
+    expect(rejected.reason).toBe('findings_not_enumerated');
+  });
+
+  it('accepts review findings listed only as delta rows filed under this iteration', () => {
+    const verdictNarrative = '# Iteration 2\n\nFindings...\n\nReview verdict: CONDITIONAL\n';
+    const deltaRow = (overrides: Record<string, unknown>) => ({
+      type: 'finding',
+      id: 'R2-P1-001',
+      severity: 'P1',
+      title: 'Delta-only review finding',
+      iteration: 2,
+      ...overrides,
+    });
+    const cases: Array<[string, Record<string, unknown>, boolean]> = [
+      ['review-delta-row', {}, true],
+      ['review-delta-adjudicated', { severity: 'high', finalSeverity: 'P2' }, true],
+      ['review-delta-foreign', { iteration: 3 }, false],
+      ['review-delta-unranked', { severity: 'high' }, false],
+      ['review-delta-string-iteration', { iteration: '2' }, false],
+      ['review-delta-unkeyed', { iteration: undefined }, false],
+    ];
+    for (const [name, overrides, expected] of cases) {
+      const dir = path.join(findingsDir, name);
+      writeReviewArtifacts(dir, reviewRecord(2, { findingsCount: 1 }), verdictNarrative, [deltaRow(overrides)]);
+      const result = verify('review', dir, 2);
+      expect(result.ok, name).toBe(expected);
+      if (!expected) expect(result.reason, name).toBe('findings_not_enumerated');
+    }
+  });
+
+  it('accepts review findings listed only in the Markdown severity sections the reducer parses', () => {
+    const listed = [
+      '# Iteration 3: Correctness',
+      '',
+      '## Findings',
+      '',
+      '### P1, Required',
+      '',
+      '- **F001**: Guard compares paths lexically - `scripts/apply.cjs:12` - Use a containment test',
+      '',
+      'Review verdict: CONDITIONAL',
+      '',
+    ].join('\n');
+    const listedDir = path.join(findingsDir, 'review-markdown-listed');
+    writeReviewArtifacts(listedDir, reviewRecord(3, { findingsCount: 1 }), listed);
+    expect(verify('review', listedDir, 3).ok).toBe(true);
+
+    const proseOnly = '# Iteration 3: Correctness\n\n## Findings\n\nOne P1 in the path guard.\n\nReview verdict: CONDITIONAL\n';
+    const proseDir = path.join(findingsDir, 'review-markdown-prose');
+    writeReviewArtifacts(proseDir, reviewRecord(3, { findingsCount: 1 }), proseOnly);
+    const rejected = verify('review', proseDir, 3);
+    expect(rejected.ok).toBe(false);
+    expect(rejected.reason).toBe('findings_not_enumerated');
+  });
+
+  it('gates a review on its new findings, not the running total it carries', () => {
+    const verdictNarrative = '# Iteration 4\n\n## Result\nNo new finding in this pass.\n\nReview verdict: PASS\n';
+    const carriedDir = path.join(findingsDir, 'review-carried-total');
+    writeReviewArtifacts(carriedDir, reviewRecord(4, {
+      findingsCount: 5,
+      findingsSummary: { P0: 0, P1: 1, P2: 4 },
+      findingsNew: { P0: 0, P1: 0, P2: 0 },
+      findingDetails: [],
+    }), verdictNarrative);
+    expect(verify('review', carriedDir, 4).ok).toBe(true);
+
+    const unlistedDir = path.join(findingsDir, 'review-new-unlisted');
+    writeReviewArtifacts(unlistedDir, reviewRecord(4, {
+      findingsCount: 5,
+      findingsSummary: { P0: 0, P1: 1, P2: 4 },
+      findingsNew: { P0: 0, P1: 1, P2: 0 },
+      findingDetails: [],
+    }), verdictNarrative);
+    const rejected = verify('review', unlistedDir, 4);
+    expect(rejected.ok).toBe(false);
+    expect(rejected.reason).toBe('findings_not_enumerated');
+  });
+
+  it('reads a list-shaped findingsNew as the list of new findings', () => {
+    const verdictNarrative = '# Iteration 5\n\n## Result\nNothing new.\n\nReview verdict: PASS\n';
+    const noneNewDir = path.join(findingsDir, 'review-list-none-new');
+    writeReviewArtifacts(noneNewDir, reviewRecord(5, {
+      findingsCount: 7, findingsNew: [], findingDetails: [],
+    }), verdictNarrative);
+    expect(verify('review', noneNewDir, 5).ok).toBe(true);
+
+    const oneNewDir = path.join(findingsDir, 'review-list-one-new');
+    writeReviewArtifacts(oneNewDir, reviewRecord(5, {
+      findingsCount: 7, findingsNew: [{ id: 'R5-P1-001' }], findingDetails: [],
+    }), verdictNarrative);
+    const rejected = verify('review', oneNewDir, 5);
+    expect(rejected.ok).toBe(false);
+    expect(rejected.reason).toBe('findings_not_enumerated');
+  });
+
+  it('lets a valid source carry the claim when findingDetails holds an unranked entry', () => {
+    const verdictNarrative = '# Iteration 2\n\nFindings...\n\nReview verdict: CONDITIONAL\n';
+    const dir = path.join(findingsDir, 'review-details-partial');
+    writeReviewArtifacts(dir, reviewRecord(2, {
+      findingsCount: 1,
+      findingDetails: [{ id: 'A', severity: 'P1' }, { id: 'B', severity: 'high' }],
+    }), verdictNarrative, [{ type: 'finding', id: 'A', severity: 'P1', title: 'Kept by the reducer', iteration: 2 }]);
+    expect(verify('review', dir, 2).ok).toBe(true);
+  });
+
+  it('ignores Markdown findings in a suffixed narrative the reducer never loads', () => {
+    const listed = [
+      '# Iteration 3: Correctness',
+      '',
+      '## Findings',
+      '',
+      '### P1, Required',
+      '',
+      '- **F001**: Guard compares paths lexically - `scripts/apply.cjs:12` - Use a containment test',
+      '',
+      'Review verdict: CONDITIONAL',
+      '',
+    ].join('\n');
+    const dir = path.join(findingsDir, 'review-markdown-suffixed');
+    writeReviewArtifacts(dir, reviewRecord(3, { findingsCount: 1 }), listed);
+    fs.renameSync(path.join(dir, 'iterations', 'iteration-003.md'), path.join(dir, 'iterations', 'iteration-003-correctness.md'));
+    const rejected = verify('review', dir, 3);
+    expect(rejected.ok).toBe(false);
+    expect(rejected.reason).toBe('findings_not_enumerated');
+  });
+});
