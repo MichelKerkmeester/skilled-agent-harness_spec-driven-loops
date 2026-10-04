@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7fc8ee1feeed1f949be683f5ff00e186429c93f4d6eb87e7332c2faaa14f664f",
+  "manifestHash": "5143acf4c42d1cc8a8023d833cf8dd1966ff50b8e0310644f8045cbeb7d27bf0",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -13167,6 +13167,16 @@
     "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/plan.md",
     "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/spec.md",
     "specs/system-speckit/049-doctor-audit-followups/010-doctor-router-gates/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/research/deep-research-strategy.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/research/research.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/011-changelog-v4003-research/tasks.md",
+    "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/implementation-summary.md",
+    "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/plan.md",
+    "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/spec.md",
+    "specs/system-speckit/049-doctor-audit-followups/012-changelog-v4003-update/tasks.md",
     "specs/system-speckit/049-doctor-audit-followups/spec.md"
   ],
   "phrases": {
@@ -30180,6 +30190,12 @@
     "changelog described the scaffold": [
       4847
     ],
+    "changelog doctor git hooks findings": [
+      13157
+    ],
+    "changelog doctor git hooks gap": [
+      13161
+    ],
     "changelog draft drift": [
       12568
     ],
@@ -30299,6 +30315,9 @@
     "changelog readme conformance": [
       1309
     ],
+    "changelog research plan": [
+      13158
+    ],
     "changelog retrofit checklist": [
       5160
     ],
@@ -30386,6 +30405,9 @@
     ],
     "changelog type detection": [
       1248
+    ],
+    "changelog update plan": [
+      13164
     ],
     "changelog v4 style": [
       4976
@@ -48212,7 +48234,8 @@
       11336,
       11877,
       12803,
-      13130
+      13130,
+      13159
     ],
     "deep research strategy md": [
       1813
@@ -51872,7 +51895,7 @@
       12245
     ],
     "doctor audit followups": [
-      13157
+      13167
     ],
     "doctor baseline verification": [
       12161
@@ -51883,6 +51906,9 @@
     "doctor causal graph": [
       9124,
       9143
+    ],
+    "doctor changelog research": [
+      13160
     ],
     "doctor cocoindex": [
       9124,
@@ -51953,6 +51979,9 @@
     "doctor command security hardening": [
       10096
     ],
+    "doctor command split": [
+      46
+    ],
     "doctor command surface": [
       9143
     ],
@@ -51988,6 +52017,9 @@
     ],
     "doctor commands inventory and extract tasks": [
       10600
+    ],
+    "doctor commands release notes": [
+      13165
     ],
     "doctor commands router rewire": [
       10607
@@ -52119,7 +52151,7 @@
     ],
     "doctor gates drift": [
       13121,
-      13157
+      13167
     ],
     "doctor git command": [
       13151
@@ -52260,6 +52292,9 @@
     ],
     "doctor rebuild split": [
       13035
+    ],
+    "doctor release notes shipped": [
+      13163
     ],
     "doctor removal tasks": [
       12163
@@ -56135,7 +56170,8 @@
       4500,
       11877,
       12803,
-      13130
+      13130,
+      13159
     ],
     "exhausted review approaches": [
       1831,
@@ -61559,6 +61595,9 @@
     ],
     "git hook bypass lines shipped": [
       12910
+    ],
+    "git hook changelog coverage": [
+      13160
     ],
     "git hook drift": [
       54
@@ -67985,7 +68024,9 @@
       13142,
       13147,
       13152,
-      13156
+      13156,
+      13162,
+      13166
     ],
     "implementation testing verification phases": [
       830
@@ -87977,7 +88018,6 @@
       340
     ],
     "pi classifier transport": [
-      46,
       101,
       116,
       118
@@ -95370,7 +95410,7 @@
       13138
     ],
     "release update signals": [
-      13157
+      13167
     ],
     "release updater over rebuild": [
       12989
@@ -97440,7 +97480,8 @@
       4500,
       11877,
       12803,
-      13130
+      13130,
+      13159
     ],
     "research spec conflict detection": [
       1823
@@ -97464,7 +97505,8 @@
       4500,
       11877,
       12803,
-      13130
+      13130,
+      13159
     ],
     "research stop contract": [
       1818
@@ -97481,7 +97523,8 @@
       4500,
       11877,
       12803,
-      13130
+      13130,
+      13159
     ],
     "research stuck count": [
       1817
@@ -100335,7 +100378,8 @@
       4500,
       11877,
       12803,
-      13130
+      13130,
+      13159
     ],
     "ruledout array": [
       1804
@@ -118085,7 +118129,9 @@
       13142,
       13147,
       13152,
-      13156
+      13156,
+      13162,
+      13166
     ],
     "task cache removal": [
       503
@@ -118438,7 +118484,9 @@
       13142,
       13147,
       13152,
-      13156
+      13156,
+      13162,
+      13166
     ],
     "task detail without network": [
       523
@@ -121528,7 +121576,7 @@
     ],
     "trigger index freshness": [
       13110,
-      13157
+      13167
     ],
     "trigger index generator": [
       2379,
@@ -123185,8 +123233,29 @@
     "v4 0 0 2 release notes": [
       45
     ],
+    "v4 0 0 3 changelog gaps": [
+      13160
+    ],
+    "v4 0 0 3 changelog research": [
+      13161
+    ],
+    "v4 0 0 3 changelog research summary": [
+      13157
+    ],
+    "v4 0 0 3 changelog update": [
+      13165
+    ],
+    "v4 0 0 3 changelog update summary": [
+      13163
+    ],
+    "v4 0 0 3 entry edit plan": [
+      13164
+    ],
     "v4 0 0 3 release notes": [
       46
+    ],
+    "v4 0 0 3 research plan": [
+      13158
     ],
     "v4 changelog": [
       43
@@ -124848,7 +124917,9 @@
       13142,
       13147,
       13152,
-      13156
+      13156,
+      13162,
+      13166
     ],
     "verification class blind to failure class": [
       6983

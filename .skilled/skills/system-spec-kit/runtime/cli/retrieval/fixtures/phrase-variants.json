@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7fc8ee1feeed1f949be683f5ff00e186429c93f4d6eb87e7332c2faaa14f664f",
+  "manifestHash": "5143acf4c42d1cc8a8023d833cf8dd1966ff50b8e0310644f8045cbeb7d27bf0",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -15289,6 +15289,12 @@
     "changelog described the scaffold": [
       "changelog described the scaffold"
     ],
+    "changelog doctor git hooks findings": [
+      "changelog doctor git hooks findings"
+    ],
+    "changelog doctor git hooks gap": [
+      "changelog doctor git hooks gap"
+    ],
     "changelog draft drift": [
       "changelog draft drift"
     ],
@@ -15404,6 +15410,9 @@
     "changelog readme conformance": [
       "changelog readme conformance"
     ],
+    "changelog research plan": [
+      "changelog research plan"
+    ],
     "changelog retrofit checklist": [
       "changelog retrofit checklist"
     ],
@@ -15487,6 +15496,9 @@
     ],
     "changelog type detection": [
       "changelog type detection"
+    ],
+    "changelog update plan": [
+      "changelog update plan"
     ],
     "changelog v4 style": [
       "changelog v4 style"
@@ -35041,6 +35053,9 @@
       "/doctor causal-graph",
       "doctor causal-graph"
     ],
+    "doctor changelog research": [
+      "doctor changelog research"
+    ],
     "doctor cocoindex": [
       "/doctor cocoindex",
       "doctor cocoindex"
@@ -35109,6 +35124,9 @@
     "doctor command security hardening": [
       "doctor command security hardening"
     ],
+    "doctor command split": [
+      "doctor command split"
+    ],
     "doctor command surface": [
       "doctor command surface"
     ],
@@ -35144,6 +35162,9 @@
     ],
     "doctor commands inventory and extract tasks": [
       "doctor commands inventory and extract tasks"
+    ],
+    "doctor commands release notes": [
+      "doctor commands release notes"
     ],
     "doctor commands router rewire": [
       "doctor commands router rewire"
@@ -35386,6 +35407,9 @@
     ],
     "doctor rebuild split": [
       "doctor rebuild split"
+    ],
+    "doctor release notes shipped": [
+      "doctor release notes shipped"
     ],
     "doctor removal tasks": [
       "doctor removal tasks"
@@ -43675,6 +43699,9 @@
     ],
     "git hook bypass lines shipped": [
       "git hook bypass lines shipped"
+    ],
+    "git hook changelog coverage": [
+      "git hook changelog coverage"
     ],
     "git hook drift": [
       "git hook drift"
@@ -97920,8 +97947,29 @@
     "v4 0 0 2 release notes": [
       "v4.0.0.2 release notes"
     ],
+    "v4 0 0 3 changelog gaps": [
+      "v4.0.0.3 changelog gaps"
+    ],
+    "v4 0 0 3 changelog research": [
+      "v4.0.0.3 changelog research"
+    ],
+    "v4 0 0 3 changelog research summary": [
+      "v4.0.0.3 changelog research summary"
+    ],
+    "v4 0 0 3 changelog update": [
+      "v4.0.0.3 changelog update"
+    ],
+    "v4 0 0 3 changelog update summary": [
+      "v4.0.0.3 changelog update summary"
+    ],
+    "v4 0 0 3 entry edit plan": [
+      "v4.0.0.3 entry edit plan"
+    ],
     "v4 0 0 3 release notes": [
       "v4.0.0.3 release notes"
+    ],
+    "v4 0 0 3 research plan": [
+      "v4.0.0.3 research plan"
     ],
     "v4 changelog": [
       "v4 changelog"
