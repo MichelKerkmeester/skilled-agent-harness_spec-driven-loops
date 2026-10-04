@@ -74,6 +74,8 @@ Mapping: PASS if no P0 or P1 findings this iteration; CONDITIONAL if any P1 (no 
 
 Every new P0/P1 must include: claim, evidenceRefs, counterevidenceSought, alternativeExplanation, finalSeverity, confidence, and downgradeTrigger.
 
+When the iteration narrative cites code as `[SOURCE: <repo-relative path>:<line>]`, use the path as it is now. `validate.sh --strict` resolves each tag through its `SOURCE_TAGS` rule and warns on a file that is gone, a file that moved, or a line past the end. A resolved tag only proves the path and line exist.
+
 ## STATE FILES
 
 All paths are relative to the repo root.

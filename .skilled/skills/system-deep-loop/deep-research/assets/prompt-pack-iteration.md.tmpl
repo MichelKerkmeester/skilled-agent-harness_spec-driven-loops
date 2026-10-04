@@ -85,6 +85,8 @@ For non-native CLI executors, the workflow owns executor provenance. It writes a
 
 Every `finding` row MUST carry `"sources":["<repo-relative file path or URL>", ...]`, and every `SOURCE` graph node that names a file MUST carry `"path":"<repo-relative file path>"`; the resource map is built from those fields.
 
+In the iteration narrative, cite code as `[SOURCE: <repo-relative path>:<line>]` with the path as it is now. `validate.sh --strict` resolves each one through its `SOURCE_TAGS` rule and warns on a file that is gone, a file that moved, or a line past the end. A resolved tag only proves the path and line exist, so the cited lines must still say what you claim.
+
 Example delta file contents (one iteration):
 ```json
 {"type":"iteration","iteration":3,"runId":"<run session id>","sessionId":"<run session id>","lineageId":"<run session id>","mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","newInfoRatio":0.62,"status":"insight","focus":"...","answeredQuestions":["<exact text of each strategy key question this iteration answered>"]}
