@@ -73,7 +73,13 @@
             "required": ["selector", "target"],
             "properties": {
               "selector": { "type": "string", "description": "Mode suffix (:auto), subaction name, or the default selector." },
-              "target": { "type": "string", "description": "The asset path, script, tool, or route-manifest entry the selector executes." }
+              "target": { "type": "string", "description": "The asset path, script, tool, or route-manifest entry the selector executes." },
+              "commands": {
+                "type": "array",
+                "items": { "type": "string", "pattern": "^/[a-z-]+:[a-z-]+$" },
+                "minItems": 1,
+                "description": "Limits this entry to the named commands (for example /speckit:resume). Omitted means every router in the family."
+              }
             }
           }
         },
@@ -108,16 +114,22 @@
         },
         "owned_assets": {
           "type": "array",
-          "description": "The assets the family owns. A mode-pair family owns the presentation .txt plus the -auto.yaml / -confirm.yaml pair. Asset stems are hyphen-joined <family>-<command>-<kind>, or <command>-<kind> in a family that drops the prefix; see metadata.asset_naming.",
+          "description": "The assets the family owns. A mode-pair family owns the presentation .txt plus either one workflow .yaml that branches on execution mode or the -auto.yaml / -confirm.yaml pair. Asset stems are hyphen-joined <family>-<command>-<kind>, or <command>-<kind> in a family that drops the prefix; see metadata.asset_naming.",
           "items": {
             "type": "object",
             "additionalProperties": false,
             "required": ["purpose", "path"],
             "properties": {
               "purpose": {
-                "enum": ["presentation", "auto_workflow", "confirm_workflow", "route_manifest", "script", "other"]
+                "enum": ["presentation", "workflow", "auto_workflow", "confirm_workflow", "route_manifest", "script", "other"]
               },
-              "path": { "type": "string", "description": "Repo-relative asset path, or a template placeholder for the family shape." }
+              "path": { "type": "string", "description": "Repo-relative asset path, or a template placeholder for the family shape." },
+              "commands": {
+                "type": "array",
+                "items": { "type": "string", "pattern": "^/[a-z-]+:[a-z-]+$" },
+                "minItems": 1,
+                "description": "Limits this asset to the named commands (for example /speckit:resume). Omitted means every router in the family."
+              }
             }
           }
         },

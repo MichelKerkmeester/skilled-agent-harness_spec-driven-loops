@@ -130,6 +130,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 4 | 004-doctor-scripts-conformance/ | Bring every doctor script to the sk-code OpenCode standards, remove dead code and put each script under an automated test that CI runs | Complete |
 | 5 | 005-doctor-update-research/ | Six iterations of deep research into whether `/doctor:update` and the release-update engine are complete and correct, ending in a ranked fix list | Complete |
 | 6 | 006-doctor-update-fixes/ | Fix every finding and recommendation of the doctor-update research, reviewed first by a fresh Opus 5.5 and implemented by cli-codex gpt-6-luna at max on the fast tier | Complete |
+| 7 | 007-speckit-router-contract-drift/ | Align the command contract with the merged speckit lifecycle workflows so the router generator check passes, the one check still failing when phase 006 closed | Complete |
 
 ### Phase Transition Rules
 
@@ -147,6 +148,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | 003-doctor-gates-and-drift | 004-doctor-scripts-conformance | Phase 003's acceptance criteria are Met and the doctor gates exit 0 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/049-doctor-audit-followups/003-doctor-gates-and-drift --strict` prints `RESULT: PASSED` |
 | 004-doctor-scripts-conformance | 005-doctor-update-research | Phase 004's acceptance criteria are Met and its commit is on the branch | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/049-doctor-audit-followups/004-doctor-scripts-conformance --strict` prints `RESULT: PASSED` |
 | 005-doctor-update-research | 006-doctor-update-fixes | `research/research.md` ranks every finding with a fix and a proving test, and phase 005 validates strict | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/049-doctor-audit-followups/005-doctor-update-research --strict` prints `RESULT: PASSED` |
+| 006-doctor-update-fixes | 007-speckit-router-contract-drift | Phase 006's acceptance criteria are Met and the doctor suites pass | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/049-doctor-audit-followups/006-doctor-update-fixes --strict` prints `RESULT: PASSED`, and `node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check` exits 0 once phase 007 lands |
 <!-- /ANCHOR:phase-map -->
 
 ---
