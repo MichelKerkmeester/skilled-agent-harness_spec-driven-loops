@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-03 |
 | **Branch** | `scaffold/051-followups` |
 | **Parent Spec** | ../spec.md |
@@ -76,12 +76,12 @@ Phase 050 kept Pi as the default and left open items. 032 is the only feature wi
 - A capture script collects real reviewer outputs for 025 into `~/.skilled/.labels`, unlabeled, with a census line
 - 017 R8: 017's report pins, probability-aware arm and bootstrap (R2, R3 and R6 in `specs/cli-jev/003-cli-jev-workflow-integration/048-jev-feature-improvement-research/002-track-narrowing-research/research/research.md`) move into the classifier-family scorer pattern its siblings share
 - 026, 029 and 031 are retired: final verdicts recorded, and their catalog and playbook entries marked retired
+- Delete the code of every killed or retired Jev feature (002, 006, 019, 027, 028, 033, 026, 029 and 031) with its tests, catalog and playbook entries and doc mentions, and the Jev arm of the four without headroom (003, 005, 021 and 034). Helpers a live feature imports move first, and code with a live non-Jev use stays. Spec folders and run data stay as the record
 
 ### Out of Scope
 - Labeled corpora for 024, 035, 022 and 026 - only operator-confirmed or delegated labels count, per 003 D4
 - 035 at the fetch boundary - no hook reads fetched text yet
 - Any other feature on by default - the operator lifted 047 D6 for 032 only
-- Deleting the retired scorers - their code stays as the record of the measurement
 
 ### Files to Change
 
@@ -93,6 +93,7 @@ Phase 050 kept Pi as the default and left open items. 032 is the only feature wi
 | A new 025 capture script beside `score-verdict-fallback.cjs` | Create | Real reviewer outputs, unlabeled |
 | The classifier-family scorers named in 048's 017 research | Modify | R8 port |
 | Catalog and playbook entries for 026, 029 and 031 | Modify | Marked retired |
+| Killed and retired scorers, their tests, catalog and playbook entries | Delete | Operator's amendment of 2026-10-04 |
 <!-- /ANCHOR:scope -->
 
 ---
