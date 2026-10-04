@@ -837,6 +837,34 @@ function writeRecordedCalls(root: string): { path: string; records: Record<strin
   return { path: filePath, records };
 }
 
+function fakePiBin(): string {
+  const root = tempDir('fakepi-');
+  fs.mkdirSync(path.join(root, 'bin'));
+  fs.mkdirSync(path.join(root, 'dist'));
+  fs.writeFileSync(path.join(root, 'bin', 'pi'), '#!/bin/sh\nexit 0\n', { mode: 0o755 });
+  fs.writeFileSync(path.join(root, 'package.json'), JSON.stringify({ name: '@earendil-works/pi-coding-agent', version: '0.99.2', type: 'module' }));
+  fs.writeFileSync(path.join(root, 'dist', 'index.js'), `
+export class ModelRuntime {
+  static create() {
+    return {
+      getModelOfType: (type, provider, id) => ({ type, provider, id }),
+      getAvailableOfType: async () => [{ id: 'jev-latest' }, { id: 'typesafe/jev-1.13' }],
+      classify: async (model, context) => {
+        const text = String(Object.values(context.state)[0] ?? '');
+        const keys = Object.keys(context.questions.answer.criteria);
+        const choice = text.includes('quartz') ? 'alpha-track' : text.includes('ember') ? 'beta' : 'none';
+        const probabilities = Object.fromEntries(keys.map((key) => [key, key === choice ? 0.8 : 0.05]));
+        return { api: 'typesafe-system-one', provider: model.provider, model: model.id,
+          answers: { answer: { type: 'choice', choice, probabilities, confidence: 0.9 } }, stopReason: 'stop', timestamp: 0,
+          usage: { input: 100, output: 10, cacheRead: 0, cacheWrite: 0, totalTokens: 110, cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 } } };
+      },
+    };
+  }
+}
+`);
+  return path.join(root, 'bin');
+}
+
 describe('score-track-narrowing recorded replay', () => {
   it('pins the run and reports measured arms without invoking Jev', async () => {
     const root = tempDir('score-track-narrowing-');
@@ -957,6 +985,29 @@ describe('score-track-narrowing recorded replay', () => {
     expect(changedReport.testSet.K).toBe(recordedK - 1);
     expect(changedReport.columns.jev.M).toBe(recordedM - 1);
   });
+
+  it('replays a log whose auth record and judgment records name different models', async () => {
+    const root = tempDir('score-track-narrowing-replay-mixed-');
+    const { indexPath, probesPath } = keepCorpus(root);
+    const recorded = writeRecordedCalls(root);
+    const mixedPath = path.join(root, 'calls-mixed.jsonl');
+    fs.writeFileSync(mixedPath, `${recorded.records.map((record) => (
+      JSON.stringify(record.kind === 'test' ? { ...record, model: 'typesafe/jev-latest' } : record)
+    )).join('\n')}\n`);
+    const deps = {
+      repoRoot: root,
+      indexPath,
+      probesPath,
+      hubNames: [],
+      env: { ...process.env, PATH: '/no-executable' },
+    };
+
+    const run = await runMain(['--replay', mixedPath], deps);
+
+    expect(run.code).toBe(0);
+    const verdictLine = run.lines.find((line) => line.startsWith('verdict jev:'));
+    expect(verdictLine ?? '').toMatch(/provider=official model=typesafe\/jev-latest$/);
+  });
 });
 
 // ───────────────────────────────────────────────────────────────────
@@ -1045,6 +1096,10 @@ const JEV = `case "$1" in --version) echo 'jev 0.6.2'; exit 0;; auth) [ "$2" = t
 p=$(cat); case "$p" in *exit1*) exit 1;; *exit3*) exit 3;; *exit4*) exit 4;; *quartz*) k=alpha-track;; *ember*) k=beta;; *) k=none;; esac
 echo "{\\"model\\":\\"stub-model\\",\\"answers\\":{\\"answer\\":{\\"choice\\":\\"$k\\",\\"probabilities\\":{\\"$k\\":0.8,\\"none\\":0.05}}}}"`;
 
+const JEV_ANSWER_MODEL = `case "$1" in --version) echo 'jev 0.6.2'; exit 0;; auth) [ "$2" = test ] && echo '{"ok":true,"valid":true,"model":"stub-model"}'; exit 0;; esac
+p=$(cat); case "$p" in *exit1*) exit 1;; *exit3*) exit 3;; *exit4*) exit 4;; *quartz*) k=alpha-track;; *ember*) k=beta;; *) k=none;; esac
+echo "{\\"model\\":\\"stub-answer-model\\",\\"answers\\":{\\"answer\\":{\\"choice\\":\\"$k\\",\\"probabilities\\":{\\"$k\\":0.8,\\"none\\":0.05}}}}"`;
+
 describe('score-track-narrowing jev arm', () => {
   it('runs every jev call under one provider and prints keep on stub answers', async () => {
     const root = tempDir('score-track-narrowing-');
@@ -1095,6 +1150,85 @@ describe('score-track-narrowing jev arm', () => {
       expect(record.jevVersion).toBe('jev 0.6.2');
       expect(record.provider).toBe('official');
       expect(record.model).toBe('stub-model');
+    }
+  });
+
+  it('records the answering model on judgment calls while the auth test keeps its own model', async () => {
+    const root = tempDir('score-track-narrowing-answer-');
+    const { indexPath, probesPath } = keepCorpus(root);
+    const stubs = stubDir({ jev: JEV_ANSWER_MODEL });
+    const out = tempDir('stn-answer-out-');
+    const env: NodeJS.ProcessEnv = { ...process.env, PATH: `${stubs}${path.delimiter}${process.env.PATH}` };
+    delete env.JEV_PROVIDER;
+
+    const r = await runMain(['--jev', '--out', out], {
+      repoRoot: root,
+      indexPath,
+      probesPath,
+      hubNames: [],
+      env,
+    });
+
+    expect(r.code).toBe(0);
+    expect(r.lines).toContain('jev: auth test provider=official model=stub-model');
+    const verdictLine = r.lines.find((line) => line.startsWith('verdict jev:'));
+    expect(verdictLine ?? '').toMatch(/model=stub-answer-model$/);
+
+    const records = fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8')
+      .split('\n').filter(Boolean).map((line) => JSON.parse(line));
+    const authRecord = records.find((record) => record.kind === 'auth_test');
+    const judgmentRecords = records.filter((record) => record.rowId !== null);
+    expect(authRecord?.model).toBe('stub-model');
+    expect(judgmentRecords.length).toBeGreaterThan(0);
+    expect(judgmentRecords.every((record) => record.model === 'stub-answer-model')).toBe(true);
+
+    const report = JSON.parse(fs.readFileSync(path.join(out, 'report.json'), 'utf8'));
+    expect(report.modelTuple).toEqual({
+      jevVersion: 'jev 0.6.2',
+      provider: 'official',
+      model: 'stub-answer-model',
+    });
+  });
+
+  it('records the Pi model on Pi judgments while the auth test keeps the CLI model', async () => {
+    const root = tempDir('score-track-narrowing-pi-');
+    const { indexPath, probesPath } = keepCorpus(root);
+    const stubs = stubDir({ jev: JEV });
+    const out = tempDir('stn-pi-out-');
+    const piBin = fakePiBin();
+    const env: NodeJS.ProcessEnv = {
+      ...process.env,
+      PATH: `${piBin}${path.delimiter}${stubs}${path.delimiter}${process.env.PATH}`,
+    };
+    delete env.JEV_PROVIDER;
+    const lines: string[] = [];
+    const errs: string[] = [];
+
+    const code = await main(['--jev', '--out', out], {
+      repoRoot: root,
+      indexPath,
+      probesPath,
+      hubNames: [],
+      env: { ...env, JEV_TRANSPORT: 'pi' },
+      out: (line: string) => { lines.push(line); },
+      err: (line: string) => { errs.push(line); },
+    });
+
+    expect(code).toBe(0);
+    expect(errs).toHaveLength(1);
+    expect(errs[0]?.startsWith('wall time: ')).toBe(true);
+    const verdictLine = lines.find((line) => line.startsWith('verdict jev:'));
+    expect(verdictLine ?? '').toMatch(/model=typesafe\/jev-latest$/);
+
+    const records = fs.readFileSync(path.join(out, 'calls.jsonl'), 'utf8')
+      .split('\n').filter(Boolean).map((line) => JSON.parse(line));
+    const authRecord = records.find((record) => record.kind === 'auth_test');
+    const judgmentRecords = records.filter((record) => record.rowId !== null);
+    expect(authRecord?.model).toBe('stub-model');
+    expect(judgmentRecords.length).toBeGreaterThan(0);
+    for (const record of judgmentRecords) {
+      expect(record.transport).toBe('pi');
+      expect(record.model).toBe('typesafe/jev-latest');
     }
   });
 
